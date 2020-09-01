@@ -99,29 +99,32 @@ package body EinheitenDatenbank is
    begin
       
       case Arbeit is
-         when 'l' =>
-            Put ("Straße bauen");
+         when 'l' =>            
+            Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (22, 1)));
             
          when 't' =>
-            Put ("Mine bauen");
+            Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (22, 2)));
             
          when 'f' =>
-            Put ("Farm bauen");
+            Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (22, 3)));
             
          when 'u' =>
-            Put ("Festung bauen");
+            Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (22, 4)));
             
          when 'z' =>
-            Put ("Wald pflanzen");
+            Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (22, 5)));
+
+         when 'p' =>
+            Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (22, 6)));
             
          when 'h' =>
-            Put ("Heilt sich");
+            Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (22, 7)));
             
          when 'v' =>
-            Put ("Befestigt");
+            Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (22, 8)));
             
          when others =>
-            Put ("Unbeschäftigt");            
+            Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (22, 9)));            
       end case;
       
    end Beschäftigung;
