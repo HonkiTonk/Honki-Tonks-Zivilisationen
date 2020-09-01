@@ -22,6 +22,11 @@ private
    Überhang : Integer := 0;
    Stadtumgebungsgröße : Integer := 1;
    YAchsenabstraktion : Integer;
+   Verteidigungsbonus : Integer;
+   Nahrungsgewinnung : Integer;
+   Ressourcengewinnung : Integer;
+   Geldgewinnung : Integer;
+   Wissensgewinnung : Integer;
 
    procedure Sichtbarkeit (YAchse, XAchse : in Integer);
    procedure Farben (Einheit, Verbesserung, Ressource, Grund : in Integer);

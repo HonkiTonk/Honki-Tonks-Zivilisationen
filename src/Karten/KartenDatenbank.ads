@@ -25,37 +25,37 @@ package KartenDatenbank is
                                                            (' ', 1,    2, 1, 1, 0,    0), -- 3 Ebene ▒
                                                            (' ', 1,    1, 2, 1, 1,    0), -- 4 Tundra #
                                                            (' ', 1,    0, 1, 1, 1,    0), -- 5 Wüste §
-                                                           (' ', 1,    1, 2, 1, 0,    0), -- 6 Hügel -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
-                                                           (' ', 1,    0, 3, 1, 1,    0), -- 7 Gebirge
-                                                           (' ', 1,    1, 2, 1, 1,    0), -- 8 Wald
-                                                           (' ', 1,    1, 3, 1, 1,    0), -- 9 Dschungel
+                                                           (' ', 1,    1, 2, 1, 0,    1), -- 6 Hügel -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
+                                                           (' ', 1,    0, 3, 1, 1,    2), -- 7 Gebirge
+                                                           (' ', 1,    1, 2, 1, 1,    1), -- 8 Wald
+                                                           (' ', 1,    1, 3, 1, 1,    2), -- 9 Dschungel
                                                            ('♦', 1,    0, 2, 1, 0,    0), -- 10 Kohle = Ressource 1
                                                            ('♦', 1,    0, 2, 1, 0,    0), -- 11 Eisen = Ressource 2
                                                            ('♦', 1,    0, 2, 1, 0,    0), -- 12 Öl = Ressource 3
                                                            ('♦', 1,    2, 1, 1, 0,    0), -- 13 Hochwertiger Boden = Ressource 4
                                                
-                                                           ('╋', 1,    1, 0, 1, 0,    0), -- 14 Flußkreuzung
-                                                           ('━', 1,    1, 0, 1, 0,    0), -- 15 Fluß waagrecht
-                                                           ('┃', 1,    1, 0, 1, 0,    0), -- 16 Fluß senkrecht
-                                                           ('┏', 1,    1, 0, 1, 0,    0), -- 17 Flußkurve
-                                                           ('┓', 1,    1, 0, 1, 0,    0), -- 18 Flußkurve
+                                                           ('╋', 1,    1, 0, 1, 0,    1), -- 14 Flußkreuzung
+                                                           ('━', 1,    1, 0, 1, 0,    1), -- 15 Fluß waagrecht
+                                                           ('┃', 1,    1, 0, 1, 0,    1), -- 16 Fluß senkrecht
+                                                           ('┏', 1,    1, 0, 1, 0,    1), -- 17 Flußkurve
+                                                           ('┓', 1,    1, 0, 1, 0,    1), -- 18 Flußkurve
                                                
-                                                           ('┗', 1,    1, 0, 1, 0,    0), -- 19 Flußkurve
-                                                           ('┛', 1,    1, 0, 1, 0,    0), -- 20 Flußkurve
-                                                           ('┻', 1,    1, 0, 1, 0,    0), -- 21 Flußkreuzung
-                                                           ('┳', 1,    1, 0, 1, 0,    0), -- 22 Flußkreuzung
+                                                           ('┗', 1,    1, 0, 1, 0,    1), -- 19 Flußkurve
+                                                           ('┛', 1,    1, 0, 1, 0,    1), -- 20 Flußkurve
+                                                           ('┻', 1,    1, 0, 1, 0,    1), -- 21 Flußkreuzung
+                                                           ('┳', 1,    1, 0, 1, 0,    1), -- 22 Flußkreuzung
                                                
-                                                           ('┣', 1,    1, 0, 1, 0,    0), -- 23 Flußkreuzung
+                                                           ('┣', 1,    1, 0, 1, 0,    1), -- 23 Flußkreuzung
                                                
-                                                           ('┫', 1,    1, 0, 1, 0,    0), -- 24 Flußkreuzung
-                                                           ('╺', 1,    1, 0, 1, 0,    0), -- 25 Flußendstück rechts
-                                                           ('╸', 1,    1, 0, 1, 0,    0), -- 26 Flußendstück links
-                                                           ('╹', 1,    1, 0, 1, 0,    0), -- 27 Flußendstück oben
-                                                           ('╻', 1,    1, 0, 1, 0,    0), -- 28 Flußendstück unten
+                                                           ('┫', 1,    1, 0, 1, 0,    1), -- 24 Flußkreuzung
+                                                           ('╺', 1,    1, 0, 1, 0,    1), -- 25 Flußendstück links
+                                                           ('╸', 1,    1, 0, 1, 0,    1), -- 26 Flußendstück rechts
+                                                           ('╹', 1,    1, 0, 1, 0,    1), -- 27 Flußendstück unten
+                                                           ('╻', 1,    1, 0, 1, 0,    1), -- 28 Flußendstück oben
                                                            ('≈', 2,    2, 0, 1, 0,    0), -- 29 Fisch = WasserRessource 1
                                                            ('≈', 2,    2, 1, 2, 0,    0), -- 30 Wal = WasserRessource 2
                                                            (' ', 2,    2, 0, 1, 0,    0), -- 31 Küsten/Seegewässer
-                                                           (' ', 1,    1, 1, 1, 1,    0), -- 32 Sumpf
+                                                           (' ', 1,    1, 1, 1, 1,    2), -- 32 Sumpf
                                                            (' ', 1,    0, 1, 3, 0,    0)); -- 33 Gold = Ressource 5
                                                                         
    procedure Beschreibung (ID : in Integer);

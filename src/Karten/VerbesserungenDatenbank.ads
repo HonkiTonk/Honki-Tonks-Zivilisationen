@@ -9,35 +9,42 @@ package VerbesserungenDatenbank is
       
       Passierbarkeit : Integer; -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
                                 -- Addieren für genaue Passierbarkeit
+
+      Nahrungsbonus : Integer;
+      Ressourcenbonus : Integer;
+      Geldbonus : Integer;
+      Wissensbonus : Integer;
+
+      Verteidigungsbonus : Integer;
       
    end record;
    
    type VerbesserungObjektListeArray is array (1 .. 22) of VerbesserungObjekt;
-   VerbesserungObjektListe : VerbesserungObjektListeArray := (('♣', 13), -- 1 Eigene Hauptstadt -- Hier noch Symbole (wieder) einfügen
-                                                              ('♠', 13), -- 2 Eigene Stadt
-                                                              ('⌂', 13), -- 3 Andere Hauptstadt
-                                                              ('¤', 13), -- 4 Andere Stadt
-                                                              ('╬', 13), -- 5 Straßenkreuzung
-                                                              ('═', 13), -- 6 Straße waagrecht
-                                                              ('║', 13), -- 7 Straße senkrecht
-                                                              ('╔', 13), -- 8 Straßenkurve
-                                                              ('╗', 13), -- 9 Straßenkurve
+   VerbesserungObjektListe : VerbesserungObjektListeArray := (('♣', 13,    0, 0, 0, 0,    3), -- 1 Eigene Hauptstadt -- Hier noch Symbole (wieder) einfügen
+                                                              ('♠', 13,    0, 0, 0, 0,    2), -- 2 Eigene Stadt
+                                                              ('⌂', 13,    0, 0, 0, 0,    3), -- 3 Andere Hauptstadt
+                                                              ('¤', 13,    0, 0, 0, 0,    2), -- 4 Andere Stadt
+                                                              ('╬', 13,    0, 0, 1, 0,    0), -- 5 Straßenkreuzung
+                                                              ('═', 13,    0, 0, 1, 0,    0), -- 6 Straße waagrecht
+                                                              ('║', 13,    0, 0, 1, 0,    0), -- 7 Straße senkrecht
+                                                              ('╔', 13,    0, 0, 1, 0,    0), -- 8 Straßenkurve
+                                                              ('╗', 13,    0, 0, 1, 0,    0), -- 9 Straßenkurve
 
-                                                              ('╚', 13), -- 10 Straßenkurve
-                                                              ('╝', 13), -- 11 Straßenkurve
-                                                              ('╩', 13), -- 12 Straßenkreuzung
-                                                              ('╦', 13), -- 13 Straßenkreuzung
+                                                              ('╚', 13,    0, 0, 1, 0,    0), -- 10 Straßenkurve
+                                                              ('╝', 13,    0, 0, 1, 0,    0), -- 11 Straßenkurve
+                                                              ('╩', 13,    0, 0, 1, 0,    0), -- 12 Straßenkreuzung
+                                                              ('╦', 13,    0, 0, 1, 0,    0), -- 13 Straßenkreuzung
 
-                                                              ('╠', 13), -- 14 Straßenkreuzung
+                                                              ('╠', 13,    0, 0, 1, 0,    0), -- 14 Straßenkreuzung
                                                
-                                                              ('╣', 13), -- 15 Straßenkreuzung
-                                                              ('╞', 13), -- 16 Straßenendstück rechts
-                                                              ('╡', 13), -- 17 Straßenendstück links
-                                                              ('╨', 13), -- 18 Straßenendstück oben
-                                                              ('╥', 13), -- 19 Straßenendstück unten
-                                                              ('F', 13), -- 20 Farm
-                                                              ('M', 13), -- 21 Mine
-                                                              ('B', 13)); -- 22 Festung
+                                                              ('╣', 13,    0, 0, 1, 0,    0), -- 15 Straßenkreuzung
+                                                              ('╞', 13,    0, 0, 1, 0,    0), -- 16 Straßenendstück links
+                                                              ('╡', 13,    0, 0, 1, 0,    0), -- 17 Straßenendstück rechts
+                                                              ('╨', 13,    0, 0, 1, 0,    0), -- 18 Straßenendstück unten
+                                                              ('╥', 13,    0, 0, 1, 0,    0), -- 19 Straßenendstück oben
+                                                              ('F', 13,    2, 0, 1, 0,    1), -- 20 Farm
+                                                              ('M', 13,    0, 2, 1, 0,    1), -- 21 Mine
+                                                              ('B', 13,    0, 0, 0, 0,    2)); -- 22 Festung
 
    procedure Beschreibung (ID : in Integer);
    procedure Verbesserung (Befehl : in Wide_Wide_Character; Rasse, Listenplatz : in Integer);
@@ -46,8 +53,11 @@ package VerbesserungenDatenbank is
 private
    
    Wahl : Boolean;
+
+   Straßenwert : Integer;
    
    procedure VerbesserungeFestgelegt (Befehl : in Wide_Wide_Character; Rasse, Listenplatz : in Integer);
    procedure VerbesserungAngelegt (Rasse, Listenplatz : in Integer);
+   procedure StraßenBerechnung (YAchse, XAchse : in Integer);
 
 end VerbesserungenDatenbank;
