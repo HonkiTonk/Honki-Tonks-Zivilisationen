@@ -28,7 +28,7 @@ package body InDerStadt is
    
    
    
-   procedure StadtBauen (Listenplatz, Rasse : in Integer) is
+   procedure StadtBauen (Rasse, Listenplatz : in Integer) is
    begin
 
       BauMöglich := True;
@@ -38,20 +38,20 @@ package body InDerStadt is
          XAchseSchleife:
          for X in -3 .. 3 loop
                      
-            if GlobaleVariablen.EinheitenGebaut (Listenplatz, Rasse).YAchse + Y > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße or GlobaleVariablen.StadtGebaut (Listenplatz, Rasse).YAchse + Y < Karten.Karten'First (1) then
+            if GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + Y > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße or GlobaleVariablen.StadtGebaut (Rasse, Listenplatz).YAchse + Y < Karten.Karten'First (1) then
                exit XAchseSchleife;
 
-            elsif GlobaleVariablen.EinheitenGebaut (Listenplatz, Rasse).XAchse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-               Überhang := GlobaleVariablen.EinheitenGebaut (Listenplatz, Rasse).XAchse + X - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-               BauMöglich := StadtBauenPrüfen (Y => GlobaleVariablen.EinheitenGebaut (Listenplatz, Rasse).YAchse + Y, X => Überhang);
+            elsif GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+               Überhang := GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + X - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+               BauMöglich := StadtBauenPrüfen (Y => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + Y, X => Überhang);
                      
                      
-            elsif GlobaleVariablen.EinheitenGebaut (Listenplatz, Rasse).XAchse + X < Karten.Karten'First (1) then
-               Überhang := GlobaleVariablen.EinheitenGebaut (Listenplatz, Rasse).XAchse + X + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-               BauMöglich := StadtBauenPrüfen (Y => GlobaleVariablen.EinheitenGebaut (Listenplatz, Rasse).YAchse + Y, X => Überhang);
+            elsif GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + X < Karten.Karten'First (1) then
+               Überhang := GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + X + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+               BauMöglich := StadtBauenPrüfen (Y => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + Y, X => Überhang);
                      
             else
-               BauMöglich := StadtBauenPrüfen (Y => GlobaleVariablen.EinheitenGebaut (Listenplatz, Rasse).YAchse + Y, X => GlobaleVariablen.EinheitenGebaut (Listenplatz, Rasse).XAchse + X);
+               BauMöglich := StadtBauenPrüfen (Y => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + Y, X => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + X);
             end if;
 
             case BauMöglich is
@@ -92,7 +92,8 @@ package body InDerStadt is
               (Stadtart, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse, 1, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String ("Name"));
             EinheitenDatenbank.EinheitEntfernen (Rasse => Rasse, Platznummer => Listenplatz);
 
-            GlobaleVariablen.StadtGebaut (Listenplatz, Rasse).Name := Eingabe.StadtName;
+            GlobaleVariablen.StadtGebaut (Rasse, A).Name := Eingabe.StadtName;
+            return;
          end if;
          
       end loop;

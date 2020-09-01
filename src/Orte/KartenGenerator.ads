@@ -32,11 +32,11 @@ private
    FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 20, 0);
 
    type WahrscheinlichkeitenFürLandArray is array (1 .. 3, 1 .. 7) of Float;
-   WahrscheinlichkeitenFürLand : constant WahrscheinlichkeitenFürLandArray := (1 => (0.90, 0.95, 0.70, 0.80, 0.95, 0.20, 0.70),
+   WahrscheinlichkeitenFürLand : constant WahrscheinlichkeitenFürLandArray := (1 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
                                                                                  -- 1 = Landwert nahe Eissschild, 2 = Landwert nahe Eissschild mit Landflächenentstehung, 3 = Landwert,
                                                                                  -- 4 = Landwert mit Landflächenentstehung, 5 = Landwert, 6 = Landwert bei Landflächenentstehung, 7 = Landwert ohne Landflächenentstehung
-                                                                                 2 => (0.90, 0.95, 0.60, 0.80, 0.90, 0.33, 0.66),
-                                                                                 3 => (0.90, 0.95, 0.60, 0.80, 0.90, 0.33, 0.66));
+                                                                                 2 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
+                                                                                 3 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70));
 
    type GeneratorKarteArray is array (Karten.Karten'Range (1), Karten.Karten'Range (2)) of Integer;
    GeneratorKarte : GeneratorKarteArray;
@@ -49,8 +49,8 @@ private
                                                                               2 => (0.60, 0.90, 0.70),
                                                                               3 => (0.60, 0.90, 0.70));
 
-   type WahrscheinlichkeitFürLandschaftArray is array (6 .. 9) of Float;
-   WahrscheinlichkeitFürLandschaft : constant WahrscheinlichkeitFürLandschaftArray := (0.85, 0.75, 0.50, 0.30);
+   type WahrscheinlichkeitFürLandschaftArray is array (6 .. 10) of Float;
+   WahrscheinlichkeitFürLandschaft : constant WahrscheinlichkeitFürLandschaftArray := (0.85, 0.75, 0.50, 0.30, 0.20);
 
    procedure GenerierungKartenart (Y, X : in Integer);
    procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in Integer);

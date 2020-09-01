@@ -6,7 +6,7 @@ package body KartenGenerator is
       Reset (Gewählt);
 
       NochVerteilbareRessourcen := Karten.Kartengrößen (Karten.Kartengröße).Ressourcenmenge;
-      GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 4); -- Inseln, Kontinente, Pangäa
+      GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 10); -- Inseln, Kontinente, Pangäa
       GeneratorKarte := (others => (others => (0)));
       
       YAchseSchleife:
@@ -26,7 +26,13 @@ package body KartenGenerator is
                Karten.Karten (Y, X).Grund := 1;
                
             else
-               Karten.Karten (Y, X).Grund := 2;
+               case Karten.Karten (Y, X).Grund is
+                  when 0 =>
+                     Karten.Karten (Y, X).Grund := 2;
+
+                  when others =>
+                     null;
+               end case;
                GenerierungKartenart (Y, X);
             end if;
             
@@ -108,7 +114,7 @@ package body KartenGenerator is
                Überhang := XPositionLandmasse + X + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                GenerierungLandmasseÜberhang (YAchse => YPositionLandmasse + Y, XAchse => Überhang, Gezogen => Wert);
                
-            elsif XPositionLandmasse + X > Karten.Karten'Last (2) then
+            elsif XPositionLandmasse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
                Überhang := XPositionLandmasse + X - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;                  
                GenerierungLandmasseÜberhang (YAchse => YPositionLandmasse + Y, XAchse => Überhang, Gezogen => Wert);
                
@@ -120,11 +126,11 @@ package body KartenGenerator is
       end loop YAchseSchleife;
 
       YAchseGeneratorKarteSchleife:
-      for Y in GeneratorKarte'First (1) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+      for Y in GeneratorKarte'First (1) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
          XAchseGeneratorKarteSchleife:
          for X in GeneratorKarte'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-            if Y = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+            if Y = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand then
                return;
                
             elsif Y = GeneratorKarte'First (1) then
@@ -136,7 +142,7 @@ package body KartenGenerator is
                   XAchseZweiSchleife:
                   for B in -FelderVonLandartZuLandart (Kartenart) .. FelderVonLandartZuLandart (Kartenart) loop
                   
-                     if Y + A <= Karten.Karten'First (1) or Y + A >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+                     if Y + A <= Karten.Karten'First (1) + Eisrand or Y + A >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand then
                         null;
                         
                      elsif X + B < Karten.Karten'First (2) then
@@ -180,7 +186,7 @@ package body KartenGenerator is
          GeneratorKarte (YAchse, XAchse) := 1;
                
       else
-         GeneratorKarte (YAchse, XAchse) := 2;
+         null;
       end if;
          
       
@@ -423,6 +429,9 @@ begin
                elsif Wert >= WahrscheinlichkeitFürLandschaft (9) and GeneratorKarte (Y, X) = 0 then
                   Karten.Karten (Y, X).Grund := 9;
                   
+               elsif Wert >= WahrscheinlichkeitFürLandschaft (10) and GeneratorKarte (Y, X) = 0 then
+                  Karten.Karten (Y, X).Grund := 32;
+                  
                else
                   null;                  
                end if;
@@ -517,16 +526,38 @@ begin
                   
                   when others =>
                      Wert := Random (Gewählt);
-                     if Wert > 0.98 then
-                        if Karten.Karten (Y, X).Grund < 3 or Karten.Karten (Y, X).Grund = 31 then
-                           karten.Karten (Y, X).Ressource := 29;
+                     if Wert >= 0.97 and (Karten.Karten (Y, X).Grund = 2 or Karten.Karten (Y, X).Grund = 31) then
+                        if Karten.Karten (Y, X).Grund = 2 and Wert > 0.99 then
+                           Karten.Karten (Y, X).Ressource := 30;
                            NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;
+                           
+                        else
+                           Karten.Karten (Y, X).Ressource := 29;
+                           NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;
+                        end if;
                         
+                     elsif Wert <= 0.05 and Karten.Karten (Y, X).Grund /= 2 and Karten.Karten (Y, X).Grund /= 31 then
+                        if Wert < 0.01 then
+                           Karten.Karten (Y, X).Ressource := 11;
+                           NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                      
+
+                        elsif Wert < 0.02 then
+                           Karten.Karten (Y, X).Ressource := 12;
+                           NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                      
+
+                        elsif Wert < 0.03 then
+                           Karten.Karten (Y, X).Ressource := 13;
+                           NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                      
+
+                        elsif Wert < 0.04 then
+                           Karten.Karten (Y, X).Ressource := 33;
+                           NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                           
+                           
                         else
                            Karten.Karten (Y, X).Ressource := 10;
                            NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;
                         end if;
-                     
+                        
                      else
                         null;
                      end if;
