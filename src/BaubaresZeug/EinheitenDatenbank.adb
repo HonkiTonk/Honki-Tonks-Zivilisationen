@@ -38,7 +38,7 @@ package body EinheitenDatenbank is
                GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBewegungspunkte := EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleBewegungspunkte;
 
             else
-               GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBewegungspunkte := 0;
+               GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBewegungspunkte := 0.0;
             end if;
 
             if GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigung = 'h' and 
@@ -74,7 +74,7 @@ package body EinheitenDatenbank is
    procedure EinheitEntfernen (Rasse, Platznummer : in Integer) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (Rasse, Platznummer) := ('0', '0' , 0, 0, 0, 0, 0, 0, 0, 0, 0);
+      GlobaleVariablen.EinheitenGebaut (Rasse, Platznummer) := ('0', '0' , 0, 0, 0, 0, 0.0, 0, 0, 0, 0);
 
       for A in GlobaleVariablen.EinheitenGebaut'Range (2) loop
          
@@ -83,7 +83,7 @@ package body EinheitenDatenbank is
             
          elsif GlobaleVariablen.EinheitenGebaut (Rasse, Platznummer).ID = 0 and A > Platznummer then
             GlobaleVariablen.EinheitenGebaut (Rasse, Platznummer) := GlobaleVariablen.EinheitenGebaut (Rasse, A - 1);
-            GlobaleVariablen.EinheitenGebaut (Rasse, A - 1) := ('0', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            GlobaleVariablen.EinheitenGebaut (Rasse, A - 1) := ('0', '0', 0, 0, 0, 0, 0.0, 0, 0, 0, 0);
             
          else
             null;
@@ -128,10 +128,10 @@ package body EinheitenDatenbank is
 
 
 
-   function BeschäftigungAbbrechen return Boolean is
+   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Integer) return Boolean is
    begin
       
-      Wahl := Auswahl.Auswahl (WelcheAuswahl => 7, WelcherText => 18);
+      Wahl := Auswahl.Auswahl (WelcheAuswahl => WelcheAuswahl, WelcherText => 18);
       case Wahl is
          when -3 =>
             return True;
@@ -140,22 +140,6 @@ package body EinheitenDatenbank is
             return False;
       end case;
       
-   end BeschäftigungAbbrechen;
-
-
-
-   function EinheitAuflösen return Boolean is
-   begin
-      
-      Wahl := Auswahl.Auswahl (WelcheAuswahl => 9, WelcherText => 18);
-      case Wahl is
-         when -3 =>
-            return True;
-                     
-         when others =>
-            return False;
-      end case;
-      
-   end EinheitAuflösen;
+   end BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen;
 
 end EinheitenDatenbank;
