@@ -9,13 +9,19 @@ package body Informationen is
 
       Put_Line ("Wichtiges/Notizen:");
       Put_Line ("-1 = Spiel beenden, 0 = Hauptmenü, -2 = Zurück, -3 = Ja, -4 = Nein, 2 = Speichern, 3 = Laden");
-      Put_Line ("Kartengenerator endlich neu schreiben/überarbeiten.");
-      Put_Line ("Verbesserung ersetzen zeigt auf Beschäftigung abbrechen, korrigieren.");
+      Put_Line ("Dschungel wird nicht entfernt, wenn eine Farm darauf gebaut wird, prüfen!");
+      Put_Line ("Mal die Ausgabewerte für Verteidigungsbonus/Nahrungsbonus/usw nachprüfen ob es richtig aufaddiert wird.");
+      Put_Line ("Angriff- und Verteidigungswerte auch für eigene Einheiten Anzeigen.");
+      Put_Line ("Kartengenerator überarbeiten.");
       Put_Line ("Alle Werte in Dateien auslagern?");
       New_Line;
 
+      Put_Line ("GlobaleVariablen:");
+      Put_Line ("Verteidigungsbonus der Städte mit in die GlobalenVeriablen schieben?");
+      New_Line;
+
       Put_Line ("Verbesserungen/Flüsse:");
-      Put_Line ("Logik zur Verbindung angrenzender Straßen/Flüsse einbauen.");
+      Put_Line ("Logik zur Verbindung angrenzender Straßen/Flüsse einbauen/verbessern.");
       New_Line;
       
       Put_Line ("BefehleImSpiel:");
@@ -24,12 +30,8 @@ package body Informationen is
       New_Line;
       
       Put_Line ("Kartengenerator:");
-      Put_Line ("");
-      Put_Line ("Notizen machen was was ist, sonst verliet man die Übersicht.");
-      Put_Line ("Berücksichtigung für Hügel in der Wüste, usw. einbauen.");
       Put_Line ("Generator für nur Land einbauen.");
       Put_Line ("Generator für Chaos einbauen.");
-      Put_Line ("Zufallsauswahl einbauen.");
       Put_Line ("Generator für Oberfläche einbauen!");
       Put_Line ("Generatorwerte optimieren.");
 
@@ -41,7 +43,7 @@ package body Informationen is
       New_Line;
 
       Put_Line ("SpielEinstellungen;");
-      Put_Line ("Die Festlegung der Starteinheiten in die EinheitenDatenbank verschieben.");
+      Put_Line ("Die Festlegung der Starteinheiten in die EinheitenDatenbank verschieben?");
       New_Line;
 
       Put_Line ("Karte:");
@@ -50,7 +52,6 @@ package body Informationen is
       New_Line;
       
       Put_Line ("Bewegungssystem:");
-      Put_Line ("Straße/Schiene berücksichtigen.");
       New_Line;
 
       Put_Line ("Einheiten:");
@@ -86,8 +87,6 @@ package body Informationen is
       New_Line;
 
       Put_Line ("Auswahl:");
-      Put_Line ("Anzeige für lange Texte noch was gutes überlegen.");
-      Put_Line ("Eine leere Zeile als Trennung nutzen und dementsprechend aufteilen?");
       New_Line;
 
       Put_Line ("AllesAufAnfangSetzen:");

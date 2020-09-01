@@ -28,27 +28,30 @@ package GlobaleVariablen is
       
       ID : Integer;
       YAchse : Integer;
-      XAchse : Integer;
+      XAchse : Integer;      
+      
       AktuelleLebenspunkte : Integer;
-      AktuelleBewegungspunkte : Integer;
+      AktuelleBewegungspunkte : Float;
       AktuelleErfahrungspunkte : Integer;
       AktuellerRang : Integer;
+      
       AktuelleBeschäftigungszeit : Integer;
       AktuelleBeschäftigungszeit2 : Integer;
       
    end record;
 
    type EinheitenGebautArray is array (1 .. 18, 1 .. 1000) of EinheitenGebautRecord;
-   EinheitenGebaut : EinheitenGebautArray := (1 => (4 => ('0', '0', 1, 7, 12, 1, 1, 1, 1, 0, 0),
-                                              others => ('0', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0)),
+   EinheitenGebaut : EinheitenGebautArray := (1 => (4 => ('0', '0',    1, 7, 12,    1, 1.0, 1, 1,    0, 0),
+                                              others => ('0', '0',     0, 0, 0,     0, 0.0, 0, 0,    0, 0)),
                                               
-                                              others => (others => ('0', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0)));
+                                              others => (others => ('0', '0',    0, 0, 0,    0, 0.0, 0, 0,    0, 0)));
 
    type StadtGebautRecord is record
       
       ID : Integer;
       YAchse : Integer;
       XAchse : Integer;
+
       Einwohner : Integer;
       AktuelleNahrungsmittel : Integer;
       AktuelleNahrungsproduktion : Integer;
@@ -57,6 +60,7 @@ package GlobaleVariablen is
       AktuelleGeldgewinnung : Integer;
       AktuelleForschungsrate : Integer;
       AktuellesBauprojekt : Integer;
+
       Korruption : Integer;
       GebäudeVorhanden : Wide_Wide_String (1 .. 20);
       Name : Unbounded_Wide_Wide_String;
