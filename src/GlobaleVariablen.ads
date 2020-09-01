@@ -70,7 +70,7 @@ package GlobaleVariablen is
    type StadtGebautArray is array (EinheitenGebautArray'Range, 1 .. 100) of StadtGebautRecord;
    StadtGebaut : StadtGebautArray := (1 => (1 => (1, 5, 5, 12, 1, 2, 3, 4, 5, 6, 7, 8, "00000000000000000000", To_Unbounded_Wide_Wide_String ("Test")),
                                             2 => (2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String ("Mehr")),
-                                            3 => (2, 40, 40, 1, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String ("Geteste")),
+                                            3 => (2, 20, 20, 1, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String ("Geteste")),
                                             others => (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (""))),
 
                                       2 => (1 => (3, 7, 12, 12, 1, 2, 3, 4, 5, 6, 7, 8, "00000000000000000000", To_Unbounded_Wide_Wide_String ("TestGegner")),
@@ -79,9 +79,6 @@ package GlobaleVariablen is
                                       
                                       others => (others => (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (""))));
 
-   type VerbesserungenGebautArray is array (Karten.KartenArray'Range (1), Karten.KartenArray'Range (2)) of Integer;
-   VerbesserungenGebaut : VerbesserungenGebautArray := (others => (others => 0));
-
    type GeldRecord is record
       
       AktuelleMenge : Integer;
@@ -89,10 +86,10 @@ package GlobaleVariablen is
       
    end record;
 
-   type GeldArray is array (EinheitenGebautArray'Range) of GeldRecord;
+   type GeldArray is array (EinheitenGebautArray'Range (1)) of GeldRecord;
    Geld : GeldArray := (others => (0, 0));
    
-   type DiplomatieArray is array (EinheitenGebautArray'Range, EinheitenGebautArray'Range) of Integer; -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
+   type DiplomatieArray is array (EinheitenGebautArray'Range (1), EinheitenGebautArray'Range (1)) of Integer; -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
    Diplomatie : DiplomatieArray := (others => (others => 0));
                                             
 end GlobaleVariablen;

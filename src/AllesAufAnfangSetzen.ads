@@ -1,4 +1,5 @@
-with GlobaleVariablen, Karten;
+with Ada.Strings.Wide_Wide_Unbounded, GlobaleVariablen, Karten, KartenGenerator;
+use Ada.Strings.Wide_Wide_Unbounded;
 
 package AllesAufAnfangSetzen is
 

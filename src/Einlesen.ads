@@ -3,7 +3,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.Unbounde
 
 package Einlesen is
 
-   type TexteEinlesenArray is array (1 .. 21, 1 .. 50) of Unbounded_Wide_Wide_String;
+   type TexteEinlesenArray is array (1 .. 22, 1 .. 50) of Unbounded_Wide_Wide_String;
    TexteEinlesen : TexteEinlesenArray := (others => (others => (To_Unbounded_Wide_Wide_String ("|"))));
 
 
