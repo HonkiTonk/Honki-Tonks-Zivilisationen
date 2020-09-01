@@ -1,7 +1,15 @@
 package body Kampfsystem is
 
-   function KampfsystemNahkampf (RasseAngriff, EinheitenPositionAngriff, RasseVerteidigung, EinheitenPositionVerteidigung : in Integer) return Boolean is
+   function KampfsystemNahkampf (EinheitOderStadt : in Boolean; RasseAngriff, EinheitenPositionAngriff, RasseVerteidigung, EinheitenPositionVerteidigung : in Integer) return Boolean is
    begin
+
+      case EinheitOderStadt is
+         when True =>
+            null;
+            
+         when False =>
+            null;
+      end case;
 
       KampfSchleife:
       loop

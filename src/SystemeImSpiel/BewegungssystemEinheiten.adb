@@ -2,52 +2,67 @@ package body BewegungssystemEinheiten is
 
    procedure BewegungEinheitenRichtung (Rasse, EinheitenPositionInListe : in Integer) is -- Noch einen Gesamtloop einbauen für Bewegung?
    begin
-      
-      Get_Immediate (Richtung);
-      Richtung := To_Lower (Richtung);
-              
-      case Richtung is
-         when 'w' | '8' =>
-            YÄnderung := -1;
-            XÄnderung := 0;
-            
-         when 'a' | '4' =>
-            XÄnderung := -1;
-            YÄnderung := 0;
-            
-         when 's' | '2' =>
-            YÄnderung := 1;
-            XÄnderung := 0;
-            
-         when 'd' | '6'  =>
-            XÄnderung := 1;
-            YÄnderung := 0;
-            
-         when '1' =>
-            YÄnderung := 1;
-            XÄnderung := -1;
 
-         when '3' =>
-            YÄnderung := 1;
-            XÄnderung := 1;
+      loop
+      
+         Get_Immediate (Richtung);
+         Richtung := To_Lower (Richtung);
+              
+         case Richtung is
+            when 'w' | '8' =>
+               YÄnderung := -1;
+               XÄnderung := 0;
             
-         when '7' =>
-            YÄnderung := -1;
-            XÄnderung := -1;
+            when 'a' | '4' =>
+               XÄnderung := -1;
+               YÄnderung := 0;
             
-         when '9' =>
-            YÄnderung := -1;
-            XÄnderung := 1;            
+            when 's' | '2' =>
+               YÄnderung := 1;
+               XÄnderung := 0;
             
-         when others =>
-            return;
-      end case;
+            when 'd' | '6'  =>
+               XÄnderung := 1;
+               YÄnderung := 0;
+            
+            when '1' =>
+               YÄnderung := 1;
+               XÄnderung := -1;
+
+            when '3' =>
+               YÄnderung := 1;
+               XÄnderung := 1;
+            
+            when '7' =>
+               YÄnderung := -1;
+               XÄnderung := -1;
+            
+            when '9' =>
+               YÄnderung := -1;
+               XÄnderung := 1;
+               
+            when 'q' | 'e' =>
+               return;
+            
+            when others =>
+               return;
+         end case;
          
-      BewegungEinheitenBerechnung (Rasse => Rasse, EinheitenPositionInListe => EinheitenPositionInListe);         
+         BewegungEinheitenBerechnung (Rasse => Rasse, EinheitenPositionInListe => EinheitenPositionInListe);
+
+         if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).AktuelleBewegungspunkte = 0.0 then
+            return;
+               
+         else
+            Sichtbarkeit.Sichtbarkeitsprüfung;
+            Karte.AnzeigeKarte;
+         end if;
+         
+      end loop;
       
    end BewegungEinheitenRichtung;
 
-
+   
 
    procedure BewegungEinheitenBerechnung (Rasse, EinheitenPositionInListe : in Integer) is
    begin
@@ -56,6 +71,7 @@ package body BewegungssystemEinheiten is
       Gegner := 0;
       GegnerPosition := 0;
       Gewonnen := True;
+      EinheitOderStadt := True;
       
       if GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung < Karten.Karten'First (1) or GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
          return;
@@ -122,6 +138,7 @@ package body BewegungssystemEinheiten is
                else
                   Gegner := A;
                   GegnerPosition := B;
+                  EinheitOderStadt := True;
                   exit RasseSchleife;
                end if;
                
@@ -131,6 +148,32 @@ package body BewegungssystemEinheiten is
 
          end loop EinheitenPositionSchleife;
       end loop RasseSchleife;
+
+      RasseSchleife2:
+      for A in GlobaleVariablen.StadtGebaut'Range (1) loop
+         StadtPositionSchleife:
+         for B in GlobaleVariablen.StadtGebaut'Range (2) loop
+
+            if GlobaleVariablen.StadtGebaut (A, B).ID = 0 then
+               exit StadtPositionSchleife;
+
+            elsif GlobaleVariablen.StadtGebaut (A, B).YAchse = GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung and GlobaleVariablen.StadtGebaut (A, B).XAchse = NeueXPosition then
+               if A = GlobaleVariablen.Rasse then
+                  exit StadtPositionSchleife;
+                  
+               else
+                  Gegner := A;
+                  GegnerPosition := B;
+                  EinheitOderStadt := False;
+                  exit RasseSchleife2;
+               end if;
+               
+            else
+               null;
+            end if;
+
+         end loop StadtPositionSchleife;
+      end loop RasseSchleife2;
 
       case Gegner is
          when 0 =>
@@ -159,7 +202,7 @@ package body BewegungssystemEinheiten is
          
             case Angreifen is
                when True =>
-                  Gewonnen := Kampfsystem.KampfsystemNahkampf (RasseAngriff => Rasse, EinheitenPositionAngriff => EinheitenPositionInListe, RasseVerteidigung => Gegner, EinheitenPositionVerteidigung => GegnerPosition);
+                  Gewonnen := Kampfsystem.KampfsystemNahkampf (EinheitOderStadt => EinheitOderStadt, RasseAngriff => Rasse, EinheitenPositionAngriff => EinheitenPositionInListe, RasseVerteidigung => Gegner, EinheitenPositionVerteidigung => GegnerPosition);
                
                when False =>
                   return;

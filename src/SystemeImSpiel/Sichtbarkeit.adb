@@ -1,6 +1,6 @@
 package body Sichtbarkeit is
 
-   procedure Sichtbarkeit is
+   procedure Sichtbarkeitsprüfung is
    begin
       
       EinheitenPlätzeSchleife:
@@ -100,6 +100,198 @@ package body Sichtbarkeit is
          end loop YÄnderungStadtSchleife;
       end loop StadtPlätzeSchleife;
       
+   end Sichtbarkeitsprüfung;
+
+
+
+   procedure Sichtbarkeit (YAchse, XAchse : in Integer) is
+   begin
+      
+      -- Über den Kartenfeldern kommen die Kartenressourcen
+      -- Über den Kartenressourcen kommen die Kartenverbesserungen
+      -- Über die Kartenverbesserungen kommen die Städte
+      -- Über die Städte kommen die Einheiten
+       
+      if Karten.Karten (YAchse, XAchse).Sichtbar = True then
+         RassenEinheitenPrüfenSchleife:
+         for A in GlobaleVariablen.EinheitenGebaut'Range (1) loop
+            EinheitenPrüfenSchleife:
+            for B in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+            
+               if GlobaleVariablen.EinheitenGebaut (A, B).ID = 0 then
+                  exit EinheitenPrüfenSchleife;
+               
+               elsif GlobaleVariablen.EinheitenGebaut (A, B).YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (A, B).XAchse = XAchse then
+                  Farben (Einheit => GlobaleVariablen.EinheitenGebaut (A, B).ID, Verbesserung => 0, Ressource => 0, Grund => Karten.Karten (YAchse, XAchse).Grund);
+                  return;
+               
+               else
+                  null;
+               end if;
+            
+            end loop EinheitenPrüfenSchleife;
+         end loop RassenEinheitenPrüfenSchleife;
+
+         RassenStädtePrüfenSchleife:
+         for C in GlobaleVariablen.StadtGebaut'Range (1) loop
+            StädtePrüfenSchleife:
+            for D in GlobaleVariablen.StadtGebaut'Range (2) loop
+            
+               if GlobaleVariablen.StadtGebaut (C, D).ID = 0 then
+                  exit StädtePrüfenSchleife;
+
+               elsif GlobaleVariablen.StadtGebaut (C, D).YAchse = YAchse and GlobaleVariablen.StadtGebaut (C, D).XAchse = XAchse then
+                  Farben (Einheit => 0, Verbesserung => GlobaleVariablen.StadtGebaut (C, D).ID, Ressource => 0, Grund => Karten.Karten (YAchse, XAchse).Grund);
+                  return;
+               
+               else
+                  null;
+               end if;
+               
+            end loop StädtePrüfenSchleife;
+         end loop RassenStädtePrüfenSchleife;
+
+         if Karten.Karten (YAchse, XAchse).VerbesserungGebiet /= 0 then            
+            Farben (Einheit => 0, Verbesserung => Karten.Karten (YAchse, XAchse).VerbesserungGebiet, Ressource => 0, Grund => Karten.Karten (YAchse, XAchse).Grund);
+           
+         elsif Karten.Karten (YAchse, XAchse).VerbesserungStraße /= 0 then
+            Farben (Einheit => 0, Verbesserung => Karten.Karten (YAchse, XAchse).VerbesserungStraße, Ressource => 0, Grund => Karten.Karten (YAchse, XAchse).Grund);
+            
+         elsif Karten.Karten (YAchse, XAchse).Ressource /= 0 then
+            Farben (Einheit => 0, Verbesserung => 0, Ressource => Karten.Karten (YAchse, XAchse).Ressource, Grund => Karten.Karten (YAchse, XAchse).Grund);
+            
+         elsif Karten.Karten (YAchse, XAchse).Fluss /= 0 then
+            Farben (Einheit => 0, Verbesserung => 0, Ressource => Karten.Karten (YAchse, XAchse).Fluss, Grund => Karten.Karten (YAchse, XAchse).Grund);
+            
+         else
+            Farben (Einheit => 0, Verbesserung => 0, Ressource => 0, Grund => Karten.Karten (YAchse, XAchse).Grund);
+         end if;
+         
+      else
+         Put (NichtSichtbar);
+      end if;
+      
    end Sichtbarkeit;
+
+
+
+   procedure Farben (Einheit, Verbesserung, Ressource, Grund : in Integer) is
+   begin
+
+      case Einheit is
+         when EinheitenDatenbank.EinheitenListe'Range =>
+            Put (CSI & "38;2;0;0;0m");
+            
+         when others =>
+            null;
+      end case;
+      
+      case Verbesserung is
+         when 1 =>
+            Put (CSI & "38;2;0;0;0m");
+         
+         when 2 =>
+            Put (CSI & "38;2;0;0;0m");
+            
+         when 3 =>
+            Put (CSI & "38;2;0;0;0m");
+            
+         when 4 =>
+            Put (CSI & "38;2;0;0;0m");
+            
+         when 5 .. 19 =>
+            Put (CSI & "38;2;0;0;0m");
+
+         when 20 =>
+            Put (CSI & "38;2;0;0;0m");
+            
+         when 21 =>
+            Put (CSI & "38;2;0;0;0m");
+            
+         when 22 =>
+            Put (CSI & "38;2;0;0;0m");
+            
+         when others =>
+            null;
+      end case;
+      
+      case Ressource is
+         when 10 =>
+            Put (CSI & "38;2;0;0;0m");
+
+         when 11 =>
+            Put (CSI & "38;2;0;0;0m");
+
+         when 12 =>
+            Put (CSI & "38;2;0;0;0m");
+
+         when 13 =>
+            Put (CSI & "38;2;0;0;0m");
+
+         when 29 => 
+            Put (CSI & "38;2;255;255;255m");
+
+         when 30 =>
+            Put (CSI & "38;2;255;255;255m");
+
+         when 33 =>
+            Put (CSI & "38;2;0;0;0m");
+            
+         when others =>
+            null;
+      end case;
+      
+      case Grund is
+         when 1 =>
+            Put (CSI & "48;2;255;245;238m");
+            
+         when 2 =>
+            Put (CSI & "48;2;0;0;205m");
+            
+         when 3 =>
+            Put (CSI & "48;2;100;160;60m");
+            
+         when 4 =>
+            Put (CSI & "48;2;205;200;177m");
+            
+         when 5 =>
+            Put (CSI & "48;2;238;238;0m");
+            
+         when 6 =>
+            Put (CSI & "48;2;205;133;63m");
+            
+         when 7 =>
+            Put (CSI & "48;2;120;120;120m");
+            
+         when 8 =>
+            Put (CSI & "48;2;30;130;30m");
+            
+         when 9 =>
+            Put (CSI & "48;2;0;70;0m");
+            
+         when 31 =>
+            Put (CSI & "48;2;135;206;250m");
+            
+         when 32 =>
+            Put (CSI & "48;2;0;40;0m");
+            
+         when others =>
+            Put (CSI & "48;2;0;0;0m");
+      end case;
+      
+      if Einheit /= 0 then
+         Put (EinheitenDatenbank.EinheitenListe (Einheit).Anzeige & CSI & "0m");
+        
+      elsif Verbesserung /= 0 then
+         Put (VerbesserungenDatenbank.VerbesserungObjektListe (Verbesserung).Anzeige & CSI & "0m");
+
+      elsif Ressource /= 0 then
+         Put (KartenDatenbank.KartenObjektListe (Ressource).Anzeige & CSI & "0m");
+            
+      else         
+         Put (KartenDatenbank.KartenObjektListe (Grund).Anzeige & CSI & "0m");
+      end if;
+      
+   end Farben;
 
 end Sichtbarkeit;

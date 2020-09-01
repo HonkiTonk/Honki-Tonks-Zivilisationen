@@ -64,27 +64,35 @@ package body BefehleImSpiel is
                
             return 1;
             
-         when 'n' => -- Nächste Stadt
+         when 'm' => -- Forschung
+            
+            
+            return 1;
+            
+         when '/' => -- Nächste Stadt
             NaechstesObjekt.NächsteStadt;
             Karte.AnzeigeKarte;
             return 1;
             
-         when 'm' => -- Einheiten mit Bewegungspunkten
+         when '+' => -- Einheiten mit Bewegungspunkten
             NaechstesObjekt.NächsteEinheitMitBewegungspunkten;
             Karte.AnzeigeKarte;
             return 1;
             
-         when ',' => -- Alle Einheiten
+         when '*' => -- Alle Einheiten
             NaechstesObjekt.NächsteEinheit;
             Karte.AnzeigeKarte;
             return 1;
             
-         when '.' => -- Einheiten ohne Bewegungspunkte
+         when '-' => -- Einheiten ohne Bewegungspunkte
             NaechstesObjekt.NächsteEinheitOhneBewegungspunkte;
             Karte.AnzeigeKarte;
             return 1;
             
          when 'l' | 't' | 'f' | 'u' | 'z' | 'p' => -- Landstraße/Tiefengrabung/Farm/Festung/Wald aufforsten/Roden-Trockenlegen
+                                                   -- Durch drücken der Taste dem Befehl einen Zahlenwert zuweißen und den dann übergeben, dadurch muss ich nur hier den Befehl ändern und nicht in 1000 Dateien!
+            -- case To_Lower (Taste) is -- Durch Verwendung eines Zahlenwertes kann ich die ganzen Befehle zusammenfassen, welche jetzt getrennt sein müssen
+               
             Wert := Einheit;
             case Wert is
                when 0 =>
@@ -105,6 +113,7 @@ package body BefehleImSpiel is
             return 1;
 
          when 'h' | 'v' => -- Heilen/Verschanzen
+                           -- Durch drücken der Taste dem Befehl einen Zahlenwert zuweißen und den dann übergeben, dadurch muss ich nur hier den Befehl ändern und nicht in 1000 Dateien!
             Wert := Einheit;
             case Wert is
                when 0 =>
@@ -122,6 +131,7 @@ package body BefehleImSpiel is
             return 1;
 
          when Space | DEL => -- Runde aussetzen/Einheit auflösen
+                             -- Durch drücken der Taste dem Befehl einen Zahlenwert zuweißen und den dann übergeben, dadurch muss ich nur hier den Befehl ändern und nicht in 1000 Dateien!
             Wert := Einheit;
             case Wert is
                when 0 =>
@@ -140,6 +150,7 @@ package body BefehleImSpiel is
             return 1;
 
          when 'j' => -- Plündern
+                     -- Durch drücken der Taste dem Befehl einen Zahlenwert zuweißen und den dann übergeben, dadurch muss ich nur hier den Befehl ändern und nicht in 1000 Dateien!
             Wert := Einheit;
             case Wert is
                when 0 =>

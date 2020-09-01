@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, GlobaleVariablen, KartenDatenbank, Karten, Karte, EinheitenDatenbank, Kampfsystem, Diplomatie, Auswahl;
+with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, GlobaleVariablen, KartenDatenbank, Karten, Karte, EinheitenDatenbank, Kampfsystem, Diplomatie, Auswahl, Sichtbarkeit;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
 package BewegungssystemEinheiten is
@@ -7,6 +7,7 @@ package BewegungssystemEinheiten is
    
 private
 
+   EinheitOderStadt : Boolean;
    Angreifen : Boolean;
    Gewonnen : Boolean;
 
