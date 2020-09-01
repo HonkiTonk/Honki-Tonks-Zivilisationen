@@ -3,7 +3,7 @@ package body ImSpiel is
    function ImSpiel return Integer is
    begin
 
-      Sichtbarkeit.Sichtbarkeit;
+      Sichtbarkeit.Sichtbarkeitsprüfung;
       Karte.AnzeigeKarte;
 
       SpielSchleife:
@@ -49,11 +49,11 @@ package body ImSpiel is
                EinheitenDatenbank.HeilungBewegungspunkteFürNeueRundeSetzen;
                VerbesserungenDatenbank.VerbesserungFertiggestellt (Rasse => GlobaleVariablen.Rasse);
                ForschungsDatenbank.Forschung;
-               Karte.AnzeigeKarte;
                GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
+               Karte.AnzeigeKarte;
                
             when others =>
-               Sichtbarkeit.Sichtbarkeit;
+               Sichtbarkeit.Sichtbarkeitsprüfung;
                Karte.AnzeigeKarte;
          end case;
          
