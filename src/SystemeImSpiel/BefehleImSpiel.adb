@@ -16,7 +16,7 @@ package body BefehleImSpiel is
             case Wert is
                when GlobaleVariablen.EinheitenGebaut'First (2) .. GlobaleVariablen.EinheitenGebaut'Last (2) =>
                   if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).AktuelleBeschäftigung /= '0' then
-                     Wahl := EinheitenDatenbank.BeschäftigungAbbrechen;
+                     Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7);
                      case Wahl is
                         when True =>
                            GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).AktuelleBeschäftigung := '0';
@@ -25,7 +25,7 @@ package body BefehleImSpiel is
                            null;
                      end case;
                   
-                  elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).AktuelleBewegungspunkte = 0 then
+                  elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).AktuelleBewegungspunkte = 0.0 then
                      return 1;
                      
                   else
@@ -54,7 +54,7 @@ package body BefehleImSpiel is
                   
                when others =>
                   if EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).ID).SiedlerLandeinheitSeeeinheitLufteinheit = 1 and
-                  GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).AktuelleBewegungspunkte > 0 then
+                  GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).AktuelleBewegungspunkte > 0.0 then
                      InDerStadt.StadtBauen (Rasse => GlobaleVariablen.Rasse, Listenplatz => Wert);
                      
                   else
@@ -94,7 +94,7 @@ package body BefehleImSpiel is
                   if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).ID /= 1 then
                      Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 3);
                      
-                  elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).AktuelleBewegungspunkte = 0 then
+                  elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).AktuelleBewegungspunkte = 0.0 then
                      Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 8);
                      
                   else
@@ -111,7 +111,7 @@ package body BefehleImSpiel is
                   null;                     
                                  
                when others =>
-                  if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).AktuelleBewegungspunkte = 0 then
+                  if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).AktuelleBewegungspunkte = 0.0 then
                      Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 8);
 
                   else
@@ -149,13 +149,11 @@ package body BefehleImSpiel is
                   if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).ID = 1 then
                      Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 3);
                      
-                  elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).AktuelleBewegungspunkte = 0 then
+                  elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Wert).AktuelleBewegungspunkte = 0.0 then
                      Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 8);
                      
                   else
-                     VerbesserungenDatenbank.Verbesserung (Befehl => To_Lower (Taste),
-                                                           Rasse => GlobaleVariablen.Rasse,
-                                                           Listenplatz => Wert);
+                     VerbesserungenDatenbank.Verbesserung (Befehl => To_Lower (Taste), Rasse => GlobaleVariablen.Rasse, Listenplatz => Wert);
                   end if;
             end case;
             return 1;

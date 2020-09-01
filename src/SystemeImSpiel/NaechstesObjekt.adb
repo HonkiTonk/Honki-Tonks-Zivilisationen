@@ -28,7 +28,7 @@ package body NaechstesObjekt is
             Startwert := Startwert + 1;
          end if;
 
-         if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).AktuelleBewegungspunkte > 0 then
+         if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).AktuelleBewegungspunkte > 0.0 then
             exit;
             
          else
@@ -102,7 +102,7 @@ package body NaechstesObjekt is
             Startwert := Startwert + 1;
          end if;
 
-         if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).AktuelleBewegungspunkte <= 0 then
+         if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).AktuelleBewegungspunkte <= 0.0 then
             exit;
             
          else
