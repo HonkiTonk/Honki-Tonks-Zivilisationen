@@ -6,17 +6,18 @@ package body InDerStadt is
       StadtSchleife:
       loop     
     
-         Put (CSI & "2J" & CSI & "3J" & CSI & "H");
+         Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          KarteStadt.AnzeigeStadt (Stadtnummer => StadtPositionInListe);
          New_Line;
          Beschreibung (Rasse                => Rasse,
                        StadtPositionInListe => StadtPositionInListe);
 
-         Get_Immediate (Taste);
+         Get_Immediate (Item => Taste);
          
-         case To_Lower (Taste) is
+         case To_Lower (Item => Taste) is
             when 'w' | 's' | 'a' | 'd' | '1' | '2' | '3' | '4' | '6' | '7' | '8' | '9' =>
-               BewegungssystemCursor.BewegungCursorRichtung (False, To_Lower (Taste));
+               BewegungssystemCursor.BewegungCursorRichtung (Karte => False,
+                                                             Richtung => To_Lower (Item => Taste));
 
             when 'e' =>
                null;
@@ -43,30 +44,30 @@ package body InDerStadt is
    procedure Beschreibung (Rasse, StadtPositionInListe : in Integer) is
    begin
       
-      Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (19, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).ID)));
-      Put (To_Wide_Wide_String (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Name) & "    ");
-      Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 5)));
-      Put_Line (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Einwohner'Wide_Wide_Image);
+      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).ID)));
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Name) & "    ");
+      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 5)));
+      Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Einwohner'Wide_Wide_Image);
                      
       if Rasse = GlobaleVariablen.Rasse then
-         Put ("       " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 6)));
-         Put (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleNahrungsmittel'Wide_Wide_Image);
-         Put ("    " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 7)));
-         Put_Line (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleNahrungsproduktion'Wide_Wide_Image);
+         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 6)));
+         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleNahrungsmittel'Wide_Wide_Image);
+         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 7)));
+         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleNahrungsproduktion'Wide_Wide_Image);
                         
-         Put ("       " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 8)));
-         Put (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate'Wide_Wide_Image);
-         Put ("    " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 9)));
-         Put_Line (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleGeldgewinnung'Wide_Wide_Image);
+         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 8)));
+         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate'Wide_Wide_Image);
+         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 9)));
+         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleGeldgewinnung'Wide_Wide_Image);
 
-         Put ("       " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 10)));
-         Put (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleForschungsrate'Wide_Wide_Image);                        
-         Put ("    " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 11)));
-         Put_Line (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Korruption'Wide_Wide_Image);
+         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 10)));
+         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleForschungsrate'Wide_Wide_Image);                        
+         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 11)));
+         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Korruption'Wide_Wide_Image);
                         
-         Put ("       " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 12)));
-         Put (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt'Wide_Wide_Image);                       
-         Put_Line ("    " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 13)));                                 
+         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 12)));
+         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt'Wide_Wide_Image);                       
+         Put_Line (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 13)));                                 
 
       else
          null;
@@ -93,15 +94,18 @@ package body InDerStadt is
 
             elsif GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
                Überhang := GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + X - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-               BauMöglich := StadtBauenPrüfen (Y => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + Y, X => Überhang);
+               BauMöglich := StadtBauenPrüfen (Y => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + Y,
+                                                 X => Überhang);
                      
                      
             elsif GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + X < Karten.Karten'First (1) then
                Überhang := GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + X + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-               BauMöglich := StadtBauenPrüfen (Y => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + Y, X => Überhang);
+               BauMöglich := StadtBauenPrüfen (Y => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + Y,
+                                                 X => Überhang);
                      
             else
-               BauMöglich := StadtBauenPrüfen (Y => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + Y, X => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + X);
+               BauMöglich := StadtBauenPrüfen (Y => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + Y,
+                                                 X => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + X);
             end if;
 
             case BauMöglich is
@@ -139,8 +143,9 @@ package body InDerStadt is
             end if;
 
             GlobaleVariablen.StadtGebaut (Rasse, A) := 
-              (Stadtart, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse, 1, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String ("Name"));
-            EinheitenDatenbank.EinheitEntfernen (Rasse => Rasse, Platznummer => Listenplatz);
+              (Stadtart, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse, 1, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Name"));
+            EinheitenDatenbank.EinheitEntfernen (Rasse => Rasse,
+                                                 Platznummer => Listenplatz);
 
             GlobaleVariablen.StadtGebaut (Rasse, A).Name := Eingabe.StadtName;
             return;

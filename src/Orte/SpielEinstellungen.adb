@@ -34,14 +34,14 @@ package body SpielEinstellungen is
                return -1;
 
             when others =>
-               Put_Line ("SpielEinstellungen.SpielEinstellungen, when others =>");
+               Put_Line (Item => "SpielEinstellungen.SpielEinstellungen, when others =>");
                return 0;
          end case;
 
       end loop AuswahlSchleife;
 
-      KartenGenerator.KartenGenerator; Put_Line ("22");
-      StartwerteErmitteln; Put_Line ("uh");
+      KartenGenerator.KartenGenerator;
+      StartwerteErmitteln;
          
       return ImSpiel.ImSpiel;
               
@@ -79,7 +79,7 @@ package body SpielEinstellungen is
                null;
          end case;
 
-         Put (CSI & "2J" & CSI & "H");
+         Put (Item => CSI & "2J" & CSI & "H");
                   
       end loop KartengrößenSchleife;
 
@@ -122,7 +122,7 @@ package body SpielEinstellungen is
                null;
          end case;
 
-         Put (CSI & "2J" & CSI & "H");                  
+         Put (Item => CSI & "2J" & CSI & "H");                  
 
       end loop KartenartSchleife;
 
@@ -165,7 +165,7 @@ package body SpielEinstellungen is
                null;
          end case;
 
-         Put (CSI & "2J" & CSI & "H");
+         Put (Item => CSI & "2J" & CSI & "H");
                   
       end loop KartentemperaturSchleife;
 
@@ -208,7 +208,7 @@ package body SpielEinstellungen is
                null;
          end case;
 
-         Put (CSI & "2J" & CSI & "H");
+         Put (Item => CSI & "2J" & CSI & "H");
          
       end loop SpieleranzahlSchleife;
 
@@ -259,7 +259,7 @@ package body SpielEinstellungen is
                null;
          end case;               
 
-         Put (CSI & "2J" & CSI & "H");
+         Put (Item => CSI & "2J" & CSI & "H");
          
       end loop RasseSchleife;
 

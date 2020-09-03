@@ -297,7 +297,9 @@ begin
                Wert := Random (Gewählt);
                if Wert > WahrscheinlichkeitenFürLandart (Kartentemperatur, 1) then
                   Karten.Karten (Y, X).Grund := 4;
-                  GenerierungTemperaturAbstand (YPosition => Y, XPosition => X, Geländeart => 4);
+                  GenerierungTemperaturAbstand (YPosition => Y,
+                                                XPosition => X,
+                                                Geländeart => 4);
                      
                else
                   null;
@@ -307,11 +309,15 @@ begin
                Wert := Random (Gewählt);
                if Wert > WahrscheinlichkeitenFürLandart (Kartentemperatur, 2) and GeneratorKarte (Y, X) /= 5 then
                   Karten.Karten (Y, X).Grund := 4;
-                  GenerierungTemperaturAbstand (YPosition => Y, XPosition => X, Geländeart => 4);
+                  GenerierungTemperaturAbstand (YPosition => Y,
+                                                XPosition => X,
+                                                Geländeart => 4);
                   
                elsif Wert > WahrscheinlichkeitenFürLandart (Kartentemperatur, 3) and GeneratorKarte (Y, X) /= 4 then
                   Karten.Karten (Y, X).Grund := 5;
-                  GenerierungTemperaturAbstand (YPosition => Y, XPosition => X, Geländeart => 5);
+                  GenerierungTemperaturAbstand (YPosition => Y,
+                                                XPosition => X,
+                                                Geländeart => 5);
                   
                else
                   null;
@@ -340,7 +346,9 @@ begin
                Überhang := X + XPosition + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                for A in Überhang .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                   
-                  GenerierungTemperaturZusatz (YAchse => Y + YPosition, XAchse => Überhang, Geländeart => Geländeart);
+                  GenerierungTemperaturZusatz (YAchse => Y + YPosition,
+                                               XAchse => Überhang,
+                                               Geländeart => Geländeart);
                   
                end loop;
                
@@ -348,12 +356,16 @@ begin
                Überhang := X + XPosition - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                for B in Karten.Karten'First (2) .. Überhang loop
                   
-                  GenerierungTemperaturZusatz (YAchse => Y + YPosition, XAchse => Überhang, Geländeart => Geländeart);
+                  GenerierungTemperaturZusatz (YAchse => Y + YPosition,
+                                               XAchse => Überhang,
+                                               Geländeart => Geländeart);
                   
                end loop;
                
             elsif GeneratorKarte (Y + YPosition, X + XPosition) = 0 then
-               GenerierungTemperaturZusatz (YAchse => Y + YPosition, XAchse => X + XPosition, Geländeart => Geländeart);
+               GenerierungTemperaturZusatz (YAchse => Y + YPosition,
+                                            XAchse => X + XPosition,
+                                            Geländeart => Geländeart);
                
             else
                null;
