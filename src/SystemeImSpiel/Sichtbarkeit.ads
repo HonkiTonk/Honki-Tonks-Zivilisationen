@@ -5,6 +5,7 @@ package Sichtbarkeit is
 
    procedure Sichtbarkeitsprüfung;
    procedure Sichtbarkeit (YAchse, XAchse : in Integer);
+   procedure Farben (Einheit, Verbesserung, Ressource, Grund : in Integer);
 
 private
 
@@ -12,7 +13,5 @@ private
 
    Sichtweite : Integer := 2;
    Wert : Integer;
-
-   procedure Farben (Einheit, Verbesserung, Ressource, Grund : in Integer);
 
 end Sichtbarkeit;

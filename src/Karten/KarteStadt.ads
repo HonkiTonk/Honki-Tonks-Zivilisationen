@@ -6,8 +6,6 @@ package KarteStadt is
    procedure AnzeigeStadt (Stadtnummer : in Integer);
 
 private
-
-   ÜberhangDurchlaufenLinks : Boolean;
    
    Stadtumgebungsgröße : Integer := 1;
    Überhang : Integer := 0;
