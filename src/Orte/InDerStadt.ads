@@ -9,7 +9,7 @@ package InDerStadt is
 
 private
 
-   BauMöglich : Boolean; Test : Boolean;
+   BauMöglich : Boolean;
 
    Taste : Wide_Wide_Character;
 
