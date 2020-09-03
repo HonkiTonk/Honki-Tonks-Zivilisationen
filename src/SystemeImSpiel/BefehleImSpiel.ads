@@ -14,6 +14,7 @@ private
    Taste : Wide_Wide_Character;
 
    Wert : Integer;
+   WelcherBefehl : Integer;
 
    function StadtOderEinheit return Integer;
    function Einheit return Integer;

@@ -122,7 +122,10 @@ package body Sichtbarkeit is
                   exit EinheitenPrüfenSchleife;
                
                elsif GlobaleVariablen.EinheitenGebaut (A, B).YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (A, B).XAchse = XAchse then
-                  Farben (Einheit => GlobaleVariablen.EinheitenGebaut (A, B).ID, Verbesserung => 0, Ressource => 0, Grund => Karten.Karten (YAchse, XAchse).Grund);
+                  Farben (Einheit => GlobaleVariablen.EinheitenGebaut (A, B).ID,
+                          Verbesserung => 0,
+                          Ressource => 0,
+                          Grund => Karten.Karten (YAchse, XAchse).Grund);
                   return;
                
                else
@@ -141,7 +144,10 @@ package body Sichtbarkeit is
                   exit StädtePrüfenSchleife;
 
                elsif GlobaleVariablen.StadtGebaut (C, D).YAchse = YAchse and GlobaleVariablen.StadtGebaut (C, D).XAchse = XAchse then
-                  Farben (Einheit => 0, Verbesserung => GlobaleVariablen.StadtGebaut (C, D).ID, Ressource => 0, Grund => Karten.Karten (YAchse, XAchse).Grund);
+                  Farben (Einheit => 0,
+                          Verbesserung => GlobaleVariablen.StadtGebaut (C, D).ID,
+                          Ressource => 0,
+                          Grund => Karten.Karten (YAchse, XAchse).Grund);
                   return;
                
                else
@@ -152,23 +158,38 @@ package body Sichtbarkeit is
          end loop RassenStädtePrüfenSchleife;
 
          if Karten.Karten (YAchse, XAchse).VerbesserungGebiet /= 0 then            
-            Farben (Einheit => 0, Verbesserung => Karten.Karten (YAchse, XAchse).VerbesserungGebiet, Ressource => 0, Grund => Karten.Karten (YAchse, XAchse).Grund);
+            Farben (Einheit => 0,
+                    Verbesserung => Karten.Karten (YAchse, XAchse).VerbesserungGebiet,
+                    Ressource => 0,
+                    Grund => Karten.Karten (YAchse, XAchse).Grund);
            
          elsif Karten.Karten (YAchse, XAchse).VerbesserungStraße /= 0 then
-            Farben (Einheit => 0, Verbesserung => Karten.Karten (YAchse, XAchse).VerbesserungStraße, Ressource => 0, Grund => Karten.Karten (YAchse, XAchse).Grund);
+            Farben (Einheit => 0,
+                    Verbesserung => Karten.Karten (YAchse, XAchse).VerbesserungStraße,
+                    Ressource => 0,
+                    Grund => Karten.Karten (YAchse, XAchse).Grund);
             
          elsif Karten.Karten (YAchse, XAchse).Ressource /= 0 then
-            Farben (Einheit => 0, Verbesserung => 0, Ressource => Karten.Karten (YAchse, XAchse).Ressource, Grund => Karten.Karten (YAchse, XAchse).Grund);
+            Farben (Einheit => 0,
+                    Verbesserung => 0,
+                    Ressource => Karten.Karten (YAchse, XAchse).Ressource,
+                    Grund => Karten.Karten (YAchse, XAchse).Grund);
             
          elsif Karten.Karten (YAchse, XAchse).Fluss /= 0 then
-            Farben (Einheit => 0, Verbesserung => 0, Ressource => Karten.Karten (YAchse, XAchse).Fluss, Grund => Karten.Karten (YAchse, XAchse).Grund);
+            Farben (Einheit => 0,
+                    Verbesserung => 0,
+                    Ressource => Karten.Karten (YAchse, XAchse).Fluss,
+                    Grund => Karten.Karten (YAchse, XAchse).Grund);
             
          else
-            Farben (Einheit => 0, Verbesserung => 0, Ressource => 0, Grund => Karten.Karten (YAchse, XAchse).Grund);
+            Farben (Einheit => 0,
+                    Verbesserung => 0,
+                    Ressource => 0,
+                    Grund => Karten.Karten (YAchse, XAchse).Grund);
          end if;
          
       else
-         Put (NichtSichtbar);
+         Put (Item => NichtSichtbar);
       end if;
       
    end Sichtbarkeit;
@@ -180,7 +201,7 @@ package body Sichtbarkeit is
 
       case Einheit is
          when EinheitenDatenbank.EinheitenListe'Range =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
             
          when others =>
             null;
@@ -188,28 +209,28 @@ package body Sichtbarkeit is
       
       case Verbesserung is
          when 1 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
          
          when 2 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
             
          when 3 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
             
          when 4 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
             
          when 5 .. 19 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
 
          when 20 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
             
          when 21 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
             
          when 22 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
             
          when others =>
             null;
@@ -217,25 +238,25 @@ package body Sichtbarkeit is
       
       case Ressource is
          when 10 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
 
          when 11 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
 
          when 12 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
 
          when 13 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
 
          when 29 => 
-            Put (CSI & "38;2;255;255;255m");
+            Put (Item => CSI & "38;2;255;255;255m");
 
          when 30 =>
-            Put (CSI & "38;2;255;255;255m");
+            Put (Item => CSI & "38;2;255;255;255m");
 
          when 33 =>
-            Put (CSI & "38;2;0;0;0m");
+            Put (Item => CSI & "38;2;0;0;0m");
             
          when others =>
             null;
@@ -243,53 +264,53 @@ package body Sichtbarkeit is
       
       case Grund is
          when 1 =>
-            Put (CSI & "48;2;255;245;238m");
+            Put (Item => CSI & "48;2;255;245;238m");
             
          when 2 =>
-            Put (CSI & "48;2;0;0;205m");
+            Put (Item => CSI & "48;2;0;0;205m");
             
          when 3 =>
-            Put (CSI & "48;2;100;160;60m");
+            Put (Item => CSI & "48;2;100;160;60m");
             
          when 4 =>
-            Put (CSI & "48;2;205;200;177m");
+            Put (Item => CSI & "48;2;205;200;177m");
             
          when 5 =>
-            Put (CSI & "48;2;238;238;0m");
+            Put (Item => CSI & "48;2;238;238;0m");
             
          when 6 =>
-            Put (CSI & "48;2;205;133;63m");
+            Put (Item => CSI & "48;2;205;133;63m");
             
          when 7 =>
-            Put (CSI & "48;2;120;120;120m");
+            Put (Item => CSI & "48;2;120;120;120m");
             
          when 8 =>
-            Put (CSI & "48;2;30;130;30m");
+            Put (Item => CSI & "48;2;30;130;30m");
             
          when 9 =>
-            Put (CSI & "48;2;0;70;0m");
+            Put (Item => CSI & "48;2;0;70;0m");
             
          when 31 =>
-            Put (CSI & "48;2;135;206;250m");
+            Put (Item => CSI & "48;2;135;206;250m");
             
          when 32 =>
-            Put (CSI & "48;2;0;40;0m");
+            Put (Item => CSI & "48;2;0;40;0m");
             
          when others =>
-            Put (CSI & "48;2;0;0;0m");
+            Put (Item => CSI & "48;2;0;0;0m");
       end case;
       
       if Einheit /= 0 then
-         Put (EinheitenDatenbank.EinheitenListe (Einheit).Anzeige & CSI & "0m");
+         Put (Item => EinheitenDatenbank.EinheitenListe (Einheit).Anzeige & CSI & "0m");
         
       elsif Verbesserung /= 0 then
-         Put (VerbesserungenDatenbank.VerbesserungObjektListe (Verbesserung).Anzeige & CSI & "0m");
+         Put (Item => VerbesserungenDatenbank.VerbesserungObjektListe (Verbesserung).Anzeige & CSI & "0m");
 
       elsif Ressource /= 0 then
-         Put (KartenDatenbank.KartenObjektListe (Ressource).Anzeige & CSI & "0m");
+         Put (Item => KartenDatenbank.KartenObjektListe (Ressource).Anzeige & CSI & "0m");
             
       else         
-         Put (KartenDatenbank.KartenObjektListe (Grund).Anzeige & CSI & "0m");
+         Put (Item => KartenDatenbank.KartenObjektListe (Grund).Anzeige & CSI & "0m");
       end if;
       
    end Farben;

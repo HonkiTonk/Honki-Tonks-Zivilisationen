@@ -5,8 +5,8 @@ package body BewegungssystemEinheiten is
 
       loop
       
-         Get_Immediate (Richtung);
-         Richtung := To_Lower (Richtung);
+         Get_Immediate (Item => Richtung);
+         Richtung := To_Lower (Item => Richtung);
               
          case Richtung is
             when 'w' | '8' =>
@@ -180,14 +180,16 @@ package body BewegungssystemEinheiten is
             null;
             
          when others =>
-            BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasse => Rasse, VerteidigendeRasse => Gegner);
+            BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasse => Rasse,
+                                                                      VerteidigendeRasse => Gegner);
             case BereitsImKrieg is
                when 1 .. 2 =>
                   Wahl := Auswahl.Auswahl (WelcheAuswahl => 11, WelcherText => 18);
                   case Wahl is
                      when -3 =>
                         Angreifen := True;
-                        Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasse => Rasse, VerteidigendeRasse => Gegner);
+                        Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasse => Rasse,
+                                                              VerteidigendeRasse => Gegner);
                      
                      when others =>
                         Angreifen := False;
@@ -202,7 +204,11 @@ package body BewegungssystemEinheiten is
          
             case Angreifen is
                when True =>
-                  Gewonnen := Kampfsystem.KampfsystemNahkampf (EinheitOderStadt => EinheitOderStadt, RasseAngriff => Rasse, EinheitenPositionAngriff => EinheitenPositionInListe, RasseVerteidigung => Gegner, EinheitenPositionVerteidigung => GegnerPosition);
+                  Gewonnen := Kampfsystem.KampfsystemNahkampf (EinheitOderStadt => EinheitOderStadt,
+                                                               RasseAngriff => Rasse,
+                                                               EinheitenPositionAngriff => EinheitenPositionInListe,
+                                                               RasseVerteidigung => Gegner,
+                                                               EinheitenPositionVerteidigung => GegnerPosition);
                
                when False =>
                   return;
