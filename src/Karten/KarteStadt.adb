@@ -3,7 +3,7 @@ package body KarteStadt is
    procedure AnzeigeStadt (Stadtnummer : in Integer) is
    begin
 
-      Put (CSI & "2J" & CSI & "3J" & CSI & "H");
+      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       if ForschungsDatenbank.Erforscht (GlobaleVariablen.Rasse) (5) /= '0' and GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).Einwohner >= 10 then
          Stadtumgebungsgröße := 2;
@@ -56,7 +56,8 @@ package body KarteStadt is
                                  Überhang := GlobaleVariablen.CursorImSpiel.XAchse + A + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                                  for B in Überhang .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                   
-                                    Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion, XAchse => B);
+                                    Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
+                                                               XAchse => B);
                   
                                  end loop;
                                  ÜberhangDurchlaufenLinks := True;
@@ -72,12 +73,14 @@ package body KarteStadt is
                            Überhang := GlobaleVariablen.CursorImSpiel.XAchse + A - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                            for B in Karten.Karten'First (2) .. Überhang loop
                   
-                              Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion, XAchse => B);
+                              Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
+                                                         XAchse => B);
                   
                            end loop;
 
                         else
-                           Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion, XAchse => GlobaleVariablen.CursorImSpiel.XAchse + A);
+                           Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
+                                                      XAchse => GlobaleVariablen.CursorImSpiel.XAchse + A);
                         end if;
 
                      end loop UmgebungsSchleife;
@@ -89,15 +92,15 @@ package body KarteStadt is
                end if;
                
             elsif Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X = GlobaleVariablen.CursorImSpiel.XAchseStadt then
-               Put (CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
+               Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
 
             else
                if X = Karten.Stadtkarte'Last (2) then
-                  Put (" ");
+                  Put (Item => " ");
                   New_Line;
 
                else
-                  Put (" ");
+                  Put (Item => " ");
                end if;
             end if;
             

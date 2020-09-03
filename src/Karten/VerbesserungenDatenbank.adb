@@ -3,25 +3,29 @@ package body VerbesserungenDatenbank is
    procedure Beschreibung (ID : in Integer) is
    begin
       
-      Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (12, ID)));
-      Put ("    ");
+      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (12, ID)));
+      Put (Item => "    ");
       
    end Beschreibung;
 
 
    
-   procedure Verbesserung (Befehl : in Wide_Wide_Character; Rasse, Listenplatz : in Integer) is -- Prüfung einbauen ob die Einheit schon irgendwas tut und nach Abbruch fragen.
+   procedure Verbesserung (Befehl, Rasse, Listenplatz : in Integer) is
    begin
 
       case GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung is
-         when '0' =>
-            VerbesserungeFestgelegt (Befehl => Befehl, Rasse => Rasse, Listenplatz => Listenplatz);
+         when 0 =>
+            VerbesserungeFestgelegt (Befehl => Befehl,
+                                     Rasse => Rasse,
+                                     Listenplatz => Listenplatz);
             
          when others =>
             Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 7);
             case Wahl is
                when True =>
-                  VerbesserungeFestgelegt (Befehl => Befehl, Rasse => Rasse, Listenplatz => Listenplatz);
+                  VerbesserungeFestgelegt (Befehl => Befehl,
+                                           Rasse => Rasse,
+                                           Listenplatz => Listenplatz);
                      
                when False =>
                   null;
@@ -32,19 +36,20 @@ package body VerbesserungenDatenbank is
 
 
 
-   procedure VerbesserungeFestgelegt (Befehl : in Wide_Wide_Character; Rasse, Listenplatz : in Integer) is
+   procedure VerbesserungeFestgelegt (Befehl, Rasse, Listenplatz : in Integer) is -- l/1 = Straße, t/2 = Mine, f/3 = Farm, u/4 = Festung, z/5 = Wald aufforsten, p/6 = /Roden-Trockenlegen,
+                                                                                  -- h/7 = Heilen, v/8 = Verschanzen Space/9 = Runde aussetzen, DEL/10 = Einheit auflösen, j/11 = Plündern
    begin
 
-      if Befehl = 'l' and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungStraße >= 5 and
+      if Befehl = 1 and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungStraße >= 5 and
         Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungStraße <= 19 then
          Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 4);
          return;
 
-      elsif Befehl = 't' and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 21 then
+      elsif Befehl = 2 and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 21 then
          Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 4);
          return;
 
-      elsif Befehl = 't' and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 20 or
+      elsif Befehl = 2 and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 20 or
                                 Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 22) then
          Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 8);
          case Wahl is
@@ -55,15 +60,15 @@ package body VerbesserungenDatenbank is
                return;
          end case;
       
-      elsif Befehl = 'f' and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 20 then
+      elsif Befehl = 3 and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 20 then
          Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 4);
          return;
 
-      elsif Befehl = 'f' and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund = 1 then
+      elsif Befehl = 3 and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund = 1 then
          Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 1);
          return;
 
-      elsif Befehl = 'f' and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 21 or
+      elsif Befehl = 3 and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 21 or
                                 Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 22) then
          Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 8);
          case Wahl is
@@ -74,11 +79,11 @@ package body VerbesserungenDatenbank is
                return;
          end case;
       
-      elsif Befehl = 'u' and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 22 then
+      elsif Befehl = 4 and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 22 then
          Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 4);
          return;
 
-      elsif Befehl = 'u' and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 20 or
+      elsif Befehl = 4 and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 20 or
                                 Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 21) then
          Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 8);
          case Wahl is
@@ -89,7 +94,7 @@ package body VerbesserungenDatenbank is
                return;
          end case;
 
-      elsif Befehl = 'z' and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 20 or
+      elsif Befehl = 5 and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 20 or
                                 Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet = 21) then
          Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 8);
          case Wahl is
@@ -100,7 +105,7 @@ package body VerbesserungenDatenbank is
                return;
          end case;
          
-      elsif Befehl = Space then
+      elsif Befehl = 9 then
          GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBewegungspunkte := 0.0;
          return;
                               
@@ -108,13 +113,13 @@ package body VerbesserungenDatenbank is
          null;
       end if;
                               
-      GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := '0';
-      GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung2 := '0';
+      GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := 0;
+      GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung2 := 0;
       GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigungszeit := 0;
       GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigungszeit2 := 0;
       
       case Befehl is
-         when 'l' => -- Landstraße
+         when 1 => -- Landstraße
             case Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund is
                when 1 | 3 .. 6 | 8 | 10 .. 28 =>
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := Befehl;
@@ -128,7 +133,7 @@ package body VerbesserungenDatenbank is
                   Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 1);
             end case;
                               
-         when 't' => -- Tiefengrabung
+         when 2 => -- Tiefengrabung
             case Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund is
                when 1 | 3 .. 6 | 10 .. 28 =>
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := Befehl;
@@ -139,7 +144,7 @@ package body VerbesserungenDatenbank is
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigungszeit := 5;
 
                when 8 | 9 | 32 =>
-                  GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := 'p';
+                  GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := 6;
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigungszeit := 3;
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung2 := Befehl;
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigungszeit2 := 3;
@@ -148,7 +153,7 @@ package body VerbesserungenDatenbank is
                   Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 1);
             end case;
             
-         when 'f' => -- Farm bauen
+         when 3 => -- Farm bauen
             case Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund is
                when 3 .. 6 | 10 .. 28 =>
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := Befehl;
@@ -159,7 +164,7 @@ package body VerbesserungenDatenbank is
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigungszeit := 5;
 
                when 8 .. 9 | 32 =>
-                  GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := 'p';
+                  GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := 6;
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigungszeit := 3;
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung2 := Befehl;
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigungszeit2 := 3;
@@ -168,7 +173,7 @@ package body VerbesserungenDatenbank is
                   Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 1);
             end case;
             
-         when 'u' => -- Festung bauen
+         when 4 => -- Festung bauen
             case Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund is
                when 1 | 3 .. 6 | 8 .. 28 | 32 =>
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := Befehl;
@@ -182,14 +187,14 @@ package body VerbesserungenDatenbank is
                   Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 1);
             end case;
             
-         when 'z' => -- Wald aufforsten
+         when 5 => -- Wald aufforsten
             case Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund is
                when 3 | 6 | 10 .. 28 =>
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := Befehl;
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigungszeit := 3;
 
                when 9 | 32 =>
-                  GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := 'p';
+                  GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := 6;
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigungszeit := 3;
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung2 := Befehl;
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigungszeit2 := 3;
@@ -198,7 +203,7 @@ package body VerbesserungenDatenbank is
                   Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 1);
             end case;
 
-         when 'p' => -- Roden-Trockenlegen
+         when 6 => -- Roden-Trockenlegen
             case Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund is
                when 8 | 9 | 32 =>
                   GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := Befehl;
@@ -207,17 +212,8 @@ package body VerbesserungenDatenbank is
                when others =>
                   Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 2);
             end case;
-
-         when 'v' => -- Verschanzen
-            case Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund is
-               when 1 .. 32 =>
-                  GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := Befehl;
-               
-               when others =>
-                  Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 2);
-            end case;
             
-         when 'h' => -- Heilen
+         when 7 => -- Heilen
             if GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleLebenspunkte = EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).ID).MaximaleLebenspunkte then
                Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 5);
                
@@ -231,7 +227,16 @@ package body VerbesserungenDatenbank is
                end case;
             end if;
 
-         when DEL => -- Einheit auflösen
+         when 8 => -- Verschanzen
+            case Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund is
+               when 1 .. 32 =>
+                  GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung := Befehl;
+               
+               when others =>
+                  Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 2);
+            end case;
+
+         when 10 => -- Einheit auflösen
             Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 9);
             case Wahl is
                when True =>
@@ -241,7 +246,7 @@ package body VerbesserungenDatenbank is
                   null;
             end case;
 
-         when 'j' => -- Plündern
+         when 11 => -- Plündern
             Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 12);
             case Wahl is
                when True =>
@@ -273,7 +278,7 @@ package body VerbesserungenDatenbank is
                
             when others =>
                case GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung is
-                  when '0' | 'v' | 'h' =>
+                  when 0 | 7 .. 8 =>
                      null;
                
                   when others =>
@@ -282,13 +287,13 @@ package body VerbesserungenDatenbank is
                         VerbesserungAngelegt (Rasse => Rasse, Listenplatz => A);
 
                         case GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung2 is
-                           when '0' =>
-                              GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung := '0';
+                           when 0 =>
+                              GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung := 0;
                               GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigungszeit := 0;
 
                            when others =>
                               GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung := GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung2;
-                              GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung2 := '0';
+                              GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung2 := 0;
                               GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigungszeit := GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigungszeit2;
                               GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigungszeit2 := 0;
                         end case;
@@ -309,19 +314,19 @@ package body VerbesserungenDatenbank is
    begin
       
       case GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).AktuelleBeschäftigung is -- Landstraße/Tiefengrabung/Farm/Festung/Wald aufforsten/Roden-Trockenlegen
-         when 'l' =>
+         when 1 =>
             StraßenBerechnung (YAchse => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, XAchse => GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse);
               
-         when 't' =>
+         when 2 =>
             Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet := 21;
               
-         when 'f' =>
+         when 3 =>
             Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet := 20;
             
-         when 'u' =>
+         when 4 =>
             Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet := 22;
               
-         when 'z' =>
+         when 5 =>
             Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund := 8;
             case Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).VerbesserungGebiet is
                when 20 .. 21 =>
@@ -331,7 +336,7 @@ package body VerbesserungenDatenbank is
                   null;
             end case;
               
-         when 'p' =>
+         when 6 =>
             case Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Hügel is
                when True =>
                   Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund := 6;
