@@ -48,7 +48,7 @@ package EinheitenDatenbank is
    procedure HeilungBewegungspunkteFürNeueRundeSetzen;
    procedure EinheitErzeugen (YAchse, XAchse, Rasse, ID : in Integer);
    procedure EinheitEntfernen (Rasse, Platznummer : in Integer);
-   procedure Beschäftigung (Arbeit : in Wide_Wide_Character);
+   procedure Beschäftigung (Arbeit : in Integer);
 
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Integer) return Boolean;
 
