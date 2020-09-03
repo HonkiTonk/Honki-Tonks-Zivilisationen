@@ -24,24 +24,43 @@ package body KarteStadt is
                         
             if X > Karten.Stadtkarte'Last (2) - 7 and Y < Karten.Stadtkarte'First (1) + 7 then
                if YAchsenabstraktion > Stadtumgebungsgröße then
+                  for A in 1 .. 7 loop
+                     
+                     Put (Item => " ");
+                     
+                  end loop;
+                  
                   New_Line;
                   exit XAchseSchleife;
 
                elsif Stadtumgebungsgröße = 1 and Y < 3 then
+                  for A in 1 .. 7 loop
+                     
+                     Put (Item => " ");
+                     
+                  end loop;
+                  
                   New_Line;
                   exit XAchseSchleife;
 
                elsif Stadtumgebungsgröße = 2 and Y < 2 then
+                  for A in 1 .. 7 loop
+                     
+                     Put (Item => " ");
+                     
+                  end loop;
+                  
                   New_Line;
                   exit XAchseSchleife;
                   
                else
-                  ÜberhangDurchlaufenLinks := False;
-                  if Stadtumgebungsgröße = 1 and X < Karten.Stadtkarte'Last (2) - 4 then
-                     Put (" ");
+                  if Stadtumgebungsgröße = 1 and X < Karten.Stadtkarte'Last (2) - 4 then -- Wenn loop von 1 .. 7 dann muss das raus,
+                                                                                           -- bei loop von -Stadtumgebungsgröße .. Stadtumgebungsgröße muss noch was rein für den Fall größer
+                     Put (Item => " ");
                      
-                  elsif Stadtumgebungsgröße = 2 and X < Karten.Stadtkarte'Last (2) - 5 then
-                     Put (" ");
+                  elsif Stadtumgebungsgröße = 2 and X < Karten.Stadtkarte'Last (2) - 5 then -- Wenn loop von 1 .. 7 dann muss das raus,
+                                                                                              -- bei loop von -Stadtumgebungsgröße .. Stadtumgebungsgröße muss noch was rein für den Fall größer
+                     Put (Item => " ");
                      
                   else
                      UmgebungsSchleife:
@@ -51,33 +70,17 @@ package body KarteStadt is
                            exit UmgebungsSchleife;
 
                         elsif GlobaleVariablen.CursorImSpiel.XAchse + A < Karten.Karten'First (2) then
-                           case ÜberhangDurchlaufenLinks is
-                              when False =>
-                                 Überhang := GlobaleVariablen.CursorImSpiel.XAchse + A + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-                                 for B in Überhang .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
-                  
-                                    Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
-                                                               XAchse => B);
-                  
-                                 end loop;
-                                 ÜberhangDurchlaufenLinks := True;
-
-                              when True =>
-                                 null;
-                           end case;
+                           Überhang := GlobaleVariablen.CursorImSpiel.XAchse + A + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+                           Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
+                                                      XAchse => Überhang);
                            
                         elsif GlobaleVariablen.CursorImSpiel.XAchse + A > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and A < Stadtumgebungsgröße then
                            null;
                            
                         elsif GlobaleVariablen.CursorImSpiel.XAchse + A > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
                            Überhang := GlobaleVariablen.CursorImSpiel.XAchse + A - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-                           for B in Karten.Karten'First (2) .. Überhang loop
-                  
                               Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
-                                                         XAchse => B);
-                  
-                           end loop;
-
+                                                         XAchse => Überhang);
                         else
                            Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
                                                       XAchse => GlobaleVariablen.CursorImSpiel.XAchse + A);
@@ -95,14 +98,19 @@ package body KarteStadt is
                Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
 
             else
-               if X = Karten.Stadtkarte'Last (2) then
-                  Put (Item => " ");
-                  New_Line;
-
-               else
-                  Put (Item => " ");
-               end if;
+               Sichtbarkeit.Farben (Einheit      => 0,
+                                    Verbesserung => 0,
+                                    Ressource    => 0,
+                                    Grund        => Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
             end if;
+
+            case X is
+               when Karten.Stadtkarte'Last (2) =>
+                  New_Line;
+                  
+               when others =>
+                  null;
+            end case;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
