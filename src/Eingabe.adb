@@ -3,14 +3,14 @@ package body Eingabe is
    function GanzeZahl return Integer is -- Als String mit Längenbegrenzung, wozu auch Unbounded?
    begin
 
-      Zahl := To_Unbounded_Wide_Wide_String (Get_Line);
+      Zahl := To_Unbounded_Wide_Wide_String (Source => Get_Line);
 
-      If To_Wide_Wide_String (Zahl)'Length = 1 then
+      If To_Wide_Wide_String (Source => Zahl)'Length = 1 then
          Text (1) := '0';
-         Text (2) := To_Wide_Wide_String (Zahl) (1);
+         Text (2) := To_Wide_Wide_String (Source => Zahl) (1);
       else
-         Text (1) := To_Wide_Wide_String (Zahl) (1);
-         Text (2) := To_Wide_Wide_String (Zahl) (2);
+         Text (1) := To_Wide_Wide_String (Source => Zahl) (1);
+         Text (2) := To_Wide_Wide_String (Source => Zahl) (2);
       end if;
       
       for A in Text'Range loop
@@ -30,8 +30,8 @@ package body Eingabe is
    function StadtName return Unbounded_Wide_Wide_String is
    begin
       
-      Put_Line ("Namen der Stadt eingeben:");
-      Name := To_Unbounded_Wide_Wide_String (Get_Line);
+      Put_Line (Item => "Namen der Stadt eingeben:");
+      Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
       
       return Name;
         

@@ -29,7 +29,7 @@ begin
                   exit StartSchleife;
 
                when others =>
-                  Put_Line ("Sollte niemals aufgerufen werden, Start.Start");
+                  Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Start");
             end case;
 
          when 2 => -- Laden
@@ -45,7 +45,7 @@ begin
                         exit StartSchleife;
 
                      when others =>
-                        Put_Line ("Sollte niemals aufgerufen werden, Start.Laden");
+                        Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Laden");
                   end case;
 
                when False =>
@@ -62,11 +62,11 @@ begin
             exit StartSchleife;
 
          when others =>
-            Put_Line ("Sollte niemals aufgerufen werden, Start.Start2");
+            Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Start2");
       end case;
 
    end loop StartSchleife;
 
-   Put_Line ("Auf Wiedersehen!");
+   Put_Line (Item => "Auf Wiedersehen!");
 
 end Start;

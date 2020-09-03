@@ -3,11 +3,11 @@ package body Auswahl is
    function Auswahl (WelcheAuswahl, WelcherText : in Integer) return Integer is
    begin
 
-      Put (CSI & "2J" & CSI & "3J"  & CSI & "H");
+      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       for A in Einlesen.TexteEinlesen'Range (2) loop
          
-         if To_Wide_Wide_String (Einlesen.TexteEinlesen (WelcherText, A)) = "|" then
+         if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A)) = "|" then
             exit;
             
          else
@@ -25,14 +25,14 @@ package body Auswahl is
             null;
             
          else
-            Put_Line (To_Wide_Wide_String (Einlesen.TexteEinlesen (21, WelcheAuswahl)));
+            Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (21, WelcheAuswahl)));
          end if;
 
          Anzeige (WelcherText => WelcherText);         
          
-         Get_Immediate (Taste);
+         Get_Immediate (Item => Taste);
          
-         case To_Lower (Taste) is               
+         case To_Lower (Item => Taste) is               
             when 'w' | '8' => 
                if AktuelleAuswahl = Einlesen.TexteEinlesen'First (2) then
                   AktuelleAuswahl := Ende;
@@ -70,7 +70,7 @@ package body Auswahl is
                  return 3;
                      
                else
-                  Put (CSI & "2J" & CSI & "3J" & CSI & "H");
+                  Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                   return AktuelleAuswahl;
                end if;
                      
@@ -78,7 +78,7 @@ package body Auswahl is
                null;                    
          end case;
 
-         Put (CSI & "2J" & CSI & "3J"  & CSI & "H");
+         Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
          
       end loop StartauswahlSchleife;
       
@@ -93,11 +93,11 @@ package body Auswahl is
       
       TextlängePrüfenSchleife:
       for A in Einlesen.TexteEinlesen'Range (2) loop
-         if To_Wide_Wide_String (Einlesen.TexteEinlesen (WelcherText, A)) = "|" then
+         if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A)) = "|" then
             exit TextlängePrüfenSchleife;
             
-         elsif To_Wide_Wide_String (Einlesen.TexteEinlesen (WelcherText, A))'Length > LängsterText then
-            LängsterText := To_Wide_Wide_String (Einlesen.TexteEinlesen (WelcherText, A))'Length;
+         elsif To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A))'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A))'Length;
             
          else
             null;
@@ -110,29 +110,29 @@ package body Auswahl is
          if AktuelleAuswahl = A then
             for B in 1 .. LängsterText loop
 
-               if To_Wide_Wide_String (Einlesen.TexteEinlesen (WelcherText, A)) = "|" then
+               if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A)) = "|" then
                   exit AnzeigeSchleife;
                   
                elsif B = 1 then
-                  Put ("╔");
-                  Put ("═");
+                  Put (Item => "╔");
+                  Put (Item => "═");
 
                elsif B = LängsterText then                  
-                  Put ("═");
-                  Put_Line ("╗");
-                  Put ("║");
-                  Put (To_Wide_Wide_String (Einlesen.TexteEinlesen (WelcherText, A)));
+                  Put (Item => "═");
+                  Put_Line (Item => "╗");
+                  Put (Item => "║");
+                  Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A)));
 
-                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Einlesen.TexteEinlesen (WelcherText, A))'Length loop
+                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A))'Length loop
                         
                      Put (" ");
                         
                   end loop;
-                  Put_Line ("║");
-                  Put ("╚");
+                  Put_Line (Item => "║");
+                  Put (Item => "╚");
 
                else
-                  Put ("═");
+                  Put (Item => "═");
                end if;
                
             end loop;
@@ -140,21 +140,21 @@ package body Auswahl is
             for C in 1 .. LängsterText loop
                
                if C = LängsterText then
-                  Put ("═");
-                  Put_Line ("╝");
+                  Put (Item => "═");
+                  Put_Line (Item => "╝");
                
                else
-                  Put ("═");
+                  Put (Item => "═");
                end if;
             
             end loop;
          
          else
-            if To_Wide_Wide_String (Einlesen.TexteEinlesen (WelcherText, A)) = "|" then
+            if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A)) = "|" then
                exit AnzeigeSchleife; 
             
             else
-               Put_Line (To_Wide_Wide_String (Einlesen.TexteEinlesen (WelcherText, A)));
+               Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A)));
             end if;
          end if;
          
@@ -169,13 +169,13 @@ package body Auswahl is
       
       N := 1;
 
-      for A in To_Wide_Wide_String (Einlesen.TexteEinlesen (WelcherText, WelcheZeile))'Range loop
+      for A in To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, WelcheZeile))'Range loop
          
-         if To_Wide_Wide_String (Einlesen.TexteEinlesen (WelcherText, WelcheZeile)) (A) = '|' then
+         if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, WelcheZeile)) (A) = '|' then
             exit;
             
             else
-               Text (A) := To_Wide_Wide_String (Einlesen.TexteEinlesen (WelcherText, WelcheZeile)) (A);
+               Text (A) := To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, WelcheZeile)) (A);
          end if;
          
       end loop;
@@ -191,16 +191,16 @@ package body Auswahl is
                New_Line;
                
             else
-               Put (Text (B));
+               Put (Item => Text (B));
             end if;
             
          else
-            Put (Text (B));
+            Put (Item => Text (B));
          end if;
          
       end loop;
 
-      Get_Immediate (Taste);
+      Get_Immediate (Item => Taste);
       
    end AnzeigeLangerText;
 

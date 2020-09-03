@@ -9,17 +9,18 @@ package body Einlesen is
 
       for A in WelcheTexteEinlesen'Range loop
 
-            if End_Of_File (DateiWelcheTexteEinlesen) = True then
+            if End_Of_File (File => DateiWelcheTexteEinlesen) = True then
                exit;
                
             else
-               Set_Line (File => DateiWelcheTexteEinlesen, To => Ada.Text_IO.Count (A));         
-               WelcheTexteEinlesen (A) := To_Unbounded_String (Ada.Text_IO.Get_Line (DateiWelcheTexteEinlesen));
+            Set_Line (File => DateiWelcheTexteEinlesen,
+                      To => Ada.Text_IO.Count (A));         
+               WelcheTexteEinlesen (A) := To_Unbounded_String (Source => Ada.Text_IO.Get_Line (File => DateiWelcheTexteEinlesen));
             end if;
 
          end loop;
 
-         close (DateiWelcheTexteEinlesen);
+         close (File => DateiWelcheTexteEinlesen);
       
       WelcherTextSchleife:
       for B in TexteEinlesen'Range (1) loop
@@ -31,24 +32,25 @@ package body Einlesen is
          Einlesen:
          for C in TexteEinlesen'Range (2) loop
 
-            if End_Of_File (DateiText) = True then
+            if End_Of_File (File => DateiText) = True then
                exit Einlesen;
                
             else
-               Set_Line (File => DateiText, To => Ada.Wide_Wide_Text_IO.Count (C));         
-               TexteEinlesen (B, C) := To_Unbounded_Wide_Wide_String (Get_Line (DateiText));
+               Set_Line (File => DateiText,
+                         To => Ada.Wide_Wide_Text_IO.Count (C));         
+               TexteEinlesen (B, C) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
             end if;
 
          end loop Einlesen;
 
-         close (DateiText);
+         close (File => DateiText);
 
       end loop WelcherTextSchleife;
 
    exception
       when Storage_Error =>
-         Ada.Wide_Wide_Text_IO.Put_Line ("Zu lange Zeile, Einlesen.EinlesenText");
-         close (DateiText);
+         Ada.Wide_Wide_Text_IO.Put_Line (Item => "Zu lange Zeile, Einlesen.EinlesenText");
+         close (File => DateiText);
          raise;
       
    end EinlesenText;

@@ -23,8 +23,8 @@ package GlobaleVariablen is
 
    type EinheitenGebautRecord is record
       
-      AktuelleBeschäftigung : Wide_Wide_Character;
-      AktuelleBeschäftigung2 : Wide_Wide_Character;
+      AktuelleBeschäftigung : Integer;
+      AktuelleBeschäftigung2 : Integer;
       
       ID : Integer;
       YAchse : Integer;
@@ -41,10 +41,10 @@ package GlobaleVariablen is
    end record;
 
    type EinheitenGebautArray is array (1 .. 18, 1 .. 1000) of EinheitenGebautRecord;
-   EinheitenGebaut : EinheitenGebautArray := (1 => (4 => ('0', '0',    1, 7, 12,    1, 1.0, 1, 1,    0, 0),
-                                              others => ('0', '0',     0, 0, 0,     0, 0.0, 0, 0,    0, 0)),
+   EinheitenGebaut : EinheitenGebautArray := (1 => (3 => (0, 0,    1, 7, 12,    1, 1.0, 1, 1,    0, 0),
+                                              others => (0, 0,     0, 0, 0,     0, 0.0, 0, 0,    0, 0)),
                                               
-                                              others => (others => ('0', '0',    0, 0, 0,    0, 0.0, 0, 0,    0, 0)));
+                                              others => (others => (0, 0,    0, 0, 0,    0, 0.0, 0, 0,    0, 0)));
 
    type StadtGebautRecord is record
       
