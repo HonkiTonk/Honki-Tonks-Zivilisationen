@@ -5,10 +5,10 @@ package body KarteStadt is
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
-      if ForschungsDatenbank.Erforscht (GlobaleVariablen.Rasse) (5) /= '0' and GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).Einwohner >= 10 then
+      if GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).Erforscht (5) /= '0' and GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).Einwohner >= 10 then
          Stadtumgebungsgröße := 2;
 
-      elsif ForschungsDatenbank.Erforscht (GlobaleVariablen.Rasse) (10) /= '0' and GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).Einwohner >= 20 then
+      elsif GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).Erforscht (10) /= '0' and GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).Einwohner >= 20 then
          Stadtumgebungsgröße := 3;
                   
       else
@@ -307,8 +307,21 @@ package body KarteStadt is
          Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Korruption'Wide_Wide_Image);
                         
          Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 12)));
-         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt'Wide_Wide_Image);                       
-         Put_Line (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 13)));                                 
+         if GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt = 0 then
+            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 28)));
+            
+         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt < 10_000 then -- Gebäude
+            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (14, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 1_000)));
+
+         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt > 10_000 then -- Einheiten
+            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (10, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 10_000)));
+
+         else
+            Put (Item => "Sollte nicht passieren, KarteStadt.Beschreibung else.");
+         end if;
+                                              
+         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 13)));   
+         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit'Wide_Wide_Image);
 
       else
          null;

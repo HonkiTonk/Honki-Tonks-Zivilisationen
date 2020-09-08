@@ -9,6 +9,7 @@ package body Informationen is
 
       Put_Line (Item => "Wichtiges/Notizen:");
       Put_Line (Item => "-1 = Spiel beenden, 0 = Hauptmenü, -2 = Zurück, -3 = Ja, -4 = Nein, 2 = Speichern, 3 = Laden");
+      Put_Line (Item => "Gebäude haben immer die Nummer 1_000 + ihren Datenbankwert, Einheiten haben immer die Nummer 10_000 + ihren Datenbankwert.");
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
@@ -19,6 +20,9 @@ package body Informationen is
 
       Put_Line (Item => "Grafik:");
       Put_Line (Item => "Cursoranzeige in eine eigene Prozedur? Dann müssten auch Farbänderungen für den Untergrund leicht möglich sein.");
+      New_Line;
+
+      Put_Line (Item => "Bausystem:");
       New_Line;
 
       Put_Line (Item => "GlobaleVariablen:");
@@ -91,6 +95,7 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Auswahl:");
+      Put_Line (Item => "Noch q als Verlassentaste in die Systeme mit einbauen?");
       New_Line;
 
       Put_Line (Item => "AllesAufAnfangSetzen:");
