@@ -16,17 +16,24 @@ package body KarteStadt is
       end if;
 
       YAchsenabstraktion := -Stadtumgebungsgröße;
+      CursorYAchsePlus := -10;
+      CursorXAchsePlus := -10;
       
       YAchseSchleife:
       for Y in Karten.Stadtkarte'Range (1) loop
          XAchseSchleife:
          for X in Karten.Stadtkarte'Range (2) loop
                         
-            if X > Karten.Stadtkarte'Last (2) - 7 and Y < Karten.Stadtkarte'First (1) + 7 then
+            if Y < Karten.Stadtkarte'First (1) + 7 and X > Karten.Stadtkarte'Last (2) - 7 then               
                if YAchsenabstraktion > Stadtumgebungsgröße then
-                  for A in 1 .. 7 loop
+                  for A in 0 .. 6 loop
                      
-                     Put (Item => " ");
+                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + A = GlobaleVariablen.CursorImSpiel.XAchseStadt then
+                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
+
+                     else
+                        Put (Item => " ");
+                     end if;
                      
                   end loop;
                   
@@ -34,9 +41,14 @@ package body KarteStadt is
                   exit XAchseSchleife;
 
                elsif Stadtumgebungsgröße = 1 and Y < 3 then
-                  for A in 1 .. 7 loop
-                     
-                     Put (Item => " ");
+                  for A in 0 .. 6 loop                  
+                                          
+                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + A = GlobaleVariablen.CursorImSpiel.XAchseStadt then
+                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
+
+                     else
+                        Put (Item => " ");
+                     end if;
                      
                   end loop;
                   
@@ -44,9 +56,14 @@ package body KarteStadt is
                   exit XAchseSchleife;
 
                elsif Stadtumgebungsgröße = 2 and Y < 2 then
-                  for A in 1 .. 7 loop
-                     
-                     Put (Item => " ");
+                  for A in 0 .. 6 loop               
+                                          
+                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + A = GlobaleVariablen.CursorImSpiel.XAchseStadt then
+                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
+
+                     else                                            
+                        Put (Item => " ");
+                     end if;
                      
                   end loop;
                   
@@ -54,48 +71,58 @@ package body KarteStadt is
                   exit XAchseSchleife;
                   
                else
-                  if Stadtumgebungsgröße = 1 and X < Karten.Stadtkarte'Last (2) - 4 then -- Wenn loop von 1 .. 7 dann muss das raus,
-                                                                                           -- bei loop von -Stadtumgebungsgröße .. Stadtumgebungsgröße muss noch was rein für den Fall größer
-                     Put (Item => " ");
-                     
-                  elsif Stadtumgebungsgröße = 2 and X < Karten.Stadtkarte'Last (2) - 5 then -- Wenn loop von 1 .. 7 dann muss das raus,
-                                                                                              -- bei loop von -Stadtumgebungsgröße .. Stadtumgebungsgröße muss noch was rein für den Fall größer
-                     Put (Item => " ");
-                     
-                  else
-                     UmgebungsSchleife:
-                     for A in -Stadtumgebungsgröße .. Stadtumgebungsgröße loop
+                  UmgebungsSchleife:
+                  for A in -3 .. 3 loop
 
-                        if GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion < Karten.Karten'First (1) or GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-                           exit UmgebungsSchleife;
+                     Cursor := CursorKonstant + A;
+                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + Cursor = GlobaleVariablen.CursorImSpiel.XAchseStadt then
+                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
+                        CursorYAchsePlus := Y - 4;
 
-                        elsif GlobaleVariablen.CursorImSpiel.XAchse + A < Karten.Karten'First (2) then
-                           Überhang := GlobaleVariablen.CursorImSpiel.XAchse + A + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-                           Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
-                                                      XAchse => Überhang);
-                           
-                        elsif GlobaleVariablen.CursorImSpiel.XAchse + A > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and A < Stadtumgebungsgröße then
+                        if A < -Stadtumgebungsgröße or A > Stadtumgebungsgröße then
                            null;
                            
-                        elsif GlobaleVariablen.CursorImSpiel.XAchse + A > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-                           Überhang := GlobaleVariablen.CursorImSpiel.XAchse + A - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-                              Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
-                                                         XAchse => Überhang);
                         else
-                           Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
-                                                      XAchse => GlobaleVariablen.CursorImSpiel.XAchse + A);
+                           CursorXAchsePlus := A;
                         end if;
 
-                     end loop UmgebungsSchleife;
+                     elsif GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion < Karten.Karten'First (1) or GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+                        Put (Item => " ");
+                           
+                     elsif A < -Stadtumgebungsgröße then
+                        Put (Item => " ");
+                           
+                     elsif A > Stadtumgebungsgröße then
+                        Put (Item => " ");
+                           
+                     elsif GlobaleVariablen.CursorImSpiel.XAchse + A < Karten.Karten'First (2) then
+                        Überhang := GlobaleVariablen.CursorImSpiel.XAchse + A + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+                        Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
+                                                   XAchse => Überhang);
+                     elsif GlobaleVariablen.CursorImSpiel.XAchse + A > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+                        Überhang := GlobaleVariablen.CursorImSpiel.XAchse + A - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+                        Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
+                                                   XAchse => Überhang);
+                     else
+                        Sichtbarkeit.Sichtbarkeit (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YAchsenabstraktion,
+                                                   XAchse => GlobaleVariablen.CursorImSpiel.XAchse + A);
+                     end if;
 
-                     New_Line;
-                     YAchsenabstraktion := YAchsenabstraktion + 1;
-                     exit XAchseSchleife;
-                  end if;
+                  end loop UmgebungsSchleife;
+
+                  New_Line;
+                  YAchsenabstraktion := YAchsenabstraktion + 1;
+                  exit XAchseSchleife;
                end if;
                
             elsif Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X = GlobaleVariablen.CursorImSpiel.XAchseStadt then
                Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
+
+            elsif Y < Karten.Stadtkarte'First (1) + 7 and X = Karten.Stadtkarte'Last (2) - 7 then
+               Put (Item => " ");
+
+            elsif Y = Karten.Stadtkarte'First (1) + 7 and X >= Karten.Stadtkarte'Last (2) - 7 then
+               Put (Item => " ");
 
             else
                Sichtbarkeit.Farben (Einheit      => 0,
@@ -114,7 +141,13 @@ package body KarteStadt is
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
-         
+
+      Beschreibung (Rasse                => GlobaleVariablen.Rasse,
+                    StadtPositionInListe => Stadtnummer);
+      InformationenStadt (YAufschlag => CursorYAchsePlus,
+                          XAufschlag => CursorXAchsePlus);
+      New_Line;
+      
    end AnzeigeStadt;
 
 
@@ -128,11 +161,161 @@ package body KarteStadt is
    
    
    
-   procedure InformationenStadt is
-   begin
+   procedure InformationenStadt (YAufschlag, XAufschlag : in Integer) is
+   begin      
       
-      null;
+      Nahrungsgewinnung := 0;
+      Ressourcengewinnung := 0;
+      Geldgewinnung := 0;
+      Wissensgewinnung := 0;
+
+      if GlobaleVariablen.CursorImSpiel.YAchse + YAufschlag < Karten.Karten'First (1) or GlobaleVariablen.CursorImSpiel.YAchse + YAufschlag > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+         YAchse := -10;
+         
+      else
+         YAchse := GlobaleVariablen.CursorImSpiel.YAchse + YAufschlag;
+      end if;
+
+      if XAufschlag = -10 then
+         XAchse := XAufschlag;
+        
+      elsif GlobaleVariablen.CursorImSpiel.XAchse + XAufschlag < Karten.Karten'First (2) then
+         XAchse := GlobaleVariablen.CursorImSpiel.XAchse + XAufschlag + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+         
+      elsif GlobaleVariablen.CursorImSpiel.XAchse + XAufschlag > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+         XAchse := GlobaleVariablen.CursorImSpiel.XAchse + XAufschlag - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+         
+      else
+         XAchse := GlobaleVariablen.CursorImSpiel.XAchse + XAufschlag;
+      end if;
+      
+      if YAchse = -10 or XAchse = -10 then
+         null;
+         
+      else
+         if Karten.Karten (YAchse, XAchse).Hügel = True and Karten.Karten (YAchse, XAchse).Grund /= 6 then
+            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (9, 34)));
+            KartenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).Grund);
+
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Wissensgewinnung;
+         
+         elsif Karten.Karten (YAchse, XAchse).Hügel = True then
+            KartenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).Grund);
+
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Wissensgewinnung;
+               
+         else         
+            KartenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).Grund);
+
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Wissensgewinnung;
+         end if;
+      
+         if Karten.Karten (YAchse, XAchse).Ressource /= 0 then
+            KartenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).Ressource);
+
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Ressource).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Ressource).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Ressource).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Ressource).Wissensgewinnung;
+         
+         else
+            null;
+         end if;
+      
+         if Karten.Karten (YAchse, XAchse).VerbesserungGebiet /= 0 then
+            VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).VerbesserungGebiet);
+
+            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungGebiet).Nahrungsbonus;
+            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungGebiet).Ressourcenbonus;
+            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungGebiet).Geldbonus;
+            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungGebiet).Wissensbonus;
+         
+         else
+            null;
+         end if;
+      
+         if Karten.Karten (YAchse, XAchse).VerbesserungStraße /= 0 then
+            VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).VerbesserungStraße);
+
+            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungStraße).Nahrungsbonus;
+            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungStraße).Ressourcenbonus;
+            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungStraße).Geldbonus;
+            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungStraße).Wissensbonus;
+         
+         else
+            null;
+         end if;
+      
+         if Karten.Karten (YAchse, XAchse).Fluss /= 0 then
+            KartenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).Fluss);
+
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Fluss).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Fluss).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Fluss).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Fluss).Wissensgewinnung;
+         
+         else
+            null;
+         end if;
+            
+         New_Line;
+         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 20)));
+         Put_Line (Item => Nahrungsgewinnung'Wide_Wide_Image);
+         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 21)));
+         Put (Item => Ressourcengewinnung'Wide_Wide_Image);
+         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 22)));
+         Put (Item => Geldgewinnung'Wide_Wide_Image);
+         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 23)));
+         Put_Line (Item => Wissensgewinnung'Wide_Wide_Image);
+      end if;
       
    end InformationenStadt;
+
+
+
+   procedure Beschreibung (Rasse, StadtPositionInListe : in Integer) is
+   begin
+      
+      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).ID)));
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Name) & "    ");
+      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 5)));
+      Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Einwohner'Wide_Wide_Image);
+                     
+      if Rasse = GlobaleVariablen.Rasse then
+         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 6)));
+         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleNahrungsmittel'Wide_Wide_Image);
+         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 7)));
+         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleNahrungsproduktion'Wide_Wide_Image);
+                        
+         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 8)));
+         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate'Wide_Wide_Image);
+         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 9)));
+         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleGeldgewinnung'Wide_Wide_Image);
+
+         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 10)));
+         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleForschungsrate'Wide_Wide_Image);                        
+         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 11)));
+         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Korruption'Wide_Wide_Image);
+                        
+         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 12)));
+         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt'Wide_Wide_Image);                       
+         Put_Line (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 13)));                                 
+
+      else
+         null;
+      end if;
+                     
+      New_Line;
+      
+   end Beschreibung;
 
 end KarteStadt;

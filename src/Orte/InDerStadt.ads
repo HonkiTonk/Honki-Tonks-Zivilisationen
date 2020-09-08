@@ -4,7 +4,6 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_
 package InDerStadt is
 
    procedure InDerStadt (Rasse, StadtPositionInListe : in Integer);
-   procedure Beschreibung (Rasse, StadtPositionInListe : in Integer);
    procedure StadtBauen (Rasse, Listenplatz : in Integer);
 
 private

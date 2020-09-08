@@ -187,7 +187,7 @@ package body Karte is
                   
                      when others =>
                         if GlobaleVariablen.StadtGebaut (C, D).YAchse = GlobaleVariablen.CursorImSpiel.YAchse and GlobaleVariablen.StadtGebaut (C, D).XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
-                           InDerStadt.Beschreibung (Rasse => C, StadtPositionInListe => D);
+                           KarteStadt.Beschreibung (Rasse => C, StadtPositionInListe => D);
                            if C = GlobaleVariablen.Rasse then                              
                               Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (GlobaleVariablen.StadtGebaut (C, D).ID).Verteidigungsbonus;
 
@@ -205,7 +205,7 @@ package body Karte is
             end loop RassenStadtSchleife;
                   
             if Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Hügel = True and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund /= 6 then
-               Put (Item => "Hügel mit ");
+               Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (9, 34)));
                KartenDatenbank.Beschreibung (ID => Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
 
                Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Verteidigungsbonus;
@@ -286,15 +286,15 @@ package body Karte is
             end if;
             
             New_Line;
-            Put (Item => "       " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 19)));
+            Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 19)));
             Put (Item => Verteidigungsbonus'Wide_Wide_Image);
-            Put (Item => "    " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 20)));
+            Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 20)));
             Put_Line (Item => Nahrungsgewinnung'Wide_Wide_Image);
-            Put (Item => "       " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 21)));
+            Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 21)));
             Put (Item => Ressourcengewinnung'Wide_Wide_Image);
-            Put (Item => "    " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 22)));
+            Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 22)));
             Put (Item => Geldgewinnung'Wide_Wide_Image);
-            Put (Item => "    " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 23)));
+            Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 23)));
             Put_Line (Item => Wissensgewinnung'Wide_Wide_Image);
             
          when False =>
