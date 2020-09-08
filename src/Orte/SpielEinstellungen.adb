@@ -230,7 +230,7 @@ package body SpielEinstellungen is
 
          case Wahl is
             when 1 .. 18 =>      
-               Auswahl.AnzeigeLangerText (WelcherText => 7, WelcheZeile => Wahl);
+               Anzeige.AnzeigeLangerText (WelcherText => 7, WelcheZeile => Wahl);
                Wahl2 := Auswahl.Auswahl (WelcheAuswahl => 6, WelcherText => 18);
                case Wahl2 is
                   when -3 =>

@@ -62,6 +62,7 @@ package GlobaleVariablen is
       AktuelleGeldgewinnung : Integer;
       AktuelleForschungsrate : Integer;
       AktuellesBauprojekt : Integer;
+      VerbleibendeBauzeit : Integer;
 
       Korruption : Integer;
       GebäudeVorhanden : Wide_Wide_String (1 .. 20);
@@ -72,26 +73,31 @@ package GlobaleVariablen is
    end record;
    
    type StadtGebautArray is array (EinheitenGebautArray'Range, 1 .. 100) of StadtGebautRecord;
-   StadtGebaut : StadtGebautArray := (1 => (1 => (1, 5, 5, 12, 1, 2, 3, 4, 5, 6, 7, 8, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Test"), (others => (others => 0))),
-                                            2 => (2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Mehr"), (others => (others => 0))),
-                                            3 => (2, 20, 20, 1, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Geteste"), (others => (others => 0))),
-                                            others => ((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""), (others => (others => 0))))),
+   StadtGebaut : StadtGebautArray := (1 => (1 => (1, 5, 5, 12, 1, 2, 3, 4, 5, 6, 0, 0, 8, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Test"), (others => (others => 0))),
+                                            2 => (2, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Mehr"), (others => (others => 0))),
+                                            3 => (2, 20, 20, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Geteste"), (others => (others => 0))),
+                                            others => ((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""), (others => (others => 0))))),
 
-                                      2 => (1 => (3, 7, 12, 12, 1, 2, 3, 4, 5, 6, 7, 8, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "TestGegner"), (others => (others => 0))),
-                                            2 => (4, 3, 3, 12, 1, 2, 3, 4, 5, 6, 7, 8, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "MehrGegner"), (others => (others => 0))),
-                                            others => ((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""), (others => (others => 0))))),
+                                      2 => (1 => (3, 7, 12, 12, 1, 2, 3, 4, 5, 6, 0, 0, 8, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "TestGegner"), (others => (others => 0))),
+                                            2 => (4, 3, 3, 12, 1, 2, 3, 4, 5, 6, 0, 0, 8, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "MehrGegner"), (others => (others => 0))),
+                                            others => ((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""), (others => (others => 0))))),
                                       
-                                      others => (others => ((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""), (others => (others => 0))))));
+                                      others => (others => ((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""), (others => (others => 0))))));
 
-   type GeldRecord is record
+   type WichtigesRecord is record
       
-      AktuelleMenge : Integer;
-      ZugewinnProRunde : Integer;
+      AktuelleGeldmenge : Integer;
+      GeldZugewinnProRunde : Integer;
+      AktuelleForschungsrate : Integer;
+      AktuelleForschungsmenge : Integer;
+      AktuellesForschungsprojekt : Integer;
+
+      Erforscht : Wide_Wide_String (1 .. 25);
       
    end record;
 
-   type GeldArray is array (EinheitenGebautArray'Range (1)) of GeldRecord;
-   Geld : GeldArray := (others => (0, 0));
+   type WichtigesArray is array (EinheitenGebautArray'Range (1)) of WichtigesRecord;
+   Wichtiges : WichtigesArray := (others => (0, 0, 0, 0, 0, "0000000000000000000000000"));
    
    type DiplomatieArray is array (EinheitenGebautArray'Range (1), EinheitenGebautArray'Range (1)) of Integer; -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
    Diplomatie : DiplomatieArray := (others => (others => 0));

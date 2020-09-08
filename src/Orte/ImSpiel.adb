@@ -48,6 +48,7 @@ package body ImSpiel is
                           -- KI Züge hier einbauen
                EinheitenDatenbank.HeilungBewegungspunkteFürNeueRundeSetzen;
                VerbesserungenDatenbank.VerbesserungFertiggestellt (Rasse => GlobaleVariablen.Rasse);
+               GebaeudeDatenbank.ProduktionDurchführen (Rasse => GlobaleVariablen.Rasse);
                ForschungsDatenbank.Forschung;
                GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
                Karte.AnzeigeKarte;

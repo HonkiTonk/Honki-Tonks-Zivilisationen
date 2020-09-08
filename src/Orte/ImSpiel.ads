@@ -1,4 +1,4 @@
-with Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, GlobaleVariablen, Speichern, Laden, Fehlermeldungen;
+with Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, GlobaleVariablen, Speichern, Laden, Fehlermeldungen;
 
 package ImSpiel is
 

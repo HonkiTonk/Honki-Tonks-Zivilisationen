@@ -21,10 +21,25 @@ package body InDerStadt is
                null;
                
             when 'b' => -- Gebäude/Einheit bauen
-               Bauen.Bauen (Rasse                => Rasse,
-                            StadtPositionInListe => StadtPositionInListe);
+               case GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt is
+                  when 0 =>
+                     Bauen.Bauen (Rasse                => Rasse,
+                                  StadtPositionInListe => StadtPositionInListe);
+                     
+                  when others =>
+                     Wahl := Auswahl.Auswahl (WelcheAuswahl => 14,
+                                              WelcherText => 18);
+                     case Wahl is
+                        when -3 =>
+                           Bauen.Bauen (Rasse                => Rasse,
+                                        StadtPositionInListe => StadtPositionInListe);
+                     
+                        when others =>
+                           null;
+                     end case;
+               end case;
                
-            when 'v' => -- Begäude verkaufen
+            when 'v' => -- Gebäude verkaufen
                null;
 
             when 'q' =>
@@ -104,7 +119,7 @@ package body InDerStadt is
             end if;
 
             GlobaleVariablen.StadtGebaut (Rasse, A) := 
-              (Stadtart, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+              (Stadtart, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Name"),
                (4 => (17 => 10, others => 0), others => (others => 0)));
             EinheitenDatenbank.EinheitEntfernen (Rasse => Rasse,
