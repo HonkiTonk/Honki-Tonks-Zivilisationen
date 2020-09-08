@@ -9,12 +9,16 @@ package body Informationen is
 
       Put_Line (Item => "Wichtiges/Notizen:");
       Put_Line (Item => "-1 = Spiel beenden, 0 = Hauptmenü, -2 = Zurück, -3 = Ja, -4 = Nein, 2 = Speichern, 3 = Laden");
-      Put_Line (Item => "Cursoranzeige in eine eigene Prozedur? Dann müssten auch Farbänderungen für den Untergrund leicht möglich sein.");
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
       Put_Line (Item => "Stadtsystem.");
+      Put_Line (Item => "Durch Eingabe von Koordinaten auf der Karte ein Goto ermäglichen.");
       Put_Line (Item => "Forschungssystem?");
+      New_Line;
+
+      Put_Line (Item => "Grafik:");
+      Put_Line (Item => "Cursoranzeige in eine eigene Prozedur? Dann müssten auch Farbänderungen für den Untergrund leicht möglich sein.");
       New_Line;
 
       Put_Line (Item => "GlobaleVariablen:");
@@ -27,8 +31,6 @@ package body Informationen is
       
       Put_Line (Item => "BefehleImSpiel:");
       Put_Line (Item => "Informationsaufruf einbauen.");
-      Put_Line (Item => "Befehl und System für automatisches bewegen einbauen.");
-      Put_Line (Item => "Durch Eingabe von Koordinaten ein Goto erlauben?");
       New_Line;
       
       Put_Line (Item => "Kartengenerator:");
@@ -52,6 +54,7 @@ package body Informationen is
       New_Line;
       
       Put_Line (Item => "Bewegungssystem:");
+      Put_Line (Item => "Befehl und System für automatisches bewegen einbauen.");
       New_Line;
 
       Put_Line (Item => "Einheiten:");
@@ -65,7 +68,6 @@ package body Informationen is
       
       Put_Line (Item => "Stadtsystem:");
       Put_Line (Item => "Einbauen.");
-      Put_Line (Item => "Anzeige des Cursors in der Stadt korrekt einbauen.");
       New_Line;
       
       Put_Line (Item => "Forschungssystem:");
@@ -79,7 +81,9 @@ package body Informationen is
       New_Line;
       
       Put_Line (Item => "Diverses:");
+      Put_Line (Item => "Bei Hügel mit Grund werden die Werte für den Grund genommen und die Werte für Hügel ignoriert. Das nochmal überdenken.");
       Put_Line (Item => "Bei Sichtbarkeit/Karte/Einheitenbewegung/Eventuell Weiteren die Loops für die XAchse zusammenführen? Ist das überhaupt möglich ohne eine Schalterchaos einzubauen?");
+      Put_Line (Item => "Generatorzuweisung nochmal schauen was die richtigen Standardzuweisungen sind.");
       New_Line;
       
       Put_Line (Item => "Einlesen:");
@@ -100,10 +104,6 @@ package body Informationen is
 
       Put_Line (Item => "KI:");
       Put_Line (Item => "Einbauen! Wird bestimmt einfach und lustig.");
-      New_Line;
-
-      Put_Line (Item => "Zeug:");
-      Put_Line (Item => "Generatorzuweisung nochmal schauen was die richtigen Standardzuweisungen sind.");
       New_Line;
       
       Get_Immediate (Item => Taste);

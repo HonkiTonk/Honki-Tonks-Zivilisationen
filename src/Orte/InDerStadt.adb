@@ -1,16 +1,14 @@
 package body InDerStadt is
 
    procedure InDerStadt (Rasse, StadtPositionInListe : in Integer) is
-   begin         
+   begin
       
       StadtSchleife:
-      loop     
+      loop
     
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          KarteStadt.AnzeigeStadt (Stadtnummer => StadtPositionInListe);
-         New_Line;
-         Beschreibung (Rasse                => Rasse,
-                       StadtPositionInListe => StadtPositionInListe);
+         New_Line;  
 
          Get_Immediate (Item => Taste);
          
@@ -19,13 +17,14 @@ package body InDerStadt is
                BewegungssystemCursor.BewegungCursorRichtung (Karte => False,
                                                              Richtung => To_Lower (Item => Taste));
 
-            when 'e' =>
+            when 'e' => -- Einwohner von Feld entfernen/zuweisen
                null;
                
-            when 'b' =>
-               null;
+            when 'b' => -- Gebäude/Einheit bauen
+               Bauen.Bauen (Rasse                => Rasse,
+                            StadtPositionInListe => StadtPositionInListe);
                
-            when 'v' =>
+            when 'v' => -- Begäude verkaufen
                null;
 
             when 'q' =>
@@ -38,44 +37,6 @@ package body InDerStadt is
       end loop StadtSchleife;
       
    end InDerStadt;
-
-
-
-   procedure Beschreibung (Rasse, StadtPositionInListe : in Integer) is
-   begin
-      
-      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).ID)));
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Name) & "    ");
-      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 5)));
-      Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Einwohner'Wide_Wide_Image);
-                     
-      if Rasse = GlobaleVariablen.Rasse then
-         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 6)));
-         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleNahrungsmittel'Wide_Wide_Image);
-         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 7)));
-         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleNahrungsproduktion'Wide_Wide_Image);
-                        
-         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 8)));
-         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate'Wide_Wide_Image);
-         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 9)));
-         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleGeldgewinnung'Wide_Wide_Image);
-
-         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 10)));
-         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleForschungsrate'Wide_Wide_Image);                        
-         Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 11)));
-         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Korruption'Wide_Wide_Image);
-                        
-         Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 12)));
-         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt'Wide_Wide_Image);                       
-         Put_Line (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 13)));                                 
-
-      else
-         null;
-      end if;
-                     
-      New_Line;
-      
-   end Beschreibung;
    
    
    
