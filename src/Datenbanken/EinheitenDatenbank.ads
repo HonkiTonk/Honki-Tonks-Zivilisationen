@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Einlesen, GlobaleVariablen, Auswahl;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, WerteFestlegen, Einlesen, GlobaleVariablen, Auswahl, Karten;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 package EinheitenDatenbank is
@@ -46,7 +46,7 @@ package EinheitenDatenbank is
    procedure Beschreibung (ID : in Integer);
    procedure LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, Platznummer : in Integer);
    procedure HeilungBewegungspunkteFürNeueRundeSetzen;
-   procedure EinheitErzeugen (YAchse, XAchse, Rasse, ID : in Integer);
+   procedure EinheitErzeugen (Rasse, Stadtnummer, ID : in Integer);
    procedure EinheitEntfernen (Rasse, Platznummer : in Integer);
    procedure Beschäftigung (Arbeit : in Integer);
 
@@ -55,7 +55,20 @@ package EinheitenDatenbank is
 private
    
    Wahl : Integer;
+   Umkreis : Integer;
+   Überhang : Integer;
    
    Heilungsrate : constant Integer := 10;
+
+   type EinheitErstellenRecord is record
+      
+      YAchse : Integer;
+      XAchse : Integer;
+      
+   end record;
+
+   Position : EinheitErstellenRecord;
+   
+   function EinheitErstellenPosition (Rasse, Stadtnummer : Integer) return EinheitErstellenRecord;
 
 end EinheitenDatenbank;

@@ -13,8 +13,9 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Stadtsystem.");
-      Put_Line (Item => "Durch Eingabe von Koordinaten auf der Karte ein Goto ermäglichen.");
+      Put_Line (Item => "Stadtsystem weiterbauen.");
+      Put_Line (Item => "Eigene Tasten für Einheitenauswahl und Stadtauswahl, damit man auch in eine Stadt kommt in der eine Einheit steht.");
+      Put_Line (Item => "Durch Eingabe von Koordinaten auf der Karte ein Goto ermöglichen.");
       Put_Line (Item => "Forschungssystem?");
       New_Line;
 

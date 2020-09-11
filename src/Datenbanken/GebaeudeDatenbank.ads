@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Einlesen, GlobaleVariablen, Karten, EinheitenDatenbank;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Einlesen, GlobaleVariablen, Karten, EinheitenDatenbank, EinheitenDatenbank;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 package GebaeudeDatenbank is
@@ -22,10 +22,12 @@ package GebaeudeDatenbank is
 
    procedure Beschreibung (ID : in Integer);
    procedure ProduktionFestlegen (Rasse, Stadtnummer, Produktionsnummer : in Integer);
-   procedure ProduktionDurchführen (Rasse : Integer);
+   procedure ProduktionDurchführen;
 
 private
-   
-   procedure ProduktionBeenden (Rasse, Stadtnummer : in Integer);
+
+   PlatzVorhanden : Boolean;
+      
+   procedure ProduktionBeenden (GebäudeOderEinheit : in Boolean; Rasse, Stadtnummer, Wert : in Integer);
 
 end GebaeudeDatenbank;

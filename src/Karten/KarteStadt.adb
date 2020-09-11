@@ -5,15 +5,8 @@ package body KarteStadt is
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
-      if GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).Erforscht (5) /= '0' and GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).Einwohner >= 10 then
-         Stadtumgebungsgröße := 2;
-
-      elsif GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).Erforscht (10) /= '0' and GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).Einwohner >= 20 then
-         Stadtumgebungsgröße := 3;
-                  
-      else
-         Stadtumgebungsgröße := 1;
-      end if;
+      Stadtumgebungsgröße := WerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => GlobaleVariablen.Rasse,
+                                                                          Stadtnummer => Stadtnummer);
 
       YAchsenabstraktion := -Stadtumgebungsgröße;
       CursorYAchsePlus := -10;
@@ -149,7 +142,7 @@ package body KarteStadt is
       New_Line;
       
    end AnzeigeStadt;
-
+   
 
 
    procedure FarbenStadt is
