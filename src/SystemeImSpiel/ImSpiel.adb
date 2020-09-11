@@ -45,10 +45,10 @@ package body ImSpiel is
                return -1;
 
             when -1000 => -- Runde beenden
+               GebaeudeDatenbank.ProduktionDurchführen;
                           -- KI Züge hier einbauen
                EinheitenDatenbank.HeilungBewegungspunkteFürNeueRundeSetzen;
                VerbesserungenDatenbank.VerbesserungFertiggestellt (Rasse => GlobaleVariablen.Rasse);
-               GebaeudeDatenbank.ProduktionDurchführen (Rasse => GlobaleVariablen.Rasse);
                ForschungsDatenbank.Forschung;
                GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
                Karte.AnzeigeKarte;

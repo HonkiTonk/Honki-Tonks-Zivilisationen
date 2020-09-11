@@ -41,14 +41,14 @@ package body EinheitenDatenbank is
                GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBewegungspunkte := 0.0;
             end if;
 
-            if GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigung = 7 and 
-              GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte + Heilungsrate >= EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleLebenspunkte then
+            if GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigung = 7
+              and GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte + Heilungsrate >= EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleLebenspunkte then
                GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte := EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleLebenspunkte;
                GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigung := 0;
                GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigungszeit := 0;
                   
-            elsif GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigung = 7 and 
-              GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte + Heilungsrate < EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleLebenspunkte then
+            elsif GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigung = 7
+              and GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte + Heilungsrate < EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleLebenspunkte then
                GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte := GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte + Heilungsrate;
                
             else
@@ -62,12 +62,87 @@ package body EinheitenDatenbank is
    
 
 
-   procedure EinheitErzeugen (YAchse, XAchse, Rasse, ID : in Integer) is
+   procedure EinheitErzeugen (Rasse, Stadtnummer, ID : in Integer) is
    begin
+
+      Position := (GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse, GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).XAchse);
+            
+      RasseSchleife:
+      for A in GlobaleVariablen.EinheitenGebaut'Range (1) loop
+         EinheitenSchleife:
+         for B in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+            
+            if GlobaleVariablen.EinheitenGebaut (A, B).ID = 0 then
+               exit EinheitenSchleife;
+
+            elsif GlobaleVariablen.EinheitenGebaut (A, B).YAchse = GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse
+              and GlobaleVariablen.EinheitenGebaut (A, B).XAchse = GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).XAchse then
+               Position := EinheitErstellenPosition (Rasse       => Rasse,
+                                                     Stadtnummer => Stadtnummer);
+               
+            else
+               null;
+            end if;
+            
+         end loop EinheitenSchleife;
+      end loop RasseSchleife;
       
-      null;
-      
+      if Position = (0, 0) then
+         null;
+         
+      else
+         PositionBestimmenSchleife:
+         for Einheitenposition in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+            
+            if GlobaleVariablen.EinheitenGebaut (Rasse, Einheitenposition).ID /= 0 then
+               null;
+
+            else
+               GlobaleVariablen.EinheitenGebaut (Rasse, Einheitenposition).ID := ID;
+               GlobaleVariablen.EinheitenGebaut (Rasse, Einheitenposition).YAchse := Position.YAchse;
+               GlobaleVariablen.EinheitenGebaut (Rasse, Einheitenposition).XAchse := Position.XAchse;
+               LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse       => Rasse,
+                                                            Platznummer => Einheitenposition);
+               GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).VerbleibendeBauzeit := 0;
+               GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AktuelleRessourcen := 0;
+               GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AktuellesBauprojekt := 0;
+               return;
+            end if;
+                                                 
+         end loop PositionBestimmenSchleife;
+      end if;
+            
    end EinheitErzeugen;
+
+
+
+   function EinheitErstellenPosition (Rasse, Stadtnummer : Integer) return EinheitErstellenRecord is
+   begin
+
+      Umkreis := WerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => Rasse,
+                                                              Stadtnummer => Stadtnummer);
+      
+      YAchseSchleife:
+      for YAchse in -Umkreis .. Umkreis loop
+         XAchseSchleife:
+         for XAchse in -Umkreis .. Umkreis loop
+            
+            if YAchse = 0 and XAchse = 0 then
+               null;
+               
+            elsif GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse + YAchse < Karten.Karten'First (1) or GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+               exit XAchseSchleife;
+               
+            else
+               null;
+            end if;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+
+      return (0, 0);
+      
+   end EinheitErstellenPosition;
 
 
 
