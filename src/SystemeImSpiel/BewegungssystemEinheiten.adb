@@ -3,6 +3,8 @@ package body BewegungssystemEinheiten is
    procedure BewegungEinheitenRichtung (Rasse, EinheitenPositionInListe : in Integer) is -- Noch einen Gesamtloop einbauen für Bewegung?
    begin
 
+            Karte.AnzeigeKarte;
+
       loop
       
          Get_Immediate (Item => Richtung);

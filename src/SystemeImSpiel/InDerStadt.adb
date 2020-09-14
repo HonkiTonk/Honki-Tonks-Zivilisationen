@@ -119,8 +119,8 @@ package body InDerStadt is
             end if;
 
             GlobaleVariablen.StadtGebaut (Rasse, A) := 
-              (Stadtart, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-               "00000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Name"),
+              (Stadtart, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse, False, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Name"),
                (4 => (17 => 10, others => 0), others => (others => 0)));
             EinheitenDatenbank.EinheitEntfernen (Rasse => Rasse,
                                                  Platznummer => Listenplatz);

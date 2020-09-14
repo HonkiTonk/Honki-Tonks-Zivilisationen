@@ -4,6 +4,8 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Charac
 package Bauen is
 
    procedure Bauen (Rasse, StadtPositionInListe : in Integer);
+   procedure ProduktionDurchführen;
+   procedure Bauzeit (Rasse : in Integer);
 
 private
 

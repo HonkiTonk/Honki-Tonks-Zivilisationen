@@ -11,23 +11,29 @@ package GebaeudeDatenbank is
       PreisRessourcen : Integer;
       Anforderungen : Integer;
 
+      PermanenteKosten : Integer;
+      ProduktionBonus : Integer;
+      GeldBonus : Integer;
+      WissenBonus : Integer;
+      VerteidigungBonus : Integer;
+      NahrungBonus : Integer;
+      Anderes : Boolean;
+
    end record;
 
    type GebäudeListeArray is array (GlobaleVariablen.StadtGebaut (1, 1).GebäudeVorhanden'Range) of Gebäude;
-   GebäudeListe : constant GebäudeListeArray := (('B', 100, 100, 0), -- 1 
-                                                   ('K', 100, 100, 1), -- 2 
-                                                   ('F', 150, 50, 2), -- 3 
+   GebäudeListe : constant GebäudeListeArray := (('B', 100, 100, 0,    0, 0, 0, 0, 0, 0, False), -- 1 
+                                                   ('K', 100, 100, 1,    0, 0, 0, 0, 0, 0, False), -- 2 
+                                                   ('F', 150, 50, 2,    0, 0, 0, 0, 0, 0, False), -- 3 
                                           
-                                                   others => (' ', 0, 0, 0));
+                                                   others => (' ', 0, 0, 0,    0, 0, 0, 0, 0, 0, False));
 
    procedure Beschreibung (ID : in Integer);
-   procedure ProduktionFestlegen (Rasse, Stadtnummer, Produktionsnummer : in Integer);
-   procedure ProduktionDurchführen;
+   procedure GebäudeProduktionBeenden (Rasse, Stadtnummer, ID : in Integer);
+   --procedure InformationenGebäude
 
 private
 
-   PlatzVorhanden : Boolean;
-      
-   procedure ProduktionBeenden (GebäudeOderEinheit : in Boolean; Rasse, Stadtnummer, Wert : in Integer);
+   PlatzVorhanden : Boolean;      
 
 end GebaeudeDatenbank;
