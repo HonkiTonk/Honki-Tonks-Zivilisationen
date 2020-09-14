@@ -67,82 +67,39 @@ package body EinheitenDatenbank is
 
       Position := (GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse, GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).XAchse);
             
-      RasseSchleife:
-      for A in GlobaleVariablen.EinheitenGebaut'Range (1) loop
-         EinheitenSchleife:
-         for B in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+      EinheitenSchleife:
+      for EinheitenListenplatz in GlobaleVariablen.EinheitenGebaut'Range (2) loop
             
-            if GlobaleVariablen.EinheitenGebaut (A, B).ID = 0 then
-               exit EinheitenSchleife;
+         if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).ID = 0 then
+            EinheitenPosition := EinheitenListenplatz;
+            exit EinheitenSchleife;
 
-            elsif GlobaleVariablen.EinheitenGebaut (A, B).YAchse = GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse
-              and GlobaleVariablen.EinheitenGebaut (A, B).XAchse = GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).XAchse then
-               Position := EinheitErstellenPosition (Rasse       => Rasse,
-                                                     Stadtnummer => Stadtnummer);
-               
-            else
-               null;
-            end if;
+         elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).YAchse = GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse
+           and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).XAchse = GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).XAchse then
+            Position := (0, 0);
+            exit EinheitenSchleife;
             
-         end loop EinheitenSchleife;
-      end loop RasseSchleife;
+         else
+            EinheitenPosition := EinheitenListenplatz;
+         end if;
+            
+      end loop EinheitenSchleife;
       
       if Position = (0, 0) then
          null;
          
       else
-         PositionBestimmenSchleife:
-         for Einheitenposition in GlobaleVariablen.EinheitenGebaut'Range (2) loop
-            
-            if GlobaleVariablen.EinheitenGebaut (Rasse, Einheitenposition).ID /= 0 then
-               null;
-
-            else
-               GlobaleVariablen.EinheitenGebaut (Rasse, Einheitenposition).ID := ID;
-               GlobaleVariablen.EinheitenGebaut (Rasse, Einheitenposition).YAchse := Position.YAchse;
-               GlobaleVariablen.EinheitenGebaut (Rasse, Einheitenposition).XAchse := Position.XAchse;
-               LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse       => Rasse,
-                                                            Platznummer => Einheitenposition);
-               GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).VerbleibendeBauzeit := 0;
-               GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AktuelleRessourcen := 0;
-               GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AktuellesBauprojekt := 0;
-               return;
-            end if;
-                                                 
-         end loop PositionBestimmenSchleife;
+         GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).ID := ID;
+         GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).YAchse := Position.YAchse;
+         GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).XAchse := Position.XAchse;
+         LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse       => Rasse,
+                                                      Platznummer => EinheitenPosition);
+         GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).VerbleibendeBauzeit := 0;
+         GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AktuelleRessourcen := 0;
+         GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AktuellesBauprojekt := 0;
       end if;
             
    end EinheitErzeugen;
-
-
-
-   function EinheitErstellenPosition (Rasse, Stadtnummer : Integer) return EinheitErstellenRecord is
-   begin
-
-      Umkreis := WerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => Rasse,
-                                                              Stadtnummer => Stadtnummer);
-      
-      YAchseSchleife:
-      for YAchse in -Umkreis .. Umkreis loop
-         XAchseSchleife:
-         for XAchse in -Umkreis .. Umkreis loop
-            
-            if YAchse = 0 and XAchse = 0 then
-               null;
-               
-            elsif GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse + YAchse < Karten.Karten'First (1) or GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               exit XAchseSchleife;
-               
-            else
-               null;
-            end if;
-            
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
-
-      return (0, 0);
-      
-   end EinheitErstellenPosition;
 
 
 

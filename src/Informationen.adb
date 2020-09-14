@@ -13,10 +13,10 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Stadtsystem weiterbauen.");
-      Put_Line (Item => "Eigene Tasten für Einheitenauswahl und Stadtauswahl, damit man auch in eine Stadt kommt in der eine Einheit steht.");
+      Put_Line (Item => "Stadtsystem weiterbauen. InDerStadt eine Prüfung einbauen ob die Stadt am Wasser ist und bei ja den Wert auf True setzen lassen.");
+      Put_Line (Item => "Überprüfung einbauen ob die Stadt am Wasser ist und dementsprechend den Schiffsbau begrenzen.");
       Put_Line (Item => "Durch Eingabe von Koordinaten auf der Karte ein Goto ermöglichen.");
-      Put_Line (Item => "Forschungssystem?");
+      Put_Line (Item => "Forschungssystem.");
       New_Line;
 
       Put_Line (Item => "Grafik:");
@@ -55,7 +55,6 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Karte:");
-      Put_Line (Item => "Für das aktuelle Bauprojekt noch ein System zur Namensanzeige korrekt einbauen.");
       New_Line;
       
       Put_Line (Item => "Bewegungssystem:");

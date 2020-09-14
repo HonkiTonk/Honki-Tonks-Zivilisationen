@@ -5,7 +5,6 @@ use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wid
 package BefehleImSpiel is
 
    function Befehle return Integer;
-   function BefehleStadt return Integer;
 
 private
 
@@ -13,10 +12,14 @@ private
          
    Taste : Wide_Wide_Character;
 
-   Wert : Integer;
+   WertEinheit : Integer;
+   WertStadt : Integer;
    WelcherBefehl : Integer;
+   StadtOderEinheit : Integer;
 
-   function StadtOderEinheit return Integer;
+   procedure EinheitOderStadt (Auswahl, Stadtnummer, Einheitennummer : in Integer);
+
+   function Stadt return Integer;
    function Einheit return Integer;
    
 end BefehleImSpiel;

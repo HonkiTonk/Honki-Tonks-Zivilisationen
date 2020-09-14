@@ -117,6 +117,28 @@ package body KarteStadt is
             elsif Y = Karten.Stadtkarte'First (1) + 7 and X >= Karten.Stadtkarte'Last (2) - 7 then
                Put (Item => " ");
 
+            elsif Y = 1 and X < 13 then
+               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (X) /= '0' then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (X).Anzeige);
+
+               else
+                  Sichtbarkeit.Farben (Einheit      => 0,
+                                       Verbesserung => 0,
+                                       Ressource    => 0,
+                                       Grund        => Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
+               end if;
+
+            elsif Y = 2 and X < 13 then
+               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (X + 12) /= '0' then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (X + 12).Anzeige);
+
+               else
+                  Sichtbarkeit.Farben (Einheit      => 0,
+                                       Verbesserung => 0,
+                                       Ressource    => 0,
+                                       Grund        => Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
+               end if;
+
             else
                Sichtbarkeit.Farben (Einheit      => 0,
                                     Verbesserung => 0,
@@ -139,6 +161,26 @@ package body KarteStadt is
                     StadtPositionInListe => Stadtnummer);
       InformationenStadt (YAufschlag => CursorYAchsePlus,
                           XAufschlag => CursorXAchsePlus);
+      if GlobaleVariablen.CursorImSpiel.YAchseStadt = 1 and GlobaleVariablen.CursorImSpiel.XAchseStadt < 13 then
+         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (GlobaleVariablen.CursorImSpiel.XAchseStadt) /= '0' then
+            GebaeudeDatenbank.Beschreibung (ID => GlobaleVariablen.CursorImSpiel.XAchseStadt);
+            
+         else
+            null;
+         end if;
+
+      elsif GlobaleVariablen.CursorImSpiel.YAchseStadt = 2 and GlobaleVariablen.CursorImSpiel.XAchseStadt < 13 then
+         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (GlobaleVariablen.CursorImSpiel.XAchseStadt + 12) /= '0' then
+            GebaeudeDatenbank.Beschreibung (ID => GlobaleVariablen.CursorImSpiel.XAchseStadt + 12);
+            
+         else
+            null;
+         end if;
+        
+      else
+         null;
+      end if;
+
       New_Line;
       
    end AnzeigeStadt;
@@ -306,11 +348,8 @@ package body KarteStadt is
          elsif GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt < 10_000 then -- Gebäude
             Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (14, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 1_000)));
 
-         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt > 10_000 then -- Einheiten
+         else -- Einheiten
             Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (10, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 10_000)));
-
-         else
-            Put (Item => "Sollte nicht passieren, KarteStadt.Beschreibung else.");
          end if;
                                               
          Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 13)));   

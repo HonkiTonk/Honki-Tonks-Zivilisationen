@@ -55,8 +55,7 @@ package EinheitenDatenbank is
 private
    
    Wahl : Integer;
-   Umkreis : Integer;
-   Überhang : Integer;
+   EinheitenPosition : Integer;
    
    Heilungsrate : constant Integer := 10;
 
@@ -67,8 +66,6 @@ private
       
    end record;
 
-   Position : EinheitErstellenRecord;
-   
-   function EinheitErstellenPosition (Rasse, Stadtnummer : Integer) return EinheitErstellenRecord;
+   Position : EinheitErstellenRecord;   
 
 end EinheitenDatenbank;
