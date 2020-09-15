@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, GlobaleVariablen, KartenDatenbank, Karten, Karte, EinheitenDatenbank, Kampfsystem, Diplomatie, Auswahl, Sichtbarkeit;
+with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, SchleifenPruefungen, GlobaleVariablen, KartenDatenbank, Karten, Karte, EinheitenDatenbank, Kampfsystem, Diplomatie, Auswahl, Sichtbarkeit;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
 package BewegungssystemEinheiten is
@@ -20,6 +20,8 @@ private
    GegnerPosition : Integer;
    Wahl : Integer;
    BereitsImKrieg : Integer;
+
+   Stadtnummer : Integer;
    
    procedure BewegungEinheitenBerechnung (Rasse, EinheitenPositionInListe : in Integer);
 

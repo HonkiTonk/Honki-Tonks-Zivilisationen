@@ -165,6 +165,9 @@ package body Bauen is
          elsif E > EinheitenDatenbank.EinheitenListe'Last then
             exit EinheitenSchleife;
 
+         elsif GlobaleVariablen.StadtGebaut (Rasse, WelcheStadt).AmWasser = False and EinheitenDatenbank.EinheitenListe (E).Passierbarkeit = 2 then
+            null;
+
          elsif EinheitenDatenbank.EinheitenListe (E).Anforderungen /= 0 then
             if GlobaleVariablen.Wichtiges (Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (E).Anforderungen) = '0' then
                null;

@@ -13,9 +13,12 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Stadtsystem weiterbauen. InDerStadt eine Prüfung einbauen ob die Stadt am Wasser ist und bei ja den Wert auf True setzen lassen.");
-      Put_Line (Item => "Überprüfung einbauen ob die Stadt am Wasser ist und dementsprechend den Schiffsbau begrenzen.");
+      Put_Line (Item => "Die Steigerung der vorhandenen Ressource nach Wachstum verschieben und bei Bauen nur noch auf Fertigstellung prüfen.");
+      Put_Line (Item => "Zeug in die Textdatei auslagern.");
+      Put_Line (Item => "Überprüfung des Geldwachstums/Forschungswachstum direkt nach Bau einer Stadt prüfen lassen.");
+      Put_Line (Item => "Aufdeckung prüfen, Siedler deckt gar nichts auf und andere Einheiten nur manchmal. Vermutlich ein Fehler im geänderten, mehrzügigen Bewegungssystem.");
       Put_Line (Item => "Durch Eingabe von Koordinaten auf der Karte ein Goto ermöglichen.");
+      Put_Line (Item => "Prüfung der Umgebung vereinheitlichen, z. B. durch procedure in die die loop Range und der Befehl reingegeben werden? Ist das praktikabel möglich?");
       Put_Line (Item => "Forschungssystem.");
       New_Line;
 
@@ -24,6 +27,7 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Bausystem:");
+      Put_Line (Item => "Später noch die Abfrage/Anzeige beim Bauen erweitern, so dass nicht nur Seeeinheiten geprüft werden, sondern auch Gebäude, z. B. Hafen, Flughafen usw..");
       New_Line;
 
       Put_Line (Item => "GlobaleVariablen:");
@@ -58,6 +62,7 @@ package body Informationen is
       New_Line;
       
       Put_Line (Item => "Bewegungssystem:");
+      Put_Line (Item => "Nochmal überarbeiten damit es nicht mehr so ein Wust ist.");
       Put_Line (Item => "Befehl und System für automatisches bewegen einbauen.");
       New_Line;
 
