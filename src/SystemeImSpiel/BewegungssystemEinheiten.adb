@@ -42,9 +42,6 @@ package body BewegungssystemEinheiten is
             when '9' =>
                YÄnderung := -1;
                XÄnderung := 1;
-               
-            when 'q' | 'e' =>
-               return;
             
             when others =>
                return;
@@ -73,7 +70,7 @@ package body BewegungssystemEinheiten is
       Gegner := 0;
       GegnerPosition := 0;
       Gewonnen := True;
-      EinheitOderStadt := True;
+      EinheitOderStadt := True;      
       
       if GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung < Karten.Karten'First (1) or GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
          return;
@@ -82,44 +79,77 @@ package body BewegungssystemEinheiten is
          return;
          
       elsif GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung < Karten.Karten'First (2) then
-         if (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).Grund = 2 or 
-               (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).Grund >= 29 and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).Grund <= 31)) and
-           EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 1 then
+         if (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).Grund = 2
+             or (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).Grund >= 29
+                 and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).Grund <= 31))
+           and EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 1 then
             return;
 
-         elsif ((Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).Grund < 29 and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).Grund > 31) and
-                  Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).Grund /= 2) and
-           EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 2 then
-            return;
+         elsif (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).Grund < 29
+                or Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).Grund > 31)
+           and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).Grund /= 2
+           and EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 2 then
+            Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (Rasse  => Rasse,
+                                                                               YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung,
+                                                                               XAchse => Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            
+            if Stadtnummer = 0 then
+               return;
+               
+            else
+               NeueXPosition := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+            end if;
             
          else
             NeueXPosition := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
          end if;
          
       elsif GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-         if (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Karten'First (2)).Grund = 2 or 
-               (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Karten'First (2)).Grund >= 29 and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Karten'First (2)).Grund <= 31)) and
-           EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 1 then
+         if (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Karten'First (2)).Grund = 2
+             or (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Karten'First (2)).Grund >= 29
+                 and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Karten'First (2)).Grund <= 31))
+           and EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 1 then
             return;
 
-         elsif ((Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Karten'First (2)).Grund < 29 and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Karten'First (2)).Grund > 31) and
-                  Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Karten'First (2)).Grund /= 2) and
-           EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 2 then
-            return;
+         elsif (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Karten'First (2)).Grund < 29
+                or Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Karten'First (2)).Grund > 31)
+           and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, Karten.Karten'First (2)).Grund /= 2
+           and EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 2 then
+            Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (Rasse  => Rasse,
+                                                                               YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung,
+                                                                               XAchse => Karten.Karten'First (2));
+            
+            if Stadtnummer = 0 then
+               return;
+               
+            else
+               NeueXPosition := Karten.Karten'First (2);
+            end if;
             
          else
             NeueXPosition := Karten.Karten'First (2);
          end if;
 
-      elsif (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung).Grund = 2 or 
-               (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung).Grund >= 29 and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung).Grund <= 31)) and
-        EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 1 then
+      elsif (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung).Grund = 2
+             or (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung).Grund >= 29
+                 and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung).Grund <= 31))
+        and EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 1 then
          return;
 
-      elsif ((Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung).Grund < 29 and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung).Grund > 31) and
-               Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung).Grund /= 2) and
-        EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 2 then
-         return;
+      elsif (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung).Grund < 29
+             or Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung).Grund > 31)
+        and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung).Grund /= 2
+        and EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 2 then
+         Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (Rasse  => Rasse,
+                                                                            YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung,
+                                                                            XAchse => GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung);
+            
+         if Stadtnummer = 0 then
+            return;
+            
+         else
+            NeueXPosition := GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung;
+         end if;
 
       else
          NeueXPosition := GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung;
@@ -219,8 +249,10 @@ package body BewegungssystemEinheiten is
       
       case Gewonnen is
          when True =>
-            if KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, NeueXPosition).Grund).Passierbarkeit = EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit or
-              EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 3 then
+            if KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, NeueXPosition).Grund).Passierbarkeit = EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit
+              or EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 3
+                or (EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).ID).Passierbarkeit = 2
+                 and Stadtnummer /= 0) then
                if Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, NeueXPosition).VerbesserungStraße /= 0
                  and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung, NeueXPosition).VerbesserungStraße <= 19 then
                   GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).AktuelleBewegungspunkte := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).AktuelleBewegungspunkte - 0.5;
@@ -270,7 +302,7 @@ package body BewegungssystemEinheiten is
          when others =>
             null;
       end case;
-   
+                 
    end BewegungEinheitenBerechnung;
 
 end BewegungssystemEinheiten;

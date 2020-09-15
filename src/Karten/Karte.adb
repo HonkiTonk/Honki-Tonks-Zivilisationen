@@ -115,7 +115,13 @@ package body Karte is
       Geldgewinnung := 0;
       Wissensgewinnung := 0;
 
-      Put_Line (Item => "Aktuelle Runde:" & GlobaleVariablen.RundenAnzahl'Wide_Wide_Image);
+      Put (Item => "Aktuelle Runde:" & GlobaleVariablen.RundenAnzahl'Wide_Wide_Image); -- In Textdatei auslagern
+      Put (Item => "    " & "Aktuelle Geldmenge:" & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleGeldmenge'Wide_Wide_Image);
+      Put_Line (Item => "    " & "Aktueller Geldzuwachs:" & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).GeldZugewinnProRunde'Wide_Wide_Image);
+      Put (Item => "Aktuelle Forschungsmenge:" & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsmenge'Wide_Wide_Image);
+      Put (Item => "    " & "Aktueller Forschungsgewinn:" & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsrate'Wide_Wide_Image);
+      Put (Item => "    " & "Aktuelles Forschungsprojekt: ");
+      ForschungsDatenbank.Beschreibung (ID => GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuellesForschungsprojekt);
       New_Line;
       
       case Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Sichtbar is

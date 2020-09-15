@@ -18,7 +18,12 @@ package body InDerStadt is
                                                              Richtung => To_Lower (Item => Taste));
 
             when 'e' => -- Einwohner von Feld entfernen/zuweisen
-               null;
+               if GlobaleVariablen.CursorImSpiel.YAchseStadt < Karten.Stadtkarte'First (1) + 7 and GlobaleVariablen.CursorImSpiel.XAchseStadt > Karten.Stadtkarte'Last (2) - 7 then
+                  null;
+                  
+               else
+                  null;
+               end if;
                
             when 'b' => -- Gebäude/Einheit bauen
                case GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt is
@@ -121,11 +126,78 @@ package body InDerStadt is
             GlobaleVariablen.StadtGebaut (Rasse, A) := 
               (Stadtart, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse, False, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Name"),
-               (4 => (17 => 10, others => 0), others => (others => 0)));
+               (0 => (0 => True, others => False), 
+                others => (others => False)));
+               
+            YAchsenSchleife:
+            for YAchse in -1 .. 1 loop
+               XAchsenSchleife:
+               for XAchse in -1 .. 1 loop
+                  
+                  if GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+                    or GlobaleVariablen.StadtGebaut (Rasse, Listenplatz).YAchse + YAchse < Karten.Karten'First (1) then
+                     exit XAchsenSchleife;
+
+                  elsif GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+                     Überhang := GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + XAchse - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+                     if Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + YAchse, Überhang).Grund = 2
+                       or (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + YAchse, Überhang).Grund >= 29
+                           and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + YAchse, Überhang).Grund <= 31) then
+                        GlobaleVariablen.StadtGebaut (Rasse, A).AmWasser := True;
+                        exit YAchsenSchleife;
+                        
+                     else
+                        null;
+                     end if;
+                     
+                  elsif GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + XAchse < Karten.Karten'First (1) then
+                     Überhang := GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + XAchse + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+                     if Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + YAchse, Überhang).Grund = 2
+                       or (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + YAchse, Überhang).Grund >= 29
+                           and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + YAchse, Überhang).Grund <= 31) then
+                        GlobaleVariablen.StadtGebaut (Rasse, A).AmWasser := True;
+                        exit YAchsenSchleife;
+                        
+                     else
+                        null;
+                     end if;
+                     
+                  else                         
+                     if Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + XAchse).Grund = 2
+                       or (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + XAchse).Grund >= 29
+                           and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse + YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse + XAchse).Grund <= 31) then
+                        GlobaleVariablen.StadtGebaut (Rasse, A).AmWasser := True;
+                        exit YAchsenSchleife;
+                        
+                     else
+                        null;
+                     end if;
+                  end if;
+                  
+               end loop XAchsenSchleife;
+            end loop YAchsenSchleife;
+            
+            GlobaleVariablen.StadtGebaut (Rasse, A).AktuelleNahrungsproduktion := 
+              KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund).Nahrungsgewinnung;
+            GlobaleVariablen.StadtGebaut (Rasse, A).AktuelleProduktionrate := 
+              KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund).Ressourcengewinnung;
+            GlobaleVariablen.StadtGebaut (Rasse, A).AktuelleGeldgewinnung := 
+              KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund).Geldgewinnung;
+            GlobaleVariablen.StadtGebaut (Rasse, A).AktuelleForschungsrate := 
+              KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund).Wissensgewinnung;
+
             EinheitenDatenbank.EinheitEntfernen (Rasse => Rasse,
                                                  Platznummer => Listenplatz);
+            
+            if Rasse = GlobaleVariablen.Rasse then
+               GlobaleVariablen.StadtGebaut (Rasse, A).Name := Eingabe.StadtName;
+               
+            else
+               null;
+            end if;
 
-            GlobaleVariablen.StadtGebaut (Rasse, A).Name := Eingabe.StadtName;
+            
+
             return;
          end if;
          
@@ -158,6 +230,6 @@ package body InDerStadt is
 
       return True;
       
-   end StadtBauenPrüfen;
+   end StadtBauenPrüfen;   
 
 end InDerStadt;
