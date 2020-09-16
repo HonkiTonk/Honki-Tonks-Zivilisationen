@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Einlesen, GlobaleVariablen, Auswahl, EinheitenDatenbank, Karten, Fehlermeldungen;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Einlesen, GlobaleVariablen, Auswahl, EinheitenDatenbank, Karten, Ausgabe;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 package VerbesserungenDatenbank is
@@ -49,7 +49,7 @@ package VerbesserungenDatenbank is
                                                               ('B', 13,    0, 0, 0, 0,    2)); -- 22 Festung
 
    procedure Beschreibung (ID : in Integer);
-   procedure Verbesserung (Befehl, Rasse, Listenplatz : in Integer);
+   procedure Verbesserung (Befehl, Rasse, EinheitNummer : in Integer);
    procedure VerbesserungFertiggestellt (Rasse : in Integer);
    
 private
@@ -58,8 +58,8 @@ private
 
    Straßenwert : Integer;
    
-   procedure VerbesserungeFestgelegt (Befehl, Rasse, Listenplatz : in Integer);
-   procedure VerbesserungAngelegt (Rasse, Listenplatz : in Integer);
+   procedure VerbesserungeFestgelegt (Befehl, Rasse, EinheitNummer : in Integer);
+   procedure VerbesserungAngelegt (Rasse, EinheitNummer : in Integer);
    procedure StraßenBerechnung (YAchse, XAchse : in Integer);
 
 end VerbesserungenDatenbank;

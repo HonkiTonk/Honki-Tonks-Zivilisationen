@@ -3,7 +3,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Charac
 
 package Bauen is
 
-   procedure Bauen (Rasse, StadtPositionInListe : in Integer);
+   procedure Bauen (Rasse, StadtNummer : in Integer);
    procedure Bauzeit (Rasse : in Integer);
 
 private
@@ -14,6 +14,6 @@ private
    Ende : Integer;
    AktuelleAuswahl : Integer := 1;
 
-   function AuswahlStadt (Rasse, WelcheStadt : in Integer) return Integer;
+   function AuswahlStadt (Rasse, StadtNummer : in Integer) return Integer;
 
 end Bauen;

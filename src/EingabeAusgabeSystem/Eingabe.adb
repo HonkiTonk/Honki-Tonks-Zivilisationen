@@ -30,7 +30,7 @@ package body Eingabe is
    function StadtName return Unbounded_Wide_Wide_String is
    begin
       
-      Put_Line (Item => "Namen der Stadt eingeben:");
+      Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 32)));
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
       
       return Name;

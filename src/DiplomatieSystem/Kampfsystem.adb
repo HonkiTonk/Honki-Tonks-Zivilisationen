@@ -15,11 +15,11 @@ package body Kampfsystem is
       loop
          
          if GlobaleVariablen.EinheitenGebaut (RasseAngriff, EinheitenPositionAngriff).AktuelleLebenspunkte <= 0 then
-            EinheitenDatenbank.EinheitEntfernen (Rasse => RasseAngriff, Platznummer => EinheitenPositionAngriff);
+            EinheitenDatenbank.EinheitEntfernen (Rasse => RasseAngriff, EinheitNummer => EinheitenPositionAngriff);
             return False;
             
          elsif GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AktuelleLebenspunkte <= 0 then
-            EinheitenDatenbank.EinheitEntfernen (Rasse => RasseVerteidigung, Platznummer => EinheitenPositionVerteidigung);
+            EinheitenDatenbank.EinheitEntfernen (Rasse => RasseVerteidigung, EinheitNummer => EinheitenPositionVerteidigung);
             return True;
             
          else

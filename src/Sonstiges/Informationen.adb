@@ -10,13 +10,14 @@ package body Informationen is
       Put_Line (Item => "Wichtiges/Notizen:");
       Put_Line (Item => "-1 = Spiel beenden, 0 = Hauptmenü, -2 = Zurück, -3 = Ja, -4 = Nein, 2 = Speichern, 3 = Laden");
       Put_Line (Item => "Gebäude haben immer die Nummer 1_000 + ihren Datenbankwert, Einheiten haben immer die Nummer 10_000 + ihren Datenbankwert.");
+      Put_Line (Item => "In der Übergabe immer StadtNummer oder EinheitNummer verwenden.");
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Zeug in die Textdatei auslagern.");
-      Put_Line (Item => "GeheZu Fehlermeldungen und Hinweis auf die maximalen Koordinaten einbauen.");
-      Put_Line (Item => "Prüfung der Umgebung vereinheitlichen.");
-      Put_Line (Item => "StadtNummer/EinheitNummer usw. mal vereinheitlichen.");
+      Put_Line (Item => "Prüfung der Umgebung vereinheitlichen. Überall?");
+      Put_Line (Item => "Ausgabe überall wo möglich einbauen.");
+      Put_Line (Item => "Besetzung/Leeren der Felder mit Bürger einbauen.");
+      Put_Line (Item => "Prüfen wo überall die SchleifenPruefungen genutzt werden können");
       Put_Line (Item => "Forschungssystem.");
       New_Line;
 

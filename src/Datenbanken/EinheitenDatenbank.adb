@@ -9,11 +9,11 @@ package body EinheitenDatenbank is
 
 
 
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, Platznummer : in Integer) is
+   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, EinheitNummer : in Integer) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (Rasse, Platznummer).AktuelleLebenspunkte := EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, Platznummer).ID).MaximaleLebenspunkte;
-      GlobaleVariablen.EinheitenGebaut (Rasse, Platznummer).AktuelleBewegungspunkte := EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, Platznummer).ID).MaximaleBewegungspunkte;
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte := EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleLebenspunkte;
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleBewegungspunkte;
       
    end LebenspunkteBewegungspunkteAufMaximumSetzen;
 
@@ -62,10 +62,10 @@ package body EinheitenDatenbank is
    
 
 
-   procedure EinheitErzeugen (Rasse, Stadtnummer, ID : in Integer) is
+   procedure EinheitErzeugen (Rasse, StadtNummer, ID : in Integer) is
    begin
 
-      Position := (GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse, GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).XAchse);
+      Position := (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse);
             
       EinheitenSchleife:
       for EinheitenListenplatz in GlobaleVariablen.EinheitenGebaut'Range (2) loop
@@ -74,8 +74,8 @@ package body EinheitenDatenbank is
             EinheitenPosition := EinheitenListenplatz;
             exit EinheitenSchleife;
 
-         elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).YAchse = GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse
-           and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).XAchse = GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).XAchse then
+         elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).YAchse = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse
+           and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).XAchse = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse then
             Position := (0, 0);
             exit EinheitenSchleife;
             
@@ -93,33 +93,33 @@ package body EinheitenDatenbank is
          GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).YAchse := Position.YAchse;
          GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).XAchse := Position.XAchse;
          LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse       => Rasse,
-                                                      Platznummer => EinheitenPosition);
-         GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).VerbleibendeBauzeit := 0;
-         GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AktuelleRessourcen := 0;
-         GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AktuellesBauprojekt := 0;
+                                                      EinheitNummer => EinheitenPosition);
+         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit := 0;
+         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleRessourcen := 0;
+         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt := 0;
       end if;
             
    end EinheitErzeugen;
 
 
 
-   procedure EinheitEntfernen (Rasse, Platznummer : in Integer) is
+   procedure EinheitEntfernen (Rasse, EinheitNummer : in Integer) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (Rasse, Platznummer) := (0, 0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0);
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer) := (0, 0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0);
 
-      case Platznummer is
+      case EinheitNummer is
          when GlobaleVariablen.EinheitenGebaut'Last (2) =>
             return;
             
          when others =>
             for A in reverse GlobaleVariablen.EinheitenGebaut'Range (2) loop
          
-               if A = Platznummer then
+               if A = EinheitNummer then
                   return;
             
                elsif GlobaleVariablen.EinheitenGebaut (Rasse, A).ID /= 0 then
-                  GlobaleVariablen.EinheitenGebaut (Rasse, Platznummer) := GlobaleVariablen.EinheitenGebaut (Rasse, A);
+                  GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer) := GlobaleVariablen.EinheitenGebaut (Rasse, A);
                   GlobaleVariablen.EinheitenGebaut (Rasse, A) := (0, 0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0);
                   return;
             

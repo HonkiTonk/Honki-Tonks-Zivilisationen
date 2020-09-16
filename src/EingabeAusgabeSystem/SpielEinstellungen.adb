@@ -315,16 +315,13 @@ package body SpielEinstellungen is
                      if Y = 0 and X = 0 then
                         null;
                      
-                     elsif GlobaleVariablen.CursorImSpiel.YAchse + Y <= 1 then
+                     elsif GlobaleVariablen.CursorImSpiel.YAchse + Y <= Karten.Karten'First (1) or GlobaleVariablen.CursorImSpiel.YAchse + Y >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
                         null;
                      
-                     elsif GlobaleVariablen.CursorImSpiel.YAchse + Y >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+                     elsif GlobaleVariablen.CursorImSpiel.XAchse + X < Karten.Karten'First (2) then -- Das hier sollte nicht zu null führen, sondern zur anderen Seite des Arrays
                         null;
                      
-                     elsif GlobaleVariablen.CursorImSpiel.XAchse + X < 1 then
-                        null;
-                     
-                     elsif GlobaleVariablen.CursorImSpiel.XAchse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+                     elsif GlobaleVariablen.CursorImSpiel.XAchse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then -- Das hier sollte nicht zu null führen, sondern zur anderen Seite des Arrays
                         null;
                      
                      elsif Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund > 2 and 
@@ -375,16 +372,13 @@ package body SpielEinstellungen is
             if Y = 0 and X = 0 then
                null;
                      
-            elsif GlobaleVariablen.CursorImSpiel.YAchse + Y <= 1 then
+            elsif GlobaleVariablen.CursorImSpiel.YAchse + Y <= Karten.Karten'First (1) or GlobaleVariablen.CursorImSpiel.YAchse + Y >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
                null;
                      
-            elsif GlobaleVariablen.CursorImSpiel.YAchse + Y >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+            elsif GlobaleVariablen.CursorImSpiel.XAchse + X < Karten.Karten'First (2) then -- Das hier sollte nicht zu null führen, sondern zur anderen Seite des Arrays
                null;
                      
-            elsif GlobaleVariablen.CursorImSpiel.XAchse + X < 1 then
-               null;
-                     
-            elsif GlobaleVariablen.CursorImSpiel.XAchse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+            elsif GlobaleVariablen.CursorImSpiel.XAchse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then -- Das hier sollte nicht zu null führen, sondern zur anderen Seite des Arrays
                null;
                
             else
@@ -393,14 +387,14 @@ package body SpielEinstellungen is
                   GlobaleVariablen.EinheitenGebaut (Rasse, 2).ID := 2;
                   GlobaleVariablen.EinheitenGebaut (Rasse, 2).YAchse := GlobaleVariablen.CursorImSpiel.YAchse + Y;
                   GlobaleVariablen.EinheitenGebaut (Rasse, 2).XAchse := GlobaleVariablen.CursorImSpiel.XAchse + X;
-                  EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse => Rasse, Platznummer => 2);
+                  EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse => Rasse, EinheitNummer => 2);
                   
                elsif Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund = 2 or 
                  (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund >= 29 and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund <= 31) then
                   GlobaleVariablen.EinheitenGebaut (Rasse, 3).ID := 6;
                   GlobaleVariablen.EinheitenGebaut (Rasse, 3).YAchse := GlobaleVariablen.CursorImSpiel.YAchse + Y;
                   GlobaleVariablen.EinheitenGebaut (Rasse, 3).XAchse := GlobaleVariablen.CursorImSpiel.XAchse + X;
-                  EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse => Rasse, Platznummer => 3);
+                  EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse => Rasse, EinheitNummer => 3);
                   
                else
                   null;

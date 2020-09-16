@@ -1,12 +1,12 @@
 package body KarteStadt is
 
-   procedure AnzeigeStadt (Stadtnummer : in Integer) is
+   procedure AnzeigeStadt (StadtNummer : in Integer) is
    begin
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       Stadtumgebungsgröße := WerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => GlobaleVariablen.Rasse,
-                                                                          Stadtnummer => Stadtnummer);
+                                                                          StadtNummer => StadtNummer);
 
       YAchsenabstraktion := -Stadtumgebungsgröße;
       CursorYAchsePlus := -10;
@@ -157,8 +157,8 @@ package body KarteStadt is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
 
-      Beschreibung (Rasse                => GlobaleVariablen.Rasse,
-                    StadtPositionInListe => Stadtnummer);
+      Beschreibung (Rasse       => GlobaleVariablen.Rasse,
+                    StadtNummer => Stadtnummer);
       InformationenStadt (YAufschlag => CursorYAchsePlus,
                           XAufschlag => CursorXAchsePlus);
       if GlobaleVariablen.CursorImSpiel.YAchseStadt = 1 and GlobaleVariablen.CursorImSpiel.XAchseStadt < 13 then
@@ -317,43 +317,43 @@ package body KarteStadt is
 
 
 
-   procedure Beschreibung (Rasse, StadtPositionInListe : in Integer) is
+   procedure Beschreibung (Rasse, StadtNummer : in Integer) is
    begin
       
-      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).ID)));
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Name) & "    ");
+      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID)));
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Name) & "    ");
       Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 5)));
-      Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Einwohner'Wide_Wide_Image);
+      Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner'Wide_Wide_Image);
                      
       if Rasse = GlobaleVariablen.Rasse then
          Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 6)));
-         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleNahrungsmittel'Wide_Wide_Image);
+         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsmittel'Wide_Wide_Image);
          Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 7)));
-         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleNahrungsproduktion'Wide_Wide_Image);
+         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsproduktion'Wide_Wide_Image);
                         
          Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 8)));
-         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate'Wide_Wide_Image);
+         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate'Wide_Wide_Image);
          Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 9)));
-         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleGeldgewinnung'Wide_Wide_Image);
+         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleGeldgewinnung'Wide_Wide_Image);
 
          Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 10)));
-         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleForschungsrate'Wide_Wide_Image);                        
+         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleForschungsrate'Wide_Wide_Image);                        
          Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 11)));
-         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).Korruption'Wide_Wide_Image);
+         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Korruption'Wide_Wide_Image);
                         
          Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 12)));
-         if GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt = 0 then
+         if GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt = 0 then
             Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 28)));
             
-         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt < 10_000 then -- Gebäude
-            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (14, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 1_000)));
+         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt < 10_000 then -- Gebäude
+            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (14, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt - 1_000)));
 
          else -- Einheiten
-            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (10, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 10_000)));
+            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (10, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt - 10_000)));
          end if;
                                               
          Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 13)));   
-         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit'Wide_Wide_Image);
+         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit'Wide_Wide_Image);
 
       else
          null;
