@@ -115,12 +115,12 @@ package body Karte is
       Geldgewinnung := 0;
       Wissensgewinnung := 0;
 
-      Put (Item => "Aktuelle Runde:" & GlobaleVariablen.RundenAnzahl'Wide_Wide_Image); -- In Textdatei auslagern
-      Put (Item => "    " & "Aktuelle Geldmenge:" & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleGeldmenge'Wide_Wide_Image);
-      Put_Line (Item => "    " & "Aktueller Geldzuwachs:" & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).GeldZugewinnProRunde'Wide_Wide_Image);
-      Put (Item => "Aktuelle Forschungsmenge:" & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsmenge'Wide_Wide_Image);
-      Put (Item => "    " & "Aktueller Forschungsgewinn:" & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsrate'Wide_Wide_Image);
-      Put (Item => "    " & "Aktuelles Forschungsprojekt: ");
+      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 33)) & GlobaleVariablen.RundenAnzahl'Wide_Wide_Image); -- In Textdatei auslagern
+      Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 34)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleGeldmenge'Wide_Wide_Image);
+      Put_Line (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 35)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).GeldZugewinnProRunde'Wide_Wide_Image);
+      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 36)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsmenge'Wide_Wide_Image);
+      Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 37)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsrate'Wide_Wide_Image);
+      Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 38)));
       ForschungsDatenbank.Beschreibung (ID => GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuellesForschungsprojekt);
       New_Line;
       
@@ -193,7 +193,7 @@ package body Karte is
                   
                      when others =>
                         if GlobaleVariablen.StadtGebaut (C, D).YAchse = GlobaleVariablen.CursorImSpiel.YAchse and GlobaleVariablen.StadtGebaut (C, D).XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
-                           KarteStadt.Beschreibung (Rasse => C, StadtPositionInListe => D);
+                           KarteStadt.Beschreibung (Rasse => C, StadtNummer => D);
                            if C = GlobaleVariablen.Rasse then                              
                               Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (GlobaleVariablen.StadtGebaut (C, D).ID).Verteidigungsbonus;
 

@@ -29,7 +29,7 @@ package GebaeudeDatenbank is
                                                    others => (' ', 0, 0, 0,    0, 0, 0, 0, 0, 0, False));
 
    procedure Beschreibung (ID : in Integer);
-   procedure GebäudeProduktionBeenden (Rasse, Stadtnummer, ID : in Integer);
+   procedure GebäudeProduktionBeenden (Rasse, StadtNummer, ID : in Integer);
    --procedure InformationenGebäude
 
 private

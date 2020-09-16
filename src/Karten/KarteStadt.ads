@@ -3,8 +3,8 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_
 
 package KarteStadt is
    
-   procedure AnzeigeStadt (Stadtnummer : in Integer);
-   procedure Beschreibung (Rasse, StadtPositionInListe : in Integer);
+   procedure AnzeigeStadt (StadtNummer : in Integer);
+   procedure Beschreibung (Rasse, StadtNummer : in Integer);
 
 private
    

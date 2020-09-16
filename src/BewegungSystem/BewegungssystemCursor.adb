@@ -58,14 +58,20 @@ package body BewegungssystemCursor is
    procedure GeheZuCursor is
    begin
 
+      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 30)));
+      Put_Line (Item => Karten.Karten'First (1)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße'Wide_Wide_Image);
       YPosition := Eingabe.GanzeZahl;
       if YPosition < Karten.Karten'First (1) or YPosition > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+         Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 12);
          return;
          
-      else  
+      else
+         Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 31)));
+         Put_Line (Item => Karten.Karten'First (2)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße'Wide_Wide_Image);
          XPosition := Eingabe.GanzeZahl;
 
          if XPosition < Karten.Karten'First (2) or XPosition > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+            Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 12);
             return;
          
          else
@@ -75,8 +81,8 @@ package body BewegungssystemCursor is
       end if;
       
    end GeheZuCursor;
-
-
+                   
+   
 
    procedure BewegungCursorBerechnen is
    begin

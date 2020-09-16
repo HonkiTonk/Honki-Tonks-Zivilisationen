@@ -1,24 +1,24 @@
 package body Bauen is
 
-   procedure Bauen (Rasse, StadtPositionInListe : in Integer) is
+   procedure Bauen (Rasse, StadtNummer : in Integer) is
    begin
 
-      GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt := 0;
-      GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleRessourcen := 0;
+      GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt := 0;
+      GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleRessourcen := 0;
       
       BauSchleife:
       loop
       
-         WasGebautWerdenSoll := AuswahlStadt (Rasse => Rasse,
-                                              WelcheStadt => StadtPositionInListe);
+         WasGebautWerdenSoll := AuswahlStadt (Rasse       => Rasse,
+                                              StadtNummer => StadtNummer);
 
          case WasGebautWerdenSoll is
             when 0 =>
                return;
 
             when 1_001 .. 99_999 => -- Gebäude - 1_000, Einheiten - 10_000
-               GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt := WasGebautWerdenSoll;
-               GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleRessourcen := 0;
+               GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt := WasGebautWerdenSoll;
+               GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleRessourcen := 0;
                Bauzeit (Rasse => Rasse);
 
                return;
@@ -60,7 +60,7 @@ package body Bauen is
    
    
    
-   function AuswahlStadt (Rasse, WelcheStadt : in Integer) return Integer is
+   function AuswahlStadt (Rasse, StadtNummer : in Integer) return Integer is
    begin
 
       Ende := 1;
@@ -74,10 +74,10 @@ package body Bauen is
          if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (14, G)) = "|" then
             exit GebäudeSchleife;
 
-         elsif G > GlobaleVariablen.StadtGebaut (Rasse, WelcheStadt).GebäudeVorhanden'Last then
+         elsif G > GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).GebäudeVorhanden'Last then
             exit GebäudeSchleife;
 
-         elsif GlobaleVariablen.StadtGebaut (Rasse, WelcheStadt).GebäudeVorhanden (G) /= '0' then
+         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).GebäudeVorhanden (G) /= '0' then
             null;
 
          elsif GebaeudeDatenbank.GebäudeListe (G).Anforderungen /= 0 then
@@ -107,7 +107,7 @@ package body Bauen is
          elsif E > EinheitenDatenbank.EinheitenListe'Last then
             exit EinheitenSchleife;
 
-         elsif GlobaleVariablen.StadtGebaut (Rasse, WelcheStadt).AmWasser = False and EinheitenDatenbank.EinheitenListe (E).Passierbarkeit = 2 then
+         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AmWasser = False and EinheitenDatenbank.EinheitenListe (E).Passierbarkeit = 2 then
             null;
 
          elsif EinheitenDatenbank.EinheitenListe (E).Anforderungen /= 0 then

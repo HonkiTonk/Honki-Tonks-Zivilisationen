@@ -19,20 +19,20 @@ package body BefehleImSpiel is
                StadtOderEinheit := Auswahl.Auswahl (WelcheAuswahl => 15,
                                                     WelcherText => 18);
 
-               EinheitOderStadt (Auswahl         => StadtOderEinheit,
-                                 Stadtnummer     => WertStadt,
-                                 Einheitennummer => WertEinheit);
+               EinheitOderStadt (Auswahl       => StadtOderEinheit,
+                                 Stadtnummer   => WertStadt,
+                                 EinheitNummer => WertEinheit);
                
                
             elsif WertStadt /= 0 then
-               EinheitOderStadt (Auswahl         => -3,
-                                 Stadtnummer     => WertStadt,
-                                 Einheitennummer => WertEinheit);
+               EinheitOderStadt (Auswahl       => -3,
+                                 Stadtnummer   => WertStadt,
+                                 EinheitNummer => WertEinheit);
                
             elsif WertEinheit /= 0 then
-               EinheitOderStadt (Auswahl         => 654, -- Hauptsache ungleich -3
-                                 Stadtnummer     => WertStadt,
-                                 Einheitennummer => WertEinheit);
+               EinheitOderStadt (Auswahl       => 654, -- Hauptsache ungleich -3
+                                 Stadtnummer   => WertStadt,
+                                 EinheitNummer => WertEinheit);
                
             else
                null;
@@ -52,8 +52,8 @@ package body BefehleImSpiel is
                when others =>
                   if EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).ID).SiedlerLandeinheitSeeeinheitLufteinheit = 1 and
                   GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).AktuelleBewegungspunkte > 0.0 then
-                     InDerStadt.StadtBauen (Rasse => GlobaleVariablen.Rasse,
-                                            Listenplatz => WertEinheit);
+                     InDerStadt.StadtBauen (Rasse         => GlobaleVariablen.Rasse,
+                                            EinheitNummer => WertEinheit);
                      
                   else
                      null;
@@ -134,18 +134,18 @@ package body BefehleImSpiel is
                   
                when others =>
                   if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).ID /= 1 and WelcherBefehl > 0 and WelcherBefehl <= 6 then
-                     Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 3);
+                     Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 3);
 
                      elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).ID = 1 and WelcherBefehl = 11 then
-                     Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 3);
+                     Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 3);
                      
                   elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).AktuelleBewegungspunkte = 0.0 then
-                     Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 8);
+                     Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 8);
                      
                   else
                      VerbesserungenDatenbank.Verbesserung (Befehl => WelcherBefehl,
                                                            Rasse => GlobaleVariablen.Rasse,
-                                                           Listenplatz => WertEinheit);
+                                                           EinheitNummer => WertEinheit);
                   end if;
             end case;
                
@@ -158,7 +158,7 @@ package body BefehleImSpiel is
             Diplomatie.DiplomatieAuswählen;
             return 1;
 
-         when 'g' => -- Goto
+         when 'g' => -- GeheZu Cursor
             BewegungssystemCursor.GeheZuCursor;
             Karte.AnzeigeKarte;
             return 1;
@@ -174,33 +174,33 @@ package body BefehleImSpiel is
 
 
 
-   procedure EinheitOderStadt (Auswahl, Stadtnummer, Einheitennummer : in Integer) is
+   procedure EinheitOderStadt (Auswahl, StadtNummer, EinheitNummer : in Integer) is
    begin
       
       case Auswahl is
          when -3 =>
             GlobaleVariablen.CursorImSpiel.YAchseStadt := 1;
             GlobaleVariablen.CursorImSpiel.XAchseStadt := 1;
-            InDerStadt.InDerStadt (Rasse => GlobaleVariablen.Rasse,
-                                   StadtPositionInListe => Stadtnummer);
+            InDerStadt.InDerStadt (Rasse       => GlobaleVariablen.Rasse,
+                                   StadtNummer => StadtNummer);
                      
          when others =>
-            if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Einheitennummer).AktuelleBeschäftigung /= 0 then
+            if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).AktuelleBeschäftigung /= 0 then
                Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7);
                case Wahl is
                   when True =>
-                     GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Einheitennummer).AktuelleBeschäftigung := 0;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).AktuelleBeschäftigung := 0;
                            
                   when others =>
                      null;
                end case;
                   
-            elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, Einheitennummer).AktuelleBewegungspunkte = 0.0 then
+            elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).AktuelleBewegungspunkte = 0.0 then
                null;
                      
             else
                BewegungssystemEinheiten.BewegungEinheitenRichtung (Rasse => GlobaleVariablen.Rasse,
-                                                                   EinheitenPositionInListe => Einheitennummer);
+                                                                   EinheitNummer => EinheitNummer);
                null;
             end if;
       end case;

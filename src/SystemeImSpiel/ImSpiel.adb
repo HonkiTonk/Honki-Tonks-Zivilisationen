@@ -21,7 +21,7 @@ package body ImSpiel is
                      null;
                      
                   when False =>
-                     Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 10);
+                     Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 10);
                end case;
                
             when 3 => -- Laden
@@ -31,7 +31,7 @@ package body ImSpiel is
                      null;
                      
                   when False =>
-                     Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 9);
+                     Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 9);
                      return 0;
                end case;
                

@@ -44,10 +44,10 @@ package EinheitenDatenbank is
                                                     others => ('@', 0, 0, 0, 0,    0, 0, 0.0,    1, 1, 0, 0, 1));
 
    procedure Beschreibung (ID : in Integer);
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, Platznummer : in Integer);
+   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, EinheitNummer : in Integer);
    procedure HeilungBewegungspunkteFürNeueRundeSetzen;
-   procedure EinheitErzeugen (Rasse, Stadtnummer, ID : in Integer);
-   procedure EinheitEntfernen (Rasse, Platznummer : in Integer);
+   procedure EinheitErzeugen (Rasse, StadtNummer, ID : in Integer);
+   procedure EinheitEntfernen (Rasse, EinheitNummer : in Integer);
    procedure Beschäftigung (Arbeit : in Integer);
 
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Integer) return Boolean;

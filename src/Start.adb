@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, Laden, Fehlermeldungen, ImSpiel;
+with Ada.Wide_Wide_Text_IO, Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, Laden, Ausgabe, ImSpiel;
 use Ada.Wide_Wide_Text_IO;
 
 procedure Start is
@@ -48,7 +48,7 @@ begin
                   end case;
 
                when False =>
-                  Fehlermeldungen.Fehlermeldungen (WelcheFehlermeldung => 9);
+                  Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 9);
             end case;
 
          when 3 => -- Optionen

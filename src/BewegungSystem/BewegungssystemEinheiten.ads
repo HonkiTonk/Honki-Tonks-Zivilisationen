@@ -3,7 +3,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
 package BewegungssystemEinheiten is
 
-   procedure BewegungEinheitenRichtung (Rasse, EinheitenPositionInListe : in Integer);
+   procedure BewegungEinheitenRichtung (Rasse, EinheitNummer : in Integer);
    
 private
 
@@ -23,6 +23,6 @@ private
 
    Stadtnummer : Integer;
    
-   procedure BewegungEinheitenBerechnung (Rasse, EinheitenPositionInListe : in Integer);
+   procedure BewegungEinheitenBerechnung (Rasse, EinheitNummer : in Integer);
 
 end BewegungssystemEinheiten;
