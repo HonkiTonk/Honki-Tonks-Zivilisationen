@@ -13,12 +13,10 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Die Steigerung der vorhandenen Ressource nach Wachstum verschieben und bei Bauen nur noch auf Fertigstellung prüfen.");
       Put_Line (Item => "Zeug in die Textdatei auslagern.");
-      Put_Line (Item => "Überprüfung des Geldwachstums/Forschungswachstum direkt nach Bau einer Stadt prüfen lassen.");
-      Put_Line (Item => "Aufdeckung prüfen, Siedler deckt gar nichts auf und andere Einheiten nur manchmal. Vermutlich ein Fehler im geänderten, mehrzügigen Bewegungssystem.");
-      Put_Line (Item => "Durch Eingabe von Koordinaten auf der Karte ein Goto ermöglichen.");
-      Put_Line (Item => "Prüfung der Umgebung vereinheitlichen, z. B. durch procedure in die die loop Range und der Befehl reingegeben werden? Ist das praktikabel möglich?");
+      Put_Line (Item => "GeheZu Fehlermeldungen und Hinweis auf die maximalen Koordinaten einbauen.");
+      Put_Line (Item => "Prüfung der Umgebung vereinheitlichen.");
+      Put_Line (Item => "StadtNummer/EinheitNummer usw. mal vereinheitlichen.");
       Put_Line (Item => "Forschungssystem.");
       New_Line;
 

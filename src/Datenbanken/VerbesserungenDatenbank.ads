@@ -19,8 +19,10 @@ package VerbesserungenDatenbank is
       
    end record;
    
-   type VerbesserungObjektListeArray is array (1 .. 22) of VerbesserungObjekt;
-   VerbesserungObjektListe : VerbesserungObjektListeArray := (('♣', 13,    0, 0, 0, 0,    3), -- 1 Eigene Hauptstadt -- Hier noch Symbole (wieder) einfügen
+   type VerbesserungObjektListeArray is array (0 .. 22) of VerbesserungObjekt;
+   VerbesserungObjektListe : VerbesserungObjektListeArray := ((' ', 13,    0, 0, 0, 0,    0), -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
+                                                              -- Sollte mit Einlesen und Textausgabe funtkionieren, wenn nicht auf letzte Position verschieben.
+                                                              ('♣', 13,    0, 0, 0, 0,    3), -- 1 Eigene Hauptstadt -- Hier noch Symbole (wieder) einfügen
                                                               ('♠', 13,    0, 0, 0, 0,    2), -- 2 Eigene Stadt
                                                               ('⌂', 13,    0, 0, 0, 0,    3), -- 3 Andere Hauptstadt
                                                               ('¤', 13,    0, 0, 0, 0,    2), -- 4 Andere Stadt

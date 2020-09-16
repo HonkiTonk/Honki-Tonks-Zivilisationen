@@ -50,6 +50,7 @@ package body BewegungssystemEinheiten is
          BewegungEinheitenBerechnung (Rasse => Rasse, EinheitenPositionInListe => EinheitenPositionInListe);
 
          if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPositionInListe).AktuelleBewegungspunkte = 0.0 then
+            Sichtbarkeit.Sichtbarkeitsprüfung;
             return;
                
          else
