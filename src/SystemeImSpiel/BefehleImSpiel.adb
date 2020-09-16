@@ -159,6 +159,8 @@ package body BefehleImSpiel is
             return 1;
 
          when 'g' => -- Goto
+            BewegungssystemCursor.GeheZuCursor;
+            Karte.AnzeigeKarte;
             return 1;
             
          when 'r' => -- Runde beenden

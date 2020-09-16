@@ -1,10 +1,11 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling, KartenDatenbank, Auswahl, Bauen, GebaeudeDatenbank, KarteStadt, GlobaleVariablen, Einlesen, Eingabe, EinheitenDatenbank, BewegungssystemCursor, Fehlermeldungen, Karten;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling, SchleifenPruefungen, KartenDatenbank, Auswahl, Bauen, GebaeudeDatenbank, KarteStadt, GlobaleVariablen, Einlesen, Eingabe, EinheitenDatenbank, BewegungssystemCursor, Fehlermeldungen, Karten;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
 
 package InDerStadt is
 
    procedure InDerStadt (Rasse, StadtPositionInListe : in Integer);
    procedure StadtBauen (Rasse, Listenplatz : in Integer);
+   procedure StadtProduktionPrüfen (Rasse, StadtNummer : in Integer);
 
 private
 

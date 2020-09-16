@@ -55,6 +55,29 @@ package body BewegungssystemCursor is
 
 
 
+   procedure GeheZuCursor is
+   begin
+
+      YPosition := Eingabe.GanzeZahl;
+      if YPosition < Karten.Karten'First (1) or YPosition > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+         return;
+         
+      else  
+         XPosition := Eingabe.GanzeZahl;
+
+         if XPosition < Karten.Karten'First (2) or XPosition > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+            return;
+         
+         else
+            GlobaleVariablen.CursorImSpiel.YAchse := YPosition;
+            GlobaleVariablen.CursorImSpiel.XAchse := XPosition;
+         end if;
+      end if;
+      
+   end GeheZuCursor;
+
+
+
    procedure BewegungCursorBerechnen is
    begin
             

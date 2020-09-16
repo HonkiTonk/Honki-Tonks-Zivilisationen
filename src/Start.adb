@@ -2,7 +2,6 @@ with Ada.Wide_Wide_Text_IO, Auswahl, Einlesen, Optionen, SpielEinstellungen, All
 use Ada.Wide_Wide_Text_IO;
 
 procedure Start is
-
    ErfolgreichGeladen : Boolean;
 
    Startauswahl : Integer;

@@ -1,4 +1,4 @@
-with GlobaleVariablen;
+with GlobaleVariablen, Karten, ProzedurenListe;
 
 package SchleifenPruefungen is
 
@@ -9,6 +9,8 @@ package SchleifenPruefungen is
       
    end record;
 
+   procedure KartenUmgebung (Rasse, StadtOderEinheitNummer, YKoordinate, XKoordinate, SchleifenBereich, WelcheProzedur : in Integer);
+
    function KoordinatenStadtMitRasseSuchen (Rasse, YAchse, XAchse : in Integer) return Integer;
    function KoordinatenEinheitMitRasseSuchen (Rasse, YAchse, XAchse : in Integer) return Integer;
    function KoordinatenStadtOhneRasseSuchen (YAchse, XAchse : in Integer) return RasseUndPlatznummerRecord;
@@ -16,6 +18,6 @@ package SchleifenPruefungen is
    
 private
 
-
+   Überhang : Integer;
 
 end SchleifenPruefungen;

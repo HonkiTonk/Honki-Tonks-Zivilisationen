@@ -1,5 +1,50 @@
 package body SchleifenPruefungen is
 
+   procedure KartenUmgebung (Rasse, StadtOderEinheitNummer, YKoordinate, XKoordinate, SchleifenBereich, WelcheProzedur : in Integer) is
+   begin
+      
+      YAchseSchleife:
+      for YAchse in -SchleifenBereich .. SchleifenBereich loop
+         XAchseSchleife:
+         for XAchse in -SchleifenBereich .. SchleifenBereich loop
+            
+            if YKoordinate + YAchse < Karten.Karten'First (1) or YKoordinate + YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+               exit XAchseSchleife;
+
+            elsif XKoordinate + XAchse < Karten.Karten'First (2) then
+               Überhang := XKoordinate + XAchse + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+               
+            elsif XKoordinate + XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+               Überhang := XKoordinate + XAchse - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+               
+            else
+               Überhang := XKoordinate + XAchse;
+            end if;
+
+            -- ProzedurenListe:
+            -- 1 = InDerStadt.StadtProduktionPrüfen, ändert die Produktionswerte für die Städte
+            -- 2 = 
+
+            if WelcheProzedur = 1 and GlobaleVariablen.StadtGebaut (Rasse, StadtOderEinheitNummer).UmgebungBewirtschaftung (YAchse, XAchse) = True then
+               ProzedurenListe.ProzedurEinsProduktionWerteFestlegen (Rasse       => Rasse,
+                                                                     StadtNummer => StadtOderEinheitNummer,
+                                                                     YAchse      => YKoordinate + YAchse,
+                                                                     XAchse      => Überhang);
+               
+            elsif WelcheProzedur = 2 then
+               null;
+               
+            else
+               null;
+            end if;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+   end KartenUmgebung;
+
+   
+
    function KoordinatenStadtMitRasseSuchen (Rasse, YAchse, XAchse : in Integer) return Integer is
    begin
 

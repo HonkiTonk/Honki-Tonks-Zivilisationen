@@ -1,4 +1,4 @@
-with Wachstum, Bauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, GlobaleVariablen, Speichern, Laden, Fehlermeldungen;
+with InDerStadt, Wachstum, Bauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, GlobaleVariablen, Speichern, Laden, Fehlermeldungen;
 
 package ImSpiel is
 

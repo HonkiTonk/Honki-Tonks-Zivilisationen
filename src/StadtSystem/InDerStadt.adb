@@ -177,14 +177,8 @@ package body InDerStadt is
                end loop XAchsenSchleife;
             end loop YAchsenSchleife;
             
-            GlobaleVariablen.StadtGebaut (Rasse, A).AktuelleNahrungsproduktion := 
-              KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund).Nahrungsgewinnung;
-            GlobaleVariablen.StadtGebaut (Rasse, A).AktuelleProduktionrate := 
-              KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund).Ressourcengewinnung;
-            GlobaleVariablen.StadtGebaut (Rasse, A).AktuelleGeldgewinnung := 
-              KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund).Geldgewinnung;
-            GlobaleVariablen.StadtGebaut (Rasse, A).AktuelleForschungsrate := 
-              KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, Listenplatz).XAchse).Grund).Wissensgewinnung;
+            StadtProduktionPrüfen (Rasse       => Rasse,
+                                   StadtNummer => A);
 
             EinheitenDatenbank.EinheitEntfernen (Rasse => Rasse,
                                                  Platznummer => Listenplatz);
@@ -205,6 +199,54 @@ package body InDerStadt is
                            
    end StadtBauen;
 
+
+
+   procedure StadtProduktionPrüfen (Rasse, StadtNummer : in Integer) is
+   begin
+      
+      case Rasse is
+         when 0 =>
+            RassenSchleife:
+            for Rassen in GlobaleVariablen.StadtGebaut'Range (1) loop
+               StadtSchleife:
+               for Stadt in GlobaleVariablen.StadtGebaut'Range (2) loop
+               
+                  if GlobaleVariablen.StadtGebaut (Rassen, Stadt).ID = 0 then
+                     exit StadtSchleife;
+                  
+                  else
+                     GlobaleVariablen.StadtGebaut (Rassen, Stadt).AktuelleNahrungsproduktion := 0;
+                     GlobaleVariablen.StadtGebaut (Rassen, Stadt).AktuelleProduktionrate := 0;
+                     GlobaleVariablen.StadtGebaut (Rassen, Stadt).AktuelleGeldgewinnung := 0;
+                     GlobaleVariablen.StadtGebaut (Rassen, Stadt).AktuelleForschungsrate := 0;
+      
+                     SchleifenPruefungen.KartenUmgebung (Rasse                  => Rassen,
+                                                         StadtOderEinheitNummer => Stadt,
+                                                         YKoordinate            => GlobaleVariablen.StadtGebaut (Rassen, Stadt).YAchse,
+                                                         XKoordinate            => GlobaleVariablen.StadtGebaut (Rassen, Stadt).XAchse,
+                                                         SchleifenBereich       => GlobaleVariablen.StadtGebaut (Rassen, Stadt).UmgebungBewirtschaftung'Last (1),
+                                                         WelcheProzedur         => 1);
+                  end if;
+               
+               end loop StadtSchleife;
+            end loop RassenSchleife;
+         
+         when others =>
+            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsproduktion := 0;
+            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate := 0;
+            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleGeldgewinnung := 0;
+            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleForschungsrate := 0;
+      
+            SchleifenPruefungen.KartenUmgebung (Rasse                  => Rasse,
+                                                StadtOderEinheitNummer => StadtNummer,
+                                                YKoordinate            => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
+                                                XKoordinate            => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse,
+                                                SchleifenBereich       => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung'Last (1),
+                                                WelcheProzedur         => 1);
+      end case;
+      
+   end StadtProduktionPrüfen;
+   
 
 
    function StadtBauenPrüfen (Y, X : in Integer) return Boolean is
