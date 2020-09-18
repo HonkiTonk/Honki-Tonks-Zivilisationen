@@ -16,27 +16,27 @@ package body Karte is
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       YAchseSchleife:
-      for Y in Karten.Karten'Range (1) loop
+      for YÄnderung in Karten.Karten'Range (1) loop
          XAchseSchleife:
-         for X in Karten.Karten'Range (2) loop
+         for XÄnderung in Karten.Karten'Range (2) loop
             
-            if Y = GlobaleVariablen.CursorImSpiel.YAchse and X = GlobaleVariablen.CursorImSpiel.XAchse then
-               if X = Karten.Karten'First (2) and GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite < Karten.Karten'First (2) then
+            if YÄnderung = GlobaleVariablen.CursorImSpiel.YAchse and XÄnderung = GlobaleVariablen.CursorImSpiel.XAchse then
+               if XÄnderung = Karten.Karten'First (2) and GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite < Karten.Karten'First (2) then
                   Überhang := GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                   for A in Überhang .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                   
-                     Sichtbarkeit.Sichtbarkeit (YAchse => Y,
+                     Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung,
                                                 XAchse => A);
                   
                   end loop;                  
                   Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
 
-               elsif X = Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+               elsif XÄnderung = Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
                   Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
                   Überhang := GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                   for A in Karten.Karten'First (2) .. Überhang loop
                   
-                     Sichtbarkeit.Sichtbarkeit (YAchse => Y,
+                     Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung,
                                                 XAchse => A);
                   
                   end loop;
@@ -47,45 +47,45 @@ package body Karte is
                   Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
                end if;
 
-            elsif Y < GlobaleVariablen.CursorImSpiel.YAchseAlt - Sichtweite then
+            elsif YÄnderung < GlobaleVariablen.CursorImSpiel.YAchseAlt - Sichtweite then
                exit XAchseSchleife;
 
-            elsif Y > GlobaleVariablen.CursorImSpiel.YAchseAlt + Sichtweite then
+            elsif YÄnderung > GlobaleVariablen.CursorImSpiel.YAchseAlt + Sichtweite then
                New_Line;
                exit YAchseSchleife;
 
-            elsif Karten.Karten (Y, X).Grund = -2 then
+            elsif Karten.Karten (YÄnderung, XÄnderung).Grund = -2 then
                New_Line;
                exit YAchseSchleife;
 
-            elsif X < GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite then
+            elsif XÄnderung < GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite then
                null;
 
-            elsif X > GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite then
+            elsif XÄnderung > GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite then
                New_Line;
                exit XAchseSchleife;
 
-            elsif Karten.Karten (Y, X).Grund = -1 then
+            elsif Karten.Karten (YÄnderung, XÄnderung).Grund = -1 then
                New_Line;
                exit XAchseSchleife;
                
-            elsif X = Karten.Karten'First (2) and GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite < Karten.Karten'First (2) then
+            elsif XÄnderung = Karten.Karten'First (2) and GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite < Karten.Karten'First (2) then
                Überhang := GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                for A in Überhang .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                   
-                  Sichtbarkeit.Sichtbarkeit (YAchse => Y,
+                  Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung,
                                              XAchse => A);
                   
                end loop;
-               Sichtbarkeit.Sichtbarkeit (YAchse => Y,
-                                          XAchse => X);
+               Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung,
+                                          XAchse => XÄnderung);
 
-            elsif X = Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-               Sichtbarkeit.Sichtbarkeit (YAchse => Y, XAchse => X);
+            elsif XÄnderung = Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+               Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung, XAchse => XÄnderung);
                Überhang := GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                for A in Karten.Karten'First (2) .. Überhang loop
                   
-                  Sichtbarkeit.Sichtbarkeit (YAchse => Y,
+                  Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung,
                                              XAchse => A);
                   
                end loop;
@@ -93,8 +93,8 @@ package body Karte is
                exit XAchseSchleife;
             
             else
-               Sichtbarkeit.Sichtbarkeit (YAchse => Y,
-                                          XAchse => X);
+               Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung,
+                                          XAchse => XÄnderung);
             end if;
 
          end loop XAchseSchleife;

@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ausgabe, GlobaleVariablen, KartenDatenbank, Karten, Eingabe, Einlesen;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ausgabe, GlobaleDatentypen, GlobaleVariablen, KartenDatenbank, Karten, Eingabe, Einlesen, SchleifenPruefungen;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 package BewegungssystemCursor is
@@ -15,8 +15,10 @@ private
 
    YPosition : Integer;
    XPosition : Integer;
+
+   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
    
-   procedure BewegungCursorBerechnen;
+   procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in Änderung);
    procedure BewegungCursorBerechnenStadt;
 
 end BewegungssystemCursor;

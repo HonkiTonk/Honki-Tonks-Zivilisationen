@@ -45,7 +45,7 @@ package body BewegungssystemCursor is
       
       case Karte is
          when True =>
-            BewegungCursorBerechnen;
+            BewegungCursorBerechnen (YÄnderung, XÄnderung);
             
          when False =>
             BewegungCursorBerechnenStadt;
@@ -84,35 +84,21 @@ package body BewegungssystemCursor is
                    
    
 
-   procedure BewegungCursorBerechnen is
+   procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in Änderung) is
    begin
-            
-      if (GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung < Karten.Karten'First (1) or GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße) and XÄnderung = 0 then
-         return;
-
-      elsif GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung < Karten.Karten'First (1) or GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-         if GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung < Karten.Karten'First (2) then
-            GlobaleVariablen.CursorImSpiel.XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-            
-         elsif GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-            GlobaleVariablen.CursorImSpiel.XAchse := Karten.Karten'First (2);
-            
-         else
-            GlobaleVariablen.CursorImSpiel.XAchse := GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung;
-         end if;
-        
-      elsif GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung < Karten.Karten'First (2) then
-         GlobaleVariablen.CursorImSpiel.XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-         GlobaleVariablen.CursorImSpiel.YAchse := GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung;
-         
-      elsif GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-         GlobaleVariablen.CursorImSpiel.XAchse := Karten.Karten'First (2);
-         GlobaleVariablen.CursorImSpiel.YAchse := GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung;
-         
-      else
-         GlobaleVariablen.CursorImSpiel.YAchse := GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung;
-         GlobaleVariablen.CursorImSpiel.XAchse := GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung;
-      end if;
+      
+      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.CursorImSpiel.YAchse,
+                                                        XKoordinate => GlobaleVariablen.CursorImSpiel.XAchse,
+                                                        YÄnderung   => YÄnderung,
+                                                        XÄnderung   => XÄnderung);
+      case KartenWert.YWert is
+         when -1_000_000 =>
+            return;
+              
+         when others =>
+            GlobaleVariablen.CursorImSpiel.YAchse := KartenWert.YWert;
+            GlobaleVariablen.CursorImSpiel.XAchse := KartenWert.XWert;
+      end case;
       
    end BewegungCursorBerechnen;
 

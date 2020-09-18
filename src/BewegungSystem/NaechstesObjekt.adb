@@ -3,13 +3,14 @@ package body NaechstesObjekt is
    procedure NächsteEinheitMitBewegungspunkten is -- Nochmal über die loops schauen, möglicherweise wird eine Einheit ausgelassen
    begin
 
-      if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, 1).ID = 0 then
-         return;
+      case GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, 1).ID is
+         when 0 =>
+            return;
          
-      else
-         Endwert := GlobaleVariablen.EinheitenGebaut'Last (2);
-         Startwert := 1;
-      end if;
+         when others  =>
+            Endwert := GlobaleVariablen.EinheitenGebaut'Last (2);
+            Startwert := 1;
+      end case;
       
       loop
                
@@ -77,13 +78,14 @@ package body NaechstesObjekt is
    procedure NächsteEinheitOhneBewegungspunkte is
    begin
       
-      if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, 1).ID = 0 then
-         return;
+      case GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, 1).ID is
+         when 0 =>
+            return;
          
-      else
-         Endwert := GlobaleVariablen.EinheitenGebaut'Last (2);
-         Startwert := 1;
-      end if;
+         when others  =>
+            Endwert := GlobaleVariablen.EinheitenGebaut'Last (2);
+            Startwert := 1;
+      end case;
       
       loop
                

@@ -37,7 +37,7 @@ package body VerbesserungenDatenbank is
 
 
    procedure VerbesserungeFestgelegt (Befehl, Rasse, EinheitNummer : in Integer) is -- l/1 = Straße, t/2 = Mine, f/3 = Farm, u/4 = Festung, z/5 = Wald aufforsten, p/6 = /Roden-Trockenlegen,
-                                                                                  -- h/7 = Heilen, v/8 = Verschanzen Space/9 = Runde aussetzen, DEL/10 = Einheit auflösen, j/11 = Plündern
+                                                                                    -- h/7 = Heilen, v/8 = Verschanzen Space/9 = Runde aussetzen, DEL/10 = Einheit auflösen, j/11 = Plündern
    begin
 
       if Befehl = 1 and Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).VerbesserungStraße >= 5 and
@@ -316,7 +316,8 @@ package body VerbesserungenDatenbank is
       
       case GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung is -- Landstraße/Tiefengrabung/Farm/Festung/Wald aufforsten/Roden-Trockenlegen
          when 1 =>
-            StraßenBerechnung (YAchse => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, XAchse => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse);
+            StraßenBerechnung (YKoordinate => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse,
+                               XKoordinate => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse);
               
          when 2 =>
             Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).VerbesserungGebiet := 21;
@@ -354,257 +355,262 @@ package body VerbesserungenDatenbank is
 
 
 
-   procedure StraßenBerechnung (YAchse, XAchse : in Integer) is
+   procedure StraßenBerechnung (YKoordinate, XKoordinate : in Integer) is
    begin
 
       Straßenwert := 10000;
       
       YAchseSchleife:
-      for Y in -1 .. 1 loop
+      for YÄnderung in -1 .. 1 loop
          XAchseSchleife:
-         for X in -1 .. 1 loop
+         for XÄnderung in -1 .. 1 loop
 
-            if YAchse + Y < Karten.Karten'First (1) then
-               null;
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => YKoordinate,
+                                                              XKoordinate => XKoordinate,
+                                                              YÄnderung   => YÄnderung,
+                                                              XÄnderung   => XÄnderung);
 
-            elsif YAchse + Y > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               exit YAchseSchleife;
+            case KartenWert.YWert is
+               when -1_000_000 =>
+                  exit XAchseSchleife;
 
-            elsif XAchse + X < Karten.Karten'First (2) and X = -1 then
-               case Karten.Karten (YAchse + Y, Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße).VerbesserungStraße is
-                  when 0 =>
-                     Straßenwert := Straßenwert - 1000;
+               when others =>
+                  if XÄnderung = -1 then
+                     case Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße is
+                        when 0 =>
+                           Straßenwert := Straßenwert - 1000;
 
-                  when 7 =>
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 14;
+                        when 7 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 14;
                      
-                  when 9 =>
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 13;
+                        when 9 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 13;
 
-                  when 11 =>                     
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 12;
+                        when 11 =>                     
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 12;
 
-                  when 15 =>
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 5;
+                        when 15 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 5;
 
-                  when 17 =>
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 6;
+                        when 17 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 6;
 
-                  when 18 =>
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 10;
+                        when 18 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 10;
 
-                  when 19 =>
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 8;
+                        when 19 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 8;
                      
-                  when others =>
-                     null;
-               end case;
-               Straßenwert := Straßenwert + 1000;
+                        when others =>
+                           null;
+                     end case;
+                     Straßenwert := Straßenwert + 1000;
                
-            elsif XAchse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and X = 1 then
-               case Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße is
-                  when 0 =>
-                     Straßenwert := Straßenwert - 100;
+                  elsif XÄnderung = 1 then
+                     case Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße is
+                        when 0 =>
+                           Straßenwert := Straßenwert - 100;
 
-                  when 7 =>
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 15;
+                        when 7 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 15;
                      
-                  when 8 =>
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 13;
+                        when 8 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 13;
 
-                  when 10 =>                     
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 12;
+                        when 10 =>                     
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 12;
 
-                  when 14 =>
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 5;
+                        when 14 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 5;
 
-                  when 16 =>
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 6;
+                        when 16 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 6;
 
-                  when 18 =>
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 11;
+                        when 18 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 11;
 
-                  when 19 =>
-                     Karten.Karten (YAchse + Y, Karten.Karten'First (2)).VerbesserungStraße := 9;
+                        when 19 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 9;
                      
-                  when others =>
-                     null;
-               end case;
-               Straßenwert := Straßenwert + 100;
+                        when others =>
+                           null;
+                     end case;
+                     Straßenwert := Straßenwert + 100;
 
-            elsif Y = 0 and X = -1 then
-               case Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße is
-                  when 0 =>
-                     Straßenwert := Straßenwert - 1000;
+                  elsif YÄnderung = 0 and XÄnderung = -1 then
+                     case Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße is
+                        when 0 =>
+                           Straßenwert := Straßenwert - 1000;
                   
-                  when 7 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 14;
+                        when 7 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 14;
                      
-                  when 9 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 13;
+                        when 9 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 13;
 
-                  when 11 =>                     
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 12;
+                        when 11 =>                     
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 12;
 
-                  when 15 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 5;
+                        when 15 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 5;
 
-                  when 17 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 6;
+                        when 17 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 6;
 
-                  when 18 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 10;
+                        when 18 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 10;
 
-                  when 19 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 8;
+                        when 19 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 8;
                      
-                  when others =>
-                     null;
-               end case;
-               Straßenwert := Straßenwert + 1000;
+                        when others =>
+                           null;
+                     end case;
+                     Straßenwert := Straßenwert + 1000;
 
-            elsif Y = 0 and X = 1 then
-               case Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße is
-                  when 0 =>
-                     Straßenwert := Straßenwert - 100;
+                  elsif YÄnderung = 0 and XÄnderung = 1 then
+                     case Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße is
+                        when 0 =>
+                           Straßenwert := Straßenwert - 100;
 
-                  when 7 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 15;
+                        when 7 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 15;
                      
-                  when 8 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 13;
+                        when 8 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 13;
 
-                  when 10 =>                     
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 12;
+                        when 10 =>                     
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 12;
 
-                  when 14 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 5;
+                        when 14 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 5;
 
-                  when 16 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 6;
+                        when 16 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 6;
 
-                  when 18 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 11;
+                        when 18 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 11;
 
-                  when 19 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 9;
+                        when 19 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 9;
                      
-                  when others =>
-                     null;
-               end case;
-               Straßenwert := Straßenwert + 100;
+                        when others =>
+                           null;
+                     end case;
+                     Straßenwert := Straßenwert + 100;
                
-            elsif Y = -1 and X = 0 then
-               case Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße is
-                  when 0 =>
-                     Straßenwert := Straßenwert - 10;
+                  elsif YÄnderung = -1 and XÄnderung = 0 then
+                     case Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße is
+                        when 0 =>
+                           Straßenwert := Straßenwert - 10;
                      
-                  when 6 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 13;
+                        when 6 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 13;
                      
-                  when 10 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 14;
+                        when 10 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 14;
 
-                  when 11 =>                     
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 15;
+                        when 11 =>                     
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 15;
 
-                  when 12 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 5;
+                        when 12 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 5;
 
-                  when 16 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 8;
+                        when 16 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 8;
 
-                  when 17 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 9;
+                        when 17 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 9;
 
-                  when 18 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 7;
+                        when 18 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 7;
                      
-                  when others =>
-                     null;
-               end case;
-               Straßenwert := Straßenwert + 10;
+                        when others =>
+                           null;
+                     end case;
+                     Straßenwert := Straßenwert + 10;
                
-            elsif Y = 1 and X = 0 then
-               case Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße is
-                  when 0 =>
-                     Straßenwert := Straßenwert - 1;
+                  elsif YÄnderung = 1 and XÄnderung = 0 then
+                     case Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße is
+                        when 0 =>
+                           Straßenwert := Straßenwert - 1;
                      
-                  when 6 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 12;
+                        when 6 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 12;
                      
-                  when 8 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 14;
+                        when 8 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 14;
 
-                  when 9 =>                     
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 15;
+                        when 9 =>                     
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 15;
 
-                  when 13 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 5;
+                        when 13 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 5;
 
-                  when 16 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 10;
+                        when 16 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 10;
 
-                  when 17 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 11;
+                        when 17 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 11;
 
-                  when 19 =>
-                     Karten.Karten (YAchse + Y, XAchse + X).VerbesserungStraße := 7;
+                        when 19 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße := 7;
                      
-                  when others =>
-                     null;
-               end case;
-               Straßenwert := Straßenwert + 1;
+                        when others =>
+                           null;
+                     end case;
+                     Straßenwert := Straßenwert + 1;
                
-            else
-               null;
-            end if;
+                  else
+                     null;
+                  end if;
+            end case;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
 
       case Straßenwert is
          when 11000 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 17;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 17;
 
          when 10100 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 16;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 16;
 
          when 10010 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 18;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 18;
 
          when 10001 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 19;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 19;
 
          when 11010 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 11;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 11;
 
          when 11001 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 9;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 9;
 
          when 11110 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 12;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 12;
 
          when 11101 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 13;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 13;
 
          when 11111 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 5;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 5;
 
          when 10110 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 10;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 10;
 
          when 10101 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 8;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 8;
 
          when 10111 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 14;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 14;
 
          when 10011 =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 7;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 7;
          
          when others =>
-            Karten.Karten (YAchse, XAchse).VerbesserungStraße := 6;
+            Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 6;
       end case;
       
    end StraßenBerechnung;

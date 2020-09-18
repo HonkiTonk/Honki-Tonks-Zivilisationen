@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, SchleifenPruefungen, GlobaleVariablen, KartenDatenbank, Karten, Karte, EinheitenDatenbank, Kampfsystem, Diplomatie, Auswahl, Sichtbarkeit;
+with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, SchleifenPruefungen, GlobaleDatentypen, GlobaleVariablen, KartenDatenbank, Karten, Karte, EinheitenDatenbank, Kampfsystem, Diplomatie, Auswahl, Sichtbarkeit;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
 package BewegungssystemEinheiten is
@@ -15,14 +15,15 @@ private
    
    XÄnderung : Integer;
    YÄnderung : Integer;
-   NeueXPosition : Integer;
-   Gegner : Integer;
-   GegnerPosition : Integer;
+   
    Wahl : Integer;
    BereitsImKrieg : Integer;
 
    Stadtnummer : Integer;
+
+   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   GegnerWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    
-   procedure BewegungEinheitenBerechnung (Rasse, EinheitNummer : in Integer);
+   procedure BewegungEinheitenBerechnung (Rasse, EinheitNummer, YÄnderung, XÄnderung : in Integer);
 
 end BewegungssystemEinheiten;
