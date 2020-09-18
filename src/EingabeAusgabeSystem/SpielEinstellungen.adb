@@ -309,38 +309,42 @@ package body SpielEinstellungen is
             FelderDrumHerum := 0;
          
             if Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund > 2 and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund /= 31 then
-               for Y in -1 .. 1 loop
-                  for X in -1 .. 1 loop
+               YAchseSchleife:
+               for YÄnderung in -1 .. 1 loop
+                  XAchseSchleife:
+                  for XÄnderung in -1 .. 1 loop
 
-                     if Y = 0 and X = 0 then
-                        null;
-                     
-                     elsif GlobaleVariablen.CursorImSpiel.YAchse + Y <= Karten.Karten'First (1) or GlobaleVariablen.CursorImSpiel.YAchse + Y >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-                        null;
-                     
-                     elsif GlobaleVariablen.CursorImSpiel.XAchse + X < Karten.Karten'First (2) then -- Das hier sollte nicht zu null führen, sondern zur anderen Seite des Arrays
-                        null;
-                     
-                     elsif GlobaleVariablen.CursorImSpiel.XAchse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then -- Das hier sollte nicht zu null führen, sondern zur anderen Seite des Arrays
-                        null;
-                     
-                     elsif Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund > 2 and 
-                       (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund < 29 or Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund > 31) then
-                        FelderDrumHerum := FelderDrumHerum + 1;
-                        case FelderDrumHerum is
-                           when 3 =>
-                              StartpunktFestlegen (Rasse => Rasse);
-                              StartwerteFestgelegt := True;
-                              
-                           when others =>
+                     KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.CursorImSpiel.YAchse,
+                                                                       XKoordinate => GlobaleVariablen.CursorImSpiel.XAchse,
+                                                                       YÄnderung   => YÄnderung,
+                                                                       XÄnderung   => XÄnderung);
+                     case KartenWert.YWert is
+                        when -1_000_000 =>
+                           exit XAchseSchleife;
+                  
+                        when others =>
+                           if YÄnderung = 0 and XÄnderung = 0 then
                               null;
-                        end case;
                      
-                     else
-                        null;
-                     end if;
-                  end loop;
-               end loop;
+                           elsif Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund > 2 and 
+                             (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund < 29 or Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund > 31) then
+                              FelderDrumHerum := FelderDrumHerum + 1;
+                              case FelderDrumHerum is
+                                 when 3 =>
+                                    StartpunktFestlegen (Rasse => Rasse);
+                                    StartwerteFestgelegt := True;
+                              
+                                 when others =>
+                                    null;
+                              end case;
+                     
+                           else
+                              null;
+                           end if;
+                     end case;
+
+                  end loop XAchseSchleife;
+               end loop YAchseSchleife;
 
             else
                null;
@@ -360,49 +364,50 @@ package body SpielEinstellungen is
 
    procedure StartpunktFestlegen (Rasse : in Integer) is
    begin
-      
+
       GlobaleVariablen.EinheitenGebaut (Rasse, 1).ID := 1;
       GlobaleVariablen.EinheitenGebaut (Rasse, 1).YAchse := GlobaleVariablen.CursorImSpiel.YAchse;
       GlobaleVariablen.EinheitenGebaut (Rasse, 1).XAchse := GlobaleVariablen.CursorImSpiel.XAchse;
       EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, 1);
-            
-      for Y in -1 .. 1 loop
-         for X in -1 .. 1 loop
 
-            if Y = 0 and X = 0 then
-               null;
-                     
-            elsif GlobaleVariablen.CursorImSpiel.YAchse + Y <= Karten.Karten'First (1) or GlobaleVariablen.CursorImSpiel.YAchse + Y >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               null;
-                     
-            elsif GlobaleVariablen.CursorImSpiel.XAchse + X < Karten.Karten'First (2) then -- Das hier sollte nicht zu null führen, sondern zur anderen Seite des Arrays
-               null;
-                     
-            elsif GlobaleVariablen.CursorImSpiel.XAchse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then -- Das hier sollte nicht zu null führen, sondern zur anderen Seite des Arrays
-               null;
-               
-            else
-               if Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund > 2 and 
-                 (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund < 29 or Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund > 31) then
-                  GlobaleVariablen.EinheitenGebaut (Rasse, 2).ID := 2;
-                  GlobaleVariablen.EinheitenGebaut (Rasse, 2).YAchse := GlobaleVariablen.CursorImSpiel.YAchse + Y;
-                  GlobaleVariablen.EinheitenGebaut (Rasse, 2).XAchse := GlobaleVariablen.CursorImSpiel.XAchse + X;
-                  EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse => Rasse, EinheitNummer => 2);
+      YAchseSchleife:
+      for YÄnderung in -1 .. 1 loop
+         XAchseSchleife:
+         for XÄnderung in -1 .. 1 loop
+
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.CursorImSpiel.YAchse,
+                                                              XKoordinate => GlobaleVariablen.CursorImSpiel.XAchse,
+                                                              YÄnderung   => YÄnderung,
+                                                              XÄnderung   => XÄnderung);
+            case KartenWert.YWert is
+               when -1_000_000 =>
+                  exit XAchseSchleife;
                   
-               elsif Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund = 2 or 
-                 (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund >= 29 and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse + Y, GlobaleVariablen.CursorImSpiel.XAchse + X).Grund <= 31) then
-                  GlobaleVariablen.EinheitenGebaut (Rasse, 3).ID := 6;
-                  GlobaleVariablen.EinheitenGebaut (Rasse, 3).YAchse := GlobaleVariablen.CursorImSpiel.YAchse + Y;
-                  GlobaleVariablen.EinheitenGebaut (Rasse, 3).XAchse := GlobaleVariablen.CursorImSpiel.XAchse + X;
-                  EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse => Rasse, EinheitNummer => 3);
-                  
-               else
-                  null;
-               end if;
-            end if;
+               when others =>
+                  if YÄnderung = 0 and XÄnderung = 0 then
+                     null;
                
-         end loop;
-      end loop;                     
+                  elsif Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund > 2 and (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund < 29
+                                                                                          or Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund > 31) then
+                     GlobaleVariablen.EinheitenGebaut (Rasse, 2).ID := 2;
+                     GlobaleVariablen.EinheitenGebaut (Rasse, 2).YAchse := KartenWert.YWert;
+                     GlobaleVariablen.EinheitenGebaut (Rasse, 2).XAchse := KartenWert.XWert;
+                     EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse => Rasse, EinheitNummer => 2);
+                  
+                  elsif Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund = 2 or (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund >= 29
+                                                                                         and Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund <= 31) then
+                     GlobaleVariablen.EinheitenGebaut (Rasse, 3).ID := 6;
+                     GlobaleVariablen.EinheitenGebaut (Rasse, 3).YAchse := KartenWert.YWert;
+                     GlobaleVariablen.EinheitenGebaut (Rasse, 3).XAchse := KartenWert.XWert;
+                     EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse => Rasse, EinheitNummer => 3);
+                  
+                  else
+                     null;
+                  end if;
+            end case;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;   
       
    end StartpunktFestlegen;
 

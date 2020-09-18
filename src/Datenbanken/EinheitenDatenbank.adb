@@ -77,7 +77,7 @@ package body EinheitenDatenbank is
          elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).YAchse = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse
            and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).XAchse = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse then
             Position := (0, 0);
-            exit EinheitenSchleife;
+            return;
             
          else
             EinheitenPosition := EinheitenListenplatz;
@@ -85,19 +85,14 @@ package body EinheitenDatenbank is
             
       end loop EinheitenSchleife;
       
-      if Position = (0, 0) then
-         null;
-         
-      else
-         GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).ID := ID;
-         GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).YAchse := Position.YAchse;
-         GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).XAchse := Position.XAchse;
-         LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse       => Rasse,
-                                                      EinheitNummer => EinheitenPosition);
-         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit := 0;
-         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleRessourcen := 0;
-         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt := 0;
-      end if;
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).ID := ID;
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).YAchse := Position.YAchse;
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).XAchse := Position.XAchse;
+      LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse         => Rasse,
+                                                   EinheitNummer => EinheitenPosition);
+      GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit := 0;
+      GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleRessourcen := 0;
+      GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt := 0;
             
    end EinheitErzeugen;
 

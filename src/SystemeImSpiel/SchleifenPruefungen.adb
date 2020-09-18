@@ -1,45 +1,22 @@
 package body SchleifenPruefungen is
 
-   procedure KartenUmgebung (Rasse, StadtOderEinheitNummer, YKoordinate, XKoordinate, SchleifenBereich, WelcheProzedur : in Integer) is
+   function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung : in Integer) return GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord is
    begin
       
-      YAchseSchleife:
-      for YAchse in -SchleifenBereich .. SchleifenBereich loop
-         XAchseSchleife:
-         for XAchse in -SchleifenBereich .. SchleifenBereich loop
-            
-            if YKoordinate + YAchse < Karten.Karten'First (1) or YKoordinate + YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               exit XAchseSchleife;
+      if YKoordinate + YÄnderung < Karten.Karten'First (1) or YKoordinate + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+         return (-1_000_000, -1_000_000);
 
-            elsif XKoordinate + XAchse < Karten.Karten'First (2) then
-               Überhang := XKoordinate + XAchse + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+      elsif XKoordinate + XÄnderung < Karten.Karten'First (2) then
+         Überhang := XKoordinate + XÄnderung + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+         return (YKoordinate + YÄnderung, Überhang);
                
-            elsif XKoordinate + XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-               Überhang := XKoordinate + XAchse - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+      elsif XKoordinate + XÄnderung > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+         Überhang := XKoordinate + XÄnderung - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+         return (YKoordinate + YÄnderung, Überhang);
                
-            else
-               Überhang := XKoordinate + XAchse;
-            end if;
-
-            -- ProzedurenListe:
-            -- 1 = InDerStadt.StadtProduktionPrüfen, ändert die Produktionswerte für die Städte
-            -- 2 = 
-
-            if WelcheProzedur = 1 and GlobaleVariablen.StadtGebaut (Rasse, StadtOderEinheitNummer).UmgebungBewirtschaftung (YAchse, XAchse) = True then
-               ProzedurenListe.ProzedurEinsProduktionWerteFestlegen (Rasse       => Rasse,
-                                                                     StadtNummer => StadtOderEinheitNummer,
-                                                                     YAchse      => YKoordinate + YAchse,
-                                                                     XAchse      => Überhang);
-               
-            elsif WelcheProzedur = 2 then
-               null;
-               
-            else
-               null;
-            end if;
-            
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+      else
+         return (YKoordinate + YÄnderung, XKoordinate + XÄnderung);
+      end if;
       
    end KartenUmgebung;
 
@@ -91,7 +68,7 @@ package body SchleifenPruefungen is
    
    
    
-   function KoordinatenStadtOhneRasseSuchen (YAchse, XAchse : in Integer) return RasseUndPlatznummerRecord is
+   function KoordinatenStadtOhneRasseSuchen (YAchse, XAchse : in Integer) return GlobaleDatentypen.RasseUndPlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -112,13 +89,13 @@ package body SchleifenPruefungen is
          end loop StadtSchleife;
       end loop RasseSchleife;
       
-      return (0, 0);
+      return (-1_000_000, -1_000_000);
       
    end KoordinatenStadtOhneRasseSuchen;
    
    
    
-   function KoordinatenEinheitOhneRasseSuchen (YAchse, XAchse : in Integer) return RasseUndPlatznummerRecord is
+   function KoordinatenEinheitOhneRasseSuchen (YAchse, XAchse : in Integer) return GlobaleDatentypen.RasseUndPlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -139,7 +116,7 @@ package body SchleifenPruefungen is
          end loop EinheitSchleife;
       end loop RasseSchleife;
       
-      return (0, 0);
+      return (-1_000_000, -1_000_000);
       
    end KoordinatenEinheitOhneRasseSuchen;
 

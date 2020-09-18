@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Einlesen, GlobaleVariablen, Auswahl, EinheitenDatenbank, Karten, Ausgabe;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, SchleifenPruefungen, Einlesen, GlobaleVariablen, GlobaleDatentypen, Auswahl, EinheitenDatenbank, Karten, Ausgabe;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 package VerbesserungenDatenbank is
@@ -57,9 +57,11 @@ private
    Wahl : Boolean;
 
    Straßenwert : Integer;
+
+   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
    
    procedure VerbesserungeFestgelegt (Befehl, Rasse, EinheitNummer : in Integer);
    procedure VerbesserungAngelegt (Rasse, EinheitNummer : in Integer);
-   procedure StraßenBerechnung (YAchse, XAchse : in Integer);
+   procedure StraßenBerechnung (YKoordinate, XKoordinate : in Integer);
 
 end VerbesserungenDatenbank;

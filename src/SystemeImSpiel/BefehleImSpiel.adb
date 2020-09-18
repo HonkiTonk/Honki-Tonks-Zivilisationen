@@ -12,8 +12,12 @@ package body BefehleImSpiel is
             return 1;
             
          when 'e' | '5' => -- Einheit bewegen/Stadt betreten
-            WertEinheit := Einheit;
-            WertStadt := Stadt;
+            WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (Rasse  => GlobaleVariablen.Rasse,
+                                                                                 YAchse => GlobaleVariablen.CursorImSpiel.YAchse,
+                                                                                 XAchse => GlobaleVariablen.CursorImSpiel.XAchse);
+            WertStadt := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (Rasse  => GlobaleVariablen.Rasse,
+                                                                               YAchse => GlobaleVariablen.CursorImSpiel.YAchse,
+                                                                               XAchse => GlobaleVariablen.CursorImSpiel.XAchse);
 
             if WertEinheit /= 0 and WertStadt /= 0 then
                StadtOderEinheit := Auswahl.Auswahl (WelcheAuswahl => 15,
@@ -44,7 +48,9 @@ package body BefehleImSpiel is
                                     WelcherText => 8);
 
          when 'b' => -- Baue Stadt
-            WertEinheit := Einheit;
+            WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (Rasse  => GlobaleVariablen.Rasse,
+                                                                                 YAchse => GlobaleVariablen.CursorImSpiel.YAchse,
+                                                                                 XAchse => GlobaleVariablen.CursorImSpiel.XAchse);
             case WertEinheit is
                when 0 =>
                   null;
@@ -127,7 +133,9 @@ package body BefehleImSpiel is
                   WelcherBefehl := 0;
             end case;
                
-            WertEinheit := Einheit;
+            WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (Rasse  => GlobaleVariablen.Rasse,
+                                                                                 YAchse => GlobaleVariablen.CursorImSpiel.YAchse,
+                                                                                 XAchse => GlobaleVariablen.CursorImSpiel.XAchse);
             case WertEinheit is
                when 0 =>
                   null;
@@ -205,57 +213,6 @@ package body BefehleImSpiel is
             end if;
       end case;
       
-   end EinheitOderStadt;
-   
-   
-   
-   function Stadt return Integer is
-   begin
-
-      StadtSchleife:
-      for S in GlobaleVariablen.StadtGebaut'Range (2) loop
-         
-         if S = 0 then
-            null;
-            
-         elsif GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, S).ID = 0 then
-            return 0;
-            
-         elsif GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, S).YAchse = GlobaleVariablen.CursorImSpiel.YAchse and GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, S).XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
-            return S;
-            
-         else
-            null;
-         end if;
-         
-      end loop StadtSchleife;
-         
-      return 0;
-      
-   end Stadt;
-
-
-
-   function Einheit return Integer is
-   begin
-      
-      EinheitenSchleife:
-      for E in GlobaleVariablen.EinheitenGebaut'Range (2) loop
-         
-         if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, E).ID = 0 then
-            return 0;
-            
-         elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, E).YAchse = GlobaleVariablen.CursorImSpiel.YAchse and GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, E).XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
-            return E;
-            
-         else
-            null;
-         end if;
-         
-      end loop EinheitenSchleife;
-      
-      return 0;
-      
-   end Einheit;
+   end EinheitOderStadt;   
 
 end BefehleImSpiel;

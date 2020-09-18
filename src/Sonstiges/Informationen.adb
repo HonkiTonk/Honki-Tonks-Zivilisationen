@@ -14,10 +14,10 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Prüfung der Umgebung vereinheitlichen. Überall?");
+      Put_Line (Item => "Keine Einheit kann die Stadt betreten.");
       Put_Line (Item => "Ausgabe überall wo möglich einbauen.");
       Put_Line (Item => "Besetzung/Leeren der Felder mit Bürger einbauen.");
-      Put_Line (Item => "Prüfen wo überall die SchleifenPruefungen genutzt werden können");
+      Put_Line (Item => "Produktionswerte der Stadt werden noch auf alle Felder um die Stadt gewertet, anstatt nur auf die erste Reihe.");
       Put_Line (Item => "Forschungssystem.");
       New_Line;
 
@@ -42,6 +42,7 @@ package body Informationen is
       New_Line;
       
       Put_Line (Item => "Kartengenerator:");
+      Put_Line (Item => "Warum geht der KartenGenerator kaputt wenn ich meine Verallgemeinerung aus SchleifenPruefungen einbaue?");
       Put_Line (Item => "Generator für nur Land einbauen.");
       Put_Line (Item => "Generator für Chaos einbauen.");
       Put_Line (Item => "Generator für Oberfläche einbauen!");
@@ -58,6 +59,7 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Karte:");
+      Put_Line (Item => "Bei Karte.AnzeigeKarte was mit der Sichtweite und SchleifenPruefungen basteln?");
       New_Line;
       
       Put_Line (Item => "Bewegungssystem:");

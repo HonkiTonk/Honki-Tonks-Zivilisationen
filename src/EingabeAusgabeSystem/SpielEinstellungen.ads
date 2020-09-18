@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Numerics.Discrete_Random, GlobaleVariablen, ImSpiel, KartenGenerator, Eingabe, Karten, Auswahl, EinheitenDatenbank, Anzeige;
+with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Numerics.Discrete_Random, GlobaleDatentypen, SchleifenPruefungen, GlobaleVariablen, ImSpiel, KartenGenerator, Eingabe, Karten, Auswahl, EinheitenDatenbank, Anzeige;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 package SpielEinstellungen is
@@ -19,6 +19,8 @@ private
    Wert : Integer;
    Rasse : Integer;
    FelderDrumHerum : Integer;
+
+   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
 
    subtype ZufälligeKartengröße is Integer range 1 .. 9;
    subtype ZufälligeKartenart is Integer range 1 .. 3;

@@ -102,6 +102,6 @@ package GlobaleVariablen is
    Wichtiges : WichtigesArray := (others => (0, 0, 0, 0, 1, "0000000000000000000000000"));
    
    type DiplomatieArray is array (EinheitenGebautArray'Range (1), EinheitenGebautArray'Range (1)) of Integer; -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
-   Diplomatie : DiplomatieArray := (others => (others => 0));
+   Diplomatie : DiplomatieArray := (others => (others => 0));  
                                             
 end GlobaleVariablen;

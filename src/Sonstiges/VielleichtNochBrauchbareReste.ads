@@ -820,5 +820,3 @@ private
    procedure LandGenerator (Y, X : in Integer);
 
 end KartenGenerator;
-
-
