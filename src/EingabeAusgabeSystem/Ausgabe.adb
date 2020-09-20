@@ -34,14 +34,5 @@ package body Ausgabe is
       Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (21, WasWurdeGewählt)));
       
    end WelcheAuswahl;
-   
-   
-   
-   procedure Beschäftigung (WelcheBeschäftigung : in Integer) is
-   begin
-      
-      Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (22, WelcheBeschäftigung)));
-      
-   end Beschäftigung;
 
 end Ausgabe;

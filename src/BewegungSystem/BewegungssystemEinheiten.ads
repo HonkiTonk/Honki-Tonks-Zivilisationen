@@ -7,7 +7,6 @@ package BewegungssystemEinheiten is
    
 private
 
-   EinheitOderStadt : Boolean;
    Angreifen : Boolean;
    Gewonnen : Boolean;
 
@@ -15,6 +14,7 @@ private
    
    XÄnderung : Integer;
    YÄnderung : Integer;
+   GegnerischeEinheitOderStadt : Integer; -- 0 = Spieler, 1 = Gegnerische Einheit, 2 = Gegnerische Stadt, 3 = Gegnerische Einheit in gegnerische Stadt 
    
    Wahl : Integer;
    BereitsImKrieg : Integer;

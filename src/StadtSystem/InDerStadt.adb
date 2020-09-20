@@ -18,12 +18,35 @@ package body InDerStadt is
                                                              Richtung => To_Lower (Item => Taste));
 
             when 'e' => -- Einwohner von Feld entfernen/zuweisen
-               if GlobaleVariablen.CursorImSpiel.YAchseStadt < Karten.Stadtkarte'First (1) + 7 and GlobaleVariablen.CursorImSpiel.XAchseStadt > Karten.Stadtkarte'Last (2) - 7 then
+               RelativeCursorPositionY := GlobaleVariablen.CursorImSpiel.YAchseStadt - 4;
+               RelativeCursorPositionX := Karten.Stadtkarte'Last (2) - GlobaleVariablen.CursorImSpiel.XAchseStadt - 3;
+               NutzbarerBereich := StadtWerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => Rasse,
+                                                                                     StadtNummer => StadtNummer);
+               if (RelativeCursorPositionY < -NutzbarerBereich or RelativeCursorPositionY > NutzbarerBereich) and (RelativeCursorPositionX < -NutzbarerBereich or RelativeCursorPositionX > NutzbarerBereich) then
+                  null;
+                  
+               elsif RelativeCursorPositionY = 0 and RelativeCursorPositionX = 0 then
                   null;
                   
                else
-                  null;
+                  case GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) is
+                     when True =>
+                        Put_Line ("1"); delay 1.5;
+                        GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) := False;
+                        GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner - 1;
+                        
+                     when False =>
+                        Put_Line ("2"); delay 1.5;
+                        if GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner < GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner then
+                           GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) := True;
+                           GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner + 1;
+                           
+                        else
+                           null;
+                        end if;
+                  end case;
                end if;
+                  
                
             when 'b' => -- Gebäude/Einheit bauen
                case GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt is
@@ -122,7 +145,7 @@ package body InDerStadt is
               (Stadtart, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse, False, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Name"),
                (0 => (0 => True, others => False), 
-                others => (others => False)));
+                others => (others => False)), 1);
                
             YAchsenSchleife:
             for YÄnderung in -1 .. 1 loop
@@ -205,21 +228,24 @@ package body InDerStadt is
    
 
 
-   procedure StadtProduktionPrüfenBerechnung (Rasse, StadtNummer : in Integer) is
+   procedure StadtProduktionPrüfenBerechnung (Rasse, StadtNummer : in Integer) is -- Legt erst eine Runde später die neuen Werte fest, prüfen warum.
    begin
       
       GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsproduktion := 0;
       GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate := 0;
       GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleGeldgewinnung := 0;
       GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleForschungsrate := 0;
+
+      NutzbarerBereich := StadtWerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => Rasse,
+                                                                            StadtNummer => StadtNummer);
       
       YAchseSchleife:
-      for YÄnderung in GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung'Range (1) loop
+      for YÄnderung in -NutzbarerBereich .. NutzbarerBereich loop
          XAchseSchleife:
-         for XÄnderung in GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung'Range (2) loop
+         for XÄnderung in -NutzbarerBereich .. NutzbarerBereich loop
 
             KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
-                                                              XKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
+                                                              XKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse,
                                                               YÄnderung   => YÄnderung,
                                                               XÄnderung   => XÄnderung);
 
@@ -228,33 +254,39 @@ package body InDerStadt is
                   exit XAchseSchleife;                                 
                                  
                when others =>
-                  GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsproduktion
-                    := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsproduktion
-                    + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund).Nahrungsgewinnung
-                    + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Ressource).Nahrungsgewinnung
-                    + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Nahrungsbonus
-                    + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Nahrungsbonus;
+                  case GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (YÄnderung, XÄnderung) is
+                     when True =>
+                        GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsproduktion
+                          := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsproduktion
+                          + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund).Nahrungsgewinnung
+                          + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Ressource).Nahrungsgewinnung
+                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Nahrungsbonus
+                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Nahrungsbonus;
 
-                  GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate
-                    := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate
-                    + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund).Ressourcengewinnung
-                    + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Ressource).Ressourcengewinnung
-                    + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Ressourcenbonus
-                    + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Ressourcenbonus;
+                        GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate
+                          := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate
+                          + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund).Ressourcengewinnung
+                          + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Ressource).Ressourcengewinnung
+                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Ressourcenbonus
+                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Ressourcenbonus;
 
-                  GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleGeldgewinnung
-                    := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleGeldgewinnung
-                    + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund).Geldgewinnung
-                    + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Ressource).Geldgewinnung
-                    + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Geldbonus
-                    + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Geldbonus;
+                        GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleGeldgewinnung
+                          := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleGeldgewinnung
+                          + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund).Geldgewinnung
+                          + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Ressource).Geldgewinnung
+                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Geldbonus
+                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Geldbonus;
 
-                  GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleForschungsrate
-                    := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleForschungsrate
-                    + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund).Wissensgewinnung
-                    + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Ressource).Wissensgewinnung
-                    + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Wissensbonus
-                    + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Wissensbonus;
+                        GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleForschungsrate
+                          := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleForschungsrate
+                          + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund).Wissensgewinnung
+                          + KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Ressource).Wissensgewinnung
+                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Wissensbonus
+                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Wissensbonus;
+
+                     when others =>
+                        null;
+                  end case;
             end case;
                            
          end loop XAchseSchleife;

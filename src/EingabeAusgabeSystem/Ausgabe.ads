@@ -7,6 +7,5 @@ package Ausgabe is
    procedure Zeug (WelchesZeug : in Integer);
    procedure Fehlermeldungen (WelcheFehlermeldung : in Integer);
    procedure WelcheAuswahl (WasWurdeGewählt : in Integer);
-   procedure Beschäftigung (WelcheBeschäftigung : in Integer);
    
 end Ausgabe;
