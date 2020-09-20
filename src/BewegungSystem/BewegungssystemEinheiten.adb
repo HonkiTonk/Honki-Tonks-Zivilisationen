@@ -70,7 +70,7 @@ package body BewegungssystemEinheiten is
    begin
 
       Gewonnen := True;
-      EinheitOderStadt := True;      
+      GegnerischeEinheitOderStadt := 0;      
       
       KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.CursorImSpiel.YAchse,
                                                         XKoordinate => GlobaleVariablen.CursorImSpiel.XAchse,
@@ -111,32 +111,39 @@ package body BewegungssystemEinheiten is
       end case;
 
       GegnerWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => KartenWert.YWert,
-                                                                                  XAchse => KartenWert.XWert);
+                                                                           XAchse => KartenWert.XWert);
 
       if GegnerWert.Rasse = GlobaleVariablen.Rasse then
          return;
                   
       else
-         EinheitOderStadt := True;
+         GegnerischeEinheitOderStadt := 1;
       end if;
 
       GegnerWert := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => KartenWert.YWert,
-                                                                              XAchse => KartenWert.XWert);
+                                                                         XAchse => KartenWert.XWert);
 
       if GegnerWert.Rasse = GlobaleVariablen.Rasse then
-         return;
+         GegnerischeEinheitOderStadt := 0;
+         GegnerWert.Rasse := 0;
             
       else
-         EinheitOderStadt := False;
+         case GegnerischeEinheitOderStadt is
+            when 0 =>
+               GegnerischeEinheitOderStadt := 2;
+               
+            when others =>
+               GegnerischeEinheitOderStadt := 3;
+         end case;
       end if;
       
       case GegnerWert.Rasse is
-         when -1_000_000 =>
+         when -1_000_000 | 0 =>
             null;
             
          when others =>
             BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasse   => Rasse,
-                                                                     VerteidigendeRasse => GegnerWert.Rasse);
+                                                                      VerteidigendeRasse => GegnerWert.Rasse);
             case BereitsImKrieg is
                when 1 .. 2 =>
                   Wahl := Auswahl.Auswahl (WelcheAuswahl => 11, WelcherText => 18);
@@ -159,7 +166,7 @@ package body BewegungssystemEinheiten is
          
             case Angreifen is
                when True =>
-                  Gewonnen := Kampfsystem.KampfsystemNahkampf (EinheitOderStadt => EinheitOderStadt,
+                  Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerischeEinheitOderStadt => GegnerischeEinheitOderStadt,
                                                                RasseAngriff => Rasse,
                                                                EinheitenPositionAngriff => EinheitNummer,
                                                                RasseVerteidigung => GegnerWert.Rasse,

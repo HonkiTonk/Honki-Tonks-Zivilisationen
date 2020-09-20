@@ -14,11 +14,13 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Keine Einheit kann die Stadt betreten.");
-      Put_Line (Item => "Ausgabe überall wo möglich einbauen.");
-      Put_Line (Item => "Besetzung/Leeren der Felder mit Bürger einbauen.");
-      Put_Line (Item => "Produktionswerte der Stadt werden noch auf alle Felder um die Stadt gewertet, anstatt nur auf die erste Reihe.");
+      Put_Line (Item => "Manuelle Besetzung/Leeren der Felder mit Bürger einbauen.");
       Put_Line (Item => "Forschungssystem.");
+      New_Line;
+
+      Put_Line (Item => "Mal drüber nachdenken:");
+      Put_Line (Item => "Ausgabe überall wo möglich einbauen, Cursoranzeige und CSI Leerung auslagern?");
+      Put_Line (Item => "Umgebungsgröße einer Stadt mit in meinen Stadtrecord?");
       New_Line;
 
       Put_Line (Item => "Grafik:");

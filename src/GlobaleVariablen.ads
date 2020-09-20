@@ -71,20 +71,14 @@ package GlobaleVariablen is
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : UmgebungBewirtschaftungArray;
+      ArbeitendeEinwohner : Integer;
       
    end record;
    
    type StadtGebautArray is array (EinheitenGebautArray'Range, 1 .. 100) of StadtGebautRecord;
-   StadtGebaut : StadtGebautArray := (1 => (1 => (1, 5, 5,    False,    12, 1, 2, 3, 4, 5, 6, 0, 0, 8,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Test"),    (others => (others => False))),
-                                            2 => (2, 1, 1,    True,    1, 0, 0, 0, 10, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Mehr"),    (others => (others => False))),
-                                            3 => (2, 20, 20,    False,    1, 0, 0, 0, 10, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Geteste"),    (others => (others => False))),
-                                            others => ((0, 0, 0,    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False))))),
-
-                                      2 => (1 => (3, 7, 12,    False,    12, 1, 2, 3, 4, 5, 6, 0, 0, 8,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => "TestGegner"),    (others => (others => False))),
-                                            2 => (4, 3, 3,    False,    12, 1, 2, 3, 4, 5, 6, 0, 0, 8,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => "MehrGegner"),    (others => (others => False))),
-                                            others => ((0, 0, 0,    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False))))),
-                                      
-                                      others => (others => ((0, 0, 0,    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False))))));
+   StadtGebaut : StadtGebautArray := (others =>
+                                        (others =>
+                                           ((0, 0, 0,    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False)), 0))));
 
    type WichtigesRecord is record
       
