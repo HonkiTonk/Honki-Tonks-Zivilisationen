@@ -3,10 +3,10 @@ package body StadtWerteFestlegen is
    function StadtumgebungsgrößeFestlegen (Rasse, StadtNummer : in Integer) return Integer is
    begin
       
-      if GlobaleVariablen.Wichtiges (Rasse).Erforscht (5) /= '0' and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner >= 10 then
+      if GlobaleVariablen.Wichtiges (Rasse).Erforscht (2) /= 0 and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner >= 10 then
          return 2;
 
-      elsif GlobaleVariablen.Wichtiges (Rasse).Erforscht (10) /= '0' and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner >= 20 then
+      elsif GlobaleVariablen.Wichtiges (Rasse).Erforscht (4) /= 0 and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner >= 20 then
          return 3;
                   
       else
@@ -35,9 +35,19 @@ package body StadtWerteFestlegen is
                         null;
                   
                      when others =>
-                        GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (YPosition, XPosition) := True;
-                        GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner + 1;
-                        return;
+                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
+                                                                          XKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse,
+                                                                          YÄnderung   => YPosition,
+                                                                          XÄnderung   => XPosition);
+                        case KartenWert.YWert is
+                           when -1_000_000 =>
+                              null;
+                              
+                              when others =>
+                              GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (YPosition, XPosition) := True;
+                              GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner + 1;
+                              return;
+                        end case;
                   end case;
                   
                when False => -- Hier erst prüfen ob mehr Bürger als Bewirtschaftungsfelder vorhanden sind und dann dementsprechend erst diese entfernen.

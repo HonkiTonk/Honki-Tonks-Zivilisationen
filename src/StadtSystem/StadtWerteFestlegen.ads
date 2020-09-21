@@ -1,4 +1,4 @@
-with GlobaleVariablen;
+with GlobaleVariablen, SchleifenPruefungen, GlobaleDatentypen;
 
 package StadtWerteFestlegen is
 
@@ -9,5 +9,6 @@ package StadtWerteFestlegen is
 private
    
    NutzbarerBereich : Integer;
+   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
 
 end StadtWerteFestlegen;

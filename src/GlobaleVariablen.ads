@@ -80,20 +80,23 @@ package GlobaleVariablen is
                                         (others =>
                                            ((0, 0, 0,    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False)), 0))));
 
+   type ErforschtArray is array (1 .. 6) of Integer;
+
    type WichtigesRecord is record
       
       AktuelleGeldmenge : Integer;
       GeldZugewinnProRunde : Integer;
       AktuelleForschungsrate : Integer;
       AktuelleForschungsmenge : Integer;
+      VerbleibendeForschungszeit : Integer;
       AktuellesForschungsprojekt : Integer;
 
-      Erforscht : Wide_Wide_String (1 .. 25);
+      Erforscht : ErforschtArray;
       
    end record;
 
    type WichtigesArray is array (EinheitenGebautArray'Range (1)) of WichtigesRecord;
-   Wichtiges : WichtigesArray := (others => (0, 0, 0, 0, 1, "0000000000000000000000000"));
+   Wichtiges : WichtigesArray := (others => (0, 0, 0, 0, 10_000, 0, (others => 0)));
    
    type DiplomatieArray is array (EinheitenGebautArray'Range (1), EinheitenGebautArray'Range (1)) of Integer; -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
    Diplomatie : DiplomatieArray := (others => (others => 0));  

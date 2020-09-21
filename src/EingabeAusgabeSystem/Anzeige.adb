@@ -156,11 +156,90 @@ package body Anzeige is
 
 
 
+   procedure AnzeigeForschung (AktuelleAuswahl : in Integer) is
+   begin
+      
+      LängsterText := 1;
+      
+      TextlängePrüfenSchleife:
+      for A in Einlesen.TexteEinlesen'Range (2) loop
+         if To_Wide_Wide_String (Source => TextForschung (A).Text) = "|" then
+            exit TextlängePrüfenSchleife;
+            
+         elsif To_Wide_Wide_String (Source => TextForschung (A).Text)'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => TextForschung (A).Text)'Length;
+            
+         else
+            null;
+         end if;
+      end loop TextlängePrüfenSchleife;
+      
+      AnzeigeSchleife:
+      for A in Einlesen.TexteEinlesen'Range (2) loop
+
+         if AktuelleAuswahl = A then
+            for B in 1 .. LängsterText loop
+
+               if To_Wide_Wide_String (Source => TextForschung (A).Text) = "|" then
+                  exit AnzeigeSchleife;
+                  
+               elsif B = 1 then
+                  Put (Item => "╔");
+                  Put (Item => "═");
+
+               elsif B = LängsterText then                  
+                  Put (Item => "═");
+                  Put_Line (Item => "╗");
+                  Put (Item => "║");
+                  Put (Item => To_Wide_Wide_String (Source => TextForschung (A).Text));
+
+                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => TextForschung (A).Text)'Length loop
+                        
+                     Put (" ");
+                        
+                  end loop;
+                  Put_Line (Item => "║");
+                  Put (Item => "╚");
+
+               else
+                  Put (Item => "═");
+               end if;
+               
+            end loop;
+
+            for C in 1 .. LängsterText loop
+               
+               if C = LängsterText then
+                  Put (Item => "═");
+                  Put_Line (Item => "╝");
+               
+               else
+                  Put (Item => "═");
+               end if;
+            
+            end loop;
+         
+         else
+            if To_Wide_Wide_String (Source => TextForschung (A).Text) = "|" then
+               exit AnzeigeSchleife; 
+            
+            else
+               Put_Line (Item => To_Wide_Wide_String (Source => TextForschung (A).Text));
+            end if;
+         end if;
+         
+      end loop AnzeigeSchleife;
+      
+   end AnzeigeForschung;
+
+
+
    procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Integer) is
    begin
       
       Text := (others => ('|'));
       N := 1;
+      New_Line;
 
       for A in To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, WelcheZeile))'Range loop
          
@@ -192,8 +271,9 @@ package body Anzeige is
          end if;
          
       end loop;
+      New_Line;
 
-      Get_Immediate (Item => Taste);
+      -- Get_Immediate (Item => Taste);
       
    end AnzeigeLangerText;
 

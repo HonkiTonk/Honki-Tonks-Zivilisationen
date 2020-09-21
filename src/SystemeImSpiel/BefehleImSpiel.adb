@@ -69,7 +69,21 @@ package body BefehleImSpiel is
             return 1;
             
          when 't' => -- Technologie/Forschung
-            
+            case GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuellesForschungsprojekt is
+               when 0 =>
+                  ForschungsDatenbank.Forschung (Rasse => GlobaleVariablen.Rasse);
+                     
+               when others =>
+                  WahlForschung := Auswahl.Auswahl (WelcheAuswahl => 17,
+                                                    WelcherText => 18);
+                  case WahlForschung is
+                     when -3 =>
+                        ForschungsDatenbank.Forschung (Rasse => GlobaleVariablen.Rasse);
+                     
+                     when others =>
+                        null;
+                  end case;
+            end case;
             
             return 1;
             
@@ -94,7 +108,7 @@ package body BefehleImSpiel is
             return 1;
             
          when 'l' | 'm' | 'f' | 'u' | 'z' | 'p' | 'h' | 'v' | Space | DEL | 'j' => -- l/1 = Straße, m/2 = Mine, f/3 = Farm, u/4 = Festung, z/5 = Wald aufforsten, p/6 = /Roden-Trockenlegen,
-                                                   -- h/7 = Heilen, v/8 = Verschanzen Space/9 = Runde aussetzen, DEL/10 = Einheit auflösen, j/11 = Plündern
+                                                                                   -- h/7 = Heilen, v/8 = Verschanzen Space/9 = Runde aussetzen, DEL/10 = Einheit auflösen, j/11 = Plündern
             case To_Lower (Taste) is
                when 'l' =>
                   WelcherBefehl := 1;
