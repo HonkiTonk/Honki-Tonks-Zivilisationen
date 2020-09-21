@@ -16,6 +16,7 @@ private
    WertStadt : Integer;
    WelcherBefehl : Integer;
    StadtOderEinheit : Integer;
+   WahlForschung : Integer;
 
    procedure EinheitOderStadt (Auswahl, StadtNummer, EinheitNummer : in Integer);
    

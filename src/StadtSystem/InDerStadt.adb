@@ -14,37 +14,51 @@ package body InDerStadt is
          
          case To_Lower (Item => Taste) is
             when 'w' | 's' | 'a' | 'd' | '1' | '2' | '3' | '4' | '6' | '7' | '8' | '9' =>
-               BewegungssystemCursor.BewegungCursorRichtung (Karte => False,
+               BewegungssystemCursor.BewegungCursorRichtung (Karte    => False,
                                                              Richtung => To_Lower (Item => Taste));
 
             when 'e' => -- Einwohner von Feld entfernen/zuweisen
-               RelativeCursorPositionY := GlobaleVariablen.CursorImSpiel.YAchseStadt - 4;
-               RelativeCursorPositionX := Karten.Stadtkarte'Last (2) - GlobaleVariablen.CursorImSpiel.XAchseStadt - 3;
-               NutzbarerBereich := StadtWerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => Rasse,
-                                                                                     StadtNummer => StadtNummer);
-               if (RelativeCursorPositionY < -NutzbarerBereich or RelativeCursorPositionY > NutzbarerBereich) and (RelativeCursorPositionX < -NutzbarerBereich or RelativeCursorPositionX > NutzbarerBereich) then
-                  null;
+               if GlobaleVariablen.CursorImSpiel.YAchseStadt < Karten.Stadtkarte'First (1) + 7 and GlobaleVariablen.CursorImSpiel.XAchseStadt > Karten.Stadtkarte'Last (2) - 7 then
+                  RelativeCursorPositionY := GlobaleVariablen.CursorImSpiel.YAchseStadt - 4;
+                  RelativeCursorPositionX := Karten.Stadtkarte'First (2) + GlobaleVariablen.CursorImSpiel.XAchseStadt - 18;
+                  NutzbarerBereich := StadtWerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => Rasse,
+                                                                                        StadtNummer => StadtNummer);
+                  if RelativeCursorPositionY < -NutzbarerBereich or RelativeCursorPositionY > NutzbarerBereich or RelativeCursorPositionX < -NutzbarerBereich or RelativeCursorPositionX > NutzbarerBereich then
+                     null;
                   
-               elsif RelativeCursorPositionY = 0 and RelativeCursorPositionX = 0 then
-                  null;
+                  elsif RelativeCursorPositionY = 0 and RelativeCursorPositionX = 0 then
+                     null;
                   
-               else
-                  case GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) is
-                     when True =>
-                        Put_Line ("1"); delay 1.5;
-                        GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) := False;
-                        GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner - 1;
+                  else
+                     case GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) is
+                        when True =>
+                           GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) := False;
+                           GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner - 1;
                         
-                     when False =>
-                        Put_Line ("2"); delay 1.5;
-                        if GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner < GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner then
-                           GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) := True;
-                           GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner + 1;
+                        when False =>
+                           KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
+                                                                             XKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse,
+                                                                             YÄnderung  => RelativeCursorPositionY,
+                                                                             XÄnderung  => RelativeCursorPositionX);
                            
-                        else
-                           null;
-                        end if;
-                  end case;
+                           case KartenWert.YWert is
+                              when -1_000_000 =>
+                                 null;
+                                 
+                              when others =>
+                                 if GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner < GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner then
+                                    GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) := True;
+                                    GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner + 1;
+                           
+                                 else
+                                    null;
+                                 end if;
+                           end case;
+                     end case;
+                  end if;
+
+               else
+                  null;
                end if;
                   
                
@@ -68,7 +82,31 @@ package body InDerStadt is
                end case;
                
             when 'v' => -- Gebäude verkaufen
-               null;
+               if GlobaleVariablen.CursorImSpiel.YAchseStadt = 1 and GlobaleVariablen.CursorImSpiel.XAchseStadt < 13 then
+                  case GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (GlobaleVariablen.CursorImSpiel.XAchseStadt) is
+                     when '0' =>
+                        null;
+                        
+                     when others =>
+                        GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge
+                          := GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge + GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.CursorImSpiel.XAchseStadt).PreisGeld / 2;
+                        GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (GlobaleVariablen.CursorImSpiel.XAchseStadt) := '0';
+                  end case;
+            
+               elsif GlobaleVariablen.CursorImSpiel.YAchseStadt = 2 and GlobaleVariablen.CursorImSpiel.XAchseStadt < 13 then
+                  case GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (GlobaleVariablen.CursorImSpiel.XAchseStadt + 12) is
+                     when '0' =>
+                        null;
+                        
+                     when others =>
+                        GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge
+                          := GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge + GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.CursorImSpiel.XAchseStadt + 12).PreisGeld / 2;
+                        GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (GlobaleVariablen.CursorImSpiel.XAchseStadt + 12) := '0';
+                  end case;
+                  
+               else
+                  null;
+               end if;
 
             when 'q' =>
                return;
@@ -177,6 +215,7 @@ package body InDerStadt is
             
             StadtProduktionPrüfen (Rasse       => Rasse,
                                    StadtNummer => A);
+            ForschungsDatenbank.ForschungZeit (Rasse => Rasse);
 
             EinheitenDatenbank.EinheitEntfernen (Rasse         => Rasse,
                                                  EinheitNummer => EinheitNummer);
@@ -222,6 +261,7 @@ package body InDerStadt is
          when others => -- Überprüfung beim Bauen einer Stadt
             StadtProduktionPrüfenBerechnung (Rasse       => Rasse,
                                              StadtNummer => StadtNummer);
+            Wachstum.WachstumBeiStadtGründung (Rasse => Rasse);
       end case;
       
    end StadtProduktionPrüfen;

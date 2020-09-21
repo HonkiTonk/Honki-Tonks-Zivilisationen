@@ -342,15 +342,16 @@ package body KarteStadt is
          Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Korruption'Wide_Wide_Image);
                         
          Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 12)));
-         if GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt = 0 then
-            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 28)));
+         case GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt is
+            when 0 =>
+               Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 28)));
             
-         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt < 10_000 then -- Gebäude
-            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (14, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt - 1_000)));
+            when 1 .. 9999 => -- Gebäude
+               Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (14, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt - 1_000)));
 
-         else -- Einheiten
-            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (10, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt - 10_000)));
-         end if;
+            when others => -- Einheiten
+               Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (10, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt - 10_000)));
+         end case;
                                               
          Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 13)));   
          Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit'Wide_Wide_Image);

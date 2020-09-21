@@ -4,6 +4,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 package Wachstum is
    
    procedure Wachstum;
+   procedure WachstumBeiStadtGründung (Rasse : in Integer);
 
 private
    

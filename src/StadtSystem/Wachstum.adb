@@ -52,6 +52,30 @@ package body Wachstum is
 
 
 
+   procedure WachstumBeiStadtGründung (Rasse : in Integer) is
+   begin
+      
+      StadtSchleife:
+      for StadtNummer in GlobaleVariablen.StadtGebaut'Range (2) loop
+            
+         case StadtNummer is
+            when 1 =>
+               GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsrate := 0;
+               GlobaleVariablen.Wichtiges (Rasse).GeldZugewinnProRunde := 0;
+                  
+            when others =>
+               null;
+         end case;
+
+         GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsrate := GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsrate + GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleForschungsrate;
+         GlobaleVariablen.Wichtiges (Rasse).GeldZugewinnProRunde := GlobaleVariablen.Wichtiges (Rasse).GeldZugewinnProRunde + GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleGeldgewinnung;                      
+            
+      end loop StadtSchleife;
+      
+   end WachstumBeiStadtGründung;
+
+
+
    procedure WachstumEinwohner (Rasse, StadtNummer : in Integer) is
    begin      
                      

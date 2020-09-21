@@ -20,7 +20,6 @@ package body Bauen is
                GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt := WasGebautWerdenSoll;
                GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleRessourcen := 0;
                Bauzeit (Rasse => Rasse);
-
                return;
                
             when others =>
@@ -81,7 +80,7 @@ package body Bauen is
             null;
 
          elsif GebaeudeDatenbank.GebäudeListe (G).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (G).Anforderungen) = '0' then 
+            if GlobaleVariablen.Wichtiges (Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (G).Anforderungen) = 0 then 
                null;
 
             else
@@ -111,7 +110,7 @@ package body Bauen is
             null;
 
          elsif EinheitenDatenbank.EinheitenListe (E).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (E).Anforderungen) = '0' then
+            if GlobaleVariablen.Wichtiges (Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (E).Anforderungen) = 0 then
                null;
                
             else
@@ -139,47 +138,43 @@ package body Bauen is
          Anzeige.TextBauen (Ende).Text := Einlesen.TexteEinlesen (19, 27);
       end if;
 
+      AuswahlSchleife:
       loop
 
-         AuswahlSchleife:
-         loop
-
-            Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (21, 13)));  
-            Anzeige.AnzeigeStadt (AktuelleAuswahl => AktuelleAuswahl);         
+         Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (21, 13)));  
+         Anzeige.AnzeigeStadt (AktuelleAuswahl => AktuelleAuswahl);         
          
-            Get_Immediate (Item => Taste);
+         Get_Immediate (Item => Taste);
          
-            case To_Lower (Item => Taste) is               
-               when 'w' | '8' => 
-                  if AktuelleAuswahl = Anzeige.TextBauen'First then
-                     AktuelleAuswahl := Ende;
-                  else
-                     AktuelleAuswahl := AktuelleAuswahl - 1;
-                  end if;
+         case To_Lower (Item => Taste) is               
+            when 'w' | '8' => 
+               if AktuelleAuswahl = Anzeige.TextBauen'First then
+                  AktuelleAuswahl := Ende;
+               else
+                  AktuelleAuswahl := AktuelleAuswahl - 1;
+               end if;
 
-               when 's' | '2' =>
-                  if AktuelleAuswahl = Ende then
-                     AktuelleAuswahl := Anzeige.TextBauen'First;
-                  else
-                     AktuelleAuswahl := AktuelleAuswahl + 1;
-                  end if;
+            when 's' | '2' =>
+               if AktuelleAuswahl = Ende then
+                  AktuelleAuswahl := Anzeige.TextBauen'First;
+               else
+                  AktuelleAuswahl := AktuelleAuswahl + 1;
+               end if;
                               
-               when 'e' | '5' =>
-                  Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-                  return Anzeige.TextBauen (AktuelleAuswahl).Nummer;
+            when 'e' | '5' =>
+               Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+               return Anzeige.TextBauen (AktuelleAuswahl).Nummer;
 
-               when 'q' =>
-                  return 0;
+            when 'q' =>
+               return 0;
                      
-               when others =>
-                  null;                    
-            end case;
+            when others =>
+               null;                    
+         end case;
 
-            Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
+         Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
          
-         end loop AuswahlSchleife;
-
-      end loop;
+      end loop AuswahlSchleife;
       
    end AuswahlStadt;
 

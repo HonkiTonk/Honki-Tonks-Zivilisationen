@@ -14,11 +14,20 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Manuelle Besetzung/Leeren der Felder mit Bürger einbauen.");
-      Put_Line (Item => "Forschungssystem.");
+      Put_Line (Item => "Kampfsystem einbauen.");
+      Put_Line (Item => "Gebäuden und Forschungen eine Bedeutung geben.");
+      Put_Line (Item => "Grundlegende Systeme (z. B. Anzeige von Texten) verbessern.");
+      Put_Line (Item => "Kartengenerator mal wieder überarbeiten.");
+      Put_Line (Item => "Speichern/Laden einbauen?");
+      New_Line;
+
+      Put_Line (Item => "Zeug:");
+      Put_Line (Item => "Legt erst eine Runde später die neuen Werte fest, prüfen warum (siehe auch Wachstum.WachstumBeiStadtGründung).");
       New_Line;
 
       Put_Line (Item => "Mal drüber nachdenken:");
+      Put_Line (Item => "Die Anzeigen für Bauen und Forschen zusammenfassen und generell das Anzeigesystem verbessern.");
+      Put_Line (Item => "FarbenStadt rauswerfen, nach Sichtbarkeit verschieben? Nutzen um die Gebäudefarben festzulegen?");
       Put_Line (Item => "Ausgabe überall wo möglich einbauen, Cursoranzeige und CSI Leerung auslagern?");
       Put_Line (Item => "Umgebungsgröße einer Stadt mit in meinen Stadtrecord?");
       New_Line;
@@ -70,8 +79,7 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Einheiten:");
-      Put_Line (Item => "Eigenschaften/Funktionen einbauen!");
-      Put_Line (Item => "Die Sortierfunktion Stichpunktartig prüfen ob normal oder reverse geloopt werden soll?");
+      Put_Line (Item => "Eigenschaften/Funktionen erweitern.");
       New_Line;
       
       Put_Line (Item => "Einheiten/VerbesserungenDatenbank:");
@@ -79,11 +87,11 @@ package body Informationen is
       New_Line;
       
       Put_Line (Item => "Stadtsystem:");
-      Put_Line (Item => "Einbauen.");
+      Put_Line (Item => "Erweitern.");
       New_Line;
       
       Put_Line (Item => "Forschungssystem:");
-      Put_Line (Item => "Einbauen.");
+      Put_Line (Item => "Erweitern.");
       Put_Line (Item => "Für jede Rasse einen eigenen Forschungsbaum?");
       New_Line;
       
@@ -94,7 +102,6 @@ package body Informationen is
       
       Put_Line (Item => "Diverses:");
       Put_Line (Item => "Bei Hügel mit Grund werden die Werte für den Grund genommen und die Werte für Hügel ignoriert. Das nochmal überdenken.");
-      Put_Line (Item => "Bei Sichtbarkeit/Karte/Einheitenbewegung/Eventuell Weiteren die Loops für die XAchse zusammenführen? Ist das überhaupt möglich ohne eine Schalterchaos einzubauen?");
       Put_Line (Item => "Generatorzuweisung nochmal schauen was die richtigen Standardzuweisungen sind.");
       New_Line;
       
@@ -107,7 +114,6 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "AllesAufAnfangSetzen:");
-      Put_Line (Item => "Entsprechende Aktualisierung nicht vergessen.");
       Put_Line (Item => "Die einzelnen Bereiche in Tasks einteilen?");
       New_Line;
       

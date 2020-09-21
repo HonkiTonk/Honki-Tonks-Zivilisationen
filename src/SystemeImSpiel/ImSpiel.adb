@@ -51,7 +51,7 @@ package body ImSpiel is
                Wachstum.Wachstum;
                Bauen.Bauzeit (Rasse => GlobaleVariablen.Rasse);
                InDerStadt.StadtProduktionPrüfen (0, 0);
-               ForschungsDatenbank.Forschung;
+               ForschungsDatenbank.ForschungFortschritt;
                GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
                Sichtbarkeit.Sichtbarkeitsprüfung;
                Karte.AnzeigeKarte;
