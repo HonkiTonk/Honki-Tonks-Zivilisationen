@@ -41,8 +41,12 @@ package GlobaleVariablen is
    end record;
 
    type EinheitenGebautArray is array (1 .. 18, 1 .. 1000) of EinheitenGebautRecord;
-   EinheitenGebaut : EinheitenGebautArray := (1 => (3 => (0, 0,    1, 7, 12,    1, 1.0, 1, 1,    0, 0),
-                                              others => (0, 0,     0, 0, 0,     0, 0.0, 0, 0,    0, 0)),
+   EinheitenGebaut : EinheitenGebautArray := (2 => (1 => (0, 0,    2, 5, 5,    5, 1.0, 0, 0,    0, 0),
+                                                    2 => (0, 0,    2, 10, 10,    5, 1.0, 0, 0,    0, 0),
+                                                    3 => (0, 0,    2, 2, 2,    5, 1.0, 0, 0,    0, 0),
+                                                    4 => (0, 0,    2, 4, 4,    5, 1.0, 0, 0,    0, 0),
+                                                    5 => (0, 0,    2, 15, 15,    5, 1.0, 0, 0,    0, 0),
+                                                    others => (0, 0,     0, 0, 0,     0, 0.0, 0, 0,    0, 0)),
                                               
                                               others => (others => (0, 0,    0, 0, 0,    0, 0.0, 0, 0,    0, 0)));
 
@@ -99,6 +103,6 @@ package GlobaleVariablen is
    Wichtiges : WichtigesArray := (others => (0, 0, 0, 0, 10_000, 0, (others => 0)));
    
    type DiplomatieArray is array (EinheitenGebautArray'Range (1), EinheitenGebautArray'Range (1)) of Integer; -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
-   Diplomatie : DiplomatieArray := (others => (others => 0));  
+   Diplomatie : DiplomatieArray := (others => (others => 1));  
                                             
 end GlobaleVariablen;

@@ -14,7 +14,6 @@ private
    
    XÄnderung : Integer;
    YÄnderung : Integer;
-   GegnerischeEinheitOderStadt : Integer; -- 0 = Spieler, 1 = Gegnerische Einheit, 2 = Gegnerische Stadt, 3 = Gegnerische Einheit in gegnerische Stadt 
    
    Wahl : Integer;
    BereitsImKrieg : Integer;
@@ -22,7 +21,8 @@ private
    Stadtnummer : Integer;
 
    KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
-   GegnerWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
+   GegnerEinheitWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
+   GegnerStadtWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    
    procedure BewegungEinheitenBerechnung (Rasse, EinheitNummer, YÄnderung, XÄnderung : in Integer);
 

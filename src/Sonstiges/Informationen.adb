@@ -76,6 +76,7 @@ package body Informationen is
       Put_Line (Item => "Bewegungssystem:");
       Put_Line (Item => "Nochmal überarbeiten damit es nicht mehr so ein Wust ist.");
       Put_Line (Item => "Befehl und System für automatisches bewegen einbauen.");
+      Put_Line (Item => "Tauschen für eigenen Einheiten einbauen, wenn beide genügend Bewegungspunkte haben?");
       New_Line;
 
       Put_Line (Item => "Einheiten:");
@@ -98,6 +99,7 @@ package body Informationen is
       Put_Line (Item => "Kampfsystem:");
       Put_Line (Item => "Einbauen.");
       Put_Line (Item => "Zwischen Nahkampf und Fernkampf unterscheiden.");
+      Put_Line (Item => "Angriff zwischen Boden/See/Lufteinheiten unterscheiden.");
       New_Line;
       
       Put_Line (Item => "Diverses:");
