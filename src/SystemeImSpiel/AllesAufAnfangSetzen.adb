@@ -11,7 +11,7 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.Diplomatie := (others => (others => 0));
       GlobaleVariablen.RundenAnzahl := 1;
 
-      Karten.Karten := (others => (others => (0, False, False, 0, 0, 0, 0)));
+      Karten.Karten := (others => (others => (0, False, False, 0, 0, 0, 0, 0)));
       Karten.Stadtkarte := (others => (others => (0)));
       
    end AllesAufAnfangSetzen;

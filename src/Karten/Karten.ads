@@ -10,11 +10,13 @@ package Karten is
       VerbesserungGebiet : Integer;
       Ressource : Integer;
 
+      GeneratorKarte : Integer;
+
    end record;
 
    type KartenArray is array (1 .. 1000, 1 .. 1000) of KartenRecord;
    -- Winzig = 20x20, Klein = 40x40, Mittel = 80x80, Rechteck = 120x80, Großes Rechteck = 120x160, Groß = 160x160, Riesig = 240x240, Gigantisch = 320x320, Absurd = 1000x1000
-   Karten : KartenArray := (others => (others => (0, False, True, 0, 0, 0, 0))); -- Sichtbarkeit später wieder auf False setzen, steht zum testen auf True
+   Karten : KartenArray := (others => (others => (0, False, True, 0, 0, 0, 0, 0))); -- Sichtbarkeit später wieder auf False setzen, steht zum testen auf True
 
    type StadtkarteArray is array (1 .. 20, 1 .. 20) of Integer;
    Stadtkarte : StadtkarteArray := (others => (others => (0)));

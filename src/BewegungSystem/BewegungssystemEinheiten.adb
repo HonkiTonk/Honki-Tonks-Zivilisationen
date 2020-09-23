@@ -55,6 +55,9 @@ package body BewegungssystemEinheiten is
          
          if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte = 0.0 then
             return;
+
+         elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID = 0 then
+            return;
                
          else
             Karte.AnzeigeKarte;
@@ -69,8 +72,7 @@ package body BewegungssystemEinheiten is
    procedure BewegungEinheitenBerechnung (Rasse, EinheitNummer, YÄnderung, XÄnderung : in Integer) is
    begin
 
-      Gewonnen := True;
-      GegnerischeEinheitOderStadt := 0;      
+      Gewonnen := True;     
       
       KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.CursorImSpiel.YAchse,
                                                         XKoordinate => GlobaleVariablen.CursorImSpiel.XAchse,
@@ -110,48 +112,42 @@ package body BewegungssystemEinheiten is
             end if;
       end case;
 
-      GegnerWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => KartenWert.YWert,
-                                                                           XAchse => KartenWert.XWert);
+      GegnerEinheitWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => KartenWert.YWert,
+                                                                                  XAchse => KartenWert.XWert);
 
-      if GegnerWert.Rasse = GlobaleVariablen.Rasse then
+      if GegnerEinheitWert.Rasse = GlobaleVariablen.Rasse then
          return;
                   
       else
-         GegnerischeEinheitOderStadt := 1;
+         null;
       end if;
 
-      GegnerWert := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => KartenWert.YWert,
-                                                                         XAchse => KartenWert.XWert);
+      GegnerStadtWert := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => KartenWert.YWert,
+                                                                              XAchse => KartenWert.XWert);
 
-      if GegnerWert.Rasse = GlobaleVariablen.Rasse then
-         GegnerischeEinheitOderStadt := 0;
-         GegnerWert.Rasse := 0;
+      if GegnerStadtWert.Rasse = GlobaleVariablen.Rasse then
+         GegnerStadtWert.Rasse := 0;
             
       else
-         case GegnerischeEinheitOderStadt is
-            when 0 =>
-               GegnerischeEinheitOderStadt := 2;
-               
-            when others =>
-               GegnerischeEinheitOderStadt := 3;
-         end case;
-      end if;
+         null;
+      end if;      
       
-      case GegnerWert.Rasse is
+      case GegnerEinheitWert.Rasse is
          when -1_000_000 | 0 =>
             null;
             
          when others =>
             BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasse   => Rasse,
-                                                                      VerteidigendeRasse => GegnerWert.Rasse);
+                                                                     VerteidigendeRasse => GegnerEinheitWert.Rasse);
             case BereitsImKrieg is
                when 1 .. 2 =>
-                  Wahl := Auswahl.Auswahl (WelcheAuswahl => 11, WelcherText => 18);
+                  Wahl := Auswahl.Auswahl (WelcheAuswahl => 11,
+                                           WelcherText   => 18);
                   case Wahl is
                      when -3 =>
                         Angreifen := True;
-                        Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasse => Rasse,
-                                                              VerteidigendeRasse => GegnerWert.Rasse);
+                        Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasse   => Rasse,
+                                                              VerteidigendeRasse => GegnerEinheitWert.Rasse);
                      
                      when others =>
                         Angreifen := False;
@@ -166,11 +162,11 @@ package body BewegungssystemEinheiten is
          
             case Angreifen is
                when True =>
-                  Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerischeEinheitOderStadt => GegnerischeEinheitOderStadt,
-                                                               RasseAngriff => Rasse,
-                                                               EinheitenPositionAngriff => EinheitNummer,
-                                                               RasseVerteidigung => GegnerWert.Rasse,
-                                                               EinheitenPositionVerteidigung => GegnerWert.Platznummer);
+                  Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerStadtnummer             => GegnerStadtWert.Platznummer,
+                                                               RasseAngriff                  => Rasse,
+                                                               EinheitenPositionAngriff      => EinheitNummer,
+                                                               RasseVerteidigung             => GegnerEinheitWert.Rasse,
+                                                               EinheitenPositionVerteidigung => GegnerEinheitWert.Platznummer);
                
                when False =>
                   return;
