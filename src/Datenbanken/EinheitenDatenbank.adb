@@ -66,6 +66,7 @@ package body EinheitenDatenbank is
    begin
 
       Position := (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse);
+      EinheitenPosition := 0;
             
       EinheitenSchleife:
       for EinheitenListenplatz in GlobaleVariablen.EinheitenGebaut'Range (2) loop
@@ -80,52 +81,80 @@ package body EinheitenDatenbank is
             return;
             
          else
-            EinheitenPosition := EinheitenListenplatz;
+            null;
          end if;
             
       end loop EinheitenSchleife;
-      
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).ID := ID;
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).YAchse := Position.YAchse;
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).XAchse := Position.XAchse;
-      LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse         => Rasse,
-                                                   EinheitNummer => EinheitenPosition);
-      GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit := 0;
-      GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleRessourcen := 0;
-      GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt := 0;
+
+      case EinheitenPosition is
+         when 0 =>
+            return;
+            
+         when others =>
+            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).ID := ID;
+            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).YAchse := Position.YAchse;
+            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).XAchse := Position.XAchse;
+            LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse         => Rasse,
+                                                         EinheitNummer => EinheitenPosition);
+            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit := 0;
+            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleRessourcen := 0;
+            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt := 0;
+      end case;
             
    end EinheitErzeugen;
 
 
 
-   procedure EinheitEntfernen (Rasse, EinheitNummer : in Integer) is
+   procedure EinheitEntfernen (Sortieren : in Boolean; Rasse, EinheitNummer : in Integer) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer) := (0, 0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0);
-
-      case EinheitNummer is
-         when GlobaleVariablen.EinheitenGebaut'Last (2) =>
-            return;
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer) := (0, 0, 0, 0, 0, 0, 0.00, 0, 0, 0, 0);
+      
+      case Sortieren is
+         when True =>
+            EinheitGebautSortieren (Rasse => Rasse);
             
-         when others =>
-            for A in reverse GlobaleVariablen.EinheitenGebaut'Range (2) loop
-         
-               if A = EinheitNummer then
-                  return;
-            
-               elsif GlobaleVariablen.EinheitenGebaut (Rasse, A).ID /= 0 then
-                  GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer) := GlobaleVariablen.EinheitenGebaut (Rasse, A);
-                  GlobaleVariablen.EinheitenGebaut (Rasse, A) := (0, 0, 0, 0, 0, 0, 0.0, 0, 0, 0, 0);
-                  return;
-            
-               else
-                  null;
-               end if;
-         
-            end loop;
+         when False =>
+            null;
       end case;
       
    end EinheitEntfernen;
+
+
+
+   procedure EinheitGebautSortieren (Rasse : in Integer) is
+   begin
+
+      SortierNummer := 0;
+
+      SortierSchleife:
+      for A in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+            
+         if GlobaleVariablen.EinheitenGebaut (Rasse, A).ID /= 0 then
+            null;
+            
+         else
+            SortierNummer := A;
+            exit SortierSchleife;
+         end if;
+         
+      end loop SortierSchleife;
+
+      Schleife:
+      for B in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+            
+         if GlobaleVariablen.EinheitenGebaut (Rasse, B).ID /= 0 then
+            null;
+
+            --elsif 
+            
+         else
+            null;
+         end if;
+         
+      end loop Schleife;
+      
+   end EinheitGebautSortieren;
 
    
 

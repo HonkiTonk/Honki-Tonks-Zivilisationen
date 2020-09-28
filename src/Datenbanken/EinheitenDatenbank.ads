@@ -47,7 +47,8 @@ package EinheitenDatenbank is
    procedure LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, EinheitNummer : in Integer);
    procedure HeilungBewegungspunkteFürNeueRundeSetzen;
    procedure EinheitErzeugen (Rasse, StadtNummer, ID : in Integer);
-   procedure EinheitEntfernen (Rasse, EinheitNummer : in Integer);
+   procedure EinheitEntfernen (Sortieren : in Boolean; Rasse, EinheitNummer : in Integer);
+   procedure EinheitGebautSortieren (Rasse : in Integer);
    procedure Beschäftigung (Arbeit : in Integer);
 
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Integer) return Boolean;
@@ -56,6 +57,7 @@ private
    
    Wahl : Integer;
    EinheitenPosition : Integer;
+   SortierNummer : Integer;
    
    Heilungsrate : constant Integer := 10;
 
