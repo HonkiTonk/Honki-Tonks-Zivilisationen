@@ -40,6 +40,9 @@ package body Kampfsystem is
    function Kampf (RasseAngriff, EinheitenPositionAngriff, RasseVerteidigung, EinheitenPositionVerteidigung : in Integer; VerteidigungBonus : in Float) return Boolean is
    begin
 
+      AngriffAngriffWert := Float (EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (RasseAngriff, EinheitenPositionAngriff).ID).Angriff);
+      AngriffVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Angriff);
+
       VerteidigungVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Verteidigung)
         + Float (KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).YAchse,
                                                              GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).XAchse).Grund).Verteidigungsbonus)
@@ -61,22 +64,40 @@ package body Kampfsystem is
                  GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).XAchse).Grund).Verteidigungsbonus)
         + Float (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).YAchse,
                  GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).XAchse).VerbesserungGebiet).Verteidigungsbonus);
+
+      Reset (Gewählt);
       
       KampfSchleife:
       loop
 
-         -- if 
-         
-         if GlobaleVariablen.EinheitenGebaut (RasseAngriff, EinheitenPositionAngriff).AktuelleLebenspunkte <= 0 then
-            EinheitenDatenbank.EinheitEntfernen (Rasse         => RasseAngriff,
-                                                 EinheitNummer => EinheitenPositionAngriff);
+         KampfBerechnung (RasseVerteidigung         => RasseVerteidigung,
+                          EinheitNummerVerteidigung => EinheitenPositionVerteidigung,
+                          AngriffWert               => AngriffAngriffWert,
+                          VerteidigungWert          => VerteidigungVerteidigungWert);
+
+         if GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AktuelleLebenspunkte <= 0 then
+            EinheitenDatenbank.EinheitEntfernen (Sortieren     => True,
+                                                 Rasse         => RasseVerteidigung,
+                                                 EinheitNummer => EinheitenPositionVerteidigung);
             return True;
             
-         elsif GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AktuelleLebenspunkte <= 0 then
-            EinheitenDatenbank.EinheitEntfernen (Rasse         => RasseVerteidigung,
-                                                 EinheitNummer => EinheitenPositionVerteidigung);
-            return False;
+         else
+            null;
+         end if;
+         
+         KampfBerechnung (RasseVerteidigung         => RasseAngriff,
+                          EinheitNummerVerteidigung => EinheitenPositionAngriff,
+                          AngriffWert               => AngriffVerteidigungWert,
+                          VerteidigungWert          => VerteidigungAngriffWert);
             
+         
+         
+         if GlobaleVariablen.EinheitenGebaut (RasseAngriff, EinheitenPositionAngriff).AktuelleLebenspunkte <= 0 then
+            EinheitenDatenbank.EinheitEntfernen (Sortieren     => False,
+                                                 Rasse         => RasseAngriff,
+                                                 EinheitNummer => EinheitenPositionAngriff);
+            return False;
+
          else
             null;
          end if;
@@ -84,5 +105,47 @@ package body Kampfsystem is
       end loop KampfSchleife;
       
    end Kampf;
+
+
+
+   procedure KampfBerechnung  (RasseVerteidigung, EinheitNummerVerteidigung : in Integer; AngriffWert, VerteidigungWert : in Float) is
+   begin
+
+      Wert := Random (Gewählt);
+      
+      if AngriffWert > 2.00 * VerteidigungWert and Wert > 0.15 then
+         GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitNummerVerteidigung).AktuelleLebenspunkte
+           := GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitNummerVerteidigung).AktuelleLebenspunkte - 1;
+
+      elsif AngriffWert > VerteidigungWert and Wert > 0.35 then
+         GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitNummerVerteidigung).AktuelleLebenspunkte
+           := GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitNummerVerteidigung).AktuelleLebenspunkte - 1;
+
+      elsif AngriffWert = VerteidigungWert and Wert > 0.50 then
+         GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitNummerVerteidigung).AktuelleLebenspunkte
+           := GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitNummerVerteidigung).AktuelleLebenspunkte - 1;
+
+      elsif AngriffWert < VerteidigungWert and 2.00 * AngriffWert > VerteidigungWert and Wert > 0.80 then
+         GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitNummerVerteidigung).AktuelleLebenspunkte
+           := GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitNummerVerteidigung).AktuelleLebenspunkte - 1;
+
+      elsif 2.00 * AngriffWert < VerteidigungWert and Wert > 0.95 then
+         GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitNummerVerteidigung).AktuelleLebenspunkte
+           := GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitNummerVerteidigung).AktuelleLebenspunkte - 1;
+
+      else
+         null;
+      end if;
+      
+   end KampfBerechnung;
+
+
+
+   function Prüfen return Boolean is
+   begin
+      
+      return True;
+      
+   end Prüfen;
 
 end Kampfsystem;

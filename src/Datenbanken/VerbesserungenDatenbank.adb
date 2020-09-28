@@ -240,7 +240,9 @@ package body VerbesserungenDatenbank is
             Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 9);
             case Wahl is
                when True =>
-                  EinheitenDatenbank.EinheitEntfernen (Rasse => Rasse, EinheitNummer => EinheitNummer);
+                  EinheitenDatenbank.EinheitEntfernen (Sortieren     => True,
+                                                       Rasse         => Rasse,
+                                                       EinheitNummer => EinheitNummer);
                      
                when False =>
                   null;
