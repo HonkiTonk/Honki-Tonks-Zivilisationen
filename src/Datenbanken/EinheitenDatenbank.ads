@@ -47,7 +47,7 @@ package EinheitenDatenbank is
    procedure LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, EinheitNummer : in Integer);
    procedure HeilungBewegungspunkteFürNeueRundeSetzen;
    procedure EinheitErzeugen (Rasse, StadtNummer, ID : in Integer);
-   procedure EinheitEntfernen (Sortieren : in Boolean; Rasse, EinheitNummer : in Integer);
+   procedure EinheitEntfernen (Rasse, EinheitNummer : in Integer);
    procedure EinheitGebautSortieren (Rasse : in Integer);
    procedure Beschäftigung (Arbeit : in Integer);
 
@@ -68,6 +68,9 @@ private
       
    end record;
 
-   Position : EinheitErstellenRecord;   
+   Position : EinheitErstellenRecord;
+   
+   type SortierenArray is array (GlobaleVariablen.EinheitenGebautArray'Range (2)) of GlobaleVariablen.EinheitenGebautRecord;
+   Sortieren : SortierenArray;
 
 end EinheitenDatenbank;
