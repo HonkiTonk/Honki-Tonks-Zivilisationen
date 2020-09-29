@@ -56,8 +56,7 @@ package body BewegungssystemEinheiten is
          if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte = 0.00 then
             return;
 
-         elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID = 0 then
-            EinheitenDatenbank.EinheitGebautSortieren (Rasse => Rasse);
+         elsif Gewonnen = False then
             return;
                
          else

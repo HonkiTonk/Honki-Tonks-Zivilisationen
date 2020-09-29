@@ -105,18 +105,11 @@ package body EinheitenDatenbank is
 
 
 
-   procedure EinheitEntfernen (Sortieren : in Boolean; Rasse, EinheitNummer : in Integer) is
+   procedure EinheitEntfernen (Rasse, EinheitNummer : in Integer) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer) := (0, 0, 0, 0, 0, 0, 0.00, 0, 0, 0, 0);
-      
-      case Sortieren is
-         when True =>
-            EinheitGebautSortieren (Rasse => Rasse);
-            
-         when False =>
-            null;
-      end case;
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer) := (0, 0, 0, 0, 0, 0, 0.00, 0, 0, 0, 0);      
+      EinheitGebautSortieren (Rasse => Rasse);
       
    end EinheitEntfernen;
 
@@ -125,35 +118,34 @@ package body EinheitenDatenbank is
    procedure EinheitGebautSortieren (Rasse : in Integer) is
    begin
 
-      SortierNummer := 0;
-
-      SortierSchleife:
-      for A in GlobaleVariablen.EinheitenGebaut'Range (2) loop
-            
-         if GlobaleVariablen.EinheitenGebaut (Rasse, A).ID /= 0 then
-            null;
-            
-         else
-            SortierNummer := A;
-            exit SortierSchleife;
-         end if;
+      TauschSchleife:
+      for Tauschen in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
-      end loop SortierSchleife;
-
-      Schleife:
-      for B in GlobaleVariablen.EinheitenGebaut'Range (2) loop
-            
-         if GlobaleVariablen.EinheitenGebaut (Rasse, B).ID /= 0 then
-            null;
-
-            --elsif 
-            
-         else
-            null;
-         end if;
+         Sortieren (Tauschen) := GlobaleVariablen.EinheitenGebaut (Rasse, Tauschen);
+         GlobaleVariablen.EinheitenGebaut (Rasse, Tauschen) := (0, 0, 0, 0, 0, 0, 0.00, 0, 0, 0, 0); 
          
-      end loop Schleife;
-      
+      end loop TauschSchleife;
+
+      SortierenAußenSchleife:
+      for Einsortieren in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+         SortierenInnenSchleife:
+         for Auswahl in Sortieren'Range loop
+            
+            if Sortieren (Auswahl).ID /= 0 then
+               GlobaleVariablen.EinheitenGebaut (Rasse, Einsortieren) := Sortieren (Auswahl);
+               Sortieren (Auswahl) := (0, 0, 0, 0, 0, 0, 0.00, 0, 0, 0, 0);
+               exit SortierenInnenSchleife;
+               
+            elsif Auswahl = Sortieren'Last then
+               exit SortierenAußenSchleife;
+               
+            else
+               null;
+            end if;               
+            
+         end loop SortierenInnenSchleife;         
+      end loop SortierenAußenSchleife;
+            
    end EinheitGebautSortieren;
 
    

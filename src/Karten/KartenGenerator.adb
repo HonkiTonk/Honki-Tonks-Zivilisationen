@@ -8,6 +8,8 @@ package body KartenGenerator is
       NochVerteilbareRessourcen := Karten.Kartengrößen (Karten.Kartengröße).Ressourcenmenge;
       GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 10); -- Inseln, Kontinente, Pangäa
       GeneratorKarte := (others => (others => (0)));
+      Zeit := (0, 0, 0, 0, 0);
+      Test := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße * Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
       
       YAchseSchleife:
       for Y in Karten.Karten'Range (1) loop
@@ -35,6 +37,9 @@ package body KartenGenerator is
                end case;
                GenerierungKartenart (Y, X);
             end if;
+
+            Zeit (1) := Zeit (1) + 1;
+            Put_Line (Item => Zeit (1)'Wide_Wide_Image & " von" & Test'Wide_Wide_Image);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -126,7 +131,8 @@ package body KartenGenerator is
       end loop YAchseSchleife;
 
       YAchseGeneratorKarteSchleife:
-      for Y in GeneratorKarte'First (1) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
+      for Y in GeneratorKarte'First (1) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop -- Warum loop ich hier denn nochmal über alles?
+                                                                                                                          -- Müsste doch wie oben mit dem zusätzlichen Landabstand ereichen.
          XAchseGeneratorKarteSchleife:
          for X in GeneratorKarte'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
@@ -196,6 +202,8 @@ package body KartenGenerator is
 
    procedure GenerierungKüstenSeeGewässer is
    begin
+
+      Test := (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 2 * Eisrand) * Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
       
       YAchseSchleife:
       for Y in Karten.Karten'First (1) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
@@ -248,6 +256,8 @@ package body KartenGenerator is
             else
                null;
             end if;
+
+            Zeit (2) := Zeit (2) + 1;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -256,8 +266,8 @@ package body KartenGenerator is
    
    
    
-procedure GenerierungKartentemperatur is
-begin
+   procedure GenerierungKartentemperatur is
+   begin
 
       EisWahrscheinlichkeitReduzierungspunkt := (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 6, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 8, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 10);
       GeneratorKarte := (others => (others => (0)));
@@ -323,6 +333,8 @@ begin
                   null;
                end if;
             end if;
+
+            Zeit (3) := Zeit (3) + 1;
          
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -448,6 +460,8 @@ begin
                   null;                  
                end if;
             end if;
+
+            Zeit (4) := Zeit (4) + 1;
             
             end loop XAchseSchleife;
          end loop YAchseSchleife;         
@@ -574,6 +588,8 @@ begin
                         null;
                      end if;
                end case;
+
+               Zeit (5) := Zeit (5) + 1;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;

@@ -217,8 +217,7 @@ package body InDerStadt is
                                    StadtNummer => A);
             ForschungsDatenbank.ForschungZeit (Rasse => Rasse);
 
-            EinheitenDatenbank.EinheitEntfernen (Sortieren     => True,
-                                                 Rasse         => Rasse,
+            EinheitenDatenbank.EinheitEntfernen (Rasse         => Rasse,
                                                  EinheitNummer => EinheitNummer);
             
             if Rasse = GlobaleVariablen.Rasse then

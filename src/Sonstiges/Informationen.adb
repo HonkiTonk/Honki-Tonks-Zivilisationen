@@ -14,15 +14,16 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Kampfsystem einbauen.");
+      Put_Line (Item => "Kartengenerator mal wieder überarbeiten!");
+      Put_Line (Item => "Speichern/Laden einbauen.");
       Put_Line (Item => "Gebäuden und Forschungen eine Bedeutung geben.");
       Put_Line (Item => "Grundlegende Systeme (z. B. Anzeige von Texten) verbessern.");
-      Put_Line (Item => "Kartengenerator mal wieder überarbeiten.");
-      Put_Line (Item => "Speichern/Laden einbauen?");
       New_Line;
 
       Put_Line (Item => "Zeug:");
       Put_Line (Item => "Legt erst eine Runde später die neuen Werte fest, prüfen warum (siehe auch Wachstum.WachstumBeiStadtGründung).");
+      Put_line (Item => "Nicht über das Array selbst loopen, da bei Aufteilung es zu Problemen kommen kann.");
+      Put_Line (Item => "Bessere Lösung für Sortieren finden. Funktioniert die reverse Loop Idee doch, wenn im Bewegungssystem die Gewonnenprüfung am Anfang drin ist?");
       New_Line;
 
       Put_Line (Item => "Mal drüber nachdenken:");
