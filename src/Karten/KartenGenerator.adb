@@ -9,7 +9,7 @@ package body KartenGenerator is
       GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 10); -- Inseln, Kontinente, Pangäa
       -- Größe Landart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
       GeneratorKarte := (others => (others => (0)));
-      Zeit := (0, 0, 0, 0, 0);
+      Zeit := (0, 0, 0, 0, 0, 0);
       Test := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße * Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
       
       YAchseSchleife:
@@ -471,27 +471,48 @@ package body KartenGenerator is
 
    procedure GenerierungFlüsse is
    begin
-
-      Wahl.Reset (Wählen);
       
       YAchseSchleife:
       for Y in Karten.Karten'First (1) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
          XAchseSchleife:
          for X in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
+            Wert := Random (Gewählt);
             if Karten.Karten (Y, X).Grund < 3 or Karten.Karten (Y, X).Grund = 31 then
                null;
+
+            elsif Wert >= WahrscheinlichkeitFluss then
+               Karten.Karten (Y, X).Fluss := 15;
                
             else
-               Wert := Random (Gewählt);
-               if Wert >= WahrscheinlichkeitFluss then
-                  Wert2 := Wahl.Random (Wählen);
-                  Karten.Karten (Y, X).Fluss := Wert2;
+               for A in -1 .. 1 loop
+                  for B in -1 .. 1 loop
                   
-               else
-                  null;
-               end if;
+                     KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => Y,
+                                                                       XKoordinate    => X,
+                                                                       YÄnderung      => A,
+                                                                       XÄnderung      => B,
+                                                                       ZusatzYAbstand => 0);
+
+                     case KartenWert.YWert is
+                        when -1_000_000 =>
+                           null;
+                           
+                           when others =>
+                           if Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss /= 0 and Wert >= WahrscheinlichkeitFluss / 2.00 then                        
+                              Karten.Karten (Y, X).Fluss := 15;
+
+                           else
+                              null;
+                           end if;
+                     end case;
+                     
+                  end loop;
+               end loop;
             end if;
+
+            Zeit (5) := Zeit (5) + 1;
+            Put_Line (Item => "Berechne55: " & Zeit (5)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
          
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -500,7 +521,7 @@ package body KartenGenerator is
    
    
    
-   procedure GenerierungRessourcen is
+   procedure GenerierungRessourcen is -- Die Verteilung mehrmals loopen lassen? Einmal von oben zur mitte, von unten zur mitte, von mitte nach oben und von mitte nach unten?
    begin
 
       while NochVerteilbareRessourcen /= 0 loop      
@@ -552,8 +573,8 @@ package body KartenGenerator is
                      end if;
                end case;
 
-               Zeit (5) := Zeit (5) + 1;
-               Put_Line (Item => "Berechne55: " & Zeit (5)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
+               Zeit (6) := Zeit (6) + 1;
+               Put_Line (Item => "Berechne66: " & Zeit (5)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;

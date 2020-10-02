@@ -25,6 +25,7 @@ package body Informationen is
       Put_Line (Item => "Legt erst eine Runde später die neuen Werte fest, prüfen warum (siehe auch Wachstum.WachstumBeiStadtGründung).");
       Put_line (Item => "Nicht über das Array selbst loopen, da bei Aufteilung es zu Problemen kommen kann.");
       Put_Line (Item => "Bessere Lösung für Sortieren finden. Funktioniert die reverse Loop Idee doch, wenn im Bewegungssystem die Gewonnenprüfung am Anfang drin ist?");
+      Put_Line (Item => "Die Straßenberechnung funktioniert nicht einmal richtig. Außerdem mal über ein Einzelstück nachdenken.");
       New_Line;
 
       Put_Line (Item => "Mal drüber nachdenken:");
