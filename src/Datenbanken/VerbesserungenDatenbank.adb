@@ -366,10 +366,11 @@ package body VerbesserungenDatenbank is
          XAchseSchleife:
          for XÄnderung in -1 .. 1 loop
 
-            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => YKoordinate,
-                                                              XKoordinate => XKoordinate,
-                                                              YÄnderung   => YÄnderung,
-                                                              XÄnderung   => XÄnderung);
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YKoordinate,
+                                                              XKoordinate    => XKoordinate,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 0);
 
             case KartenWert.YWert is
                when -1_000_000 =>

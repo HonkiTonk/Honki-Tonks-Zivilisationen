@@ -86,10 +86,11 @@ package body KarteStadt is
                         Put (Item => " ");
 
                      else
-                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.CursorImSpiel.YAchse,
-                                                                          XKoordinate => GlobaleVariablen.CursorImSpiel.XAchse,
-                                                                          YÄnderung   => YAchsenabstraktion,
-                                                                          XÄnderung   => A);
+                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
+                                                                          XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
+                                                                          YÄnderung      => YAchsenabstraktion,
+                                                                          XÄnderung      => A,
+                                                                          ZusatzYAbstand => 0);
 
                         case KartenWert.YWert is
                            when -1_000_000 =>
@@ -204,10 +205,11 @@ package body KarteStadt is
       Geldgewinnung := 0;
       Wissensgewinnung := 0;
 
-      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.CursorImSpiel.YAchse,
-                                                        XKoordinate => GlobaleVariablen.CursorImSpiel.XAchse,
-                                                        YÄnderung   => YAufschlag,
-                                                        XÄnderung   => XAufschlag);
+      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
+                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
+                                                        YÄnderung      => YAufschlag,
+                                                        XÄnderung      => XAufschlag,
+                                                        ZusatzYAbstand => 0);
 
       case KartenWert.YWert is
          when -1_000_000 =>

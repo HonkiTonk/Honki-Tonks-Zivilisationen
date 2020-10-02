@@ -71,7 +71,7 @@ package GlobaleVariablen is
       VerbleibendeBauzeit : Integer;
       Korruption : Integer;
       
-      GebäudeVorhanden : Wide_Wide_String (1 .. 24);
+      GebäudeVorhanden : Wide_Wide_String (1 .. 24); -- Eine Liste anlegen welche Nummer welches Gebäude ist.
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : UmgebungBewirtschaftungArray;

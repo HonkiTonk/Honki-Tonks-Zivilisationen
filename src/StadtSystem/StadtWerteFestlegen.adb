@@ -35,10 +35,11 @@ package body StadtWerteFestlegen is
                         null;
                   
                      when others =>
-                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
-                                                                          XKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse,
-                                                                          YÄnderung   => YPosition,
-                                                                          XÄnderung   => XPosition);
+                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
+                                                                          XKoordinate    => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse,
+                                                                          YÄnderung      => YPosition,
+                                                                          XÄnderung      => XPosition,
+                                                                          ZusatzYAbstand => 0);
                         case KartenWert.YWert is
                            when -1_000_000 =>
                               null;

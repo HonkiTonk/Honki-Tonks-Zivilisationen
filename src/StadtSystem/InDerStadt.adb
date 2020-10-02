@@ -36,10 +36,11 @@ package body InDerStadt is
                            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner - 1;
                         
                         when False =>
-                           KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
-                                                                             XKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse,
-                                                                             YÄnderung  => RelativeCursorPositionY,
-                                                                             XÄnderung  => RelativeCursorPositionX);
+                           KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
+                                                                             XKoordinate    => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse,
+                                                                             YÄnderung      => RelativeCursorPositionY,
+                                                                             XÄnderung      => RelativeCursorPositionX,
+                                                                             ZusatzYAbstand => 0);
                            
                            case KartenWert.YWert is
                               when -1_000_000 =>
@@ -131,10 +132,11 @@ package body InDerStadt is
          XAchseSchleife:
          for XÄnderung in -3 .. 3 loop
 
-            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse,
-                                                              XKoordinate => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse,
-                                                              YÄnderung   => YÄnderung,
-                                                              XÄnderung   => XÄnderung);
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse,
+                                                              XKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 0);
                      
             case KartenWert.YWert is
                when -1_000_000 =>
@@ -190,10 +192,11 @@ package body InDerStadt is
                XAchsenSchleife:
                for XÄnderung in -1 .. 1 loop
                   
-                  KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse,
-                                                                    XKoordinate => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse,
-                                                                    YÄnderung   => YÄnderung,
-                                                                    XÄnderung   => XÄnderung);
+                  KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse,
+                                                                    XKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse,
+                                                                    YÄnderung      => YÄnderung,
+                                                                    XÄnderung      => XÄnderung,
+                                                                    ZusatzYAbstand => 0);
                      
                   case KartenWert.YWert is
                      when -1_000_000 =>
@@ -284,10 +287,11 @@ package body InDerStadt is
          XAchseSchleife:
          for XÄnderung in -NutzbarerBereich .. NutzbarerBereich loop
 
-            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
-                                                              XKoordinate => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse,
-                                                              YÄnderung   => YÄnderung,
-                                                              XÄnderung   => XÄnderung);
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
+                                                              XKoordinate    => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 0);
 
             case KartenWert.YWert is
                when -1_000_000 =>

@@ -314,10 +314,11 @@ package body SpielEinstellungen is
                   XAchseSchleife:
                   for XÄnderung in -1 .. 1 loop
 
-                     KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.CursorImSpiel.YAchse,
-                                                                       XKoordinate => GlobaleVariablen.CursorImSpiel.XAchse,
-                                                                       YÄnderung   => YÄnderung,
-                                                                       XÄnderung   => XÄnderung);
+                     KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
+                                                                       XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
+                                                                       YÄnderung      => YÄnderung,
+                                                                       XÄnderung      => XÄnderung,
+                                                                       ZusatzYAbstand => 0);
                      case KartenWert.YWert is
                         when -1_000_000 =>
                            exit XAchseSchleife;
@@ -375,10 +376,11 @@ package body SpielEinstellungen is
          XAchseSchleife:
          for XÄnderung in -1 .. 1 loop
 
-            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.CursorImSpiel.YAchse,
-                                                              XKoordinate => GlobaleVariablen.CursorImSpiel.XAchse,
-                                                              YÄnderung   => YÄnderung,
-                                                              XÄnderung   => XÄnderung);
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
+                                                              XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 0);
             case KartenWert.YWert is
                when -1_000_000 =>
                   exit XAchseSchleife;

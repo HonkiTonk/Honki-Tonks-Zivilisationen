@@ -14,8 +14,9 @@ package Karten is
 
    end record;
 
-   type KartenArray is array (1 .. 1000, 1 .. 1000) of KartenRecord;
-   -- Winzig = 20x20, Klein = 40x40, Mittel = 80x80, Rechteck = 120x80, Großes Rechteck = 120x160, Groß = 160x160, Riesig = 240x240, Gigantisch = 320x320, Absurd = 1000x1000
+   type KartenArray is array (1 .. 1_000, 1 .. 1_000) of KartenRecord;
+   -- Winzig = 20 x 20, Klein = 40 x 40, Mittel = 80 x 80, Rechteck = 120 x 80, Großes Rechteck = 120 x 160, Groß = 160 x 160, Riesig = 240 x 240, Gigantisch = 320 x 320, Absurd = 1_000 x 1_000, Absurder =
+   -- 10_000 x 10_000 (Computer sagt nein)
    Karten : KartenArray := (others => (others => (0, False, True, 0, 0, 0, 0, 0))); -- Sichtbarkeit später wieder auf False setzen, steht zum testen auf True
 
    type StadtkarteArray is array (1 .. 20, 1 .. 20) of Integer;
@@ -30,7 +31,7 @@ package Karten is
    end record;
 
    type KartengrößenArray is array (1 .. 9) of KartengrößenRecord;
-   Kartengrößen : KartengrößenArray := ((20, 20, 12), (40, 40, 50), (80, 80, 200), (120, 80, 300), (120, 160, 600), (160, 160, 800), (240, 240, 1800), (320, 320, 3200), (1000, 1000, 31250));
+   Kartengrößen : KartengrößenArray := ((20, 20, 12), (40, 40, 50), (80, 80, 200), (120, 80, 300), (120, 160, 600), (160, 160, 800), (240, 240, 1_800), (320, 320, 3200), (1_000, 1_000, 31_250));
 
    Kartengröße : Integer := 1;
 

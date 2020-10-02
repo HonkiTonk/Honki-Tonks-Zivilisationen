@@ -87,10 +87,11 @@ package body BewegungssystemCursor is
    procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in Änderung) is
    begin
       
-      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate => GlobaleVariablen.CursorImSpiel.YAchse,
-                                                        XKoordinate => GlobaleVariablen.CursorImSpiel.XAchse,
-                                                        YÄnderung   => YÄnderung,
-                                                        XÄnderung   => XÄnderung);
+      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
+                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
+                                                        YÄnderung      => YÄnderung,
+                                                        XÄnderung      => XÄnderung,
+                                                        ZusatzYAbstand => 0);
       case KartenWert.YWert is
          when -1_000_000 =>
             return;

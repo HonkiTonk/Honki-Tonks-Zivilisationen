@@ -1,16 +1,17 @@
 package body SchleifenPruefungen is
 
-   function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung : in Integer) return GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord is
+   function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung, ZusatzYAbstand : in Integer) return GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord is
    begin
+      -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (1) + 3
       
-      if YKoordinate + YÄnderung < Karten.Karten'First (1) or YKoordinate + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+      if YKoordinate + YÄnderung < Karten.Karten'First (1) + ZusatzYAbstand or YKoordinate + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
          return (-1_000_000, -1_000_000);
 
-      elsif XKoordinate + XÄnderung < Karten.Karten'First (2) then
+      elsif XKoordinate + XÄnderung < Karten.Karten'First (2) then -- Funktioniert nicht wenn der Änderungswert zu klein ist! Mit einer while Schliefe lösen?
          Überhang := XKoordinate + XÄnderung + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
          return (YKoordinate + YÄnderung, Überhang);
                
-      elsif XKoordinate + XÄnderung > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+      elsif XKoordinate + XÄnderung > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then -- Funktioniert nicht wenn der Änderungswert zu groß ist! Mit einer while Schliefe lösen?
          Überhang := XKoordinate + XÄnderung - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
          return (YKoordinate + YÄnderung, Überhang);
                
