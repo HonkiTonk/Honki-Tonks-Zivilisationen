@@ -317,8 +317,8 @@ package body VerbesserungenDatenbank is
       
       case GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung is -- Landstraße/Tiefengrabung/Farm/Festung/Wald aufforsten/Roden-Trockenlegen
          when 1 =>
-            StraßenBerechnung (YKoordinate => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse,
-                               XKoordinate => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse);
+            StraßeFlussBerechnung (YKoordinate => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse,
+                                   XKoordinate => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse);
               
          when 2 =>
             Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).VerbesserungGebiet := 21;
@@ -356,7 +356,7 @@ package body VerbesserungenDatenbank is
 
 
 
-   procedure StraßenBerechnung (YKoordinate, XKoordinate : in Integer) is
+   procedure StraßeFlussBerechnung (YKoordinate, XKoordinate : in Integer) is
    begin
 
       Straßenwert := 10000;
@@ -615,6 +615,6 @@ package body VerbesserungenDatenbank is
             Karten.Karten (YKoordinate, XKoordinate).VerbesserungStraße := 6;
       end case;
       
-   end StraßenBerechnung;
+   end StraßeFlussBerechnung;
 
 end VerbesserungenDatenbank;

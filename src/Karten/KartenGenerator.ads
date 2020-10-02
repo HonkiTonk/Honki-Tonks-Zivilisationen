@@ -11,16 +11,13 @@ package KartenGenerator is -- Klein = 40x40, Mittel = 80x80, Groß = 160x160, Ri
 private
 
    Gewählt : Generator;
-   subtype Zahl is Integer range 14 .. 28;
-   package Wahl is new Ada.Numerics.Discrete_Random (Zahl);
-   Wählen : Wahl.Generator;
 
    NochVerteilbareRessourcen : Integer;
    Überhang : Integer;
    Eisrand : constant Integer := 1;
    FelderVonTemperaturZuTemperatur : constant Integer := 5;
    Abstand : constant Integer := 2;
-   WahrscheinlichkeitFluss : constant Float := 0.85;
+   WahrscheinlichkeitFluss : constant Float := 0.80;
    Wert2 : Integer;
    Test : Integer;
 
@@ -28,7 +25,7 @@ private
 
    KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
 
-   type ZeitArray is array (1 .. 5) of Integer;
+   type ZeitArray is array (1 .. 6) of Integer;
    Zeit : ZeitArray;
 
    type GrößeLandartArray is array (1 .. 3) of Integer;

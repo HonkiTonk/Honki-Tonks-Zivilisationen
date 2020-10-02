@@ -7,12 +7,24 @@ package body SchleifenPruefungen is
       if YKoordinate + YÄnderung < Karten.Karten'First (1) + ZusatzYAbstand or YKoordinate + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
          return (-1_000_000, -1_000_000);
 
-      elsif XKoordinate + XÄnderung < Karten.Karten'First (2) then -- Funktioniert nicht wenn der Änderungswert zu klein ist! Mit einer while Schliefe lösen?
+      elsif XKoordinate + XÄnderung < Karten.Karten'First (2) then
          Überhang := XKoordinate + XÄnderung + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+         SchleifeKleiner:
+         while Überhang < Karten.Karten'First (2) loop
+            
+            Überhang := Überhang + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+
+         end loop SchleifeKleiner;
          return (YKoordinate + YÄnderung, Überhang);
                
-      elsif XKoordinate + XÄnderung > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then -- Funktioniert nicht wenn der Änderungswert zu groß ist! Mit einer while Schliefe lösen?
+      elsif XKoordinate + XÄnderung > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
          Überhang := XKoordinate + XÄnderung - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+         SchleifeGrößer:
+         while Überhang > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            
+            Überhang := Überhang - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+            
+         end loop SchleifeGrößer;
          return (YKoordinate + YÄnderung, Überhang);
                
       else
