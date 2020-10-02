@@ -35,7 +35,8 @@ private
    GrößeLandart : GrößeLandartArray;
 
    type FelderVonLandartZuLandartArray is array (1 .. 3) of Integer;
-   FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 20, 0);
+   FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 30, 0); -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
+                                                                                       -- Sollte so aber ganz gut sein, da bei halbem Loop zu wenig Wasser ist, aber eventuell Werte ein wenig verringern.
 
    type WahrscheinlichkeitenFürLandArray is array (1 .. 3, 1 .. 7) of Float;
    WahrscheinlichkeitenFürLand : constant WahrscheinlichkeitenFürLandArray := (1 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
@@ -52,8 +53,8 @@ private
 
    type WahrscheinlichkeitenFürLandartArray is array (1 .. 3, 1 .. 3) of Float;
    WahrscheinlichkeitenFürLandart : constant WahrscheinlichkeitenFürLandartArray := (1 => (0.60, 0.90, 0.60),
-                                                                              2 => (0.60, 0.90, 0.70),
-                                                                              3 => (0.60, 0.90, 0.70));
+                                                                                       2 => (0.60, 0.90, 0.70),
+                                                                                       3 => (0.60, 0.90, 0.70));
 
    type WahrscheinlichkeitFürLandschaftArray is array (6 .. 10) of Float;
    WahrscheinlichkeitFürLandschaft : constant WahrscheinlichkeitFürLandschaftArray := (0.85, 0.75, 0.50, 0.30, 0.20);

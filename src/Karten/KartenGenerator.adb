@@ -1,12 +1,13 @@
 package body KartenGenerator is
 
-   procedure KartenGenerator is -- Überall noch die XAchsen Ende zu XAchsen Anfang und umgekehrt wie in Cursor/Einheitensystem einbauen
+   procedure KartenGenerator is
    begin
 
       Reset (Gewählt);
 
       NochVerteilbareRessourcen := Karten.Kartengrößen (Karten.Kartengröße).Ressourcenmenge;
       GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 10); -- Inseln, Kontinente, Pangäa
+      -- Größe Landart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
       GeneratorKarte := (others => (others => (0)));
       Zeit := (0, 0, 0, 0, 0);
       Test := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße * Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
@@ -39,7 +40,7 @@ package body KartenGenerator is
             end if;
 
             Zeit (1) := Zeit (1) + 1;
-            Put_Line (Item => Zeit (1)'Wide_Wide_Image & " von" & Test'Wide_Wide_Image);
+            Put_Line (Item => "Berechne11: " & Zeit (1)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -48,7 +49,7 @@ package body KartenGenerator is
 
       GenerierungKartentemperatur;
       GenerierungLandschaft;
-      -- GenerierungFlüsse;
+      GenerierungFlüsse;
       GenerierungRessourcen;
       
    end KartenGenerator;
@@ -57,13 +58,14 @@ package body KartenGenerator is
 
    procedure GenerierungKartenart (Y, X : in Integer) is
    begin
-                                
-      if GeneratorKarte (Y, X) = 1 or GeneratorKarte (Y, X) = 2 then
-         null;           
-               
-      else               
-         Wert := Random (Gewählt);
-         if GeneratorKarte (Y, X) = 0 then
+
+      Wert := Random (Gewählt);
+
+      case GeneratorKarte (Y, X) is
+         when 1 .. 2 =>
+            null;
+
+         when 0 =>
             if Y <= Karten.Karten'First (1) + 3  or Y >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 3 then
                if Wert > WahrscheinlichkeitenFürLand (Kartenart, 1) and Wert < WahrscheinlichkeitenFürLand (Kartenart, 2) then
                   Karten.Karten (Y, X).Grund := 3;
@@ -88,93 +90,74 @@ package body KartenGenerator is
                   null;
                end if;
             end if;
-                           
-         else
+
+         when others =>
             if Wert >= WahrscheinlichkeitenFürLand (Kartenart, 5) then                           
                Karten.Karten (Y, X).Grund := 3;
                            
             else
                null;
             end if;
-         end if;   
-      end if;
+      end case;
       
    end GenerierungKartenart;
-   
+
    
    
    procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in Integer) is
    begin
       
       YAchseSchleife:
-      for Y in -GrößeLandart (Kartenart) / 2 .. GrößeLandart (Kartenart) / 2 loop
+      for YÄnderung in -GrößeLandart (Kartenart) / 2 .. GrößeLandart (Kartenart) / 2 loop
          XAchseSchleife:
-         for X in -GrößeLandart (Kartenart) / 2 .. GrößeLandart (Kartenart) / 2 loop
-         
-            Wert := Random (Gewählt); 
-            if YPositionLandmasse + Y <= Karten.Karten'First (1) or YPositionLandmasse + Y >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               null;
+         for XÄnderung in -GrößeLandart (Kartenart) / 2 .. GrößeLandart (Kartenart) / 2 loop
             
-            elsif XPositionLandmasse + X < Karten.Karten'First (2) then
-               Überhang := XPositionLandmasse + X + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-               GenerierungLandmasseÜberhang (YAchse => YPositionLandmasse + Y, XAchse => Überhang, Gezogen => Wert);
-               
-            elsif XPositionLandmasse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-               Überhang := XPositionLandmasse + X - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;                  
-               GenerierungLandmasseÜberhang (YAchse => YPositionLandmasse + Y, XAchse => Überhang, Gezogen => Wert);
-               
-            else
-               GenerierungLandmasseÜberhang (YAchse => YPositionLandmasse + Y, XAchse => XPositionLandmasse + X, Gezogen => Wert);
-            end if;
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPositionLandmasse,
+                                                              XKoordinate    => XPositionLandmasse,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
+
+            case KartenWert.YWert is
+               when -1_000_000 =>
+                  exit XAchseSchleife;
+                  
+               when others =>         
+                  Wert := Random (Gewählt);
+                  GenerierungLandmasseÜberhang (YAchse  => KartenWert.YWert,
+                                                XAchse  => KartenWert.XWert,
+                                                Gezogen => Wert);
+            end case;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
-
-      YAchseGeneratorKarteSchleife:
-      for Y in GeneratorKarte'First (1) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop -- Warum loop ich hier denn nochmal über alles?
-                                                                                                                          -- Müsste doch wie oben mit dem zusätzlichen Landabstand ereichen.
-         XAchseGeneratorKarteSchleife:
-         for X in GeneratorKarte'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+      
+      YAchseZweiSchleife: -- Funktioniert nicht mit Kontinenten bei kleinen Karten weil der Abstandswert zu groß ist!
+      for YÄnderung in -FelderVonLandartZuLandart (Kartenart) .. FelderVonLandartZuLandart (Kartenart) loop
+         XAchseZweiSchleife:
+         for XÄnderung in -FelderVonLandartZuLandart (Kartenart) .. FelderVonLandartZuLandart (Kartenart) loop
             
-            if Y = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand then
-               return;
-               
-            elsif Y = GeneratorKarte'First (1) then
-               exit XAchseGeneratorKarteSchleife;
-
-            elsif GeneratorKarte (Y, X) = 1 then
-               YAchseZweiSchleife:
-               for A in -FelderVonLandartZuLandart (Kartenart) .. FelderVonLandartZuLandart (Kartenart) loop
-                  XAchseZweiSchleife:
-                  for B in -FelderVonLandartZuLandart (Kartenart) .. FelderVonLandartZuLandart (Kartenart) loop
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPositionLandmasse,
+                                                              XKoordinate    => XPositionLandmasse,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
+            case KartenWert.YWert is
+               when -1_000_000 =>
+                  exit XAchseZweiSchleife;
                   
-                     if Y + A <= Karten.Karten'First (1) + Eisrand or Y + A >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand then
+               when others =>
+                  case GeneratorKarte (KartenWert.YWert, KartenWert.XWert) is
+                     when 1 .. 2 =>
                         null;
                         
-                     elsif X + B < Karten.Karten'First (2) then
-                        Überhang := X + B + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-                        GeneratorKarte (Y + A, Überhang) := 3;
-                          
-                     elsif X + B > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-                        Überhang := X + B - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-                        GeneratorKarte (Y + A, Überhang) := 3;                          
-                        
-                     elsif GeneratorKarte (Y + A, X + B) = 1 or GeneratorKarte (Y + A, X + B) = 2 then
-                        null;
-                        
-                     else
-                        GeneratorKarte (Y + A, X + B) := 3;                           
-                     end if;
+                     when others =>
+                        GeneratorKarte (KartenWert.YWert, KartenWert.XWert) := 3;                           
+                  end case;
+            end case;
                     
-                  end loop XAchseZweiSchleife; 
-               end loop YAchseZweiSchleife;
-               
-            else
-               null;
-            end if;                  
-               
-         end loop XAchseGeneratorKarteSchleife;
-      end loop YAchseGeneratorKarteSchleife;
+         end loop XAchseZweiSchleife; 
+      end loop YAchseZweiSchleife;
       
    end GenerierungLandmasse;
    
@@ -206,58 +189,47 @@ package body KartenGenerator is
       Test := (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 2 * Eisrand) * Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
       
       YAchseSchleife:
-      for Y in Karten.Karten'First (1) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
+      for YPosition in Karten.Karten'First (1) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
          XAchseSchleife:
-         for X in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+         for XPosition in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                               
-            if Karten.Karten (Y, X).Grund = 2 then
-               ZweiteYAchseSchleife:
-               for A in -1 .. 1 loop
-                  ZweiteXAchseSchleife:
-                  for B in -1 .. 1 loop
+            case Karten.Karten (YPosition, XPosition).Grund is
+               when 2 =>
+                  ZweiteYAchseSchleife:
+                  for YÄnderung in -1 .. 1 loop
+                     ZweiteXAchseSchleife:
+                     for XÄnderung in -1 .. 1 loop
                      
-                     if Y + A >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-                        exit ZweiteYAchseSchleife;
+                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
+                                                                          XKoordinate    => XPosition,
+                                                                          YÄnderung      => YÄnderung,
+                                                                          XÄnderung      => XÄnderung,
+                                                                          ZusatzYAbstand => 0);
 
-                     elsif Y + A < Karten.Karten'First (1) then
-                        exit ZweiteYAchseSchleife;
+                        case KartenWert.YWert is
+                           when -1_000_000 =>
+                              exit ZweiteYAchseSchleife;
+                                
+                           when others =>
+                              case Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund is
+                                 when 3 =>
+                                    Karten.Karten (YPosition, XPosition).Grund := 31;
+                                    exit ZweiteYAchseSchleife;
+
+                                 when others =>
+                                    null;
+                              end case;
+                        end case;
                         
-                     elsif X + B < Karten.Karten'First (2) then
-                        Überhang := X + B + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-                        if Karten.Karten (Y + A, Überhang).Grund = 3 then
-                           Karten.Karten (Y, X).Grund := 31;
-                           exit ZweiteYAchseSchleife;
-                           
-                        else
-                           null;
-                        end if;
-                        
-                     elsif X + B > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-                        Überhang := X + B - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-                        if Karten.Karten (Y + A, Überhang).Grund = 3 then
-                           Karten.Karten (Y, X).Grund := 31;
-                           exit ZweiteYAchseSchleife;
-                           
-                        else
-                           null;
-                        end if;
-                        
-                     elsif Karten.Karten (Y + A, X + B).Grund = 3 then
-                        Karten.Karten (Y, X).Grund := 31;
-                        exit ZweiteYAchseSchleife;
-                        
-                     else
-                        null;
-                     end if;
-                     
-                  end loop ZweiteXAchseSchleife;
-               end loop ZweiteYAchseSchleife;
-               
-            else
-               null;
-            end if;
+                     end loop ZweiteXAchseSchleife;
+                  end loop ZweiteYAchseSchleife;
+                  
+               when others =>
+                  null;
+            end case;
 
             Zeit (2) := Zeit (2) + 1;
+            Put_Line (Item => "Berechne22: " & Zeit (2)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -289,7 +261,7 @@ package body KartenGenerator is
       end loop;
       
       YAchseSchleife:
-      for Y in Karten.Karten'First (1) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
+      for Y in Karten.Karten'First (1) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop -- Nur bis halb loopen und dann mit reverse entgegenkommen?
          XAchseSchleife:
          for X in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
@@ -335,6 +307,7 @@ package body KartenGenerator is
             end if;
 
             Zeit (3) := Zeit (3) + 1;
+            Put_Line (Item => "Berechne33: " & Zeit (3)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
          
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -347,41 +320,31 @@ package body KartenGenerator is
    begin
       
       YAchseSchleife:
-      for Y in -FelderVonTemperaturZuTemperatur .. FelderVonTemperaturZuTemperatur loop
+      for YÄnderung in -FelderVonTemperaturZuTemperatur .. FelderVonTemperaturZuTemperatur loop
          XAchseSchleife:
-         for X in -FelderVonTemperaturZuTemperatur .. FelderVonTemperaturZuTemperatur loop
-                              
-            if Y + YPosition <= Karten.Karten'First (1) or Y + YPosition >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               null;
-               
-            elsif X + XPosition < Karten.Karten'First (2) then
-               Überhang := X + XPosition + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-               for A in Überhang .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+         for XÄnderung in -FelderVonTemperaturZuTemperatur .. FelderVonTemperaturZuTemperatur loop
+                        
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
+                                                              XKoordinate    => XPosition,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
+
+            case KartenWert.YWert is
+               when -1_000_000 =>
+                  exit XAchseSchleife;
                   
-                  GenerierungTemperaturZusatz (YAchse => Y + YPosition,
-                                               XAchse => Überhang,
-                                               Geländeart => Geländeart);
-                  
-               end loop;
-               
-            elsif X + XPosition > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-               Überhang := X + XPosition - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-               for B in Karten.Karten'First (2) .. Überhang loop
-                  
-                  GenerierungTemperaturZusatz (YAchse => Y + YPosition,
-                                               XAchse => Überhang,
-                                               Geländeart => Geländeart);
-                  
-               end loop;
-               
-            elsif GeneratorKarte (Y + YPosition, X + XPosition) = 0 then
-               GenerierungTemperaturZusatz (YAchse => Y + YPosition,
-                                            XAchse => X + XPosition,
-                                            Geländeart => Geländeart);
-               
-            else
-               null;
-            end if;
+               when others =>
+                  case GeneratorKarte (KartenWert.YWert, KartenWert.XWert) is
+                     when 0 =>
+                        GenerierungTemperaturZusatz (YAchse     => KartenWert.YWert,
+                                                     XAchse     => KartenWert.XWert,
+                                                     Geländeart => Geländeart);
+                        
+                     when others =>
+                        null;
+                  end case;
+            end case;
          
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -462,15 +425,16 @@ package body KartenGenerator is
             end if;
 
             Zeit (4) := Zeit (4) + 1;
+            Put_Line (Item => "Berechne44: " & Zeit (4)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
             
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;         
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;         
          
    end GenerierungLandschaft;
 
 
 
-   procedure GenerierungLandschaftZusatz is
+   procedure GenerierungLandschaftZusatz is -- Den Teil genauso zusammenfassen wie der Abstand der Inseln, sonst wird nur unnötig geloopt
    begin
       
       GeneratorKarte := (others => (others => (0)));
@@ -523,7 +487,6 @@ package body KartenGenerator is
                if Wert >= WahrscheinlichkeitFluss then
                   Wert2 := Wahl.Random (Wählen);
                   Karten.Karten (Y, X).Fluss := Wert2;
-                  Karten.Karten (Y, X).Grund := Wert2;
                   
                else
                   null;
@@ -590,6 +553,7 @@ package body KartenGenerator is
                end case;
 
                Zeit (5) := Zeit (5) + 1;
+               Put_Line (Item => "Berechne55: " & Zeit (5)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
