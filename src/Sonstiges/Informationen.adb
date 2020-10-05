@@ -14,11 +14,11 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Kartengenerator verbessern und erweitern!");
-      Put_Line (Item => "StraßenBerechnung endlich ansehbar machen.");
+      Put_Line (Item => "Kartengenerator verbessern und erweitern! Kalenderzeitfunktion zum ermitteln der Berechnungszeit nutzen.");
       Put_Line (Item => "Speichern/Laden einbauen.");
       Put_Line (Item => "Gebäuden und Forschungen eine Bedeutung geben.");
       Put_Line (Item => "Grundlegende Systeme (z. B. Anzeige von Texten) verbessern.");
+      Put_Line (Item => "StraßenBerechnung endlich ansehbar machen.");
       New_Line;
 
       Put_Line (Item => "Zeug:");
