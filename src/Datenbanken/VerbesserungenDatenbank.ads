@@ -62,6 +62,6 @@ private
    
    procedure VerbesserungeFestgelegt (Befehl, Rasse, EinheitNummer : in Integer);
    procedure VerbesserungAngelegt (Rasse, EinheitNummer : in Integer);
-   procedure StraßeFlussBerechnung (YKoordinate, XKoordinate : in Integer);
+   procedure StraßeBerechnung (YKoordinate, XKoordinate : in Integer);
 
 end VerbesserungenDatenbank;

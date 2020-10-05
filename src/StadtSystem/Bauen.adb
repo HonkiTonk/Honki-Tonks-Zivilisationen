@@ -142,7 +142,19 @@ package body Bauen is
       loop
 
          Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (21, 13)));  
-         Anzeige.AnzeigeStadt (AktuelleAuswahl => AktuelleAuswahl);         
+         Anzeige.AnzeigeStadt (AktuelleAuswahl => AktuelleAuswahl);
+         
+         if AktuelleAuswahl = Ende then
+            null;
+                  
+         elsif Anzeige.TextBauen (AktuelleAuswahl).Nummer > 10_000 then
+            Anzeige.AnzeigeLangerText (WelcherText => 11,
+                                       WelcheZeile => Anzeige.TextBauen (AktuelleAuswahl).Nummer - 10_000);
+            
+         else
+            Anzeige.AnzeigeLangerText (WelcherText => 15,
+                                       WelcheZeile => Anzeige.TextBauen (AktuelleAuswahl).Nummer - 1_000);
+         end if;
          
          Get_Immediate (Item => Taste);
          

@@ -1,5 +1,5 @@
-with Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Numerics.Discrete_Random, Karten, GlobaleVariablen, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen;
-use Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO;
+with Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Calendar, Ada.Numerics.Discrete_Random, Karten, GlobaleVariablen, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen;
+use Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Calendar;
 
 package KartenGenerator is -- Klein = 40x40, Mittel = 80x80, Groß = 160x160, Riesig = 240x240, Gigantisch = 320x320, Absurd? = 1000x1000
 
@@ -17,15 +17,16 @@ private
    Eisrand : constant Integer := 1;
    FelderVonTemperaturZuTemperatur : constant Integer := 5;
    Abstand : constant Integer := 2;
-   WahrscheinlichkeitFluss : constant Float := 0.80;
+   WahrscheinlichkeitFluss : constant Float := 0.90;
    Wert2 : Integer;
    Test : Integer;
+   Flusswert : Integer;
 
    Wert : Float;
 
    KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
 
-   type ZeitArray is array (1 .. 6) of Integer;
+   type ZeitArray is array (1 .. 7) of Integer;
    Zeit : ZeitArray;
 
    type GrößeLandartArray is array (1 .. 3) of Integer;
@@ -49,9 +50,10 @@ private
    EisWahrscheinlichkeitReduzierungspunkt : EisWahrscheinlichkeitReduzierungspunktArray;
 
    type WahrscheinlichkeitenFürLandartArray is array (1 .. 3, 1 .. 3) of Float;
-   WahrscheinlichkeitenFürLandart : constant WahrscheinlichkeitenFürLandartArray := (1 => (0.60, 0.90, 0.60),
-                                                                                       2 => (0.60, 0.90, 0.70),
-                                                                                       3 => (0.60, 0.90, 0.70));
+   WahrscheinlichkeitenFürLandart : constant WahrscheinlichkeitenFürLandartArray := (1 => (0.60, 0.80, 0.80),
+                                                                                       -- 1 = Eis bis zum Eisreduzierungspunkte, 2 = Eis, 3 = Wüste
+                                                                                       2 => (0.60, 0.85, 0.70),
+                                                                                       3 => (0.60, 0.90, 0.50));
 
    type WahrscheinlichkeitFürLandschaftArray is array (6 .. 10) of Float;
    WahrscheinlichkeitFürLandschaft : constant WahrscheinlichkeitFürLandschaftArray := (0.85, 0.75, 0.50, 0.30, 0.20);
@@ -69,6 +71,7 @@ private
    procedure GenerierungLandschaftZusatz;
 
    procedure GenerierungFlüsse;
+   procedure FlussBerechnung;
    procedure GenerierungRessourcen;
 
 end KartenGenerator;

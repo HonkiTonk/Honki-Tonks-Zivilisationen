@@ -272,8 +272,6 @@ package body Anzeige is
          
       end loop;
       New_Line;
-
-      -- Get_Immediate (Item => Taste);
       
    end AnzeigeLangerText;
 
