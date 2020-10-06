@@ -9,7 +9,7 @@ package body KartenGenerator is
       GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 10); -- Inseln, Kontinente, Pangäa
       -- Größe Landart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
       GeneratorKarte := (others => (others => (0)));
-      Zeit := (0, 0, 0, 0, 0, 0, 0);
+      Zeit := (0, 0, 0, 0, 0, 0);
       Test := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße * Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
       
       YAchseSchleife:
@@ -434,7 +434,7 @@ package body KartenGenerator is
 
 
 
-   procedure GenerierungLandschaftZusatz is -- Den Teil genauso zusammenfassen wie der Abstand der Inseln, sonst wird nur unnötig geloopt
+   procedure GenerierungLandschaftZusatz is
    begin
       
       GeneratorKarte := (others => (others => (0)));
@@ -455,7 +455,7 @@ package body KartenGenerator is
                                                                           XKoordinate    => X,
                                                                           YÄnderung      => A,
                                                                           XÄnderung      => B,
-                                                                          ZusatzYAbstand => 1);
+                                                                          ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
                         case KartenWert.YWert is
                            when -1_000_000 =>
@@ -492,7 +492,7 @@ package body KartenGenerator is
                null;
                            
             elsif Wert >= WahrscheinlichkeitFluss then
-               Karten.Karten (Y, X).Fluss := 15; -- Hier nach die Flussberechung einbauen? Müsste doch schneller sein und mit der jetzigen Lösung auch funktionieren.
+               Karten.Karten (Y, X).Fluss := 15;
                
             else
                YAchseSchleifeZwei:
@@ -504,7 +504,7 @@ package body KartenGenerator is
                                                                        XKoordinate    => X,
                                                                        YÄnderung      => A,
                                                                        XÄnderung      => B,
-                                                                       ZusatzYAbstand => 0);
+                                                                       ZusatzYAbstand => 0); -- Hier muss < geprüft werden, deswegen 0
 
                      case KartenWert.YWert is
                         when -1_000_000 =>
@@ -512,7 +512,7 @@ package body KartenGenerator is
                            
                         when others =>
                            if Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss /= 0 and Wert >= WahrscheinlichkeitFluss / 2.00 then                        
-                              Karten.Karten (Y, X).Fluss := 15; -- Hier nach die Flussberechung einbauen? Müsste doch schneller sein und mit der jetzigen Lösung auch funktionieren.
+                              Karten.Karten (Y, X).Fluss := 15;
 
                            else
                               null;
@@ -522,6 +522,14 @@ package body KartenGenerator is
                   end loop XAchseSchleifeZwei;
                end loop YAchseSchleifeZwei;
             end if;
+            case Karten.Karten (Y, X).Fluss is
+               when 0 =>
+                  null;
+                  
+               when others =>
+                  FlussBerechnung (YKoordinate => Y,
+                                   XKoordinate => X);
+            end case;
 
             Zeit (5) := Zeit (5) + 1;
             Put_Line (Item => "Berechne55: " & Zeit (5)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
@@ -529,224 +537,205 @@ package body KartenGenerator is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      FlussBerechnung;
-      
    end GenerierungFlüsse;
 
 
 
-   procedure FlussBerechnung is -- Schneller wenn ich es mit der Ressourcenverteilung zusammenführe? -- Außerdem scheint hier noch etwas nicht zu stimmen, nochmal drüber schauen oder gleich was besseres zusammenbasteln.
+   procedure FlussBerechnung (YKoordinate, XKoordinate : in Integer) is -- Außerdem scheint hier noch etwas nicht zu stimmen, nochmal drüber schauen oder gleich was besseres zusammenbasteln.
    begin
+                    
+      Flusswert := 10000;   
+      YAchseSchleife:
+      for YÄnderung in -1 .. 1 loop
+         XAchseSchleife:
+         for XÄnderung in -1 .. 1 loop
 
-      YSchleife:
-      for YKoordinate in Karten.Karten'First (1) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
-         XSchleife:
-         for XKoordinate in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YKoordinate,
+                                                              XKoordinate    => XKoordinate,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 0);
 
-            case Karten.Karten (YKoordinate, XKoordinate).Fluss is
-               when 0 =>
-                  null;
-                  
-               when others =>         
-                  Flusswert := 10000;   
-                  YAchseSchleife:
-                  for YÄnderung in -1 .. 1 loop
-                     XAchseSchleife:
-                     for XÄnderung in -1 .. 1 loop
+            case KartenWert.YWert is
+               when -1_000_000 =>
+                  exit XAchseSchleife;
 
-                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YKoordinate,
-                                                                          XKoordinate    => XKoordinate,
-                                                                          YÄnderung      => YÄnderung,
-                                                                          XÄnderung      => XÄnderung,
-                                                                          ZusatzYAbstand => 0);
+               when others =>
+                  if XÄnderung = -1 and YÄnderung = 0 then
+                     case Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss is
+                        when 0 =>
+                           Flusswert := Flusswert - 1000;
 
-                        case KartenWert.YWert is
-                           when -1_000_000 =>
-                              exit XAchseSchleife;
-
-                           when others =>
-                              if XÄnderung = -1 and YÄnderung = 0 then
-                                 case Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss is
-                                 when 0 =>
-                                    Flusswert := Flusswert - 1000;
-
-                                 when 16 =>
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 23;
+                        when 16 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 23;
                      
-                                 when 18 =>
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 22;
+                        when 18 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 22;
 
-                                 when 20 =>                     
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 21;
+                        when 20 =>                     
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 21;
 
-                                 when 24 =>
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 14;
+                        when 24 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 14;
 
-                                 when 26 =>
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 15;
+                        when 26 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 15;
 
-                                 when 27 =>
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 19;
+                        when 27 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 19;
 
-                                 when 28 =>
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 17;
+                        when 28 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 17;
                      
-                                 when others =>
-                                    null;
-                                 end case;
-                                 Flusswert := Flusswert + 1000;
+                        when others =>
+                           null;
+                     end case;
+                     Flusswert := Flusswert + 1000;
                
-                              elsif XÄnderung = 1 and YÄnderung = 0 then
-                                 case Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss is
-                                    when 0 =>
-                                       Flusswert := Flusswert - 100;
+                  elsif XÄnderung = 1 and YÄnderung = 0 then
+                     case Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss is
+                        when 0 =>
+                           Flusswert := Flusswert - 100;
 
-                                    when 16 =>
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 24;
+                        when 16 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 24;
                      
-                                    when 17 =>
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 22;
+                        when 17 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 22;
 
-                                    when 19 =>                     
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 21;
+                        when 19 =>                     
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 21;
 
-                                    when 23 =>
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 14;
+                        when 23 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 14;
 
-                                    when 25 =>
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 15;
+                        when 25 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 15;
 
-                                    when 27 =>
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 20;
+                        when 27 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 20;
 
-                                    when 28 =>
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 18;
+                        when 28 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 18;
                      
-                                    when others =>
-                                       null;
-                                 end case;
-                                 Flusswert := Flusswert + 100;
+                        when others =>
+                           null;
+                     end case;
+                     Flusswert := Flusswert + 100;
                
-                           elsif YÄnderung = -1 and XÄnderung = 0 then
-                                 case Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss is
-                                 when 0 =>
-                                    Flusswert := Flusswert - 10;
+                  elsif YÄnderung = -1 and XÄnderung = 0 then
+                     case Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss is
+                        when 0 =>
+                           Flusswert := Flusswert - 10;
                      
-                                 when 15 =>
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 22;
+                        when 15 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 22;
                      
-                                 when 19 =>
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 23;
+                        when 19 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 23;
 
-                                 when 20 =>                     
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 24;
+                        when 20 =>                     
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 24;
 
-                                 when 21 =>
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 14;
+                        when 21 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 14;
 
-                                 when 25 =>
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 17;
+                        when 25 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 17;
 
-                                 when 26 =>
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 18;
+                        when 26 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 18;
 
-                                 when 27 =>
-                                    Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 16;
+                        when 27 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 16;
                      
-                                 when others =>
-                                    null;
-                                 end case;
-                                 Flusswert := Flusswert + 10;
+                        when others =>
+                           null;
+                     end case;
+                     Flusswert := Flusswert + 10;
                
-                              elsif YÄnderung = 1 and XÄnderung = 0 then
-                                 case Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss is
-                                    when 0 =>
-                                       Flusswert := Flusswert - 1;
+                  elsif YÄnderung = 1 and XÄnderung = 0 then
+                     case Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss is
+                        when 0 =>
+                           Flusswert := Flusswert - 1;
                      
-                                    when 15 =>
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 21;
+                        when 15 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 21;
                      
-                                    when 17 =>
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 23;
+                        when 17 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 23;
 
-                                    when 18 =>                     
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 24;
+                        when 18 =>                     
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 24;
 
-                                    when 22 =>
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 14;
+                        when 22 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 14;
 
-                                    when 25 =>
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 19;
+                        when 25 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 19;
 
-                                    when 26 =>
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 20;
+                        when 26 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 20;
 
-                                    when 28 =>
-                                       Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 16;
+                        when 28 =>
+                           Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss := 16;
                      
-                                    when others =>
-                                       null;
-                                 end case;
-                                 Flusswert := Flusswert + 1;
+                        when others =>
+                           null;
+                     end case;
+                     Flusswert := Flusswert + 1;
                
-                              else
-                                 null;
-                              end if;
-                        end case;
-            
-                     end loop XAchseSchleife;
-                  end loop YAchseSchleife;
-
-                  case Flusswert is
-                     when 11000 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 26;
-
-                     when 10100 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 25;
-
-                     when 10010 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 27;
-
-                     when 10001 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 28;
-
-                     when 11010 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 20;
-
-                     when 11001 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 18;
-
-                     when 11110 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 21;
-
-                     when 11101 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 22;
-
-                     when 11111 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 14;
-
-                     when 10110 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 19;
-
-                     when 10101 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 17;
-
-                     when 10111 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 23;
-
-                     when 10011 =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 16;
-         
-                     when others =>
-                        Karten.Karten (YKoordinate, XKoordinate).Fluss := 15;
-                  end case;
+                  else
+                     null;
+                  end if;
             end case;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
 
-            Zeit (6) := Zeit (6) + 1;
-            Put_Line (Item => "Berechne66: " & Zeit (6)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
+      case Flusswert is
+         when 11000 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 26;
+
+         when 10100 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 25;
+
+         when 10010 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 27;
+
+         when 10001 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 28;
+
+         when 11010 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 20;
+
+         when 11001 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 18;
+
+         when 11110 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 21;
+
+         when 11101 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 22;
+
+         when 11111 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 14;
+
+         when 10110 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 19;
+
+         when 10101 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 17;
+
+         when 10111 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 23;
+
+         when 10011 =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 16;
          
-         end loop XSchleife;
-      end loop YSchleife;
+         when others =>
+            Karten.Karten (YKoordinate, XKoordinate).Fluss := 15;
+      end case;
       
    end FlussBerechnung;
    
@@ -804,8 +793,8 @@ package body KartenGenerator is
                      end if;
                end case;
 
-               Zeit (7) := Zeit (7) + 1;
-               Put_Line (Item => "Berechne77: " & Zeit (7)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
+               Zeit (6) := Zeit (6) + 1;
+               Put_Line (Item => "Berechne66: " & Zeit (6)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;

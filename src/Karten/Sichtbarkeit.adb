@@ -6,49 +6,43 @@ package body Sichtbarkeit is
       EinheitenPlätzeSchleife:
       for A in GlobaleVariablen.EinheitenGebaut'Range (2) loop
 
-         if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).ID = 0 then
-            exit EinheitenPlätzeSchleife;
+         case GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).ID is
+            when 0 =>
+               exit EinheitenPlätzeSchleife;
             
-         else
-            null;
-         end if;
+            when others =>
+               null;
+         end case;
          
-         if Karten.Karten (GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse).Grund = 7 then
-            Sichtweite := 3;
-         elsif Karten.Karten (GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse).Grund = 9  then
-            Sichtweite := 1;
-         else
-            Sichtweite := 2;
-         end if;
+         case Karten.Karten (GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse).Grund is
+            when 7 =>
+               Sichtweite := 3;
+
+            when 9 =>
+               Sichtweite := 1;
+               
+            when others =>
+               Sichtweite := 2;
+         end case;
 
          YÄnderungEinheitenSchleife:
-         for Y in -Sichtweite .. Sichtweite loop
-            
+         for Y in -Sichtweite .. Sichtweite loop            
             XÄnderungEinheitenSchleife:
             for X in -Sichtweite .. Sichtweite loop
                
-               if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse + Y > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße or GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse + Y < Karten.Karten'First (1) then
-                  null;
+               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse,
+                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse,
+                                                                 YÄnderung      => Y,
+                                                                 XÄnderung      => X,
+                                                                 ZusatzYAbstand => 0);
 
-               elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-                  Wert := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse + X - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-                  for B in Karten.Karten'First (2) .. Wert loop
-                  
-                     Karten.Karten (GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse + Y, B).Sichtbar := True;
-                  
-                  end loop;
-                  
-               elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse + X < Karten.Karten'First (2) then
-                  Wert := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse + X + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-                  for B in Wert .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
-                  
-                     Karten.Karten (GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse + Y, B).Sichtbar := True;
-                  
-                  end loop;
-                  
-               else
-                  Karten.Karten (GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse + Y, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse + X).Sichtbar := True;
-               end if;
+               case Kartenwert.YWert is
+                  when -1_000_000 =>
+                     exit XÄnderungEinheitenSchleife;
+                     
+                  when others =>
+                     Karten.Karten (Kartenwert.YWert, Kartenwert.XWert).Sichtbar := True;
+               end case;
             
             end loop XÄnderungEinheitenSchleife;
          end loop YÄnderungEinheitenSchleife;
@@ -60,7 +54,7 @@ package body Sichtbarkeit is
          if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).ID = 0 then
             exit StadtPlätzeSchleife;
                   
-         elsif GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A). Einwohner < 10 then
+         elsif GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).Einwohner < 10 then
             Sichtweite := 2;
             
          else
@@ -68,33 +62,23 @@ package body Sichtbarkeit is
          end if; 
 
          YÄnderungStadtSchleife:         
-         for Y in -Sichtweite .. Sichtweite loop
-            
+         for Y in -Sichtweite .. Sichtweite loop            
             XÄnderungStadtSchleife:
             for X in -Sichtweite .. Sichtweite loop
-               
-               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).YAchse + Y > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße or GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).YAchse + Y < Karten.Karten'First (1) then
-                  null;
 
-               elsif GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).XAchse + X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-                  Wert := GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).XAchse + X - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-                  for B in Karten.Karten'First (2) .. Wert loop
-                  
-                     Karten.Karten (GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).YAchse + Y, B).Sichtbar := True;
-                  
-                  end loop;
-                  
-               elsif GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).XAchse + X < Karten.Karten'First (2) then
-                  Wert := GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).XAchse + X + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-                  for B in Wert .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
-                  
-                     Karten.Karten (GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).YAchse + Y, B).Sichtbar := True;
-                  
-                  end loop;
-                  
-               else
-                  Karten.Karten (GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).YAchse + Y, GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).XAchse + X).Sichtbar := True;
-               end if;  
+               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).YAchse,
+                                                                 XKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).XAchse,
+                                                                 YÄnderung      => Y,
+                                                                 XÄnderung      => X,
+                                                                 ZusatzYAbstand => 0);
+               
+               case Kartenwert.YWert is
+                  when -1_000_000 =>
+                     exit XÄnderungStadtSchleife;
+                     
+                  when others =>
+                     Karten.Karten (Kartenwert.YWert, Kartenwert.XWert).Sichtbar := True;
+               end case;
             
             end loop XÄnderungStadtSchleife;
          end loop YÄnderungStadtSchleife;

@@ -26,6 +26,7 @@ package body Informationen is
       Put_line (Item => "Nicht über das Array selbst loopen, da bei Aufteilung es zu Problemen kommen kann.");
       Put_Line (Item => "Bessere Lösung für Sortieren finden. Funktioniert die reverse Loop Idee doch, wenn im Bewegungssystem die Gewonnenprüfung am Anfang drin ist?");
       Put_Line (Item => "Die Straßenberechnung funktioniert nicht einmal richtig. Außerdem mal über ein Einzelstück nachdenken.");
+      Put_Line (Item => "Bei Karte noch eine Sonderbegrenzung für die kleinen Kartengrößen einbauen.");
       New_Line;
 
       Put_Line (Item => "Mal drüber nachdenken:");

@@ -15,7 +15,7 @@ package body ImSpiel is
                Karte.AnzeigeKarte;
 
             when 2 => -- Speichern
-               ErfolgreichGeladenGespeichert := Laden.Laden;
+               ErfolgreichGeladenGespeichert := Speichern.Speichern;
                case ErfolgreichGeladenGespeichert is
                   when True =>
                      null;
@@ -55,6 +55,7 @@ package body ImSpiel is
                GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
                Sichtbarkeit.Sichtbarkeitsprüfung;
                Karte.AnzeigeKarte;
+               Speichern.AutoSpeichern;
                
             when others =>
                Sichtbarkeit.Sichtbarkeitsprüfung;

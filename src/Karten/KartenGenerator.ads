@@ -26,7 +26,7 @@ private
 
    KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
 
-   type ZeitArray is array (1 .. 7) of Integer;
+   type ZeitArray is array (1 .. 6) of Integer;
    Zeit : ZeitArray;
 
    type GrößeLandartArray is array (1 .. 3) of Integer;
@@ -71,7 +71,7 @@ private
    procedure GenerierungLandschaftZusatz;
 
    procedure GenerierungFlüsse;
-   procedure FlussBerechnung;
+   procedure FlussBerechnung (YKoordinate, XKoordinate : in Integer);
    procedure GenerierungRessourcen;
 
 end KartenGenerator;

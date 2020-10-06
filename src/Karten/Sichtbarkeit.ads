@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, GlobaleVariablen, Karten, KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank;
+with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, GlobaleVariablen, Karten, KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, SchleifenPruefungen, GlobaleDatentypen;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 package Sichtbarkeit is
@@ -13,5 +13,7 @@ private
 
    Sichtweite : Integer := 2;
    Wert : Integer;
+
+   Kartenwert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
 
 end Sichtbarkeit;

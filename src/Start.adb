@@ -1,5 +1,5 @@
-with Ada.Wide_Wide_Text_IO, Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, Laden, Ausgabe, ImSpiel;
-use Ada.Wide_Wide_Text_IO;
+with Ada.Wide_Wide_Text_IO, Ada.Directories, Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, Laden, Ausgabe, ImSpiel;
+use Ada.Wide_Wide_Text_IO, Ada.Directories;
 
 procedure Start is
 
@@ -10,6 +10,13 @@ procedure Start is
 
 begin
 
+   case Exists (Name => "Dateien/Spielstand") is
+      when True =>
+         null;
+
+      when False =>
+         Create_Directory (New_Directory => "Dateien/Spielstand");
+   end case;
    Einlesen.EinlesenText;
 
    StartSchleife:

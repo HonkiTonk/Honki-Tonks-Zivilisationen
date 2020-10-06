@@ -10,9 +10,6 @@ private
    StehtDrauf : Boolean;
 
    MöglicheAngriffsfelder : constant Wide_Wide_Character := '■';
-
-   Sichtweite : constant Integer := 10;
-   Bewegungsfeld : constant Integer := 8;
    Überhang : Integer := 0;
    Verteidigungsbonus : Integer;
    Nahrungsgewinnung : Integer;
@@ -20,7 +17,8 @@ private
    Geldgewinnung : Integer;
    Wissensgewinnung : Integer;
 
-   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   Sichtweite : constant GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord := (8, 12);
+   Bewegungsfeld : constant GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord := (6, 10);
 
    procedure Information;
 

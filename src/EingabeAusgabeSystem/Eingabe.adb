@@ -37,4 +37,16 @@ package body Eingabe is
       
    end StadtName;
 
+
+
+   function SpielstandName return Unbounded_Wide_Wide_String is
+   begin            
+      
+      Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 40)));
+      Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
+      
+      return Name;
+      
+   end SpielstandName;
+
 end Eingabe;
