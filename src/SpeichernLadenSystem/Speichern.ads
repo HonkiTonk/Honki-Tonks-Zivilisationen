@@ -1,5 +1,5 @@
-with Ada.Wide_Wide_Text_IO, Karten, GlobaleVariablen;
-use Ada.Wide_Wide_Text_IO;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Directories, Karten, GlobaleVariablen, Eingabe;
+use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Directories;
 
 package Speichern is
 
@@ -8,6 +8,8 @@ package Speichern is
    function Speichern return Boolean;
 
 private
+
+   SpielstandName : Unbounded_Wide_Wide_String;
 
    Datei : File_Type;
 

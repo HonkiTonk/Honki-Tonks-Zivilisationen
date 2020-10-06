@@ -3,7 +3,9 @@ package body Speichern is
    function Speichern return Boolean is
    begin
 
-      -- Create_Directory (New_Directory => "Dateien/Speichern");
+      SpielstandName := Eingabe.SpielstandName;
+
+      -- Ada.Wide_Wide_Text_IO.Create
       
       return True;
       

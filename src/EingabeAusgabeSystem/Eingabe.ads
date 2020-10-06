@@ -7,6 +7,7 @@ package Eingabe is
 
    function GanzeZahl return Integer;
    function StadtName return Unbounded_Wide_Wide_String;
+   function SpielstandName return Unbounded_Wide_Wide_String;
 
 private
 

@@ -37,11 +37,12 @@ package body SchleifenPruefungen is
 
    function KoordinatenStadtMitRasseSuchen (Rasse, YAchse, XAchse : in Integer) return Integer is
    begin
-
+      
+      StadtSchleife:
       for Stadtnummer in GlobaleVariablen.StadtGebaut'Range (2) loop
          
          if GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).ID = 0 then
-            exit;
+            exit StadtSchleife;
             
          elsif GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse = YAchse and GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).XAchse = XAchse then
             return Stadtnummer;
@@ -50,7 +51,7 @@ package body SchleifenPruefungen is
             null;
          end if;
          
-      end loop;
+      end loop StadtSchleife;
       
       return 0;
       
@@ -61,10 +62,11 @@ package body SchleifenPruefungen is
    function KoordinatenEinheitMitRasseSuchen (Rasse, YAchse, XAchse : in Integer) return Integer is
    begin
       
+      EinheitSchleife:
       for Einheitennummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
          
          if GlobaleVariablen.EinheitenGebaut (Rasse, Einheitennummer).ID = 0 then
-            exit;
+            exit EinheitSchleife;
             
          elsif GlobaleVariablen.EinheitenGebaut (Rasse, Einheitennummer).YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (Rasse, Einheitennummer).XAchse = XAchse then
             return Einheitennummer;
@@ -73,7 +75,7 @@ package body SchleifenPruefungen is
             null;
          end if;
          
-      end loop;
+      end loop EinheitSchleife;
       
       return 0;
       
