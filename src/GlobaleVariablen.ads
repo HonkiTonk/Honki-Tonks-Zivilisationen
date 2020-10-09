@@ -41,14 +41,14 @@ package GlobaleVariablen is
    end record;
 
    type EinheitenGebautArray is array (1 .. 18, 1 .. 1000) of EinheitenGebautRecord;
-   EinheitenGebaut : EinheitenGebautArray := (2 => (1 => (0, 0,    2, 5, 5,    5, 1.0, 0, 0,    0, 0),
-                                                    2 => (0, 0,    2, 10, 10,    5, 1.0, 0, 0,    0, 0),
-                                                    3 => (0, 0,    2, 2, 2,    5, 1.0, 0, 0,    0, 0),
-                                                    4 => (0, 0,    2, 4, 4,    5, 1.0, 0, 0,    0, 0),
-                                                    5 => (0, 0,    2, 15, 15,    5, 1.0, 0, 0,    0, 0),
-                                                    others => (0, 0,     0, 0, 0,     0, 0.0, 0, 0,    0, 0)),
+   EinheitenGebaut : EinheitenGebautArray := (2 => (1 => (0, 0,    2, 5, 5,    5, 1.00, 0, 0,    0, 0),
+                                                    2 => (0, 0,    2, 10, 10,    5, 1.00, 0, 0,    0, 0),
+                                                    3 => (0, 0,    2, 2, 2,    5, 1.00, 0, 0,    0, 0),
+                                                    4 => (0, 0,    2, 4, 4,    5, 1.00, 0, 0,    0, 0),
+                                                    5 => (0, 0,    2, 15, 15,    5, 1.00, 0, 0,    0, 0),
+                                                    others => (0, 0,     0, 0, 0,     0, 0.00, 0, 0,    0, 0)),
                                               
-                                              others => (others => (0, 0,    0, 0, 0,    0, 0.0, 0, 0,    0, 0)));
+                                              others => (others => (0, 0,    0, 0, 0,    0, 0.00, 0, 0,    0, 0)));
 
    type UmgebungBewirtschaftungArray is array (-3 .. 3, -3 .. 3) of Boolean;
 

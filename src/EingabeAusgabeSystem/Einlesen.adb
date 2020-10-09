@@ -9,18 +9,18 @@ package body Einlesen is
 
       for A in WelcheTexteEinlesen'Range loop
 
-            if End_Of_File (File => DateiWelcheTexteEinlesen) = True then
-               exit;
+         if End_Of_File (File => DateiWelcheTexteEinlesen) = True then
+            exit;
                
-            else
+         else
             Set_Line (File => DateiWelcheTexteEinlesen,
-                      To => Ada.Text_IO.Count (A));         
-               WelcheTexteEinlesen (A) := To_Unbounded_String (Source => Ada.Text_IO.Get_Line (File => DateiWelcheTexteEinlesen));
-            end if;
+                      To   => Ada.Text_IO.Count (A));         
+            WelcheTexteEinlesen (A) := To_Unbounded_String (Source => Ada.Text_IO.Get_Line (File => DateiWelcheTexteEinlesen));
+         end if;
 
-         end loop;
+      end loop;
 
-         close (File => DateiWelcheTexteEinlesen);
+      close (File => DateiWelcheTexteEinlesen);
       
       WelcherTextSchleife:
       for B in TexteEinlesen'Range (1) loop
@@ -37,7 +37,7 @@ package body Einlesen is
                
             else
                Set_Line (File => DateiText,
-                         To => Ada.Wide_Wide_Text_IO.Count (C));         
+                         To   => Ada.Wide_Wide_Text_IO.Count (C));         
                TexteEinlesen (B, C) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
             end if;
 

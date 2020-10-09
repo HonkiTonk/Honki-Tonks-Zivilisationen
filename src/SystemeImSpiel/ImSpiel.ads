@@ -6,8 +6,6 @@ package ImSpiel is
 
 private
 
-   ErfolgreichGeladenGespeichert : Boolean;
-
    AktuellerBefehl : Integer;
 
 end ImSpiel;

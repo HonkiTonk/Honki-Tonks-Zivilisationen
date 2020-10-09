@@ -69,6 +69,12 @@ package body Auswahl is
 
                elsif Einlesen.TexteEinlesen (WelcherText, AktuelleAuswahl) = "Laden" then
                  return 3;
+
+               elsif Einlesen.TexteEinlesen (WelcherText, AktuelleAuswahl) = "Optionen" then
+                 return 4;
+
+               elsif Einlesen.TexteEinlesen (WelcherText, AktuelleAuswahl) = "Informationen" then
+                 return 5;
                      
                else
                   Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");

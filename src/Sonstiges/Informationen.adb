@@ -15,7 +15,6 @@ package body Informationen is
 
       Put_Line (Item => "Das nächste Mal zu tun:");
       Put_Line (Item => "Kartengenerator verbessern und erweitern! Kalenderzeitfunktion zum ermitteln der Berechnungszeit nutzen.");
-      Put_Line (Item => "Speichern/Laden einbauen.");
       Put_Line (Item => "Gebäuden und Forschungen eine Bedeutung geben.");
       Put_Line (Item => "Grundlegende Systeme (z. B. Anzeige von Texten) verbessern.");
       Put_Line (Item => "StraßenBerechnung endlich ansehbar machen.");
@@ -27,6 +26,7 @@ package body Informationen is
       Put_Line (Item => "Bessere Lösung für Sortieren finden. Funktioniert die reverse Loop Idee doch, wenn im Bewegungssystem die Gewonnenprüfung am Anfang drin ist?");
       Put_Line (Item => "Die Straßenberechnung funktioniert nicht einmal richtig. Außerdem mal über ein Einzelstück nachdenken.");
       Put_Line (Item => "Bei Karte noch eine Sonderbegrenzung für die kleinen Kartengrößen einbauen.");
+      Put_Line (Item => "Datei 1Start macht mit dem aktuellen Auswahlsystem Probleme.");
       New_Line;
 
       Put_Line (Item => "Mal drüber nachdenken:");
@@ -131,6 +131,7 @@ package body Informationen is
       Put_Line (Item => "Einbauen! Wird bestimmt einfach und lustig.");
       New_Line;
       
+      Put_Line (Item => "Taste drücken um zurück ins Hauptmenü zu kommen.");
       Get_Immediate (Item => Taste);
       
    end Informationen;
