@@ -1,6 +1,6 @@
 package body ImSpiel is
 
-   function ImSpiel return Integer is
+   function ImSpiel return Integer is -- Karte.Sichtbarkeit von hier nach BefehleImSpiel verschiebbar?
    begin
 
       Sichtbarkeit.Sichtbarkeitsprüfung;
@@ -15,28 +15,16 @@ package body ImSpiel is
                Karte.AnzeigeKarte;
 
             when 2 => -- Speichern
-               ErfolgreichGeladenGespeichert := Speichern.Speichern;
-               case ErfolgreichGeladenGespeichert is
-                  when True =>
-                     null;
-                     
-                  when False =>
-                     Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 10);
-               end case;
+               Speichern.Speichern (AutoSpeichern => False);
+               Karte.AnzeigeKarte;
                
             when 3 => -- Laden
-               ErfolgreichGeladenGespeichert := Laden.Laden;
-               case ErfolgreichGeladenGespeichert is
-                  when True =>
-                     null;
-                     
-                  when False =>
-                     Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 9);
-                     return 0;
-               end case;
+               Laden.Laden;
+               Karte.AnzeigeKarte;
                
             when 4 =>
                Optionen.Optionen;
+               Karte.AnzeigeKarte;
                
             when 0 =>
                return 0;

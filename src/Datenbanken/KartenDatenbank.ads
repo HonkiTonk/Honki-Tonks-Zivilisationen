@@ -58,7 +58,7 @@ package KartenDatenbank is
                                                            ('≈', 2,    2, 1, 2, 0,    0), -- 30 Wal = WasserRessource 2
                                                            (' ', 2,    2, 0, 1, 0,    0), -- 31 Küsten/Seegewässer
                                                            (' ', 1,    1, 1, 1, 1,    2), -- 32 Sumpf
-                                                           (' ', 1,    0, 1, 3, 0,    0), -- 33 Gold = Ressource 5
+                                                           ('♦', 1,    0, 1, 3, 0,    0), -- 33 Gold = Ressource 5
                                                            (' ', 1,    0, 0, 0, 0,    0)); -- 34 Hügel mit (Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?)
                                                                        
    procedure Beschreibung (ID : in Integer);

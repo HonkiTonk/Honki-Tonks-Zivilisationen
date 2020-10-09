@@ -3,8 +3,6 @@ use Ada.Wide_Wide_Text_IO, Ada.Directories;
 
 procedure Start is
 
-   ErfolgreichGeladen : Boolean;
-
    Startauswahl : Integer;
    RückgabeKampagne : Integer := 0;
 
@@ -39,30 +37,24 @@ begin
                   Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Start");
             end case;
 
-         when 2 => -- Laden
-            ErfolgreichGeladen := Laden.Laden;
-            case ErfolgreichGeladen is
-               when True =>
-                  RückgabeKampagne := ImSpiel.ImSpiel;
-                  case RückgabeKampagne is
-                     when 0 =>
-                        AllesAufAnfangSetzen.AllesAufAnfangSetzen;
+         when 3 => -- Laden
+            Laden.Laden;
+            RückgabeKampagne := ImSpiel.ImSpiel;
+            case RückgabeKampagne is
+               when 0 =>
+                  AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
-                     when -1 =>
-                        exit StartSchleife;
+               when -1 =>
+                  exit StartSchleife;
 
-                     when others =>
-                        Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Laden");
-                  end case;
-
-               when False =>
-                  Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 9);
+               when others =>
+                  Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Laden");
             end case;
 
-         when 3 => -- Optionen
+         when 4 => -- Optionen
             Optionen.Optionen;
 
-         when 4 => -- Informationen
+         when 5 => -- Informationen
             Informationen.Informationen;
 
          when -1 => -- Beenden
