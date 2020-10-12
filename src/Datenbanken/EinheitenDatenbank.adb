@@ -3,7 +3,7 @@ package body EinheitenDatenbank is
    procedure Beschreibung (ID : in Integer) is
    begin
       
-      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (10, ID)));
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (10, ID)));
       
    end Beschreibung;
 
@@ -155,10 +155,10 @@ package body EinheitenDatenbank is
       
       case Arbeit is
          when 0 =>
-            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (22, 9)));            
+            Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (22, 9)));            
             
          when others =>
-            Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (22, Arbeit)));
+            Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (22, Arbeit)));
       end case;
       
    end Beschäftigung;

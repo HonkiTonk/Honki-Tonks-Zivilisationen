@@ -1,14 +1,28 @@
 package body Karte is
 
    procedure AnzeigeKarte is
-   begin           
+   begin
       
-      if GlobaleVariablen.CursorImSpiel.YAchse > GlobaleVariablen.CursorImSpiel.YAchseAlt + Bewegungsfeld.YWert
-        or GlobaleVariablen.CursorImSpiel.YAchse < GlobaleVariablen.CursorImSpiel.YAchseAlt - Bewegungsfeld.YWert then
+      case Karten.Kartengröße is
+         when 1 =>
+            SichtweiteFestlegen := 1;
+            BewegungsfeldFestlegen := 1;
+            
+         when 2 =>
+            SichtweiteFestlegen := 2;
+            BewegungsfeldFestlegen := 2;
+            
+         when others =>
+            SichtweiteFestlegen := 3;
+            BewegungsfeldFestlegen := 3;            
+      end case;
+      
+      if GlobaleVariablen.CursorImSpiel.YAchse > GlobaleVariablen.CursorImSpiel.YAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).YWert
+        or GlobaleVariablen.CursorImSpiel.YAchse < GlobaleVariablen.CursorImSpiel.YAchseAlt - Bewegungsfeld (BewegungsfeldFestlegen).YWert then
          GlobaleVariablen.CursorImSpiel.YAchseAlt := GlobaleVariablen.CursorImSpiel.YAchse;
 
-      elsif GlobaleVariablen.CursorImSpiel.XAchse > GlobaleVariablen.CursorImSpiel.XAchseAlt + Bewegungsfeld.XWert
-        or GlobaleVariablen.CursorImSpiel.XAchse < GlobaleVariablen.CursorImSpiel.XAchseAlt - Bewegungsfeld.XWert then
+      elsif GlobaleVariablen.CursorImSpiel.XAchse > GlobaleVariablen.CursorImSpiel.XAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).XWert
+        or GlobaleVariablen.CursorImSpiel.XAchse < GlobaleVariablen.CursorImSpiel.XAchseAlt - Bewegungsfeld (BewegungsfeldFestlegen).XWert then
          GlobaleVariablen.CursorImSpiel.XAchseAlt := GlobaleVariablen.CursorImSpiel.XAchse;
          
       else
@@ -23,8 +37,8 @@ package body Karte is
          for XÄnderung in Karten.Karten'Range (2) loop
             
             if YÄnderung = GlobaleVariablen.CursorImSpiel.YAchse and XÄnderung = GlobaleVariablen.CursorImSpiel.XAchse then
-               if XÄnderung = Karten.Karten'First (2) and GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite.XWert < Karten.Karten'First (2) then
-                  Überhang := GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite.XWert + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+               if XÄnderung = Karten.Karten'First (2) and GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite (SichtweiteFestlegen).XWert < Karten.Karten'First (2) then
+                  Überhang := GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite (SichtweiteFestlegen).XWert + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                   for A in Überhang .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                   
                      Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung,
@@ -33,9 +47,9 @@ package body Karte is
                   end loop;                  
                   Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
 
-               elsif XÄnderung = Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite.XWert > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+               elsif XÄnderung = Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite (SichtweiteFestlegen).XWert > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
                   Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
-                  Überhang := GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite.XWert - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+                  Überhang := GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite (SichtweiteFestlegen).XWert - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                   for A in Karten.Karten'First (2) .. Überhang loop
                   
                      Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung,
@@ -49,10 +63,10 @@ package body Karte is
                   Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
                end if;
 
-            elsif YÄnderung < GlobaleVariablen.CursorImSpiel.YAchseAlt - Sichtweite.YWert then
+            elsif YÄnderung < GlobaleVariablen.CursorImSpiel.YAchseAlt - Sichtweite (SichtweiteFestlegen).YWert then
                exit XAchseSchleife;
 
-            elsif YÄnderung > GlobaleVariablen.CursorImSpiel.YAchseAlt + Sichtweite.YWert then
+            elsif YÄnderung > GlobaleVariablen.CursorImSpiel.YAchseAlt + Sichtweite (SichtweiteFestlegen).YWert then
                New_Line;
                exit YAchseSchleife;
 
@@ -60,10 +74,10 @@ package body Karte is
                New_Line;
                exit YAchseSchleife;
 
-            elsif XÄnderung < GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite.XWert then
+            elsif XÄnderung < GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite (SichtweiteFestlegen).XWert then
                null;
 
-            elsif XÄnderung > GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite.XWert then
+            elsif XÄnderung > GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite (SichtweiteFestlegen).XWert then
                New_Line;
                exit XAchseSchleife;
 
@@ -71,8 +85,8 @@ package body Karte is
                New_Line;
                exit XAchseSchleife;
                
-            elsif XÄnderung = Karten.Karten'First (2) and GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite.XWert < Karten.Karten'First (2) then
-               Überhang := GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite.XWert + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+            elsif XÄnderung = Karten.Karten'First (2) and GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite (SichtweiteFestlegen).XWert < Karten.Karten'First (2) then
+               Überhang := GlobaleVariablen.CursorImSpiel.XAchseAlt - Sichtweite (SichtweiteFestlegen).XWert + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                for A in Überhang .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                   
                   Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung,
@@ -82,10 +96,10 @@ package body Karte is
                Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung,
                                           XAchse => XÄnderung);
 
-            elsif XÄnderung = Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite.XWert > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+            elsif XÄnderung = Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite (SichtweiteFestlegen).XWert > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
                Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung,
                                           XAchse => XÄnderung);
-               Überhang := GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite.XWert - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+               Überhang := GlobaleVariablen.CursorImSpiel.XAchseAlt + Sichtweite (SichtweiteFestlegen).XWert - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
                for A in Karten.Karten'First (2) .. Überhang loop
                   
                   Sichtbarkeit.Sichtbarkeit (YAchse => YÄnderung,
@@ -118,17 +132,17 @@ package body Karte is
       Geldgewinnung := 0;
       Wissensgewinnung := 0;
 
-      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 33)) & GlobaleVariablen.RundenAnzahl'Wide_Wide_Image);
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 33)) & GlobaleVariablen.RundenAnzahl'Wide_Wide_Image);
 
-      Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 34)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleGeldmenge'Wide_Wide_Image);
-      Put_Line (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 35)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).GeldZugewinnProRunde'Wide_Wide_Image);
+      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 34)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleGeldmenge'Wide_Wide_Image);
+      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 35)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).GeldZugewinnProRunde'Wide_Wide_Image);
 
-      Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 38)));
+      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 38)));
       ForschungsDatenbank.Beschreibung (ID => GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuellesForschungsprojekt);
-      Put_Line (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 36)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).VerbleibendeForschungszeit'Wide_Wide_Image);
+      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 36)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).VerbleibendeForschungszeit'Wide_Wide_Image);
 
-      Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 39)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsmenge'Wide_Wide_Image);
-      Put_Line (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 37)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsrate'Wide_Wide_Image);
+      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 39)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsmenge'Wide_Wide_Image);
+      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 37)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsrate'Wide_Wide_Image);
       New_Line;
       
       case Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Sichtbar is
@@ -145,11 +159,11 @@ package body Karte is
                      when others =>
                         if GlobaleVariablen.EinheitenGebaut (A, B).YAchse = GlobaleVariablen.CursorImSpiel.YAchse and GlobaleVariablen.EinheitenGebaut (A, B).XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
                            EinheitenDatenbank.Beschreibung (GlobaleVariablen.EinheitenGebaut (A, B).ID);                        
-                           Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 14)));
+                           Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 14)));
                            Put_Line (Item => GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte'Wide_Wide_Image & " /" & EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleLebenspunkte'Wide_Wide_Image);
                         
                            if A = GlobaleVariablen.Rasse then
-                              Put (Item => "           " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 15)));
+                              Put (Item => "           " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 15)));
                               Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBewegungspunkte,
                                                      Fore => 1,
                                                      Aft  => 1,
@@ -159,19 +173,19 @@ package body Karte is
                                                      Fore => 1,
                                                      Aft  => 1,
                                                      Exp  => 0);
-                              Put (Item => "    " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 16)));
+                              Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 16)));
                               Put_Line (Item => GlobaleVariablen.EinheitenGebaut (A, B).AktuelleErfahrungspunkte'Wide_Wide_Image & " /" & EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).Beförderungsgrenze'Wide_Wide_Image);
                               
-                              Put (Item => "           " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 17)));
+                              Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 17)));
                               EinheitenDatenbank.Beschäftigung (GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigung);
-                              Put (Item => "    " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 18)));
+                              Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 18)));
                               Put_Line (Item => GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigungszeit'Wide_Wide_Image);
 
-                              Put (Item => "           " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 24)));
+                              Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 24)));
                               Put (Item => EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).Angriff'Wide_Wide_Image);
-                              Put (Item => "    " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 25)));
+                              Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 25)));
                               Put (Item => EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).Verteidigung'Wide_Wide_Image);
-                              Put (Item => "    " & To_Wide_Wide_String (Einlesen.TexteEinlesen (19, 26)));
+                              Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 26)));
                               Put_Line (Item => GlobaleVariablen.EinheitenGebaut (A, B).AktuellerRang'Wide_Wide_Image & " /" & EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximalerRang'Wide_Wide_Image);
                               
                            else
@@ -218,7 +232,7 @@ package body Karte is
             end loop RassenStadtSchleife;
                   
             if Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Hügel = True and Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund /= 6 then
-               Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (9, 34)));
+               Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (9, 34)));
                KartenDatenbank.Beschreibung (ID => Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
 
                Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Verteidigungsbonus;
@@ -299,15 +313,15 @@ package body Karte is
             end if;
             
             New_Line;
-            Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 19)));
+            Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 19)));
             Put (Item => Verteidigungsbonus'Wide_Wide_Image);
-            Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 20)));
+            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 20)));
             Put_Line (Item => Nahrungsgewinnung'Wide_Wide_Image);
-            Put (Item => "       " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 21)));
+            Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 21)));
             Put (Item => Ressourcengewinnung'Wide_Wide_Image);
-            Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 22)));
+            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 22)));
             Put (Item => Geldgewinnung'Wide_Wide_Image);
-            Put (Item => "    " & To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 23)));
+            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 23)));
             Put_Line (Item => Wissensgewinnung'Wide_Wide_Image);
             
          when False =>

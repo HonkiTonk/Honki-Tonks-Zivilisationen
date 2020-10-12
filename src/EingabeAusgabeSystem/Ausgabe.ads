@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Einlesen;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, GlobaleVariablen;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 package Ausgabe is
@@ -7,5 +7,6 @@ package Ausgabe is
    procedure Zeug (WelchesZeug : in Integer);
    procedure Fehlermeldungen (WelcheFehlermeldung : in Integer);
    procedure WelcheAuswahl (WasWurdeGewählt : in Integer);
+   procedure TexteEinlesenAusgabe (WelcheDatei, WelcherText : in Integer);
    
 end Ausgabe;

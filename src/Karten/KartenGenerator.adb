@@ -9,9 +9,9 @@ package body KartenGenerator is
       GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 10); -- Inseln, Kontinente, Pangäa
       -- Größe Landart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
       GeneratorKarte := (others => (others => (0)));
-      Zeit := (0, 0, 0, 0, 0, 0);
       Test := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße * Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-      
+
+      Zeit (1, 1) := Clock;
       YAchseSchleife:
       for Y in Karten.Karten'Range (1) loop
          XAchseSchleife:
@@ -38,19 +38,79 @@ package body KartenGenerator is
                end case;
                GenerierungKartenart (Y, X);
             end if;
-
-            Zeit (1) := Zeit (1) + 1;
-            Put_Line (Item => "Berechne11: " & Zeit (1)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
+      Zeit (2, 1) := Clock;
             
+      Zeit (1, 2) := Clock;
       GenerierungKüstenSeeGewässer;
+      Zeit (2, 2) := Clock;
 
+      Zeit (1, 3) := Clock;
       GenerierungKartentemperatur;
+      Zeit (2, 3) := Clock;
+      
+      Zeit (1, 4) := Clock;
       GenerierungLandschaft;
+      Zeit (2, 4) := Clock;
+      
+      Zeit (1, 5) := Clock;
       GenerierungFlüsse;
+      Zeit (2, 5) := Clock;
+      
+      Zeit (1, 6) := Clock;
       GenerierungRessourcen;
+      Zeit (2, 6) := Clock;
+
+      Put ("Zeit 1: ");
+      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 1) - Zeit (1, 1)),
+                             Fore => 1,
+                             Aft  => 6,
+                             Exp  => 0);
+      New_Line;
+
+      Put ("Zeit 2: ");
+      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 2) - Zeit (1, 2)),
+                             Fore => 1,
+                             Aft  => 6,
+                             Exp  => 0);
+      New_Line;
+
+      Put ("Zeit 3: ");
+      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 3) - Zeit (1, 3)),
+                             Fore => 1,
+                             Aft  => 6,
+                             Exp  => 0);
+      New_Line;
+
+      Put ("Zeit 4: ");
+      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 4) - Zeit (1, 4)),
+                             Fore => 1,
+                             Aft  => 6,
+                             Exp  => 0);
+      New_Line;
+
+      Put ("Zeit 5: ");
+      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 5) - Zeit (1, 5)),
+                             Fore => 1,
+                             Aft  => 6,
+                             Exp  => 0);
+      New_Line;
+
+      Put ("Zeit 6: ");
+      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 6) - Zeit (1, 6)),
+                             Fore => 1,
+                             Aft  => 6,
+                             Exp  => 0);
+      New_Line;
+
+      Put ("Gesamtzeit: ");
+      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 1) - Zeit (1, 1) + Zeit (2, 2) - Zeit (1, 2) + Zeit (2, 3) - Zeit (1, 3) + Zeit (2, 4) - Zeit (1, 4) + Zeit (2, 5) - Zeit (1, 5) + Zeit (2, 6) - Zeit (1, 6)),
+                             Fore => 1,
+                             Aft  => 6,
+                             Exp  => 0);
+      Get_Immediate (Item => Warten);
       
    end KartenGenerator;
 
@@ -227,9 +287,6 @@ package body KartenGenerator is
                when others =>
                   null;
             end case;
-
-            Zeit (2) := Zeit (2) + 1;
-            Put_Line (Item => "Berechne22: " & Zeit (2)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -305,9 +362,6 @@ package body KartenGenerator is
                   null;
                end if;
             end if;
-
-            Zeit (3) := Zeit (3) + 1;
-            Put_Line (Item => "Berechne33: " & Zeit (3)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
          
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -423,9 +477,6 @@ package body KartenGenerator is
                   null;                  
                end if;
             end if;
-
-            Zeit (4) := Zeit (4) + 1;
-            Put_Line (Item => "Berechne44: " & Zeit (4)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;         
@@ -530,9 +581,6 @@ package body KartenGenerator is
                   FlussBerechnung (YKoordinate => Y,
                                    XKoordinate => X);
             end case;
-
-            Zeit (5) := Zeit (5) + 1;
-            Put_Line (Item => "Berechne55: " & Zeit (5)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
          
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -792,9 +840,6 @@ package body KartenGenerator is
                         null;
                      end if;
                end case;
-
-               Zeit (6) := Zeit (6) + 1;
-               Put_Line (Item => "Berechne66: " & Zeit (6)'Wide_Wide_Image & "/" & Test'Wide_Wide_Image);
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;

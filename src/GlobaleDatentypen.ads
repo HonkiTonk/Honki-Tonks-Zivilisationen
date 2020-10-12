@@ -1,5 +1,7 @@
 package GlobaleDatentypen is
 
+   type RassenImSpielarray is array (1 .. 18) of Integer;
+
    type RückgabewertFürSchleifenPrüfungRecord is record
       
       YWert : Integer;

@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9, GlobaleDatentypen, KarteStadt, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Einlesen, Sichtbarkeit;
+with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9, GlobaleDatentypen, KarteStadt, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
 package Karte is
@@ -16,9 +16,18 @@ private
    Ressourcengewinnung : Integer;
    Geldgewinnung : Integer;
    Wissensgewinnung : Integer;
+   SichtweiteFestlegen : Integer;
+   BewegungsfeldFestlegen : Integer;
 
-   Sichtweite : constant GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord := (8, 12);
-   Bewegungsfeld : constant GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord := (6, 10);
+   type SichtweiteArray is array (1 .. 3) of GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+
+   Sichtweite : constant SichtweiteArray := (1 => (6, 10),
+                                             2 => (6, 22),
+                                             3 => (6, 35));
+
+   Bewegungsfeld : constant SichtweiteArray := (1 => (5, 9),
+                                                2 => (5, 21),
+                                                3 => (5, 34));
 
    procedure Information;
 

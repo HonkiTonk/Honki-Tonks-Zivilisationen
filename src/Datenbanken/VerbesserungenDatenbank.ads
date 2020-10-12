@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, SchleifenPruefungen, Einlesen, GlobaleVariablen, GlobaleDatentypen, Auswahl, EinheitenDatenbank, Karten, Ausgabe;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, SchleifenPruefungen, GlobaleVariablen, GlobaleDatentypen, Auswahl, EinheitenDatenbank, Karten, Ausgabe;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 package VerbesserungenDatenbank is
@@ -21,8 +21,7 @@ package VerbesserungenDatenbank is
    
    type VerbesserungObjektListeArray is array (0 .. 22) of VerbesserungObjekt;
    VerbesserungObjektListe : VerbesserungObjektListeArray := ((' ', 13,    0, 0, 0, 0,    0), -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-                                                              -- Sollte mit Einlesen und Textausgabe funtkionieren, wenn nicht auf letzte Position verschieben.
-                                                              ('♣', 13,    0, 0, 0, 0,    3), -- 1 Eigene Hauptstadt -- Hier noch Symbole (wieder) einfügen
+                                                              ('♣', 13,    0, 0, 0, 0,    3), -- 1 Eigene Hauptstadt
                                                               ('♠', 13,    0, 0, 0, 0,    2), -- 2 Eigene Stadt
                                                               ('⌂', 13,    0, 0, 0, 0,    3), -- 3 Andere Hauptstadt
                                                               ('¤', 13,    0, 0, 0, 0,    2), -- 4 Andere Stadt

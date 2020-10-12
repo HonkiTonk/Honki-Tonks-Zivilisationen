@@ -10,6 +10,7 @@ private
 
    Zeilenanzahl : Integer;
    KartenPlusWert : Integer;
+   AutospeichernWert : Integer := 1;
 
    SpielstandName : Unbounded_Wide_Wide_String;
 

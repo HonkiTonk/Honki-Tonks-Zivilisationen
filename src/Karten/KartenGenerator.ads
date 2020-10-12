@@ -1,4 +1,4 @@
-with Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Calendar, Ada.Numerics.Discrete_Random, Karten, GlobaleVariablen, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen;
+with Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO, Ada.Calendar, Ada.Numerics.Discrete_Random, Karten, GlobaleVariablen, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen;
 use Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Calendar;
 
 package KartenGenerator is -- Klein = 40x40, Mittel = 80x80, Groß = 160x160, Riesig = 240x240, Gigantisch = 320x320, Absurd? = 1000x1000
@@ -11,6 +11,8 @@ package KartenGenerator is -- Klein = 40x40, Mittel = 80x80, Groß = 160x160, Ri
 private
 
    Gewählt : Generator;
+
+   Warten : Wide_Wide_Character;
 
    NochVerteilbareRessourcen : Integer;
    Überhang : Integer;
@@ -26,7 +28,7 @@ private
 
    KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
 
-   type ZeitArray is array (1 .. 6) of Integer;
+   type ZeitArray is array (1 .. 2, 1 .. 6) of Time;
    Zeit : ZeitArray;
 
    type GrößeLandartArray is array (1 .. 3) of Integer;

@@ -1,24 +1,27 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.Unbounded, Ada.Text_IO;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.Unbounded, Ada.Text_IO;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.Unbounded, Ada.Directories, Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Text_IO, GlobaleVariablen, KartenDatenbank, VerbesserungenDatenbank, GebaeudeDatenbank, ForschungsDatenbank, EinheitenDatenbank;
+use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.Unbounded, Ada.Directories, Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Text_IO;
 
 package Einlesen is
 
-   type TexteEinlesenArray is array (1 .. 22, 1 .. 50) of Unbounded_Wide_Wide_String;
-   TexteEinlesen : TexteEinlesenArray := (others => (others => (To_Unbounded_Wide_Wide_String ("|"))));
-
-
-   -- type GanzeZahlenEinlesenArray is array (1 .. 1, 1 .. 10
-
-   procedure EinlesenText;
-   procedure EinlesenGanzeZahl;
-   -- procedure EinlesenKommazahl;
+   function Einlesen return Boolean;
 
 private
 
-   type WelcheTexteEinlesenArray is array (TexteEinlesen'Range (1)) of Unbounded_String;
+   Erfolgreich : Boolean;
+
+   type WelcheTexteEinlesenArray is array (GlobaleVariablen.TexteEinlesen'Range (1)) of Unbounded_String;
    WelcheTexteEinlesen : WelcheTexteEinlesenArray;
 
+   type WelcheWerteEinlesenArray is array (1 .. 5) of Unbounded_String;
+   WelcheWerteEinlesen : WelcheWerteEinlesenArray;
+
    DateiWelcheTexteEinlesen : Ada.Text_IO.File_Type;
+   DateiWelcheWerteEinlesen : Ada.Text_IO.File_Type;
    DateiText : Ada.Wide_Wide_Text_IO.File_Type;
+   DateiWerte : Ada.Wide_Wide_Text_IO.File_Type;
+
+   procedure EinlesenWerte;
+
+   function EinlesenText return Boolean;
 
 end Einlesen;

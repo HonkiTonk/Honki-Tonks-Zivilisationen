@@ -25,12 +25,12 @@ private
    subtype ZufälligeKartengröße is Integer range 1 .. 9;
    subtype ZufälligeKartenart is Integer range 1 .. 3;
    subtype ZufälligeKartentemperatur is Integer range 1 .. 3;
-   subtype ZufälligeSpieleranzahl is Integer range GlobaleVariablen.EinheitenGebaut'Range (1);
-   subtype ZufälligeRasse is Integer range GlobaleVariablen.EinheitenGebaut'Range (1);
+   subtype ZufälligeSpieleranzahl is Integer range GlobaleVariablen.RassenImSpiel'Range;
+   subtype ZufälligeRasse is Integer range GlobaleVariablen.RassenImSpiel'Range;
 
    -- Überarbeitung
    subtype Position is Integer range Karten.Karten'First (2) .. Karten.Karten'Last (2);
-   subtype Rassen is Integer range GlobaleVariablen.EinheitenGebaut'Range (1);
+   subtype Rassen is Integer range GlobaleVariablen.RassenImSpiel'Range;
 
    package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (ZufälligeKartengröße);
    package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (ZufälligeKartenart);

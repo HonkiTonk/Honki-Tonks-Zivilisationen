@@ -5,9 +5,9 @@ package body Auswahl is
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
-      for A in Einlesen.TexteEinlesen'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
          
-         if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A)) = "|" then
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A)) = "|" then
             exit;
             
          else
@@ -25,7 +25,7 @@ package body Auswahl is
             null;
             
          else
-            Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (21, WelcheAuswahl)));
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (21, WelcheAuswahl)));
          end if;
 
          Anzeige.Anzeige (WelcherText => WelcherText,
@@ -35,7 +35,7 @@ package body Auswahl is
          
          case To_Lower (Item => Taste) is               
             when 'w' | '8' => 
-               if AktuelleAuswahl = Einlesen.TexteEinlesen'First (2) then
+               if AktuelleAuswahl = GlobaleVariablen.TexteEinlesen'First (2) then
                   AktuelleAuswahl := Ende;
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
@@ -43,37 +43,37 @@ package body Auswahl is
 
             when 's' | '2' =>
                if AktuelleAuswahl = Ende then
-                  AktuelleAuswahl := Einlesen.TexteEinlesen'First (2);
+                  AktuelleAuswahl := GlobaleVariablen.TexteEinlesen'First (2);
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when 'e' | '5' =>
-               if Einlesen.TexteEinlesen (WelcherText, AktuelleAuswahl) = "Hauptmenü" then
+            when 'e' | '5' =>                  
+               if GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 1) then
                   return 0;
                   
-               elsif Einlesen.TexteEinlesen (WelcherText, AktuelleAuswahl) = "Spiel beenden" then
+               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 2) then
                   return -1;
                   
-               elsif Einlesen.TexteEinlesen (WelcherText, AktuelleAuswahl) = "Zurück" then
+               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 3) then
                   return -2;
                   
-               elsif Einlesen.TexteEinlesen (WelcherText, AktuelleAuswahl) = "Ja" then
+               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 4) then
                   return -3;
                   
-               elsif Einlesen.TexteEinlesen (WelcherText, AktuelleAuswahl) = "Nein" then
+               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 5) then
                   return -4;
 
-               elsif Einlesen.TexteEinlesen (WelcherText, AktuelleAuswahl) = "Speichern" then
+               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 6) then
                  return 2;
 
-               elsif Einlesen.TexteEinlesen (WelcherText, AktuelleAuswahl) = "Laden" then
+               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 7) then
                  return 3;
 
-               elsif Einlesen.TexteEinlesen (WelcherText, AktuelleAuswahl) = "Optionen" then
+               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 8) then
                  return 4;
 
-               elsif Einlesen.TexteEinlesen (WelcherText, AktuelleAuswahl) = "Informationen" then
+               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 9) then
                  return 5;
                      
                else

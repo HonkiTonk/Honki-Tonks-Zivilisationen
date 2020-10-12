@@ -3,7 +3,7 @@ package body VerbesserungenDatenbank is
    procedure Beschreibung (ID : in Integer) is
    begin
       
-      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (12, ID)));
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (12, ID)));
       Put (Item => "    ");
       
    end Beschreibung;
