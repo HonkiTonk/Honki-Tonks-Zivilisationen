@@ -13,10 +13,23 @@ package body Laden is
          when False =>
             return;
       end case;
+
+      AllesAufAnfangSetzen.AllesAufAnfangSetzen; -- Aktuell nicht notwendig, wenn ich aber nicht mehr alle Wert schreibe/lese, dann könnten Rückstände übbrig bleiben.
+                                                 -- Z. B. Einheiten die auf Plätzen sind, welche beim einlesen nicht überschrieben werden und beim Sortieren wieder ind Spiel kommen.
       
       Open (File => Datei,
             Mode => In_File,
             Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)));
+
+      for Rassen in GlobaleVariablen.RassenImSpiel'Range loop
+         
+         Set_Line (File => Datei,
+                   To   => Ada.Text_IO.Count (Zeilenanzahl));
+         Get (File  => Datei,
+              Item  => GlobaleVariablen.RassenImSpiel (Rassen));
+         Zeilenanzahl := Zeilenanzahl + 1;
+         
+      end loop;
 
       RasseSchleife:
       for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop -- Statt alle Werte in die Textdatei zu schreiben, nur Werte ungleich 0 reinschreiben oder nur besetzte Rassen speichern.

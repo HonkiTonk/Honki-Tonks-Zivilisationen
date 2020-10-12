@@ -11,9 +11,12 @@ package body Informationen is
       Put_Line (Item => "-1 = Spiel beenden, 0 = Hauptmenü, -2 = Zurück, -3 = Ja, -4 = Nein, 2 = Speichern, 3 = Laden");
       Put_Line (Item => "Gebäude haben immer die Nummer 1_000 + ihren Datenbankwert, Einheiten haben immer die Nummer 10_000 + ihren Datenbankwert.");
       Put_Line (Item => "In der Übergabe immer StadtNummer oder EinheitNummer verwenden.");
+      Put_line (Item => "Nicht über das Array selbst loopen, da bei Aufteilung es zu Problemen kommen kann.");
+      Put_line (Item => "Für Rassen im Spiel gilt: 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI.");
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
+      Put_Line (Item => "Ab SpielEinstellungen.StartwerteErmitteln neu bauen!");
       Put_Line (Item => "Kartengenerator verbessern und erweitern! Kalenderzeitfunktion zum ermitteln der Berechnungszeit nutzen.");
       Put_Line (Item => "Gebäuden und Forschungen eine Bedeutung geben.");
       Put_Line (Item => "Grundlegende Systeme (z. B. Anzeige von Texten) verbessern.");
@@ -21,12 +24,11 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Zeug:");
-      Put_Line (Item => "Legt erst eine Runde später die neuen Werte fest, prüfen warum (siehe auch Wachstum.WachstumBeiStadtGründung).");
-      Put_line (Item => "Nicht über das Array selbst loopen, da bei Aufteilung es zu Problemen kommen kann.");
       Put_Line (Item => "Bessere Lösung für Sortieren finden. Funktioniert die reverse Loop Idee doch, wenn im Bewegungssystem die Gewonnenprüfung am Anfang drin ist?");
       Put_Line (Item => "Die Straßenberechnung funktioniert nicht einmal richtig. Außerdem mal über ein Einzelstück nachdenken.");
       Put_Line (Item => "Bei Karte noch eine Sonderbegrenzung für die kleinen Kartengrößen einbauen.");
-      Put_Line (Item => "Datei 1Start macht mit dem aktuellen Auswahlsystem Probleme.");
+      Put_Line (Item => "GlobaleVariablen.TexteEinlesen über eigene Procedure aufrufen und immer nur die Nummern übergeben, so muss ich bei einer Änderung immer alles ändern und nicht nur eine Procedure in einer Datei!");
+      Put_Line (Item => "Siehe angelegte Procedure in der Ausgabe.adb.");
       New_Line;
 
       Put_Line (Item => "Mal drüber nachdenken:");
@@ -57,7 +59,6 @@ package body Informationen is
       New_Line;
       
       Put_Line (Item => "Kartengenerator:");
-      Put_Line (Item => "Warum geht der KartenGenerator kaputt wenn ich meine Verallgemeinerung aus SchleifenPruefungen einbaue?");
       Put_Line (Item => "Generator für nur Land einbauen.");
       Put_Line (Item => "Generator für Chaos einbauen.");
       Put_Line (Item => "Generator für Oberfläche einbauen!");
@@ -74,11 +75,9 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Karte:");
-      Put_Line (Item => "Bei Karte.AnzeigeKarte was mit der Sichtweite und SchleifenPruefungen basteln?");
       New_Line;
       
       Put_Line (Item => "Bewegungssystem:");
-      Put_Line (Item => "Nochmal überarbeiten damit es nicht mehr so ein Wust ist.");
       Put_Line (Item => "Befehl und System für automatisches bewegen einbauen.");
       Put_Line (Item => "Tauschen für eigenen Einheiten einbauen, wenn beide genügend Bewegungspunkte haben?");
       New_Line;
@@ -97,11 +96,11 @@ package body Informationen is
       
       Put_Line (Item => "Forschungssystem:");
       Put_Line (Item => "Erweitern.");
-      Put_Line (Item => "Für jede Rasse einen eigenen Forschungsbaum?");
+      Put_Line (Item => "Für jede Rasse einen eigenen Forschungsbaum.");
       New_Line;
       
       Put_Line (Item => "Kampfsystem:");
-      Put_Line (Item => "Einbauen.");
+      Put_Line (Item => "Verbessern.");
       Put_Line (Item => "Zwischen Nahkampf und Fernkampf unterscheiden.");
       Put_Line (Item => "Angriff zwischen Boden/See/Lufteinheiten unterscheiden.");
       New_Line;
@@ -124,7 +123,9 @@ package body Informationen is
       New_Line;
       
       Put_Line (Item => "Speichern/Laden:");
-      Put_Line (Item => "Einbauen.");
+      Put_Line (Item => "Verbessern.");
+      Put_Line (Item => "Sicherheitsabfrage und Anzeige der vorhandenen Spielstände mit einbauen.");
+      Put_Line (Item => "Dateie müssen zum überschreiben nicht gelöscht werden.");
       New_Line;
 
       Put_Line (Item => "KI:");

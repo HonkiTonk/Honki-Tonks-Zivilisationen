@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ausgabe, GlobaleDatentypen, GlobaleVariablen, KartenDatenbank, Karten, Eingabe, Einlesen, SchleifenPruefungen;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ausgabe, GlobaleDatentypen, GlobaleVariablen, KartenDatenbank, Karten, Eingabe, SchleifenPruefungen;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 package BewegungssystemCursor is

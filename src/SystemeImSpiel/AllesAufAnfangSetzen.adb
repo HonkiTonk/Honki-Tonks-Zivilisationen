@@ -3,6 +3,7 @@ package body AllesAufAnfangSetzen is
    procedure AllesAufAnfangSetzen is
    begin
       
+      GlobaleVariablen.RassenImSpiel := (others => 0);
       GlobaleVariablen.EinheitenGebaut := (others => (others => (0, 0,    0, 0, 0,    0, 0.00, 0, 0,    0, 0)));
       GlobaleVariablen.StadtGebaut := (others =>
                                          (others =>

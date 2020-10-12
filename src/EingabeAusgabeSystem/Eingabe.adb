@@ -30,7 +30,7 @@ package body Eingabe is
    function StadtName return Unbounded_Wide_Wide_String is
    begin
       
-      Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 32)));
+      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 32)));
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
       
       return Name;
@@ -42,7 +42,7 @@ package body Eingabe is
    function SpielstandName return Unbounded_Wide_Wide_String is
    begin            
       
-      Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 40)));
+      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 40)));
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
       
       return Name;

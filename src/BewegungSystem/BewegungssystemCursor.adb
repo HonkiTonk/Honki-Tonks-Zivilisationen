@@ -58,30 +58,43 @@ package body BewegungssystemCursor is
    procedure GeheZuCursor is
    begin
 
-      Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 30)));
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 30)));
       Put_Line (Item => Karten.Karten'First (1)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße'Wide_Wide_Image);
       YPosition := Eingabe.GanzeZahl;
-      if YPosition < Karten.Karten'First (1) or YPosition > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-         Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 12);
-         return;
-         
-      else
-         Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, 31)));
-         Put_Line (Item => Karten.Karten'First (2)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße'Wide_Wide_Image);
-         XPosition := Eingabe.GanzeZahl;
 
-         if XPosition < Karten.Karten'First (2) or XPosition > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
+                                                        XKoordinate    => 1, -- 1 weil 0 immer außerhalb der Karte liegt.
+                                                        YÄnderung      => 0,
+                                                        XÄnderung      => 0,
+                                                        ZusatzYAbstand => 0);
+      case KartenWert.YWert is
+         when -1_000_000 =>
             Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 12);
             return;
          
-         else
-            GlobaleVariablen.CursorImSpiel.YAchse := YPosition;
-            GlobaleVariablen.CursorImSpiel.XAchse := XPosition;
-         end if;
-      end if;
+         when others =>
+            Put_Line (Item => Karten.Karten'First (2)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße'Wide_Wide_Image);
+            XPosition := Eingabe.GanzeZahl;
+
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => 1, -- 1 weil 0 immer außerhalb der Karte liegt.
+                                                              XKoordinate    => XPosition,
+                                                              YÄnderung      => 0,
+                                                              XÄnderung      => 0,
+                                                              ZusatzYAbstand => 0);
+            
+            case KartenWert.XWert is
+               when -1_000_000 =>
+                  Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 12);
+                  return;
+                  
+               when others =>
+                  GlobaleVariablen.CursorImSpiel.YAchse := YPosition;
+                  GlobaleVariablen.CursorImSpiel.XAchse := XPosition;
+            end case;
+      end case;
       
    end GeheZuCursor;
-                   
+   
    
 
    procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in Änderung) is

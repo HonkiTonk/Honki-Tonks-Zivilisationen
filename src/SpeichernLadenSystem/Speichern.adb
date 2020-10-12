@@ -4,19 +4,49 @@ package body Speichern is
    begin
 
       Zeilenanzahl := 1;
-      SpielstandName := Eingabe.SpielstandName;
-
-      case Exists (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is
-         when True =>
-            Delete_File (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)));
-
+      case Autospeichern is
          when False =>
-            null;
+            SpielstandName := Eingabe.SpielstandName;
+
+            case Exists (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is -- Sicherheitsabfrage und Anzeige der vorhandenen Spielstände mit einbauen?
+               when True =>
+                  null; -- Delete_File (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))); -- Die Datei zu löschen ist nicht notwendig
+
+               when False =>
+                  null;
+            end case;
+
+         when True =>
+            --AutospeichernSchleife:
+           -- loop
+
+               SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutoSpeichernWert'Wide_Wide_Image);
+
+             --  case Exists (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is
+             --     when True =>
+             --        AutoSpeichernWert := AutoSpeichernWert + 1;
+
+             --     when False =>
+              --       exit AutospeichernSchleife;
+              -- end case;
+               
+           -- end loop AutospeichernSchleife;
       end case;
-      
+         
       Create (File => Datei,
               Mode => Out_File,
               Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)));
+
+      for Rassen in GlobaleVariablen.RassenImSpiel'Range loop
+         
+         Set_Line (File => Datei,
+                   To   => Ada.Text_IO.Count (Zeilenanzahl));
+         Put (File  => Datei,
+              Item  => GlobaleVariablen.RassenImSpiel (Rassen),
+              Width => 1);
+         Zeilenanzahl := Zeilenanzahl + 1;
+         
+      end loop;
 
       RasseSchleife:
       for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop -- Statt alle Werte in die Textdatei zu schreiben, nur Werte ungleich 0 reinschreiben oder nur besetzte Rassen speichern.
@@ -427,7 +457,7 @@ package body Speichern is
    procedure AutoSpeichern is
    begin
       
-      null;
+      Speichern (AutoSpeichern => True);
       
    end AutoSpeichern;
 

@@ -6,12 +6,12 @@ package body Anzeige is
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
-      for A in Einlesen.TexteEinlesen'Range (2) loop
-         if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A)) = "|" then
+      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A)) = "|" then
             exit TextlängePrüfenSchleife;
             
-         elsif To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A))'Length > LängsterText then
-            LängsterText := To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A))'Length;
+         elsif To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A))'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A))'Length;
             
          else
             null;
@@ -19,12 +19,12 @@ package body Anzeige is
       end loop TextlängePrüfenSchleife;
       
       AnzeigeSchleife:
-      for A in Einlesen.TexteEinlesen'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
 
          if AktuelleAuswahl = A then
             for B in 1 .. LängsterText loop
 
-               if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A)) = "|" then
+               if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A)) = "|" then
                   exit AnzeigeSchleife;
                   
                elsif B = 1 then
@@ -35,9 +35,9 @@ package body Anzeige is
                   Put (Item => "═");
                   Put_Line (Item => "╗");
                   Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A)));
+                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A)));
 
-                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A))'Length loop
+                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A))'Length loop
                         
                      Put (" ");
                         
@@ -64,11 +64,11 @@ package body Anzeige is
             end loop;
          
          else
-            if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A)) = "|" then
+            if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A)) = "|" then
                exit AnzeigeSchleife; 
             
             else
-               Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, A)));
+               Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A)));
             end if;
          end if;
          
@@ -84,7 +84,7 @@ package body Anzeige is
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
-      for A in Einlesen.TexteEinlesen'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
          if To_Wide_Wide_String (Source => TextBauen (A).Text) = "|" then
             exit TextlängePrüfenSchleife;
             
@@ -97,7 +97,7 @@ package body Anzeige is
       end loop TextlängePrüfenSchleife;
       
       AnzeigeSchleife:
-      for A in Einlesen.TexteEinlesen'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
 
          if AktuelleAuswahl = A then
             for B in 1 .. LängsterText loop
@@ -162,7 +162,7 @@ package body Anzeige is
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
-      for A in Einlesen.TexteEinlesen'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
          if To_Wide_Wide_String (Source => TextForschung (A).Text) = "|" then
             exit TextlängePrüfenSchleife;
             
@@ -175,7 +175,7 @@ package body Anzeige is
       end loop TextlängePrüfenSchleife;
       
       AnzeigeSchleife:
-      for A in Einlesen.TexteEinlesen'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
 
          if AktuelleAuswahl = A then
             for B in 1 .. LängsterText loop
@@ -241,13 +241,13 @@ package body Anzeige is
       N := 1;
       New_Line;
 
-      for A in To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, WelcheZeile))'Range loop
+      for A in To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, WelcheZeile))'Range loop
          
-         if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, WelcheZeile)) (A) = '|' then
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, WelcheZeile)) (A) = '|' then
             exit;
             
             else
-               Text (A) := To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (WelcherText, WelcheZeile)) (A);
+               Text (A) := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, WelcheZeile)) (A);
          end if;
          
       end loop;

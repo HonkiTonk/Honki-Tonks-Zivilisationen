@@ -269,23 +269,25 @@ package body SpielEinstellungen is
 
 
 
-   procedure StartwerteErmitteln is
+   procedure StartwerteErmitteln is -- Ab hier nochmal ganz neu bauen
    begin
       
-      WerteWählen.Reset (PositionGewählt);
+      RassenWählen.Reset (RassenGewählt);
       
       SpieleranzahlWerteFestlegen:
-      for A in 1 .. GlobaleVariablen.SpielerAnzahl loop
+      for A in GlobaleVariablen.RassenImSpiel'Range loop
 
-         if A = 1 then
-            Rasse := GlobaleVariablen.Rasse;
+         if A = GlobaleVariablen.Rasse then
+            GlobaleVariablen.RassenImSpiel (A) := 2;
             
          else
             AußenSchleife:
             loop
+
                Rasse := RassenWählen.Random (RassenGewählt);
                InnenSchleife:
-               for B in GlobaleVariablen.EinheitenGebaut'Range (1) loop
+               for B in GlobaleVariablen.RassenImSpiel'Range loop
+                  
                   if GlobaleVariablen.EinheitenGebaut (B, 1).ID = Rasse then
                      exit InnenSchleife;
 
@@ -295,11 +297,13 @@ package body SpielEinstellungen is
                   else
                      null;
                   end if;
+                  
                end loop InnenSchleife;
             end loop AußenSchleife;
          end if;
          
          StartwerteFestgelegt := False;
+         WerteWählen.Reset (PositionGewählt);
          
          StartwerteFestlegenSchleife:
          while StartwerteFestgelegt = False loop
@@ -332,7 +336,7 @@ package body SpielEinstellungen is
                               FelderDrumHerum := FelderDrumHerum + 1;
                               case FelderDrumHerum is
                                  when 3 =>
-                                    StartpunktFestlegen (Rasse => Rasse);
+                                    StartpunktFestlegen (Rasse => GlobaleVariablen.Rasse);
                                     StartwerteFestgelegt := True;
                               
                                  when others =>

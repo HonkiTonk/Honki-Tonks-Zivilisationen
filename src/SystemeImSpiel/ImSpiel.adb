@@ -33,7 +33,13 @@ package body ImSpiel is
                return -1;
 
             when -1000 => -- Runde beenden
-                          -- KI Züge hier einbauen
+               case GlobaleVariablen.SpielerAnzahl is
+                  when 1 =>
+                     null;
+                     
+                  when others =>
+                     KI.KI;
+               end case;
                EinheitenDatenbank.HeilungBewegungspunkteFürNeueRundeSetzen;
                VerbesserungenDatenbank.VerbesserungFertiggestellt (Rasse => GlobaleVariablen.Rasse);
                Wachstum.Wachstum;

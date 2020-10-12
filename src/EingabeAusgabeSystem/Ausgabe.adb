@@ -12,7 +12,7 @@ package body Ausgabe is
    procedure Zeug (WelchesZeug : in Integer) is
    begin
       
-      Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (19, WelchesZeug)));
+      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, WelchesZeug)));
       
    end Zeug;
 
@@ -21,7 +21,7 @@ package body Ausgabe is
    procedure Fehlermeldungen (WelcheFehlermeldung : in Integer) is
    begin
       
-      Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (20, WelcheFehlermeldung)));
+      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (20, WelcheFehlermeldung)));
       delay 1.5;
       
    end Fehlermeldungen;
@@ -31,8 +31,17 @@ package body Ausgabe is
    procedure WelcheAuswahl (WasWurdeGewählt : in Integer) is
    begin
       
-      Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (21, WasWurdeGewählt)));
+      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (21, WasWurdeGewählt)));
       
    end WelcheAuswahl;
+
+
+
+   procedure TexteEinlesenAusgabe (WelcheDatei, WelcherText : in Integer) is
+   begin
+      
+      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcheDatei, WelcherText)));
+      
+   end TexteEinlesenAusgabe;
 
 end Ausgabe;

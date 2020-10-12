@@ -68,9 +68,9 @@ package body Bauen is
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       GebäudeSchleife:
-      for G in Einlesen.TexteEinlesen'Range (2) loop
+      for G in GlobaleVariablen.TexteEinlesen'Range (2) loop
          
-         if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (14, G)) = "|" then
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (14, G)) = "|" then
             exit GebäudeSchleife;
 
          elsif G > GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).GebäudeVorhanden'Last then
@@ -84,13 +84,13 @@ package body Bauen is
                null;
 
             else
-               Anzeige.TextBauen (Ende).Text := Einlesen.TexteEinlesen (14, G);
+               Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesen (14, G);
                Anzeige.TextBauen (Ende).Nummer := 1_000 + G;
                Ende := Ende + 1;
             end if;
             
          else
-            Anzeige.TextBauen (Ende).Text := Einlesen.TexteEinlesen (14, G);
+            Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesen (14, G);
             Anzeige.TextBauen (Ende).Nummer := 1_000 + G;
             Ende := Ende + 1;
          end if;
@@ -98,9 +98,9 @@ package body Bauen is
       end loop GebäudeSchleife;
 
       EinheitenSchleife:
-      for E in Einlesen.TexteEinlesen'Range (2) loop
+      for E in GlobaleVariablen.TexteEinlesen'Range (2) loop
          
-         if To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (10, E)) = "|" then
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (10, E)) = "|" then
             exit EinheitenSchleife;
 
          elsif E > EinheitenDatenbank.EinheitenListe'Last then
@@ -114,13 +114,13 @@ package body Bauen is
                null;
                
             else
-               Anzeige.TextBauen (Ende).Text := Einlesen.TexteEinlesen (10, E);
+               Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesen (10, E);
                Anzeige.TextBauen (Ende).Nummer := 10_000 + E;
                Ende := Ende + 1;
             end if;
             
          else
-            Anzeige.TextBauen (Ende).Text := Einlesen.TexteEinlesen (10, E);
+            Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesen (10, E);
             Anzeige.TextBauen (Ende).Nummer := 10_000 + E;
             Ende := Ende + 1;
          end if;
@@ -135,13 +135,13 @@ package body Bauen is
          
       else
          Ende := Ende + 1;
-         Anzeige.TextBauen (Ende).Text := Einlesen.TexteEinlesen (19, 27);
+         Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesen (19, 27);
       end if;
 
       AuswahlSchleife:
       loop
 
-         Put_Line (Item => To_Wide_Wide_String (Source => Einlesen.TexteEinlesen (21, 13)));  
+         Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (21, 13)));  
          Anzeige.AnzeigeStadt (AktuelleAuswahl => AktuelleAuswahl);
          
          if AktuelleAuswahl = Ende then

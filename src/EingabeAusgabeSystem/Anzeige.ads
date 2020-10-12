@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Einlesen, GlobaleVariablen;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, GlobaleVariablen;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 package Anzeige is
@@ -15,7 +15,7 @@ package Anzeige is
       
    end record;
 
-   type TextBauenArray is array (Einlesen.TexteEinlesenArray'First (2) .. 2 * Einlesen.TexteEinlesenArray'Last (2) + 1) of TextBauenRecord;
+   type TextBauenArray is array (GlobaleVariablen.TexteEinlesenArray'First (2) .. 2 * GlobaleVariablen.TexteEinlesenArray'Last (2) + 1) of TextBauenRecord;
    TextBauen : TextBauenArray;
 
    type TextForschungRecord is record

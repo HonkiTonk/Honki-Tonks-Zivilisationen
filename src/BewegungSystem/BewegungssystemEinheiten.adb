@@ -1,6 +1,6 @@
 package body BewegungssystemEinheiten is
 
-   procedure BewegungEinheitenRichtung (Rasse, EinheitNummer : in Integer) is -- Noch einen Gesamtloop einbauen für Bewegung?
+   procedure BewegungEinheitenRichtung (Rasse, EinheitNummer : in Integer) is
    begin
 
       Karte.AnzeigeKarte;

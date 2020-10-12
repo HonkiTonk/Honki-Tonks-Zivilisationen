@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, WerteFestlegen, Einlesen, GlobaleVariablen, Auswahl, Karten, SchleifenPruefungen;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, WerteFestlegen, GlobaleVariablen, Auswahl, Karten, SchleifenPruefungen;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 package EinheitenDatenbank is
