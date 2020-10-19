@@ -2,11 +2,19 @@ package body Optionen is
 
    procedure Optionen is
    begin
+
+      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
-      Put_Line (Item => "Gibt keine Optionen.");
-      Put_Line (Item => "Taste drücken um zurück ins Hauptmenü zu kommen.");
+      Ausgabe.Zeug (WelchesZeug => 41);
+      Wert := Eingabe.GanzeZahl;
       
-      Get_Immediate (Item => Taste);
+      case Wert is
+         when -1 =>
+            null;
+            
+         when others =>
+            GlobaleVariablen.RundenBisAutosave := Wert;
+      end case;
       
    end Optionen;
 

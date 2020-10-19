@@ -19,7 +19,9 @@ private
    Wert : Integer;
    Rasse : Integer;
    FelderDrumHerum : Integer;
+   RassenAusgewählt : Integer;
 
+   PositionWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
 
    subtype ZufälligeKartengröße is Integer range 1 .. 9;

@@ -59,7 +59,7 @@ package body BewegungssystemCursor is
    begin
 
       Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 30)));
-      Put_Line (Item => Karten.Karten'First (1)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße'Wide_Wide_Image);
+      Put_Line (Item => Karten.Karten'First (2)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße'Wide_Wide_Image);
       YPosition := Eingabe.GanzeZahl;
 
       KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
@@ -73,7 +73,7 @@ package body BewegungssystemCursor is
             return;
          
          when others =>
-            Put_Line (Item => Karten.Karten'First (2)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße'Wide_Wide_Image);
+            Put_Line (Item => Karten.Karten'First (3)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße'Wide_Wide_Image);
             XPosition := Eingabe.GanzeZahl;
 
             KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => 1, -- 1 weil 0 immer außerhalb der Karte liegt.

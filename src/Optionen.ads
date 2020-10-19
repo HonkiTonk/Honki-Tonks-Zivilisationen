@@ -1,5 +1,5 @@
-with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
-use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
+with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9, Eingabe, Ausgabe, GlobaleVariablen;
+use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
 
 package Optionen is
 
@@ -9,5 +9,7 @@ package Optionen is
 private
 
    Taste : Wide_Wide_Character;
+
+   Wert : Integer;
 
 end Optionen;

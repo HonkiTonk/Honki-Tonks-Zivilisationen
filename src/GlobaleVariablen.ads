@@ -25,6 +25,7 @@ package GlobaleVariablen is
    SpielerAnzahl : Integer := 1; -- 1 .. 18
    Rasse : Integer := 1; -- 1 .. 18
    RundenAnzahl : Integer := 1;
+   RundenBisAutosave : Integer := 10;
 
    RassenImSpiel : GlobaleDatentypen.RassenImSpielarray; -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
                                                          -- Ändern das alle RassenBereiche hierauf gehen?
@@ -49,14 +50,7 @@ package GlobaleVariablen is
    end record;
 
    type EinheitenGebautArray is array (RassenImSpiel'Range, 1 .. 1000) of EinheitenGebautRecord;
-   EinheitenGebaut : EinheitenGebautArray := (2 => (1 => (0, 0,    2, 5, 5,    5, 1.00, 0, 0,    0, 0),
-                                                    2 => (0, 0,    2, 10, 10,    5, 1.00, 0, 0,    0, 0),
-                                                    3 => (0, 0,    2, 2, 2,    5, 1.00, 0, 0,    0, 0),
-                                                    4 => (0, 0,    2, 4, 4,    5, 1.00, 0, 0,    0, 0),
-                                                    5 => (0, 0,    2, 15, 15,    5, 1.00, 0, 0,    0, 0),
-                                                    others => (0, 0,     0, 0, 0,     0, 0.00, 0, 0,    0, 0)),
-                                              
-                                              others => (others => (0, 0,    0, 0, 0,    0, 0.00, 0, 0,    0, 0)));
+   EinheitenGebaut : EinheitenGebautArray := (others => (others => (0, 0,    0, 0, 0,    0, 0.00, 0, 0,    0, 0)));
 
    type UmgebungBewirtschaftungArray is array (-3 .. 3, -3 .. 3) of Boolean;
 

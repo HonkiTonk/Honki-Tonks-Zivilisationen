@@ -90,7 +90,7 @@ package body BewegungssystemEinheiten is
                null;
                
             elsif EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Passierbarkeit
-              /= KartenDatenbank.KartenObjektListe (Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund).Passierbarkeit then
+              /= KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund).Passierbarkeit then
                case EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Passierbarkeit is
                   when 2 =>
                      Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (Rasse  => Rasse,
@@ -177,17 +177,17 @@ package body BewegungssystemEinheiten is
       
       case Gewonnen is
          when True =>
-            if Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße /= 0 and Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße <= 19 then
+            if Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße /= 0 and Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße <= 19 then
                GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte - 0.50;
 
-            elsif Karten.Karten (KartenWert.YWert, KartenWert.XWert).Fluss /= 0 then
+            elsif Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss /= 0 then
                GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte - 0.50;
 
-            elsif Karten.Karten (KartenWert.YWert, KartenWert.XWert).VerbesserungStraße > 19 then   
+            elsif Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße > 19 then   
                GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte - 1.00;
 
-            elsif Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund = 1 or Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund = 7
-              or Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund = 9 or Karten.Karten (KartenWert.YWert, KartenWert.XWert).Grund = 32 then
+            elsif Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund = 1 or Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund = 7
+              or Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund = 9 or Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund = 32 then
                if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte < 1.00 then
                   GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := 0.00;
                   return;

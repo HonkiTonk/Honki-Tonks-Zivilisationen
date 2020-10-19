@@ -45,7 +45,7 @@ private
                                                                                  2 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
                                                                                  3 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70));
 
-   type GeneratorKarteArray is array (Karten.Karten'Range (1), Karten.Karten'Range (2)) of Integer;
+   type GeneratorKarteArray is array (Karten.Karten'Range (2), Karten.Karten'Range (3)) of Integer;
    GeneratorKarte : GeneratorKarteArray;
 
    type EisWahrscheinlichkeitReduzierungspunktArray is array (1 .. 3) of Integer;
