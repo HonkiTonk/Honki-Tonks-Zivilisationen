@@ -17,20 +17,20 @@ package body Speichern is
             end case;
 
          when True =>
-            --AutospeichernSchleife:
-           -- loop
+            AutospeichernSchleife:
+            loop
 
                SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutoSpeichernWert'Wide_Wide_Image);
 
-             --  case Exists (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is
-             --     when True =>
-             --        AutoSpeichernWert := AutoSpeichernWert + 1;
+               case Exists (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is
+                  when True =>
+                     AutoSpeichernWert := AutoSpeichernWert + 1;
 
-             --     when False =>
-              --       exit AutospeichernSchleife;
-              -- end case;
+                  when False =>
+                     exit AutospeichernSchleife;
+               end case;
                
-           -- end loop AutospeichernSchleife;
+            end loop AutospeichernSchleife;
       end case;
          
       Create (File => Datei,
@@ -338,20 +338,20 @@ package body Speichern is
       Zeilenanzahl := Zeilenanzahl + 1;
 
       YAchseSchleife:
-      for YAchse in Karten.Karten'First (1) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße + KartenPlusWert loop         
+      for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße + KartenPlusWert loop         
          XAchseSchleife:
-         for XAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße + KartenPlusWert loop
+         for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße + KartenPlusWert loop
             
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Put (File  => Datei,
-                 Item  => Karten.Karten (YAchse, XAchse).Grund,
+                 Item  => Karten.Karten (0, YAchse, XAchse).Grund,
                  Width => 1);
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             
-            case Karten.Karten (YAchse, XAchse).Hügel is
+            case Karten.Karten (0, YAchse, XAchse).Hügel is
                when True =>
                   Put (File  => Datei,
                        Item  => 1,
@@ -366,7 +366,7 @@ package body Speichern is
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             
-            case Karten.Karten (YAchse, XAchse).Sichtbar is
+            case Karten.Karten (0, YAchse, XAchse).Sichtbar is
                when True =>
                   Put (File  => Datei,
                        Item  => 1,
@@ -381,25 +381,25 @@ package body Speichern is
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Put (File  => Datei,
-                 Item  => Karten.Karten (YAchse, XAchse).Fluss,
+                 Item  => Karten.Karten (0, YAchse, XAchse).Fluss,
                  Width => 1);
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Put (File  => Datei,
-                 Item  => Karten.Karten (YAchse, XAchse).VerbesserungStraße,
+                 Item  => Karten.Karten (0, YAchse, XAchse).VerbesserungStraße,
                  Width => 1);
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Put (File  => Datei,
-                 Item  => Karten.Karten (YAchse, XAchse).VerbesserungGebiet,
+                 Item  => Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet,
                  Width => 1);
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Put (File  => Datei,
-                 Item  => Karten.Karten (YAchse, XAchse).Ressource,
+                 Item  => Karten.Karten (0, YAchse, XAchse).Ressource,
                  Width => 1);
             Zeilenanzahl := Zeilenanzahl + 1;
             
@@ -457,7 +457,12 @@ package body Speichern is
    procedure AutoSpeichern is
    begin
       
-      Speichern (AutoSpeichern => True);
+      if GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.RundenBisAutosave = 0 then      
+         Speichern (AutoSpeichern => True);
+         
+      else
+         null;
+      end if;
       
    end AutoSpeichern;
 

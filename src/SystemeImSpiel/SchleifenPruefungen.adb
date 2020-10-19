@@ -2,15 +2,15 @@ package body SchleifenPruefungen is
 
    function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung, ZusatzYAbstand : in Integer) return GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord is
    begin
-      -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (1) + 3
+      -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (2) + 3
       
-      if YKoordinate + YÄnderung < Karten.Karten'First (1) + ZusatzYAbstand or YKoordinate + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
+      if YKoordinate + YÄnderung < Karten.Karten'First (2) + ZusatzYAbstand or YKoordinate + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
          return (-1_000_000, -1_000_000);
 
-      elsif XKoordinate + XÄnderung < Karten.Karten'First (2) then
+      elsif XKoordinate + XÄnderung < Karten.Karten'First (3) then
          Überhang := XKoordinate + XÄnderung + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
          SchleifeKleiner:
-         while Überhang < Karten.Karten'First (2) loop
+         while Überhang < Karten.Karten'First (3) loop
             
             Überhang := Überhang + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
 

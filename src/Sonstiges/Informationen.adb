@@ -16,19 +16,22 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Ab SpielEinstellungen.StartwerteErmitteln neu bauen!");
-      Put_Line (Item => "Kartengenerator verbessern und erweitern! Kalenderzeitfunktion zum ermitteln der Berechnungszeit nutzen.");
+      Put_Line (Item => "Sicherheitsabfrage beim Überschreiben eines Spielstandes einbauen.");
+      Put_Line (Item => "Datem und Uhrzeit bei der Benennung des Spielstandes nutzen.");
+      Put_Line (Item => "Entfernung einer Rasse in das Kampfsystem schieben. Was ist überhaupt mit dem Angriff von Städten?");
+      Put_Line (Item => "Kartengenerator verbessern und erweitern!");
       Put_Line (Item => "Gebäuden und Forschungen eine Bedeutung geben.");
       Put_Line (Item => "Grundlegende Systeme (z. B. Anzeige von Texten) verbessern.");
-      Put_Line (Item => "StraßenBerechnung endlich ansehbar machen.");
+      Put_Line (Item => "Straßen/FlußBerechnung endlich ansehbar machen.");
       New_Line;
 
       Put_Line (Item => "Zeug:");
+      Put_Line (Item => "In SpielEinstellungen noch eine Abstandsprüfung zu anderen Rassen einbauen? Schwierig bei kleiner Karte aber großer Spieleranzahl.");
       Put_Line (Item => "Bessere Lösung für Sortieren finden. Funktioniert die reverse Loop Idee doch, wenn im Bewegungssystem die Gewonnenprüfung am Anfang drin ist?");
       Put_Line (Item => "Die Straßenberechnung funktioniert nicht einmal richtig. Außerdem mal über ein Einzelstück nachdenken.");
-      Put_Line (Item => "Bei Karte noch eine Sonderbegrenzung für die kleinen Kartengrößen einbauen.");
       Put_Line (Item => "GlobaleVariablen.TexteEinlesen über eigene Procedure aufrufen und immer nur die Nummern übergeben, so muss ich bei einer Änderung immer alles ändern und nicht nur eine Procedure in einer Datei!");
       Put_Line (Item => "Siehe angelegte Procedure in der Ausgabe.adb.");
+      Put_Line (Item => "Bei der Festlegung der Startpositionen nochmal nachbessern, vor allem bei einer kleinen Karte ein Problem.");
       New_Line;
 
       Put_Line (Item => "Mal drüber nachdenken:");
@@ -125,7 +128,7 @@ package body Informationen is
       Put_Line (Item => "Speichern/Laden:");
       Put_Line (Item => "Verbessern.");
       Put_Line (Item => "Sicherheitsabfrage und Anzeige der vorhandenen Spielstände mit einbauen.");
-      Put_Line (Item => "Dateie müssen zum überschreiben nicht gelöscht werden.");
+      Put_Line (Item => "Dateien müssen zum überschreiben nicht gelöscht werden.");
       New_Line;
 
       Put_Line (Item => "KI:");

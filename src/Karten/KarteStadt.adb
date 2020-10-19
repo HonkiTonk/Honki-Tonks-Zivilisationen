@@ -126,7 +126,7 @@ package body KarteStadt is
                   Sichtbarkeit.Farben (Einheit      => 0,
                                        Verbesserung => 0,
                                        Ressource    => 0,
-                                       Grund        => Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
+                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
                end if;
 
             elsif Y = 2 and X < 13 then
@@ -137,14 +137,14 @@ package body KarteStadt is
                   Sichtbarkeit.Farben (Einheit      => 0,
                                        Verbesserung => 0,
                                        Ressource    => 0,
-                                       Grund        => Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
+                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
                end if;
 
             else
                Sichtbarkeit.Farben (Einheit      => 0,
                                     Verbesserung => 0,
                                     Ressource    => 0,
-                                    Grund        => Karten.Karten (GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
+                                    Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
             end if;
 
             case X is
@@ -230,75 +230,75 @@ package body KarteStadt is
          null;
          
       else
-         if Karten.Karten (YAchse, XAchse).Hügel = True and Karten.Karten (YAchse, XAchse).Grund /= 6 then
+         if Karten.Karten (0, YAchse, XAchse).Hügel = True and Karten.Karten (0, YAchse, XAchse).Grund /= 6 then
             Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (9, 34)));
-            KartenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).Grund);
+            KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
          
-         elsif Karten.Karten (YAchse, XAchse).Hügel = True then
-            KartenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).Grund);
+         elsif Karten.Karten (0, YAchse, XAchse).Hügel = True then
+            KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
                
          else         
-            KartenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).Grund);
+            KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Grund).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
          end if;
       
-         if Karten.Karten (YAchse, XAchse).Ressource /= 0 then
-            KartenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).Ressource);
+         if Karten.Karten (0, YAchse, XAchse).Ressource /= 0 then
+            KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Ressource);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Ressource).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Ressource).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Ressource).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Ressource).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Wissensgewinnung;
          
          else
             null;
          end if;
       
-         if Karten.Karten (YAchse, XAchse).VerbesserungGebiet /= 0 then
-            VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).VerbesserungGebiet);
+         if Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet /= 0 then
+            VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungGebiet).Nahrungsbonus;
-            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungGebiet).Ressourcenbonus;
-            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungGebiet).Geldbonus;
-            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungGebiet).Wissensbonus;
+            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Nahrungsbonus;
+            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Ressourcenbonus;
+            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Geldbonus;
+            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Wissensbonus;
          
          else
             null;
          end if;
       
-         if Karten.Karten (YAchse, XAchse).VerbesserungStraße /= 0 then
-            VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).VerbesserungStraße);
+         if Karten.Karten (0, YAchse, XAchse).VerbesserungStraße /= 0 then
+            VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).VerbesserungStraße);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungStraße).Nahrungsbonus;
-            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungStraße).Ressourcenbonus;
-            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungStraße).Geldbonus;
-            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (YAchse, XAchse).VerbesserungStraße).Wissensbonus;
+            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Nahrungsbonus;
+            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Ressourcenbonus;
+            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Geldbonus;
+            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Wissensbonus;
          
          else
             null;
          end if;
       
-         if Karten.Karten (YAchse, XAchse).Fluss /= 0 then
-            KartenDatenbank.Beschreibung (ID => Karten.Karten (YAchse, XAchse).Fluss);
+         if Karten.Karten (0, YAchse, XAchse).Fluss /= 0 then
+            KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Fluss);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Fluss).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Fluss).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Fluss).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (YAchse, XAchse).Fluss).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Wissensgewinnung;
          
          else
             null;

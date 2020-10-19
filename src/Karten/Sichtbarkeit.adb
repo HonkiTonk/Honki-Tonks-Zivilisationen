@@ -14,7 +14,7 @@ package body Sichtbarkeit is
                null;
          end case;
          
-         case Karten.Karten (GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse).Grund is
+         case Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse).Grund is
             when 7 =>
                Sichtweite := 3;
 
@@ -41,7 +41,7 @@ package body Sichtbarkeit is
                      exit XÄnderungEinheitenSchleife;
                      
                   when others =>
-                     Karten.Karten (Kartenwert.YWert, Kartenwert.XWert).Sichtbar := True;
+                     Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Sichtbar := True;
                end case;
             
             end loop XÄnderungEinheitenSchleife;
@@ -77,7 +77,7 @@ package body Sichtbarkeit is
                      exit XÄnderungStadtSchleife;
                      
                   when others =>
-                     Karten.Karten (Kartenwert.YWert, Kartenwert.XWert).Sichtbar := True;
+                     Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Sichtbar := True;
                end case;
             
             end loop XÄnderungStadtSchleife;
@@ -96,7 +96,7 @@ package body Sichtbarkeit is
       -- Über die Kartenverbesserungen kommen die Städte
       -- Über die Städte kommen die Einheiten
        
-      if Karten.Karten (YAchse, XAchse).Sichtbar = True then
+      if Karten.Karten (0, YAchse, XAchse).Sichtbar = True then
          RassenEinheitenPrüfenSchleife:
          for A in GlobaleVariablen.EinheitenGebaut'Range (1) loop
             EinheitenPrüfenSchleife:
@@ -109,7 +109,7 @@ package body Sichtbarkeit is
                   Farben (Einheit      => GlobaleVariablen.EinheitenGebaut (A, B).ID,
                           Verbesserung => 0,
                           Ressource    => 0,
-                          Grund        => Karten.Karten (YAchse, XAchse).Grund);
+                          Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
                   return;
                
                else
@@ -131,7 +131,7 @@ package body Sichtbarkeit is
                   Farben (Einheit      => 0,
                           Verbesserung => GlobaleVariablen.StadtGebaut (C, D).ID,
                           Ressource    => 0,
-                          Grund        => Karten.Karten (YAchse, XAchse).Grund);
+                          Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
                   return;
                
                else
@@ -141,35 +141,35 @@ package body Sichtbarkeit is
             end loop StädtePrüfenSchleife;
          end loop RassenStädtePrüfenSchleife;
 
-         if Karten.Karten (YAchse, XAchse).VerbesserungGebiet /= 0 then            
+         if Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet /= 0 then            
             Farben (Einheit      => 0,
-                    Verbesserung => Karten.Karten (YAchse, XAchse).VerbesserungGebiet,
+                    Verbesserung => Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet,
                     Ressource    => 0,
-                    Grund        => Karten.Karten (YAchse, XAchse).Grund);
+                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
            
-         elsif Karten.Karten (YAchse, XAchse).VerbesserungStraße /= 0 then
+         elsif Karten.Karten (0, YAchse, XAchse).VerbesserungStraße /= 0 then
             Farben (Einheit      => 0,
-                    Verbesserung => Karten.Karten (YAchse, XAchse).VerbesserungStraße,
+                    Verbesserung => Karten.Karten (0, YAchse, XAchse).VerbesserungStraße,
                     Ressource    => 0,
-                    Grund        => Karten.Karten (YAchse, XAchse).Grund);
+                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
             
-         elsif Karten.Karten (YAchse, XAchse).Ressource /= 0 then
+         elsif Karten.Karten (0, YAchse, XAchse).Ressource /= 0 then
             Farben (Einheit      => 0,
                     Verbesserung => 0,
-                    Ressource    => Karten.Karten (YAchse, XAchse).Ressource,
-                    Grund        => Karten.Karten (YAchse, XAchse).Grund);
+                    Ressource    => Karten.Karten (0, YAchse, XAchse).Ressource,
+                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
             
-         elsif Karten.Karten (YAchse, XAchse).Fluss /= 0 then
+         elsif Karten.Karten (0, YAchse, XAchse).Fluss /= 0 then
             Farben (Einheit      => 0,
                     Verbesserung => 0,
-                    Ressource    => Karten.Karten (YAchse, XAchse).Fluss,
-                    Grund        => Karten.Karten (YAchse, XAchse).Grund);
+                    Ressource    => Karten.Karten (0, YAchse, XAchse).Fluss,
+                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
             
          else
             Farben (Einheit      => 0,
                     Verbesserung => 0,
                     Ressource    => 0,
-                    Grund        => Karten.Karten (YAchse, XAchse).Grund);
+                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
          end if;
          
       else

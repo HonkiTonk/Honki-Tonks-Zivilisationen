@@ -290,14 +290,14 @@ package body Laden is
       end case;
 
       YAchseSchleife:
-      for YAchse in Karten.Karten'First (1) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße + KartenPlusWert loop
+      for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße + KartenPlusWert loop
          XAchseSchleife:
-         for XAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße + KartenPlusWert loop     
+         for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße + KartenPlusWert loop     
             
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => Karten.Karten (YAchse, XAchse).Grund);
+                 Item  => Karten.Karten (0, YAchse, XAchse).Grund);
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
@@ -306,10 +306,10 @@ package body Laden is
                  Item  => Zwischenwert);
             case Zwischenwert is
                when 1 =>
-                  Karten.Karten (YAchse, XAchse).Hügel := True;
+                  Karten.Karten (0, YAchse, XAchse).Hügel := True;
                   
                when others =>
-                  Karten.Karten (YAchse, XAchse).Hügel := False;
+                  Karten.Karten (0, YAchse, XAchse).Hügel := False;
             end case;
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
@@ -319,31 +319,31 @@ package body Laden is
                  Item  => Zwischenwert);
             case Zwischenwert is
                when 1 =>
-                  Karten.Karten (YAchse, XAchse).Sichtbar  := True;
+                  Karten.Karten (0, YAchse, XAchse).Sichtbar  := True;
                   
                when others =>
-                  Karten.Karten (YAchse, XAchse).Sichtbar  := False;
+                  Karten.Karten (0, YAchse, XAchse).Sichtbar  := False;
             end case;
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => Karten.Karten (YAchse, XAchse).Fluss);
+                 Item  => Karten.Karten (0, YAchse, XAchse).Fluss);
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => Karten.Karten (YAchse, XAchse).VerbesserungStraße);
+                 Item  => Karten.Karten (0, YAchse, XAchse).VerbesserungStraße);
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => Karten.Karten (YAchse, XAchse).VerbesserungGebiet);
+                 Item  => Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet);
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => Karten.Karten (YAchse, XAchse).Ressource);
+                 Item  => Karten.Karten (0, YAchse, XAchse).Ressource);
             Zeilenanzahl := Zeilenanzahl + 1;
             
          end loop XAchseSchleife;

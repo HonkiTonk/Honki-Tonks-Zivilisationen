@@ -1,11 +1,11 @@
 package body Eingabe is
 
-   function GanzeZahl return Integer is -- Als String mit Längenbegrenzung, wozu auch Unbounded?
+   function GanzeZahl return Integer is -- Als String mit Längenbegrenzung, wozu auch Unbounded? Hier direkt eine Fehlermeldung einbauen, bei der Eingabe ungültiger Werte?
    begin
 
       Zahl := To_Unbounded_Wide_Wide_String (Source => Get_Line);
       If To_Wide_Wide_String (Source => Zahl)'Length = 0 then
-         return 0;
+         return -1;
          
       else
          null;
@@ -17,7 +17,7 @@ package body Eingabe is
            or To_Wide_Wide_String (Source => Zahl) (A) = '8' or To_Wide_Wide_String (Source => Zahl) (A) = '9' then
             null;
          else
-            return 0;
+            return -1;
          end if;
       end loop;
       
