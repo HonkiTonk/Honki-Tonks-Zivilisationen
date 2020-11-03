@@ -120,7 +120,7 @@ package body KarteStadt is
 
             elsif Y = 1 and X < 13 then
                if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (X) /= '0' then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (X).Anzeige);
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.Rasse, X).Anzeige);
 
                else
                   Sichtbarkeit.Farben (Einheit      => 0,
@@ -131,7 +131,7 @@ package body KarteStadt is
 
             elsif Y = 2 and X < 13 then
                if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (X + 12) /= '0' then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (X + 12).Anzeige);
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.Rasse, X + 12).Anzeige);
 
                else
                   Sichtbarkeit.Farben (Einheit      => 0,

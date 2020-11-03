@@ -214,7 +214,7 @@ package body VerbesserungenDatenbank is
             end case;
             
          when 7 => -- Heilen
-            if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte = EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleLebenspunkte then
+            if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte = EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleLebenspunkte then
                Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 5);
                
             else

@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9, GlobaleVariablen, Anzeige;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9, GlobaleVariablen, GlobaleDatentypen, Anzeige;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
 
 package ForschungsDatenbank is
@@ -12,16 +12,16 @@ package ForschungsDatenbank is
 
    end record;
 
-   type ForschungListeArray is Array (GlobaleVariablen.Wichtiges (1).Erforscht'Range) of ForschungRecord;
-   ForschungListe : ForschungListeArray := (1 => (100, (others => 0)),
-                                            2 => (100, (others => 0)),
-                                            3 => (100, (others => 0)),
+   type ForschungListeArray is Array (GlobaleDatentypen.RassenImSpielArray'Range, GlobaleVariablen.Wichtiges (1).Erforscht'Range) of ForschungRecord;
+   ForschungListe : ForschungListeArray := (others => (1 => (100, (others => 0)),
+                                                       2 => (100, (others => 0)),
+                                                       3 => (100, (others => 0)),
 
-                                            4 => (250, (1, 2, 0, 0)),
-                                            5 => (250, (2, 3, 0, 0)),
-                                            6 => (250, (4, 0, 0, 0)),
+                                                       4 => (250, (1, 2, 0, 0)),
+                                                       5 => (250, (2, 3, 0, 0)),
+                                                       6 => (250, (4, 0, 0, 0)),
 
-                                            others => (0, (others => 0)));
+                                                       others => (0, (others => 0))));
 
    procedure Beschreibung (ID : in Integer);
    procedure Forschung (Rasse : in Integer);
@@ -37,7 +37,6 @@ private
    WasErforschtWerdenSoll : Integer;
    AktuelleAuswahl : Integer;
    Ende : Integer;
-
 
    function AuswahlForschung (Rasse : in Integer) return Integer;
 

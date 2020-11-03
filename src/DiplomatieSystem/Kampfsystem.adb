@@ -40,10 +40,10 @@ package body Kampfsystem is
    function Kampf (RasseAngriff, EinheitenPositionAngriff, RasseVerteidigung, EinheitenPositionVerteidigung : in Integer; VerteidigungBonus : in Float) return Boolean is
    begin
 
-      AngriffAngriffWert := Float (EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (RasseAngriff, EinheitenPositionAngriff).ID).Angriff);
-      AngriffVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Angriff);
+      AngriffAngriffWert := Float (EinheitenDatenbank.EinheitenListe (RasseAngriff, GlobaleVariablen.EinheitenGebaut (RasseAngriff, EinheitenPositionAngriff).ID).Angriff);
+      AngriffVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (RasseVerteidigung, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Angriff);
 
-      VerteidigungVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Verteidigung)
+      VerteidigungVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (RasseVerteidigung, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Verteidigung)
         + Float (KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).YAchse,
                                                              GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).XAchse).Grund).Verteidigungsbonus)
         + Float (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).YAchse,
@@ -59,7 +59,7 @@ package body Kampfsystem is
       
       VerteidigungVerteidigungWert := VerteidigungVerteidigungWert * VerteidigungBonus * VerteidigerBonus;
 
-      VerteidigungAngriffWert := Float (EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Verteidigung)
+      VerteidigungAngriffWert := Float (EinheitenDatenbank.EinheitenListe (RasseVerteidigung, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Verteidigung)
         + Float (KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).YAchse,
                  GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).XAchse).Grund).Verteidigungsbonus)
         + Float (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).YAchse,

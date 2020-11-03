@@ -351,7 +351,7 @@ package body SpielEinstellungen is
                                          and Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund /= 31 then
                                           FelderDrumHerum := FelderDrumHerum + 1;
                                           case FelderDrumHerum is
-                                             when 3 =>
+                                             when 2 =>
                                                 StartpunktFestlegen (Rasse => Rasse);
                                                 StartwerteFestgelegt := True;
                               
@@ -411,18 +411,26 @@ package body SpielEinstellungen is
                   exit XAchseSchleife;
                   
                when others =>
-                  if YÄnderung = 0 and XÄnderung = 0 then
-                     null;
+                  PositionWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung,
+                                                                                         XAchse => GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung);
+                  case PositionWert.Rasse is
+                     when -1_000_000 =>  
+                        if YÄnderung = 0 and XÄnderung = 0 then
+                           null;
                
-                  elsif Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund > 2 and Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund /= 31 then
-                     GlobaleVariablen.EinheitenGebaut (Rasse, 2).ID := 2;
-                     GlobaleVariablen.EinheitenGebaut (Rasse, 2).YAchse := KartenWert.YWert;
-                     GlobaleVariablen.EinheitenGebaut (Rasse, 2).XAchse := KartenWert.XWert;
-                     EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse => Rasse, EinheitNummer => 2);
+                        elsif Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund > 2 and Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund /= 31 then
+                           GlobaleVariablen.EinheitenGebaut (Rasse, 2).ID := 2;
+                           GlobaleVariablen.EinheitenGebaut (Rasse, 2).YAchse := KartenWert.YWert;
+                           GlobaleVariablen.EinheitenGebaut (Rasse, 2).XAchse := KartenWert.XWert;
+                           EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse => Rasse, EinheitNummer => 2);
                      
-                  else
-                     null;
-                  end if;
+                        else
+                           null;
+                        end if;
+                        
+                     when others =>
+                        null;
+                  end case;
             end case;
             
          end loop XAchseSchleife;

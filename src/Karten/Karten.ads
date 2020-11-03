@@ -1,3 +1,5 @@
+with GlobaleDatentypen;
+
 package Karten is
 
    type KartenRecord is record

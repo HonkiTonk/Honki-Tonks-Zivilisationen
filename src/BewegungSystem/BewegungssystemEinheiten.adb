@@ -86,12 +86,12 @@ package body BewegungssystemEinheiten is
             return;
             
          when others =>
-            if EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Passierbarkeit = 3 then
+            if EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Passierbarkeit = 3 then
                null;
                
-            elsif EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Passierbarkeit
+            elsif EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Passierbarkeit
               /= KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund).Passierbarkeit then
-               case EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Passierbarkeit is
+               case EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Passierbarkeit is
                   when 2 =>
                      Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (Rasse  => Rasse,
                                                                                         YAchse => KartenWert.YWert,

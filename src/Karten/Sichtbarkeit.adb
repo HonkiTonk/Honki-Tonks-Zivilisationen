@@ -288,7 +288,7 @@ package body Sichtbarkeit is
       end case;
       
       if Einheit /= 0 then
-         Put (Item => EinheitenDatenbank.EinheitenListe (Einheit).Anzeige & CSI & "0m");
+         Put (Item => EinheitenDatenbank.EinheitenListe (GlobaleVariablen.Rasse, Einheit).Anzeige & CSI & "0m");
         
       elsif Verbesserung /= 0 then
          Put (Item => VerbesserungenDatenbank.VerbesserungObjektListe (Verbesserung).Anzeige & CSI & "0m");

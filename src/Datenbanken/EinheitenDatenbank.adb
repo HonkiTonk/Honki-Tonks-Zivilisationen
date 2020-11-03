@@ -12,8 +12,8 @@ package body EinheitenDatenbank is
    procedure LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, EinheitNummer : in Integer) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte := EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleLebenspunkte;
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := EinheitenListe (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleBewegungspunkte;
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte := EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleLebenspunkte;
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleBewegungspunkte;
       
    end LebenspunkteBewegungspunkteAufMaximumSetzen;
 
@@ -23,33 +23,33 @@ package body EinheitenDatenbank is
    begin
       
       RassenSchleife:
-      for A in GlobaleVariablen.EinheitenGebaut'Range (1) loop
+      for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop
          EinheitenSchleife:
-         for B in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+         for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
             
-            if GlobaleVariablen.EinheitenGebaut (A, B).ID = 0 then
+            if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID = 0 then
                exit EinheitenSchleife;
 
             else
                null;
             end if;
 
-            if GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigung = 0 then
-               GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBewegungspunkte := EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleBewegungspunkte;
+            if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung = 0 then
+               GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleBewegungspunkte;
 
             else
-               GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBewegungspunkte := 0.0;
+               GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := 0.0;
             end if;
 
-            if GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigung = 7
-              and GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte + Heilungsrate >= EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleLebenspunkte then
-               GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte := EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleLebenspunkte;
-               GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigung := 0;
-               GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigungszeit := 0;
+            if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung = 7
+              and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte + Heilungsrate >= EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleLebenspunkte then
+               GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte := EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleLebenspunkte;
+               GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung := 0;
+               GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit := 0;
                   
-            elsif GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigung = 7
-              and GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte + Heilungsrate < EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleLebenspunkte then
-               GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte := GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte + Heilungsrate;
+            elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung = 7
+              and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte + Heilungsrate < EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleLebenspunkte then
+               GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte + Heilungsrate;
                
             else
                null;
@@ -110,6 +110,13 @@ package body EinheitenDatenbank is
       
       GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer) := (0, 0, 0, 0, 0, 0, 0.00, 0, 0, 0, 0);      
       EinheitGebautSortieren (Rasse => Rasse);
+
+      if GlobaleVariablen.EinheitenGebaut (Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (Rasse, 1).ID = 0 then
+         GlobaleVariablen.RassenImSpiel (Rasse) := 0;
+         
+      else
+         null;
+      end if;
       
    end EinheitEntfernen;
 
