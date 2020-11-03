@@ -148,45 +148,45 @@ package body Karte is
       case Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Sichtbar is
          when True =>
             RassenEinheitenSchleife:
-            for A in GlobaleVariablen.EinheitenGebaut'Range (1) loop
+            for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop
                EinheitenSchleife:
-               for B in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+               for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
          
-                  case GlobaleVariablen.EinheitenGebaut (A, B).ID is
+                  case GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID is
                      when 0 =>
                         exit EinheitenSchleife;
                   
                      when others =>
-                        if GlobaleVariablen.EinheitenGebaut (A, B).YAchse = GlobaleVariablen.CursorImSpiel.YAchse and GlobaleVariablen.EinheitenGebaut (A, B).XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
-                           EinheitenDatenbank.Beschreibung (GlobaleVariablen.EinheitenGebaut (A, B).ID);                        
+                        if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse = GlobaleVariablen.CursorImSpiel.YAchse and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
+                           EinheitenDatenbank.Beschreibung (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID);                        
                            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 14)));
-                           Put_Line (Item => GlobaleVariablen.EinheitenGebaut (A, B).AktuelleLebenspunkte'Wide_Wide_Image & " /" & EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleLebenspunkte'Wide_Wide_Image);
+                           Put_Line (Item => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte'Wide_Wide_Image & " /" & EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleLebenspunkte'Wide_Wide_Image);
                         
-                           if A = GlobaleVariablen.Rasse then
+                           if Rasse = GlobaleVariablen.Rasse then
                               Put (Item => "           " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 15)));
-                              Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBewegungspunkte,
+                              Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte,
                                                      Fore => 1,
                                                      Aft  => 1,
                                                      Exp  => 0);
                               Put (Item => " / ");
-                              Ada.Float_Text_IO.Put (Item => EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximaleBewegungspunkte,
+                              Ada.Float_Text_IO.Put (Item => EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleBewegungspunkte,
                                                      Fore => 1,
                                                      Aft  => 1,
                                                      Exp  => 0);
                               Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 16)));
-                              Put_Line (Item => GlobaleVariablen.EinheitenGebaut (A, B).AktuelleErfahrungspunkte'Wide_Wide_Image & " /" & EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).Beförderungsgrenze'Wide_Wide_Image);
+                              Put_Line (Item => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleErfahrungspunkte'Wide_Wide_Image & " /" & EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Beförderungsgrenze'Wide_Wide_Image);
                               
                               Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 17)));
-                              EinheitenDatenbank.Beschäftigung (GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigung);
+                              EinheitenDatenbank.Beschäftigung (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung);
                               Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 18)));
-                              Put_Line (Item => GlobaleVariablen.EinheitenGebaut (A, B).AktuelleBeschäftigungszeit'Wide_Wide_Image);
+                              Put_Line (Item => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit'Wide_Wide_Image);
 
                               Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 24)));
-                              Put (Item => EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).Angriff'Wide_Wide_Image);
+                              Put (Item => EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Angriff'Wide_Wide_Image);
                               Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 25)));
-                              Put (Item => EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).Verteidigung'Wide_Wide_Image);
+                              Put (Item => EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Verteidigung'Wide_Wide_Image);
                               Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 26)));
-                              Put_Line (Item => GlobaleVariablen.EinheitenGebaut (A, B).AktuellerRang'Wide_Wide_Image & " /" & EinheitenDatenbank.EinheitenListe (GlobaleVariablen.EinheitenGebaut (A, B).ID).MaximalerRang'Wide_Wide_Image);
+                              Put_Line (Item => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuellerRang'Wide_Wide_Image & " /" & EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximalerRang'Wide_Wide_Image);
                               
                            else
                               null;

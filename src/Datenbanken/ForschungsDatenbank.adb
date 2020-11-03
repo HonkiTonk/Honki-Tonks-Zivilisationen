@@ -54,7 +54,7 @@ package body ForschungsDatenbank is
 
       else
          GlobaleVariablen.Wichtiges (Rasse).VerbleibendeForschungszeit
-           := (ForschungListe (GlobaleVariablen.Wichtiges (Rasse).AktuellesForschungsprojekt).PreisForschung - GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsmenge) / GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsrate;
+           := (ForschungListe (Rasse, GlobaleVariablen.Wichtiges (Rasse).AktuellesForschungsprojekt).PreisForschung - GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsmenge) / GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsrate;
          return;
       end if;      
       
@@ -89,10 +89,10 @@ package body ForschungsDatenbank is
             AnforderungSchleife:
             for A in AnforderungForschungArray'Range loop
             
-               if ForschungListe (F).AnforderungForschung (A) = 0 then
+               if ForschungListe (Rasse, F).AnforderungForschung (A) = 0 then
                   null;
                   
-               elsif GlobaleVariablen.Wichtiges (Rasse).Erforscht (ForschungListe (F).AnforderungForschung (A)) /= 0 then                  
+               elsif GlobaleVariablen.Wichtiges (Rasse).Erforscht (ForschungListe (Rasse, F).AnforderungForschung (A)) /= 0 then                  
                   null;
                   
                else
@@ -185,7 +185,7 @@ package body ForschungsDatenbank is
          if GlobaleVariablen.Wichtiges (Rasse).AktuellesForschungsprojekt = 0 then
             null;
          
-         elsif GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsmenge >= ForschungListe (GlobaleVariablen.Wichtiges (Rasse).AktuellesForschungsprojekt).PreisForschung then
+         elsif GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsmenge >= ForschungListe (Rasse, GlobaleVariablen.Wichtiges (Rasse).AktuellesForschungsprojekt).PreisForschung then
             GlobaleVariablen.Wichtiges (Rasse).Erforscht (GlobaleVariablen.Wichtiges (Rasse).AktuellesForschungsprojekt) := 1;
             GlobaleVariablen.Wichtiges (Rasse).AktuellesForschungsprojekt := AuswahlForschung (Rasse => Rasse);
             GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsmenge := 0;

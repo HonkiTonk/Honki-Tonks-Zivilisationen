@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, GlobaleVariablen, Karten, EinheitenDatenbank, EinheitenDatenbank;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, GlobaleVariablen, Karten, EinheitenDatenbank, EinheitenDatenbank, GlobaleDatentypen;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 package GebaeudeDatenbank is
@@ -21,12 +21,12 @@ package GebaeudeDatenbank is
 
    end record;
 
-   type GebäudeListeArray is array (GlobaleVariablen.StadtGebaut (1, 1).GebäudeVorhanden'Range) of Gebäude;
-   GebäudeListe : constant GebäudeListeArray := (('B', 100, 100, 0,    0, 0, 0, 0, 0, 0, False), -- 1 
-                                                   ('K', 100, 100, 1,    0, 0, 0, 0, 0, 0, False), -- 2 
-                                                   ('F', 150, 50, 2,    0, 0, 0, 0, 0, 0, False), -- 3 
+   type GebäudeListeArray is array (GlobaleDatentypen.RassenImSpielArray'Range, GlobaleVariablen.StadtGebaut (1, 1).GebäudeVorhanden'Range) of Gebäude;
+   GebäudeListe : constant GebäudeListeArray := (others => (('B', 100, 100, 0,    0, 0, 0, 0, 0, 0, False), -- 1 
+                                                              ('K', 100, 100, 1,    0, 0, 0, 0, 0, 0, False), -- 2 
+                                                              ('F', 150, 50, 2,    0, 0, 0, 0, 0, 0, False), -- 3 
                                           
-                                                   others => (' ', 0, 0, 0,    0, 0, 0, 0, 0, 0, False));
+                                                              others => (' ', 0, 0, 0,    0, 0, 0, 0, 0, 0, False)));
 
    procedure Beschreibung (ID : in Integer);
    procedure GebäudeProduktionBeenden (Rasse, StadtNummer, ID : in Integer);

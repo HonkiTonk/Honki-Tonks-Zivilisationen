@@ -10,7 +10,14 @@ package body Speichern is
 
             case Exists (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is -- Sicherheitsabfrage und Anzeige der vorhandenen Spielstände mit einbauen?
                when True =>
-                  null; -- Delete_File (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))); -- Die Datei zu löschen ist nicht notwendig
+                  Wahl := Auswahl.Auswahl (WelcheAuswahl => 18, WelcherText => 18);
+                  case Wahl is
+                     when -3 =>
+                        null;
+                     
+                     when others =>
+                        return;
+                  end case;
 
                when False =>
                   null;

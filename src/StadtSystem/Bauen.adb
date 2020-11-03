@@ -47,10 +47,10 @@ package body Bauen is
             GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit := 0;
             
          elsif GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt < 10_000 then
-            GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit := (GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 1_000).PreisRessourcen - GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleRessourcen) / GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate;
+            GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit := (GebaeudeDatenbank.GebäudeListe (Rasse, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 1_000).PreisRessourcen - GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleRessourcen) / GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate;
                
          else
-            GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit := (EinheitenDatenbank.EinheitenListe (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 10_000).PreisRessourcen - GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleRessourcen) / GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate;
+            GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit := (EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 10_000).PreisRessourcen - GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleRessourcen) / GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate;
          end if;
          
       end loop;
@@ -79,8 +79,8 @@ package body Bauen is
          elsif GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).GebäudeVorhanden (G) /= '0' then
             null;
 
-         elsif GebaeudeDatenbank.GebäudeListe (G).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (G).Anforderungen) = 0 then 
+         elsif GebaeudeDatenbank.GebäudeListe (Rasse, G).Anforderungen /= 0 then
+            if GlobaleVariablen.Wichtiges (Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (Rasse, G).Anforderungen) = 0 then 
                null;
 
             else
@@ -106,11 +106,11 @@ package body Bauen is
          elsif E > EinheitenDatenbank.EinheitenListe'Last then
             exit EinheitenSchleife;
 
-         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AmWasser = False and EinheitenDatenbank.EinheitenListe (E).Passierbarkeit = 2 then
+         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AmWasser = False and EinheitenDatenbank.EinheitenListe (Rasse, E).Passierbarkeit = 2 then
             null;
 
-         elsif EinheitenDatenbank.EinheitenListe (E).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (E).Anforderungen) = 0 then
+         elsif EinheitenDatenbank.EinheitenListe (Rasse, E).Anforderungen /= 0 then
+            if GlobaleVariablen.Wichtiges (Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (Rasse, E).Anforderungen) = 0 then
                null;
                
             else

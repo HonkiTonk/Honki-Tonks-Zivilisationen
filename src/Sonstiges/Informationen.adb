@@ -16,13 +16,8 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Sicherheitsabfrage beim Überschreiben eines Spielstandes einbauen.");
-      Put_Line (Item => "Datem und Uhrzeit bei der Benennung des Spielstandes nutzen.");
-      Put_Line (Item => "Entfernung einer Rasse in das Kampfsystem schieben. Was ist überhaupt mit dem Angriff von Städten?");
-      Put_Line (Item => "Kartengenerator verbessern und erweitern!");
-      Put_Line (Item => "Gebäuden und Forschungen eine Bedeutung geben.");
-      Put_Line (Item => "Grundlegende Systeme (z. B. Anzeige von Texten) verbessern.");
-      Put_Line (Item => "Straßen/FlußBerechnung endlich ansehbar machen.");
+      Put_Line (Item => "Textanzeige endlich mal ordentlich umbauen.");
+      Put_Line (Item => "Eigene Datentypen einbauen.");
       New_Line;
 
       Put_Line (Item => "Zeug:");
@@ -32,6 +27,13 @@ package body Informationen is
       Put_Line (Item => "GlobaleVariablen.TexteEinlesen über eigene Procedure aufrufen und immer nur die Nummern übergeben, so muss ich bei einer Änderung immer alles ändern und nicht nur eine Procedure in einer Datei!");
       Put_Line (Item => "Siehe angelegte Procedure in der Ausgabe.adb.");
       Put_Line (Item => "Bei der Festlegung der Startpositionen nochmal nachbessern, vor allem bei einer kleinen Karte ein Problem.");
+      Put_Line (Item => "Entfernung einer Rasse in das Kampfsystem schieben. Was ist überhaupt mit dem Angriff von Städten?");
+      Put_Line (Item => "Kartengenerator verbessern und erweitern!");
+      Put_Line (Item => "Gebäuden und Forschungen eine Bedeutung geben.");
+      Put_Line (Item => "Grundlegende Systeme (z. B. Anzeige von Texten) verbessern.");
+      Put_Line (Item => "Straßen/FlußBerechnung endlich ansehbar machen.");
+      Put_Line (Item => "Datem und Uhrzeit bei der Benennung des Spielstandes nutzen.");
+      Put_Line (Item => "Auf eigene Datentypen umschreiben. Verbinden mit dem Einbauen richtiger Grafik?");
       New_Line;
 
       Put_Line (Item => "Mal drüber nachdenken:");
@@ -86,6 +88,7 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Einheiten:");
+      Put_Line (Item => "Transporteinheiten?");
       Put_Line (Item => "Eigenschaften/Funktionen erweitern.");
       New_Line;
       

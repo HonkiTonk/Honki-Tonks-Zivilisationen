@@ -90,7 +90,7 @@ package body InDerStadt is
                         
                      when others =>
                         GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge
-                          := GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge + GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.CursorImSpiel.XAchseStadt).PreisGeld / 2;
+                          := GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge + GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.Rasse, GlobaleVariablen.CursorImSpiel.XAchseStadt).PreisGeld / 2;
                         GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (GlobaleVariablen.CursorImSpiel.XAchseStadt) := '0';
                   end case;
             
@@ -101,7 +101,7 @@ package body InDerStadt is
                         
                      when others =>
                         GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge
-                          := GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge + GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.CursorImSpiel.XAchseStadt + 12).PreisGeld / 2;
+                          := GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge + GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.Rasse, GlobaleVariablen.CursorImSpiel.XAchseStadt + 12).PreisGeld / 2;
                         GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (GlobaleVariablen.CursorImSpiel.XAchseStadt + 12) := '0';
                   end case;
                   
