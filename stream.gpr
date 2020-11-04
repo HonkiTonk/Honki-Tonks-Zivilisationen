@@ -1,3 +1,5 @@
+limited with "../SDLAda/share/gpr/sdlada.gpr";
+
 project Stream is
 
    for Source_Dirs use ("src/**");
@@ -7,6 +9,10 @@ project Stream is
    package Naming is
       for Casing use "MixedCase";
    end Naming;
+
+   package Compiler is
+      for Switches ("ada") use ("-g");
+   end Compiler;
 
 end Stream;
 
