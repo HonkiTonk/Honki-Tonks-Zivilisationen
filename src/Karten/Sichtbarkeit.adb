@@ -129,7 +129,7 @@ package body Sichtbarkeit is
 
                elsif GlobaleVariablen.StadtGebaut (C, D).YAchse = YAchse and GlobaleVariablen.StadtGebaut (C, D).XAchse = XAchse then
                   Farben (Einheit      => 0,
-                          Verbesserung => GlobaleVariablen.StadtGebaut (C, D).ID,
+                          Verbesserung => GlobaleDatentypen.KartenVerbesserung (GlobaleVariablen.StadtGebaut (C, D).ID),
                           Ressource    => 0,
                           Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
                   return;
@@ -180,7 +180,7 @@ package body Sichtbarkeit is
 
 
 
-   procedure Farben (Einheit, Verbesserung, Ressource, Grund : in Integer) is
+   procedure Farben (Einheit : Integer; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund) is
    begin
 
       case Einheit is

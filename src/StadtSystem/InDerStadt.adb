@@ -152,7 +152,7 @@ package body InDerStadt is
                   null;
                   
                when False =>                  
-                  Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 6);
+                  Anzeige.Fehlermeldungen (WelcheFehlermeldung => 6);
                   return;
             end case;
             
@@ -165,7 +165,7 @@ package body InDerStadt is
             null;
             
          elsif A = GlobaleVariablen.StadtGebaut'Last (2) and GlobaleVariablen.StadtGebaut (Rasse, A).ID /= 0 then
-            Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 7);
+            Anzeige.Fehlermeldungen (WelcheFehlermeldung => 7);
             
          else
             if A = 1 and Rasse = GlobaleVariablen.Rasse then

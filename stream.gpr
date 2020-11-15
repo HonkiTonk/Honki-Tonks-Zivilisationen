@@ -1,4 +1,4 @@
-limited with "../SDLAda/share/gpr/sdlada.gpr";
+limited with "SDL/share/gpr/sdlada.gpr";
 
 project Stream is
 

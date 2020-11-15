@@ -7,6 +7,11 @@ package Anzeige is
    procedure AnzeigeStadt (AktuelleAuswahl : in Integer);
    procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Integer);
    procedure AnzeigeForschung (AktuelleAuswahl : in Integer);
+   procedure RassenBeschreibung (WelcheRasse : in Integer);
+   procedure Zeug (WelchesZeug : in Integer);
+   procedure Fehlermeldungen (WelcheFehlermeldung : in Integer);
+   procedure WelcheAuswahl (WasWurdeGewählt : in Integer);
+   procedure TexteEinlesenAusgabe (WelcheDatei, WelcherText : in Integer);
 
    type TextBauenRecord is record
       

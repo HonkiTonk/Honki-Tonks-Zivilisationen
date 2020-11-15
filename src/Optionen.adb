@@ -5,7 +5,7 @@ package body Optionen is
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
-      Ausgabe.Zeug (WelchesZeug => 41);
+      Anzeige.Zeug (WelchesZeug => 41);
       Wert := Eingabe.GanzeZahl;
       
       case Wert is

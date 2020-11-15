@@ -4,22 +4,22 @@ package Karten is
 
    type KartenRecord is record
 
-      Grund : Integer;
+      Grund : GlobaleDatentypen.KartenGrund;
       Hügel : Boolean;
       Sichtbar : Boolean;
-      Fluss : Integer;
-      VerbesserungStraße : Integer;
-      VerbesserungGebiet : Integer;
-      Ressource : Integer;
+      Fluss : GlobaleDatentypen.KartenGrund;
+      VerbesserungStraße : GlobaleDatentypen.KartenVerbesserung;
+      VerbesserungGebiet : GlobaleDatentypen.KartenVerbesserung;
+      Ressource : GlobaleDatentypen.KartenGrund;
 
-      GeneratorKarte : Integer;
+      -- GeneratorKarte : Integer;
 
    end record;
 
-   type KartenArray is array (-1 .. 1, 1 .. 1_000, 1 .. 1_000) of KartenRecord;
+   type KartenArray is array (-2 .. 2, 1 .. 1_000, 1 .. 1_000) of KartenRecord;
    -- Winzig = 20 x 20, Klein = 40 x 40, Mittel = 80 x 80, Rechteck = 120 x 80, Großes Rechteck = 120 x 160, Groß = 160 x 160, Riesig = 240 x 240, Gigantisch = 320 x 320, Absurd = 1_000 x 1_000, Absurder =
    -- 10_000 x 10_000 (Computer sagt nein)
-   Karten : KartenArray := (others => (others => (others => (0, False, True, 0, 0, 0, 0, 0)))); -- Sichtbarkeit später wieder auf False setzen, steht zum testen auf True
+   Karten : KartenArray := (others => (others => (others => (0, False, True, 0, 0, 0, 0)))); -- Sichtbarkeit später wieder auf False setzen, steht zum testen auf True
 
    type StadtkarteArray is array (1 .. 20, 1 .. 20) of Integer;
    Stadtkarte : StadtkarteArray := (others => (others => (0)));
