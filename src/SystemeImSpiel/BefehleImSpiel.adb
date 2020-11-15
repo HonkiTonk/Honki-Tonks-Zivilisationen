@@ -156,13 +156,13 @@ package body BefehleImSpiel is
                   
                when others =>
                   if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).ID /= 1 and WelcherBefehl > 0 and WelcherBefehl <= 6 then
-                     Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 3);
+                     Anzeige.Fehlermeldungen (WelcheFehlermeldung => 3);
 
                      elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).ID = 1 and WelcherBefehl = 11 then
-                     Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 3);
+                     Anzeige.Fehlermeldungen (WelcheFehlermeldung => 3);
                      
                   elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).AktuelleBewegungspunkte = 0.0 then
-                     Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 8);
+                     Anzeige.Fehlermeldungen (WelcheFehlermeldung => 8);
                      
                   else
                      VerbesserungenDatenbank.Verbesserung (Befehl => WelcherBefehl,

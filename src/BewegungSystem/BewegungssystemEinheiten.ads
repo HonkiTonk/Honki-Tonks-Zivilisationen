@@ -1,5 +1,5 @@
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, SchleifenPruefungen, GlobaleDatentypen, GlobaleVariablen, KartenDatenbank, Karten, Karte, EinheitenDatenbank, Kampfsystem, Diplomatie, Auswahl, Sichtbarkeit;
-use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
+use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, GlobaleDatentypen;
 
 package BewegungssystemEinheiten is
 

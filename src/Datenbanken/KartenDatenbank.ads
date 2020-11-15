@@ -19,7 +19,7 @@ package KartenDatenbank is
       
    end record;
    
-   type KartenObjektListeArray is array (0 .. 34) of KartenObjekt;
+   type KartenObjektListeArray is array (0 .. GlobaleDatentypen.KartenGrund'Last) of KartenObjekt;
    KartenObjektListe : constant KartenObjektListeArray := ((' ', 1,    0, 0, 0, 0,    0), -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
                                                            -- Sollte mit Einlesen und Textausgabe funtkionieren, wenn nicht auf letzte Position verschieben.
                                                            (' ', 1,    0, 0, 0, 1,    0), -- 1 Eis █
@@ -59,8 +59,10 @@ package KartenDatenbank is
                                                            (' ', 2,    2, 0, 1, 0,    0), -- 31 Küsten/Seegewässer
                                                            (' ', 1,    1, 1, 1, 1,    2), -- 32 Sumpf
                                                            ('♦', 1,    0, 1, 3, 0,    0), -- 33 Gold = Ressource 5
-                                                           (' ', 1,    0, 0, 0, 0,    0)); -- 34 Hügel mit (Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?)
+                                                           (' ', 1,    0, 0, 0, 0,    0), -- 34 Hügel mit (Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?)
+                                                           (' ', 1,    0, 0, 0, 0,    0), -- 35 Erde
+                                                           (' ', 1,    0, 0, 0, 0,    0)); -- 36 Lava
                                                                        
-   procedure Beschreibung (ID : in Integer);
+   procedure Beschreibung (ID : in GlobaleDatentypen.KartenGrund);
 
 end KartenDatenbank;

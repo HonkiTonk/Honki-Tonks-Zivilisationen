@@ -16,8 +16,9 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
+      Put_Line (Item => "Dingsbums für Prozeduren/Funktionen einbauen.");
+      Put_Line (Item => "Mehr eigene Datentypen einbauen.");
       Put_Line (Item => "Textanzeige endlich mal ordentlich umbauen.");
-      Put_Line (Item => "Eigene Datentypen einbauen.");
       New_Line;
 
       Put_Line (Item => "Zeug:");
@@ -34,6 +35,7 @@ package body Informationen is
       Put_Line (Item => "Straßen/FlußBerechnung endlich ansehbar machen.");
       Put_Line (Item => "Datem und Uhrzeit bei der Benennung des Spielstandes nutzen.");
       Put_Line (Item => "Auf eigene Datentypen umschreiben. Verbinden mit dem Einbauen richtiger Grafik?");
+      Put_Line (Item => "Speichern/Laden wieder funktionierend einbauen.");
       New_Line;
 
       Put_Line (Item => "Mal drüber nachdenken:");
@@ -56,7 +58,7 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Verbesserungen/Flüsse:");
-      Put_Line (Item => "Logik zur Verbindung angrenzender Straßen/Flüsse einbauen/verbessern.");
+      Put_Line (Item => "Logik zur Verbindung angrenzender Straßen/Flüsse verbessern.");
       New_Line;
       
       Put_Line (Item => "BefehleImSpiel:");
@@ -64,6 +66,7 @@ package body Informationen is
       New_Line;
       
       Put_Line (Item => "Kartengenerator:");
+      Put_Line (Item => "Bodenart so generieren wie aktuell die Landmassen, nur mit kleinerem Radius.");
       Put_Line (Item => "Generator für nur Land einbauen.");
       Put_Line (Item => "Generator für Chaos einbauen.");
       Put_Line (Item => "Generator für Oberfläche einbauen!");

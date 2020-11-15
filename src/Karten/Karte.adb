@@ -216,7 +216,7 @@ package body Karte is
                         if GlobaleVariablen.StadtGebaut (C, D).YAchse = GlobaleVariablen.CursorImSpiel.YAchse and GlobaleVariablen.StadtGebaut (C, D).XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
                            KarteStadt.Beschreibung (Rasse => C, StadtNummer => D);
                            if C = GlobaleVariablen.Rasse then                              
-                              Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (GlobaleVariablen.StadtGebaut (C, D).ID).Verteidigungsbonus;
+                              Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (KartenVerbesserung (GlobaleVariablen.StadtGebaut (C, D).ID)).Verteidigungsbonus;
 
                            else
                               null;

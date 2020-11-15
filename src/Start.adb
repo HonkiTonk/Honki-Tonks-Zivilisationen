@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Directories, Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, Laden, Ausgabe, ImSpiel, GlobaleVariablen;
+with Ada.Wide_Wide_Text_IO, Ada.Directories, Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, GlobaleVariablen;
 use Ada.Wide_Wide_Text_IO, Ada.Directories;
 
 procedure Start is
@@ -44,19 +44,19 @@ begin
                   end case;
 
                when 3 => -- Laden
-                  Laden.Laden;
-                  RückgabeKampagne := ImSpiel.ImSpiel;
-                  case RückgabeKampagne is
-                     when 0 =>
-                        AllesAufAnfangSetzen.AllesAufAnfangSetzen;
+                  -- Laden.Laden;
+                  -- RückgabeKampagne := ImSpiel.ImSpiel;
+                  -- case RückgabeKampagne is
+                     -- when 0 =>
+                        -- AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
-                     when -1 =>
-                        exit StartSchleife;
+                     -- when -1 =>
+                        -- exit StartSchleife;
 
-                     when others =>
-                        Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Laden");
-                  end case;
-
+                     -- when others =>
+                        -- Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Laden");
+                  -- end case;
+RückgabeKampagne := SpielEinstellungen.SpielEinstellungen; -- Später wieder entfernen, wenn Laden wieder funktioniert!
                when 4 => -- Optionen
                   Optionen.Optionen;
 

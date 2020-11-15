@@ -15,11 +15,11 @@ package body ImSpiel is
                Karte.AnzeigeKarte;
 
             when 2 => -- Speichern
-               Speichern.Speichern (AutoSpeichern => False);
+               -- Speichern.Speichern (AutoSpeichern => False);
                Karte.AnzeigeKarte;
                
             when 3 => -- Laden
-               Laden.Laden;
+               -- Laden.Laden;
                Karte.AnzeigeKarte;
                
             when 4 =>
@@ -49,7 +49,7 @@ package body ImSpiel is
                GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
                Sichtbarkeit.Sichtbarkeitsprüfung;
                Karte.AnzeigeKarte;
-               Speichern.AutoSpeichern;
+               -- Speichern.AutoSpeichern;
                
             when others =>
                Sichtbarkeit.Sichtbarkeitsprüfung;

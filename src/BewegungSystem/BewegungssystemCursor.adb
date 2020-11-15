@@ -69,7 +69,7 @@ package body BewegungssystemCursor is
                                                         ZusatzYAbstand => 0);
       case KartenWert.YWert is
          when -1_000_000 =>
-            Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 12);
+            Anzeige.Fehlermeldungen (WelcheFehlermeldung => 12);
             return;
          
          when others =>
@@ -84,7 +84,7 @@ package body BewegungssystemCursor is
             
             case KartenWert.XWert is
                when -1_000_000 =>
-                  Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 12);
+                  Anzeige.Fehlermeldungen (WelcheFehlermeldung => 12);
                   return;
                   
                when others =>

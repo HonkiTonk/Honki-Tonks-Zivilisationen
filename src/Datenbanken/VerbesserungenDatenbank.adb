@@ -1,9 +1,9 @@
 package body VerbesserungenDatenbank is
 
-   procedure Beschreibung (ID : in Integer) is
+   procedure Beschreibung (ID : in GlobaleDatentypen.KartenVerbesserung) is
    begin
       
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (12, ID)));
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (12, Integer (ID))));
       Put (Item => "    ");
       
    end Beschreibung;
@@ -42,11 +42,11 @@ package body VerbesserungenDatenbank is
 
       if Befehl = 1 and Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).VerbesserungStraße >= 5
         and Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).VerbesserungStraße <= 19 then
-         Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 4);
+         Anzeige.Fehlermeldungen (WelcheFehlermeldung => 4);
          return;
 
       elsif Befehl = 2 and Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).VerbesserungGebiet = 21 then
-         Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 4);
+         Anzeige.Fehlermeldungen (WelcheFehlermeldung => 4);
          return;
 
       elsif Befehl = 2 and (Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).VerbesserungGebiet = 20
@@ -61,11 +61,11 @@ package body VerbesserungenDatenbank is
          end case;
       
       elsif Befehl = 3 and Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).VerbesserungGebiet = 20 then
-         Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 4);
+         Anzeige.Fehlermeldungen (WelcheFehlermeldung => 4);
          return;
 
       elsif Befehl = 3 and Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).Grund = 1 then
-         Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 1);
+         Anzeige.Fehlermeldungen (WelcheFehlermeldung => 1);
          return;
 
       elsif Befehl = 3 and (Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).VerbesserungGebiet = 21
@@ -80,7 +80,7 @@ package body VerbesserungenDatenbank is
          end case;
       
       elsif Befehl = 4 and Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).VerbesserungGebiet = 22 then
-         Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 4);
+         Anzeige.Fehlermeldungen (WelcheFehlermeldung => 4);
          return;
 
       elsif Befehl = 4 and (Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).VerbesserungGebiet = 20
@@ -130,7 +130,7 @@ package body VerbesserungenDatenbank is
                   GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit := 6;
                
                when others =>
-                  Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 1);
+                  Anzeige.Fehlermeldungen (WelcheFehlermeldung => 1);
             end case;
                               
          when 2 => -- Tiefengrabung
@@ -150,7 +150,7 @@ package body VerbesserungenDatenbank is
                   GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit2 := 3;
                
                when others =>
-                  Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 1);
+                  Anzeige.Fehlermeldungen (WelcheFehlermeldung => 1);
             end case;
             
          when 3 => -- Farm bauen
@@ -170,7 +170,7 @@ package body VerbesserungenDatenbank is
                   GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit2 := 3;
                
                when others =>
-                  Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 1);
+                  Anzeige.Fehlermeldungen (WelcheFehlermeldung => 1);
             end case;
             
          when 4 => -- Festung bauen
@@ -184,7 +184,7 @@ package body VerbesserungenDatenbank is
                   GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit := 5;
                
                when others =>
-                  Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 1);
+                  Anzeige.Fehlermeldungen (WelcheFehlermeldung => 1);
             end case;
             
          when 5 => -- Wald aufforsten
@@ -200,7 +200,7 @@ package body VerbesserungenDatenbank is
                   GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit2 := 3;
                
                when others =>
-                  Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 1);
+                  Anzeige.Fehlermeldungen (WelcheFehlermeldung => 1);
             end case;
 
          when 6 => -- Roden-Trockenlegen
@@ -210,12 +210,12 @@ package body VerbesserungenDatenbank is
                   GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit := 3;
               
                when others =>
-                  Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 2);
+                  Anzeige.Fehlermeldungen (WelcheFehlermeldung => 2);
             end case;
             
          when 7 => -- Heilen
             if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte = EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleLebenspunkte then
-               Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 5);
+               Anzeige.Fehlermeldungen (WelcheFehlermeldung => 5);
                
             else
                case Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse).Grund is
@@ -223,7 +223,7 @@ package body VerbesserungenDatenbank is
                      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung := Befehl;
                
                   when others =>
-                     Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 2);
+                     Anzeige.Fehlermeldungen (WelcheFehlermeldung => 2);
                end case;
             end if;
 
@@ -233,7 +233,7 @@ package body VerbesserungenDatenbank is
                   GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung := Befehl;
                
                when others =>
-                  Ausgabe.Fehlermeldungen (WelcheFehlermeldung => 2);
+                  Anzeige.Fehlermeldungen (WelcheFehlermeldung => 2);
             end case;
 
          when 10 => -- Einheit auflösen

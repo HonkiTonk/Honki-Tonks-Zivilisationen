@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, SchleifenPruefungen, GlobaleVariablen, GlobaleDatentypen, Auswahl, EinheitenDatenbank, Karten, Ausgabe;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, SchleifenPruefungen, GlobaleVariablen, GlobaleDatentypen, Auswahl, EinheitenDatenbank, Karten, Anzeige;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, GlobaleDatentypen;
 
 package VerbesserungenDatenbank is
@@ -19,7 +19,7 @@ package VerbesserungenDatenbank is
       
    end record;
    
-   type VerbesserungObjektListeArray is array (0 .. 22) of VerbesserungObjekt;
+   type VerbesserungObjektListeArray is array (GlobaleDatentypen.KartenVerbesserung'Range) of VerbesserungObjekt;
    VerbesserungObjektListe : VerbesserungObjektListeArray := ((' ', 13,    0, 0, 0, 0,    0), -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
                                                               ('♣', 13,    0, 0, 0, 0,    3), -- 1 Eigene Hauptstadt
                                                               ('♠', 13,    0, 0, 0, 0,    2), -- 2 Eigene Stadt
@@ -47,7 +47,7 @@ package VerbesserungenDatenbank is
                                                               ('M', 13,    0, 2, 1, 0,    1), -- 21 Mine
                                                               ('B', 13,    0, 0, 0, 0,    2)); -- 22 Festung
 
-   procedure Beschreibung (ID : in Integer);
+   procedure Beschreibung (ID : in GlobaleDatentypen.KartenVerbesserung);
    procedure Verbesserung (Befehl, Rasse, EinheitNummer : in Integer);
    procedure VerbesserungFertiggestellt (Rasse : in Integer);
    
