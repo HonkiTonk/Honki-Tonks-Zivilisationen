@@ -1,4 +1,5 @@
 with GlobaleVariablen, Karten, GlobaleDatentypen;
+use GlobaleDatentypen;
 
 package SchleifenPruefungen is
 

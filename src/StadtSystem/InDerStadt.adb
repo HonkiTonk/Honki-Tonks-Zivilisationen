@@ -302,31 +302,31 @@ package body InDerStadt is
                      when True =>
                         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsproduktion
                           := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsproduktion
-                          + KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund).Nahrungsgewinnung
-                          + KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Ressource).Nahrungsgewinnung
-                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Nahrungsbonus
-                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Nahrungsbonus;
+                          + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund).Nahrungsgewinnung)
+                          + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Ressource).Nahrungsgewinnung)
+                          + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Nahrungsbonus)
+                          + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Nahrungsbonus);
 
                         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate
                           := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate
-                          + KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund).Ressourcengewinnung
-                          + KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Ressource).Ressourcengewinnung
-                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Ressourcenbonus
-                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Ressourcenbonus;
+                          + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund).Ressourcengewinnung)
+                          + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Ressource).Ressourcengewinnung)
+                          + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Ressourcenbonus)
+                          + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Ressourcenbonus);
 
                         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleGeldgewinnung
                           := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleGeldgewinnung
-                          + KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund).Geldgewinnung
-                          + KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Ressource).Geldgewinnung
-                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Geldbonus
-                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Geldbonus;
+                          + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund).Geldgewinnung)
+                          + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Ressource).Geldgewinnung)
+                          + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Geldbonus)
+                          + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Geldbonus);
 
                         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleForschungsrate
                           := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleForschungsrate
-                          + KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund).Wissensgewinnung
-                          + KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Ressource).Wissensgewinnung
-                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Wissensbonus
-                          + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Wissensbonus;
+                          + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund).Wissensgewinnung)
+                          + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Ressource).Wissensgewinnung)
+                          + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße).Wissensbonus)
+                          + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungGebiet).Wissensbonus);
 
                      when others =>
                         null;

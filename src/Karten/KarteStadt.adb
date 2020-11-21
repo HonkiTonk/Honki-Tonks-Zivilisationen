@@ -234,35 +234,35 @@ package body KarteStadt is
             Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (9, 34)));
             KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung);
+            Ressourcengewinnung := Ressourcengewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung);
+            Geldgewinnung := Geldgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung);
+            Wissensgewinnung := Wissensgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung);
          
          elsif Karten.Karten (0, YAchse, XAchse).Hügel = True then
             KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung);
+            Ressourcengewinnung := Ressourcengewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung);
+            Geldgewinnung := Geldgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung);
+            Wissensgewinnung := Wissensgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung);
                
          else         
             KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung);
+            Ressourcengewinnung := Ressourcengewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung);
+            Geldgewinnung := Geldgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung);
+            Wissensgewinnung := Wissensgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung);
          end if;
       
          if Karten.Karten (0, YAchse, XAchse).Ressource /= 0 then
             KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Ressource);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Nahrungsgewinnung);
+            Ressourcengewinnung := Ressourcengewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Ressourcengewinnung);
+            Geldgewinnung := Geldgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Geldgewinnung);
+            Wissensgewinnung := Wissensgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Wissensgewinnung);
          
          else
             null;
@@ -271,10 +271,10 @@ package body KarteStadt is
          if Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet /= 0 then
             VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Nahrungsbonus;
-            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Ressourcenbonus;
-            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Geldbonus;
-            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Wissensbonus;
+            Nahrungsgewinnung := Nahrungsgewinnung + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Nahrungsbonus);
+            Ressourcengewinnung := Ressourcengewinnung + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Ressourcenbonus);
+            Geldgewinnung := Geldgewinnung + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Geldbonus);
+            Wissensgewinnung := Wissensgewinnung + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Wissensbonus);
          
          else
             null;
@@ -283,10 +283,10 @@ package body KarteStadt is
          if Karten.Karten (0, YAchse, XAchse).VerbesserungStraße /= 0 then
             VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).VerbesserungStraße);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Nahrungsbonus;
-            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Ressourcenbonus;
-            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Geldbonus;
-            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Wissensbonus;
+            Nahrungsgewinnung := Nahrungsgewinnung + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Nahrungsbonus);
+            Ressourcengewinnung := Ressourcengewinnung + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Ressourcenbonus);
+            Geldgewinnung := Geldgewinnung + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Geldbonus);
+            Wissensgewinnung := Wissensgewinnung + Integer (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Wissensbonus);
          
          else
             null;
@@ -295,10 +295,10 @@ package body KarteStadt is
          if Karten.Karten (0, YAchse, XAchse).Fluss /= 0 then
             KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Fluss);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Nahrungsgewinnung);
+            Ressourcengewinnung := Ressourcengewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Ressourcengewinnung);
+            Geldgewinnung := Geldgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Geldgewinnung);
+            Wissensgewinnung := Wissensgewinnung + Integer (KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Wissensgewinnung);
          
          else
             null;

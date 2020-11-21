@@ -1,5 +1,7 @@
-with Ada.Strings.Wide_Wide_Unbounded, Karten, GlobaleDatentypen;
+with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
+
+with Karten, GlobaleDatentypen;
 
 package GlobaleVariablen is
 
@@ -35,7 +37,7 @@ package GlobaleVariablen is
       AktuelleBeschäftigung : Integer;
       AktuelleBeschäftigung2 : Integer;
       
-      ID : Integer;
+      ID : GlobaleDatentypen.EinheitenID;
       YAchse : Integer;
       XAchse : Integer;      
       
@@ -73,7 +75,7 @@ package GlobaleVariablen is
       VerbleibendeBauzeit : Integer;
       Korruption : Integer;
       
-      GebäudeVorhanden : Wide_Wide_String (1 .. 24); -- Eine Liste anlegen welche Nummer welches Gebäude ist.
+      GebäudeVorhanden : Wide_Wide_String (Integer (GlobaleDatentypen.GebäudeID'First) .. Integer (GlobaleDatentypen.GebäudeID'Last)); -- Eine Liste anlegen welche Nummer welches Gebäude ist.
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : UmgebungBewirtschaftungArray;

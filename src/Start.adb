@@ -1,5 +1,7 @@
-with Ada.Wide_Wide_Text_IO, Ada.Directories, Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, GlobaleVariablen;
+with Ada.Wide_Wide_Text_IO, Ada.Directories;
 use Ada.Wide_Wide_Text_IO, Ada.Directories;
+
+with Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, GlobaleVariablen;
 
 procedure Start is
 
