@@ -1,9 +1,9 @@
 package body EinheitenDatenbank is
 
-   procedure Beschreibung (ID : in Integer) is
+   procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID) is
    begin
       
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (10, ID)));
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (10, Integer (ID))));
       
    end Beschreibung;
 
@@ -91,7 +91,7 @@ package body EinheitenDatenbank is
             return;
             
          when others =>
-            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).ID := ID;
+            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).ID := EinheitenID (ID);
             GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).YAchse := Position.YAchse;
             GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).XAchse := Position.XAchse;
             LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse         => Rasse,

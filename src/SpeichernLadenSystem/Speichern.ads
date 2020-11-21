@@ -1,5 +1,7 @@
-with Ada.Wide_Wide_Text_IO, Ada.Text_IO, Ada.Integer_Text_IO, Ada.Float_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories, Karten, GlobaleVariablen, Eingabe, Auswahl;
+with Ada.Wide_Wide_Text_IO, Ada.Text_IO, Ada.Integer_Text_IO, Ada.Float_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories;
 use Ada.Text_IO, Ada.Integer_Text_IO, Ada.Float_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories;
+
+with Karten, GlobaleVariablen, Eingabe, Auswahl;
 
 package Speichern is
 

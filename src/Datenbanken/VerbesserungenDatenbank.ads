@@ -1,5 +1,8 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, SchleifenPruefungen, GlobaleVariablen, GlobaleDatentypen, Auswahl, EinheitenDatenbank, Karten, Anzeige;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, GlobaleDatentypen;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
+use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
+
+with SchleifenPruefungen, GlobaleVariablen, GlobaleDatentypen, Auswahl, EinheitenDatenbank, Karten, Anzeige;
+use GlobaleDatentypen;
 
 package VerbesserungenDatenbank is
 
@@ -7,15 +10,15 @@ package VerbesserungenDatenbank is
 
       Anzeige : Wide_Wide_Character;
       
-      Passierbarkeit : Integer; -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
-                                -- Addieren für genaue Passierbarkeit
+      Passierbarkeit : GlobaleDatentypen.PassierbarkeitType; -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
+                                                             -- Addieren für genaue Passierbarkeit
 
-      Nahrungsbonus : Integer;
-      Ressourcenbonus : Integer;
-      Geldbonus : Integer;
-      Wissensbonus : Integer;
+      Nahrungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
+      Ressourcenbonus : GlobaleDatentypen.GrundwerteNRGWVA;
+      Geldbonus : GlobaleDatentypen.GrundwerteNRGWVA;
+      Wissensbonus : GlobaleDatentypen.GrundwerteNRGWVA;
 
-      Verteidigungsbonus : Integer;
+      Verteidigungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
       
    end record;
    

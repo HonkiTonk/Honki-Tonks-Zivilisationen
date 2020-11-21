@@ -36,6 +36,7 @@ package body Informationen is
       Put_Line (Item => "Datem und Uhrzeit bei der Benennung des Spielstandes nutzen.");
       Put_Line (Item => "Auf eigene Datentypen umschreiben. Verbinden mit dem Einbauen richtiger Grafik?");
       Put_Line (Item => "Speichern/Laden wieder funktionierend einbauen.");
+      Put_Line (Item => "Wenn Hardcoded wie die Werte, dann funktioniert es mit einer Sprache ohne die Dateien zum Einlesen");
       New_Line;
 
       Put_Line (Item => "Mal drüber nachdenken:");

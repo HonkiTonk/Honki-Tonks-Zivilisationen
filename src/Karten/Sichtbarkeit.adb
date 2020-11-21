@@ -180,11 +180,11 @@ package body Sichtbarkeit is
 
 
 
-   procedure Farben (Einheit : Integer; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund) is
+   procedure Farben (Einheit : GlobaleDatentypen.EinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund) is
    begin
 
       case Einheit is
-         when EinheitenDatenbank.EinheitenListe'Range =>
+         when EinheitenDatenbank.EinheitenListe'Range (2) =>
             Put (Item => CSI & "38;2;0;0;0m");
             
          when others =>
@@ -282,6 +282,12 @@ package body Sichtbarkeit is
             
          when 32 =>
             Put (Item => CSI & "48;2;0;40;0m");
+
+         when 35 =>
+            Put (Item => CSI & "48;2;139;69;19");
+            
+         when 36 =>
+            Put (Item => CSI & "48;2;238;0;0");
             
          when others =>
             null;

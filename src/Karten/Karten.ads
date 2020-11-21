@@ -12,8 +12,6 @@ package Karten is
       VerbesserungGebiet : GlobaleDatentypen.KartenVerbesserung;
       Ressource : GlobaleDatentypen.KartenGrund;
 
-      -- GeneratorKarte : Integer;
-
    end record;
 
    type KartenArray is array (-2 .. 2, 1 .. 1_000, 1 .. 1_000) of KartenRecord;

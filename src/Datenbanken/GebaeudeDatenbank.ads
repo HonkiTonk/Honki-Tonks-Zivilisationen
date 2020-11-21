@@ -1,5 +1,8 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, GlobaleVariablen, Karten, EinheitenDatenbank, EinheitenDatenbank, GlobaleDatentypen;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
+
+with GlobaleVariablen, Karten, EinheitenDatenbank, EinheitenDatenbank, GlobaleDatentypen;
+use GlobaleDatentypen;
 
 package GebaeudeDatenbank is
 

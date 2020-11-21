@@ -1,5 +1,7 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, GlobaleVariablen, GlobaleDatentypen;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
+
+with GlobaleVariablen, GlobaleDatentypen;
 
 package KartenDatenbank is
 
@@ -7,15 +9,15 @@ package KartenDatenbank is
 
       Anzeige : Wide_Wide_Character := ' ';
       
-      Passierbarkeit : Integer; -- 1 = Landeinheiten können passieren, 2 = Wassereinheiten können passieren, Lufteinheiten können immer passieren
-                                -- Addieren für genaue Passierbarkeit
+      Passierbarkeit : GlobaleDatentypen.PassierbarkeitType; -- 1 = Landeinheiten können passieren, 2 = Wassereinheiten können passieren, Lufteinheiten können immer passieren
+                                                             -- Addieren für genaue Passierbarkeit
 
-      Nahrungsgewinnung : Integer;
-      Ressourcengewinnung : Integer;
-      Geldgewinnung : Integer;
-      Wissensgewinnung : Integer;
+      Nahrungsgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+      Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+      Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+      Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
 
-      Verteidigungsbonus : Integer;
+      Verteidigungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
       
    end record;
    
