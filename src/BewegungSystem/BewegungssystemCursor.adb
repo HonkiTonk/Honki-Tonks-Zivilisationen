@@ -60,7 +60,7 @@ package body BewegungssystemCursor is
 
       Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 30)));
       Put_Line (Item => Karten.Karten'First (2)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße'Wide_Wide_Image);
-      YPosition := Eingabe.GanzeZahl;
+      YPosition := Eingabe.GanzeZahl; -- Hier gibt es keine Prüfung ob der Wert innerhalb der Integer Range liegt, ändern.
 
       KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
                                                         XKoordinate    => 1, -- 1 weil 0 immer außerhalb der Karte liegt.
@@ -68,7 +68,7 @@ package body BewegungssystemCursor is
                                                         XÄnderung      => 0,
                                                         ZusatzYAbstand => 0);
       case KartenWert.YWert is
-         when -1_000_000 =>
+         when GlobaleDatentypen.Kartenfeld'First =>
             Anzeige.Fehlermeldungen (WelcheFehlermeldung => 12);
             return;
          
@@ -83,7 +83,7 @@ package body BewegungssystemCursor is
                                                               ZusatzYAbstand => 0);
             
             case KartenWert.XWert is
-               when -1_000_000 =>
+               when GlobaleDatentypen.Kartenfeld'First =>
                   Anzeige.Fehlermeldungen (WelcheFehlermeldung => 12);
                   return;
                   
@@ -106,7 +106,7 @@ package body BewegungssystemCursor is
                                                         XÄnderung      => XÄnderung,
                                                         ZusatzYAbstand => 0);
       case KartenWert.YWert is
-         when -1_000_000 =>
+         when GlobaleDatentypen.Kartenfeld'First =>
             return;
               
          when others =>

@@ -34,7 +34,7 @@ private
    subtype ZufälligeRasse is Integer range GlobaleVariablen.RassenImSpiel'Range;
 
    -- Überarbeitung
-   subtype Position is Integer range Karten.Karten'First (2) .. Karten.Karten'Last (2);
+   subtype Position is GlobaleDatentypen.Kartenfeld;
    subtype Rassen is Integer range GlobaleVariablen.RassenImSpiel'Range;
 
    package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (ZufälligeKartengröße);

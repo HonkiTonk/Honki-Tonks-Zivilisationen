@@ -14,18 +14,18 @@ package Karten is
 
    end record;
 
-   type KartenArray is array (-2 .. 2, 1 .. 1_000, 1 .. 1_000) of KartenRecord;
+   type KartenArray is array (-2 .. 2, GlobaleDatentypen.Kartenfeld'Range, GlobaleDatentypen.Kartenfeld'Range) of KartenRecord;
    -- Winzig = 20 x 20, Klein = 40 x 40, Mittel = 80 x 80, Rechteck = 120 x 80, Großes Rechteck = 120 x 160, Groß = 160 x 160, Riesig = 240 x 240, Gigantisch = 320 x 320, Absurd = 1_000 x 1_000, Absurder =
    -- 10_000 x 10_000 (Computer sagt nein)
    Karten : KartenArray := (others => (others => (others => (0, False, True, 0, 0, 0, 0)))); -- Sichtbarkeit später wieder auf False setzen, steht zum testen auf True
 
-   type StadtkarteArray is array (1 .. 20, 1 .. 20) of Integer;
+   type StadtkarteArray is array (GlobaleDatentypen.Stadtfeld'Range, GlobaleDatentypen.Stadtfeld'Range) of Integer;
    Stadtkarte : StadtkarteArray := (others => (others => (0)));
 
    type KartengrößenRecord is record
 
-      YAchsenGröße : Integer;
-      XAchsenGröße : Integer;
+      YAchsenGröße : GlobaleDatentypen.Kartenfeld;
+      XAchsenGröße : GlobaleDatentypen.Kartenfeld;
       Ressourcenmenge : Integer;
 
    end record;

@@ -18,10 +18,10 @@ private
    Cursor : Integer;
    CursorYAchsePlus : Integer;
    CursorXAchsePlus : Integer;
-   Nahrungsgewinnung : Integer;
-   Ressourcengewinnung : Integer;
-   Geldgewinnung : Integer;
-   Wissensgewinnung : Integer;
+   Nahrungsgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+   Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+   Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+   Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
    YAchse : Integer;
    XAchse : Integer;
 

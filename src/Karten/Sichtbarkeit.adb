@@ -32,12 +32,12 @@ package body Sichtbarkeit is
                
                Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse,
                                                                  XKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse,
-                                                                 YÄnderung      => Y,
-                                                                 XÄnderung      => X,
+                                                                 YÄnderung      => Integer (Y),
+                                                                 XÄnderung      => Integer (X),
                                                                  ZusatzYAbstand => 0);
 
                case Kartenwert.YWert is
-                  when -1_000_000 =>
+                  when GlobaleDatentypen.Kartenfeld'First =>
                      exit XÄnderungEinheitenSchleife;
                      
                   when others =>
@@ -59,7 +59,7 @@ package body Sichtbarkeit is
             
          else
             Sichtweite := 3;
-         end if; 
+         end if;
 
          YÄnderungStadtSchleife:         
          for Y in -Sichtweite .. Sichtweite loop            
@@ -68,12 +68,12 @@ package body Sichtbarkeit is
 
                Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).YAchse,
                                                                  XKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).XAchse,
-                                                                 YÄnderung      => Y,
-                                                                 XÄnderung      => X,
+                                                                 YÄnderung      => Integer (Y),
+                                                                 XÄnderung      => Integer (X),
                                                                  ZusatzYAbstand => 0);
                
                case Kartenwert.YWert is
-                  when -1_000_000 =>
+                  when GlobaleDatentypen.Kartenfeld'First =>
                      exit XÄnderungStadtSchleife;
                      
                   when others =>
@@ -88,7 +88,7 @@ package body Sichtbarkeit is
 
 
 
-   procedure Sichtbarkeit (YAchse, XAchse : in Integer) is
+   procedure Sichtbarkeit (YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) is
    begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen

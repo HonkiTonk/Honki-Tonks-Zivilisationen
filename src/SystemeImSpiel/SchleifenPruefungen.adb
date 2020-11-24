@@ -1,41 +1,41 @@
 package body SchleifenPruefungen is
 
-   function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung, ZusatzYAbstand : in Integer) return GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord is
+   function KartenUmgebung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld; YÄnderung, XÄnderung, ZusatzYAbstand : in Integer) return GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord is
    begin
       -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (2) + 3
       
-      if YKoordinate + YÄnderung < Karten.Karten'First (2) + ZusatzYAbstand or YKoordinate + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
-         return (-1_000_000, -1_000_000);
+      if Integer (YKoordinate) + YÄnderung < Integer (Karten.Karten'First (2)) + ZusatzYAbstand or Integer (YKoordinate) + YÄnderung > Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße) - ZusatzYAbstand then
+         return (GlobaleDatentypen.Kartenfeld'First, GlobaleDatentypen.Kartenfeld'First);
 
-      elsif XKoordinate + XÄnderung < Karten.Karten'First (3) then
-         Überhang := XKoordinate + XÄnderung + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+      elsif Integer (XKoordinate) + XÄnderung < Integer (Karten.Karten'First (3)) then
+         Überhang := Integer (XKoordinate) + XÄnderung + Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
          SchleifeKleiner:
-         while Überhang < Karten.Karten'First (3) loop
+         while Überhang < Integer (Karten.Karten'First (3)) loop
             
-            Überhang := Überhang + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+            Überhang := Überhang + Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
          end loop SchleifeKleiner;
-         return (YKoordinate + YÄnderung, Überhang);
+         return (YKoordinate + GlobaleDatentypen.Kartenfeld (YÄnderung), GlobaleDatentypen.Kartenfeld (Überhang));
                
-      elsif XKoordinate + XÄnderung > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-         Überhang := XKoordinate + XÄnderung - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+      elsif Integer (XKoordinate) + XÄnderung > Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße) then
+         Überhang := Integer (XKoordinate) + XÄnderung - Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
          SchleifeGrößer:
-         while Überhang > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+         while Überhang > Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße) loop
             
-            Überhang := Überhang - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+            Überhang := Überhang - Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
             
          end loop SchleifeGrößer;
-         return (YKoordinate + YÄnderung, Überhang);
+         return (YKoordinate + GlobaleDatentypen.Kartenfeld (YÄnderung), GlobaleDatentypen.Kartenfeld (Überhang));
                
       else
-         return (YKoordinate + YÄnderung, XKoordinate + XÄnderung);
+         return (YKoordinate + GlobaleDatentypen.Kartenfeld (YÄnderung), XKoordinate + GlobaleDatentypen.Kartenfeld (XÄnderung));
       end if;
       
    end KartenUmgebung;
 
    
 
-   function KoordinatenStadtMitRasseSuchen (Rasse, YAchse, XAchse : in Integer) return Integer is
+   function KoordinatenStadtMitRasseSuchen (Rasse : in Integer; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) return Integer is
    begin
       
       StadtSchleife:
@@ -59,7 +59,7 @@ package body SchleifenPruefungen is
 
 
 
-   function KoordinatenEinheitMitRasseSuchen (Rasse, YAchse, XAchse : in Integer) return Integer is
+   function KoordinatenEinheitMitRasseSuchen (Rasse : in Integer; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) return Integer is
    begin
       
       EinheitSchleife:
@@ -83,7 +83,7 @@ package body SchleifenPruefungen is
    
    
    
-   function KoordinatenStadtOhneRasseSuchen (YAchse, XAchse : in Integer) return GlobaleDatentypen.RasseUndPlatznummerRecord is
+   function KoordinatenStadtOhneRasseSuchen (YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) return GlobaleDatentypen.RasseUndPlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -110,7 +110,7 @@ package body SchleifenPruefungen is
    
    
    
-   function KoordinatenEinheitOhneRasseSuchen (YAchse, XAchse : in Integer) return GlobaleDatentypen.RasseUndPlatznummerRecord is
+   function KoordinatenEinheitOhneRasseSuchen (YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) return GlobaleDatentypen.RasseUndPlatznummerRecord is
    begin
 
       RasseSchleife:

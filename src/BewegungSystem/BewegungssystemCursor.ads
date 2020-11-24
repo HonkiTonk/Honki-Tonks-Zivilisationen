@@ -2,6 +2,7 @@ with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 with Anzeige, GlobaleDatentypen, GlobaleVariablen, KartenDatenbank, Karten, Eingabe, SchleifenPruefungen;
+use GlobaleDatentypen;
 
 package BewegungssystemCursor is
 
@@ -10,13 +11,15 @@ package BewegungssystemCursor is
 
 private
 
-   subtype Änderung is Integer range -1 .. 1;
+   subtype Änderung is GlobaleDatentypen.Kartenfeld range -1 .. 1;
 
    XÄnderung : Änderung;
    YÄnderung : Änderung;
 
-   YPosition : Integer;
-   XPosition : Integer;
+   YPosition : GlobaleDatentypen.Kartenfeld;
+   XPosition : GlobaleDatentypen.Kartenfeld;
+
+   Zahl : Integer;
 
    KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
    

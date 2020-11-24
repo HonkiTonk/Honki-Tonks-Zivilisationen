@@ -14,8 +14,8 @@ package EinheitenDatenbank is
       Anzeige : Wide_Wide_Character;
       
       SiedlerLandeinheitSeeeinheitLufteinheit : Integer; -- 1 = Siedler, 2 = Nahkampfland, 3 = Fernkampfland, 4 = Nahkampfsee, 5 = Fernkampfsee, 6 = Nahkampfluft, 7 = Fernkampfluft
-      PreisGeld : Integer;
-      PreisRessourcen : Integer;
+      PreisGeld : GlobaleDatentypen.KostenLager;
+      PreisRessourcen : GlobaleDatentypen.KostenLager;
       Anforderungen : Integer;
 
       Passierbarkeit : GlobaleDatentypen.PassierbarkeitType;
@@ -66,8 +66,8 @@ private
 
    type EinheitErstellenRecord is record
       
-      YAchse : Integer;
-      XAchse : Integer;
+      YAchse : GlobaleDatentypen.Kartenfeld;
+      XAchse : GlobaleDatentypen.Kartenfeld;
       
    end record;
 

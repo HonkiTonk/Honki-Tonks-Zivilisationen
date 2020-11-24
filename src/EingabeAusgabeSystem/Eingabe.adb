@@ -21,7 +21,7 @@ package body Eingabe is
          end if;
       end loop;
       
-      return Integer'Wide_Wide_Value (To_Wide_Wide_String (Source => Zahl));
+      return Integer'Wide_Wide_Value (To_Wide_Wide_String (Source => Zahl)); -- Keine Überprüfung ob die Zahl außerhalb der Integer Range liegt!
       
    end GanzeZahl;
 

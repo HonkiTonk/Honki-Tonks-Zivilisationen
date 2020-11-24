@@ -54,7 +54,8 @@ package body ForschungsDatenbank is
 
       else
          GlobaleVariablen.Wichtiges (Rasse).VerbleibendeForschungszeit
-           := (ForschungListe (Rasse, GlobaleVariablen.Wichtiges (Rasse).AktuellesForschungsprojekt).PreisForschung - GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsmenge) / GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsrate;
+           := (ForschungListe (Rasse, GlobaleVariablen.Wichtiges (Rasse).AktuellesForschungsprojekt).PreisForschung
+               - GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsmenge) / GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsrate;
          return;
       end if;      
       

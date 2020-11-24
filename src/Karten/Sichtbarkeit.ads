@@ -7,14 +7,14 @@ use GlobaleDatentypen;
 package Sichtbarkeit is
 
    procedure Sichtbarkeitsprüfung;
-   procedure Sichtbarkeit (YAchse, XAchse : in Integer);
+   procedure Sichtbarkeit (YAchse, XAchse : in GlobaleDatentypen.Kartenfeld);
    procedure Farben (Einheit : GlobaleDatentypen.EinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund);
 
 private
 
    NichtSichtbar : constant Wide_Wide_Character := ' ';
 
-   Sichtweite : Integer := 2;
+   Sichtweite : GlobaleDatentypen.Sichtweite := 2;
    Wert : Integer;
 
    Kartenwert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;

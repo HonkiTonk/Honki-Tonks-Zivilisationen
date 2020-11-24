@@ -28,6 +28,6 @@ private
 
    procedure StadtProduktionPrüfenBerechnung (Rasse, StadtNummer : in Integer);
 
-   function StadtBauenPrüfen (Y, X : in Integer) return Boolean;
+   function StadtBauenPrüfen (Y, X : in GlobaleDatentypen.Kartenfeld) return Boolean;
 
 end InDerStadt;
