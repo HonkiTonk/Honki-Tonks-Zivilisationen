@@ -179,7 +179,7 @@ package body KartenGenerator is
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
             case KartenWert.YWert is
-               when -1_000_000 =>
+               when GlobaleDatentypen.Kartenfeld'First =>
                   exit XAchseSchleife;
                   
                when others =>         
@@ -203,7 +203,7 @@ package body KartenGenerator is
                                                               XÄnderung      => XÄnderung,
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
             case KartenWert.YWert is
-               when -1_000_000 =>
+               when GlobaleDatentypen.Kartenfeld'First =>
                   exit XAchseZweiSchleife;
                   
                when others =>
@@ -267,7 +267,7 @@ package body KartenGenerator is
                                                                           ZusatzYAbstand => 0);
 
                         case KartenWert.YWert is
-                           when -1_000_000 =>
+                           when GlobaleDatentypen.Kartenfeld'First =>
                               exit ZweiteYAchseSchleife;
                                 
                            when others =>
@@ -385,7 +385,7 @@ package body KartenGenerator is
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
             case KartenWert.YWert is
-               when -1_000_000 =>
+               when GlobaleDatentypen.Kartenfeld'First =>
                   exit XAchseSchleife;
                   
                when others =>
@@ -509,7 +509,7 @@ package body KartenGenerator is
                                                                           ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
                         case KartenWert.YWert is
-                           when -1_000_000 =>
+                           when GlobaleDatentypen.Kartenfeld'First =>
                               exit XAchseSchleifeZwei;
                            
                            when others =>             
@@ -558,7 +558,7 @@ package body KartenGenerator is
                                                                        ZusatzYAbstand => 0); -- Hier muss < geprüft werden, deswegen 0
 
                      case KartenWert.YWert is
-                        when -1_000_000 =>
+                        when GlobaleDatentypen.Kartenfeld'First =>
                            exit XAchseSchleifeZwei;
                            
                         when others =>
@@ -605,7 +605,7 @@ package body KartenGenerator is
                                                               ZusatzYAbstand => 0);
 
             case KartenWert.YWert is
-               when -1_000_000 =>
+               when GlobaleDatentypen.Kartenfeld'First =>
                   exit XAchseSchleife;
 
                when others =>

@@ -13,12 +13,12 @@ private
    StehtDrauf : Boolean;
 
    MöglicheAngriffsfelder : constant Wide_Wide_Character := '■';
-   Überhang : Integer := 0;
-   Verteidigungsbonus : Integer;
-   Nahrungsgewinnung : Integer;
-   Ressourcengewinnung : Integer;
-   Geldgewinnung : Integer;
-   Wissensgewinnung : Integer;
+   Überhang : GlobaleDatentypen.Kartenfeld := 0;
+   Verteidigungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
+   Nahrungsgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+   Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+   Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+   Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
    SichtweiteFestlegen : Integer;
    BewegungsfeldFestlegen : Integer;
 

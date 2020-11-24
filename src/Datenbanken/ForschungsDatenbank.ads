@@ -10,7 +10,7 @@ package ForschungsDatenbank is
 
    type ForschungRecord is record
 
-      PreisForschung : Integer;
+      PreisForschung : GlobaleDatentypen.KostenLager;
       AnforderungForschung : AnforderungForschungArray;
 
    end record;

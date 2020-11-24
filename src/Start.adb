@@ -58,7 +58,7 @@ begin
                      -- when others =>
                         -- Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Laden");
                   -- end case;
-RückgabeKampagne := SpielEinstellungen.SpielEinstellungen; -- Später wieder entfernen, wenn Laden wieder funktioniert!
+                  RückgabeKampagne := SpielEinstellungen.SpielEinstellungen; -- Später wieder entfernen, wenn Laden wieder funktioniert!
                when 4 => -- Optionen
                   Optionen.Optionen;
 

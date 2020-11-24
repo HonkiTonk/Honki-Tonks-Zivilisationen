@@ -13,12 +13,12 @@ package GlobaleVariablen is
    type CursorRecord is record
       
       CursorGrafik : Wide_Wide_Character;
-      YAchse : Integer;
-      XAchse : Integer;
-      YAchseAlt : Integer;
-      XAchseAlt : Integer;
-      XAchseStadt : Integer;
-      YAchseStadt : Integer;
+      YAchse : GlobaleDatentypen.Kartenfeld;
+      XAchse : GlobaleDatentypen.Kartenfeld;
+      YAchseAlt : GlobaleDatentypen.Kartenfeld;
+      XAchseAlt : GlobaleDatentypen.Kartenfeld;
+      XAchseStadt : GlobaleDatentypen.Stadtfeld;
+      YAchseStadt : GlobaleDatentypen.Stadtfeld;
       
    end record;
    
@@ -38,8 +38,8 @@ package GlobaleVariablen is
       AktuelleBeschäftigung2 : Integer;
       
       ID : GlobaleDatentypen.EinheitenID;
-      YAchse : Integer;
-      XAchse : Integer;      
+      YAchse : GlobaleDatentypen.Kartenfeld;
+      XAchse : GlobaleDatentypen.Kartenfeld;      
       
       AktuelleLebenspunkte : Integer;
       AktuelleBewegungspunkte : Float;
@@ -52,28 +52,28 @@ package GlobaleVariablen is
    end record;
 
    type EinheitenGebautArray is array (RassenImSpiel'Range, 1 .. 1000) of EinheitenGebautRecord;
-   EinheitenGebaut : EinheitenGebautArray := (others => (others => (0, 0,    0, 0, 0,    0, 0.00, 0, 0,    0, 0)));
+   EinheitenGebaut : EinheitenGebautArray := (others => (others => (0, 0,    0, 1, 1,    0, 0.00, 0, 0,    0, 0)));
 
    type UmgebungBewirtschaftungArray is array (-3 .. 3, -3 .. 3) of Boolean;
 
    type StadtGebautRecord is record
       
       ID : Integer;
-      YAchse : Integer;
-      XAchse : Integer;
+      YAchse : GlobaleDatentypen.Kartenfeld;
+      XAchse : GlobaleDatentypen.Kartenfeld;
 
       AmWasser : Boolean;
 
       Einwohner : Integer;
-      AktuelleNahrungsmittel : Integer;
-      AktuelleNahrungsproduktion : Integer;
-      AktuelleRessourcen : Integer;
-      AktuelleProduktionrate : Integer;
-      AktuelleGeldgewinnung : Integer;
-      AktuelleForschungsrate : Integer;
+      AktuelleNahrungsmittel : GlobaleDatentypen.KostenLager;
+      AktuelleNahrungsproduktion : GlobaleDatentypen.GesamtproduktionStadt;
+      AktuelleRessourcen : GlobaleDatentypen.KostenLager;
+      AktuelleProduktionrate : GlobaleDatentypen.GesamtproduktionStadt;
+      AktuelleGeldgewinnung : GlobaleDatentypen.GesamtproduktionStadt;
+      AktuelleForschungsrate : GlobaleDatentypen.GesamtproduktionStadt;
       AktuellesBauprojekt : Integer;
-      VerbleibendeBauzeit : Integer;
-      Korruption : Integer;
+      VerbleibendeBauzeit : GlobaleDatentypen.KostenLager;
+      Korruption : GlobaleDatentypen.GesamtproduktionStadt;
       
       GebäudeVorhanden : Wide_Wide_String (Integer (GlobaleDatentypen.GebäudeID'First) .. Integer (GlobaleDatentypen.GebäudeID'Last)); -- Eine Liste anlegen welche Nummer welches Gebäude ist.
       Name : Unbounded_Wide_Wide_String;
@@ -86,17 +86,17 @@ package GlobaleVariablen is
    type StadtGebautArray is array (RassenImSpiel'Range, 1 .. 100) of StadtGebautRecord;
    StadtGebaut : StadtGebautArray := (others =>
                                         (others =>
-                                           ((0, 0, 0,    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False)), 0))));
+                                           ((0, 1, 1,    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False)), 0))));
 
    type ErforschtArray is array (1 .. 6) of Integer;
 
    type WichtigesRecord is record
       
       AktuelleGeldmenge : Integer;
-      GeldZugewinnProRunde : Integer;
-      AktuelleForschungsrate : Integer;
-      AktuelleForschungsmenge : Integer;
-      VerbleibendeForschungszeit : Integer;
+      GeldZugewinnProRunde : GlobaleDatentypen.KostenLager;
+      AktuelleForschungsrate : GlobaleDatentypen.KostenLager;
+      AktuelleForschungsmenge : GlobaleDatentypen.KostenLager;
+      VerbleibendeForschungszeit : GlobaleDatentypen.KostenLager;
       AktuellesForschungsprojekt : Integer;
 
       Erforscht : ErforschtArray;

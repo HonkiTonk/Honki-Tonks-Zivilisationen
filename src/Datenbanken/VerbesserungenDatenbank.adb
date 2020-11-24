@@ -356,7 +356,7 @@ package body VerbesserungenDatenbank is
 
 
 
-   procedure StraßeBerechnung (YKoordinate, XKoordinate : in Integer) is
+   procedure StraßeBerechnung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld) is
    begin
 
       Straßenwert := 10000;
@@ -373,7 +373,7 @@ package body VerbesserungenDatenbank is
                                                               ZusatzYAbstand => 0);
 
             case KartenWert.YWert is
-               when -1_000_000 =>
+               when GlobaleDatentypen.Kartenfeld'First =>
                   exit XAchseSchleife;
 
                when others =>

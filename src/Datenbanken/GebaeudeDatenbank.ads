@@ -10,16 +10,16 @@ package GebaeudeDatenbank is
       
       Anzeige : Wide_Wide_Character;
       
-      PreisGeld : Integer;      
-      PreisRessourcen : Integer;
+      PreisGeld : GlobaleDatentypen.KostenLager;      
+      PreisRessourcen : GlobaleDatentypen.KostenLager;
       Anforderungen : Integer;
 
-      PermanenteKosten : Integer;
-      ProduktionBonus : Integer;
-      GeldBonus : Integer;
-      WissenBonus : Integer;
-      VerteidigungBonus : Integer;
-      NahrungBonus : Integer;
+      PermanenteKosten : GlobaleDatentypen.KostenLager;
+      ProduktionBonus : GlobaleDatentypen.GrundwerteNRGWVA;
+      GeldBonus : GlobaleDatentypen.GrundwerteNRGWVA;
+      WissenBonus : GlobaleDatentypen.GrundwerteNRGWVA;
+      VerteidigungBonus : GlobaleDatentypen.GrundwerteNRGWVA;
+      NahrungBonus : GlobaleDatentypen.GrundwerteNRGWVA;
       Anderes : Boolean;
 
    end record;

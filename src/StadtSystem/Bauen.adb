@@ -47,10 +47,14 @@ package body Bauen is
             GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit := 0;
             
          elsif GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt < 10_000 then
-            GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit := (GebaeudeDatenbank.GebäudeListe (Rasse, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 1_000).PreisRessourcen - GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleRessourcen) / GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate;
+            GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit
+              := (GebaeudeDatenbank.GebäudeListe (Rasse, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 1_000).PreisRessourcen
+                  - GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleRessourcen) / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate);
                
          else
-            GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit := (EinheitenDatenbank.EinheitenListe (Rasse, GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 10_000)).PreisRessourcen - GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleRessourcen) / GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate;
+            GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit
+              := (EinheitenDatenbank.EinheitenListe (Rasse, GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 10_000)).PreisRessourcen
+                  - GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleRessourcen) / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate);
          end if;
          
       end loop;

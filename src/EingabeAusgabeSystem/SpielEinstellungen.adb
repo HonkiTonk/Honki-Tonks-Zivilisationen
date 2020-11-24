@@ -340,7 +340,7 @@ package body SpielEinstellungen is
                                                                                    XÄnderung      => XÄnderung,
                                                                                    ZusatzYAbstand => 0);
                                  case KartenWert.YWert is
-                                    when -1_000_000 =>
+                                    when GlobaleDatentypen.Kartenfeld'First =>
                                        exit XAchseSchleife;
                   
                                     when others =>
@@ -407,12 +407,12 @@ package body SpielEinstellungen is
                                                               XÄnderung      => XÄnderung,
                                                               ZusatzYAbstand => 0);
             case KartenWert.YWert is
-               when -1_000_000 =>
+               when GlobaleDatentypen.Kartenfeld'First =>
                   exit XAchseSchleife;
                   
                when others =>
-                  PositionWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + YÄnderung,
-                                                                                         XAchse => GlobaleVariablen.CursorImSpiel.XAchse + XÄnderung);
+                  PositionWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + GlobaleDatentypen.Kartenfeld (YÄnderung),
+                                                                                         XAchse => GlobaleVariablen.CursorImSpiel.XAchse + GlobaleDatentypen.Kartenfeld (XÄnderung));
                   case PositionWert.Rasse is
                      when -1_000_000 =>  
                         if YÄnderung = 0 and XÄnderung = 0 then

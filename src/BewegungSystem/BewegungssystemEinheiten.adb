@@ -69,7 +69,7 @@ package body BewegungssystemEinheiten is
 
    
 
-   procedure BewegungEinheitenBerechnung (Rasse, EinheitNummer, YÄnderung, XÄnderung : in Integer) is
+   procedure BewegungEinheitenBerechnung (Rasse, EinheitNummer : in Integer; YÄnderung, XÄnderung : in Änderung) is
    begin
 
       Gewonnen := True;    
@@ -82,7 +82,7 @@ package body BewegungssystemEinheiten is
                                                         ZusatzYAbstand => 0);
 
       case KartenWert.YWert is
-         when -1_000_000 =>
+         when GlobaleDatentypen.Kartenfeld'First =>
             return;
             
          when others =>

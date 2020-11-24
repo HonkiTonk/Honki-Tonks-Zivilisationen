@@ -10,13 +10,15 @@ package BewegungssystemEinheiten is
    
 private
 
+subtype Änderung is GlobaleDatentypen.Kartenfeld range -1 .. 1;
+
    Angreifen : Boolean;
    Gewonnen : Boolean;
 
    Richtung : Wide_Wide_Character;
-   
-   XÄnderung : Integer;
-   YÄnderung : Integer;
+      
+   XÄnderung : Änderung;
+   YÄnderung : Änderung;
    
    Wahl : Integer;
    BereitsImKrieg : Integer;
@@ -27,6 +29,6 @@ private
    GegnerEinheitWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    GegnerStadtWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    
-   procedure BewegungEinheitenBerechnung (Rasse, EinheitNummer, YÄnderung, XÄnderung : in Integer);
+   procedure BewegungEinheitenBerechnung (Rasse, EinheitNummer : in Integer; YÄnderung, XÄnderung : in Änderung);
 
 end BewegungssystemEinheiten;

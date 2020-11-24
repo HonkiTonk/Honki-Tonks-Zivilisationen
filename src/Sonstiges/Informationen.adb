@@ -16,7 +16,7 @@ package body Informationen is
       New_Line;
 
       Put_Line (Item => "Das nächste Mal zu tun:");
-      Put_Line (Item => "Dingsbums für Prozeduren/Funktionen einbauen.");
+      Put_Line (Item => "Keine Überprüfung ob die Zahl außerhalb der Integer Range liegt!");
       Put_Line (Item => "Mehr eigene Datentypen einbauen.");
       Put_Line (Item => "Textanzeige endlich mal ordentlich umbauen.");
       New_Line;
