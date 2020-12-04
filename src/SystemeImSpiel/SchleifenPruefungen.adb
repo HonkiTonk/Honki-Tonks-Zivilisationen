@@ -104,7 +104,7 @@ package body SchleifenPruefungen is
          end loop StadtSchleife;
       end loop RasseSchleife;
       
-      return (-1_000_000, -1_000_000);
+      return (RückgabeWert, RückgabeWert);
       
    end KoordinatenStadtOhneRasseSuchen;
    
@@ -131,8 +131,8 @@ package body SchleifenPruefungen is
          end loop EinheitSchleife;
       end loop RasseSchleife;
       
-      return (-1_000_000, -1_000_000);
+      return (RückgabeWert, RückgabeWert);
       
-   end KoordinatenEinheitOhneRasseSuchen;
+   end KoordinatenEinheitOhneRasseSuchen;   
 
 end SchleifenPruefungen;

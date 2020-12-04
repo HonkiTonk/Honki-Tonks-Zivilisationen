@@ -5,8 +5,8 @@ package body KarteStadt is
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
-      Stadtumgebungsgröße := StadtWerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => GlobaleVariablen.Rasse,
-                                                                                   StadtNummer => StadtNummer);
+      Stadtumgebungsgröße := GlobaleDatentypen.Kartenfeld (StadtWerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => GlobaleVariablen.Rasse,
+                                                                                   StadtNummer => StadtNummer));
 
       YAchsenabstraktion := -Stadtumgebungsgröße;
       CursorYAchsePlus := -10;
@@ -21,7 +21,7 @@ package body KarteStadt is
                if YAchsenabstraktion > Stadtumgebungsgröße then
                   for A in 0 .. 6 loop
                      
-                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + A = GlobaleVariablen.CursorImSpiel.XAchseStadt then
+                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel.XAchseStadt then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
 
                      else
@@ -36,7 +36,7 @@ package body KarteStadt is
                elsif Stadtumgebungsgröße = 1 and Y < 3 then
                   for A in 0 .. 6 loop                  
                                           
-                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + A = GlobaleVariablen.CursorImSpiel.XAchseStadt then
+                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel.XAchseStadt then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
 
                      else
@@ -51,7 +51,7 @@ package body KarteStadt is
                elsif Stadtumgebungsgröße = 2 and Y < 2 then
                   for A in 0 .. 6 loop               
                                           
-                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + A = GlobaleVariablen.CursorImSpiel.XAchseStadt then
+                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel.XAchseStadt then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
 
                      else                                            
@@ -67,33 +67,33 @@ package body KarteStadt is
                   UmgebungsSchleife:
                   for A in -3 .. 3 loop
 
-                     Cursor := CursorKonstant + A;
+                     Cursor := CursorKonstant + GlobaleDatentypen.Kartenfeld (A);
                      if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + Cursor = GlobaleVariablen.CursorImSpiel.XAchseStadt then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
                         CursorYAchsePlus := Y - 4;
 
-                        if A < -Stadtumgebungsgröße or A > Stadtumgebungsgröße then
+                        if GlobaleDatentypen.Kartenfeld (A) < -Stadtumgebungsgröße or GlobaleDatentypen.Kartenfeld (A) > Stadtumgebungsgröße then
                            null;
                            
                         else
-                           CursorXAchsePlus := A;
+                           CursorXAchsePlus := GlobaleDatentypen.Kartenfeld (A);
                         end if;
                            
-                     elsif A < -Stadtumgebungsgröße then
+                     elsif GlobaleDatentypen.Kartenfeld (A) < -Stadtumgebungsgröße then
                         Put (Item => " ");
                            
-                     elsif A > Stadtumgebungsgröße then
+                     elsif GlobaleDatentypen.Kartenfeld (A) > Stadtumgebungsgröße then
                         Put (Item => " ");
 
                      else
                         KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
                                                                           XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
-                                                                          YÄnderung      => YAchsenabstraktion,
+                                                                          YÄnderung      => Integer (YAchsenabstraktion),
                                                                           XÄnderung      => A,
                                                                           ZusatzYAbstand => 0);
 
                         case KartenWert.YWert is
-                           when -1_000_000 =>
+                           when GlobaleDatentypen.Kartenfeld'First =>
                               Put (Item => " ");
 
                            when others =>
@@ -119,8 +119,8 @@ package body KarteStadt is
                Put (Item => " ");
 
             elsif Y = 1 and X < 13 then
-               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (X) /= '0' then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.Rasse, X).Anzeige);
+               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (X)) /= '0' then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.Rasse, Integer (X)).Anzeige);
 
                else
                   Sichtbarkeit.Farben (Einheit      => 0,
@@ -130,8 +130,8 @@ package body KarteStadt is
                end if;
 
             elsif Y = 2 and X < 13 then
-               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (X + 12) /= '0' then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.Rasse, X + 12).Anzeige);
+               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (X) + 12) /= '0' then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.Rasse, Integer (X) + 12).Anzeige);
 
                else
                   Sichtbarkeit.Farben (Einheit      => 0,
@@ -163,16 +163,16 @@ package body KarteStadt is
       InformationenStadt (YAufschlag => CursorYAchsePlus,
                           XAufschlag => CursorXAchsePlus);
       if GlobaleVariablen.CursorImSpiel.YAchseStadt = 1 and GlobaleVariablen.CursorImSpiel.XAchseStadt < 13 then
-         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (GlobaleVariablen.CursorImSpiel.XAchseStadt) /= '0' then
-            GebaeudeDatenbank.Beschreibung (ID => GlobaleVariablen.CursorImSpiel.XAchseStadt);
+         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.XAchseStadt)) /= '0' then
+            GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel.XAchseStadt));
             
          else
             null;
          end if;
 
       elsif GlobaleVariablen.CursorImSpiel.YAchseStadt = 2 and GlobaleVariablen.CursorImSpiel.XAchseStadt < 13 then
-         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (GlobaleVariablen.CursorImSpiel.XAchseStadt + 12) /= '0' then
-            GebaeudeDatenbank.Beschreibung (ID => GlobaleVariablen.CursorImSpiel.XAchseStadt + 12);
+         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.XAchseStadt) + 12) /= '0' then
+            GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel.XAchseStadt) + 12);
             
          else
             null;
@@ -197,7 +197,7 @@ package body KarteStadt is
    
    
    
-   procedure InformationenStadt (YAufschlag, XAufschlag : in Integer) is
+   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld) is
    begin      
       
       Nahrungsgewinnung := 0;
@@ -207,12 +207,12 @@ package body KarteStadt is
 
       KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
                                                         XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
-                                                        YÄnderung      => YAufschlag,
-                                                        XÄnderung      => XAufschlag,
+                                                        YÄnderung      => Integer (YAufschlag),
+                                                        XÄnderung      => Integer (XAufschlag),
                                                         ZusatzYAbstand => 0);
 
       case KartenWert.YWert is
-         when -1_000_000 =>
+         when GlobaleDatentypen.Kartenfeld'First =>
             YAchse := -10;
          
          when others =>

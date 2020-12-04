@@ -41,7 +41,7 @@ package body StadtWerteFestlegen is
                                                                           XÄnderung      => XPosition,
                                                                           ZusatzYAbstand => 0);
                         case KartenWert.YWert is
-                           when GlobaleDatentypen.Kartenfeld.First =>
+                           when GlobaleDatentypen.Kartenfeld'First =>
                               null;
                               
                               when others =>

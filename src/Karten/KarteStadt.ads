@@ -11,23 +11,23 @@ package KarteStadt is
 
 private
    
-   Stadtumgebungsgröße : Integer := 1;
-   Überhang : Integer := 0;
-   YAchsenabstraktion : Integer;
-   CursorKonstant : constant Integer := 3;
-   Cursor : Integer;
-   CursorYAchsePlus : Integer;
-   CursorXAchsePlus : Integer;
+   Stadtumgebungsgröße : GlobaleDatentypen.Kartenfeld := 1;
+   Überhang : GlobaleDatentypen.Kartenfeld := 0;
+   YAchsenabstraktion : GlobaleDatentypen.Kartenfeld;
+   CursorKonstant : constant GlobaleDatentypen.Kartenfeld := 3;
+   Cursor : GlobaleDatentypen.Kartenfeld;
+   CursorYAchsePlus : GlobaleDatentypen.Kartenfeld;
+   CursorXAchsePlus : GlobaleDatentypen.Kartenfeld;
    Nahrungsgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
    Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
    Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
    Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   YAchse : Integer;
-   XAchse : Integer;
+   YAchse : GlobaleDatentypen.Kartenfeld;
+   XAchse : GlobaleDatentypen.Kartenfeld;
 
    KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
    
    procedure FarbenStadt;
-   procedure InformationenStadt (YAufschlag, XAufschlag : in Integer);
+   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld);
 
 end KarteStadt;

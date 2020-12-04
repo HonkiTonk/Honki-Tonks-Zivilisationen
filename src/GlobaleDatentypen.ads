@@ -1,12 +1,12 @@
 package GlobaleDatentypen is
    
    type ZahlenBoolean is range 0 .. 1;
-
-   type Kartenfeld is range -11 .. 1_000; -- Überall für Y/X einsetzen, Linke Seite muss stehts eins kleiner sein als maximale Sichtweite!
+   type Kartenfeld is range -1_001 .. 1_000; -- Linke Seite muss stehts eins kleiner sein als die rechte Seite, aufgrund des aktuellen Kartengenerators!
    subtype Stadtfeld is Kartenfeld range 1 .. 20;
    subtype Sichtweite is Kartenfeld range 1 .. 10;
    type KartenGrund is range -2 .. 36;
    type KartenVerbesserung is range 0 .. 22;
+   type Ebene is range -2 .. 2; -- Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
 
    type EinheitenID is range 0 .. 50;
 

@@ -26,6 +26,7 @@ private
 
    PositionWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   PlatzBelegt : GlobaleDatentypen.RasseUndPlatznummerRecord;
 
    subtype ZufälligeKartengröße is Integer range 1 .. 9;
    subtype ZufälligeKartenart is Integer range 1 .. 3;
@@ -34,7 +35,7 @@ private
    subtype ZufälligeRasse is Integer range GlobaleVariablen.RassenImSpiel'Range;
 
    -- Überarbeitung
-   subtype Position is GlobaleDatentypen.Kartenfeld;
+   subtype Position is GlobaleDatentypen.Kartenfeld range 1 .. GlobaleDatentypen.Kartenfeld'Last;
    subtype Rassen is Integer range GlobaleVariablen.RassenImSpiel'Range;
 
    package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (ZufälligeKartengröße);

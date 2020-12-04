@@ -9,7 +9,6 @@ package body KartenGenerator is
       GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 10); -- Inseln, Kontinente, Pangäa
       -- Größe Landart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
       GeneratorKarte := (others => (others => (0)));
-      Test := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße * Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
 
       Zeit (1, 1) := Clock;
       YAchseSchleife:
@@ -42,26 +41,6 @@ package body KartenGenerator is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       Zeit (2, 1) := Clock;
-            
-      Zeit (1, 2) := Clock;
-      GenerierungKüstenSeeGewässer;
-      Zeit (2, 2) := Clock;
-
-      Zeit (1, 3) := Clock;
-      GenerierungKartentemperatur;
-      Zeit (2, 3) := Clock;
-      
-      Zeit (1, 4) := Clock;
-      GenerierungLandschaft;
-      Zeit (2, 4) := Clock;
-      
-      Zeit (1, 5) := Clock;
-      GenerierungFlüsse;
-      Zeit (2, 5) := Clock;
-      
-      Zeit (1, 6) := Clock;
-      GenerierungRessourcen;
-      Zeit (2, 6) := Clock;
 
       Put ("Zeit 1: ");
       Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 1) - Zeit (1, 1)),
@@ -69,6 +48,10 @@ package body KartenGenerator is
                              Aft  => 6,
                              Exp  => 0);
       New_Line;
+            
+      Zeit (1, 2) := Clock;
+      GenerierungKüstenSeeGewässer;
+      Zeit (2, 2) := Clock;
 
       Put ("Zeit 2: ");
       Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 2) - Zeit (1, 2)),
@@ -77,19 +60,31 @@ package body KartenGenerator is
                              Exp  => 0);
       New_Line;
 
+      Zeit (1, 3) := Clock;
+      GenerierungKartentemperatur;
+      Zeit (2, 3) := Clock;
+
       Put ("Zeit 3: ");
       Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 3) - Zeit (1, 3)),
                              Fore => 1,
                              Aft  => 6,
                              Exp  => 0);
       New_Line;
-
+      
+      Zeit (1, 4) := Clock;
+      GenerierungLandschaft;
+      Zeit (2, 4) := Clock;
+      
       Put ("Zeit 4: ");
       Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 4) - Zeit (1, 4)),
                              Fore => 1,
                              Aft  => 6,
                              Exp  => 0);
       New_Line;
+      
+      Zeit (1, 5) := Clock;
+      GenerierungFlüsse;
+      Zeit (2, 5) := Clock;
 
       Put ("Zeit 5: ");
       Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 5) - Zeit (1, 5)),
@@ -97,6 +92,10 @@ package body KartenGenerator is
                              Aft  => 6,
                              Exp  => 0);
       New_Line;
+      
+      Zeit (1, 6) := Clock;
+      GenerierungRessourcen;
+      Zeit (2, 6) := Clock;
 
       Put ("Zeit 6: ");
       Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 6) - Zeit (1, 6)),
@@ -116,7 +115,7 @@ package body KartenGenerator is
 
 
 
-   procedure GenerierungKartenart (Y, X : in Integer) is
+   procedure GenerierungKartenart (Y, X : in GlobaleDatentypen.Kartenfeld) is
    begin
 
       Wert := Random (Gewählt);
@@ -164,7 +163,7 @@ package body KartenGenerator is
 
    
    
-   procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in Integer) is
+   procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in GlobaleDatentypen.Kartenfeld) is
    begin
       
       YAchseSchleife:
@@ -174,8 +173,8 @@ package body KartenGenerator is
             
             KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPositionLandmasse,
                                                               XKoordinate    => XPositionLandmasse,
-                                                              YÄnderung      => YÄnderung,
-                                                              XÄnderung      => XÄnderung,
+                                                              YÄnderung      => Integer (YÄnderung),
+                                                              XÄnderung      => Integer (XÄnderung),
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
             case KartenWert.YWert is
@@ -223,7 +222,7 @@ package body KartenGenerator is
    
    
    
-   procedure GenerierungLandmasseÜberhang (YAchse, XAchse : in Integer; Gezogen : in Float) is
+   procedure GenerierungLandmasseÜberhang (YAchse, XAchse : in GlobaleDatentypen.Kartenfeld; Gezogen : in Float) is
    begin
    
       if Gezogen >= WahrscheinlichkeitenFürLand (Kartenart, 6) and GeneratorKarte (YAchse, XAchse) = 0 then
@@ -245,8 +244,6 @@ package body KartenGenerator is
 
    procedure GenerierungKüstenSeeGewässer is
    begin
-
-      Test := (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 2 * Eisrand) * Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
       
       YAchseSchleife:
       for YPosition in Karten.Karten'First (2) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
@@ -370,7 +367,7 @@ package body KartenGenerator is
 
 
 
-   procedure GenerierungTemperaturAbstand (YPosition, XPosition, Geländeart : in Integer) is
+   procedure GenerierungTemperaturAbstand (Geländeart : GlobaleDatentypen.KartenGrund; YPosition, XPosition : in GlobaleDatentypen.Kartenfeld) is
    begin
       
       YAchseSchleife:
@@ -380,8 +377,8 @@ package body KartenGenerator is
                         
             KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
                                                               XKoordinate    => XPosition,
-                                                              YÄnderung      => YÄnderung,
-                                                              XÄnderung      => XÄnderung,
+                                                              YÄnderung      => Integer (YÄnderung),
+                                                              XÄnderung      => Integer (XÄnderung),
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
             case KartenWert.YWert is
@@ -407,14 +404,14 @@ package body KartenGenerator is
    
    
    
-   procedure GenerierungTemperaturZusatz (YAchse, XAchse, Geländeart : in Integer) is
+   procedure GenerierungTemperaturZusatz (Geländeart : GlobaleDatentypen.KartenGrund; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) is
    begin
 
       if Karten.Karten (0, YAchse, XAchse).Grund < 3 or Karten.Karten (0, YAchse, XAchse).Grund = 31 then
          null;
          
       elsif GeneratorKarte (YAchse, XAchse) = 0 then
-         GeneratorKarte (YAchse, XAchse) := Geländeart;
+         GeneratorKarte (YAchse, XAchse) := GlobaleDatentypen.Kartenfeld (Geländeart);
             
       else
          null;
@@ -504,8 +501,8 @@ package body KartenGenerator is
 
                         KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => Y,
                                                                           XKoordinate    => X,
-                                                                          YÄnderung      => A,
-                                                                          XÄnderung      => B,
+                                                                          YÄnderung      => Integer (A),
+                                                                          XÄnderung      => Integer (B),
                                                                           ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
                         case KartenWert.YWert is
@@ -589,7 +586,7 @@ package body KartenGenerator is
 
 
 
-   procedure FlussBerechnung (YKoordinate, XKoordinate : in Integer) is -- Außerdem scheint hier noch etwas nicht zu stimmen, nochmal drüber schauen oder gleich was besseres zusammenbasteln.
+   procedure FlussBerechnung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld) is -- Außerdem scheint hier noch etwas nicht zu stimmen, nochmal drüber schauen oder gleich was besseres zusammenbasteln.
    begin
                     
       Flusswert := 10000;   

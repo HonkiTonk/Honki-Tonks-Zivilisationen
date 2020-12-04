@@ -6,7 +6,7 @@ package body Optionen is
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
       Anzeige.Zeug (WelchesZeug => 41);
-      Wert := Eingabe.GanzeZahl;
+      Wert := Eingabe.GanzeZahl (Zahlengröße => 3);
       
       case Wert is
          when -1 =>
