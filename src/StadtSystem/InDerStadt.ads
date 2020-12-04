@@ -11,6 +11,8 @@ package InDerStadt is
    procedure StadtBauen (Rasse, EinheitNummer : in Integer);
    procedure StadtProduktionPrüfen (Rasse, StadtNummer : in Integer);
 
+   function StadtBauenPrüfen (Y, X : in GlobaleDatentypen.Kartenfeld) return Boolean;
+
 private
 
    BauMöglich : Boolean;
@@ -27,7 +29,5 @@ private
    KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
 
    procedure StadtProduktionPrüfenBerechnung (Rasse, StadtNummer : in Integer);
-
-   function StadtBauenPrüfen (Y, X : in GlobaleDatentypen.Kartenfeld) return Boolean;
 
 end InDerStadt;

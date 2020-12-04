@@ -328,7 +328,7 @@ package body SpielEinstellungen is
                      PositionWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel.YAchse,
                                                                                             XAchse => GlobaleVariablen.CursorImSpiel.XAchse);
                      case PositionWert.Rasse is
-                        when -1_000_000 =>                           
+                        when SchleifenPruefungen.RückgabeWert =>                           
                            YAchseSchleife:
                            for YÄnderung in -1 .. 1 loop
                               XAchseSchleife:
@@ -349,16 +349,23 @@ package body SpielEinstellungen is
                                           
                                        elsif Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund > 2
                                          and Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund /= 31 then
-                                          FelderDrumHerum := FelderDrumHerum + 1;
-                                          case FelderDrumHerum is
-                                             when 2 =>
-                                                StartpunktFestlegen (Rasse => Rasse);
-                                                StartwerteFestgelegt := True;
+                                          PlatzBelegt := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + GlobaleDatentypen.Kartenfeld (YÄnderung),
+                                                                                                                XAchse => GlobaleVariablen.CursorImSpiel.XAchse + GlobaleDatentypen.Kartenfeld (XÄnderung));
+                                          if PlatzBelegt.Rasse = SchleifenPruefungen.RückgabeWert then
+                                             FelderDrumHerum := FelderDrumHerum + 1;
+                                             case FelderDrumHerum is
+                                                when 2 =>
+                                                   StartpunktFestlegen (Rasse => Rasse);
+                                                   StartwerteFestgelegt := True;
                               
-                                             when others =>
-                                                null;
-                                          end case;
-                                          
+                                                when others =>
+                                                   null;
+                                             end case;
+                                             
+                                          else
+                                             null;
+                                          end if;
+                                             
                                        else
                                           null;
                                        end if;
@@ -414,7 +421,7 @@ package body SpielEinstellungen is
                   PositionWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel.YAchse + GlobaleDatentypen.Kartenfeld (YÄnderung),
                                                                                          XAchse => GlobaleVariablen.CursorImSpiel.XAchse + GlobaleDatentypen.Kartenfeld (XÄnderung));
                   case PositionWert.Rasse is
-                     when -1_000_000 =>  
+                     when SchleifenPruefungen.RückgabeWert =>  
                         if YÄnderung = 0 and XÄnderung = 0 then
                            null;
                

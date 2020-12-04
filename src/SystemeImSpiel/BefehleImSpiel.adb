@@ -92,7 +92,7 @@ package body BefehleImSpiel is
             Karte.AnzeigeKarte;
             return 1;
             
-         when '+' => -- Einheiten mit Bewegungspunkten
+         when '.' => -- Einheiten mit Bewegungspunkten
             NaechstesObjekt.NächsteEinheitMitBewegungspunkten;
             Karte.AnzeigeKarte;
             return 1;
@@ -102,7 +102,7 @@ package body BefehleImSpiel is
             Karte.AnzeigeKarte;
             return 1;
             
-         when '-' => -- Einheiten ohne Bewegungspunkte
+         when ',' => -- Einheiten ohne Bewegungspunkte
             NaechstesObjekt.NächsteEinheitOhneBewegungspunkte;
             Karte.AnzeigeKarte;
             return 1;
@@ -187,6 +187,12 @@ package body BefehleImSpiel is
             
          when 'r' => -- Runde beenden
             return -1000;
+            
+         when '+' => -- Ebene hoch
+            return 1;
+            
+         when '-' => -- Ebene runter
+            return 1;
             
          when others =>
             return 1;

@@ -37,6 +37,7 @@ package body KI is
       AktivitätSchleife:
       loop
          
+         KIStadtBauen (Rasse => Rasse);
          exit AktivitätSchleife;
          
       end loop AktivitätSchleife;
@@ -57,7 +58,26 @@ package body KI is
    procedure KIStadtBauen (Rasse : in Integer) is
    begin
       
-      null;
+      case GlobaleVariablen.RundenAnzahl is
+         when 1 =>
+            EinheitNummer := KIPruefungen.SpezielleEinheitArtSuchen (Rasse => Rasse,
+                                                                     WelcheEinheitArt => 1);
+            
+            Prüfung := True; --InDerStadt.StadtBauenPrüfen (Y => ,
+                                                 --     X => );
+            
+            case Prüfung is
+               when True =>
+                  InDerStadt.StadtBauen (Rasse         => Rasse,
+                                         EinheitNummer => EinheitNummer);
+                  
+               when False =>
+                  null;
+            end case;
+
+         when others =>
+            null;
+      end case;
       
    end KIStadtBauen;
    

@@ -6,6 +6,7 @@ with Karten, GlobaleDatentypen;
 package GlobaleVariablen is
 
    WelcheSprache : Integer;
+   AktuelleEbene : GlobaleDatentypen.Ebene := 0;
 
    type TexteEinlesenArray is array (1 .. 23, 1 .. 50) of Unbounded_Wide_Wide_String;
    TexteEinlesen : TexteEinlesenArray := (others => (others => (To_Unbounded_Wide_Wide_String ("|"))));

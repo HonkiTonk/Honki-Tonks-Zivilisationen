@@ -60,38 +60,39 @@ package body BewegungssystemCursor is
 
       Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 30)));
       Put_Line (Item => Karten.Karten'First (2)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße'Wide_Wide_Image);
-      YPosition := Eingabe.GanzeZahl; -- Hier gibt es keine Prüfung ob der Wert innerhalb der Integer Range liegt, ändern.
-
-      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
-                                                        XKoordinate    => 1, -- 1 weil 0 immer außerhalb der Karte liegt.
-                                                        YÄnderung      => 0,
-                                                        XÄnderung      => 0,
-                                                        ZusatzYAbstand => 0);
-      case KartenWert.YWert is
-         when GlobaleDatentypen.Kartenfeld'First =>
-            Anzeige.Fehlermeldungen (WelcheFehlermeldung => 12);
-            return;
-         
-         when others =>
-            Put_Line (Item => Karten.Karten'First (3)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße'Wide_Wide_Image);
-            XPosition := Eingabe.GanzeZahl;
-
-            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => 1, -- 1 weil 0 immer außerhalb der Karte liegt.
-                                                              XKoordinate    => XPosition,
-                                                              YÄnderung      => 0,
-                                                              XÄnderung      => 0,
-                                                              ZusatzYAbstand => 0);
+      case Karten.Kartengröße is
+         when 1 .. 3 =>
+            Stellenanzahl := 2;
             
-            case KartenWert.XWert is
-               when GlobaleDatentypen.Kartenfeld'First =>
-                  Anzeige.Fehlermeldungen (WelcheFehlermeldung => 12);
-                  return;
-                  
-               when others =>
-                  GlobaleVariablen.CursorImSpiel.YAchse := YPosition;
-                  GlobaleVariablen.CursorImSpiel.XAchse := XPosition;
-            end case;
+         when 4 .. 8 =>
+            Stellenanzahl := 3;
+            
+         when others =>
+            Stellenanzahl := 4;
       end case;
+      Wert := Eingabe.GanzeZahl (Zahlengröße => Stellenanzahl);
+      
+      if Wert < 1 or Wert > Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße) then
+         Anzeige.Fehlermeldungen (WelcheFehlermeldung => 12);
+         return;
+         
+      else
+         YPosition := GlobaleDatentypen.Kartenfeld (Wert);
+      end if;
+      
+      Put_Line (Item => Karten.Karten'First (3)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße'Wide_Wide_Image);
+      Wert := Eingabe.GanzeZahl (Zahlengröße => Stellenanzahl);
+
+      if Wert < 1 or Wert > Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße) then
+         Anzeige.Fehlermeldungen (WelcheFehlermeldung => 12);
+         return;
+         
+      else
+         XPosition := GlobaleDatentypen.Kartenfeld (Wert);
+      end if;
+      
+      GlobaleVariablen.CursorImSpiel.YAchse := YPosition;
+      GlobaleVariablen.CursorImSpiel.XAchse := XPosition;
       
    end GeheZuCursor;
    
@@ -102,8 +103,8 @@ package body BewegungssystemCursor is
       
       KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
                                                         XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
-                                                        YÄnderung      => YÄnderung,
-                                                        XÄnderung      => XÄnderung,
+                                                        YÄnderung      => Integer (YÄnderung),
+                                                        XÄnderung      => Integer (XÄnderung),
                                                         ZusatzYAbstand => 0);
       case KartenWert.YWert is
          when GlobaleDatentypen.Kartenfeld'First =>

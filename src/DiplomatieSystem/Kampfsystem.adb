@@ -6,7 +6,7 @@ package body Kampfsystem is
       VerteidigungBonusDurchStadt := 1.00;
 
       case GegnerStadtnummer is
-         when -1_000_000 | 0 =>
+         when SchleifenPruefungen.RückgabeWert | 0 =>
             Ergebnis := Kampf (RasseAngriff                  => RasseAngriff,
                                EinheitenPositionAngriff      => EinheitenPositionAngriff,
                                RasseVerteidigung             => RasseVerteidigung,

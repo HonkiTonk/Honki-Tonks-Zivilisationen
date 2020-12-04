@@ -1,4 +1,4 @@
-with GlobaleVariablen, BewegungssystemEinheiten, EinheitenDatenbank, ForschungsDatenbank, KartenDatenbank, VerbesserungenDatenbank, GebaeudeDatenbank, InDerStadt;
+with GlobaleVariablen, BewegungssystemEinheiten, EinheitenDatenbank, ForschungsDatenbank, KartenDatenbank, VerbesserungenDatenbank, GebaeudeDatenbank, InDerStadt, SchleifenPruefungen, KIPruefungen, InDerStadt;
 
 package KI is
 
@@ -10,5 +10,11 @@ package KI is
    procedure KIStadtBauen (Rasse : in Integer);
    procedure KIVerbesserungAnlegen (Rasse : in Integer);
    procedure KIGebäudeBauen (Rasse : in Integer);
+
+private
+
+   Prüfung : Boolean;
+
+   EinheitNummer : Integer;
 
 end KI;

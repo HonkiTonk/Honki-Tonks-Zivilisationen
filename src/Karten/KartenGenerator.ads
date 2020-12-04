@@ -19,12 +19,11 @@ private
 
    NochVerteilbareRessourcen : Integer;
    Überhang : Integer;
-   Eisrand : constant Integer := 1;
-   FelderVonTemperaturZuTemperatur : constant Integer := 5;
-   Abstand : constant Integer := 2;
+   Eisrand : constant GlobaleDatentypen.Kartenfeld := 1;
+   FelderVonTemperaturZuTemperatur : constant GlobaleDatentypen.Kartenfeld := 5;
+   Abstand : constant GlobaleDatentypen.Kartenfeld := 2;
    WahrscheinlichkeitFluss : constant Float := 0.90;
    Wert2 : Integer;
-   Test : Integer;
    Flusswert : Integer;
 
    Wert : Float;
@@ -34,7 +33,7 @@ private
    type ZeitArray is array (1 .. 2, 1 .. 6) of Time;
    Zeit : ZeitArray;
 
-   type GrößeLandartArray is array (1 .. 3) of Integer;
+   type GrößeLandartArray is array (1 .. 3) of GlobaleDatentypen.Kartenfeld;
    GrößeLandart : GrößeLandartArray;
 
    type FelderVonLandartZuLandartArray is array (1 .. 3) of Integer;
@@ -48,10 +47,10 @@ private
                                                                                  2 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
                                                                                  3 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70));
 
-   type GeneratorKarteArray is array (Karten.Karten'Range (2), Karten.Karten'Range (3)) of Integer;
+   type GeneratorKarteArray is array (Karten.Karten'Range (2), Karten.Karten'Range (3)) of GlobaleDatentypen.Kartenfeld;
    GeneratorKarte : GeneratorKarteArray;
 
-   type EisWahrscheinlichkeitReduzierungspunktArray is array (1 .. 3) of Integer;
+   type EisWahrscheinlichkeitReduzierungspunktArray is array (1 .. 3) of GlobaleDatentypen.Kartenfeld;
    EisWahrscheinlichkeitReduzierungspunkt : EisWahrscheinlichkeitReduzierungspunktArray;
 
    type WahrscheinlichkeitenFürLandartArray is array (1 .. 3, 1 .. 3) of Float;
@@ -63,20 +62,20 @@ private
    type WahrscheinlichkeitFürLandschaftArray is array (6 .. 10) of Float;
    WahrscheinlichkeitFürLandschaft : constant WahrscheinlichkeitFürLandschaftArray := (0.85, 0.75, 0.50, 0.30, 0.20);
 
-   procedure GenerierungKartenart (Y, X : in Integer);
-   procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in Integer);
-   procedure GenerierungLandmasseÜberhang (YAchse, XAchse : in Integer; Gezogen : in Float);
+   procedure GenerierungKartenart (Y, X : in GlobaleDatentypen.Kartenfeld);
+   procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in GlobaleDatentypen.Kartenfeld);
+   procedure GenerierungLandmasseÜberhang (YAchse, XAchse : in GlobaleDatentypen.Kartenfeld; Gezogen : in Float);
    procedure GenerierungKüstenSeeGewässer;
 
    procedure GenerierungKartentemperatur;
-   procedure GenerierungTemperaturAbstand (YPosition, XPosition, Geländeart : in Integer);
-   procedure GenerierungTemperaturZusatz (YAchse, XAchse, Geländeart : in Integer);
+   procedure GenerierungTemperaturAbstand (Geländeart : GlobaleDatentypen.KartenGrund; YPosition, XPosition: in GlobaleDatentypen.Kartenfeld);
+   procedure GenerierungTemperaturZusatz (Geländeart : GlobaleDatentypen.KartenGrund; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld);
 
    procedure GenerierungLandschaft;
    procedure GenerierungLandschaftZusatz;
 
    procedure GenerierungFlüsse;
-   procedure FlussBerechnung (YKoordinate, XKoordinate : in Integer);
+   procedure FlussBerechnung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld);
    procedure GenerierungRessourcen;
 
 end KartenGenerator;

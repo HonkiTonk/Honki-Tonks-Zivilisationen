@@ -19,7 +19,8 @@ private
    YPosition : GlobaleDatentypen.Kartenfeld;
    XPosition : GlobaleDatentypen.Kartenfeld;
 
-   Zahl : Integer;
+   Wert : Integer;
+   Stellenanzahl : Integer;
 
    KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
    

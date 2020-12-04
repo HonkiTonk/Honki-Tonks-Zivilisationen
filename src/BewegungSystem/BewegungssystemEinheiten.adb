@@ -77,8 +77,8 @@ package body BewegungssystemEinheiten is
       
       KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
                                                         XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
-                                                        YÄnderung      => YÄnderung,
-                                                        XÄnderung      => XÄnderung,
+                                                        YÄnderung      => Integer (YÄnderung),
+                                                        XÄnderung      => Integer (XÄnderung),
                                                         ZusatzYAbstand => 0);
 
       case KartenWert.YWert is
@@ -135,7 +135,7 @@ package body BewegungssystemEinheiten is
       end if;      
       
       case GegnerEinheitWert.Rasse is
-         when -1_000_000 | 0 =>
+         when SchleifenPruefungen.RückgabeWert | 0 =>
             null;
             
          when others =>
