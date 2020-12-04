@@ -15,7 +15,7 @@ private
    KartentemperaturGewählt : Boolean;
    SpieleranzahlGewählt : Boolean; -- 1 .. 18
    RasseGewählt : Boolean; -- 1 .. 18
-   StartwerteFestgelegt : Boolean;
+   Prüfung : Boolean;
 
    Wahl : Integer;
    Wahl2 : Integer;
@@ -24,9 +24,13 @@ private
    FelderDrumHerum : Integer;
    RassenAusgewählt : Integer;
 
+
    PositionWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
    PlatzBelegt : GlobaleDatentypen.RasseUndPlatznummerRecord;
+
+   type KoordinatenArray is array (1 .. 2) of GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   Koordinaten : KoordinatenArray;
 
    subtype ZufälligeKartengröße is Integer range 1 .. 9;
    subtype ZufälligeKartenart is Integer range 1 .. 3;
@@ -58,12 +62,14 @@ private
    PositionGewählt : WerteWählen.Generator;
    RassenGewählt : RassenWählen.Generator;
 
+   procedure StartwerteErmitteln;
+   procedure StartpunktFestlegen (Rasse : in Integer);
+
    function KartengrößeWählen return Integer;
    function KartenartWählen return Integer;
    function KartentemperaturWählen return Integer;
    function SpieleranzahlWählen return Integer;
    function RasseWählen return Integer;
-   procedure StartwerteErmitteln;
-   procedure StartpunktFestlegen (Rasse : in Integer);
+   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.Kartenfeld; Rasse : in Integer) return Boolean;
 
 end SpielEinstellungen;
