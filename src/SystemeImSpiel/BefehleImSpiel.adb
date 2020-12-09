@@ -194,6 +194,11 @@ package body BefehleImSpiel is
          when '-' => -- Ebene runter
             return 1;
             
+         when 'c' => -- Kleine Cheattaste
+            Cheat.Menü;
+            Karte.AnzeigeKarte;
+            return 1;
+            
          when others =>
             return 1;
       end case;

@@ -28,7 +28,7 @@ private
 
    Wert : Float;
 
-   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
 
    type ZeitArray is array (1 .. 2, 1 .. 6) of Time;
    Zeit : ZeitArray;

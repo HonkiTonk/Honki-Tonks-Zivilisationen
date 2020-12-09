@@ -22,7 +22,7 @@ private
    Wert : Integer;
    Stellenanzahl : Integer;
 
-   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
    
    procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in Änderung);
    procedure BewegungCursorBerechnenStadt;

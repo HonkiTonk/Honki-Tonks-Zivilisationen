@@ -25,7 +25,7 @@ subtype Änderung is GlobaleDatentypen.Kartenfeld range -1 .. 1;
 
    Stadtnummer : Integer;
 
-   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
    GegnerEinheitWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    GegnerStadtWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    

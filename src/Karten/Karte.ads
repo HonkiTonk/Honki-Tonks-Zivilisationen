@@ -22,7 +22,7 @@ private
    SichtweiteFestlegen : Integer;
    BewegungsfeldFestlegen : Integer;
 
-   type SichtweiteArray is array (1 .. 3) of GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   type SichtweiteArray is array (1 .. 3) of GlobaleDatentypen.YWertXWertAusKartenfeld;
 
    Sichtweite : constant SichtweiteArray := (1 => (6, 10),
                                              2 => (6, 22),

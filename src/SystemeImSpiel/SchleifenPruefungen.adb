@@ -1,6 +1,6 @@
 package body SchleifenPruefungen is
 
-   function KartenUmgebung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld; YÄnderung, XÄnderung, ZusatzYAbstand : in Integer) return GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord is
+   function KartenUmgebung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld; YÄnderung, XÄnderung, ZusatzYAbstand : in Integer) return GlobaleDatentypen.YWertXWertAusKartenfeld is
    begin
       -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (2) + 3
       
@@ -133,6 +133,21 @@ package body SchleifenPruefungen is
       
       return (RückgabeWert, RückgabeWert);
       
-   end KoordinatenEinheitOhneRasseSuchen;   
+   end KoordinatenEinheitOhneRasseSuchen;
+   
+   
+   
+   function KartenGrund (Ebene : in GlobaleDatentypen.Ebene; YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld) return Boolean is
+   begin
+      
+      case Karten.Karten (Ebene, YKoordinate, XKoordinate).Grund is
+         when 1 .. 2 | 29 .. 31 | 36 =>
+            return False;
+            
+         when others =>
+            return True;
+      end case;
+      
+   end KartenGrund;
 
 end SchleifenPruefungen;

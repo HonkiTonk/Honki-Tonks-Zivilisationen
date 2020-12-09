@@ -23,7 +23,7 @@ package GlobaleDatentypen is
 
    type RassenImSpielArray is array (1 .. 18) of Integer;   
 
-   type RückgabewertFürSchleifenPrüfungRecord is record
+   type YWertXWertAusKartenfeld is record
       
       YWert : Kartenfeld;
       XWert : Kartenfeld;

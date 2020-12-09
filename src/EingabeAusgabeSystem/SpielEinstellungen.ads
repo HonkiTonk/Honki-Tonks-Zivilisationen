@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Numerics.Discrete_Random;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleDatentypen, SchleifenPruefungen, GlobaleVariablen, ImSpiel, KartenGenerator, Eingabe, Karten, Auswahl, EinheitenDatenbank, Anzeige;
+with GlobaleDatentypen, SchleifenPruefungen, GlobaleVariablen, ImSpiel, KartenGenerator, Eingabe, Karten, Auswahl, EinheitenDatenbank, Anzeige, ZufallsGeneratoren;
 use GlobaleDatentypen;
 
 package SpielEinstellungen is
@@ -15,21 +15,25 @@ private
    KartentemperaturGewählt : Boolean;
    SpieleranzahlGewählt : Boolean; -- 1 .. 18
    RasseGewählt : Boolean; -- 1 .. 18
-   Prüfung : Boolean;
+   PrüfungEinheit : Boolean;
+   PrüfungGrund : Boolean;
+
+   YPosition : GlobaleDatentypen.Kartenfeld;
+   XPosition : GlobaleDatentypen.Kartenfeld;
 
    Wahl : Integer;
    Wahl2 : Integer;
    Wert : Integer;
    Rasse : Integer;
-   FelderDrumHerum : Integer;
    RassenAusgewählt : Integer;
-
+   SicherheitsTestWert : Integer;
 
    PositionWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
-   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   GezogeneWerte : GlobaleDatentypen.YWertXWertAusKartenfeld;
+   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
    PlatzBelegt : GlobaleDatentypen.RasseUndPlatznummerRecord;
 
-   type KoordinatenArray is array (1 .. 2) of GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   type KoordinatenArray is array (1 .. 2) of GlobaleDatentypen.YWertXWertAusKartenfeld;
    Koordinaten : KoordinatenArray;
 
    subtype ZufälligeKartengröße is Integer range 1 .. 9;
@@ -38,8 +42,6 @@ private
    subtype ZufälligeSpieleranzahl is Integer range GlobaleVariablen.RassenImSpiel'Range;
    subtype ZufälligeRasse is Integer range GlobaleVariablen.RassenImSpiel'Range;
 
-   -- Überarbeitung
-   subtype Position is GlobaleDatentypen.Kartenfeld range 1 .. GlobaleDatentypen.Kartenfeld'Last;
    subtype Rassen is Integer range GlobaleVariablen.RassenImSpiel'Range;
 
    package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (ZufälligeKartengröße);
@@ -48,8 +50,6 @@ private
    package ZufälligeSpieleranzahlWählen is new Ada.Numerics.Discrete_Random (ZufälligeSpieleranzahl);
    package ZufälligeRasseWählen is new Ada.Numerics.Discrete_Random (ZufälligeRasse);
 
-   -- Überarbeitung
-   package WerteWählen is new Ada.Numerics.Discrete_Random (Position);
    package RassenWählen is new Ada.Numerics.Discrete_Random (Rassen);
 
    ZufälligeKartengrößeGewählt : ZufälligeKartengrößeWählen.Generator;
@@ -58,8 +58,6 @@ private
    ZufälligeSpieleranzahlGewählt : ZufälligeSpieleranzahlWählen.Generator;
    ZufälligeRasseGewählt : ZufälligeRasseWählen.Generator;
 
-   -- Überarbeitung
-   PositionGewählt : WerteWählen.Generator;
    RassenGewählt : RassenWählen.Generator;
 
    procedure StartwerteErmitteln;

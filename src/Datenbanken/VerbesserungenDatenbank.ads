@@ -60,7 +60,7 @@ private
 
    Straßenwert : Integer;
 
-   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
    
    procedure VerbesserungeFestgelegt (Befehl, Rasse, EinheitNummer : in Integer);
    procedure VerbesserungAngelegt (Rasse, EinheitNummer : in Integer);

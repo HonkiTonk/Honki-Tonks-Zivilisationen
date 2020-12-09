@@ -313,28 +313,40 @@ package body SpielEinstellungen is
                null;
                
             when others =>
-               WerteWählen.Reset (PositionGewählt);
+               SicherheitsTestWert := 0;
          
                StartwerteFestlegenSchleife:
                loop
                   
                   Koordinaten := ((0, 0), (0, 0));
-                  FelderDrumHerum := 0;
+                  GezogeneWerte := ZufallsGeneratoren.YXPosition;
 
-                  Prüfung := UmgebungPrüfen (YPosition => WerteWählen.Random (PositionGewählt),
-                                             XPosition => WerteWählen.Random (PositionGewählt),
-                                             Rasse     => Rasse);
+                  PrüfungEinheit := UmgebungPrüfen (YPosition => GezogeneWerte.YWert,
+                                                    XPosition => GezogeneWerte.XWert,
+                                                    Rasse     => Rasse);
 
-                  case Prüfung is
-                     when True => -- Kommt hier nie rein
+                  case PrüfungEinheit is
+                     when True =>
                         exit StartwerteFestlegenSchleife;
                         
                      when False =>
+                        SicherheitsTestWert := SicherheitsTestWert + 1;
+                  end case;
+
+                  case SicherheitsTestWert is
+                     when 10_000 =>
+                        Put_Line ("Keine geeignete Startposition für Rasse" & Rasse'Wide_Wide_Image & " gefunden!");
+                        delay 1.5;
+                        exit StartwerteFestlegenSchleife;
+                        
+                     when others =>
                         null;
                   end case;
          
                end loop StartwerteFestlegenSchleife;
+               
          end case;
+         
       end loop SpieleranzahlWerteFestlegen;
 
       GlobaleVariablen.CursorImSpiel.YAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, 1).YAchse;
@@ -346,70 +358,75 @@ package body SpielEinstellungen is
 
 
 
-   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.Kartenfeld; Rasse : in Integer) return Boolean is -- Nicht genug Ls, warum nicht?
+   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.Kartenfeld; Rasse : in Integer) return Boolean is -- Scheint in manchen Fällen nicht genug Platzierungsgrund zu finden, bessere Lösung finden
    begin
       
-      if Karten.Karten (0, YPosition, XPosition).Grund > 2
-        and Karten.Karten (0, YPosition, XPosition).Grund /= 31 then
-         PositionWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => YPosition,
-                                                                                XAchse => XPosition);
-         case PositionWert.Rasse is
-            when SchleifenPruefungen.RückgabeWert =>
-               Koordinaten (1) := (YPosition, XPosition);
-               YAchseSchleife:
-               for YÄnderung in -1 .. 1 loop
-                  XAchseSchleife:
-                  for XÄnderung in -1 .. 1 loop
+      PrüfungGrund := SchleifenPruefungen.KartenGrund (Ebene       => 0,
+                                                       YKoordinate => YPosition,
+                                                       XKoordinate => XPosition);
 
-                     KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
-                                                                       XKoordinate    => XPosition,
-                                                                       YÄnderung      => YÄnderung,
-                                                                       XÄnderung      => XÄnderung,
-                                                                       ZusatzYAbstand => 0);
-                     case KartenWert.YWert is
-                        when GlobaleDatentypen.Kartenfeld'First =>
-                           exit XAchseSchleife;
+      case PrüfungGrund is
+         when False =>
+            return False;
+            
+         when True =>
+            PositionWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => YPosition,
+                                                                                   XAchse => XPosition);
+      end case;
+
+      case PositionWert.Rasse is
+         when SchleifenPruefungen.RückgabeWert =>
+            Koordinaten (1) := (YPosition, XPosition);
+            YAchseSchleife:
+            for YÄnderung in -1 .. 1 loop
+               XAchseSchleife:
+               for XÄnderung in -1 .. 1 loop
+
+                  KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
+                                                                    XKoordinate    => XPosition,
+                                                                    YÄnderung      => YÄnderung,
+                                                                    XÄnderung      => XÄnderung,
+                                                                    ZusatzYAbstand => 0);
+                  case KartenWert.YWert is
+                     when GlobaleDatentypen.Kartenfeld'First =>
+                        exit XAchseSchleife;
                   
-                        when others =>
-                           if YÄnderung = 0 and XÄnderung = 0 then
-                              null;
-                                          
-                           elsif Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund > 2
-                             and Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund /= 31 then
-                              PlatzBelegt := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => YPosition + GlobaleDatentypen.Kartenfeld (YÄnderung),
-                                                                                                    XAchse => XPosition + GlobaleDatentypen.Kartenfeld (XÄnderung));
-                              if PlatzBelegt.Rasse = SchleifenPruefungen.RückgabeWert then
-                                 FelderDrumHerum := FelderDrumHerum + 1;
-                                 case FelderDrumHerum is
-                                    when 2 =>
-                                       Koordinaten (2) := (YPosition + GlobaleDatentypen.Kartenfeld (YÄnderung), XPosition + GlobaleDatentypen.Kartenfeld (XÄnderung));
-                                       StartpunktFestlegen (Rasse => Rasse);
-                                       return True;
+                     when others =>
+                        if YÄnderung /= 0 or XÄnderung /= 0 then
+                           PrüfungGrund := SchleifenPruefungen.KartenGrund (Ebene       => 0,
+                                                                            YKoordinate => KartenWert.YWert,
+                                                                            XKoordinate => KartenWert.XWert);
+
+                           case PrüfungGrund is
+                              when False =>
+                                 PlatzBelegt := (1, 1);
+            
+                              when True =>
+                                 PlatzBelegt := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => KartenWert.YWert,
+                                                                                                       XAchse => KartenWert.XWert);
+                           end case;                    
+                           
+                           if PlatzBelegt.Rasse = SchleifenPruefungen.RückgabeWert then
+                                    Koordinaten (2) := (KartenWert.YWert, KartenWert.XWert);
+                                    StartpunktFestlegen (Rasse => Rasse);
+                                    return True;
                               
-                                    when others =>
-                                       null;
-                                 end case;
-                                             
-                              else
-                                 null;
-                              end if;
-                                             
                            else
                               null;
                            end if;
-                     end case;
+                                             
+                        else
+                           null;
+                        end if;
+                  end case;
 
-                  end loop XAchseSchleife;
-               end loop YAchseSchleife;
+               end loop XAchseSchleife;
+            end loop YAchseSchleife;
                            
-            when others =>
-               return False;
-         end case;
+         when others =>
+            return False;
+      end case;
          
-      else
-         return False;
-      end if;
-
       return False;
       
    end UmgebungPrüfen;

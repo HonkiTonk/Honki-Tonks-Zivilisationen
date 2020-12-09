@@ -17,6 +17,6 @@ private
    Sichtweite : GlobaleDatentypen.Sichtweite := 2;
    Wert : Integer;
 
-   Kartenwert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   Kartenwert : GlobaleDatentypen.YWertXWertAusKartenfeld;
 
 end Sichtbarkeit;

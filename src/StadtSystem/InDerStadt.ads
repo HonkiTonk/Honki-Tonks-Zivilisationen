@@ -26,7 +26,7 @@ private
    RelativeCursorPositionY : Integer;
    RelativeCursorPositionX : Integer;
 
-   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
 
    procedure StadtProduktionPrüfenBerechnung (Rasse, StadtNummer : in Integer);
 
