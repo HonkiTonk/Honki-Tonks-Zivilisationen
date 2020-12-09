@@ -25,7 +25,7 @@ private
    YAchse : GlobaleDatentypen.Kartenfeld;
    XAchse : GlobaleDatentypen.Kartenfeld;
 
-   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
    
    procedure FarbenStadt;
    procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld);

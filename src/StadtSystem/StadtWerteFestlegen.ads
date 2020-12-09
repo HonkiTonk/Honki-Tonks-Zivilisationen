@@ -9,6 +9,6 @@ package StadtWerteFestlegen is
 private
    
    NutzbarerBereich : Integer;
-   KartenWert : GlobaleDatentypen.RückgabewertFürSchleifenPrüfungRecord;
+   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
 
 end StadtWerteFestlegen;

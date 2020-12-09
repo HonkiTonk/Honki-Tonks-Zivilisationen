@@ -2,7 +2,7 @@ with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wi
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
 
 with ForschungsDatenbank, InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, KartenDatenbank, Karte, EinheitenDatenbank, GlobaleVariablen, Karten, NaechstesObjekt, VerbesserungenDatenbank,
-     Anzeige, Diplomatie, SchleifenPruefungen, GlobaleDatentypen;
+     Anzeige, Diplomatie, SchleifenPruefungen, GlobaleDatentypen, Cheat;
 use GlobaleDatentypen;
 
 package BefehleImSpiel is
