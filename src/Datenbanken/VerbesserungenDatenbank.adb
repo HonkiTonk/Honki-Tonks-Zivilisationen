@@ -362,9 +362,9 @@ package body VerbesserungenDatenbank is
       Straßenwert := 10000;
       
       YAchseSchleife:
-      for YÄnderung in -1 .. 1 loop
+      for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
          XAchseSchleife:
-         for XÄnderung in -1 .. 1 loop
+         for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
             KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YKoordinate,
                                                               XKoordinate    => XKoordinate,

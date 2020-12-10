@@ -11,10 +11,8 @@ package BewegungssystemCursor is
 
 private
 
-   subtype Änderung is GlobaleDatentypen.Kartenfeld range -1 .. 1;
-
-   XÄnderung : Änderung;
-   YÄnderung : Änderung;
+   YÄnderung : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
+   XÄnderung : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
 
    YPosition : GlobaleDatentypen.Kartenfeld;
    XPosition : GlobaleDatentypen.Kartenfeld;
@@ -24,7 +22,7 @@ private
 
    KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
    
-   procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in Änderung);
+   procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins);
    procedure BewegungCursorBerechnenStadt;
 
 end BewegungssystemCursor;

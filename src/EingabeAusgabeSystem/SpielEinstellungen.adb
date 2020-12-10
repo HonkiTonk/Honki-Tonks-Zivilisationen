@@ -51,23 +51,21 @@ package body SpielEinstellungen is
 
    function KartengrößeWählen return Integer is
    begin
-
-      KartengrößeGewählt := False;
       
-      KartengrößenSchleife:
-      while KartengrößeGewählt = False loop
+      KartengrößeSchleife:
+      loop
          
          Wahl := Auswahl.Auswahl (WelcheAuswahl => 1, WelcherText => 2);
          
          case Wahl is
             when 1 .. 9 =>
                Karten.Kartengröße := Wahl;
-               KartengrößeGewählt := True;
+               return 2;
                
             when 10 =>
                ZufälligeKartengrößeWählen.Reset (ZufälligeKartenGrößeGewählt);
                Karten.Kartengröße := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
-               KartengrößeGewählt := True;
+               return 2;
                
             when 0 =>
                return 0;
@@ -81,9 +79,7 @@ package body SpielEinstellungen is
 
          Put (Item => CSI & "2J" & CSI & "H");
                   
-      end loop KartengrößenSchleife;
-
-      return 2;
+      end loop KartengrößeSchleife;
       
    end KartengrößeWählen;
 
@@ -91,23 +87,21 @@ package body SpielEinstellungen is
 
    function KartenartWählen return Integer is
    begin
-      
-      KartenartGewählt := False;
-      
+            
       KartenartSchleife:
-      while KartenartGewählt = False loop
+      loop
 
          Wahl := Auswahl.Auswahl (WelcheAuswahl => 2, WelcherText => 3);
                   
          case Wahl is
             when 1 .. 3 =>
                KartenGenerator.Kartenart := Wahl;
-               KartenartGewählt := True;
+               return 3;
                
             when 6 =>
                ZufälligeKartenartWählen.Reset (ZufälligeKartenartGewählt);
                KartenGenerator.Kartenart := ZufälligeKartenartWählen.Random (ZufälligeKartenartGewählt);
-               KartenartGewählt := True;
+               return 3;
                
             when -2 =>
                return 1;
@@ -125,8 +119,6 @@ package body SpielEinstellungen is
          Put (Item => CSI & "2J" & CSI & "H");                  
 
       end loop KartenartSchleife;
-
-      return 3;
       
    end KartenartWählen;
 
@@ -134,23 +126,21 @@ package body SpielEinstellungen is
 
    function KartentemperaturWählen return Integer is
    begin
-      
-      KartentemperaturGewählt := False;
-      
+            
       KartentemperaturSchleife:
-      while KartentemperaturGewählt = False loop
+      loop
 
          Wahl := Auswahl.Auswahl (WelcheAuswahl =>  3, WelcherText => 4);
                   
          case Wahl is
             when 1 .. 3 =>
                KartenGenerator.Kartentemperatur := Wahl;
-               KartentemperaturGewählt := True;
+               return 4;
                
             when 6 =>
                ZufälligeKartentemperaturWählen.Reset (ZufälligeKartentemperaturGewählt);
                KartenGenerator.Kartentemperatur := ZufälligeKartentemperaturWählen.Random (ZufälligeKartentemperaturGewählt);
-               KartentemperaturGewählt := True;
+               return 4;
                
             when -2 =>
                return 2;
@@ -168,8 +158,6 @@ package body SpielEinstellungen is
          Put (Item => CSI & "2J" & CSI & "H");
                   
       end loop KartentemperaturSchleife;
-
-      return 4;
       
    end KartentemperaturWählen;
 
@@ -178,22 +166,20 @@ package body SpielEinstellungen is
    function SpieleranzahlWählen return Integer is
    begin
       
-      SpieleranzahlGewählt := False; -- 1 .. 18
-
       SpieleranzahlSchleife:
-      while SpieleranzahlGewählt = False loop
+      loop
 
          Wahl := Auswahl.Auswahl (WelcheAuswahl => 4, WelcherText => 5);
          
          case Wahl is
             when 1 .. 18 =>
                GlobaleVariablen.SpielerAnzahl := Wahl;
-               SpieleranzahlGewählt := True;
+               return 5;
 
             when 19 => 
                ZufälligeSpieleranzahlWählen.Reset (ZufälligeSpieleranzahlGewählt);
                GlobaleVariablen.SpielerAnzahl := ZufälligeSpieleranzahlWählen.Random (ZufälligeSpieleranzahlGewählt);
-               SpieleranzahlGewählt := True;
+               return 5;
                
             when -2 =>
                return 3;
@@ -211,8 +197,6 @@ package body SpielEinstellungen is
          Put (Item => CSI & "2J" & CSI & "H");
          
       end loop SpieleranzahlSchleife;
-
-      return 5;
       
    end SpielerAnzahlWählen;
 
@@ -221,10 +205,8 @@ package body SpielEinstellungen is
    function RasseWählen return Integer is
    begin
 
-      RasseGewählt := False; -- 1 .. 18
-
       RasseSchleife:
-      while RasseGewählt = False loop
+      loop
          
          Wahl := Auswahl.Auswahl (WelcheAuswahl => 5, WelcherText => 6);
 
@@ -236,7 +218,7 @@ package body SpielEinstellungen is
                   when -3 =>
                      GlobaleVariablen.Rasse := Wahl;
                      GlobaleVariablen.RassenImSpiel (GlobaleVariablen.Rasse) := 1;
-                     RasseGewählt := True;
+                     return 6;
                      
                   when others =>
                      null;
@@ -246,7 +228,7 @@ package body SpielEinstellungen is
                ZufälligeRasseWählen.Reset (ZufälligeRasseGewählt);
                GlobaleVariablen.Rasse := ZufälligeRasseWählen.Random (ZufälligeRasseGewählt);
                GlobaleVariablen.RassenImSpiel (GlobaleVariablen.Rasse) := 1;
-               RasseGewählt := True;
+               return 6;
                
             when -2 =>
                return 4;
@@ -264,8 +246,6 @@ package body SpielEinstellungen is
          Put (Item => CSI & "2J" & CSI & "H");
          
       end loop RasseSchleife;
-
-      return 6;
       
    end RasseWählen;
 
@@ -358,7 +338,7 @@ package body SpielEinstellungen is
 
 
 
-   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.Kartenfeld; Rasse : in Integer) return Boolean is -- Scheint in manchen Fällen nicht genug Platzierungsgrund zu finden, bessere Lösung finden
+   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.Kartenfeld; Rasse : in Integer) return Boolean is
    begin
       
       PrüfungGrund := SchleifenPruefungen.KartenGrund (Ebene       => 0,
@@ -378,9 +358,9 @@ package body SpielEinstellungen is
          when SchleifenPruefungen.RückgabeWert =>
             Koordinaten (1) := (YPosition, XPosition);
             YAchseSchleife:
-            for YÄnderung in -1 .. 1 loop
+            for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                XAchseSchleife:
-               for XÄnderung in -1 .. 1 loop
+               for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
                   KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
                                                                     XKoordinate    => XPosition,
@@ -406,14 +386,15 @@ package body SpielEinstellungen is
                                                                                                        XAchse => KartenWert.XWert);
                            end case;                    
                            
-                           if PlatzBelegt.Rasse = SchleifenPruefungen.RückgabeWert then
+                           case PlatzBelegt.Rasse is
+                              when SchleifenPruefungen.RückgabeWert =>
                                     Koordinaten (2) := (KartenWert.YWert, KartenWert.XWert);
                                     StartpunktFestlegen (Rasse => Rasse);
-                                    return True;
-                              
-                           else
-                              null;
-                           end if;
+                                 return True;
+                                 
+                              when others =>
+                                 null;
+                           end case;
                                              
                         else
                            null;
@@ -424,7 +405,7 @@ package body SpielEinstellungen is
             end loop YAchseSchleife;
                            
          when others =>
-            return False;
+            null;
       end case;
          
       return False;

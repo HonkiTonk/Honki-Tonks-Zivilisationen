@@ -9,6 +9,7 @@ package body Cheat is
       MenüSchleife:
       loop
 
+         Put_Line (Item => "q = Quit, n = nächste Einheit, i = Informationen, s = Sichtbarkeit, r = Rasse ändern, e = Einheit festlegen");
          Get_Immediate (Item => Taste);
 
          case To_Lower (Item => Taste) is
@@ -26,6 +27,9 @@ package body Cheat is
                
             when 'r' =>
                Rasse;
+
+            when 'e' =>
+               EinheitFestlegen;
                
             when others =>
                null;
@@ -157,8 +161,15 @@ package body Cheat is
    
    procedure EinheitFestlegen is
    begin
+
+      RasseZahl := Eingabe.GanzeZahl (Zahlengröße => 2);
+      Stadt := Eingabe.GanzeZahl (Zahlengröße => 2);
+      ID := Eingabe.GanzeZahl (Zahlengröße => 2);
       
-      null;
+      Put_Line (Item => "Einheit festlegen");
+      EinheitenDatenbank.EinheitErzeugen (Rasse       => RasseZahl,
+                                          StadtNummer => Stadt,
+                                          ID          => ID);
       
    end EinheitFestlegen;
    
@@ -203,6 +214,7 @@ package body Cheat is
    procedure Rasse is
    begin
       
+      Put_Line (Item => "Rasse änder");
       GlobaleVariablen.Rasse := Eingabe.GanzeZahl (Zahlengröße => 2);
       
    end Rasse;

@@ -1,6 +1,6 @@
 package body StadtWerteFestlegen is
 
-   function StadtumgebungsgrößeFestlegen (Rasse, StadtNummer : in Integer) return Integer is
+   function StadtumgebungsgrößeFestlegen (Rasse, StadtNummer : in Integer) return GlobaleDatentypen.Kartenfeld is
    begin
       
       if GlobaleVariablen.Wichtiges (Rasse).Erforscht (2) /= 0 and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner >= 10 then
@@ -20,8 +20,8 @@ package body StadtWerteFestlegen is
    procedure BewirtschaftbareFelderBelegen (ZuwachsOderSchwund : Boolean; Rasse, StadtNummer : in Integer) is
    begin
       
-      NutzbarerBereich := StadtumgebungsgrößeFestlegen (Rasse       => Rasse,
-                                                        StadtNummer => StadtNummer);
+      NutzbarerBereich := GlobaleDatentypen.Kartenfeld (StadtumgebungsgrößeFestlegen (Rasse       => Rasse,
+                                                                                      StadtNummer => StadtNummer));
 
       YAchseSchleife:
       for YPosition in -NutzbarerBereich .. NutzbarerBereich loop

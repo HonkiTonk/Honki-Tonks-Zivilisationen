@@ -22,9 +22,9 @@ private
    Überhang : Integer;
    Stadtart : Integer;
    Wahl : Integer;
-   NutzbarerBereich : Integer;
-   RelativeCursorPositionY : Integer;
-   RelativeCursorPositionX : Integer;
+   NutzbarerBereich : GlobaleDatentypen.Kartenfeld;
+   RelativeCursorPositionY : GlobaleDatentypen.Kartenfeld;
+   RelativeCursorPositionX : GlobaleDatentypen.Kartenfeld;
 
    KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
 

@@ -62,7 +62,7 @@ package body EinheitenDatenbank is
    
 
 
-   procedure EinheitErzeugen (Rasse, StadtNummer, ID : in Integer) is
+   procedure EinheitErzeugen (Rasse, StadtNummer, ID : in Integer) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
    begin
 
       Position := (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse);
@@ -77,7 +77,6 @@ package body EinheitenDatenbank is
 
          elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).YAchse = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse
            and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).XAchse = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse then
-            Position := (0, 0);
             return;
             
          else
@@ -91,7 +90,7 @@ package body EinheitenDatenbank is
             return;
             
          when others =>
-            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).ID := EinheitenID (ID);
+            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).ID := GlobaleDatentypen.EinheitenID (ID);
             GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).YAchse := Position.YAchse;
             GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).XAchse := Position.XAchse;
             LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse         => Rasse,
