@@ -55,7 +55,7 @@ package GlobaleVariablen is
    type EinheitenGebautArray is array (RassenImSpiel'Range, 1 .. 1000) of EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => (0, 0,    0, 1, 1,    0, 0.00, 0, 0,    0, 0)));
 
-   type UmgebungBewirtschaftungArray is array (-3 .. 3, -3 .. 3) of Boolean;
+   type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
 
    type StadtGebautRecord is record
       

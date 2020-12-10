@@ -10,11 +10,6 @@ package SpielEinstellungen is
 
 private
 
-   KartengrößeGewählt : Boolean; -- 1 .. 9
-   KartenartGewählt : Boolean;
-   KartentemperaturGewählt : Boolean;
-   SpieleranzahlGewählt : Boolean; -- 1 .. 18
-   RasseGewählt : Boolean; -- 1 .. 18
    PrüfungEinheit : Boolean;
    PrüfungGrund : Boolean;
 

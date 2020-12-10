@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
-with GlobaleVariablen, GlobaleDatentypen, Karte, Karten, Eingabe;
+with GlobaleVariablen, GlobaleDatentypen, Karte, Karten, Eingabe, EinheitenDatenbank;
 use GlobaleDatentypen;
 
 package Cheat is
@@ -14,6 +14,10 @@ private
    
    AktuelleEinheit : Integer;
    AktuelleRasse : Integer;
+
+   RasseZahl : Integer;
+   Stadt : Integer;
+   ID : Integer;
 
    procedure BeliebigeNächsteEinheit;
    procedure Informationen;

@@ -1,34 +1,34 @@
 package body SchleifenPruefungen is
 
-   function KartenUmgebung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld; YÄnderung, XÄnderung, ZusatzYAbstand : in Integer) return GlobaleDatentypen.YWertXWertAusKartenfeld is
+   function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung, ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleDatentypen.YWertXWertAusKartenfeld is
    begin
       -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (2) + 3
       
-      if Integer (YKoordinate) + YÄnderung < Integer (Karten.Karten'First (2)) + ZusatzYAbstand or Integer (YKoordinate) + YÄnderung > Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße) - ZusatzYAbstand then
+      if YKoordinate + YÄnderung < Karten.Karten'First (2) + ZusatzYAbstand or YKoordinate + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
          return (GlobaleDatentypen.Kartenfeld'First, GlobaleDatentypen.Kartenfeld'First);
 
-      elsif Integer (XKoordinate) + XÄnderung < Integer (Karten.Karten'First (3)) then
-         Überhang := Integer (XKoordinate) + XÄnderung + Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+      elsif XKoordinate + XÄnderung < Karten.Karten'First (3) then
+         Überhang := Integer (XKoordinate + XÄnderung + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
          SchleifeKleiner:
          while Überhang < Integer (Karten.Karten'First (3)) loop
             
             Überhang := Überhang + Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
          end loop SchleifeKleiner;
-         return (YKoordinate + GlobaleDatentypen.Kartenfeld (YÄnderung), GlobaleDatentypen.Kartenfeld (Überhang));
+         return (YKoordinate + YÄnderung, GlobaleDatentypen.Kartenfeld (Überhang));
                
-      elsif Integer (XKoordinate) + XÄnderung > Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße) then
-         Überhang := Integer (XKoordinate) + XÄnderung - Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+      elsif XKoordinate + XÄnderung > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+         Überhang := Integer (XKoordinate + XÄnderung - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
          SchleifeGrößer:
          while Überhang > Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße) loop
             
             Überhang := Überhang - Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
             
          end loop SchleifeGrößer;
-         return (YKoordinate + GlobaleDatentypen.Kartenfeld (YÄnderung), GlobaleDatentypen.Kartenfeld (Überhang));
+         return (YKoordinate + YÄnderung, GlobaleDatentypen.Kartenfeld (Überhang));
                
       else
-         return (YKoordinate + GlobaleDatentypen.Kartenfeld (YÄnderung), XKoordinate + GlobaleDatentypen.Kartenfeld (XÄnderung));
+         return (YKoordinate + YÄnderung, XKoordinate + XÄnderung);
       end if;
       
    end KartenUmgebung;

@@ -36,5 +36,6 @@ private
    PositionGewählt240 : WerteWählen240.Generator;
    PositionGewählt320 : WerteWählen320.Generator;
    PositionGewählt1000 : WerteWählen1000.Generator;
+   -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
 
 end ZufallsGeneratoren;

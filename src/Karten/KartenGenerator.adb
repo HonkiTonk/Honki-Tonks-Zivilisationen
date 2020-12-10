@@ -131,7 +131,8 @@ package body KartenGenerator is
                            
                elsif Wert >= WahrscheinlichkeitenFürLand (Kartenart, 2) then
                   Karten.Karten (0, Y, X).Grund := 3;
-                  GenerierungLandmasse (YPositionLandmasse => Y, XPositionLandmasse => X);
+                  GenerierungLandmasse (YPositionLandmasse => Y,
+                                        XPositionLandmasse => X);
                            
                else
                   null;
@@ -143,7 +144,8 @@ package body KartenGenerator is
                                  
                elsif Wert >= WahrscheinlichkeitenFürLand (Kartenart, 4) then
                   Karten.Karten (0, Y, X).Grund := 3;
-                  GenerierungLandmasse (YPositionLandmasse => Y, XPositionLandmasse => X);
+                  GenerierungLandmasse (YPositionLandmasse => Y,
+                                        XPositionLandmasse => X);
                                  
                else
                   null;
@@ -173,8 +175,8 @@ package body KartenGenerator is
             
             KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPositionLandmasse,
                                                               XKoordinate    => XPositionLandmasse,
-                                                              YÄnderung      => Integer (YÄnderung),
-                                                              XÄnderung      => Integer (XÄnderung),
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
             case KartenWert.YWert is
@@ -253,9 +255,9 @@ package body KartenGenerator is
             case Karten.Karten (0, YPosition, XPosition).Grund is
                when 2 =>
                   ZweiteYAchseSchleife:
-                  for YÄnderung in -1 .. 1 loop
+                  for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                      ZweiteXAchseSchleife:
-                     for XÄnderung in -1 .. 1 loop
+                     for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                      
                         KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
                                                                           XKoordinate    => XPosition,
@@ -377,8 +379,8 @@ package body KartenGenerator is
                         
             KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
                                                               XKoordinate    => XPosition,
-                                                              YÄnderung      => Integer (YÄnderung),
-                                                              XÄnderung      => Integer (XÄnderung),
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
             case KartenWert.YWert is
@@ -501,8 +503,8 @@ package body KartenGenerator is
 
                         KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => Y,
                                                                           XKoordinate    => X,
-                                                                          YÄnderung      => Integer (A),
-                                                                          XÄnderung      => Integer (B),
+                                                                          YÄnderung      => A,
+                                                                          XÄnderung      => B,
                                                                           ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
                         case KartenWert.YWert is
@@ -544,9 +546,9 @@ package body KartenGenerator is
                
             else
                YAchseSchleifeZwei:
-               for A in -1 .. 1 loop
+               for A in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                   XAchseSchleifeZwei:
-                  for B in -1 .. 1 loop
+                  for B in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                   
                      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => Y,
                                                                        XKoordinate    => X,
@@ -591,9 +593,9 @@ package body KartenGenerator is
                     
       Flusswert := 10000;   
       YAchseSchleife:
-      for YÄnderung in -1 .. 1 loop
+      for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
          XAchseSchleife:
-         for XÄnderung in -1 .. 1 loop
+         for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
             KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YKoordinate,
                                                               XKoordinate    => XKoordinate,

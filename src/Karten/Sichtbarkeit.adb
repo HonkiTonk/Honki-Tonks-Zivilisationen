@@ -32,8 +32,8 @@ package body Sichtbarkeit is
                
                Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse,
                                                                  XKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse,
-                                                                 YÄnderung      => Integer (Y),
-                                                                 XÄnderung      => Integer (X),
+                                                                 YÄnderung      => Y,
+                                                                 XÄnderung      => X,
                                                                  ZusatzYAbstand => 0);
 
                case Kartenwert.YWert is
@@ -68,8 +68,8 @@ package body Sichtbarkeit is
 
                Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).YAchse,
                                                                  XKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).XAchse,
-                                                                 YÄnderung      => Integer (Y),
-                                                                 XÄnderung      => Integer (X),
+                                                                 YÄnderung      => Y,
+                                                                 XÄnderung      => X,
                                                                  ZusatzYAbstand => 0);
                
                case Kartenwert.YWert is

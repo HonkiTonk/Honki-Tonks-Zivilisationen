@@ -36,7 +36,7 @@ private
    type GrößeLandartArray is array (1 .. 3) of GlobaleDatentypen.Kartenfeld;
    GrößeLandart : GrößeLandartArray;
 
-   type FelderVonLandartZuLandartArray is array (1 .. 3) of Integer;
+   type FelderVonLandartZuLandartArray is array (1 .. 3) of GlobaleDatentypen.Kartenfeld;
    FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 30, 0); -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
                                                                                        -- Sollte so aber ganz gut sein, da bei halbem Loop zu wenig Wasser ist, aber eventuell Werte ein wenig verringern.
 

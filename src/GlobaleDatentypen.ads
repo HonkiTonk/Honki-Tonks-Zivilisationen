@@ -4,6 +4,9 @@ package GlobaleDatentypen is
    type Kartenfeld is range -1_001 .. 1_000; -- Linke Seite muss stehts eins kleiner sein als die rechte Seite, aufgrund des aktuellen Kartengenerators!
    subtype Stadtfeld is Kartenfeld range 1 .. 20;
    subtype Sichtweite is Kartenfeld range 1 .. 10;
+   subtype LoopRangeMinusEinsZuEins is Kartenfeld range -1 .. 1;
+   subtype LoopRangeMinusDreiZuDrei is Kartenfeld range -3 .. 3;
+
    type KartenGrund is range -2 .. 36;
    type KartenVerbesserung is range 0 .. 22;
    type Ebene is range -2 .. 2; -- Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
