@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleDatentypen, KarteStadt, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit;
+with GlobaleDatentypen, KarteStadt, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, SchleifenPruefungen;
 use GlobaleDatentypen;
 
 package Karte is
@@ -21,6 +21,8 @@ private
    Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
    SichtweiteFestlegen : Integer;
    BewegungsfeldFestlegen : Integer;
+
+   Kartenwert : GlobaleDatentypen.YWertXWertAusKartenfeld;
 
    type SichtweiteArray is array (1 .. 3) of GlobaleDatentypen.YWertXWertAusKartenfeld;
 

@@ -8,7 +8,7 @@ package Sichtbarkeit is
 
    procedure Sichtbarkeitsprüfung;
    procedure Sichtbarkeit (YAchse, XAchse : in GlobaleDatentypen.Kartenfeld);
-   procedure Farben (Einheit : GlobaleDatentypen.EinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund);
+   procedure Farben (Einheit : GlobaleDatentypen.EinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund; Cursor : in Boolean);
 
 private
 
