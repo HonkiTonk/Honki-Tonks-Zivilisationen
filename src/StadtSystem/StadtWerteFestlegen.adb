@@ -1,27 +1,64 @@
 package body StadtWerteFestlegen is
 
-   function StadtumgebungsgrößeFestlegen (Rasse, StadtNummer : in Integer) return GlobaleDatentypen.Kartenfeld is
-   begin
-      
+   procedure StadtUmgebungGrößeFestlegen (Rasse, StadtNummer : in Integer) is
+   begin    
+            
       if GlobaleVariablen.Wichtiges (Rasse).Erforscht (2) /= 0 and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner >= 10 then
-         return 2;
+         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße := 2;
 
       elsif GlobaleVariablen.Wichtiges (Rasse).Erforscht (4) /= 0 and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner >= 20 then
-         return 3;
+         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße := 3;
                   
       else
-         return 1;
+         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße := 1;
       end if;
-      
-   end StadtumgebungsgrößeFestlegen;
 
+      YAchseSchleife:
+      for YÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         XAchseSchleife:
+         for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+            
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
+                                                              XKoordinate    => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 0);
+            
+            case KartenWert.YWert is -- Der Wert ist nicht nur dazu da um unmögliche Positionen auszuschließen, sondern auch um die entsprechende XPosition zu haben!
+               when GlobaleDatentypen.Kartenfeld'First =>
+                  exit XAchseSchleife;
+                  
+               when others =>
+                  if (YÄnderung < -GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße or YÄnderung > GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße
+                      or XÄnderung < -GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße or XÄnderung > GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße)
+                    and Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).DurchStadtBelegterGrund 
+                      = GlobaleDatentypen.BelegterGrund (Rasse) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtNummer) then
+                     Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).DurchStadtBelegterGrund := 0;
+
+                  elsif YÄnderung < -GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße or YÄnderung > GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße
+                    or XÄnderung < -GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße or XÄnderung > GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße then
+                     null;
+                     
+                  elsif Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).DurchStadtBelegterGrund = 0 then
+                     Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).DurchStadtBelegterGrund
+                       := GlobaleDatentypen.BelegterGrund (Rasse) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtNummer);
+                     
+                  else
+                     null;
+                  end if;
+            end case;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+   end StadtUmgebungGrößeFestlegen;
+   
 
 
    procedure BewirtschaftbareFelderBelegen (ZuwachsOderSchwund : Boolean; Rasse, StadtNummer : in Integer) is
    begin
       
-      NutzbarerBereich := GlobaleDatentypen.Kartenfeld (StadtumgebungsgrößeFestlegen (Rasse       => Rasse,
-                                                                                      StadtNummer => StadtNummer));
+      NutzbarerBereich := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße;
 
       YAchseSchleife:
       for YPosition in -NutzbarerBereich .. NutzbarerBereich loop
@@ -42,12 +79,18 @@ package body StadtWerteFestlegen is
                                                                           ZusatzYAbstand => 0);
                         case KartenWert.YWert is
                            when GlobaleDatentypen.Kartenfeld'First =>
-                              null;
+                              exit XAchseSchleife;
                               
                               when others =>
-                              GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (YPosition, XPosition) := True;
-                              GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner + 1;
-                              return;
+                              if Karten.Karten (0, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse + YPosition, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse + XPosition).DurchStadtBelegterGrund
+                                = GlobaleDatentypen.BelegterGrund (Rasse) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtNummer) then
+                                 GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (YPosition, XPosition) := True;
+                                 GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ArbeitendeEinwohner + 1;
+                                 return;
+                                 
+                              else
+                                 null;
+                              end if;
                         end case;
                   end case;
                   

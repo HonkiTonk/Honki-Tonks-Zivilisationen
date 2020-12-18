@@ -5,8 +5,7 @@ package body KarteStadt is
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
-      Stadtumgebungsgröße := StadtWerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => GlobaleVariablen.Rasse,
-                                                                               StadtNummer => StadtNummer);
+      Stadtumgebungsgröße := GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, StadtNummer).StadtUmgebungGröße;
 
       YAchsenabstraktion := -Stadtumgebungsgröße;
       CursorYAchsePlus := -10;

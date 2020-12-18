@@ -103,6 +103,15 @@ package body Wachstum is
       else
          null;
       end if;
+
+      case GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner is
+         when 9 | 10 | 19 | 20 =>
+            StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (Rasse       => Rasse,
+                                                             StadtNummer => StadtNummer);
+            
+         when others =>
+            return;
+      end case;
       
    end WachstumEinwohner;
    

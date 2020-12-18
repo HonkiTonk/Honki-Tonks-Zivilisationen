@@ -1,11 +1,12 @@
-with GlobaleVariablen, SchleifenPruefungen, GlobaleDatentypen;
+with GlobaleVariablen, SchleifenPruefungen, GlobaleDatentypen, Karten;
 use GlobaleDatentypen;
 
 package StadtWerteFestlegen is
 
-   procedure BewirtschaftbareFelderBelegen (ZuwachsOderSchwund : Boolean; Rasse, StadtNummer : in Integer);
+   RassenMulitplikationWert : constant GlobaleDatentypen.BelegterGrund := 1_000;
 
-   function StadtumgebungsgrößeFestlegen (Rasse, StadtNummer : in Integer) return GlobaleDatentypen.Kartenfeld;
+   procedure BewirtschaftbareFelderBelegen (ZuwachsOderSchwund : Boolean; Rasse, StadtNummer : in Integer);
+   procedure StadtUmgebungGrößeFestlegen (Rasse, StadtNummer : in Integer);
 
 private
    
