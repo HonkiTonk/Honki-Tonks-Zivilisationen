@@ -81,13 +81,14 @@ package GlobaleVariablen is
 
       UmgebungBewirtschaftung : UmgebungBewirtschaftungArray;
       ArbeitendeEinwohner : Integer;
+      StadtUmgebungGröße : GlobaleDatentypen.Stadtfeld;
       
    end record;
    
    type StadtGebautArray is array (RassenImSpiel'Range, 1 .. 100) of StadtGebautRecord;
    StadtGebaut : StadtGebautArray := (others =>
                                         (others =>
-                                           ((0, 1, 1,    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False)), 0))));
+                                           ((0, 1, 1,    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False)), 0, 1))));
 
    type ErforschtArray is array (1 .. 6) of Integer;
 

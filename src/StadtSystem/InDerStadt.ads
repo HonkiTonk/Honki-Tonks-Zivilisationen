@@ -10,8 +10,9 @@ package InDerStadt is
    procedure InDerStadt (Rasse, StadtNummer : in Integer);
    procedure StadtBauen (Rasse, EinheitNummer : in Integer);
    procedure StadtProduktionPrüfen (Rasse, StadtNummer : in Integer);
+   procedure BelegteStadtfelderFreigeben (Rasse, StadtNummer : in Integer);
 
-   function StadtBauenPrüfen (Y, X : in GlobaleDatentypen.Kartenfeld) return Boolean;
+   function StadtBauenPrüfen (Rasse, EinheitNummer : in Integer) return Boolean;
 
 private
 
@@ -22,6 +23,7 @@ private
    Überhang : Integer;
    Stadtart : Integer;
    Wahl : Integer;
+
    NutzbarerBereich : GlobaleDatentypen.Kartenfeld;
    RelativeCursorPositionY : GlobaleDatentypen.Kartenfeld;
    RelativeCursorPositionX : GlobaleDatentypen.Kartenfeld;

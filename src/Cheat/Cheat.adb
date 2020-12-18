@@ -214,7 +214,7 @@ package body Cheat is
    procedure Rasse is
    begin
       
-      Put_Line (Item => "Rasse änder");
+      Put_Line (Item => "Rasse ändern");
       GlobaleVariablen.Rasse := Eingabe.GanzeZahl (Zahlengröße => 2);
       
    end Rasse;

@@ -344,6 +344,9 @@ package body Karte is
          when False =>
             null;
       end case;
+
+      Put (Item => "Aktuelle YPosition: " & GlobaleVariablen.CursorImSpiel.YAchse'Wide_Wide_Image);
+      Put_Line (Item => "    Aktuelle XPosition: " & GlobaleVariablen.CursorImSpiel.XAchse'Wide_Wide_Image);
       
    end Information; 
    

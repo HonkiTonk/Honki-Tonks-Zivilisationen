@@ -21,8 +21,7 @@ package body InDerStadt is
                if GlobaleVariablen.CursorImSpiel.YAchseStadt < Karten.Stadtkarte'First (1) + 7 and GlobaleVariablen.CursorImSpiel.XAchseStadt > Karten.Stadtkarte'Last (2) - 7 then
                   RelativeCursorPositionY := GlobaleVariablen.CursorImSpiel.YAchseStadt - 4;
                   RelativeCursorPositionX := Karten.Stadtkarte'First (2) + GlobaleVariablen.CursorImSpiel.XAchseStadt - 18;
-                  NutzbarerBereich := GlobaleDatentypen.Kartenfeld (StadtWerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => Rasse,
-                                                                                                                      StadtNummer => StadtNummer));
+                  NutzbarerBereich := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße;
                   if RelativeCursorPositionY < -NutzbarerBereich or RelativeCursorPositionY > NutzbarerBereich or RelativeCursorPositionX < -NutzbarerBereich or RelativeCursorPositionX > NutzbarerBereich then
                      null;
                   
@@ -125,67 +124,45 @@ package body InDerStadt is
    procedure StadtBauen (Rasse, EinheitNummer : in Integer) is
    begin
 
-      BauMöglich := True;
-      
-      YAchseSchleife:
-      for YÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
-         XAchseSchleife:
-         for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
-
-            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse,
-                                                              XKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse,
-                                                              YÄnderung      => YÄnderung,
-                                                              XÄnderung      => XÄnderung,
-                                                              ZusatzYAbstand => 0);
-                     
-            case KartenWert.YWert is
-               when GlobaleDatentypen.Kartenfeld'First =>
-                  exit XAchseSchleife;
+      BauMöglich := StadtBauenPrüfen (Rasse         => Rasse,
+                                      EinheitNummer => EinheitNummer);      
+        
+      case BauMöglich is
+         when True =>
+            null;
                   
-               when others =>
-                  BauMöglich := StadtBauenPrüfen (Y => KartenWert.YWert,
-                                                  X => KartenWert.XWert);
-            end case;
+         when False =>                  
+            Anzeige.Fehlermeldungen (WelcheFehlermeldung => 6);
+            return;
+      end case;
 
-            case BauMöglich is
-               when True =>
-                  null;
-                  
-               when False =>                  
-                  Anzeige.Fehlermeldungen (WelcheFehlermeldung => 6);
-                  return;
-            end case;
-            
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
-
-      for A in GlobaleVariablen.StadtGebaut'Range (2) loop
+      for StadtNummer in GlobaleVariablen.StadtGebaut'Range (2) loop
          
-         if GlobaleVariablen.StadtGebaut (Rasse, A).ID /= 0 then
+         if GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID /= 0 then
             null;
             
-         elsif A = GlobaleVariablen.StadtGebaut'Last (2) and GlobaleVariablen.StadtGebaut (Rasse, A).ID /= 0 then
+         elsif StadtNummer = GlobaleVariablen.StadtGebaut'Last (2) and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID /= 0 then
             Anzeige.Fehlermeldungen (WelcheFehlermeldung => 7);
             
          else
-            if A = 1 and Rasse = GlobaleVariablen.Rasse then
+            if StadtNummer = 1 and Rasse = GlobaleVariablen.Rasse then
                Stadtart := 1;
                
             elsif Rasse = GlobaleVariablen.Rasse then
                Stadtart := 2;
                
-            elsif A = 1 and Rasse /= GlobaleVariablen.Rasse then
+            elsif StadtNummer = 1 and Rasse /= GlobaleVariablen.Rasse then
                Stadtart := 3;
                
             else
                Stadtart := 4;
             end if;
 
-            GlobaleVariablen.StadtGebaut (Rasse, A) := 
+            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer) := 
               (Stadtart, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse, False, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Name"),
                (0 => (0 => True, others => False), 
-                others => (others => False)), 1);
+                others => (others => False)), 1, 1);
                
             YAchsenSchleife:
             for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
@@ -205,7 +182,7 @@ package body InDerStadt is
                      when others =>
                         case Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund is
                            when 2 | 29 .. 31 =>
-                              GlobaleVariablen.StadtGebaut (Rasse, A).AmWasser := True;
+                              GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AmWasser := True;
                               exit YAchsenSchleife;
                         
                            when others =>
@@ -216,15 +193,18 @@ package body InDerStadt is
                end loop XAchsenSchleife;
             end loop YAchsenSchleife;
             
+
+            StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (Rasse       => Rasse,
+                                                             StadtNummer => StadtNummer);
             StadtProduktionPrüfen (Rasse       => Rasse,
-                                   StadtNummer => A);
+                                   StadtNummer => StadtNummer);
             ForschungsDatenbank.ForschungZeit (Rasse => Rasse);
 
             EinheitenDatenbank.EinheitEntfernen (Rasse         => Rasse,
                                                  EinheitNummer => EinheitNummer);
             
             if Rasse = GlobaleVariablen.Rasse then
-               GlobaleVariablen.StadtGebaut (Rasse, A).Name := Eingabe.StadtName;
+               GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Name := Eingabe.StadtName;
                
             else
                null;
@@ -279,8 +259,7 @@ package body InDerStadt is
       GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleGeldgewinnung := 0;
       GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleForschungsrate := 0;
 
-      NutzbarerBereich := GlobaleDatentypen.Kartenfeld (StadtWerteFestlegen.StadtumgebungsgrößeFestlegen (Rasse       => Rasse,
-                                                                                                          StadtNummer => StadtNummer));
+      NutzbarerBereich := GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).StadtUmgebungGröße;
       
       YAchseSchleife:
       for YÄnderung in -NutzbarerBereich .. NutzbarerBereich loop
@@ -340,29 +319,74 @@ package body InDerStadt is
    
 
 
-   function StadtBauenPrüfen (Y, X : in GlobaleDatentypen.Kartenfeld) return Boolean is
+   function StadtBauenPrüfen (Rasse, EinheitNummer : in Integer) return Boolean is
    begin
       
-      RassenSchleife:
-      for A in GlobaleVariablen.StadtGebaut'Range (1) loop
-         StadtSchleife:
-         for B in GlobaleVariablen.StadtGebaut'Range (2) loop
-            
-            if GlobaleVariablen.StadtGebaut (A, B).ID = 0 then
-               exit StadtSchleife;
-               
-            elsif GlobaleVariablen.StadtGebaut (A, B).YAchse = Y and GlobaleVariablen.StadtGebaut (A, B).XAchse = X then
-               return False;
-               
-            else
-               null;
-            end if;
-            
-         end loop StadtSchleife;
-      end loop RassenSchleife;
+      YAchseSchleife:
+      for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         XAchseSchleife:
+         for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse,
+                                                              XKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 0);
+                     
+            case KartenWert.YWert is
+               when GlobaleDatentypen.Kartenfeld'First =>
+                  exit XAchseSchleife;
+                  
+               when others =>
+                  case Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).DurchStadtBelegterGrund is
+                     when 0 =>
+                        null;
+                        
+                     when others =>
+                        return False;
+                  end case;
+            end case;
+                        
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
 
       return True;
       
-   end StadtBauenPrüfen;   
+   end StadtBauenPrüfen;
+   
+   
+   
+   procedure BelegteStadtfelderFreigeben (Rasse, StadtNummer : in Integer) is
+   begin
+      
+      YAchseSchleife:
+      for YÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         XAchseSchleife:
+         for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+            
+            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse,
+                                                              XKoordinate    => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 0);
+            
+            case KartenWert.YWert is
+               when GlobaleDatentypen.Kartenfeld'First =>
+                  exit XAchseSchleife;
+                  
+               when others =>
+                  if Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).DurchStadtBelegterGrund
+                    = GlobaleDatentypen.BelegterGrund (Rasse) * StadtWerteFestlegen.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtNummer) then
+                        Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).DurchStadtBelegterGrund := 0;
+                        
+                  else
+                     null;
+                  end if;
+            end case;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+   end BelegteStadtfelderFreigeben;
 
 end InDerStadt;
