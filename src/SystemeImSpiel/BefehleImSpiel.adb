@@ -8,7 +8,6 @@ package body BefehleImSpiel is
       case To_Lower (Item => Taste) is
          when 'w' | 's' | 'a' | 'd' | '1' | '2' | '3' | '4' | '6' | '7' | '8' | '9' =>
             BewegungssystemCursor.BewegungCursorRichtung (Karte => True, Richtung => To_Lower (Item => Taste));
-            Karte.AnzeigeKarte;
             return 1;
             
          when 'e' | '5' => -- Einheit bewegen/Stadt betreten
@@ -64,8 +63,7 @@ package body BefehleImSpiel is
                   else
                      null;
                   end if;
-            end case;
-               
+            end case;               
             return 1;
             
          when 't' => -- Technologie/Forschung
@@ -83,8 +81,7 @@ package body BefehleImSpiel is
                      when others =>
                         null;
                   end case;
-            end case;
-            
+            end case;            
             return 1;
             
          when '/' => -- Nächste Stadt
@@ -94,17 +91,17 @@ package body BefehleImSpiel is
             
          when '.' => -- Einheiten mit Bewegungspunkten
             NaechstesObjekt.NächsteEinheitMitBewegungspunkten;
-            Karte.AnzeigeKarte;
+            Karte.AnzeigeKarte;            
             return 1;
             
          when '*' => -- Alle Einheiten
             NaechstesObjekt.NächsteEinheit;
-            Karte.AnzeigeKarte;
+            Karte.AnzeigeKarte;            
             return 1;
             
          when ',' => -- Einheiten ohne Bewegungspunkte
             NaechstesObjekt.NächsteEinheitOhneBewegungspunkte;
-            Karte.AnzeigeKarte;
+            Karte.AnzeigeKarte;            
             return 1;
             
          when 'l' | 'm' | 'f' | 'u' | 'z' | 'p' | 'h' | 'v' | Space | DEL | 'j' => -- l/1 = Straße, m/2 = Mine, f/3 = Farm, u/4 = Festung, z/5 = Wald aufforsten, p/6 = /Roden-Trockenlegen,
@@ -169,37 +166,36 @@ package body BefehleImSpiel is
                                                            Rasse => GlobaleVariablen.Rasse,
                                                            EinheitNummer => WertEinheit);
                   end if;
-            end case;
-               
+            end case;               
             return 1;
             
          when 'i' => -- Informationen für Einheiten, Verbesserungen, usw.
             return 1;
 
          when '#' => -- Diplomatie
-            Diplomatie.DiplomatieAuswählen;
+            Diplomatie.DiplomatieAuswählen;            
             return 1;
 
          when 'g' => -- GeheZu Cursor
             BewegungssystemCursor.GeheZuCursor;
-            Karte.AnzeigeKarte;
+            Karte.AnzeigeKarte;            
             return 1;
             
-         when 'r' => -- Runde beenden
+         when 'r' => -- Runde beenden            
             return -1000;
             
-         when '+' => -- Ebene hoch
+         when '+' => -- Ebene hoch            
             return 1;
             
-         when '-' => -- Ebene runter
+         when '-' => -- Ebene runter            
             return 1;
             
          when 'c' => -- Kleine Cheattaste
             Cheat.Menü;
-            Karte.AnzeigeKarte;
+            Karte.AnzeigeKarte;            
             return 1;
             
-         when others =>
+         when others =>            
             return 1;
       end case;
       

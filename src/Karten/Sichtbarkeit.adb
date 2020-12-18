@@ -95,8 +95,22 @@ package body Sichtbarkeit is
       -- Über den Kartenressourcen kommen die Kartenverbesserungen
       -- Über die Kartenverbesserungen kommen die Städte
       -- Über die Städte kommen die Einheiten
+      -- Über den Einheiten kommt der Cursor      
        
       if Karten.Karten (0, YAchse, XAchse).Sichtbar = True then
+         if YAchse = GlobaleVariablen.CursorImSpiel.YAchse and XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
+            Farben (Einheit      => 0,
+                    Verbesserung => 0,
+                    Ressource    => 0,
+                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                    Cursor       => True);
+            return;
+         
+         else
+            null;
+         end if;
+         
+         
          RassenEinheitenPrüfenSchleife:
          for A in GlobaleVariablen.EinheitenGebaut'Range (1) loop
             EinheitenPrüfenSchleife:
@@ -109,7 +123,8 @@ package body Sichtbarkeit is
                   Farben (Einheit      => GlobaleVariablen.EinheitenGebaut (A, B).ID,
                           Verbesserung => 0,
                           Ressource    => 0,
-                          Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
+                          Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                          Cursor       => False);
                   return;
                
                else
@@ -131,7 +146,8 @@ package body Sichtbarkeit is
                   Farben (Einheit      => 0,
                           Verbesserung => GlobaleDatentypen.KartenVerbesserung (GlobaleVariablen.StadtGebaut (C, D).ID),
                           Ressource    => 0,
-                          Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
+                          Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                          Cursor       => False);
                   return;
                
                else
@@ -145,43 +161,65 @@ package body Sichtbarkeit is
             Farben (Einheit      => 0,
                     Verbesserung => Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet,
                     Ressource    => 0,
-                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
+                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                    Cursor       => False);
            
          elsif Karten.Karten (0, YAchse, XAchse).VerbesserungStraße /= 0 then
             Farben (Einheit      => 0,
                     Verbesserung => Karten.Karten (0, YAchse, XAchse).VerbesserungStraße,
                     Ressource    => 0,
-                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
+                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                    Cursor       => False);
             
          elsif Karten.Karten (0, YAchse, XAchse).Ressource /= 0 then
             Farben (Einheit      => 0,
                     Verbesserung => 0,
                     Ressource    => Karten.Karten (0, YAchse, XAchse).Ressource,
-                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
+                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                    Cursor       => False);
             
          elsif Karten.Karten (0, YAchse, XAchse).Fluss /= 0 then
             Farben (Einheit      => 0,
                     Verbesserung => 0,
                     Ressource    => Karten.Karten (0, YAchse, XAchse).Fluss,
-                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
+                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                    Cursor       => False);
             
          else
             Farben (Einheit      => 0,
                     Verbesserung => 0,
                     Ressource    => 0,
-                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund);
+                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                    Cursor       => False);
          end if;
          
       else
-         Put (Item => NichtSichtbar);
+         if YAchse = GlobaleVariablen.CursorImSpiel.YAchse and XAchse = GlobaleVariablen.CursorImSpiel.XAchse then         
+            Farben (Einheit      => 0,
+                    Verbesserung => 0,
+                    Ressource    => 0,
+                    Grund        => 0,
+                    Cursor       => True);
+         
+         else
+            Put (Item => NichtSichtbar);
+         end if;
       end if;
       
    end Sichtbarkeit;
 
 
 
-   procedure Farben (Einheit : GlobaleDatentypen.EinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund) is
+   procedure Farben (Einheit : GlobaleDatentypen.EinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund; Cursor : in Boolean) is
    begin
+
+      case Cursor is
+         when True =>            
+            Put (Item => CSI & "38;2;0;0;0m");
+            
+         when False =>
+            null;
+      end case;
 
       case Einheit is
          when EinheitenDatenbank.EinheitenListe'Range (2) =>
@@ -293,7 +331,10 @@ package body Sichtbarkeit is
             null;
       end case;
       
-      if Einheit /= 0 then
+      if Cursor = True then
+         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
+         
+      elsif Einheit /= 0 then
          Put (Item => EinheitenDatenbank.EinheitenListe (GlobaleVariablen.Rasse, Einheit).Anzeige & CSI & "0m");
         
       elsif Verbesserung /= 0 then
@@ -302,7 +343,7 @@ package body Sichtbarkeit is
       elsif Ressource /= 0 then
          Put (Item => KartenDatenbank.KartenObjektListe (Ressource).Anzeige & CSI & "0m");
             
-      else         
+      else
          Put (Item => KartenDatenbank.KartenObjektListe (Grund).Anzeige & CSI & "0m");
       end if;
       
