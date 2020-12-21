@@ -24,15 +24,33 @@ package body Karte is
       else
          null;
       end if;
-
-      -- Hier entsteht das Problem mit dem Übergang
-      -- if GlobaleVariablen.CursorImSpiel.XAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).XWert > Karten.Kartengrößen (Karten.Kartengröße).XAchsengröße then -- sowas irgendwie bauen
-      if GlobaleVariablen.CursorImSpiel.XAchse > GlobaleVariablen.CursorImSpiel.XAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).XWert
-        or GlobaleVariablen.CursorImSpiel.XAchse < GlobaleVariablen.CursorImSpiel.XAchseAlt - Bewegungsfeld (BewegungsfeldFestlegen).XWert then
-         GlobaleVariablen.CursorImSpiel.XAchseAlt := GlobaleVariablen.CursorImSpiel.XAchse;
+            
+      if GlobaleVariablen.CursorImSpiel.XAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).XWert > Karten.Kartengrößen (Karten.Kartengröße).XAchsengröße then
+         if GlobaleVariablen.CursorImSpiel.XAchse < GlobaleVariablen.CursorImSpiel.XAchseAlt - Bewegungsfeld (BewegungsfeldFestlegen).XWert
+           and GlobaleVariablen.CursorImSpiel.XAchse > GlobaleVariablen.CursorImSpiel.XAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).XWert - Karten.Kartengrößen (Karten.Kartengröße).XAchsengröße then
+            GlobaleVariablen.CursorImSpiel.XAchseAlt := GlobaleVariablen.CursorImSpiel.XAchse;         
+            
+         else
+            null;
+         end if;
+         
+      elsif GlobaleVariablen.CursorImSpiel.XAchseAlt - Bewegungsfeld (BewegungsfeldFestlegen).XWert < Karten.Karten'First (3) then
+         if GlobaleVariablen.CursorImSpiel.XAchse > GlobaleVariablen.CursorImSpiel.XAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).XWert
+           and GlobaleVariablen.CursorImSpiel.XAchse < GlobaleVariablen.CursorImSpiel.XAchseAlt - Bewegungsfeld (BewegungsfeldFestlegen).XWert + Karten.Kartengrößen (Karten.Kartengröße).XAchsengröße then
+            GlobaleVariablen.CursorImSpiel.XAchseAlt := GlobaleVariablen.CursorImSpiel.XAchse;         
+            
+         else
+            null;
+         end if;
          
       else
-         null;
+         if GlobaleVariablen.CursorImSpiel.XAchse > GlobaleVariablen.CursorImSpiel.XAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).XWert
+           or GlobaleVariablen.CursorImSpiel.XAchse < GlobaleVariablen.CursorImSpiel.XAchseAlt - Bewegungsfeld (BewegungsfeldFestlegen).XWert then
+            GlobaleVariablen.CursorImSpiel.XAchseAlt := GlobaleVariablen.CursorImSpiel.XAchse;
+            
+         else
+            null;
+         end if;
       end if;
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
@@ -114,7 +132,7 @@ package body Karte is
                            Put_Line (Item => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte'Wide_Wide_Image & " /"
                                      & EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleLebenspunkte'Wide_Wide_Image);
                         
-                           if Rasse = GlobaleVariablen.Rasse then
+                           if Rasse = GlobaleVariablen.Rasse or GlobaleVariablen.FeindlicheInformationenSehen = True then
                               Put (Item => "           " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 15)));
                               Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte,
                                                      Fore => 1,
@@ -144,9 +162,16 @@ package body Karte is
                               
                            else
                               null;
-                           end if;
+                           end if;                           
                         
                            New_Line;
+                           case GlobaleVariablen.FeindlicheInformationenSehen is
+                              when False =>
+                                 null;
+                                 
+                              when True =>
+                                 Put_Line (Item => "Aktuelle Rasse: " & Rasse'Wide_Wide_Image);
+                           end case;
                            exit RassenEinheitenSchleife;
                                          
                         else

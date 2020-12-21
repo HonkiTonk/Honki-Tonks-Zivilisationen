@@ -1,20 +1,27 @@
-with GlobaleVariablen, BewegungssystemEinheiten, EinheitenDatenbank, ForschungsDatenbank, KartenDatenbank, VerbesserungenDatenbank, GebaeudeDatenbank, InDerStadt, SchleifenPruefungen, KIPruefungen, InDerStadt;
+with GlobaleVariablen, EinheitenDatenbank, ForschungsDatenbank, KartenDatenbank, VerbesserungenDatenbank, GebaeudeDatenbank, InDerStadt, SchleifenPruefungen, KIPruefungen, InDerStadt, GlobaleDatentypen, Karten, KIBewegung;
+use GlobaleDatentypen;
 
 package KI is
 
-   RassenAbgearbeitet : Integer;
-
    procedure KI;
-   procedure KIAktivität (Rasse : in Integer);
-   procedure KIBewegung (Rasse : in Integer);
-   procedure KIStadtBauen (Rasse : in Integer);
-   procedure KIVerbesserungAnlegen (Rasse : in Integer);
-   procedure KIGebäudeBauen (Rasse : in Integer);
 
 private
 
-   Prüfung : Boolean;
+   EinheitExistiertNoch : Boolean;
+   StadtErfolgreichGebaut : Boolean;
 
-   EinheitNummer : Integer;
+   EinheitStatus : GlobaleDatentypen.EinheitStatusRecord;
+
+   Kartenwert : GlobaleDatentypen.YWertXWertAusKartenfeld;
+
+   type RessourcenArray is array (1 .. 5) of GrundwerteNRGWVA;
+   Ressourcen : RessourcenArray;
+
+   procedure KIAktivität (Rasse : in Integer);
+   procedure KIStadtBauen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
+   procedure KIVerbesserungAnlegen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
+   procedure KIGebäudeBauen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
+   procedure KIBefestigen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
+   procedure KIAngreifen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
 
 end KI;

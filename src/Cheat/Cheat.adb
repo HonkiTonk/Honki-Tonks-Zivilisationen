@@ -124,7 +124,7 @@ package body Cheat is
    procedure Informationen is
    begin
       
-      null;
+      GlobaleVariablen.FeindlicheInformationenSehen := True;
       
    end Informationen;
 

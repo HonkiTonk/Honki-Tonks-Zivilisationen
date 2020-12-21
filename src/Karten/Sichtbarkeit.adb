@@ -26,14 +26,14 @@ package body Sichtbarkeit is
          end case;
 
          YÄnderungEinheitenSchleife:
-         for Y in -Sichtweite .. Sichtweite loop            
+         for YÄnderung in -Sichtweite .. Sichtweite loop            
             XÄnderungEinheitenSchleife:
-            for X in -Sichtweite .. Sichtweite loop
+            for XÄnderung in -Sichtweite .. Sichtweite loop
                
                Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse,
                                                                  XKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse,
-                                                                 YÄnderung      => Y,
-                                                                 XÄnderung      => X,
+                                                                 YÄnderung      => YÄnderung,
+                                                                 XÄnderung      => XÄnderung,
                                                                  ZusatzYAbstand => 0);
 
                case Kartenwert.YWert is
@@ -62,14 +62,14 @@ package body Sichtbarkeit is
          end if;
 
          YÄnderungStadtSchleife:         
-         for Y in -Sichtweite .. Sichtweite loop            
+         for YÄnderung in -Sichtweite .. Sichtweite loop            
             XÄnderungStadtSchleife:
-            for X in -Sichtweite .. Sichtweite loop
+            for XÄnderung in -Sichtweite .. Sichtweite loop
 
                Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).YAchse,
                                                                  XKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).XAchse,
-                                                                 YÄnderung      => Y,
-                                                                 XÄnderung      => X,
+                                                                 YÄnderung      => YÄnderung,
+                                                                 XÄnderung      => XÄnderung,
                                                                  ZusatzYAbstand => 0);
                
                case Kartenwert.YWert is
@@ -109,8 +109,7 @@ package body Sichtbarkeit is
          else
             null;
          end if;
-         
-         
+                  
          RassenEinheitenPrüfenSchleife:
          for A in GlobaleVariablen.EinheitenGebaut'Range (1) loop
             EinheitenPrüfenSchleife:
@@ -214,8 +213,14 @@ package body Sichtbarkeit is
    begin
 
       case Cursor is
-         when True =>            
-            Put (Item => CSI & "38;2;0;0;0m");
+         when True =>
+            case Grund is
+               when 1 | 4 | 5 | 31 =>
+                  Put (Item => CSI & "38;2;0;0;0m");
+                  
+               when others =>
+                  Put (Item => CSI & "38;2;255;255;255m");
+            end case;
             
          when False =>
             null;
@@ -223,7 +228,13 @@ package body Sichtbarkeit is
 
       case Einheit is
          when EinheitenDatenbank.EinheitenListe'Range (2) =>
-            Put (Item => CSI & "38;2;0;0;0m");
+            case Grund is
+               when 1 | 4 | 5 | 31 =>
+                  Put (Item => CSI & "38;2;0;0;0m");
+                  
+               when others =>
+                  Put (Item => CSI & "38;2;255;255;255m");
+            end case;
             
          when others =>
             null;
@@ -270,6 +281,9 @@ package body Sichtbarkeit is
 
          when 13 =>
             Put (Item => CSI & "38;2;0;0;0m");
+            
+         when 14 .. 28 =>
+            Put (Item => CSI & "38;2;0;0;205m");
 
          when 29 => 
             Put (Item => CSI & "38;2;255;255;255m");
@@ -279,9 +293,6 @@ package body Sichtbarkeit is
 
          when 33 =>
             Put (Item => CSI & "38;2;0;0;0m");
-            
-         when 14 .. 28 =>
-            Put (Item => CSI & "38;2;0;0;205m");
             
          when others =>
             null;

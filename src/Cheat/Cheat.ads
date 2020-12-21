@@ -9,7 +9,7 @@ package Cheat is
    procedure Menü;
 
 private
-
+   
    Taste : Wide_Wide_Character;
    
    AktuelleEinheit : Integer;

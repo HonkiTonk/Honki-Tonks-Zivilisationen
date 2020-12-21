@@ -8,10 +8,10 @@ use GlobaleDatentypen;
 package InDerStadt is
 
    procedure InDerStadt (Rasse, StadtNummer : in Integer);
-   procedure StadtBauen (Rasse, EinheitNummer : in Integer);
    procedure StadtProduktionPrüfen (Rasse, StadtNummer : in Integer);
    procedure BelegteStadtfelderFreigeben (Rasse, StadtNummer : in Integer);
 
+   function StadtBauen (Rasse, EinheitNummer : in Integer) return Boolean;
    function StadtBauenPrüfen (Rasse, EinheitNummer : in Integer) return Boolean;
 
 private
