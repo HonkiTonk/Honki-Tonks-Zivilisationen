@@ -1,5 +1,34 @@
 package body SchleifenPruefungen is
 
+   procedure KartenUmgebungSchleife (SchleifenBereichYAchse, SchleifenBereichXAchse, YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld; Schalter : in Integer) is
+   begin -- Ist das wirklich nützlich? Vielleicht mit einem zusätzliche Schalter welcher bestimmt was getan wird und hier direkt mit einem Case/If-Else ausgeführt wird?
+     
+      YÄnderungSchleife:
+      for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         XÄnderungSchleife:
+         for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            
+            Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YKoordinate,
+                                                              XKoordinate    => XKoordinate,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 0);
+            
+            case Kartenwert.YWert is
+               when GlobaleDatentypen.Kartenfeld'First =>
+                  exit XÄnderungSchleife;
+                  
+               when others =>
+                  null;
+            end case;
+            
+         end loop XÄnderungSchleife;
+      end loop YÄnderungSchleife;
+   
+   end KartenUmgebungSchleife;
+
+   
+
    function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung, ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleDatentypen.YWertXWertAusKartenfeld is
    begin
       -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (2) + 3

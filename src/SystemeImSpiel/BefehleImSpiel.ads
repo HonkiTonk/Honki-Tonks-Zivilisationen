@@ -12,6 +12,7 @@ package BefehleImSpiel is
 private
 
    Wahl : Boolean;
+   Nullwert : Boolean;
          
    Taste : Wide_Wide_Character;
 

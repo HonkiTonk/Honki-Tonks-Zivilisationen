@@ -13,6 +13,11 @@ package Karten is
       Ressource : GlobaleDatentypen.KartenGrund;
       DurchStadtBelegterGrund : GlobaleDatentypen.BelegterGrund;
 
+      -- Sichtbar2
+      -- VerbesserungStraße2
+      -- VerbesserungGebiet2
+      -- Noch mehr?
+
    end record;
 
    type KartenArray is array (GlobaleDatentypen.Ebene'Range, 1 .. GlobaleDatentypen.Kartenfeld'Last, 1 .. GlobaleDatentypen.Kartenfeld'Last) of KartenRecord;

@@ -107,7 +107,7 @@ package body EinheitenDatenbank is
    procedure EinheitEntfernen (Rasse, EinheitNummer : in Integer) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer) := (0, 0, 0, 0, 0, 0, 0.00, 0, 0, 0, 0);      
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer) := (0, 0, 0, 1, 1, 0, 0.00, 0, 0, 0, 0);      
       EinheitGebautSortieren (Rasse => Rasse);
 
       if GlobaleVariablen.EinheitenGebaut (Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (Rasse, 1).ID = 0 then
@@ -128,7 +128,7 @@ package body EinheitenDatenbank is
       for Tauschen in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
          Sortieren (Tauschen) := GlobaleVariablen.EinheitenGebaut (Rasse, Tauschen);
-         GlobaleVariablen.EinheitenGebaut (Rasse, Tauschen) := (0, 0, 0, 0, 0, 0, 0.00, 0, 0, 0, 0); 
+         GlobaleVariablen.EinheitenGebaut (Rasse, Tauschen) := (0, 0, 0, 1, 1, 0, 0.00, 0, 0, 0, 0); 
          
       end loop TauschSchleife;
 
@@ -139,7 +139,7 @@ package body EinheitenDatenbank is
             
             if Sortieren (Auswahl).ID /= 0 then
                GlobaleVariablen.EinheitenGebaut (Rasse, Einsortieren) := Sortieren (Auswahl);
-               Sortieren (Auswahl) := (0, 0, 0, 0, 0, 0, 0.00, 0, 0, 0, 0);
+               Sortieren (Auswahl) := (0, 0, 0, 1, 1, 0, 0.00, 0, 0, 0, 0);
                exit SortierenInnenSchleife;
                
             elsif Auswahl = Sortieren'Last then

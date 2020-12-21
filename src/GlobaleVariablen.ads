@@ -14,10 +14,10 @@ package GlobaleVariablen is
    type CursorRecord is record
       
       CursorGrafik : Wide_Wide_Character;
-      YAchse : GlobaleDatentypen.Kartenfeld;
-      XAchse : GlobaleDatentypen.Kartenfeld;
-      YAchseAlt : GlobaleDatentypen.Kartenfeld;
-      XAchseAlt : GlobaleDatentypen.Kartenfeld;
+      YAchse : GlobaleDatentypen.KartenfeldPositiv;
+      XAchse : GlobaleDatentypen.KartenfeldPositiv;
+      YAchseAlt : GlobaleDatentypen.KartenfeldPositiv;
+      XAchseAlt : GlobaleDatentypen.KartenfeldPositiv;
       XAchseStadt : GlobaleDatentypen.Stadtfeld;
       YAchseStadt : GlobaleDatentypen.Stadtfeld;
       
@@ -39,8 +39,8 @@ package GlobaleVariablen is
       AktuelleBeschäftigung2 : Integer;
       
       ID : GlobaleDatentypen.EinheitenID;
-      YAchse : GlobaleDatentypen.Kartenfeld;
-      XAchse : GlobaleDatentypen.Kartenfeld;      
+      YAchse : GlobaleDatentypen.KartenfeldPositiv;
+      XAchse : GlobaleDatentypen.KartenfeldPositiv;      
       
       AktuelleLebenspunkte : Integer;
       AktuelleBewegungspunkte : Float;
@@ -60,8 +60,8 @@ package GlobaleVariablen is
    type StadtGebautRecord is record
       
       ID : Integer;
-      YAchse : GlobaleDatentypen.Kartenfeld;
-      XAchse : GlobaleDatentypen.Kartenfeld;
+      YAchse : GlobaleDatentypen.KartenfeldPositiv;
+      XAchse : GlobaleDatentypen.KartenfeldPositiv;
 
       AmWasser : Boolean;
 
@@ -109,6 +109,8 @@ package GlobaleVariablen is
    Wichtiges : WichtigesArray := (others => (0, 0, 0, 0, 10_000, 0, (others => 0)));
    
    type DiplomatieArray is array (RassenImSpiel'Range, RassenImSpiel'Range) of Integer; -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
-   Diplomatie : DiplomatieArray := (others => (others => 1));  
+   Diplomatie : DiplomatieArray := (others => (others => 1));
+  
+   FeindlicheInformationenSehen : Boolean := False;
                                             
 end GlobaleVariablen;

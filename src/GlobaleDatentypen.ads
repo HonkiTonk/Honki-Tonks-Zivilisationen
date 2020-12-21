@@ -2,6 +2,7 @@ package GlobaleDatentypen is
    
    type ZahlenBoolean is range 0 .. 1;
    type Kartenfeld is range -1_001 .. 1_000; -- Linke Seite muss stehts eins kleiner sein als die rechte Seite, aufgrund des aktuellen Kartengenerators!
+   subtype KartenfeldPositiv is Kartenfeld range 1 .. 1_000;
    subtype Stadtfeld is Kartenfeld range 1 .. 20;
    subtype Sichtweite is Kartenfeld range 1 .. 10;
    subtype LoopRangeMinusEinsZuEins is Kartenfeld range -1 .. 1;
@@ -39,6 +40,18 @@ package GlobaleDatentypen is
       
       Rasse : Integer;
       Platznummer : Integer;
+      
+   end record;
+
+
+
+   -- Für die KI gedacht:
+   
+   type EinheitStatusRecord is record
+          
+      EinheitNummer : Integer;
+      BewegungspunkteBeschäftigung : Integer; -- 0 = Keine Bewegungspunkte/Beschäftigung, 1 = Bewegungspunkte ohne Beschäftigung, 2 = Beschäftigung ohne Bewegungspunkte, 3 = Beschäftigung/Bewegungspunkte
+      EinheitTyp : Integer;
       
    end record;
 

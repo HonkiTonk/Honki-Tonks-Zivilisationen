@@ -35,5 +35,6 @@ private
                                                 3 => (5, 34));
 
    procedure Information;
+   -- procedure Verschiebung;
 
 end Karte;

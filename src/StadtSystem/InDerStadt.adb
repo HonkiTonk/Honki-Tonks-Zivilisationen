@@ -121,7 +121,7 @@ package body InDerStadt is
    
    
    
-   procedure StadtBauen (Rasse, EinheitNummer : in Integer) is
+   function StadtBauen (Rasse, EinheitNummer : in Integer) return Boolean is
    begin
 
       BauMöglich := StadtBauenPrüfen (Rasse         => Rasse,
@@ -131,9 +131,14 @@ package body InDerStadt is
          when True =>
             null;
                   
-         when False =>                  
-            Anzeige.Fehlermeldungen (WelcheFehlermeldung => 6);
-            return;
+         when False =>
+            if Rasse = GlobaleVariablen.Rasse then
+               Anzeige.Fehlermeldungen (WelcheFehlermeldung => 6);
+                  
+            else
+               null;
+            end if;
+            return False;
       end case;
 
       for StadtNummer in GlobaleVariablen.StadtGebaut'Range (2) loop
@@ -141,7 +146,7 @@ package body InDerStadt is
          if GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID /= 0 then
             null;
             
-         elsif StadtNummer = GlobaleVariablen.StadtGebaut'Last (2) and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID /= 0 then
+         elsif StadtNummer = GlobaleVariablen.StadtGebaut'Last (2) and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID /= 0 and Rasse = GlobaleVariablen.Rasse then
             Anzeige.Fehlermeldungen (WelcheFehlermeldung => 7);
             
          else
@@ -191,29 +196,28 @@ package body InDerStadt is
                   end case;
                   
                end loop XAchsenSchleife;
-            end loop YAchsenSchleife;
-            
+            end loop YAchsenSchleife;            
 
             StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (Rasse       => Rasse,
                                                              StadtNummer => StadtNummer);
             StadtProduktionPrüfen (Rasse       => Rasse,
                                    StadtNummer => StadtNummer);
-            ForschungsDatenbank.ForschungZeit (Rasse => Rasse);
-
-            EinheitenDatenbank.EinheitEntfernen (Rasse         => Rasse,
-                                                 EinheitNummer => EinheitNummer);
+            ForschungsDatenbank.ForschungZeit (Rasse => Rasse);            
             
             if Rasse = GlobaleVariablen.Rasse then
+               EinheitenDatenbank.EinheitEntfernen (Rasse         => Rasse,
+                                                    EinheitNummer => EinheitNummer);
                GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Name := Eingabe.StadtName;
                
             else
                null;
-            end if;           
-
-            return;
+            end if;
+            return True;
          end if;
          
       end loop;
+      
+      return False;
       
    end StadtBauen;
 
