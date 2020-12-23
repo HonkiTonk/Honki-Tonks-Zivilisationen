@@ -72,7 +72,7 @@ package body BewegungssystemEinheiten is
    procedure BewegungEinheitenBerechnung (Rasse, EinheitNummer : in Integer; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) is
    begin
 
-      Gewonnen := True;    
+      Gewonnen := True;
       Angreifen := False; 
       
       KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,

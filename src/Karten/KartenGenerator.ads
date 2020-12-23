@@ -15,8 +15,6 @@ private
 
    Gewählt : Generator;
 
-   Warten : Wide_Wide_Character;
-
    NochVerteilbareRessourcen : Integer;
    Überhang : Integer;
    Eisrand : constant GlobaleDatentypen.Kartenfeld := 1;
@@ -29,9 +27,6 @@ private
    Wert : Float;
 
    KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
-
-   type ZeitArray is array (1 .. 2, 1 .. 6) of Time;
-   Zeit : ZeitArray;
 
    type GrößeLandartArray is array (1 .. 3) of GlobaleDatentypen.Kartenfeld;
    GrößeLandart : GrößeLandartArray;
@@ -77,5 +72,7 @@ private
    procedure GenerierungFlüsse;
    procedure FlussBerechnung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld);
    procedure GenerierungRessourcen;
+
+   procedure KartenfelderBewerten;
 
 end KartenGenerator;

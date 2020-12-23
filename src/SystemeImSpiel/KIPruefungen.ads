@@ -7,5 +7,7 @@ package KIPruefungen is
    function EinheitMitBewegungspunktenSuchen (Rasse : in Integer) return GlobaleDatentypen.EinheitStatusRecord;
    
 private
+
+   
    
 end KIPruefungen;

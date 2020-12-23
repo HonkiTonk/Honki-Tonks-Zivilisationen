@@ -173,7 +173,7 @@ package body Karte is
                                  Put_Line (Item => "Aktuelle Rasse: " & Rasse'Wide_Wide_Image);
                            end case;
                            exit RassenEinheitenSchleife;
-                                         
+                                 
                         else
                            null;
                         end if;                  
@@ -183,23 +183,31 @@ package body Karte is
             end loop RassenEinheitenSchleife;
             
             RassenStadtSchleife:
-            for C in GlobaleVariablen.StadtGebaut'Range (1) loop
+            for Rasse in GlobaleVariablen.StadtGebaut'Range (1) loop
                StadtSchleife:
-               for D in GlobaleVariablen.StadtGebaut'Range (2) loop
+               for StadtNummer in GlobaleVariablen.StadtGebaut'Range (2) loop
             
-                  case GlobaleVariablen.StadtGebaut (C, D).ID is
+                  case GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID is
                      when 0 =>
                         exit StadtSchleife;
                   
                      when others =>
-                        if GlobaleVariablen.StadtGebaut (C, D).YAchse = GlobaleVariablen.CursorImSpiel.YAchse and GlobaleVariablen.StadtGebaut (C, D).XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
-                           KarteStadt.Beschreibung (Rasse => C, StadtNummer => D);
-                           if C = GlobaleVariablen.Rasse then                              
-                              Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (KartenVerbesserung (GlobaleVariablen.StadtGebaut (C, D).ID)).Verteidigungsbonus;
+                        if GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse = GlobaleVariablen.CursorImSpiel.YAchse
+                          and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
+                           KarteStadt.Beschreibung (Rasse => Rasse, StadtNummer => StadtNummer);
+                           if Rasse = GlobaleVariablen.Rasse or GlobaleVariablen.FeindlicheInformationenSehen = True then                              
+                              Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (KartenVerbesserung (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID)).Verteidigungsbonus;
 
                            else
                               null;
                            end if;
+                           case GlobaleVariablen.FeindlicheInformationenSehen is
+                              when False =>
+                                 null;
+                                 
+                              when True =>
+                                 Put_Line (Item => "Aktuelle Rasse: " & Rasse'Wide_Wide_Image);
+                           end case;
                            exit RassenStadtSchleife;
                      
                         else
@@ -319,9 +327,16 @@ package body Karte is
       end case;
 
       New_Line;
-      Put (Item => "Aktuelle YPosition: " & GlobaleVariablen.CursorImSpiel.YAchse'Wide_Wide_Image);
-      Put_Line (Item => "    Aktuelle XPosition: " & GlobaleVariablen.CursorImSpiel.XAchse'Wide_Wide_Image);
-      
+      case GlobaleVariablen.FeindlicheInformationenSehen is
+         when False =>
+            null;
+                                 
+         when True =>
+            Put (Item => "Aktuelle YPosition: " & GlobaleVariablen.CursorImSpiel.YAchse'Wide_Wide_Image);
+            Put_Line (Item => "    Aktuelle XPosition: " & GlobaleVariablen.CursorImSpiel.XAchse'Wide_Wide_Image);
+            Put_Line (Item => "Kartenfeldbewertung :" & Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Felderwertung'Wide_Wide_Image);
+      end case;
+            
    end Information; 
    
 end Karte;

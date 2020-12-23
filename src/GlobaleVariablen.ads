@@ -1,5 +1,5 @@
-with Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded, Ada.Calendar;
+use Ada.Strings.Wide_Wide_Unbounded, Ada.Calendar;
 
 with Karten, GlobaleDatentypen;
 
@@ -20,6 +20,9 @@ package GlobaleVariablen is
       XAchseAlt : GlobaleDatentypen.KartenfeldPositiv;
       XAchseStadt : GlobaleDatentypen.Stadtfeld;
       YAchseStadt : GlobaleDatentypen.Stadtfeld;
+      -- AchsenPosition : GlobaleDatentypen.YAchseXAchseAusKartenfeldPositiv;
+      -- AchsenPositionAlt : GlobaleDatentypen.YAchseXAchseAusKartenfeldPositiv;
+      -- AchsenPositionStadt : GlobaleDatentypen.YAchseXAchseAusStadtfeld;
       
    end record;
    
@@ -40,7 +43,9 @@ package GlobaleVariablen is
       
       ID : GlobaleDatentypen.EinheitenID;
       YAchse : GlobaleDatentypen.KartenfeldPositiv;
-      XAchse : GlobaleDatentypen.KartenfeldPositiv;      
+      XAchse : GlobaleDatentypen.KartenfeldPositiv;
+      -- AchsenPosition : GlobaleDatentypen.YAchseXAchseAusKartenfeldPositiv;
+      -- AchsenPositionAlt : GlobaleDatentypen.YAchseXAchseAusKartenfeldPositiv;
       
       AktuelleLebenspunkte : Integer;
       AktuelleBewegungspunkte : Float;
@@ -62,6 +67,7 @@ package GlobaleVariablen is
       ID : Integer;
       YAchse : GlobaleDatentypen.KartenfeldPositiv;
       XAchse : GlobaleDatentypen.KartenfeldPositiv;
+      -- AchsenPosition : GlobaleDatentypen.YAchseXAchseAusKartenfeldPositiv;
 
       AmWasser : Boolean;
 
@@ -112,5 +118,8 @@ package GlobaleVariablen is
    Diplomatie : DiplomatieArray := (others => (others => 1));
   
    FeindlicheInformationenSehen : Boolean := False;
+   
+   type ZeitArray is array (1 .. 2, 1 .. 8) of Time;
+   Zeit : ZeitArray;
                                             
 end GlobaleVariablen;

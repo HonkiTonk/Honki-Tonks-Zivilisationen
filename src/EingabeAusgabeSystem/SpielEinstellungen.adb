@@ -41,7 +41,26 @@ package body SpielEinstellungen is
       end loop AuswahlSchleife;
 
       KartenGenerator.KartenGenerator;
+      
+      GlobaleVariablen.Zeit (1, 8) := Clock;
       StartwerteErmitteln;
+      GlobaleVariablen.Zeit (2, 8) := Clock;
+
+      Put ("Verteile Rassen: ");
+      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 8) - GlobaleVariablen.Zeit (1, 8)),
+                             Fore => 1,
+                             Aft  => 6,
+                             Exp  => 0);
+      New_Line;
+
+      Put ("Gesamtzeit: ");
+      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 1) - GlobaleVariablen.Zeit (1, 1) + GlobaleVariablen.Zeit (2, 2) - GlobaleVariablen.Zeit (1, 2) + GlobaleVariablen.Zeit (2, 3) - GlobaleVariablen.Zeit (1, 3)
+                             + GlobaleVariablen.Zeit (2, 4) - GlobaleVariablen.Zeit (1, 4) + GlobaleVariablen.Zeit (2, 5) - GlobaleVariablen.Zeit (1, 5) + GlobaleVariablen.Zeit (2, 6) - GlobaleVariablen.Zeit (1, 6)
+                             + GlobaleVariablen.Zeit (2, 7) - GlobaleVariablen.Zeit (1, 7) + GlobaleVariablen.Zeit (2, 8) - GlobaleVariablen.Zeit (1, 8)),
+                             Fore => 1,
+                             Aft  => 6,
+                             Exp  => 0);
+      Get_Immediate (Item => Warten);
          
       return ImSpiel.ImSpiel;
               

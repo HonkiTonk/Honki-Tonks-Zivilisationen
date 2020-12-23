@@ -1,5 +1,5 @@
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Numerics.Discrete_Random;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Float_Text_IO, Ada.Numerics.Discrete_Random, Ada.Calendar;
+use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 
 with GlobaleDatentypen, SchleifenPruefungen, GlobaleVariablen, ImSpiel, KartenGenerator, Eingabe, Karten, Auswahl, EinheitenDatenbank, Anzeige, ZufallsGeneratoren;
 use GlobaleDatentypen;
@@ -12,6 +12,8 @@ private
 
    PrüfungEinheit : Boolean;
    PrüfungGrund : Boolean;
+
+   Warten : Wide_Wide_Character;
 
    YPosition : GlobaleDatentypen.Kartenfeld;
    XPosition : GlobaleDatentypen.Kartenfeld;
