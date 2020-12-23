@@ -23,11 +23,25 @@ package GlobaleDatentypen is
    type PassierbarkeitType is range 1 .. 15; -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
                                              -- Addieren für genaue Passierbarkeit
     
-   type GesamtproduktionStadt is range 0 .. 500;
-   subtype GrundwerteNRGWVA is GesamtproduktionStadt range 0 .. 100; -- NRGWVA = Grundwert für Nahrung, Ressourcen, Geld, Wissenschaft, Verteidigung, Angriff
+   type GesamtproduktionStadt is range -500 .. 500;
+   subtype GrundwerteNRGWVA is GesamtproduktionStadt range -100 .. 100; -- NRGWVA = Grundwert für Nahrung, Ressourcen, Geld, Wissenschaft, Verteidigung, Angriff
    type KostenLager is range 0 .. 10_000;
 
-   type RassenImSpielArray is array (1 .. 18) of Integer;   
+   type RassenImSpielArray is array (1 .. 18) of Integer;
+
+   type YAchseXAchseAusStadtfeld is record
+      
+      YAchse : Stadtfeld;
+      XAchse : Stadtfeld;
+      
+   end record;
+   
+   type YAchseXAchseAusKartenfeldPositiv is record
+      
+      YAchse : KartenfeldPositiv;
+      XAchse : KartenfeldPositiv;
+      
+   end record;
 
    type YWertXWertAusKartenfeld is record
       

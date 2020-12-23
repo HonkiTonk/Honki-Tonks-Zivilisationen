@@ -11,7 +11,12 @@ package body KI is
                null;
                
             when others => -- KI
-               KIAktivität (Rasse => Rasse);       
+               if GlobaleVariablen.EinheitenGebaut (Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (Rasse, 1).ID = 0 then
+                  GlobaleVariablen.RassenImSpiel (Rasse) := 0;
+                  
+               else
+                  KIAktivität (Rasse => Rasse);
+               end if;
          end case;         
 
       end loop RasseSchleife;
@@ -77,36 +82,8 @@ package body KI is
    
    procedure KIStadtBauen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
-
-      Ressourcen := (others => 0);
-            
-      YÄnderungSchleife:
-      for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-         XÄnderungSchleife:
-         for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-            
-            Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).YAchse,
-                                                              XKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).XAchse,
-                                                              YÄnderung      => YÄnderung,
-                                                              XÄnderung      => XÄnderung,
-                                                              ZusatzYAbstand => 0);
-            
-            case Kartenwert.YWert is
-               when GlobaleDatentypen.Kartenfeld'First =>
-                  exit XÄnderungSchleife;
-                  
-               when others =>
-                  Ressourcen (1) := Ressourcen (1) + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Nahrungsgewinnung;
-                  Ressourcen (2) := Ressourcen (2) + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Ressourcengewinnung;
-                  Ressourcen (3) := Ressourcen (3) + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Geldgewinnung;
-                  Ressourcen (4) := Ressourcen (4) + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Wissensgewinnung;
-                  Ressourcen (5) := Ressourcen (5) + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Verteidigungsbonus;
-            end case;
-            
-         end loop XÄnderungSchleife;
-      end loop YÄnderungSchleife;
-
-      if Ressourcen (1) >= 2 and Ressourcen (2) >= 2 and Ressourcen (1) + Ressourcen (2) + Ressourcen (3) + Ressourcen (4) + Ressourcen (5) > 20 then
+      
+      if Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).XAchse).Felderwertung >= 120 then         
          StadtErfolgreichGebaut := InDerStadt.StadtBauen (Rasse         => Rasse,
                                                           EinheitNummer => EinheitStatus.EinheitNummer);
 

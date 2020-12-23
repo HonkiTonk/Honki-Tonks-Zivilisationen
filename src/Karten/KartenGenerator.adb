@@ -10,7 +10,7 @@ package body KartenGenerator is
       -- Größe Landart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
       GeneratorKarte := (others => (others => (0)));
 
-      Zeit (1, 1) := Clock;
+      GlobaleVariablen.Zeit (1, 1) := Clock;
       YAchseSchleife:
       for Y in Karten.Karten'Range (2) loop
          XAchseSchleife:
@@ -40,76 +40,80 @@ package body KartenGenerator is
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
-      Zeit (2, 1) := Clock;
+      GlobaleVariablen.Zeit (2, 1) := Clock;
 
-      Put ("Zeit 1: ");
-      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 1) - Zeit (1, 1)),
+      Put ("Kartengenerierung: ");
+      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 1) - GlobaleVariablen.Zeit (1, 1)),
                              Fore => 1,
                              Aft  => 6,
                              Exp  => 0);
       New_Line;
             
-      Zeit (1, 2) := Clock;
+      GlobaleVariablen.Zeit (1, 2) := Clock;
       GenerierungKüstenSeeGewässer;
-      Zeit (2, 2) := Clock;
+      GlobaleVariablen.Zeit (2, 2) := Clock;
 
-      Put ("Zeit 2: ");
-      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 2) - Zeit (1, 2)),
+      Put ("Unterscheide zwischen See und Küstengewässer: ");
+      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 2) - GlobaleVariablen.Zeit (1, 2)),
                              Fore => 1,
                              Aft  => 6,
                              Exp  => 0);
       New_Line;
 
-      Zeit (1, 3) := Clock;
+      GlobaleVariablen.Zeit (1, 3) := Clock;
       GenerierungKartentemperatur;
-      Zeit (2, 3) := Clock;
+      GlobaleVariablen.Zeit (2, 3) := Clock;
 
-      Put ("Zeit 3: ");
-      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 3) - Zeit (1, 3)),
+      Put ("Generiere Kartentemperatur: ");
+      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 3) - GlobaleVariablen.Zeit (1, 3)),
                              Fore => 1,
                              Aft  => 6,
                              Exp  => 0);
       New_Line;
       
-      Zeit (1, 4) := Clock;
+      GlobaleVariablen.Zeit (1, 4) := Clock;
       GenerierungLandschaft;
-      Zeit (2, 4) := Clock;
+      GlobaleVariablen.Zeit (2, 4) := Clock;
       
-      Put ("Zeit 4: ");
-      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 4) - Zeit (1, 4)),
+      Put ("Generiere Landschaft: ");
+      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 4) - GlobaleVariablen.Zeit (1, 4)),
                              Fore => 1,
                              Aft  => 6,
                              Exp  => 0);
       New_Line;
       
-      Zeit (1, 5) := Clock;
+      GlobaleVariablen.Zeit (1, 5) := Clock;
       GenerierungFlüsse;
-      Zeit (2, 5) := Clock;
+      GlobaleVariablen.Zeit (2, 5) := Clock;
 
-      Put ("Zeit 5: ");
-      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 5) - Zeit (1, 5)),
+      Put ("Generiere Flüsse: ");
+      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 5) - GlobaleVariablen.Zeit (1, 5)),
                              Fore => 1,
                              Aft  => 6,
                              Exp  => 0);
       New_Line;
       
-      Zeit (1, 6) := Clock;
+      GlobaleVariablen.Zeit (1, 6) := Clock;
       GenerierungRessourcen;
-      Zeit (2, 6) := Clock;
+      GlobaleVariablen.Zeit (2, 6) := Clock;
 
-      Put ("Zeit 6: ");
-      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 6) - Zeit (1, 6)),
+      Put ("Generiere Ressourcen: ");
+      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 6) - GlobaleVariablen.Zeit (1, 6)),
                              Fore => 1,
                              Aft  => 6,
                              Exp  => 0);
       New_Line;
 
-      Put ("Gesamtzeit: ");
-      Ada.Float_Text_IO.Put (Item => Float (Zeit (2, 1) - Zeit (1, 1) + Zeit (2, 2) - Zeit (1, 2) + Zeit (2, 3) - Zeit (1, 3) + Zeit (2, 4) - Zeit (1, 4) + Zeit (2, 5) - Zeit (1, 5) + Zeit (2, 6) - Zeit (1, 6)),
+      GlobaleVariablen.Zeit (1, 7) := Clock;
+      KartenfelderBewerten;
+      GlobaleVariablen.Zeit (2, 7) := Clock;
+
+      Put ("Bewerte Kartenfelder: ");
+      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 7) - GlobaleVariablen.Zeit (1, 7)),
                              Fore => 1,
                              Aft  => 6,
                              Exp  => 0);
-      Get_Immediate (Item => Warten);
+      New_Line;      
       
    end KartenGenerator;
 
@@ -845,5 +849,74 @@ package body KartenGenerator is
       end loop;
       
    end GenerierungRessourcen;
+
+
+
+   procedure KartenfelderBewerten is
+   begin
+      
+      YAchseSchleife:
+      for YAchse in Karten.Karten'Range (2) loop
+         XAchseSchleife:
+         for XAchse in Karten.Karten'Range (3) loop
+            
+            case Karten.Karten (0, YAchse, XAchse).Grund is
+               when -1 =>
+                  exit XAchseSchleife;
+                  
+               when -2 =>
+                  exit YAchseSchleife;
+                  
+               when others =>
+                  BewertungYÄnderungSchleife:
+                  for BewertungYÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+                     BewertungXÄnderungSchleife:
+                     for BewertungXÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+                     
+                        Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YAchse,
+                                                                          XKoordinate    => XAchse,
+                                                                          YÄnderung      => BewertungYÄnderung,
+                                                                          XÄnderung      => BewertungXÄnderung,
+                                                                          ZusatzYAbstand => 0);
+                        
+                        case Kartenwert.YWert is
+                           when GlobaleDatentypen.Kartenfeld'First =>
+                              exit BewertungXÄnderungSchleife;
+                  
+                           when others =>
+                              if BewertungYÄnderung = 3 or BewertungXÄnderung = 3 then -- Das hier auf jeden Fall ausgliedern, muss bei jeder Umgebungsänderung neu berechnet werden
+                                 Karten.Karten (0, YAchse, XAchse).Felderwertung := Karten.Karten (0, YAchse, XAchse).Felderwertung
+                                   + ((KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Nahrungsgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Ressourcengewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Geldgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Wissensgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Verteidigungsbonus) / 3);
+                                 
+                              elsif BewertungYÄnderung = 2 or BewertungXÄnderung = 2 then
+                                 Karten.Karten (0, YAchse, XAchse).Felderwertung := Karten.Karten (0, YAchse, XAchse).Felderwertung
+                                   + ((KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Nahrungsgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Ressourcengewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Geldgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Wissensgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Verteidigungsbonus) / 2);
+                              else
+                                 Karten.Karten (0, YAchse, XAchse).Felderwertung := Karten.Karten (0, YAchse, XAchse).Felderwertung
+                                   + (KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Nahrungsgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Ressourcengewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Geldgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Wissensgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Verteidigungsbonus);                                
+                              end if;
+                        end case;
+                        
+                     
+                     end loop BewertungXÄnderungSchleife;
+                  end loop BewertungYÄnderungSchleife;
+            end case;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+   
+   end KartenfelderBewerten;
 
 end KartenGenerator;

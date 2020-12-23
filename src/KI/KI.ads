@@ -12,11 +12,6 @@ private
 
    EinheitStatus : GlobaleDatentypen.EinheitStatusRecord;
 
-   Kartenwert : GlobaleDatentypen.YWertXWertAusKartenfeld;
-
-   type RessourcenArray is array (1 .. 5) of GrundwerteNRGWVA;
-   Ressourcen : RessourcenArray;
-
    procedure KIAktivität (Rasse : in Integer);
    procedure KIStadtBauen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
    procedure KIVerbesserungAnlegen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
