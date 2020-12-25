@@ -20,7 +20,7 @@ private
    Wert : Integer;
    Stellenanzahl : Integer;
 
-   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
+   KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
    
    procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins);
    procedure BewegungCursorBerechnenStadt;

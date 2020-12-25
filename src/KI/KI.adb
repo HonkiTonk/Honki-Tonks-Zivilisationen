@@ -83,7 +83,7 @@ package body KI is
    procedure KIStadtBauen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
       
-      if Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).XAchse).Felderwertung >= 120 then         
+      if Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.XAchse).Felderwertung >= 120 then         
          StadtErfolgreichGebaut := InDerStadt.StadtBauen (Rasse         => Rasse,
                                                           EinheitNummer => EinheitStatus.EinheitNummer);
 

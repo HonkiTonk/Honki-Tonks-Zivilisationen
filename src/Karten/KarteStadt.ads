@@ -25,7 +25,7 @@ private
    YAchse : GlobaleDatentypen.Kartenfeld;
    XAchse : GlobaleDatentypen.Kartenfeld;
 
-   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
+   KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
    
    procedure FarbenStadt;
    procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld);

@@ -14,19 +14,13 @@ package GlobaleVariablen is
    type CursorRecord is record
       
       CursorGrafik : Wide_Wide_Character;
-      YAchse : GlobaleDatentypen.KartenfeldPositiv;
-      XAchse : GlobaleDatentypen.KartenfeldPositiv;
-      YAchseAlt : GlobaleDatentypen.KartenfeldPositiv;
-      XAchseAlt : GlobaleDatentypen.KartenfeldPositiv;
-      XAchseStadt : GlobaleDatentypen.Stadtfeld;
-      YAchseStadt : GlobaleDatentypen.Stadtfeld;
-      -- AchsenPosition : GlobaleDatentypen.YAchseXAchseAusKartenfeldPositiv;
-      -- AchsenPositionAlt : GlobaleDatentypen.YAchseXAchseAusKartenfeldPositiv;
-      -- AchsenPositionStadt : GlobaleDatentypen.YAchseXAchseAusStadtfeld;
+      AchsenPosition : GlobaleDatentypen.AchsenAusKartenfeldPositiv;
+      AchsenPositionAlt : GlobaleDatentypen.AchsenAusKartenfeldPositiv;
+      AchsenPositionStadt : GlobaleDatentypen.AchsenAusStadtfeld;
       
    end record;
    
-   CursorImSpiel : CursorRecord := ('©', 1, 1, 1, 1, 1, 1);
+   CursorImSpiel : CursorRecord := ('©', (0, 1, 1), (0, 1, 1), (1, 1));
 
    SpielerAnzahl : Integer := 1; -- 1 .. 18
    Rasse : Integer := 1; -- 1 .. 18
@@ -42,10 +36,8 @@ package GlobaleVariablen is
       AktuelleBeschäftigung2 : Integer;
       
       ID : GlobaleDatentypen.EinheitenID;
-      YAchse : GlobaleDatentypen.KartenfeldPositiv;
-      XAchse : GlobaleDatentypen.KartenfeldPositiv;
-      -- AchsenPosition : GlobaleDatentypen.YAchseXAchseAusKartenfeldPositiv;
-      -- AchsenPositionAlt : GlobaleDatentypen.YAchseXAchseAusKartenfeldPositiv;
+      AchsenPosition : GlobaleDatentypen.AchsenAusKartenfeldPositiv;
+      --AchsenPositionAlt : GlobaleDatentypen.YAchseXAchseAusKartenfeldPositiv;
       
       AktuelleLebenspunkte : Integer;
       AktuelleBewegungspunkte : Float;
@@ -58,16 +50,14 @@ package GlobaleVariablen is
    end record;
 
    type EinheitenGebautArray is array (RassenImSpiel'Range, 1 .. 1000) of EinheitenGebautRecord;
-   EinheitenGebaut : EinheitenGebautArray := (others => (others => (0, 0,    0, 1, 1,    0, 0.00, 0, 0,    0, 0)));
+   EinheitenGebaut : EinheitenGebautArray := (others => (others => (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0)));
 
    type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
 
    type StadtGebautRecord is record
       
       ID : Integer;
-      YAchse : GlobaleDatentypen.KartenfeldPositiv;
-      XAchse : GlobaleDatentypen.KartenfeldPositiv;
-      -- AchsenPosition : GlobaleDatentypen.YAchseXAchseAusKartenfeldPositiv;
+      AchsenPosition : GlobaleDatentypen.AchsenAusKartenfeldPositiv;
 
       AmWasser : Boolean;
 
@@ -94,7 +84,7 @@ package GlobaleVariablen is
    type StadtGebautArray is array (RassenImSpiel'Range, 1 .. 100) of StadtGebautRecord;
    StadtGebaut : StadtGebautArray := (others =>
                                         (others =>
-                                           ((0, 1, 1,    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False)), 0, 1))));
+                                           ((0, (0, 1, 1),    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False)), 0, 1))));
 
    type ErforschtArray is array (1 .. 6) of Integer;
 

@@ -1,4 +1,5 @@
 with GlobaleDatentypen;
+use GlobaleDatentypen;
 
 package Karten is
 
@@ -21,7 +22,7 @@ package Karten is
 
    end record;
 
-   type KartenArray is array (GlobaleDatentypen.Ebene'Range, 1 .. GlobaleDatentypen.Kartenfeld'Last, 1 .. GlobaleDatentypen.Kartenfeld'Last) of KartenRecord;
+   type KartenArray is array (-2 .. GlobaleDatentypen.Ebene'Last, 1 .. GlobaleDatentypen.Kartenfeld'Last, 1 .. GlobaleDatentypen.Kartenfeld'Last) of KartenRecord;
    Karten : KartenArray := (others => (others => (others => (0, False, False, 0, 0, 0, 0, 0, 0))));
 
    type StadtkarteArray is array (GlobaleDatentypen.Stadtfeld'Range, GlobaleDatentypen.Stadtfeld'Range) of Integer;

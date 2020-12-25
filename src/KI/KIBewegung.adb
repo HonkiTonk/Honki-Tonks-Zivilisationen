@@ -19,7 +19,7 @@ package body KIBewegung is
    procedure BewegungSiedler (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
 
-      Bewegungsziel := (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).XAchse);
+      Bewegungsziel := (GlobaleVariablen.EinheitenGebaut (0, Rasse, EinheitStatus.EinheitNummer).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).XAchse);
       
       Schleife:
       for Durchgang in 1 .. 2 loop
@@ -28,25 +28,25 @@ package body KIBewegung is
             XAchseSchleife:
             for XAchse in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
-               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).YAchse,
-                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).XAchse,
+               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.YAchse,
+                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.XAchse,
                                                                  YÄnderung      => YAchse,
                                                                  XÄnderung      => XAchse,
                                                                  ZusatzYAbstand => 0);
             
-               case Kartenwert.YWert is
+               case Kartenwert.YAchse is
                   when GlobaleDatentypen.Kartenfeld'First =>
                      exit XAchseSchleife;
                   
                   when others =>
                      case Durchgang is
                         when 1 =>
-                           if Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund = 2 or Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund = 31 then
+                           if Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund = 2 or Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund = 31 then
                               null;
                               
-                           elsif Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Felderwertung
-                             > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).XAchse).Felderwertung then
-                              Bewegungsziel := (Kartenwert.YWert, Kartenwert.XWert);
+                           elsif Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Felderwertung
+                             > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (0, Rasse, EinheitStatus.EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).XAchse).Felderwertung then
+                              Bewegungsziel := (Kartenwert.YAchse, Kartenwert.XAchse);
                               exit Schleife;
 
                            else
@@ -54,12 +54,12 @@ package body KIBewegung is
                            end if;
                            
                         when others =>
-                           case Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund is
+                           case Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund is
                               when 2 | 31 =>
                                  null;
                                  
                               when others =>
-                                 Bewegungsziel := (Kartenwert.YWert, Kartenwert.XWert);
+                                 Bewegungsziel := (Kartenwert.YAchse, Kartenwert.XAchse);
                                  exit Schleife;
                            end case;
                      end case;
@@ -69,8 +69,8 @@ package body KIBewegung is
          end loop YAchseSchleife;
       end loop Schleife;
 
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).YAchse := Bewegungsziel.YWert;
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).XAchse := Bewegungsziel.XWert;
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.YAchse := Bewegungsziel.YAchse;
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.XAchse := Bewegungsziel.XAchse;
 
       GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AktuelleBewegungspunkte := 0.00;
       

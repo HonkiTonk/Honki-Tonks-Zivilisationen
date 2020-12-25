@@ -7,8 +7,8 @@ package KIBewegung is
 
 private
    
-   Kartenwert : GlobaleDatentypen.YWertXWertAusKartenfeld;
-   Bewegungsziel : GlobaleDatentypen.YWertXWertAusKartenfeld;
+   Kartenwert : GlobaleDatentypen.AchsenAusKartenfeld;
+   Bewegungsziel : GlobaleDatentypen.AchsenAusKartenfeldPositiv;
 
    procedure BewegungSiedler (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
    procedure BewegungBauarbeiter (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);

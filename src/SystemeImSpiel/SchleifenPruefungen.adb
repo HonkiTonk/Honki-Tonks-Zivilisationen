@@ -1,12 +1,12 @@
 package body SchleifenPruefungen is
 
    procedure KartenUmgebungSchleife (SchleifenBereichYAchse, SchleifenBereichXAchse, YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld; Schalter : in Integer) is
-   begin -- Ist das wirklich nützlich? Vielleicht mit einem zusätzliche Schalter welcher bestimmt was getan wird und hier direkt mit einem Case/If-Else ausgeführt wird?
+   begin -- Überall auslagern und mit einem Enum dann die Auswahl vornehmen?
      
       YÄnderungSchleife:
-      for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YÄnderung in -SchleifenBereichXAchse .. SchleifenBereichXAchse loop
          XÄnderungSchleife:
-         for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XÄnderung in -SchleifenBereichXAchse .. SchleifenBereichXAchse loop
             
             Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YKoordinate,
                                                               XKoordinate    => XKoordinate,
@@ -14,7 +14,7 @@ package body SchleifenPruefungen is
                                                               XÄnderung      => XÄnderung,
                                                               ZusatzYAbstand => 0);
             
-            case Kartenwert.YWert is
+            case Kartenwert.YAchse is
                when GlobaleDatentypen.Kartenfeld'First =>
                   exit XÄnderungSchleife;
                   
@@ -29,12 +29,12 @@ package body SchleifenPruefungen is
 
    
 
-   function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung, ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleDatentypen.YWertXWertAusKartenfeld is
+   function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung, ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleDatentypen.AchsenAusKartenfeld is
    begin
       -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (2) + 3
       
       if YKoordinate + YÄnderung < Karten.Karten'First (2) + ZusatzYAbstand or YKoordinate + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
-         return (GlobaleDatentypen.Kartenfeld'First, GlobaleDatentypen.Kartenfeld'First);
+         return (0, GlobaleDatentypen.Kartenfeld'First, GlobaleDatentypen.Kartenfeld'First);
 
       elsif XKoordinate + XÄnderung < Karten.Karten'First (3) then
          Überhang := Integer (XKoordinate + XÄnderung + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
@@ -44,7 +44,7 @@ package body SchleifenPruefungen is
             Überhang := Überhang + Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
          end loop SchleifeKleiner;
-         return (YKoordinate + YÄnderung, GlobaleDatentypen.Kartenfeld (Überhang));
+         return (0, YKoordinate + YÄnderung, GlobaleDatentypen.Kartenfeld (Überhang));
                
       elsif XKoordinate + XÄnderung > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
          Überhang := Integer (XKoordinate + XÄnderung - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
@@ -54,10 +54,10 @@ package body SchleifenPruefungen is
             Überhang := Überhang - Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
             
          end loop SchleifeGrößer;
-         return (YKoordinate + YÄnderung, GlobaleDatentypen.Kartenfeld (Überhang));
+         return (0, YKoordinate + YÄnderung, GlobaleDatentypen.Kartenfeld (Überhang));
                
       else
-         return (YKoordinate + YÄnderung, XKoordinate + XÄnderung);
+         return (0, YKoordinate + YÄnderung, XKoordinate + XÄnderung);
       end if;
       
    end KartenUmgebung;
@@ -73,7 +73,7 @@ package body SchleifenPruefungen is
          if GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).ID = 0 then
             exit StadtSchleife;
             
-         elsif GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse = YAchse and GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).XAchse = XAchse then
+         elsif GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AchsenPosition.XAchse = XAchse then
             return Stadtnummer;
             
          else
@@ -97,7 +97,7 @@ package body SchleifenPruefungen is
          if GlobaleVariablen.EinheitenGebaut (Rasse, Einheitennummer).ID = 0 then
             exit EinheitSchleife;
             
-         elsif GlobaleVariablen.EinheitenGebaut (Rasse, Einheitennummer).YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (Rasse, Einheitennummer).XAchse = XAchse then
+         elsif GlobaleVariablen.EinheitenGebaut (Rasse, Einheitennummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (Rasse, Einheitennummer).AchsenPosition.XAchse = XAchse then
             return Einheitennummer;
             
          else
@@ -123,7 +123,7 @@ package body SchleifenPruefungen is
             if GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).ID = 0 then
                exit StadtSchleife;
                
-            elsif GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).YAchse = YAchse and GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).XAchse = XAchse then
+            elsif GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AchsenPosition.XAchse = XAchse then
                return (Rasse, Stadtnummer);
                
             else
@@ -150,7 +150,7 @@ package body SchleifenPruefungen is
             if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID = 0 then
                exit EinheitSchleife;
                
-            elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse = XAchse then
+            elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.XAchse = XAchse then
                return (Rasse, EinheitNummer);
                
             else

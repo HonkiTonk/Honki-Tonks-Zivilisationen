@@ -17,36 +17,36 @@ package body Karte is
             BewegungsfeldFestlegen := 3;            
       end case;      
 
-      if GlobaleVariablen.CursorImSpiel.YAchse > GlobaleVariablen.CursorImSpiel.YAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).YWert
-        or GlobaleVariablen.CursorImSpiel.YAchse < GlobaleVariablen.CursorImSpiel.YAchseAlt - Bewegungsfeld (BewegungsfeldFestlegen).YWert then
-         GlobaleVariablen.CursorImSpiel.YAchseAlt := GlobaleVariablen.CursorImSpiel.YAchse;
+      if GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse > GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.YAchse + Bewegungsfeld (BewegungsfeldFestlegen).YAchse
+        or GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse < GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse - Bewegungsfeld (BewegungsfeldFestlegen).YAchse then
+         GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.YAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse;
          
       else
          null;
       end if;
             
-      if GlobaleVariablen.CursorImSpiel.XAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).XWert > Karten.Kartengrößen (Karten.Kartengröße).XAchsengröße then
-         if GlobaleVariablen.CursorImSpiel.XAchse < GlobaleVariablen.CursorImSpiel.XAchseAlt - Bewegungsfeld (BewegungsfeldFestlegen).XWert
-           and GlobaleVariablen.CursorImSpiel.XAchse > GlobaleVariablen.CursorImSpiel.XAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).XWert - Karten.Kartengrößen (Karten.Kartengröße).XAchsengröße then
-            GlobaleVariablen.CursorImSpiel.XAchseAlt := GlobaleVariablen.CursorImSpiel.XAchse;         
+      if GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsengröße then
+         if GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse < GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse
+           and GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse > GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse - Karten.Kartengrößen (Karten.Kartengröße).XAchsengröße then
+            GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse;         
             
          else
             null;
          end if;
          
-      elsif GlobaleVariablen.CursorImSpiel.XAchseAlt - Bewegungsfeld (BewegungsfeldFestlegen).XWert < Karten.Karten'First (3) then
-         if GlobaleVariablen.CursorImSpiel.XAchse > GlobaleVariablen.CursorImSpiel.XAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).XWert
-           and GlobaleVariablen.CursorImSpiel.XAchse < GlobaleVariablen.CursorImSpiel.XAchseAlt - Bewegungsfeld (BewegungsfeldFestlegen).XWert + Karten.Kartengrößen (Karten.Kartengröße).XAchsengröße then
-            GlobaleVariablen.CursorImSpiel.XAchseAlt := GlobaleVariablen.CursorImSpiel.XAchse;         
+      elsif GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse < Karten.Karten'First (3) then
+         if GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse > GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse
+           and GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse < GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse + Karten.Kartengrößen (Karten.Kartengröße).XAchsengröße then
+            GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse;         
             
          else
             null;
          end if;
          
       else
-         if GlobaleVariablen.CursorImSpiel.XAchse > GlobaleVariablen.CursorImSpiel.XAchseAlt + Bewegungsfeld (BewegungsfeldFestlegen).XWert
-           or GlobaleVariablen.CursorImSpiel.XAchse < GlobaleVariablen.CursorImSpiel.XAchseAlt - Bewegungsfeld (BewegungsfeldFestlegen).XWert then
-            GlobaleVariablen.CursorImSpiel.XAchseAlt := GlobaleVariablen.CursorImSpiel.XAchse;
+         if GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse > GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse
+           or GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse < GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse then
+            GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse;
             
          else
             null;
@@ -56,26 +56,26 @@ package body Karte is
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       YAchseSchleife:
-      for YAchse in -Sichtweite (SichtweiteFestlegen).YWert .. Sichtweite (SichtweiteFestlegen).YWert loop
+      for YAchse in -Sichtweite (SichtweiteFestlegen).YAchse .. Sichtweite (SichtweiteFestlegen).YAchse loop
          XAchseSchleife:
-         for XAchse in -Sichtweite (SichtweiteFestlegen).XWert .. Sichtweite (SichtweiteFestlegen).XWert loop
+         for XAchse in -Sichtweite (SichtweiteFestlegen).XAchse .. Sichtweite (SichtweiteFestlegen).XAchse loop
             
-            Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchseAlt,
-                                                              XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchseAlt,
+            Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.YAchse,
+                                                              XKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse,
                                                               YÄnderung      => YAchse,
                                                               XÄnderung      => XAchse,
                                                               ZusatzYAbstand => 0);
             
-            case Kartenwert.YWert is
+            case Kartenwert.YAchse is
                when GlobaleDatentypen.Kartenfeld'First =>
                   exit XAchseSchleife;
                   
                when others =>
-                  Sichtbarkeit.Sichtbarkeit (YAchse => Kartenwert.YWert,
-                                             XAchse => Kartenwert.XWert);
+                  Sichtbarkeit.Sichtbarkeit (YAchse => Kartenwert.YAchse,
+                                             XAchse => Kartenwert.XAchse);
             end case;
             
-            if XAchse = Sichtweite (SichtweiteFestlegen).XWert then
+            if XAchse = Sichtweite (SichtweiteFestlegen).XAchse then
                New_Line;
                   
             else
@@ -113,7 +113,7 @@ package body Karte is
       Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 37)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsrate'Wide_Wide_Image);
       New_Line;
       
-      case Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Sichtbar is
+      case Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Sichtbar is
          when True =>
             RassenEinheitenSchleife:
             for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop
@@ -125,8 +125,8 @@ package body Karte is
                         exit EinheitenSchleife;
                   
                      when others =>
-                        if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse = GlobaleVariablen.CursorImSpiel.YAchse
-                          and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
+                        if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.YAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse
+                          and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.XAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse then
                            EinheitenDatenbank.Beschreibung (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID);                        
                            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 14)));
                            Put_Line (Item => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte'Wide_Wide_Image & " /"
@@ -192,8 +192,8 @@ package body Karte is
                         exit StadtSchleife;
                   
                      when others =>
-                        if GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse = GlobaleVariablen.CursorImSpiel.YAchse
-                          and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
+                        if GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.YAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse
+                          and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.XAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse then
                            KarteStadt.Beschreibung (Rasse => Rasse, StadtNummer => StadtNummer);
                            if Rasse = GlobaleVariablen.Rasse or GlobaleVariablen.FeindlicheInformationenSehen = True then                              
                               Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (KartenVerbesserung (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID)).Verteidigungsbonus;
@@ -218,93 +218,93 @@ package body Karte is
                end loop StadtSchleife;
             end loop RassenStadtSchleife;
                   
-            if Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Hügel = True
-              and Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund /= 6 then
+            if Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Hügel = True
+              and Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund /= 6 then
                Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (9, 34)));
-               KartenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
+               KartenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund);
 
-               Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Verteidigungsbonus;
-               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Nahrungsgewinnung;
-               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Ressourcengewinnung;
-               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Geldgewinnung;
-               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Wissensgewinnung;
+               Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Verteidigungsbonus;
+               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Nahrungsgewinnung;
+               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Ressourcengewinnung;
+               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Geldgewinnung;
+               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Wissensgewinnung;
          
-            elsif Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Hügel = True then
-               KartenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
+            elsif Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Hügel = True then
+               KartenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund);
 
-               Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Verteidigungsbonus;
-               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Nahrungsgewinnung;
-               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Ressourcengewinnung;
-               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Geldgewinnung;
-               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Wissensgewinnung;
+               Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Verteidigungsbonus;
+               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Nahrungsgewinnung;
+               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Ressourcengewinnung;
+               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Geldgewinnung;
+               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Wissensgewinnung;
                
             else         
-               KartenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund);
+               KartenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund);
 
-               Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Verteidigungsbonus;
-               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Nahrungsgewinnung;
-               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Ressourcengewinnung;
-               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Geldgewinnung;
-               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund).Wissensgewinnung;
+               Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Verteidigungsbonus;
+               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Nahrungsgewinnung;
+               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Ressourcengewinnung;
+               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Geldgewinnung;
+               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund).Wissensgewinnung;
             end if;
       
-            if Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Ressource /= 0 then
-               KartenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Ressource);
+            if Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Ressource /= 0 then
+               KartenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Ressource);
 
                Verteidigungsbonus
-                 := Verteidigungsbonus + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Ressource).Verteidigungsbonus;
-               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Ressource).Nahrungsgewinnung;
+                 := Verteidigungsbonus + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Ressource).Verteidigungsbonus;
+               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Ressource).Nahrungsgewinnung;
                Ressourcengewinnung
-                 := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Ressource).Ressourcengewinnung;
-               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Ressource).Geldgewinnung;
-               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Ressource).Wissensgewinnung;
+                 := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Ressource).Ressourcengewinnung;
+               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Ressource).Geldgewinnung;
+               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Ressource).Wissensgewinnung;
          
             else
                null;
             end if;
       
-            if Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungGebiet /= 0 then
-               VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungGebiet);
+            if Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungGebiet /= 0 then
+               VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungGebiet);
 
                Verteidigungsbonus
-                 := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungGebiet).Verteidigungsbonus;
+                 := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus;
                Nahrungsgewinnung
-                 := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungGebiet).Nahrungsbonus;
+                 := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungGebiet).Nahrungsbonus;
                Ressourcengewinnung
-                 := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungGebiet).Ressourcenbonus;
-               Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungGebiet).Geldbonus;
+                 := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungGebiet).Ressourcenbonus;
+               Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungGebiet).Geldbonus;
                Wissensgewinnung
-                 := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungGebiet).Wissensbonus;
+                 := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungGebiet).Wissensbonus;
          
             else
                null;
             end if;
       
-            if Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungStraße /= 0 then
-               VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungStraße);
+            if Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungStraße /= 0 then
+               VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungStraße);
 
                Verteidigungsbonus
-                 := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungStraße).Verteidigungsbonus;
+                 := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungStraße).Verteidigungsbonus;
                Nahrungsgewinnung
-                 := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungStraße).Nahrungsbonus;
+                 := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungStraße).Nahrungsbonus;
                Ressourcengewinnung
-                 := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungStraße).Ressourcenbonus;
-               Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungStraße).Geldbonus;
+                 := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungStraße).Ressourcenbonus;
+               Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungStraße).Geldbonus;
                Wissensgewinnung
-                 := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).VerbesserungStraße).Wissensbonus;
+                 := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).VerbesserungStraße).Wissensbonus;
          
             else
                null;
             end if;
       
-            if Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Fluss /= 0 then
-               KartenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Fluss);
+            if Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Fluss /= 0 then
+               KartenDatenbank.Beschreibung (ID => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Fluss);
 
-               Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Fluss).Verteidigungsbonus;
-               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Fluss).Nahrungsgewinnung;
-               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Fluss).Ressourcengewinnung;
-               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Fluss).Geldgewinnung;
-               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Fluss).Wissensgewinnung;
+               Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Fluss).Verteidigungsbonus;
+               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Fluss).Nahrungsgewinnung;
+               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Fluss).Ressourcengewinnung;
+               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Fluss).Geldgewinnung;
+               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Fluss).Wissensgewinnung;
          
             else
                null;
@@ -332,9 +332,9 @@ package body Karte is
             null;
                                  
          when True =>
-            Put (Item => "Aktuelle YPosition: " & GlobaleVariablen.CursorImSpiel.YAchse'Wide_Wide_Image);
-            Put_Line (Item => "    Aktuelle XPosition: " & GlobaleVariablen.CursorImSpiel.XAchse'Wide_Wide_Image);
-            Put_Line (Item => "Kartenfeldbewertung :" & Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Felderwertung'Wide_Wide_Image);
+            Put (Item => "Aktuelle YPosition: " & GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse'Wide_Wide_Image);
+            Put_Line (Item => "    Aktuelle XPosition: " & GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse'Wide_Wide_Image);
+            Put_Line (Item => "Kartenfeldbewertung :" & Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Felderwertung'Wide_Wide_Image);
       end case;
             
    end Information; 

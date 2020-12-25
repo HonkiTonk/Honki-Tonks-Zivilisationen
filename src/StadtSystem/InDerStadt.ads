@@ -28,7 +28,7 @@ private
    RelativeCursorPositionY : GlobaleDatentypen.Kartenfeld;
    RelativeCursorPositionX : GlobaleDatentypen.Kartenfeld;
 
-   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
+   KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
 
    procedure StadtProduktionPrüfenBerechnung (Rasse, StadtNummer : in Integer);
 

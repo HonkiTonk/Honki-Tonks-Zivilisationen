@@ -22,17 +22,17 @@ private
    SichtweiteFestlegen : Integer;
    BewegungsfeldFestlegen : Integer;
 
-   Kartenwert : GlobaleDatentypen.YWertXWertAusKartenfeld;
+   Kartenwert : GlobaleDatentypen.AchsenAusKartenfeld;
 
-   type SichtweiteArray is array (1 .. 3) of GlobaleDatentypen.YWertXWertAusKartenfeld;
+   type SichtweiteArray is array (1 .. 3) of GlobaleDatentypen.AchsenAusKartenfeldPositiv;
 
-   Sichtweite : constant SichtweiteArray := (1 => (6, 10),
-                                             2 => (6, 22),
-                                             3 => (6, 35));
+   Sichtweite : constant SichtweiteArray := (1 => (0, 6, 10),
+                                             2 => (0, 6, 22),
+                                             3 => (0, 6, 35));
 
-   Bewegungsfeld : constant SichtweiteArray := (1 => (5, 9),
-                                                2 => (5, 21),
-                                                3 => (5, 34));
+   Bewegungsfeld : constant SichtweiteArray := (1 => (0, 5, 9),
+                                                2 => (0, 5, 21),
+                                                3 => (0, 5, 34));
 
    procedure Information;
    -- procedure Verschiebung;

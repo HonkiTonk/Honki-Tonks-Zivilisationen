@@ -14,7 +14,7 @@ package body Sichtbarkeit is
                null;
          end case;
          
-         case Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse).Grund is
+         case Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).AchsenPosition.XAchse).Grund is
             when 7 =>
                Sichtweite := 3;
 
@@ -30,18 +30,18 @@ package body Sichtbarkeit is
             XÄnderungEinheitenSchleife:
             for XÄnderung in -Sichtweite .. Sichtweite loop
                
-               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).YAchse,
-                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).XAchse,
+               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).AchsenPosition.YAchse,
+                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).AchsenPosition.XAchse,
                                                                  YÄnderung      => YÄnderung,
                                                                  XÄnderung      => XÄnderung,
                                                                  ZusatzYAbstand => 0);
 
-               case Kartenwert.YWert is
+               case Kartenwert.YAchse is
                   when GlobaleDatentypen.Kartenfeld'First =>
                      exit XÄnderungEinheitenSchleife;
                      
                   when others =>
-                     Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Sichtbar := True;
+                     Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar := True;
                end case;
             
             end loop XÄnderungEinheitenSchleife;
@@ -66,18 +66,18 @@ package body Sichtbarkeit is
             XÄnderungStadtSchleife:
             for XÄnderung in -Sichtweite .. Sichtweite loop
 
-               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).YAchse,
-                                                                 XKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).XAchse,
+               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).AchsenPosition.YAchse,
+                                                                 XKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).AchsenPosition.XAchse,
                                                                  YÄnderung      => YÄnderung,
                                                                  XÄnderung      => XÄnderung,
                                                                  ZusatzYAbstand => 0);
                
-               case Kartenwert.YWert is
+               case Kartenwert.YAchse is
                   when GlobaleDatentypen.Kartenfeld'First =>
                      exit XÄnderungStadtSchleife;
                      
                   when others =>
-                     Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Sichtbar := True;
+                     Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar := True;
                end case;
             
             end loop XÄnderungStadtSchleife;
@@ -98,7 +98,7 @@ package body Sichtbarkeit is
       -- Über den Einheiten kommt der Cursor      
        
       if Karten.Karten (0, YAchse, XAchse).Sichtbar = True then
-         if YAchse = GlobaleVariablen.CursorImSpiel.YAchse and XAchse = GlobaleVariablen.CursorImSpiel.XAchse then
+         if YAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse and XAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse then
             Farben (Einheit      => 0,
                     Verbesserung => 0,
                     Ressource    => 0,
@@ -118,7 +118,7 @@ package body Sichtbarkeit is
                if GlobaleVariablen.EinheitenGebaut (A, B).ID = 0 then
                   exit EinheitenPrüfenSchleife;
                
-               elsif GlobaleVariablen.EinheitenGebaut (A, B).YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (A, B).XAchse = XAchse then
+               elsif GlobaleVariablen.EinheitenGebaut (A, B).AchsenPosition.YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (A, B).AchsenPosition.XAchse = XAchse then
                   Farben (Einheit      => GlobaleVariablen.EinheitenGebaut (A, B).ID,
                           Verbesserung => 0,
                           Ressource    => 0,
@@ -141,7 +141,7 @@ package body Sichtbarkeit is
                if GlobaleVariablen.StadtGebaut (C, D).ID = 0 then
                   exit StädtePrüfenSchleife;
 
-               elsif GlobaleVariablen.StadtGebaut (C, D).YAchse = YAchse and GlobaleVariablen.StadtGebaut (C, D).XAchse = XAchse then
+               elsif GlobaleVariablen.StadtGebaut (C, D).AchsenPosition.YAchse = YAchse and GlobaleVariablen.StadtGebaut (C, D).AchsenPosition.XAchse = XAchse then
                   Farben (Einheit      => 0,
                           Verbesserung => GlobaleDatentypen.KartenVerbesserung (GlobaleVariablen.StadtGebaut (C, D).ID),
                           Ressource    => 0,
@@ -193,7 +193,7 @@ package body Sichtbarkeit is
          end if;
          
       else
-         if YAchse = GlobaleVariablen.CursorImSpiel.YAchse and XAchse = GlobaleVariablen.CursorImSpiel.XAchse then         
+         if YAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse and XAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse then         
             Farben (Einheit      => 0,
                     Verbesserung => 0,
                     Ressource    => 0,

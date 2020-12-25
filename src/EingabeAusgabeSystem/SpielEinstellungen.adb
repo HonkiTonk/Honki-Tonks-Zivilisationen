@@ -317,11 +317,11 @@ package body SpielEinstellungen is
                StartwerteFestlegenSchleife:
                loop
                   
-                  Koordinaten := ((0, 0), (0, 0));
+                  Koordinaten := ((0, 0, 0), (0, 0, 0));
                   GezogeneWerte := ZufallsGeneratoren.YXPosition;
 
-                  PrüfungEinheit := UmgebungPrüfen (YPosition => GezogeneWerte.YWert,
-                                                    XPosition => GezogeneWerte.XWert,
+                  PrüfungEinheit := UmgebungPrüfen (YPosition => GezogeneWerte.YAchse,
+                                                    XPosition => GezogeneWerte.XAchse,
                                                     Rasse     => Rasse);
 
                   case PrüfungEinheit is
@@ -348,10 +348,10 @@ package body SpielEinstellungen is
          
       end loop SpieleranzahlWerteFestlegen;
 
-      GlobaleVariablen.CursorImSpiel.YAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, 1).YAchse;
-      GlobaleVariablen.CursorImSpiel.XAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, 1).XAchse;
-      GlobaleVariablen.CursorImSpiel.YAchseAlt := GlobaleVariablen.CursorImSpiel.YAchse;
-      GlobaleVariablen.CursorImSpiel.XAchseAlt := GlobaleVariablen.CursorImSpiel.XAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, 1).AchsenPosition.YAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, 1).AchsenPosition.XAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.YAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse;
       
    end StartwerteErmitteln;
 
@@ -375,7 +375,7 @@ package body SpielEinstellungen is
 
       case PositionWert.Rasse is
          when SchleifenPruefungen.RückgabeWert =>
-            Koordinaten (1) := (YPosition, XPosition);
+            Koordinaten (1) := (0, YPosition, XPosition);
             YAchseSchleife:
             for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                XAchseSchleife:
@@ -386,28 +386,28 @@ package body SpielEinstellungen is
                                                                     YÄnderung      => YÄnderung,
                                                                     XÄnderung      => XÄnderung,
                                                                     ZusatzYAbstand => 0);
-                  case KartenWert.YWert is
+                  case KartenWert.YAchse is
                      when GlobaleDatentypen.Kartenfeld'First =>
                         exit XAchseSchleife;
                   
                      when others =>
                         if YÄnderung /= 0 or XÄnderung /= 0 then
                            PrüfungGrund := SchleifenPruefungen.KartenGrund (Ebene       => 0,
-                                                                            YKoordinate => KartenWert.YWert,
-                                                                            XKoordinate => KartenWert.XWert);
+                                                                            YKoordinate => KartenWert.YAchse,
+                                                                            XKoordinate => KartenWert.XAchse);
 
                            case PrüfungGrund is
                               when False =>
                                  PlatzBelegt := (1, 1);
             
                               when True =>
-                                 PlatzBelegt := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => KartenWert.YWert,
-                                                                                                       XAchse => KartenWert.XWert);
+                                 PlatzBelegt := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => KartenWert.YAchse,
+                                                                                                       XAchse => KartenWert.XAchse);
                            end case;                    
                            
                            case PlatzBelegt.Rasse is
                               when SchleifenPruefungen.RückgabeWert =>
-                                    Koordinaten (2) := (KartenWert.YWert, KartenWert.XWert);
+                                    Koordinaten (2) := (0, KartenWert.YAchse, KartenWert.XAchse);
                                     StartpunktFestlegen (Rasse => Rasse);
                                  return True;
                                  
@@ -437,13 +437,13 @@ package body SpielEinstellungen is
    begin
 
       GlobaleVariablen.EinheitenGebaut (Rasse, 1).ID := 1;
-      GlobaleVariablen.EinheitenGebaut (Rasse, 1).YAchse := Koordinaten (1).YWert;
-      GlobaleVariablen.EinheitenGebaut (Rasse, 1).XAchse := Koordinaten (1).XWert;
+      GlobaleVariablen.EinheitenGebaut (Rasse, 1).AchsenPosition.YAchse := Koordinaten (1).YAchse;
+      GlobaleVariablen.EinheitenGebaut (Rasse, 1).AchsenPosition.XAchse := Koordinaten (1).XAchse;
       EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, 1);
 
       GlobaleVariablen.EinheitenGebaut (Rasse, 2).ID := 2;
-      GlobaleVariablen.EinheitenGebaut (Rasse, 2).YAchse := Koordinaten (2).YWert;
-      GlobaleVariablen.EinheitenGebaut (Rasse, 2).XAchse := Koordinaten (2).XWert;
+      GlobaleVariablen.EinheitenGebaut (Rasse, 2).AchsenPosition.YAchse := Koordinaten (2).YAchse;
+      GlobaleVariablen.EinheitenGebaut (Rasse, 2).AchsenPosition.XAchse := Koordinaten (2).XAchse;
       EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, 2);     
       
    end StartpunktFestlegen;

@@ -75,13 +75,13 @@ package body BewegungssystemEinheiten is
       Gewonnen := True;
       Angreifen := False; 
       
-      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
-                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
+      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
+                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse,
                                                         YÄnderung      => YÄnderung,
                                                         XÄnderung      => XÄnderung,
                                                         ZusatzYAbstand => 0);
 
-      case KartenWert.YWert is
+      case KartenWert.YAchse is
          when GlobaleDatentypen.Kartenfeld'First =>
             return;
             
@@ -90,12 +90,12 @@ package body BewegungssystemEinheiten is
                null;
                
             elsif EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Passierbarkeit
-              /= KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund).Passierbarkeit then
+              /= KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit then
                case EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Passierbarkeit is
                   when 2 =>
                      Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (Rasse  => Rasse,
-                                                                                        YAchse => KartenWert.YWert,
-                                                                                        XAchse => KartenWert.XWert);
+                                                                                        YAchse => KartenWert.YAchse,
+                                                                                        XAchse => KartenWert.XAchse);
          
                      case Stadtnummer is
                         when 0 =>
@@ -114,8 +114,8 @@ package body BewegungssystemEinheiten is
             end if;
       end case;
 
-      GegnerEinheitWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => KartenWert.YWert,
-                                                                                  XAchse => KartenWert.XWert);
+      GegnerEinheitWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => KartenWert.YAchse,
+                                                                                  XAchse => KartenWert.XAchse);
 
       if GegnerEinheitWert.Rasse = GlobaleVariablen.Rasse then
          return;
@@ -124,8 +124,8 @@ package body BewegungssystemEinheiten is
          null;
       end if;
 
-      GegnerStadtWert := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => KartenWert.YWert,
-                                                                              XAchse => KartenWert.XWert);
+      GegnerStadtWert := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => KartenWert.YAchse,
+                                                                              XAchse => KartenWert.XAchse);
 
       if GegnerStadtWert.Rasse = GlobaleVariablen.Rasse then
          GegnerStadtWert.Rasse := 0;
@@ -177,17 +177,17 @@ package body BewegungssystemEinheiten is
       
       case Gewonnen is
          when True =>
-            if Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße /= 0 and Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße <= 19 then
+            if Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße /= 0 and Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße <= 19 then
                GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte - 0.50;
 
-            elsif Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss /= 0 then
+            elsif Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss /= 0 then
                GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte - 0.50;
 
-            elsif Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).VerbesserungStraße > 19 then   
+            elsif Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße > 19 then   
                GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte - 1.00;
 
-            elsif Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund = 1 or Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund = 7
-              or Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund = 9 or Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund = 32 then
+            elsif Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund = 1 or Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund = 7
+              or Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund = 9 or Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund = 32 then
                if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte < 1.00 then
                   GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := 0.00;
                   return;
@@ -207,10 +207,10 @@ package body BewegungssystemEinheiten is
                null;
             end if;
 
-            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).YAchse := KartenWert.YWert;
-            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).XAchse := KartenWert.XWert;               
-            GlobaleVariablen.CursorImSpiel.YAchse := KartenWert.YWert;
-            GlobaleVariablen.CursorImSpiel.XAchse := KartenWert.XWert;
+            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.YAchse := KartenWert.YAchse;
+            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.XAchse := KartenWert.XAchse;               
+            GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := KartenWert.YAchse;
+            GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := KartenWert.XAchse;
 
             case Angreifen is
                when True =>

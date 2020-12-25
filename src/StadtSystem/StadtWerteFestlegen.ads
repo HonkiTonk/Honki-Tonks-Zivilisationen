@@ -11,6 +11,6 @@ package StadtWerteFestlegen is
 private
    
    NutzbarerBereich : GlobaleDatentypen.Kartenfeld;
-   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
+   KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
 
 end StadtWerteFestlegen;
