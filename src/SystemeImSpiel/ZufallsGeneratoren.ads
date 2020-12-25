@@ -5,19 +5,19 @@ use GlobaleDatentypen;
 
 package ZufallsGeneratoren is
 
-   function YXPosition return GlobaleDatentypen.YWertXWertAusKartenfeld;
+   function YXPosition return GlobaleDatentypen.AchsenAusKartenfeldPositiv;
 
 private   
 
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
-   subtype Kartenwert20 is GlobaleDatentypen.Kartenfeld range 1 .. 20;
-   subtype Kartenwert40 is GlobaleDatentypen.Kartenfeld range 1 .. 40;
-   subtype Kartenwert80 is GlobaleDatentypen.Kartenfeld range 1 .. 80;
-   subtype Kartenwert120 is GlobaleDatentypen.Kartenfeld range 1 .. 120;
-   subtype Kartenwert160 is GlobaleDatentypen.Kartenfeld range 1 .. 160;
-   subtype Kartenwert240 is GlobaleDatentypen.Kartenfeld range 1 .. 240;
-   subtype Kartenwert320 is GlobaleDatentypen.Kartenfeld range 1 .. 320;
-   subtype Kartenwert1000 is GlobaleDatentypen.Kartenfeld range 1 .. 1000;
+   subtype Kartenwert20 is GlobaleDatentypen.KartenfeldPositiv range 1 .. 20;
+   subtype Kartenwert40 is GlobaleDatentypen.KartenfeldPositiv range 1 .. 40;
+   subtype Kartenwert80 is GlobaleDatentypen.KartenfeldPositiv range 1 .. 80;
+   subtype Kartenwert120 is GlobaleDatentypen.KartenfeldPositiv range 1 .. 120;
+   subtype Kartenwert160 is GlobaleDatentypen.KartenfeldPositiv range 1 .. 160;
+   subtype Kartenwert240 is GlobaleDatentypen.KartenfeldPositiv range 1 .. 240;
+   subtype Kartenwert320 is GlobaleDatentypen.KartenfeldPositiv range 1 .. 320;
+   subtype Kartenwert1000 is GlobaleDatentypen.KartenfeldPositiv range 1 .. 1000;
 
    package WerteWählen20 is new Ada.Numerics.Discrete_Random (Kartenwert20);
    package WerteWählen40 is new Ada.Numerics.Discrete_Random (Kartenwert40);

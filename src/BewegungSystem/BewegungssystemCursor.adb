@@ -91,8 +91,8 @@ package body BewegungssystemCursor is
          XPosition := GlobaleDatentypen.Kartenfeld (Wert);
       end if;
       
-      GlobaleVariablen.CursorImSpiel.YAchse := YPosition;
-      GlobaleVariablen.CursorImSpiel.XAchse := XPosition;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := YPosition;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := XPosition;
       
    end GeheZuCursor;
    
@@ -101,18 +101,18 @@ package body BewegungssystemCursor is
    procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) is
    begin
       
-      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
-                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
+      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
+                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse,
                                                         YÄnderung      => YÄnderung,
                                                         XÄnderung      => XÄnderung,
                                                         ZusatzYAbstand => 0);
-      case KartenWert.YWert is
+      case KartenWert.YAchse is
          when GlobaleDatentypen.Kartenfeld'First =>
             return;
               
          when others =>
-            GlobaleVariablen.CursorImSpiel.YAchse := KartenWert.YWert;
-            GlobaleVariablen.CursorImSpiel.XAchse := KartenWert.XWert;
+            GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := KartenWert.YAchse;
+            GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := KartenWert.XAchse;
       end case;
       
    end BewegungCursorBerechnen;
@@ -122,7 +122,7 @@ package body BewegungssystemCursor is
    procedure BewegungCursorBerechnenStadt is
    begin
       
-      if GlobaleVariablen.CursorImSpiel.YAchseStadt + YÄnderung < Karten.Stadtkarte'First (1) and XÄnderung = 0 then
+      if GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse + YÄnderung < Karten.Stadtkarte'First (1) and XÄnderung = 0 then
          GlobaleVariablen.CursorImSpiel.YAchseStadt := Karten.Stadtkarte'Last (1);
 
       elsif GlobaleVariablen.CursorImSpiel.YAchseStadt + YÄnderung > Karten.Stadtkarte'Last (1) and XÄnderung = 0 then

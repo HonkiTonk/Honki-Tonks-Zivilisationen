@@ -114,8 +114,8 @@ package body Cheat is
          AktuelleEinheit := AktuelleEinheit + 1;
       end if;
       
-      GlobaleVariablen.CursorImSpiel.YAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasse, AktuelleEinheit).YAchse;
-      GlobaleVariablen.CursorImSpiel.XAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasse, AktuelleEinheit).XAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasse, AktuelleEinheit).AchsenPosition.YAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasse, AktuelleEinheit).AchsenPosition.XAchse;
       
    end BeliebigeNächsteEinheit;
 

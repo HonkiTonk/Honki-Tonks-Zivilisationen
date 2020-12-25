@@ -60,10 +60,10 @@ private
 
    Straßenwert : Integer;
 
-   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
+   KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
    
    procedure VerbesserungeFestgelegt (Befehl, Rasse, EinheitNummer : in Integer);
    procedure VerbesserungAngelegt (Rasse, EinheitNummer : in Integer);
-   procedure StraßeBerechnung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld);
+   procedure StraßeBerechnung (AchsenKoordinaten : in GlobaleDatentypen.AchsenAusKartenfeldPositiv);
 
 end VerbesserungenDatenbank;

@@ -183,14 +183,14 @@ package body KartenGenerator is
                                                               XÄnderung      => XÄnderung,
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
-            case KartenWert.YWert is
+            case KartenWert.YAchse is
                when GlobaleDatentypen.Kartenfeld'First =>
                   exit XAchseSchleife;
                   
                when others =>         
                   Wert := Random (Gewählt);
-                  GenerierungLandmasseÜberhang (YAchse  => KartenWert.YWert,
-                                                XAchse  => KartenWert.XWert,
+                  GenerierungLandmasseÜberhang (YAchse  => KartenWert.YAchse,
+                                                XAchse  => KartenWert.XAchse,
                                                 Gezogen => Wert);
             end case;
             
@@ -207,17 +207,17 @@ package body KartenGenerator is
                                                               YÄnderung      => YÄnderung,
                                                               XÄnderung      => XÄnderung,
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
-            case KartenWert.YWert is
+            case KartenWert.YAchse is
                when GlobaleDatentypen.Kartenfeld'First =>
                   exit XAchseZweiSchleife;
                   
                when others =>
-                  case GeneratorKarte (KartenWert.YWert, KartenWert.XWert) is
+                  case GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) is
                      when 1 .. 2 =>
                         null;
                         
                      when others =>
-                        GeneratorKarte (KartenWert.YWert, KartenWert.XWert) := 3;                           
+                        GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := 3;                           
                   end case;
             end case;
                     
@@ -269,12 +269,12 @@ package body KartenGenerator is
                                                                           XÄnderung      => XÄnderung,
                                                                           ZusatzYAbstand => 0);
 
-                        case KartenWert.YWert is
+                        case KartenWert.YAchse is
                            when GlobaleDatentypen.Kartenfeld'First =>
                               exit ZweiteYAchseSchleife;
                                 
                            when others =>
-                              case Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Grund is
+                              case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund is
                                  when 3 =>
                                     Karten.Karten (0, YPosition, XPosition).Grund := 31;
                                     exit ZweiteYAchseSchleife;
@@ -387,15 +387,15 @@ package body KartenGenerator is
                                                               XÄnderung      => XÄnderung,
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
-            case KartenWert.YWert is
+            case KartenWert.YAchse is
                when GlobaleDatentypen.Kartenfeld'First =>
                   exit XAchseSchleife;
                   
                when others =>
-                  case GeneratorKarte (KartenWert.YWert, KartenWert.XWert) is
+                  case GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) is
                      when 0 =>
-                        GenerierungTemperaturZusatz (YAchse     => KartenWert.YWert,
-                                                     XAchse     => KartenWert.XWert,
+                        GenerierungTemperaturZusatz (YAchse     => KartenWert.YAchse,
+                                                     XAchse     => KartenWert.XAchse,
                                                      Geländeart => Geländeart);
                         
                      when others =>
@@ -511,12 +511,12 @@ package body KartenGenerator is
                                                                           XÄnderung      => B,
                                                                           ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
-                        case KartenWert.YWert is
+                        case KartenWert.YAchse is
                            when GlobaleDatentypen.Kartenfeld'First =>
                               exit XAchseSchleifeZwei;
                            
                            when others =>             
-                              GeneratorKarte (KartenWert.YWert, KartenWert.XWert) := 1;
+                              GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := 1;
                         end case;
                      
                      end loop XAchseSchleifeZwei;
@@ -560,12 +560,12 @@ package body KartenGenerator is
                                                                        XÄnderung      => B,
                                                                        ZusatzYAbstand => 0); -- Hier muss < geprüft werden, deswegen 0
 
-                     case KartenWert.YWert is
+                     case KartenWert.YAchse is
                         when GlobaleDatentypen.Kartenfeld'First =>
                            exit XAchseSchleifeZwei;
                            
                         when others =>
-                           if Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss /= 0 and Wert >= WahrscheinlichkeitFluss / 2.00 then                        
+                           if Karten.Karten (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= 0 and Wert >= WahrscheinlichkeitFluss / 2.00 then                        
                               Karten.Karten (0, Y, X).Fluss := 15;
 
                            else
@@ -607,36 +607,36 @@ package body KartenGenerator is
                                                               XÄnderung      => XÄnderung,
                                                               ZusatzYAbstand => 0);
 
-            case KartenWert.YWert is
+            case KartenWert.YAchse is
                when GlobaleDatentypen.Kartenfeld'First =>
                   exit XAchseSchleife;
 
                when others =>
                   if XÄnderung = -1 and YÄnderung = 0 then
-                     case Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss is
+                     case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
                         when 0 =>
                            Flusswert := Flusswert - 1000;
 
                         when 16 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 23;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
                      
                         when 18 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 22;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
 
                         when 20 =>                     
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 21;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
 
                         when 24 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 14;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
 
                         when 26 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 15;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 15;
 
                         when 27 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 19;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 19;
 
                         when 28 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 17;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
                      
                         when others =>
                            null;
@@ -644,30 +644,30 @@ package body KartenGenerator is
                      Flusswert := Flusswert + 1000;
                
                   elsif XÄnderung = 1 and YÄnderung = 0 then
-                     case Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss is
+                     case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
                         when 0 =>
                            Flusswert := Flusswert - 100;
 
                         when 16 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 24;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
                      
                         when 17 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 22;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
 
                         when 19 =>                     
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 21;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
 
                         when 23 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 14;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
 
                         when 25 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 15;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 15;
 
                         when 27 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 20;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 20;
 
                         when 28 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 18;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
                      
                         when others =>
                            null;
@@ -675,30 +675,30 @@ package body KartenGenerator is
                      Flusswert := Flusswert + 100;
                
                   elsif YÄnderung = -1 and XÄnderung = 0 then
-                     case Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss is
+                     case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
                         when 0 =>
                            Flusswert := Flusswert - 10;
                      
                         when 15 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 22;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
                      
                         when 19 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 23;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
 
                         when 20 =>                     
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 24;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
 
                         when 21 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 14;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
 
                         when 25 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 17;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
 
                         when 26 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 18;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
 
                         when 27 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 16;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
                      
                         when others =>
                            null;
@@ -706,30 +706,30 @@ package body KartenGenerator is
                      Flusswert := Flusswert + 10;
                
                   elsif YÄnderung = 1 and XÄnderung = 0 then
-                     case Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss is
+                     case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
                         when 0 =>
                            Flusswert := Flusswert - 1;
                      
                         when 15 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 21;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
                      
                         when 17 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 23;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
 
                         when 18 =>                     
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 24;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
 
                         when 22 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 14;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
 
                         when 25 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 19;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 19;
 
                         when 26 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 20;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 20;
 
                         when 28 =>
-                           Karten.Karten (0, KartenWert.YWert, KartenWert.XWert).Fluss := 16;
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
                      
                         when others =>
                            null;
@@ -879,33 +879,33 @@ package body KartenGenerator is
                                                                           XÄnderung      => BewertungXÄnderung,
                                                                           ZusatzYAbstand => 0);
                         
-                        case Kartenwert.YWert is
+                        case Kartenwert.YAchse is
                            when GlobaleDatentypen.Kartenfeld'First =>
                               exit BewertungXÄnderungSchleife;
                   
                            when others =>
                               if BewertungYÄnderung = 3 or BewertungXÄnderung = 3 then -- Das hier auf jeden Fall ausgliedern, muss bei jeder Umgebungsänderung neu berechnet werden
                                  Karten.Karten (0, YAchse, XAchse).Felderwertung := Karten.Karten (0, YAchse, XAchse).Felderwertung
-                                   + ((KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Nahrungsgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Ressourcengewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Geldgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Wissensgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Verteidigungsbonus) / 3);
+                                   + ((KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Verteidigungsbonus) / 3);
                                  
                               elsif BewertungYÄnderung = 2 or BewertungXÄnderung = 2 then
                                  Karten.Karten (0, YAchse, XAchse).Felderwertung := Karten.Karten (0, YAchse, XAchse).Felderwertung
-                                   + ((KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Nahrungsgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Ressourcengewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Geldgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Wissensgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Verteidigungsbonus) / 2);
+                                   + ((KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Verteidigungsbonus) / 2);
                               else
                                  Karten.Karten (0, YAchse, XAchse).Felderwertung := Karten.Karten (0, YAchse, XAchse).Felderwertung
-                                   + (KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Nahrungsgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Ressourcengewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Geldgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Wissensgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YWert, Kartenwert.XWert).Grund).Verteidigungsbonus);                                
+                                   + (KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung
+                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Verteidigungsbonus);                                
                               end if;
                         end case;
                         

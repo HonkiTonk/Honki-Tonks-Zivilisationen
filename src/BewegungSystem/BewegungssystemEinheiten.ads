@@ -23,7 +23,7 @@ private
 
    Stadtnummer : Integer;
 
-   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
+   KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
    GegnerEinheitWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    GegnerStadtWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    

@@ -45,8 +45,8 @@ package body NaechstesObjekt is
 
       end loop;
          
-      GlobaleVariablen.CursorImSpiel.YAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).YAchse;
-      GlobaleVariablen.CursorImSpiel.XAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).XAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).AchsenPosition.YAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).AchsenPosition.XAchse;
       
    end NächsteEinheitMitBewegungspunkten;
    
@@ -68,8 +68,8 @@ package body NaechstesObjekt is
          AktuelleEinheit := AktuelleEinheit + 1;
       end if;
       
-      GlobaleVariablen.CursorImSpiel.YAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).YAchse;
-      GlobaleVariablen.CursorImSpiel.XAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).XAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).AchsenPosition.YAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).AchsenPosition.XAchse;
       
    end NächsteEinheit;
 
@@ -120,8 +120,8 @@ package body NaechstesObjekt is
 
       end loop;
          
-      GlobaleVariablen.CursorImSpiel.YAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).YAchse;
-      GlobaleVariablen.CursorImSpiel.XAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).XAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).AchsenPosition.YAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, AktuelleEinheit).AchsenPosition.XAchse;
       
    end NächsteEinheitOhneBewegungspunkte;
    
@@ -143,8 +143,8 @@ package body NaechstesObjekt is
          AktuelleStadt := AktuelleStadt + 1;
       end if;
       
-      GlobaleVariablen.CursorImSpiel.YAchse := GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, AktuelleStadt).YAchse;
-      GlobaleVariablen.CursorImSpiel.XAchse := GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, AktuelleStadt).XAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, AktuelleStadt).AchsenPosition.YAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, AktuelleStadt).AchsenPosition.XAchse;
       
    end NächsteStadt;
 

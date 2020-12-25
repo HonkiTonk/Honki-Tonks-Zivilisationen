@@ -65,7 +65,7 @@ package body EinheitenDatenbank is
    procedure EinheitErzeugen (Rasse, StadtNummer, ID : in Integer) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
    begin
 
-      Position := (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse);
+      Position := (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.YAchse, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.XAchse);
       EinheitenPosition := 0;
             
       EinheitenSchleife:
@@ -75,8 +75,8 @@ package body EinheitenDatenbank is
             EinheitenPosition := EinheitenListenplatz;
             exit EinheitenSchleife;
 
-         elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).YAchse = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).YAchse
-           and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).XAchse = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).XAchse then
+         elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).AchsenPosition.YAchse = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.YAchse
+           and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).AchsenPosition.XAchse = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.XAchse then
             return;
             
          else
@@ -91,8 +91,8 @@ package body EinheitenDatenbank is
             
          when others =>
             GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).ID := GlobaleDatentypen.EinheitenID (ID);
-            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).YAchse := Position.YAchse;
-            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).XAchse := Position.XAchse;
+            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).AchsenPosition.YAchse := Position.YAchse;
+            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).AchsenPosition.XAchse := Position.XAchse;
             LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse         => Rasse,
                                                          EinheitNummer => EinheitenPosition);
             GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit := 0;
@@ -107,7 +107,7 @@ package body EinheitenDatenbank is
    procedure EinheitEntfernen (Rasse, EinheitNummer : in Integer) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer) := (0, 0, 0, 1, 1, 0, 0.00, 0, 0, 0, 0);      
+      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer) := (0, 0, 0, (0, 1, 1), 0, 0.00, 0, 0, 0, 0);      
       EinheitGebautSortieren (Rasse => Rasse);
 
       if GlobaleVariablen.EinheitenGebaut (Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (Rasse, 1).ID = 0 then
@@ -128,7 +128,7 @@ package body EinheitenDatenbank is
       for Tauschen in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
          Sortieren (Tauschen) := GlobaleVariablen.EinheitenGebaut (Rasse, Tauschen);
-         GlobaleVariablen.EinheitenGebaut (Rasse, Tauschen) := (0, 0, 0, 1, 1, 0, 0.00, 0, 0, 0, 0); 
+         GlobaleVariablen.EinheitenGebaut (Rasse, Tauschen) := (0, 0, 0, (0, 1, 1), 0, 0.00, 0, 0, 0, 0); 
          
       end loop TauschSchleife;
 
@@ -139,7 +139,7 @@ package body EinheitenDatenbank is
             
             if Sortieren (Auswahl).ID /= 0 then
                GlobaleVariablen.EinheitenGebaut (Rasse, Einsortieren) := Sortieren (Auswahl);
-               Sortieren (Auswahl) := (0, 0, 0, 1, 1, 0, 0.00, 0, 0, 0, 0);
+               Sortieren (Auswahl) := (0, 0, 0, (0, 1, 1), 0, 0.00, 0, 0, 0, 0);
                exit SortierenInnenSchleife;
                
             elsif Auswahl = Sortieren'Last then

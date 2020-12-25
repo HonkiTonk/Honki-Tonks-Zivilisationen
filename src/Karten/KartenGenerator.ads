@@ -26,7 +26,7 @@ private
 
    Wert : Float;
 
-   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
+   KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
 
    type GrößeLandartArray is array (1 .. 3) of GlobaleDatentypen.Kartenfeld;
    GrößeLandart : GrößeLandartArray;

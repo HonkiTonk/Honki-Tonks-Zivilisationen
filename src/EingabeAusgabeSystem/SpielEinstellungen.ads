@@ -26,11 +26,11 @@ private
    SicherheitsTestWert : Integer;
 
    PositionWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
-   GezogeneWerte : GlobaleDatentypen.YWertXWertAusKartenfeld;
-   KartenWert : GlobaleDatentypen.YWertXWertAusKartenfeld;
+   GezogeneWerte : GlobaleDatentypen.AchsenAusKartenfeldPositiv;
+   KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
    PlatzBelegt : GlobaleDatentypen.RasseUndPlatznummerRecord;
 
-   type KoordinatenArray is array (1 .. 2) of GlobaleDatentypen.YWertXWertAusKartenfeld;
+   type KoordinatenArray is array (1 .. 2) of GlobaleDatentypen.AchsenAusKartenfeld;
    Koordinaten : KoordinatenArray;
 
    subtype ZufälligeKartengröße is Integer range 1 .. 9;

@@ -11,7 +11,7 @@ package GlobaleDatentypen is
 
    type KartenGrund is range -2 .. 36;
    type KartenVerbesserung is range 0 .. 22;
-   type Ebene is range -2 .. 2; -- Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
+   type Ebene is range -3 .. 2; -- Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    type BelegterGrund is range 0 .. 18_100;
 
    type EinheitenID is range 0 .. 50;
@@ -29,24 +29,26 @@ package GlobaleDatentypen is
 
    type RassenImSpielArray is array (1 .. 18) of Integer;
 
-   type YAchseXAchseAusStadtfeld is record
+   type AchsenAusStadtfeld is record
       
       YAchse : Stadtfeld;
       XAchse : Stadtfeld;
       
    end record;
    
-   type YAchseXAchseAusKartenfeldPositiv is record
+   type AchsenAusKartenfeldPositiv is record
       
+      EAchse : Ebene;
       YAchse : KartenfeldPositiv;
       XAchse : KartenfeldPositiv;
       
    end record;
 
-   type YWertXWertAusKartenfeld is record
+   type AchsenAusKartenfeld is record
       
-      YWert : Kartenfeld;
-      XWert : Kartenfeld;
+      EAchse : Ebene;
+      YAchse : Kartenfeld;
+      XAchse : Kartenfeld;
       
    end record;
 
