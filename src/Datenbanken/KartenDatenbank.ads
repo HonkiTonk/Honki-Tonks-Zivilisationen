@@ -63,7 +63,11 @@ package KartenDatenbank is
                                                            ('♦', 1,    0, 1, 3, 0,    0), -- 33 Gold = Ressource 5
                                                            (' ', 1,    0, 0, 0, 0,    0), -- 34 Hügel mit (Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?)
                                                            (' ', 1,    0, 0, 0, 0,    0), -- 35 Erde
-                                                           (' ', 1,    0, 0, 0, 0,    0)); -- 36 Lava
+                                                           (' ', 1,    0, 0, 0, 0,    0), -- 36 Lava
+                                                           (' ', 1,    0, 0, 0, 0,    0), -- 37 Wolken
+                                                           (' ', 1,    0, 0, 0, 0,    0), -- 38 Weltraum
+                                                           (' ', 1,    0, 0, 0, 0,    0), -- 39 Erde
+                                                           (' ', 1,    0, 0, 0, 0,    0)); -- 40 Gestein
                                                                        
    procedure Beschreibung (ID : in GlobaleDatentypen.KartenGrund);
 

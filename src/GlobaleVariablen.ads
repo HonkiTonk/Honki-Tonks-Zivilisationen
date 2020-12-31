@@ -8,7 +8,7 @@ package GlobaleVariablen is
    WelcheSprache : Integer;
    AktuelleEbene : GlobaleDatentypen.Ebene := 0;
 
-   type TexteEinlesenArray is array (1 .. 23, 1 .. 50) of Unbounded_Wide_Wide_String;
+   type TexteEinlesenArray is array (1 .. 24, 1 .. 50) of Unbounded_Wide_Wide_String;
    TexteEinlesen : TexteEinlesenArray := (others => (others => (To_Unbounded_Wide_Wide_String ("|"))));
 
    type CursorRecord is record
@@ -109,7 +109,7 @@ package GlobaleVariablen is
   
    FeindlicheInformationenSehen : Boolean := False;
    
-   type ZeitArray is array (1 .. 2, 1 .. 8) of Time;
+   type ZeitArray is array (1 .. 2, 2 .. 13) of Time;
    Zeit : ZeitArray;
                                             
 end GlobaleVariablen;

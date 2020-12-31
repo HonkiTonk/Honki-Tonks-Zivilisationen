@@ -9,9 +9,9 @@ package GlobaleDatentypen is
    subtype LoopRangeMinusZweiZuZwei is Kartenfeld range -2 .. 2;
    subtype LoopRangeMinusDreiZuDrei is Kartenfeld range -3 .. 3;
 
-   type KartenGrund is range -2 .. 36;
+   type KartenGrund is range -2 .. 40;
    type KartenVerbesserung is range 0 .. 22;
-   type Ebene is range -3 .. 2; -- Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
+   type Ebene is range -3 .. 2; -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    type BelegterGrund is range 0 .. 18_100;
 
    type EinheitenID is range 0 .. 50;

@@ -1,10 +1,10 @@
-with Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO, Ada.Calendar, Ada.Numerics.Discrete_Random;
+with Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Calendar, Ada.Numerics.Discrete_Random;
 use Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Calendar;
 
-with Karten, GlobaleVariablen, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen;
+with Karten, GlobaleVariablen, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen, Ladezeiten;
 use GlobaleDatentypen;
 
-package KartenGenerator is -- Klein = 40x40, Mittel = 80x80, Groß = 160x160, Riesig = 240x240, Gigantisch = 320x320, Absurd? = 1000x1000
+package KartenGenerator is -- Klein = 40x40, Mittel = 80x80, Groß = 160x160, Riesig = 240x240, Gigantisch = 320x320, Absurd = 1000x1000
 
    Kartenart : Integer := 1; -- 1 = Inseln, 2 = Kontinente, 3 = Pangäa, 4 = Nur Land, 5 = Chaos
    Kartentemperatur : Integer := 1; -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
@@ -17,9 +17,9 @@ private
 
    NochVerteilbareRessourcen : Integer;
    Überhang : Integer;
-   Eisrand : constant GlobaleDatentypen.Kartenfeld := 1;
-   FelderVonTemperaturZuTemperatur : constant GlobaleDatentypen.Kartenfeld := 5;
-   Abstand : constant GlobaleDatentypen.Kartenfeld := 2;
+   Eisrand : constant GlobaleDatentypen.KartenfeldPositiv := 1;
+   FelderVonTemperaturZuTemperatur : constant GlobaleDatentypen.KartenfeldPositiv := 5;
+   Abstand : constant GlobaleDatentypen.KartenfeldPositiv := 2;
    WahrscheinlichkeitFluss : constant Float := 0.90;
    Wert2 : Integer;
    Flusswert : Integer;
@@ -45,7 +45,7 @@ private
    type GeneratorKarteArray is array (Karten.Karten'Range (2), Karten.Karten'Range (3)) of GlobaleDatentypen.Kartenfeld;
    GeneratorKarte : GeneratorKarteArray;
 
-   type EisWahrscheinlichkeitReduzierungspunktArray is array (1 .. 3) of GlobaleDatentypen.Kartenfeld;
+   type EisWahrscheinlichkeitReduzierungspunktArray is array (1 .. 3) of GlobaleDatentypen.KartenfeldPositiv;
    EisWahrscheinlichkeitReduzierungspunkt : EisWahrscheinlichkeitReduzierungspunktArray;
 
    type WahrscheinlichkeitenFürLandartArray is array (1 .. 3, 1 .. 3) of Float;
@@ -57,14 +57,14 @@ private
    type WahrscheinlichkeitFürLandschaftArray is array (6 .. 10) of Float;
    WahrscheinlichkeitFürLandschaft : constant WahrscheinlichkeitFürLandschaftArray := (0.85, 0.75, 0.50, 0.30, 0.20);
 
-   procedure GenerierungKartenart (Y, X : in GlobaleDatentypen.Kartenfeld);
-   procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in GlobaleDatentypen.Kartenfeld);
+   procedure GenerierungKartenart (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv);
+   procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in GlobaleDatentypen.KartenfeldPositiv);
    procedure GenerierungLandmasseÜberhang (YAchse, XAchse : in GlobaleDatentypen.Kartenfeld; Gezogen : in Float);
    procedure GenerierungKüstenSeeGewässer;
 
    procedure GenerierungKartentemperatur;
-   procedure GenerierungTemperaturAbstand (Geländeart : GlobaleDatentypen.KartenGrund; YPosition, XPosition: in GlobaleDatentypen.Kartenfeld);
-   procedure GenerierungTemperaturZusatz (Geländeart : GlobaleDatentypen.KartenGrund; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld);
+   procedure GenerierungTemperaturAbstand (Geländeart : GlobaleDatentypen.KartenGrund; YPosition, XPosition: in GlobaleDatentypen.KartenfeldPositiv);
+   procedure GenerierungTemperaturZusatz (Geländeart : GlobaleDatentypen.KartenGrund; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv);
 
    procedure GenerierungLandschaft;
    procedure GenerierungLandschaftZusatz;
@@ -72,6 +72,12 @@ private
    procedure GenerierungFlüsse;
    procedure FlussBerechnung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld);
    procedure GenerierungRessourcen;
+
+   procedure AndereEbenen;
+   --procedure Himmel;
+   --procedure Weltraum;
+   --procedure Unterwasser;
+   --procedure PlanetenInneres;
 
    procedure KartenfelderBewerten;
 

@@ -20,7 +20,7 @@ package body KarteStadt is
                if YAchsenabstraktion > Stadtumgebungsgröße then
                   for A in 0 .. 6 loop
                      
-                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel.XAchseStadt then
+                     if Y = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
 
                      else
@@ -35,7 +35,7 @@ package body KarteStadt is
                elsif Stadtumgebungsgröße = 1 and Y < 3 then
                   for A in 0 .. 6 loop                  
                                           
-                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel.XAchseStadt then
+                     if Y = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
 
                      else
@@ -50,7 +50,7 @@ package body KarteStadt is
                elsif Stadtumgebungsgröße = 2 and Y < 2 then
                   for A in 0 .. 6 loop               
                                           
-                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel.XAchseStadt then
+                     if Y = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
 
                      else                                            
@@ -67,7 +67,7 @@ package body KarteStadt is
                   for A in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
 
                      Cursor := CursorKonstant + A;
-                     if Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X + Cursor = GlobaleVariablen.CursorImSpiel.XAchseStadt then
+                     if Y = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse and X + Cursor = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
                         CursorYAchsePlus := Y - 4;
 
@@ -85,19 +85,20 @@ package body KarteStadt is
                         Put (Item => " ");
 
                      else
-                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
-                                                                          XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
+                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
+                                                                          XKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse,
                                                                           YÄnderung      => YAchsenabstraktion,
                                                                           XÄnderung      => A,
                                                                           ZusatzYAbstand => 0);
 
-                        case KartenWert.YWert is
+                        case KartenWert.YAchse is
                            when GlobaleDatentypen.Kartenfeld'First =>
                               Put (Item => " ");
 
                            when others =>
-                              Sichtbarkeit.Sichtbarkeit (YAchse => KartenWert.YWert,
-                                                         XAchse => KartenWert.XWert);
+                              Sichtbarkeit.Sichtbarkeit (InDerStadt => True,
+                                                         YAchse     => KartenWert.YAchse,
+                                                         XAchse     => KartenWert.XAchse);
                         end case;
                      end if;
 
@@ -108,7 +109,7 @@ package body KarteStadt is
                   exit XAchseSchleife;
                end if;
                
-            elsif Y = GlobaleVariablen.CursorImSpiel.YAchseStadt and X = GlobaleVariablen.CursorImSpiel.XAchseStadt then
+            elsif Y = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse and X = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse then
                Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
 
             elsif Y < Karten.Stadtkarte'First (1) + 7 and X = Karten.Stadtkarte'Last (2) - 7 then
@@ -125,7 +126,7 @@ package body KarteStadt is
                   Sichtbarkeit.Farben (Einheit      => 0,
                                        Verbesserung => 0,
                                        Ressource    => 0,
-                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund,
+                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund,
                                        Cursor       => False);
                end if;
 
@@ -137,7 +138,7 @@ package body KarteStadt is
                   Sichtbarkeit.Farben (Einheit      => 0,
                                        Verbesserung => 0,
                                        Ressource    => 0,
-                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund,
+                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund,
                                        Cursor       => False);
                end if;
 
@@ -145,7 +146,7 @@ package body KarteStadt is
                Sichtbarkeit.Farben (Einheit      => 0,
                                     Verbesserung => 0,
                                     Ressource    => 0,
-                                    Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.YAchse, GlobaleVariablen.CursorImSpiel.XAchse).Grund,
+                                    Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund,
                                     Cursor       => False);
             end if;
 
@@ -164,17 +165,17 @@ package body KarteStadt is
                     StadtNummer => Stadtnummer);
       InformationenStadt (YAufschlag => CursorYAchsePlus,
                           XAufschlag => CursorXAchsePlus);
-      if GlobaleVariablen.CursorImSpiel.YAchseStadt = 1 and GlobaleVariablen.CursorImSpiel.XAchseStadt < 13 then
-         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.XAchseStadt)) /= '0' then
-            GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel.XAchseStadt));
+      if GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse = 1 and GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse < 13 then
+         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse)) /= '0' then
+            GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse));
             
          else
             null;
          end if;
 
-      elsif GlobaleVariablen.CursorImSpiel.YAchseStadt = 2 and GlobaleVariablen.CursorImSpiel.XAchseStadt < 13 then
-         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.XAchseStadt) + 12) /= '0' then
-            GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel.XAchseStadt) + 12);
+      elsif GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse = 2 and GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse < 13 then
+         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12) /= '0' then
+            GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12);
             
          else
             null;
@@ -207,25 +208,25 @@ package body KarteStadt is
       Geldgewinnung := 0;
       Wissensgewinnung := 0;
 
-      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.YAchse,
-                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel.XAchse,
+      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
+                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse,
                                                         YÄnderung      => YAufschlag,
                                                         XÄnderung      => XAufschlag,
                                                         ZusatzYAbstand => 0);
 
-      case KartenWert.YWert is
+      case KartenWert.YAchse is
          when GlobaleDatentypen.Kartenfeld'First =>
             YAchse := -10;
          
          when others =>
-            YAchse := GlobaleVariablen.CursorImSpiel.YAchse + YAufschlag;
+            YAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse + YAufschlag;
       end case;
 
       if XAufschlag = -10 then
          XAchse := XAufschlag;
 
       else         
-         XAchse := KartenWert.XWert;
+         XAchse := KartenWert.XAchse;
       end if;
       
       if YAchse = -10 or XAchse = -10 then

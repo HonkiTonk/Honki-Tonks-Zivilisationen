@@ -42,25 +42,11 @@ package body SpielEinstellungen is
 
       KartenGenerator.KartenGenerator;
       
-      GlobaleVariablen.Zeit (1, 8) := Clock;
+      GlobaleVariablen.Zeit (1, 13) := Clock;
       StartwerteErmitteln;
-      GlobaleVariablen.Zeit (2, 8) := Clock;
-
-      Put ("Verteile Rassen: ");
-      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 8) - GlobaleVariablen.Zeit (1, 8)),
-                             Fore => 1,
-                             Aft  => 6,
-                             Exp  => 0);
-      New_Line;
-
-      Put ("Gesamtzeit: ");
-      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 1) - GlobaleVariablen.Zeit (1, 1) + GlobaleVariablen.Zeit (2, 2) - GlobaleVariablen.Zeit (1, 2) + GlobaleVariablen.Zeit (2, 3) - GlobaleVariablen.Zeit (1, 3)
-                             + GlobaleVariablen.Zeit (2, 4) - GlobaleVariablen.Zeit (1, 4) + GlobaleVariablen.Zeit (2, 5) - GlobaleVariablen.Zeit (1, 5) + GlobaleVariablen.Zeit (2, 6) - GlobaleVariablen.Zeit (1, 6)
-                             + GlobaleVariablen.Zeit (2, 7) - GlobaleVariablen.Zeit (1, 7) + GlobaleVariablen.Zeit (2, 8) - GlobaleVariablen.Zeit (1, 8)),
-                             Fore => 1,
-                             Aft  => 6,
-                             Exp  => 0);
-      Get_Immediate (Item => Warten);
+      GlobaleVariablen.Zeit (2, 13) := Clock;      
+      Ladezeiten.Ladezeiten (WelcheZeit => 9);
+      Ladezeiten.Ladezeiten (WelcheZeit => 1);
          
       return ImSpiel.ImSpiel;
               
@@ -80,8 +66,31 @@ package body SpielEinstellungen is
             when 1 .. 9 =>
                Karten.Kartengröße := Wahl;
                return 2;
-               
+
             when 10 =>
+               Karten.Kartengröße := Wahl;
+               Anzeige.WelcheAuswahl (WasWurdeGewählt => 19);
+               BenutzerdefinierteGröße := Eingabe.GanzeZahl (Zahlengröße => 4);
+               case BenutzerdefinierteGröße is
+                  when 10 .. 1_000 =>
+                     Karten.Kartengrößen (Wahl).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+                     BenutzerdefinierteGröße := Eingabe.GanzeZahl (Zahlengröße => 4);
+                     
+                     case BenutzerdefinierteGröße is
+                        when 10 .. 1_000 =>
+                           Karten.Kartengrößen (Wahl).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+                           Karten.Kartengrößen (Wahl).Ressourcenmenge := Integer (Karten.Kartengrößen (Wahl).YAchsenGröße) * Integer (Karten.Kartengrößen (Wahl).XAchsenGröße) / 32;
+                           return 2;
+                           
+                        when others =>
+                           null;
+                     end case;
+                     
+                  when others =>
+                     null;
+               end case;
+               
+            when 11 =>
                ZufälligeKartengrößeWählen.Reset (ZufälligeKartenGrößeGewählt);
                Karten.Kartengröße := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
                return 2;

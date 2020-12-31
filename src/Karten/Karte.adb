@@ -11,6 +11,9 @@ package body Karte is
          when 2 =>
             SichtweiteFestlegen := 2;
             BewegungsfeldFestlegen := 2;
+
+         -- when 10 =>
+            -- if Karten.Kartengrößen (Karten.Kartengröße).
             
          when others =>
             SichtweiteFestlegen := 3;
@@ -18,7 +21,7 @@ package body Karte is
       end case;      
 
       if GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse > GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.YAchse + Bewegungsfeld (BewegungsfeldFestlegen).YAchse
-        or GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse < GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse - Bewegungsfeld (BewegungsfeldFestlegen).YAchse then
+        or GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse < GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.YAchse - Bewegungsfeld (BewegungsfeldFestlegen).YAchse then
          GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.YAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse;
          
       else
@@ -44,7 +47,7 @@ package body Karte is
          end if;
          
       else
-         if GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse > GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse
+         if GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse > GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse
            or GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse < GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse then
             GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse;
             
@@ -71,8 +74,9 @@ package body Karte is
                   exit XAchseSchleife;
                   
                when others =>
-                  Sichtbarkeit.Sichtbarkeit (YAchse => Kartenwert.YAchse,
-                                             XAchse => Kartenwert.XAchse);
+                  Sichtbarkeit.Sichtbarkeit (InDerStadt => False,
+                                             YAchse     => Kartenwert.YAchse,
+                                             XAchse     => Kartenwert.XAchse);
             end case;
             
             if XAchse = Sichtweite (SichtweiteFestlegen).XAchse then
@@ -113,7 +117,7 @@ package body Karte is
       Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 37)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsrate'Wide_Wide_Image);
       New_Line;
       
-      case Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Sichtbar is
+      case Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Sichtbar (GlobaleVariablen.Rasse) is
          when True =>
             RassenEinheitenSchleife:
             for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop

@@ -7,136 +7,97 @@ package body KartenGenerator is
 
       NochVerteilbareRessourcen := Karten.Kartengrößen (Karten.Kartengröße).Ressourcenmenge;
       GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 10); -- Inseln, Kontinente, Pangäa
-      -- Größe Landart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
+      -- GrößeLandart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
       GeneratorKarte := (others => (others => (0)));
 
-      GlobaleVariablen.Zeit (1, 1) := Clock;
+      GlobaleVariablen.Zeit (1, 2) := Clock;
       YAchseSchleife:
-      for Y in Karten.Karten'Range (2) loop
+      for YAchse in Karten.Karten'Range (2) loop
          XAchseSchleife:
-         for X in Karten.Karten'Range (3) loop
+         for XAchse in Karten.Karten'Range (3) loop
                         
-            if Y > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               Karten.Karten (0, Y, X).Grund := -2;
+            if YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+               Karten.Karten (0, YAchse, XAchse).Grund := -2;
                exit YAchseSchleife;
                
-            elsif X > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-               Karten.Karten (0, Y, X).Grund := -1;
+            elsif XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+               Karten.Karten (0, YAchse, XAchse).Grund := -1;
                exit XAchseSchleife;   
                
-            elsif Y = Karten.Karten'First (2) or Y = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               Karten.Karten (0, Y, X).Grund := 1;
+            elsif YAchse = Karten.Karten'First (2) or YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+               Karten.Karten (0, YAchse, XAchse).Grund := 1;
                
             else
-               case Karten.Karten (0, Y, X).Grund is
+               case Karten.Karten (0, YAchse, XAchse).Grund is -- Abfrage ist hier nötig, da sonst eine erstellte Landmasse wieder überschrieben wird!
                   when 0 =>
-                     Karten.Karten (0, Y, X).Grund := 2;
+                     Karten.Karten (0, YAchse, XAchse).Grund := 2;
 
                   when others =>
                      null;
                end case;
-               GenerierungKartenart (Y, X);
+               GenerierungKartenart (YAchse => YAchse,
+                                     XAchse => XAchse);
             end if;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
-      GlobaleVariablen.Zeit (2, 1) := Clock;
-
-      Put ("Kartengenerierung: ");
-      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 1) - GlobaleVariablen.Zeit (1, 1)),
-                             Fore => 1,
-                             Aft  => 6,
-                             Exp  => 0);
-      New_Line;
-            
-      GlobaleVariablen.Zeit (1, 2) := Clock;
-      GenerierungKüstenSeeGewässer;
       GlobaleVariablen.Zeit (2, 2) := Clock;
-
-      Put ("Unterscheide zwischen See und Küstengewässer: ");
-      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 2) - GlobaleVariablen.Zeit (1, 2)),
-                             Fore => 1,
-                             Aft  => 6,
-                             Exp  => 0);
-      New_Line;
-
+      Ladezeiten.Ladezeiten (WelcheZeit => 2);
+            
       GlobaleVariablen.Zeit (1, 3) := Clock;
-      GenerierungKartentemperatur;
-      GlobaleVariablen.Zeit (2, 3) := Clock;
+      GenerierungKüstenSeeGewässer;
+      GlobaleVariablen.Zeit (2, 3) := Clock;   
+      Ladezeiten.Ladezeiten (WelcheZeit => 3);   
 
-      Put ("Generiere Kartentemperatur: ");
-      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 3) - GlobaleVariablen.Zeit (1, 3)),
-                             Fore => 1,
-                             Aft  => 6,
-                             Exp  => 0);
-      New_Line;
-      
       GlobaleVariablen.Zeit (1, 4) := Clock;
-      GenerierungLandschaft;
+      GenerierungKartentemperatur;
       GlobaleVariablen.Zeit (2, 4) := Clock;
-      
-      Put ("Generiere Landschaft: ");
-      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 4) - GlobaleVariablen.Zeit (1, 4)),
-                             Fore => 1,
-                             Aft  => 6,
-                             Exp  => 0);
-      New_Line;
+      Ladezeiten.Ladezeiten (WelcheZeit => 4);
       
       GlobaleVariablen.Zeit (1, 5) := Clock;
-      GenerierungFlüsse;
+      GenerierungLandschaft;
       GlobaleVariablen.Zeit (2, 5) := Clock;
-
-      Put ("Generiere Flüsse: ");
-      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 5) - GlobaleVariablen.Zeit (1, 5)),
-                             Fore => 1,
-                             Aft  => 6,
-                             Exp  => 0);
-      New_Line;
+      Ladezeiten.Ladezeiten (WelcheZeit => 5);
       
       GlobaleVariablen.Zeit (1, 6) := Clock;
-      GenerierungRessourcen;
+      GenerierungFlüsse;
       GlobaleVariablen.Zeit (2, 6) := Clock;
-
-      Put ("Generiere Ressourcen: ");
-      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 6) - GlobaleVariablen.Zeit (1, 6)),
-                             Fore => 1,
-                             Aft  => 6,
-                             Exp  => 0);
-      New_Line;
-
+      Ladezeiten.Ladezeiten (WelcheZeit => 6);
+      
       GlobaleVariablen.Zeit (1, 7) := Clock;
-      KartenfelderBewerten;
-      GlobaleVariablen.Zeit (2, 7) := Clock;
+      GenerierungRessourcen;
+      GlobaleVariablen.Zeit (2, 7) := Clock;  
+      Ladezeiten.Ladezeiten (WelcheZeit => 7);
+      
+      AndereEbenen;
 
-      Put ("Bewerte Kartenfelder: ");
-      Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, 7) - GlobaleVariablen.Zeit (1, 7)),
-                             Fore => 1,
-                             Aft  => 6,
-                             Exp  => 0);
-      New_Line;      
+      GlobaleVariablen.Zeit (1, 12) := Clock;
+      KartenfelderBewerten;
+      GlobaleVariablen.Zeit (2, 12) := Clock;
+      Ladezeiten.Ladezeiten (WelcheZeit => 8);
       
    end KartenGenerator;
 
 
 
-   procedure GenerierungKartenart (Y, X : in GlobaleDatentypen.Kartenfeld) is
+   procedure GenerierungKartenart (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) is
    begin
 
       Wert := Random (Gewählt);
 
-      case GeneratorKarte (Y, X) is
+      case GeneratorKarte (YAchse, XAchse) is
          when 1 .. 2 =>
             null;
 
          when 0 =>
-            if Y <= Karten.Karten'First (2) + 3  or Y >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 3 then
+            if YAchse <= Karten.Karten'First (2) + 3  or YAchse >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 3 then
                if Wert > WahrscheinlichkeitenFürLand (Kartenart, 1) and Wert < WahrscheinlichkeitenFürLand (Kartenart, 2) then
-                  Karten.Karten (0, Y, X).Grund := 3;
+                  Karten.Karten (0, YAchse, XAchse).Grund := 3;
                            
                elsif Wert >= WahrscheinlichkeitenFürLand (Kartenart, 2) then
-                  Karten.Karten (0, Y, X).Grund := 3;
-                  GenerierungLandmasse (YPositionLandmasse => Y,
-                                        XPositionLandmasse => X);
+                  Karten.Karten (0, YAchse, XAchse).Grund := 3;
+                  GenerierungLandmasse (YPositionLandmasse => YAchse,
+                                        XPositionLandmasse => XAchse);
                            
                else
                   null;
@@ -144,12 +105,12 @@ package body KartenGenerator is
                               
             else
                if Wert > WahrscheinlichkeitenFürLand (Kartenart, 3) and Wert < WahrscheinlichkeitenFürLand (Kartenart, 4) then
-                  Karten.Karten (0, Y, X).Grund := 3;
+                  Karten.Karten (0, YAchse, XAchse).Grund := 3;
                                  
                elsif Wert >= WahrscheinlichkeitenFürLand (Kartenart, 4) then
-                  Karten.Karten (0, Y, X).Grund := 3;
-                  GenerierungLandmasse (YPositionLandmasse => Y,
-                                        XPositionLandmasse => X);
+                  Karten.Karten (0, YAchse, XAchse).Grund := 3;
+                  GenerierungLandmasse (YPositionLandmasse => YAchse,
+                                        XPositionLandmasse => XAchse);
                                  
                else
                   null;
@@ -158,7 +119,7 @@ package body KartenGenerator is
 
          when others =>
             if Wert >= WahrscheinlichkeitenFürLand (Kartenart, 5) then                           
-               Karten.Karten (0, Y, X).Grund := 3;
+               Karten.Karten (0, YAchse, XAchse).Grund := 3;
                            
             else
                null;
@@ -169,7 +130,7 @@ package body KartenGenerator is
 
    
    
-   procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in GlobaleDatentypen.Kartenfeld) is
+   procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in GlobaleDatentypen.KartenfeldPositiv) is
    begin
       
       YAchseSchleife:
@@ -197,7 +158,7 @@ package body KartenGenerator is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      YAchseZweiSchleife: -- Funktioniert nicht mit Kontinenten bei kleinen Karten weil der Abstandswert zu groß ist!
+      YAchseZweiSchleife: -- Funktioniert nicht mit Kontinenten bei kleinen Karten weil der Abstandswert zu groß ist! An Kartengrößen angepasste Werte anlegen, wie bei der Kartenanzeige.
       for YÄnderung in -FelderVonLandartZuLandart (Kartenart) .. FelderVonLandartZuLandart (Kartenart) loop
          XAchseZweiSchleife:
          for XÄnderung in -FelderVonLandartZuLandart (Kartenart) .. FelderVonLandartZuLandart (Kartenart) loop
@@ -373,7 +334,7 @@ package body KartenGenerator is
 
 
 
-   procedure GenerierungTemperaturAbstand (Geländeart : GlobaleDatentypen.KartenGrund; YPosition, XPosition : in GlobaleDatentypen.Kartenfeld) is
+   procedure GenerierungTemperaturAbstand (Geländeart : GlobaleDatentypen.KartenGrund; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) is
    begin
       
       YAchseSchleife:
@@ -410,7 +371,7 @@ package body KartenGenerator is
    
    
    
-   procedure GenerierungTemperaturZusatz (Geländeart : GlobaleDatentypen.KartenGrund; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) is
+   procedure GenerierungTemperaturZusatz (Geländeart : GlobaleDatentypen.KartenGrund; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) is
    begin
 
       if Karten.Karten (0, YAchse, XAchse).Grund < 3 or Karten.Karten (0, YAchse, XAchse).Grund = 31 then
@@ -849,6 +810,25 @@ package body KartenGenerator is
       end loop;
       
    end GenerierungRessourcen;
+
+
+
+   procedure AndereEbenen is
+   begin
+      
+      GlobaleVariablen.Zeit (1, 8) := Clock;
+      GlobaleVariablen.Zeit (2, 8) := Clock;
+
+      GlobaleVariablen.Zeit (1, 9) := Clock;
+      GlobaleVariablen.Zeit (2, 9) := Clock;
+
+      GlobaleVariablen.Zeit (1, 10) := Clock;
+      GlobaleVariablen.Zeit (2, 10) := Clock;
+
+      GlobaleVariablen.Zeit (1, 11) := Clock;
+      GlobaleVariablen.Zeit (2, 11) := Clock;
+      
+   end AndereEbenen;
 
 
 
