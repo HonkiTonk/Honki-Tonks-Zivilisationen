@@ -11,20 +11,14 @@ package body Optionen is
       case Wert is
          when -1 =>
             null;
+
+         when 1 =>
+            Steuerung.SteuerungBelegen;
             
          when others =>
             GlobaleVariablen.RundenBisAutosave := Wert;
       end case;
       
-   end Optionen;
-
-
-
-   procedure SteuerungBelegen is
-   begin
-      
-      null;
-      
-   end SteuerungBelegen;
+   end Optionen;  
 
 end Optionen;

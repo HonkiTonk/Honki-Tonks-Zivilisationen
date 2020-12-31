@@ -41,7 +41,7 @@ package body Sichtbarkeit is
                      exit XÄnderungEinheitenSchleife;
                      
                   when others =>
-                     Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar := True;
+                     Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (GlobaleVariablen.Rasse) := True;
                end case;
             
             end loop XÄnderungEinheitenSchleife;
@@ -77,7 +77,7 @@ package body Sichtbarkeit is
                      exit XÄnderungStadtSchleife;
                      
                   when others =>
-                     Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar := True;
+                     Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (GlobaleVariablen.Rasse) := True;
                end case;
             
             end loop XÄnderungStadtSchleife;
@@ -88,7 +88,7 @@ package body Sichtbarkeit is
 
 
 
-   procedure Sichtbarkeit (YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) is
+   procedure Sichtbarkeit (InDerStadt : Boolean; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) is
    begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen
@@ -97,8 +97,8 @@ package body Sichtbarkeit is
       -- Über die Städte kommen die Einheiten
       -- Über den Einheiten kommt der Cursor      
        
-      if Karten.Karten (0, YAchse, XAchse).Sichtbar = True then
-         if YAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse and XAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse then
+      if Karten.Karten (0, YAchse, XAchse).Sichtbar (GlobaleVariablen.Rasse) = True then
+         if YAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse and XAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse and InDerStadt = False then
             Farben (Einheit      => 0,
                     Verbesserung => 0,
                     Ressource    => 0,

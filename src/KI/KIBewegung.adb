@@ -19,7 +19,7 @@ package body KIBewegung is
    procedure BewegungSiedler (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
 
-      Bewegungsziel := (GlobaleVariablen.EinheitenGebaut (0, Rasse, EinheitStatus.EinheitNummer).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).XAchse);
+      Bewegungsziel := (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.XAchse);
       
       Schleife:
       for Durchgang in 1 .. 2 loop
@@ -45,8 +45,8 @@ package body KIBewegung is
                               null;
                               
                            elsif Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Felderwertung
-                             > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (0, Rasse, EinheitStatus.EinheitNummer).YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).XAchse).Felderwertung then
-                              Bewegungsziel := (Kartenwert.YAchse, Kartenwert.XAchse);
+                             > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.XAchse).Felderwertung then
+                              Bewegungsziel := (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse);
                               exit Schleife;
 
                            else
@@ -59,7 +59,7 @@ package body KIBewegung is
                                  null;
                                  
                               when others =>
-                                 Bewegungsziel := (Kartenwert.YAchse, Kartenwert.XAchse);
+                                 Bewegungsziel := (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse);
                                  exit Schleife;
                            end case;
                      end case;

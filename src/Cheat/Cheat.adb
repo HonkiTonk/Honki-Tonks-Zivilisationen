@@ -134,13 +134,13 @@ package body Cheat is
    begin
       
       EbeneSchleife:
-      for E in GlobaleDatentypen.Ebene'Range loop
+      for E in Karten.Karten'Range (1) loop
          YAchseSchleife:
          for Y in 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
             for X in 1 .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-               Karten.Karten (E, Y, X).Sichtbar := True;
+               Karten.Karten (E, Y, X).Sichtbar (GlobaleVariablen.Rasse) := True;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;

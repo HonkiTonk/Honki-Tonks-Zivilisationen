@@ -1,4 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Float_Text_IO, Ada.Numerics.Discrete_Random, Ada.Calendar;
+with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Numerics.Discrete_Random, Ada.Calendar, Ladezeiten;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 
 with GlobaleDatentypen, SchleifenPruefungen, GlobaleVariablen, ImSpiel, KartenGenerator, Eingabe, Karten, Auswahl, EinheitenDatenbank, Anzeige, ZufallsGeneratoren;
@@ -13,8 +13,6 @@ private
    PrüfungEinheit : Boolean;
    PrüfungGrund : Boolean;
 
-   Warten : Wide_Wide_Character;
-
    YPosition : GlobaleDatentypen.Kartenfeld;
    XPosition : GlobaleDatentypen.Kartenfeld;
 
@@ -24,6 +22,7 @@ private
    Rasse : Integer;
    RassenAusgewählt : Integer;
    SicherheitsTestWert : Integer;
+   BenutzerdefinierteGröße : Integer;
 
    PositionWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    GezogeneWerte : GlobaleDatentypen.AchsenAusKartenfeldPositiv;

@@ -1,33 +1,4 @@
-package body SchleifenPruefungen is
-
-   procedure KartenUmgebungSchleife (SchleifenBereichYAchse, SchleifenBereichXAchse, YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld; Schalter : in Integer) is
-   begin -- Überall auslagern und mit einem Enum dann die Auswahl vornehmen?
-     
-      YÄnderungSchleife:
-      for YÄnderung in -SchleifenBereichXAchse .. SchleifenBereichXAchse loop
-         XÄnderungSchleife:
-         for XÄnderung in -SchleifenBereichXAchse .. SchleifenBereichXAchse loop
-            
-            Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YKoordinate,
-                                                              XKoordinate    => XKoordinate,
-                                                              YÄnderung      => YÄnderung,
-                                                              XÄnderung      => XÄnderung,
-                                                              ZusatzYAbstand => 0);
-            
-            case Kartenwert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
-                  exit XÄnderungSchleife;
-                  
-               when others =>
-                  null;
-            end case;
-            
-         end loop XÄnderungSchleife;
-      end loop YÄnderungSchleife;
-   
-   end KartenUmgebungSchleife;
-
-   
+package body SchleifenPruefungen is 
 
    function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung, ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleDatentypen.AchsenAusKartenfeld is
    begin

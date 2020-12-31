@@ -7,6 +7,12 @@ package body Eingabe is
       loop
 
          Zahl := To_Unbounded_Wide_Wide_String (Source => Get_Line);
+         if To_Wide_Wide_String (Source => Zahl)'Length = 0 then
+            return -1;
+            
+         else
+            null;
+         end if;
 
          loop
             

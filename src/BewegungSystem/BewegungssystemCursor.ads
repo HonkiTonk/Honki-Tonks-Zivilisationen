@@ -23,6 +23,6 @@ private
    KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
    
    procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins);
-   procedure BewegungCursorBerechnenStadt;
+   procedure BewegungCursorBerechnenStadt (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins);
 
 end BewegungssystemCursor;

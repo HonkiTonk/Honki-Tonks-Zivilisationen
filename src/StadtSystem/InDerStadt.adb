@@ -42,7 +42,7 @@ package body InDerStadt is
                                                                              ZusatzYAbstand => 0);
                            
                            case KartenWert.YAchse is
-                              when -2 =>
+                              when GlobaleDatentypen.Kartenfeld'First =>
                                  null;
                                  
                               when others =>

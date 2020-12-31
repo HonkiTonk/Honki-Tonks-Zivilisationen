@@ -81,7 +81,7 @@ package body StadtWerteFestlegen is
                            when GlobaleDatentypen.Kartenfeld'First =>
                               exit XAchseSchleife;
                               
-                              when others =>
+                           when others =>
                               if Karten.Karten (0, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.YAchse + YPosition, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.XAchse + XPosition).DurchStadtBelegterGrund
                                 = GlobaleDatentypen.BelegterGrund (Rasse) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtNummer) then
                                  GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).UmgebungBewirtschaftung (YPosition, XPosition) := True;
