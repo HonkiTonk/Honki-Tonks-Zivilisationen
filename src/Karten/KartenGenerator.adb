@@ -66,15 +66,19 @@ package body KartenGenerator is
       
       GlobaleVariablen.Zeit (1, 7) := Clock;
       GenerierungRessourcen;
-      GlobaleVariablen.Zeit (2, 7) := Clock;  
+      GlobaleVariablen.Zeit (2, 7) := Clock;
       Ladezeiten.Ladezeiten (WelcheZeit => 7);
       
       AndereEbenen;
+      Ladezeiten.Ladezeiten (WelcheZeit => 8);
+      Ladezeiten.Ladezeiten (WelcheZeit => 9);
+      Ladezeiten.Ladezeiten (WelcheZeit => 10);
+      Ladezeiten.Ladezeiten (WelcheZeit => 11);
 
       GlobaleVariablen.Zeit (1, 12) := Clock;
       KartenfelderBewerten;
       GlobaleVariablen.Zeit (2, 12) := Clock;
-      Ladezeiten.Ladezeiten (WelcheZeit => 8);
+      Ladezeiten.Ladezeiten (WelcheZeit => 12);
       
    end KartenGenerator;
 
@@ -814,25 +818,305 @@ package body KartenGenerator is
 
 
    procedure AndereEbenen is
-   begin
       
-      GlobaleVariablen.Zeit (1, 8) := Clock;
-      GlobaleVariablen.Zeit (2, 8) := Clock;
+      task Himmel;
+      task Weltraum;
+      task UnterwasserUnterirdisch;
+      task PlanetenInneres;
+      
+      task body Himmel is
+      begin
+         
+         GlobaleVariablen.Zeit (1, 8) := Clock;
+         
+         YAchseSchleife:
+         for YAchse in Karten.Karten'Range (2) loop
+            XAchseSchleife:
+            for XAchse in Karten.Karten'Range (3) loop
+               
+               case Karten.Karten (0, YAchse, XAchse).Grund is
+                  when -1 =>
+                     Karten.Karten (1, YAchse, XAchse).Grund := -1;
+                     exit XAchseSchleife;
+                     
+                  when -2 =>
+                     Karten.Karten (1, YAchse, XAchse).Grund := -2;
+                     exit YAchseSchleife;
+                     
+                  when 0 =>
+                     null;
+                     
+                  when others =>
+                     Karten.Karten (1, YAchse, XAchse).Grund := 37;
+               end case;
+               
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+         
+         GlobaleVariablen.Zeit (2, 8) := Clock;
+         
+      end Himmel;
+      
+      
+      
+      task body Weltraum is
+      begin
 
-      GlobaleVariablen.Zeit (1, 9) := Clock;
-      GlobaleVariablen.Zeit (2, 9) := Clock;
+         GlobaleVariablen.Zeit (1, 9) := Clock;
 
-      GlobaleVariablen.Zeit (1, 10) := Clock;
-      GlobaleVariablen.Zeit (2, 10) := Clock;
+         YAchseSchleife:
+         for YAchse in Karten.Karten'Range (2) loop
+            XAchseSchleife:
+            for XAchse in Karten.Karten'Range (3) loop
 
-      GlobaleVariablen.Zeit (1, 11) := Clock;
-      GlobaleVariablen.Zeit (2, 11) := Clock;
+               case Karten.Karten (0, YAchse, XAchse).Grund is
+                  when -1 =>
+                     Karten.Karten (1, YAchse, XAchse).Grund := -1;
+                     exit XAchseSchleife;
+                     
+                  when -2 =>
+                     Karten.Karten (1, YAchse, XAchse).Grund := -2;
+                     exit YAchseSchleife;
+                     
+                  when 0 =>
+                     null;
+                     
+                  when others =>
+                     Karten.Karten (2, YAchse, XAchse).Grund := 38;
+               end case;
+               
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+
+         GlobaleVariablen.Zeit (2, 9) := Clock;
+         
+      end Weltraum;
+      
+      
+
+      task body UnterwasserUnterirdisch is
+      begin
+         
+         GlobaleVariablen.Zeit (1, 10) := Clock;
+         
+         YAchseSchleife:
+         for YAchse in Karten.Karten'Range (2) loop
+            XAchseSchleife:
+            for XAchse in Karten.Karten'Range (3) loop
+               
+               case Karten.Karten (0, YAchse, XAchse).Grund is
+                  when 0 =>
+                     null;
+                     
+                  when -1 =>
+                     Karten.Karten (1, YAchse, XAchse).Grund := -1;
+                     exit XAchseSchleife;
+                     
+                  when -2 =>
+                     Karten.Karten (1, YAchse, XAchse).Grund := -2;
+                     exit YAchseSchleife;     
+                     
+                  when 1 | 2 | 31 =>
+                     Karten.Karten (-1, YAchse, XAchse).Grund := Karten.Karten (0, YAchse, XAchse).Grund;
+                     
+                  when 7 =>
+                     Karten.Karten (-1, YAchse, XAchse).Grund := 40;
+                     
+                  when others =>
+                     Karten.Karten (-1, YAchse, XAchse).Grund := 35;
+               end case;
+
+               case Karten.Karten (0, YAchse, XAchse).Ressource is
+                  when 10 .. 13 | 29 .. 30 | 33 =>
+                     Karten.Karten (-1, YAchse, XAchse).Ressource := Karten.Karten (0, YAchse, XAchse).Ressource;
+                       
+                  when others =>
+                     null;
+               end case;
+
+               case Karten.Karten (0, YAchse, XAchse).Fluss is
+                  when 0 =>
+                     null;
+                     
+                  when others =>
+                     Karten.Karten (-1, YAchse, XAchse).Fluss := Karten.Karten (0, YAchse, XAchse).Fluss;
+               end case;
+               
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+         
+         GlobaleVariablen.Zeit (2, 10) := Clock;
+         
+      end UnterwasserUnterirdisch;
+      
+      
+      
+      task body PlanetenInneres is
+      begin
+         
+         GlobaleVariablen.Zeit (1, 11) := Clock;
+         
+         YAchseSchleife:
+         for YAchse in Karten.Karten'Range (2) loop
+            XAchseSchleife:
+            for XAchse in Karten.Karten'Range (3) loop
+               
+               case Karten.Karten (0, YAchse, XAchse).Grund is
+                  when -1 =>
+                     Karten.Karten (1, YAchse, XAchse).Grund := -1;
+                     exit XAchseSchleife;
+                     
+                  when -2 =>
+                     Karten.Karten (1, YAchse, XAchse).Grund := -2;
+                     exit YAchseSchleife;
+                     
+                  when 0 =>
+                     null;
+                     
+                  when others =>
+                     Karten.Karten (-2, YAchse, XAchse).Grund := 39;
+               end case;
+               
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+         
+         GlobaleVariablen.Zeit (2, 11) := Clock;
+         
+      end PlanetenInneres;
+
+
+      
+   begin
+            
+      null;
       
    end AndereEbenen;
 
 
 
    procedure KartenfelderBewerten is
+
+      task Himmel;
+      task Weltraum;
+      task UnterwasserUnterirdisch;
+      task PlanetenInneres;
+      
+      task body Himmel is
+      begin
+
+         YAchseSchleife:
+         for YAchse in Karten.Karten'Range (2) loop
+            XAchseSchleife:
+            for XAchse in Karten.Karten'Range (3) loop
+            
+               case Karten.Karten (0, YAchse, XAchse).Grund is
+                  when -1 =>
+                     exit XAchseSchleife;
+                  
+                  when -2 =>
+                     exit YAchseSchleife;
+                  
+                  when others =>
+                     WerteFestlegen.KartenfelderBewerten (Generierung => True,
+                                                           EAchse      => 1,
+                                                           YAchse      => YAchse,
+                                                           XAchse      => XAchse);
+               end case;
+               
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+         
+      end Himmel;
+
+
+
+      task body Weltraum is
+      begin
+         
+         YAchseSchleife:
+         for YAchse in Karten.Karten'Range (2) loop
+            XAchseSchleife:
+            for XAchse in Karten.Karten'Range (3) loop
+            
+               case Karten.Karten (0, YAchse, XAchse).Grund is
+                  when -1 =>
+                     exit XAchseSchleife;
+                  
+                  when -2 =>
+                     exit YAchseSchleife;
+                  
+                  when others =>
+                     WerteFestlegen.KartenfelderBewerten (Generierung => True,
+                                                           EAchse      => 2,
+                                                           YAchse      => YAchse,
+                                                           XAchse      => XAchse);
+               end case;
+               
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+         
+      end Weltraum;
+      
+      
+      
+      task body UnterwasserUnterirdisch is
+      begin
+         
+         YAchseSchleife:
+         for YAchse in Karten.Karten'Range (2) loop
+            XAchseSchleife:
+            for XAchse in Karten.Karten'Range (3) loop
+            
+               case Karten.Karten (0, YAchse, XAchse).Grund is
+                  when -1 =>
+                     exit XAchseSchleife;
+                  
+                  when -2 =>
+                     exit YAchseSchleife;
+                  
+                  when others =>
+                     WerteFestlegen.KartenfelderBewerten (Generierung => True,
+                                                           EAchse      => -1,
+                                                           YAchse      => YAchse,
+                                                           XAchse      => XAchse);
+               end case;
+               
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+         
+      end UnterwasserUnterirdisch;
+      
+      
+      
+      task body PlanetenInneres is
+      begin
+         
+         YAchseSchleife:
+         for YAchse in Karten.Karten'Range (2) loop
+            XAchseSchleife:
+            for XAchse in Karten.Karten'Range (3) loop
+            
+               case Karten.Karten (0, YAchse, XAchse).Grund is
+                  when -1 =>
+                     exit XAchseSchleife;
+                  
+                  when -2 =>
+                     exit YAchseSchleife;
+                  
+                  when others =>
+                     WerteFestlegen.KartenfelderBewerten (Generierung => True,
+                                                           EAchse      => -2,
+                                                           YAchse      => YAchse,
+                                                           XAchse      => XAchse);
+               end case;
+               
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+         
+      end PlanetenInneres;
+
+
+      
    begin
       
       YAchseSchleife:
@@ -848,52 +1132,12 @@ package body KartenGenerator is
                   exit YAchseSchleife;
                   
                when others =>
-                  BewertungYÄnderungSchleife:
-                  for BewertungYÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
-                     BewertungXÄnderungSchleife:
-                     for BewertungXÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
-                     
-                        Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YAchse,
-                                                                          XKoordinate    => XAchse,
-                                                                          YÄnderung      => BewertungYÄnderung,
-                                                                          XÄnderung      => BewertungXÄnderung,
-                                                                          ZusatzYAbstand => 0);
-                        
-                        case Kartenwert.YAchse is
-                           when GlobaleDatentypen.Kartenfeld'First =>
-                              exit BewertungXÄnderungSchleife;
-                  
-                           when others =>
-                              if BewertungYÄnderung = 3 or BewertungXÄnderung = 3 then -- Das hier auf jeden Fall ausgliedern, muss bei jeder Umgebungsänderung neu berechnet werden
-                                 Karten.Karten (0, YAchse, XAchse).Felderwertung := Karten.Karten (0, YAchse, XAchse).Felderwertung
-                                   + ((KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Verteidigungsbonus) / 3);
-                                 
-                              elsif BewertungYÄnderung = 2 or BewertungXÄnderung = 2 then
-                                 Karten.Karten (0, YAchse, XAchse).Felderwertung := Karten.Karten (0, YAchse, XAchse).Felderwertung
-                                   + ((KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Verteidigungsbonus) / 2);
-                              else
-                                 Karten.Karten (0, YAchse, XAchse).Felderwertung := Karten.Karten (0, YAchse, XAchse).Felderwertung
-                                   + (KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung
-                                   + KartenDatenbank.KartenObjektListe (Karten.Karten (0, Kartenwert.YAchse, KartenWert.XAchse).Grund).Verteidigungsbonus);                                
-                              end if;
-                        end case;
-                        
-                     
-                     end loop BewertungXÄnderungSchleife;
-                  end loop BewertungYÄnderungSchleife;
+                  WerteFestlegen.KartenfelderBewerten (Generierung => True,
+                                                        EAchse      => 0,
+                                                        YAchse      => YAchse,
+                                                        XAchse      => XAchse);
             end case;
-            
+               
          end loop XAchseSchleife;
       end loop YAchseSchleife;
    

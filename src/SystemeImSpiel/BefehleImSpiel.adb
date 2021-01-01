@@ -1,39 +1,43 @@
 package body BefehleImSpiel is
 
-   function Befehle return Integer is
+   function Befehle (Rasse : in Integer) return Integer is
    begin
             
       Get_Immediate (Item => Taste);
 
       case To_Lower (Item => Taste) is
          when 'w' | 's' | 'a' | 'd' | '1' | '2' | '3' | '4' | '6' | '7' | '8' | '9' =>
-            BewegungssystemCursor.BewegungCursorRichtung (Karte => True, Richtung => To_Lower (Item => Taste));
+            BewegungssystemCursor.BewegungCursorRichtung (Karte    => True,
+                                                          Richtung => To_Lower (Item => Taste));
             return 1;
             
          when 'e' | '5' => -- Einheit bewegen/Stadt betreten
-            WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (Rasse  => GlobaleVariablen.Rasse,
+            WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (Rasse  => Rasse,
                                                                                  YAchse => GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
                                                                                  XAchse => GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse);
-            WertStadt := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (Rasse  => GlobaleVariablen.Rasse,
-                                                                               YAchse => GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
-                                                                               XAchse => GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse);
+            WertStadt := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (Rasse  => Rasse,
+                                                                             YAchse => GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
+                                                                             XAchse => GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse);
 
             if WertEinheit /= 0 and WertStadt /= 0 then
                StadtOderEinheit := Auswahl.Auswahl (WelcheAuswahl => 15,
                                                     WelcherText => 18);
 
-               EinheitOderStadt (Auswahl       => StadtOderEinheit,
+               EinheitOderStadt (Rasse         => Rasse,
+                                 Auswahl       => StadtOderEinheit,
                                  Stadtnummer   => WertStadt,
                                  EinheitNummer => WertEinheit);
                
                
             elsif WertStadt /= 0 then
-               EinheitOderStadt (Auswahl       => -3,
+               EinheitOderStadt (Rasse         => Rasse,
+                                 Auswahl       => -3,
                                  Stadtnummer   => WertStadt,
                                  EinheitNummer => WertEinheit);
                
             elsif WertEinheit /= 0 then
-               EinheitOderStadt (Auswahl       => 654, -- Hauptsache ungleich -3
+               EinheitOderStadt (Rasse         => Rasse,
+                                 Auswahl       => 654, -- Hauptsache ungleich -3
                                  Stadtnummer   => WertStadt,
                                  EinheitNummer => WertEinheit);
                
@@ -47,7 +51,7 @@ package body BefehleImSpiel is
                                     WelcherText => 8);
 
          when 'b' => -- Baue Stadt
-            WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (Rasse  => GlobaleVariablen.Rasse,
+            WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (Rasse  => Rasse,
                                                                                  YAchse => GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
                                                                                  XAchse => GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse);
             case WertEinheit is
@@ -55,9 +59,9 @@ package body BefehleImSpiel is
                   null;
                   
                when others =>
-                  if EinheitenDatenbank.EinheitenListe (GlobaleVariablen.Rasse, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).ID).SiedlerLandeinheitSeeeinheitLufteinheit = 1 and
-                    GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).AktuelleBewegungspunkte > 0.0 then
-                     Nullwert := InDerStadt.StadtBauen (Rasse         => GlobaleVariablen.Rasse,
+                  if EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, WertEinheit).ID).SiedlerLandeinheitSeeeinheitLufteinheit = 1 and
+                    GlobaleVariablen.EinheitenGebaut (Rasse, WertEinheit).AktuelleBewegungspunkte > 0.0 then
+                     Nullwert := InDerStadt.StadtBauen (Rasse         => Rasse,
                                                         EinheitNummer => WertEinheit);
                      
                   else
@@ -67,16 +71,16 @@ package body BefehleImSpiel is
             return 1;
             
          when 't' => -- Technologie/Forschung
-            case GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuellesForschungsprojekt is
+            case GlobaleVariablen.Wichtiges (Rasse).AktuellesForschungsprojekt is
                when 0 =>
-                  ForschungsDatenbank.Forschung (Rasse => GlobaleVariablen.Rasse);
+                  ForschungsDatenbank.Forschung (Rasse => Rasse);
                      
                when others =>
                   WahlForschung := Auswahl.Auswahl (WelcheAuswahl => 17,
                                                     WelcherText => 18);
                   case WahlForschung is
                      when -3 =>
-                        ForschungsDatenbank.Forschung (Rasse => GlobaleVariablen.Rasse);
+                        ForschungsDatenbank.Forschung (Rasse => Rasse);
                      
                      when others =>
                         null;
@@ -144,7 +148,7 @@ package body BefehleImSpiel is
                   WelcherBefehl := 0;
             end case;
                
-            WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (Rasse  => GlobaleVariablen.Rasse,
+            WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (Rasse  => Rasse,
                                                                                  YAchse => GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
                                                                                  XAchse => GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse);
             case WertEinheit is
@@ -162,8 +166,8 @@ package body BefehleImSpiel is
                      Anzeige.Fehlermeldungen (WelcheFehlermeldung => 8);
                      
                   else
-                     VerbesserungenDatenbank.Verbesserung (Befehl => WelcherBefehl,
-                                                           Rasse => GlobaleVariablen.Rasse,
+                     Verbesserungen.Verbesserung (Befehl => WelcherBefehl,
+                                                           Rasse => Rasse,
                                                            EinheitNummer => WertEinheit);
                   end if;
             end case;               
@@ -184,10 +188,24 @@ package body BefehleImSpiel is
          when 'r' => -- Runde beenden            
             return -1000;
             
-         when '+' => -- Ebene hoch            
+         when '+' => -- Ebene hoch
+            case GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse is
+               when 2 =>
+                  GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse := -2;
+                  
+               when others =>
+                  GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse + 1;
+            end case;
             return 1;
             
-         when '-' => -- Ebene runter            
+         when '-' => -- Ebene runter
+            case GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse is
+               when -2 =>
+                  GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse := 2;
+                  
+               when others =>
+                  GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse - 1;
+            end case;          
             return 1;
             
          when 'c' => -- Kleine Cheattaste
@@ -203,32 +221,32 @@ package body BefehleImSpiel is
 
 
 
-   procedure EinheitOderStadt (Auswahl, StadtNummer, EinheitNummer : in Integer) is
+   procedure EinheitOderStadt (Rasse, Auswahl, StadtNummer, EinheitNummer : in Integer) is
    begin
       
       case Auswahl is
          when -3 =>
             GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse := 1;
             GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse := 1;
-            InDerStadt.InDerStadt (Rasse       => GlobaleVariablen.Rasse,
+            InDerStadt.InDerStadt (Rasse       => Rasse,
                                    StadtNummer => StadtNummer);
                      
          when others =>
-            if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).AktuelleBeschäftigung /= 0 then
+            if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung /= 0 then
                Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7);
                case Wahl is
                   when True =>
-                     GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).AktuelleBeschäftigung := 0;
+                     GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung := 0;
                            
                   when others =>
                      null;
                end case;
                   
-            elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).AktuelleBewegungspunkte = 0.0 then
+            elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte = 0.0 then
                null;
                      
             else
-               BewegungssystemEinheiten.BewegungEinheitenRichtung (Rasse => GlobaleVariablen.Rasse,
+               BewegungssystemEinheiten.BewegungEinheitenRichtung (Rasse => Rasse,
                                                                    EinheitNummer => EinheitNummer);
                null;
             end if;

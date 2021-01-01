@@ -7,7 +7,7 @@ use GlobaleDatentypen;
 package Sichtbarkeit is
 
    procedure Sichtbarkeitsprüfung;
-   procedure Sichtbarkeit (InDerStadt : Boolean; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld);
+   procedure Sichtbarkeit (InDerStadt : Boolean; EAchse : GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv);
    procedure Farben (Einheit : GlobaleDatentypen.EinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund; Cursor : in Boolean);
 
 private

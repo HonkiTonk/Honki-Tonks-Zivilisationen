@@ -66,8 +66,9 @@ private
 
    type EinheitErstellenRecord is record
       
-      YAchse : GlobaleDatentypen.Kartenfeld;
-      XAchse : GlobaleDatentypen.Kartenfeld;
+      EAchse : GlobaleDatentypen.Ebene;
+      YAchse : GlobaleDatentypen.KartenfeldPositiv;
+      XAchse : GlobaleDatentypen.KartenfeldPositiv;
       
    end record;
 

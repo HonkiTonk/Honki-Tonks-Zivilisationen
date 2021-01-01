@@ -6,7 +6,7 @@ with Karten, GlobaleDatentypen;
 package GlobaleVariablen is
 
    WelcheSprache : Integer;
-   AktuelleEbene : GlobaleDatentypen.Ebene := 0;
+   -- AktuelleEbene : GlobaleDatentypen.Ebene := 0;
 
    type TexteEinlesenArray is array (1 .. 24, 1 .. 50) of Unbounded_Wide_Wide_String;
    TexteEinlesen : TexteEinlesenArray := (others => (others => (To_Unbounded_Wide_Wide_String ("|"))));
@@ -20,10 +20,12 @@ package GlobaleVariablen is
       
    end record;
    
+   type CursorImSpielArray is array (1 .. 18) of CursorRecord;
    CursorImSpiel : CursorRecord := ('©', (0, 1, 1), (0, 1, 1), (1, 1));
 
    SpielerAnzahl : Integer := 1; -- 1 .. 18
    Rasse : Integer := 1; -- 1 .. 18
+   GeradeAmZug : Integer;
    RundenAnzahl : Integer := 1;
    RundenBisAutosave : Integer := 10;
 

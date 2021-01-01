@@ -44,13 +44,19 @@ package body Kampfsystem is
       AngriffVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (RasseVerteidigung, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Angriff);
 
       VerteidigungVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (RasseVerteidigung, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Verteidigung)
-        + Float (KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
-                                                             GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
-        + Float (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
-                                                           GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
+        + Float (KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.EAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
+        + Float (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.EAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
 
-      if Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).Hügel = True
-        and Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).Grund /= 6 then
+      if Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.EAchse,
+                        GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
+                        GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).Hügel = True
+        and Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.EAchse,
+                           GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
+                           GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).Grund /= 6 then
          VerteidigungVerteidigungWert := Float (KartenDatenbank.KartenObjektListe (6).Verteidigungsbonus);
 
       else
@@ -60,9 +66,11 @@ package body Kampfsystem is
       VerteidigungVerteidigungWert := VerteidigungVerteidigungWert * VerteidigungBonus * VerteidigerBonus;
 
       VerteidigungAngriffWert := Float (EinheitenDatenbank.EinheitenListe (RasseVerteidigung, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Verteidigung)
-        + Float (KartenDatenbank.KartenObjektListe (Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
+        + Float (KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.EAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
                  GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
-        + Float (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
+        + Float (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.EAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
                  GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
 
       Reset (Gewählt);
