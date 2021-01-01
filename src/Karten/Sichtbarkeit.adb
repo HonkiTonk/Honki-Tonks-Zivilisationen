@@ -4,9 +4,9 @@ package body Sichtbarkeit is
    begin
       
       EinheitenPlätzeSchleife:
-      for A in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+      for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
 
-         case GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).ID is
+         case GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).ID is
             when 0 =>
                exit EinheitenPlätzeSchleife;
             
@@ -14,7 +14,8 @@ package body Sichtbarkeit is
                null;
          end case;
          
-         case Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).AchsenPosition.XAchse).Grund is
+         case Karten.Karten (GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).AchsenPosition.EAchse, GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).AchsenPosition.YAchse,
+                             GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).AchsenPosition.XAchse).Grund is
             when 7 =>
                Sichtweite := 3;
 
@@ -30,8 +31,8 @@ package body Sichtbarkeit is
             XÄnderungEinheitenSchleife:
             for XÄnderung in -Sichtweite .. Sichtweite loop
                
-               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).AchsenPosition.YAchse,
-                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, A).AchsenPosition.XAchse,
+               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).AchsenPosition.YAchse,
+                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).AchsenPosition.XAchse,
                                                                  YÄnderung      => YÄnderung,
                                                                  XÄnderung      => XÄnderung,
                                                                  ZusatzYAbstand => 0);
@@ -41,7 +42,7 @@ package body Sichtbarkeit is
                      exit XÄnderungEinheitenSchleife;
                      
                   when others =>
-                     Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (GlobaleVariablen.Rasse) := True;
+                     Karten.Karten (GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, EinheitNummer).AchsenPosition.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (GlobaleVariablen.Rasse) := True;
                end case;
             
             end loop XÄnderungEinheitenSchleife;
@@ -49,12 +50,12 @@ package body Sichtbarkeit is
       end loop EinheitenPlätzeSchleife;
 
       StadtPlätzeSchleife:
-      for A in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+      for StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
 
-         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).ID = 0 then
+         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, StadtNummer).ID = 0 then
             exit StadtPlätzeSchleife;
                   
-         elsif GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).Einwohner < 10 then
+         elsif GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, StadtNummer).Einwohner < 10 then
             Sichtweite := 2;
             
          else
@@ -66,8 +67,8 @@ package body Sichtbarkeit is
             XÄnderungStadtSchleife:
             for XÄnderung in -Sichtweite .. Sichtweite loop
 
-               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).AchsenPosition.YAchse,
-                                                                 XKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, A).AchsenPosition.XAchse,
+               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, StadtNummer).AchsenPosition.YAchse,
+                                                                 XKoordinate    => GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, StadtNummer).AchsenPosition.XAchse,
                                                                  YÄnderung      => YÄnderung,
                                                                  XÄnderung      => XÄnderung,
                                                                  ZusatzYAbstand => 0);
@@ -77,7 +78,7 @@ package body Sichtbarkeit is
                      exit XÄnderungStadtSchleife;
                      
                   when others =>
-                     Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (GlobaleVariablen.Rasse) := True;
+                     Karten.Karten (GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, StadtNummer).AchsenPosition.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (GlobaleVariablen.Rasse) := True;
                end case;
             
             end loop XÄnderungStadtSchleife;
@@ -88,7 +89,7 @@ package body Sichtbarkeit is
 
 
 
-   procedure Sichtbarkeit (InDerStadt : Boolean; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) is
+   procedure Sichtbarkeit (InDerStadt : Boolean; EAchse : GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) is
    begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen
@@ -97,12 +98,13 @@ package body Sichtbarkeit is
       -- Über die Städte kommen die Einheiten
       -- Über den Einheiten kommt der Cursor      
        
-      if Karten.Karten (0, YAchse, XAchse).Sichtbar (GlobaleVariablen.Rasse) = True then
-         if YAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse and XAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse and InDerStadt = False then
+      if Karten.Karten (EAchse, YAchse, XAchse).Sichtbar (GlobaleVariablen.Rasse) = True then
+         if EAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse and YAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse and XAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse
+           and InDerStadt = False then
             Farben (Einheit      => 0,
                     Verbesserung => 0,
                     Ressource    => 0,
-                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                    Grund        => Karten.Karten (EAchse, YAchse, XAchse).Grund,
                     Cursor       => True);
             return;
          
@@ -118,11 +120,12 @@ package body Sichtbarkeit is
                if GlobaleVariablen.EinheitenGebaut (A, B).ID = 0 then
                   exit EinheitenPrüfenSchleife;
                
-               elsif GlobaleVariablen.EinheitenGebaut (A, B).AchsenPosition.YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (A, B).AchsenPosition.XAchse = XAchse then
+               elsif GlobaleVariablen.EinheitenGebaut (A, B).AchsenPosition.EAchse = EAchse and GlobaleVariablen.EinheitenGebaut (A, B).AchsenPosition.YAchse = YAchse
+                 and GlobaleVariablen.EinheitenGebaut (A, B).AchsenPosition.XAchse = XAchse then
                   Farben (Einheit      => GlobaleVariablen.EinheitenGebaut (A, B).ID,
                           Verbesserung => 0,
                           Ressource    => 0,
-                          Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                          Grund        => Karten.Karten (EAchse, YAchse, XAchse).Grund,
                           Cursor       => False);
                   return;
                
@@ -141,11 +144,12 @@ package body Sichtbarkeit is
                if GlobaleVariablen.StadtGebaut (C, D).ID = 0 then
                   exit StädtePrüfenSchleife;
 
-               elsif GlobaleVariablen.StadtGebaut (C, D).AchsenPosition.YAchse = YAchse and GlobaleVariablen.StadtGebaut (C, D).AchsenPosition.XAchse = XAchse then
+               elsif GlobaleVariablen.StadtGebaut (C, D).AchsenPosition.EAchse = EAchse and GlobaleVariablen.StadtGebaut (C, D).AchsenPosition.YAchse = YAchse
+                 and GlobaleVariablen.StadtGebaut (C, D).AchsenPosition.XAchse = XAchse then
                   Farben (Einheit      => 0,
                           Verbesserung => GlobaleDatentypen.KartenVerbesserung (GlobaleVariablen.StadtGebaut (C, D).ID),
                           Ressource    => 0,
-                          Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                          Grund        => Karten.Karten (EAchse, YAchse, XAchse).Grund,
                           Cursor       => False);
                   return;
                
@@ -156,44 +160,44 @@ package body Sichtbarkeit is
             end loop StädtePrüfenSchleife;
          end loop RassenStädtePrüfenSchleife;
 
-         if Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet /= 0 then            
+         if Karten.Karten (EAchse, YAchse, XAchse).VerbesserungGebiet /= 0 then            
             Farben (Einheit      => 0,
-                    Verbesserung => Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet,
+                    Verbesserung => Karten.Karten (EAchse, YAchse, XAchse).VerbesserungGebiet,
                     Ressource    => 0,
-                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                    Grund        => Karten.Karten (EAchse, YAchse, XAchse).Grund,
                     Cursor       => False);
            
-         elsif Karten.Karten (0, YAchse, XAchse).VerbesserungStraße /= 0 then
+         elsif Karten.Karten (EAchse, YAchse, XAchse).VerbesserungStraße /= 0 then
             Farben (Einheit      => 0,
-                    Verbesserung => Karten.Karten (0, YAchse, XAchse).VerbesserungStraße,
+                    Verbesserung => Karten.Karten (EAchse, YAchse, XAchse).VerbesserungStraße,
                     Ressource    => 0,
-                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                    Grund        => Karten.Karten (EAchse, YAchse, XAchse).Grund,
                     Cursor       => False);
             
-         elsif Karten.Karten (0, YAchse, XAchse).Ressource /= 0 then
+         elsif Karten.Karten (EAchse, YAchse, XAchse).Ressource /= 0 then
             Farben (Einheit      => 0,
                     Verbesserung => 0,
-                    Ressource    => Karten.Karten (0, YAchse, XAchse).Ressource,
-                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                    Ressource    => Karten.Karten (EAchse, YAchse, XAchse).Ressource,
+                    Grund        => Karten.Karten (EAchse, YAchse, XAchse).Grund,
                     Cursor       => False);
             
-         elsif Karten.Karten (0, YAchse, XAchse).Fluss /= 0 then
+         elsif Karten.Karten (EAchse, YAchse, XAchse).Fluss /= 0 then
             Farben (Einheit      => 0,
                     Verbesserung => 0,
-                    Ressource    => Karten.Karten (0, YAchse, XAchse).Fluss,
-                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                    Ressource    => Karten.Karten (EAchse, YAchse, XAchse).Fluss,
+                    Grund        => Karten.Karten (EAchse, YAchse, XAchse).Grund,
                     Cursor       => False);
             
          else
             Farben (Einheit      => 0,
                     Verbesserung => 0,
                     Ressource    => 0,
-                    Grund        => Karten.Karten (0, YAchse, XAchse).Grund,
+                    Grund        => Karten.Karten (EAchse, YAchse, XAchse).Grund,
                     Cursor       => False);
          end if;
          
       else
-         if YAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse and XAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse then         
+         if EAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse and YAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse and XAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse then         
             Farben (Einheit      => 0,
                     Verbesserung => 0,
                     Ressource    => 0,
@@ -215,7 +219,7 @@ package body Sichtbarkeit is
       case Cursor is
          when True =>
             case Grund is
-               when 1 | 4 | 5 | 31 =>
+               when 1 | 4 | 5 | 31 | 37 =>
                   Put (Item => CSI & "38;2;0;0;0m");
                   
                when others =>
@@ -229,7 +233,7 @@ package body Sichtbarkeit is
       case Einheit is
          when EinheitenDatenbank.EinheitenListe'Range (2) =>
             case Grund is
-               when 1 | 4 | 5 | 31 =>
+               when 1 | 4 | 5 | 31 | 37 =>
                   Put (Item => CSI & "38;2;0;0;0m");
                   
                when others =>
@@ -336,7 +340,19 @@ package body Sichtbarkeit is
             Put (Item => CSI & "48;2;139;69;19");
             
          when 36 =>
-            Put (Item => CSI & "48;2;238;0;0");
+            Put (Item => CSI & "48;2;250;39;39");
+            
+         when 37 =>
+            Put (Item => CSI & "48;2;236;236;236");
+            
+         when 38 =>
+            Put (Item => CSI & "48;2;127;127;127");
+            
+         when 39 =>
+            Put (Item => CSI & "48;2;97;56;11");
+            
+         when 40 =>
+            Put (Item => CSI & "48;2;87;87;87");
             
          when others =>
             null;

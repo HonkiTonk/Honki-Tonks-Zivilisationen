@@ -44,8 +44,8 @@ package body SpielEinstellungen is
       
       GlobaleVariablen.Zeit (1, 13) := Clock;
       StartwerteErmitteln;
-      GlobaleVariablen.Zeit (2, 13) := Clock;      
-      Ladezeiten.Ladezeiten (WelcheZeit => 9);
+      GlobaleVariablen.Zeit (2, 13) := Clock;
+      Ladezeiten.Ladezeiten (WelcheZeit => 13);
       Ladezeiten.Ladezeiten (WelcheZeit => 1);
          
       return ImSpiel.ImSpiel;
@@ -446,11 +446,13 @@ package body SpielEinstellungen is
    begin
 
       GlobaleVariablen.EinheitenGebaut (Rasse, 1).ID := 1;
+      GlobaleVariablen.EinheitenGebaut (Rasse, 1).AchsenPosition.EAchse := Koordinaten (1).EAchse;
       GlobaleVariablen.EinheitenGebaut (Rasse, 1).AchsenPosition.YAchse := Koordinaten (1).YAchse;
       GlobaleVariablen.EinheitenGebaut (Rasse, 1).AchsenPosition.XAchse := Koordinaten (1).XAchse;
       EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, 1);
 
       GlobaleVariablen.EinheitenGebaut (Rasse, 2).ID := 2;
+      GlobaleVariablen.EinheitenGebaut (Rasse, 2).AchsenPosition.EAchse := Koordinaten (2).EAchse;
       GlobaleVariablen.EinheitenGebaut (Rasse, 2).AchsenPosition.YAchse := Koordinaten (2).YAchse;
       GlobaleVariablen.EinheitenGebaut (Rasse, 2).AchsenPosition.XAchse := Koordinaten (2).XAchse;
       EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, 2);     

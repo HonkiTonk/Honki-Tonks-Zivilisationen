@@ -1,25 +1,14 @@
 package body KI is
 
-   procedure KI is
+   procedure KI (Rasse : in Integer) is
    begin
       
-      RasseSchleife:
-      for Rasse in GlobaleVariablen.RassenImSpiel'Range loop
-         
-         case GlobaleVariablen.RassenImSpiel (Rasse) is
-            when 0 | 1 => -- Nicht belegt | Menschlicher Spieler
-               null;
-               
-            when others => -- KI
-               if GlobaleVariablen.EinheitenGebaut (Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (Rasse, 1).ID = 0 then
-                  GlobaleVariablen.RassenImSpiel (Rasse) := 0;
+      if GlobaleVariablen.EinheitenGebaut (Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (Rasse, 1).ID = 0 then
+         GlobaleVariablen.RassenImSpiel (Rasse) := 0;
                   
-               else
-                  KIAktivität (Rasse => Rasse);
-               end if;
-         end case;         
-
-      end loop RasseSchleife;
+      else
+         KIAktivität (Rasse => Rasse);
+      end if; 
       
    end KI;
 

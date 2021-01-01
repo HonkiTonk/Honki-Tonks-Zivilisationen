@@ -5,7 +5,7 @@ package body SchleifenPruefungen is
       -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (2) + 3
       
       if YKoordinate + YÄnderung < Karten.Karten'First (2) + ZusatzYAbstand or YKoordinate + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
-         return (0, GlobaleDatentypen.Kartenfeld'First, GlobaleDatentypen.Kartenfeld'First);
+         return (GlobaleDatentypen.Ebene'First, GlobaleDatentypen.Kartenfeld'First, GlobaleDatentypen.Kartenfeld'First);
 
       elsif XKoordinate + XÄnderung < Karten.Karten'First (3) then
          Überhang := Integer (XKoordinate + XÄnderung + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);

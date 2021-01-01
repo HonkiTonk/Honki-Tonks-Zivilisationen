@@ -97,6 +97,7 @@ package body KarteStadt is
 
                            when others =>
                               Sichtbarkeit.Sichtbarkeit (InDerStadt => True,
+                                                         EAchse     => 0,
                                                          YAchse     => KartenWert.YAchse,
                                                          XAchse     => KartenWert.XAchse);
                         end case;

@@ -65,7 +65,8 @@ package body EinheitenDatenbank is
    procedure EinheitErzeugen (Rasse, StadtNummer, ID : in Integer) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
    begin
 
-      Position := (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.YAchse, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.XAchse);
+      Position := (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.EAchse, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.YAchse,
+                   GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.XAchse);
       EinheitenPosition := 0;
             
       EinheitenSchleife:
@@ -75,8 +76,7 @@ package body EinheitenDatenbank is
             EinheitenPosition := EinheitenListenplatz;
             exit EinheitenSchleife;
 
-         elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).AchsenPosition.YAchse = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.YAchse
-           and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).AchsenPosition.XAchse = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.XAchse then
+         elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenListenplatz).AchsenPosition = GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition then
             return;
             
          else
@@ -91,6 +91,7 @@ package body EinheitenDatenbank is
             
          when others =>
             GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).ID := GlobaleDatentypen.EinheitenID (ID);
+            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).AchsenPosition.EAchse := Position.EAchse;
             GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).AchsenPosition.YAchse := Position.YAchse;
             GlobaleVariablen.EinheitenGebaut (Rasse, EinheitenPosition).AchsenPosition.XAchse := Position.XAchse;
             LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse         => Rasse,

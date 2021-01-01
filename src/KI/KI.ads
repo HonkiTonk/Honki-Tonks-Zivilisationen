@@ -3,7 +3,7 @@ use GlobaleDatentypen;
 
 package KI is
 
-   procedure KI;
+   procedure KI (Rasse : in Integer);
 
 private
 

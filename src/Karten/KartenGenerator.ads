@@ -1,7 +1,7 @@
 with Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Calendar, Ada.Numerics.Discrete_Random;
 use Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Calendar;
 
-with Karten, GlobaleVariablen, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen, Ladezeiten;
+with Karten, GlobaleVariablen, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen, Ladezeiten, WerteFestlegen;
 use GlobaleDatentypen;
 
 package KartenGenerator is -- Klein = 40x40, Mittel = 80x80, Groß = 160x160, Riesig = 240x240, Gigantisch = 320x320, Absurd = 1000x1000
@@ -74,10 +74,6 @@ private
    procedure GenerierungRessourcen;
 
    procedure AndereEbenen;
-   --procedure Himmel;
-   --procedure Weltraum;
-   --procedure Unterwasser;
-   --procedure PlanetenInneres;
 
    procedure KartenfelderBewerten;
 

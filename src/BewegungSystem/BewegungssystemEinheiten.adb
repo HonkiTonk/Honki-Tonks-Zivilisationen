@@ -90,7 +90,7 @@ package body BewegungssystemEinheiten is
                null;
                
             elsif EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Passierbarkeit
-              /= KartenDatenbank.KartenObjektListe (Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit then
+              /= KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit then
                case EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).Passierbarkeit is
                   when 2 =>
                      Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (Rasse  => Rasse,
@@ -177,17 +177,20 @@ package body BewegungssystemEinheiten is
       
       case Gewonnen is
          when True =>
-            if Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße /= 0 and Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße <= 19 then
+            if Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße /= 0
+              and Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße <= 19 then
                GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte - 0.50;
 
-            elsif Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss /= 0 then
+            elsif Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss /= 0 then
                GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte - 0.50;
 
-            elsif Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße > 19 then   
+            elsif Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße > 19 then   
                GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte - 1.00;
 
-            elsif Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund = 1 or Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund = 7
-              or Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund = 9 or Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund = 32 then
+            elsif Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = 1
+              or Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = 7
+              or Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = 9
+              or Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = 32 then
                if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte < 1.00 then
                   GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte := 0.00;
                   return;
