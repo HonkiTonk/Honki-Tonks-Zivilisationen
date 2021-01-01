@@ -83,25 +83,27 @@ package body InDerStadt is
                
             when 'v' => -- Gebäude verkaufen
                if GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse = 1 and GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse < 13 then
-                  case GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse)) is
+                  case GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse)) is
                      when '0' =>
                         null;
                         
                      when others =>
                         GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge
-                          := GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge + Integer (GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.Rasse, Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse)).PreisGeld / 2);
-                        GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse)) := '0';
+                          := GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge + Integer (GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.GeradeAmZug,
+                                                                                             Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse)).PreisGeld / 2);
+                        GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse)) := '0';
                   end case;
             
                elsif GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse = 2 and GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse < 13 then
-                  case GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12) is
+                  case GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12) is
                      when '0' =>
                         null;
                         
                      when others =>
                         GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge
-                          := GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge + Integer (GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.Rasse, Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12).PreisGeld / 2);
-                        GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12) := '0';
+                          := GlobaleVariablen.Wichtiges (Rasse).AktuelleGeldmenge + Integer (GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.GeradeAmZug,
+                                                                                             Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12).PreisGeld / 2);
+                        GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12) := '0';
                   end case;
                   
                else
@@ -132,7 +134,7 @@ package body InDerStadt is
             null;
                   
          when False =>
-            if Rasse = GlobaleVariablen.Rasse then
+            if Rasse = GlobaleVariablen.GeradeAmZug then
                Anzeige.Fehlermeldungen (WelcheFehlermeldung => 6);
                   
             else
@@ -146,17 +148,17 @@ package body InDerStadt is
          if GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID /= 0 then
             null;
             
-         elsif StadtNummer = GlobaleVariablen.StadtGebaut'Last (2) and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID /= 0 and Rasse = GlobaleVariablen.Rasse then
+         elsif StadtNummer = GlobaleVariablen.StadtGebaut'Last (2) and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID /= 0 and Rasse = GlobaleVariablen.GeradeAmZug then
             Anzeige.Fehlermeldungen (WelcheFehlermeldung => 7);
             
          else
-            if StadtNummer = 1 and Rasse = GlobaleVariablen.Rasse then
+            if StadtNummer = 1 and Rasse = GlobaleVariablen.GeradeAmZug then
                Stadtart := 1;
                
-            elsif Rasse = GlobaleVariablen.Rasse then
+            elsif Rasse = GlobaleVariablen.GeradeAmZug then
                Stadtart := 2;
                
-            elsif StadtNummer = 1 and Rasse /= GlobaleVariablen.Rasse then
+            elsif StadtNummer = 1 and Rasse /= GlobaleVariablen.GeradeAmZug then
                Stadtart := 3;
                
             else
@@ -210,7 +212,7 @@ package body InDerStadt is
                                    StadtNummer => StadtNummer);
             ForschungsDatenbank.ForschungZeit (Rasse => Rasse);            
             
-            if Rasse = GlobaleVariablen.Rasse then
+            if Rasse = GlobaleVariablen.GeradeAmZug then
                EinheitenDatenbank.EinheitEntfernen (Rasse         => Rasse,
                                                     EinheitNummer => EinheitNummer);
                GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Name := Eingabe.StadtName;

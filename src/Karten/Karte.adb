@@ -109,18 +109,19 @@ package body Karte is
 
       Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 33)) & GlobaleVariablen.RundenAnzahl'Wide_Wide_Image);
 
-      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 34)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleGeldmenge'Wide_Wide_Image);
-      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 35)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).GeldZugewinnProRunde'Wide_Wide_Image);
+      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 34)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.GeradeAmZug).AktuelleGeldmenge'Wide_Wide_Image);
+      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 35)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.GeradeAmZug).GeldZugewinnProRunde'Wide_Wide_Image);
 
       Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 38)));
-      ForschungsDatenbank.Beschreibung (ID => GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuellesForschungsprojekt);
-      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 36)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).VerbleibendeForschungszeit'Wide_Wide_Image);
+      ForschungsDatenbank.Beschreibung (ID => GlobaleVariablen.Wichtiges (GlobaleVariablen.GeradeAmZug).AktuellesForschungsprojekt);
+      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 36)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.GeradeAmZug).VerbleibendeForschungszeit'Wide_Wide_Image);
 
-      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 39)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsmenge'Wide_Wide_Image);
-      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 37)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.Rasse).AktuelleForschungsrate'Wide_Wide_Image);
+      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 39)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.GeradeAmZug).AktuelleForschungsmenge'Wide_Wide_Image);
+      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 37)) & GlobaleVariablen.Wichtiges (GlobaleVariablen.GeradeAmZug).AktuelleForschungsrate'Wide_Wide_Image);
       New_Line;
       
-      case Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Sichtbar (GlobaleVariablen.Rasse) is
+      case Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
+                          GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Sichtbar (GlobaleVariablen.GeradeAmZug) is
          when True =>
             RassenEinheitenSchleife:
             for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop
@@ -140,7 +141,7 @@ package body Karte is
                            Put_Line (Item => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleLebenspunkte'Wide_Wide_Image & " /"
                                      & EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID).MaximaleLebenspunkte'Wide_Wide_Image);
                         
-                           if Rasse = GlobaleVariablen.Rasse or GlobaleVariablen.FeindlicheInformationenSehen = True then
+                           if Rasse = GlobaleVariablen.GeradeAmZug or GlobaleVariablen.FeindlicheInformationenSehen = True then
                               Put (Item => "           " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 15)));
                               Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte,
                                                      Fore => 1,
@@ -204,12 +205,13 @@ package body Karte is
                           and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.YAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse
                           and GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AchsenPosition.XAchse = GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse then
                            KarteStadt.Beschreibung (Rasse => Rasse, StadtNummer => StadtNummer);
-                           if Rasse = GlobaleVariablen.Rasse or GlobaleVariablen.FeindlicheInformationenSehen = True then                              
+                           if Rasse = GlobaleVariablen.GeradeAmZug or GlobaleVariablen.FeindlicheInformationenSehen = True then                              
                               Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (KartenVerbesserung (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID)).Verteidigungsbonus;
 
                            else
                               null;
                            end if;
+
                            case GlobaleVariablen.FeindlicheInformationenSehen is
                               when False =>
                                  null;

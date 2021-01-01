@@ -4,7 +4,7 @@ package body Cheat is
    begin
 
       AktuelleEinheit := 1;
-      AktuelleRasse := GlobaleVariablen.Rasse;
+      AktuelleRasse := GlobaleVariablen.GeradeAmZug;
       
       MenüSchleife:
       loop
@@ -140,7 +140,7 @@ package body Cheat is
             XAchseSchleife:
             for X in 1 .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-               Karten.Karten (E, Y, X).Sichtbar (GlobaleVariablen.Rasse) := True;
+               Karten.Karten (E, Y, X).Sichtbar (GlobaleVariablen.GeradeAmZug) := True;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -215,7 +215,9 @@ package body Cheat is
    begin
       
       Put_Line (Item => "Rasse ändern");
-      GlobaleVariablen.Rasse := Eingabe.GanzeZahl (Zahlengröße => 2);
+      GlobaleVariablen.RassenImSpiel (GlobaleVariablen.GeradeAmZug) := 2;
+      GlobaleVariablen.GeradeAmZug := Eingabe.GanzeZahl (Zahlengröße => 2);
+      GlobaleVariablen.RassenImSpiel (GlobaleVariablen.GeradeAmZug) := 1;
       
    end Rasse;
 

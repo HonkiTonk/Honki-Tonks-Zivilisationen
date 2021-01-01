@@ -5,7 +5,7 @@ package body KarteStadt is
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
-      Stadtumgebungsgröße := GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, StadtNummer).StadtUmgebungGröße;
+      Stadtumgebungsgröße := GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, StadtNummer).StadtUmgebungGröße;
 
       YAchsenabstraktion := -Stadtumgebungsgröße;
       CursorYAchsePlus := -10;
@@ -120,8 +120,8 @@ package body KarteStadt is
                Put (Item => " ");
 
             elsif Y = 1 and X < 13 then
-               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (X)) /= '0' then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.Rasse, Integer (X)).Anzeige);
+               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, Stadtnummer).GebäudeVorhanden (Integer (X)) /= '0' then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.GeradeAmZug, Integer (X)).Anzeige);
 
                else
                   Sichtbarkeit.Farben (Einheit      => 0,
@@ -132,8 +132,8 @@ package body KarteStadt is
                end if;
 
             elsif Y = 2 and X < 13 then
-               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (X) + 12) /= '0' then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.Rasse, Integer (X) + 12).Anzeige);
+               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, Stadtnummer).GebäudeVorhanden (Integer (X) + 12) /= '0' then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.GeradeAmZug, Integer (X) + 12).Anzeige);
 
                else
                   Sichtbarkeit.Farben (Einheit      => 0,
@@ -162,12 +162,12 @@ package body KarteStadt is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
 
-      Beschreibung (Rasse       => GlobaleVariablen.Rasse,
+      Beschreibung (Rasse       => GlobaleVariablen.GeradeAmZug,
                     StadtNummer => Stadtnummer);
       InformationenStadt (YAufschlag => CursorYAchsePlus,
                           XAufschlag => CursorXAchsePlus);
       if GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse = 1 and GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse < 13 then
-         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse)) /= '0' then
+         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse)) /= '0' then
             GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse));
             
          else
@@ -175,7 +175,7 @@ package body KarteStadt is
          end if;
 
       elsif GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse = 2 and GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse < 13 then
-         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.Rasse, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12) /= '0' then
+         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12) /= '0' then
             GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12);
             
          else
@@ -331,7 +331,7 @@ package body KarteStadt is
       Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 5)));
       Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner'Wide_Wide_Image);
                      
-      if Rasse = GlobaleVariablen.Rasse then
+      if Rasse = GlobaleVariablen.GeradeAmZug then
          Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 6)));
          Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsmittel'Wide_Wide_Image);
          Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 7)));

@@ -283,46 +283,57 @@ package body Verbesserungen is
    
 
 
-   procedure VerbesserungFertiggestellt (Rasse : in Integer) is
+   procedure VerbesserungFertiggestellt is
    begin
       
-      VerbesserungInArbeitSchleife:
-      for A in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+      RassenSchleife:
+      for Rasse in GlobaleVariablen.RassenImSpiel'Range loop
          
-         case GlobaleVariablen.EinheitenGebaut (Rasse, A).ID is
+         case GlobaleVariablen.RassenImSpiel (Rasse) is
             when 0 =>
-               exit VerbesserungInArbeitSchleife;
+               null;
                
             when others =>
-               case GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung is
-                  when 0 | 7 .. 8 =>
-                     null;
-               
-                  when others =>
-                     GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigungszeit := GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigungszeit - 1;
-                     if GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigungszeit <= 0 then
-                        VerbesserungAngelegt (Rasse         => Rasse,
-                                              EinheitNummer => A);
-
-                        case GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung2 is
-                           when 0 =>
-                              GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung := 0;
-                              GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigungszeit := 0;
-
-                           when others =>
-                              GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung := GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung2;
-                              GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigung2 := 0;
-                              GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigungszeit := GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigungszeit2;
-                              GlobaleVariablen.EinheitenGebaut (Rasse, A).AktuelleBeschäftigungszeit2 := 0;
-                        end case;
-                        
-                     else
-                        null;
-                     end if;
-               end case;
-         end case;
+               VerbesserungInArbeitSchleife:
+               for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
          
-      end loop VerbesserungInArbeitSchleife;
+                  case GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID is
+                     when 0 =>
+                        exit VerbesserungInArbeitSchleife;
+               
+                     when others =>
+                        case GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung is
+                           when 0 | 7 .. 8 =>
+                              null;
+               
+                           when others =>
+                              GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit - 1;
+                              if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit <= 0 then
+                                 VerbesserungAngelegt (Rasse         => Rasse,
+                                                       EinheitNummer => EinheitNummer);
+
+                                 case GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung2 is
+                                    when 0 =>
+                                       GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung := 0;
+                                       GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit := 0;
+
+                                    when others =>
+                                       GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung2;
+                                       GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigung2 := 0;
+                                       GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit := GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit2;
+                                       GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBeschäftigungszeit2 := 0;
+                                 end case;
+                        
+                              else
+                                 null;
+                              end if;
+                        end case;
+                  end case;
+         
+               end loop VerbesserungInArbeitSchleife;
+         end case;
+
+      end loop RassenSchleife;
       
    end VerbesserungFertiggestellt;
 
@@ -338,7 +349,7 @@ package body Verbesserungen is
          when 2 =>
             Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.EAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.YAchse,
                            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.XAchse).VerbesserungGebiet := 21;
-              
+            
          when 3 =>
             Karten.Karten (GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.EAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.YAchse,
                            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.XAchse).VerbesserungGebiet := 20;

@@ -24,8 +24,7 @@ package GlobaleVariablen is
    CursorImSpiel : CursorRecord := ('©', (0, 1, 1), (0, 1, 1), (1, 1));
 
    SpielerAnzahl : Integer := 1; -- 1 .. 18
-   Rasse : Integer := 1; -- 1 .. 18
-   GeradeAmZug : Integer;
+   GeradeAmZug : Integer; -- 1 .. 18
    RundenAnzahl : Integer := 1;
    RundenBisAutosave : Integer := 10;
 

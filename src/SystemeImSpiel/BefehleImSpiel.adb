@@ -156,19 +156,19 @@ package body BefehleImSpiel is
                   null;
                   
                when others =>
-                  if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).ID /= 1 and WelcherBefehl > 0 and WelcherBefehl <= 6 then
+                  if GlobaleVariablen.EinheitenGebaut (Rasse, WertEinheit).ID /= 1 and WelcherBefehl > 0 and WelcherBefehl <= 6 then
                      Anzeige.Fehlermeldungen (WelcheFehlermeldung => 3);
 
-                     elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).ID = 1 and WelcherBefehl = 11 then
+                     elsif GlobaleVariablen.EinheitenGebaut (Rasse, WertEinheit).ID = 1 and WelcherBefehl = 11 then
                      Anzeige.Fehlermeldungen (WelcheFehlermeldung => 3);
                      
-                  elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, WertEinheit).AktuelleBewegungspunkte = 0.0 then
+                  elsif GlobaleVariablen.EinheitenGebaut (Rasse, WertEinheit).AktuelleBewegungspunkte = 0.0 then
                      Anzeige.Fehlermeldungen (WelcheFehlermeldung => 8);
                      
                   else
-                     Verbesserungen.Verbesserung (Befehl => WelcherBefehl,
-                                                           Rasse => Rasse,
-                                                           EinheitNummer => WertEinheit);
+                     Verbesserungen.Verbesserung (Befehl        => WelcherBefehl,
+                                                  Rasse         => Rasse,
+                                                  EinheitNummer => WertEinheit);
                   end if;
             end case;               
             return 1;
