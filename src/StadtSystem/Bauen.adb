@@ -19,7 +19,8 @@ package body Bauen is
             when 1_001 .. 99_999 => -- Gebäude - 1_000, Einheiten - 10_000
                GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt := WasGebautWerdenSoll;
                GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleRessourcen := 0;
-               Bauzeit (Rasse => Rasse);
+               BauzeitEinzeln (Rasse       => Rasse,
+                               StadtNummer => StadtNummer);
                return;
                
             when others =>
@@ -32,34 +33,59 @@ package body Bauen is
 
 
 
-   procedure Bauzeit (Rasse : in Integer) is
+   procedure BauzeitEinzeln (Rasse, StadtNummer : in Integer) is
    begin
-      
-      for StadtPositionInListe in GlobaleVariablen.EinheitenGebaut'Range (2) loop
 
-         if GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).ID = 0 then
-            exit;
-            
-         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate = 0 then
-            GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit := 10_000;
+      if GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate = 0 then
+         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit := 10_000;
 
-         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt = 0 then
-            GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit := 0;
+      elsif GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt = 0 then
+         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit := 0;
             
-         elsif GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt < 10_000 then
-            GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit
-              := (GebaeudeDatenbank.GebäudeListe (Rasse, GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 1_000).PreisRessourcen
-                  - GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleRessourcen) / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate);
+      elsif GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt < 10_000 then
+         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit
+           := (GebaeudeDatenbank.GebäudeListe (Rasse, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt - 1_000).PreisRessourcen
+               - GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleRessourcen) / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate);
                
-         else
-            GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).VerbleibendeBauzeit
-              := (EinheitenDatenbank.EinheitenListe (Rasse, GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuellesBauprojekt - 10_000)).PreisRessourcen
-                  - GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleRessourcen) / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (Rasse, StadtPositionInListe).AktuelleProduktionrate);
-         end if;
+      else
+         GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit
+           := (EinheitenDatenbank.EinheitenListe (Rasse, GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt - 10_000)).PreisRessourcen
+               - GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleRessourcen) / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate);
+      end if;
+               
+   end BauzeitEinzeln;
+
+
+
+   procedure BauzeitAlle is
+   begin
          
-      end loop;
+      RassenSchleife:
+      for Rasse in GlobaleVariablen.RassenImSpiel'Range loop
+
+         case GlobaleVariablen.RassenImSpiel (Rasse) is
+            when 0 =>
+               null;
+               
+            when others =>
+               StadtSchleife:
+               for StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
       
-   end Bauzeit;
+                  case GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID is
+                     when 0 =>
+                        exit StadtSchleife;
+                        
+                     when others =>
+                        BauzeitEinzeln (Rasse       => Rasse,
+                                        StadtNummer => StadtNummer);
+                  end case;
+      
+               end loop StadtSchleife;
+         end case;
+         
+      end loop RassenSchleife;
+      
+   end BauzeitAlle;
    
    
    

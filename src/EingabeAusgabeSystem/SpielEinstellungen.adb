@@ -230,7 +230,7 @@ package body SpielEinstellungen is
 
 
    
-   function RasseWählen return Integer is
+   function RasseWählen return Integer is -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
    begin
 
       RasseSchleife:
@@ -244,8 +244,7 @@ package body SpielEinstellungen is
                Wahl2 := Auswahl.Auswahl (WelcheAuswahl => 6, WelcherText => 18);
                case Wahl2 is
                   when -3 =>
-                     GlobaleVariablen.Rasse := Wahl;
-                     GlobaleVariablen.RassenImSpiel (GlobaleVariablen.Rasse) := 1;
+                     GlobaleVariablen.RassenImSpiel (Wahl) := 1;
                      return 6;
                      
                   when others =>
@@ -254,8 +253,7 @@ package body SpielEinstellungen is
 
             when 19 =>
                ZufälligeRasseWählen.Reset (ZufälligeRasseGewählt);
-               GlobaleVariablen.Rasse := ZufälligeRasseWählen.Random (ZufälligeRasseGewählt);
-               GlobaleVariablen.RassenImSpiel (GlobaleVariablen.Rasse) := 1;
+               GlobaleVariablen.RassenImSpiel (ZufälligeRasseWählen.Random (ZufälligeRasseGewählt)) := 1;
                return 6;
                
             when -2 =>
@@ -357,8 +355,8 @@ package body SpielEinstellungen is
          
       end loop SpieleranzahlWerteFestlegen;
 
-      GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, 1).AchsenPosition.YAchse;
-      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.Rasse, 1).AchsenPosition.XAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.RassenImSpiel (1), 1).AchsenPosition.YAchse;
+      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.RassenImSpiel (1), 1).AchsenPosition.XAchse;
       GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.YAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse;
       GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse;
       

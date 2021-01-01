@@ -117,7 +117,7 @@ package body BewegungssystemEinheiten is
       GegnerEinheitWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => KartenWert.YAchse,
                                                                                   XAchse => KartenWert.XAchse);
 
-      if GegnerEinheitWert.Rasse = GlobaleVariablen.Rasse then
+      if GegnerEinheitWert.Rasse = GlobaleVariablen.GeradeAmZug then
          return;
                   
       else
@@ -127,7 +127,7 @@ package body BewegungssystemEinheiten is
       GegnerStadtWert := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => KartenWert.YAchse,
                                                                               XAchse => KartenWert.XAchse);
 
-      if GegnerStadtWert.Rasse = GlobaleVariablen.Rasse then
+      if GegnerStadtWert.Rasse = GlobaleVariablen.GeradeAmZug then
          GegnerStadtWert.Rasse := 0;
             
       else

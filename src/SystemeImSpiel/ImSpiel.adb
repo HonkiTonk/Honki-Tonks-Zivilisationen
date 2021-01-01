@@ -2,9 +2,7 @@ package body ImSpiel is
 
    function ImSpiel return Integer is -- Karte.Sichtbarkeit von hier nach BefehleImSpiel verschiebbar?
    begin
-
-      Sichtbarkeit.Sichtbarkeitsprüfung;
-      Karte.AnzeigeKarte;
+     
 
       SpielSchleife:
       loop
@@ -12,6 +10,8 @@ package body ImSpiel is
          RassenSchleife:
          for Rasse in GlobaleVariablen.RassenImSpiel'Range loop
             
+            GlobaleVariablen.GeradeAmZug := Rasse;
+            Sichtbarkeit.Sichtbarkeitsprüfung;
             case GlobaleVariablen.RassenImSpiel (Rasse) is -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
                when 0 =>
                   null;
@@ -20,22 +20,23 @@ package body ImSpiel is
                   SpielerSchleife:
                   loop
                      
+                     Karte.AnzeigeKarte;
                      AktuellerBefehl := BefehleImSpiel.Befehle (Rasse => Rasse);
                      case AktuellerBefehl is
                         when 1 =>
-                           Karte.AnzeigeKarte;
+                           null;
 
                         when 2 => -- Speichern
-                           -- Speichern.Speichern (AutoSpeichern => False);
-                           Karte.AnzeigeKarte;
+                                  -- Speichern.Speichern (AutoSpeichern => False);
+                           null;
                
                         when 3 => -- Laden
-                           -- Laden.Laden;
-                           Karte.AnzeigeKarte;
+                                  -- Laden.Laden;
+                           null;
                
                         when 4 =>
                            Optionen.Optionen;
-                           Karte.AnzeigeKarte;
+                           null;
                
                         when 0 =>
                            return 0;
@@ -48,7 +49,6 @@ package body ImSpiel is
                   
                         when others =>
                            Sichtbarkeit.Sichtbarkeitsprüfung;
-                           Karte.AnzeigeKarte;
                      end case;
                      
                   end loop SpielerSchleife;
@@ -60,9 +60,9 @@ package body ImSpiel is
          end loop RassenSchleife;
                        
          EinheitenDatenbank.HeilungBewegungspunkteFürNeueRundeSetzen;
-         Verbesserungen.VerbesserungFertiggestellt (Rasse => GlobaleVariablen.Rasse);
+         Verbesserungen.VerbesserungFertiggestellt;
          Wachstum.Wachstum;
-         Bauen.Bauzeit (Rasse => GlobaleVariablen.Rasse);
+         Bauen.BauzeitAlle;
          InDerStadt.StadtProduktionPrüfen (0, 0);
          ForschungsDatenbank.ForschungFortschritt;
          GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;

@@ -7,7 +7,7 @@ use GlobaleDatentypen;
 package Verbesserungen is
 
    procedure Verbesserung (Befehl, Rasse, EinheitNummer : in Integer);
-   procedure VerbesserungFertiggestellt (Rasse : in Integer);
+   procedure VerbesserungFertiggestellt;
    
 private
    

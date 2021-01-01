@@ -7,7 +7,8 @@ use GlobaleDatentypen;
 package Bauen is
 
    procedure Bauen (Rasse, StadtNummer : in Integer);
-   procedure Bauzeit (Rasse : in Integer);
+   procedure BauzeitEinzeln (Rasse, StadtNummer : in Integer);
+   procedure BauzeitAlle;
 
 private
 
