@@ -63,6 +63,7 @@ private
    function KartenartWählen return Integer;
    function KartentemperaturWählen return Integer;
    function SpieleranzahlWählen return Integer;
+   function MenschlicheSpieleranzahl return Integer;
    function RasseWählen return Integer;
    function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.Kartenfeld; Rasse : in Integer) return Boolean;
 

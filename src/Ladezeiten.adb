@@ -1,6 +1,6 @@
 package body Ladezeiten is
 
-   procedure Ladezeiten (WelcheZeit : Integer) is
+   procedure LadezeitenSpielweltErstellen (WelcheZeit : Integer) is
    begin
 
       Gesamtzeit := 0.00;
@@ -10,13 +10,13 @@ package body Ladezeiten is
       case WelcheZeit is
          when 1 =>
             ZeitAuswahlSchleife:
-            for VerschiedeneZeiten in GlobaleVariablen.Zeit'Range (2) loop
+            for VerschiedeneZeiten in LadezeitenSpielweltErstellenZeit'Range (2) loop
                ZeitUnterschiedSchleife:
-               for ZeitAnfangEnde in GlobaleVariablen.Zeit'Range (1) loop
+               for ZeitAnfangEnde in LadezeitenSpielweltErstellenZeit'Range (1) loop
                   
                   case ZeitAnfangEnde is
                      when 2 =>
-                        Gesamtzeit := Gesamtzeit + Float (GlobaleVariablen.Zeit (ZeitAnfangEnde, VerschiedeneZeiten) - GlobaleVariablen.Zeit (ZeitAnfangEnde - 1, VerschiedeneZeiten));
+                        Gesamtzeit := Gesamtzeit + Float (LadezeitenSpielweltErstellenZeit (ZeitAnfangEnde, VerschiedeneZeiten) - LadezeitenSpielweltErstellenZeit (ZeitAnfangEnde - 1, VerschiedeneZeiten));
 
                      when 1 =>
                         null;
@@ -31,13 +31,41 @@ package body Ladezeiten is
             Get_Immediate (Item => Warten);
             
          when others =>
-            Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.Zeit (2, WelcheZeit) - GlobaleVariablen.Zeit (1, WelcheZeit)),
+            Ada.Float_Text_IO.Put (Item => Float (LadezeitenSpielweltErstellenZeit (2, WelcheZeit) - LadezeitenSpielweltErstellenZeit (1, WelcheZeit)),
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
             New_Line;
       end case;
                   
-   end Ladezeiten;
+   end LadezeitenSpielweltErstellen;
+
+
+
+
+   procedure Speichern (WelcheZeit : Integer) is
+   begin
+      
+      null;
+      
+   end Speichern;
+   
+   
+   
+   procedure Laden (WelcheZeit : Integer) is
+   begin
+      
+      null;
+      
+   end Laden;
+   
+   
+   
+   procedure SpielStart (WelcheZeit : Integer) is
+   begin
+      
+      null;
+      
+   end SpielStart;
 
 end Ladezeiten;

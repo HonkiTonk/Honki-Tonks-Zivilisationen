@@ -6,6 +6,8 @@ package ImSpiel is
 
 private
 
+   ErsteRunde : Boolean;
+
    AktuellerBefehl : Integer;
 
 end ImSpiel;

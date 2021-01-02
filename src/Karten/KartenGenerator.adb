@@ -3,6 +3,15 @@ package body KartenGenerator is
    procedure KartenGenerator is
    begin
 
+      case Kartenart is
+         when 5 =>
+            Chaos;
+            return;
+            
+         when others =>
+            null;
+      end case;
+
       Reset (Gewählt);
 
       NochVerteilbareRessourcen := Karten.Kartengrößen (Karten.Kartengröße).Ressourcenmenge;
@@ -10,7 +19,7 @@ package body KartenGenerator is
       -- GrößeLandart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
       GeneratorKarte := (others => (others => (0)));
 
-      GlobaleVariablen.Zeit (1, 2) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 2) := Clock;
       YAchseSchleife:
       for YAchse in Karten.Karten'Range (2) loop
          XAchseSchleife:
@@ -41,44 +50,44 @@ package body KartenGenerator is
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
-      GlobaleVariablen.Zeit (2, 2) := Clock;
-      Ladezeiten.Ladezeiten (WelcheZeit => 2);
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 2) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 2);
             
-      GlobaleVariablen.Zeit (1, 3) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 3) := Clock;
       GenerierungKüstenSeeGewässer;
-      GlobaleVariablen.Zeit (2, 3) := Clock;   
-      Ladezeiten.Ladezeiten (WelcheZeit => 3);   
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 3) := Clock;   
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 3);   
 
-      GlobaleVariablen.Zeit (1, 4) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 4) := Clock;
       GenerierungKartentemperatur;
-      GlobaleVariablen.Zeit (2, 4) := Clock;
-      Ladezeiten.Ladezeiten (WelcheZeit => 4);
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 4) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 4);
       
-      GlobaleVariablen.Zeit (1, 5) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 5) := Clock;
       GenerierungLandschaft;
-      GlobaleVariablen.Zeit (2, 5) := Clock;
-      Ladezeiten.Ladezeiten (WelcheZeit => 5);
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 5) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 5);
       
-      GlobaleVariablen.Zeit (1, 6) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 6) := Clock;
       GenerierungFlüsse;
-      GlobaleVariablen.Zeit (2, 6) := Clock;
-      Ladezeiten.Ladezeiten (WelcheZeit => 6);
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 6) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 6);
       
-      GlobaleVariablen.Zeit (1, 7) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 7) := Clock;
       GenerierungRessourcen;
-      GlobaleVariablen.Zeit (2, 7) := Clock;
-      Ladezeiten.Ladezeiten (WelcheZeit => 7);
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 7) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 7);
       
       AndereEbenen;
-      Ladezeiten.Ladezeiten (WelcheZeit => 8);
-      Ladezeiten.Ladezeiten (WelcheZeit => 9);
-      Ladezeiten.Ladezeiten (WelcheZeit => 10);
-      Ladezeiten.Ladezeiten (WelcheZeit => 11);
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 8);
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 9);
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 10);
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 11);
 
-      GlobaleVariablen.Zeit (1, 12) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 12) := Clock;
       KartenfelderBewerten;
-      GlobaleVariablen.Zeit (2, 12) := Clock;
-      Ladezeiten.Ladezeiten (WelcheZeit => 12);
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 12) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 12);
       
    end KartenGenerator;
 
@@ -827,7 +836,7 @@ package body KartenGenerator is
       task body Himmel is
       begin
          
-         GlobaleVariablen.Zeit (1, 8) := Clock;
+         Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 8) := Clock;
          
          YAchseSchleife:
          for YAchse in Karten.Karten'Range (2) loop
@@ -853,7 +862,7 @@ package body KartenGenerator is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
          
-         GlobaleVariablen.Zeit (2, 8) := Clock;
+         Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 8) := Clock;
          
       end Himmel;
       
@@ -862,7 +871,7 @@ package body KartenGenerator is
       task body Weltraum is
       begin
 
-         GlobaleVariablen.Zeit (1, 9) := Clock;
+         Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 9) := Clock;
 
          YAchseSchleife:
          for YAchse in Karten.Karten'Range (2) loop
@@ -888,7 +897,7 @@ package body KartenGenerator is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
 
-         GlobaleVariablen.Zeit (2, 9) := Clock;
+         Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 9) := Clock;
          
       end Weltraum;
       
@@ -897,7 +906,7 @@ package body KartenGenerator is
       task body UnterwasserUnterirdisch is
       begin
          
-         GlobaleVariablen.Zeit (1, 10) := Clock;
+         Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 10) := Clock;
          
          YAchseSchleife:
          for YAchse in Karten.Karten'Range (2) loop
@@ -945,7 +954,7 @@ package body KartenGenerator is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
          
-         GlobaleVariablen.Zeit (2, 10) := Clock;
+         Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 10) := Clock;
          
       end UnterwasserUnterirdisch;
       
@@ -954,7 +963,7 @@ package body KartenGenerator is
       task body PlanetenInneres is
       begin
          
-         GlobaleVariablen.Zeit (1, 11) := Clock;
+         Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 11) := Clock;
          
          YAchseSchleife:
          for YAchse in Karten.Karten'Range (2) loop
@@ -980,7 +989,7 @@ package body KartenGenerator is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
          
-         GlobaleVariablen.Zeit (2, 11) := Clock;
+         Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 11) := Clock;
          
       end PlanetenInneres;
 
@@ -1142,5 +1151,38 @@ package body KartenGenerator is
       end loop YAchseSchleife;
    
    end KartenfelderBewerten;
+
+
+
+   procedure Chaos is
+   begin
+            
+      YAchseSchleife:
+      for YAchse in Karten.Karten'Range (2) loop
+         XAchseSchleife:
+         for XAchse in Karten.Karten'Range (3) loop
+                        
+            if YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+               Karten.Karten (0, YAchse, XAchse).Grund := -2;
+               exit YAchseSchleife;
+               
+            elsif XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+               Karten.Karten (0, YAchse, XAchse).Grund := -1;
+               exit XAchseSchleife;   
+               
+            elsif YAchse = Karten.Karten'First (2) or YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+               Karten.Karten (0, YAchse, XAchse).Grund := 1;
+               
+            else
+               Karten.Karten (0, YAchse, XAchse).Grund := ZufallsGeneratoren.Chaoskarte;
+            end if;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+
+      AndereEbenen;
+      KartenfelderBewerten;
+      
+   end Chaos;
 
 end KartenGenerator;
