@@ -338,22 +338,22 @@ package body Sichtbarkeit is
             Put (Item => CSI & "48;2;0;40;0m");
 
          when 35 =>
-            Put (Item => CSI & "48;2;139;69;19");
+            Put (Item => CSI & "48;2;139;69;19m");
             
          when 36 =>
-            Put (Item => CSI & "48;2;250;39;39");
+            Put (Item => CSI & "48;2;250;39;39m");
             
          when 37 =>
-            Put (Item => "W" & CSI & "48;2;236;236;236");
+            Put (Item => CSI & "48;2;236;236;236m");
             
          when 38 =>
-            Put (Item => CSI & "48;2;127;127;127");
+            Put (Item => CSI & "48;2;127;127;127m");
             
          when 39 =>
-            Put (Item => CSI & "48;2;97;56;11");
+            Put (Item => CSI & "48;2;97;56;11m");
             
          when 40 =>
-            Put (Item => CSI & "48;2;87;87;87");
+            Put (Item => CSI & "48;2;87;87;87m");
             
          when others =>
             null;

@@ -60,7 +60,7 @@ package body BefehleImSpiel is
                   
                when others =>
                   if EinheitenDatenbank.EinheitenListe (Rasse, GlobaleVariablen.EinheitenGebaut (Rasse, WertEinheit).ID).SiedlerLandeinheitSeeeinheitLufteinheit = 1 and
-                    GlobaleVariablen.EinheitenGebaut (Rasse, WertEinheit).AktuelleBewegungspunkte > 0.0 then
+                    GlobaleVariablen.EinheitenGebaut (Rasse, WertEinheit).AktuelleBewegungspunkte > 0.00 then
                      Nullwert := InDerStadt.StadtBauen (Rasse         => Rasse,
                                                         EinheitNummer => WertEinheit);
                      
@@ -162,7 +162,7 @@ package body BefehleImSpiel is
                      elsif GlobaleVariablen.EinheitenGebaut (Rasse, WertEinheit).ID = 1 and WelcherBefehl = 11 then
                      Anzeige.Fehlermeldungen (WelcheFehlermeldung => 3);
                      
-                  elsif GlobaleVariablen.EinheitenGebaut (Rasse, WertEinheit).AktuelleBewegungspunkte = 0.0 then
+                  elsif GlobaleVariablen.EinheitenGebaut (Rasse, WertEinheit).AktuelleBewegungspunkte = 0.00 then
                      Anzeige.Fehlermeldungen (WelcheFehlermeldung => 8);
                      
                   else
@@ -186,7 +186,7 @@ package body BefehleImSpiel is
             return 1;
             
          when 'r' => -- Runde beenden            
-            return -1000;
+            return -1_000;
             
          when '+' => -- Ebene hoch
             case GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse is
@@ -242,7 +242,7 @@ package body BefehleImSpiel is
                      null;
                end case;
                   
-            elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte = 0.0 then
+            elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AktuelleBewegungspunkte = 0.00 then
                null;
                      
             else

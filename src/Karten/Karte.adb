@@ -12,8 +12,19 @@ package body Karte is
             SichtweiteFestlegen := 2;
             BewegungsfeldFestlegen := 2;
 
-         -- when 10 =>
-            -- if Karten.Kartengrößen (Karten.Kartengröße).
+          when 10 =>
+            if Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (1).YAchsenGröße or Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (1).XAchsenGröße then
+               SichtweiteFestlegen := 1;
+               BewegungsfeldFestlegen := 1;
+               
+            elsif Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (2).YAchsenGröße or Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (2).XAchsenGröße then
+               SichtweiteFestlegen := 2;
+               BewegungsfeldFestlegen := 2;
+               
+            else
+               SichtweiteFestlegen := 3;
+               BewegungsfeldFestlegen := 3; 
+            end if;
             
          when others =>
             SichtweiteFestlegen := 3;
@@ -388,8 +399,10 @@ package body Karte is
             Put (Item => "Aktuelle EPosition: " & GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse'Wide_Wide_Image);
             Put (Item => "    Aktuelle YPosition: " & GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse'Wide_Wide_Image);
             Put_Line (Item => "    Aktuelle XPosition: " & GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse'Wide_Wide_Image);
-            Put_Line (Item => "Kartenfeldbewertung :" & Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
-                      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Felderwertung'Wide_Wide_Image);
+            Put (Item => "Kartenfeldbewertung: " & Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
+                 GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Felderwertung'Wide_Wide_Image);
+            Put (Item => "    Aktuelle GrundID: " & Karten.Karten (GlobaleVariablen.CursorImSpiel.AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
+                 GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund'Wide_Wide_Image);
       end case;
             
    end Information; 

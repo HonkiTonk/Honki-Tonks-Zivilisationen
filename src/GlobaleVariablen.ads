@@ -1,5 +1,5 @@
-with Ada.Strings.Wide_Wide_Unbounded, Ada.Calendar;
-use Ada.Strings.Wide_Wide_Unbounded, Ada.Calendar;
+with Ada.Strings.Wide_Wide_Unbounded;
+use Ada.Strings.Wide_Wide_Unbounded;
 
 with Karten, GlobaleDatentypen;
 
@@ -50,7 +50,7 @@ package GlobaleVariablen is
       
    end record;
 
-   type EinheitenGebautArray is array (RassenImSpiel'Range, 1 .. 1000) of EinheitenGebautRecord;
+   type EinheitenGebautArray is array (RassenImSpiel'Range, 1 .. 1_000) of EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0)));
 
    type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
@@ -109,8 +109,5 @@ package GlobaleVariablen is
    Diplomatie : DiplomatieArray := (others => (others => 1));
   
    FeindlicheInformationenSehen : Boolean := False;
-   
-   type ZeitArray is array (1 .. 2, 2 .. 13) of Time;
-   Zeit : ZeitArray;
-                                            
+                                               
 end GlobaleVariablen;

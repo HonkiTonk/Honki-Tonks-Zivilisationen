@@ -45,4 +45,14 @@ package body ZufallsGeneratoren is
       
    end YXPosition;
 
+
+
+   function Chaoskarte return GlobaleDatentypen.KartenGrund is
+   begin
+      
+      WerteWählenChaoskarte.Reset (GrundGewählt);
+      return WerteWählenChaoskarte.Random (GrundGewählt);
+      
+   end Chaoskarte;
+
 end ZufallsGeneratoren;

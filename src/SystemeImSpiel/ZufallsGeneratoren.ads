@@ -6,6 +6,7 @@ use GlobaleDatentypen;
 package ZufallsGeneratoren is
 
    function YXPosition return GlobaleDatentypen.AchsenAusKartenfeldPositiv;
+   function Chaoskarte return GlobaleDatentypen.KartenGrund;
 
 private   
 
@@ -37,5 +38,15 @@ private
    PositionGewählt320 : WerteWählen320.Generator;
    PositionGewählt1000 : WerteWählen1000.Generator;
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
+
+
+
+   -- Generator für Chaoskarte
+   subtype ChaoskarteWert is GlobaleDatentypen.KartenGrund range 1 .. GlobaleDatentypen.KartenGrund'Last;
+
+   package WerteWählenChaoskarte is new Ada.Numerics.Discrete_Random (ChaoskarteWert);
+   
+   GrundGewählt : WerteWählenChaoskarte.Generator;
+   -- Generator für Chaoskarte
 
 end ZufallsGeneratoren;

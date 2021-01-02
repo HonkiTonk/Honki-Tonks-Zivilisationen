@@ -27,6 +27,9 @@ package body SpielEinstellungen is
             when 6 =>
                exit AuswahlSchleife;
 
+            when 7 =>
+               exit AuswahlSchleife;
+
             when 0 =>
                return 0;
                
@@ -42,11 +45,11 @@ package body SpielEinstellungen is
 
       KartenGenerator.KartenGenerator;
       
-      GlobaleVariablen.Zeit (1, 13) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 13) := Clock;
       StartwerteErmitteln;
-      GlobaleVariablen.Zeit (2, 13) := Clock;
-      Ladezeiten.Ladezeiten (WelcheZeit => 13);
-      Ladezeiten.Ladezeiten (WelcheZeit => 1);
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 13) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 13);
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 1);
          
       return ImSpiel.ImSpiel;
               
@@ -122,7 +125,7 @@ package body SpielEinstellungen is
          Wahl := Auswahl.Auswahl (WelcheAuswahl => 2, WelcherText => 3);
                   
          case Wahl is
-            when 1 .. 3 =>
+            when 1 .. 3  | 5 =>
                KartenGenerator.Kartenart := Wahl;
                return 3;
                
@@ -227,6 +230,15 @@ package body SpielEinstellungen is
       end loop SpieleranzahlSchleife;
       
    end SpielerAnzahlWählen;
+
+
+
+   function MenschlicheSpieleranzahl return Integer is
+   begin
+      
+      return 1;
+      
+   end MenschlicheSpieleranzahl;
 
 
    

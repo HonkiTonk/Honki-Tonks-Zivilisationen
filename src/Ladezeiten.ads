@@ -5,7 +5,16 @@ with GlobaleVariablen;
 
 package Ladezeiten is
 
-   procedure Ladezeiten (WelcheZeit : Integer);
+   procedure LadezeitenSpielweltErstellen (WelcheZeit : Integer);
+   procedure Speichern (WelcheZeit : Integer);
+   procedure Laden (WelcheZeit : Integer);
+   procedure SpielStart (WelcheZeit : Integer);
+
+   type LadezeitenSpielweltErstellenZeitArray is array (1 .. 2, 2 .. 13) of Time;
+   LadezeitenSpielweltErstellenZeit : LadezeitenSpielweltErstellenZeitArray;
+   -- Speicherzeiten : LadezeitenSpielweltErstellenZeitArray;
+   -- LadenLadezeiten : LadezeitenSpielweltErstellenZeitArray;
+   -- SpielStartzeiten : LadezeitenSpielweltErstellenZeitArray;
 
 private
    

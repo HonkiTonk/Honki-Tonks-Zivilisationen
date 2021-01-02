@@ -3,6 +3,7 @@ package body ImSpiel is
    function ImSpiel return Integer is -- Karte.Sichtbarkeit von hier nach BefehleImSpiel verschiebbar?
    begin
      
+      ErsteRunde := True;
 
       SpielSchleife:
       loop
@@ -11,7 +12,15 @@ package body ImSpiel is
          for Rasse in GlobaleVariablen.RassenImSpiel'Range loop
             
             GlobaleVariablen.GeradeAmZug := Rasse;
-            Sichtbarkeit.Sichtbarkeitsprüfung;
+
+            case ErsteRunde is
+               when True =>
+                  Sichtbarkeit.Sichtbarkeitsprüfung;
+
+               when False =>
+                  null;
+            end case;
+            
             case GlobaleVariablen.RassenImSpiel (Rasse) is -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
                when 0 =>
                   null;
@@ -44,7 +53,7 @@ package body ImSpiel is
                         when -1 =>
                            return -1;
 
-                        when -1000 => -- Runde beenden
+                        when -1_000 => -- Runde beenden
                            exit SpielerSchleife;      
                   
                         when others =>
@@ -58,6 +67,8 @@ package body ImSpiel is
             end case;
             
          end loop RassenSchleife;
+
+         ErsteRunde := False;
                        
          EinheitenDatenbank.HeilungBewegungspunkteFürNeueRundeSetzen;
          Verbesserungen.VerbesserungFertiggestellt;
