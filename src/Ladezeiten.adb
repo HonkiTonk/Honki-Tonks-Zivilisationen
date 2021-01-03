@@ -46,7 +46,18 @@ package body Ladezeiten is
    procedure Speichern (WelcheZeit : Integer) is
    begin
       
-      null;
+      Gesamtzeit := 0.00;
+
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (24, WelcheZeit + AufschlagSpeichern)));
+
+      case WelcheZeit is
+         when others =>
+            Ada.Float_Text_IO.Put (Item => Float (SpielStartzeiten (2, WelcheZeit) - SpielStartzeiten (1, WelcheZeit)),
+                                   Fore => 1,
+                                   Aft  => 6,
+                                   Exp  => 0);
+            Get_Immediate (Item => Warten);
+      end case;
       
    end Speichern;
    
@@ -55,7 +66,18 @@ package body Ladezeiten is
    procedure Laden (WelcheZeit : Integer) is
    begin
       
-      null;
+      Gesamtzeit := 0.00;
+
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (24, WelcheZeit + AufschlagLaden)));
+
+      case WelcheZeit is
+         when others =>
+            Ada.Float_Text_IO.Put (Item => Float (SpielStartzeiten (2, WelcheZeit) - SpielStartzeiten (1, WelcheZeit)),
+                                   Fore => 1,
+                                   Aft  => 6,
+                                   Exp  => 0);
+            Get_Immediate (Item => Warten);
+      end case;
       
    end Laden;
    
@@ -64,8 +86,19 @@ package body Ladezeiten is
    procedure SpielStart (WelcheZeit : Integer) is
    begin
       
-      null;
-      
+      Gesamtzeit := 0.00;
+
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (24, WelcheZeit + AufschlagSpielstart)));
+
+      case WelcheZeit is
+         when others =>
+            Ada.Float_Text_IO.Put (Item => Float (SpielStartzeiten (2, WelcheZeit) - SpielStartzeiten (1, WelcheZeit)),
+                                   Fore => 1,
+                                   Aft  => 6,
+                                   Exp  => 0);
+            Get_Immediate (Item => Warten);
+      end case;
+            
    end SpielStart;
 
 end Ladezeiten;

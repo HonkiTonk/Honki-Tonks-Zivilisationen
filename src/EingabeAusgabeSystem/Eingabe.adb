@@ -56,6 +56,124 @@ package body Eingabe is
       
    end GanzeZahl;
 
+
+
+   function GanzeZahlNeu (WelcheDatei, WelcherText, ZahlenMinimum, ZahlenMaximum : Integer) return Integer is
+   begin
+      
+      Schleifen := (others => False);
+      
+      HauptSchleife:
+      loop
+         
+         ErsteZahlSchleife:
+         while Schleifen (9) = False loop
+            
+            Get_Immediate (Item => Zahlen);
+            IstZahl := ZahlPrüfung (Zeichen => Zahlen);
+            case IstZahl is
+               when 1 =>
+                  ZahlenString (9) := Zahlen;
+
+                  if Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximum then
+                     Schleifen (9) := True;
+                     
+                  else
+                     null;
+                  end if;
+
+               when -1 =>
+                  return -1;
+
+               when 2 =>
+                  if Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimum then
+                     exit HauptSchleife;
+                     
+                  else
+                     null;
+                  end if;
+                  
+               when others =>
+                  Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+            end case;
+
+         end loop ErsteZahlSchleife;
+
+         ZweiteZahlSchleife:
+         while Schleifen (8) = False loop
+            
+            Get_Immediate (Item => Zahlen);
+            IstZahl := ZahlPrüfung (Zeichen => Zahlen);
+            case IstZahl is
+               when 1 =>
+                  ZahlenString (8) := ZahlenString (9);
+                  ZahlenString (9) := Zahlen;
+
+                  if Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimum and Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximum then
+                     Schleifen (8) := True;
+                     
+                  else
+                     null;
+                  end if;
+
+               when -1 =>
+                  return -1;
+
+               when 2 =>
+                  if Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimum then
+                     exit HauptSchleife;
+                     
+                  else
+                     null;
+                  end if;
+                  
+               when others =>
+                  null;
+            end case;
+
+         end loop ZweiteZahlSchleife;
+
+      end loop HauptSchleife;
+         
+      loop
+            
+         if ZahlenString (1) = '0' then
+            Delete (Zahl, 1, 1);
+               
+         else
+            exit;
+         end if;
+            
+      end loop;
+
+      return Integer'Wide_Wide_Value (ZahlenString);
+            
+   end GanzeZahlNeu;
+
+
+
+   function ZahlPrüfung (Zeichen : in Wide_Wide_Character) return Integer is
+   begin
+      
+      case Zeichen is
+         when '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' =>
+            return 1;
+            
+         when 'q' =>
+            return -1;
+
+         when DEL =>
+            return -2;
+
+         when 'e' =>
+            return 2;
+            
+         when others =>
+            return 0;
+      end case;
+      
+   end ZahlPrüfung;
+
    
 
    function StadtName return Unbounded_Wide_Wide_String is

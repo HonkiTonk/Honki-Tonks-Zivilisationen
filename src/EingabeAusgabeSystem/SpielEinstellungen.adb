@@ -22,23 +22,19 @@ package body SpielEinstellungen is
                Wahl := SpieleranzahlWählen;
 
             when 5 =>
-               Wahl := RasseWählen;
+               Wahl := MenschlicheSpieleranzahl;
 
             when 6 =>
-               exit AuswahlSchleife;
+               Wahl := RasseWählen;
 
             when 7 =>
                exit AuswahlSchleife;
 
-            when 0 =>
-               return 0;
-               
-            when -1 =>
-               return -1;
+            when -1 | 0 =>
+               return Wahl;
 
             when others =>
-               Put_Line (Item => "SpielEinstellungen.SpielEinstellungen, when others =>");
-               return 0;
+               null;
          end case;
 
       end loop AuswahlSchleife;
@@ -63,7 +59,8 @@ package body SpielEinstellungen is
       KartengrößeSchleife:
       loop
          
-         Wahl := Auswahl.Auswahl (WelcheAuswahl => 1, WelcherText => 2);
+         Wahl := Auswahl.Auswahl (WelcheAuswahl => 1,
+                                  WelcherText   => 2);
          
          case Wahl is
             when 1 .. 9 =>
@@ -97,12 +94,9 @@ package body SpielEinstellungen is
                ZufälligeKartengrößeWählen.Reset (ZufälligeKartenGrößeGewählt);
                Karten.Kartengröße := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
                return 2;
-               
-            when 0 =>
-               return 0;
-               
-            when -1 =>
-               return -1;
+
+            when -1 | 0 =>
+               return Wahl;
                
             when others =>
                null;
@@ -122,7 +116,8 @@ package body SpielEinstellungen is
       KartenartSchleife:
       loop
 
-         Wahl := Auswahl.Auswahl (WelcheAuswahl => 2, WelcherText => 3);
+         Wahl := Auswahl.Auswahl (WelcheAuswahl => 2,
+                                  WelcherText   => 3);
                   
          case Wahl is
             when 1 .. 3  | 5 =>
@@ -136,12 +131,9 @@ package body SpielEinstellungen is
                
             when -2 =>
                return 1;
-               
-            when 0 =>
-               return 0;
-               
-            when -1 =>
-               return -1;
+
+            when -1 | 0 =>
+               return Wahl;
                
             when others =>
                null;
@@ -161,7 +153,8 @@ package body SpielEinstellungen is
       KartentemperaturSchleife:
       loop
 
-         Wahl := Auswahl.Auswahl (WelcheAuswahl =>  3, WelcherText => 4);
+         Wahl := Auswahl.Auswahl (WelcheAuswahl =>  3,
+                                  WelcherText   => 4);
                   
          case Wahl is
             when 1 .. 3 =>
@@ -175,12 +168,9 @@ package body SpielEinstellungen is
                
             when -2 =>
                return 2;
-               
-            when 0 =>
-               return 0;
-               
-            when -1 =>
-               return -1;
+
+            when -1 | 0 =>
+               return Wahl;
                
             when others =>
                null;
@@ -200,7 +190,8 @@ package body SpielEinstellungen is
       SpieleranzahlSchleife:
       loop
 
-         Wahl := Auswahl.Auswahl (WelcheAuswahl => 4, WelcherText => 5);
+         Wahl := Auswahl.Auswahl (WelcheAuswahl => 4,
+                                  WelcherText   => 5);
          
          case Wahl is
             when 1 .. 18 =>
@@ -214,12 +205,9 @@ package body SpielEinstellungen is
                
             when -2 =>
                return 3;
-               
-            when 0 =>
-               return 0;
-               
-            when -1 =>
-               return -1;
+
+            when -1 | 0 =>
+               return Wahl;
                
             when others =>
                null;
@@ -236,7 +224,33 @@ package body SpielEinstellungen is
    function MenschlicheSpieleranzahl return Integer is
    begin
       
-      return 1;
+
+      MenschlicheSpielerSchleife:
+      loop
+         
+         Wahl := Auswahl.Auswahl (WelcheAuswahl => 1,
+                                  WelcherText   => 1);
+         
+         case Wahl is
+            when 1 .. 18 =>
+               if Wahl > GlobaleVariablen.SpielerAnzahl then
+                  null;
+                  
+               else
+                  return 6;
+               end if;
+                  
+            when -2 =>
+               return 4;
+
+            when -1 | 0 =>
+               return Wahl;
+               
+            when others =>
+               null;
+         end case;
+         
+      end loop MenschlicheSpielerSchleife;
       
    end MenschlicheSpieleranzahl;
 
@@ -248,16 +262,19 @@ package body SpielEinstellungen is
       RasseSchleife:
       loop
          
-         Wahl := Auswahl.Auswahl (WelcheAuswahl => 5, WelcherText => 6);
+         Wahl := Auswahl.Auswahl (WelcheAuswahl => 5,
+                                  WelcherText   => 6);
 
          case Wahl is
             when 1 .. 18 =>      
-               Anzeige.AnzeigeLangerText (WelcherText => 7, WelcheZeile => Wahl);
-               Wahl2 := Auswahl.Auswahl (WelcheAuswahl => 6, WelcherText => 18);
+               Anzeige.AnzeigeLangerText (WelcherText => 7,
+                                          WelcheZeile => Wahl);
+               Wahl2 := Auswahl.Auswahl (WelcheAuswahl => 6,
+                                         WelcherText   => 18);
                case Wahl2 is
                   when -3 =>
                      GlobaleVariablen.RassenImSpiel (Wahl) := 1;
-                     return 6;
+                     return 7;
                      
                   when others =>
                      null;
@@ -266,16 +283,13 @@ package body SpielEinstellungen is
             when 19 =>
                ZufälligeRasseWählen.Reset (ZufälligeRasseGewählt);
                GlobaleVariablen.RassenImSpiel (ZufälligeRasseWählen.Random (ZufälligeRasseGewählt)) := 1;
-               return 6;
+               return 7;
                
             when -2 =>
-               return 4;
-               
-            when 0 =>
-               return 0;
-               
-            when -1 =>
-               return -1;
+               return 5;
+
+            when -1 | 0 =>
+               return Wahl;
                
             when others =>
                null;
