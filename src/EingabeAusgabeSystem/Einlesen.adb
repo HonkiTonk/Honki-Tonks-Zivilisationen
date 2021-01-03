@@ -3,11 +3,14 @@ package body Einlesen is
    function Einlesen return Boolean is
    begin      
       
+      Ladezeiten.SpielStartzeiten (1, 1) := Clock;
       Erfolgreich := EinlesenText;
 
       case Erfolgreich is
          when True =>
             EinlesenWerte;
+            Ladezeiten.SpielStartzeiten (2, 1) := Clock;
+            Ladezeiten.SpielStart (WelcheZeit => 1);
             return Erfolgreich;
 
          when False =>
@@ -21,7 +24,7 @@ package body Einlesen is
    function EinlesenText return Boolean is -- Wenn Hardcoded wie die Werte, dann funktioniert es mit einer Sprache ohne die Dateien zum Einlesen
    begin
 
-      case Exists (Name => "Dateien/WelcheTexteEinlesen") is
+      case Exists (Name => "Dateien/Sprachen/Deutsch/0") is
          when True =>
             null;
 
@@ -31,7 +34,7 @@ package body Einlesen is
 
       Open (File => DateiWelcheTexteEinlesen,
             Mode => In_File,
-            Name => "Dateien/WelcheTexteEinlesen");
+            Name => "Dateien/Sprachen/Deutsch/0");
 
       for A in WelcheTexteEinlesen'Range loop
 
