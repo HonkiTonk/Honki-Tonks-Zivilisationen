@@ -5,6 +5,7 @@ with Anzeige, GlobaleVariablen;
 
 package Auswahl is
 
+   function AuswahlSprache return Unbounded_Wide_Wide_String;
    function Auswahl (WelcheAuswahl, WelcherText : in Integer) return Integer;
 
 private

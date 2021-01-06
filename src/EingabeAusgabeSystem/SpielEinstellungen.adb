@@ -237,6 +237,7 @@ package body SpielEinstellungen is
                   null;
                   
                else
+                  MenschlicheSpieler := Wahl;
                   return 6;
                end if;
                   
@@ -306,36 +307,35 @@ package body SpielEinstellungen is
    procedure StartwerteErmitteln is
    begin
       
-      case GlobaleVariablen.SpielerAnzahl is
-         when 1 =>
-            null;
+      if GlobaleVariablen.SpielerAnzahl = MenschlicheSpieler then
+         null;
             
-         when others =>
-            RassenAusgewählt := 1;
-            RassenWählen.Reset (RassenGewählt);
+      else
+         RassenAusgewählt := 1;
+         RassenWählen.Reset (RassenGewählt);
 
-            RassenWählenSchleife:
-            loop
+         RassenWählenSchleife:
+         loop
 
-               Rasse := RassenWählen.Random (RassenGewählt);
+            Rasse := RassenWählen.Random (RassenGewählt);
                
-               if GlobaleVariablen.RassenImSpiel (Rasse) = 0 then
-                  GlobaleVariablen.RassenImSpiel (Rasse) := 2;
-                  RassenAusgewählt := RassenAusgewählt + 1;
+            if GlobaleVariablen.RassenImSpiel (Rasse) = 0 then
+               GlobaleVariablen.RassenImSpiel (Rasse) := 2;
+               RassenAusgewählt := RassenAusgewählt + 1;
 
-                  if RassenAusgewählt = GlobaleVariablen.SpielerAnzahl then
-                     exit RassenWählenSchleife;
+               if RassenAusgewählt = GlobaleVariablen.SpielerAnzahl then
+                  exit RassenWählenSchleife;
                      
-                  else
-                     null;
-                  end if;
-                  
                else
                   null;
-               end if;               
+               end if;
+                  
+            else
+               null;
+            end if;               
                
-            end loop RassenWählenSchleife;
-      end case;
+         end loop RassenWählenSchleife;
+      end if;
       
       SpieleranzahlWerteFestlegen:
       for Rasse in GlobaleVariablen.RassenImSpiel'Range loop

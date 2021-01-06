@@ -4,6 +4,17 @@ package body Einlesen is
    begin      
       
       Ladezeiten.SpielStartzeiten (1, 1) := Clock;
+
+      Erfolgreich := EinlesenSprache;
+      
+      case Erfolgreich is
+         when True =>
+            GlobaleVariablen.GewählteSprache := Auswahl.AuswahlSprache;
+            
+         when False =>
+            return Erfolgreich;
+      end case;
+      
       Erfolgreich := EinlesenText;
 
       case Erfolgreich is
@@ -21,10 +32,47 @@ package body Einlesen is
 
 
 
+   function EinlesenSprache return Boolean is
+   begin
+      
+      Start_Search (Search    => Suche,
+                    Directory => "Dateien/Sprachen",
+                    Pattern   => "");
+
+      VerzeichnisAußenSchleife:
+      while More_Entries (Search => Suche) loop
+
+         Get_Next_Entry (Search          => Suche,
+                         Directory_Entry => Verzeichnis);
+         if Simple_Name (Directory_Entry => Verzeichnis) = "." or Simple_Name (Directory_Entry => Verzeichnis) = ".." then
+            null;
+                  
+         else  
+            VerzeichnisInnenSchleife:
+            for Sprache in GlobaleVariablen.TexteEinlesen'Range (2) loop
+            
+               if GlobaleVariablen.TexteEinlesen (0, Sprache) /= "|" then
+                  null;
+            
+               else        
+                  GlobaleVariablen.TexteEinlesen (0, Sprache) := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
+                  exit VerzeichnisInnenSchleife;
+               end if;            
+         
+            end loop VerzeichnisInnenSchleife;
+         end if;
+      end loop VerzeichnisAußenSchleife;
+      
+      return True;
+      
+   end EinlesenSprache;
+
+
+
    function EinlesenText return Boolean is -- Wenn Hardcoded wie die Werte, dann funktioniert es mit einer Sprache ohne die Dateien zum Einlesen
    begin
 
-      case Exists (Name => "Dateien/Sprachen/Deutsch/0") is
+      case Exists (Name => "Dateien/Sprachen/" & Ada.Characters.Conversions.To_String (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0") is
          when True =>
             null;
 
@@ -34,7 +82,7 @@ package body Einlesen is
 
       Open (File => DateiWelcheTexteEinlesen,
             Mode => In_File,
-            Name => "Dateien/Sprachen/Deutsch/0");
+            Name => "Dateien/Sprachen/" & Ada.Characters.Conversions.To_String (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0");
 
       for A in WelcheTexteEinlesen'Range loop
 
@@ -52,7 +100,7 @@ package body Einlesen is
       close (File => DateiWelcheTexteEinlesen);
       
       WelcherTextSchleife:
-      for B in GlobaleVariablen.TexteEinlesen'Range (1) loop
+      for B in 1 .. GlobaleVariablen.TexteEinlesen'Last (1) loop
 
          case Exists (To_String (Source => WelcheTexteEinlesen (B))) is
             when True =>
