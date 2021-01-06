@@ -1,4 +1,4 @@
-with Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
 with Karten, GlobaleDatentypen;
@@ -8,8 +8,10 @@ package GlobaleVariablen is
    WelcheSprache : Integer;
    -- AktuelleEbene : GlobaleDatentypen.Ebene := 0;
 
-   type TexteEinlesenArray is array (1 .. 24, 1 .. 50) of Unbounded_Wide_Wide_String;
+   type TexteEinlesenArray is array (0 .. 24, 1 .. 50) of Unbounded_Wide_Wide_String;
    TexteEinlesen : TexteEinlesenArray := (others => (others => (To_Unbounded_Wide_Wide_String ("|"))));
+
+   GewählteSprache : Unbounded_Wide_Wide_String;
 
    type CursorRecord is record
       

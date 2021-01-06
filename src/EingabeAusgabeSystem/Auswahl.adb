@@ -1,5 +1,61 @@
 package body Auswahl is
 
+   function AuswahlSprache return Unbounded_Wide_Wide_String is
+   begin
+      
+      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+      
+      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
+         
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (0, A)) = "|" then
+            exit;
+            
+         else
+            Ende := A;
+         end if;
+         
+      end loop;
+
+      AktuelleAuswahl := 1;
+      
+      AuswahlSchleife:
+      loop         
+
+         Put_Line (Item => "Sprache auswählen:");
+         Anzeige.Anzeige (WelcherText     => 0,
+                          AktuelleAuswahl => AktuelleAuswahl);         
+         
+         Get_Immediate (Item => Taste);
+         
+         case To_Lower (Item => Taste) is               
+            when 'w' | '8' => 
+               if AktuelleAuswahl = GlobaleVariablen.TexteEinlesen'First (2) then
+                  AktuelleAuswahl := Ende;
+               else
+                  AktuelleAuswahl := AktuelleAuswahl - 1;
+               end if;
+
+            when 's' | '2' =>
+               if AktuelleAuswahl = Ende then
+                  AktuelleAuswahl := GlobaleVariablen.TexteEinlesen'First (2);
+               else
+                  AktuelleAuswahl := AktuelleAuswahl + 1;
+               end if;
+                              
+            when 'e' | '5' =>    
+               Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+               return GlobaleVariablen.TexteEinlesen (0, AktuelleAuswahl);
+                     
+            when others =>
+               null;                    
+         end case;
+
+         Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
+         
+      end loop AuswahlSchleife;
+      
+   end AuswahlSprache;
+
    function Auswahl (WelcheAuswahl, WelcherText : in Integer) return Integer is
    begin
 
