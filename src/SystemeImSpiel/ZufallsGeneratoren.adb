@@ -51,7 +51,20 @@ package body ZufallsGeneratoren is
    begin
       
       WerteWählenChaoskarte.Reset (GrundGewählt);
-      return WerteWählenChaoskarte.Random (GrundGewählt);
+      
+      loop
+         
+         Wert := WerteWählenChaoskarte.Random (GrundGewählt);
+      
+         case Wert is
+            when 1 .. 9 | 31 .. 32 | 35 .. 40 =>
+               return Wert;
+            
+            when others =>
+               null;
+         end case;
+         
+      end loop;
       
    end Chaoskarte;
 

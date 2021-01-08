@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.Unbounded, Ada.Directories, Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Text_IO, Ada.Calendar, Ada.Characters.Conversions;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.Unbounded, Ada.Directories, Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Text_IO, Ada.Calendar;
 
-with GlobaleVariablen, KartenDatenbank, VerbesserungenDatenbank, GebaeudeDatenbank, ForschungsDatenbank, EinheitenDatenbank, Ladezeiten, Auswahl;
+with GlobaleVariablen, KartenDatenbank, VerbesserungenDatenbank, GebaeudeDatenbank, ForschungsDatenbank, EinheitenDatenbank, Ladezeiten, Auswahl, Schreiben;
 
 package Einlesen is
 

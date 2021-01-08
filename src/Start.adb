@@ -13,14 +13,6 @@ begin
 
    GlobaleVariablen.WelcheSprache := 1;
 
-   case Exists (Name => "Dateien/Spielstand") is
-      when True =>
-         null;
-
-      when False =>
-         Create_Directory (New_Directory => "Dateien/Spielstand");
-   end case;
-
    EinlesenErgebnis := Einlesen.Einlesen;
 
    case EinlesenErgebnis is

@@ -1,10 +1,11 @@
 package body Einlesen is
 
    function Einlesen return Boolean is
-   begin      
+   begin
       
       Ladezeiten.SpielStartzeiten (1, 1) := Clock;
-
+      
+      Schreiben.SchreibenStartAufruf;
       Erfolgreich := EinlesenSprache;
       
       case Erfolgreich is
