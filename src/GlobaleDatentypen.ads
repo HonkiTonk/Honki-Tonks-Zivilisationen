@@ -62,7 +62,6 @@ package GlobaleDatentypen is
 
 
    -- Für die KI gedacht:
-   
    type EinheitStatusRecord is record
           
       EinheitNummer : Integer;
@@ -70,5 +69,6 @@ package GlobaleDatentypen is
       EinheitTyp : Integer;
       
    end record;
+   -- Für die KI gedacht:
 
 end GlobaleDatentypen;

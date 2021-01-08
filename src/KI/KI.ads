@@ -3,7 +3,7 @@ use GlobaleDatentypen;
 
 package KI is
 
-   procedure KI (Rasse : in Integer);
+   procedure KI (RasseExtern : in Integer);
 
 private
 
@@ -12,11 +12,11 @@ private
 
    EinheitStatus : GlobaleDatentypen.EinheitStatusRecord;
 
-   procedure KIAktivität (Rasse : in Integer);
-   procedure KIStadtBauen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
-   procedure KIVerbesserungAnlegen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
-   procedure KIGebäudeBauen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
-   procedure KIBefestigen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
-   procedure KIAngreifen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
+   procedure KIAktivität (RasseExtern : in Integer);
+   procedure KIStadtBauen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
+   procedure KIVerbesserungAnlegen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
+   procedure KIGebäudeBauen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
+   procedure KIBefestigen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
+   procedure KIAngreifen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
 
 end KI;

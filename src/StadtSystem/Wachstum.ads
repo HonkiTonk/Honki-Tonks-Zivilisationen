@@ -7,11 +7,11 @@ use GlobaleDatentypen;
 package Wachstum is
    
    procedure Wachstum;
-   procedure WachstumBeiStadtGründung (Rasse : in Integer);
+   procedure WachstumBeiStadtGründung (RasseExtern : in Integer);
 
 private
    
-   procedure WachstumEinwohner (Rasse, StadtNummer : in Integer);
-   procedure WachstumProduktion (Rasse, StadtNummer : in Integer);
+   procedure WachstumEinwohner (RasseExtern, StadtNummer : in Integer);
+   procedure WachstumProduktion (RasseExtern, StadtNummer : in Integer);
 
 end Wachstum;

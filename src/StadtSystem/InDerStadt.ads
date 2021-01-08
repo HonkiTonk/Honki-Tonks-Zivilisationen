@@ -7,12 +7,12 @@ use GlobaleDatentypen;
 
 package InDerStadt is
 
-   procedure InDerStadt (Rasse, StadtNummer : in Integer);
-   procedure StadtProduktionPrüfen (Rasse, StadtNummer : in Integer);
-   procedure BelegteStadtfelderFreigeben (Rasse, StadtNummer : in Integer);
+   procedure InDerStadt (RasseExtern, StadtNummer : in Integer);
+   procedure StadtProduktionPrüfen (RasseExtern, StadtNummer : in Integer);
+   procedure BelegteStadtfelderFreigeben (RasseExtern, StadtNummer : in Integer);
 
-   function StadtBauen (Rasse, EinheitNummer : in Integer) return Boolean;
-   function StadtBauenPrüfen (Rasse, EinheitNummer : in Integer) return Boolean;
+   function StadtBauen (RasseExtern, EinheitNummer : in Integer) return Boolean;
+   function StadtBauenPrüfen (RasseExtern, EinheitNummer : in Integer) return Boolean;
 
 private
 
@@ -30,6 +30,6 @@ private
 
    KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
 
-   procedure StadtProduktionPrüfenBerechnung (Rasse, StadtNummer : in Integer);
+   procedure StadtProduktionPrüfenBerechnung (RasseExtern, StadtNummer : in Integer);
 
 end InDerStadt;

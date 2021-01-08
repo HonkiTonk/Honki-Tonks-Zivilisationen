@@ -6,8 +6,8 @@ use GlobaleDatentypen;
 
 package BewegungssystemCursor is
 
-   procedure BewegungCursorRichtung (Karte : in Boolean; Richtung : in Wide_Wide_Character);
-   procedure GeheZuCursor;
+   procedure BewegungCursorRichtung (Karte : in Boolean; Richtung : in Wide_Wide_Character; RasseExtern : in Integer);
+   procedure GeheZuCursor (RasseExtern : in Integer);
 
 private
 
@@ -22,7 +22,7 @@ private
 
    KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
    
-   procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins);
-   procedure BewegungCursorBerechnenStadt (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins);
+   procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins; RasseExtern : in Integer);
+   procedure BewegungCursorBerechnenStadt (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins; RasseExtern : in Integer);
 
 end BewegungssystemCursor;

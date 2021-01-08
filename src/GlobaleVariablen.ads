@@ -28,14 +28,12 @@ package GlobaleVariablen is
    end record;
    
    type CursorImSpielArray is array (1 .. 18) of CursorRecord;
-   Platzhalter : CursorImSpielArray := (others => ('©', (0, 1, 1), (0, 1, 1), (1, 1)));
-   CursorImSpiel : CursorRecord := ('©', (0, 1, 1), (0, 1, 1), (1, 1)); -- Auf Array umschreiben?
+   CursorImSpiel : CursorImSpielArray := (others => ('©', (0, 1, 1), (0, 1, 1), (1, 1)));
    -- Cursor
    
    
 
    SpielerAnzahl : Integer := 1; -- 1 .. 18
-   GeradeAmZug : Integer; -- 1 .. 18
    RundenAnzahl : Integer := 1;
    RundenBisAutosave : Integer := 10;
 

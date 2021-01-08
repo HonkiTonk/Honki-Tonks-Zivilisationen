@@ -6,7 +6,7 @@ use GlobaleDatentypen;
 
 package Karte is
 
-   procedure AnzeigeKarte;
+   procedure AnzeigeKarte (RasseExtern : in Integer);
 
 private
 
@@ -34,7 +34,6 @@ private
                                                 2 => (0, 5, 21),
                                                 3 => (0, 5, 34));
 
-   procedure Information;
-   -- procedure Verschiebung;
+   procedure Information (RasseExtern : in Integer);
 
 end Karte;

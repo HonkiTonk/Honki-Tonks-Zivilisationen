@@ -1,10 +1,10 @@
 package body Cheat is
 
-   procedure Menü is
+   procedure Menü (RasseExtern : in Integer) is
    begin
 
       AktuelleEinheit := 1;
-      AktuelleRasse := GlobaleVariablen.GeradeAmZug;
+      AktuelleRasse := RasseExtern;
       
       MenüSchleife:
       loop
@@ -17,16 +17,13 @@ package body Cheat is
                return;
                
             when 'n' => -- Zur nächsten Einheit bewegen, unabhängig von der Rasse/sichtbaren Bereich
-               BeliebigeNächsteEinheit;
+               BeliebigeNächsteEinheit (RasseExtern => RasseExtern);
 
             when 'i' => -- Informationen über die aktuelle Einheit/Stadt/Grund/WasAuchImmer, unabhängig vom sichtbaren Bereich
                Informationen;
 
             when 's' =>
-               Sichtbarkeit;
-               
-            when 'r' =>
-               Rasse;
+               Sichtbarkeit (RasseExtern => RasseExtern);
 
             when 'e' =>
                EinheitFestlegen;
@@ -34,14 +31,14 @@ package body Cheat is
             when others =>
                null;
          end case;
-         Karte.AnzeigeKarte;
+         Karte.AnzeigeKarte (RasseExtern => RasseExtern);
 
       end loop MenüSchleife;
       
    end Menü;
 
 
-   procedure BeliebigeNächsteEinheit is -- Funktioniert nicht 100%, nochmal drüber schauen wenn Zeit und Lust, da Cheatmenü nicht so wichtig
+   procedure BeliebigeNächsteEinheit (RasseExtern : in Integer) is -- Funktioniert nicht 100%, nochmal drüber schauen wenn Zeit und Lust, da Cheatmenü nicht so wichtig
    begin      
       
       if GlobaleVariablen.EinheitenGebaut (AktuelleRasse, AktuelleEinheit).ID = 0 then
@@ -114,8 +111,8 @@ package body Cheat is
          AktuelleEinheit := AktuelleEinheit + 1;
       end if;
       
-      GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasse, AktuelleEinheit).AchsenPosition.YAchse;
-      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasse, AktuelleEinheit).AchsenPosition.XAchse;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasse, AktuelleEinheit).AchsenPosition.YAchse;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasse, AktuelleEinheit).AchsenPosition.XAchse;
       
    end BeliebigeNächsteEinheit;
 
@@ -130,17 +127,17 @@ package body Cheat is
 
 
 
-   procedure Sichtbarkeit is
+   procedure Sichtbarkeit (RasseExtern : in Integer) is
    begin
       
       EbeneSchleife:
-      for E in Karten.Karten'Range (1) loop
+      for EAchse in Karten.Karten'Range (1) loop
          YAchseSchleife:
-         for Y in 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for X in 1 .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in 1 .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-               Karten.Karten (E, Y, X).Sichtbar (GlobaleVariablen.GeradeAmZug) := True;
+               Karten.Karten (EAchse, YAchse, XAchse).Sichtbar (RasseExtern) := True;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -167,7 +164,7 @@ package body Cheat is
       ID := Eingabe.GanzeZahl (Zahlengröße => 2);
       
       Put_Line (Item => "Einheit festlegen");
-      EinheitenDatenbank.EinheitErzeugen (Rasse       => RasseZahl,
+      EinheitenDatenbank.EinheitErzeugen (RasseExtern => RasseZahl,
                                           StadtNummer => Stadt,
                                           ID          => ID);
       
@@ -208,17 +205,5 @@ package body Cheat is
       null;
         
    end EinheitStatus;
-
-
-
-   procedure Rasse is
-   begin
-      
-      Put_Line (Item => "Rasse ändern");
-      GlobaleVariablen.RassenImSpiel (GlobaleVariablen.GeradeAmZug) := 2;
-      GlobaleVariablen.GeradeAmZug := Eingabe.GanzeZahl (Zahlengröße => 2);
-      GlobaleVariablen.RassenImSpiel (GlobaleVariablen.GeradeAmZug) := 1;
-      
-   end Rasse;
 
 end Cheat;

@@ -27,9 +27,9 @@ package ForschungsDatenbank is
                                                        others => (0, (others => 0))));
 
    procedure Beschreibung (ID : in Integer);
-   procedure Forschung (Rasse : in Integer);
+   procedure Forschung (RasseExtern : in Integer);
    procedure ForschungFortschritt;
-   procedure ForschungZeit (Rasse : in Integer);
+   procedure ForschungZeit (RasseExtern : in Integer);
 
 private
 
@@ -41,6 +41,6 @@ private
    AktuelleAuswahl : Integer;
    Ende : Integer;
 
-   function AuswahlForschung (Rasse : in Integer) return Integer;
+   function AuswahlForschung (RasseExtern : in Integer) return Integer;
 
 end ForschungsDatenbank;

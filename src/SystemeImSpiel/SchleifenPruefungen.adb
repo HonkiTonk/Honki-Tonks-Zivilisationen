@@ -35,16 +35,16 @@ package body SchleifenPruefungen is
 
    
 
-   function KoordinatenStadtMitRasseSuchen (Rasse : in Integer; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) return Integer is
+   function KoordinatenStadtMitRasseSuchen (RasseExtern : in Integer; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) return Integer is
    begin
       
       StadtSchleife:
       for Stadtnummer in GlobaleVariablen.StadtGebaut'Range (2) loop
          
-         if GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).ID = 0 then
+         if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).ID = 0 then
             exit StadtSchleife;
             
-         elsif GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AchsenPosition.XAchse = XAchse then
+         elsif GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AchsenPosition.XAchse = XAchse then
             return Stadtnummer;
             
          else
@@ -59,16 +59,16 @@ package body SchleifenPruefungen is
 
 
 
-   function KoordinatenEinheitMitRasseSuchen (Rasse : in Integer; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) return Integer is
+   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in Integer; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) return Integer is
    begin
       
       EinheitSchleife:
       for Einheitennummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
          
-         if GlobaleVariablen.EinheitenGebaut (Rasse, Einheitennummer).ID = 0 then
+         if GlobaleVariablen.EinheitenGebaut (RasseExtern, Einheitennummer).ID = 0 then
             exit EinheitSchleife;
             
-         elsif GlobaleVariablen.EinheitenGebaut (Rasse, Einheitennummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (Rasse, Einheitennummer).AchsenPosition.XAchse = XAchse then
+         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, Einheitennummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (RasseExtern, Einheitennummer).AchsenPosition.XAchse = XAchse then
             return Einheitennummer;
             
          else
@@ -87,15 +87,15 @@ package body SchleifenPruefungen is
    begin
 
       RasseSchleife:
-      for Rasse in GlobaleVariablen.StadtGebaut'Range (1) loop
+      for RasseIntern in GlobaleVariablen.StadtGebaut'Range (1) loop
          StadtSchleife:
          for Stadtnummer in GlobaleVariablen.StadtGebaut'Range (2) loop
             
-            if GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).ID = 0 then
+            if GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).ID = 0 then
                exit StadtSchleife;
                
-            elsif GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.StadtGebaut (Rasse, Stadtnummer).AchsenPosition.XAchse = XAchse then
-               return (Rasse, Stadtnummer);
+            elsif GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).AchsenPosition.XAchse = XAchse then
+               return (RasseIntern, Stadtnummer);
                
             else
                null;
@@ -114,15 +114,15 @@ package body SchleifenPruefungen is
    begin
 
       RasseSchleife:
-      for Rasse in GlobaleVariablen.StadtGebaut'Range (1) loop
+      for RasseIntern in GlobaleVariablen.StadtGebaut'Range (1) loop
          EinheitSchleife:
          for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
             
-            if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID = 0 then
+            if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID = 0 then
                exit EinheitSchleife;
                
-            elsif GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).AchsenPosition.XAchse = XAchse then
-               return (Rasse, EinheitNummer);
+            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition.XAchse = XAchse then
+               return (RasseIntern, EinheitNummer);
                
             else
                null;

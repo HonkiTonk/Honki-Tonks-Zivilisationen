@@ -3,10 +3,10 @@ use GlobaleDatentypen;
 
 package NaechstesObjekt is
 
-   procedure NächsteEinheitMitBewegungspunkten;
-   procedure NächsteEinheit;
-   procedure NächsteEinheitOhneBewegungspunkte;
-   procedure NächsteStadt;
+   procedure NächsteEinheitMitBewegungspunkten (RasseExtern : in Integer);
+   procedure NächsteEinheit (RasseExtern : in Integer);
+   procedure NächsteEinheitOhneBewegungspunkte (RasseExtern : in Integer);
+   procedure NächsteStadt (RasseExtern : in Integer);
    
 private
    

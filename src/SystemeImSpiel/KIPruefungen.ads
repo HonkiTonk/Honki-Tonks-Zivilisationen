@@ -3,8 +3,8 @@ use GlobaleDatentypen;
 
 package KIPruefungen is
    
-   function SpezielleEinheitArtSuchen (Rasse, WelcheEinheitArt : in Integer) return Integer;
-   function EinheitMitBewegungspunktenSuchen (Rasse : in Integer) return GlobaleDatentypen.EinheitStatusRecord;
+   function SpezielleEinheitArtSuchen (RasseExtern, WelcheEinheitArt : in Integer) return Integer;
+   function EinheitMitBewegungspunktenSuchen (RasseExtern : in Integer) return GlobaleDatentypen.EinheitStatusRecord;
    
 private
 

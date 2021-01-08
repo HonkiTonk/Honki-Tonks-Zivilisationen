@@ -6,8 +6,8 @@ use GlobaleDatentypen;
 
 package KarteStadt is
    
-   procedure AnzeigeStadt (StadtNummer : in Integer);
-   procedure Beschreibung (Rasse, StadtNummer : in Integer);
+   procedure AnzeigeStadt (StadtNummer, RasseExtern : in Integer);
+   procedure Beschreibung (RasseExtern, StadtNummer : in Integer);
 
 private
    
@@ -25,9 +25,11 @@ private
    YAchse : GlobaleDatentypen.Kartenfeld;
    XAchse : GlobaleDatentypen.Kartenfeld;
 
+   Wert : Integer;
+
    KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
    
    procedure FarbenStadt;
-   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld);
+   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; RasseExtern : in Integer);
 
 end KarteStadt;

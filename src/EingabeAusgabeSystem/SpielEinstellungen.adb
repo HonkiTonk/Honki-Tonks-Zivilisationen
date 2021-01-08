@@ -358,11 +358,6 @@ package body SpielEinstellungen is
          end case;
          
       end loop SpieleranzahlWerteFestlegen;
-
-      GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.RassenImSpiel (1), 1).AchsenPosition.YAchse;
-      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.RassenImSpiel (1), 1).AchsenPosition.XAchse;
-      GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.YAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse;
-      GlobaleVariablen.CursorImSpiel.AchsenPositionAlt.XAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse;
       
    end StartwerteErmitteln;
 
@@ -457,7 +452,10 @@ package body SpielEinstellungen is
       GlobaleVariablen.EinheitenGebaut (Rasse, 2).AchsenPosition.EAchse := Koordinaten (2).EAchse;
       GlobaleVariablen.EinheitenGebaut (Rasse, 2).AchsenPosition.YAchse := Koordinaten (2).YAchse;
       GlobaleVariablen.EinheitenGebaut (Rasse, 2).AchsenPosition.XAchse := Koordinaten (2).XAchse;
-      EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, 2);     
+      EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, 2);
+      
+      GlobaleVariablen.CursorImSpiel (Rasse).AchsenPosition := GlobaleVariablen.EinheitenGebaut (Rasse, 1).AchsenPosition;
+      GlobaleVariablen.CursorImSpiel (Rasse).AchsenPositionAlt := GlobaleVariablen.EinheitenGebaut (Rasse, 1).AchsenPosition;
       
    end StartpunktFestlegen;
 

@@ -9,19 +9,18 @@ package body ImSpiel is
       loop
          
          RassenSchleife:
-         for Rasse in GlobaleVariablen.RassenImSpiel'Range loop
+         for RasseIntern in GlobaleVariablen.RassenImSpiel'Range loop
             
-            GlobaleVariablen.GeradeAmZug := Rasse;
-
-            case ErsteRunde is
-               when True =>
-                  Sichtbarkeit.Sichtbarkeitsprüfung;
-
-               when False =>
+            case GlobaleVariablen.RassenImSpiel (RasseIntern) is
+               when 0 =>
                   null;
+                  
+               when others =>
+                  -- GlobaleVariablen.GeradeAmZug := RasseIntern;
+                  Sichtbarkeit.Sichtbarkeitsprüfung (RasseExtern => RasseIntern);
             end case;
             
-            case GlobaleVariablen.RassenImSpiel (Rasse) is -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+            case GlobaleVariablen.RassenImSpiel (RasseIntern) is -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
                when 0 =>
                   null;
                   
@@ -29,8 +28,8 @@ package body ImSpiel is
                   SpielerSchleife:
                   loop
                      
-                     Karte.AnzeigeKarte;
-                     AktuellerBefehl := BefehleImSpiel.Befehle (Rasse => Rasse);
+                     Karte.AnzeigeKarte (RasseExtern => RasseIntern);
+                     AktuellerBefehl := BefehleImSpiel.Befehle (RasseExtern => RasseIntern);
                      case AktuellerBefehl is
                         when 1 =>
                            null;
@@ -57,13 +56,13 @@ package body ImSpiel is
                            exit SpielerSchleife;      
                   
                         when others =>
-                           Sichtbarkeit.Sichtbarkeitsprüfung;
+                           Sichtbarkeit.Sichtbarkeitsprüfung (RasseExtern => RasseIntern);
                      end case;
                      
                   end loop SpielerSchleife;
                   
                when others =>
-                  KI.KI (Rasse => Rasse);
+                  KI.KI (RasseExtern => RasseIntern);
             end case;
             
          end loop RassenSchleife;
@@ -77,8 +76,6 @@ package body ImSpiel is
          InDerStadt.StadtProduktionPrüfen (0, 0);
          ForschungsDatenbank.ForschungFortschritt;
          GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
-         Sichtbarkeit.Sichtbarkeitsprüfung;
-         Karte.AnzeigeKarte;
          -- Speichern.AutoSpeichern;             
                      
       end loop SpielSchleife;

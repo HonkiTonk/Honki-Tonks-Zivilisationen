@@ -1,26 +1,26 @@
 package body KI is
 
-   procedure KI (Rasse : in Integer) is
+   procedure KI (RasseExtern : in Integer) is
    begin
       
-      if GlobaleVariablen.EinheitenGebaut (Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (Rasse, 1).ID = 0 then
-         GlobaleVariablen.RassenImSpiel (Rasse) := 0;
+      if GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID = 0 and GlobaleVariablen.StadtGebaut (RasseExtern, 1).ID = 0 then
+         GlobaleVariablen.RassenImSpiel (RasseExtern) := 0;
                   
       else
-         KIAktivität (Rasse => Rasse);
+         KIAktivität (RasseExtern => RasseExtern);
       end if; 
       
    end KI;
 
 
 
-   procedure KIAktivität (Rasse : in Integer) is -- Von hier aus dann die einzelnen Tätigkeiten aufrufen
+   procedure KIAktivität (RasseExtern : in Integer) is -- Von hier aus dann die einzelnen Tätigkeiten aufrufen
    begin
       
       GesamteAktivitätSchleife:
       loop
          
-         EinheitStatus := KIPruefungen.EinheitMitBewegungspunktenSuchen (Rasse => Rasse);
+         EinheitStatus := KIPruefungen.EinheitMitBewegungspunktenSuchen (RasseExtern => RasseExtern);
          
          case EinheitStatus.BewegungspunkteBeschäftigung is
             when SchleifenPruefungen.RückgabeWert =>               
@@ -38,11 +38,11 @@ package body KI is
 
             case EinheitStatus.EinheitTyp is
                when 1 =>
-                  KIStadtBauen (Rasse         => Rasse,
+                  KIStadtBauen (RasseExtern   => RasseExtern,
                                 EinheitStatus => EinheitStatus);
                 
                when others =>
-                  KIBefestigen (Rasse         => Rasse,
+                  KIBefestigen (RasseExtern   => RasseExtern,
                                 EinheitStatus => EinheitStatus);
             end case;
 
@@ -54,7 +54,8 @@ package body KI is
                   null;
             end case;
             
-            if GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AktuelleBewegungspunkte = 0.00 or GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AktuelleBeschäftigung /= 0 then
+            if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AktuelleBewegungspunkte = 0.00
+              or GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AktuelleBeschäftigung /= 0 then
                exit AktivitätSchleife;
             
             else
@@ -69,25 +70,26 @@ package body KI is
    
       
    
-   procedure KIStadtBauen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure KIStadtBauen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
       
-      if Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.XAchse).Felderwertung >= 120 then         
-         StadtErfolgreichGebaut := InDerStadt.StadtBauen (Rasse         => Rasse,
+      if Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse,
+                        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse).Felderwertung >= 120 then         
+         StadtErfolgreichGebaut := InDerStadt.StadtBauen (RasseExtern   => RasseExtern,
                                                           EinheitNummer => EinheitStatus.EinheitNummer);
 
          case StadtErfolgreichGebaut is
             when True =>
-               EinheitenDatenbank.EinheitEntfernen (Rasse         => Rasse,
+               EinheitenDatenbank.EinheitEntfernen (RasseExtern   => RasseExtern,
                                                     EinheitNummer => EinheitStatus.EinheitNummer);
                
             when False =>
-               KIBewegung.KIBewegung (Rasse         => Rasse,
+               KIBewegung.KIBewegung (RasseExtern   => RasseExtern,
                                       EinheitStatus => EinheitStatus);
          end case;
          
       else
-         KIBewegung.KIBewegung (Rasse         => Rasse,
+         KIBewegung.KIBewegung (RasseExtern   => RasseExtern,
                                 EinheitStatus => EinheitStatus);
       end if;
       
@@ -95,7 +97,7 @@ package body KI is
    
    
    
-   procedure KIVerbesserungAnlegen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure KIVerbesserungAnlegen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
       
       null;
@@ -104,7 +106,7 @@ package body KI is
    
 
 
-   procedure KIGebäudeBauen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure KIGebäudeBauen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
       
       null;
@@ -113,17 +115,17 @@ package body KI is
       
       
       
-   procedure KIBefestigen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure KIBefestigen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
          
-      KIBewegung.KIBewegung (Rasse         => Rasse,
+      KIBewegung.KIBewegung (RasseExtern   => RasseExtern,
                              EinheitStatus => EinheitStatus);
          
    end KIBefestigen;
       
       
       
-   procedure KIAngreifen (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure KIAngreifen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
          
       null;
