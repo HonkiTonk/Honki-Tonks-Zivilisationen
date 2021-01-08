@@ -6,7 +6,7 @@ use GlobaleDatentypen;
 
 package BewegungssystemEinheiten is
 
-   procedure BewegungEinheitenRichtung (Rasse, EinheitNummer : in Integer);
+   procedure BewegungEinheitenRichtung (RasseExtern, EinheitNummer : in Integer);
    
 private
 
@@ -27,6 +27,6 @@ private
    GegnerEinheitWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    GegnerStadtWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    
-   procedure BewegungEinheitenBerechnung (Rasse, EinheitNummer : in Integer; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins);
+   procedure BewegungEinheitenBerechnung (RasseExtern, EinheitNummer : in Integer; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins);
 
 end BewegungssystemEinheiten;

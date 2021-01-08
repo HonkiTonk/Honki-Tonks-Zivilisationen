@@ -1,9 +1,9 @@
 package body NaechstesObjekt is
 
-   procedure NächsteEinheitMitBewegungspunkten is -- Nochmal über die loops schauen, möglicherweise wird eine Einheit ausgelassen
+   procedure NächsteEinheitMitBewegungspunkten (RasseExtern : in Integer) is -- Nochmal über die loops schauen, möglicherweise wird eine Einheit ausgelassen
    begin
 
-      case GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.GeradeAmZug, 1).ID is
+      case GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID is
          when 0 =>
             return;
          
@@ -12,6 +12,7 @@ package body NaechstesObjekt is
             Startwert := 1;
       end case;
       
+      EinheitSuchenSchleife:
       loop
                
          if AktuelleEinheit + 1 > GlobaleVariablen.EinheitenGebaut'Last (2) then
@@ -19,7 +20,7 @@ package body NaechstesObjekt is
             Startwert := Startwert + 1;
             AktuelleEinheit := 1;
 
-         elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.GeradeAmZug, AktuelleEinheit + 1).ID = 0 then
+         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit + 1).ID = 0 then
             Endwert := AktuelleEinheit;
             Startwert := Startwert + 1;
             AktuelleEinheit := 1;
@@ -29,8 +30,8 @@ package body NaechstesObjekt is
             Startwert := Startwert + 1;
          end if;
 
-         if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.GeradeAmZug, AktuelleEinheit).AktuelleBewegungspunkte > 0.0 then
-            exit;
+         if GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit).AktuelleBewegungspunkte > 0.0 then
+            exit EinheitSuchenSchleife;
             
          else
             null;
@@ -43,40 +44,40 @@ package body NaechstesObjekt is
             null;
          end if;
 
-      end loop;
+      end loop EinheitSuchenSchleife;
          
-      GlobaleVariablen.CursorImSpiel.AchsenPosition := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.GeradeAmZug, AktuelleEinheit).AchsenPosition;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit).AchsenPosition;
       
    end NächsteEinheitMitBewegungspunkten;
    
    
 
-   procedure NächsteEinheit is
+   procedure NächsteEinheit (RasseExtern : in Integer) is
    begin
       
-      if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.GeradeAmZug, 1).ID = 0 then
+      if GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID = 0 then
          return;
       
       elsif AktuelleEinheit + 1 > GlobaleVariablen.EinheitenGebaut'Last (2) then
          AktuelleEinheit := 1;
 
-      elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.GeradeAmZug, AktuelleEinheit + 1).ID = 0 then
+      elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit + 1).ID = 0 then
          AktuelleEinheit := 1;
          
       else
          AktuelleEinheit := AktuelleEinheit + 1;
       end if;
       
-      GlobaleVariablen.CursorImSpiel.AchsenPosition := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.GeradeAmZug, AktuelleEinheit).AchsenPosition;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit).AchsenPosition;
       
    end NächsteEinheit;
 
 
 
-   procedure NächsteEinheitOhneBewegungspunkte is
+   procedure NächsteEinheitOhneBewegungspunkte (RasseExtern : in Integer) is
    begin
       
-      case GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.GeradeAmZug, 1).ID is
+      case GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID is
          when 0 =>
             return;
          
@@ -92,7 +93,7 @@ package body NaechstesObjekt is
             Startwert := Startwert + 1;
             AktuelleEinheit := 1;
 
-         elsif GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.GeradeAmZug, AktuelleEinheit + 1).ID = 0 then
+         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit + 1).ID = 0 then
             Endwert := AktuelleEinheit;
             Startwert := Startwert + 1;
             AktuelleEinheit := 1;
@@ -102,7 +103,7 @@ package body NaechstesObjekt is
             Startwert := Startwert + 1;
          end if;
 
-         if GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.GeradeAmZug, AktuelleEinheit).AktuelleBewegungspunkte <= 0.0 then
+         if GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit).AktuelleBewegungspunkte <= 0.0 then
             exit;
             
          else
@@ -118,29 +119,29 @@ package body NaechstesObjekt is
 
       end loop;
          
-      GlobaleVariablen.CursorImSpiel.AchsenPosition := GlobaleVariablen.EinheitenGebaut (GlobaleVariablen.GeradeAmZug, AktuelleEinheit).AchsenPosition;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit).AchsenPosition;
       
    end NächsteEinheitOhneBewegungspunkte;
    
    
    
-   procedure NächsteStadt is
+   procedure NächsteStadt (RasseExtern : in Integer) is
    begin
       
-      if GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, 1).ID = 0 then
+      if GlobaleVariablen.StadtGebaut (RasseExtern, 1).ID = 0 then
          return;
       
       elsif AktuelleStadt + 1 > GlobaleVariablen.StadtGebaut'Last (2) then
          AktuelleStadt := 1;
 
-      elsif GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, AktuelleStadt + 1).ID = 0 then
+      elsif GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt + 1).ID = 0 then
          AktuelleStadt := 1;
          
       else
          AktuelleStadt := AktuelleStadt + 1;
       end if;
       
-      GlobaleVariablen.CursorImSpiel.AchsenPosition := GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, AktuelleStadt).AchsenPosition;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).AchsenPosition;
       
    end NächsteStadt;
 

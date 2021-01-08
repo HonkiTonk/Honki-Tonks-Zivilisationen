@@ -1,25 +1,25 @@
 package body KIBewegung is
 
-   procedure KIBewegung (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure KIBewegung (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
 
       case EinheitStatus.EinheitTyp is
          when 1 .. 100 =>
-            BewegungSiedler (Rasse         => Rasse,
+            BewegungSiedler (RasseExtern   => RasseExtern,
                              EinheitStatus => EinheitStatus);
             
          when others =>
-            GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AktuelleBewegungspunkte := 0.00;
+            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AktuelleBewegungspunkte := 0.00;
       end case;
       
    end KIBewegung;
 
 
 
-   procedure BewegungSiedler (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure BewegungSiedler (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
 
-      Bewegungsziel := (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.XAchse);
+      Bewegungsziel := (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse);
       
       Schleife:
       for Durchgang in 1 .. 2 loop
@@ -28,8 +28,8 @@ package body KIBewegung is
             XAchseSchleife:
             for XAchse in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
-               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.YAchse,
-                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.XAchse,
+               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse,
+                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse,
                                                                  YÄnderung      => YAchse,
                                                                  XÄnderung      => XAchse,
                                                                  ZusatzYAbstand => 0);
@@ -45,7 +45,8 @@ package body KIBewegung is
                               null;
                               
                            elsif Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Felderwertung
-                             > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.XAchse).Felderwertung then
+                             > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse,
+                                              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse).Felderwertung then
                               Bewegungsziel := (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse);
                               exit Schleife;
 
@@ -69,16 +70,16 @@ package body KIBewegung is
          end loop YAchseSchleife;
       end loop Schleife;
 
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.YAchse := Bewegungsziel.YAchse;
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AchsenPosition.XAchse := Bewegungsziel.XAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse := Bewegungsziel.YAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse := Bewegungsziel.XAchse;
 
-      GlobaleVariablen.EinheitenGebaut (Rasse, EinheitStatus.EinheitNummer).AktuelleBewegungspunkte := 0.00;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AktuelleBewegungspunkte := 0.00;
       
    end BewegungSiedler;
 
 
 
-   procedure BewegungBauarbeiter (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure BewegungBauarbeiter (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
       
       null;
@@ -87,7 +88,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungBodenEinheit (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure BewegungBodenEinheit (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
       
       null;
@@ -96,7 +97,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungLuftEinheit (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure BewegungLuftEinheit (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
       
       null;
@@ -105,7 +106,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungWasserEinheit (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure BewegungWasserEinheit (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
       
       null;
@@ -114,7 +115,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungUnterwasserEinheit (Rasse : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure BewegungUnterwasserEinheit (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
    begin
       
       null;

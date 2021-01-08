@@ -7,7 +7,7 @@ use GlobaleDatentypen;
 
 package BefehleImSpiel is
 
-   function Befehle (Rasse : in Integer) return Integer;
+   function Befehle (RasseExtern : in Integer) return Integer;
 
 private
 
@@ -22,6 +22,6 @@ private
    StadtOderEinheit : Integer;
    WahlForschung : Integer;
 
-   procedure EinheitOderStadt (Rasse, Auswahl, StadtNummer, EinheitNummer : in Integer);
+   procedure EinheitOderStadt (RasseExtern, Auswahl, StadtNummer, EinheitNummer : in Integer);
    
 end BefehleImSpiel;

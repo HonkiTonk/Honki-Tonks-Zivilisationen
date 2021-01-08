@@ -6,8 +6,8 @@ use GlobaleDatentypen;
 
 package Bauen is
 
-   procedure Bauen (Rasse, StadtNummer : in Integer);
-   procedure BauzeitEinzeln (Rasse, StadtNummer : in Integer);
+   procedure Bauen (RasseExtern, StadtNummer : in Integer);
+   procedure BauzeitEinzeln (RasseExtern, StadtNummer : in Integer);
    procedure BauzeitAlle;
 
 private
@@ -18,6 +18,6 @@ private
    Ende : Integer;
    AktuelleAuswahl : Integer := 1;
 
-   function AuswahlStadt (Rasse, StadtNummer : in Integer) return Integer;
+   function AuswahlStadt (RasseExtern, StadtNummer : in Integer) return Integer;
 
 end Bauen;

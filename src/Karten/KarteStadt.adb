@@ -1,11 +1,11 @@
 package body KarteStadt is
 
-   procedure AnzeigeStadt (StadtNummer : in Integer) is
+   procedure AnzeigeStadt (StadtNummer, RasseExtern : in Integer) is
    begin
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
-      Stadtumgebungsgröße := GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, StadtNummer).StadtUmgebungGröße;
+      Stadtumgebungsgröße := GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße;
 
       YAchsenabstraktion := -Stadtumgebungsgröße;
       CursorYAchsePlus := -10;
@@ -20,8 +20,8 @@ package body KarteStadt is
                if YAchsenabstraktion > Stadtumgebungsgröße then
                   for A in 0 .. 6 loop
                      
-                     if Y = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse then
-                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
+                     if Y = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
 
                      else
                         Put (Item => " ");
@@ -35,8 +35,8 @@ package body KarteStadt is
                elsif Stadtumgebungsgröße = 1 and Y < 3 then
                   for A in 0 .. 6 loop                  
                                           
-                     if Y = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse then
-                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
+                     if Y = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
 
                      else
                         Put (Item => " ");
@@ -50,8 +50,8 @@ package body KarteStadt is
                elsif Stadtumgebungsgröße = 2 and Y < 2 then
                   for A in 0 .. 6 loop               
                                           
-                     if Y = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse then
-                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
+                     if Y = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
 
                      else                                            
                         Put (Item => " ");
@@ -67,8 +67,8 @@ package body KarteStadt is
                   for A in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
 
                      Cursor := CursorKonstant + A;
-                     if Y = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse and X + Cursor = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse then
-                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
+                     if Y = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and X + Cursor = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
                         CursorYAchsePlus := Y - 4;
 
                         if A < -Stadtumgebungsgröße or A > Stadtumgebungsgröße then
@@ -85,8 +85,8 @@ package body KarteStadt is
                         Put (Item => " ");
 
                      else
-                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
-                                                                          XKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse,
+                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                                                                          XKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse,
                                                                           YÄnderung      => YAchsenabstraktion,
                                                                           XÄnderung      => A,
                                                                           ZusatzYAbstand => 0);
@@ -96,10 +96,11 @@ package body KarteStadt is
                               Put (Item => " ");
 
                            when others =>
-                              Sichtbarkeit.Sichtbarkeit (InDerStadt => True,
-                                                         EAchse     => 0,
-                                                         YAchse     => KartenWert.YAchse,
-                                                         XAchse     => KartenWert.XAchse);
+                              Sichtbarkeit.Sichtbarkeit (InDerStadt  => True,
+                                                         EAchse      => 0,
+                                                         YAchse      => KartenWert.YAchse,
+                                                         XAchse      => KartenWert.XAchse,
+                                                         RasseExtern => RasseExtern);
                         end case;
                      end if;
 
@@ -110,8 +111,8 @@ package body KarteStadt is
                   exit XAchseSchleife;
                end if;
                
-            elsif Y = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse and X = GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse then
-               Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel.CursorGrafik & CSI & "0m");
+            elsif Y = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and X = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+               Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
 
             elsif Y < Karten.Stadtkarte'First (1) + 7 and X = Karten.Stadtkarte'Last (2) - 7 then
                Put (Item => " ");
@@ -120,35 +121,41 @@ package body KarteStadt is
                Put (Item => " ");
 
             elsif Y = 1 and X < 13 then
-               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, Stadtnummer).GebäudeVorhanden (Integer (X)) /= '0' then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.GeradeAmZug, Integer (X)).Anzeige);
+               if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).GebäudeVorhanden (Integer (X)) /= '0' then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (RasseExtern, Integer (X)).Anzeige);
 
                else
                   Sichtbarkeit.Farben (Einheit      => 0,
                                        Verbesserung => 0,
                                        Ressource    => 0,
-                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund,
-                                       Cursor       => False);
+                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund,
+                                       Cursor       => False,
+                                       RasseExtern  => RasseExtern,
+                                       RasseIntern  => 0);
                end if;
 
             elsif Y = 2 and X < 13 then
-               if GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, Stadtnummer).GebäudeVorhanden (Integer (X) + 12) /= '0' then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (GlobaleVariablen.GeradeAmZug, Integer (X) + 12).Anzeige);
+               if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).GebäudeVorhanden (Integer (X) + 12) /= '0' then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (RasseExtern, Integer (X) + 12).Anzeige);
 
                else
                   Sichtbarkeit.Farben (Einheit      => 0,
                                        Verbesserung => 0,
                                        Ressource    => 0,
-                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund,
-                                       Cursor       => False);
+                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund,
+                                       Cursor       => False,
+                                       RasseExtern  => RasseExtern,
+                                       RasseIntern  => 0);
                end if;
 
             else
                Sichtbarkeit.Farben (Einheit      => 0,
                                     Verbesserung => 0,
                                     Ressource    => 0,
-                                    Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse).Grund,
-                                    Cursor       => False);
+                                    Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund,
+                                    Cursor       => False,
+                                    RasseExtern  => RasseExtern,
+                                    RasseIntern  => 0);
             end if;
 
             case X is
@@ -162,21 +169,22 @@ package body KarteStadt is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
 
-      Beschreibung (Rasse       => GlobaleVariablen.GeradeAmZug,
+      Beschreibung (RasseExtern => RasseExtern,
                     StadtNummer => Stadtnummer);
-      InformationenStadt (YAufschlag => CursorYAchsePlus,
-                          XAufschlag => CursorXAchsePlus);
-      if GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse = 1 and GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse < 13 then
-         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse)) /= '0' then
-            GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse));
+      InformationenStadt (YAufschlag  => CursorYAchsePlus,
+                          XAufschlag  => CursorXAchsePlus,
+                          RasseExtern => RasseExtern);
+      if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse = 1 and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse < 13 then
+         if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse)) /= '0' then
+            GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse));
             
          else
             null;
          end if;
 
-      elsif GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse = 2 and GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse < 13 then
-         if GlobaleVariablen.StadtGebaut (GlobaleVariablen.GeradeAmZug, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12) /= '0' then
-            GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse) + 12);
+      elsif GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse = 2 and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse < 13 then
+         if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse) + 12) /= '0' then
+            GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse) + 12);
             
          else
             null;
@@ -201,7 +209,7 @@ package body KarteStadt is
    
    
    
-   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld) is
+   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; RasseExtern : Integer) is
    begin      
       
       Nahrungsgewinnung := 0;
@@ -209,8 +217,8 @@ package body KarteStadt is
       Geldgewinnung := 0;
       Wissensgewinnung := 0;
 
-      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
-                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse,
+      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse,
                                                         YÄnderung      => YAufschlag,
                                                         XÄnderung      => XAufschlag,
                                                         ZusatzYAbstand => 0);
@@ -220,7 +228,7 @@ package body KarteStadt is
             YAchse := -10;
          
          when others =>
-            YAchse := GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse + YAufschlag;
+            YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse + YAufschlag;
       end case;
 
       if XAufschlag = -10 then
@@ -323,48 +331,66 @@ package body KarteStadt is
 
 
 
-   procedure Beschreibung (Rasse, StadtNummer : in Integer) is
+   procedure Beschreibung (RasseExtern, StadtNummer : in Integer) is
    begin
       
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).ID)));
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Name) & "    ");
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ID)));
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Name) & "    ");
       Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 5)));
-      Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Einwohner'Wide_Wide_Image);
-                     
-      if Rasse = GlobaleVariablen.GeradeAmZug then
-         Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 6)));
-         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsmittel'Wide_Wide_Image);
-         Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 7)));
-         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleNahrungsproduktion'Wide_Wide_Image);
-                        
-         Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 8)));
-         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleProduktionrate'Wide_Wide_Image);
-         Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 9)));
-         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleGeldgewinnung'Wide_Wide_Image);
+      Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Einwohner'Wide_Wide_Image);
 
-         Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 10)));
-         Put (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleForschungsrate'Wide_Wide_Image);                        
-         Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 11)));
-         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).Korruption'Wide_Wide_Image);
+      RassenSchleife:
+      for RasseIntern in GlobaleVariablen.StadtGebaut'Range (1) loop
+         StadtSchleife:
+         for StadtNummerIntern in GlobaleVariablen.StadtGebaut'Range (2) loop
+         
+            case GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummerIntern).ID is
+               when 0 =>
+                  exit StadtSchleife;
+                  
+               when others =>
+                  if GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummerIntern).AchsenPosition.EAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse
+                    and GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummerIntern).AchsenPosition.YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse
+                    and GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummerIntern).AchsenPosition.XAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse then                        
+                     if RasseIntern = RasseExtern or GlobaleVariablen.FeindlicheInformationenSehen = True then
+                        Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 6)));
+                        Put (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleNahrungsmittel'Wide_Wide_Image);
+                        Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 7)));
+                        Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleNahrungsproduktion'Wide_Wide_Image);
                         
-         Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 12)));
-         case GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt is
-            when 0 =>
-               Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 28)));
+                        Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 8)));
+                        Put (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleProduktionrate'Wide_Wide_Image);
+                        Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 9)));
+                        Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleGeldgewinnung'Wide_Wide_Image);
+
+                        Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 10)));
+                        Put (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleForschungsrate'Wide_Wide_Image);                        
+                        Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 11)));
+                        Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Korruption'Wide_Wide_Image);
+                        
+                        Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 12)));
+                        case GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuellesBauprojekt is
+                           when 0 =>
+                              Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 28)));
             
-            when 1 .. 9999 => -- Gebäude
-               Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (14, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt - 1_000)));
+                           when 1 .. 9_999 => -- Gebäude
+                              Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (14, GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuellesBauprojekt - 1_000)));
 
-            when others => -- Einheiten
-               Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (10, GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt - 10_000)));
-         end case;
+                           when others => -- Einheiten
+                              Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (10, GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuellesBauprojekt - 10_000)));
+                        end case;
                                               
-         Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 13)));   
-         Put_Line (Item => GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit'Wide_Wide_Image);
+                        Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 13)));   
+                        Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).VerbleibendeBauzeit'Wide_Wide_Image);
 
-      else
-         null;
-      end if;
+                     else
+                        null;
+                     end if;
+                  end if;
+            end case;
+            
+         end loop StadtSchleife;
+      end loop RassenSchleife;
                      
       New_Line;
       

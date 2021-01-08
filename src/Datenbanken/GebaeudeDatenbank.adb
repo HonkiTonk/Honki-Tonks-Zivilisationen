@@ -11,13 +11,13 @@ package body GebaeudeDatenbank is
    
    
 
-   procedure GebäudeProduktionBeenden (Rasse, StadtNummer, ID : in Integer) is
+   procedure GebäudeProduktionBeenden (RasseExtern, StadtNummer, ID : in Integer) is
    begin     
       
-            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).GebäudeVorhanden (ID) := GebaeudeDatenbank.GebäudeListe (Rasse, ID).Anzeige;
-            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).VerbleibendeBauzeit := 0;
-            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuelleRessourcen := 0;
-            GlobaleVariablen.StadtGebaut (Rasse, StadtNummer).AktuellesBauprojekt := 0;
+            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).GebäudeVorhanden (ID) := GebaeudeDatenbank.GebäudeListe (RasseExtern, ID).Anzeige;
+            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).VerbleibendeBauzeit := 0;
+            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleRessourcen := 0;
+            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuellesBauprojekt := 0;
                   
    end GebäudeProduktionBeenden;
 

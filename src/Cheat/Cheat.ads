@@ -6,7 +6,7 @@ use GlobaleDatentypen;
 
 package Cheat is
    
-   procedure Menü;
+   procedure Menü (RasseExtern : in Integer);
 
 private
    
@@ -19,15 +19,14 @@ private
    Stadt : Integer;
    ID : Integer;
 
-   procedure BeliebigeNächsteEinheit;
+   procedure BeliebigeNächsteEinheit (RasseExtern : in Integer);
    procedure Informationen;
-   procedure Sichtbarkeit;
+   procedure Sichtbarkeit (RasseExtern : in Integer);
    procedure GrundFestlegen;
    procedure EinheitFestlegen;
    procedure Geld;
    procedure Technologie;
    procedure VerbesserungFestlegen;
    procedure EinheitStatus;
-   procedure Rasse;
 
 end Cheat;

@@ -1,6 +1,6 @@
 package body BewegungssystemCursor is
 
-   procedure BewegungCursorRichtung (Karte : in Boolean; Richtung : in Wide_Wide_Character) is -- Hier noch Bewegung für Stadt einbauen
+   procedure BewegungCursorRichtung (Karte : in Boolean; Richtung : in Wide_Wide_Character; RasseExtern : in Integer) is -- Hier noch Bewegung für Stadt einbauen
    begin
 
    YÄnderung := 0;
@@ -45,17 +45,21 @@ package body BewegungssystemCursor is
       
       case Karte is
          when True =>
-            BewegungCursorBerechnen (YÄnderung, XÄnderung);
+            BewegungCursorBerechnen (YÄnderung   => YÄnderung,
+                                     XÄnderung   => XÄnderung,
+                                     RasseExtern => RasseExtern);
             
          when False =>
-            BewegungCursorBerechnenStadt (YÄnderung, XÄnderung);
+            BewegungCursorBerechnenStadt (YÄnderung   => YÄnderung,
+                                          XÄnderung   => XÄnderung,
+                                          RasseExtern => RasseExtern);
       end case;
       
    end BewegungCursorRichtung;
 
 
 
-   procedure GeheZuCursor is
+   procedure GeheZuCursor (RasseExtern : in Integer) is
    begin
 
       Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 30)));
@@ -91,18 +95,18 @@ package body BewegungssystemCursor is
          XPosition := GlobaleDatentypen.Kartenfeld (Wert);
       end if;
       
-      GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := YPosition;
-      GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := XPosition;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse := YPosition;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse := XPosition;
       
    end GeheZuCursor;
    
    
 
-   procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) is
+   procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins; RasseExtern : in Integer) is
    begin
       
-      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse,
-                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse,
+      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse,
                                                         YÄnderung      => YÄnderung,
                                                         XÄnderung      => XÄnderung,
                                                         ZusatzYAbstand => 0);
@@ -112,35 +116,35 @@ package body BewegungssystemCursor is
             return;
               
          when others =>
-            GlobaleVariablen.CursorImSpiel.AchsenPosition.YAchse := KartenWert.YAchse;
-            GlobaleVariablen.CursorImSpiel.AchsenPosition.XAchse := KartenWert.XAchse;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse := KartenWert.YAchse;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse := KartenWert.XAchse;
       end case;
       
    end BewegungCursorBerechnen;
 
 
 
-   procedure BewegungCursorBerechnenStadt (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) is
+   procedure BewegungCursorBerechnenStadt (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins; RasseExtern : in Integer) is
    begin
 
-      if GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse + YÄnderung < Karten.Stadtkarte'First (1) then
-         GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse := Karten.Stadtkarte'Last (1);
+      if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse + YÄnderung < Karten.Stadtkarte'First (1) then
+         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse := Karten.Stadtkarte'Last (1);
 
-      elsif GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse + YÄnderung > Karten.Stadtkarte'Last (1) then
-         GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse := Karten.Stadtkarte'First (1);
+      elsif GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse + YÄnderung > Karten.Stadtkarte'Last (1) then
+         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse := Karten.Stadtkarte'First (1);
 
       else
-         GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse := GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.YAchse + YÄnderung;
+         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse + YÄnderung;
       end if;
       
-      if GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse + XÄnderung < Karten.Stadtkarte'First (2) then
-         GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse := Karten.Stadtkarte'Last (2);
+      if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse + XÄnderung < Karten.Stadtkarte'First (2) then
+         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse := Karten.Stadtkarte'Last (2);
 
-      elsif GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse + XÄnderung > Karten.Stadtkarte'Last (2) then
-         GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse := Karten.Stadtkarte'First (2);
+      elsif GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse + XÄnderung > Karten.Stadtkarte'Last (2) then
+         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse := Karten.Stadtkarte'First (2);
 
       else
-         GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse := GlobaleVariablen.CursorImSpiel.AchsenPositionStadt.XAchse + XÄnderung;
+         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse + XÄnderung;
       end if;
       
    end BewegungCursorBerechnenStadt;
