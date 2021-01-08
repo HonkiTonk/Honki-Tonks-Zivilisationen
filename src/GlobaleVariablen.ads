@@ -5,14 +5,19 @@ with Karten, GlobaleDatentypen;
 
 package GlobaleVariablen is
 
+   -- Schreiben
    WelcheSprache : Integer;
    -- AktuelleEbene : GlobaleDatentypen.Ebene := 0;
 
-   type TexteEinlesenArray is array (0 .. 24, 1 .. 50) of Unbounded_Wide_Wide_String;
+   type TexteEinlesenArray is array (0 .. 25, 1 .. 50) of Unbounded_Wide_Wide_String;
    TexteEinlesen : TexteEinlesenArray := (others => (others => (To_Unbounded_Wide_Wide_String ("|"))));
 
    GewählteSprache : Unbounded_Wide_Wide_String;
+   -- Schreiben
+   
+   
 
+   -- Cursor
    type CursorRecord is record
       
       CursorGrafik : Wide_Wide_Character;
@@ -23,7 +28,11 @@ package GlobaleVariablen is
    end record;
    
    type CursorImSpielArray is array (1 .. 18) of CursorRecord;
-   CursorImSpiel : CursorRecord := ('©', (0, 1, 1), (0, 1, 1), (1, 1));
+   Platzhalter : CursorImSpielArray := (others => ('©', (0, 1, 1), (0, 1, 1), (1, 1)));
+   CursorImSpiel : CursorRecord := ('©', (0, 1, 1), (0, 1, 1), (1, 1)); -- Auf Array umschreiben?
+   -- Cursor
+   
+   
 
    SpielerAnzahl : Integer := 1; -- 1 .. 18
    GeradeAmZug : Integer; -- 1 .. 18
@@ -33,6 +42,7 @@ package GlobaleVariablen is
    RassenImSpiel : GlobaleDatentypen.RassenImSpielarray; -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
                                                          -- Ändern das alle RassenBereiche hierauf gehen?
 
+   -- Einheiten
    type EinheitenGebautRecord is record
       
       AktuelleBeschäftigung : Integer;
@@ -54,7 +64,11 @@ package GlobaleVariablen is
 
    type EinheitenGebautArray is array (RassenImSpiel'Range, 1 .. 1_000) of EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0)));
+   -- Einheiten
+   
+   
 
+   -- Städte
    type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
 
    type StadtGebautRecord is record
@@ -88,7 +102,10 @@ package GlobaleVariablen is
    StadtGebaut : StadtGebautArray := (others =>
                                         (others =>
                                            ((0, (0, 1, 1),    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False)), 0, 1))));
-
+   -- Städte
+   
+   
+   -- Wichtiges Zeug
    type ErforschtArray is array (1 .. 6) of Integer;
 
    type WichtigesRecord is record
@@ -109,7 +126,12 @@ package GlobaleVariablen is
    
    type DiplomatieArray is array (RassenImSpiel'Range, RassenImSpiel'Range) of Integer; -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
    Diplomatie : DiplomatieArray := (others => (others => 1));
+   -- Wichtiges Zeug
+   
+   
   
+   -- Cheats
    FeindlicheInformationenSehen : Boolean := False;
+   -- Cheats
                                                
 end GlobaleVariablen;

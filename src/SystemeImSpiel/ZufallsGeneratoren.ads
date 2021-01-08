@@ -42,6 +42,8 @@ private
 
 
    -- Generator für Chaoskarte
+   Wert : GlobaleDatentypen.KartenGrund;
+
    subtype ChaoskarteWert is GlobaleDatentypen.KartenGrund range 1 .. GlobaleDatentypen.KartenGrund'Last;
 
    package WerteWählenChaoskarte is new Ada.Numerics.Discrete_Random (ChaoskarteWert);

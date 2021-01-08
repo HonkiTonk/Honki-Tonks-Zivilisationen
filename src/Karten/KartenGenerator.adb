@@ -853,7 +853,7 @@ package body KartenGenerator is
                      exit YAchseSchleife;
                      
                   when 0 =>
-                     null;
+                     exit XAchseSchleife;
                      
                   when others =>
                      Karten.Karten (1, YAchse, XAchse).Grund := 37;
@@ -888,7 +888,7 @@ package body KartenGenerator is
                      exit YAchseSchleife;
                      
                   when 0 =>
-                     null;
+                     exit XAchseSchleife;
                      
                   when others =>
                      Karten.Karten (2, YAchse, XAchse).Grund := 38;
@@ -915,7 +915,7 @@ package body KartenGenerator is
                
                case Karten.Karten (0, YAchse, XAchse).Grund is
                   when 0 =>
-                     null;
+                     exit XAchseSchleife;
                      
                   when -1 =>
                      Karten.Karten (1, YAchse, XAchse).Grund := -1;
@@ -980,7 +980,7 @@ package body KartenGenerator is
                      exit YAchseSchleife;
                      
                   when 0 =>
-                     null;
+                     exit XAchseSchleife;
                      
                   when others =>
                      Karten.Karten (-2, YAchse, XAchse).Grund := 39;
@@ -1014,23 +1014,14 @@ package body KartenGenerator is
       begin
 
          YAchseSchleife:
-         for YAchse in Karten.Karten'Range (2) loop
+         for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.Karten'Range (3) loop
+            for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-               case Karten.Karten (0, YAchse, XAchse).Grund is
-                  when -1 =>
-                     exit XAchseSchleife;
-                  
-                  when -2 =>
-                     exit YAchseSchleife;
-                  
-                  when others =>
-                     WerteFestlegen.KartenfelderBewerten (Generierung => True,
-                                                           EAchse      => 1,
-                                                           YAchse      => YAchse,
-                                                           XAchse      => XAchse);
-               end case;
+               WerteFestlegen.KartenfelderBewerten (Generierung => True,
+                                                    EAchse      => 1,
+                                                    YAchse      => YAchse,
+                                                    XAchse      => XAchse);
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -1043,23 +1034,14 @@ package body KartenGenerator is
       begin
          
          YAchseSchleife:
-         for YAchse in Karten.Karten'Range (2) loop
+         for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.Karten'Range (3) loop
+            for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-               case Karten.Karten (0, YAchse, XAchse).Grund is
-                  when -1 =>
-                     exit XAchseSchleife;
-                  
-                  when -2 =>
-                     exit YAchseSchleife;
-                  
-                  when others =>
-                     WerteFestlegen.KartenfelderBewerten (Generierung => True,
-                                                           EAchse      => 2,
-                                                           YAchse      => YAchse,
-                                                           XAchse      => XAchse);
-               end case;
+               WerteFestlegen.KartenfelderBewerten (Generierung => True,
+                                                    EAchse      => 2,
+                                                    YAchse      => YAchse,
+                                                    XAchse      => XAchse);
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -1072,23 +1054,14 @@ package body KartenGenerator is
       begin
          
          YAchseSchleife:
-         for YAchse in Karten.Karten'Range (2) loop
+         for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.Karten'Range (3) loop
-            
-               case Karten.Karten (0, YAchse, XAchse).Grund is
-                  when -1 =>
-                     exit XAchseSchleife;
-                  
-                  when -2 =>
-                     exit YAchseSchleife;
-                  
-                  when others =>
-                     WerteFestlegen.KartenfelderBewerten (Generierung => True,
-                                                           EAchse      => -1,
-                                                           YAchse      => YAchse,
-                                                           XAchse      => XAchse);
-               end case;
+            for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+               
+               WerteFestlegen.KartenfelderBewerten (Generierung => True,
+                                                    EAchse      => -1,
+                                                    YAchse      => YAchse,
+                                                    XAchse      => XAchse);
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -1101,23 +1074,14 @@ package body KartenGenerator is
       begin
          
          YAchseSchleife:
-         for YAchse in Karten.Karten'Range (2) loop
+         for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.Karten'Range (3) loop
-            
-               case Karten.Karten (0, YAchse, XAchse).Grund is
-                  when -1 =>
-                     exit XAchseSchleife;
-                  
-                  when -2 =>
-                     exit YAchseSchleife;
-                  
-                  when others =>
-                     WerteFestlegen.KartenfelderBewerten (Generierung => True,
-                                                           EAchse      => -2,
-                                                           YAchse      => YAchse,
-                                                           XAchse      => XAchse);
-               end case;
+            for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+               
+               WerteFestlegen.KartenfelderBewerten (Generierung => True,
+                                                    EAchse      => -2,
+                                                    YAchse      => YAchse,
+                                                    XAchse      => XAchse);
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -1129,23 +1093,14 @@ package body KartenGenerator is
    begin
       
       YAchseSchleife:
-      for YAchse in Karten.Karten'Range (2) loop
+      for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
          XAchseSchleife:
-         for XAchse in Karten.Karten'Range (3) loop
+         for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-            case Karten.Karten (0, YAchse, XAchse).Grund is
-               when -1 =>
-                  exit XAchseSchleife;
-                  
-               when -2 =>
-                  exit YAchseSchleife;
-                  
-               when others =>
-                  WerteFestlegen.KartenfelderBewerten (Generierung => True,
-                                                        EAchse      => 0,
-                                                        YAchse      => YAchse,
-                                                        XAchse      => XAchse);
-            end case;
+            WerteFestlegen.KartenfelderBewerten (Generierung => True,
+                                                 EAchse      => 0,
+                                                 YAchse      => YAchse,
+                                                 XAchse      => XAchse);
                
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -1157,30 +1112,32 @@ package body KartenGenerator is
    procedure Chaos is
    begin
             
-      YAchseSchleife:
-      for YAchse in Karten.Karten'Range (2) loop
-         XAchseSchleife:
-         for XAchse in Karten.Karten'Range (3) loop
+      EAchseSchleife:
+      for EAchse in Karten.Karten'Range (1) loop
+         YAchseSchleife:
+         for YAchse in Karten.Karten'Range (2) loop
+            XAchseSchleife:
+            for XAchse in Karten.Karten'Range (3) loop
                         
-            if YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               Karten.Karten (0, YAchse, XAchse).Grund := -2;
-               exit YAchseSchleife;
+               if YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+                  Karten.Karten (EAchse, YAchse, XAchse).Grund := -2;
+                  exit YAchseSchleife;
                
-            elsif XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-               Karten.Karten (0, YAchse, XAchse).Grund := -1;
-               exit XAchseSchleife;   
+               elsif XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+                  Karten.Karten (EAchse, YAchse, XAchse).Grund := -1;
+                  exit XAchseSchleife;   
                
-            elsif YAchse = Karten.Karten'First (2) or YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               Karten.Karten (0, YAchse, XAchse).Grund := 1;
+               elsif YAchse = Karten.Karten'First (2) or YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+                  Karten.Karten (EAchse, YAchse, XAchse).Grund := 1;
                
-            else
-               Karten.Karten (0, YAchse, XAchse).Grund := ZufallsGeneratoren.Chaoskarte;
-            end if;
+               else
+                  Karten.Karten (EAchse, YAchse, XAchse).Grund := ZufallsGeneratoren.Chaoskarte;
+               end if;
             
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
 
-      AndereEbenen;
       KartenfelderBewerten;
       
    end Chaos;

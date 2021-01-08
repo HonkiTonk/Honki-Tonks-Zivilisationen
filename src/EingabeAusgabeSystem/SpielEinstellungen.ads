@@ -23,7 +23,8 @@ private
    RassenAusgewählt : Integer;
    SicherheitsTestWert : Integer;
    BenutzerdefinierteGröße : Integer;
-   MenschlicheSpieler : Integer;
+   Spieler : Integer;
+   Zufallswahl : Integer;
 
    PositionWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
    GezogeneWerte : GlobaleDatentypen.AchsenAusKartenfeldPositiv;

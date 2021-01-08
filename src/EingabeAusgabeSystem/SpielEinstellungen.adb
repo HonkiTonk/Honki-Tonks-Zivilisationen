@@ -25,9 +25,6 @@ package body SpielEinstellungen is
                Wahl := MenschlicheSpieleranzahl;
 
             when 6 =>
-               Wahl := RasseWählen;
-
-            when 7 =>
                exit AuswahlSchleife;
 
             when -1 | 0 =>
@@ -224,23 +221,14 @@ package body SpielEinstellungen is
    function MenschlicheSpieleranzahl return Integer is
    begin
       
+      GlobaleVariablen.RassenImSpiel := (others => 0);
+      Spieler := 0;
 
-      MenschlicheSpielerSchleife:
-      loop
+      SpielerSchleife:
+      while Spieler < GlobaleVariablen.SpielerAnzahl loop
          
-         Wahl := Auswahl.Auswahl (WelcheAuswahl => 1,
-                                  WelcherText   => 1);
-         
-         case Wahl is
-            when 1 .. 18 =>
-               if Wahl > GlobaleVariablen.SpielerAnzahl then
-                  null;
-                  
-               else
-                  MenschlicheSpieler := Wahl;
-                  return 6;
-               end if;
-                  
+         Wert := RasseWählen;
+         case Wert is                  
             when -2 =>
                return 4;
 
@@ -251,8 +239,30 @@ package body SpielEinstellungen is
                null;
          end case;
          
-      end loop MenschlicheSpielerSchleife;
-      
+         case GlobaleVariablen.RassenImSpiel (Wert)is
+            when 0 =>
+               Wahl := Auswahl.Auswahl (WelcheAuswahl => 21,
+                                        WelcherText   => 25);
+         
+               case Wahl is
+                  when 1 .. 2 =>
+                     GlobaleVariablen.RassenImSpiel (Wert) := Wahl;
+                     Spieler := Spieler + 1;
+
+                  when others =>
+                     null;
+               end case;
+               
+            when others =>
+               null;
+         end case;
+
+         Put (Item => CSI & "2J" & CSI & "H");
+         
+      end loop SpielerSchleife;
+
+      return 6;
+
    end MenschlicheSpieleranzahl;
 
 
@@ -274,8 +284,7 @@ package body SpielEinstellungen is
                                          WelcherText   => 18);
                case Wahl2 is
                   when -3 =>
-                     GlobaleVariablen.RassenImSpiel (Wahl) := 1;
-                     return 7;
+                     return Wahl;
                      
                   when others =>
                      null;
@@ -283,13 +292,10 @@ package body SpielEinstellungen is
 
             when 19 =>
                ZufälligeRasseWählen.Reset (ZufälligeRasseGewählt);
-               GlobaleVariablen.RassenImSpiel (ZufälligeRasseWählen.Random (ZufälligeRasseGewählt)) := 1;
-               return 7;
-               
-            when -2 =>
-               return 5;
+               Zufallswahl := ZufälligeRasseWählen.Random (ZufälligeRasseGewählt);
+               return Zufallswahl;
 
-            when -1 | 0 =>
+            when -2 .. 0 =>
                return Wahl;
                
             when others =>
@@ -306,36 +312,6 @@ package body SpielEinstellungen is
 
    procedure StartwerteErmitteln is
    begin
-      
-      if GlobaleVariablen.SpielerAnzahl = MenschlicheSpieler then
-         null;
-            
-      else
-         RassenAusgewählt := 1;
-         RassenWählen.Reset (RassenGewählt);
-
-         RassenWählenSchleife:
-         loop
-
-            Rasse := RassenWählen.Random (RassenGewählt);
-               
-            if GlobaleVariablen.RassenImSpiel (Rasse) = 0 then
-               GlobaleVariablen.RassenImSpiel (Rasse) := 2;
-               RassenAusgewählt := RassenAusgewählt + 1;
-
-               if RassenAusgewählt = GlobaleVariablen.SpielerAnzahl then
-                  exit RassenWählenSchleife;
-                     
-               else
-                  null;
-               end if;
-                  
-            else
-               null;
-            end if;               
-               
-         end loop RassenWählenSchleife;
-      end if;
       
       SpieleranzahlWerteFestlegen:
       for Rasse in GlobaleVariablen.RassenImSpiel'Range loop
@@ -368,6 +344,8 @@ package body SpielEinstellungen is
                   case SicherheitsTestWert is
                      when 10_000 =>
                         Put_Line ("Keine geeignete Startposition für Rasse" & Rasse'Wide_Wide_Image & " gefunden!");
+                        Put_Line ("Rasse wird entfernt. Wenden sie sich an den Entwickler.");
+                        GlobaleVariablen.RassenImSpiel (Rasse) := 0;
                         delay 1.5;
                         exit StartwerteFestlegenSchleife;
                         
