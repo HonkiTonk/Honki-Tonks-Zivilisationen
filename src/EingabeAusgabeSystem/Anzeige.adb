@@ -277,6 +277,15 @@ package body Anzeige is
 
 
 
+   procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Integer) is
+   begin
+      
+      Get_Immediate (Item => Taste);
+      
+   end AnzeigeNeu;
+
+
+
    procedure RassenBeschreibung (WelcheRasse : in Integer) is
    begin
       

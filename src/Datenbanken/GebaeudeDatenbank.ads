@@ -32,7 +32,8 @@ package GebaeudeDatenbank is
                                                               others => (' ', 0, 0, 0,    0, 0, 0, 0, 0, 0, False)));
 
    procedure Beschreibung (ID : in Integer);
-   procedure GebäudeProduktionBeenden (RasseExtern, StadtNummer, ID : in Integer);
+   procedure GebäudeProduktionBeenden (RasseExtern, StadtNummer, ID : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
    --procedure InformationenGebäude
 
 private

@@ -314,9 +314,9 @@ package body SpielEinstellungen is
    begin
       
       SpieleranzahlWerteFestlegen:
-      for Rasse in GlobaleVariablen.RassenImSpiel'Range loop
+      for RasseIntern in GlobaleVariablen.RassenImSpiel'Range loop
         
-         case GlobaleVariablen.RassenImSpiel (Rasse) is
+         case GlobaleVariablen.RassenImSpiel (RasseIntern) is
             when 0 =>
                null;
                
@@ -329,9 +329,9 @@ package body SpielEinstellungen is
                   Koordinaten := ((0, 0, 0), (0, 0, 0));
                   GezogeneWerte := ZufallsGeneratoren.YXPosition;
 
-                  PrüfungEinheit := UmgebungPrüfen (YPosition => GezogeneWerte.YAchse,
-                                                    XPosition => GezogeneWerte.XAchse,
-                                                    Rasse     => Rasse);
+                  PrüfungEinheit := UmgebungPrüfen (YPosition       => GezogeneWerte.YAchse,
+                                                    XPosition       => GezogeneWerte.XAchse,
+                                                    RasseExtern     => RasseIntern);
 
                   case PrüfungEinheit is
                      when True =>
@@ -343,9 +343,9 @@ package body SpielEinstellungen is
 
                   case SicherheitsTestWert is
                      when 10_000 =>
-                        Put_Line ("Keine geeignete Startposition für Rasse" & Rasse'Wide_Wide_Image & " gefunden!");
+                        Put_Line ("Keine geeignete Startposition für Rasse" & RasseIntern'Wide_Wide_Image & " gefunden!");
                         Put_Line ("Rasse wird entfernt. Wenden sie sich an den Entwickler.");
-                        GlobaleVariablen.RassenImSpiel (Rasse) := 0;
+                        GlobaleVariablen.RassenImSpiel (RasseIntern) := 0;
                         delay 1.5;
                         exit StartwerteFestlegenSchleife;
                         
@@ -363,7 +363,7 @@ package body SpielEinstellungen is
 
 
 
-   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.Kartenfeld; Rasse : in Integer) return Boolean is
+   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in Integer) return Boolean is
    begin
       
       PrüfungGrund := SchleifenPruefungen.KartenGrund (Ebene       => 0,
@@ -414,7 +414,7 @@ package body SpielEinstellungen is
                            case PlatzBelegt.Rasse is
                               when SchleifenPruefungen.RückgabeWert =>
                                     Koordinaten (2) := (0, KartenWert.YAchse, KartenWert.XAchse);
-                                    StartpunktFestlegen (Rasse => Rasse);
+                                    StartpunktFestlegen (RasseExtern => RasseExtern);
                                  return True;
                                  
                               when others =>
@@ -439,23 +439,23 @@ package body SpielEinstellungen is
 
 
 
-   procedure StartpunktFestlegen (Rasse : in Integer) is
+   procedure StartpunktFestlegen (RasseExtern : in Integer) is
    begin
 
-      GlobaleVariablen.EinheitenGebaut (Rasse, 1).ID := 1;
-      GlobaleVariablen.EinheitenGebaut (Rasse, 1).AchsenPosition.EAchse := Koordinaten (1).EAchse;
-      GlobaleVariablen.EinheitenGebaut (Rasse, 1).AchsenPosition.YAchse := Koordinaten (1).YAchse;
-      GlobaleVariablen.EinheitenGebaut (Rasse, 1).AchsenPosition.XAchse := Koordinaten (1).XAchse;
-      EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, 1);
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID := 1;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.EAchse := Koordinaten (1).EAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.YAchse := Koordinaten (1).YAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.XAchse := Koordinaten (1).XAchse;
+      EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern, 1);
 
-      GlobaleVariablen.EinheitenGebaut (Rasse, 2).ID := 2;
-      GlobaleVariablen.EinheitenGebaut (Rasse, 2).AchsenPosition.EAchse := Koordinaten (2).EAchse;
-      GlobaleVariablen.EinheitenGebaut (Rasse, 2).AchsenPosition.YAchse := Koordinaten (2).YAchse;
-      GlobaleVariablen.EinheitenGebaut (Rasse, 2).AchsenPosition.XAchse := Koordinaten (2).XAchse;
-      EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (Rasse, 2);
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).ID := 2;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).AchsenPosition.EAchse := Koordinaten (2).EAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).AchsenPosition.YAchse := Koordinaten (2).YAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).AchsenPosition.XAchse := Koordinaten (2).XAchse;
+      EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern, 2);
       
-      GlobaleVariablen.CursorImSpiel (Rasse).AchsenPosition := GlobaleVariablen.EinheitenGebaut (Rasse, 1).AchsenPosition;
-      GlobaleVariablen.CursorImSpiel (Rasse).AchsenPositionAlt := GlobaleVariablen.EinheitenGebaut (Rasse, 1).AchsenPosition;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition;
       
    end StartpunktFestlegen;
 

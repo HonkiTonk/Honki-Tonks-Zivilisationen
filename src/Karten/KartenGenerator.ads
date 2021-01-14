@@ -1,7 +1,7 @@
-with Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Calendar, Ada.Numerics.Discrete_Random;
-use Ada.Numerics.Float_Random, Ada.Wide_Wide_Text_IO, Ada.Calendar;
+with Ada.Numerics.Float_Random, Ada.Calendar;
+use Ada.Numerics.Float_Random, Ada.Calendar;
 
-with Karten, GlobaleVariablen, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen, Ladezeiten, WerteFestlegen, ZufallsGeneratoren;
+with Karten, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen, Ladezeiten, WerteFestlegen, ZufallsGeneratoren;
 use GlobaleDatentypen;
 
 package KartenGenerator is -- Klein = 40x40, Mittel = 80x80, Groß = 160x160, Riesig = 240x240, Gigantisch = 320x320, Absurd = 1000x1000
@@ -16,19 +16,18 @@ private
    Gewählt : Generator;
 
    NochVerteilbareRessourcen : Integer;
-   Überhang : Integer;
+   Flusswert : Integer;
+
    Eisrand : constant GlobaleDatentypen.KartenfeldPositiv := 1;
    FelderVonTemperaturZuTemperatur : constant GlobaleDatentypen.KartenfeldPositiv := 5;
    Abstand : constant GlobaleDatentypen.KartenfeldPositiv := 2;
    WahrscheinlichkeitFluss : constant Float := 0.90;
-   Wert2 : Integer;
-   Flusswert : Integer;
 
    Wert : Float;
 
    KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
 
-   type GrößeLandartArray is array (1 .. 3) of GlobaleDatentypen.Kartenfeld;
+   type GrößeLandartArray is array (1 .. 3) of GlobaleDatentypen.KartenfeldPositiv;
    GrößeLandart : GrößeLandartArray;
 
    type FelderVonLandartZuLandartArray is array (1 .. 3) of GlobaleDatentypen.Kartenfeld;
@@ -59,7 +58,7 @@ private
 
    procedure GenerierungKartenart (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv);
    procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in GlobaleDatentypen.KartenfeldPositiv);
-   procedure GenerierungLandmasseÜberhang (YAchse, XAchse : in GlobaleDatentypen.Kartenfeld; Gezogen : in Float);
+   procedure GenerierungLandmasseÜberhang (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv; Gezogen : in Float);
    procedure GenerierungKüstenSeeGewässer;
 
    procedure GenerierungKartentemperatur;

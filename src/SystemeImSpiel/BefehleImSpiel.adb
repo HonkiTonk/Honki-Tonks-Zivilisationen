@@ -38,7 +38,7 @@ package body BefehleImSpiel is
                
             elsif WertEinheit /= 0 then
                EinheitOderStadt (RasseExtern         => RasseExtern,
-                                 Auswahl             => 654, -- Hauptsache ungleich -3
+                                 Auswahl             => -1_000, -- Hauptsache ungleich -3
                                  Stadtnummer         => WertStadt,
                                  EinheitNummer       => WertEinheit);
                

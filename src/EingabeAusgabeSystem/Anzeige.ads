@@ -15,6 +15,9 @@ package Anzeige is
    procedure WelcheAuswahl (WasWurdeGewählt : in Integer);
    procedure TexteEinlesenAusgabe (WelcheDatei, WelcherText : in Integer);
 
+   procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Integer)     
+     with Pre => FrageDatei >= 0 and FrageZeile >= 0 and TextDatei >= 0 and ErsteZeile >= 0 and LetzteZeile >= 0 and ErsteZeile <= LetzteZeile;
+
    type TextBauenRecord is record
       
       Text : Unbounded_Wide_Wide_String;

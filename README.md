@@ -7,4 +7,4 @@ Außerdem wird SDLAda (https://github.com/Lucretia/sdlada) für zukünftige Funk
 limited with "SDL/share/gpr/sdlada.gpr";
 aus der stream.gpr entfernen, da die SDL noch nicht genutzt wird.
 
-Aktuelle Version: 0.00.6110
+Aktuelle Version: 0.00.6120

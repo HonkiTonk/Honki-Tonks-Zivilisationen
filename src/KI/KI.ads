@@ -3,7 +3,8 @@ use GlobaleDatentypen;
 
 package KI is
 
-   procedure KI (RasseExtern : in Integer);
+   procedure KI (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 private
 
@@ -12,11 +13,17 @@ private
 
    EinheitStatus : GlobaleDatentypen.EinheitStatusRecord;
 
-   procedure KIAktivität (RasseExtern : in Integer);
-   procedure KIStadtBauen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
-   procedure KIVerbesserungAnlegen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
-   procedure KIGebäudeBauen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
-   procedure KIBefestigen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
-   procedure KIAngreifen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord);
+   procedure KIAktivität (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure KIStadtBauen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure KIVerbesserungAnlegen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure KIGebäudeBauen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure KIBefestigen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure KIAngreifen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 end KI;

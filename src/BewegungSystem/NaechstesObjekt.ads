@@ -3,10 +3,14 @@ use GlobaleDatentypen;
 
 package NaechstesObjekt is
 
-   procedure NächsteEinheitMitBewegungspunkten (RasseExtern : in Integer);
-   procedure NächsteEinheit (RasseExtern : in Integer);
-   procedure NächsteEinheitOhneBewegungspunkte (RasseExtern : in Integer);
-   procedure NächsteStadt (RasseExtern : in Integer);
+   procedure NächsteEinheitMitBewegungspunkten (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure NächsteEinheit (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure NächsteEinheitOhneBewegungspunkte (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure NächsteStadt (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
    
 private
    

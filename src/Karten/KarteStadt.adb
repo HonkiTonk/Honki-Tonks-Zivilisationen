@@ -169,8 +169,7 @@ package body KarteStadt is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
 
-      Beschreibung (RasseExtern => RasseExtern,
-                    StadtNummer => Stadtnummer);
+      Beschreibung (RasseExtern => RasseExtern);
       InformationenStadt (YAufschlag  => CursorYAchsePlus,
                           XAufschlag  => CursorXAchsePlus,
                           RasseExtern => RasseExtern);
@@ -331,67 +330,60 @@ package body KarteStadt is
 
 
 
-   procedure Beschreibung (RasseExtern, StadtNummer : in Integer) is
+   procedure Beschreibung (RasseExtern : in Integer) is
    begin
+
+      RasseUndPlatznummer := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                                                                                  XAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse);
+
+      case RasseUndPlatznummer.Rasse is
+         when SchleifenPruefungen.RückgabeWert =>
+            null; -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat
       
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ID)));
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Name) & "    ");
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 5)));
-      Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Einwohner'Wide_Wide_Image);
+         when others =>
+            -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Stadt befindet
+            Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID)));
+            Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Name) & "    ");
+            Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 5)));
+            Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Einwohner'Wide_Wide_Image);
 
-      RassenSchleife:
-      for RasseIntern in GlobaleVariablen.StadtGebaut'Range (1) loop
-         StadtSchleife:
-         for StadtNummerIntern in GlobaleVariablen.StadtGebaut'Range (2) loop
-         
-            case GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummerIntern).ID is
-               when 0 =>
-                  exit StadtSchleife;
-                  
-               when others =>
-                  if GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummerIntern).AchsenPosition.EAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse
-                    and GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummerIntern).AchsenPosition.YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse
-                    and GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummerIntern).AchsenPosition.XAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse then                        
-                     if RasseIntern = RasseExtern or GlobaleVariablen.FeindlicheInformationenSehen = True then
-                        Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 6)));
-                        Put (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleNahrungsmittel'Wide_Wide_Image);
-                        Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 7)));
-                        Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleNahrungsproduktion'Wide_Wide_Image);
+            -- "Volle" Stadtinformationen, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist                      
+            if RasseUndPlatznummer.Rasse = RasseExtern or GlobaleVariablen.FeindlicheInformationenSehen = True then
+               Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 6)));
+               Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleNahrungsmittel'Wide_Wide_Image);
+               Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 7)));
+               Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleNahrungsproduktion'Wide_Wide_Image);
                         
-                        Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 8)));
-                        Put (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleProduktionrate'Wide_Wide_Image);
-                        Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 9)));
-                        Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleGeldgewinnung'Wide_Wide_Image);
+               Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 8)));
+               Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleProduktionrate'Wide_Wide_Image);
+               Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 9)));
+               Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleGeldgewinnung'Wide_Wide_Image);
 
-                        Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 10)));
-                        Put (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleForschungsrate'Wide_Wide_Image);                        
-                        Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 11)));
-                        Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Korruption'Wide_Wide_Image);
+               Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 10)));
+               Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleForschungsrate'Wide_Wide_Image);                        
+               Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 11)));
+               Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Korruption'Wide_Wide_Image);
                         
-                        Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 12)));
-                        case GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuellesBauprojekt is
-                           when 0 =>
-                              Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 28)));
+               Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 12)));
+               case GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt is
+                  when 0 => -- Nichts
+                     Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 28)));
             
-                           when 1 .. 9_999 => -- Gebäude
-                              Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (14, GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuellesBauprojekt - 1_000)));
+                  when 1 .. 9_999 => -- Gebäude
+                     Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (14, GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 1_000)));
 
-                           when others => -- Einheiten
-                              Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (10, GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuellesBauprojekt - 10_000)));
-                        end case;
+                  when others => -- Einheiten
+                     Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (10, GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 10_000)));
+               end case;
                                               
-                        Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 13)));   
-                        Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).VerbleibendeBauzeit'Wide_Wide_Image);
+               Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 13)));   
+               Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).VerbleibendeBauzeit'Wide_Wide_Image);
 
-                     else
-                        null;
-                     end if;
-                  end if;
-            end case;
-            
-         end loop StadtSchleife;
-      end loop RassenSchleife;
-                     
+            else
+               null;
+            end if;
+      end case;
+      
       New_Line;
       
    end Beschreibung;

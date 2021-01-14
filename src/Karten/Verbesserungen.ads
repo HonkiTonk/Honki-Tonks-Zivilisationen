@@ -6,7 +6,8 @@ use GlobaleDatentypen;
 
 package Verbesserungen is
 
-   procedure Verbesserung (Befehl, RasseExtern, EinheitNummer : in Integer);
+   procedure Verbesserung (Befehl, RasseExtern, EinheitNummer : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
    procedure VerbesserungFertiggestellt;
    
 private
@@ -17,8 +18,10 @@ private
 
    KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
    
-   procedure VerbesserungeFestgelegt (Befehl, RasseExtern, EinheitNummer : in Integer);
-   procedure VerbesserungAngelegt (RasseExtern, EinheitNummer : in Integer);
+   procedure VerbesserungeFestgelegt (Befehl, RasseExtern, EinheitNummer : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure VerbesserungAngelegt (RasseExtern, EinheitNummer : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
    procedure StraßeBerechnung (AchsenKoordinaten : in GlobaleDatentypen.AchsenAusKartenfeldPositiv);
 
 end Verbesserungen;

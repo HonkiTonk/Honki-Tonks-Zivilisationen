@@ -7,12 +7,17 @@ use GlobaleDatentypen;
 
 package InDerStadt is
 
-   procedure InDerStadt (RasseExtern, StadtNummer : in Integer);
-   procedure StadtProduktionPrüfen (RasseExtern, StadtNummer : in Integer);
-   procedure BelegteStadtfelderFreigeben (RasseExtern, StadtNummer : in Integer);
+   procedure InDerStadt (RasseExtern, StadtNummer : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure StadtProduktionPrüfen (RasseExtern, StadtNummer : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure BelegteStadtfelderFreigeben (RasseExtern, StadtNummer : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
-   function StadtBauen (RasseExtern, EinheitNummer : in Integer) return Boolean;
-   function StadtBauenPrüfen (RasseExtern, EinheitNummer : in Integer) return Boolean;
+   function StadtBauen (RasseExtern, EinheitNummer : in Integer) return Boolean
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   function StadtBauenPrüfen (RasseExtern, EinheitNummer : in Integer) return Boolean
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 private
 
@@ -30,6 +35,7 @@ private
 
    KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
 
-   procedure StadtProduktionPrüfenBerechnung (RasseExtern, StadtNummer : in Integer);
+   procedure StadtProduktionPrüfenBerechnung (RasseExtern, StadtNummer : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 end InDerStadt;

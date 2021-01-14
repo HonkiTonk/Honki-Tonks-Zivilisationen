@@ -27,9 +27,11 @@ package ForschungsDatenbank is
                                                        others => (0, (others => 0))));
 
    procedure Beschreibung (ID : in Integer);
-   procedure Forschung (RasseExtern : in Integer);
+   procedure Forschung (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
    procedure ForschungFortschritt;
-   procedure ForschungZeit (RasseExtern : in Integer);
+   procedure ForschungZeit (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 private
 
@@ -41,6 +43,7 @@ private
    AktuelleAuswahl : Integer;
    Ende : Integer;
 
-   function AuswahlForschung (RasseExtern : in Integer) return Integer;
+   function AuswahlForschung (RasseExtern : in Integer) return Integer
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 end ForschungsDatenbank;

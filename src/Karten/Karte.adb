@@ -1,6 +1,6 @@
 package body Karte is
 
-   procedure AnzeigeKarte (RasseExtern : in Integer) is
+   procedure AnzeigeKarte (RasseExtern : in Positive) is
    begin
       
       case Karten.Kartengröße is
@@ -110,7 +110,7 @@ package body Karte is
    
 
 
-   procedure Information (RasseExtern : in Integer) is
+   procedure Information (RasseExtern : in Positive) is
    begin
 
       Verteidigungsbonus := 0;
@@ -118,7 +118,8 @@ package body Karte is
       Ressourcengewinnung := 0;
       Geldgewinnung := 0;
       Wissensgewinnung := 0;
-
+      
+      -- Allgemeine Informationen über die eigene Rasse, immer sichtbar
       Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 33)) & GlobaleVariablen.RundenAnzahl'Wide_Wide_Image);
 
       Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 34)) & GlobaleVariablen.Wichtiges (RasseExtern).AktuelleGeldmenge'Wide_Wide_Image);
@@ -135,111 +136,99 @@ package body Karte is
       case Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Sichtbar (RasseExtern) is
          when True =>
-            RassenEinheitenSchleife:
-            for RasseIntern in GlobaleVariablen.EinheitenGebaut'Range (1) loop
-               EinheitenSchleife:
-               for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
-         
-                  case GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID is
-                     when 0 =>
-                        exit EinheitenSchleife;
-                  
-                     when others =>
-                        if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition.EAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse
-                          and GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition.YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse
-                          and GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition.XAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse then
-                           EinheitenDatenbank.Beschreibung (GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID);                        
-                           Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 14)));
-                           Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleLebenspunkte'Wide_Wide_Image & " /"
-                                     & EinheitenDatenbank.EinheitenListe (RasseIntern, GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID).MaximaleLebenspunkte'Wide_Wide_Image);
-                        
-                           if RasseIntern = RasseExtern or GlobaleVariablen.FeindlicheInformationenSehen = True then
-                              Put (Item => "           " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 15)));
-                              Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBewegungspunkte,
-                                                     Fore => 1,
-                                                     Aft  => 1,
-                                                     Exp  => 0);
-                              Put (Item => " / ");
-                              Ada.Float_Text_IO.Put (Item => EinheitenDatenbank.EinheitenListe (RasseIntern, GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID).MaximaleBewegungspunkte,
-                                                     Fore => 1,
-                                                     Aft  => 1,
-                                                     Exp  => 0);
-                              Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 16)));
-                              Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleErfahrungspunkte'Wide_Wide_Image & " /"
-                                        & EinheitenDatenbank.EinheitenListe (RasseIntern, GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID).Beförderungsgrenze'Wide_Wide_Image);
-                              
-                              Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 17)));
-                              EinheitenDatenbank.Beschäftigung (GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigung);
-                              Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 18)));
-                              Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigungszeit'Wide_Wide_Image);
-
-                              Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 24)));
-                              Put (Item => EinheitenDatenbank.EinheitenListe (RasseIntern, GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID).Angriff'Wide_Wide_Image);
-                              Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 25)));
-                              Put (Item => EinheitenDatenbank.EinheitenListe (RasseIntern, GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID).Verteidigung'Wide_Wide_Image);
-                              Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 26)));
-                              Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuellerRang'Wide_Wide_Image & " /"
-                                        & EinheitenDatenbank.EinheitenListe (RasseIntern, GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID).MaximalerRang'Wide_Wide_Image);
-                              
-                           else
-                              null;
-                           end if;                           
-                        
-                           New_Line;
-                           case GlobaleVariablen.FeindlicheInformationenSehen is
-                              when False =>
-                                 null;
-                                 
-                              when True =>
-                                 Put_Line (Item => "Aktuelle Rasse: " & RasseIntern'Wide_Wide_Image);
-                           end case;
-                           exit RassenEinheitenSchleife;
-                                 
-                        else
-                           null;
-                        end if;                  
-                  end case;                  
-                                                   
-               end loop EinheitenSchleife;
-            end loop RassenEinheitenSchleife;
+            RasseUndPlatznummer := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                                                                                          XAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse);
             
-            RassenStadtSchleife:
-            for RasseIntern in GlobaleVariablen.StadtGebaut'Range (1) loop
-               StadtSchleife:
-               for StadtNummer in GlobaleVariablen.StadtGebaut'Range (2) loop
-            
-                  case GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummer).ID is
-                     when 0 =>
-                        exit StadtSchleife;
+            case RasseUndPlatznummer.Rasse is
+               when SchleifenPruefungen.RückgabeWert =>
+                  null;
                   
-                     when others =>
-                        if GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummer).AchsenPosition = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition then
-                           KarteStadt.Beschreibung (RasseExtern => RasseIntern,
-                                                    StadtNummer => StadtNummer);
-                           if RasseIntern = RasseExtern or GlobaleVariablen.FeindlicheInformationenSehen = True then                              
-                              Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (KartenVerbesserung (GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummer).ID)).Verteidigungsbonus;
+               when others => -- Allgemeine Einheiteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Einheit befindet
+                  EinheitenDatenbank.Beschreibung (GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID);                        
+                  Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 14)));
+                  Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleLebenspunkte'Wide_Wide_Image & " /"
+                            & EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse,
+                              GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).MaximaleLebenspunkte'Wide_Wide_Image);
+            
+                  -- "Volle" Einheiteninformationen, nur sichtbar wenn eigene Einheit oder wenn Cheat aktiviert ist
+                  if RasseExtern = RasseUndPlatznummer.Rasse or GlobaleVariablen.FeindlicheInformationenSehen = True then
+                     Put (Item => "           " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 15)));
+                     Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBewegungspunkte,
+                                            Fore => 1,
+                                            Aft  => 1,
+                                            Exp  => 0);
+                     Put (Item => " / ");
+                     Ada.Float_Text_IO.Put (Item => EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse,
+                                            RasseUndPlatznummer.Platznummer).ID).MaximaleBewegungspunkte,
+                                            Fore => 1,
+                                            Aft  => 1,
+                                            Exp  => 0);
+                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 16)));
+                     Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleErfahrungspunkte'Wide_Wide_Image & " /"
+                               & EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse,
+                                 RasseUndPlatznummer.Platznummer).ID).Beförderungsgrenze'Wide_Wide_Image);
+                              
+                     Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 17)));
+                     EinheitenDatenbank.Beschäftigung (GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBeschäftigung);
+                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 18)));
+                     Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBeschäftigungszeit'Wide_Wide_Image);
 
-                           else
-                              null;
-                           end if;
-
-                           case GlobaleVariablen.FeindlicheInformationenSehen is
-                              when False =>
-                                 null;
+                     Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 24)));
+                     Put (Item => EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).Angriff'Wide_Wide_Image);
+                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 25)));
+                     Put (Item => EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).Verteidigung'Wide_Wide_Image);
+                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 26)));
+                     Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellerRang'Wide_Wide_Image & " /"
+                               & EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).MaximalerRang'Wide_Wide_Image);
+                              
+                  else
+                     null;
+                  end if;                           
+                        
+                  New_Line;
+                  case GlobaleVariablen.FeindlicheInformationenSehen is
+                     when False =>
+                        null;
                                  
-                              when True =>
-                                 Put_Line (Item => "Aktuelle Rasse: " & RasseIntern'Wide_Wide_Image);
-                           end case;
-                           exit RassenStadtSchleife;
-                     
-                        else
-                           null;
-                        end if;
+                     when True =>
+                        Put_Line (Item => "Aktuelle Rasse: " & RasseUndPlatznummer.Rasse'Wide_Wide_Image);
                   end case;
+            end case;
+            
+            RasseUndPlatznummer := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                                                                                        XAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse);
 
-               end loop StadtSchleife;
-            end loop RassenStadtSchleife;
+            case RasseUndPlatznummer.Rasse is
+               when SchleifenPruefungen.RückgabeWert =>
+                  null;
+                     
+               when others => -- Stadtinformationsaufruf
+                  if GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AchsenPosition = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition then
+                     KarteStadt.Beschreibung (RasseExtern => RasseExtern);
+
+                     -- Stadtverteidigungsinformation, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist
+                     if RasseUndPlatznummer.Rasse = RasseExtern or GlobaleVariablen.FeindlicheInformationenSehen = True then                              
+                        Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungObjektListe (KartenVerbesserung (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse,
+                                                                                                                    RasseUndPlatznummer.Platznummer).ID)).Verteidigungsbonus;
+
+                     else
+                        null;
+                     end if;
+
+                     case GlobaleVariablen.FeindlicheInformationenSehen is
+                        when False =>
+                           null;
+                                 
+                        when True =>
+                           Put_Line (Item => "Aktuelle Rasse: " & RasseUndPlatznummer.Rasse'Wide_Wide_Image);
+                     end case;
+                     
+                  else
+                     null;
+                  end if;
+            end case;
                   
+            -- Allgemeine Karteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist
             if Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                               GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Hügel = True
               and Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
@@ -383,7 +372,7 @@ package body Karte is
                  := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                                                                                         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                                                                         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße).Wissensbonus;
-         
+               
             else
                null;
             end if;
@@ -430,7 +419,7 @@ package body Karte is
       end case;
 
       New_Line;
-      case GlobaleVariablen.FeindlicheInformationenSehen is
+      case GlobaleVariablen.FeindlicheInformationenSehen is -- Für Cheat
          when False =>
             null;
                                  

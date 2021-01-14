@@ -35,7 +35,7 @@ package body SchleifenPruefungen is
 
    
 
-   function KoordinatenStadtMitRasseSuchen (RasseExtern : in Integer; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) return Integer is
+   function KoordinatenStadtMitRasseSuchen (RasseExtern : in Integer; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Integer is
    begin
       
       StadtSchleife:
@@ -59,7 +59,7 @@ package body SchleifenPruefungen is
 
 
 
-   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in Integer; YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) return Integer is
+   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in Integer; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Integer is
    begin
       
       EinheitSchleife:
@@ -83,7 +83,7 @@ package body SchleifenPruefungen is
    
    
    
-   function KoordinatenStadtOhneRasseSuchen (YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) return GlobaleDatentypen.RasseUndPlatznummerRecord is
+   function KoordinatenStadtOhneRasseSuchen (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleDatentypen.RasseUndPlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -110,7 +110,7 @@ package body SchleifenPruefungen is
    
    
    
-   function KoordinatenEinheitOhneRasseSuchen (YAchse, XAchse : in GlobaleDatentypen.Kartenfeld) return GlobaleDatentypen.RasseUndPlatznummerRecord is
+   function KoordinatenEinheitOhneRasseSuchen (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleDatentypen.RasseUndPlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -137,7 +137,7 @@ package body SchleifenPruefungen is
    
    
    
-   function KartenGrund (Ebene : in GlobaleDatentypen.Ebene; YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld) return Boolean is
+   function KartenGrund (Ebene : in GlobaleDatentypen.Ebene; YKoordinate, XKoordinate : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
    begin
       
       case Karten.Karten (Ebene, YKoordinate, XKoordinate).Grund is

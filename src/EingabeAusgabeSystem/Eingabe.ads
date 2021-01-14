@@ -6,7 +6,8 @@ with GlobaleVariablen, Anzeige;
 package Eingabe is
 
    function GanzeZahl (Zahlengröße : Integer) return Integer;
-   function GanzeZahlNeu (WelcheDatei, WelcherText, ZahlenMinimum, ZahlenMaximum  : Integer) return Integer;
+   function GanzeZahlNeu (WelcheDatei, WelcherText, ZahlenMinimum, ZahlenMaximum  : Integer) return Integer
+     with Pre => WelcheDatei >= 0 and WelcherText >= 0 and ZahlenMinimum >= 0 and ZahlenMaximum <= 999_999_999 and ZahlenMinimum <= ZahlenMaximum;
    function StadtName return Unbounded_Wide_Wide_String;
    function SpielstandName return Unbounded_Wide_Wide_String;
 
