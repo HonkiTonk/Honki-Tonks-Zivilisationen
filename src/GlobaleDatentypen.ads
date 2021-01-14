@@ -8,6 +8,7 @@ package GlobaleDatentypen is
    subtype LoopRangeMinusEinsZuEins is Kartenfeld range -1 .. 1;
    subtype LoopRangeMinusZweiZuZwei is Kartenfeld range -2 .. 2;
    subtype LoopRangeMinusDreiZuDrei is Kartenfeld range -3 .. 3;
+   subtype LoopRangeNullZuEins is Kartenfeld range 0 .. 1;
 
    type KartenGrund is range -2 .. 40;
    type KartenVerbesserung is range 0 .. 22;

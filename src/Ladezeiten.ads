@@ -15,7 +15,7 @@ package Ladezeiten is
      with Pre => WelcheZeit >= 1;
 
    type LadezeitenSpielweltErstellenZeitArray is array (Positive range <>, Positive range <>) of Time;
-   LadezeitenSpielweltErstellenZeit : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 2 .. 13);
+   LadezeitenSpielweltErstellenZeit : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 2 .. 12);
    Speicherzeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 1);
    LadenLadezeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 1);
    SpielStartzeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 1);

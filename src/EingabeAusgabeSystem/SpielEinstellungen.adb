@@ -38,10 +38,10 @@ package body SpielEinstellungen is
 
       KartenGenerator.KartenGenerator;
       
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 13) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 12) := Clock;
       StartwerteErmitteln;
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 13) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 13);
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 12) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 12);
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeit => 1);
          
       return ImSpiel.ImSpiel;
