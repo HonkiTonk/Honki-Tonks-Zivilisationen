@@ -6,14 +6,14 @@ use GlobaleDatentypen;
 
 package Karte is
 
-   procedure AnzeigeKarte (RasseExtern : in Integer);
+   procedure AnzeigeKarte (RasseExtern : in Positive)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 private
 
    StehtDrauf : Boolean;
 
-   MöglicheAngriffsfelder : constant Wide_Wide_Character := '■';
-   Überhang : GlobaleDatentypen.Kartenfeld := 0;
+   -- MöglicheAngriffsfelder : constant Wide_Wide_Character := '■'; -- Später für Fernkampfeinheiten wieder einbauen?
    Verteidigungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
    Nahrungsgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
    Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
@@ -23,6 +23,8 @@ private
    BewegungsfeldFestlegen : Integer;
 
    Kartenwert : GlobaleDatentypen.AchsenAusKartenfeld;
+
+   RasseUndPlatznummer : GlobaleDatentypen.RasseUndPlatznummerRecord;
 
    type SichtweiteArray is array (1 .. 3) of GlobaleDatentypen.AchsenAusKartenfeldPositiv;
 
@@ -34,6 +36,7 @@ private
                                                 2 => (0, 5, 21),
                                                 3 => (0, 5, 34));
 
-   procedure Information (RasseExtern : in Integer);
+   procedure Information (RasseExtern : in Positive)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 end Karte;

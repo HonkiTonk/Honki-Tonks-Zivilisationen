@@ -147,4 +147,49 @@ package body Auswahl is
       
    end Auswahl;
 
+
+
+   function AuswahlNeu (AuswahlOderAnzeige : in Boolean; FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Integer) return Integer is
+   begin
+
+      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+      
+      case AuswahlOderAnzeige is -- Brauche ich diese Prüfung überhaupt?
+         when True =>
+            null;
+            
+         when False =>
+            return -1_000; -- Hier wird nur Text angezeigt und es gibt weder eine Frage noch eine Auswahl, ist -1_000 ein sicherer Rückgabewert? Mal nach Standardwert suchen/nachdenken
+      end case;
+
+      case FrageDatei is
+         when 0 =>
+            null;
+            
+         when others => -- Wenn Frage benötigt wird hierüber ausgeben
+            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => AuswahlOderAnzeige,
+                                FrageDatei         => FrageDatei,
+                                FrageZeile         => FrageZeile,
+                                TextDatei          => TextDatei,
+                                ErsteZeile         => ErsteZeile,
+                                LetzteZeile        => LetzteZeile);
+      end case;
+
+      case TextDatei is
+         when 0 =>
+            null;
+            
+         when others => -- Wenn Text benötigt wird hierüber ausgegeben
+            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => AuswahlOderAnzeige,
+                                FrageDatei         => FrageDatei,
+                                FrageZeile         => FrageZeile,
+                                TextDatei          => TextDatei,
+                                ErsteZeile         => ErsteZeile,
+                                LetzteZeile        => LetzteZeile);
+      end case;
+
+      return 1;
+      
+   end AuswahlNeu;
+
 end Auswahl;

@@ -6,8 +6,10 @@ use GlobaleDatentypen;
 
 package KarteStadt is
    
-   procedure AnzeigeStadt (StadtNummer, RasseExtern : in Integer);
-   procedure Beschreibung (RasseExtern, StadtNummer : in Integer);
+   procedure AnzeigeStadt (StadtNummer, RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure Beschreibung (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 private
    
@@ -29,7 +31,10 @@ private
 
    KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
    
+   RasseUndPlatznummer : GlobaleDatentypen.RasseUndPlatznummerRecord;
+   
    procedure FarbenStadt;
-   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; RasseExtern : in Integer);
+   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 end KarteStadt;

@@ -47,11 +47,15 @@ package EinheitenDatenbank is
                                                                others => ('@', 0, 0, 0, 0,    1, 0, 0.00,    1, 1, 0, 0, 1)));
 
    procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID);
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern, EinheitNummer : in Integer);
+   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern, EinheitNummer : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
    procedure HeilungBewegungspunkteFürNeueRundeSetzen;
-   procedure EinheitErzeugen (RasseExtern, StadtNummer, ID : in Integer);
-   procedure EinheitEntfernen (RasseExtern, EinheitNummer : in Integer);
-   procedure EinheitGebautSortieren (RasseExtern : in Integer);
+   procedure EinheitErzeugen (RasseExtern, StadtNummer, ID : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure EinheitEntfernen (RasseExtern, EinheitNummer : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure EinheitGebautSortieren (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
    procedure Beschäftigung (Arbeit : in Integer);
 
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Integer) return Boolean;

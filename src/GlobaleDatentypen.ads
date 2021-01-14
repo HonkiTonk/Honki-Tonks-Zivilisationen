@@ -1,7 +1,7 @@
 package GlobaleDatentypen is
    
    type ZahlenBoolean is range 0 .. 1;
-   type Kartenfeld is range -1_001 .. 1_000; -- Linke Seite muss stehts eins kleiner sein als die rechte Seite, aufgrund des aktuellen Kartengenerators!
+   type Kartenfeld is range -1_001 .. 1_000; -- Linke Seite muss stehts eins kleiner sein als die rechte Seite, aufgrund des aktuellen Kartengenerators (Kartengenerator.adb 181, Übergabe geht sonst nicht)!
    subtype KartenfeldPositiv is Kartenfeld range 1 .. 1_000;
    subtype Stadtfeld is Kartenfeld range 1 .. 20;
    subtype Sichtweite is Kartenfeld range 1 .. 10;

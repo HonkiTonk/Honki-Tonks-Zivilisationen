@@ -6,8 +6,10 @@ use GlobaleDatentypen;
 
 package Bauen is
 
-   procedure Bauen (RasseExtern, StadtNummer : in Integer);
-   procedure BauzeitEinzeln (RasseExtern, StadtNummer : in Integer);
+   procedure Bauen (RasseExtern, StadtNummer : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure BauzeitEinzeln (RasseExtern, StadtNummer : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
    procedure BauzeitAlle;
 
 private
@@ -18,6 +20,7 @@ private
    Ende : Integer;
    AktuelleAuswahl : Integer := 1;
 
-   function AuswahlStadt (RasseExtern, StadtNummer : in Integer) return Integer;
+   function AuswahlStadt (RasseExtern, StadtNummer : in Integer) return Integer
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 end Bauen;

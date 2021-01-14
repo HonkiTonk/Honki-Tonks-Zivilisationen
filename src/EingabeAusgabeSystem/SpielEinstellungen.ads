@@ -59,7 +59,8 @@ private
    RassenGewählt : RassenWählen.Generator;
 
    procedure StartwerteErmitteln;
-   procedure StartpunktFestlegen (Rasse : in Integer);
+   procedure StartpunktFestlegen (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
    function KartengrößeWählen return Integer;
    function KartenartWählen return Integer;
@@ -67,6 +68,7 @@ private
    function SpieleranzahlWählen return Integer;
    function MenschlicheSpieleranzahl return Integer;
    function RasseWählen return Integer;
-   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.Kartenfeld; Rasse : in Integer) return Boolean;
+   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in Integer) return Boolean
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 end SpielEinstellungen;

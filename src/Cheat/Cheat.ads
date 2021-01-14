@@ -6,7 +6,8 @@ use GlobaleDatentypen;
 
 package Cheat is
    
-   procedure Menü (RasseExtern : in Integer);
+   procedure Menü (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
 
 private
    
@@ -19,9 +20,11 @@ private
    Stadt : Integer;
    ID : Integer;
 
-   procedure BeliebigeNächsteEinheit (RasseExtern : in Integer);
+   procedure BeliebigeNächsteEinheit (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
    procedure Informationen;
-   procedure Sichtbarkeit (RasseExtern : in Integer);
+   procedure Sichtbarkeit (RasseExtern : in Integer)
+     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
    procedure GrundFestlegen;
    procedure EinheitFestlegen;
    procedure Geld;
