@@ -44,14 +44,13 @@ private
    type GeneratorKarteArray is array (Karten.Karten'Range (2), Karten.Karten'Range (3)) of GlobaleDatentypen.Kartenfeld;
    GeneratorKarte : GeneratorKarteArray;
 
-   type EisWahrscheinlichkeitReduzierungspunktArray is array (1 .. 3) of GlobaleDatentypen.KartenfeldPositiv;
-   EisWahrscheinlichkeitReduzierungspunkt : EisWahrscheinlichkeitReduzierungspunktArray;
-
-   type WahrscheinlichkeitenFürLandartArray is array (1 .. 3, 1 .. 3) of Float;
-   WahrscheinlichkeitenFürLandart : constant WahrscheinlichkeitenFürLandartArray := (1 => (0.60, 0.80, 0.80),
-                                                                                       -- 1 = Eis bis zum Eisreduzierungspunkte, 2 = Eis, 3 = Wüste
-                                                                                       2 => (0.60, 0.85, 0.70),
-                                                                                       3 => (0.60, 0.90, 0.50));
+   type KartengrundWahrscheinlichkeitenArray is array (1 .. 5, 4 .. 10) of Float; -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
+   KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray := (1 => (0.25, 0.35, 0.50, 0.60, 0.70, 0.75, 0.90),
+                                                                                       -- 4 = Tundra, 5 = Wüste, 6 = Hügel, 7 = Gebirge, 8 = Wald, 9 = Dschungel, 10 = Sumpf
+                                                                                       2 => (0.85, 0.75, 0.50, 0.30, 0.20, 0.20, 0.20),
+                                                                                       3 => (0.85, 0.75, 0.50, 0.30, 0.20, 0.20, 0.20),
+                                                                                       4 => (0.85, 0.75, 0.50, 0.30, 0.20, 0.20, 0.20),
+                                                                                       5 => (0.85, 0.75, 0.50, 0.30, 0.20, 0.20, 0.20));
 
    type WahrscheinlichkeitFürLandschaftArray is array (6 .. 10) of Float;
    WahrscheinlichkeitFürLandschaft : constant WahrscheinlichkeitFürLandschaftArray := (0.85, 0.75, 0.50, 0.30, 0.20);
@@ -59,14 +58,11 @@ private
    procedure GenerierungKartenart (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv);
    procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in GlobaleDatentypen.KartenfeldPositiv);
    procedure GenerierungLandmasseÜberhang (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv; Gezogen : in Float);
+   procedure Generierungpangäa (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv);
    procedure GenerierungKüstenSeeGewässer;
 
-   procedure GenerierungKartentemperatur;
-   procedure GenerierungTemperaturAbstand (Geländeart : GlobaleDatentypen.KartenGrund; YPosition, XPosition: in GlobaleDatentypen.KartenfeldPositiv);
-   procedure GenerierungTemperaturZusatz (Geländeart : GlobaleDatentypen.KartenGrund; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv);
-
    procedure GenerierungLandschaft;
-   procedure GenerierungLandschaftZusatz;
+   procedure GenerierungLandschaftFelder (Grund : in GlobaleDatentypen.KartenGrund; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv);
 
    procedure GenerierungFlüsse;
    procedure FlussBerechnung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld);
