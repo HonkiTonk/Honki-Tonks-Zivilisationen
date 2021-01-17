@@ -17,6 +17,7 @@ private
 
    NochVerteilbareRessourcen : Integer;
    Flusswert : Integer;
+   HügelGebirgeUmgebung : Integer;
 
    Eisrand : constant GlobaleDatentypen.KartenfeldPositiv := 1;
    FelderVonTemperaturZuTemperatur : constant GlobaleDatentypen.KartenfeldPositiv := 5;
@@ -26,6 +27,7 @@ private
    Wert : Float;
 
    KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
+   KartenWertHügel : GlobaleDatentypen.AchsenAusKartenfeld;
 
    type GrößeLandartArray is array (1 .. 3) of GlobaleDatentypen.KartenfeldPositiv;
    GrößeLandart : GrößeLandartArray;
@@ -44,8 +46,11 @@ private
    type GeneratorKarteArray is array (Karten.Karten'Range (2), Karten.Karten'Range (3)) of GlobaleDatentypen.Kartenfeld;
    GeneratorKarte : GeneratorKarteArray;
 
+   type GeneratorGrundArray is array (Karten.Karten'Range (2), Karten.Karten'Range (3)) of Boolean;
+   GeneratorGrund : GeneratorGrundArray;
+
    type KartengrundWahrscheinlichkeitenArray is array (1 .. 5, 4 .. 10) of Float; -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
-   KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray := (1 => (0.25, 0.35, 0.50, 0.60, 0.70, 0.75, 0.90),
+   KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray := (1 => (0.25, 0.35, 0.45, 0.55, 0.70, 0.75, 0.85),
                                                                                        -- 4 = Tundra, 5 = Wüste, 6 = Hügel, 7 = Gebirge, 8 = Wald, 9 = Dschungel, 10 = Sumpf
                                                                                        2 => (0.85, 0.75, 0.50, 0.30, 0.20, 0.20, 0.20),
                                                                                        3 => (0.85, 0.75, 0.50, 0.30, 0.20, 0.20, 0.20),

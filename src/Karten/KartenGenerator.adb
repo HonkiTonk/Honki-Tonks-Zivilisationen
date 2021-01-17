@@ -302,6 +302,7 @@ package body KartenGenerator is
    begin
 
       GeneratorKarte := (others => (others => (0)));
+      GeneratorGrund := (others => (others => (False)));
 
       YAbstandVonEisschichtSchleife:
       for YAchse in Karten.Karten'First (2) .. Karten.Karten'First (2) + 3 loop
@@ -329,47 +330,47 @@ package body KartenGenerator is
          for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             if Karten.Karten (0, YAchse, XAchse).Grund < 3 or Karten.Karten (0, YAchse, XAchse).Grund = 31 then
-               null;
+               GeneratorGrund (YAchse, XAchse) := True;
 
             else
                Wert := Random (Gewählt);
-               if Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 4) and Karten.Karten (0, YAchse, XAchse).Grund = 3 and GeneratorKarte (YAchse, XAchse) /= 5 then
+               if Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 4) and GeneratorGrund (YAchse, XAchse) = False and GeneratorKarte (YAchse, XAchse) /= 5 then
                   GenerierungLandschaftFelder (Grund  => 4,
                                                YAchse => YAchse,
                                                XAchse => XAchse);
 
-               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 5) and Karten.Karten (0, YAchse, XAchse).Grund = 3 and GeneratorKarte (YAchse, XAchse) /= 4 then
+               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 5) and GeneratorGrund (YAchse, XAchse) = False and GeneratorKarte (YAchse, XAchse) /= 4 then
                   GenerierungLandschaftFelder (Grund  => 5,
                                                YAchse => YAchse,
                                                XAchse => XAchse);
 
-               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 6) and Karten.Karten (0, YAchse, XAchse).Grund = 3 then
+               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 6) and GeneratorGrund (YAchse, XAchse) = False then
                   GenerierungLandschaftFelder (Grund  => 6,
                                                YAchse => YAchse,
                                                XAchse => XAchse);
 
-               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 7) and Karten.Karten (0, YAchse, XAchse).Grund = 3 then
+               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 7) and GeneratorGrund (YAchse, XAchse) = False then
                   GenerierungLandschaftFelder (Grund  => 7,
                                                YAchse => YAchse,
                                                XAchse => XAchse);
 
-               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 8) and Karten.Karten (0, YAchse, XAchse).Grund = 3 then
+               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 8) and GeneratorGrund (YAchse, XAchse) = False then
                   GenerierungLandschaftFelder (Grund  => 8,
                                                YAchse => YAchse,
                                                XAchse => XAchse);
 
-               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 9) and Karten.Karten (0, YAchse, XAchse).Grund = 3 then
+               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 9) and GeneratorGrund (YAchse, XAchse) = False then
                   GenerierungLandschaftFelder (Grund  => 9,
                                                YAchse => YAchse,
                                                XAchse => XAchse);
 
-               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 10) and Karten.Karten (0, YAchse, XAchse).Grund = 3 then
+               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 10) and GeneratorGrund (YAchse, XAchse) = False then
                   GenerierungLandschaftFelder (Grund  => 32,
                                                YAchse => YAchse,
                                                XAchse => XAchse);
                   
                else
-                  GeneratorKarte (YAchse, XAchse) := 100;
+                  GeneratorGrund (YAchse, XAchse) := True;
                end if;
             end if;            
                         
@@ -399,55 +400,147 @@ package body KartenGenerator is
                   exit XAchseSchleife;
                   
                when others =>
-                  if YÄnderung = 0 and XÄnderung = 0 then
-                     if GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 0 then
-                        Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund := Grund;
-                        
-                     else
-                        null;
-                     end if;
-
+                  if Karten.Karten (0, YAchse, XAchse).Grund < 3 or Karten.Karten (0, YAchse, XAchse).Grund = 31 then
+                     null;
+                     
+                  elsif YÄnderung = 0 and XÄnderung = 0 then
+                     Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund := Grund;
+                     GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
+                     
                   else
                      Wert := Random (Gewählt);
-                     if Wert > 0.25 and Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund = 3 and GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 0 then
-                        Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund := Grund;
+                     if Wert > 0.33 and GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) = False then
+                        if Grund = 4 and GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 5 then
+                           null;
+                           
+                        elsif Grund = 5 and GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 4 then
+                           null;
+                           
+                        else
+                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund := Grund;
+                           GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
+                        end if;
                         
                      else
-                        null;
-                       
+                        GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;                       
                      end if;
+                  end if;
+            end case;
+
+            case Grund is
+               when 6 | 7 => -- Hügel - Gebirge
+                  HügelGebirgeUmgebung := -1;
+                  
+               when others =>
+                  HügelGebirgeUmgebung := 0;
+                  YAchseHügelSchleife:
+                  for YÄnderungHügel in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+                     XAchseHügelSchleife:
+                     for XÄnderungHügel in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop            
+            
+                        KartenWertHügel := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YAchse,
+                                                                               XKoordinate    => XAchse,
+                                                                               YÄnderung      => YÄnderungHügel,
+                                                                               XÄnderung      => XÄnderungHügel,
+                                                                               ZusatzYAbstand => 0);
+
+                        case KartenWertHügel.YAchse is
+                           when GlobaleDatentypen.Kartenfeld'First =>
+                              exit XAchseHügelSchleife;
+                  
+                           when others =>
+                              if YÄnderungHügel = 0 and XÄnderungHügel = 0 then
+                                 null;
+                                 
+                              elsif Karten.Karten (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund /= 6 and Karten.Karten (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund /= 7
+                                and Karten.Karten (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Hügel = False then
+                                 null;
+                                 
+                              else
+                                 HügelGebirgeUmgebung := HügelGebirgeUmgebung + 1;
+                              end if;                        
+                        end case;
+            
+                     end loop XAchseHügelSchleife;
+                  end loop YAchseHügelSchleife;
+            end case;
+
+            case HügelGebirgeUmgebung is
+               when -1 =>
+                  null;
+                  
+               when 1 .. 3 =>
+                  Wert := Random (Gewählt);
+                  if Wert >= 0.85 then
+                     Karten.Karten (0, YAchse, XAchse).Hügel := True;
+                     
+                  else
+                     null;
+                  end if;
+                  
+               when 4 .. 7 =>
+                  Wert := Random (Gewählt);
+                  if Wert >= 0.66 then
+                     Karten.Karten (0, YAchse, XAchse).Hügel := True;
+                     
+                  else
+                     null;
+                  end if;
+                  
+               when 8 =>
+                  Wert := Random (Gewählt);
+                  if Wert >= 0.33 then
+                     Karten.Karten (0, YAchse, XAchse).Hügel := True;
+                     
+                  else
+                     null;
+                  end if;
+                  
+               when others =>                  
+                  Wert := Random (Gewählt);
+                  if Wert >= 0.95 then
+                     Karten.Karten (0, YAchse, XAchse).Hügel := True;
+                     
+                  else
+                     null;
                   end if;
             end case;
             
          end loop XAchseSchleife;
-      end loop YAchseSchleife;
+      end loop YAchseSchleife;      
 
-      ZweiteYAchseSchleife:
-      for YÄnderung in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
-         ZweiteXAchseSchleife:
-         for XÄnderung in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
+      case Grund is
+         when 4 | 5 => -- Tundra - Wüste
+            ZweiteYAchseSchleife:
+            for YÄnderung in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
+               ZweiteXAchseSchleife:
+               for XÄnderung in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YAchse,
-                                                              XKoordinate    => XAchse,
-                                                              YÄnderung      => YÄnderung,
-                                                              XÄnderung      => XÄnderung,
-                                                              ZusatzYAbstand => 0);
+                  KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YAchse,
+                                                                    XKoordinate    => XAchse,
+                                                                    YÄnderung      => YÄnderung,
+                                                                    XÄnderung      => XÄnderung,
+                                                                    ZusatzYAbstand => 0);
 
-            case KartenWert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
-                  exit ZweiteXAchseSchleife;
+                  case KartenWert.YAchse is
+                     when GlobaleDatentypen.Kartenfeld'First =>
+                        exit ZweiteXAchseSchleife;
                   
-               when others =>
-                  if GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) /= 0 then
-                     null;
+                     when others =>
+                        if GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) /= 0 then
+                           null;
                                      
-                  else
-                     GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := GlobaleDatentypen.Kartenfeld (Grund);
-                  end if;
-            end case;
+                        else
+                           GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := GlobaleDatentypen.Kartenfeld (Grund);
+                        end if;
+                  end case;
             
-         end loop ZweiteXAchseSchleife;
-      end loop ZweiteYAchseSchleife;
+               end loop ZweiteXAchseSchleife;
+            end loop ZweiteYAchseSchleife;
+            
+         when others =>
+            null;
+      end case;
       
    end GenerierungLandschaftFelder;
    
