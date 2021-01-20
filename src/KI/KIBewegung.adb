@@ -1,6 +1,6 @@
 package body KIBewegung is
 
-   procedure KIBewegung (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure KIBewegung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
    begin
 
       case EinheitStatus.EinheitTyp is
@@ -16,7 +16,7 @@ package body KIBewegung is
 
 
 
-   procedure BewegungSiedler (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure BewegungSiedler (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
    begin
 
       Bewegungsziel := (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse);
@@ -79,7 +79,7 @@ package body KIBewegung is
 
 
 
-   procedure BewegungBauarbeiter (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure BewegungBauarbeiter (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
    begin
       
       null;
@@ -88,7 +88,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungBodenEinheit (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure BewegungBodenEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
    begin
       
       null;
@@ -97,7 +97,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungLuftEinheit (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure BewegungLuftEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
    begin
       
       null;
@@ -106,7 +106,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungWasserEinheit (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure BewegungWasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
    begin
       
       null;
@@ -115,7 +115,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungUnterwasserEinheit (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure BewegungUnterwasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
    begin
       
       null;

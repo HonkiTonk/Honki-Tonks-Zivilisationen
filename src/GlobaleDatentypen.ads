@@ -28,48 +28,8 @@ package GlobaleDatentypen is
    subtype GrundwerteNRGWVA is GesamtproduktionStadt range -100 .. 100; -- NRGWVA = Grundwert für Nahrung, Ressourcen, Geld, Wissenschaft, Verteidigung, Angriff
    type KostenLager is range 0 .. 10_000;
 
-   type RassenImSpielArray is array (1 .. 18) of Integer;
-
-   type AchsenAusStadtfeld is record
-      
-      YAchse : Stadtfeld;
-      XAchse : Stadtfeld;
-      
-   end record;
-   
-   type AchsenAusKartenfeldPositiv is record
-      
-      EAchse : Ebene;
-      YAchse : KartenfeldPositiv;
-      XAchse : KartenfeldPositiv;
-      
-   end record;
-
-   type AchsenAusKartenfeld is record
-      
-      EAchse : Ebene;
-      YAchse : Kartenfeld;
-      XAchse : Kartenfeld;
-      
-   end record;
-
-   type RasseUndPlatznummerRecord is record
-      
-      Rasse : Integer;
-      Platznummer : Integer;
-      
-   end record;
-
-
-
-   -- Für die KI gedacht:
-   type EinheitStatusRecord is record
-          
-      EinheitNummer : Integer;
-      BewegungspunkteBeschäftigung : Integer; -- 0 = Keine Bewegungspunkte/Beschäftigung, 1 = Bewegungspunkte ohne Beschäftigung, 2 = Beschäftigung ohne Bewegungspunkte, 3 = Beschäftigung/Bewegungspunkte
-      EinheitTyp : Integer;
-      
-   end record;
-   -- Für die KI gedacht:
+   type RassenMitNullwert is range 0 .. 18; -- Unbelegt, Rasse 1 bis 18
+   subtype Rassen is RassenMitNullwert range 1 .. 18;
+   type RassenImSpielArray is array (Rassen'Range) of RassenMitNullwert;
 
 end GlobaleDatentypen;

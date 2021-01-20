@@ -1,6 +1,6 @@
 package body Eingabe is
 
-   function GanzeZahl (Zahlengröße : Integer) return Integer is
+   function GanzeZahl (Zahlengröße : Positive) return Integer is
    begin
       
       EingabeSchleife:

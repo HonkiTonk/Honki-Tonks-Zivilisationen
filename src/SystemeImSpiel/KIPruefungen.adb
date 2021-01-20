@@ -1,6 +1,6 @@
 package body KIPruefungen is
 
-   function SpezielleEinheitArtSuchen (RasseExtern, WelcheEinheitArt : in Integer) return Integer is
+   function SpezielleEinheitArtSuchen (RasseExtern : in GlobaleDatentypen.Rassen; WelcheEinheitArt : in Positive) return Integer is
    begin
       
       EinheitSchleife:
@@ -25,7 +25,7 @@ package body KIPruefungen is
 
 
    -- 0 = Keine Bewegungspunkte/Beschäftigung, 1 = Bewegungspunkte ohne Beschäftigung, 2 = Beschäftigung ohne Bewegungspunkte, 3 = Beschäftigung/Bewegungspunkte
-   function EinheitMitBewegungspunktenSuchen (RasseExtern : in Integer) return GlobaleDatentypen.EinheitStatusRecord is
+   function EinheitMitBewegungspunktenSuchen (RasseExtern : in GlobaleDatentypen.Rassen) return KIRecords.EinheitStatusRecord is
    begin
 
       EinheitSchleife:

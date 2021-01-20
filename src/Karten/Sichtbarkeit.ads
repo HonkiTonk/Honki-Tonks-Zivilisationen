@@ -1,17 +1,18 @@
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleVariablen, Karten, KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, SchleifenPruefungen, GlobaleDatentypen;
+with GlobaleVariablen, Karten, KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, SchleifenPruefungen, GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
 
 package Sichtbarkeit is
 
-   procedure Sichtbarkeitsprüfung (RasseExtern : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   procedure Sichtbarkeit (InDerStadt : Boolean; EAchse : GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   procedure Farben (Einheit : GlobaleDatentypen.EinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund; Cursor : in Boolean; RasseExtern, RasseIntern : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure Sichtbarkeitsprüfung (RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure Sichtbarkeit (InDerStadt : Boolean; EAchse : GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => EAchse /= -3 and YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+
+   procedure Farben (Einheit : GlobaleDatentypen.EinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund;
+                     Cursor : in Boolean; RasseExtern, RasseIntern : in GlobaleDatentypen.RassenMitNullwert) with
+     Pre => Grund >= 0 and Ressource >= 0;
 
 private
 
@@ -20,6 +21,6 @@ private
    Sichtweite : GlobaleDatentypen.Sichtweite := 2;
    Wert : Integer;
 
-   Kartenwert : GlobaleDatentypen.AchsenAusKartenfeld;
+   Kartenwert : GlobaleRecords.AchsenAusKartenfeld;
 
 end Sichtbarkeit;

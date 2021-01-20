@@ -409,7 +409,7 @@ package body KartenGenerator is
                      
                   else
                      Wert := Random (Gewählt);
-                     if Wert > 0.33 and GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) = False then
+                     if Wert > 0.50 and GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) = False then
                         if Grund = 4 and GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 5 then
                            null;
                            
@@ -429,81 +429,11 @@ package body KartenGenerator is
 
             case Grund is
                when 6 | 7 => -- Hügel - Gebirge
-                  HügelGebirgeUmgebung := -1;
-                  
-               when others =>
-                  HügelGebirgeUmgebung := 0;
-                  YAchseHügelSchleife:
-                  for YÄnderungHügel in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-                     XAchseHügelSchleife:
-                     for XÄnderungHügel in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop            
-            
-                        KartenWertHügel := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YAchse,
-                                                                               XKoordinate    => XAchse,
-                                                                               YÄnderung      => YÄnderungHügel,
-                                                                               XÄnderung      => XÄnderungHügel,
-                                                                               ZusatzYAbstand => 0);
-
-                        case KartenWertHügel.YAchse is
-                           when GlobaleDatentypen.Kartenfeld'First =>
-                              exit XAchseHügelSchleife;
-                  
-                           when others =>
-                              if YÄnderungHügel = 0 and XÄnderungHügel = 0 then
-                                 null;
-                                 
-                              elsif Karten.Karten (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund /= 6 and Karten.Karten (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund /= 7
-                                and Karten.Karten (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Hügel = False then
-                                 null;
-                                 
-                              else
-                                 HügelGebirgeUmgebung := HügelGebirgeUmgebung + 1;
-                              end if;                        
-                        end case;
-            
-                     end loop XAchseHügelSchleife;
-                  end loop YAchseHügelSchleife;
-            end case;
-
-            case HügelGebirgeUmgebung is
-               when -1 =>
                   null;
                   
-               when 1 .. 3 =>
-                  Wert := Random (Gewählt);
-                  if Wert >= 0.85 then
-                     Karten.Karten (0, YAchse, XAchse).Hügel := True;
-                     
-                  else
-                     null;
-                  end if;
-                  
-               when 4 .. 7 =>
-                  Wert := Random (Gewählt);
-                  if Wert >= 0.66 then
-                     Karten.Karten (0, YAchse, XAchse).Hügel := True;
-                     
-                  else
-                     null;
-                  end if;
-                  
-               when 8 =>
-                  Wert := Random (Gewählt);
-                  if Wert >= 0.33 then
-                     Karten.Karten (0, YAchse, XAchse).Hügel := True;
-                     
-                  else
-                     null;
-                  end if;
-                  
-               when others =>                  
-                  Wert := Random (Gewählt);
-                  if Wert >= 0.95 then
-                     Karten.Karten (0, YAchse, XAchse).Hügel := True;
-                     
-                  else
-                     null;
-                  end if;
+               when others =>
+                  GenerierungLandschaftHügel (YAchse => KartenWert.YAchse,
+                                              XAchse => KartenWert.XAchse);
             end case;
             
          end loop XAchseSchleife;
@@ -543,6 +473,84 @@ package body KartenGenerator is
       end case;
       
    end GenerierungLandschaftFelder;
+
+
+
+   procedure GenerierungLandschaftHügel (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) is
+   begin
+      
+      HügelGebirgeUmgebung := 0;
+      YAchseHügelSchleife:
+      for YÄnderungHügel in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         XAchseHügelSchleife:
+         for XÄnderungHügel in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop            
+            
+            KartenWertHügel := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YAchse,
+                                                                   XKoordinate    => XAchse,
+                                                                   YÄnderung      => YÄnderungHügel,
+                                                                   XÄnderung      => XÄnderungHügel,
+                                                                   ZusatzYAbstand => 0);
+
+            case KartenWertHügel.YAchse is
+               when GlobaleDatentypen.Kartenfeld'First =>
+                  exit XAchseHügelSchleife;
+                  
+               when others =>
+                  if YÄnderungHügel = 0 and XÄnderungHügel = 0 then
+                     null;
+                                 
+                  elsif Karten.Karten (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund = 6 or Karten.Karten (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund = 7
+                    or Karten.Karten (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Hügel = True then
+                     HügelGebirgeUmgebung := HügelGebirgeUmgebung + 1;
+                                 
+                  else
+                     null;
+                  end if;                        
+            end case;
+            
+         end loop XAchseHügelSchleife;
+      end loop YAchseHügelSchleife;
+
+      case HügelGebirgeUmgebung is
+                  
+         when 1 .. 3 =>
+            Wert := Random (Gewählt);
+            if Wert >= 0.85 then
+               Karten.Karten (0, YAchse, XAchse).Hügel := True;
+                     
+            else
+               null;
+            end if;
+                  
+         when 4 .. 7 =>
+            Wert := Random (Gewählt);
+            if Wert >= 0.66 then
+               Karten.Karten (0, YAchse, XAchse).Hügel := True;
+                     
+            else
+               null;
+            end if;
+                  
+         when 8 =>
+            Wert := Random (Gewählt);
+            if Wert >= 0.33 then
+               Karten.Karten (0, YAchse, XAchse).Hügel := True;
+                     
+            else
+               null;
+            end if;
+                  
+         when others =>                  
+            Wert := Random (Gewählt);
+            if Wert >= 0.95 then
+               Karten.Karten (0, YAchse, XAchse).Hügel := True;
+                     
+            else
+               null;
+            end if;
+      end case;
+      
+   end GenerierungLandschaftHügel;
    
 
 
@@ -605,10 +613,10 @@ package body KartenGenerator is
 
 
 
-   procedure FlussBerechnung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld) is -- Außerdem scheint hier noch etwas nicht zu stimmen, nochmal drüber schauen oder gleich was besseres zusammenbasteln.
+   procedure FlussBerechnung (YKoordinate, XKoordinate : in GlobaleDatentypen.KartenfeldPositiv) is -- Außerdem scheint hier noch etwas nicht zu stimmen, nochmal drüber schauen oder gleich was besseres zusammenbasteln.
    begin
                     
-      Flusswert := 10000;   
+      Flusswert := 10_000;   
       YAchseSchleife:
       for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
          XAchseSchleife:
@@ -628,7 +636,7 @@ package body KartenGenerator is
                   if XÄnderung = -1 and YÄnderung = 0 then
                      case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
                         when 0 =>
-                           Flusswert := Flusswert - 1000;
+                           Flusswert := Flusswert - 1_000;
 
                         when 16 =>
                            Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
@@ -654,7 +662,7 @@ package body KartenGenerator is
                         when others =>
                            null;
                      end case;
-                     Flusswert := Flusswert + 1000;
+                     Flusswert := Flusswert + 1_000;
                
                   elsif XÄnderung = 1 and YÄnderung = 0 then
                      case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
@@ -758,43 +766,43 @@ package body KartenGenerator is
       end loop YAchseSchleife;
 
       case Flusswert is
-         when 11000 =>
+         when 11_000 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 26;
 
-         when 10100 =>
+         when 10_100 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 25;
 
-         when 10010 =>
+         when 10_010 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 27;
 
-         when 10001 =>
+         when 10_001 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 28;
 
-         when 11010 =>
+         when 11_010 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 20;
 
-         when 11001 =>
+         when 11_001 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 18;
 
-         when 11110 =>
+         when 11_110 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 21;
 
-         when 11101 =>
+         when 11_101 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 22;
 
-         when 11111 =>
+         when 11_111 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 14;
 
-         when 10110 =>
+         when 10_110 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 19;
 
-         when 10101 =>
+         when 10_101 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 17;
 
-         when 10111 =>
+         when 10_111 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 23;
 
-         when 10011 =>
+         when 10_011 =>
             Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 16;
          
          when others =>

@@ -239,14 +239,14 @@ package body SpielEinstellungen is
                null;
          end case;
          
-         case GlobaleVariablen.RassenImSpiel (Wert)is
+         case GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen (Wert))is
             when 0 =>
                Wahl := Auswahl.Auswahl (WelcheAuswahl => 21,
                                         WelcherText   => 25);
          
                case Wahl is
                   when 1 .. 2 =>
-                     GlobaleVariablen.RassenImSpiel (Wert) := Wahl;
+                     GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (Wert)) := GlobaleDatentypen.Rassen (Wahl);
                      Spieler := Spieler + 1;
 
                   when others =>
@@ -363,7 +363,7 @@ package body SpielEinstellungen is
 
 
 
-   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in Integer) return Boolean is
+   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) return Boolean is
    begin
       
       PrüfungGrund := SchleifenPruefungen.KartenGrund (Ebene       => 0,
@@ -379,7 +379,7 @@ package body SpielEinstellungen is
                                                                                    XAchse => XPosition);
       end case;
 
-      case PositionWert.Rasse is
+      case PositionWert.Platznummer is
          when SchleifenPruefungen.RückgabeWert =>
             Koordinaten (1) := (0, YPosition, XPosition);
             YAchseSchleife:
@@ -411,7 +411,7 @@ package body SpielEinstellungen is
                                                                                                        XAchse => KartenWert.XAchse);
                            end case;                    
                            
-                           case PlatzBelegt.Rasse is
+                           case PlatzBelegt.Platznummer is
                               when SchleifenPruefungen.RückgabeWert =>
                                     Koordinaten (2) := (0, KartenWert.YAchse, KartenWert.XAchse);
                                     StartpunktFestlegen (RasseExtern => RasseExtern);
@@ -439,7 +439,7 @@ package body SpielEinstellungen is
 
 
 
-   procedure StartpunktFestlegen (RasseExtern : in Integer) is
+   procedure StartpunktFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID := 1;

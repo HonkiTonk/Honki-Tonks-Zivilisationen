@@ -1,6 +1,6 @@
 package body InDerStadt is
 
-   procedure InDerStadt (RasseExtern, StadtNummer : in Integer) is
+   procedure InDerStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is
    begin
       
       StadtSchleife:
@@ -126,7 +126,7 @@ package body InDerStadt is
    
    
    
-   function StadtBauen (RasseExtern, EinheitNummer : in Integer) return Boolean is
+   function StadtBauen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) return Boolean is
    begin
 
       BauMöglich := StadtBauenPrüfen (RasseExtern   => RasseExtern,
@@ -227,7 +227,7 @@ package body InDerStadt is
 
 
 
-   procedure StadtProduktionPrüfen (RasseExtern, StadtNummer : in Integer) is
+   procedure StadtProduktionPrüfen (RasseExtern : in GlobaleDatentypen.RassenMitNullwert; StadtNummer : in Integer) is
    begin
       
       case RasseExtern is
@@ -259,7 +259,7 @@ package body InDerStadt is
    
 
 
-   procedure StadtProduktionPrüfenBerechnung (RasseExtern, StadtNummer : in Integer) is -- Legt erst eine Runde später die neuen Werte fest, prüfen warum.
+   procedure StadtProduktionPrüfenBerechnung (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is -- Legt erst eine Runde später die neuen Werte fest, prüfen warum.
    begin
       
       GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleNahrungsproduktion := 0;
@@ -335,7 +335,7 @@ package body InDerStadt is
    
 
 
-   function StadtBauenPrüfen (RasseExtern, EinheitNummer : in Integer) return Boolean is
+   function StadtBauenPrüfen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) return Boolean is
    begin
       
       YAchseSchleife:
@@ -372,7 +372,7 @@ package body InDerStadt is
    
    
    
-   procedure BelegteStadtfelderFreigeben (RasseExtern, StadtNummer : in Integer) is
+   procedure BelegteStadtfelderFreigeben (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is
    begin
       
       YAchseSchleife:

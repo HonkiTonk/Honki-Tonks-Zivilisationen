@@ -1,11 +1,11 @@
 with Ada.Numerics.Discrete_Random;
 
-with GlobaleDatentypen, Karten;
+with GlobaleDatentypen, Karten, GlobaleRecords;
 use GlobaleDatentypen;
 
 package ZufallsGeneratoren is
 
-   function YXPosition return GlobaleDatentypen.AchsenAusKartenfeldPositiv;
+   function YXPosition return GlobaleRecords.AchsenAusKartenfeldPositiv;
    function Chaoskarte return GlobaleDatentypen.KartenGrund;
 
 private   

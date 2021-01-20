@@ -7,14 +7,11 @@ use GlobaleDatentypen;
 package Wachstum is
    
    procedure Wachstum;
-   procedure WachstumBeiStadtGründung (RasseExtern : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure WachstumBeiStadtGründung (RasseExtern : in GlobaleDatentypen.Rassen);
 
 private
    
-   procedure WachstumEinwohner (RasseExtern, StadtNummer : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   procedure WachstumProduktion (RasseExtern, StadtNummer : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure WachstumEinwohner (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive);
+   procedure WachstumProduktion (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive);
 
 end Wachstum;

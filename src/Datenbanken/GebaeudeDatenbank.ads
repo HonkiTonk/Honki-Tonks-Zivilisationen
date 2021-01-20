@@ -24,17 +24,18 @@ package GebaeudeDatenbank is
 
    end record;
 
-   type GebäudeListeArray is array (GlobaleDatentypen.RassenImSpielArray'Range, GlobaleVariablen.StadtGebaut (1, 1).GebäudeVorhanden'Range) of Gebäude;
+   type GebäudeListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleVariablen.StadtGebaut (1, 1).GebäudeVorhanden'Range) of Gebäude;
    GebäudeListe : constant GebäudeListeArray := (others => (('B', 100, 100, 0,    0, 0, 0, 0, 0, 0, False), -- 1 
                                                               ('K', 100, 100, 1,    0, 0, 0, 0, 0, 0, False), -- 2 
                                                               ('F', 150, 50, 2,    0, 0, 0, 0, 0, 0, False), -- 3 
                                           
                                                               others => (' ', 0, 0, 0,    0, 0, 0, 0, 0, 0, False)));
 
-   procedure Beschreibung (ID : in Integer);
-   procedure GebäudeProduktionBeenden (RasseExtern, StadtNummer, ID : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   --procedure InformationenGebäude
+   procedure Beschreibung (ID : in Integer) with
+     Pre => ID > 0;
+   
+   procedure GebäudeProduktionBeenden (RasseExtern : GlobaleDatentypen.Rassen; StadtNummer, ID : in Integer) with
+     Pre => StadtNummer > 0 and ID > 0;
 
 private
 

@@ -1,12 +1,10 @@
-with GlobaleVariablen, GlobaleDatentypen, EinheitenDatenbank, SchleifenPruefungen;
+with GlobaleVariablen, GlobaleDatentypen, EinheitenDatenbank, SchleifenPruefungen, KIRecords;
 use GlobaleDatentypen;
 
 package KIPruefungen is
    
-   function SpezielleEinheitArtSuchen (RasseExtern, WelcheEinheitArt : in Integer) return Integer
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   function EinheitMitBewegungspunktenSuchen (RasseExtern : in Integer) return GlobaleDatentypen.EinheitStatusRecord
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   function SpezielleEinheitArtSuchen (RasseExtern : in GlobaleDatentypen.Rassen; WelcheEinheitArt : in Positive) return Integer;
+   function EinheitMitBewegungspunktenSuchen (RasseExtern : in GlobaleDatentypen.Rassen) return KIRecords.EinheitStatusRecord;
    
 private
 

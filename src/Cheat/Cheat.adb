@@ -1,6 +1,6 @@
 package body Cheat is
 
-   procedure Menü (RasseExtern : in Integer) is
+   procedure Menü (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
       AktuelleEinheit := 1;
@@ -38,7 +38,7 @@ package body Cheat is
    end Menü;
 
 
-   procedure BeliebigeNächsteEinheit (RasseExtern : in Integer) is -- Funktioniert nicht 100%, nochmal drüber schauen wenn Zeit und Lust, da Cheatmenü nicht so wichtig
+   procedure BeliebigeNächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen) is -- Funktioniert nicht 100%, nochmal drüber schauen wenn Zeit und Lust, da Cheatmenü nicht so wichtig
    begin      
       
       if GlobaleVariablen.EinheitenGebaut (AktuelleRasse, AktuelleEinheit).ID = 0 then
@@ -127,7 +127,7 @@ package body Cheat is
 
 
 
-   procedure Sichtbarkeit (RasseExtern : in Integer) is
+   procedure Sichtbarkeit (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       EbeneSchleife:
@@ -159,7 +159,7 @@ package body Cheat is
    procedure EinheitFestlegen is
    begin
 
-      RasseZahl := Eingabe.GanzeZahl (Zahlengröße => 2);
+      RasseZahl := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (Zahlengröße => 2));
       Stadt := Eingabe.GanzeZahl (Zahlengröße => 2);
       ID := Eingabe.GanzeZahl (Zahlengröße => 2);
       

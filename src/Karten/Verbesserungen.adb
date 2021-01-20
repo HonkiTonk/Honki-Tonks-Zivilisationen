@@ -1,6 +1,6 @@
 package body Verbesserungen is
 
-   procedure Verbesserung (Befehl, RasseExtern, EinheitNummer : in Integer) is
+   procedure Verbesserung (RasseExtern : in GlobaleDatentypen.Rassen; Befehl, EinheitNummer : in Integer) is
    begin
 
       case GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung is
@@ -26,7 +26,7 @@ package body Verbesserungen is
 
 
 
-   procedure VerbesserungeFestgelegt (Befehl, RasseExtern, EinheitNummer : in Integer) is -- l/1 = Straße, t/2 = Mine, f/3 = Farm, u/4 = Festung, z/5 = Wald aufforsten, p/6 = /Roden-Trockenlegen,
+   procedure VerbesserungeFestgelegt (RasseExtern : in GlobaleDatentypen.Rassen; Befehl, EinheitNummer : in Integer) is -- l/1 = Straße, t/2 = Mine, f/3 = Farm, u/4 = Festung, z/5 = Wald aufforsten, p/6 = /Roden-Trockenlegen,
                                                                                     -- h/7 = Heilen, v/8 = Verschanzen Space/9 = Runde aussetzen, DEL/10 = Einheit auflösen, j/11 = Plündern
    begin
 
@@ -340,7 +340,7 @@ package body Verbesserungen is
 
 
 
-   procedure VerbesserungAngelegt (RasseExtern, EinheitNummer : in Integer) is
+   procedure VerbesserungAngelegt (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) is
    begin
       
       case GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung is -- Landstraße/Tiefengrabung/Farm/Festung/Wald aufforsten/Roden-Trockenlegen
@@ -397,10 +397,10 @@ package body Verbesserungen is
 
 
 
-   procedure StraßeBerechnung (AchsenKoordinaten : in GlobaleDatentypen.AchsenAusKartenfeldPositiv) is
+   procedure StraßeBerechnung (AchsenKoordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) is
    begin
 
-      Straßenwert := 10000;
+      Straßenwert := 10_000;
       
       YAchseSchleife:
       for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
@@ -421,7 +421,7 @@ package body Verbesserungen is
                   if XÄnderung = -1 and YÄnderung = 0 then
                      case Karten.Karten (AchsenKoordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
                         when 0 =>
-                           Straßenwert := Straßenwert - 1000;
+                           Straßenwert := Straßenwert - 1_000;
 
                         when 7 =>
                            Karten.Karten (AchsenKoordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
@@ -447,7 +447,7 @@ package body Verbesserungen is
                         when others =>
                            null;
                      end case;
-                     Straßenwert := Straßenwert + 1000;
+                     Straßenwert := Straßenwert + 1_000;
                
                   elsif XÄnderung = 1 and YÄnderung = 0 then
                      case Karten.Karten (AchsenKoordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
@@ -551,43 +551,43 @@ package body Verbesserungen is
       end loop YAchseSchleife;
 
       case Straßenwert is
-         when 11000 =>
+         when 11_000 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 17;
 
-         when 10100 =>
+         when 10_100 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 16;
 
-         when 10010 =>
+         when 10_010 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 18;
 
-         when 10001 =>
+         when 10_001 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 19;
 
-         when 11010 =>
+         when 11_010 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 11;
 
-         when 11001 =>
+         when 11_001 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 9;
 
-         when 11110 =>
+         when 11_110 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 12;
 
-         when 11101 =>
+         when 11_101 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 13;
 
-         when 11111 =>
+         when 11_111 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 5;
 
-         when 10110 =>
+         when 10_110 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 10;
 
-         when 10101 =>
+         when 10_101 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 8;
 
-         when 10111 =>
+         when 10_111 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 14;
 
-         when 10011 =>
+         when 10_011 =>
             Karten.Karten (AchsenKoordinaten.EAchse, AchsenKoordinaten.YAchse, AchsenKoordinaten.XAchse).VerbesserungStraße := 7;
          
          when others =>

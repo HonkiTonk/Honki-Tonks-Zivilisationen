@@ -1,8 +1,8 @@
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, Auswahl, Karten, SchleifenPruefungen, GlobaleDatentypen;
-use GlobaleDatentypen;
+with GlobaleVariablen, Auswahl, Karten, SchleifenPruefungen, GlobaleDatentypen, GlobaleRecords;
+use GlobaleDatentypen, GlobaleRecords;
 
 package EinheitenDatenbank is
 
@@ -30,7 +30,7 @@ package EinheitenDatenbank is
       
    end record;
 
-   type EinheitenListeArry is array (GlobaleDatentypen.RassenImSpielArray'Range, 1 .. GlobaleDatentypen.EinheitenID'Last) of Einheiten;
+   type EinheitenListeArry is array (GlobaleDatentypen.Rassen'Range, 1 .. GlobaleDatentypen.EinheitenID'Last) of Einheiten;
    EinheitenListe : constant EinheitenListeArry := (others => (('S', 1, 10, 10, 0,    1, 3, 1.00,    30, 3, 1, 1, 1), -- Siedler
 
                                                                ('L', 2, 25, 20, 0,    1, 5, 3.00,    30, 3, 1, 3, 1), -- Steinbeilkämpfer
@@ -47,14 +47,14 @@ package EinheitenDatenbank is
                                                                others => ('@', 0, 0, 0, 0,    1, 0, 0.00,    1, 1, 0, 0, 1)));
 
    procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID);
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern, EinheitNummer : in Integer)
+   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer)
      with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
    procedure HeilungBewegungspunkteFürNeueRundeSetzen;
-   procedure EinheitErzeugen (RasseExtern, StadtNummer, ID : in Integer)
+   procedure EinheitErzeugen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer, ID : in Integer)
      with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   procedure EinheitEntfernen (RasseExtern, EinheitNummer : in Integer)
+   procedure EinheitEntfernen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer)
      with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   procedure EinheitGebautSortieren (RasseExtern : in Integer)
+   procedure EinheitGebautSortieren (RasseExtern : in GlobaleDatentypen.Rassen)
      with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
    procedure Beschäftigung (Arbeit : in Integer);
 

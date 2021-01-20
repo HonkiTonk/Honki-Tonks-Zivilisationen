@@ -1,23 +1,10 @@
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen;
+with GlobaleVariablen, GlobaleDatentypen;
 
 package Anzeige is
-   
-   procedure Anzeige (WelcherText, AktuelleAuswahl : in Integer);
-   procedure AnzeigeStadt (AktuelleAuswahl : in Integer);
-   procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Integer);
-   procedure AnzeigeForschung (AktuelleAuswahl : in Integer);
-   procedure RassenBeschreibung (WelcheRasse : in Integer);
-   procedure Zeug (WelchesZeug : in Integer);
-   procedure Fehlermeldungen (WelcheFehlermeldung : in Integer);
-   procedure WelcheAuswahl (WasWurdeGewählt : in Integer);
-   procedure TexteEinlesenAusgabe (WelcheDatei, WelcherText : in Integer);
-
-   procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Integer)     
-     with Pre => FrageDatei >= 0 and FrageZeile >= 0 and TextDatei >= 0 and ErsteZeile >= 0 and LetzteZeile >= 0 and ErsteZeile <= LetzteZeile;
-
+      
    type TextBauenRecord is record
       
       Text : Unbounded_Wide_Wide_String;
@@ -38,6 +25,19 @@ package Anzeige is
    type TextForschungArray is array (GlobaleVariablen.Wichtiges (1).Erforscht'Range) of TextForschungRecord;
    TextForschung : TextForschungArray;
 
+   procedure Anzeige (WelcherText, AktuelleAuswahl : in Integer);
+   procedure AnzeigeStadt (AktuelleAuswahl : in Positive);
+   procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Positive);
+   procedure AnzeigeForschung (AktuelleAuswahl : in Positive);
+   procedure RassenBeschreibung (WelcheRasse : in GlobaleDatentypen.Rassen);
+   procedure Zeug (WelchesZeug : in Positive);
+   procedure Fehlermeldungen (WelcheFehlermeldung : in Positive);
+   procedure WelcheAuswahl (WasWurdeGewählt : in Positive);
+   procedure TexteEinlesenAusgabe (WelcheDatei, WelcherText : in Positive);
+
+   procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Integer)     
+     with Pre => FrageDatei >= 0 and FrageZeile >= 0 and TextDatei >= 0 and ErsteZeile >= 0 and LetzteZeile >= 0 and ErsteZeile <= LetzteZeile;
+
 private
    
    Taste : Wide_Wide_Character;
@@ -48,6 +48,6 @@ private
    
    Teilung : Float;
    
-   Text : Wide_Wide_String (1 .. 1000);
+   Text : Wide_Wide_String (1 .. 1_000);
 
 end Anzeige;

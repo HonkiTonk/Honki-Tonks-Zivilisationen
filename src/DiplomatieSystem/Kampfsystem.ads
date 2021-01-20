@@ -6,8 +6,8 @@ use GlobaleDatentypen;
 
 package Kampfsystem is
 
-   function KampfsystemNahkampf (GegnerStadtnummer, RasseAngriff, EinheitenPositionAngriff, RasseVerteidigung, EinheitenPositionVerteidigung : in Integer) return Boolean
-     with Pre => RasseAngriff in GlobaleDatentypen.RassenImSpielArray'Range and RasseVerteidigung in GlobaleDatentypen.RassenImSpielArray'Range;
+   function KampfsystemNahkampf (RasseAngriff, RasseVerteidigung : in GlobaleDatentypen.Rassen; GegnerStadtnummer, EinheitenPositionAngriff, EinheitenPositionVerteidigung : in Integer) return Boolean with
+     Pre => RasseAngriff /= RasseVerteidigung;
 
 private
 
@@ -23,11 +23,10 @@ private
    AngriffVerteidigungWert : Float;
    Wert : Float;
 
-   procedure KampfBerechnung (RasseVerteidigung, EinheitNummerVerteidigung : in Integer; AngriffWert, VerteidigungWert : in Float)
-     with Pre => RasseVerteidigung in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure KampfBerechnung (RasseVerteidigung : in GlobaleDatentypen.Rassen; EinheitNummerVerteidigung : in Integer; AngriffWert, VerteidigungWert : in Float);
 
-   function Kampf (RasseAngriff, EinheitenPositionAngriff, RasseVerteidigung, EinheitenPositionVerteidigung : in Integer; VerteidigungBonus : in Float) return Boolean
-     with Pre => RasseAngriff in GlobaleDatentypen.RassenImSpielArray'Range and RasseVerteidigung in GlobaleDatentypen.RassenImSpielArray'Range;
+   function Kampf (RasseAngriff, RasseVerteidigung : in GlobaleDatentypen.Rassen; EinheitenPositionAngriff, EinheitenPositionVerteidigung : in Integer; VerteidigungBonus : in Float) return Boolean with
+     Pre => RasseAngriff /= RasseVerteidigung;
    function Prüfen return Boolean;
 
 end Kampfsystem;

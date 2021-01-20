@@ -1,15 +1,13 @@
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with SchleifenPruefungen, GlobaleDatentypen, GebaeudeDatenbank, StadtWerteFestlegen, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit;
+with SchleifenPruefungen, GlobaleDatentypen, GebaeudeDatenbank, StadtWerteFestlegen, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, GlobaleRecords;
 use GlobaleDatentypen;
 
 package KarteStadt is
    
-   procedure AnzeigeStadt (StadtNummer, RasseExtern : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   procedure Beschreibung (RasseExtern : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure AnzeigeStadt (StadtNummer : in Positive; RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure Beschreibung (RasseExtern : in GlobaleDatentypen.Rassen);
 
 private
    
@@ -29,12 +27,11 @@ private
 
    Wert : Integer;
 
-   KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
+   KartenWert : GlobaleRecords.AchsenAusKartenfeld;
    
-   RasseUndPlatznummer : GlobaleDatentypen.RasseUndPlatznummerRecord;
+   RasseUndPlatznummer : GlobaleRecords.RasseUndPlatznummerRecord;
    
    procedure FarbenStadt;
-   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; RasseExtern : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; RasseExtern : in GlobaleDatentypen.Rassen);
 
 end KarteStadt;

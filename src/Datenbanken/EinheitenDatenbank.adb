@@ -9,7 +9,7 @@ package body EinheitenDatenbank is
 
 
 
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern, EinheitNummer : in Integer) is
+   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer) is
    begin
       
       GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleLebenspunkte := EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).MaximaleLebenspunkte;
@@ -64,7 +64,7 @@ package body EinheitenDatenbank is
    
 
 
-   procedure EinheitErzeugen (RasseExtern, StadtNummer, ID : in Integer) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
+   procedure EinheitErzeugen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer, ID : in Integer) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
    begin
 
       Position := (GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.EAchse, GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.YAchse,
@@ -107,10 +107,10 @@ package body EinheitenDatenbank is
 
 
 
-   procedure EinheitEntfernen (RasseExtern, EinheitNummer : in Integer) is
+   procedure EinheitEntfernen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer) := (0, 0, 0, (0, 1, 1), 0, 0.00, 0, 0, 0, 0);      
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0);      
       EinheitGebautSortieren (RasseExtern => RasseExtern);
 
       if GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID = 0 and GlobaleVariablen.StadtGebaut (RasseExtern, 1).ID = 0 then
@@ -124,14 +124,14 @@ package body EinheitenDatenbank is
 
 
 
-   procedure EinheitGebautSortieren (RasseExtern : in Integer) is
+   procedure EinheitGebautSortieren (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
       TauschSchleife:
       for Tauschen in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
          Sortieren (Tauschen) := GlobaleVariablen.EinheitenGebaut (RasseExtern, Tauschen);
-         GlobaleVariablen.EinheitenGebaut (RasseExtern, Tauschen) := (0, 0, 0, (0, 1, 1), 0, 0.00, 0, 0, 0, 0); 
+         GlobaleVariablen.EinheitenGebaut (RasseExtern, Tauschen) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0); 
          
       end loop TauschSchleife;
 
@@ -142,7 +142,7 @@ package body EinheitenDatenbank is
             
             if Sortieren (Auswahl).ID /= 0 then
                GlobaleVariablen.EinheitenGebaut (RasseExtern, Einsortieren) := Sortieren (Auswahl);
-               Sortieren (Auswahl) := (0, 0, 0, (0, 1, 1), 0, 0.00, 0, 0, 0, 0);
+               Sortieren (Auswahl) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0);
                exit SortierenInnenSchleife;
                
             elsif Auswahl = Sortieren'Last then

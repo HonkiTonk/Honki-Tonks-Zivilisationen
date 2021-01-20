@@ -78,7 +78,7 @@ package body Anzeige is
 
 
 
-   procedure AnzeigeStadt (AktuelleAuswahl : in Integer) is
+   procedure AnzeigeStadt (AktuelleAuswahl : in Positive) is
    begin
       
       LängsterText := 1;
@@ -156,7 +156,7 @@ package body Anzeige is
 
 
 
-   procedure AnzeigeForschung (AktuelleAuswahl : in Integer) is
+   procedure AnzeigeForschung (AktuelleAuswahl : in Positive) is
    begin
       
       LängsterText := 1;
@@ -234,7 +234,7 @@ package body Anzeige is
 
 
 
-   procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Integer) is
+   procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Positive) is
    begin
       
       Text := (others => ('|'));
@@ -286,7 +286,7 @@ package body Anzeige is
 
 
 
-   procedure RassenBeschreibung (WelcheRasse : in Integer) is
+   procedure RassenBeschreibung (WelcheRasse : in GlobaleDatentypen.Rassen) is
    begin
       
       null; -- Hier kann der Standardansatz nicht verwendet werden, den einfügen den ich habe, ist in Anzeige
@@ -295,7 +295,7 @@ package body Anzeige is
    
    
    
-   procedure Zeug (WelchesZeug : in Integer) is
+   procedure Zeug (WelchesZeug : in Positive) is
    begin
       
       Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, WelchesZeug)));
@@ -304,7 +304,7 @@ package body Anzeige is
 
 
 
-   procedure Fehlermeldungen (WelcheFehlermeldung : in Integer) is
+   procedure Fehlermeldungen (WelcheFehlermeldung : in Positive) is
    begin
       
       Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (20, WelcheFehlermeldung)));
@@ -314,7 +314,7 @@ package body Anzeige is
 
 
 
-   procedure WelcheAuswahl (WasWurdeGewählt : in Integer) is
+   procedure WelcheAuswahl (WasWurdeGewählt : in Positive) is
    begin
       
       Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (21, WasWurdeGewählt)));
@@ -323,7 +323,7 @@ package body Anzeige is
 
 
 
-   procedure TexteEinlesenAusgabe (WelcheDatei, WelcherText : in Integer) is
+   procedure TexteEinlesenAusgabe (WelcheDatei, WelcherText : in Positive) is
    begin
       
       Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcheDatei, WelcherText)));

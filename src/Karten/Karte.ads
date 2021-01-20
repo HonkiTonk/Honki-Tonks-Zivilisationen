@@ -1,13 +1,12 @@
 with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleDatentypen, KarteStadt, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, SchleifenPruefungen;
-use GlobaleDatentypen;
+with GlobaleDatentypen, KarteStadt, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, SchleifenPruefungen, GlobaleRecords;
+use GlobaleDatentypen, GlobaleRecords;
 
 package Karte is
 
-   procedure AnzeigeKarte (RasseExtern : in Positive)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure AnzeigeKarte (RasseExtern : in GlobaleDatentypen.Rassen);
 
 private
 
@@ -22,11 +21,11 @@ private
    SichtweiteFestlegen : Integer;
    BewegungsfeldFestlegen : Integer;
 
-   Kartenwert : GlobaleDatentypen.AchsenAusKartenfeld;
+   Kartenwert : GlobaleRecords.AchsenAusKartenfeld;
 
-   RasseUndPlatznummer : GlobaleDatentypen.RasseUndPlatznummerRecord;
+   RasseUndPlatznummer : GlobaleRecords.RasseUndPlatznummerRecord;
 
-   type SichtweiteArray is array (1 .. 3) of GlobaleDatentypen.AchsenAusKartenfeldPositiv;
+   type SichtweiteArray is array (1 .. 3) of GlobaleRecords.AchsenAusKartenfeldPositiv;
 
    Sichtweite : constant SichtweiteArray := (1 => (0, 6, 10),
                                              2 => (0, 6, 22),
@@ -36,7 +35,6 @@ private
                                                 2 => (0, 5, 21),
                                                 3 => (0, 5, 34));
 
-   procedure Information (RasseExtern : in Positive)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure Information (RasseExtern : in GlobaleDatentypen.Rassen);
 
 end Karte;

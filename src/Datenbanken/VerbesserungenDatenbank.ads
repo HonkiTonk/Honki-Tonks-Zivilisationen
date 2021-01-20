@@ -2,6 +2,7 @@ with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleVariablen, GlobaleDatentypen;
+use GlobaleDatentypen;
 
 package VerbesserungenDatenbank is
 
@@ -49,6 +50,7 @@ package VerbesserungenDatenbank is
                                                               ('M', 13,    0, 2, 1, 0,    1), -- 21 Mine
                                                               ('B', 13,    0, 0, 0, 0,    2)); -- 22 Festung
 
-   procedure Beschreibung (ID : in GlobaleDatentypen.KartenVerbesserung);
+   procedure Beschreibung (ID : in GlobaleDatentypen.KartenVerbesserung) with
+     Pre => ID > 0;
    
 end VerbesserungenDatenbank;

@@ -1,6 +1,6 @@
 package body Kampfsystem is
 
-   function KampfsystemNahkampf (GegnerStadtnummer, RasseAngriff, EinheitenPositionAngriff, RasseVerteidigung, EinheitenPositionVerteidigung : in Integer) return Boolean is
+   function KampfsystemNahkampf (RasseAngriff, RasseVerteidigung : in GlobaleDatentypen.Rassen; GegnerStadtnummer, EinheitenPositionAngriff, EinheitenPositionVerteidigung : in Integer) return Boolean is
    begin
 
       VerteidigungBonusDurchStadt := 1.00;
@@ -37,7 +37,7 @@ package body Kampfsystem is
 
 
 
-   function Kampf (RasseAngriff, EinheitenPositionAngriff, RasseVerteidigung, EinheitenPositionVerteidigung : in Integer; VerteidigungBonus : in Float) return Boolean is
+   function Kampf (RasseAngriff, RasseVerteidigung : in GlobaleDatentypen.Rassen; EinheitenPositionAngriff, EinheitenPositionVerteidigung : in Integer; VerteidigungBonus : in Float) return Boolean is
    begin
 
       AngriffAngriffWert := Float (EinheitenDatenbank.EinheitenListe (RasseAngriff, GlobaleVariablen.EinheitenGebaut (RasseAngriff, EinheitenPositionAngriff).ID).Angriff);
@@ -114,7 +114,7 @@ package body Kampfsystem is
 
 
 
-   procedure KampfBerechnung  (RasseVerteidigung, EinheitNummerVerteidigung : in Integer; AngriffWert, VerteidigungWert : in Float) is
+   procedure KampfBerechnung  (RasseVerteidigung : in GlobaleDatentypen.Rassen; EinheitNummerVerteidigung : in Integer; AngriffWert, VerteidigungWert : in Float) is
    begin
 
       Wert := Random (Gewählt);

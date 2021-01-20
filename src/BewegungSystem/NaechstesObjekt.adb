@@ -1,6 +1,6 @@
 package body NaechstesObjekt is
 
-   procedure NächsteEinheitMitBewegungspunkten (RasseExtern : in Integer) is -- Nochmal über die loops schauen, möglicherweise wird eine Einheit ausgelassen
+   procedure NächsteEinheitMitBewegungspunkten (RasseExtern : in GlobaleDatentypen.Rassen) is -- Nochmal über die loops schauen, möglicherweise wird eine Einheit ausgelassen
    begin
 
       case GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID is
@@ -52,7 +52,7 @@ package body NaechstesObjekt is
    
    
 
-   procedure NächsteEinheit (RasseExtern : in Integer) is
+   procedure NächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       if GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID = 0 then
@@ -74,7 +74,7 @@ package body NaechstesObjekt is
 
 
 
-   procedure NächsteEinheitOhneBewegungspunkte (RasseExtern : in Integer) is
+   procedure NächsteEinheitOhneBewegungspunkte (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       case GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID is
@@ -125,7 +125,7 @@ package body NaechstesObjekt is
    
    
    
-   procedure NächsteStadt (RasseExtern : in Integer) is
+   procedure NächsteStadt (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       if GlobaleVariablen.StadtGebaut (RasseExtern, 1).ID = 0 then

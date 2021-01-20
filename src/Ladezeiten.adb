@@ -1,6 +1,6 @@
 package body Ladezeiten is
 
-   procedure LadezeitenSpielweltErstellen (WelcheZeit : Integer) is
+   procedure LadezeitenSpielweltErstellen (WelcheZeit : in Positive) is
    begin
 
       Gesamtzeit := 0.00;
@@ -43,7 +43,7 @@ package body Ladezeiten is
 
 
 
-   procedure Speichern (WelcheZeit : Integer) is
+   procedure Speichern (WelcheZeit : in Positive) is
    begin
       
       Gesamtzeit := 0.00;
@@ -63,7 +63,7 @@ package body Ladezeiten is
    
    
    
-   procedure Laden (WelcheZeit : Integer) is
+   procedure Laden (WelcheZeit : in Positive) is
    begin
       
       Gesamtzeit := 0.00;
@@ -83,7 +83,7 @@ package body Ladezeiten is
    
    
    
-   procedure SpielStart (WelcheZeit : Integer) is
+   procedure SpielStart (WelcheZeit : in Positive) is
    begin
       
       Gesamtzeit := 0.00;
@@ -100,5 +100,35 @@ package body Ladezeiten is
       end case;
             
    end SpielStart;
+
+
+
+   procedure BerechnungenNachZugendeAllerSpieler (WelcheZeit : in Positive) is
+   begin
+      
+      Gesamtzeit := 0.00;
+
+      Put (Item => "Zwischen den Zügen: ");
+
+      case WelcheZeit is
+         when others =>
+            Ada.Float_Text_IO.Put (Item => Float (SpielStartzeiten (2, WelcheZeit) - SpielStartzeiten (1, WelcheZeit)),
+                                   Fore => 1,
+                                   Aft  => 6,
+                                   Exp  => 0);
+            Get_Immediate (Item => Warten);
+      end case;
+            
+      
+   end BerechnungenNachZugendeAllerSpieler;
+
+
+
+   procedure KIZeit (WelcheZeit : in Positive) is
+   begin
+      
+      null;
+      
+   end KIZeit;
 
 end Ladezeiten;

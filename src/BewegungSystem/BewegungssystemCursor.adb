@@ -1,6 +1,6 @@
 package body BewegungssystemCursor is
 
-   procedure BewegungCursorRichtung (Karte : in Boolean; Richtung : in Wide_Wide_Character; RasseExtern : in Integer) is -- Hier noch Bewegung für Stadt einbauen
+   procedure BewegungCursorRichtung (Karte : in Boolean; Richtung : in Wide_Wide_Character; RasseExtern : in GlobaleDatentypen.Rassen) is -- Hier noch Bewegung für Stadt einbauen
    begin
 
    YÄnderung := 0;
@@ -59,7 +59,7 @@ package body BewegungssystemCursor is
 
 
 
-   procedure GeheZuCursor (RasseExtern : in Integer) is
+   procedure GeheZuCursor (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
       Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 30)));
@@ -102,7 +102,7 @@ package body BewegungssystemCursor is
    
    
 
-   procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins; RasseExtern : in Integer) is
+   procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
@@ -124,7 +124,7 @@ package body BewegungssystemCursor is
 
 
 
-   procedure BewegungCursorBerechnenStadt (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins; RasseExtern : in Integer) is
+   procedure BewegungCursorBerechnenStadt (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
       if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse + YÄnderung < Karten.Stadtkarte'First (1) then

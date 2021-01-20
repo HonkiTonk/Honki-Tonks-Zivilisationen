@@ -2,22 +2,17 @@ with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
 
 with Wachstum, ForschungsDatenbank, StadtWerteFestlegen, GlobaleDatentypen, VerbesserungenDatenbank, SchleifenPruefungen, KartenDatenbank, Auswahl, Bauen, GebaeudeDatenbank, KarteStadt, GlobaleVariablen, Einlesen,
-     Eingabe, EinheitenDatenbank, BewegungssystemCursor, Anzeige, Karten;
+     Eingabe, EinheitenDatenbank, BewegungssystemCursor, Anzeige, Karten, GlobaleRecords;
 use GlobaleDatentypen;
 
 package InDerStadt is
 
-   procedure InDerStadt (RasseExtern, StadtNummer : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   procedure StadtProduktionPrüfen (RasseExtern, StadtNummer : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   procedure BelegteStadtfelderFreigeben (RasseExtern, StadtNummer : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure InDerStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive);
+   procedure StadtProduktionPrüfen (RasseExtern : in GlobaleDatentypen.RassenMitNullwert; StadtNummer : in Integer);
+   procedure BelegteStadtfelderFreigeben (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive);
 
-   function StadtBauen (RasseExtern, EinheitNummer : in Integer) return Boolean
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   function StadtBauenPrüfen (RasseExtern, EinheitNummer : in Integer) return Boolean
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   function StadtBauen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) return Boolean;
+   function StadtBauenPrüfen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) return Boolean;
 
 private
 
@@ -33,9 +28,8 @@ private
    RelativeCursorPositionY : GlobaleDatentypen.Kartenfeld;
    RelativeCursorPositionX : GlobaleDatentypen.Kartenfeld;
 
-   KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
+   KartenWert : GlobaleRecords.AchsenAusKartenfeld;
 
-   procedure StadtProduktionPrüfenBerechnung (RasseExtern, StadtNummer : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure StadtProduktionPrüfenBerechnung (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive);
 
 end InDerStadt;

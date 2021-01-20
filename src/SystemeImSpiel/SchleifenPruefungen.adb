@@ -1,6 +1,6 @@
 package body SchleifenPruefungen is 
 
-   function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung, ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleDatentypen.AchsenAusKartenfeld is
+   function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung, ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenAusKartenfeld is
    begin
       -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (2) + 3
       
@@ -35,7 +35,7 @@ package body SchleifenPruefungen is
 
    
 
-   function KoordinatenStadtMitRasseSuchen (RasseExtern : in Integer; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Integer is
+   function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Integer is
    begin
       
       StadtSchleife:
@@ -59,7 +59,7 @@ package body SchleifenPruefungen is
 
 
 
-   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in Integer; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Integer is
+   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Integer is
    begin
       
       EinheitSchleife:
@@ -83,7 +83,7 @@ package body SchleifenPruefungen is
    
    
    
-   function KoordinatenStadtOhneRasseSuchen (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleDatentypen.RasseUndPlatznummerRecord is
+   function KoordinatenStadtOhneRasseSuchen (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -104,13 +104,13 @@ package body SchleifenPruefungen is
          end loop StadtSchleife;
       end loop RasseSchleife;
       
-      return (RückgabeWert, RückgabeWert);
+      return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWert);
       
    end KoordinatenStadtOhneRasseSuchen;
    
    
    
-   function KoordinatenEinheitOhneRasseSuchen (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleDatentypen.RasseUndPlatznummerRecord is
+   function KoordinatenEinheitOhneRasseSuchen (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -131,7 +131,7 @@ package body SchleifenPruefungen is
          end loop EinheitSchleife;
       end loop RasseSchleife;
       
-      return (RückgabeWert, RückgabeWert);
+      return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWert);
       
    end KoordinatenEinheitOhneRasseSuchen;
    

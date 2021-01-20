@@ -15,7 +15,7 @@ package ForschungsDatenbank is
 
    end record;
 
-   type ForschungListeArray is Array (GlobaleDatentypen.RassenImSpielArray'Range, GlobaleVariablen.Wichtiges (1).Erforscht'Range) of ForschungRecord;
+   type ForschungListeArray is Array (GlobaleDatentypen.Rassen'Range, GlobaleVariablen.Wichtiges (1).Erforscht'Range) of ForschungRecord;
    ForschungListe : ForschungListeArray := (others => (1 => (100, (others => 0)),
                                                        2 => (100, (others => 0)),
                                                        3 => (100, (others => 0)),
@@ -26,12 +26,12 @@ package ForschungsDatenbank is
 
                                                        others => (0, (others => 0))));
 
-   procedure Beschreibung (ID : in Integer);
-   procedure Forschung (RasseExtern : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure Beschreibung (ID : in Integer) with
+     Pre => ID >= 0;
+
+   procedure Forschung (RasseExtern : in GlobaleDatentypen.Rassen);
    procedure ForschungFortschritt;
-   procedure ForschungZeit (RasseExtern : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure ForschungZeit (RasseExtern : in GlobaleDatentypen.Rassen);
 
 private
 
@@ -43,7 +43,6 @@ private
    AktuelleAuswahl : Integer;
    Ende : Integer;
 
-   function AuswahlForschung (RasseExtern : in Integer) return Integer
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   function AuswahlForschung (RasseExtern : in GlobaleDatentypen.Rassen) return Integer;
 
 end ForschungsDatenbank;

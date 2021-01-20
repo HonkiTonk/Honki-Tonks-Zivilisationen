@@ -1,6 +1,6 @@
 package body StadtWerteFestlegen is
 
-   procedure StadtUmgebungGrößeFestlegen (RasseExtern, StadtNummer : in Integer) is
+   procedure StadtUmgebungGrößeFestlegen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is
    begin    
             
       if GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (2) /= 0 and GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Einwohner >= 10 then
@@ -55,7 +55,7 @@ package body StadtWerteFestlegen is
    
 
 
-   procedure BewirtschaftbareFelderBelegen (ZuwachsOderSchwund : Boolean; RasseExtern, StadtNummer : in Integer) is
+   procedure BewirtschaftbareFelderBelegen (ZuwachsOderSchwund : Boolean; RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is
    begin
       
       NutzbarerBereich := GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße;

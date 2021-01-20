@@ -1,6 +1,6 @@
 package body KarteStadt is
 
-   procedure AnzeigeStadt (StadtNummer, RasseExtern : in Integer) is
+   procedure AnzeigeStadt (StadtNummer : in Positive; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
@@ -12,15 +12,16 @@ package body KarteStadt is
       CursorXAchsePlus := -10;
       
       YAchseSchleife:
-      for Y in Karten.Stadtkarte'Range (1) loop
+      for YAchse in Karten.Stadtkarte'Range (1) loop
          XAchseSchleife:
-         for X in Karten.Stadtkarte'Range (2) loop
+         for XAchse in Karten.Stadtkarte'Range (2) loop
                         
-            if Y < Karten.Stadtkarte'First (1) + 7 and X > Karten.Stadtkarte'Last (2) - 7 then               
+            if YAchse < Karten.Stadtkarte'First (1) + 7 and XAchse > Karten.Stadtkarte'Last (2) - 7 then               
                if YAchsenabstraktion > Stadtumgebungsgröße then
                   for A in 0 .. 6 loop
                      
-                     if Y = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+                     if YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse
+                       and XAchse + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
 
                      else
@@ -32,10 +33,11 @@ package body KarteStadt is
                   New_Line;
                   exit XAchseSchleife;
 
-               elsif Stadtumgebungsgröße = 1 and Y < 3 then
+               elsif Stadtumgebungsgröße = 1 and YAchse < 3 then
                   for A in 0 .. 6 loop                  
                                           
-                     if Y = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+                     if YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse
+                       and XAchse + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
 
                      else
@@ -47,10 +49,11 @@ package body KarteStadt is
                   New_Line;
                   exit XAchseSchleife;
 
-               elsif Stadtumgebungsgröße = 2 and Y < 2 then
+               elsif Stadtumgebungsgröße = 2 and YAchse < 2 then
                   for A in 0 .. 6 loop               
                                           
-                     if Y = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and X + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+                     if YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse
+                       and XAchse + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
 
                      else                                            
@@ -67,9 +70,9 @@ package body KarteStadt is
                   for A in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
 
                      Cursor := CursorKonstant + A;
-                     if Y = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and X + Cursor = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+                     if YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and XAchse + Cursor = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
-                        CursorYAchsePlus := Y - 4;
+                        CursorYAchsePlus := YAchse - 4;
 
                         if A < -Stadtumgebungsgröße or A > Stadtumgebungsgröße then
                            null;
@@ -111,18 +114,18 @@ package body KarteStadt is
                   exit XAchseSchleife;
                end if;
                
-            elsif Y = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and X = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+            elsif YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and XAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
                Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
 
-            elsif Y < Karten.Stadtkarte'First (1) + 7 and X = Karten.Stadtkarte'Last (2) - 7 then
+            elsif YAchse < Karten.Stadtkarte'First (1) + 7 and XAchse = Karten.Stadtkarte'Last (2) - 7 then
                Put (Item => " ");
 
-            elsif Y = Karten.Stadtkarte'First (1) + 7 and X >= Karten.Stadtkarte'Last (2) - 7 then
+            elsif YAchse = Karten.Stadtkarte'First (1) + 7 and XAchse >= Karten.Stadtkarte'Last (2) - 7 then
                Put (Item => " ");
 
-            elsif Y = 1 and X < 13 then
-               if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).GebäudeVorhanden (Integer (X)) /= '0' then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (RasseExtern, Integer (X)).Anzeige);
+            elsif YAchse = 1 and XAchse < 13 then
+               if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).GebäudeVorhanden (Integer (XAchse)) /= '0' then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (RasseExtern, Integer (XAchse)).Anzeige);
 
                else
                   Sichtbarkeit.Farben (Einheit      => 0,
@@ -134,9 +137,9 @@ package body KarteStadt is
                                        RasseIntern  => 0);
                end if;
 
-            elsif Y = 2 and X < 13 then
-               if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).GebäudeVorhanden (Integer (X) + 12) /= '0' then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (RasseExtern, Integer (X) + 12).Anzeige);
+            elsif YAchse = 2 and XAchse < 13 then
+               if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).GebäudeVorhanden (Integer (XAchse) + 12) /= '0' then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (RasseExtern, Integer (XAchse) + 12).Anzeige);
 
                else
                   Sichtbarkeit.Farben (Einheit      => 0,
@@ -158,7 +161,7 @@ package body KarteStadt is
                                     RasseIntern  => 0);
             end if;
 
-            case X is
+            case XAchse is
                when Karten.Stadtkarte'Last (2) =>
                   New_Line;
                   
@@ -208,7 +211,7 @@ package body KarteStadt is
    
    
    
-   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; RasseExtern : Integer) is
+   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; RasseExtern : GlobaleDatentypen.Rassen) is
    begin      
       
       Nahrungsgewinnung := 0;
@@ -330,13 +333,13 @@ package body KarteStadt is
 
 
 
-   procedure Beschreibung (RasseExtern : in Integer) is
+   procedure Beschreibung (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
       RasseUndPlatznummer := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                                                                   XAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse);
 
-      case RasseUndPlatznummer.Rasse is
+      case RasseUndPlatznummer.Platznummer is
          when SchleifenPruefungen.RückgabeWert =>
             null; -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat
       
