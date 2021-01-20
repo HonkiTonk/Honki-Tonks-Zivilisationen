@@ -2,6 +2,7 @@ with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleVariablen, GlobaleDatentypen;
+use GlobaleDatentypen;
 
 package KartenDatenbank is
 
@@ -69,6 +70,7 @@ package KartenDatenbank is
                                                            (' ', 1,    0, 0, 0, 0,    0), -- 39 Erde
                                                            (' ', 1,    0, 0, 0, 0,    0)); -- 40 Gestein
                                                                        
-   procedure Beschreibung (ID : in GlobaleDatentypen.KartenGrund);
+   procedure Beschreibung (ID : in GlobaleDatentypen.KartenGrund) with
+     Pre => ID > 0;
 
 end KartenDatenbank;

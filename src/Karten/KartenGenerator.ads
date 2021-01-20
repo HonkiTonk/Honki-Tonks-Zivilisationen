@@ -1,7 +1,7 @@
 with Ada.Numerics.Float_Random, Ada.Calendar;
 use Ada.Numerics.Float_Random, Ada.Calendar;
 
-with Karten, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen, Ladezeiten, WerteFestlegen, ZufallsGeneratoren;
+with Karten, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen, Ladezeiten, WerteFestlegen, ZufallsGeneratoren, GlobaleRecords;
 use GlobaleDatentypen;
 
 package KartenGenerator is -- Klein = 40x40, Mittel = 80x80, Groß = 160x160, Riesig = 240x240, Gigantisch = 320x320, Absurd = 1000x1000
@@ -26,8 +26,8 @@ private
 
    Wert : Float;
 
-   KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
-   KartenWertHügel : GlobaleDatentypen.AchsenAusKartenfeld;
+   KartenWert : GlobaleRecords.AchsenAusKartenfeld;
+   KartenWertHügel : GlobaleRecords.AchsenAusKartenfeld;
 
    type GrößeLandartArray is array (1 .. 3) of GlobaleDatentypen.KartenfeldPositiv;
    GrößeLandart : GrößeLandartArray;
@@ -60,17 +60,31 @@ private
    type WahrscheinlichkeitFürLandschaftArray is array (6 .. 10) of Float;
    WahrscheinlichkeitFürLandschaft : constant WahrscheinlichkeitFürLandschaftArray := (0.85, 0.75, 0.50, 0.30, 0.20);
 
-   procedure GenerierungKartenart (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv);
-   procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in GlobaleDatentypen.KartenfeldPositiv);
-   procedure GenerierungLandmasseÜberhang (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv; Gezogen : in Float);
-   procedure Generierungpangäa (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv);
+   procedure GenerierungKartenart (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) with
+     Pre => YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+
+   procedure GenerierungLandmasse (YPositionLandmasse, XPositionLandmasse : in GlobaleDatentypen.KartenfeldPositiv) with
+     Pre => YPositionLandmasse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XPositionLandmasse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+
+   procedure GenerierungLandmasseÜberhang (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv; Gezogen : in Float) with
+     Pre => YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+
+   procedure Generierungpangäa (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) with
+     Pre => YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+
    procedure GenerierungKüstenSeeGewässer;
 
    procedure GenerierungLandschaft;
-   procedure GenerierungLandschaftFelder (Grund : in GlobaleDatentypen.KartenGrund; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv);
+   procedure GenerierungLandschaftFelder (Grund : in GlobaleDatentypen.KartenGrund; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) with
+     Pre => Grund > 0 and YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+
+   procedure GenerierungLandschaftHügel (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) with
+     Pre => YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
 
    procedure GenerierungFlüsse;
-   procedure FlussBerechnung (YKoordinate, XKoordinate : in GlobaleDatentypen.Kartenfeld);
+   procedure FlussBerechnung (YKoordinate, XKoordinate : in GlobaleDatentypen.KartenfeldPositiv) with
+     Pre => YKoordinate <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XKoordinate <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+
    procedure GenerierungRessourcen;
 
    procedure AndereEbenen;

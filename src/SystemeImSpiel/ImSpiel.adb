@@ -66,9 +66,10 @@ package body ImSpiel is
             end case;
             
          end loop RassenSchleife;
-
+         
          ErsteRunde := False;
-                       
+         
+         Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (1, 1) := Clock;
          EinheitenDatenbank.HeilungBewegungspunkteFürNeueRundeSetzen;
          Verbesserungen.VerbesserungFertiggestellt;
          Wachstum.Wachstum;
@@ -76,7 +77,9 @@ package body ImSpiel is
          InDerStadt.StadtProduktionPrüfen (0, 0);
          ForschungsDatenbank.ForschungFortschritt;
          GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
-         -- Speichern.AutoSpeichern;             
+         -- Speichern.AutoSpeichern;          
+         Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (2, 1) := Clock;
+         Ladezeiten.BerechnungenNachZugendeAllerSpieler (WelcheZeit => 1);
                      
       end loop SpielSchleife;
             

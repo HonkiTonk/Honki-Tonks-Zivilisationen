@@ -15,7 +15,7 @@ package body ForschungsDatenbank is
 
 
 
-   procedure Forschung (RasseExtern : in Integer) is -- Hier noch mehr Optionen einbauen, z. B. Informationen über bereits erforschte Technologien
+   procedure Forschung (RasseExtern : in GlobaleDatentypen.Rassen) is -- Hier noch mehr Optionen einbauen, z. B. Informationen über bereits erforschte Technologien
    begin
       
       ForschungSchleife:
@@ -43,7 +43,7 @@ package body ForschungsDatenbank is
 
 
 
-   procedure ForschungZeit (RasseExtern : in Integer) is
+   procedure ForschungZeit (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       if GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt = 0 then
@@ -65,7 +65,7 @@ package body ForschungsDatenbank is
 
 
 
-   function AuswahlForschung (RasseExtern : in Integer) return Integer is
+   function AuswahlForschung (RasseExtern : in GlobaleDatentypen.Rassen) return Integer is
    begin
 
       Anzeige.TextForschung := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
@@ -80,7 +80,7 @@ package body ForschungsDatenbank is
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (16, F)) = "|" then
             exit ForschungSchleife;
 
-         elsif F > ForschungListe'Last then
+         elsif F > Integer (ForschungListe'Last) then
             exit ForschungSchleife;
 
          elsif GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (F) /= 0 then

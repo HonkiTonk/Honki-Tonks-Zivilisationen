@@ -1,6 +1,6 @@
 package body BewegungssystemEinheiten is
 
-   procedure BewegungEinheitenRichtung (RasseExtern, EinheitNummer : in Integer) is
+   procedure BewegungEinheitenRichtung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer) is
    begin
 
       Karte.AnzeigeKarte (RasseExtern => RasseExtern);
@@ -70,7 +70,7 @@ package body BewegungssystemEinheiten is
 
    
 
-   procedure BewegungEinheitenBerechnung (RasseExtern, EinheitNummer : in Integer; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) is
+   procedure BewegungEinheitenBerechnung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) is
    begin
 
       Gewonnen := True;
@@ -135,7 +135,7 @@ package body BewegungssystemEinheiten is
          null;
       end if;      
       
-      case GegnerEinheitWert.Rasse is
+      case GegnerEinheitWert.Platznummer is
          when SchleifenPruefungen.RückgabeWert | 0 =>
             null;
             

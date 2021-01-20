@@ -11,7 +11,7 @@ package body GebaeudeDatenbank is
    
    
 
-   procedure GebäudeProduktionBeenden (RasseExtern, StadtNummer, ID : in Integer) is
+   procedure GebäudeProduktionBeenden (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer, ID : in Integer) is
    begin     
       
             GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).GebäudeVorhanden (ID) := GebaeudeDatenbank.GebäudeListe (RasseExtern, ID).Anzeige;

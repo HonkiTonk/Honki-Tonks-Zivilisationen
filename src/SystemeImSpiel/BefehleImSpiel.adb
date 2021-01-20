@@ -1,6 +1,6 @@
 package body BefehleImSpiel is
 
-   function Befehle (RasseExtern : in Integer) return Integer is
+   function Befehle (RasseExtern : in GlobaleDatentypen.Rassen) return Integer is
    begin
             
       Get_Immediate (Item => Taste);
@@ -216,7 +216,7 @@ package body BefehleImSpiel is
 
 
 
-   procedure EinheitOderStadt (RasseExtern, Auswahl, StadtNummer, EinheitNummer : in Integer) is
+   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; Auswahl, StadtNummer, EinheitNummer : in Integer) is
    begin
       
       case Auswahl is

@@ -1,6 +1,6 @@
 package body KI is
 
-   procedure KI (RasseExtern : in Integer) is
+   procedure KI (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       if GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID = 0 and GlobaleVariablen.StadtGebaut (RasseExtern, 1).ID = 0 then
@@ -14,7 +14,7 @@ package body KI is
 
 
 
-   procedure KIAktivität (RasseExtern : in Integer) is -- Von hier aus dann die einzelnen Tätigkeiten aufrufen
+   procedure KIAktivität (RasseExtern : in GlobaleDatentypen.Rassen) is -- Von hier aus dann die einzelnen Tätigkeiten aufrufen
    begin
       
       GesamteAktivitätSchleife:
@@ -70,7 +70,7 @@ package body KI is
    
       
    
-   procedure KIStadtBauen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure KIStadtBauen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
    begin
       
       if Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse,
@@ -97,7 +97,7 @@ package body KI is
    
    
    
-   procedure KIVerbesserungAnlegen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure KIVerbesserungAnlegen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
    begin
       
       null;
@@ -106,7 +106,7 @@ package body KI is
    
 
 
-   procedure KIGebäudeBauen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure KIGebäudeBauen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
    begin
       
       null;
@@ -115,7 +115,7 @@ package body KI is
       
       
       
-   procedure KIBefestigen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure KIBefestigen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
    begin
          
       KIBewegung.KIBewegung (RasseExtern   => RasseExtern,
@@ -125,7 +125,7 @@ package body KI is
       
       
       
-   procedure KIAngreifen (RasseExtern : in Integer; EinheitStatus : GlobaleDatentypen.EinheitStatusRecord) is
+   procedure KIAngreifen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
    begin
          
       null;

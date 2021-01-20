@@ -1,13 +1,13 @@
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
-with SchleifenPruefungen, GlobaleDatentypen, GlobaleVariablen, KartenDatenbank, Karten, Karte, EinheitenDatenbank, Kampfsystem, Diplomatie, Auswahl, Sichtbarkeit;
+with SchleifenPruefungen, GlobaleDatentypen, GlobaleVariablen, KartenDatenbank, Karten, Karte, EinheitenDatenbank, Kampfsystem, Diplomatie, Auswahl, Sichtbarkeit, GlobaleRecords;
 use GlobaleDatentypen;
 
 package BewegungssystemEinheiten is
 
-   procedure BewegungEinheitenRichtung (RasseExtern, EinheitNummer : in Integer)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure BewegungEinheitenRichtung (RasseExtern : GlobaleDatentypen.Rassen; EinheitNummer : in Integer) with
+     Pre => EinheitNummer > 0;
    
 private
 
@@ -24,11 +24,11 @@ private
 
    Stadtnummer : Integer;
 
-   KartenWert : GlobaleDatentypen.AchsenAusKartenfeld;
-   GegnerEinheitWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
-   GegnerStadtWert : GlobaleDatentypen.RasseUndPlatznummerRecord;
+   KartenWert : GlobaleRecords.AchsenAusKartenfeld;
+   GegnerEinheitWert : GlobaleRecords.RasseUndPlatznummerRecord;
+   GegnerStadtWert : GlobaleRecords.RasseUndPlatznummerRecord;
    
-   procedure BewegungEinheitenBerechnung (RasseExtern, EinheitNummer : in Integer; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
-     with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   procedure BewegungEinheitenBerechnung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) with
+     Pre => (YÄnderung /= 0 or XÄnderung /= 0) and EinheitNummer > 0;
 
 end BewegungssystemEinheiten;

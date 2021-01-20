@@ -1,6 +1,6 @@
 package body Bauen is
 
-   procedure Bauen (RasseExtern, StadtNummer : in Integer) is
+   procedure Bauen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is
    begin
 
       GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuellesBauprojekt := 0;
@@ -33,7 +33,7 @@ package body Bauen is
 
 
 
-   procedure BauzeitEinzeln (RasseExtern, StadtNummer : in Integer) is
+   procedure BauzeitEinzeln (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is
    begin
 
       if GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleProduktionrate = 0 then
@@ -89,7 +89,7 @@ package body Bauen is
    
    
    
-   function AuswahlStadt (RasseExtern, StadtNummer : in Integer) return Integer is
+   function AuswahlStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) return Integer is
    begin
 
       Ende := 1;
@@ -133,7 +133,7 @@ package body Bauen is
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (10, E)) = "|" then
             exit EinheitenSchleife;
 
-         elsif E > EinheitenDatenbank.EinheitenListe'Last then
+         elsif E > Integer (EinheitenDatenbank.EinheitenListe'Last) then
             exit EinheitenSchleife;
 
          elsif GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AmWasser = False and EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleDatentypen.EinheitenID (E)).Passierbarkeit = 2 then

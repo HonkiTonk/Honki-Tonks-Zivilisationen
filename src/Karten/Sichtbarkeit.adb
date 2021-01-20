@@ -1,6 +1,6 @@
 package body Sichtbarkeit is
 
-   procedure Sichtbarkeitsprüfung (RasseExtern : in Integer) is
+   procedure Sichtbarkeitsprüfung (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       EinheitenPlätzeSchleife:
@@ -90,7 +90,7 @@ package body Sichtbarkeit is
 
 
 
-   procedure Sichtbarkeit (InDerStadt : Boolean; EAchse : GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in Integer) is
+   procedure Sichtbarkeit (InDerStadt : Boolean; EAchse : GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen
@@ -234,7 +234,8 @@ package body Sichtbarkeit is
 
 
 
-   procedure Farben (Einheit : GlobaleDatentypen.EinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund; Cursor : in Boolean; RasseExtern, RasseIntern : in Integer) is
+   procedure Farben (Einheit : GlobaleDatentypen.EinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund; Cursor : in Boolean;
+                     RasseExtern, RasseIntern : in GlobaleDatentypen.RassenMitNullwert) is
    begin
 
       case Cursor is

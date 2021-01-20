@@ -9,7 +9,7 @@ package body Diplomatie is
 
 
 
-   procedure KriegDurchDirektenAngriff (AngreifendeRasse, VerteidigendeRasse : in Integer) is
+   procedure KriegDurchDirektenAngriff (AngreifendeRasse, VerteidigendeRasse : in GlobaleDatentypen.Rassen) is
    begin
       
       GlobaleVariablen.Diplomatie (AngreifendeRasse, VerteidigendeRasse) := -1;
@@ -19,7 +19,7 @@ package body Diplomatie is
 
 
 
-   function DiplomatischenStatusPrüfen (AngreifendeRasse, VerteidigendeRasse : in Integer) return Integer is
+   function DiplomatischenStatusPrüfen (AngreifendeRasse, VerteidigendeRasse : in GlobaleDatentypen.Rassen) return Integer is
    begin
       
       return GlobaleVariablen.Diplomatie (AngreifendeRasse, VerteidigendeRasse);

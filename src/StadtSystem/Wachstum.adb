@@ -54,7 +54,7 @@ package body Wachstum is
 
 
 
-   procedure WachstumBeiStadtGründung (RasseExtern : in Integer) is
+   procedure WachstumBeiStadtGründung (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       StadtSchleife:
@@ -80,7 +80,7 @@ package body Wachstum is
 
 
 
-   procedure WachstumEinwohner (RasseExtern, StadtNummer : in Integer) is
+   procedure WachstumEinwohner (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is
    begin      
                      
       GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleNahrungsmittel
@@ -117,7 +117,7 @@ package body Wachstum is
    
    
    
-   procedure WachstumProduktion (RasseExtern, StadtNummer : in Integer) is
+   procedure WachstumProduktion (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is
    begin
       
       if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AktuellesBauprojekt = 0 then

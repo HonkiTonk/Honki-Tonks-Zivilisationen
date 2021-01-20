@@ -1,6 +1,6 @@
 package body Karte is
 
-   procedure AnzeigeKarte (RasseExtern : in Positive) is
+   procedure AnzeigeKarte (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       case Karten.Kartengröße is
@@ -110,7 +110,7 @@ package body Karte is
    
 
 
-   procedure Information (RasseExtern : in Positive) is
+   procedure Information (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
       Verteidigungsbonus := 0;
@@ -139,7 +139,7 @@ package body Karte is
             RasseUndPlatznummer := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                                                                           XAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse);
             
-            case RasseUndPlatznummer.Rasse is
+            case RasseUndPlatznummer.Platznummer is
                when SchleifenPruefungen.RückgabeWert =>
                   null;
                   
@@ -198,7 +198,7 @@ package body Karte is
             RasseUndPlatznummer := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                                                                         XAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse);
 
-            case RasseUndPlatznummer.Rasse is
+            case RasseUndPlatznummer.Platznummer is
                when SchleifenPruefungen.RückgabeWert =>
                   null;
                      
