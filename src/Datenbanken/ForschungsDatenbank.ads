@@ -26,9 +26,7 @@ package ForschungsDatenbank is
 
                                                        others => (0, (others => 0))));
 
-   procedure Beschreibung (ID : in Integer) with
-     Pre => ID >= 0;
-
+   procedure Beschreibung (ID : in Natural);
    procedure Forschung (RasseExtern : in GlobaleDatentypen.Rassen);
    procedure ForschungFortschritt;
    procedure ForschungZeit (RasseExtern : in GlobaleDatentypen.Rassen);

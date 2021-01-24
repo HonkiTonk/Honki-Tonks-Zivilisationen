@@ -234,7 +234,7 @@ package body Sichtbarkeit is
 
 
 
-   procedure Farben (Einheit : GlobaleDatentypen.EinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund; Cursor : in Boolean;
+   procedure Farben (Einheit : GlobaleDatentypen.EinheitenIDMitNullWert; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund; Cursor : in Boolean;
                      RasseExtern, RasseIntern : in GlobaleDatentypen.RassenMitNullwert) is
    begin
 

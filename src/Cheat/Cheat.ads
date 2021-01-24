@@ -24,8 +24,8 @@ private
    procedure Sichtbarkeit (RasseExtern : in GlobaleDatentypen.Rassen);
    procedure GrundFestlegen;
    procedure EinheitFestlegen;
-   procedure Geld;
-   procedure Technologie;
+   procedure Geld (RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure Technologie (RasseExtern : in GlobaleDatentypen.Rassen);
    procedure VerbesserungFestlegen;
    procedure EinheitStatus;
 

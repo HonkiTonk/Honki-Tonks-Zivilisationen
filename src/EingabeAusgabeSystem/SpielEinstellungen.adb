@@ -192,12 +192,12 @@ package body SpielEinstellungen is
          
          case Wahl is
             when 1 .. 18 =>
-               GlobaleVariablen.SpielerAnzahl := Wahl;
+               SpielerAnzahl := Wahl;
                return 5;
 
             when 19 => 
                ZufälligeSpieleranzahlWählen.Reset (ZufälligeSpieleranzahlGewählt);
-               GlobaleVariablen.SpielerAnzahl := ZufälligeSpieleranzahlWählen.Random (ZufälligeSpieleranzahlGewählt);
+               SpielerAnzahl := ZufälligeSpieleranzahlWählen.Random (ZufälligeSpieleranzahlGewählt);
                return 5;
                
             when -2 =>
@@ -225,7 +225,7 @@ package body SpielEinstellungen is
       Spieler := 0;
 
       SpielerSchleife:
-      while Spieler < GlobaleVariablen.SpielerAnzahl loop
+      while Spieler < SpielerAnzahl loop
          
          Wert := RasseWählen;
          case Wert is                  

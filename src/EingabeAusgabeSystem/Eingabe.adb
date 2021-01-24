@@ -58,7 +58,7 @@ package body Eingabe is
 
 
 
-   function GanzeZahlNeu (WelcheDatei, WelcherText, ZahlenMinimum, ZahlenMaximum : Integer) return Integer is
+   function GanzeZahlNeu (WelcheDatei, WelcherText, ZahlenMinimum, ZahlenMaximum : Natural) return Integer is
    begin
       
       Schleifen := (others => False);

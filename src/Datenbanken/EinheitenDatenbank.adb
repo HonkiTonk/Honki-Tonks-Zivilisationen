@@ -9,7 +9,7 @@ package body EinheitenDatenbank is
 
 
 
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer) is
+   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Natural) is
    begin
       
       GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleLebenspunkte := EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).MaximaleLebenspunkte;
@@ -64,7 +64,7 @@ package body EinheitenDatenbank is
    
 
 
-   procedure EinheitErzeugen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer, ID : in Integer) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
+   procedure EinheitErzeugen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer, ID : in Positive) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
    begin
 
       Position := (GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.EAchse, GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.YAchse,
@@ -107,7 +107,7 @@ package body EinheitenDatenbank is
 
 
 
-   procedure EinheitEntfernen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer) is
+   procedure EinheitEntfernen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) is
    begin
       
       GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0);      
@@ -159,7 +159,7 @@ package body EinheitenDatenbank is
 
    
 
-   procedure Beschäftigung (Arbeit : in Integer) is
+   procedure Beschäftigung (Arbeit : in Natural) is
    begin
       
       case Arbeit is
@@ -174,7 +174,7 @@ package body EinheitenDatenbank is
    
 
 
-   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Integer) return Boolean is
+   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Natural) return Boolean is
    begin
       
       Wahl := Auswahl.Auswahl (WelcheAuswahl => WelcheAuswahl,

@@ -35,8 +35,8 @@ package Anzeige is
    procedure WelcheAuswahl (WasWurdeGewählt : in Positive);
    procedure TexteEinlesenAusgabe (WelcheDatei, WelcherText : in Positive);
 
-   procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Integer)     
-     with Pre => FrageDatei >= 0 and FrageZeile >= 0 and TextDatei >= 0 and ErsteZeile >= 0 and LetzteZeile >= 0 and ErsteZeile <= LetzteZeile;
+   procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; AktuelleAuswahl, FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Natural) with
+     Pre => ErsteZeile <= LetzteZeile;
 
 private
    

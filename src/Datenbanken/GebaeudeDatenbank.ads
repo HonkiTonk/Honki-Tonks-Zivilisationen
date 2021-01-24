@@ -31,11 +31,9 @@ package GebaeudeDatenbank is
                                           
                                                               others => (' ', 0, 0, 0,    0, 0, 0, 0, 0, 0, False)));
 
-   procedure Beschreibung (ID : in Integer) with
-     Pre => ID > 0;
+   procedure Beschreibung (ID : in Positive);
    
-   procedure GebäudeProduktionBeenden (RasseExtern : GlobaleDatentypen.Rassen; StadtNummer, ID : in Integer) with
-     Pre => StadtNummer > 0 and ID > 0;
+   procedure GebäudeProduktionBeenden (RasseExtern : GlobaleDatentypen.Rassen; StadtNummer, ID : in Positive);
 
 private
 

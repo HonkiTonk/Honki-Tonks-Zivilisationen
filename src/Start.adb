@@ -20,7 +20,12 @@ begin
          StartSchleife:
          loop
 
-            Startauswahl := Auswahl.Auswahl (WelcheAuswahl => 0, WelcherText => 1);
+            Startauswahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                                FrageDatei         => 0,
+                                                FrageZeile         => 0,
+                                                TextDatei          => 1,
+                                                ErsteZeile         => 1,
+                                                LetzteZeile        => 5);
 
             case Startauswahl is
                when 1 => -- Start

@@ -6,9 +6,7 @@ use GlobaleDatentypen;
 
 package Verbesserungen is
 
-   procedure Verbesserung (RasseExtern : in GlobaleDatentypen.Rassen; Befehl, EinheitNummer : in Integer) with
-     Pre => Befehl > 0 and EinheitNummer > 0;
-   
+   procedure Verbesserung (RasseExtern : in GlobaleDatentypen.Rassen; Befehl, EinheitNummer : in Natural);   
    procedure VerbesserungFertiggestellt;
    
 private
@@ -19,9 +17,10 @@ private
 
    KartenWert : GlobaleRecords.AchsenAusKartenfeld;
    
-   procedure VerbesserungeFestgelegt (RasseExtern : in GlobaleDatentypen.Rassen; Befehl, EinheitNummer : in Integer);
+   procedure VerbesserungeFestgelegt (RasseExtern : in GlobaleDatentypen.Rassen; Befehl, EinheitNummer : in Natural);
    procedure VerbesserungAngelegt (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive);
 
-   procedure StraßeBerechnung (AchsenKoordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv);
+   procedure StraßeBerechnung (AchsenKoordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) with
+     Pre => AchsenKoordinaten.EAchse /= -3 and AchsenKoordinaten.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and AchsenKoordinaten.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
 
 end Verbesserungen;

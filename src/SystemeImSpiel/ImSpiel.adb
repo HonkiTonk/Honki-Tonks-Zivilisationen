@@ -16,7 +16,6 @@ package body ImSpiel is
                   null;
                   
                when others =>
-                  -- GlobaleVariablen.GeradeAmZug := RasseIntern;
                   Sichtbarkeit.Sichtbarkeitsprüfung (RasseExtern => RasseIntern);
             end case;
             
@@ -46,10 +45,10 @@ package body ImSpiel is
                            Optionen.Optionen;
                            null;
                
-                        when 0 =>
+                        when 0 => -- Hauptmenü
                            return 0;
 
-                        when -1 =>
+                        when -1 => -- Spiel beenden
                            return -1;
 
                         when -1_000 => -- Runde beenden

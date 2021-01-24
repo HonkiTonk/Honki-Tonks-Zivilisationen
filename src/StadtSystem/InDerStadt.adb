@@ -227,7 +227,7 @@ package body InDerStadt is
 
 
 
-   procedure StadtProduktionPrüfen (RasseExtern : in GlobaleDatentypen.RassenMitNullwert; StadtNummer : in Integer) is
+   procedure StadtProduktionPrüfen (RasseExtern : in GlobaleDatentypen.RassenMitNullwert; StadtNummer : in Natural) is
    begin
       
       case RasseExtern is

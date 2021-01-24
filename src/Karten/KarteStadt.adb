@@ -18,10 +18,10 @@ package body KarteStadt is
                         
             if YAchse < Karten.Stadtkarte'First (1) + 7 and XAchse > Karten.Stadtkarte'Last (2) - 7 then               
                if YAchsenabstraktion > Stadtumgebungsgröße then
-                  for A in 0 .. 6 loop
+                  for Umgebung in 0 .. 6 loop
                      
                      if YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse
-                       and XAchse + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+                       and XAchse + GlobaleDatentypen.Kartenfeld (Umgebung) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
 
                      else
@@ -34,10 +34,10 @@ package body KarteStadt is
                   exit XAchseSchleife;
 
                elsif Stadtumgebungsgröße = 1 and YAchse < 3 then
-                  for A in 0 .. 6 loop                  
+                  for Umgebung in 0 .. 6 loop                  
                                           
                      if YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse
-                       and XAchse + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+                       and XAchse + GlobaleDatentypen.Kartenfeld (Umgebung) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
 
                      else
@@ -50,10 +50,10 @@ package body KarteStadt is
                   exit XAchseSchleife;
 
                elsif Stadtumgebungsgröße = 2 and YAchse < 2 then
-                  for A in 0 .. 6 loop               
+                  for Umgebung in 0 .. 6 loop               
                                           
                      if YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse
-                       and XAchse + GlobaleDatentypen.Kartenfeld (A) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
+                       and XAchse + GlobaleDatentypen.Kartenfeld (Umgebung) = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
 
                      else                                            
@@ -67,31 +67,31 @@ package body KarteStadt is
                   
                else
                   UmgebungsSchleife:
-                  for A in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+                  for Umgebung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
 
-                     Cursor := CursorKonstant + A;
+                     Cursor := CursorKonstant + Umgebung;
                      if YAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse and XAchse + Cursor = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse then
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
                         CursorYAchsePlus := YAchse - 4;
 
-                        if A < -Stadtumgebungsgröße or A > Stadtumgebungsgröße then
+                        if Umgebung < -Stadtumgebungsgröße or Umgebung > Stadtumgebungsgröße then
                            null;
                            
                         else
-                           CursorXAchsePlus := A;
+                           CursorXAchsePlus := Umgebung;
                         end if;
                            
-                     elsif A < -Stadtumgebungsgröße then
+                     elsif Umgebung < -Stadtumgebungsgröße then
                         Put (Item => " ");
                            
-                     elsif A > Stadtumgebungsgröße then
+                     elsif Umgebung > Stadtumgebungsgröße then
                         Put (Item => " ");
 
                      else
                         KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                                                           XKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse,
                                                                           YÄnderung      => YAchsenabstraktion,
-                                                                          XÄnderung      => A,
+                                                                          XÄnderung      => Umgebung,
                                                                           ZusatzYAbstand => 0);
 
                         case KartenWert.YAchse is

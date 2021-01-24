@@ -32,4 +32,6 @@ private
    function EinlesenSprache return Boolean;
    function EinlesenText return Boolean;
 
+   function EinlesenTextNeu return Boolean;
+
 end Einlesen;

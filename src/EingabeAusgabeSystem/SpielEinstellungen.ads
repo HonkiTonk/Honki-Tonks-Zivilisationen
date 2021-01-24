@@ -16,6 +16,7 @@ private
    YPosition : GlobaleDatentypen.Kartenfeld;
    XPosition : GlobaleDatentypen.Kartenfeld;
 
+   SpielerAnzahl : Positive := 1; -- 1 .. 18
    Wahl : Integer;
    Wahl2 : Integer;
    Wert : Integer;
@@ -79,6 +80,7 @@ private
    function RasseWählen return Integer with
      Post => RasseWählen'Result >= -2;
 
-   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) return Boolean;
+   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) return Boolean with
+     Pre => YPosition <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XPosition <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
 
 end SpielEinstellungen;

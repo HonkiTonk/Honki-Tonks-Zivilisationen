@@ -9,13 +9,10 @@ package body Cheat is
       MenüSchleife:
       loop
 
-         Put_Line (Item => "q = Quit, n = nächste Einheit, i = Informationen, s = Sichtbarkeit, r = Rasse ändern, e = Einheit festlegen");
+         Put_Line (Item => "n = nächste Einheit, i = Informationen, s = Sichtbarkeit, r = Rasse ändern, e = Einheit festlegen, g = Geld auf 1_000_000 setzen, t = Technologie, v = Verbesserung, a = Einheitenstatus");
          Get_Immediate (Item => Taste);
 
-         case To_Lower (Item => Taste) is
-            when 'q' =>
-               return;
-               
+         case To_Lower (Item => Taste) is               
             when 'n' => -- Zur nächsten Einheit bewegen, unabhängig von der Rasse/sichtbaren Bereich
                BeliebigeNächsteEinheit (RasseExtern => RasseExtern);
 
@@ -27,9 +24,21 @@ package body Cheat is
 
             when 'e' =>
                EinheitFestlegen;
+
+            when 'g' =>
+               Geld (RasseExtern => RasseExtern);
+
+            when 't' =>
+               Technologie (RasseExtern => RasseExtern);
+
+            when 'v' =>
+               VerbesserungFestlegen;
+               
+            when 'a' =>
+               EinheitStatus;
                
             when others =>
-               null;
+               return;
          end case;
          Karte.AnzeigeKarte (RasseExtern => RasseExtern);
 
@@ -172,16 +181,16 @@ package body Cheat is
    
    
    
-   procedure Geld is
+   procedure Geld (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      null;
+      GlobaleVariablen.Wichtiges (RasseExtern).AktuelleGeldmenge := 1_000_000;
       
    end Geld;
    
    
    
-   procedure Technologie is
+   procedure Technologie (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       null;

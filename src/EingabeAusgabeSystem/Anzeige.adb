@@ -1,5 +1,83 @@
 package body Anzeige is
 
+   procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; AktuelleAuswahl, FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Natural) is
+   begin
+      
+      LängsterText := 1;
+      
+      TextlängePrüfenSchleife:
+      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A)) = "|" then
+            exit TextlängePrüfenSchleife;
+            
+         elsif To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A))'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A))'Length;
+            
+         else
+            null;
+         end if;
+      end loop TextlängePrüfenSchleife;
+      
+      AnzeigeSchleife:
+      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
+
+         if AktuelleAuswahl = A then
+            for B in 1 .. LängsterText loop
+
+               if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A)) = "|" then
+                  exit AnzeigeSchleife;
+                  
+               elsif B = 1 then
+                  Put (Item => "╔");
+                  Put (Item => "═");
+
+               elsif B = LängsterText then                  
+                  Put (Item => "═");
+                  Put_Line (Item => "╗");
+                  Put (Item => "║");
+                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A)));
+
+                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A))'Length loop
+                        
+                     Put (" ");
+                        
+                  end loop;
+                  Put_Line (Item => "║");
+                  Put (Item => "╚");
+
+               else
+                  Put (Item => "═");
+               end if;
+               
+            end loop;
+
+            for C in 1 .. LängsterText loop
+               
+               if C = LängsterText then
+                  Put (Item => "═");
+                  Put_Line (Item => "╝");
+               
+               else
+                  Put (Item => "═");
+               end if;
+            
+            end loop;
+         
+         else
+            if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A)) = "|" then
+               exit AnzeigeSchleife; 
+            
+            else
+               Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A)));
+            end if;
+         end if;
+         
+      end loop AnzeigeSchleife;
+      
+   end AnzeigeNeu;
+
+
+
    procedure Anzeige (WelcherText, AktuelleAuswahl : in Integer) is
    begin
 
@@ -274,16 +352,7 @@ package body Anzeige is
       New_Line;
       
    end AnzeigeLangerText;
-
-
-
-   procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Integer) is
-   begin
-      
-      Get_Immediate (Item => Taste);
-      
-   end AnzeigeNeu;
-
+   
 
 
    procedure RassenBeschreibung (WelcheRasse : in GlobaleDatentypen.Rassen) is

@@ -5,7 +5,8 @@ with InDerStadt, Wachstum, Bauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit,
 
 package ImSpiel is
 
-   function ImSpiel return Integer;
+   function ImSpiel return Integer with
+     Post => ImSpiel'Result >= -1;
 
 private
 

@@ -1,35 +1,35 @@
 package body Kampfsystem is
 
-   function KampfsystemNahkampf (RasseAngriff, RasseVerteidigung : in GlobaleDatentypen.Rassen; GegnerStadtnummer, EinheitenPositionAngriff, EinheitenPositionVerteidigung : in Integer) return Boolean is
+   function KampfsystemNahkampf (RasseAngriff, RasseVerteidigung : in GlobaleDatentypen.Rassen; GegnerStadtNummer, EinheitenNummerAngriff, EinheitenNummerVerteidigung : in Integer) return Boolean is
    begin
 
       VerteidigungBonusDurchStadt := 1.00;
 
-      case GegnerStadtnummer is
+      case GegnerStadtNummer is
          when SchleifenPruefungen.RückgabeWert | 0 =>
-            Ergebnis := Kampf (RasseAngriff                  => RasseAngriff,
-                               EinheitenPositionAngriff      => EinheitenPositionAngriff,
-                               RasseVerteidigung             => RasseVerteidigung,
-                               EinheitenPositionVerteidigung => EinheitenPositionVerteidigung,
-                               VerteidigungBonus             => VerteidigungBonusDurchStadt);
+            Ergebnis := Kampf (RasseAngriff                => RasseAngriff,
+                               EinheitenNummerAngriff      => EinheitenNummerAngriff,
+                               RasseVerteidigung           => RasseVerteidigung,
+                               EinheitenNummerVerteidigung => EinheitenNummerVerteidigung,
+                               VerteidigungBonus           => VerteidigungBonusDurchStadt);
             return Ergebnis;
             
          when others =>
-            if GlobaleVariablen.StadtGebaut (RasseVerteidigung, GegnerStadtnummer).GebäudeVorhanden (15) /= '0' then
+            if GlobaleVariablen.StadtGebaut (RasseVerteidigung, GegnerStadtNummer).GebäudeVorhanden (15) /= '0' then
                VerteidigungBonusDurchStadt := 2.00;
                
-            elsif GlobaleVariablen.StadtGebaut (RasseVerteidigung, GegnerStadtnummer).GebäudeVorhanden (5) /= '0' then
+            elsif GlobaleVariablen.StadtGebaut (RasseVerteidigung, GegnerStadtNummer).GebäudeVorhanden (5) /= '0' then
                VerteidigungBonusDurchStadt := 1.50;
 
             else               
                VerteidigungBonusDurchStadt := 1.25;
             end if;
 
-            Ergebnis := Kampf (RasseAngriff                  => RasseAngriff,
-                               EinheitenPositionAngriff      => EinheitenPositionAngriff,
-                               RasseVerteidigung             => RasseVerteidigung,
-                               EinheitenPositionVerteidigung => EinheitenPositionVerteidigung,
-                               VerteidigungBonus             => VerteidigungBonusDurchStadt);
+            Ergebnis := Kampf (RasseAngriff                => RasseAngriff,
+                               EinheitenNummerAngriff      => EinheitenNummerAngriff,
+                               RasseVerteidigung           => RasseVerteidigung,
+                               EinheitenNummerVerteidigung => EinheitenNummerVerteidigung,
+                               VerteidigungBonus           => VerteidigungBonusDurchStadt);
             return Ergebnis;
       end case;      
       
@@ -37,26 +37,26 @@ package body Kampfsystem is
 
 
 
-   function Kampf (RasseAngriff, RasseVerteidigung : in GlobaleDatentypen.Rassen; EinheitenPositionAngriff, EinheitenPositionVerteidigung : in Integer; VerteidigungBonus : in Float) return Boolean is
+   function Kampf (RasseAngriff, RasseVerteidigung : in GlobaleDatentypen.Rassen; EinheitenNummerAngriff, EinheitenNummerVerteidigung : in Positive; VerteidigungBonus : in Float) return Boolean is
    begin
 
-      AngriffAngriffWert := Float (EinheitenDatenbank.EinheitenListe (RasseAngriff, GlobaleVariablen.EinheitenGebaut (RasseAngriff, EinheitenPositionAngriff).ID).Angriff);
-      AngriffVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (RasseVerteidigung, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Angriff);
+      AngriffAngriffWert := Float (EinheitenDatenbank.EinheitenListe (RasseAngriff, GlobaleVariablen.EinheitenGebaut (RasseAngriff, EinheitenNummerAngriff).ID).Angriff);
+      AngriffVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (RasseVerteidigung, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).ID).Angriff);
 
-      VerteidigungVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (RasseVerteidigung, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Verteidigung)
-        + Float (KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.EAchse,
-                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
-                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
-        + Float (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.EAchse,
-                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
-                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
+      VerteidigungVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (RasseVerteidigung, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).ID).Verteidigung)
+        + Float (KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.EAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.YAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
+        + Float (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.EAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.YAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
 
-      if Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.EAchse,
-                        GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
-                        GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).Hügel = True
-        and Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.EAchse,
-                           GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).Grund /= 6 then
+      if Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.EAchse,
+                        GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.YAchse,
+                        GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.XAchse).Hügel = True
+        and Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.EAchse,
+                           GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.YAchse,
+                           GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.XAchse).Grund /= 6 then
          VerteidigungVerteidigungWert := Float (KartenDatenbank.KartenObjektListe (6).Verteidigungsbonus);
 
       else
@@ -65,13 +65,13 @@ package body Kampfsystem is
       
       VerteidigungVerteidigungWert := VerteidigungVerteidigungWert * VerteidigungBonus * VerteidigerBonus;
 
-      VerteidigungAngriffWert := Float (EinheitenDatenbank.EinheitenListe (RasseVerteidigung, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).ID).Verteidigung)
-        + Float (KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.EAchse,
-                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
-                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
-        + Float (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.EAchse,
-                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.YAchse,
-                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
+      VerteidigungAngriffWert := Float (EinheitenDatenbank.EinheitenListe (RasseVerteidigung, GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).ID).Verteidigung)
+        + Float (KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.EAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.YAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
+        + Float (VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.EAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.YAchse,
+                 GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
 
       Reset (Gewählt);
       
@@ -79,13 +79,13 @@ package body Kampfsystem is
       loop
 
          KampfBerechnung (RasseVerteidigung         => RasseVerteidigung,
-                          EinheitNummerVerteidigung => EinheitenPositionVerteidigung,
+                          EinheitNummerVerteidigung => EinheitenNummerVerteidigung,
                           AngriffWert               => AngriffAngriffWert,
                           VerteidigungWert          => VerteidigungVerteidigungWert);
 
-         if GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenPositionVerteidigung).AktuelleLebenspunkte <= 0 then
+         if GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AktuelleLebenspunkte <= 0 then
             EinheitenDatenbank.EinheitEntfernen (RasseExtern   => RasseVerteidigung,
-                                                 EinheitNummer => EinheitenPositionVerteidigung);
+                                                 EinheitNummer => EinheitenNummerVerteidigung);
             return True;
             
          else
@@ -93,15 +93,15 @@ package body Kampfsystem is
          end if;
          
          KampfBerechnung (RasseVerteidigung         => RasseAngriff,
-                          EinheitNummerVerteidigung => EinheitenPositionAngriff,
+                          EinheitNummerVerteidigung => EinheitenNummerAngriff,
                           AngriffWert               => AngriffVerteidigungWert,
                           VerteidigungWert          => VerteidigungAngriffWert);
             
          
          
-         if GlobaleVariablen.EinheitenGebaut (RasseAngriff, EinheitenPositionAngriff).AktuelleLebenspunkte <= 0 then
+         if GlobaleVariablen.EinheitenGebaut (RasseAngriff, EinheitenNummerAngriff).AktuelleLebenspunkte <= 0 then
             EinheitenDatenbank.EinheitEntfernen (RasseExtern   => RasseAngriff,
-                                                 EinheitNummer => EinheitenPositionAngriff);
+                                                 EinheitNummer => EinheitenNummerAngriff);
             return False;
 
          else
@@ -114,7 +114,7 @@ package body Kampfsystem is
 
 
 
-   procedure KampfBerechnung  (RasseVerteidigung : in GlobaleDatentypen.Rassen; EinheitNummerVerteidigung : in Integer; AngriffWert, VerteidigungWert : in Float) is
+   procedure KampfBerechnung  (RasseVerteidigung : in GlobaleDatentypen.Rassen; EinheitNummerVerteidigung : in Positive; AngriffWert, VerteidigungWert : in Float) is
    begin
 
       Wert := Random (Gewählt);

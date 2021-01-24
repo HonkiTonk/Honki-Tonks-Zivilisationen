@@ -1,6 +1,6 @@
 package body GebaeudeDatenbank is
 
-   procedure Beschreibung (ID : in Integer) is
+   procedure Beschreibung (ID : in Positive) is
    begin
       
       Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (14, ID)));
@@ -11,7 +11,7 @@ package body GebaeudeDatenbank is
    
    
 
-   procedure GebäudeProduktionBeenden (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer, ID : in Integer) is
+   procedure GebäudeProduktionBeenden (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer, ID : in Positive) is
    begin     
       
             GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).GebäudeVorhanden (ID) := GebaeudeDatenbank.GebäudeListe (RasseExtern, ID).Anzeige;

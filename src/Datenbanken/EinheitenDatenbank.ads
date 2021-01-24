@@ -30,7 +30,7 @@ package EinheitenDatenbank is
       
    end record;
 
-   type EinheitenListeArry is array (GlobaleDatentypen.Rassen'Range, 1 .. GlobaleDatentypen.EinheitenID'Last) of Einheiten;
+   type EinheitenListeArry is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.EinheitenID'Range) of Einheiten;
    EinheitenListe : constant EinheitenListeArry := (others => (('S', 1, 10, 10, 0,    1, 3, 1.00,    30, 3, 1, 1, 1), -- Siedler
 
                                                                ('L', 2, 25, 20, 0,    1, 5, 3.00,    30, 3, 1, 3, 1), -- Steinbeilkämpfer
@@ -47,18 +47,22 @@ package EinheitenDatenbank is
                                                                others => ('@', 0, 0, 0, 0,    1, 0, 0.00,    1, 1, 0, 0, 1)));
 
    procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID);
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer)
+   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Natural)
      with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   
    procedure HeilungBewegungspunkteFürNeueRundeSetzen;
-   procedure EinheitErzeugen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer, ID : in Integer)
+   procedure EinheitErzeugen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer, ID : in Positive)
      with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   procedure EinheitEntfernen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer)
+   
+   procedure EinheitEntfernen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive)
      with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
+   
    procedure EinheitGebautSortieren (RasseExtern : in GlobaleDatentypen.Rassen)
      with Pre => RasseExtern in GlobaleDatentypen.RassenImSpielArray'Range;
-   procedure Beschäftigung (Arbeit : in Integer);
+   
+   procedure Beschäftigung (Arbeit : in Natural);
 
-   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Integer) return Boolean;
+   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Natural) return Boolean;
 
 private
    
@@ -66,19 +70,11 @@ private
    EinheitenPosition : Integer;
    SortierNummer : Integer;
    
-   Heilungsrate : constant Integer := 10;
+   Heilungsrate : constant Integer := 10;   
 
-   type EinheitErstellenRecord is record
-      
-      EAchse : GlobaleDatentypen.Ebene;
-      YAchse : GlobaleDatentypen.KartenfeldPositiv;
-      XAchse : GlobaleDatentypen.KartenfeldPositiv;
-      
-   end record;
-
-   Position : EinheitErstellenRecord;
+   Position : GlobaleRecords.AchsenAusKartenfeldPositiv;
    
-   type SortierenArray is array (GlobaleVariablen.EinheitenGebautArray'Range (2)) of GlobaleVariablen.EinheitenGebautRecord;
+   type SortierenArray is array (GlobaleVariablen.EinheitenGebautArray'Range (2)) of GlobaleRecords.EinheitenGebautRecord;
    Sortieren : SortierenArray;
 
 end EinheitenDatenbank;

@@ -2,6 +2,16 @@ package body Schreiben is
 
    procedure SchreibenStartAufruf is
    begin
+
+      case Exists (Name => "Dateien") is
+         when True =>
+            null;
+            
+         when False =>
+            Create_Directory (New_Directory => "Dateien");
+      end case;
+
+
       
       case Exists (Name => "Dateien/Spielstand") is
          when True =>

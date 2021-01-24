@@ -1,6 +1,6 @@
 package body BewegungssystemEinheiten is
 
-   procedure BewegungEinheitenRichtung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer) is
+   procedure BewegungEinheitenRichtung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) is
    begin
 
       Karte.AnzeigeKarte (RasseExtern => RasseExtern);
@@ -70,7 +70,7 @@ package body BewegungssystemEinheiten is
 
    
 
-   procedure BewegungEinheitenBerechnung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) is
+   procedure BewegungEinheitenBerechnung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) is
    begin
 
       Gewonnen := True;
@@ -165,11 +165,11 @@ package body BewegungssystemEinheiten is
          
             case Angreifen is
                when True =>
-                  Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerStadtnummer             => GegnerStadtWert.Platznummer,
-                                                               RasseAngriff                  => RasseExtern,
-                                                               EinheitenPositionAngriff      => EinheitNummer,
-                                                               RasseVerteidigung             => GegnerEinheitWert.Rasse,
-                                                               EinheitenPositionVerteidigung => GegnerEinheitWert.Platznummer);
+                  Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerStadtNummer           => GegnerStadtWert.Platznummer,
+                                                               RasseAngriff                => RasseExtern,
+                                                               EinheitenNummerAngriff      => EinheitNummer,
+                                                               RasseVerteidigung           => GegnerEinheitWert.Rasse,
+                                                               EinheitenNummerVerteidigung => GegnerEinheitWert.Platznummer);
                
                when False =>
                   return;

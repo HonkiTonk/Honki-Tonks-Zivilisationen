@@ -1,6 +1,6 @@
 package body ForschungsDatenbank is
 
-   procedure Beschreibung (ID : in Integer) is
+   procedure Beschreibung (ID : in Natural) is
    begin
       
       case ID is

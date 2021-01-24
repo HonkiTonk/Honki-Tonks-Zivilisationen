@@ -15,14 +15,19 @@ package Ladezeiten is
 
    procedure LadezeitenSpielweltErstellen (WelcheZeit : Positive) with
      Pre => WelcheZeit in LadezeitenSpielweltErstellenZeit'Range (2);
+
    procedure Speichern (WelcheZeit : in Positive) with
      Pre => WelcheZeit in Speicherzeiten'Range (2);
+
    procedure Laden (WelcheZeit : in Positive) with
      Pre => WelcheZeit in LadenLadezeiten'Range (2);
+
    procedure SpielStart (WelcheZeit : in Positive) with
      Pre => WelcheZeit in SpielStartzeiten'Range (2);
+
    procedure BerechnungenNachZugendeAllerSpieler (WelcheZeit : in Positive) with
      Pre => WelcheZeit in BerechnungenNachZugendeAllerSpielerZeiten'Range (2);
+
    procedure KIZeit (WelcheZeit : in Positive) with
      Pre => WelcheZeit in KIZeiten'Range (2);
 
