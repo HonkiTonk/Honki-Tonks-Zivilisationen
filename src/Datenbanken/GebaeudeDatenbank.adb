@@ -3,7 +3,13 @@ package body GebaeudeDatenbank is
    procedure Beschreibung (ID : in Positive) is
    begin
       
-      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (14, ID)));
+      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                          AktuelleAuswahl    => 0,
+                          FrageDatei         => 0,
+                          FrageZeile         => 0,
+                          TextDatei          => 6,
+                          ErsteZeile         => ID + 77,
+                          LetzteZeile        => ID + 77);
       -- Hier wichtige Werte einfügen
       -- Hier dann eine lange Textanzeige für eine Beschreibung des Gebäudes? Das auch für die Einheiten/Verbesserungen machen?
       

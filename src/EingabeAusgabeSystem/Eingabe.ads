@@ -15,6 +15,8 @@ package Eingabe is
 
 private
 
+   Wert : Integer;
+
    Zahlen : Wide_Wide_Character;
 
    IstZahl : Integer;

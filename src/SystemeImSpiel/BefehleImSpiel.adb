@@ -21,8 +21,12 @@ package body BefehleImSpiel is
                                                                              XAchse       => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse);
 
             if WertEinheit /= 0 and WertStadt /= 0 then
-               StadtOderEinheit := Auswahl.Auswahl (WelcheAuswahl => 15,
-                                                    WelcherText => 18);
+               StadtOderEinheit := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                                       FrageDatei         => 10,
+                                                       FrageZeile         => 15,
+                                                       TextDatei          => 5,
+                                                       ErsteZeile         => 10,
+                                                       LetzteZeile        => 11);
 
                EinheitOderStadt (RasseExtern         => RasseExtern,
                                  Auswahl             => StadtOderEinheit,
@@ -48,8 +52,12 @@ package body BefehleImSpiel is
             return 1;
             
          when 'q' => -- Menüaufruf
-            return Auswahl.Auswahl (WelcheAuswahl => 0,
-                                    WelcherText => 8);
+            return Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                       FrageDatei         => 0,
+                                       FrageZeile         => 0,
+                                       TextDatei          => 5,
+                                       ErsteZeile         => 2,
+                                       LetzteZeile        => 7);
 
          when 'b' => -- Baue Stadt
             WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (RasseExtern  => RasseExtern,
@@ -77,8 +85,12 @@ package body BefehleImSpiel is
                   ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
                      
                when others =>
-                  WahlForschung := Auswahl.Auswahl (WelcheAuswahl => 17,
-                                                    WelcherText => 18);
+                  WahlForschung := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                                       FrageDatei         => 10,
+                                                       FrageZeile         => 17,
+                                                       TextDatei          => 5,
+                                                       ErsteZeile         => 10,
+                                                       LetzteZeile        => 11);
                   case WahlForschung is
                      when -3 =>
                         ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
@@ -154,13 +166,31 @@ package body BefehleImSpiel is
                   
                when others =>
                   if GlobaleVariablen.EinheitenGebaut (RasseExtern, WertEinheit).ID /= 1 and WelcherBefehl > 0 and WelcherBefehl <= 6 then
-                     Anzeige.Fehlermeldungen (WelcheFehlermeldung => 3);
+                     Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                                         AktuelleAuswahl    => 1,
+                                         FrageDatei         => 0,
+                                         FrageZeile         => 0,
+                                         TextDatei          => 8,
+                                         ErsteZeile         => 3,
+                                         LetzteZeile        => 3);
 
-                     elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, WertEinheit).ID = 1 and WelcherBefehl = 11 then
-                     Anzeige.Fehlermeldungen (WelcheFehlermeldung => 3);
+                  elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, WertEinheit).ID = 1 and WelcherBefehl = 11 then
+                     Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                                         AktuelleAuswahl    => 1,
+                                         FrageDatei         => 0,
+                                         FrageZeile         => 0,
+                                         TextDatei          => 8,
+                                         ErsteZeile         => 3,
+                                         LetzteZeile        => 3);
                      
                   elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, WertEinheit).AktuelleBewegungspunkte = 0.00 then
-                     Anzeige.Fehlermeldungen (WelcheFehlermeldung => 8);
+                     Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                                         AktuelleAuswahl    => 1,
+                                         FrageDatei         => 0,
+                                         FrageZeile         => 0,
+                                         TextDatei          => 8,
+                                         ErsteZeile         => 8,
+                                         LetzteZeile        => 8);
                      
                   else
                      Verbesserungen.Verbesserung (Befehl        => WelcherBefehl,

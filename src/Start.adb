@@ -11,8 +11,6 @@ procedure Start is
 
 begin
 
-   GlobaleVariablen.WelcheSprache := 1;
-
    EinlesenErgebnis := Einlesen.Einlesen;
 
    case EinlesenErgebnis is

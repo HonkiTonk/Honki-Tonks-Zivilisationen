@@ -3,7 +3,13 @@ package body EinheitenDatenbank is
    procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID) is
    begin
       
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (10, Integer (ID))));
+      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                          AktuelleAuswahl    => 0,
+                          FrageDatei         => 0,
+                          FrageZeile         => 0,
+                          TextDatei          => 6,
+                          ErsteZeile         => Integer (ID) + 43,
+                          LetzteZeile        => Integer (ID) + 43);
       
    end Beschreibung;
 
@@ -164,10 +170,22 @@ package body EinheitenDatenbank is
       
       case Arbeit is
          when 0 =>
-            Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (22, 9)));            
+            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                                AktuelleAuswahl    => 0,
+                                FrageDatei         => 0,
+                                FrageZeile         => 0,
+                                TextDatei          => 6,
+                                ErsteZeile         => 99,
+                                LetzteZeile        => 99);            
             
          when others =>
-            Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (22, Arbeit)));
+            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                                AktuelleAuswahl    => 0,
+                                FrageDatei         => 0,
+                                FrageZeile         => 0,
+                                TextDatei          => 6,
+                                ErsteZeile         => Arbeit + 90,
+                                LetzteZeile        => Arbeit + 90);
       end case;
       
    end Beschäftigung;
@@ -177,8 +195,12 @@ package body EinheitenDatenbank is
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Natural) return Boolean is
    begin
       
-      Wahl := Auswahl.Auswahl (WelcheAuswahl => WelcheAuswahl,
-                               WelcherText => 18);
+      Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                  FrageDatei         => 10,
+                                  FrageZeile         => 7,
+                                  TextDatei          => 5,
+                                  ErsteZeile         => 10,
+                                  LetzteZeile        => 11);
       case Wahl is
          when -3 =>
             return True;

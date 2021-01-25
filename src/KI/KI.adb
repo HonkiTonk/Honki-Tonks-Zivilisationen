@@ -74,7 +74,7 @@ package body KI is
    begin
       
       if Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse,
-                        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse).Felderwertung >= 120 then         
+                        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse).Felderwertung >= 85 then         
          StadtErfolgreichGebaut := InDerStadt.StadtBauen (RasseExtern   => RasseExtern,
                                                           EinheitNummer => EinheitStatus.EinheitNummer);
 

@@ -1,9 +1,9 @@
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Calendar, Ada.Float_Text_IO;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Calendar;
 
-with GlobaleVariablen;
+with GlobaleVariablen, Anzeige;
 
-package Ladezeiten is   
+package Ladezeiten is
 
    type LadezeitenSpielweltErstellenZeitArray is array (Positive range <>, Positive range <>) of Time;
    LadezeitenSpielweltErstellenZeit : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 2 .. 12);

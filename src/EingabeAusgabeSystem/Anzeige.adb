@@ -3,156 +3,81 @@ package body Anzeige is
    procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; AktuelleAuswahl, FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Natural) is
    begin
       
-      LängsterText := 1;
+      case AuswahlOderAnzeige is
+         when True =>
+            LängsterText := 1;
       
-      TextlängePrüfenSchleife:
-      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A)) = "|" then
-            exit TextlängePrüfenSchleife;
+            TextlängePrüfenSchleife:
+            for Zeilen in ErsteZeile .. LetzteZeile loop            
+               if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeilen))'Length > LängsterText then
+                  LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeilen))'Length;
             
-         elsif To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A))'Length > LängsterText then
-            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A))'Length;
-            
-         else
-            null;
-         end if;
-      end loop TextlängePrüfenSchleife;
+               else
+                  null;
+               end if;
+            end loop TextlängePrüfenSchleife;
       
-      AnzeigeSchleife:
-      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
+            AnzeigeSchleife:
+            for Zeile in ErsteZeile .. LetzteZeile loop
 
-         if AktuelleAuswahl = A then
-            for B in 1 .. LängsterText loop
-
-               if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A)) = "|" then
-                  exit AnzeigeSchleife;
+               if AktuelleAuswahl = Zeile then
+                  RahmenTeilEinsSchleife:
+                  for TextlängeEins in 1 .. LängsterText loop
                   
-               elsif B = 1 then
-                  Put (Item => "╔");
-                  Put (Item => "═");
+                     if TextlängeEins = 1 then
+                        Put (Item => "╔");
+                        Put (Item => "═");
 
-               elsif B = LängsterText then                  
-                  Put (Item => "═");
-                  Put_Line (Item => "╗");
-                  Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A)));
+                     elsif TextlängeEins = LängsterText then                  
+                        Put (Item => "═");
+                        Put_Line (Item => "╗");
+                        Put (Item => "║");
+                        Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeile)));
 
-                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A))'Length loop
+                        for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeile))'Length loop
                         
-                     Put (" ");
+                           Put (" ");
                         
-                  end loop;
-                  Put_Line (Item => "║");
-                  Put (Item => "╚");
+                        end loop;
+                        Put_Line (Item => "║");
+                        Put (Item => "╚");
 
-               else
-                  Put (Item => "═");
-               end if;
+                     else
+                        Put (Item => "═");
+                     end if;
                
-            end loop;
+                  end loop RahmenTeilEinsSchleife;
 
-            for C in 1 .. LängsterText loop
+                  RahmenTeilZweiSchleife:
+                  for TextlängeZwei in 1 .. LängsterText loop
                
-               if C = LängsterText then
-                  Put (Item => "═");
-                  Put_Line (Item => "╝");
+                     if TextlängeZwei = LängsterText then
+                        Put (Item => "═");
+                        Put_Line (Item => "╝");
                
+                     else
+                        Put (Item => "═");
+                     end if;
+            
+                  end loop RahmenTeilZweiSchleife;
+         
                else
-                  Put (Item => "═");
+                  Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeile)));
                end if;
-            
-            end loop;
          
-         else
-            if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A)) = "|" then
-               exit AnzeigeSchleife; 
+            end loop AnzeigeSchleife;
             
-            else
-               Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (TextDatei, A)));
-            end if;
-         end if;
-         
-      end loop AnzeigeSchleife;
+         when False =>
+            case AktuelleAuswahl is
+               when 0 =>
+                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, ErsteZeile)));
+                  
+               when others =>
+                  Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, ErsteZeile)));
+            end case;
+      end case;
       
    end AnzeigeNeu;
-
-
-
-   procedure Anzeige (WelcherText, AktuelleAuswahl : in Integer) is
-   begin
-
-      LängsterText := 1;
-      
-      TextlängePrüfenSchleife:
-      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A)) = "|" then
-            exit TextlängePrüfenSchleife;
-            
-         elsif To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A))'Length > LängsterText then
-            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A))'Length;
-            
-         else
-            null;
-         end if;
-      end loop TextlängePrüfenSchleife;
-      
-      AnzeigeSchleife:
-      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
-
-         if AktuelleAuswahl = A then
-            for B in 1 .. LängsterText loop
-
-               if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A)) = "|" then
-                  exit AnzeigeSchleife;
-                  
-               elsif B = 1 then
-                  Put (Item => "╔");
-                  Put (Item => "═");
-
-               elsif B = LängsterText then                  
-                  Put (Item => "═");
-                  Put_Line (Item => "╗");
-                  Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A)));
-
-                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A))'Length loop
-                        
-                     Put (" ");
-                        
-                  end loop;
-                  Put_Line (Item => "║");
-                  Put (Item => "╚");
-
-               else
-                  Put (Item => "═");
-               end if;
-               
-            end loop;
-
-            for C in 1 .. LängsterText loop
-               
-               if C = LängsterText then
-                  Put (Item => "═");
-                  Put_Line (Item => "╝");
-               
-               else
-                  Put (Item => "═");
-               end if;
-            
-            end loop;
-         
-         else
-            if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A)) = "|" then
-               exit AnzeigeSchleife; 
-            
-            else
-               Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A)));
-            end if;
-         end if;
-         
-      end loop AnzeigeSchleife;
-   
-   end Anzeige;
 
 
 
@@ -162,7 +87,7 @@ package body Anzeige is
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
-      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
          if To_Wide_Wide_String (Source => TextBauen (A).Text) = "|" then
             exit TextlängePrüfenSchleife;
             
@@ -175,7 +100,7 @@ package body Anzeige is
       end loop TextlängePrüfenSchleife;
       
       AnzeigeSchleife:
-      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
 
          if AktuelleAuswahl = A then
             for B in 1 .. LängsterText loop
@@ -240,7 +165,7 @@ package body Anzeige is
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
-      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
          if To_Wide_Wide_String (Source => TextForschung (A).Text) = "|" then
             exit TextlängePrüfenSchleife;
             
@@ -253,7 +178,7 @@ package body Anzeige is
       end loop TextlängePrüfenSchleife;
       
       AnzeigeSchleife:
-      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
 
          if AktuelleAuswahl = A then
             for B in 1 .. LängsterText loop
@@ -319,13 +244,13 @@ package body Anzeige is
       N := 1;
       New_Line;
 
-      for A in To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, WelcheZeile))'Range loop
+      for A in To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (WelcherText, WelcheZeile))'Range loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, WelcheZeile)) (A) = '|' then
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (WelcherText, WelcheZeile)) (A) = '|' then
             exit;
             
             else
-               Text (A) := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, WelcheZeile)) (A);
+               Text (A) := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (WelcherText, WelcheZeile)) (A);
          end if;
          
       end loop;
@@ -352,52 +277,8 @@ package body Anzeige is
       New_Line;
       
    end AnzeigeLangerText;
-   
 
 
-   procedure RassenBeschreibung (WelcheRasse : in GlobaleDatentypen.Rassen) is
-   begin
-      
-      null; -- Hier kann der Standardansatz nicht verwendet werden, den einfügen den ich habe, ist in Anzeige
-      
-   end RassenBeschreibung;
-   
-   
-   
-   procedure Zeug (WelchesZeug : in Positive) is
-   begin
-      
-      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, WelchesZeug)));
-      
-   end Zeug;
-
-
-
-   procedure Fehlermeldungen (WelcheFehlermeldung : in Positive) is
-   begin
-      
-      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (20, WelcheFehlermeldung)));
-      delay 1.5;
-      
-   end Fehlermeldungen;
-
-
-
-   procedure WelcheAuswahl (WasWurdeGewählt : in Positive) is
-   begin
-      
-      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (21, WasWurdeGewählt)));
-      
-   end WelcheAuswahl;
-
-
-
-   procedure TexteEinlesenAusgabe (WelcheDatei, WelcherText : in Positive) is
-   begin
-      
-      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcheDatei, WelcherText)));
-      
-   end TexteEinlesenAusgabe;
 
 
 end Anzeige;

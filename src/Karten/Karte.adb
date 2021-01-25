@@ -120,17 +120,17 @@ package body Karte is
       Wissensgewinnung := 0;
       
       -- Allgemeine Informationen über die eigene Rasse, immer sichtbar
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 33)) & GlobaleVariablen.RundenAnzahl'Wide_Wide_Image);
+      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 33)) & GlobaleVariablen.RundenAnzahl'Wide_Wide_Image);
 
-      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 34)) & GlobaleVariablen.Wichtiges (RasseExtern).AktuelleGeldmenge'Wide_Wide_Image);
-      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 35)) & GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde'Wide_Wide_Image);
+      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 34)) & GlobaleVariablen.Wichtiges (RasseExtern).AktuelleGeldmenge'Wide_Wide_Image);
+      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 35)) & GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde'Wide_Wide_Image);
 
-      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 38)));
+      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 38)));
       ForschungsDatenbank.Beschreibung (ID => GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt);
-      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 36)) & GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit'Wide_Wide_Image);
+      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 36)) & GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit'Wide_Wide_Image);
 
-      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 39)) & GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsmenge'Wide_Wide_Image);
-      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 37)) & GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsrate'Wide_Wide_Image);
+      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 39)) & GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsmenge'Wide_Wide_Image);
+      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 37)) & GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsrate'Wide_Wide_Image);
       New_Line;
       
       case Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
@@ -145,14 +145,14 @@ package body Karte is
                   
                when others => -- Allgemeine Einheiteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Einheit befindet
                   EinheitenDatenbank.Beschreibung (GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID);                        
-                  Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 14)));
+                  Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 14)));
                   Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleLebenspunkte'Wide_Wide_Image & " /"
                             & EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse,
                               GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).MaximaleLebenspunkte'Wide_Wide_Image);
             
                   -- "Volle" Einheiteninformationen, nur sichtbar wenn eigene Einheit oder wenn Cheat aktiviert ist
                   if RasseExtern = RasseUndPlatznummer.Rasse or GlobaleVariablen.FeindlicheInformationenSehen = True then
-                     Put (Item => "           " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 15)));
+                     Put (Item => "           " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesenNeu (9, 15)));
                      Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBewegungspunkte,
                                             Fore => 1,
                                             Aft  => 1,
@@ -163,21 +163,21 @@ package body Karte is
                                             Fore => 1,
                                             Aft  => 1,
                                             Exp  => 0);
-                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 16)));
+                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesenNeu (9, 16)));
                      Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleErfahrungspunkte'Wide_Wide_Image & " /"
                                & EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse,
                                  RasseUndPlatznummer.Platznummer).ID).Beförderungsgrenze'Wide_Wide_Image);
                               
-                     Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 17)));
+                     Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 17)));
                      EinheitenDatenbank.Beschäftigung (GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBeschäftigung);
-                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 18)));
+                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesenNeu (9, 18)));
                      Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBeschäftigungszeit'Wide_Wide_Image);
 
-                     Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 24)));
+                     Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 24)));
                      Put (Item => EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).Angriff'Wide_Wide_Image);
-                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 25)));
+                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesenNeu (9, 25)));
                      Put (Item => EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).Verteidigung'Wide_Wide_Image);
-                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesen (19, 26)));
+                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesenNeu (9, 26)));
                      Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellerRang'Wide_Wide_Image & " /"
                                & EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).MaximalerRang'Wide_Wide_Image);
                               
@@ -233,7 +233,7 @@ package body Karte is
                               GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Hügel = True
               and Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund /= 6 then
-               Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (9, 34)));
+               Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (6, 35)));
                KartenDatenbank.Beschreibung (ID => Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund);
 
@@ -403,15 +403,15 @@ package body Karte is
             end if;
             
             New_Line;
-            Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 19)));
+            Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 19)));
             Put (Item => Verteidigungsbonus'Wide_Wide_Image);
-            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 20)));
+            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 20)));
             Put_Line (Item => Nahrungsgewinnung'Wide_Wide_Image);
-            Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 21)));
+            Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 21)));
             Put (Item => Ressourcengewinnung'Wide_Wide_Image);
-            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 22)));
+            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 22)));
             Put (Item => Geldgewinnung'Wide_Wide_Image);
-            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 23)));
+            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 23)));
             Put_Line (Item => Wissensgewinnung'Wide_Wide_Image);
             
          when False =>

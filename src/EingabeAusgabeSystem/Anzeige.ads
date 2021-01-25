@@ -12,7 +12,7 @@ package Anzeige is
       
    end record;
 
-   type TextBauenArray is array (GlobaleVariablen.TexteEinlesenArray'First (2) .. 2 * GlobaleVariablen.TexteEinlesenArray'Last (2) + 1) of TextBauenRecord;
+   type TextBauenArray is array (GlobaleVariablen.TexteEinlesenNeuArray'First (2) .. 2 * GlobaleVariablen.TexteEinlesenNeuArray'Last (2) + 1) of TextBauenRecord;
    TextBauen : TextBauenArray;
 
    type TextForschungRecord is record
@@ -25,15 +25,9 @@ package Anzeige is
    type TextForschungArray is array (GlobaleVariablen.Wichtiges (1).Erforscht'Range) of TextForschungRecord;
    TextForschung : TextForschungArray;
 
-   procedure Anzeige (WelcherText, AktuelleAuswahl : in Integer);
    procedure AnzeigeStadt (AktuelleAuswahl : in Positive);
    procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Positive);
    procedure AnzeigeForschung (AktuelleAuswahl : in Positive);
-   procedure RassenBeschreibung (WelcheRasse : in GlobaleDatentypen.Rassen);
-   procedure Zeug (WelchesZeug : in Positive);
-   procedure Fehlermeldungen (WelcheFehlermeldung : in Positive);
-   procedure WelcheAuswahl (WasWurdeGewählt : in Positive);
-   procedure TexteEinlesenAusgabe (WelcheDatei, WelcherText : in Positive);
 
    procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; AktuelleAuswahl, FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Natural) with
      Pre => ErsteZeile <= LetzteZeile;

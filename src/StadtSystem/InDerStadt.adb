@@ -72,8 +72,12 @@ package body InDerStadt is
                                   StadtNummer => StadtNummer);
                      
                   when others =>
-                     Wahl := Auswahl.Auswahl (WelcheAuswahl => 14,
-                                              WelcherText => 18);
+                     Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                                 FrageDatei         => 10,
+                                                 FrageZeile         => 14,
+                                                 TextDatei          => 5,
+                                                 ErsteZeile         => 10,
+                                                 LetzteZeile        => 11);
                      case Wahl is
                         when -3 =>
                            Bauen.Bauen (RasseExtern => RasseExtern,
@@ -137,7 +141,13 @@ package body InDerStadt is
             null;
                   
          when False =>
-               Anzeige.Fehlermeldungen (WelcheFehlermeldung => 6);
+               Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                                AktuelleAuswahl    => 1,
+                                FrageDatei         => 0,
+                                FrageZeile         => 0,
+                                TextDatei          => 8,
+                                ErsteZeile         => 6,
+                                LetzteZeile        => 6);
             return False;
       end case;
 
@@ -148,7 +158,13 @@ package body InDerStadt is
             null;
             
          elsif StadtNummer = GlobaleVariablen.StadtGebaut'Last (2) and GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ID /= 0 then
-            Anzeige.Fehlermeldungen (WelcheFehlermeldung => 7);
+            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                                AktuelleAuswahl    => 1,
+                                FrageDatei         => 0,
+                                FrageZeile         => 0,
+                                TextDatei          => 8,
+                                ErsteZeile         => 7,
+                                LetzteZeile        => 7);
             
          else
             case StadtNummer is

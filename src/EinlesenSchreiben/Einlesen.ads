@@ -1,5 +1,5 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.Unbounded, Ada.Directories, Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Text_IO, Ada.Calendar, Ada.Characters.Conversions;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Strings.Unbounded, Ada.Directories, Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Text_IO, Ada.Calendar;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Directories, Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Characters.Conversions;
+use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Directories, Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar;
 
 with GlobaleVariablen, KartenDatenbank, VerbesserungenDatenbank, GebaeudeDatenbank, ForschungsDatenbank, EinheitenDatenbank, Ladezeiten, Auswahl, Schreiben;
 
@@ -13,16 +13,20 @@ private
 
    Wert : Integer;
 
-   type WelcheTexteEinlesenArray is array (1 .. GlobaleVariablen.TexteEinlesen'Last (1)) of Unbounded_String;
-   WelcheTexteEinlesen : WelcheTexteEinlesenArray;
+   type WelcheTexteEinlesenNeuArray is array (1 .. GlobaleVariablen.TexteEinlesenNeu'Last (1)) of Unbounded_Wide_Wide_String;
+   WelcheTexteEinlesenNeu : WelcheTexteEinlesenNeuArray;
 
-   type WelcheWerteEinlesenArray is array (1 .. 5) of Unbounded_String;
-   WelcheWerteEinlesen : WelcheWerteEinlesenArray;
+   DateiNeuWelcheTexteEinlesen : Ada.Wide_Wide_Text_IO.File_Type;
+   DateiNeuText : Ada.Wide_Wide_Text_IO.File_Type;
 
-   DateiWelcheTexteEinlesen : Ada.Text_IO.File_Type;
-   DateiWelcheWerteEinlesen : Ada.Text_IO.File_Type;
-   DateiText : Ada.Wide_Wide_Text_IO.File_Type;
-   DateiWerte : Ada.Wide_Wide_Text_IO.File_Type;
+
+   type WelcheWerteEinlesenNeuArray is array (1 .. 5) of Unbounded_Wide_Wide_String;
+   WelcheWerteEinlesenNeu : WelcheWerteEinlesenNeuArray;
+
+   DateiNeuWelcheWerteEinlesen : Ada.Wide_Wide_Text_IO.File_Type;
+   DateiNeuWerte : Ada.Wide_Wide_Text_IO.File_Type;
+
+
 
    Suche : Search_Type;
    Verzeichnis : Directory_Entry_Type;
@@ -30,8 +34,6 @@ private
    procedure EinlesenWerte;
 
    function EinlesenSprache return Boolean;
-   function EinlesenText return Boolean;
-
    function EinlesenTextNeu return Boolean;
 
 end Einlesen;

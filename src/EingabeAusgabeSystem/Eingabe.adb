@@ -29,7 +29,13 @@ package body Eingabe is
             return -1;
 
          elsif To_Wide_Wide_String (Source => Zahl)'Length > Zahlengröße then
-            Anzeige.Fehlermeldungen (WelcheFehlermeldung => 13);
+            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                                AktuelleAuswahl    => 1,
+                                FrageDatei         => 0,
+                                FrageZeile         => 0,
+                                TextDatei          => 8,
+                                ErsteZeile         => 13,
+                                LetzteZeile        => 13);
          
          else
             for A in To_Wide_Wide_String (Source => Zahl)'Range loop
@@ -44,7 +50,13 @@ package body Eingabe is
                      end if;
                
                   when False =>
-                     Anzeige.Fehlermeldungen (WelcheFehlermeldung => 14);
+                     Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                                         AktuelleAuswahl    => 1,
+                                         FrageDatei         => 0,
+                                         FrageZeile         => 0,
+                                         TextDatei          => 8,
+                                         ErsteZeile         => 14,
+                                         LetzteZeile        => 14);
                      exit;
                end case;
             end loop;
@@ -55,7 +67,7 @@ package body Eingabe is
       return Integer'Wide_Wide_Value (To_Wide_Wide_String (Source => Zahl));
       
    end GanzeZahl;
-
+   
 
 
    function GanzeZahlNeu (WelcheDatei, WelcherText, ZahlenMinimum, ZahlenMaximum : Natural) return Integer is
@@ -179,7 +191,13 @@ package body Eingabe is
    function StadtName return Unbounded_Wide_Wide_String is
    begin
       
-      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 32)));
+      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                          AktuelleAuswahl    => 0,
+                          FrageDatei         => 0,
+                          FrageZeile         => 0,
+                          TextDatei          => 9,
+                          ErsteZeile         => 32,
+                          LetzteZeile        => 32);
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
       
       return Name;
@@ -191,7 +209,13 @@ package body Eingabe is
    function SpielstandName return Unbounded_Wide_Wide_String is
    begin            
       
-      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (19, 40)));
+      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                          AktuelleAuswahl    => 0,
+                          FrageDatei         => 0,
+                          FrageZeile         => 0,
+                          TextDatei          => 9,
+                          ErsteZeile         => 40,
+                          LetzteZeile        => 40);
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
       
       return Name;

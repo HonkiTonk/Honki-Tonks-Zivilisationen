@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, GlobaleDatentypen;
+with GlobaleVariablen, GlobaleDatentypen, Anzeige;
 use GlobaleDatentypen;
 
 package VerbesserungenDatenbank is

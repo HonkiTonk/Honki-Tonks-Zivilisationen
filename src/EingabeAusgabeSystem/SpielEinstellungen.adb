@@ -56,8 +56,12 @@ package body SpielEinstellungen is
       KartengrößeSchleife:
       loop
          
-         Wahl := Auswahl.Auswahl (WelcheAuswahl => 1,
-                                  WelcherText   => 2);
+         Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                     FrageDatei         => 10,
+                                     FrageZeile         => 1,
+                                     TextDatei          => 3,
+                                     ErsteZeile         => 2,
+                                     LetzteZeile        => 14);
          
          case Wahl is
             when 1 .. 9 =>
@@ -66,7 +70,14 @@ package body SpielEinstellungen is
 
             when 10 =>
                Karten.Kartengröße := Wahl;
-               Anzeige.WelcheAuswahl (WasWurdeGewählt => 19);
+               Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                                   AktuelleAuswahl    => 0,
+                                   FrageDatei         => 0,
+                                   FrageZeile         => 0,
+                                   TextDatei          => 10,
+                                   ErsteZeile         => 19,
+                                   LetzteZeile        => 19);
+
                BenutzerdefinierteGröße := Eingabe.GanzeZahl (Zahlengröße => 4);
                case BenutzerdefinierteGröße is
                   when 10 .. 1_000 =>
@@ -113,8 +124,12 @@ package body SpielEinstellungen is
       KartenartSchleife:
       loop
 
-         Wahl := Auswahl.Auswahl (WelcheAuswahl => 2,
-                                  WelcherText   => 3);
+         Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                     FrageDatei         => 10,
+                                     FrageZeile         => 2,
+                                     TextDatei          => 3,
+                                     ErsteZeile         => 17,
+                                     LetzteZeile        => 25);
                   
          case Wahl is
             when 1 .. 3  | 5 =>
@@ -150,8 +165,12 @@ package body SpielEinstellungen is
       KartentemperaturSchleife:
       loop
 
-         Wahl := Auswahl.Auswahl (WelcheAuswahl =>  3,
-                                  WelcherText   => 4);
+         Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                     FrageDatei         => 10,
+                                     FrageZeile         => 3,
+                                     TextDatei          => 3,
+                                     ErsteZeile         => 28,
+                                     LetzteZeile        => 36);
                   
          case Wahl is
             when 1 .. 3 =>
@@ -187,8 +206,12 @@ package body SpielEinstellungen is
       SpieleranzahlSchleife:
       loop
 
-         Wahl := Auswahl.Auswahl (WelcheAuswahl => 4,
-                                  WelcherText   => 5);
+         Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                     FrageDatei         => 10,
+                                     FrageZeile         => 4,
+                                     TextDatei          => 3,
+                                     ErsteZeile         => 39,
+                                     LetzteZeile        => 60);
          
          case Wahl is
             when 1 .. 18 =>
@@ -241,12 +264,20 @@ package body SpielEinstellungen is
          
          case GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen (Wert))is
             when 0 =>
-               Wahl := Auswahl.Auswahl (WelcheAuswahl => 21,
-                                        WelcherText   => 25);
+               Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                     FrageDatei         => 10,
+                                     FrageZeile         => 21,
+                                     TextDatei          => 5,
+                                     ErsteZeile         => 10,
+                                     LetzteZeile        => 11);
          
                case Wahl is
-                  when 1 .. 2 =>
-                     GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (Wert)) := GlobaleDatentypen.Rassen (Wahl);
+                  when -3 =>
+                     GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (Wert)) := 1;
+                     Spieler := Spieler + 1;
+                     
+                  when -4 =>
+                     GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (Wert)) := 2;
                      Spieler := Spieler + 1;
 
                   when others =>
@@ -273,15 +304,23 @@ package body SpielEinstellungen is
       RasseSchleife:
       loop
          
-         Wahl := Auswahl.Auswahl (WelcheAuswahl => 5,
-                                  WelcherText   => 6);
+         Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                     FrageDatei         => 10,
+                                     FrageZeile         => 5,
+                                     TextDatei          => 3,
+                                     ErsteZeile         => 63,
+                                     LetzteZeile        => 84);
 
          case Wahl is
             when 1 .. 18 =>      
                Anzeige.AnzeigeLangerText (WelcherText => 7,
                                           WelcheZeile => Wahl);
-               Wahl2 := Auswahl.Auswahl (WelcheAuswahl => 6,
-                                         WelcherText   => 18);
+               Wahl2 := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                     FrageDatei         => 10,
+                                     FrageZeile         => 6,
+                                     TextDatei          => 5,
+                                     ErsteZeile         => 10,
+                                     LetzteZeile        => 11);
                case Wahl2 is
                   when -3 =>
                      return Wahl;

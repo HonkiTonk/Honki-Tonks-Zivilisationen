@@ -5,14 +5,12 @@ with Karten, GlobaleDatentypen, GlobaleRecords;
 
 package GlobaleVariablen is
 
-   -- Schreiben
-   WelcheSprache : Positive;
-
-   type TexteEinlesenArray is array (0 .. 25, 1 .. 100) of Unbounded_Wide_Wide_String;
-   TexteEinlesen : TexteEinlesenArray := (others => (others => (To_Unbounded_Wide_Wide_String ("|"))));
+   -- Schreiben/Ausgabe
+   type TexteEinlesenNeuArray is array (0 .. 11, 1 .. 100) of Unbounded_Wide_Wide_String;
+   TexteEinlesenNeu : TexteEinlesenNeuArray := (others => (others => (To_Unbounded_Wide_Wide_String ("|"))));
 
    GewählteSprache : Unbounded_Wide_Wide_String;
-   -- Schreiben
+   -- Schreiben/Ausgabe
    
    
 

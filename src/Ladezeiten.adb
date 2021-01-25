@@ -5,7 +5,13 @@ package body Ladezeiten is
 
       Gesamtzeit := 0.00;
 
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (24, WelcheZeit)));
+      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                          AktuelleAuswahl    => 0,
+                          FrageDatei         => 0,
+                          FrageZeile         => 0,
+                          TextDatei          => 11,
+                          ErsteZeile         => WelcheZeit,
+                          LetzteZeile        => WelcheZeit);
       
       case WelcheZeit is
          when 1 =>
@@ -48,7 +54,13 @@ package body Ladezeiten is
       
       Gesamtzeit := 0.00;
 
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (24, WelcheZeit + AufschlagSpeichern)));
+      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                          AktuelleAuswahl    => 0,
+                          FrageDatei         => 0,
+                          FrageZeile         => 0,
+                          TextDatei          => 11,
+                          ErsteZeile         => WelcheZeit + AufschlagSpeichern,
+                          LetzteZeile        => WelcheZeit + AufschlagSpeichern);
 
       case WelcheZeit is
          when others =>
@@ -68,7 +80,13 @@ package body Ladezeiten is
       
       Gesamtzeit := 0.00;
 
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (24, WelcheZeit + AufschlagLaden)));
+      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                          AktuelleAuswahl    => 0,
+                          FrageDatei         => 0,
+                          FrageZeile         => 0,
+                          TextDatei          => 11,
+                          ErsteZeile         => WelcheZeit + AufschlagLaden,
+                          LetzteZeile        => WelcheZeit + AufschlagLaden);
 
       case WelcheZeit is
          when others =>
@@ -88,7 +106,13 @@ package body Ladezeiten is
       
       Gesamtzeit := 0.00;
 
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (24, WelcheZeit + AufschlagSpielstart)));
+      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                          AktuelleAuswahl    => 0,
+                          FrageDatei         => 0,
+                          FrageZeile         => 0,
+                          TextDatei          => 11,
+                          ErsteZeile         => WelcheZeit + AufschlagSpielstart,
+                          LetzteZeile        => WelcheZeit + AufschlagSpielstart);
 
       case WelcheZeit is
          when others =>

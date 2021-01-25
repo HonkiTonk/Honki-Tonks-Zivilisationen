@@ -5,9 +5,9 @@ package body Auswahl is
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
-      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (0, A)) = "|" then
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (0, A)) = "|" then
             exit;
             
          else
@@ -22,14 +22,19 @@ package body Auswahl is
       loop         
 
          Put_Line (Item => "Sprache auswählen:");
-         Anzeige.Anzeige (WelcherText     => 0,
-                          AktuelleAuswahl => AktuelleAuswahl);         
+         Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                             AktuelleAuswahl    => 0,
+                             FrageDatei         => 0,
+                             FrageZeile         => 0,
+                             TextDatei          => 0,
+                             ErsteZeile         => 0,
+                             LetzteZeile        => 0);        
          
          Get_Immediate (Item => Taste);
          
          case To_Lower (Item => Taste) is               
             when 'w' | '8' => 
-               if AktuelleAuswahl = GlobaleVariablen.TexteEinlesen'First (2) then
+               if AktuelleAuswahl = GlobaleVariablen.TexteEinlesenNeu'First (2) then
                   AktuelleAuswahl := Ende;
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
@@ -37,14 +42,14 @@ package body Auswahl is
 
             when 's' | '2' =>
                if AktuelleAuswahl = Ende then
-                  AktuelleAuswahl := GlobaleVariablen.TexteEinlesen'First (2);
+                  AktuelleAuswahl := GlobaleVariablen.TexteEinlesenNeu'First (2);
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
             when 'e' | '5' =>    
                Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-               return GlobaleVariablen.TexteEinlesen (0, AktuelleAuswahl);
+               return GlobaleVariablen.TexteEinlesenNeu (0, AktuelleAuswahl);
                      
             when others =>
                null;                    
@@ -62,15 +67,13 @@ package body Auswahl is
    function AuswahlNeu (AuswahlOderAnzeige : in Boolean; FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Natural) return Integer is
    begin
 
-      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");    
       
-      Anfang := ErsteZeile;
-      Ende := LetzteZeile;
-      AktuelleAuswahl := ErsteZeile;
-
       case AuswahlOderAnzeige is
          when True =>
-            null;
+            Anfang := ErsteZeile;
+            Ende := LetzteZeile;
+            AktuelleAuswahl := ErsteZeile;
                
          when False => -- Wenn nur Text angezeigt werden soll
             Anzeige.AnzeigeNeu (AuswahlOderAnzeige => AuswahlOderAnzeige,
@@ -91,13 +94,7 @@ package body Auswahl is
                null;
             
             when others => -- Wenn Frage benötigt wird hierüber ausgeben
-               Anzeige.AnzeigeNeu (AuswahlOderAnzeige => AuswahlOderAnzeige,
-                                   AktuelleAuswahl    => AktuelleAuswahl,
-                                   FrageDatei         => FrageDatei,
-                                   FrageZeile         => FrageZeile,
-                                   TextDatei          => TextDatei,
-                                   ErsteZeile         => ErsteZeile,
-                                   LetzteZeile        => LetzteZeile);
+               Put_Line (To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (FrageDatei, FrageZeile)));
          end case;
 
          case TextDatei is
@@ -120,6 +117,7 @@ package body Auswahl is
             when 'w' | '8' => 
                if AktuelleAuswahl = Anfang then
                   AktuelleAuswahl := Ende;
+
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
@@ -127,41 +125,42 @@ package body Auswahl is
             when 's' | '2' =>
                if AktuelleAuswahl = Ende then
                   AktuelleAuswahl := Anfang;
+
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
             when 'e' | '5' =>                  
-               if GlobaleVariablen.TexteEinlesen (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 1) then
+               if GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 1) then -- Hauptmenü
                   return 0;
                   
-               elsif GlobaleVariablen.TexteEinlesen (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 2) then
+               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 2) then -- Spiel beenden
                   return -1;
                   
-               elsif GlobaleVariablen.TexteEinlesen (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 3) then
+               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 3) then -- Zurück
                   return -2;
                   
-               elsif GlobaleVariablen.TexteEinlesen (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 4) then
+               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 4) then -- Ja
                   return -3;
                   
-               elsif GlobaleVariablen.TexteEinlesen (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 5) then
+               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 5) then -- Nein
                   return -4;
 
-               elsif GlobaleVariablen.TexteEinlesen (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 6) then
+               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 6) then -- Speichern
                   return 2;
 
-               elsif GlobaleVariablen.TexteEinlesen (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 7) then
+               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 7) then -- Laden
                   return 3;
 
-               elsif GlobaleVariablen.TexteEinlesen (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 8) then
+               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 8) then -- Optionen
                   return 4;
 
-               elsif GlobaleVariablen.TexteEinlesen (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 9) then
+               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 9) then -- Informationen
                   return 5;
                      
                else
                   Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-                  return AktuelleAuswahl;
+                  return AktuelleAuswahl - ErsteZeile + 1;
                end if;
                      
             when others =>
@@ -173,98 +172,5 @@ package body Auswahl is
       end loop AuswahlSchleife;
       
    end AuswahlNeu;
-
-
-
-   function Auswahl (WelcheAuswahl, WelcherText : in Integer) return Integer is
-   begin
-
-      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-
-      for A in GlobaleVariablen.TexteEinlesen'Range (2) loop
-         
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (WelcherText, A)) = "|" then
-            exit;
-            
-         else
-            Ende := A;
-         end if;
-         
-      end loop;
-
-      AktuelleAuswahl := 1;
-      
-      AuswahlSchleife:
-      loop
-         
-         if WelcheAuswahl = 0 then
-            null;
-            
-         else
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (21, WelcheAuswahl)));
-         end if;
-
-         Anzeige.Anzeige (WelcherText => WelcherText,
-                          AktuelleAuswahl => AktuelleAuswahl);         
-         
-         Get_Immediate (Item => Taste);
-         
-         case To_Lower (Item => Taste) is               
-            when 'w' | '8' => 
-               if AktuelleAuswahl = GlobaleVariablen.TexteEinlesen'First (2) then
-                  AktuelleAuswahl := Ende;
-               else
-                  AktuelleAuswahl := AktuelleAuswahl - 1;
-               end if;
-
-            when 's' | '2' =>
-               if AktuelleAuswahl = Ende then
-                  AktuelleAuswahl := GlobaleVariablen.TexteEinlesen'First (2);
-               else
-                  AktuelleAuswahl := AktuelleAuswahl + 1;
-               end if;
-                              
-            when 'e' | '5' =>                  
-               if GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 1) then
-                  return 0;
-                  
-               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 2) then
-                  return -1;
-                  
-               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 3) then
-                  return -2;
-                  
-               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 4) then
-                  return -3;
-                  
-               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 5) then
-                  return -4;
-
-               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 6) then
-                 return 2;
-
-               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 7) then
-                 return 3;
-
-               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 8) then
-                 return 4;
-
-               elsif GlobaleVariablen.TexteEinlesen (WelcherText, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesen (23, 9) then
-                 return 5;
-                     
-               else
-                  Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-                  return AktuelleAuswahl;
-               end if;
-                     
-            when others =>
-               null;                    
-         end case;
-
-         Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
-         
-      end loop AuswahlSchleife;
-      
-   end Auswahl;
 
 end Auswahl;

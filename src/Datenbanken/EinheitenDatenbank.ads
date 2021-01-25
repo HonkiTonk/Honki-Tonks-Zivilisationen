@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, Auswahl, Karten, SchleifenPruefungen, GlobaleDatentypen, GlobaleRecords;
+with GlobaleVariablen, Auswahl, Karten, SchleifenPruefungen, GlobaleDatentypen, GlobaleRecords, Anzeige;
 use GlobaleDatentypen, GlobaleRecords;
 
 package EinheitenDatenbank is

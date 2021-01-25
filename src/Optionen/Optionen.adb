@@ -5,7 +5,13 @@ package body Optionen is
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
-      Anzeige.Zeug (WelchesZeug => 41);
+      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
+                          AktuelleAuswahl    => 0,
+                          FrageDatei         => 0,
+                          FrageZeile         => 0,
+                          TextDatei          => 9,
+                          ErsteZeile         => 41,
+                          LetzteZeile        => 41);
       Wert := Eingabe.GanzeZahl (Zahlengröße => 3);
       
       case Wert is

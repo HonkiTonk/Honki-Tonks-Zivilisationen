@@ -10,13 +10,13 @@ package body Einlesen is
       
       case Erfolgreich is
          when True =>
-            GlobaleVariablen.GewählteSprache := Auswahl.AuswahlSprache;
+            GlobaleVariablen.GewählteSprache := To_Unbounded_Wide_Wide_String (Source => "Deutsch"); -- Auswahl.AuswahlSprache;
             
          when False =>
             return Erfolgreich;
       end case;
       
-      Erfolgreich := EinlesenText;
+      Erfolgreich := EinlesenTextNeu;
 
       case Erfolgreich is
          when True =>
@@ -50,13 +50,13 @@ package body Einlesen is
                   
          else  
             VerzeichnisInnenSchleife:
-            for Sprache in GlobaleVariablen.TexteEinlesen'Range (2) loop
+            for Sprache in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
             
-               if GlobaleVariablen.TexteEinlesen (0, Sprache) /= "|" then
+               if GlobaleVariablen.TexteEinlesenNeu (0, Sprache) /= "|" then
                   null;
             
                else        
-                  GlobaleVariablen.TexteEinlesen (0, Sprache) := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
+                  GlobaleVariablen.TexteEinlesenNeu (0, Sprache) := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
                   exit VerzeichnisInnenSchleife;
                end if;            
          
@@ -73,7 +73,7 @@ package body Einlesen is
    function EinlesenTextNeu return Boolean is
    begin
       
-      case Exists (Name => "Dateien/Sprachen/" & Ada.Characters.Conversions.To_String (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0") is
+      case Exists (Name => "Dateien/Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0") is
          when True =>
             null;
 
@@ -81,29 +81,30 @@ package body Einlesen is
             return False;
       end case;
 
-      Open (File => DateiWelcheTexteEinlesen,
-            Mode => In_File,
-            Name => "Dateien/Sprachen/" & Ada.Characters.Conversions.To_String (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0");
+      Ada.Wide_Wide_Text_IO.Open (File => DateiNeuWelcheTexteEinlesen,
+                                  Mode => In_File,
+                                  Name => "Dateien/Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0");
+      
+      EinlesenSchleife:
+      for WelcheDateien in WelcheTexteEinlesenNeu'Range loop
 
-      for Zeile in WelcheTexteEinlesen'Range loop
-
-         if End_Of_File (File => DateiWelcheTexteEinlesen) = True then
+         if End_Of_File (File => DateiNeuWelcheTexteEinlesen) = True then
             exit;
                
          else
-            Set_Line (File => DateiWelcheTexteEinlesen,
-                      To   => Ada.Text_IO.Count (Zeile));         
-            WelcheTexteEinlesen (Zeile) := To_Unbounded_String (Source => Ada.Text_IO.Get_Line (File => DateiWelcheTexteEinlesen));
+            Set_Line (File => DateiNeuWelcheTexteEinlesen,
+                      To   => Ada.Wide_Wide_Text_IO.Count (WelcheDateien));         
+            WelcheTexteEinlesenNeu (WelcheDateien) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuWelcheTexteEinlesen));
          end if;
 
-      end loop;
+      end loop EinlesenSchleife;
 
-      close (File => DateiWelcheTexteEinlesen);
+      close (File => DateiNeuWelcheTexteEinlesen);
       
-      WelcherTextSchleife:
-      for B in 1 .. GlobaleVariablen.TexteEinlesen'Last (1) loop
+      DateiSchleife:
+      for Datei in 1 .. GlobaleVariablen.TexteEinlesenNeu'Last (1) loop
 
-         case Exists (To_String (Source => WelcheTexteEinlesen (B))) is
+         case Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheTexteEinlesenNeu (Datei))))) is
             when True =>
                null;
 
@@ -111,112 +112,37 @@ package body Einlesen is
                return False;
          end case;
          
-         Open (File => DateiText,
+         Open (File => DateiNeuText,
                Mode => In_File,
-               Name => To_String (WelcheTexteEinlesen (B)));
+               Name => Encode (Item => (To_Wide_Wide_String (WelcheTexteEinlesenNeu (Datei)))));
       
-         Einlesen:
-         for C in GlobaleVariablen.TexteEinlesen'Range (2) loop
+         ZeilenSchleife:
+         for Zeile in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
 
-            if End_Of_File (File => DateiText) = True then
-               exit Einlesen;
+            if End_Of_File (File => DateiNeuText) = True then
+               exit ZeilenSchleife;
                
             else
-               Set_Line (File => DateiText,
-                         To   => Ada.Wide_Wide_Text_IO.Count (C));         
-               GlobaleVariablen.TexteEinlesen (B, C) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
+               Set_Line (File => DateiNeuText,
+                         To   => Ada.Wide_Wide_Text_IO.Count (Zeile));         
+               GlobaleVariablen.TexteEinlesenNeu (Datei, Zeile) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuText));
             end if;
 
-         end loop Einlesen;
+         end loop ZeilenSchleife;
 
-         close (File => DateiText);
+         close (File => DateiNeuText);
 
-      end loop WelcherTextSchleife;
+      end loop DateiSchleife;
 
       return True;
 
    exception
       when Storage_Error =>
          Ada.Wide_Wide_Text_IO.Put_Line (Item => "Zu lange Zeile, Einlesen.EinlesenText");
-         close (File => DateiText);
+         close (File => DateiNeuText);
          raise;
-      
+         
    end EinlesenTextNeu;
-   
-   
-   
-   function EinlesenText return Boolean is -- Wenn Hardcoded wie die Werte, dann funktioniert es mit einer Sprache ohne die Dateien zum Einlesen
-   begin
-
-      case Exists (Name => "Dateien/Sprachen/" & Ada.Characters.Conversions.To_String (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0") is
-         when True =>
-            null;
-
-         when False =>
-            return False;
-      end case;
-
-      Open (File => DateiWelcheTexteEinlesen,
-            Mode => In_File,
-            Name => "Dateien/Sprachen/" & Ada.Characters.Conversions.To_String (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0");
-
-      for A in WelcheTexteEinlesen'Range loop
-
-         if End_Of_File (File => DateiWelcheTexteEinlesen) = True then
-            exit;
-               
-         else
-            Set_Line (File => DateiWelcheTexteEinlesen,
-                      To   => Ada.Text_IO.Count (A));         
-            WelcheTexteEinlesen (A) := To_Unbounded_String (Source => Ada.Text_IO.Get_Line (File => DateiWelcheTexteEinlesen));
-         end if;
-
-      end loop;
-
-      close (File => DateiWelcheTexteEinlesen);
-      
-      WelcherTextSchleife:
-      for B in 1 .. GlobaleVariablen.TexteEinlesen'Last (1) loop
-
-         case Exists (To_String (Source => WelcheTexteEinlesen (B))) is
-            when True =>
-               null;
-
-            when False =>
-               return False;
-         end case;
-         
-         Open (File => DateiText,
-               Mode => In_File,
-               Name => To_String (WelcheTexteEinlesen (B)));
-      
-         Einlesen:
-         for C in GlobaleVariablen.TexteEinlesen'Range (2) loop
-
-            if End_Of_File (File => DateiText) = True then
-               exit Einlesen;
-               
-            else
-               Set_Line (File => DateiText,
-                         To   => Ada.Wide_Wide_Text_IO.Count (C));         
-               GlobaleVariablen.TexteEinlesen (B, C) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiText));
-            end if;
-
-         end loop Einlesen;
-
-         close (File => DateiText);
-
-      end loop WelcherTextSchleife;
-
-      return True;
-
-   exception
-      when Storage_Error =>
-         Ada.Wide_Wide_Text_IO.Put_Line (Item => "Zu lange Zeile, Einlesen.EinlesenText");
-         close (File => DateiText);
-         raise;
-         
-   end EinlesenText;
 
 
 
@@ -231,29 +157,29 @@ package body Einlesen is
             return;
       end case;
 
-      Open (File => DateiWelcheWerteEinlesen,
+      Open (File => DateiNeuWelcheWerteEinlesen,
             Mode => In_File,
             Name => "Dateien/WelcheWerteEinlesen");
 
-      for A in WelcheWerteEinlesen'Range loop
+      for A in WelcheWerteEinlesenNeu'Range loop
 
-         if End_Of_File (File => DateiWelcheWerteEinlesen) = True then
+         if End_Of_File (File => DateiNeuWelcheWerteEinlesen) = True then
             exit;
                
          else
-            Set_Line (File => DateiWelcheWerteEinlesen,
-                      To   => Ada.Text_IO.Count (A));         
-            WelcheWerteEinlesen (A) := To_Unbounded_String (Source => Ada.Text_IO.Get_Line (File => DateiWelcheWerteEinlesen));
+            Set_Line (File => DateiNeuWelcheWerteEinlesen,
+                      To   => Ada.Wide_Wide_Text_IO.Count (A));         
+            WelcheWerteEinlesenNeu (A) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuWelcheWerteEinlesen));
          end if;
 
       end loop;
 
-      close (File => DateiWelcheWerteEinlesen);
+      close (File => DateiNeuWelcheWerteEinlesen);
 
       WelcheWerteSchleife:
-      for B in WelcheWerteEinlesen'Range loop
+      for B in WelcheWerteEinlesenNeu'Range loop
 
-         case Exists (To_String (Source => WelcheWerteEinlesen (B))) is
+         case Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheWerteEinlesenNeu (B))))) is
             when True =>
                null;
 
@@ -261,11 +187,11 @@ package body Einlesen is
                return;
          end case;
          
-         Open (File => DateiWerte,
+         Open (File => DateiNeuWerte,
                Mode => In_File,
-               Name => To_String (WelcheWerteEinlesen (B)));
+               Name => Encode (Item => (To_Wide_Wide_String (WelcheWerteEinlesenNeu (B)))));
 
-         close (File => DateiWerte);
+         close (File => DateiNeuWerte);
 
       end loop WelcheWerteSchleife;
    

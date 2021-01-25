@@ -144,8 +144,12 @@ package body BewegungssystemEinheiten is
                                                                      VerteidigendeRasse => GegnerEinheitWert.Rasse);
             case BereitsImKrieg is
                when 1 .. 2 =>
-                  Wahl := Auswahl.Auswahl (WelcheAuswahl => 11,
-                                           WelcherText   => 18);
+                  Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
+                                              FrageDatei         => 10,
+                                              FrageZeile         => 11,
+                                              TextDatei          => 5,
+                                              ErsteZeile         => 10,
+                                              LetzteZeile        => 11);
                   case Wahl is
                      when -3 =>
                         Angreifen := True;
