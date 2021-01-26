@@ -13,8 +13,8 @@ package body KartenDatenbank is
                                 FrageDatei         => 0,
                                 FrageZeile         => 0,
                                 TextDatei          => 6,
-                                ErsteZeile         => Integer (ID) + 1,
-                                LetzteZeile        => Integer (ID) + 1);
+                                ErsteZeile         => Integer (ID),
+                                LetzteZeile        => Integer (ID));
             Put (Item => "    ");
       end case;
       

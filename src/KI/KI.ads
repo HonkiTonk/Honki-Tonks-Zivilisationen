@@ -1,5 +1,4 @@
-with GlobaleVariablen, EinheitenDatenbank, ForschungsDatenbank, KartenDatenbank, VerbesserungenDatenbank, GebaeudeDatenbank, InDerStadt, SchleifenPruefungen, KIPruefungen, InDerStadt, GlobaleDatentypen, Karten, KIBewegung,
-     KIRecords;
+with GlobaleVariablen, GlobaleDatentypen, EinheitenDatenbank, InDerStadt, KISiedler, KINahkampfLandEinheit, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit;
 use GlobaleDatentypen;
 
 package KI is
@@ -8,16 +7,7 @@ package KI is
 
 private
 
-   EinheitExistiertNoch : Boolean;
-   StadtErfolgreichGebaut : Boolean;
-
-   EinheitStatus : KIRecords.EinheitStatusRecord;
-
-   procedure KIAktivität (RasseExtern : in GlobaleDatentypen.Rassen);
-   procedure KIStadtBauen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord);
-   procedure KIVerbesserungAnlegen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord);
-   procedure KIGebäudeBauen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord);
-   procedure KIBefestigen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord);
-   procedure KIAngreifen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord);
+   procedure KIAKtivitätEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive);
+   procedure KIAktivitätStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive);
 
 end KI;

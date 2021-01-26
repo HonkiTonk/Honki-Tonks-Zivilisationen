@@ -1,4 +1,8 @@
 package GlobaleDatentypen is
+
+   -- Für Anzeige
+   
+   -- Für Anzeige
    
    -- Für Karte
    type Kartenfeld is range -1_001 .. 1_000; -- Linke Seite muss stehts eins kleiner sein als die rechte Seite, aufgrund des aktuellen Kartengenerators (Kartengenerator.adb 181, Übergabe geht sonst nicht)!

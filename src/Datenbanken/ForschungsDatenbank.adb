@@ -18,9 +18,9 @@ package body ForschungsDatenbank is
                                 AktuelleAuswahl    => 0,
                                 FrageDatei         => 0,
                                 FrageZeile         => 0,
-                                TextDatei          => 6,
-                                ErsteZeile         => ID + 82,
-                                LetzteZeile        => ID + 82);
+                                TextDatei          => 18,
+                                ErsteZeile         => ID,
+                                LetzteZeile        => ID);
       end case;
       
    end Beschreibung;
@@ -77,7 +77,7 @@ package body ForschungsDatenbank is
 
 
 
-   function AuswahlForschung (RasseExtern : in GlobaleDatentypen.Rassen) return Integer is -- Hier neu machen
+   function AuswahlForschung (RasseExtern : in GlobaleDatentypen.Rassen) return Integer is
    begin
 
       Anzeige.TextForschung := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
@@ -89,7 +89,7 @@ package body ForschungsDatenbank is
       ForschungSchleife:
       for Forschung in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (6, Forschung)) = "|" then
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (18, Forschung)) = "|" then
             exit ForschungSchleife;
 
          elsif Forschung > Integer (ForschungListe'Last) then
@@ -117,7 +117,7 @@ package body ForschungsDatenbank is
 
             case AnforderungenErfüllt is
                when True =>
-                  --Anzeige.TextForschung (Ende).Text := GlobaleVariablen.TexteEinlesen (6, Forschung);
+                  Anzeige.TextForschung (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (18, Forschung);
                   Anzeige.TextForschung (Ende).Nummer := Forschung;
                   Ende := Ende + 1;
                   
@@ -136,20 +136,20 @@ package body ForschungsDatenbank is
          
       else
          Ende := Ende + 1;
-         --Anzeige.TextForschung (Ende).Text := GlobaleVariablen.TexteEinlesen (19, 27);
+         Anzeige.TextForschung (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (9, 27);
       end if;
 
       AuswahlSchleife:
       loop
 
-        -- Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesen (21, 16)));  
+         Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (10, 16)));  
          Anzeige.AnzeigeForschung (AktuelleAuswahl => AktuelleAuswahl);
          
          if AktuelleAuswahl = Ende then
             null;
                   
          else
-            Anzeige.AnzeigeLangerText (WelcherText => 17,
+            Anzeige.AnzeigeLangerText (WelcherText => 19,
                                        WelcheZeile => Anzeige.TextForschung (AktuelleAuswahl).Nummer);
          end if;
          

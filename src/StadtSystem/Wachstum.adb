@@ -131,7 +131,9 @@ package body Wachstum is
             GebaeudeDatenbank.GebäudeProduktionBeenden (RasseExtern        => RasseExtern,
                                                         Stadtnummer        => Stadtnummer,
                                                         ID                 => GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AktuellesBauprojekt - 1_000);
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 29)));
+            Anzeige.EinfacheAnzeige (Mit_Line => True,
+                                     Datei    => 1,
+                                     Eintrag  => 1);
 
          else
             null;
@@ -155,7 +157,9 @@ package body Wachstum is
                                    LetzteZeile        => 11);
                                
             else
-               Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 29)));
+               Anzeige.EinfacheAnzeige (Mit_Line => True,
+                                        Datei    => 1,
+                                        Eintrag  => 1);
             end if;
 
          else

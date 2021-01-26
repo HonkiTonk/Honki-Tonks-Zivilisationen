@@ -12,9 +12,9 @@ package body VerbesserungenDatenbank is
                                 AktuelleAuswahl    => 0,
                                 FrageDatei         => 0,
                                 FrageZeile         => 0,
-                                TextDatei          => 6,
-                                ErsteZeile         => Integer (ID) + 54,
-                                LetzteZeile        => Integer (ID) + 54);
+                                TextDatei          => 14,
+                                ErsteZeile         => Integer (ID),
+                                LetzteZeile        => Integer (ID));
             Put (Item => "    ");
       end case;
       

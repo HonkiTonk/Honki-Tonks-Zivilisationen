@@ -245,7 +245,9 @@ package body KarteStadt is
          
       else
          if Karten.Karten (0, YAchse, XAchse).Hügel = True and Karten.Karten (0, YAchse, XAchse).Grund /= 6 then
-            Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 34)));
+            Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                     Datei    => 3,
+                                     Eintrag  => 1);
             KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
 
             Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
@@ -319,18 +321,30 @@ package body KarteStadt is
          end if;
             
          New_Line;
-         Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 20)));
+         
+         Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                  Datei    => 3,
+                                  Eintrag  => 2);
          Put_Line (Item => Nahrungsgewinnung'Wide_Wide_Image);
-         Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 21)));
+         
+         Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                  Datei    => 3,
+                                  Eintrag  => 3);
          Put (Item => Ressourcengewinnung'Wide_Wide_Image);
-         Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 22)));
+         
+         Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                  Datei    => 3,
+                                  Eintrag  => 4);
          Put (Item => Geldgewinnung'Wide_Wide_Image);
-         Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 23)));
+         
+         Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                  Datei    => 3,
+                                  Eintrag  => 5);
          Put_Line (Item => Wissensgewinnung'Wide_Wide_Image);
       end if;
       
    end InformationenStadt;
-
+   
 
 
    procedure Beschreibung (RasseExtern : in GlobaleDatentypen.Rassen) is
@@ -345,50 +359,88 @@ package body KarteStadt is
       
          when others =>
             -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Stadt befindet
-            Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID)));
+            case GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID is
+               when 1 =>
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 6);
+                  
+               when 2 =>
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 7);
+                  
+               when 3 =>
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 8);
+                  
+               when others =>
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 9);
+            end case;
             Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Name) & "    ");
-            Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 5)));
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 10);
             Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Einwohner'Wide_Wide_Image);
 
             -- "Volle" Stadtinformationen, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist                      
             if RasseUndPlatznummer.Rasse = RasseExtern or GlobaleVariablen.FeindlicheInformationenSehen = True then
-               Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 6)));
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 11);
                Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleNahrungsmittel'Wide_Wide_Image);
-               Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 7)));
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 12);
                Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleNahrungsproduktion'Wide_Wide_Image);
                         
-               Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 8)));
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 13);
                Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleProduktionrate'Wide_Wide_Image);
-               Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 9)));
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 14);
                Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleGeldgewinnung'Wide_Wide_Image);
 
-               Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 10)));
-               Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleForschungsrate'Wide_Wide_Image);                        
-               Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 11)));
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 15);
+               Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleForschungsrate'Wide_Wide_Image); 
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 16);
                Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Korruption'Wide_Wide_Image);
                         
-               Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 12)));
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 17);
                case GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt is
-                  when 0 => -- Nichts
-                     Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 28)));
+                  when 0 => -- Nichts                     
+                  Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                           Datei    => 3,
+                                           Eintrag  => 18);
             
                   when 1 .. 9_999 => -- Gebäude
                      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                         AktuelleAuswahl    => 0,
+                                         AktuelleAuswahl    => 1,
                                          FrageDatei         => 0,
                                          FrageZeile         => 0,
-                                         TextDatei          => 8,
-                                         ErsteZeile         => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 1_000 + 77,
-                                         LetzteZeile        => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 1_000 + 77);
+                                         TextDatei          => 9,
+                                         ErsteZeile         => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 1_000,
+                                         LetzteZeile        => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 1_000);
 
                   when others => -- Einheiten
                      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                         AktuelleAuswahl    => 0,
+                                         AktuelleAuswahl    => 1,
                                          FrageDatei         => 0,
                                          FrageZeile         => 0,
-                                         TextDatei          => 8,
-                                         ErsteZeile         => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 10_000 + 43,
-                                         LetzteZeile        => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 10_000 + 43);
+                                         TextDatei          => 9,
+                                         ErsteZeile         => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 10_000,
+                                         LetzteZeile        => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 10_000);
                end case;
                                               
                Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 13)));   

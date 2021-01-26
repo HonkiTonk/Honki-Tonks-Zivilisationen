@@ -62,7 +62,9 @@ package body BewegungssystemCursor is
    procedure GeheZuCursor (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (1, 30)));
+      Anzeige.EinfacheAnzeige (Mit_Line => False,
+                               Datei    => 2,
+                               Eintrag  => 1);
       Put_Line (Item => Karten.Karten'First (2)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße'Wide_Wide_Image);
       case Karten.Kartengröße is
          when 1 .. 3 =>
@@ -90,6 +92,9 @@ package body BewegungssystemCursor is
          YPosition := GlobaleDatentypen.Kartenfeld (Wert);
       end if;
       
+      Anzeige.EinfacheAnzeige (Mit_Line => False,
+                               Datei    => 2,
+                               Eintrag  => 2);
       Put_Line (Item => Karten.Karten'First (3)'Wide_Wide_Image & " .." & Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße'Wide_Wide_Image);
       Wert := Eingabe.GanzeZahl (Zahlengröße => Stellenanzahl);
 

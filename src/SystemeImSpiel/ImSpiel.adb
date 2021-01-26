@@ -3,8 +3,6 @@ package body ImSpiel is
    function ImSpiel return Integer is -- Karte.Sichtbarkeit von hier nach BefehleImSpiel verschiebbar?
    begin
      
-      ErsteRunde := True;
-
       SpielSchleife:
       loop
          
@@ -65,9 +63,7 @@ package body ImSpiel is
             end case;
             
          end loop RassenSchleife;
-         
-         ErsteRunde := False;
-         
+                  
          Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (1, 1) := Clock;
          EinheitenDatenbank.HeilungBewegungspunkteFürNeueRundeSetzen;
          Verbesserungen.VerbesserungFertiggestellt;

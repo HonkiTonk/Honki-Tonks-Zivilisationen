@@ -84,8 +84,8 @@ package body Kampfsystem is
                           VerteidigungWert          => VerteidigungVerteidigungWert);
 
          if GlobaleVariablen.EinheitenGebaut (RasseVerteidigung, EinheitenNummerVerteidigung).AktuelleLebenspunkte <= 0 then
-            EinheitenDatenbank.EinheitEntfernen (RasseExtern   => RasseVerteidigung,
-                                                 EinheitNummer => EinheitenNummerVerteidigung);
+            EinheitenDatenbank.EinheitEntfernenMitSortieren (RasseExtern   => RasseVerteidigung,
+                                                             EinheitNummer => EinheitenNummerVerteidigung);
             return True;
             
          else
@@ -100,8 +100,8 @@ package body Kampfsystem is
          
          
          if GlobaleVariablen.EinheitenGebaut (RasseAngriff, EinheitenNummerAngriff).AktuelleLebenspunkte <= 0 then
-            EinheitenDatenbank.EinheitEntfernen (RasseExtern   => RasseAngriff,
-                                                 EinheitNummer => EinheitenNummerAngriff);
+            EinheitenDatenbank.EinheitEntfernenMitSortieren (RasseExtern   => RasseAngriff,
+                                                             EinheitNummer => EinheitenNummerAngriff);
             return False;
 
          else

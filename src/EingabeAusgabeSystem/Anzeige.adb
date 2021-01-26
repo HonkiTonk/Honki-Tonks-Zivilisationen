@@ -81,6 +81,21 @@ package body Anzeige is
 
 
 
+   procedure EinfacheAnzeige (Mit_Line : in Boolean; Datei, Eintrag : in Positive) is
+   begin
+      
+      case Mit_Line is
+         when True =>
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (Ja (Datei, Eintrag).Zieldatei, Ja (Datei, Eintrag).Zielzeile)));
+            
+         when False =>
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (Ja (Datei, Eintrag).Zieldatei, Ja (Datei, Eintrag).Zielzeile)));
+      end case;
+      
+   end EinfacheAnzeige;
+
+   
+
    procedure AnzeigeStadt (AktuelleAuswahl : in Positive) is
    begin
       

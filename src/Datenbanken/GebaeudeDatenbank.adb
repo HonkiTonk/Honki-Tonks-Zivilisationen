@@ -7,9 +7,9 @@ package body GebaeudeDatenbank is
                           AktuelleAuswahl    => 0,
                           FrageDatei         => 0,
                           FrageZeile         => 0,
-                          TextDatei          => 6,
-                          ErsteZeile         => ID + 77,
-                          LetzteZeile        => ID + 77);
+                          TextDatei          => 16,
+                          ErsteZeile         => ID,
+                          LetzteZeile        => ID);
       -- Hier wichtige Werte einfügen
       -- Hier dann eine lange Textanzeige für eine Beschreibung des Gebäudes? Das auch für die Einheiten/Verbesserungen machen?
       

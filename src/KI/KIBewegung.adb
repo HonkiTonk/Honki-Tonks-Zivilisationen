@@ -1,26 +1,28 @@
 package body KIBewegung is
 
-   procedure KIBewegung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
+   procedure KIBewegung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive; Aufgabe : Wide_Wide_Character) is
    begin
 
-      case EinheitStatus.EinheitTyp is
-         when 1 .. 100 =>
-            BewegungSiedler (RasseExtern   => RasseExtern,
-                             EinheitStatus => EinheitStatus);
+      -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
+      case Aufgabe is
+         when 'f' =>
+            null;
             
          when others =>
-            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AktuelleBewegungspunkte := 0.00;
+            null;
       end case;
+      
+      BewegungSiedler (RasseExtern   => RasseExtern,
+                       EinheitNummer => EinheitNummer);
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte := 0.00;
       
    end KIBewegung;
 
 
 
-   procedure BewegungSiedler (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
+   procedure BewegungSiedler (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
    begin
 
-      Bewegungsziel := (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse);
-      
       Schleife:
       for Durchgang in 1 .. 2 loop
          YAchseSchleife:
@@ -28,8 +30,8 @@ package body KIBewegung is
             XAchseSchleife:
             for XAchse in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
-               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse,
-                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse,
+               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
+                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse,
                                                                  YÄnderung      => YAchse,
                                                                  XÄnderung      => XAchse,
                                                                  ZusatzYAbstand => 0);
@@ -41,13 +43,34 @@ package body KIBewegung is
                   when others =>
                      case Durchgang is
                         when 1 =>
-                           if Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund = 2 or Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund = 31 then
+                           if Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund = 2 or Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund = 31 or YAchse = 0 or XAchse = 0 then
                               null;
                               
                            elsif Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Felderwertung
-                             > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse,
-                                              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse).Felderwertung then
-                              Bewegungsziel := (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse);
+                             > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
+                                              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).Felderwertung then
+                              EinheitImWeg := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => Kartenwert.YAchse,
+                                                                                                     XAchse => Kartenwert.XAchse);
+                              case EinheitImWeg.Rasse is
+                                 when GlobaleDatentypen.RassenMitNullwert'First =>
+                                    null;
+                                    
+                                 when others =>
+                                    exit XAchseSchleife;
+                              end case;
+                              
+                              StadtImWeg := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => Kartenwert.YAchse,
+                                                                                                 XAchse => Kartenwert.XAchse);
+                              
+                              case StadtImWeg.Rasse is
+                                 when GlobaleDatentypen.RassenMitNullwert'First =>
+                                    null;
+                                    
+                                 when others =>
+                                    exit XAchseSchleife;
+                              end case;
+
+                              BewegungZiel := (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse);
                               exit Schleife;
 
                            else
@@ -55,31 +78,50 @@ package body KIBewegung is
                            end if;
                            
                         when others =>
-                           case Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund is
-                              when 2 | 31 =>
-                                 null;
+                           if Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund = 2 or Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund = 31 or YAchse = 0 or XAchse = 0 then
+                              null;
                                  
-                              when others =>
-                                 Bewegungsziel := (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse);
-                                 exit Schleife;
-                           end case;
+                           else
+                              EinheitImWeg := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => Kartenwert.YAchse,
+                                                                                                     XAchse => Kartenwert.XAchse);
+                              case EinheitImWeg.Rasse is
+                                 when GlobaleDatentypen.RassenMitNullwert'First =>
+                                    null;
+                                    
+                                 when others =>
+                                    exit XAchseSchleife;
+                              end case;
+                              
+                              StadtImWeg := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => Kartenwert.YAchse,
+                                                                                                 XAchse => Kartenwert.XAchse);
+                              
+                              case StadtImWeg.Rasse is
+                                 when GlobaleDatentypen.RassenMitNullwert'First =>
+                                    null;
+                                    
+                                 when others =>
+                                    exit XAchseSchleife;
+                              end case;
+                              BewegungZiel := (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse);
+                              exit Schleife;
+                           end if;
                      end case;
                end case;           
-            
+               
             end loop XAchseSchleife;
          end loop YAchseSchleife;
       end loop Schleife;
 
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse := Bewegungsziel.YAchse;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse := Bewegungsziel.XAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse := BewegungZiel.YAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse := BewegungZiel.XAchse;
 
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AktuelleBewegungspunkte := 0.00;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte := 0.00;
       
    end BewegungSiedler;
 
 
 
-   procedure BewegungBauarbeiter (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
+   procedure BewegungBauarbeiter (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
    begin
       
       null;
@@ -88,7 +130,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungBodenEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
+   procedure BewegungBodenEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
    begin
       
       null;
@@ -97,7 +139,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungLuftEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
+   procedure BewegungLuftEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
    begin
       
       null;
@@ -106,7 +148,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungWasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
+   procedure BewegungWasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
    begin
       
       null;
@@ -115,7 +157,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungUnterwasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
+   procedure BewegungUnterwasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
    begin
       
       null;

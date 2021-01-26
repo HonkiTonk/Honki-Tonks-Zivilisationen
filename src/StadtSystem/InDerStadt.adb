@@ -200,12 +200,12 @@ package body InDerStadt is
                         
                            when others =>
                               case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund is
-                              when 2 | 29 .. 31 =>
-                                 GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AmWasser := True;
-                                 exit YAchsenSchleife;
+                                 when 2 | 29 .. 31 =>
+                                    GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AmWasser := True;
+                                    exit YAchsenSchleife;
                         
-                              when others =>
-                                 null;
+                                 when others =>
+                                    null;
                               end case;
                         end case;
                   
@@ -222,8 +222,15 @@ package body InDerStadt is
                                    StadtNummer => StadtNummer);
             ForschungsDatenbank.ForschungZeit (RasseExtern => RasseExtern);            
             
-            EinheitenDatenbank.EinheitEntfernen (RasseExtern   => RasseExtern,
-                                                 EinheitNummer => EinheitNummer);
+            case GlobaleVariablen.RassenImSpiel (RasseExtern) is
+               when 2 =>
+                  EinheitenDatenbank.EinheitEntfernenOhneSortieren (RasseExtern   => RasseExtern,
+                                                                    EinheitNummer => EinheitNummer);
+                  
+               when others =>
+                  EinheitenDatenbank.EinheitEntfernenMitSortieren (RasseExtern   => RasseExtern,
+                                                                   EinheitNummer => EinheitNummer);
+            end case;
             
             case GlobaleVariablen.RassenImSpiel (RasseExtern) is
                when 2 =>

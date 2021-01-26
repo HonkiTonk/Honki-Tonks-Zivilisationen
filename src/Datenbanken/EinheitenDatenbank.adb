@@ -7,9 +7,9 @@ package body EinheitenDatenbank is
                           AktuelleAuswahl    => 0,
                           FrageDatei         => 0,
                           FrageZeile         => 0,
-                          TextDatei          => 6,
-                          ErsteZeile         => Integer (ID) + 43,
-                          LetzteZeile        => Integer (ID) + 43);
+                          TextDatei          => 12,
+                          ErsteZeile         => Integer (ID),
+                          LetzteZeile        => Integer (ID));
       
    end Beschreibung;
 
@@ -113,7 +113,7 @@ package body EinheitenDatenbank is
 
 
 
-   procedure EinheitEntfernen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) is
+   procedure EinheitEntfernenMitSortieren (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) is
    begin
       
       GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0);      
@@ -126,8 +126,24 @@ package body EinheitenDatenbank is
          null;
       end if;
       
-   end EinheitEntfernen;
+   end EinheitEntfernenMitSortieren;
 
+
+
+   procedure EinheitEntfernenOhneSortieren (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) is
+   begin
+
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0); 
+
+      if GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID = 0 and GlobaleVariablen.StadtGebaut (RasseExtern, 1).ID = 0 then
+         GlobaleVariablen.RassenImSpiel (RasseExtern) := 0;
+         
+      else
+         null;
+      end if;
+      
+   end EinheitEntfernenOhneSortieren;
+   
 
 
    procedure EinheitGebautSortieren (RasseExtern : in GlobaleDatentypen.Rassen) is
@@ -174,18 +190,18 @@ package body EinheitenDatenbank is
                                 AktuelleAuswahl    => 0,
                                 FrageDatei         => 0,
                                 FrageZeile         => 0,
-                                TextDatei          => 6,
-                                ErsteZeile         => 99,
-                                LetzteZeile        => 99);            
+                                TextDatei          => 20,
+                                ErsteZeile         => 9,
+                                LetzteZeile        => 9);            
             
          when others =>
             Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
                                 AktuelleAuswahl    => 0,
                                 FrageDatei         => 0,
                                 FrageZeile         => 0,
-                                TextDatei          => 6,
-                                ErsteZeile         => Arbeit + 90,
-                                LetzteZeile        => Arbeit + 90);
+                                TextDatei          => 20,
+                                ErsteZeile         => Arbeit,
+                                LetzteZeile        => Arbeit);
       end case;
       
    end Beschäftigung;

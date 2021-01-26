@@ -2,134 +2,94 @@ package body KI is
 
    procedure KI (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
-      
-      if GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID = 0 and GlobaleVariablen.StadtGebaut (RasseExtern, 1).ID = 0 then
-         GlobaleVariablen.RassenImSpiel (RasseExtern) := 0;
-                  
-      else
-         KIAktivität (RasseExtern => RasseExtern);
-      end if; 
+         
+      EinheitenSchleife:
+      for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+
+         if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 0 then
+            null;
+               
+         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00 then
+            null;
+
+         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung /= 0 then
+            null;
+               
+         else
+            KIAKtivitätEinheit (RasseExtern   => RasseExtern,
+                                EinheitNummer => EinheitNummer);
+         end if;
+            
+      end loop EinheitenSchleife;
+
+      EinheitenDatenbank.EinheitGebautSortieren (RasseExtern => RasseExtern);
+         
+      StadtSchleife:
+      for StadtNummer in GlobaleVariablen.StadtGebaut'Range (2) loop
+            
+         if GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ID = 0 then
+            exit StadtSchleife;
+               
+         else
+            KIAktivitätStadt (RasseExtern => RasseExtern,
+                              StadtNummer => StadtNummer);
+         end if;
+
+      end loop StadtSchleife;         
       
    end KI;
 
 
 
-   procedure KIAktivität (RasseExtern : in GlobaleDatentypen.Rassen) is -- Von hier aus dann die einzelnen Tätigkeiten aufrufen
+   procedure KIAKtivitätEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) is -- Von hier aus dann die einzelnen Tätigkeiten aufrufen
    begin
       
-      GesamteAktivitätSchleife:
-      loop
-         
-         EinheitStatus := KIPruefungen.EinheitMitBewegungspunktenSuchen (RasseExtern => RasseExtern);
-         
-         case EinheitStatus.BewegungspunkteBeschäftigung is
-            when SchleifenPruefungen.RückgabeWert =>               
-               exit GesamteAktivitätSchleife;
-               
-            when 0 | 2 => -- 0 = Keine Bewegungspunkte/Beschäftigung, 1 = Bewegungspunkte ohne Beschäftigung, 2 = Beschäftigung ohne Bewegungspunkte, 3 = Beschäftigung/Bewegungspunkte
-               exit GesamteAktivitätSchleife;
-               
-            when others => -- 1 | 3
-               null;
-         end case;
-
-         AktivitätSchleife:
-         loop            
-
-            case EinheitStatus.EinheitTyp is
-               when 1 =>
-                  KIStadtBauen (RasseExtern   => RasseExtern,
-                                EinheitStatus => EinheitStatus);
-                
-               when others =>
-                  KIBefestigen (RasseExtern   => RasseExtern,
-                                EinheitStatus => EinheitStatus);
-            end case;
-
-            case EinheitExistiertNoch is
-               when False =>
-                  exit AktivitätSchleife;
-                  
-               when True =>
-                  null;
-            end case;
+      -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
+      case EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).SiedlerLandeinheitSeeeinheitLufteinheit is
+         when 1 =>
+            KISiedler.KISiedler (RasseExtern   => RasseExtern,
+                                 EinheitNummer => EinheitNummer);
             
-            if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AktuelleBewegungspunkte = 0.00
-              or GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AktuelleBeschäftigung /= 0 then
-               exit AktivitätSchleife;
+         when 2 => -- Bauarbeiter kommt vielleicht später
+            null;
             
-            else
-               null;
-            end if;
+         when 3 =>
+            KINahkampfLandEinheit.KINahkampfLandEinheit (RasseExtern   => RasseExtern,
+                                                         EinheitNummer => EinheitNummer);
             
-         end loop AktivitätSchleife;
-         
-      end loop GesamteAktivitätSchleife;
+         when 4 =>
+            KIFernkampfLandEinheit.KIFernkampfLandEinheit (RasseExtern   => RasseExtern,
+                                                           EinheitNummer => EinheitNummer);
+            
+         when 5 =>
+            KINahkampfSeeEinheit.KINahkampfSeeEinheit (RasseExtern   => RasseExtern,
+                                                       EinheitNummer => EinheitNummer);
+            
+         when 6 =>
+            KIFernkampfSeeEinheit.KIFernkampfSeeEinheit (RasseExtern   => RasseExtern,
+                                                         EinheitNummer => EinheitNummer);
+            
+         when 7 =>
+            KINahkampfLuftEinheit.KINahkampfLuftEinheit (RasseExtern   => RasseExtern,
+                                                         EinheitNummer => EinheitNummer);
+            
+         when 8 =>
+            KIFernkampfLuftEinheit.KIFernkampfLuftEinheit (RasseExtern   => RasseExtern,
+                                                           EinheitNummer => EinheitNummer);
+            
+         when others =>
+            null;
+      end case;
       
-   end KIAktivität;
+   end KIAKtivitätEinheit;
    
-      
    
-   procedure KIStadtBauen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
-   begin
-      
-      if Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.YAchse,
-                        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitStatus.EinheitNummer).AchsenPosition.XAchse).Felderwertung >= 85 then         
-         StadtErfolgreichGebaut := InDerStadt.StadtBauen (RasseExtern   => RasseExtern,
-                                                          EinheitNummer => EinheitStatus.EinheitNummer);
-
-         case StadtErfolgreichGebaut is
-            when True =>
-               EinheitenDatenbank.EinheitEntfernen (RasseExtern   => RasseExtern,
-                                                    EinheitNummer => EinheitStatus.EinheitNummer);
                
-            when False =>
-               KIBewegung.KIBewegung (RasseExtern   => RasseExtern,
-                                      EinheitStatus => EinheitStatus);
-         end case;
-         
-      else
-         KIBewegung.KIBewegung (RasseExtern   => RasseExtern,
-                                EinheitStatus => EinheitStatus);
-      end if;
-      
-   end KIStadtBauen;
-   
-   
-   
-   procedure KIVerbesserungAnlegen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
+   procedure KIAktivitätStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is
    begin
-      
+            
       null;
-      
-   end KIVerbesserungAnlegen;
-   
-
-
-   procedure KIGebäudeBauen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
-   begin
-      
-      null;
-      
-   end KIGebäudeBauen;
-      
-      
-      
-   procedure KIBefestigen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
-   begin
-         
-      KIBewegung.KIBewegung (RasseExtern   => RasseExtern,
-                             EinheitStatus => EinheitStatus);
-         
-   end KIBefestigen;
-      
-      
-      
-   procedure KIAngreifen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitStatus : KIRecords.EinheitStatusRecord) is
-   begin
-         
-      null;
-         
-   end KIAngreifen;
+            
+   end KIAktivitätStadt;
 
 end KI;
