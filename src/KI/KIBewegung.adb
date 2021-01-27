@@ -35,132 +35,110 @@ package body KIBewegung is
       Schleife:
       for Durchgang in 1 .. 2 loop
          YAchseSchleife:
-         for YAchse in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             XAchseSchleife:
-            for XAchse in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
-               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
-                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse,
-                                                                 YÄnderung      => YAchse,
-                                                                 XÄnderung      => XAchse,
-                                                                 ZusatzYAbstand => 0);
-               
-               case Kartenwert.YAchse is
-                  when GlobaleDatentypen.Kartenfeld'First =>
-                     exit XAchseSchleife;
-                  
-                  when others =>
-                     case Durchgang is
-                        when 1 =>
-                           if Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund = 2 or Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund = 31 or YAchse = 0 or XAchse = 0 then
-                              null;
+               if YÄnderung = 0 and XÄnderung = 0 then
+                  null;
+
+               else
+                  Bewegung := BewegungssystemEinheiten.ZwischenEbene (RasseExtern   => RasseExtern,
+                                                                      EinheitNummer => EinheitNummer,
+                                                                      YÄnderung     => YÄnderung,
+                                                                      XÄnderung     => XÄnderung);
+
+                  case Bewegung is
+                     when 1 => -- Bewegung auf Feld möglich.
+                        Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
+                                                                          XKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse,
+                                                                          YÄnderung     => YÄnderung,
+                                                                          XÄnderung     => XÄnderung,
+                                                                          ZusatzYAbstand => 0);
+                        
+                        ErfolgreichBewegt := Bewegen (Durchgang     => Durchgang,
+                                                      RasseExtern   => RasseExtern,
+                                                      EinheitNummer => EinheitNummer,
+                                                      EAchse        => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse,
+                                                      YAchse        => Kartenwert.YAchse,
+                                                      XAchse        => Kartenwert.XAchse);
+
+                        case ErfolgreichBewegt is
+                           when True =>
+                              exit Schleife;
                               
-                           elsif Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Felderwertung
-                             > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
-                                              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).Felderwertung then
-                              ImWeg := ZeugImWeg (EAchse => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse,
-                                                  YAchse => Kartenwert.YAchse,
-                                                  XAchse => Kartenwert.XAchse);
-                                                            
-                              case ImWeg is
-                                 when False =>
-                                    AltePosition := IstDasEineAltePosition (RasseExtern   => RasseExtern,
-                                                                            EinheitNummer => EinheitNummer,
-                                                                            EAchse        => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse,
-                                                                            YAchse        => Kartenwert.YAchse,
-                                                                            XAchse        => Kartenwert.XAchse);
-                                    
-                                    case AltePosition is
-                                       when True =>
-                                          null;
-                                          
-                                       when False =>
-                                          BewegungDurchführen (RasseExtern   => RasseExtern,
-                                                               EinheitNummer => EinheitNummer,
-                                                               EAchse        => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse,
-                                                               YAchse        => Kartenwert.YAchse,
-                                                               XAchse        => Kartenwert.XAchse);                                          
-                                          exit Schleife;
-                                    end case;
-                                    
-                                 when True =>
-                                    null;
-                              end case;
-                           
-                           else
+                           when False =>
                               null;
-                           end if;
-                           
-                        when others =>
-                           if Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund = 2 or Karten.Karten (0, Kartenwert.YAchse, Kartenwert.XAchse).Grund = 31 or YAchse = 0 or XAchse = 0 then
-                              null;
-                                 
-                           else
-                              ImWeg := ZeugImWeg (EAchse => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse,
-                                                  YAchse => Kartenwert.YAchse,
-                                                  XAchse => Kartenwert.XAchse);
-                              case ImWeg is
-                                 when False =>
-                                    AltePosition := IstDasEineAltePosition (RasseExtern   => RasseExtern,
-                                                                            EinheitNummer => EinheitNummer,
-                                                                            EAchse        => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse,
-                                                                            YAchse        => Kartenwert.YAchse,
-                                                                            XAchse        => Kartenwert.XAchse);
-                                    
-                                    case AltePosition is
-                                       when True =>
-                                          null;
-                                          
-                                       when False =>
-                                          BewegungDurchführen (RasseExtern   => RasseExtern,
-                                                                EinheitNummer => EinheitNummer,
-                                                                EAchse        => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse,
-                                                                YAchse        => Kartenwert.YAchse,
-                                                                XAchse        => Kartenwert.XAchse);                                          
-                                          exit Schleife;
-                                    end case;
-                                    
-                                 when True =>
-                                    null;
-                              end case;
-                           end if;
-                     end case;
-               end case;           
+                        end case;
+                     
+                     when 0 => -- Außerhalb der Karte oder Feld blockiert durch eigene Einheit.
+                        null;
+                     
+                     when -1 => -- Gegnerische Einheit oder Stadt auf dem Feld.
+                        null;
+                  end case;
+               end if;  
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
       end loop Schleife;
-      
+   
    end BewegungSiedler;
 
 
 
-   function ZeugImWeg (EAchse : in GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
+   function Bewegen (Durchgang : in Positive; RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
    begin
       
-      EinheitImWeg := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => YAchse,
-                                                                             XAchse => XAchse);
-      case EinheitImWeg.Rasse is
-         when GlobaleDatentypen.RassenMitNullwert'First =>
-            null;
+      case Durchgang is
+         when 1 =>
+            if Karten.Karten (EAchse, YAchse, XAchse).Felderwertung > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
+                                                                                                      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).Felderwertung then
+               AltePosition := IstDasEineAltePosition (RasseExtern   => RasseExtern,
+                                                       EinheitNummer => EinheitNummer,
+                                                       EAchse        => EAchse,
+                                                       YAchse        => YAchse,
+                                                       XAchse        => XAchse);
+                        
+               case AltePosition is
+                  when True =>
+                     return False;
+                              
+                  when False =>
+                     BewegungDurchführen (RasseExtern   => RasseExtern,
+                                           EinheitNummer => EinheitNummer,
+                                           EAchse        => EAchse,
+                                           YAchse        => YAchse,
+                                           XAchse        => XAchse);                                          
+                     return True;
+               end case;
+                           
+            else
+               return False;
+            end if;
+                           
+         when others =>                      
+            AltePosition := IstDasEineAltePosition (RasseExtern   => RasseExtern,
+                                                    EinheitNummer => EinheitNummer,
+                                                    EAchse        => EAchse,
+                                                    YAchse        => YAchse,
+                                                    XAchse        => XAchse);
                                     
-         when others =>
-            return True;
-      end case;
-
-      StadtImWeg := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => YAchse,
-                                                                         XAchse => XAchse);
-      case StadtImWeg.Rasse is
-         when GlobaleDatentypen.RassenMitNullwert'First =>
-            null;
-                                    
-         when others =>
-            return True;
-      end case;
+            case AltePosition is
+               when True =>
+                  return False;
+                                          
+               when False =>
+                  BewegungDurchführen (RasseExtern   => RasseExtern,
+                                        EinheitNummer => EinheitNummer,
+                                        EAchse        => EAchse,
+                                        YAchse        => YAchse,
+                                        XAchse        => XAchse);                                          
+                  return True;
+            end case;
+      end case; 
       
-      return False;
-      
-   end ZeugImWeg;
+   end Bewegen;
 
 
 
@@ -191,15 +169,11 @@ package body KIBewegung is
       KIVariablen.LetzteBewegungen (RasseExtern, EinheitNummer, 2) := KIVariablen.LetzteBewegungen (RasseExtern, EinheitNummer, 1);
       KIVariablen.LetzteBewegungen (RasseExtern, EinheitNummer, 1) := (EAchse, YAchse, XAchse);
       
-      BewegungZiel := (EAchse, YAchse, XAchse);
-
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse := BewegungZiel.EAchse;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse := BewegungZiel.YAchse;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse := BewegungZiel.XAchse;
-
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte := 0.00;
-      
-      
+      BewegungssystemEinheiten.BewegungEinheitenBerechnung (RasseExtern   => RasseExtern,
+                                                            EinheitNummer => EinheitNummer,
+                                                            YPosition     => YAchse,
+                                                            XPosition     => XAchse);
+            
    end BewegungDurchführen;
 
 

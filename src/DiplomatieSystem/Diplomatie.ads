@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, GlobaleDatentypen;
+with GlobaleVariablen, GlobaleDatentypen, GlobaleRecords, Kampfsystem, Auswahl;
 use GlobaleDatentypen;
 
 package Diplomatie is
@@ -13,8 +13,15 @@ package Diplomatie is
    function DiplomatischenStatusPrüfen (AngreifendeRasse, VerteidigendeRasse : in GlobaleDatentypen.Rassen) return Integer with
      Pre => AngreifendeRasse /= VerteidigendeRasse;
 
+   function GegnerAngreifenOderNicht (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; Gegner : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean with
+     Pre => RasseExtern /= Gegner.Rasse;
+
 private
 
+   Angreifen : Boolean;
+   Gewonnen : Boolean;
 
+   BereitsImKrieg : Integer;
+   Wahl : Integer;
 
 end Diplomatie;

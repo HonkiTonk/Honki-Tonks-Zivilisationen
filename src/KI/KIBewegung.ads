@@ -9,13 +9,12 @@ package KIBewegung is
 
 private
 
-   ImWeg : Boolean;
    AltePosition : Boolean;
+   ErfolgreichBewegt : Boolean;
+   
+   Bewegung : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
    
    Kartenwert : GlobaleRecords.AchsenAusKartenfeld;
-   BewegungZiel : GlobaleRecords.AchsenAusKartenfeldPositiv;
-   EinheitImWeg : GlobaleRecords.RasseUndPlatznummerRecord;
-   StadtImWeg : GlobaleRecords.RasseUndPlatznummerRecord;
 
    procedure BewegungSiedler (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive);
    procedure BewegungBauarbeiter (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive);
@@ -26,7 +25,7 @@ private
 
    procedure BewegungDurchführen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv);
 
-   function ZeugImWeg (EAchse : in GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean;
+   function Bewegen (Durchgang : in Positive; RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean;
    function IstDasEineAltePosition (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean;
 
 end KIBewegung;

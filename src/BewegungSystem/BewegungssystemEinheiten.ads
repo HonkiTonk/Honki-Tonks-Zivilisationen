@@ -7,39 +7,32 @@ use GlobaleDatentypen;
 package BewegungssystemEinheiten is
 
    procedure BewegungEinheitenRichtung (RasseExtern : GlobaleDatentypen.Rassen; EinheitNummer : in Positive);
+   procedure BewegungEinheitenBerechnung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv);
+   
+   function ZwischenEbene (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) return GlobaleDatentypen.LoopRangeMinusEinsZuEins with
+     Pre => (YÄnderung /= 0 or XÄnderung /= 0);
+
    
 private
 
-   Wert : Boolean;
-   RückgabeWert : Boolean;
-
-   Angreifen : Boolean;
-   Gewonnen : Boolean;
+   FeldPassierbar : Boolean;
+   ErgebnisGegnerAngreifen : Boolean;
 
    Richtung : Wide_Wide_Character;
       
    XÄnderung : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
    YÄnderung : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
+   RückgabeWert : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
    
-   Wahl : Integer;
-   BereitsImKrieg : Integer;
-
    Stadtnummer : Integer;
 
    KartenWert : GlobaleRecords.AchsenAusKartenfeld;
+   GegnerWert : GlobaleRecords.RasseUndPlatznummerRecord;
    GegnerEinheitWert : GlobaleRecords.RasseUndPlatznummerRecord;
    GegnerStadtWert : GlobaleRecords.RasseUndPlatznummerRecord;
    
-   procedure BewegungEinheitenBerechnung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) with
-     Pre => (YÄnderung /= 0 or XÄnderung /= 0);
 
-   function ZwischenEbeneFürDieKI (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) return Boolean with
-     Pre => (YÄnderung /= 0 or XÄnderung /= 0);
-
-   function FeldFürDieseEinheitPassierbar (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) return Boolean with
-     Pre => (YÄnderung /= 0 or XÄnderung /= 0);
-
-   function BefindetSichDortEineEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) return Boolean with
-     Pre => (YÄnderung /= 0 or XÄnderung /= 0);
+   function FeldFürDieseEinheitPassierbar (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) return Boolean;
+   function BefindetSichDortEineEinheit (RasseExtern : GlobaleDatentypen.RassenMitNullwert; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord;
 
 end BewegungssystemEinheiten;
