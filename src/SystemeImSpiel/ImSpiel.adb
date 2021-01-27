@@ -14,7 +14,7 @@ package body ImSpiel is
                   null;
                   
                when others =>
-                  Sichtbarkeit.Sichtbarkeitsprüfung (RasseExtern => RasseIntern);
+                  Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseIntern);
             end case;
             
             case GlobaleVariablen.RassenImSpiel (RasseIntern) is -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
@@ -53,7 +53,7 @@ package body ImSpiel is
                            exit SpielerSchleife;      
                   
                         when others =>
-                           Sichtbarkeit.Sichtbarkeitsprüfung (RasseExtern => RasseIntern);
+                           Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseIntern);
                      end case;
                      
                   end loop SpielerSchleife;

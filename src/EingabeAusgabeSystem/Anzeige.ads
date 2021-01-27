@@ -61,4 +61,18 @@ private
                              3 => (1 => (9, 34), 2 => (9, 20), 3 => (9, 21), 4 => (9, 22), 5 => (9, 23), 6 => (9, 1), 7 => (9, 2), 8 => (9, 3), 9 => (9, 4), 10 => (9, 5),
                                    11 => (9, 6), 12 => (9, 7), 13 => (9, 8), 14 => (9, 9), 15 => (9, 10), 16 => (9, 11), 17 => (9, 12), 18 => (9, 28), others => (100, 100)));
 
+
+
+   type WelcheDateienWelcheTexteRecord is record
+            
+      TextDatei : GlobaleDatentypen.TextDateien;
+
+      TextAnfangZeile : GlobaleDatentypen.TextZeilen;
+      TextEndeZeile : GlobaleDatentypen.TextZeilen;
+      
+   end record;
+   
+   type WelcheDateienWelcheTexteArray is array (0 .. 21, 0 .. 84) of WelcheDateienWelcheTexteRecord;
+   WelcheDateienWelcheTexte : constant WelcheDateienWelcheTexteArray := (others => (others => (0, 0, 0)));
+
 end Anzeige;

@@ -10,6 +10,9 @@ package BewegungssystemEinheiten is
    
 private
 
+   Wert : Boolean;
+   RückgabeWert : Boolean;
+
    Angreifen : Boolean;
    Gewonnen : Boolean;
 
@@ -28,6 +31,15 @@ private
    GegnerStadtWert : GlobaleRecords.RasseUndPlatznummerRecord;
    
    procedure BewegungEinheitenBerechnung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) with
+     Pre => (YÄnderung /= 0 or XÄnderung /= 0);
+
+   function ZwischenEbeneFürDieKI (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) return Boolean with
+     Pre => (YÄnderung /= 0 or XÄnderung /= 0);
+
+   function FeldFürDieseEinheitPassierbar (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) return Boolean with
+     Pre => (YÄnderung /= 0 or XÄnderung /= 0);
+
+   function BefindetSichDortEineEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) return Boolean with
      Pre => (YÄnderung /= 0 or XÄnderung /= 0);
 
 end BewegungssystemEinheiten;

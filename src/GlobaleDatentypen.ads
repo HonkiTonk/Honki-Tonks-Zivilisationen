@@ -1,7 +1,9 @@
 package GlobaleDatentypen is
 
    -- Für Anzeige
-   
+   type TextDateien is range 0 .. 21;
+   type TextZeilen is range 0 .. 84;
+   subtype TextZeilenOhneNull is TextZeilen range 1 .. 84;
    -- Für Anzeige
    
    -- Für Karte

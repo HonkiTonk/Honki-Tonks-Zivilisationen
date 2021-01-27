@@ -8,6 +8,6 @@ package Informationen is
 private
 
    Taste : Wide_Wide_Character;
-   Versionsnummer : Wide_Wide_String (1 .. 9) := "0.00.6220";
+   Versionsnummer : Wide_Wide_String (1 .. 9) := "0.00.6230";
 
 end Informationen;

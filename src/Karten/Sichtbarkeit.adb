@@ -1,6 +1,6 @@
 package body Sichtbarkeit is
 
-   procedure Sichtbarkeitsprüfung (RasseExtern : in GlobaleDatentypen.Rassen) is
+   procedure SichtbarkeitsprüfungFürRasse (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       EinheitenPlätzeSchleife:
@@ -11,82 +11,105 @@ package body Sichtbarkeit is
                exit EinheitenPlätzeSchleife;
             
             when others =>
-               null;
+               SichtbarkeitsprüfungFürEinheit (RasseExtern   => RasseExtern,
+                                               EinheitNummer => EinheitNummer);
          end case;
          
-         case Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse,
-                             GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
-                             GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).Grund is
-            when 7 =>
-               Sichtweite := 3;
-
-            when 9 =>
-               Sichtweite := 1;
-               
-            when others =>
-               Sichtweite := 2;
-         end case;
-
-         YÄnderungEinheitenSchleife:
-         for YÄnderung in -Sichtweite .. Sichtweite loop            
-            XÄnderungEinheitenSchleife:
-            for XÄnderung in -Sichtweite .. Sichtweite loop
-               
-               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
-                                                                 XKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse,
-                                                                 YÄnderung      => YÄnderung,
-                                                                 XÄnderung      => XÄnderung,
-                                                                 ZusatzYAbstand => 0);
-
-               case Kartenwert.YAchse is
-                  when GlobaleDatentypen.Kartenfeld'First =>
-                     exit XÄnderungEinheitenSchleife;
-                     
-                  when others =>
-                     Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (RasseExtern) := True;
-               end case;
-            
-            end loop XÄnderungEinheitenSchleife;
-         end loop YÄnderungEinheitenSchleife;
       end loop EinheitenPlätzeSchleife;
 
       StadtPlätzeSchleife:
       for StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
 
-         if GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ID = 0 then
-            exit StadtPlätzeSchleife;
-                  
-         elsif GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Einwohner < 10 then
-            Sichtweite := 2;
-            
-         else
-            Sichtweite := 3;
-         end if;
-
-         YÄnderungStadtSchleife:         
-         for YÄnderung in -Sichtweite .. Sichtweite loop            
-            XÄnderungStadtSchleife:
-            for XÄnderung in -Sichtweite .. Sichtweite loop
-
-               Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.YAchse,
-                                                                 XKoordinate    => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.XAchse,
-                                                                 YÄnderung      => YÄnderung,
-                                                                 XÄnderung      => XÄnderung,
-                                                                 ZusatzYAbstand => 0);
+         case GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ID is
+            when 0 =>
+               exit StadtPlätzeSchleife;
                
-               case Kartenwert.YAchse is
-                  when GlobaleDatentypen.Kartenfeld'First =>
-                     exit XÄnderungStadtSchleife;
-                     
-                  when others =>
-                     Karten.Karten (GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (RasseExtern) := True;
-               end case;
-            
-            end loop XÄnderungStadtSchleife;
-         end loop YÄnderungStadtSchleife;
+            when others =>
+               SichtbarkeitsprüfungFürStadt (RasseExtern => RasseExtern,
+                                             StadtNummer => StadtNummer);
+         end case;
+         
       end loop StadtPlätzeSchleife;
       
-   end Sichtbarkeitsprüfung;
+   end SichtbarkeitsprüfungFürRasse;
+
+
+
+   procedure SichtbarkeitsprüfungFürEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) is
+   begin
+      
+      case Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse,
+                          GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
+                          GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).Grund is
+         when 7 =>
+            Sichtweite := 3;
+
+         when 9 =>
+            Sichtweite := 1;
+               
+         when others =>
+            Sichtweite := 2;
+      end case;
+
+      YÄnderungEinheitenSchleife:
+      for YÄnderung in -Sichtweite .. Sichtweite loop            
+         XÄnderungEinheitenSchleife:
+         for XÄnderung in -Sichtweite .. Sichtweite loop
+               
+            Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
+                                                              XKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 0);
+
+            case Kartenwert.YAchse is
+               when GlobaleDatentypen.Kartenfeld'First =>
+                  exit XÄnderungEinheitenSchleife;
+                     
+               when others =>
+                  Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (RasseExtern) := True;
+            end case;
+            
+         end loop XÄnderungEinheitenSchleife;
+      end loop YÄnderungEinheitenSchleife;
+      
+   end SichtbarkeitsprüfungFürEinheit;
+
+
+
+   procedure SichtbarkeitsprüfungFürStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is
+   begin
+      
+      if GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Einwohner < 10 then
+         Sichtweite := 2;
+            
+      else
+         Sichtweite := 3;
+      end if;
+
+      YÄnderungStadtSchleife:         
+      for YÄnderung in -Sichtweite .. Sichtweite loop            
+         XÄnderungStadtSchleife:
+         for XÄnderung in -Sichtweite .. Sichtweite loop
+
+            Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.YAchse,
+                                                              XKoordinate    => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.XAchse,
+                                                              YÄnderung      => YÄnderung,
+                                                              XÄnderung      => XÄnderung,
+                                                              ZusatzYAbstand => 0);
+               
+            case Kartenwert.YAchse is
+               when GlobaleDatentypen.Kartenfeld'First =>
+                  exit XÄnderungStadtSchleife;
+                     
+               when others =>
+                  Karten.Karten (GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (RasseExtern) := True;
+            end case;
+            
+         end loop XÄnderungStadtSchleife;
+      end loop YÄnderungStadtSchleife;
+      
+   end SichtbarkeitsprüfungFürStadt;
 
 
 

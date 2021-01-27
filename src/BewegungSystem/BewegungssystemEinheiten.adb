@@ -48,25 +48,116 @@ package body BewegungssystemEinheiten is
                return;
          end case;
          
-         BewegungEinheitenBerechnung (RasseExtern   => RasseExtern,
-                                      EinheitNummer => EinheitNummer,
-                                      YÄnderung     => YÄnderung,
-                                      XÄnderung     => XÄnderung);
-         Sichtbarkeit.Sichtbarkeitsprüfung (RasseExtern => RasseExtern);
-         
-         if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00 then
-            return;
+         Wert := ZwischenEbeneFürDieKI (RasseExtern   => RasseExtern,
+                                            EinheitNummer => EinheitNummer,
+                                            YÄnderung    => YÄnderung,
+                                            XÄnderung    => XÄnderung);
 
-         elsif Gewonnen = False then
-            return;
+         case Wert is
+            when True =>
+               BewegungEinheitenBerechnung (RasseExtern   => RasseExtern,
+                                            EinheitNummer => EinheitNummer,
+                                            YÄnderung     => YÄnderung,
+                                            XÄnderung     => XÄnderung);
+               Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (RasseExtern   => RasseExtern,
+                                                              EinheitNummer => EinheitNummer);
+               if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00 then
+                  return;
+
+               elsif Gewonnen = False then
+                  return;
                
-         else
-            Karte.AnzeigeKarte (RasseExtern => RasseExtern);
-         end if;
-         
+               else
+                  Karte.AnzeigeKarte (RasseExtern => RasseExtern);
+               end if;
+               
+            when False =>
+               null;
+         end case;   
+                  
       end loop BewegenSchleife;
       
    end BewegungEinheitenRichtung;
+
+
+
+   function ZwischenEbeneFürDieKI (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) return Boolean is
+   begin
+
+      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
+                                                        XKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse,
+                                                        YÄnderung      => YÄnderung,
+                                                        XÄnderung      => XÄnderung,
+                                                        ZusatzYAbstand => 0);
+
+      case KartenWert.YAchse is
+         when GlobaleDatentypen.Kartenfeld'First =>
+            return False;
+            
+         when others =>      
+            RückgabeWert := FeldFürDieseEinheitPassierbar (RasseExtern   => RasseExtern,
+                                                           EinheitNummer => EinheitNummer,
+                                                           YPosition     => KartenWert.YAchse,
+                                                           XPosition     => KartenWert.XAchse);
+      end case;
+
+      case RückgabeWert is
+         when True =>
+            null;
+            
+         when False =>
+            return RückgabeWert;
+      end case;
+
+      return True;
+      
+   end ZwischenEbeneFürDieKI;
+
+
+
+   function FeldFürDieseEinheitPassierbar (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
+   begin
+      
+      
+      if EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).Passierbarkeit = 3 then
+         null;
+               
+      elsif EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).Passierbarkeit
+        /= KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse, YPosition, XPosition).Grund).Passierbarkeit then
+         case EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).Passierbarkeit is
+            when 2 =>
+               Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (RasseExtern  => RasseExtern,
+                                                                                  YAchse       => YPosition,
+                                                                                  XAchse       => XPosition);
+         
+               case Stadtnummer is
+                  when 0 =>
+                     return False;
+               
+                  when others =>
+                     null;
+               end case;
+                     
+            when others =>
+               return False;
+         end case;
+            
+      else
+         null;
+      end if;
+
+      return True;
+      
+   end FeldFürDieseEinheitPassierbar;
+
+
+
+   function BefindetSichDortEineEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) return Boolean is
+   begin
+      
+      return True;
+      
+   end BefindetSichDortEineEinheit;
 
    
 
@@ -76,45 +167,6 @@ package body BewegungssystemEinheiten is
       Gewonnen := True;
       Angreifen := False; 
       
-      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse,
-                                                        YÄnderung      => YÄnderung,
-                                                        XÄnderung      => XÄnderung,
-                                                        ZusatzYAbstand => 0);
-
-      case KartenWert.YAchse is
-         when GlobaleDatentypen.Kartenfeld'First =>
-            return;
-            
-         when others =>
-            if EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).Passierbarkeit = 3 then
-               null;
-               
-            elsif EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).Passierbarkeit
-              /= KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit then
-               case EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).Passierbarkeit is
-                  when 2 =>
-                     Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (RasseExtern  => RasseExtern,
-                                                                                        YAchse       => KartenWert.YAchse,
-                                                                                        XAchse       => KartenWert.XAchse);
-         
-                     case Stadtnummer is
-                        when 0 =>
-                           return;
-               
-                        when others =>
-                           null;
-                     end case;
-                     
-                  when others =>
-                     return;
-               end case;
-            
-            else
-               null;
-            end if;
-      end case;
-
       GegnerEinheitWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => KartenWert.YAchse,
                                                                                   XAchse => KartenWert.XAchse);
 

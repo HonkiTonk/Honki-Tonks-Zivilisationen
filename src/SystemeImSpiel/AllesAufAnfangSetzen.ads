@@ -1,7 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen, Karten;
+with GlobaleVariablen, Karten, KIVariablen;
 
 package AllesAufAnfangSetzen is
 

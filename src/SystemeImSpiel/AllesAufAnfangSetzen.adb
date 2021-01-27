@@ -14,6 +14,8 @@ package body AllesAufAnfangSetzen is
 
       Karten.Karten := (others => (others => (others => (0, False, (others => False), 0, 0, 0, 0, 0, 0))));
       Karten.Stadtkarte := (others => (others => (0)));
+
+      KIVariablen.LetzteBewegungen := (others => (others => (others => (0, 0, 0))));
       
    end AllesAufAnfangSetzen;
 

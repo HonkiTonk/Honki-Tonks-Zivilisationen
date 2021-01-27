@@ -6,7 +6,7 @@ package body KISiedler is
       case GlobaleVariablen.StadtGebaut (RasseExtern, 1).ID is
          when 0 =>
             if Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).Felderwertung >= 185
+                              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).Felderwertung >= 90
               and Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
                               GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).DurchStadtBelegterGrund = 0 then
                StadtErfolgreichGebaut := InDerStadt.StadtBauen (RasseExtern   => RasseExtern,
