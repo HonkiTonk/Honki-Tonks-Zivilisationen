@@ -1,41 +1,44 @@
 package body SchleifenPruefungen is 
 
-   function KartenUmgebung (YKoordinate, XKoordinate, YÄnderung, XÄnderung, ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenAusKartenfeld is
-   begin
-      -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (2) + 3
+   function KartenUmgebung (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv; Änderung : in GlobaleRecords.AchsenAusKartenfeld;
+                            ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenAusKartenfeld is
+   begin -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (2) + 3
       
-      if YKoordinate + YÄnderung < Karten.Karten'First (2) + ZusatzYAbstand or YKoordinate + YÄnderung > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
+      if Koordinaten.EAchse + Änderung.EAchse < Karten.Karten'First (1) or Koordinaten.EAchse + Änderung.EAchse > Karten.Karten'Last (1) then
+         return (GlobaleDatentypen.Ebene'First, GlobaleDatentypen.Kartenfeld'First, GlobaleDatentypen.Kartenfeld'First);
+      
+      elsif Koordinaten.YAchse + Änderung.YAchse < Karten.Karten'First (2) + ZusatzYAbstand or Koordinaten.YAchse + Änderung.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
          return (GlobaleDatentypen.Ebene'First, GlobaleDatentypen.Kartenfeld'First, GlobaleDatentypen.Kartenfeld'First);
 
-      elsif XKoordinate + XÄnderung < Karten.Karten'First (3) then
-         Überhang := Integer (XKoordinate + XÄnderung + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+      elsif Koordinaten.XAchse + Änderung.XAchse < Karten.Karten'First (3) then
+         Überhang := Integer (Koordinaten.XAchse + Änderung.XAchse + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
          SchleifeKleiner:
          while Überhang < Integer (Karten.Karten'First (3)) loop
             
             Überhang := Überhang + Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
          end loop SchleifeKleiner;
-         return (0, YKoordinate + YÄnderung, GlobaleDatentypen.Kartenfeld (Überhang));
+         return (Koordinaten.EAchse + Änderung.EAchse, Koordinaten.YAchse + Änderung.YAchse, GlobaleDatentypen.Kartenfeld (Überhang));
                
-      elsif XKoordinate + XÄnderung > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-         Überhang := Integer (XKoordinate + XÄnderung - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+      elsif Koordinaten.XAchse + Änderung.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+         Überhang := Integer (Koordinaten.XAchse + Änderung.XAchse - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
          SchleifeGrößer:
          while Überhang > Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße) loop
             
             Überhang := Überhang - Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
             
          end loop SchleifeGrößer;
-         return (0, YKoordinate + YÄnderung, GlobaleDatentypen.Kartenfeld (Überhang));
+         return (Koordinaten.EAchse + Änderung.EAchse, Koordinaten.YAchse + Änderung.YAchse, GlobaleDatentypen.Kartenfeld (Überhang));
                
       else
-         return (0, YKoordinate + YÄnderung, XKoordinate + XÄnderung);
+         return (Koordinaten.EAchse + Änderung.EAchse, Koordinaten.YAchse + Änderung.YAchse, Koordinaten.XAchse + Änderung.XAchse);
       end if;
       
    end KartenUmgebung;
 
    
 
-   function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Integer is
+   function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return Integer is
    begin
       
       StadtSchleife:
@@ -44,7 +47,7 @@ package body SchleifenPruefungen is
          if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).ID = 0 then
             exit StadtSchleife;
             
-         elsif GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AchsenPosition.XAchse = XAchse then
+         elsif GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AchsenPosition = Koordinaten then
             return Stadtnummer;
             
          else
@@ -59,7 +62,7 @@ package body SchleifenPruefungen is
 
 
 
-   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Integer is
+   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return Integer is
    begin
       
       EinheitSchleife:
@@ -68,7 +71,7 @@ package body SchleifenPruefungen is
          if GlobaleVariablen.EinheitenGebaut (RasseExtern, Einheitennummer).ID = 0 then
             exit EinheitSchleife;
             
-         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, Einheitennummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (RasseExtern, Einheitennummer).AchsenPosition.XAchse = XAchse then
+         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, Einheitennummer).AchsenPosition = Koordinaten then
             return Einheitennummer;
             
          else
@@ -83,7 +86,7 @@ package body SchleifenPruefungen is
    
    
    
-   function KoordinatenStadtOhneRasseSuchen (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord is
+   function KoordinatenStadtOhneRasseSuchen (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -94,7 +97,7 @@ package body SchleifenPruefungen is
             if GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).ID = 0 then
                exit StadtSchleife;
                
-            elsif GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).AchsenPosition.XAchse = XAchse then
+            elsif GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).AchsenPosition = Koordinaten then
                return (RasseIntern, Stadtnummer);
                
             else
@@ -110,7 +113,7 @@ package body SchleifenPruefungen is
    
    
    
-   function KoordinatenEinheitOhneRasseSuchen (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord is
+   function KoordinatenEinheitOhneRasseSuchen (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -121,7 +124,7 @@ package body SchleifenPruefungen is
             if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID = 0 then
                exit EinheitSchleife;
                
-            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition.YAchse = YAchse and GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition.XAchse = XAchse then
+            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition = Koordinaten then
                return (RasseIntern, EinheitNummer);
                
             else
@@ -137,10 +140,11 @@ package body SchleifenPruefungen is
    
    
    
-   function KartenGrund (Ebene : in GlobaleDatentypen.Ebene; YKoordinate, XKoordinate : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
+   -- Sinnvoller benennen und weitere Prüfung für nur Wasser und so weiter einbauen
+   function KartenGrund (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return Boolean is
    begin
       
-      case Karten.Karten (Ebene, YKoordinate, XKoordinate).Grund is
+      case Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund is
          when 1 .. 2 | 29 .. 31 | 36 =>
             return False;
             

@@ -1,7 +1,7 @@
 with Ada.Calendar;
 use Ada.Calendar;
 
-with InDerStadt, Wachstum, Bauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, GebaeudeDatenbank, GlobaleVariablen, Anzeige, KI, Ladezeiten;
+with InDerStadt, Wachstum, Bauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, GebaeudeDatenbank, GlobaleVariablen, Anzeige, KI, Ladezeiten, Speichern, Laden;
 
 package ImSpiel is
 

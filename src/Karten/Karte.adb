@@ -76,10 +76,10 @@ package body Karte is
          XAchseSchleife:
          for XAchse in -Sichtweite (SichtweiteFestlegen).XAchse .. Sichtweite (SichtweiteFestlegen).XAchse loop
             
-            Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.YAchse,
-                                                              XKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse,
-                                                              YÄnderung      => YAchse,
-                                                              XÄnderung      => XAchse,
+            Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.EAchse,
+                                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.YAchse,
+                                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse),
+                                                              Änderung       => (0, YAchse, XAchse),
                                                               ZusatzYAbstand => 0);
             
             case Kartenwert.YAchse is
@@ -136,8 +136,7 @@ package body Karte is
       case Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Sichtbar (RasseExtern) is
          when True =>
-            RasseUndPlatznummer := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                                                                                          XAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse);
+            RasseUndPlatznummer := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
             
             case RasseUndPlatznummer.Platznummer is
                when SchleifenPruefungen.RückgabeWert =>
@@ -195,8 +194,7 @@ package body Karte is
                   end case;
             end case;
             
-            RasseUndPlatznummer := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                                                                                        XAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse);
+            RasseUndPlatznummer := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
             case RasseUndPlatznummer.Platznummer is
                when SchleifenPruefungen.RückgabeWert =>

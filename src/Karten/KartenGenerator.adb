@@ -155,10 +155,8 @@ package body KartenGenerator is
          XAchseSchleife:
          for XÄnderung in -GrößeLandart (Kartenart) / 2 .. GrößeLandart (Kartenart) / 2 loop
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPositionLandmasse,
-                                                              XKoordinate    => XPositionLandmasse,
-                                                              YÄnderung      => YÄnderung,
-                                                              XÄnderung      => XÄnderung,
+            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YPositionLandmasse, XPositionLandmasse),
+                                                              Änderung      => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
             case KartenWert.YAchse is
@@ -180,11 +178,10 @@ package body KartenGenerator is
          XAchseZweiSchleife:
          for XÄnderung in -FelderVonLandartZuLandart (Kartenart) .. FelderVonLandartZuLandart (Kartenart) loop
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPositionLandmasse,
-                                                              XKoordinate    => XPositionLandmasse,
-                                                              YÄnderung      => YÄnderung,
-                                                              XÄnderung      => XÄnderung,
+            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YPositionLandmasse, XPositionLandmasse),
+                                                              Änderung      => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
+            
             case KartenWert.YAchse is
                when GlobaleDatentypen.Kartenfeld'First =>
                   exit XAchseZweiSchleife;
@@ -263,10 +260,8 @@ package body KartenGenerator is
                      ZweiteXAchseSchleife:
                      for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                      
-                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
-                                                                          XKoordinate    => XPosition,
-                                                                          YÄnderung      => YÄnderung,
-                                                                          XÄnderung      => XÄnderung,
+                        KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YPosition, XPosition),
+                                                                          Änderung       => (0, YÄnderung, XÄnderung),
                                                                           ZusatzYAbstand => 0);
 
                         case KartenWert.YAchse is
@@ -389,10 +384,8 @@ package body KartenGenerator is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeNullZuEins'Range loop            
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YAchse,
-                                                              XKoordinate    => XAchse,
-                                                              YÄnderung      => YÄnderung,
-                                                              XÄnderung      => XÄnderung,
+            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YAchse, XAchse),
+                                                              Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 0);
 
             case KartenWert.YAchse is
@@ -446,10 +439,8 @@ package body KartenGenerator is
                ZweiteXAchseSchleife:
                for XÄnderung in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
             
-                  KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YAchse,
-                                                                    XKoordinate    => XAchse,
-                                                                    YÄnderung      => YÄnderung,
-                                                                    XÄnderung      => XÄnderung,
+                  KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YAchse, XAchse),
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
                                                                     ZusatzYAbstand => 0);
 
                   case KartenWert.YAchse is
@@ -485,10 +476,8 @@ package body KartenGenerator is
          XAchseHügelSchleife:
          for XÄnderungHügel in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop            
             
-            KartenWertHügel := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YAchse,
-                                                                   XKoordinate    => XAchse,
-                                                                   YÄnderung      => YÄnderungHügel,
-                                                                   XÄnderung      => XÄnderungHügel,
+            KartenWertHügel := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YAchse, XAchse),
+                                                                   Änderung       => (0, YÄnderungHügel, XÄnderungHügel),
                                                                    ZusatzYAbstand => 0);
 
             case KartenWertHügel.YAchse is
@@ -575,12 +564,10 @@ package body KartenGenerator is
                   XAchseSchleifeZwei:
                   for B in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                   
-                     KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YAchse,
-                                                                       XKoordinate    => XAchse,
-                                                                       YÄnderung      => A,
-                                                                       XÄnderung      => B,
+                     KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YAchse, XAchse),
+                                                                       Änderung       => (0, A, B),
                                                                        ZusatzYAbstand => 0); -- Hier muss < geprüft werden, deswegen 0
-
+                     
                      case KartenWert.YAchse is
                         when GlobaleDatentypen.Kartenfeld'First =>
                            exit XAchseSchleifeZwei;
@@ -622,10 +609,8 @@ package body KartenGenerator is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YKoordinate,
-                                                              XKoordinate    => XKoordinate,
-                                                              YÄnderung      => YÄnderung,
-                                                              XÄnderung      => XÄnderung,
+            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YKoordinate, XKoordinate),
+                                                              Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 0);
 
             case KartenWert.YAchse is
@@ -1061,14 +1046,12 @@ package body KartenGenerator is
       begin
 
          YAchseSchleife:
-         for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.Karten'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
             XAchseSchleife:
             for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
                WerteFestlegen.KartenfelderBewerten (Generierung => True,
-                                                    EAchse      => 1,
-                                                    YAchse      => YAchse,
-                                                    XAchse      => XAchse);
+                                                    Koordinaten => (1, YAchse, XAchse));
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -1081,14 +1064,12 @@ package body KartenGenerator is
       begin
          
          YAchseSchleife:
-         for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.Karten'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
             XAchseSchleife:
             for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
                WerteFestlegen.KartenfelderBewerten (Generierung => True,
-                                                    EAchse      => 2,
-                                                    YAchse      => YAchse,
-                                                    XAchse      => XAchse);
+                                                    Koordinaten => (2, YAchse, XAchse));
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -1101,14 +1082,12 @@ package body KartenGenerator is
       begin
          
          YAchseSchleife:
-         for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.Karten'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
             XAchseSchleife:
             for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
                WerteFestlegen.KartenfelderBewerten (Generierung => True,
-                                                    EAchse      => -1,
-                                                    YAchse      => YAchse,
-                                                    XAchse      => XAchse);
+                                                    Koordinaten => (-1, YAchse, XAchse));
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -1121,14 +1100,12 @@ package body KartenGenerator is
       begin
          
          YAchseSchleife:
-         for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.Karten'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
             XAchseSchleife:
             for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
                WerteFestlegen.KartenfelderBewerten (Generierung => True,
-                                                    EAchse      => -2,
-                                                    YAchse      => YAchse,
-                                                    XAchse      => XAchse);
+                                                    Koordinaten => (-2, YAchse, XAchse));
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -1140,14 +1117,12 @@ package body KartenGenerator is
    begin
       
       YAchseSchleife:
-      for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+      for YAchse in Karten.Karten'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
          XAchseSchleife:
          for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             WerteFestlegen.KartenfelderBewerten (Generierung => True,
-                                                 EAchse      => 0,
-                                                 YAchse      => YAchse,
-                                                 XAchse      => XAchse);
+                                                 Koordinaten => (1, YAchse, XAchse));
                
          end loop XAchseSchleife;
       end loop YAchseSchleife;

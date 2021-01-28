@@ -5,7 +5,7 @@ package body KINahkampfLandEinheit is
       
       KIBewegung.KIBewegung (RasseExtern   => RasseExtern,
                              EinheitNummer => EinheitNummer,
-                             Aufgabe       => 'b');
+                             Aufgabe       => 'e');
       
    end KINahkampfLandEinheit;
 

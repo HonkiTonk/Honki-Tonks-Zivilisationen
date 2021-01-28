@@ -107,10 +107,8 @@ package body BewegungssystemEinheiten is
    function ZwischenEbene (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) return GlobaleDatentypen.LoopRangeMinusEinsZuEins is
    begin
 
-      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
-                                                        XKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse,
-                                                        YÄnderung      => YÄnderung,
-                                                        XÄnderung      => XÄnderung,
+      KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition,
+                                                        Änderung      => (0, YÄnderung, XÄnderung),
                                                         ZusatzYAbstand => 0);
 
       case KartenWert.YAchse is
@@ -162,8 +160,7 @@ package body BewegungssystemEinheiten is
          case EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).Passierbarkeit is
             when 2 =>
                Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (RasseExtern  => RasseExtern,
-                                                                                  YAchse       => YPosition,
-                                                                                  XAchse       => XPosition);
+                                                                                  Koordinaten  => (GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse, YPosition, XPosition));
          
                case Stadtnummer is
                   when 0 =>
@@ -190,8 +187,7 @@ package body BewegungssystemEinheiten is
    function BefindetSichDortEineEinheit (RasseExtern : GlobaleDatentypen.RassenMitNullwert; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord is
    begin
 
-      GegnerEinheitWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => YPosition,
-                                                                                  XAchse => XPosition);
+      GegnerEinheitWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (0, YPosition, XPosition));
 
       if GegnerEinheitWert.Rasse = RasseExtern then
          return (GegnerEinheitWert.Rasse, 1);
@@ -203,8 +199,7 @@ package body BewegungssystemEinheiten is
          return GegnerEinheitWert;
       end if;
 
-      GegnerStadtWert := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => YPosition,
-                                                                              XAchse => XPosition);
+      GegnerStadtWert := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (Koordinaten => (0, YPosition, XPosition));
 
       if GegnerStadtWert.Rasse = RasseExtern then
          return (GegnerStadtWert.Rasse, 0);

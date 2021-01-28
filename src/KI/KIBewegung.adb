@@ -6,11 +6,11 @@ package body KIBewegung is
       -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
       -- f = Flucht, s = Stadt bauen, e = Erkunden, a = Angreifen
       case Aufgabe is
-         when 'f' =>
-            null;
+        -- when 'f' =>
+         --   null;
 
-         when 's' =>
-            null;
+         --when 's' =>
+          --  null;
 
          when 'e' =>
             null;
@@ -19,20 +19,18 @@ package body KIBewegung is
             null;
             
          when others =>
-            null;
-      end case;
-      
-      BewegungSiedler (RasseExtern   => RasseExtern,
-                       EinheitNummer => EinheitNummer);
+            BewegungBeliebig (RasseExtern   => RasseExtern,
+                              EinheitNummer => EinheitNummer);
+      end case;    
       
    end KIBewegung;
 
 
 
-   procedure BewegungSiedler (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
+   procedure BewegungBeliebig (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
    begin
 
-      Schleife:
+      BewegungSchleife:
       for Durchgang in 1 .. 2 loop
          YAchseSchleife:
          for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
@@ -50,10 +48,8 @@ package body KIBewegung is
 
                   case Bewegung is
                      when 1 => -- Bewegung auf Feld möglich.
-                        Kartenwert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
-                                                                          XKoordinate    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse,
-                                                                          YÄnderung     => YÄnderung,
-                                                                          XÄnderung     => XÄnderung,
+                        Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition,
+                                                                          Änderung      => (0, YÄnderung, XÄnderung),
                                                                           ZusatzYAbstand => 0);
                         
                         ErfolgreichBewegt := Bewegen (Durchgang     => Durchgang,
@@ -65,7 +61,7 @@ package body KIBewegung is
 
                         case ErfolgreichBewegt is
                            when True =>
-                              exit Schleife;
+                              exit BewegungSchleife;
                               
                            when False =>
                               null;
@@ -81,9 +77,9 @@ package body KIBewegung is
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
-      end loop Schleife;
+      end loop BewegungSchleife;
    
-   end BewegungSiedler;
+   end BewegungBeliebig;
 
 
 
@@ -179,9 +175,9 @@ package body KIBewegung is
 
 
    procedure BewegungBauarbeiter (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
-   begin
+      begin
       
-      null;
+         null;
       
    end BewegungBauarbeiter;
    

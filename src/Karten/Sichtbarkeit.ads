@@ -2,7 +2,7 @@ with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleVariablen, Karten, KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, SchleifenPruefungen, GlobaleDatentypen, GlobaleRecords;
-use GlobaleDatentypen;
+use GlobaleDatentypen, GlobaleRecords;
 
 package Sichtbarkeit is
 

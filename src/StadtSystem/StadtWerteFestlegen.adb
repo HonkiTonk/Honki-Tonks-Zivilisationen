@@ -18,10 +18,8 @@ package body StadtWerteFestlegen is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.YAchse,
-                                                              XKoordinate    => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.XAchse,
-                                                              YÄnderung      => YÄnderung,
-                                                              XÄnderung      => XÄnderung,
+            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition,
+                                                              Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 0);
             
             case KartenWert.YAchse is -- Der Wert ist nicht nur dazu da um unmögliche Positionen auszuschließen, sondern auch um die entsprechende XPosition zu haben!
@@ -72,10 +70,8 @@ package body StadtWerteFestlegen is
                         null;
                   
                      when others =>
-                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.YAchse,
-                                                                          XKoordinate    => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.XAchse,
-                                                                          YÄnderung      => YPosition,
-                                                                          XÄnderung      => XPosition,
+                        KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition,
+                                                                          Änderung       => (0, YPosition, XPosition),
                                                                           ZusatzYAbstand => 0);
                         case KartenWert.YAchse is
                            when GlobaleDatentypen.Kartenfeld'First =>

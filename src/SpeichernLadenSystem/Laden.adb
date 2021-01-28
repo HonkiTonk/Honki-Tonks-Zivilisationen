@@ -1,8 +1,20 @@
 package body Laden is
 
+   procedure LadenNeu is
+   begin
+      
+      Ladezeiten.LadenLadezeiten (1, 1) := Clock;
+      Ladezeiten.LadenLadezeiten (2, 1) := Clock;
+      Ladezeiten.Laden (WelcheZeit => 1);
+      
+   end LadenNeu;
+
+
+
    procedure Laden is
    begin
       
+      Ladezeiten.LadenLadezeiten (1, 1) := Clock;
       Zeilenanzahl := 1;
       SpielstandName := Eingabe.SpielstandName;
 
@@ -26,7 +38,7 @@ package body Laden is
          Set_Line (File => Datei,
                    To   => Ada.Text_IO.Count (Zeilenanzahl));
          Get (File  => Datei,
-              Item  => GlobaleVariablen.RassenImSpiel (Rassen));
+              Item  => Integer (GlobaleVariablen.RassenImSpiel (Rassen)));
          Zeilenanzahl := Zeilenanzahl + 1;
          
       end loop;
@@ -49,17 +61,17 @@ package body Laden is
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.EinheitenGebaut (Rasse, Einheiten).ID);
+                 Item  => Integer (GlobaleVariablen.EinheitenGebaut (Rasse, Einheiten).ID));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.EinheitenGebaut (Rasse, Einheiten).YAchse);
+                 Item  => Integer (GlobaleVariablen.EinheitenGebaut (Rasse, Einheiten).AchsenPosition.YAchse));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.EinheitenGebaut (Rasse, Einheiten).XAchse);
+                 Item  => Integer (GlobaleVariablen.EinheitenGebaut (Rasse, Einheiten).AchsenPosition.XAchse));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
@@ -105,12 +117,12 @@ package body Laden is
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.StadtGebaut (Rasse, Städte).YAchse);
+                 Item  => Integer (GlobaleVariablen.StadtGebaut (Rasse, Städte).AchsenPosition.YAchse));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.StadtGebaut (Rasse, Städte).XAchse);
+                 Item  => Integer (GlobaleVariablen.StadtGebaut (Rasse, Städte).AchsenPosition.XAchse));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
@@ -132,32 +144,32 @@ package body Laden is
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.StadtGebaut (Rasse, Städte).AktuelleNahrungsmittel);
+                 Item  => Integer (GlobaleVariablen.StadtGebaut (Rasse, Städte).AktuelleNahrungsmittel));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.StadtGebaut (Rasse, Städte).AktuelleNahrungsproduktion);
+                 Item  => Integer (GlobaleVariablen.StadtGebaut (Rasse, Städte).AktuelleNahrungsproduktion));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.StadtGebaut (Rasse, Städte).AktuelleRessourcen);
+                 Item  => Integer (GlobaleVariablen.StadtGebaut (Rasse, Städte).AktuelleRessourcen));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.StadtGebaut (Rasse, Städte).AktuelleProduktionrate);
+                 Item  => Integer (GlobaleVariablen.StadtGebaut (Rasse, Städte).AktuelleProduktionrate));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.StadtGebaut (Rasse, Städte).AktuelleGeldgewinnung);
+                 Item  => Integer (GlobaleVariablen.StadtGebaut (Rasse, Städte).AktuelleGeldgewinnung));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.StadtGebaut (Rasse, Städte).AktuelleForschungsrate);
+                 Item  => Integer (GlobaleVariablen.StadtGebaut (Rasse, Städte).AktuelleForschungsrate));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
@@ -167,12 +179,12 @@ package body Laden is
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.StadtGebaut (Rasse, Städte).VerbleibendeBauzeit);
+                 Item  => Integer (GlobaleVariablen.StadtGebaut (Rasse, Städte).VerbleibendeBauzeit));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => GlobaleVariablen.StadtGebaut (Rasse, Städte).Korruption);
+                 Item  => Integer (GlobaleVariablen.StadtGebaut (Rasse, Städte).Korruption));
             Zeilenanzahl := Zeilenanzahl + 1;
             Close (File => Datei);
 
@@ -196,8 +208,8 @@ package body Laden is
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
-            for A in GlobaleVariablen.UmgebungBewirtschaftungArray'Range (1) loop
-               for B in GlobaleVariablen.UmgebungBewirtschaftungArray'Range (2) loop
+            for A in GlobaleDatentypen.UmgebungBewirtschaftungArray'Range (1) loop
+               for B in GlobaleDatentypen.UmgebungBewirtschaftungArray'Range (2) loop
 
                   Get (File  => Datei,
                        Item  => Zwischenwert);
@@ -241,22 +253,22 @@ package body Laden is
          Set_Line (File => Datei,
                    To   => Ada.Text_IO.Count (Zeilenanzahl));
          Get (File  => Datei,
-              Item  => GlobaleVariablen.Wichtiges (Rasse).GeldZugewinnProRunde);
+              Item  => Integer (GlobaleVariablen.Wichtiges (Rasse).GeldZugewinnProRunde));
          Zeilenanzahl := Zeilenanzahl + 1;
          Set_Line (File => Datei,
                    To   => Ada.Text_IO.Count (Zeilenanzahl));
          Get (File  => Datei,
-              Item  => GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsrate);
+              Item  => Integer (GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsrate));
          Zeilenanzahl := Zeilenanzahl + 1;
          Set_Line (File => Datei,
                    To   => Ada.Text_IO.Count (Zeilenanzahl));
          Get (File  => Datei,
-              Item  => GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsmenge);
+              Item  => Integer (GlobaleVariablen.Wichtiges (Rasse).AktuelleForschungsmenge));
          Zeilenanzahl := Zeilenanzahl + 1;
          Set_Line (File => Datei,
                    To   => Ada.Text_IO.Count (Zeilenanzahl));
          Get (File  => Datei,
-              Item  => GlobaleVariablen.Wichtiges (Rasse).VerbleibendeForschungszeit);
+              Item  => Integer (GlobaleVariablen.Wichtiges (Rasse).VerbleibendeForschungszeit));
          Zeilenanzahl := Zeilenanzahl + 1;
          Set_Line (File => Datei,
                    To   => Ada.Text_IO.Count (Zeilenanzahl));
@@ -264,7 +276,7 @@ package body Laden is
               Item  => GlobaleVariablen.Wichtiges (Rasse).AktuellesForschungsprojekt);
          Zeilenanzahl := Zeilenanzahl + 1;
          
-         for C in GlobaleVariablen.ErforschtArray'Range loop
+         for C in GlobaleDatentypen.ErforschtArray'Range loop
 
             Set_Line (File => Datei,
                    To   => Ada.Text_IO.Count (Zeilenanzahl));
@@ -297,7 +309,7 @@ package body Laden is
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => Karten.Karten (0, YAchse, XAchse).Grund);
+                 Item  => Integer (Karten.Karten (0, YAchse, XAchse).Grund));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
@@ -314,36 +326,23 @@ package body Laden is
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
-            
             Get (File  => Datei,
-                 Item  => Zwischenwert);
-            case Zwischenwert is
-               when 1 =>
-                  Karten.Karten (0, YAchse, XAchse).Sichtbar  := True;
-                  
-               when others =>
-                  Karten.Karten (0, YAchse, XAchse).Sichtbar  := False;
-            end case;
+                 Item  => Integer (Karten.Karten (0, YAchse, XAchse).Fluss));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => Karten.Karten (0, YAchse, XAchse).Fluss);
+                 Item  => Integer (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => Karten.Karten (0, YAchse, XAchse).VerbesserungStraße);
+                 Item  => Integer (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet));
             Zeilenanzahl := Zeilenanzahl + 1;
             Set_Line (File => Datei,
                       To   => Ada.Text_IO.Count (Zeilenanzahl));
             Get (File  => Datei,
-                 Item  => Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet);
-            Zeilenanzahl := Zeilenanzahl + 1;
-            Set_Line (File => Datei,
-                      To   => Ada.Text_IO.Count (Zeilenanzahl));
-            Get (File  => Datei,
-                 Item  => Karten.Karten (0, YAchse, XAchse).Ressource);
+                 Item  => Integer (Karten.Karten (0, YAchse, XAchse).Ressource));
             Zeilenanzahl := Zeilenanzahl + 1;
             
          end loop XAchseSchleife;
@@ -353,38 +352,10 @@ package body Laden is
                 To   => Ada.Text_IO.Count (Zeilenanzahl));            
       Get (File  => Datei,
            Item  => GlobaleVariablen.RundenAnzahl);
-      Zeilenanzahl := Zeilenanzahl + 1;
-      Set_Line (File => Datei,
-                To   => Ada.Text_IO.Count (Zeilenanzahl));        
-      Get (File  => Datei,
-           Item  => GlobaleVariablen.SpielerAnzahl);
-      Zeilenanzahl := Zeilenanzahl + 1;
-      Set_Line (File => Datei,
-                To   => Ada.Text_IO.Count (Zeilenanzahl));       
-      Get (File  => Datei,
-           Item  => GlobaleVariablen.Rasse);
-      Zeilenanzahl := Zeilenanzahl + 1;
-      Set_Line (File => Datei,
-                To   => Ada.Text_IO.Count (Zeilenanzahl));      
-      Get (File  => Datei,
-           Item  => GlobaleVariablen.CursorImSpiel.YAchse);
-      Zeilenanzahl := Zeilenanzahl + 1;
-      Set_Line (File => Datei,
-                To   => Ada.Text_IO.Count (Zeilenanzahl));       
-      Get (File  => Datei,
-           Item  => GlobaleVariablen.CursorImSpiel.XAchse);
-      Zeilenanzahl := Zeilenanzahl + 1;
-      Set_Line (File => Datei,
-                To   => Ada.Text_IO.Count (Zeilenanzahl));       
-      Get (File  => Datei,
-           Item  => GlobaleVariablen.CursorImSpiel.YAchseAlt);
-      Zeilenanzahl := Zeilenanzahl + 1;
-      Set_Line (File => Datei,
-                To   => Ada.Text_IO.Count (Zeilenanzahl));       
-      Get (File  => Datei,
-           Item  => GlobaleVariablen.CursorImSpiel.XAchseAlt);
 
       Close (File => Datei);
+
+      Ladezeiten.LadenLadezeiten (2, 1) := Clock;
       
    end Laden;
 

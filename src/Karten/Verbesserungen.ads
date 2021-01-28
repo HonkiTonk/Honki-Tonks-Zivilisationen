@@ -6,7 +6,9 @@ use GlobaleDatentypen;
 
 package Verbesserungen is
 
-   procedure Verbesserung (RasseExtern : in GlobaleDatentypen.Rassen; Befehl, EinheitNummer : in Natural);   
+   type Befehle is (Leer, Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Einheit_Auflösen, Plündern);
+
+   procedure Verbesserung (RasseExtern : in GlobaleDatentypen.Rassen; Befehl : in Befehle; EinheitNummer : in Positive);   
    procedure VerbesserungFertiggestellt;
    
 private
@@ -17,10 +19,10 @@ private
 
    KartenWert : GlobaleRecords.AchsenAusKartenfeld;
    
-   procedure VerbesserungeFestgelegt (RasseExtern : in GlobaleDatentypen.Rassen; Befehl, EinheitNummer : in Natural);
+   procedure VerbesserungeFestgelegt (RasseExtern : in GlobaleDatentypen.Rassen; Befehl : in Befehle; EinheitNummer : in Positive);
    procedure VerbesserungAngelegt (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive);
 
-   procedure StraßeBerechnung (AchsenKoordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) with
-     Pre => AchsenKoordinaten.EAchse /= -3 and AchsenKoordinaten.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and AchsenKoordinaten.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+   procedure StraßeBerechnung (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) with
+     Pre => Koordinaten.YAchse in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and Koordinaten.XAchse in Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
 
 end Verbesserungen;

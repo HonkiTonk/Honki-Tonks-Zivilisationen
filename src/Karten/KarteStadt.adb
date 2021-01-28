@@ -88,10 +88,8 @@ package body KarteStadt is
                         Put (Item => " ");
 
                      else
-                        KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                                                                          XKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse,
-                                                                          YÄnderung      => YAchsenabstraktion,
-                                                                          XÄnderung      => Umgebung,
+                        KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition,
+                                                                          Änderung       => (0, YAchsenabstraktion, Umgebung),
                                                                           ZusatzYAbstand => 0);
 
                         case KartenWert.YAchse is
@@ -219,10 +217,8 @@ package body KarteStadt is
       Geldgewinnung := 0;
       Wissensgewinnung := 0;
 
-      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse,
-                                                        YÄnderung      => YAufschlag,
-                                                        XÄnderung      => XAufschlag,
+      KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition,
+                                                        Änderung       => (0, YAufschlag, XAufschlag),
                                                         ZusatzYAbstand => 0);
 
       case KartenWert.YAchse is
@@ -350,8 +346,7 @@ package body KarteStadt is
    procedure Beschreibung (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
-      RasseUndPlatznummer := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (YAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                                                                                  XAchse => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse);
+      RasseUndPlatznummer := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
       case RasseUndPlatznummer.Platznummer is
          when SchleifenPruefungen.RückgabeWert =>

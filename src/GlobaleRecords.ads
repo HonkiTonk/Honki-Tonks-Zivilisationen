@@ -16,7 +16,7 @@ package GlobaleRecords is
    
    type AchsenAusKartenfeldPositiv is record
       
-      EAchse : GlobaleDatentypen.Ebene;
+      EAchse : GlobaleDatentypen.EbeneVorhanden;
       YAchse : GlobaleDatentypen.KartenfeldPositiv;
       XAchse : GlobaleDatentypen.KartenfeldPositiv;
       

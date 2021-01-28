@@ -2,7 +2,8 @@ with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
 
 package KIVariablen is
 
-   type LetzteBewegungenArray is array (GlobaleDatentypen.Rassen'Range, GlobaleVariablen.EinheitenGebaut'Range (2), 1 .. 3) of GlobaleRecords.AchsenAusKartenfeld;
-   LetzteBewegungen : LetzteBewegungenArray := (others => (others => (others => (0, 0, 0))));
+   type PositionenArray is array (GlobaleDatentypen.Rassen range <>, Positive range <>, Positive range <>) of GlobaleRecords.AchsenAusKartenfeld;
+   LetzteBewegungen : PositionenArray (GlobaleDatentypen.Rassen'Range, GlobaleVariablen.EinheitenGebaut'Range (2), 1 .. 3) := (others => (others => (others => (0, 0, 0))));
+   ZielBewegung : PositionenArray (GlobaleDatentypen.Rassen'Range, GlobaleVariablen.EinheitenGebaut'Range (2), 1 .. 1) := (others => (others => (others => (0, 0, 0))));
 
 end KIVariablen;

@@ -122,10 +122,8 @@ package body BewegungssystemCursor is
    procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                                                        XKoordinate    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse,
-                                                        YÄnderung      => YÄnderung,
-                                                        XÄnderung      => XÄnderung,
+      KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition,
+                                                        Änderung       => (0, YÄnderung, XÄnderung),
                                                         ZusatzYAbstand => 0);
 
       case KartenWert.YAchse is

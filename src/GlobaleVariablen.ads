@@ -6,7 +6,7 @@ with Karten, GlobaleDatentypen, GlobaleRecords;
 package GlobaleVariablen is
 
    -- Schreiben/Ausgabe
-   type TexteEinlesenNeuArray is array (0 .. 21, 1 .. 84) of Unbounded_Wide_Wide_String;
+   type TexteEinlesenNeuArray is array (0 .. 22, 1 .. 84) of Unbounded_Wide_Wide_String;
    TexteEinlesenNeu : TexteEinlesenNeuArray := (others => (others => (To_Unbounded_Wide_Wide_String ("|"))));
 
    GewählteSprache : Unbounded_Wide_Wide_String;

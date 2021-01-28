@@ -405,17 +405,14 @@ package body SpielEinstellungen is
    function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) return Boolean is
    begin
       
-      PrüfungGrund := SchleifenPruefungen.KartenGrund (Ebene       => 0,
-                                                       YKoordinate => YPosition,
-                                                       XKoordinate => XPosition);
+      PrüfungGrund := SchleifenPruefungen.KartenGrund (Koordinaten => (0, YPosition, XPosition));
 
       case PrüfungGrund is
          when False =>
             return False;
             
          when True =>
-            PositionWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => YPosition,
-                                                                                   XAchse => XPosition);
+            PositionWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (0, YPosition, XPosition));
       end case;
 
       case PositionWert.Platznummer is
@@ -426,10 +423,8 @@ package body SpielEinstellungen is
                XAchseSchleife:
                for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-                  KartenWert := SchleifenPruefungen.KartenUmgebung (YKoordinate    => YPosition,
-                                                                    XKoordinate    => XPosition,
-                                                                    YÄnderung      => YÄnderung,
-                                                                    XÄnderung      => XÄnderung,
+                  KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YPosition, XPosition),
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
                                                                     ZusatzYAbstand => 0);
                   case KartenWert.YAchse is
                      when GlobaleDatentypen.Kartenfeld'First =>
@@ -437,17 +432,14 @@ package body SpielEinstellungen is
                   
                      when others =>
                         if YÄnderung /= 0 or XÄnderung /= 0 then
-                           PrüfungGrund := SchleifenPruefungen.KartenGrund (Ebene       => 0,
-                                                                            YKoordinate => KartenWert.YAchse,
-                                                                            XKoordinate => KartenWert.XAchse);
+                           PrüfungGrund := SchleifenPruefungen.KartenGrund (Koordinaten => (0, KartenWert.YAchse, KartenWert.XAchse));
 
                            case PrüfungGrund is
                               when False =>
                                  PlatzBelegt := (1, 1);
             
                               when True =>
-                                 PlatzBelegt := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (YAchse => KartenWert.YAchse,
-                                                                                                       XAchse => KartenWert.XAchse);
+                                 PlatzBelegt := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (0, KartenWert.YAchse, KartenWert.XAchse));
                            end case;                    
                            
                            case PlatzBelegt.Platznummer is
