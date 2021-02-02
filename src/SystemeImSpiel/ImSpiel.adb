@@ -1,3 +1,8 @@
+with Ada.Calendar;
+use Ada.Calendar;
+
+with InDerStadt, Wachstum, Bauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, GlobaleVariablen, KI, Ladezeiten, Speichern, Laden;
+
 package body ImSpiel is
 
    function ImSpiel return Integer is -- Karte.Sichtbarkeit von hier nach BefehleImSpiel verschiebbar?
@@ -32,11 +37,11 @@ package body ImSpiel is
                            null;
 
                         when 2 => -- Speichern
-                           Speichern.Speichern (AutoSpeichern => False);
+                           Speichern.SpeichernNeu (AutoSpeichern => False);
                            null;
                
                         when 3 => -- Laden
-                           Laden.Laden;
+                           Laden.LadenNeu;
                            null;
                
                         when 4 =>

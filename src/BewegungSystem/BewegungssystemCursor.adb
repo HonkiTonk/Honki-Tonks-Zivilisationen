@@ -1,10 +1,15 @@
+with Ada.Wide_Wide_Text_IO;
+use Ada.Wide_Wide_Text_IO;
+
+with Anzeige, GlobaleVariablen, Karten, Eingabe, SchleifenPruefungen;
+
 package body BewegungssystemCursor is
 
    procedure BewegungCursorRichtung (Karte : in Boolean; Richtung : in Wide_Wide_Character; RasseExtern : in GlobaleDatentypen.Rassen) is -- Hier noch Bewegung für Stadt einbauen
    begin
 
-   YÄnderung := 0;
-   XÄnderung := 0;
+      YÄnderung := 0;
+      XÄnderung := 0;
       
       case Richtung is
          when 'w' | '8' =>
@@ -80,12 +85,12 @@ package body BewegungssystemCursor is
       
       if Wert < 1 or Wert > Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße) then
          Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                AktuelleAuswahl    => 1,
-                                FrageDatei         => 0,
-                                FrageZeile         => 0,
-                                TextDatei          => 8,
-                                ErsteZeile         => 12,
-                                LetzteZeile        => 12);
+                             AktuelleAuswahl    => 1,
+                             FrageDatei         => 0,
+                             FrageZeile         => 0,
+                             TextDatei          => 8,
+                             ErsteZeile         => 12,
+                             LetzteZeile        => 12);
          return;
          
       else
@@ -100,12 +105,12 @@ package body BewegungssystemCursor is
 
       if Wert < 1 or Wert > Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße) then
          Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                AktuelleAuswahl    => 1,
-                                FrageDatei         => 0,
-                                FrageZeile         => 0,
-                                TextDatei          => 8,
-                                ErsteZeile         => 12,
-                                LetzteZeile        => 12);
+                             AktuelleAuswahl    => 1,
+                             FrageDatei         => 0,
+                             FrageZeile         => 0,
+                             TextDatei          => 8,
+                             ErsteZeile         => 12,
+                             LetzteZeile        => 12);
          return;
          
       else

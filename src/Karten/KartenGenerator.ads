@@ -1,7 +1,7 @@
-with Ada.Numerics.Float_Random, Ada.Calendar;
-use Ada.Numerics.Float_Random, Ada.Calendar;
+with Ada.Numerics.Float_Random;
+use Ada.Numerics.Float_Random;
 
-with Karten, KartenDatenbank, GlobaleDatentypen, SchleifenPruefungen, Ladezeiten, WerteFestlegen, ZufallsGeneratoren, GlobaleRecords;
+with Karten, GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
 
 package KartenGenerator is -- Klein = 40x40, Mittel = 80x80, Groß = 160x160, Riesig = 240x240, Gigantisch = 320x320, Absurd = 1000x1000
@@ -26,8 +26,8 @@ private
 
    Wert : Float;
 
-   KartenWert : GlobaleRecords.AchsenAusKartenfeld;
-   KartenWertHügel : GlobaleRecords.AchsenAusKartenfeld;
+   KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
+   KartenWertHügel : GlobaleRecords.AchsenAusKartenfeldRecord;
 
    type GrößeLandartArray is array (1 .. 3) of GlobaleDatentypen.KartenfeldPositiv;
    GrößeLandart : GrößeLandartArray;

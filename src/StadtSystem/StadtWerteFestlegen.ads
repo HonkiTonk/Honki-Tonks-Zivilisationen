@@ -1,4 +1,4 @@
-with GlobaleVariablen, SchleifenPruefungen, GlobaleDatentypen, Karten, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
 
 package StadtWerteFestlegen is
@@ -11,6 +11,6 @@ package StadtWerteFestlegen is
 private
    
    NutzbarerBereich : GlobaleDatentypen.Kartenfeld;
-   KartenWert : GlobaleRecords.AchsenAusKartenfeld;
+   KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
 
 end StadtWerteFestlegen;

@@ -1,3 +1,8 @@
+with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
+use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
+
+with Anzeige, GlobaleVariablen;
+
 package body Auswahl is
 
    function AuswahlSprache return Unbounded_Wide_Wide_String is

@@ -1,7 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
-use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
-
-with SchleifenPruefungen, GlobaleDatentypen, GlobaleVariablen, KartenDatenbank, Karten, Karte, EinheitenDatenbank, Kampfsystem, Diplomatie, Auswahl, Sichtbarkeit, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
 
 package BewegungssystemEinheiten is
@@ -11,7 +8,6 @@ package BewegungssystemEinheiten is
    
    function ZwischenEbene (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins) return GlobaleDatentypen.LoopRangeMinusEinsZuEins with
      Pre => (YÄnderung /= 0 or XÄnderung /= 0);
-
    
 private
 
@@ -26,11 +22,10 @@ private
    
    Stadtnummer : Integer;
 
-   KartenWert : GlobaleRecords.AchsenAusKartenfeld;
+   KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
    GegnerWert : GlobaleRecords.RasseUndPlatznummerRecord;
    GegnerEinheitWert : GlobaleRecords.RasseUndPlatznummerRecord;
    GegnerStadtWert : GlobaleRecords.RasseUndPlatznummerRecord;
-   
 
    function FeldFürDieseEinheitPassierbar (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) return Boolean;
    function BefindetSichDortEineEinheit (RasseExtern : GlobaleDatentypen.RassenMitNullwert; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord;

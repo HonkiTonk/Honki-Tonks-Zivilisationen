@@ -1,7 +1,5 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Calendar, Ada.Float_Text_IO;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Calendar;
-
-with GlobaleVariablen, Anzeige;
+with Ada.Calendar;
+use Ada.Calendar;
 
 package Ladezeiten is
 

@@ -5,7 +5,7 @@ with GlobaleDatentypen;
 
 package GlobaleRecords is
    
-   type AchsenAusStadtfeld is record
+   type AchsenAusStadtfeldRecord is record
       
       YAchse : GlobaleDatentypen.Stadtfeld;
       XAchse : GlobaleDatentypen.Stadtfeld;
@@ -14,7 +14,7 @@ package GlobaleRecords is
    
    
    
-   type AchsenAusKartenfeldPositiv is record
+   type AchsenAusKartenfeldPositivRecord is record
       
       EAchse : GlobaleDatentypen.EbeneVorhanden;
       YAchse : GlobaleDatentypen.KartenfeldPositiv;
@@ -24,7 +24,7 @@ package GlobaleRecords is
    
    
 
-   type AchsenAusKartenfeld is record
+   type AchsenAusKartenfeldRecord is record
       
       EAchse : GlobaleDatentypen.Ebene;
       YAchse : GlobaleDatentypen.Kartenfeld;
@@ -46,9 +46,9 @@ package GlobaleRecords is
    type CursorRecord is record
       
       CursorGrafik : Wide_Wide_Character;
-      AchsenPosition : AchsenAusKartenfeldPositiv;
-      AchsenPositionAlt : AchsenAusKartenfeldPositiv;
-      AchsenPositionStadt : AchsenAusStadtfeld;
+      AchsenPosition : AchsenAusKartenfeldPositivRecord;
+      AchsenPositionAlt : AchsenAusKartenfeldPositivRecord;
+      AchsenPositionStadt : AchsenAusStadtfeldRecord;
       
    end record;
 
@@ -60,7 +60,7 @@ package GlobaleRecords is
       AktuelleBeschäftigung2 : Integer;
       
       ID : GlobaleDatentypen.EinheitenIDMitNullWert;
-      AchsenPosition : AchsenAusKartenfeldPositiv;
+      AchsenPosition : AchsenAusKartenfeldPositivRecord;
       --AchsenPositionAlt : YAchseXAchseAusKartenfeldPositiv;
       
       AktuelleLebenspunkte : Integer;
@@ -78,7 +78,7 @@ package GlobaleRecords is
    type StadtGebautRecord is record
       
       ID : Integer;
-      AchsenPosition : AchsenAusKartenfeldPositiv;
+      AchsenPosition : AchsenAusKartenfeldPositivRecord;
 
       AmWasser : Boolean;
 
@@ -115,6 +115,27 @@ package GlobaleRecords is
 
       Erforscht : GlobaleDatentypen.ErforschtArray;
       
+   end record;
+   
+   
+   
+   type KartenRecord is record
+
+      Grund : GlobaleDatentypen.KartenGrund;
+      Hügel : Boolean;
+      Sichtbar : GlobaleDatentypen.SichtbarkeitArray;
+      Fluss : GlobaleDatentypen.KartenGrund;
+      VerbesserungStraße : GlobaleDatentypen.KartenVerbesserung;
+      VerbesserungGebiet : GlobaleDatentypen.KartenVerbesserung;
+      Ressource : GlobaleDatentypen.KartenGrund;
+      DurchStadtBelegterGrund : GlobaleDatentypen.BelegterGrund;
+      Felderwertung : GlobaleDatentypen.GesamtproduktionStadt;
+
+      -- Sichtbar2
+      -- VerbesserungStraße2
+      -- VerbesserungGebiet2
+      -- Noch mehr?
+
    end record;
 
 end GlobaleRecords;

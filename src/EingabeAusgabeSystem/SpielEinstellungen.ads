@@ -1,7 +1,6 @@
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Numerics.Discrete_Random, Ada.Calendar, Ladezeiten;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
+with Ada.Numerics.Discrete_Random;
 
-with GlobaleDatentypen, SchleifenPruefungen, GlobaleVariablen, ImSpiel, KartenGenerator, Eingabe, Karten, Auswahl, EinheitenDatenbank, Anzeige, ZufallsGeneratoren, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, Karten;
 use GlobaleDatentypen;
 
 package SpielEinstellungen is
@@ -28,11 +27,11 @@ private
    Zufallswahl : Integer;
 
    PositionWert : GlobaleRecords.RasseUndPlatznummerRecord;
-   GezogeneWerte : GlobaleRecords.AchsenAusKartenfeldPositiv;
-   KartenWert : GlobaleRecords.AchsenAusKartenfeld;
+   GezogeneWerte : GlobaleRecords.AchsenAusKartenfeldPositivRecord;
+   KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
    PlatzBelegt : GlobaleRecords.RasseUndPlatznummerRecord;
 
-   type KoordinatenArray is array (1 .. 2) of GlobaleRecords.AchsenAusKartenfeld;
+   type KoordinatenArray is array (1 .. 2) of GlobaleRecords.AchsenAusKartenfeldRecord;
    Koordinaten : KoordinatenArray;
 
    subtype ZufälligeKartengröße is Integer range 1 .. 9;

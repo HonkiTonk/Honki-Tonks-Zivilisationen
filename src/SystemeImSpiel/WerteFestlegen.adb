@@ -1,6 +1,8 @@
+with SchleifenPruefungen, KartenDatenbank, VerbesserungenDatenbank;
+
 package body WerteFestlegen is
 
-   procedure KartenfelderBewerten (Generierung : Boolean; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) is
+   procedure KartenfelderBewerten (Generierung : Boolean; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) is
    begin
       
       case Generierung is
@@ -34,7 +36,7 @@ package body WerteFestlegen is
       
 
 
-   procedure KartenfelderBewertenKleineSchleife (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) is
+   procedure KartenfelderBewertenKleineSchleife (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) is
    begin
               
       BewertungYÄnderungSchleife:
@@ -78,33 +80,34 @@ package body WerteFestlegen is
    
    
    
-   procedure BewertungSelbst (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv; YAchseFeldAufschlag, XAchseFeldAufschlag : GlobaleDatentypen.KartenfeldPositiv; Teiler : GlobaleDatentypen.LoopRangeMinusDreiZuDrei) is
+   procedure BewertungSelbst (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord; YAchseFeldAufschlag, XAchseFeldAufschlag : GlobaleDatentypen.KartenfeldPositiv;
+                              Teiler : GlobaleDatentypen.LoopRangeMinusDreiZuDrei) is
    begin
       
       Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Felderwertung := Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Felderwertung
-        + ((KartenDatenbank.KartenObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Nahrungsgewinnung
-           + KartenDatenbank.KartenObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Ressourcengewinnung
-           + KartenDatenbank.KartenObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Geldgewinnung
-           + KartenDatenbank.KartenObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Wissensgewinnung
-           + KartenDatenbank.KartenObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Verteidigungsbonus
+        + ((KartenDatenbank.KartenListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Nahrungsgewinnung
+           + KartenDatenbank.KartenListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Ressourcengewinnung
+           + KartenDatenbank.KartenListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Geldgewinnung
+           + KartenDatenbank.KartenListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Wissensgewinnung
+           + KartenDatenbank.KartenListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Verteidigungsbonus
 
-           + KartenDatenbank.KartenObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Nahrungsgewinnung
-           + KartenDatenbank.KartenObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Ressourcengewinnung
-           + KartenDatenbank.KartenObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Geldgewinnung
-           + KartenDatenbank.KartenObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Wissensgewinnung
-           + KartenDatenbank.KartenObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Verteidigungsbonus
+           + KartenDatenbank.KartenListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Nahrungsgewinnung
+           + KartenDatenbank.KartenListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Ressourcengewinnung
+           + KartenDatenbank.KartenListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Geldgewinnung
+           + KartenDatenbank.KartenListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Wissensgewinnung
+           + KartenDatenbank.KartenListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Verteidigungsbonus
 
-           + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Nahrungsbonus
-           + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Ressourcenbonus
-           + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Geldbonus
-           + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Wissensbonus
-           + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Verteidigungsbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Nahrungsbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Ressourcenbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Geldbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Wissensbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Verteidigungsbonus
 
-           + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Nahrungsbonus
-           + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Ressourcenbonus
-           + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Geldbonus
-           + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Wissensbonus
-           + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Verteidigungsbonus) / GesamtproduktionStadt (Teiler));
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Nahrungsbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Ressourcenbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Geldbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Wissensbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Verteidigungsbonus) / GesamtproduktionStadt (Teiler));
       
    end BewertungSelbst;
 

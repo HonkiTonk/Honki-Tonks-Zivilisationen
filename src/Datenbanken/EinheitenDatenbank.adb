@@ -1,3 +1,5 @@
+with Auswahl, Anzeige;
+
 package body EinheitenDatenbank is
 
    procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID) is

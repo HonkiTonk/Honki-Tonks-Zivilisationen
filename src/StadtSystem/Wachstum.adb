@@ -1,3 +1,5 @@
+with StadtWerteFestlegen, GlobaleVariablen, GebaeudeDatenbank, EinheitenDatenbank, Anzeige;
+
 package body Wachstum is
 
    procedure Wachstum is
@@ -107,7 +109,7 @@ package body Wachstum is
       case GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Einwohner is
          when 9 | 10 | 19 | 20 =>
             StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (RasseExtern => RasseExtern,
-                                                             StadtNummer => StadtNummer);
+                                                               StadtNummer => StadtNummer);
             
          when others =>
             return;
@@ -129,8 +131,8 @@ package body Wachstum is
            := GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AktuelleRessourcen + GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AktuelleProduktionrate);
          if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AktuelleRessourcen >= GebaeudeDatenbank.GebäudeListe (RasseExtern, GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AktuellesBauprojekt - 1_000).PreisRessourcen then
             GebaeudeDatenbank.GebäudeProduktionBeenden (RasseExtern        => RasseExtern,
-                                                        Stadtnummer        => Stadtnummer,
-                                                        ID                 => GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AktuellesBauprojekt - 1_000);
+                                                         Stadtnummer        => Stadtnummer,
+                                                         ID                 => GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AktuellesBauprojekt - 1_000);
             Anzeige.EinfacheAnzeige (Mit_Line => True,
                                      Datei    => 1,
                                      Eintrag  => 1);

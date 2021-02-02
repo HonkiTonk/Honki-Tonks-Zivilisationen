@@ -1,3 +1,8 @@
+with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
+use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
+
+with GlobaleVariablen, Karte, Karten, Eingabe, EinheitenDatenbank;
+
 package body Cheat is
 
    procedure Menü (RasseExtern : in GlobaleDatentypen.Rassen) is

@@ -1,7 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
-use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
-
-with GlobaleVariablen, GlobaleDatentypen, Karte, Karten, Eingabe, EinheitenDatenbank;
+with GlobaleDatentypen;
 use GlobaleDatentypen;
 
 package Cheat is

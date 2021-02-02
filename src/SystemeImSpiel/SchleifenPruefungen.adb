@@ -1,7 +1,9 @@
+with GlobaleVariablen;
+
 package body SchleifenPruefungen is 
 
-   function KartenUmgebung (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv; Änderung : in GlobaleRecords.AchsenAusKartenfeld;
-                            ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenAusKartenfeld is
+   function KartenUmgebung (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord; Änderung : in GlobaleRecords.AchsenAusKartenfeldRecord;
+                            ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenAusKartenfeldRecord is
    begin -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (2) + 3
       
       if Koordinaten.EAchse + Änderung.EAchse < Karten.Karten'First (1) or Koordinaten.EAchse + Änderung.EAchse > Karten.Karten'Last (1) then
@@ -38,7 +40,7 @@ package body SchleifenPruefungen is
 
    
 
-   function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return Integer is
+   function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return Integer is
    begin
       
       StadtSchleife:
@@ -62,7 +64,7 @@ package body SchleifenPruefungen is
 
 
 
-   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return Integer is
+   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return Integer is
    begin
       
       EinheitSchleife:
@@ -86,7 +88,7 @@ package body SchleifenPruefungen is
    
    
    
-   function KoordinatenStadtOhneRasseSuchen (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord is
+   function KoordinatenStadtOhneRasseSuchen (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return GlobaleRecords.RasseUndPlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -113,7 +115,7 @@ package body SchleifenPruefungen is
    
    
    
-   function KoordinatenEinheitOhneRasseSuchen (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord is
+   function KoordinatenEinheitOhneRasseSuchen (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return GlobaleRecords.RasseUndPlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -141,7 +143,7 @@ package body SchleifenPruefungen is
    
    
    -- Sinnvoller benennen und weitere Prüfung für nur Wasser und so weiter einbauen
-   function KartenGrund (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return Boolean is
+   function KartenGrund (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return Boolean is
    begin
       
       case Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund is

@@ -1,34 +1,34 @@
-with GlobaleVariablen, Karten, GlobaleDatentypen, GlobaleRecords;
+with Karten, GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen, GlobaleRecords;
 
 package SchleifenPruefungen is
 
    RückgabeWert : constant Integer := -1_000_000;
    
-   function KartenUmgebung (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv; Änderung : in GlobaleRecords.AchsenAusKartenfeld;
-                            ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenAusKartenfeld with
+   function KartenUmgebung (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord; Änderung : in GlobaleRecords.AchsenAusKartenfeldRecord;
+                            ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenAusKartenfeldRecord with
      Pre => Koordinaten.YAchse in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and Koordinaten.XAchse in Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
      and ZusatzYAbstand >= 0;
    
-   function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return Integer with
+   function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return Integer with
      Pre => Koordinaten.YAchse in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and Koordinaten.XAchse in Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
 
-   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return Integer with
+   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return Integer with
      Pre => Koordinaten.YAchse in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and Koordinaten.XAchse in Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
    
-   function KoordinatenStadtOhneRasseSuchen (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord with
+   function KoordinatenStadtOhneRasseSuchen (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return GlobaleRecords.RasseUndPlatznummerRecord with
      Pre => Koordinaten.YAchse in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and Koordinaten.XAchse in Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
 
-   function KoordinatenEinheitOhneRasseSuchen (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord with
+   function KoordinatenEinheitOhneRasseSuchen (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return GlobaleRecords.RasseUndPlatznummerRecord with
      Pre => Koordinaten.YAchse in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and Koordinaten.XAchse in Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
    
-   function KartenGrund (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) return Boolean with
+   function KartenGrund (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return Boolean with
      Pre => Koordinaten.YAchse in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and Koordinaten.XAchse in Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
    
 private
 
    Überhang : Integer;
 
-   Kartenwert : GlobaleRecords.AchsenAusKartenfeld;
+   Kartenwert : GlobaleRecords.AchsenAusKartenfeldRecord;
 
 end SchleifenPruefungen;

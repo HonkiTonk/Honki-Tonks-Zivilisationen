@@ -1,7 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
-
-with GlobaleVariablen, Karten, KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, SchleifenPruefungen, GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, Karten;
 use GlobaleDatentypen, GlobaleRecords;
 
 package Sichtbarkeit is
@@ -23,6 +20,6 @@ private
    Sichtweite : GlobaleDatentypen.Sichtweite := 2;
    Wert : Integer;
 
-   Kartenwert : GlobaleRecords.AchsenAusKartenfeld;
+   Kartenwert : GlobaleRecords.AchsenAusKartenfeldRecord;
 
 end Sichtbarkeit;

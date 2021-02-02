@@ -1,3 +1,5 @@
+with GlobaleVariablen, EinheitenDatenbank, KISiedler, KINahkampfLandEinheit, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit;
+
 package body KI is
 
    procedure KI (RasseExtern : in GlobaleDatentypen.Rassen) is
@@ -17,7 +19,7 @@ package body KI is
                
          else
             KIAKtivitätEinheit (RasseExtern   => RasseExtern,
-                                EinheitNummer => EinheitNummer);
+                                 EinheitNummer => EinheitNummer);
          end if;
             
       end loop EinheitenSchleife;
@@ -32,7 +34,7 @@ package body KI is
                
          else
             KIAktivitätStadt (RasseExtern => RasseExtern,
-                              StadtNummer => StadtNummer);
+                               StadtNummer => StadtNummer);
          end if;
 
       end loop StadtSchleife;         

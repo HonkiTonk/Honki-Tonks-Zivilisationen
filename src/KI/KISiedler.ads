@@ -1,4 +1,4 @@
-with GlobaleDatentypen, GlobaleVariablen, KIBewegung, Karten, InDerStadt, EinheitenDatenbank, KIGefahr, KIEinheitVerbessernOderVernichten, StadtWerteFestlegen;
+with GlobaleDatentypen;
 use GlobaleDatentypen;
 
 package KISiedler is

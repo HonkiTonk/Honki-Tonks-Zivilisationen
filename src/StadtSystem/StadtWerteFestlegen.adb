@@ -1,3 +1,5 @@
+with GlobaleVariablen, SchleifenPruefungen, Karten;
+
 package body StadtWerteFestlegen is
 
    procedure StadtUmgebungGrößeFestlegen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is

@@ -1,4 +1,4 @@
-with GlobaleDatentypen, GlobaleVariablen, EinheitenDatenbank;
+with GlobaleDatentypen;
 
 package KIEinheitVerbessernOderVernichten is
 

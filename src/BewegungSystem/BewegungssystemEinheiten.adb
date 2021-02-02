@@ -1,3 +1,8 @@
+with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
+use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
+
+with SchleifenPruefungen, GlobaleVariablen, KartenDatenbank, Karten, Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit;
+
 package body BewegungssystemEinheiten is
 
    procedure BewegungEinheitenRichtung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) is
@@ -49,9 +54,9 @@ package body BewegungssystemEinheiten is
          end case;
          
          RückgabeWert := ZwischenEbene (RasseExtern   => RasseExtern,
-                                        EinheitNummer => EinheitNummer,
-                                        YÄnderung     => YÄnderung,
-                                        XÄnderung     => XÄnderung);
+                                         EinheitNummer => EinheitNummer,
+                                         YÄnderung     => YÄnderung,
+                                         XÄnderung     => XÄnderung);
 
          case RückgabeWert is
             when 1 => -- Bewegung auf Feld möglich.
@@ -60,7 +65,7 @@ package body BewegungssystemEinheiten is
                                             YPosition     => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse + YÄnderung,
                                             XPosition     => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse + XÄnderung);
                Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (RasseExtern   => RasseExtern,
-                                                            EinheitNummer => EinheitNummer);
+                                                              EinheitNummer => EinheitNummer);
                
                
             when  0 => -- Außerhalb der Karte oder Feld blockiert durch eigene Einheit.
@@ -78,7 +83,7 @@ package body BewegungssystemEinheiten is
                                                   YPosition     => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse + YÄnderung,
                                                   XPosition     => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse + XÄnderung);
                      Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (RasseExtern   => RasseExtern,
-                                                                  EinheitNummer => EinheitNummer);
+                                                                    EinheitNummer => EinheitNummer);
                      
                   when False =>
                      null;
@@ -117,9 +122,9 @@ package body BewegungssystemEinheiten is
             
          when others =>      
             FeldPassierbar := FeldFürDieseEinheitPassierbar (RasseExtern   => RasseExtern,
-                                                             EinheitNummer => EinheitNummer,
-                                                             YPosition     => KartenWert.YAchse,
-                                                             XPosition     => KartenWert.XAchse);
+                                                              EinheitNummer => EinheitNummer,
+                                                              YPosition     => KartenWert.YAchse,
+                                                              XPosition     => KartenWert.XAchse);
       end case;
 
       case FeldPassierbar is
@@ -156,7 +161,7 @@ package body BewegungssystemEinheiten is
          null;
                
       elsif EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).Passierbarkeit
-        /= KartenDatenbank.KartenObjektListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse, YPosition, XPosition).Grund).Passierbarkeit then
+        /= KartenDatenbank.KartenListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse, YPosition, XPosition).Grund).Passierbarkeit then
          case EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).Passierbarkeit is
             when 2 =>
                Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (RasseExtern  => RasseExtern,

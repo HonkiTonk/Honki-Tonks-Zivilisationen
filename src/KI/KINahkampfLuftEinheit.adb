@@ -1,9 +1,13 @@
+with KIBewegung;
+
 package body KINahkampfLuftEinheit is
 
    procedure KINahkampfLuftEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer) is
    begin
       
-      null;
+      KIBewegung.KIBewegung (RasseExtern   => RasseExtern,
+                             EinheitNummer => EinheitNummer,
+                             Aufgabe       => 'e');
       
    end KINahkampfLuftEinheit;
 

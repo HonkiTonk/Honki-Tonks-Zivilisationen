@@ -1,7 +1,7 @@
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with Karten, GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords;
 
 package GlobaleVariablen is
 
@@ -54,13 +54,6 @@ package GlobaleVariablen is
    type DiplomatieArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.Rassen'Range) of Integer; -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
    Diplomatie : DiplomatieArray := (others => (others => 1));
    -- Wichtiges Zeug
-
-
-
-   -- Zeug
-   WegwerfBoolean : Boolean;
-   WegwerfInteger : Boolean;
-   -- Zeug
    
    
   

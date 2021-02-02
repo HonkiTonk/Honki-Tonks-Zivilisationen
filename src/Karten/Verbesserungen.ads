@@ -1,7 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
-
-with SchleifenPruefungen, GlobaleVariablen, GlobaleDatentypen, EinheitenDatenbank, Karten, Anzeige, WerteFestlegen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, Karten;
 use GlobaleDatentypen;
 
 package Verbesserungen is
@@ -17,12 +14,12 @@ private
 
    Straßenwert : Integer;
 
-   KartenWert : GlobaleRecords.AchsenAusKartenfeld;
+   KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
    
    procedure VerbesserungeFestgelegt (RasseExtern : in GlobaleDatentypen.Rassen; Befehl : in Befehle; EinheitNummer : in Positive);
    procedure VerbesserungAngelegt (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive);
 
-   procedure StraßeBerechnung (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositiv) with
+   procedure StraßeBerechnung (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) with
      Pre => Koordinaten.YAchse in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and Koordinaten.XAchse in Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
 
 end Verbesserungen;

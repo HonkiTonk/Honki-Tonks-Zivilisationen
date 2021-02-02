@@ -1,3 +1,5 @@
+with KIBewegung;
+
 package body KINahkampfLandEinheit is
 
    procedure KINahkampfLandEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer) is

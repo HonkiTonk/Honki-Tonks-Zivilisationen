@@ -1,12 +1,12 @@
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, GlobaleVariablen, Laden;
+with Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden;
 
 procedure Start is
 
    Startauswahl : Integer;
-   RückgabeKampagne : Integer := 0;
+   RückgabeKampagne : Integer;
    EinlesenErgebnis : Boolean;
 
 begin
@@ -41,7 +41,7 @@ begin
                   end case;
 
                when 3 => -- Laden
-                  Laden.Laden;
+                  Laden.LadenNeu;
                   RückgabeKampagne := ImSpiel.ImSpiel;
                   case RückgabeKampagne is
                      when 0 =>
@@ -53,7 +53,7 @@ begin
                      when others =>
                         Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Laden");
                   end case;
-                  -- RückgabeKampagne := SpielEinstellungen.SpielEinstellungen; -- Später wieder entfernen, wenn Laden wieder funktioniert!
+
                when 4 => -- Optionen
                   Optionen.Optionen;
 

@@ -1,4 +1,4 @@
-with GlobaleVariablen, GlobaleDatentypen;
+with GlobaleDatentypen;
 use GlobaleDatentypen;
 
 package NaechstesObjekt is

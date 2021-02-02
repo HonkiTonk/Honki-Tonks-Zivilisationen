@@ -1,7 +1,5 @@
-with BewegungssystemEinheiten, GlobaleVariablen, GlobaleDatentypen, Karten, SchleifenPruefungen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen, GlobaleRecords;
-
-with KIVariablen;
 
 package KIBewegung is
    
@@ -14,7 +12,7 @@ private
    
    Bewegung : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
    
-   Kartenwert : GlobaleRecords.AchsenAusKartenfeld;
+   Kartenwert : GlobaleRecords.AchsenAusKartenfeldRecord;
 
    procedure BewegungBeliebig (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive);
    procedure BewegungBauarbeiter (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive);

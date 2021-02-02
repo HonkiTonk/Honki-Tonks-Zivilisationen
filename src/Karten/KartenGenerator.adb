@@ -1,3 +1,8 @@
+with Ada.Calendar;
+use Ada.Calendar;
+
+with SchleifenPruefungen, Ladezeiten, WerteFestlegen, ZufallsGeneratoren;
+
 package body KartenGenerator is
 
    procedure KartenGenerator is
@@ -49,7 +54,7 @@ package body KartenGenerator is
                case Kartenart is
                   when 3 =>
                      GenerierungPangäa (YAchse => YAchse,
-                                        XAchse => XAchse);
+                                         XAchse => XAchse);
                   
                   when others =>                     
                      GenerierungKartenart (YAchse => YAchse,
@@ -166,8 +171,8 @@ package body KartenGenerator is
                when others =>         
                   Wert := Random (Gewählt);
                   GenerierungLandmasseÜberhang (YAchse  => KartenWert.YAchse,
-                                                XAchse  => KartenWert.XAchse,
-                                                Gezogen => Wert);
+                                                 XAchse  => KartenWert.XAchse,
+                                                 Gezogen => Wert);
             end case;
             
          end loop XAchseSchleife;
@@ -426,7 +431,7 @@ package body KartenGenerator is
                   
                when others =>
                   GenerierungLandschaftHügel (YAchse => KartenWert.YAchse,
-                                              XAchse => KartenWert.XAchse);
+                                               XAchse => KartenWert.XAchse);
             end case;
             
          end loop XAchseSchleife;
@@ -477,8 +482,8 @@ package body KartenGenerator is
          for XÄnderungHügel in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop            
             
             KartenWertHügel := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YAchse, XAchse),
-                                                                   Änderung       => (0, YÄnderungHügel, XÄnderungHügel),
-                                                                   ZusatzYAbstand => 0);
+                                                                    Änderung       => (0, YÄnderungHügel, XÄnderungHügel),
+                                                                    ZusatzYAbstand => 0);
 
             case KartenWertHügel.YAchse is
                when GlobaleDatentypen.Kartenfeld'First =>

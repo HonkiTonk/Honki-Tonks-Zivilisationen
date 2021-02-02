@@ -1,3 +1,8 @@
+with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+
+with GlobaleVariablen, KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, SchleifenPruefungen;
+
 package body Sichtbarkeit is
 
    procedure SichtbarkeitsprüfungFürRasse (RasseExtern : in GlobaleDatentypen.Rassen) is
@@ -12,7 +17,7 @@ package body Sichtbarkeit is
             
             when others =>
                SichtbarkeitsprüfungFürEinheit (RasseExtern   => RasseExtern,
-                                               EinheitNummer => EinheitNummer);
+                                                 EinheitNummer => EinheitNummer);
          end case;
          
       end loop EinheitenPlätzeSchleife;
@@ -26,7 +31,7 @@ package body Sichtbarkeit is
                
             when others =>
                SichtbarkeitsprüfungFürStadt (RasseExtern => RasseExtern,
-                                             StadtNummer => StadtNummer);
+                                               StadtNummer => StadtNummer);
          end case;
          
       end loop StadtPlätzeSchleife;
@@ -402,26 +407,26 @@ package body Sichtbarkeit is
         
       elsif Verbesserung /= 0 then
          if Verbesserung = 1 and RasseIntern = RasseExtern then            
-            Put (Item => VerbesserungenDatenbank.VerbesserungObjektListe (1).Anzeige & CSI & "0m");
+            Put (Item => VerbesserungenDatenbank.VerbesserungListe (1).Anzeige & CSI & "0m");
             
          elsif Verbesserung = 2 and RasseIntern = RasseExtern then            
-            Put (Item => VerbesserungenDatenbank.VerbesserungObjektListe (2).Anzeige & CSI & "0m");
+            Put (Item => VerbesserungenDatenbank.VerbesserungListe (2).Anzeige & CSI & "0m");
             
          elsif Verbesserung = 1 then
-            Put (Item => VerbesserungenDatenbank.VerbesserungObjektListe (3).Anzeige & CSI & "0m");
+            Put (Item => VerbesserungenDatenbank.VerbesserungListe (3).Anzeige & CSI & "0m");
             
          elsif Verbesserung = 2 then
-            Put (Item => VerbesserungenDatenbank.VerbesserungObjektListe (4).Anzeige & CSI & "0m");
+            Put (Item => VerbesserungenDatenbank.VerbesserungListe (4).Anzeige & CSI & "0m");
             
          else
-            Put (Item => VerbesserungenDatenbank.VerbesserungObjektListe (Verbesserung).Anzeige & CSI & "0m");
+            Put (Item => VerbesserungenDatenbank.VerbesserungListe (Verbesserung).Anzeige & CSI & "0m");
          end if;
 
       elsif Ressource /= 0 then
-         Put (Item => KartenDatenbank.KartenObjektListe (Ressource).Anzeige & CSI & "0m");
+         Put (Item => KartenDatenbank.KartenListe (Ressource).Anzeige & CSI & "0m");
             
       else
-         Put (Item => KartenDatenbank.KartenObjektListe (Grund).Anzeige & CSI & "0m");
+         Put (Item => KartenDatenbank.KartenListe (Grund).Anzeige & CSI & "0m");
       end if;
       
    end Farben;

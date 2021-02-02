@@ -1,6 +1,3 @@
-with Ada.Wide_Wide_Text_IO;
-use Ada.Wide_Wide_Text_IO;
-
 package Informationen is
 
    procedure Informationen;
@@ -8,6 +5,6 @@ package Informationen is
 private
 
    Taste : Wide_Wide_Character;
-   Versionsnummer : Wide_Wide_String (1 .. 9) := "0.00.6270";
+   Versionsnummer : Wide_Wide_String (1 .. 9) := "0.00.6290";
 
 end Informationen;

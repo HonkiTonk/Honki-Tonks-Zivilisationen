@@ -1,7 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
-
-with GlobaleDatentypen, KarteStadt, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, SchleifenPruefungen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen, GlobaleRecords;
 
 package Karte is
@@ -21,11 +18,11 @@ private
    SichtweiteFestlegen : Integer;
    BewegungsfeldFestlegen : Integer;
 
-   Kartenwert : GlobaleRecords.AchsenAusKartenfeld;
+   Kartenwert : GlobaleRecords.AchsenAusKartenfeldRecord;
 
    RasseUndPlatznummer : GlobaleRecords.RasseUndPlatznummerRecord;
 
-   type SichtweiteArray is array (1 .. 3) of GlobaleRecords.AchsenAusKartenfeldPositiv;
+   type SichtweiteArray is array (1 .. 3) of GlobaleRecords.AchsenAusKartenfeldPositivRecord;
 
    Sichtweite : constant SichtweiteArray := (1 => (0, 6, 10),
                                              2 => (0, 6, 22),

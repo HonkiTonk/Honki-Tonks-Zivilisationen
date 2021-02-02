@@ -1,7 +1,5 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
-
-with GlobaleVariablen, Anzeige;
+with Ada.Strings.Wide_Wide_Unbounded;
+use Ada.Strings.Wide_Wide_Unbounded;
 
 package Eingabe is
 

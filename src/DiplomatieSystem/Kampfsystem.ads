@@ -1,7 +1,7 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Numerics.Float_Random;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Numerics.Float_Random;
+with Ada.Numerics.Float_Random;
+use Ada.Numerics.Float_Random;
 
-with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank, GlobaleVariablen, Karten, GlobaleDatentypen, SchleifenPruefungen;
+with GlobaleDatentypen;
 use GlobaleDatentypen;
 
 package Kampfsystem is

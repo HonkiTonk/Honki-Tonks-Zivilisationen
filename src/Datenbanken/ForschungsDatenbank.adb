@@ -1,3 +1,8 @@
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
+use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
+
+with Anzeige, GlobaleVariablen;
+
 package body ForschungsDatenbank is
 
    procedure Beschreibung (ID : in Natural) is

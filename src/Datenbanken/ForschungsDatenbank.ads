@@ -1,21 +1,9 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
-
-with GlobaleVariablen, GlobaleDatentypen, Anzeige;
+with GlobaleDatentypen, DatenbankRecords;
 use GlobaleDatentypen;
 
 package ForschungsDatenbank is
 
-   type AnforderungForschungArray is array (1 .. 4) of Integer;
-
-   type ForschungRecord is record
-
-      PreisForschung : GlobaleDatentypen.KostenLager;
-      AnforderungForschung : AnforderungForschungArray;
-
-   end record;
-
-   type ForschungListeArray is Array (GlobaleDatentypen.Rassen'Range, GlobaleVariablen.Wichtiges (1).Erforscht'Range) of ForschungRecord;
+   type ForschungListeArray is Array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.ErforschtArray'Range) of DatenbankRecords.ForschungListeRecord;
    ForschungListe : ForschungListeArray := (others => (1 => (100, (others => 0)),
                                                        2 => (100, (others => 0)),
                                                        3 => (100, (others => 0)),

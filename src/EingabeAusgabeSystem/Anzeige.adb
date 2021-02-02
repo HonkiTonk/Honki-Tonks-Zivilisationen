@@ -1,3 +1,6 @@
+with Ada.Wide_Wide_Text_IO;
+use Ada.Wide_Wide_Text_IO;
+
 package body Anzeige is
 
    procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; AktuelleAuswahl, FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Natural) is
@@ -264,8 +267,8 @@ package body Anzeige is
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (WelcherText, WelcheZeile)) (A) = '|' then
             exit;
             
-            else
-               Text (A) := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (WelcherText, WelcheZeile)) (A);
+         else
+            Text (A) := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (WelcherText, WelcheZeile)) (A);
          end if;
          
       end loop;

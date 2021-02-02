@@ -1,3 +1,8 @@
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
+use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
+
+with SchleifenPruefungen, GebaeudeDatenbank, KartenDatenbank, Karten, GlobaleVariablen, VerbesserungenDatenbank, Sichtbarkeit, Anzeige;
+
 package body KarteStadt is
 
    procedure AnzeigeStadt (StadtNummer : in Positive; RasseExtern : in GlobaleDatentypen.Rassen) is
@@ -246,35 +251,35 @@ package body KarteStadt is
                                      Eintrag  => 1);
             KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
          
          elsif Karten.Karten (0, YAchse, XAchse).Hügel = True then
             KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
                
          else         
             KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
          end if;
       
          if Karten.Karten (0, YAchse, XAchse).Ressource /= 0 then
             KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Ressource);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Ressource).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Ressource).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Ressource).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Ressource).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Ressource).Wissensgewinnung;
          
          else
             null;
@@ -283,10 +288,10 @@ package body KarteStadt is
          if Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet /= 0 then
             VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Nahrungsbonus;
-            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Ressourcenbonus;
-            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Geldbonus;
-            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Wissensbonus;
+            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Nahrungsbonus;
+            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Ressourcenbonus;
+            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Geldbonus;
+            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Wissensbonus;
          
          else
             null;
@@ -295,10 +300,10 @@ package body KarteStadt is
          if Karten.Karten (0, YAchse, XAchse).VerbesserungStraße /= 0 then
             VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).VerbesserungStraße);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Nahrungsbonus;
-            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Ressourcenbonus;
-            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Geldbonus;
-            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungObjektListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Wissensbonus;
+            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Nahrungsbonus;
+            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Ressourcenbonus;
+            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Geldbonus;
+            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Wissensbonus;
          
          else
             null;
@@ -307,10 +312,10 @@ package body KarteStadt is
          if Karten.Karten (0, YAchse, XAchse).Fluss /= 0 then
             KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Fluss);
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenObjektListe (Karten.Karten (0, YAchse, XAchse).Fluss).Wissensgewinnung;
+            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Fluss).Nahrungsgewinnung;
+            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Fluss).Ressourcengewinnung;
+            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Fluss).Geldgewinnung;
+            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Fluss).Wissensgewinnung;
          
          else
             null;
@@ -376,48 +381,48 @@ package body KarteStadt is
                                            Eintrag  => 9);
             end case;
             Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Name) & "    ");
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 10);
+            Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                     Datei    => 3,
+                                     Eintrag  => 10);
             Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Einwohner'Wide_Wide_Image);
 
             -- "Volle" Stadtinformationen, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist                      
             if RasseUndPlatznummer.Rasse = RasseExtern or GlobaleVariablen.FeindlicheInformationenSehen = True then
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 11);
+               Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                        Datei    => 3,
+                                        Eintrag  => 11);
                Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleNahrungsmittel'Wide_Wide_Image);
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 12);
+               Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                        Datei    => 3,
+                                        Eintrag  => 12);
                Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleNahrungsproduktion'Wide_Wide_Image);
                         
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 13);
+               Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                        Datei    => 3,
+                                        Eintrag  => 13);
                Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleProduktionrate'Wide_Wide_Image);
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 14);
+               Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                        Datei    => 3,
+                                        Eintrag  => 14);
                Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleGeldgewinnung'Wide_Wide_Image);
 
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 15);
+               Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                        Datei    => 3,
+                                        Eintrag  => 15);
                Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleForschungsrate'Wide_Wide_Image); 
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 16);
+               Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                        Datei    => 3,
+                                        Eintrag  => 16);
                Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Korruption'Wide_Wide_Image);
                         
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 17);
+               Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                        Datei    => 3,
+                                        Eintrag  => 17);
                case GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt is
                   when 0 => -- Nichts                     
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 18);
+                     Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                              Datei    => 3,
+                                              Eintrag  => 18);
             
                   when 1 .. 9_999 => -- Gebäude
                      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,

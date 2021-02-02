@@ -1,3 +1,5 @@
+with GlobaleVariablen, Kampfsystem, Auswahl;
+
 package body Diplomatie is
 
    procedure DiplomatieAuswählen is
@@ -48,7 +50,7 @@ package body Diplomatie is
                when -3 =>
                   Angreifen := True;
                   --Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasse   => RasseExtern,
-                                                       -- VerteidigendeRasse => Gegner.Rasse);
+                  -- VerteidigendeRasse => Gegner.Rasse);
                   return True;   
                   
                when others =>

@@ -1,3 +1,8 @@
+with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
+use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
+
+with SchleifenPruefungen, GlobaleVariablen, ImSpiel, KartenGenerator, Eingabe, Auswahl, EinheitenDatenbank, Anzeige, ZufallsGeneratoren, Ladezeiten;
+
 package body SpielEinstellungen is
 
    function SpielEinstellungen return Integer is
@@ -265,11 +270,11 @@ package body SpielEinstellungen is
          case GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen (Wert))is
             when 0 =>
                Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                     FrageDatei         => 10,
-                                     FrageZeile         => 21,
-                                     TextDatei          => 5,
-                                     ErsteZeile         => 10,
-                                     LetzteZeile        => 11);
+                                           FrageDatei         => 10,
+                                           FrageZeile         => 21,
+                                           TextDatei          => 5,
+                                           ErsteZeile         => 10,
+                                           LetzteZeile        => 11);
          
                case Wahl is
                   when -3 =>
@@ -316,11 +321,11 @@ package body SpielEinstellungen is
                Anzeige.AnzeigeLangerText (WelcherText => 7,
                                           WelcheZeile => Wahl);
                Wahl2 := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                     FrageDatei         => 10,
-                                     FrageZeile         => 6,
-                                     TextDatei          => 5,
-                                     ErsteZeile         => 10,
-                                     LetzteZeile        => 11);
+                                            FrageDatei         => 10,
+                                            FrageZeile         => 6,
+                                            TextDatei          => 5,
+                                            ErsteZeile         => 10,
+                                            LetzteZeile        => 11);
                case Wahl2 is
                   when -3 =>
                      return Wahl;
@@ -369,8 +374,8 @@ package body SpielEinstellungen is
                   GezogeneWerte := ZufallsGeneratoren.YXPosition;
 
                   PrüfungEinheit := UmgebungPrüfen (YPosition       => GezogeneWerte.YAchse,
-                                                    XPosition       => GezogeneWerte.XAchse,
-                                                    RasseExtern     => RasseIntern);
+                                                      XPosition       => GezogeneWerte.XAchse,
+                                                      RasseExtern     => RasseIntern);
 
                   case PrüfungEinheit is
                      when True =>
@@ -444,8 +449,8 @@ package body SpielEinstellungen is
                            
                            case PlatzBelegt.Platznummer is
                               when SchleifenPruefungen.RückgabeWert =>
-                                    Koordinaten (2) := (0, KartenWert.YAchse, KartenWert.XAchse);
-                                    StartpunktFestlegen (RasseExtern => RasseExtern);
+                                 Koordinaten (2) := (0, KartenWert.YAchse, KartenWert.XAchse);
+                                 StartpunktFestlegen (RasseExtern => RasseExtern);
                                  return True;
                                  
                               when others =>

@@ -1,4 +1,4 @@
-with GlobaleVariablen, GlobaleDatentypen, EinheitenDatenbank, InDerStadt, KISiedler, KINahkampfLandEinheit, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit;
+with GlobaleDatentypen;
 use GlobaleDatentypen;
 
 package KI is

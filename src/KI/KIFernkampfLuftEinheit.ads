@@ -1,4 +1,4 @@
-with GlobaleDatentypen, GlobaleVariablen, KIBewegung;
+with GlobaleDatentypen;
 
 package KIFernkampfLuftEinheit is
 

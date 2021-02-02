@@ -1,36 +1,9 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
-
-with GlobaleVariablen, Auswahl, Karten, SchleifenPruefungen, GlobaleDatentypen, GlobaleRecords, Anzeige;
+with GlobaleVariablen, GlobaleRecords, GlobaleDatentypen, DatenbankRecords;
 use GlobaleDatentypen, GlobaleRecords;
 
-package EinheitenDatenbank is
+package EinheitenDatenbank is   
 
-   type Einheiten is record
-      
-      -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
-      -- Addieren für genaue Passierbarkeit
-      
-      Anzeige : Wide_Wide_Character;
-      
-      SiedlerLandeinheitSeeeinheitLufteinheit : Integer; -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
-      PreisGeld : GlobaleDatentypen.KostenLager;
-      PreisRessourcen : GlobaleDatentypen.KostenLager;
-      Anforderungen : Integer;
-
-      Passierbarkeit : GlobaleDatentypen.PassierbarkeitType;
-      MaximaleLebenspunkte : Integer;
-      MaximaleBewegungspunkte : Float;
-
-      Beförderungsgrenze : Integer;
-      MaximalerRang : Integer;
-      Reichweite : Integer;
-      Angriff : GlobaleDatentypen.GrundwerteNRGWVA;
-      Verteidigung : GlobaleDatentypen.GrundwerteNRGWVA;
-      
-   end record;
-
-   type EinheitenListeArry is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.EinheitenID'Range) of Einheiten;
+   type EinheitenListeArry is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.EinheitenID'Range) of DatenbankRecords.EinheitenListeRecord;
    EinheitenListe : constant EinheitenListeArry := (others => (('S', 1, 10, 10, 0,    1, 3, 1.00,    30, 3, 1, 1, 1), -- Siedler
 
                                                                ('L', 3, 25, 20, 0,    1, 5, 3.00,    30, 3, 1, 3, 1), -- Steinbeilkämpfer
@@ -65,7 +38,7 @@ private
    
    Heilungsrate : constant Integer := 10;   
 
-   Position : GlobaleRecords.AchsenAusKartenfeldPositiv;
+   Position : GlobaleRecords.AchsenAusKartenfeldPositivRecord;
    
    type SortierenArray is array (GlobaleVariablen.EinheitenGebautArray'Range (2)) of GlobaleRecords.EinheitenGebautRecord;
    Sortieren : SortierenArray;

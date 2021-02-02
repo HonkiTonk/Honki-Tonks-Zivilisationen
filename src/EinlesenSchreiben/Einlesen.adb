@@ -1,3 +1,8 @@
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Characters.Conversions;
+use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar;
+
+with Ladezeiten, Schreiben;
+
 package body Einlesen is
 
    function Einlesen return Boolean is
@@ -81,9 +86,9 @@ package body Einlesen is
             return False;
       end case;
 
-      Ada.Wide_Wide_Text_IO.Open (File => DateiNeuWelcheTexteEinlesen,
-                                  Mode => In_File,
-                                  Name => "Dateien/Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0");
+      Open (File => DateiNeuWelcheTexteEinlesen,
+            Mode => In_File,
+            Name => "Dateien/Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0");
       
       EinlesenSchleife:
       for WelcheDateien in WelcheTexteEinlesenNeu'Range loop
@@ -99,7 +104,7 @@ package body Einlesen is
 
       end loop EinlesenSchleife;
 
-      close (File => DateiNeuWelcheTexteEinlesen);
+      Close (File => DateiNeuWelcheTexteEinlesen);
       
       DateiSchleife:
       for Datei in 1 .. GlobaleVariablen.TexteEinlesenNeu'Last (1) loop
@@ -130,7 +135,7 @@ package body Einlesen is
 
          end loop ZeilenSchleife;
 
-         close (File => DateiNeuText);
+         Close (File => DateiNeuText);
 
       end loop DateiSchleife;
 
@@ -138,8 +143,8 @@ package body Einlesen is
 
    exception
       when Storage_Error =>
-         Ada.Wide_Wide_Text_IO.Put_Line (Item => "Zu lange Zeile, Einlesen.EinlesenText");
-         close (File => DateiNeuText);
+         Put_Line (Item => "Zu lange Zeile, Einlesen.EinlesenText");
+         Close (File => DateiNeuText);
          raise;
          
    end EinlesenTextNeu;

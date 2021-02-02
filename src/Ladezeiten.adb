@@ -1,3 +1,8 @@
+with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO;
+use Ada.Wide_Wide_Text_IO;
+
+with Anzeige;
+
 package body Ladezeiten is
 
    procedure LadezeitenSpielweltErstellen (WelcheZeit : in Positive) is
@@ -64,7 +69,7 @@ package body Ladezeiten is
 
       case WelcheZeit is
          when others =>
-            Ada.Float_Text_IO.Put (Item => Float (SpielStartzeiten (2, WelcheZeit) - SpielStartzeiten (1, WelcheZeit)),
+            Ada.Float_Text_IO.Put (Item => Float (Speicherzeiten (2, WelcheZeit) - Speicherzeiten (1, WelcheZeit)),
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
@@ -90,7 +95,7 @@ package body Ladezeiten is
 
       case WelcheZeit is
          when others =>
-            Ada.Float_Text_IO.Put (Item => Float (SpielStartzeiten (2, WelcheZeit) - SpielStartzeiten (1, WelcheZeit)),
+            Ada.Float_Text_IO.Put (Item => Float (LadenLadezeiten (2, WelcheZeit) - LadenLadezeiten (1, WelcheZeit)),
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);

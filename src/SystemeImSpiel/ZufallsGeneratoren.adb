@@ -1,6 +1,8 @@
+with Karten;
+
 package body ZufallsGeneratoren is
 
-   function YXPosition return GlobaleRecords.AchsenAusKartenfeldPositiv is
+   function YXPosition return GlobaleRecords.AchsenAusKartenfeldPositivRecord is
    begin
 
       case Karten.Kartengröße is

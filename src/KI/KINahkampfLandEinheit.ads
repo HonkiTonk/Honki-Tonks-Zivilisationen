@@ -1,4 +1,4 @@
-with GlobaleDatentypen, GlobaleVariablen, KIBewegung, KIEinheitVerbessernOderVernichten;
+with GlobaleDatentypen;
 
 package KINahkampfLandEinheit is
 

@@ -1,3 +1,5 @@
+with BewegungssystemEinheiten, GlobaleVariablen, Karten, SchleifenPruefungen, KIVariablen;
+
 package body KIBewegung is
 
    procedure KIBewegung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive; Aufgabe : Wide_Wide_Character) is
@@ -6,11 +8,11 @@ package body KIBewegung is
       -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
       -- f = Flucht, s = Stadt bauen, e = Erkunden, a = Angreifen
       case Aufgabe is
-        -- when 'f' =>
-         --   null;
+         when 'f' =>
+            null;
 
-         --when 's' =>
-          --  null;
+         when 's' =>
+            null;
 
          when 'e' =>
             null;
@@ -89,7 +91,7 @@ package body KIBewegung is
       case Durchgang is
          when 1 =>
             if Karten.Karten (EAchse, YAchse, XAchse).Felderwertung > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
-                                                                                                      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).Felderwertung then
+                                                                                     GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).Felderwertung then
                AltePosition := IstDasEineAltePosition (RasseExtern   => RasseExtern,
                                                        EinheitNummer => EinheitNummer,
                                                        EAchse        => EAchse,
@@ -175,9 +177,9 @@ package body KIBewegung is
 
 
    procedure BewegungBauarbeiter (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
-      begin
+   begin
       
-         null;
+      null;
       
    end BewegungBauarbeiter;
    

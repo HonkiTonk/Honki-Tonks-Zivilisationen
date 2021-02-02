@@ -1,3 +1,9 @@
+with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
+use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
+
+with ForschungsDatenbank, InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, EinheitenDatenbank, GlobaleVariablen, NaechstesObjekt, Verbesserungen,
+     Anzeige, Diplomatie, SchleifenPruefungen, Cheat;
+
 package body BefehleImSpiel is
 
    function Befehle (RasseExtern : in GlobaleDatentypen.Rassen) return Integer is
@@ -115,7 +121,7 @@ package body BefehleImSpiel is
             return 1;
             
          when 'l' | 'm' | 'f' | 'u' | 'z' | 'p' | 'h' | 'v' | Space | DEL | 'j' => -- l/1 = Straße, m/2 = Mine, f/3 = Farm, u/4 = Festung, z/5 = Wald aufforsten, p/6 = /Roden-Trockenlegen,
-                                                                                   -- h/7 = Heilen, v/8 = Verschanzen, Space/9 = Runde aussetzen, DEL/10 = Einheit auflösen, j/11 = Plündern
+            -- h/7 = Heilen, v/8 = Verschanzen, Space/9 = Runde aussetzen, DEL/10 = Einheit auflösen, j/11 = Plündern
             case To_Lower (Taste) is
                when 'l' =>
                   WelcherBefehl := 1;

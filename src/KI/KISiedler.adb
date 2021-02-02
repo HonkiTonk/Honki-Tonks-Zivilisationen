@@ -1,3 +1,5 @@
+with Karten, StadtWerteFestlegen, GlobaleVariablen, InDerStadt, KIBewegung, KIGefahr, KIEinheitVerbessernOderVernichten;
+
 package body KISiedler is
 
    procedure KISiedler (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) is
@@ -8,7 +10,7 @@ package body KISiedler is
             if Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
                               GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).Felderwertung >= 90
               and Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).DurchStadtBelegterGrund = 0 then
+                                 GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).DurchStadtBelegterGrund = 0 then
                StadtErfolgreichGebaut := InDerStadt.StadtBauen (RasseExtern   => RasseExtern,
                                                                 EinheitNummer => EinheitNummer);
 
@@ -102,7 +104,7 @@ package body KISiedler is
                             GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).VerbesserungStraße = 0
              or Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
                                GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).VerbesserungGebiet = 0) then
-      return True;
+         return True;
             
       else
          return False;

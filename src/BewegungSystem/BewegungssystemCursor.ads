@@ -1,7 +1,4 @@
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
-
-with Anzeige, GlobaleDatentypen, GlobaleVariablen, KartenDatenbank, Karten, Eingabe, SchleifenPruefungen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
 
 package BewegungssystemCursor is
@@ -22,7 +19,7 @@ private
    Wert : Integer;
    Stellenanzahl : Integer;
 
-   KartenWert : GlobaleRecords.AchsenAusKartenfeld;
+   KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
    
    procedure BewegungCursorBerechnen (YÄnderung, XÄnderung : in GlobaleDatentypen.LoopRangeMinusEinsZuEins; RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => (YÄnderung /= 0 or XÄnderung /= 0);
