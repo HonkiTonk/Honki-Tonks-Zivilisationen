@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleVariablen, KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, SchleifenPruefungen;
+with KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, SchleifenPruefungen;
 
 package body Sichtbarkeit is
 
@@ -114,7 +114,7 @@ package body Sichtbarkeit is
 
 
 
-   procedure Sichtbarkeit (InDerStadt : Boolean; EAchse : GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) is
+   procedure Sichtbarkeit (InDerStadt : Boolean; EAchse : GlobaleDatentypen.EbeneVorhanden; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen

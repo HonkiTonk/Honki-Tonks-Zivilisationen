@@ -1,4 +1,4 @@
-with StadtWerteFestlegen, GlobaleVariablen, GebaeudeDatenbank, EinheitenDatenbank, Anzeige;
+with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, Anzeige;
 
 package body Wachstum is
 

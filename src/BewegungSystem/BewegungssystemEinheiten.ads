@@ -1,4 +1,4 @@
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, Karten;
 use GlobaleDatentypen;
 
 package BewegungssystemEinheiten is
@@ -27,7 +27,10 @@ private
    GegnerEinheitWert : GlobaleRecords.RasseUndPlatznummerRecord;
    GegnerStadtWert : GlobaleRecords.RasseUndPlatznummerRecord;
 
-   function FeldFürDieseEinheitPassierbar (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) return Boolean;
-   function BefindetSichDortEineEinheit (RasseExtern : GlobaleDatentypen.RassenMitNullwert; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord;
+   function FeldFürDieseEinheitPassierbar (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) return Boolean with  
+     Pre => YPosition <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XPosition <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+   
+   function BefindetSichDortEineEinheit (RasseExtern : GlobaleDatentypen.RassenMitNullwert; YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv) return GlobaleRecords.RasseUndPlatznummerRecord with  
+     Pre => YPosition <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XPosition <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
 
 end BewegungssystemEinheiten;

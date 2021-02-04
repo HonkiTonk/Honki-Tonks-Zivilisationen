@@ -1127,7 +1127,7 @@ package body KartenGenerator is
          for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             WerteFestlegen.KartenfelderBewerten (Generierung => True,
-                                                 Koordinaten => (1, YAchse, XAchse));
+                                                 Koordinaten => (0, YAchse, XAchse));
                
          end loop XAchseSchleife;
       end loop YAchseSchleife;

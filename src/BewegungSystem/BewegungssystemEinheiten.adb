@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
-with SchleifenPruefungen, GlobaleVariablen, KartenDatenbank, Karten, Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit;
+with SchleifenPruefungen, GlobaleVariablen, KartenDatenbank, Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit;
 
 package body BewegungssystemEinheiten is
 

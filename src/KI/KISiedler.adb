@@ -1,4 +1,4 @@
-with Karten, StadtWerteFestlegen, GlobaleVariablen, InDerStadt, KIBewegung, KIGefahr, KIEinheitVerbessernOderVernichten;
+with Karten, StadtWerteFestlegen, InDerStadt, KIBewegung, KIGefahr, KIEinheitVerbessernOderVernichten;
 
 package body KISiedler is
 

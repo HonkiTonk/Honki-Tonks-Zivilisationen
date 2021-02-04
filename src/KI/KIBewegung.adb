@@ -1,4 +1,4 @@
-with BewegungssystemEinheiten, GlobaleVariablen, Karten, SchleifenPruefungen, KIVariablen;
+with BewegungssystemEinheiten, Karten, SchleifenPruefungen, KIVariablen;
 
 package body KIBewegung is
 
@@ -85,7 +85,8 @@ package body KIBewegung is
 
 
 
-   function Bewegen (Durchgang : in Positive; RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
+   function Bewegen (Durchgang : in Positive; RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.EbeneVorhanden;
+                     YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
    begin
       
       case Durchgang is
@@ -140,7 +141,7 @@ package body KIBewegung is
 
 
 
-   function IstDasEineAltePosition (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
+   function IstDasEineAltePosition (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.EbeneVorhanden; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
    begin
       
       for AltePositionen in KIVariablen.LetzteBewegungen'Range (3) loop
@@ -160,7 +161,7 @@ package body KIBewegung is
 
 
 
-   procedure BewegungDurchführen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.Ebene; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) is
+   procedure BewegungDurchführen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.EbeneVorhanden; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) is
    begin
       
       KIVariablen.LetzteBewegungen (RasseExtern, EinheitNummer, 3) := KIVariablen.LetzteBewegungen (RasseExtern, EinheitNummer, 2);

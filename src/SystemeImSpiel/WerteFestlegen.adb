@@ -12,11 +12,11 @@ package body WerteFestlegen is
                XAchseÄnderungSchleife:
                for XAchseÄnderung in Koordinaten.XAchse - 3 .. Koordinaten.XAchse + 3 loop
 
-                  Kartenwert (Integer (Koordinaten.EAchse)) := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (Koordinaten.EAchse, YAchseÄnderung, XAchseÄnderung),
-                                                                                                   Änderung       => (0, 0, 0),
-                                                                                                   ZusatzYAbstand => 0);
+                  Kartenwert (Koordinaten.EAchse) := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (Koordinaten.EAchse, YAchseÄnderung, XAchseÄnderung),
+                                                                                         Änderung       => (0, 0, 0),
+                                                                                         ZusatzYAbstand => 0);
 
-                  case Kartenwert (Integer (Koordinaten.EAchse)).YAchse is
+                  case Kartenwert (Koordinaten.EAchse).YAchse is
                      when GlobaleDatentypen.Kartenfeld'First =>
                         exit XAchseÄnderungSchleife;
                         
@@ -29,7 +29,7 @@ package body WerteFestlegen is
             end loop YAchseÄnderungSchleife;
             
          when True =>
-            KartenfelderBewertenKleineSchleife (Koordinaten => (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse));
+            KartenfelderBewertenKleineSchleife (Koordinaten => Koordinaten);
       end case;
       
    end KartenfelderBewerten;
@@ -38,37 +38,37 @@ package body WerteFestlegen is
 
    procedure KartenfelderBewertenKleineSchleife (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) is
    begin
-              
+      
       BewertungYÄnderungSchleife:
       for BewertungYÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
          BewertungXÄnderungSchleife:
          for BewertungXÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
                      
-            Kartenwert (Integer (Koordinaten.EAchse)) := SchleifenPruefungen.KartenUmgebung (Koordinaten    => Koordinaten,
-                                                                                             Änderung       => (0, BewertungYÄnderung, BewertungXÄnderung),
-                                                                                             ZusatzYAbstand => 0);
+            Kartenwert (Koordinaten.EAchse) := SchleifenPruefungen.KartenUmgebung (Koordinaten    => Koordinaten,
+                                                                                   Änderung       => (0, BewertungYÄnderung, BewertungXÄnderung),
+                                                                                   ZusatzYAbstand => 0);
             
-            case Kartenwert (Integer (Koordinaten.EAchse)).YAchse is
+            case Kartenwert (Koordinaten.EAchse).YAchse is
                when GlobaleDatentypen.Kartenfeld'First =>
                   exit BewertungXÄnderungSchleife;
                   
-               when others =>
+               when others =>                  
                   if abs (BewertungYÄnderung) = 2 or abs (BewertungXÄnderung) = 2 then
                      BewertungSelbst (Koordinaten         => Koordinaten,
-                                      YAchseFeldAufschlag => Kartenwert (Integer (Koordinaten.EAchse)).YAchse,
-                                      XAchseFeldAufschlag => Kartenwert (Integer (Koordinaten.EAchse)).XAchse,
+                                      YAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).YAchse,
+                                      XAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).XAchse,
                                       Teiler              => 2);
 
                   elsif abs (BewertungYÄnderung) = 3 or abs (BewertungXÄnderung) = 3 then
                      BewertungSelbst (Koordinaten         => Koordinaten,
-                                      YAchseFeldAufschlag => Kartenwert (Integer (Koordinaten.EAchse)).YAchse,
-                                      XAchseFeldAufschlag => Kartenwert (Integer (Koordinaten.EAchse)).XAchse,
+                                      YAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).YAchse,
+                                      XAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).XAchse,
                                       Teiler              => 3);
 
                   else
                      BewertungSelbst (Koordinaten         => Koordinaten,
-                                      YAchseFeldAufschlag => Kartenwert (Integer (Koordinaten.EAchse)).YAchse,
-                                      XAchseFeldAufschlag => Kartenwert (Integer (Koordinaten.EAchse)).XAchse,
+                                      YAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).YAchse,
+                                      XAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).XAchse,
                                       Teiler              => 1);
                   end if;
             end case;

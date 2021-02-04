@@ -4,7 +4,7 @@ package body SchleifenPruefungen is
 
    function KartenUmgebung (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord; Änderung : in GlobaleRecords.AchsenAusKartenfeldRecord;
                             ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenAusKartenfeldRecord is
-   begin -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= oder 4 für <= Karten.Karten'First (2) + 3
+   begin -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= Karten.Karten'First (2) oder 4 für <= Karten.Karten'First (2) + 3
       
       if Koordinaten.EAchse + Änderung.EAchse < Karten.Karten'First (1) or Koordinaten.EAchse + Änderung.EAchse > Karten.Karten'Last (1) then
          return (GlobaleDatentypen.Ebene'First, GlobaleDatentypen.Kartenfeld'First, GlobaleDatentypen.Kartenfeld'First);

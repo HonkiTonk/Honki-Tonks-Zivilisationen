@@ -1,4 +1,4 @@
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package Wachstum is
@@ -8,7 +8,10 @@ package Wachstum is
 
 private
    
-   procedure WachstumEinwohner (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive);
-   procedure WachstumProduktion (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive);
+   procedure WachstumEinwohner (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
+     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+
+   procedure WachstumProduktion (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
+     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
 
 end Wachstum;

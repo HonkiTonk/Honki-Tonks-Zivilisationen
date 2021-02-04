@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with SchleifenPruefungen, GebaeudeDatenbank, KartenDatenbank, Karten, GlobaleVariablen, VerbesserungenDatenbank, Sichtbarkeit, Anzeige;
+with SchleifenPruefungen, GebaeudeDatenbank, KartenDatenbank, Karten, VerbesserungenDatenbank, Sichtbarkeit, Anzeige;
 
 package body KarteStadt is
 

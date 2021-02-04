@@ -1,7 +1,7 @@
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
 
-with Wachstum, ForschungsDatenbank, StadtWerteFestlegen, VerbesserungenDatenbank, SchleifenPruefungen, KartenDatenbank, Auswahl, Bauen, GebaeudeDatenbank, KarteStadt, GlobaleVariablen, Eingabe, EinheitenDatenbank,
+with Wachstum, ForschungsDatenbank, StadtWerteFestlegen, VerbesserungenDatenbank, SchleifenPruefungen, KartenDatenbank, Auswahl, Bauen, GebaeudeDatenbank, KarteStadt, Eingabe, EinheitenDatenbank,
      BewegungssystemCursor, Anzeige, Karten;
 
 package body InDerStadt is

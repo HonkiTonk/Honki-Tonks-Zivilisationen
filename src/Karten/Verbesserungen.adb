@@ -1,4 +1,4 @@
-with SchleifenPruefungen, GlobaleVariablen, EinheitenDatenbank, Anzeige, WerteFestlegen;
+with SchleifenPruefungen, EinheitenDatenbank, Anzeige, WerteFestlegen;
 
 package body Verbesserungen is
 

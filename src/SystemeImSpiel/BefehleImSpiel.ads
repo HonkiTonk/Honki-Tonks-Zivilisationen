@@ -1,4 +1,4 @@
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package BefehleImSpiel is
@@ -18,6 +18,7 @@ private
    StadtOderEinheit : Integer;
    WahlForschung : Integer;
 
-   procedure EinheitOderStadt (RasseExtern : GlobaleDatentypen.Rassen; Auswahl, StadtNummer, EinheitNummer : in Integer);
+   procedure EinheitOderStadt (RasseExtern : GlobaleDatentypen.Rassen; Auswahl, StadtNummer, EinheitNummer : in Integer) with
+     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2) and EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
    
 end BefehleImSpiel;

@@ -1,14 +1,24 @@
-with GlobaleRecords, GlobaleDatentypen;
+with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package InDerStadt is
 
-   procedure InDerStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive);
-   procedure StadtProduktionPrüfen (RasseExtern : in GlobaleDatentypen.RassenMitNullwert; StadtNummer : in Natural);
-   procedure BelegteStadtfelderFreigeben (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive);
+   procedure InDerStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
+     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
 
-   function StadtBauen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) return Boolean;
-   function StadtBauenPrüfen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) return Boolean;
+   procedure StadtProduktionPrüfen (RasseExtern : in GlobaleDatentypen.RassenMitNullwert; StadtNummer : in Natural) with
+     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+
+   procedure BelegteStadtfelderFreigeben (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
+     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+
+
+
+   function StadtBauen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) return Boolean with
+     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+
+   function StadtBauenPrüfen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) return Boolean with
+     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
 
 private
 
@@ -26,6 +36,7 @@ private
 
    KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
 
-   procedure StadtProduktionPrüfenBerechnung (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive);
+   procedure StadtProduktionPrüfenBerechnung (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
+     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
 
 end InDerStadt;

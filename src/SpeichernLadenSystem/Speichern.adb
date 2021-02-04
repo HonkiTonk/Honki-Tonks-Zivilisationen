@@ -1,7 +1,7 @@
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories, Ada.Calendar;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories, Ada.Calendar;
 
-with Karten, GlobaleVariablen, Eingabe, Auswahl, Ladezeiten, GlobaleRecords;
+with Karten, GlobaleVariablen, Eingabe, Auswahl, Ladezeiten, GlobaleRecords, Informationen;
 
 package body Speichern is
 
@@ -49,28 +49,22 @@ package body Speichern is
               Mode => Out_File,
               Name => "Dateien/Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => SpielstandName))));
 
+      Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu),
+                              Informationen.Versionsnummer);
+
       -- Schleife zum Speichern der Karte
+      Integer'Write (Stream (File => DateiSpeichernNeu),
+                    Karten.Kartengröße);
+
       EAchseSchleife:
       for EAchse in Karten.Karten'Range (1) loop
          YAchseSchleife:
-         for YAchse in Karten.Karten'Range (2) loop
+         for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.Karten'Range (3) loop
+            for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
 
-               case Karten.Karten (EAchse, YAchse, XAchse).Grund is
-                  when -2 =>
-                     exit YAchseSchleife;
-                     
-                  when -1 =>
-                     exit XAchseSchleife;
-
-                  when 0 =>
-                     exit XAchseSchleife;
-                     
-                  when others =>
-                     GlobaleRecords.KartenRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                        Karten.Karten (EAchse, YAchse, XAchse));
-               end case;
+               GlobaleRecords.KartenRecord'Write (Stream (File => DateiSpeichernNeu),
+                                                  Karten.Karten (EAchse, YAchse, XAchse));
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -85,14 +79,14 @@ package body Speichern is
          EinheitenSchleife:
          for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
             
-            case GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID is
-               when 0 =>
-                  null;
+           -- case GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID is
+              -- when 0 =>
+              --    null;
                   
-               when others =>
+              -- when others =>
                   GlobaleRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernNeu),
                                                               GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer));
-            end case;
+          --  end case;
             
          end loop EinheitenSchleife;
       end loop EinheitenRassenSchleife;
@@ -106,14 +100,14 @@ package body Speichern is
          StadtSchleife:
          for StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
             
-            case GlobaleVariablen.EinheitenGebaut (Rasse, StadtNummer).ID is
-               when 0 =>
-                  null;
+          --  case GlobaleVariablen.EinheitenGebaut (Rasse, StadtNummer).ID is
+           --    when 0 =>
+            --      null;
                   
-               when others =>
+             --  when others =>
                   GlobaleRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernNeu),
                                                               GlobaleVariablen.EinheitenGebaut (Rasse, StadtNummer));
-            end case;
+          --  end case;
             
          end loop StadtSchleife;
       end loop StadtRassenSchleife;

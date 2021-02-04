@@ -1,4 +1,4 @@
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package KI is
@@ -7,7 +7,10 @@ package KI is
 
 private
 
-   procedure KIAKtivitätEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive);
-   procedure KIAktivitätStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive);
+   procedure KIAKtivitätEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) with
+     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+
+   procedure KIAktivitätStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
+     Pre => StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
 
 end KI;
