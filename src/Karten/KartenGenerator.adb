@@ -20,7 +20,7 @@ package body KartenGenerator is
       Reset (Gewählt);
 
       NochVerteilbareRessourcen := Karten.Kartengrößen (Karten.Kartengröße).Ressourcenmenge;
-      GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2); -- Inseln, Kontinente, Pangäa
+      GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2, 10); -- Inseln, Kontinente, Pangäa
       -- GrößeLandart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
       GeneratorKarte := (others => (others => (0)));
 
@@ -44,7 +44,13 @@ package body KartenGenerator is
             else
                case Karten.Karten (0, YAchse, XAchse).Grund is -- Abfrage ist hier nötig, da sonst eine erstellte Landmasse wieder überschrieben wird!
                   when 0 =>
-                     Karten.Karten (0, YAchse, XAchse).Grund := 2;
+                     case Kartenart is
+                        when 4 =>
+                           Karten.Karten (0, YAchse, XAchse).Grund := 3;
+                           
+                        when others =>
+                           Karten.Karten (0, YAchse, XAchse).Grund := 2;
+                     end case;
 
                   when others =>
                      null;
@@ -161,7 +167,7 @@ package body KartenGenerator is
          for XÄnderung in -GrößeLandart (Kartenart) / 2 .. GrößeLandart (Kartenart) / 2 loop
             
             KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YPositionLandmasse, XPositionLandmasse),
-                                                              Änderung      => (0, YÄnderung, XÄnderung),
+                                                              Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
             case KartenWert.YAchse is
@@ -391,7 +397,7 @@ package body KartenGenerator is
             
             KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YAchse, XAchse),
                                                               Änderung       => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 0);
+                                                              ZusatzYAbstand => 1);
 
             case KartenWert.YAchse is
                when GlobaleDatentypen.Kartenfeld'First =>
@@ -446,7 +452,7 @@ package body KartenGenerator is
             
                   KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YAchse, XAchse),
                                                                     Änderung       => (0, YÄnderung, XÄnderung),
-                                                                    ZusatzYAbstand => 0);
+                                                                    ZusatzYAbstand => 1);
 
                   case KartenWert.YAchse is
                      when GlobaleDatentypen.Kartenfeld'First =>
@@ -483,7 +489,7 @@ package body KartenGenerator is
             
             KartenWertHügel := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YAchse, XAchse),
                                                                     Änderung       => (0, YÄnderungHügel, XÄnderungHügel),
-                                                                    ZusatzYAbstand => 0);
+                                                                    ZusatzYAbstand => 1);
 
             case KartenWertHügel.YAchse is
                when GlobaleDatentypen.Kartenfeld'First =>
@@ -578,7 +584,7 @@ package body KartenGenerator is
                            exit XAchseSchleifeZwei;
                            
                         when others =>
-                           if Karten.Karten (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= 0 and Wert >= WahrscheinlichkeitFluss / 2.00 then                        
+                           if Karten.Karten (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= 0 and Wert >= WahrscheinlichkeitFluss / 2.50 then                        
                               Karten.Karten (0, YAchse, XAchse).Fluss := 15;
 
                            else
@@ -589,6 +595,7 @@ package body KartenGenerator is
                   end loop XAchseSchleifeZwei;
                end loop YAchseSchleifeZwei;
             end if;
+
             case Karten.Karten (0, YAchse, XAchse).Fluss is
                when 0 =>
                   null;

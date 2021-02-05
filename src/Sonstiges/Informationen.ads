@@ -1,6 +1,6 @@
 package Informationen is
 
-   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.00.6305";
+   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.00.6315";
 
    procedure Informationen;
 

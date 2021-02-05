@@ -49,11 +49,18 @@ package body Speichern is
               Mode => Out_File,
               Name => "Dateien/Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => SpielstandName))));
 
-      Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu),
+      -- Versionsnummer speichern
+      Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu), 
                               Informationen.Versionsnummer);
 
+      -- Rundenanzahl und Rundenanzahl bis zum Autospeichern speichern
+      Positive'Write (Stream (File => DateiSpeichernNeu),
+                     GlobaleVariablen.RundenAnzahl);
+      Natural'Write (Stream (File => DateiSpeichernNeu),
+                     GlobaleVariablen.RundenBisAutosave);
+
       -- Schleife zum Speichern der Karte
-      Integer'Write (Stream (File => DateiSpeichernNeu),
+      Positive'Write (Stream (File => DateiSpeichernNeu),
                     Karten.Kartengröße);
 
       EAchseSchleife:
@@ -73,23 +80,32 @@ package body Speichern is
 
 
 
+      -- Rassen im Spiel speichern
+      GlobaleDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernNeu),
+                                                 GlobaleVariablen.RassenImSpiel);
+      -- Rassen im Spiel speichern
+
+
+
       -- Schleife zum Speichern der Einheiten
       EinheitenRassenSchleife:
       for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop
-         EinheitenSchleife:
-         for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
-            
-           -- case GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID is
-              -- when 0 =>
-              --    null;
+
+         case GlobaleVariablen.RassenImSpiel (Rasse) is
+            when 0 =>
+               null;
+               
+            when others =>
+               EinheitenSchleife:
+               for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
                   
-              -- when others =>
                   GlobaleRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernNeu),
                                                               GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer));
-          --  end case;
             
-         end loop EinheitenSchleife;
-      end loop EinheitenRassenSchleife;
+               end loop EinheitenSchleife;
+         end case;
+         
+         end loop EinheitenRassenSchleife;
       -- Schleife zum Speichern der Einheiten
 
 
@@ -97,21 +113,59 @@ package body Speichern is
       -- Schleife zum Speichern der Städte
       StadtRassenSchleife:
       for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop
-         StadtSchleife:
-         for StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
-            
-          --  case GlobaleVariablen.EinheitenGebaut (Rasse, StadtNummer).ID is
-           --    when 0 =>
-            --      null;
+         
+         case GlobaleVariablen.RassenImSpiel (Rasse) is
+            when 0 =>
+               null;
+
+            when others =>
+               StadtSchleife:
+               for StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
                   
-             --  when others =>
                   GlobaleRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernNeu),
                                                               GlobaleVariablen.EinheitenGebaut (Rasse, StadtNummer));
-          --  end case;
             
-         end loop StadtSchleife;
+               end loop StadtSchleife;
+         end case;
+         
       end loop StadtRassenSchleife;
       -- Schleife zum Speichern der Städte
+
+
+
+      -- Schleife zum Speichern von Wichtiges
+      WichtigesSchleife:
+      for Rasse in GlobaleVariablen.Wichtiges'Range loop
+         
+         case GlobaleVariablen.RassenImSpiel (Rasse) is
+            when 0 =>
+               null;
+               
+            when others =>
+               GlobaleRecords.WichtigesRecord'Write (Stream (File => DateiSpeichernNeu),
+                                                     GlobaleVariablen.Wichtiges (Rasse));
+         end case;
+         
+      end loop WichtigesSchleife;
+      -- Schleife zum Speichern von Wichtiges
+
+
+
+      -- Schleife zum Speichern von Diplomatie
+      DiplomatieSchleifeAußen:
+      for Rasse in GlobaleVariablen.Diplomatie'Range loop
+         
+         case GlobaleVariablen.RassenImSpiel (Rasse) is
+            when 0 =>
+               null;
+               
+            when others => null;
+             --  Integer'Write (Stream (File => DateiSpeichernNeu),
+                 --             GlobaleVariablen.Diplomatie (Rasse, Rassen));
+         end case;
+               
+         end loop DiplomatieSchleifeAußen;
+      -- Schleife zum Speichern von Diplomatie
 
       Close (File => DateiSpeichernNeu);
          
@@ -125,12 +179,13 @@ package body Speichern is
    procedure AutoSpeichern is
    begin
       
-      if GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.RundenBisAutosave = 0 then      
-         SpeichernNeu (AutoSpeichern => True);
+      case GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.RundenBisAutosave is
+         when 0 =>     
+            SpeichernNeu (AutoSpeichern => True);
          
-      else
-         null;
-      end if;
+         when others =>
+            null;
+      end case;
       
    end AutoSpeichern;
 

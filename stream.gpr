@@ -9,7 +9,7 @@ project Stream is
    end Naming;
 
    package Compiler is
-      for Switches ("ada") use ("-g");
+      for Switches ("ada") use ("-g", "-gnatwa");
    end Compiler;
 
 end Stream;

@@ -4,4 +4,4 @@ Momentan nur unter Linux getestet, sollte aber auch unter anderen Betriebssystem
 
 Zum kompilieren muss der Befehl -gnatW8 genutzt werden, da es sonst zu Problemen mit den verwendeten Sonderzeichen kommt.
 
-Aktuelle Version: 0.00.6305
+Aktuelle Version: 0.00.6315

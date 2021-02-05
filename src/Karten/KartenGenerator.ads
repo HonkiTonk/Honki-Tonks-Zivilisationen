@@ -22,26 +22,27 @@ private
    Eisrand : constant GlobaleDatentypen.KartenfeldPositiv := 1;
    FelderVonTemperaturZuTemperatur : constant GlobaleDatentypen.KartenfeldPositiv := 5;
    Abstand : constant GlobaleDatentypen.KartenfeldPositiv := 2;
-   WahrscheinlichkeitFluss : constant Float := 0.90;
+   WahrscheinlichkeitFluss : constant Float := 0.85;
 
    Wert : Float;
 
    KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
    KartenWertHügel : GlobaleRecords.AchsenAusKartenfeldRecord;
 
-   type GrößeLandartArray is array (1 .. 3) of GlobaleDatentypen.KartenfeldPositiv;
+   type GrößeLandartArray is array (1 .. 4) of GlobaleDatentypen.KartenfeldPositiv;
    GrößeLandart : GrößeLandartArray;
 
-   type FelderVonLandartZuLandartArray is array (1 .. 3) of GlobaleDatentypen.Kartenfeld;
-   FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 30, 0); -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
+   type FelderVonLandartZuLandartArray is array (1 .. 4) of GlobaleDatentypen.Kartenfeld;
+   FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 30, 0, 0); -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
                                                                                        -- Sollte so aber ganz gut sein, da bei halbem Loop zu wenig Wasser ist, aber eventuell Werte ein wenig verringern.
 
-   type WahrscheinlichkeitenFürLandArray is array (1 .. 3, 1 .. 7) of Float;
+   type WahrscheinlichkeitenFürLandArray is array (1 .. 4, 1 .. 7) of Float;
    WahrscheinlichkeitenFürLand : constant WahrscheinlichkeitenFürLandArray := (1 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
                                                                                  -- 1 = Landwert nahe Eissschild, 2 = Landwert nahe Eissschild mit Landflächenentstehung, 3 = Landwert,
                                                                                  -- 4 = Landwert mit Landflächenentstehung, 5 = Landwert, 6 = Landwert bei Landflächenentstehung, 7 = Landwert ohne Landflächenentstehung
                                                                                  2 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
-                                                                                 3 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70));
+                                                                                 3 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
+                                                                                 4 => (0.50, 0.00, 0.50, 0.00, 0.50, 0.00, 0.50));
 
    type GeneratorKarteArray is array (Karten.Karten'Range (2), Karten.Karten'Range (3)) of GlobaleDatentypen.Kartenfeld;
    GeneratorKarte : GeneratorKarteArray;
@@ -52,10 +53,10 @@ private
    type KartengrundWahrscheinlichkeitenArray is array (1 .. 5, 4 .. 10) of Float; -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
    KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray := (1 => (0.25, 0.35, 0.45, 0.55, 0.70, 0.75, 0.85),
                                                                                        -- 4 = Tundra, 5 = Wüste, 6 = Hügel, 7 = Gebirge, 8 = Wald, 9 = Dschungel, 10 = Sumpf
-                                                                                       2 => (0.85, 0.75, 0.50, 0.30, 0.20, 0.20, 0.20),
-                                                                                       3 => (0.85, 0.75, 0.50, 0.30, 0.20, 0.20, 0.20),
-                                                                                       4 => (0.85, 0.75, 0.50, 0.30, 0.20, 0.20, 0.20),
-                                                                                       5 => (0.85, 0.75, 0.50, 0.30, 0.20, 0.20, 0.20));
+                                                                                       2 => (0.15, 0.30, 0.40, 0.50, 0.70, 0.75, 0.85),
+                                                                                       3 => (0.05, 0.35, 0.45, 0.50, 0.65, 0.70, 0.90),
+                                                                                       4 => (0.40, 0.44, 0.45, 0.55, 0.70, 0.71, 0.80),
+                                                                                       5 => (0.00, 0.50, 0.55, 0.60, 0.70, 0.75, 0.95));
 
    type WahrscheinlichkeitFürLandschaftArray is array (6 .. 10) of Float;
    WahrscheinlichkeitFürLandschaft : constant WahrscheinlichkeitFürLandschaftArray := (0.85, 0.75, 0.50, 0.30, 0.20);

@@ -1,4 +1,4 @@
-with GlobaleVariablen, SchleifenPruefungen, Karten;
+with SchleifenPruefungen, Karten;
 
 package body StadtWerteFestlegen is
 

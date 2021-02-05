@@ -137,7 +137,7 @@ package body SpielEinstellungen is
                                      LetzteZeile        => 25);
                   
          case Wahl is
-            when 1 .. 3  | 5 =>
+            when 1 .. 5 =>
                KartenGenerator.Kartenart := Wahl;
                return 3;
                
@@ -178,7 +178,7 @@ package body SpielEinstellungen is
                                      LetzteZeile        => 36);
                   
          case Wahl is
-            when 1 .. 3 =>
+            when 1 .. 5 =>
                KartenGenerator.Kartentemperatur := Wahl;
                return 4;
                

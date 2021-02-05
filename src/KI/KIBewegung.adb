@@ -1,4 +1,4 @@
-with BewegungssystemEinheiten, Karten, SchleifenPruefungen, KIVariablen;
+with BewegungssystemEinheiten, SchleifenPruefungen, KIVariablen;
 
 package body KIBewegung is
 
@@ -43,10 +43,9 @@ package body KIBewegung is
                   null;
 
                else
-                  Bewegung := BewegungssystemEinheiten.ZwischenEbene (RasseExtern   => RasseExtern,
-                                                                      EinheitNummer => EinheitNummer,
-                                                                      YÄnderung     => YÄnderung,
-                                                                      XÄnderung     => XÄnderung);
+                  Bewegung := BewegungssystemEinheiten.ZwischenEbene (RasseExtern    => RasseExtern,
+                                                                      EinheitNummer  => EinheitNummer,
+                                                                      ÄnderungExtern => (0, YÄnderung, XÄnderung));
 
                   case Bewegung is
                      when 1 => -- Bewegung auf Feld möglich.
@@ -170,8 +169,7 @@ package body KIBewegung is
       
       BewegungssystemEinheiten.BewegungEinheitenBerechnung (RasseExtern   => RasseExtern,
                                                             EinheitNummer => EinheitNummer,
-                                                            YPosition     => YAchse,
-                                                            XPosition     => XAchse);
+                                                            NeuePosition  => (EAchse, YAchse, XAchse));
             
    end BewegungDurchführen;
 

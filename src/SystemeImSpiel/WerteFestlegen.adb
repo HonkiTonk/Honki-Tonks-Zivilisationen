@@ -12,8 +12,8 @@ package body WerteFestlegen is
                XAchseÄnderungSchleife:
                for XAchseÄnderung in Koordinaten.XAchse - 3 .. Koordinaten.XAchse + 3 loop
 
-                  Kartenwert (Koordinaten.EAchse) := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (Koordinaten.EAchse, YAchseÄnderung, XAchseÄnderung),
-                                                                                         Änderung       => (0, 0, 0),
+                  Kartenwert (Koordinaten.EAchse) := SchleifenPruefungen.KartenUmgebung (Koordinaten    => Koordinaten,
+                                                                                         Änderung       => (0, YAchseÄnderung, XAchseÄnderung),
                                                                                          ZusatzYAbstand => 0);
 
                   case Kartenwert (Koordinaten.EAchse).YAchse is
@@ -21,10 +21,12 @@ package body WerteFestlegen is
                         exit XAchseÄnderungSchleife;
                         
                      when others =>
-                        Karten.Karten (Koordinaten.EAchse, YAchseÄnderung, XAchseÄnderung).Felderwertung := 0;
-                        KartenfelderBewertenKleineSchleife (Koordinaten => (Koordinaten.EAchse, YAchseÄnderung, XAchseÄnderung));
+                        Karten.Karten (Kartenwert (Koordinaten.EAchse).EAchse, Kartenwert (Koordinaten.EAchse).YAchse, Kartenwert (Koordinaten.EAchse).XAchse).Felderwertung := 0;
+                        KartenfelderBewertenKleineSchleife (Koordinaten => (GlobaleDatentypen.EbeneVorhanden (Kartenwert (Koordinaten.EAchse).EAchse),
+                                                                            GlobaleDatentypen.KartenfeldPositiv (Kartenwert (Koordinaten.EAchse).YAchse),
+                                                                            GlobaleDatentypen.KartenfeldPositiv (Kartenwert (Koordinaten.EAchse).XAchse)));
                   end case;
-            
+                                                            
                end loop XAchseÄnderungSchleife;
             end loop YAchseÄnderungSchleife;
             

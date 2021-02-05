@@ -40,8 +40,14 @@ package body Laden is
          return;
       end if;
 
+      -- Rundenanzahl und Rundenanzahl bis zum Autospeichern speichern
+      Positive'Read (Stream (File => DateiLadenNeu),
+                    GlobaleVariablen.RundenAnzahl);
+      Natural'Read (Stream (File => DateiLadenNeu),
+                    GlobaleVariablen.RundenBisAutosave);
+
       -- Schleife zum Laden der Karte
-      Integer'Read (Stream (File => DateiLadenNeu),
+      Positive'Read (Stream (File => DateiLadenNeu),
                     Karten.Kartengröße);
 
       EAchseSchleife:
@@ -52,7 +58,7 @@ package body Laden is
             for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
                GlobaleRecords.KartenRecord'Read (Stream (File => DateiLadenNeu),
-                                                 Karten.Karten (EAchse, YAchse, XAchse)); -- Einfach ein (1 ..1, 1 .. 1, 1 .. 1) großes Array mit diesem Datentype anlegen und entsprechen prüfen was der Wert ist?
+                                                 Karten.Karten (EAchse, YAchse, XAchse));
                               
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -61,22 +67,31 @@ package body Laden is
 
 
 
+      -- Rassen im Spiel laden
+      GlobaleDatentypen.RassenImSpielArray'Read (Stream (File => DateiLadenNeu),
+                                                 GlobaleVariablen.RassenImSpiel);
+      -- Rassen im Spiel laden
+
+
+
       -- Schleife zum Laden der Einheiten
       EinheitenRassenSchleife:
       for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop
-         EinheitenSchleife:
-         for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+
+         case GlobaleVariablen.RassenImSpiel (Rasse) is
+            when 0 =>
+               null;
+               
+            when others =>
+               EinheitenSchleife:
+               for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
             
-            --case GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer).ID is
-             --  when 0 =>
-               --   null;
-                  
-               --when others =>
                   GlobaleRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
-                                                              GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer));
-            --end case;
+                                                             GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer));
             
-         end loop EinheitenSchleife;
+               end loop EinheitenSchleife;
+         end case;
+         
       end loop EinheitenRassenSchleife;
       -- Schleife zum Laden der Einheiten
 
@@ -85,19 +100,21 @@ package body Laden is
       -- Schleife zum Laden der Städte
       StadtRassenSchleife:
       for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop
-         StadtSchleife:
-         for StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
-            
-            --case GlobaleVariablen.EinheitenGebaut (Rasse, StadtNummer).ID is
-               --when 0 =>
-                 -- null;
+
+         case GlobaleVariablen.RassenImSpiel (Rasse) is
+            when 0 =>
+               null;
+               
+            when others =>
+               StadtSchleife:
+               for StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
                   
-               --when others =>
                   GlobaleRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
                                                              GlobaleVariablen.EinheitenGebaut (Rasse, StadtNummer));
-            --end case;
             
-         end loop StadtSchleife;
+               end loop StadtSchleife;
+         end case;
+         
       end loop StadtRassenSchleife;
       -- Schleife zum Laden der Städte
 
