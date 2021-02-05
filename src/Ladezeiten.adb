@@ -137,7 +137,7 @@ package body Ladezeiten is
       
       Gesamtzeit := 0.00;
 
-      Put (Item => "Zwischen den Zügen: ");
+      Put (Item => "Berechnungszeit am Zugende aller Spieler: ");
 
       case WelcheZeit is
          when others =>

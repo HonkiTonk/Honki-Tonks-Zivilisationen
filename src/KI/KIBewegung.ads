@@ -33,6 +33,12 @@ private
    procedure BewegungUnterwasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) with
      Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
 
+   procedure BewegungUnterirdischeEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) with
+     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+
+   procedure BewegungOrbitaleEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) with
+     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+
    procedure BewegungDurchführen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.EbeneVorhanden; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) with
      Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) and YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
 

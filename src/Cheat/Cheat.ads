@@ -8,22 +8,22 @@ package Cheat is
 private
    
    Taste : Wide_Wide_Character;
+
+   AktuelleRasse : GlobaleDatentypen.Rassen;
+   RasseZahl : GlobaleDatentypen.Rassen;
    
    AktuelleEinheit : Integer;
-   AktuelleRasse : GlobaleDatentypen.Rassen;
-
-   RasseZahl : GlobaleDatentypen.Rassen;
    Stadt : Integer;
    ID : Integer;
 
    procedure BeliebigeNächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen);
    procedure Informationen;
    procedure Sichtbarkeit (RasseExtern : in GlobaleDatentypen.Rassen);
-   procedure GrundFestlegen;
+   procedure GrundFestlegen (RasseExtern : in GlobaleDatentypen.Rassen);
    procedure EinheitFestlegen;
    procedure Geld (RasseExtern : in GlobaleDatentypen.Rassen);
    procedure Technologie (RasseExtern : in GlobaleDatentypen.Rassen);
-   procedure VerbesserungFestlegen;
+   procedure VerbesserungFestlegen (RasseExtern : in GlobaleDatentypen.Rassen);
    procedure EinheitStatus;
 
 end Cheat;

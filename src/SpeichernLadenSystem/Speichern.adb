@@ -55,13 +55,17 @@ package body Speichern is
 
       -- Rundenanzahl und Rundenanzahl bis zum Autospeichern speichern
       Positive'Write (Stream (File => DateiSpeichernNeu),
-                     GlobaleVariablen.RundenAnzahl);
-      Natural'Write (Stream (File => DateiSpeichernNeu),
+                      GlobaleVariablen.RundenAnzahl);
+      Natural'Write (Stream (File => DateiSpeichernNeu), -- Das hier später in eine Config schieben
                      GlobaleVariablen.RundenBisAutosave);
+
+      -- Spieler am Zug speichern
+      GlobaleDatentypen.RassenMitNullwert'Write (Stream (File => DateiSpeichernNeu),
+                                                 GlobaleVariablen.RasseAmZugNachLaden);
 
       -- Schleife zum Speichern der Karte
       Positive'Write (Stream (File => DateiSpeichernNeu),
-                    Karten.Kartengröße);
+                      Karten.Kartengröße);
 
       EAchseSchleife:
       for EAchse in Karten.Karten'Range (1) loop
@@ -82,7 +86,7 @@ package body Speichern is
 
       -- Rassen im Spiel speichern
       GlobaleDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernNeu),
-                                                 GlobaleVariablen.RassenImSpiel);
+                                                  GlobaleVariablen.RassenImSpiel);
       -- Rassen im Spiel speichern
 
 
@@ -105,7 +109,7 @@ package body Speichern is
                end loop EinheitenSchleife;
          end case;
          
-         end loop EinheitenRassenSchleife;
+      end loop EinheitenRassenSchleife;
       -- Schleife zum Speichern der Einheiten
 
 
@@ -153,20 +157,49 @@ package body Speichern is
 
       -- Schleife zum Speichern von Diplomatie
       DiplomatieSchleifeAußen:
-      for Rasse in GlobaleVariablen.Diplomatie'Range loop
+      for Rasse in GlobaleVariablen.Diplomatie'Range (1) loop
+         
+         case GlobaleVariablen.RassenImSpiel (Rasse) is
+            when 0 =>
+               null;
+
+            when others =>               
+               DiplomatieSchleifeInnen:
+               for Rassen in GlobaleVariablen.Diplomatie'Range (2) loop
+
+                  case GlobaleVariablen.RassenImSpiel (Rassen) is
+                     when 0 =>
+                        null;
+                     
+                     when others =>
+                        Integer'Write (Stream (File => DateiSpeichernNeu),
+                                       GlobaleVariablen.Diplomatie (Rasse, Rassen));
+                  end case;
+
+               end loop DiplomatieSchleifeInnen;
+         end case;
+               
+      end loop DiplomatieSchleifeAußen;
+      -- Schleife zum Speichern von Diplomatie
+
+
+
+      -- Schleife zum Speichern der Cursorpositionen
+      CursorSchleife:
+      for Rasse in GlobaleVariablen.CursorImSpiel'Range loop
          
          case GlobaleVariablen.RassenImSpiel (Rasse) is
             when 0 =>
                null;
                
-            when others => null;
-             --  Integer'Write (Stream (File => DateiSpeichernNeu),
-                 --             GlobaleVariablen.Diplomatie (Rasse, Rassen));
+            when others =>
+               GlobaleRecords.CursorRecord'Write (Stream (File => DateiSpeichernNeu),
+                                                  GlobaleVariablen.CursorImSpiel (Rasse));
          end case;
-               
-         end loop DiplomatieSchleifeAußen;
-      -- Schleife zum Speichern von Diplomatie
-
+         
+      end loop CursorSchleife;
+      -- Schleife zum Speichern der Cursorpositionen
+      
       Close (File => DateiSpeichernNeu);
          
       Ladezeiten.Speicherzeiten (2, 1) := Clock;
@@ -180,7 +213,7 @@ package body Speichern is
    begin
       
       case GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.RundenBisAutosave is
-         when 0 =>     
+         when 0 =>
             SpeichernNeu (AutoSpeichern => True);
          
          when others =>

@@ -7,18 +7,22 @@ package body KIBewegung is
 
       -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
       -- f = Flucht, s = Stadt bauen, e = Erkunden, a = Angreifen
-      case Aufgabe is
+      case Aufgabe is -- Aufgabe als Enum?
          when 'f' =>
-            null;
+            BewegungBeliebig (RasseExtern   => RasseExtern,
+                              EinheitNummer => EinheitNummer);
 
          when 's' =>
-            null;
+            BewegungBeliebig (RasseExtern   => RasseExtern,
+                              EinheitNummer => EinheitNummer);
 
          when 'e' =>
-            null;
+            BewegungBeliebig (RasseExtern   => RasseExtern,
+                              EinheitNummer => EinheitNummer);
             
          when 'a' =>
-            null;
+            BewegungBeliebig (RasseExtern   => RasseExtern,
+                              EinheitNummer => EinheitNummer);
             
          when others =>
             BewegungBeliebig (RasseExtern   => RasseExtern,
@@ -32,7 +36,8 @@ package body KIBewegung is
    procedure BewegungBeliebig (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
    begin
 
-      BewegungSchleife:
+      BewegungSchleife: -- Erst prüfen wohin die Einheit soll, dann ob die neue Position eine Alte is, dann durch das Bewegungssystem jagen und dann auf bewegt setzen oder nicht?
+                        -- Und den Durchgang da auch noch irgendwo und irgendwie reinstopfen
       for Durchgang in 1 .. 2 loop
          YAchseSchleife:
          for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
@@ -56,7 +61,7 @@ package body KIBewegung is
                         ErfolgreichBewegt := Bewegen (Durchgang     => Durchgang,
                                                       RasseExtern   => RasseExtern,
                                                       EinheitNummer => EinheitNummer,
-                                                      EAchse        => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse,
+                                                      EAchse        => Kartenwert.EAchse,
                                                       YAchse        => Kartenwert.YAchse,
                                                       XAchse        => Kartenwert.XAchse);
 
@@ -68,10 +73,7 @@ package body KIBewegung is
                               null;
                         end case;
                      
-                     when 0 => -- Außerhalb der Karte oder Feld blockiert durch eigene Einheit.
-                        null;
-                     
-                     when -1 => -- Gegnerische Einheit oder Stadt auf dem Feld.
+                     when others => -- Gegnerische Einheit/Stadt auf dem Feld oder außerhalb der Karte oder Feld blockiert durch eigene Einheit.
                         null;
                   end case;
                end if;  
@@ -175,7 +177,7 @@ package body KIBewegung is
 
 
 
-   procedure BewegungBauarbeiter (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
+   procedure BewegungBauarbeiter (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is -- Einbauen oder nur Siedler?
    begin
       
       null;
@@ -202,7 +204,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungWasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
+   procedure BewegungWasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is -- Wasser- und Unterwassereinheit zusammenführen?
    begin
       
       null;
@@ -211,11 +213,29 @@ package body KIBewegung is
    
    
    
-   procedure BewegungUnterwasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
+   procedure BewegungUnterwasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is -- Wasser- und Unterwassereinheit zusammenführen?
    begin
       
       null;
       
    end BewegungUnterwasserEinheit;
+
+
+
+   procedure BewegungUnterirdischeEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
+   begin
+      
+      null;
+      
+   end BewegungUnterirdischeEinheit;
+   
+
+
+   procedure BewegungOrbitaleEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
+   begin
+      
+      null;
+      
+   end BewegungOrbitaleEinheit;
 
 end KIBewegung;

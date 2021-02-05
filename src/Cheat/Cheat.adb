@@ -14,7 +14,8 @@ package body Cheat is
       MenüSchleife:
       loop
 
-         Put_Line (Item => "n = nächste Einheit, i = Informationen, s = Sichtbarkeit, r = Rasse ändern, e = Einheit festlegen, g = Geld auf 1_000_000 setzen, t = Technologie, v = Verbesserung, a = Einheitenstatus");
+         Put_Line (Item => "n = nächste Einheit, i = Informationen, s = Sichtbarkeit, r = Rasse ändern, e = Einheit festlegen");
+         Put_Line (Item => "g = Geld auf 1_000_000 setzen, t = Technologie, v = Verbesserung, a = Einheitenstatus, b = Grund");
          Get_Immediate (Item => Taste);
 
          case To_Lower (Item => Taste) is               
@@ -37,10 +38,13 @@ package body Cheat is
                Technologie (RasseExtern => RasseExtern);
 
             when 'v' =>
-               VerbesserungFestlegen;
+               VerbesserungFestlegen  (RasseExtern => RasseExtern);
                
             when 'a' =>
                EinheitStatus;
+               
+            when 'b' =>
+               GrundFestlegen (RasseExtern => RasseExtern);
                
             when others =>
                return;
@@ -135,8 +139,14 @@ package body Cheat is
    procedure Informationen is
    begin
       
-      GlobaleVariablen.FeindlicheInformationenSehen := True;
-      
+      case GlobaleVariablen.FeindlicheInformationenSehen is
+         when False =>
+            GlobaleVariablen.FeindlicheInformationenSehen := True;
+            
+         when True =>
+            GlobaleVariablen.FeindlicheInformationenSehen := False;
+      end case;
+   
    end Informationen;
 
 
@@ -147,9 +157,9 @@ package body Cheat is
       EbeneSchleife:
       for EAchse in Karten.Karten'Range (1) loop
          YAchseSchleife:
-         for YAchse in 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in 1 .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
                Karten.Karten (EAchse, YAchse, XAchse).Sichtbar (RasseExtern) := True;
                
@@ -161,10 +171,30 @@ package body Cheat is
 
 
 
-   procedure GrundFestlegen is
+   procedure GrundFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      null;
+      ID := Eingabe.GanzeZahl (Zahlengröße => 2);
+
+      case ID is
+         when 1 .. 9 | 31 .. 32 | 35 .. 40 =>
+            Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
+                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund := GlobaleDatentypen.KartenGrund (ID);
+
+         when 10 .. 13 | 29 .. 30 | 33 =>
+            Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
+                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource := GlobaleDatentypen.KartenGrund (ID);
+
+         when 14 .. 28 =>
+            Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
+                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss := GlobaleDatentypen.KartenGrund (ID);
+            
+         when others =>
+            null;
+      end case;
       
    end GrundFestlegen;
    
@@ -204,10 +234,25 @@ package body Cheat is
    
    
    
-   procedure VerbesserungFestlegen is
+   procedure VerbesserungFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      null;
+      ID := Eingabe.GanzeZahl (Zahlengröße => 2);
+
+      case ID is
+         when 5 .. 19 =>
+            Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
+                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße := GlobaleDatentypen.KartenVerbesserung (ID);
+
+         when 20 .. 22 =>
+            Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
+                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet := GlobaleDatentypen.KartenVerbesserung (ID);
+            
+         when others =>
+            null;
+      end case;
       
    end VerbesserungFestlegen;
    

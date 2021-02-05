@@ -16,6 +16,7 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.Wichtiges := (others => (0, 0, 0, 0, 0, 0, (others => 0)));
       GlobaleVariablen.Diplomatie := (others => (others => 0));
       GlobaleVariablen.RundenAnzahl := 1;
+      GlobaleVariablen.RasseAmZugNachLaden := 0;
 
       Karten.Karten := (others => (others => (others => (0, False, (others => False), 0, 0, 0, 0, 0, 0))));
 

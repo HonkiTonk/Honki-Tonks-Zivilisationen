@@ -42,13 +42,17 @@ package body Laden is
 
       -- Rundenanzahl und Rundenanzahl bis zum Autospeichern speichern
       Positive'Read (Stream (File => DateiLadenNeu),
-                    GlobaleVariablen.RundenAnzahl);
-      Natural'Read (Stream (File => DateiLadenNeu),
+                     GlobaleVariablen.RundenAnzahl);
+      Natural'Read (Stream (File => DateiLadenNeu), -- Das hier später in eine Config schieben
                     GlobaleVariablen.RundenBisAutosave);
+
+      -- Spieler am Zug laden
+      GlobaleDatentypen.RassenMitNullwert'Read (Stream (File => DateiLadenNeu),
+                                                GlobaleVariablen.RasseAmZugNachLaden);
 
       -- Schleife zum Laden der Karte
       Positive'Read (Stream (File => DateiLadenNeu),
-                    Karten.Kartengröße);
+                     Karten.Kartengröße);
 
       EAchseSchleife:
       for EAchse in Karten.Karten'Range (1) loop
@@ -117,6 +121,71 @@ package body Laden is
          
       end loop StadtRassenSchleife;
       -- Schleife zum Laden der Städte
+
+
+
+      -- Schleife zum Laden von Wichtiges
+      WichtigesSchleife:
+      for Rasse in GlobaleVariablen.Wichtiges'Range loop
+         
+         case GlobaleVariablen.RassenImSpiel (Rasse) is
+            when 0 =>
+               null;
+               
+            when others =>
+               GlobaleRecords.WichtigesRecord'Read (Stream (File => DateiLadenNeu),
+                                                    GlobaleVariablen.Wichtiges (Rasse));
+         end case;
+         
+      end loop WichtigesSchleife;
+      -- Schleife zum Laden von Wichtiges
+
+
+
+      -- Schleife zum Laden von Diplomatie
+      DiplomatieSchleifeAußen:
+      for Rasse in GlobaleVariablen.Diplomatie'Range (1) loop
+         
+         case GlobaleVariablen.RassenImSpiel (Rasse) is
+            when 0 =>
+               null;
+
+            when others =>               
+               DiplomatieSchleifeInnen:
+               for Rassen in GlobaleVariablen.Diplomatie'Range (2) loop
+
+                  case GlobaleVariablen.RassenImSpiel (Rassen) is
+                     when 0 =>
+                        null;
+                     
+                     when others =>
+                        Integer'Read (Stream (File => DateiLadenNeu),
+                                      GlobaleVariablen.Diplomatie (Rasse, Rassen));
+                  end case;
+
+               end loop DiplomatieSchleifeInnen;
+         end case;
+               
+      end loop DiplomatieSchleifeAußen;
+      -- Schleife zum Laden von Diplomatie
+
+
+
+      -- Schleife zum Laden der Cursorpositionen
+      CursorSchleife:
+      for Rasse in GlobaleVariablen.CursorImSpiel'Range loop
+         
+         case GlobaleVariablen.RassenImSpiel (Rasse) is
+            when 0 =>
+               null;
+               
+            when others =>
+               GlobaleRecords.CursorRecord'Read (Stream (File => DateiLadenNeu),
+                                                 GlobaleVariablen.CursorImSpiel (Rasse));
+         end case;
+         
+      end loop CursorSchleife;
+      -- Schleife zum Laden der Cursorpositionen
 
       Close (File => DateiLadenNeu);
 
