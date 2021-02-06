@@ -1,5 +1,7 @@
-with Ada.Wide_Wide_Text_IO, Ada.Directories;
-use Ada.Wide_Wide_Text_IO, Ada.Directories;
+pragma SPARK_Mode (On);
+
+with Ada.Wide_Wide_Text_IO;
+use Ada.Wide_Wide_Text_IO;
 
 package Schreiben is
 

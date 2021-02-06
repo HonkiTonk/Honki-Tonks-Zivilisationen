@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with GlobaleVariablen, GlobaleDatentypen, EinheitenDatenbank, SchleifenPruefungen, KIRecords;
 use GlobaleDatentypen;
 

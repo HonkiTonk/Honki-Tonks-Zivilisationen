@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with Ada.Strings.Wide_Wide_Unbounded, Ada.Streams.Stream_IO;
 use Ada.Strings.Wide_Wide_Unbounded, Ada.Streams.Stream_IO;
 

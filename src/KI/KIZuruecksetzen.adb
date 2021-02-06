@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with KIVariablen, GlobaleVariablen;
 
 package body KIZuruecksetzen is

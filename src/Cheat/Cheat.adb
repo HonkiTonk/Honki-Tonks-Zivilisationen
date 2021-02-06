@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
@@ -15,7 +17,7 @@ package body Cheat is
       loop
 
          Put_Line (Item => "n = nächste Einheit, i = Informationen, s = Sichtbarkeit, r = Rasse ändern, e = Einheit festlegen");
-         Put_Line (Item => "g = Geld auf 1_000_000 setzen, t = Technologie, v = Verbesserung, a = Einheitenstatus, b = Grund");
+         Put_Line (Item => "g = Geld auf 1_000_000 setzen, t = Technologie, v = Verbesserung, b = Grund");
          Get_Immediate (Item => Taste);
 
          case To_Lower (Item => Taste) is               
@@ -39,9 +41,6 @@ package body Cheat is
 
             when 'v' =>
                VerbesserungFestlegen  (RasseExtern => RasseExtern);
-               
-            when 'a' =>
-               EinheitStatus;
                
             when 'b' =>
                GrundFestlegen (RasseExtern => RasseExtern);
@@ -255,14 +254,5 @@ package body Cheat is
       end case;
       
    end VerbesserungFestlegen;
-   
-   
-   
-   procedure EinheitStatus is
-   begin
-      
-      null;
-        
-   end EinheitStatus;
 
 end Cheat;

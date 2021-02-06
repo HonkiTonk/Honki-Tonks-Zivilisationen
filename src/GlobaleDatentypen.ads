@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 package GlobaleDatentypen is
 
    -- Für Anzeige

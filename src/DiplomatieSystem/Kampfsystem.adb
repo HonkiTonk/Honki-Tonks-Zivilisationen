@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank, GlobaleVariablen, Karten, SchleifenPruefungen;
 
 package body Kampfsystem is

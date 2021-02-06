@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with Karten;
 
 package body ZufallsGeneratoren is

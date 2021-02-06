@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Wide_Wide_Text_IO;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar;
 

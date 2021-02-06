@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 package Steuerung is
 
    procedure SteuerungBelegen;

@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with GlobaleDatentypen, GlobaleRecords, Karten, GlobaleVariablen;
 use GlobaleDatentypen, GlobaleRecords;
 

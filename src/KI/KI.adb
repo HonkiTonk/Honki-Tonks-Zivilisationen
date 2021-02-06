@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with EinheitenDatenbank, KISiedler, KINahkampfLandEinheit, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit, KIVariablen, KINahkampfUnterirdisch,
      KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital;
 

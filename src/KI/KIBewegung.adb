@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with BewegungssystemEinheiten, SchleifenPruefungen, KIVariablen;
 
 package body KIBewegung is

@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with Anzeige;
 
 package body GebaeudeDatenbank is

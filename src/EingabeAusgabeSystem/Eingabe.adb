@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
 
@@ -75,15 +77,17 @@ package body Eingabe is
    
 
 
+   -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
    function GanzeZahlNeu (WelcheDatei, WelcherText, ZahlenMinimum, ZahlenMaximum : Natural) return Integer is
    begin
       
       Schleifen := (others => False);
+      AktuelleZahlenPosition := 9;
       
       HauptSchleife:
       loop
          
-         ErsteZahlSchleife:
+         ErsteZahlSchleife: -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
          while Schleifen (9) = False loop
             
             Get_Immediate (Item => Zahlen);
@@ -96,7 +100,7 @@ package body Eingabe is
                      Schleifen (9) := True;
                      
                   else
-                     null;
+                     Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                   end if;
 
                when -1 =>
@@ -116,52 +120,56 @@ package body Eingabe is
 
          end loop ErsteZahlSchleife;
 
-         ZweiteZahlSchleife:
-         while Schleifen (8) = False loop
+         ZahlenAußenSchleife:
+         loop
+            ZahlenInnenSchleife:
+            for ZifferPosition in reverse 2 .. ZahlenString'Last loop           
+               
+               if AktuelleZahlenPosition >= ZifferPosition then                  
+                  Put (Item => Integer'Wide_Wide_Image (Integer'Wide_Wide_Value (ZahlenString)));
             
-            Get_Immediate (Item => Zahlen);
-            IstZahl := ZahlPrüfung (Zeichen => Zahlen);
-            case IstZahl is
-               when 1 =>
-                  ZahlenString (8) := ZahlenString (9);
-                  ZahlenString (9) := Zahlen;
-
-                  if Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimum and Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximum then
-                     Schleifen (8) := True;
-                     
-                  else
-                     null;
-                  end if;
-
-               when -1 =>
-                  return -1;
-
-               when 2 =>
-                  if Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimum then
-                     exit HauptSchleife;
-                     
-                  else
-                     null;
-                  end if;
+                  Test := ZahlSchleife (ZahlenMinimum        => ZahlenMinimum,
+                                        ZahlenMaximum        => ZahlenMaximum,
+                                        WelcheZahlenposition => ZifferPosition);
+               
+                  case Test is
+                     when -1 =>
+                        null;
+                        
+                     when 0 =>
+                        null;
+                        
+                     when 1 =>
+                        null;
+                        
+                     when 2 =>
+                        null;
+                        
+                     when others =>
+                        null;
+                  end case;
+                  Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                   
-               when others =>
+               else
                   null;
-            end case;
-
-         end loop ZweiteZahlSchleife;
+               end if;
+               
+            end loop ZahlenInnenSchleife;
+         end loop ZahlenAußenSchleife;
 
       end loop HauptSchleife;
-         
+      
+      NullstellenEntfernenSchleife:
       loop
             
          if ZahlenString (1) = '0' then
             Delete (Zahl, 1, 1);
                
          else
-            exit;
+            exit NullstellenEntfernenSchleife;
          end if;
             
-      end loop;
+      end loop NullstellenEntfernenSchleife;
 
       return Integer'Wide_Wide_Value (ZahlenString);
             
@@ -169,7 +177,58 @@ package body Eingabe is
 
 
 
-   function ZahlPrüfung (Zeichen : in Wide_Wide_Character) return Integer is
+   function ZahlSchleife (ZahlenMinimum, ZahlenMaximum : in Natural; WelcheZahlenposition : in Positive) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei is
+   begin
+      
+      ZahlenSchleife: -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
+      while Schleifen (WelcheZahlenposition) = False loop
+            
+         Get_Immediate (Item => Zahlen);
+         IstZahl := ZahlPrüfung (Zeichen => Zahlen);
+         case IstZahl is
+            when 1 =>
+               ZahlenString (8) := ZahlenString (9);
+               ZahlenString (9) := Zahlen;
+
+               if Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimum and Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximum then
+                  Schleifen (8) := True;
+                     
+               else
+                  ZahlenString (9) := ZahlenString (8);
+                  ZahlenString (8) := '0';
+                  Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+               end if;
+
+            when -1 =>
+               null;
+
+            when 2 =>
+               if Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimum then
+                  null;
+                     
+               else
+                  null;
+               end if;
+
+            when -2 =>
+               ZahlenString (9) := ZahlenString (8);
+               ZahlenString (8) := '0';
+               Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+                  
+            when others =>
+               null;
+         end case;
+
+      end loop ZahlenSchleife;
+
+      return 1;
+      
+   end ZahlSchleife;
+
+
+
+   -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
+   function ZahlPrüfung (Zeichen : in Wide_Wide_Character) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei is
    begin
       
       case Zeichen is

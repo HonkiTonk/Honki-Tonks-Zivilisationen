@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 package body KIPruefungen is
 
    function SpezielleEinheitArtSuchen (RasseExtern : in GlobaleDatentypen.Rassen; WelcheEinheitArt : in Positive) return Integer is

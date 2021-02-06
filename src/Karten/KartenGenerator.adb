@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with Ada.Calendar;
 use Ada.Calendar;
 

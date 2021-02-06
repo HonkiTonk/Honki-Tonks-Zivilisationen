@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with SchleifenPruefungen, Karten;
 
 package body StadtWerteFestlegen is

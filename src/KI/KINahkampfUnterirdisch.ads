@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with GlobaleDatentypen;
 
 package KINahkampfUnterirdisch is

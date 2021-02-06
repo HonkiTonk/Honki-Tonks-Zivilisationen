@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with KIBewegung;
 
 package body KINahkampfLandEinheit is

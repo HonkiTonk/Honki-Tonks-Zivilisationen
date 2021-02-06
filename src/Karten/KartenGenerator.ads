@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with Ada.Numerics.Float_Random;
 use Ada.Numerics.Float_Random;
 

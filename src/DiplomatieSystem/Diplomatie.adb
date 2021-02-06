@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with GlobaleVariablen, Kampfsystem, Auswahl;
 
 package body Diplomatie is

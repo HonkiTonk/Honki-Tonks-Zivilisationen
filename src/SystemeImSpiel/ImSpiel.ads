@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 package ImSpiel is
 
    function ImSpiel return Integer with

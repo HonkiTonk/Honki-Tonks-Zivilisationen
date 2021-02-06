@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with Auswahl, Anzeige;
 
 package body EinheitenDatenbank is

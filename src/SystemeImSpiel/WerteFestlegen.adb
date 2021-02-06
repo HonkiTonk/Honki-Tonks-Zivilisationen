@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with SchleifenPruefungen, KartenDatenbank, VerbesserungenDatenbank;
 
 package body WerteFestlegen is

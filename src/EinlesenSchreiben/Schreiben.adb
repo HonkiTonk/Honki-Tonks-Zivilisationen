@@ -1,3 +1,8 @@
+pragma SPARK_Mode (On);
+
+with Ada.Directories;
+use Ada.Directories;
+
 package body Schreiben is
 
    procedure SchreibenStartAufruf is

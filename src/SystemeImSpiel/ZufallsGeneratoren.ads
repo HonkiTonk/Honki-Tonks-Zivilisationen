@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with Ada.Numerics.Discrete_Random;
 
 with GlobaleDatentypen, GlobaleRecords;

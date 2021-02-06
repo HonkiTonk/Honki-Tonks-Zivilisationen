@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with SchleifenPruefungen, EinheitenDatenbank, Anzeige, WerteFestlegen;
 
 package body Verbesserungen is

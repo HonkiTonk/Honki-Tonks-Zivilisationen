@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, Anzeige;
 
 package body Wachstum is

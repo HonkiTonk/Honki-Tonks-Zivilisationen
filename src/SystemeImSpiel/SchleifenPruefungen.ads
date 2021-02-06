@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with Karten, GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen, GlobaleRecords;
 

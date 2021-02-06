@@ -1,3 +1,5 @@
+pragma SPARK_Mode (On);
+
 with GlobaleDatentypen;
 use GlobaleDatentypen;
 
@@ -24,6 +26,5 @@ private
    procedure Geld (RasseExtern : in GlobaleDatentypen.Rassen);
    procedure Technologie (RasseExtern : in GlobaleDatentypen.Rassen);
    procedure VerbesserungFestlegen (RasseExtern : in GlobaleDatentypen.Rassen);
-   procedure EinheitStatus;
 
 end Cheat;
