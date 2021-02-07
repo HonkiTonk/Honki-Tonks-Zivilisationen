@@ -14,7 +14,7 @@ package body BefehleImSpiel is
       Get_Immediate (Item => Taste);
 
       case To_Lower (Item => Taste) is
-         when 'w' | 's' | 'a' | 'd' | '1' | '2' | '3' | '4' | '6' | '7' | '8' | '9' =>
+         when 'w' | 's' | 'a' | 'd' | '1' | '2' | '3' | '4' | '6' | '7' | '8' | '9' | '+' | '-' =>
             BewegungssystemCursor.BewegungCursorRichtung (Karte       => True,
                                                           Richtung    => To_Lower (Item => Taste),
                                                           RasseExtern => RasseExtern);
@@ -217,26 +217,6 @@ package body BefehleImSpiel is
             
          when 'r' => -- Runde beenden            
             return -1_000;
-            
-         when '+' => -- Ebene hoch
-            case GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse is
-               when 2 =>
-                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := -2;
-                  
-               when others =>
-                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse + 1;
-            end case;
-            return 1;
-            
-         when '-' => -- Ebene runter
-            case GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse is
-               when -2 =>
-                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := 2;
-                  
-               when others =>
-                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse - 1;
-            end case;          
-            return 1;
             
          when 'c' => -- Kleine Cheattaste
             Cheat.Menü (RasseExtern => RasseExtern);         

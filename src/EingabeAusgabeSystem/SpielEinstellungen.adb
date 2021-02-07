@@ -85,24 +85,30 @@ package body SpielEinstellungen is
                                    ErsteZeile         => 19,
                                    LetzteZeile        => 19);
 
-               BenutzerdefinierteGröße := Eingabe.GanzeZahl (Zahlengröße => 4);
+               BenutzerdefinierteGröße := Eingabe.GanzeZahl (WelcheDatei   => 0,
+                                                               WelcherText   => 0,
+                                                               ZahlenMinimum => 10,
+                                                               ZahlenMaximum => 1_000);
                case BenutzerdefinierteGröße is
-                  when 10 .. 1_000 =>
+                  when -1 =>
+                     return 1;
+                     
+                  when others =>
                      Karten.Kartengrößen (Wahl).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-                     BenutzerdefinierteGröße := Eingabe.GanzeZahl (Zahlengröße => 4);
+                     BenutzerdefinierteGröße := Eingabe.GanzeZahl (WelcheDatei   => 0,
+                                                                     WelcherText   => 0,
+                                                                     ZahlenMinimum => 10,
+                                                                     ZahlenMaximum => 1_000);
                      
                      case BenutzerdefinierteGröße is
-                        when 10 .. 1_000 =>
+                        when -1 =>
+                           return 1;
+                           
+                        when others =>
                            Karten.Kartengrößen (Wahl).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
                            Karten.Kartengrößen (Wahl).Ressourcenmenge := Integer (Karten.Kartengrößen (Wahl).YAchsenGröße) * Integer (Karten.Kartengrößen (Wahl).XAchsenGröße) / 32;
                            return 2;
-                           
-                        when others =>
-                           null;
                      end case;
-                     
-                  when others =>
-                     null;
                end case;
                
             when 11 =>

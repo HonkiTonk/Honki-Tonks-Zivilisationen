@@ -19,7 +19,11 @@ package body Optionen is
                           TextDatei          => 9,
                           ErsteZeile         => 41,
                           LetzteZeile        => 41);
-      Wert := Eingabe.GanzeZahl (Zahlengröße => 3);
+      
+      Wert := Eingabe.GanzeZahl (WelcheDatei   => 0,
+                                 WelcherText   => 0,
+                                 ZahlenMinimum => 0,
+                                 ZahlenMaximum => 100);
       
       case Wert is
          when -1 =>

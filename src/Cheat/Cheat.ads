@@ -12,7 +12,7 @@ private
    Taste : Wide_Wide_Character;
 
    AktuelleRasse : GlobaleDatentypen.Rassen;
-   RasseZahl : GlobaleDatentypen.Rassen;
+   RasseZahl : Integer;
    
    AktuelleEinheit : Integer;
    Stadt : Integer;

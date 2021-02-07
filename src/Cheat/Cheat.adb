@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
-with GlobaleVariablen, Karte, Karten, Eingabe, EinheitenDatenbank;
+with GlobaleVariablen, Karte, Karten, Eingabe, EinheitenDatenbank, VerbesserungenDatenbank;
 
 package body Cheat is
 
@@ -173,7 +173,10 @@ package body Cheat is
    procedure GrundFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      ID := Eingabe.GanzeZahl (Zahlengröße => 2);
+      ID := Eingabe.GanzeZahl (WelcheDatei   => 0,
+                               WelcherText   => 0,
+                               ZahlenMinimum => 1,
+                               ZahlenMaximum => Integer (GlobaleDatentypen.KartenGrund'Last));
 
       case ID is
          when 1 .. 9 | 31 .. 32 | 35 .. 40 =>
@@ -202,14 +205,28 @@ package body Cheat is
    procedure EinheitFestlegen is
    begin
 
-      RasseZahl := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (Zahlengröße => 2));
-      Stadt := Eingabe.GanzeZahl (Zahlengröße => 2);
-      ID := Eingabe.GanzeZahl (Zahlengröße => 2);
+      RasseZahl := Eingabe.GanzeZahl (WelcheDatei   => 0,
+                                      WelcherText   => 0,
+                                      ZahlenMinimum => Integer (GlobaleDatentypen.Rassen'First),
+                                      ZahlenMaximum => Integer (GlobaleDatentypen.Rassen'Last));
+      Stadt := Eingabe.GanzeZahl (WelcheDatei   => 0,
+                                  WelcherText   => 0,
+                                  ZahlenMinimum => 1,
+                                  ZahlenMaximum => GlobaleVariablen.StadtGebaut'Last (2));
+      ID := Eingabe.GanzeZahl (WelcheDatei   => 0,
+                               WelcherText   => 0,
+                               ZahlenMinimum => 1,
+                               ZahlenMaximum => Integer (EinheitenDatenbank.EinheitenListe'Last (2)));
+
+      if RasseZahl = -1 or Stadt = -1 or ID = -1 then
+         null;
       
-      Put_Line (Item => "Einheit festlegen");
-      EinheitenDatenbank.EinheitErzeugen (RasseExtern => RasseZahl,
-                                          StadtNummer => Stadt,
-                                          ID          => ID);
+      else
+         Put_Line (Item => "Einheit festlegen");
+         EinheitenDatenbank.EinheitErzeugen (RasseExtern => GlobaleDatentypen.Rassen (RasseZahl),
+                                             StadtNummer => Stadt,
+                                             ID          => ID);
+      end if;
       
    end EinheitFestlegen;
    
@@ -236,7 +253,10 @@ package body Cheat is
    procedure VerbesserungFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      ID := Eingabe.GanzeZahl (Zahlengröße => 2);
+      ID := Eingabe.GanzeZahl (WelcheDatei   => 0,
+                               WelcherText   => 0,
+                               ZahlenMinimum => 5,
+                               ZahlenMaximum => Integer (VerbesserungenDatenbank.VerbesserungListe'Last));
 
       case ID is
          when 5 .. 19 =>
