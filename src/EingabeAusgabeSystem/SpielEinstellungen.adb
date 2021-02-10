@@ -429,7 +429,7 @@ package body SpielEinstellungen is
       end case;
 
       case PositionWert.Platznummer is
-         when SchleifenPruefungen.RückgabeWert =>
+         when 0 =>
             Koordinaten (1) := (0, YPosition, XPosition);
             YAchseSchleife:
             for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
@@ -445,19 +445,19 @@ package body SpielEinstellungen is
                   
                      when others =>
                         if YÄnderung /= 0 or XÄnderung /= 0 then
-                           PrüfungGrund := SchleifenPruefungen.KartenGrund (Koordinaten => (0, KartenWert.YAchse, KartenWert.XAchse));
+                           PrüfungGrund := SchleifenPruefungen.KartenGrund (Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
                            case PrüfungGrund is
                               when False =>
                                  PlatzBelegt := (1, 1);
             
                               when True =>
-                                 PlatzBelegt := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (0, KartenWert.YAchse, KartenWert.XAchse));
+                                 PlatzBelegt := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
                            end case;                    
                            
                            case PlatzBelegt.Platznummer is
-                              when SchleifenPruefungen.RückgabeWert =>
-                                 Koordinaten (2) := (0, KartenWert.YAchse, KartenWert.XAchse);
+                              when 0 =>
+                                 Koordinaten (2) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
                                  StartpunktFestlegen (RasseExtern => RasseExtern);
                                  return True;
                                  
@@ -490,13 +490,13 @@ package body SpielEinstellungen is
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.EAchse := Koordinaten (1).EAchse;
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.YAchse := Koordinaten (1).YAchse;
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.XAchse := Koordinaten (1).XAchse;
-      EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern, 1);
+      EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseUndNummer => (RasseExtern, 1));
 
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).ID := 2;
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).AchsenPosition.EAchse := Koordinaten (2).EAchse;
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).AchsenPosition.YAchse := Koordinaten (2).YAchse;
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).AchsenPosition.XAchse := Koordinaten (2).XAchse;
-      EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern, 2);
+      EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseUndNummer => (RasseExtern, 2));
       
       GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition;
       GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition;

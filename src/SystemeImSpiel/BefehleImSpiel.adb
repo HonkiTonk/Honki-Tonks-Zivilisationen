@@ -21,12 +21,12 @@ package body BefehleImSpiel is
             return 1;
             
          when 'e' | '5' => -- Einheit bewegen/Stadt betreten
-            WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (RasseExtern => RasseExtern,
-                                                                                 Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            WertStadt := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (RasseExtern => RasseExtern,
-                                                                             Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            EinheitNummer := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (RasseExtern => RasseExtern,
+                                                                                   Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            StadtNummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (RasseExtern => RasseExtern,
+                                                                               Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
-            if WertEinheit /= 0 and WertStadt /= 0 then
+            if EinheitNummer /= 0 and StadtNummer /= 0 then
                StadtOderEinheit := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
                                                        FrageDatei         => 10,
                                                        FrageZeile         => 15,
@@ -36,21 +36,21 @@ package body BefehleImSpiel is
 
                EinheitOderStadt (RasseExtern         => RasseExtern,
                                  Auswahl             => StadtOderEinheit,
-                                 Stadtnummer         => WertStadt,
-                                 EinheitNummer       => WertEinheit);
+                                 Stadtnummer         => StadtNummer,
+                                 EinheitNummer       => EinheitNummer);
                
                
-            elsif WertStadt /= 0 then
+            elsif StadtNummer /= 0 then
                EinheitOderStadt (RasseExtern         => RasseExtern,
                                  Auswahl             => -3,
-                                 Stadtnummer         => WertStadt,
-                                 EinheitNummer       => WertEinheit);
+                                 Stadtnummer         => StadtNummer,
+                                 EinheitNummer       => EinheitNummer);
                
-            elsif WertEinheit /= 0 then
+            elsif EinheitNummer /= 0 then
                EinheitOderStadt (RasseExtern         => RasseExtern,
                                  Auswahl             => -1_000, -- Hauptsache ungleich -3
-                                 Stadtnummer         => WertStadt,
-                                 EinheitNummer       => WertEinheit);
+                                 Stadtnummer         => StadtNummer,
+                                 EinheitNummer       => EinheitNummer);
                
             else
                null;
@@ -66,17 +66,16 @@ package body BefehleImSpiel is
                                        LetzteZeile        => 7);
 
          when 'b' => -- Baue Stadt
-            WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (RasseExtern => RasseExtern,
-                                                                                 Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            case WertEinheit is
+            EinheitNummer := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (RasseExtern => RasseExtern,
+                                                                                   Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            case EinheitNummer is
                when 0 =>
                   null;
                   
                when others =>
-                  if EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, WertEinheit).ID).SiedlerLandeinheitSeeeinheitLufteinheit = 1 and
-                    GlobaleVariablen.EinheitenGebaut (RasseExtern, WertEinheit).AktuelleBewegungspunkte > 0.00 then
-                     Nullwert := InDerStadt.StadtBauen (RasseExtern   => RasseExtern,
-                                                        EinheitNummer => WertEinheit);
+                  if EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).SiedlerLandeinheitSeeeinheitLufteinheit = 1 and
+                    GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00 then
+                     Nullwert := InDerStadt.StadtBauen (EinheitRasseUndNummer => (RasseExtern, EinheitNummer));
                      
                   else
                      null;
@@ -162,14 +161,14 @@ package body BefehleImSpiel is
                   WelcherBefehl := 0;
             end case;
                
-            WertEinheit := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (RasseExtern => RasseExtern,
-                                                                                 Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            case WertEinheit is
+            EinheitNummer := SchleifenPruefungen.KoordinatenEinheitMitRasseSuchen (RasseExtern => RasseExtern,
+                                                                                   Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            case EinheitNummer is
                when 0 =>
                   null;
                   
                when others =>
-                  if GlobaleVariablen.EinheitenGebaut (RasseExtern, WertEinheit).ID /= 1 and WelcherBefehl > 0 and WelcherBefehl <= 6 then
+                  if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID /= 1 and WelcherBefehl > 0 and WelcherBefehl <= 6 then
                      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
                                          AktuelleAuswahl    => 1,
                                          FrageDatei         => 0,
@@ -178,7 +177,7 @@ package body BefehleImSpiel is
                                          ErsteZeile         => 3,
                                          LetzteZeile        => 3);
 
-                  elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, WertEinheit).ID = 1 and WelcherBefehl = 11 then
+                  elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 1 and WelcherBefehl = 11 then
                      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
                                          AktuelleAuswahl    => 1,
                                          FrageDatei         => 0,
@@ -187,7 +186,7 @@ package body BefehleImSpiel is
                                          ErsteZeile         => 3,
                                          LetzteZeile        => 3);
                      
-                  elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, WertEinheit).AktuelleBewegungspunkte = 0.00 then
+                  elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00 then
                      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
                                          AktuelleAuswahl    => 1,
                                          FrageDatei         => 0,
@@ -199,7 +198,7 @@ package body BefehleImSpiel is
                   else
                      Verbesserungen.Verbesserung (RasseExtern   => RasseExtern,
                                                   Befehl        => Verbesserungen.Befehle'Val (WelcherBefehl),
-                                                  EinheitNummer => WertEinheit);
+                                                  EinheitNummer => EinheitNummer);
                   end if;
             end case;               
             return 1;
@@ -255,9 +254,7 @@ package body BefehleImSpiel is
                null;
                      
             else
-               BewegungssystemEinheiten.BewegungEinheitenRichtung (RasseExtern   => RasseExtern,
-                                                                   EinheitNummer => EinheitNummer);
-               null;
+               BewegungssystemEinheiten.BewegungEinheitenRichtung (EinheitRasseUndNummer => (RasseExtern, EinheitNummer));
             end if;
       end case;
       

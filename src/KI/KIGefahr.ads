@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 
 package KIGefahr is
 
-   function KIGefahr (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) return Boolean with
-     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+   function KIGefahr (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
 end KIGefahr;

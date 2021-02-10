@@ -1,10 +1,10 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 
 package KINahkampfSeeEinheit is
 
-   procedure KINahkampfSeeEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer) with
-     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+   procedure KINahkampfSeeEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
 end KINahkampfSeeEinheit;

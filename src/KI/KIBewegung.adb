@@ -4,38 +4,33 @@ with BewegungssystemEinheiten, SchleifenPruefungen, KIVariablen;
 
 package body KIBewegung is
 
-   procedure KIBewegung (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive; Aufgabe : Wide_Wide_Character) is
+   procedure KIBewegung (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; Aufgabe : Wide_Wide_Character) is
    begin
 
       -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
       -- f = Flucht, s = Stadt bauen, e = Erkunden, a = Angreifen
       case Aufgabe is -- Aufgabe als Enum?
          when 'f' =>
-            BewegungBeliebig (RasseExtern   => RasseExtern,
-                              EinheitNummer => EinheitNummer);
+            BewegungBeliebig (EinheitRasseUndNummer => EinheitRasseUndNummer);
 
          when 's' =>
-            BewegungBeliebig (RasseExtern   => RasseExtern,
-                              EinheitNummer => EinheitNummer);
+            BewegungBeliebig (EinheitRasseUndNummer => EinheitRasseUndNummer);
 
          when 'e' =>
-            BewegungBeliebig (RasseExtern   => RasseExtern,
-                              EinheitNummer => EinheitNummer);
+            BewegungBeliebig (EinheitRasseUndNummer => EinheitRasseUndNummer);
             
          when 'a' =>
-            BewegungBeliebig (RasseExtern   => RasseExtern,
-                              EinheitNummer => EinheitNummer);
+            BewegungBeliebig (EinheitRasseUndNummer => EinheitRasseUndNummer);
             
          when others =>
-            BewegungBeliebig (RasseExtern   => RasseExtern,
-                              EinheitNummer => EinheitNummer);
+            BewegungBeliebig (EinheitRasseUndNummer => EinheitRasseUndNummer);
       end case;    
       
    end KIBewegung;
 
 
 
-   procedure BewegungBeliebig (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
+   procedure BewegungBeliebig (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
    begin
 
       BewegungSchleife: -- Erst prüfen wohin die Einheit soll, dann ob die neue Position eine Alte is, dann durch das Bewegungssystem jagen und dann auf bewegt setzen oder nicht?
@@ -50,22 +45,20 @@ package body KIBewegung is
                   null;
 
                else
-                  Bewegung := BewegungssystemEinheiten.ZwischenEbene (RasseExtern    => RasseExtern,
-                                                                      EinheitNummer  => EinheitNummer,
-                                                                      ÄnderungExtern => (0, YÄnderung, XÄnderung));
+                  Bewegung := BewegungssystemEinheiten.ZwischenEbene (EinheitRasseUndNummer => EinheitRasseUndNummer,
+                                                                      ÄnderungExtern        => (0, YÄnderung, XÄnderung));
 
                   case Bewegung is
                      when 1 => -- Bewegung auf Feld möglich.
-                        Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition,
+                        Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition,
                                                                           Änderung      => (0, YÄnderung, XÄnderung),
                                                                           ZusatzYAbstand => 0);
                         
-                        ErfolgreichBewegt := Bewegen (Durchgang     => Durchgang,
-                                                      RasseExtern   => RasseExtern,
-                                                      EinheitNummer => EinheitNummer,
-                                                      EAchse        => Kartenwert.EAchse,
-                                                      YAchse        => Kartenwert.YAchse,
-                                                      XAchse        => Kartenwert.XAchse);
+                        ErfolgreichBewegt := Bewegen (Durchgang             => Durchgang,
+                                                      EinheitRasseUndNummer => EinheitRasseUndNummer,
+                                                      EAchse                => Kartenwert.EAchse,
+                                                      YAchse                => Kartenwert.YAchse,
+                                                      XAchse                => Kartenwert.XAchse);
 
                         case ErfolgreichBewegt is
                            when True =>
@@ -88,30 +81,28 @@ package body KIBewegung is
 
 
 
-   function Bewegen (Durchgang : in Positive; RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.EbeneVorhanden;
+   function Bewegen (Durchgang : in Positive; EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; EAchse : in GlobaleDatentypen.EbeneVorhanden;
                      YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
    begin
       
       case Durchgang is
          when 1 =>
-            if Karten.Karten (EAchse, YAchse, XAchse).Felderwertung > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
-                                                                                     GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).Felderwertung then
-               AltePosition := IstDasEineAltePosition (RasseExtern   => RasseExtern,
-                                                       EinheitNummer => EinheitNummer,
-                                                       EAchse        => EAchse,
-                                                       YAchse        => YAchse,
-                                                       XAchse        => XAchse);
+            if Karten.Karten (EAchse, YAchse, XAchse).Felderwertung > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.YAchse,
+                                                                                     GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.XAchse).Felderwertung then
+               AltePosition := IstDasEineAltePosition (EinheitRasseUndNummer => EinheitRasseUndNummer,
+                                                       EAchse                => EAchse,
+                                                       YAchse                => YAchse,
+                                                       XAchse                => XAchse);
                         
                case AltePosition is
                   when True =>
                      return False;
                               
                   when False =>
-                     BewegungDurchführen (RasseExtern   => RasseExtern,
-                                           EinheitNummer => EinheitNummer,
-                                           EAchse        => EAchse,
-                                           YAchse        => YAchse,
-                                           XAchse        => XAchse);                                          
+                     BewegungDurchführen (EinheitRasseUndNummer => EinheitRasseUndNummer,
+                                           EAchse               => EAchse,
+                                           YAchse               => YAchse,
+                                           XAchse               => XAchse);                                        
                      return True;
                end case;
                            
@@ -120,22 +111,20 @@ package body KIBewegung is
             end if;
                            
          when others =>                      
-            AltePosition := IstDasEineAltePosition (RasseExtern   => RasseExtern,
-                                                    EinheitNummer => EinheitNummer,
-                                                    EAchse        => EAchse,
-                                                    YAchse        => YAchse,
-                                                    XAchse        => XAchse);
+            AltePosition := IstDasEineAltePosition (EinheitRasseUndNummer => EinheitRasseUndNummer,
+                                                    EAchse                => EAchse,
+                                                    YAchse                => YAchse,
+                                                    XAchse                => XAchse);
                                     
             case AltePosition is
                when True =>
                   return False;
-                                          
+                  
                when False =>
-                  BewegungDurchführen (RasseExtern   => RasseExtern,
-                                        EinheitNummer => EinheitNummer,
-                                        EAchse        => EAchse,
-                                        YAchse        => YAchse,
-                                        XAchse        => XAchse);                                          
+                  BewegungDurchführen (EinheitRasseUndNummer => EinheitRasseUndNummer,
+                                        EAchse               => EAchse,
+                                        YAchse               => YAchse,
+                                        XAchse               => XAchse);                                       
                   return True;
             end case;
       end case; 
@@ -144,12 +133,12 @@ package body KIBewegung is
 
 
 
-   function IstDasEineAltePosition (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.EbeneVorhanden; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
+   function IstDasEineAltePosition (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; EAchse : in GlobaleDatentypen.EbeneVorhanden; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
    begin
       
       for AltePositionen in KIVariablen.LetzteBewegungen'Range (3) loop
          
-         if KIVariablen.LetzteBewegungen (RasseExtern, EinheitNummer, AltePositionen) = (EAchse, YAchse, XAchse) then
+         if KIVariablen.LetzteBewegungen (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer, AltePositionen) = (EAchse, YAchse, XAchse) then
             return True;
             
          else
@@ -164,22 +153,21 @@ package body KIBewegung is
 
 
 
-   procedure BewegungDurchführen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; EAchse : in GlobaleDatentypen.EbeneVorhanden; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) is
+   procedure BewegungDurchführen (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; EAchse : in GlobaleDatentypen.EbeneVorhanden; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) is
    begin
       
-      KIVariablen.LetzteBewegungen (RasseExtern, EinheitNummer, 3) := KIVariablen.LetzteBewegungen (RasseExtern, EinheitNummer, 2);
-      KIVariablen.LetzteBewegungen (RasseExtern, EinheitNummer, 2) := KIVariablen.LetzteBewegungen (RasseExtern, EinheitNummer, 1);
-      KIVariablen.LetzteBewegungen (RasseExtern, EinheitNummer, 1) := (EAchse, YAchse, XAchse);
+      KIVariablen.LetzteBewegungen (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer, 3) := KIVariablen.LetzteBewegungen (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer, 2);
+      KIVariablen.LetzteBewegungen (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer, 2) := KIVariablen.LetzteBewegungen (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer, 1);
+      KIVariablen.LetzteBewegungen (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer, 1) := (EAchse, YAchse, XAchse);
       
-      BewegungssystemEinheiten.BewegungEinheitenBerechnung (RasseExtern   => RasseExtern,
-                                                            EinheitNummer => EinheitNummer,
-                                                            NeuePosition  => (EAchse, YAchse, XAchse));
-            
+      BewegungssystemEinheiten.BewegungEinheitenBerechnung (EinheitRasseUndNummer => EinheitRasseUndNummer,
+                                                            NeuePosition          => (EAchse, YAchse, XAchse));
+      
    end BewegungDurchführen;
 
 
 
-   procedure BewegungBauarbeiter (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is -- Einbauen oder nur Siedler?
+   procedure BewegungBauarbeiter (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is -- Einbauen oder nur Siedler?
    begin
       
       null;
@@ -188,7 +176,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungBodenEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
+   procedure BewegungBodenEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
    begin
       
       null;
@@ -197,7 +185,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungLuftEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
+   procedure BewegungLuftEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
    begin
       
       null;
@@ -206,7 +194,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungWasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is -- Wasser- und Unterwassereinheit zusammenführen?
+   procedure BewegungWasserEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is -- Wasser- und Unterwassereinheit zusammenführen?
    begin
       
       null;
@@ -215,7 +203,7 @@ package body KIBewegung is
    
    
    
-   procedure BewegungUnterwasserEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is -- Wasser- und Unterwassereinheit zusammenführen?
+   procedure BewegungUnterwasserEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is -- Wasser- und Unterwassereinheit zusammenführen?
    begin
       
       null;
@@ -224,7 +212,7 @@ package body KIBewegung is
 
 
 
-   procedure BewegungUnterirdischeEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
+   procedure BewegungUnterirdischeEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
    begin
       
       null;
@@ -233,7 +221,7 @@ package body KIBewegung is
    
 
 
-   procedure BewegungOrbitaleEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : Positive) is
+   procedure BewegungOrbitaleEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
    begin
       
       null;

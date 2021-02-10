@@ -356,7 +356,7 @@ package body KarteStadt is
       RasseUndPlatznummer := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
       case RasseUndPlatznummer.Platznummer is
-         when SchleifenPruefungen.RückgabeWert =>
+         when SchleifenPruefungen.RückgabeWertEinheitNummer =>
             null; -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat
       
          when others =>

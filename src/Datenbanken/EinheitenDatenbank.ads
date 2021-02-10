@@ -22,11 +22,17 @@ package EinheitenDatenbank is
                                                                others => ('@', 0, 0, 0, 0,    1, 0, 0.00,    1, 1, 0, 0, 1)));
 
    procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID);
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Natural);   
+   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
+   
    procedure HeilungBewegungspunkteFürNeueRundeSetzen;
    procedure EinheitErzeugen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer, ID : in Positive);   
-   procedure EinheitEntfernenMitSortieren (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive);
-   procedure EinheitEntfernenOhneSortieren (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive);
+   procedure EinheitEntfernenMitSortieren (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
+
+   procedure EinheitEntfernenOhneSortieren (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
+
    procedure EinheitGebautSortieren (RasseExtern : in GlobaleDatentypen.Rassen);   
    procedure Beschäftigung (Arbeit : in Natural);
 

@@ -14,8 +14,8 @@ private
          
    Taste : Wide_Wide_Character;
 
-   WertEinheit : Integer;
-   WertStadt : Integer;
+   EinheitNummer : Integer;
+   StadtNummer : Integer;
    WelcherBefehl : Integer;
    StadtOderEinheit : Integer;
    WahlForschung : Integer;

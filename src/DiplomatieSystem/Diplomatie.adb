@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, Kampfsystem, Auswahl;
+with Kampfsystem, Auswahl;
 
 package body Diplomatie is
 
@@ -32,13 +32,13 @@ package body Diplomatie is
 
 
 
-   function GegnerAngreifenOderNicht (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive; Gegner : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean is
+   function GegnerAngreifenOderNicht (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; Gegner : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean is
    begin
 
       Gewonnen := False;
       Angreifen := False;
       
-      BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasse   => RasseExtern,
+      BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasse   => EinheitRasseUndNummer.Rasse,
                                                                 VerteidigendeRasse => Gegner.Rasse);
       case BereitsImKrieg is
          when 1 .. 2 =>
@@ -51,7 +51,7 @@ package body Diplomatie is
             case Wahl is
                when -3 =>
                   Angreifen := True;
-                  --Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasse   => RasseExtern,
+                  --Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasse   => EinheitRasseUndNummer.Rasse,
                   -- VerteidigendeRasse => Gegner.Rasse);
                   return True;   
                   
@@ -69,8 +69,8 @@ package body Diplomatie is
       case Angreifen is
          when True =>
             Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerStadtNummer           => Gegner.Platznummer,
-                                                         RasseAngriff                => RasseExtern,
-                                                         EinheitenNummerAngriff      => EinheitNummer,
+                                                         RasseAngriff                => EinheitRasseUndNummer.Rasse,
+                                                         EinheitenNummerAngriff      => EinheitRasseUndNummer.Platznummer,
                                                          RasseVerteidigung           => Gegner.Rasse,
                                                          EinheitenNummerVerteidigung => Gegner.Platznummer);
                

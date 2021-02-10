@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 use GlobaleDatentypen;
 
 package KI is
@@ -9,10 +9,10 @@ package KI is
 
 private
 
-   procedure KIAKtivitätEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) with
-     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+   procedure KIAKtivitätEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   procedure KIAktivitätStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
-     Pre => StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+   procedure KIAktivitätStadt (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
 end KI;

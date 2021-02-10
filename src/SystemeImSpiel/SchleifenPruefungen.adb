@@ -42,7 +42,7 @@ package body SchleifenPruefungen is
 
    
 
-   function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return Integer is
+   function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return Natural is
    begin
       
       StadtSchleife:
@@ -60,13 +60,13 @@ package body SchleifenPruefungen is
          
       end loop StadtSchleife;
       
-      return 0;
+      return RückgabeWertEinheitNummer;
       
    end KoordinatenStadtMitRasseSuchen;
 
 
 
-   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return Integer is
+   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return Natural is
    begin
       
       EinheitSchleife:
@@ -84,7 +84,7 @@ package body SchleifenPruefungen is
          
       end loop EinheitSchleife;
       
-      return 0;
+      return RückgabeWertEinheitNummer;
       
    end KoordinatenEinheitMitRasseSuchen;
    
@@ -111,7 +111,7 @@ package body SchleifenPruefungen is
          end loop StadtSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWert);
+      return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWertEinheitNummer);
       
    end KoordinatenStadtOhneRasseSuchen;
    
@@ -138,7 +138,7 @@ package body SchleifenPruefungen is
          end loop EinheitSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWert);
+      return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWertEinheitNummer);
       
    end KoordinatenEinheitOhneRasseSuchen;
    

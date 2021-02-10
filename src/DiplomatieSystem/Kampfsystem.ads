@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Numerics.Float_Random;
 use Ada.Numerics.Float_Random;
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package Kampfsystem is
@@ -25,10 +25,13 @@ private
    AngriffVerteidigungWert : Float;
    Wert : Float;
 
-   procedure KampfBerechnung (RasseVerteidigung : in GlobaleDatentypen.Rassen; EinheitNummerVerteidigung : in Positive; AngriffWert, VerteidigungWert : in Float);
+   procedure KampfBerechnung (VerteidigerRasseUndEinheitNummer : in GlobaleRecords.RasseUndPlatznummerRecord; AngriffWert, VerteidigungWert : in Float) with
+     Pre => VerteidigerRasseUndEinheitNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and VerteidigerRasseUndEinheitNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   function Kampf (RasseAngriff, RasseVerteidigung : in GlobaleDatentypen.Rassen; EinheitenNummerAngriff, EinheitenNummerVerteidigung : in Positive; VerteidigungBonus : in Float) return Boolean with
-     Pre => RasseAngriff /= RasseVerteidigung;
+   function Kampf (VerteidigerRasseUndEinheitNummer, AngreiferRasseUndEinheitNummer : in GlobaleRecords.RasseUndPlatznummerRecord; VerteidigungBonus : in Float) return Boolean with
+     Pre => VerteidigerRasseUndEinheitNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and VerteidigerRasseUndEinheitNummer.Rasse in GlobaleDatentypen.Rassen
+     and AngreiferRasseUndEinheitNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and AngreiferRasseUndEinheitNummer.Rasse in GlobaleDatentypen.Rassen
+     and AngreiferRasseUndEinheitNummer.Rasse /= VerteidigerRasseUndEinheitNummer.Rasse;
 
    function Prüfen return Boolean;
 

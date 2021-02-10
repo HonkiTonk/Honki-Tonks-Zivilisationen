@@ -4,12 +4,11 @@ with KIBewegung;
 
 package body KINahkampfSeeEinheit is
 
-   procedure KINahkampfSeeEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer) is
+   procedure KINahkampfSeeEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
    begin
       
-      KIBewegung.KIBewegung (RasseExtern   => RasseExtern,
-                             EinheitNummer => EinheitNummer,
-                             Aufgabe       => 'e');
+      KIBewegung.KIBewegung (EinheitRasseUndNummer => EinheitRasseUndNummer,
+                             Aufgabe               => 'e');
       
    end KINahkampfSeeEinheit;
 

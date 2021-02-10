@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 
 package KIEinheitVerbessernOderVernichten is
 
-   function KIEinheitVerbessern (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer) return Boolean with
-     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+   function KIEinheitVerbessern (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   function KIEinheitVernichten (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Integer) return Boolean with
-     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+   function KIEinheitVernichten (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
 end KIEinheitVerbessernOderVernichten;

@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 use GlobaleDatentypen;
 
 package KISiedler is
 
-   procedure KISiedler (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) with
-     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+   procedure KISiedler (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
 private
    
@@ -17,10 +17,13 @@ private
    Verbessern : Boolean;
    Vernichten : Boolean;
 
-   function StadtUmgebungVerbessern (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) return Boolean with
-     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+   function StadtUmgebungVerbessern (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   function NeueStadtBauenGehen (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) return Boolean with
-     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+   function NeueStadtBauenGehen (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
+
+   function StadtBauenPrüfung (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean  with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
 end KISiedler;

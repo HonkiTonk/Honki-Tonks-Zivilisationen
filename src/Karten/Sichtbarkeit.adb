@@ -18,8 +18,7 @@ package body Sichtbarkeit is
                exit EinheitenPlätzeSchleife;
             
             when others =>
-               SichtbarkeitsprüfungFürEinheit (RasseExtern   => RasseExtern,
-                                                 EinheitNummer => EinheitNummer);
+               SichtbarkeitsprüfungFürEinheit (EinheitRasseUndNummer => (RasseExtern, EinheitNummer));
          end case;
          
       end loop EinheitenPlätzeSchleife;
@@ -42,12 +41,12 @@ package body Sichtbarkeit is
 
 
 
-   procedure SichtbarkeitsprüfungFürEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) is
+   procedure SichtbarkeitsprüfungFürEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
    begin
       
-      case Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse,
-                          GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.XAchse).Grund is
+      case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.EAchse,
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.YAchse,
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.XAchse).Grund is
          when 7 =>
             Sichtweite := 3;
 
@@ -63,7 +62,7 @@ package body Sichtbarkeit is
          XÄnderungEinheitenSchleife:
          for XÄnderung in -Sichtweite .. Sichtweite loop
                
-            Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition,
+            Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition,
                                                               Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 0);
 
@@ -72,7 +71,7 @@ package body Sichtbarkeit is
                   exit XÄnderungEinheitenSchleife;
                      
                when others =>
-                  Karten.Karten (GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (RasseExtern) := True;
+                  Karten.Karten (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (EinheitRasseUndNummer.Rasse) := True;
             end case;
             
          end loop XÄnderungEinheitenSchleife;

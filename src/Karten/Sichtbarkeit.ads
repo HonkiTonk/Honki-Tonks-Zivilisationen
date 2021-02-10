@@ -6,8 +6,8 @@ use GlobaleDatentypen, GlobaleRecords;
 package Sichtbarkeit is
 
    procedure SichtbarkeitsprüfungFürRasse (RasseExtern : in GlobaleDatentypen.Rassen);
-   procedure SichtbarkeitsprüfungFürEinheit (RasseExtern : in GlobaleDatentypen.Rassen; EinheitNummer : in Positive) with
-     Pre => EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2);
+   procedure SichtbarkeitsprüfungFürEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
    procedure SichtbarkeitsprüfungFürStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
      Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);

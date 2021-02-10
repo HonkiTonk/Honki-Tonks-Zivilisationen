@@ -39,7 +39,7 @@ package GlobaleRecords is
    type RasseUndPlatznummerRecord is record
       
       Rasse : GlobaleDatentypen.RassenMitNullwert;
-      Platznummer : Integer;
+      Platznummer : Natural;
       
    end record;
 
@@ -58,8 +58,8 @@ package GlobaleRecords is
 
    type EinheitenGebautRecord is record
       
-      AktuelleBeschäftigung : Integer;
-      AktuelleBeschäftigung2 : Integer;
+      AktuelleBeschäftigung : Natural;
+      AktuelleBeschäftigung2 : Natural;
       
       ID : GlobaleDatentypen.EinheitenIDMitNullWert;
       AchsenPosition : AchsenAusKartenfeldPositivRecord;
@@ -67,11 +67,11 @@ package GlobaleRecords is
       
       AktuelleLebenspunkte : Integer;
       AktuelleBewegungspunkte : Float;
-      AktuelleErfahrungspunkte : Integer;
-      AktuellerRang : Integer;
+      AktuelleErfahrungspunkte : Natural;
+      AktuellerRang : Natural;
       
-      AktuelleBeschäftigungszeit : Integer;
-      AktuelleBeschäftigungszeit2 : Integer;
+      AktuelleBeschäftigungszeit : Natural;
+      AktuelleBeschäftigungszeit2 : Natural;
       
    end record;
 
@@ -84,14 +84,14 @@ package GlobaleRecords is
 
       AmWasser : Boolean;
 
-      Einwohner : Integer;
+      Einwohner : Natural;
       AktuelleNahrungsmittel : GlobaleDatentypen.KostenLager;
       AktuelleNahrungsproduktion : GlobaleDatentypen.GesamtproduktionStadt;
       AktuelleRessourcen : GlobaleDatentypen.KostenLager;
       AktuelleProduktionrate : GlobaleDatentypen.GesamtproduktionStadt;
       AktuelleGeldgewinnung : GlobaleDatentypen.GesamtproduktionStadt;
       AktuelleForschungsrate : GlobaleDatentypen.GesamtproduktionStadt;
-      AktuellesBauprojekt : Integer;
+      AktuellesBauprojekt : Natural;
       VerbleibendeBauzeit : GlobaleDatentypen.KostenLager;
       Korruption : GlobaleDatentypen.GesamtproduktionStadt;
       
@@ -99,7 +99,7 @@ package GlobaleRecords is
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : GlobaleDatentypen.UmgebungBewirtschaftungArray;
-      ArbeitendeEinwohner : Integer;
+      ArbeitendeEinwohner : Natural;
       StadtUmgebungGröße : GlobaleDatentypen.Stadtfeld;
       
    end record;
@@ -113,7 +113,7 @@ package GlobaleRecords is
       AktuelleForschungsrate : GlobaleDatentypen.KostenLager;
       AktuelleForschungsmenge : GlobaleDatentypen.KostenLager;
       VerbleibendeForschungszeit : GlobaleDatentypen.KostenLager;
-      AktuellesForschungsprojekt : Integer;
+      AktuellesForschungsprojekt : Natural;
 
       Erforscht : GlobaleDatentypen.ErforschtArray;
       

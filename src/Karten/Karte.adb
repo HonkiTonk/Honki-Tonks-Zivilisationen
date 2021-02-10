@@ -146,7 +146,7 @@ package body Karte is
             RasseUndPlatznummer := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
             
             case RasseUndPlatznummer.Platznummer is
-               when SchleifenPruefungen.RückgabeWert =>
+               when SchleifenPruefungen.RückgabeWertEinheitNummer =>
                   null;
                   
                when others => -- Allgemeine Einheiteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Einheit befindet
@@ -204,7 +204,7 @@ package body Karte is
             RasseUndPlatznummer := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
             case RasseUndPlatznummer.Platznummer is
-               when SchleifenPruefungen.RückgabeWert =>
+               when SchleifenPruefungen.RückgabeWertEinheitNummer =>
                   null;
                      
                when others => -- Stadtinformationsaufruf
