@@ -223,8 +223,7 @@ package body Cheat is
       
       else
          Put_Line (Item => "Einheit festlegen");
-         EinheitenDatenbank.EinheitErzeugen (RasseExtern => GlobaleDatentypen.Rassen (RasseZahl),
-                                             StadtNummer => Stadt,
+         EinheitenDatenbank.EinheitErzeugen (StadtRasseUndNummer => (GlobaleDatentypen.Rassen (RasseZahl), Stadt),
                                              ID          => ID);
       end if;
       

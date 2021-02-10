@@ -83,7 +83,7 @@ package body ImSpiel is
                Verbesserungen.VerbesserungFertiggestellt;
                Wachstum.Wachstum;
                Bauen.BauzeitAlle;
-               InDerStadt.StadtProduktionPrüfen (0, 0);
+               InDerStadt.StadtProduktionPrüfen ((0, 0));
                ForschungsDatenbank.ForschungFortschritt;
                GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
                Speichern.AutoSpeichern;

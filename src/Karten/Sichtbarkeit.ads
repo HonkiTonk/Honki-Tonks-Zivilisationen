@@ -9,11 +9,11 @@ package Sichtbarkeit is
    procedure SichtbarkeitsprüfungFürEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
      Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   procedure SichtbarkeitsprüfungFürStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
-     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+   procedure SichtbarkeitsprüfungFürStadt (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   procedure Sichtbarkeit (InDerStadt : Boolean; EAchse : GlobaleDatentypen.EbeneVorhanden; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) with
-     Pre => YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+   procedure Sichtbarkeit (InDerStadt : Boolean; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord; RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => Koordinaten.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and Koordinaten.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
 
    procedure Farben (Einheit : GlobaleDatentypen.EinheitenIDMitNullWert; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund;
                      Cursor : in Boolean; RasseExtern, RasseIntern : in GlobaleDatentypen.RassenMitNullwert) with

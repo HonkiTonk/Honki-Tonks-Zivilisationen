@@ -5,8 +5,8 @@ use GlobaleDatentypen;
 
 package KarteStadt is
    
-   procedure AnzeigeStadt (StadtNummer : in Positive; RasseExtern : in GlobaleDatentypen.Rassen) with
-     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+   procedure AnzeigeStadt (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
    procedure Beschreibung (RasseExtern : in GlobaleDatentypen.Rassen);
 

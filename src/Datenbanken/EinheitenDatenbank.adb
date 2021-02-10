@@ -76,21 +76,21 @@ package body EinheitenDatenbank is
    
 
 
-   procedure EinheitErzeugen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer, ID : in Positive) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
+   procedure EinheitErzeugen (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord; ID : in Positive) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
    begin
 
-      Position := (GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.EAchse, GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.YAchse,
-                   GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.XAchse);
+      Position := (GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AchsenPosition.EAchse, GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AchsenPosition.YAchse,
+                   GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AchsenPosition.XAchse);
       EinheitenPosition := 0;
             
       EinheitenSchleife:
       for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
             
-         if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 0 then
+         if GlobaleVariablen.EinheitenGebaut (StadtRasseUndNummer.Rasse, EinheitNummer).ID = 0 then
             EinheitenPosition := EinheitNummer;
             exit EinheitenSchleife;
 
-         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition = GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition then
+         elsif GlobaleVariablen.EinheitenGebaut (StadtRasseUndNummer.Rasse, EinheitNummer).AchsenPosition = GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AchsenPosition then
             return;
             
          else
@@ -104,12 +104,12 @@ package body EinheitenDatenbank is
             return;
             
          when others =>
-            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitenPosition).ID := GlobaleDatentypen.EinheitenID (ID);
-            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitenPosition).AchsenPosition := Position;
-            LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseUndNummer => (RasseExtern, EinheitenPosition));
-            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).VerbleibendeBauzeit := 0;
-            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuelleRessourcen := 0;
-            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AktuellesBauprojekt := 0;
+            GlobaleVariablen.EinheitenGebaut (StadtRasseUndNummer.Rasse, EinheitenPosition).ID := GlobaleDatentypen.EinheitenID (ID);
+            GlobaleVariablen.EinheitenGebaut (StadtRasseUndNummer.Rasse, EinheitenPosition).AchsenPosition := Position;
+            LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseUndNummer => (StadtRasseUndNummer.Rasse, EinheitenPosition));
+            GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).VerbleibendeBauzeit := 0;
+            GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen := 0;
+            GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt := 0;
       end case;
             
    end EinheitErzeugen;

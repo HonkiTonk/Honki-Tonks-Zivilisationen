@@ -116,9 +116,11 @@ package body KISiedler is
    function StadtBauenPrüfung (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean is
    begin
       
-      if Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.YAchse,
+      if Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.EAchse,
+                        GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.YAchse,
                         GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.XAchse).Felderwertung >= 90
-        and Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.YAchse,
+        and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.EAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.YAchse,
                            GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.XAchse).DurchStadtBelegterGrund = 0 then
          return InDerStadt.StadtBauen (EinheitRasseUndNummer => EinheitRasseUndNummer);
 

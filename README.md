@@ -1,5 +1,5 @@
 # Civ-Klon
 Mein Rundenstrategiespiel (Civilization-Klon), geschrieben in Ada/SPARK.
-Momentan nur unter Linux getestet, sollte aber auch unter anderen Betriebssystemen funktionieren, wenn man es für die jeweilige Plattform kompiliert. Außerdem werden diverse Control Sequence Introducer Befehle verwendet welche nicht in jeder Konsole korrekt funktionieren.
+Wird nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren. Außerdem werden diverse Control Sequence Introducer Befehle verwendet, welche nicht in jeder Konsole korrekt funktionieren.
 
-Aktuelle Version: 0.00.6370
+Aktuelle Version: 0.00.6380

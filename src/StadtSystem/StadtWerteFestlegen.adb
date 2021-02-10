@@ -4,17 +4,17 @@ with SchleifenPruefungen, Karten;
 
 package body StadtWerteFestlegen is
 
-   procedure StadtUmgebungGrößeFestlegen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is
+   procedure StadtUmgebungGrößeFestlegen (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) is
    begin    
             
-      if GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (2) /= 0 and GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Einwohner >= 10 then
-         GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße := 2;
+      if GlobaleVariablen.Wichtiges (StadtRasseUndNummer.Rasse).Erforscht (2) /= 0 and GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).Einwohner >= 10 then
+         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).StadtUmgebungGröße := 2;
 
-      elsif GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (4) /= 0 and GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Einwohner >= 20 then
-         GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße := 3;
+      elsif GlobaleVariablen.Wichtiges (StadtRasseUndNummer.Rasse).Erforscht (4) /= 0 and GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).Einwohner >= 20 then
+         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).StadtUmgebungGröße := 3;
                   
       else
-         GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße := 1;
+         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).StadtUmgebungGröße := 1;
       end if;
 
       YAchseSchleife:
@@ -22,7 +22,7 @@ package body StadtWerteFestlegen is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition,
+            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AchsenPosition,
                                                               Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 0);
             
@@ -31,19 +31,19 @@ package body StadtWerteFestlegen is
                   exit XAchseSchleife;
                   
                when others =>
-                  if (YÄnderung < -GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße or YÄnderung > GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße
-                      or XÄnderung < -GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße or XÄnderung > GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße)
-                    and Karten.Karten (GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund 
-                      = GlobaleDatentypen.BelegterGrund (RasseExtern) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtNummer) then
-                     Karten.Karten (GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund := 0;
+                  if (YÄnderung < -GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).StadtUmgebungGröße or YÄnderung > GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).StadtUmgebungGröße
+                      or XÄnderung < -GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).StadtUmgebungGröße or XÄnderung > GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).StadtUmgebungGröße)
+                    and Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund 
+                      = GlobaleDatentypen.BelegterGrund (StadtRasseUndNummer.Rasse) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtRasseUndNummer.Platznummer) then
+                     Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund := 0;
 
-                  elsif YÄnderung < -GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße or YÄnderung > GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße
-                    or XÄnderung < -GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße or XÄnderung > GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße then
+                  elsif YÄnderung < -GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).StadtUmgebungGröße or YÄnderung > GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).StadtUmgebungGröße
+                    or XÄnderung < -GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).StadtUmgebungGröße or XÄnderung > GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).StadtUmgebungGröße then
                      null;
                      
-                  elsif Karten.Karten (GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund = 0 then
-                     Karten.Karten (GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
-                       := GlobaleDatentypen.BelegterGrund (RasseExtern) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtNummer);
+                  elsif Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund = 0 then
+                     Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
+                       := GlobaleDatentypen.BelegterGrund (StadtRasseUndNummer.Rasse) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtRasseUndNummer.Platznummer);
                      
                   else
                      null;
@@ -57,10 +57,10 @@ package body StadtWerteFestlegen is
    
 
 
-   procedure BewirtschaftbareFelderBelegen (ZuwachsOderSchwund : Boolean; RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) is
+   procedure BewirtschaftbareFelderBelegen (ZuwachsOderSchwund : Boolean; StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) is
    begin
       
-      NutzbarerBereich := GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).StadtUmgebungGröße;
+      NutzbarerBereich := GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).StadtUmgebungGröße;
 
       YAchseSchleife:
       for YPosition in -NutzbarerBereich .. NutzbarerBereich loop
@@ -69,12 +69,12 @@ package body StadtWerteFestlegen is
             
             case ZuwachsOderSchwund is
                when True =>
-                  case GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).UmgebungBewirtschaftung (YPosition, XPosition) is
+                  case GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).UmgebungBewirtschaftung (YPosition, XPosition) is
                      when True =>
                         null;
                   
                      when others =>
-                        KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition,
+                        KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AchsenPosition,
                                                                           Änderung       => (0, YPosition, XPosition),
                                                                           ZusatzYAbstand => 0);
                         case KartenWert.YAchse is
@@ -82,11 +82,11 @@ package body StadtWerteFestlegen is
                               exit XAchseSchleife;
                               
                            when others =>
-                              if Karten.Karten (GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.EAchse, GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.YAchse + YPosition,
-                                                GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition.XAchse + XPosition).DurchStadtBelegterGrund
-                                = GlobaleDatentypen.BelegterGrund (RasseExtern) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtNummer) then
-                                 GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).UmgebungBewirtschaftung (YPosition, XPosition) := True;
-                                 GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ArbeitendeEinwohner + 1;
+                              if Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
+                                = GlobaleDatentypen.BelegterGrund (StadtRasseUndNummer.Rasse) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtRasseUndNummer.Platznummer) then
+                                 GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).UmgebungBewirtschaftung (YPosition, XPosition) := True;
+                                 GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).ArbeitendeEinwohner
+                                   := GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).ArbeitendeEinwohner + 1;
                                  return;
                                  
                               else
@@ -99,9 +99,10 @@ package body StadtWerteFestlegen is
                   if YPosition = 0 and XPosition = 0 then
                      null;
 
-                  elsif GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).UmgebungBewirtschaftung (YPosition, XPosition) = True then
-                     GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).UmgebungBewirtschaftung (YPosition, XPosition) := False;
-                     GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ArbeitendeEinwohner := GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ArbeitendeEinwohner - 1;
+                  elsif GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).UmgebungBewirtschaftung (YPosition, XPosition) = True then
+                     GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).UmgebungBewirtschaftung (YPosition, XPosition) := False;
+                     GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).ArbeitendeEinwohner
+                       := GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).ArbeitendeEinwohner - 1;
                      return;
 
                   else

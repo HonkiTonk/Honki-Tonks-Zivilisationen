@@ -196,9 +196,8 @@ package body BefehleImSpiel is
                                          LetzteZeile        => 8);
                      
                   else
-                     Verbesserungen.Verbesserung (RasseExtern   => RasseExtern,
-                                                  Befehl        => Verbesserungen.Befehle'Val (WelcherBefehl),
-                                                  EinheitNummer => EinheitNummer);
+                     Verbesserungen.Verbesserung (EinheitRasseUndNummer => (RasseExtern, EinheitNummer),
+                                                  Befehl                => Verbesserungen.Befehle'Val (WelcherBefehl));
                   end if;
             end case;               
             return 1;
@@ -236,9 +235,8 @@ package body BefehleImSpiel is
          when -3 =>
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse := 1;
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse := 1;
-            InDerStadt.InDerStadt (RasseExtern       => RasseExtern,
-                                   StadtNummer       => StadtNummer);
-                     
+            InDerStadt.InDerStadt (StadtRasseUndNummer => (RasseExtern, StadtNummer));
+            
          when others =>
             if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung /= 0 then
                Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7);

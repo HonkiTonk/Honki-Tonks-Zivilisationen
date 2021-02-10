@@ -5,14 +5,14 @@ use GlobaleDatentypen;
 
 package InDerStadt is
 
-   procedure InDerStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
-     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+   procedure InDerStadt (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   procedure StadtProduktionPrüfen (RasseExtern : in GlobaleDatentypen.RassenMitNullwert; StadtNummer : in Natural) with
-     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+   procedure StadtProduktionPrüfen (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   procedure BelegteStadtfelderFreigeben (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
-     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+   procedure BelegteStadtfelderFreigeben (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
 
 
@@ -38,7 +38,7 @@ private
 
    KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
 
-   procedure StadtProduktionPrüfenBerechnung (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
-     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+   procedure StadtProduktionPrüfenBerechnung (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
 end InDerStadt;

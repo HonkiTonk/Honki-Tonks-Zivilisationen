@@ -94,11 +94,9 @@ package body Karte is
                   exit XAchseSchleife;
                   
                when others =>
-                  Sichtbarkeit.Sichtbarkeit (InDerStadt       => False,
-                                             EAchse           => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                                             YAchse           => Kartenwert.YAchse,
-                                             XAchse           => Kartenwert.XAchse,
-                                             RasseExtern      => RasseExtern);
+                  Sichtbarkeit.Sichtbarkeit (InDerStadt  => False,
+                                             Koordinaten => (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse),
+                                             RasseExtern => RasseExtern);
             end case;
             
             if XAchse = Sichtweite (SichtweiteFestlegen).XAchse then

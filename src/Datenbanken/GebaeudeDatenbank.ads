@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleDatentypen, DatenbankRecords;
+with GlobaleVariablen, GlobaleDatentypen, DatenbankRecords, GlobaleRecords;
 use GlobaleDatentypen;
 
 package GebaeudeDatenbank is
@@ -13,7 +13,8 @@ package GebaeudeDatenbank is
                                                               others => (' ', 0, 0, 0,    0, 0, 0, 0, 0, 0, False)));
 
    procedure Beschreibung (ID : in Positive);   
-   procedure GebäudeProduktionBeenden (RasseExtern : GlobaleDatentypen.Rassen; StadtNummer, ID : in Positive);
+   procedure GebäudeProduktionBeenden (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord; ID : in Positive) with
+     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
 private
 

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 use GlobaleDatentypen;
 
 package Wachstum is
@@ -10,10 +10,10 @@ package Wachstum is
 
 private
    
-   procedure WachstumEinwohner (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
-     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+   procedure WachstumEinwohner (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   procedure WachstumProduktion (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
-     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+   procedure WachstumProduktion (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
 end Wachstum;

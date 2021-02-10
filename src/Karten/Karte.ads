@@ -26,11 +26,11 @@ private
 
    type SichtweiteArray is array (1 .. 3) of GlobaleRecords.AchsenAusKartenfeldPositivRecord;
 
-   Sichtweite : constant SichtweiteArray := (1 => (0, 6, 10),
+   Sichtweite : constant SichtweiteArray := (1 => (0, 6, 10), -- Hier noch was für die Sichtweite einfügen, vor allem in den Himmel. Eventuell auch von der Technologie abhängig machen.
                                              2 => (0, 6, 22),
                                              3 => (0, 6, 35));
 
-   Bewegungsfeld : constant SichtweiteArray := (1 => (0, 5, 9),
+   Bewegungsfeld : constant SichtweiteArray := (1 => (0, 5, 9), -- Hier noch was für die Bewegung einfügen und von der Technologie abhängig machen.
                                                 2 => (0, 5, 21),
                                                 3 => (0, 5, 34));
 

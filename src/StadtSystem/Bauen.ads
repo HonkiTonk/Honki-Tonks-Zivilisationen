@@ -1,15 +1,15 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 use GlobaleDatentypen;
 
 package Bauen is
 
-   procedure Bauen (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
-     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+   procedure Bauen (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   procedure BauzeitEinzeln (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) with
-     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+   procedure BauzeitEinzeln (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
+     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
    procedure BauzeitAlle;
 
@@ -21,7 +21,7 @@ private
    Ende : Integer;
    AktuelleAuswahl : Integer := 1;
 
-   function AuswahlStadt (RasseExtern : in GlobaleDatentypen.Rassen; StadtNummer : in Positive) return Integer with
-     Pre => StadtNummer in GlobaleVariablen.StadtGebaut'Range (2);
+   function AuswahlStadt (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) return Integer with
+     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
 
 end Bauen;

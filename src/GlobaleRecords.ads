@@ -44,6 +44,16 @@ package GlobaleRecords is
    end record;
 
 
+
+   type EinheitRasseUndPlatznummerUndIDRecord is record
+      
+      Rasse : GlobaleDatentypen.RassenMitNullwert;
+      Platznummer : Natural;
+      ID : GlobaleDatentypen.EinheitenIDMitNullWert;
+
+   end record;
+   
+
    
    type CursorRecord is record
       
