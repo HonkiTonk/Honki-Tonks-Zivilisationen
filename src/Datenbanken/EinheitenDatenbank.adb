@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Auswahl, Anzeige;
+with Auswahl, Anzeige, Sortieren;
 
 package body EinheitenDatenbank is
 
@@ -46,7 +46,7 @@ package body EinheitenDatenbank is
                null;
             end if;
 
-            if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigung = 0 then
+            if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigung <= 0 then
                GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBewegungspunkte := EinheitenListe (RasseIntern, GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID).MaximaleBewegungspunkte;
 
             else
@@ -120,7 +120,7 @@ package body EinheitenDatenbank is
    begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0);      
-      EinheitGebautSortieren (RasseExtern => EinheitRasseUndNummer.Rasse);
+      Sortieren.EinheitenSortieren (RasseExtern => EinheitRasseUndNummer.Rasse);
 
       if GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (EinheitRasseUndNummer.Rasse, 1).ID = 0 then
          GlobaleVariablen.RassenImSpiel (EinheitRasseUndNummer.Rasse) := 0;
@@ -147,41 +147,6 @@ package body EinheitenDatenbank is
       
    end EinheitEntfernenOhneSortieren;
    
-
-
-   procedure EinheitGebautSortieren (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
-
-      TauschSchleife:
-      for Tauschen in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
-         
-         Sortieren (Tauschen) := GlobaleVariablen.EinheitenGebaut (RasseExtern, Tauschen);
-         GlobaleVariablen.EinheitenGebaut (RasseExtern, Tauschen) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0); 
-         
-      end loop TauschSchleife;
-
-      SortierenAußenSchleife:
-      for Einsortieren in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
-         SortierenInnenSchleife:
-         for Auswahl in Sortieren'Range loop
-            
-            if Sortieren (Auswahl).ID /= 0 then
-               GlobaleVariablen.EinheitenGebaut (RasseExtern, Einsortieren) := Sortieren (Auswahl);
-               Sortieren (Auswahl) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0);
-               exit SortierenInnenSchleife;
-               
-            elsif Auswahl = Sortieren'Last then
-               exit SortierenAußenSchleife;
-               
-            else
-               null;
-            end if;               
-            
-         end loop SortierenInnenSchleife;         
-      end loop SortierenAußenSchleife;
-            
-   end EinheitGebautSortieren;
-
    
 
    procedure Beschäftigung (Arbeit : in Natural) is

@@ -5,6 +5,9 @@ use GlobaleDatentypen, GlobaleRecords;
 
 package EinheitenDatenbank is   
 
+   -- Hier noch hinschreiben welcher Wert was ist!
+   LeererWertEinheitListe : constant DatenbankRecords.EinheitenListeRecord := ('@', 0, 0, 0, 0,    1, 0, 0.00,    1, 1, 0, 0, 1);
+
    type EinheitenListeArry is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.EinheitenID'Range) of DatenbankRecords.EinheitenListeRecord;
    EinheitenListe : constant EinheitenListeArry := (others => (('S', 1, 10, 10, 0,    1, 3, 1.00,    30, 3, 1, 1, 1), -- Siedler
 
@@ -19,7 +22,7 @@ package EinheitenDatenbank is
                                                                ('F', 7, 100, 10, 0,   3, 8, 1.00,    30, 3, 1, 10, 1), -- Jäger
                                                                ('F', 8, 100, 10, 0,   3, 8, 1.00,    30, 3, 1, 10, 1), -- Bomber
                                                     
-                                                               others => ('@', 0, 0, 0, 0,    1, 0, 0.00,    1, 1, 0, 0, 1)));
+                                                               others => LeererWertEinheitListe));
 
    procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID);
    procedure LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
@@ -34,8 +37,7 @@ package EinheitenDatenbank is
 
    procedure EinheitEntfernenOhneSortieren (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
      Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
-
-   procedure EinheitGebautSortieren (RasseExtern : in GlobaleDatentypen.Rassen);   
+   
    procedure Beschäftigung (Arbeit : in Natural);
 
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Natural) return Boolean;
@@ -44,13 +46,9 @@ private
    
    Wahl : Integer;
    EinheitenPosition : Integer;
-   SortierNummer : Integer;
    
    Heilungsrate : constant Integer := 10;   
 
    Position : GlobaleRecords.AchsenAusKartenfeldPositivRecord;
-   
-   type SortierenArray is array (GlobaleVariablen.EinheitenGebautArray'Range (2)) of GlobaleRecords.EinheitenGebautRecord;
-   Sortieren : SortierenArray;
 
 end EinheitenDatenbank;

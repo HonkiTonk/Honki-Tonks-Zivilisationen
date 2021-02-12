@@ -17,8 +17,11 @@ package GlobaleVariablen is
    
 
    -- Cursor
-   type CursorImSpielArray is array (GlobaleDatentypen.Rassen) of GlobaleRecords.CursorRecord;
-   CursorImSpiel : CursorImSpielArray := (others => ('©', (0, 1, 1), (0, 1, 1), (1, 1)));
+   -- Hier noch hinschreiben welcher Wert was ist!
+   LeererWertCursor : constant GlobaleRecords.CursorRecord := ('©', (0, 1, 1), (0, 1, 1), (1, 1));
+
+   type CursorImSpielArray is array (GlobaleDatentypen.Rassen'Range) of GlobaleRecords.CursorRecord;
+   CursorImSpiel : CursorImSpielArray := (others => LeererWertCursor);
    -- Cursor
    
    
@@ -35,26 +38,35 @@ package GlobaleVariablen is
 
    
    -- Einheiten
+   -- Hier noch hinschreiben welcher Wert was ist!
+   LeererWertEinheit : constant GlobaleRecords.EinheitenGebautRecord := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0);
+
    type EinheitenGebautArray is array (GlobaleDatentypen.Rassen'Range, 1 .. 1_000) of GlobaleRecords.EinheitenGebautRecord;
-   EinheitenGebaut : EinheitenGebautArray := (others => (others => (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0)));
+   EinheitenGebaut : EinheitenGebautArray := (others => (others => LeererWertEinheit));
    -- Einheiten
    
    
 
    -- Städte
+   -- Hier noch hinschreiben welcher Wert was ist!
+   LeererWertStadt : constant GlobaleRecords.StadtGebautRecord := (0, (0, 1, 1),    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                                                   "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False)), 0, 1,    0);
+
    type StadtGebautArray is array (GlobaleDatentypen.Rassen'Range, 1 .. 100) of GlobaleRecords.StadtGebautRecord;
-   StadtGebaut : StadtGebautArray := (others =>
-                                        (others =>
-                                           ((0, (0, 1, 1),    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,    "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False)), 0, 1))));
+   StadtGebaut : StadtGebautArray := (others => (others => LeererWertStadt));
    -- Städte
    
    
 
    -- Wichtiges Zeug
+   -- Hier noch hinschreiben welcher Wert was ist!
+   LeererWertWichtigesZeug : constant GlobaleRecords.WichtigesRecord := (0, 0, 0, 0, 10_000, 0, (others => 0));
+
    type WichtigesArray is array (GlobaleDatentypen.Rassen'Range) of GlobaleRecords.WichtigesRecord;
    Wichtiges : WichtigesArray := (others => (0, 0, 0, 0, 10_000, 0, (others => 0)));
    
-   type DiplomatieArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.Rassen'Range) of Integer; -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
+   -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
+   type DiplomatieArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.Rassen'Range) of Integer;
    Diplomatie : DiplomatieArray := (others => (others => 1));
    -- Wichtiges Zeug
    

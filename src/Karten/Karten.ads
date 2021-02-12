@@ -5,8 +5,11 @@ use GlobaleDatentypen;
 
 package Karten is
 
+   -- Hier noch hinschreiben welcher Wert was ist!
+   LeererWertKarte : constant GlobaleRecords.KartenRecord := (0, False, (others => False), 0, 0, 0, 0, 0, 0);
+
    type KartenArray is array (GlobaleDatentypen.EbeneVorhanden'Range, GlobaleDatentypen.KartenfeldPositiv'Range, GlobaleDatentypen.KartenfeldPositiv'Range) of GlobaleRecords.KartenRecord;
-   Karten : KartenArray := (others => (others => (others => (0, False, (others => False), 0, 0, 0, 0, 0, 0))));
+   Karten : KartenArray := (others => (others => (others => LeererWertKarte)));
 
    type StadtkarteArray is array (GlobaleDatentypen.Stadtfeld'Range, GlobaleDatentypen.Stadtfeld'Range) of Integer;
    Stadtkarte : StadtkarteArray := (others => (others => (0)));

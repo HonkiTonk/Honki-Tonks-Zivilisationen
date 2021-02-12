@@ -68,7 +68,8 @@ package GlobaleRecords is
 
    type EinheitenGebautRecord is record
       
-      AktuelleBeschäftigung : Natural;
+      -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen), -10 = Die KI hat irgendwas gemacht und es soll nicht geändert werden, < 0 = KI Einheit die irgendetwas erledigt hat
+      AktuelleBeschäftigung : Integer;
       AktuelleBeschäftigung2 : Natural;
       
       ID : GlobaleDatentypen.EinheitenIDMitNullWert;
@@ -89,7 +90,7 @@ package GlobaleRecords is
 
    type StadtGebautRecord is record
       
-      ID : Integer;
+      ID : Natural;
       AchsenPosition : AchsenAusKartenfeldPositivRecord;
 
       AmWasser : Boolean;
@@ -105,12 +106,16 @@ package GlobaleRecords is
       VerbleibendeBauzeit : GlobaleDatentypen.KostenLager;
       Korruption : GlobaleDatentypen.GesamtproduktionStadt;
       
-      GebäudeVorhanden : Wide_Wide_String (Integer (GlobaleDatentypen.GebäudeID'First) .. Integer (GlobaleDatentypen.GebäudeID'Last)); -- Eine Liste anlegen welche Nummer welches Gebäude ist.
+      -- Eine Liste anlegen welche Nummer welches Gebäude ist.
+      GebäudeVorhanden : Wide_Wide_String (Integer (GlobaleDatentypen.GebäudeID'First) .. Integer (GlobaleDatentypen.GebäudeID'Last));
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : GlobaleDatentypen.UmgebungBewirtschaftungArray;
       ArbeitendeEinwohner : Natural;
       StadtUmgebungGröße : GlobaleDatentypen.Stadtfeld;
+      
+      -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Gebäude bauen), -10 = Die KI hat irgendwas gemacht und es soll nicht geändert werden, < 0 = KI Einheit die irgendetwas erledigt hat
+      KIAktuelleBeschäftigung : Integer;
       
    end record;
 

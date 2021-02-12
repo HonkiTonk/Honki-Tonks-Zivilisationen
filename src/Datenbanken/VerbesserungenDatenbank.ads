@@ -4,9 +4,12 @@ with GlobaleDatentypen, DatenbankRecords;
 use GlobaleDatentypen;
 
 package VerbesserungenDatenbank is
+
+   -- Hier noch hinschreiben welcher Wert was ist!
+   LeererWertVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (' ', 13,    0, 0, 0, 0,    0);
       
    type VerbesserungListeArray is array (GlobaleDatentypen.KartenVerbesserung'Range) of DatenbankRecords.VerbesserungListeRecord;
-   VerbesserungListe : VerbesserungListeArray := ((' ', 13,    0, 0, 0, 0,    0), -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
+   VerbesserungListe : VerbesserungListeArray := (LeererWertVerbesserungListe, -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
                                                   ('♣', 13,    0, 0, 0, 0,    3), -- 1 Eigene Hauptstadt
                                                   ('♠', 13,    0, 0, 0, 0,    2), -- 2 Eigene Stadt
                                                   ('⌂', 13,    0, 0, 0, 0,    3), -- 3 Andere Hauptstadt

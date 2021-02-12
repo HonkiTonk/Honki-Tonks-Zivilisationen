@@ -34,7 +34,7 @@ package GlobaleDatentypen is
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    type BelegterGrund is range 0 .. 18_100;
 
-   type SichtbarkeitArray is array (GlobaleDatentypen.RassenImSpielArray'Range) of Boolean;
+   type SichtbarkeitArray is array (GlobaleDatentypen.Rassen'Range) of Boolean;
    -- Für Karte
 
 

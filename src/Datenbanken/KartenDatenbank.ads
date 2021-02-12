@@ -3,10 +3,13 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, DatenbankRecords;
 use GlobaleDatentypen;
 
-package KartenDatenbank is   
+package KartenDatenbank is
+   
+   -- Hier noch hinschreiben welcher Wert was ist!
+   LeererWertKartenListe : constant DatenbankRecords.KartenListeRecord := (' ', 1,    0, 0, 0, 0,    0);
    
    type KartenListeArray is array (0 .. GlobaleDatentypen.KartenGrund'Last) of DatenbankRecords.KartenListeRecord;
-   KartenListe : constant KartenListeArray := ((' ', 1,    0, 0, 0, 0,    0), -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
+   KartenListe : constant KartenListeArray := (LeererWertKartenListe, -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
                                                -- Sollte mit Einlesen und Textausgabe funktionieren, wenn nicht auf letzte Position verschieben.
                                                (' ', 1,    0, 0, 0, 1,    0), -- 1 Eis █
                                                (' ', 2,    1, 0, 1, 1,    0), -- 2 Wasser ░

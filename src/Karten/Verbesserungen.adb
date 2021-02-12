@@ -4,30 +4,34 @@ with SchleifenPruefungen, EinheitenDatenbank, Anzeige, WerteFestlegen;
 
 package body Verbesserungen is
 
+   -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen), -10 = Die KI hat irgendwas gemacht und es soll nicht geändert werden, < 0 = KI Einheit die irgendetwas erledigt hat
    procedure Verbesserung (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; Befehl : in Befehle) is
    begin
 
-      case GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBeschäftigung is
-         when 0 =>
-            VerbesserungeFestgelegt (EinheitRasseUndNummer => EinheitRasseUndNummer,
-                                     Befehl                => Befehl);
-            
-         when others =>
-            Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 7);
-            case Wahl is
-               when True =>
-                  VerbesserungeFestgelegt (EinheitRasseUndNummer => EinheitRasseUndNummer,
-                                           Befehl                => Befehl);
+      if GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBeschäftigung = 0 then
+         VerbesserungeFestgelegt (EinheitRasseUndNummer => EinheitRasseUndNummer,
+                                  Befehl                => Befehl);
+         
+      elsif GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBeschäftigung < 0 then
+         return;
+         
+      else
+         Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 7);
+         case Wahl is
+            when True =>
+               VerbesserungeFestgelegt (EinheitRasseUndNummer => EinheitRasseUndNummer,
+                                        Befehl                => Befehl);
                      
-               when False =>
-                  null;
-            end case;
-      end case;
+            when False =>
+               null;
+         end case;
+      end if;
       
    end Verbesserung;
+   
 
 
-
+   -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen), -10 = Die KI hat irgendwas gemacht und es soll nicht geändert werden, < 0 = KI Einheit die irgendetwas erledigt hat
    procedure VerbesserungeFestgelegt (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; Befehl : in Befehle) is
    begin
 

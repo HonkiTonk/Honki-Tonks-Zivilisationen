@@ -73,7 +73,7 @@ package body BefehleImSpiel is
                   null;
                   
                when others =>
-                  if EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).SiedlerLandeinheitSeeeinheitLufteinheit = 1 and
+                  if EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = 1 and
                     GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00 then
                      Nullwert := InDerStadt.StadtBauen (EinheitRasseUndNummer => (RasseExtern, EinheitNummer));
                      
