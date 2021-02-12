@@ -6,7 +6,7 @@ use GlobaleDatentypen;
 package ForschungsDatenbank is
 
    -- Hier noch hinschreiben welcher Wert was ist!
-   LeererWertForschungListe : constant DatenbankRecords.ForschungListeRecord := (0, (others => 0));
+   LeererWertForschungListe : constant DatenbankRecords.ForschungListeRecord := (0, (others => 0)); -- 1. Wert = PreisForschung, 2. Wert = AnforderungForschung
 
    type ForschungListeArray is Array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.ErforschtArray'Range) of DatenbankRecords.ForschungListeRecord;
    ForschungListe : ForschungListeArray := (others => (1 => (100, (others => 0)),

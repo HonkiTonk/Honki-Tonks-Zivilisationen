@@ -29,7 +29,7 @@ package GlobaleDatentypen is
    subtype LoopRangeNullZuEins is Kartenfeld range 0 .. 1;
 
    type KartenGrund is range -2 .. 40;
-   type KartenVerbesserung is range 0 .. 22;
+   type KartenVerbesserung is range 0 .. 23;
    type Ebene is range -3 .. 2; -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    type BelegterGrund is range 0 .. 18_100;
@@ -45,6 +45,12 @@ package GlobaleDatentypen is
 
    type PassierbarkeitType is range 1 .. 15; -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
                                              -- Addieren für genaue Passierbarkeit
+
+   type EinheitenTyp is range 1 .. 12;
+   subtype UnbewaffneterTyp is EinheitenTyp range 1 .. 2; -- Für später merken, jetzt aber noch nicht einbauen/nutzen, da sonst ständig Zeug verschoben werden muss
+   subtype NahkämpferTyp is EinheitenTyp range 3 .. 4;
+   subtype FernkampfTyp is EinheitenTyp range 5 .. 6;
+
    -- Für Einheiten
 
 

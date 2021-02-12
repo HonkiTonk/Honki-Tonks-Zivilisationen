@@ -74,7 +74,6 @@ package GlobaleRecords is
       
       ID : GlobaleDatentypen.EinheitenIDMitNullWert;
       AchsenPosition : AchsenAusKartenfeldPositivRecord;
-      --AchsenPositionAlt : YAchseXAchseAusKartenfeldPositiv;
       
       AktuelleLebenspunkte : Integer;
       AktuelleBewegungspunkte : Float;
@@ -92,20 +91,20 @@ package GlobaleRecords is
       
       ID : Natural;
       AchsenPosition : AchsenAusKartenfeldPositivRecord;
-
       AmWasser : Boolean;
-
       Einwohner : Natural;
+      
       AktuelleNahrungsmittel : GlobaleDatentypen.KostenLager;
       AktuelleNahrungsproduktion : GlobaleDatentypen.GesamtproduktionStadt;
       AktuelleRessourcen : GlobaleDatentypen.KostenLager;
       AktuelleProduktionrate : GlobaleDatentypen.GesamtproduktionStadt;
+
       AktuelleGeldgewinnung : GlobaleDatentypen.GesamtproduktionStadt;
       AktuelleForschungsrate : GlobaleDatentypen.GesamtproduktionStadt;
       AktuellesBauprojekt : Natural;
       VerbleibendeBauzeit : GlobaleDatentypen.KostenLager;
-      Korruption : GlobaleDatentypen.GesamtproduktionStadt;
-      
+
+      Korruption : GlobaleDatentypen.GesamtproduktionStadt;      
       -- Eine Liste anlegen welche Nummer welches Gebäude ist.
       GebäudeVorhanden : Wide_Wide_String (Integer (GlobaleDatentypen.GebäudeID'First) .. Integer (GlobaleDatentypen.GebäudeID'Last));
       Name : Unbounded_Wide_Wide_String;
@@ -125,6 +124,7 @@ package GlobaleRecords is
       
       AktuelleGeldmenge : Integer;
       GeldZugewinnProRunde : GlobaleDatentypen.KostenLager;
+
       AktuelleForschungsrate : GlobaleDatentypen.KostenLager;
       AktuelleForschungsmenge : GlobaleDatentypen.KostenLager;
       VerbleibendeForschungszeit : GlobaleDatentypen.KostenLager;

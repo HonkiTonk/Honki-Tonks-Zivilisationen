@@ -144,9 +144,6 @@ package body KI is
 
          when 12 =>
             KIFernkampfOrbital.KIFernkampfOrbital (EinheitRasseUndNummer => EinheitRasseUndNummer);
-
-         when others =>
-            null;
       end case;
       
    end AKtivitätEinheit;

@@ -17,8 +17,10 @@ package GlobaleVariablen is
    
 
    -- Cursor
-   -- Hier noch hinschreiben welcher Wert was ist!
-   LeererWertCursor : constant GlobaleRecords.CursorRecord := ('©', (0, 1, 1), (0, 1, 1), (1, 1));
+   LeererWertCursor : constant GlobaleRecords.CursorRecord := ('©',       -- 1. Wert = CursorGrafik
+                                                               (0, 1, 1), -- 2. Wert = AchsenPosition
+                                                               (0, 1, 1), -- 3. Wert = AchsenPositionAlt
+                                                               (1, 1));   -- 4. Wert = AchsenPositionStadt
 
    type CursorImSpielArray is array (GlobaleDatentypen.Rassen'Range) of GlobaleRecords.CursorRecord;
    CursorImSpiel : CursorImSpielArray := (others => LeererWertCursor);
@@ -31,15 +33,17 @@ package GlobaleVariablen is
    RundenBisAutosave : Positive := 10;
 
    RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => 0); -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
-                                                         -- Ändern das alle RassenBereiche hierauf gehen?
+                                                                          -- Ändern das alle RassenBereiche hierauf gehen?
    RasseAmZugNachLaden : GlobaleDatentypen.RassenMitNullwert := 0;
    -- Zeug?
                                                          
 
    
    -- Einheiten
-   -- Hier noch hinschreiben welcher Wert was ist!
-   LeererWertEinheit : constant GlobaleRecords.EinheitenGebautRecord := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0);
+   LeererWertEinheit : constant GlobaleRecords.EinheitenGebautRecord := (0, 0,          -- 1. Wert = Aktuelle Beschäftigung, 2. Wert = Zweite aktuelle Beschäftigung
+                                                                         0, (0, 1, 1),  -- 3. Wert = ID, 4. Wert = AchsenPosition
+                                                                         0, 0.00, 0, 0, -- 5. Wert = Aktuelle Lebenspunkte, 6. Wert = Aktuelle Bewegungspunkte, 7. Wert = Aktuelle Erfahrungspunkte, 8. Wert = Aktueller Rang
+                                                                         0, 0);         -- 9. Wert = Aktuelle Beschäftigungszeit, 10. Wert = Zweite AktuelleBeschäftigungszeit
 
    type EinheitenGebautArray is array (GlobaleDatentypen.Rassen'Range, 1 .. 1_000) of GlobaleRecords.EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => LeererWertEinheit));
@@ -48,9 +52,12 @@ package GlobaleVariablen is
    
 
    -- Städte
-   -- Hier noch hinschreiben welcher Wert was ist!
-   LeererWertStadt : constant GlobaleRecords.StadtGebautRecord := (0, (0, 1, 1),    False,    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                                                   "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""),    (others => (others => False)), 0, 1,    0);
+   LeererWertStadt : constant GlobaleRecords.StadtGebautRecord := (0, (0, 1, 1), False, 0, -- 1. Wert = ID, 2. Wert = AchsenPosition, 3. Wert = Am Wasser, 4. Wert = Einwohner
+                                                                   0, 0, 0, 0, -- 5. Wert = Aktuelle Nahrungsmittel, 6. Wert = Aktuelle Nahrungsproduktion, 7. Wert = Aktuelle Ressourcen, 8. Wert = Aktuelle Produktionrate
+                                                                   0, 0, 0, 0, -- 9. Wert = Aktuelle Geldgewinnung, 10. Wert = Aktuelle Forschungsrate, 11. Wert = Aktuelles Bauprojekt, 12. Wert = Verbleibende Bauzeit
+                                                                   0, "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => ""), -- 13. Wert = Korruption, 14. Wert = Gebäude Vorhanden, 15. Wert = Stadtname
+                                                                   (others => (others => False)), 0, 1, -- 16. Wert = UmgebungBewirtschaftung, 17. Wert = Arbeitende Einwohner, 18. Wert = StadtUmgebungGröße
+                                                                   0); -- 19. Wert = KI aktuelle Beschäftigung
 
    type StadtGebautArray is array (GlobaleDatentypen.Rassen'Range, 1 .. 100) of GlobaleRecords.StadtGebautRecord;
    StadtGebaut : StadtGebautArray := (others => (others => LeererWertStadt));
@@ -58,12 +65,13 @@ package GlobaleVariablen is
    
    
 
-   -- Wichtiges Zeug
-   -- Hier noch hinschreiben welcher Wert was ist!
-   LeererWertWichtigesZeug : constant GlobaleRecords.WichtigesRecord := (0, 0, 0, 0, 10_000, 0, (others => 0));
+   -- Wichtiges Zeug   
+   LeererWertWichtigesZeug : constant GlobaleRecords.WichtigesRecord := (0, 0,            -- 1. Wert = Aktuelle Geldmenge, 2. Wert = GeldZugewinn Pro Runde
+                                                                         0, 0, 10_000, 0, -- 3. Wert = Forschungsrate, 4. Wert = Aktuelle Forschungsmenge, 5. Wert = Verbleibende Forschungszeit, 6. Wert = Forschungsprojekt
+                                                                         (others => 0));  -- 7. Wert = Erforscht
 
    type WichtigesArray is array (GlobaleDatentypen.Rassen'Range) of GlobaleRecords.WichtigesRecord;
-   Wichtiges : WichtigesArray := (others => (0, 0, 0, 0, 10_000, 0, (others => 0)));
+   Wichtiges : WichtigesArray := (others => LeererWertWichtigesZeug);
    
    -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
    type DiplomatieArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.Rassen'Range) of Integer;

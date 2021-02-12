@@ -403,30 +403,30 @@ package body Sichtbarkeit is
          Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik & CSI & "0m");
          
       elsif Einheit /= 0 then
-         Put (Item => EinheitenDatenbank.EinheitenListe (RasseExtern, Einheit).Anzeige & CSI & "0m");
+         Put (Item => EinheitenDatenbank.EinheitenListe (RasseExtern, Einheit).EinheitenGrafik & CSI & "0m");
         
       elsif Verbesserung /= 0 then
          if Verbesserung = 1 and RasseIntern = RasseExtern then            
-            Put (Item => VerbesserungenDatenbank.VerbesserungListe (1).Anzeige & CSI & "0m");
+            Put (Item => VerbesserungenDatenbank.VerbesserungListe (1).VerbesserungGrafik & CSI & "0m");
             
          elsif Verbesserung = 2 and RasseIntern = RasseExtern then            
-            Put (Item => VerbesserungenDatenbank.VerbesserungListe (2).Anzeige & CSI & "0m");
+            Put (Item => VerbesserungenDatenbank.VerbesserungListe (2).VerbesserungGrafik & CSI & "0m");
             
          elsif Verbesserung = 1 then
-            Put (Item => VerbesserungenDatenbank.VerbesserungListe (3).Anzeige & CSI & "0m");
+            Put (Item => VerbesserungenDatenbank.VerbesserungListe (3).VerbesserungGrafik & CSI & "0m");
             
          elsif Verbesserung = 2 then
-            Put (Item => VerbesserungenDatenbank.VerbesserungListe (4).Anzeige & CSI & "0m");
+            Put (Item => VerbesserungenDatenbank.VerbesserungListe (4).VerbesserungGrafik & CSI & "0m");
             
          else
-            Put (Item => VerbesserungenDatenbank.VerbesserungListe (Verbesserung).Anzeige & CSI & "0m");
+            Put (Item => VerbesserungenDatenbank.VerbesserungListe (Verbesserung).VerbesserungGrafik & CSI & "0m");
          end if;
 
       elsif Ressource /= 0 then
-         Put (Item => KartenDatenbank.KartenListe (Ressource).Anzeige & CSI & "0m");
+         Put (Item => KartenDatenbank.KartenListe (Ressource).KartenGrafik & CSI & "0m");
             
       else
-         Put (Item => KartenDatenbank.KartenListe (Grund).Anzeige & CSI & "0m");
+         Put (Item => KartenDatenbank.KartenListe (Grund).KartenGrafik & CSI & "0m");
       end if;
       
    end Farben;

@@ -10,9 +10,9 @@ package DatenbankRecords is
       -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
       -- Addieren für genaue Passierbarkeit
       
-      Anzeige : Wide_Wide_Character;
+      EinheitenGrafik : Wide_Wide_Character;
       
-      EinheitTyp : Natural; -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
+      EinheitTyp : GlobaleDatentypen.EinheitenTyp; -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
       PreisGeld : GlobaleDatentypen.KostenLager;
       PreisRessourcen : GlobaleDatentypen.KostenLager;
       Anforderungen : Integer;
@@ -46,13 +46,13 @@ package DatenbankRecords is
    -- GebaeudeDatenbank
    type GebäudeListeRecord is record
       
-      Anzeige : Wide_Wide_Character;
+      GebäudeGrafik : Wide_Wide_Character;
       
       PreisGeld : GlobaleDatentypen.KostenLager;      
       PreisRessourcen : GlobaleDatentypen.KostenLager;
       Anforderungen : Integer;
-
       PermanenteKosten : GlobaleDatentypen.KostenLager;
+      
       ProduktionBonus : GlobaleDatentypen.GrundwerteNRGWVA;
       GeldBonus : GlobaleDatentypen.GrundwerteNRGWVA;
       WissenBonus : GlobaleDatentypen.GrundwerteNRGWVA;
@@ -68,7 +68,7 @@ package DatenbankRecords is
    -- KartenDatenbank
    type KartenListeRecord is record
 
-      Anzeige : Wide_Wide_Character := ' ';
+      KartenGrafik : Wide_Wide_Character := ' ';
       
       Passierbarkeit : GlobaleDatentypen.PassierbarkeitType; -- 1 = Landeinheiten können passieren, 2 = Wassereinheiten können passieren, Lufteinheiten können immer passieren
       -- Addieren für genaue Passierbarkeit
@@ -77,7 +77,6 @@ package DatenbankRecords is
       Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
       Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
       Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-
       Verteidigungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
       
    end record;
@@ -88,7 +87,7 @@ package DatenbankRecords is
    -- VerbesserungenDatenbank
    type VerbesserungListeRecord is record
 
-      Anzeige : Wide_Wide_Character;
+      VerbesserungGrafik : Wide_Wide_Character;
       
       Passierbarkeit : GlobaleDatentypen.PassierbarkeitType; -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
       -- Addieren für genaue Passierbarkeit
@@ -97,7 +96,6 @@ package DatenbankRecords is
       Ressourcenbonus : GlobaleDatentypen.GrundwerteNRGWVA;
       Geldbonus : GlobaleDatentypen.GrundwerteNRGWVA;
       Wissensbonus : GlobaleDatentypen.GrundwerteNRGWVA;
-
       Verteidigungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
       
    end record;
