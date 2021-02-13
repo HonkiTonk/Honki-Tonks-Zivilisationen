@@ -7,7 +7,7 @@ with GlobaleDatentypen;
 
 package GlobaleRecords is
    
-   type AchsenAusStadtfeldRecord is record
+   type AchsenStadtfeldRecord is record
       
       YAchse : GlobaleDatentypen.Stadtfeld;
       XAchse : GlobaleDatentypen.Stadtfeld;
@@ -16,7 +16,7 @@ package GlobaleRecords is
    
    
    
-   type AchsenAusKartenfeldPositivRecord is record
+   type AchsenKartenfeldPositivRecord is record
       
       EAchse : GlobaleDatentypen.EbeneVorhanden;
       YAchse : GlobaleDatentypen.KartenfeldPositiv;
@@ -26,7 +26,7 @@ package GlobaleRecords is
    
    
 
-   type AchsenAusKartenfeldRecord is record
+   type AchsenKartenfeldRecord is record
       
       EAchse : GlobaleDatentypen.Ebene;
       YAchse : GlobaleDatentypen.Kartenfeld;
@@ -36,7 +36,7 @@ package GlobaleRecords is
    
    
 
-   type RasseUndPlatznummerRecord is record
+   type RassePlatznummerRecord is tagged record
       
       Rasse : GlobaleDatentypen.RassenMitNullwert;
       Platznummer : Natural;
@@ -45,11 +45,9 @@ package GlobaleRecords is
 
 
 
-   type EinheitRasseUndPlatznummerUndIDRecord is record
+   type RassePlatznummerIDRecord is new RassePlatznummerRecord with record
       
-      Rasse : GlobaleDatentypen.RassenMitNullwert;
-      Platznummer : Natural;
-      ID : GlobaleDatentypen.EinheitenIDMitNullWert;
+      ID : GlobaleDatentypen.KartenverbesserungEinheitenID;
 
    end record;
    
@@ -58,9 +56,9 @@ package GlobaleRecords is
    type CursorRecord is record
       
       CursorGrafik : Wide_Wide_Character;
-      AchsenPosition : AchsenAusKartenfeldPositivRecord;
-      AchsenPositionAlt : AchsenAusKartenfeldPositivRecord;
-      AchsenPositionStadt : AchsenAusStadtfeldRecord;
+      AchsenPosition : AchsenKartenfeldPositivRecord;
+      AchsenPositionAlt : AchsenKartenfeldPositivRecord;
+      AchsenPositionStadt : AchsenStadtfeldRecord;
       
    end record;
 
@@ -72,8 +70,8 @@ package GlobaleRecords is
       AktuelleBeschäftigung : Integer;
       AktuelleBeschäftigung2 : Natural;
       
-      ID : GlobaleDatentypen.EinheitenIDMitNullWert;
-      AchsenPosition : AchsenAusKartenfeldPositivRecord;
+      ID : GlobaleDatentypen.KartenverbesserungEinheitenID;
+      AchsenPosition : AchsenKartenfeldPositivRecord;
       
       AktuelleLebenspunkte : Integer;
       AktuelleBewegungspunkte : Float;
@@ -89,8 +87,8 @@ package GlobaleRecords is
 
    type StadtGebautRecord is record
       
-      ID : Natural;
-      AchsenPosition : AchsenAusKartenfeldPositivRecord;
+      ID : GlobaleDatentypen.StadtID;
+      AchsenPosition : AchsenKartenfeldPositivRecord;
       AmWasser : Boolean;
       Einwohner : Natural;
       
@@ -141,17 +139,14 @@ package GlobaleRecords is
       Grund : GlobaleDatentypen.KartenGrund;
       Hügel : Boolean;
       Sichtbar : GlobaleDatentypen.SichtbarkeitArray;
+      
       Fluss : GlobaleDatentypen.KartenGrund;
       VerbesserungStraße : GlobaleDatentypen.KartenVerbesserung;
       VerbesserungGebiet : GlobaleDatentypen.KartenVerbesserung;
       Ressource : GlobaleDatentypen.KartenGrund;
+      
       DurchStadtBelegterGrund : GlobaleDatentypen.BelegterGrund;
       Felderwertung : GlobaleDatentypen.GesamtproduktionStadt;
-
-      -- Sichtbar2
-      -- VerbesserungStraße2
-      -- VerbesserungGebiet2
-      -- Noch mehr?
 
    end record;
 

@@ -29,7 +29,8 @@ package GlobaleDatentypen is
    subtype LoopRangeNullZuEins is Kartenfeld range 0 .. 1;
 
    type KartenGrund is range -2 .. 40;
-   type KartenVerbesserung is range 0 .. 23;
+   type KartenverbesserungEinheitenID is range 0 .. 50;
+   subtype KartenVerbesserung is KartenverbesserungEinheitenID range 0 .. 23;
    type Ebene is range -3 .. 2; -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    type BelegterGrund is range 0 .. 18_100;
@@ -40,8 +41,7 @@ package GlobaleDatentypen is
 
 
    -- Für Einheiten
-   type EinheitenIDMitNullWert is range 0 .. 50;
-   subtype EinheitenID is EinheitenIDMitNullWert range 1 .. 50;
+   subtype EinheitenID is KartenverbesserungEinheitenID range 1 .. 50;
 
    type PassierbarkeitType is range 1 .. 15; -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
                                              -- Addieren für genaue Passierbarkeit
@@ -76,6 +76,7 @@ package GlobaleDatentypen is
    type GesamtproduktionStadt is range -500 .. 500;
    subtype GrundwerteNRGWVA is GesamtproduktionStadt range -100 .. 100; -- NRGWVA = Grundwert für Nahrung, Ressourcen, Geld, Wissenschaft, Verteidigung, Angriff
    type KostenLager is range -10_000 .. 10_000;
+   subtype StadtID is KartenVerbesserung range 0 .. 2;
 
    type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
    -- Für Stadt

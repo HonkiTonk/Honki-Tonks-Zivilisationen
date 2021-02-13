@@ -18,7 +18,7 @@ package body Sichtbarkeit is
                exit EinheitenPlätzeSchleife;
             
             when others =>
-               SichtbarkeitsprüfungFürEinheit (EinheitRasseUndNummer => (RasseExtern, EinheitNummer));
+               SichtbarkeitsprüfungFürEinheit (EinheitRasseNummer => (RasseExtern, EinheitNummer));
          end case;
          
       end loop EinheitenPlätzeSchleife;
@@ -31,7 +31,7 @@ package body Sichtbarkeit is
                exit StadtPlätzeSchleife;
                
             when others =>
-               SichtbarkeitsprüfungFürStadt (StadtRasseUndNummer => (RasseExtern, StadtNummer));
+               SichtbarkeitsprüfungFürStadt (StadtRasseNummer => (RasseExtern, StadtNummer));
          end case;
          
       end loop StadtPlätzeSchleife;
@@ -40,12 +40,12 @@ package body Sichtbarkeit is
 
 
 
-   procedure SichtbarkeitsprüfungFürEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure SichtbarkeitsprüfungFürEinheit (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.EAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.XAchse).Grund is
+      case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
          when 7 =>
             Sichtweite := 3;
 
@@ -61,7 +61,7 @@ package body Sichtbarkeit is
          XÄnderungEinheitenSchleife:
          for XÄnderung in -Sichtweite .. Sichtweite loop
                
-            Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition,
+            Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
                                                               Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 0);
 
@@ -70,7 +70,7 @@ package body Sichtbarkeit is
                   exit XÄnderungEinheitenSchleife;
                      
                when others =>
-                  Karten.Karten (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (EinheitRasseUndNummer.Rasse) := True;
+                  Karten.Karten (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (EinheitRasseNummer.Rasse) := True;
             end case;
             
          end loop XÄnderungEinheitenSchleife;
@@ -80,10 +80,10 @@ package body Sichtbarkeit is
 
 
 
-   procedure SichtbarkeitsprüfungFürStadt (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure SichtbarkeitsprüfungFürStadt (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      if GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).Einwohner < 10 then
+      if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner < 10 then
          Sichtweite := 2;
             
       else
@@ -95,7 +95,7 @@ package body Sichtbarkeit is
          XÄnderungStadtSchleife:
          for XÄnderung in -Sichtweite .. Sichtweite loop
 
-            Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AchsenPosition,
+            Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
                                                               Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 0);
                
@@ -104,7 +104,7 @@ package body Sichtbarkeit is
                   exit XÄnderungStadtSchleife;
                      
                when others =>
-                  Karten.Karten (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (StadtRasseUndNummer.Rasse) := True;
+                  Karten.Karten (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (StadtRasseNummer.Rasse) := True;
             end case;
             
          end loop XÄnderungStadtSchleife;
@@ -114,7 +114,7 @@ package body Sichtbarkeit is
 
 
 
-   procedure Sichtbarkeit (InDerStadt : Boolean; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
+   procedure Sichtbarkeit (InDerStadt : Boolean; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen
@@ -253,8 +253,8 @@ package body Sichtbarkeit is
 
 
 
-   procedure Farben (Einheit : GlobaleDatentypen.EinheitenIDMitNullWert; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund; Cursor : in Boolean;
-                     RasseExtern, RasseIntern : in GlobaleDatentypen.RassenMitNullwert) is
+   procedure Farben (Einheit : GlobaleDatentypen.KartenverbesserungEinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund;
+                     Cursor : in Boolean; RasseExtern, RasseIntern : in GlobaleDatentypen.RassenMitNullwert) is
    begin
 
       case Cursor is

@@ -4,10 +4,10 @@ with KIBewegung;
 
 package body KINahkampfUnterirdisch is
 
-   procedure KINahkampfUnterirdisch (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure KINahkampfUnterirdisch (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      KIBewegung.KIBewegung (EinheitRasseUndNummer => EinheitRasseUndNummer,
+      KIBewegung.KIBewegung (EinheitRasseNummer => EinheitRasseNummer,
                              Aufgabe               => 'e');
       
    end KINahkampfUnterirdisch;

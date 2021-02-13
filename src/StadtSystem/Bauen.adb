@@ -7,25 +7,25 @@ with GebaeudeDatenbank, EinheitenDatenbank, Anzeige;
 
 package body Bauen is
 
-   procedure Bauen (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure Bauen (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
    begin
 
-      GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt := 0;
-      GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen := 0;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt := 0;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen := 0;
       
       BauSchleife:
       loop
       
-         WasGebautWerdenSoll := AuswahlStadt (StadtRasseUndNummer => StadtRasseUndNummer);
+         WasGebautWerdenSoll := AuswahlStadt (StadtRasseNummer => StadtRasseNummer);
 
          case WasGebautWerdenSoll is
             when 0 =>
                return;
 
             when 1_001 .. 99_999 => -- Gebäude - 1_000, Einheiten - 10_000
-               GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt := WasGebautWerdenSoll;
-               GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen := 0;
-               BauzeitEinzeln (StadtRasseUndNummer => StadtRasseUndNummer);
+               GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt := WasGebautWerdenSoll;
+               GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen := 0;
+               BauzeitEinzeln (StadtRasseNummer => StadtRasseNummer);
                return;
                
             when others =>
@@ -38,27 +38,27 @@ package body Bauen is
 
 
 
-   procedure BauzeitEinzeln (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure BauzeitEinzeln (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
    begin
 
-      if GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleProduktionrate = 0 then
-         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).VerbleibendeBauzeit := 10_000;
+      if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate = 0 then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).VerbleibendeBauzeit := 10_000;
 
-      elsif GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt = 0 then
-         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).VerbleibendeBauzeit := 0;
+      elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt = 0 then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).VerbleibendeBauzeit := 0;
             
-      elsif GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt < 10_000 then
-         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).VerbleibendeBauzeit
-           := (GebaeudeDatenbank.GebäudeListe (StadtRasseUndNummer.Rasse, GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt - 1_000).PreisRessourcen
-               - GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen)
-             / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleProduktionrate);
+      elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt < 10_000 then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).VerbleibendeBauzeit
+           := (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 1_000).PreisRessourcen
+               - GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen)
+             / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate);
                
       else
-         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).VerbleibendeBauzeit
-           := (EinheitenDatenbank.EinheitenListe (StadtRasseUndNummer.Rasse,
-               GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt - 10_000)).PreisRessourcen
-               - GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen)
-             / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleProduktionrate);
+         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).VerbleibendeBauzeit
+           := (EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse,
+               GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 10_000)).PreisRessourcen
+               - GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen)
+             / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate);
       end if;
                
    end BauzeitEinzeln;
@@ -84,7 +84,7 @@ package body Bauen is
                         exit StadtSchleife;
                         
                      when others =>
-                        BauzeitEinzeln (StadtRasseUndNummer => (RasseIntern, StadtNummer));
+                        BauzeitEinzeln (StadtRasseNummer => (RasseIntern, StadtNummer));
                   end case;
       
                end loop StadtSchleife;
@@ -96,7 +96,7 @@ package body Bauen is
    
    
    
-   function AuswahlStadt (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) return Integer is
+   function AuswahlStadt (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) return Integer is
    begin
 
       Ende := 1;
@@ -110,14 +110,14 @@ package body Bauen is
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (16, G)) = "|" then
             exit GebäudeSchleife;
 
-         elsif G > GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).GebäudeVorhanden'Last then
+         elsif G > GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden'Last then
             exit GebäudeSchleife;
 
-         elsif GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).GebäudeVorhanden (G) /= '0' then
+         elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (G) /= '0' then
             null;
 
-         elsif GebaeudeDatenbank.GebäudeListe (StadtRasseUndNummer.Rasse, G).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (StadtRasseUndNummer.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseUndNummer.Rasse, G).Anforderungen) = 0 then 
+         elsif GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, G).Anforderungen /= 0 then
+            if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, G).Anforderungen) = 0 then 
                null;
 
             else
@@ -143,12 +143,12 @@ package body Bauen is
          elsif E > Integer (EinheitenDatenbank.EinheitenListe'Last) then
             exit EinheitenSchleife;
 
-         elsif GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AmWasser = False
-           and EinheitenDatenbank.EinheitenListe (StadtRasseUndNummer.Rasse, GlobaleDatentypen.EinheitenID (E)).Passierbarkeit = 2 then
+         elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AmWasser = False
+           and EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, GlobaleDatentypen.EinheitenID (E)).Passierbarkeit = 2 then
             null;
 
-         elsif EinheitenDatenbank.EinheitenListe (StadtRasseUndNummer.Rasse, GlobaleDatentypen.EinheitenID (E)).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (StadtRasseUndNummer.Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (StadtRasseUndNummer.Rasse, GlobaleDatentypen.EinheitenID (E)).Anforderungen) = 0 then
+         elsif EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, GlobaleDatentypen.EinheitenID (E)).Anforderungen /= 0 then
+            if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, GlobaleDatentypen.EinheitenID (E)).Anforderungen) = 0 then
                null;
                
             else

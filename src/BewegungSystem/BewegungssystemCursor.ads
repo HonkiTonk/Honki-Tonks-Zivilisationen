@@ -15,15 +15,15 @@ private
 
    Wert : Integer;
 
-   Position : GlobaleRecords.AchsenAusKartenfeldPositivRecord;
+   Position : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
-   Änderung : GlobaleRecords.AchsenAusKartenfeldRecord;
-   KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
+   Änderung : GlobaleRecords.AchsenKartenfeldRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldRecord;
    
-   procedure BewegungCursorBerechnen (ÄnderungExtern : in GlobaleRecords.AchsenAusKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) with
+   procedure BewegungCursorBerechnen (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => ÄnderungExtern.EAchse /= 0 or ÄnderungExtern.YAchse /= 0 or ÄnderungExtern.XAchse /= 0;
 
-   procedure BewegungCursorBerechnenStadt (ÄnderungExtern : in GlobaleRecords.AchsenAusKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) with
+   procedure BewegungCursorBerechnenStadt (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => ÄnderungExtern.EAchse /= 0 or ÄnderungExtern.YAchse /= 0 or ÄnderungExtern.XAchse /= 0;
 
 end BewegungssystemCursor;

@@ -19,13 +19,13 @@ package body EinheitenDatenbank is
 
 
 
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleLebenspunkte
-        := EinheitenListe (EinheitRasseUndNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).ID).MaximaleLebenspunkte;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBewegungspunkte
-        := EinheitenListe (EinheitRasseUndNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).ID).MaximaleBewegungspunkte;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleLebenspunkte
+        := EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).MaximaleLebenspunkte;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte
+        := EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).MaximaleBewegungspunkte;
       
    end LebenspunkteBewegungspunkteAufMaximumSetzen;
 
@@ -76,22 +76,22 @@ package body EinheitenDatenbank is
    
 
 
-   procedure EinheitErzeugen (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord; ID : in Positive) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
+   procedure EinheitErzeugen (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord; ID : in Positive) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
    begin
 
-      Position := (GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AchsenPosition.EAchse,
-                   GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AchsenPosition.YAchse,
-                   GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AchsenPosition.XAchse);
+      Position := (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition.EAchse,
+                   GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition.YAchse,
+                   GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition.XAchse);
       EinheitenPosition := 0;
             
       EinheitenSchleife:
       for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
             
-         if GlobaleVariablen.EinheitenGebaut (StadtRasseUndNummer.Rasse, EinheitNummer).ID = 0 then
+         if GlobaleVariablen.EinheitenGebaut (StadtRasseNummer.Rasse, EinheitNummer).ID = 0 then
             EinheitenPosition := EinheitNummer;
             exit EinheitenSchleife;
 
-         elsif GlobaleVariablen.EinheitenGebaut (StadtRasseUndNummer.Rasse, EinheitNummer).AchsenPosition = GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AchsenPosition then
+         elsif GlobaleVariablen.EinheitenGebaut (StadtRasseNummer.Rasse, EinheitNummer).AchsenPosition = GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition then
             return;
             
          else
@@ -105,26 +105,26 @@ package body EinheitenDatenbank is
             return;
             
          when others =>
-            GlobaleVariablen.EinheitenGebaut (StadtRasseUndNummer.Rasse, EinheitenPosition).ID := GlobaleDatentypen.EinheitenID (ID);
-            GlobaleVariablen.EinheitenGebaut (StadtRasseUndNummer.Rasse, EinheitenPosition).AchsenPosition := Position;
-            LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseUndNummer => (StadtRasseUndNummer.Rasse, EinheitenPosition));
-            GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).VerbleibendeBauzeit := 0;
-            GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen := 0;
-            GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt := 0;
+            GlobaleVariablen.EinheitenGebaut (StadtRasseNummer.Rasse, EinheitenPosition).ID := GlobaleDatentypen.EinheitenID (ID);
+            GlobaleVariablen.EinheitenGebaut (StadtRasseNummer.Rasse, EinheitenPosition).AchsenPosition := Position;
+            LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummer => (StadtRasseNummer.Rasse, EinheitenPosition));
+            GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).VerbleibendeBauzeit := 0;
+            GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen := 0;
+            GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt := 0;
       end case;
             
    end EinheitErzeugen;
 
 
 
-   procedure EinheitEntfernenMitSortieren (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure EinheitEntfernenMitSortieren (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0);      
-      Sortieren.EinheitenSortieren (RasseExtern => EinheitRasseUndNummer.Rasse);
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0);      
+      Sortieren.EinheitenSortieren (RasseExtern => EinheitRasseNummer.Rasse);
 
-      if GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (EinheitRasseUndNummer.Rasse, 1).ID = 0 then
-         GlobaleVariablen.RassenImSpiel (EinheitRasseUndNummer.Rasse) := 0;
+      if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, 1).ID = 0 then
+         GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) := 0;
          
       else
          null;
@@ -134,13 +134,13 @@ package body EinheitenDatenbank is
 
 
 
-   procedure EinheitEntfernenOhneSortieren (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure EinheitEntfernenOhneSortieren (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
 
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0); 
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0); 
 
-      if GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (EinheitRasseUndNummer.Rasse, 1).ID = 0 then
-         GlobaleVariablen.RassenImSpiel (EinheitRasseUndNummer.Rasse) := 0;
+      if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, 1).ID = 0 then
+         GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) := 0;
          
       else
          null;

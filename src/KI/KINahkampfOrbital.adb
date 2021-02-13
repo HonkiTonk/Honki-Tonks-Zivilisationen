@@ -4,10 +4,10 @@ with KIBewegung;
 
 package body KINahkampfOrbital is
 
-   procedure KINahkampfOrbital (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure KINahkampfOrbital (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      KIBewegung.KIBewegung (EinheitRasseUndNummer => EinheitRasseUndNummer,
+      KIBewegung.KIBewegung (EinheitRasseNummer => EinheitRasseNummer,
                              Aufgabe               => 'e');
       
    end KINahkampfOrbital;

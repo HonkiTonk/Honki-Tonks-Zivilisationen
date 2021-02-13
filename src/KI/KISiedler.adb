@@ -4,12 +4,12 @@ with Karten, StadtWerteFestlegen, InDerStadt, KIBewegung, KIGefahr, KIEinheitVer
 
 package body KISiedler is
 
-   procedure KISiedler (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure KISiedler (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      case GlobaleVariablen.StadtGebaut (EinheitRasseUndNummer.Rasse, 1).ID is
+      case GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, 1).ID is
          when 0 =>
-            StadtErfolgreichGebaut := StadtBauenPrüfung (EinheitRasseUndNummer => EinheitRasseUndNummer);
+            StadtErfolgreichGebaut := StadtBauenPrüfung (EinheitRasseNummer => EinheitRasseNummer);
 
             case StadtErfolgreichGebaut is
                when True =>
@@ -23,10 +23,10 @@ package body KISiedler is
             null;
       end case;
 
-      Gefahr := KIGefahr.KIGefahr (EinheitRasseUndNummer => EinheitRasseUndNummer);
+      Gefahr := KIGefahr.KIGefahr (EinheitRasseNummer => EinheitRasseNummer);
       case Gefahr is
          when True =>
-            KIBewegung.KIBewegung (EinheitRasseUndNummer => EinheitRasseUndNummer,
+            KIBewegung.KIBewegung (EinheitRasseNummer => EinheitRasseNummer,
                                    Aufgabe               => 'f');
             return;
                   
@@ -34,7 +34,7 @@ package body KISiedler is
             null;
       end case;
 
-      UmgebungVerbessern := StadtUmgebungVerbessern (EinheitRasseUndNummer => EinheitRasseUndNummer);
+      UmgebungVerbessern := StadtUmgebungVerbessern (EinheitRasseNummer => EinheitRasseNummer);
       case UmgebungVerbessern is
          when True =>
             return;
@@ -43,7 +43,7 @@ package body KISiedler is
             null;
       end case;
 
-      GehStadtBauen := NeueStadtBauenGehen (EinheitRasseUndNummer => EinheitRasseUndNummer);
+      GehStadtBauen := NeueStadtBauenGehen (EinheitRasseNummer => EinheitRasseNummer);
       case GehStadtBauen is
          when True =>
             return;
@@ -52,7 +52,7 @@ package body KISiedler is
             null;
       end case;
 
-      Verbessern := KIEinheitVerbessernOderVernichten.KIEinheitVerbessern (EinheitRasseUndNummer => EinheitRasseUndNummer);
+      Verbessern := KIEinheitVerbessernOderVernichten.KIEinheitVerbessern (EinheitRasseNummer => EinheitRasseNummer);
       case Verbessern is
          when True =>
             return;
@@ -61,7 +61,7 @@ package body KISiedler is
             null;
       end case;
 
-      Vernichten := KIEinheitVerbessernOderVernichten.KIEinheitVernichten (EinheitRasseUndNummer => EinheitRasseUndNummer);
+      Vernichten := KIEinheitVerbessernOderVernichten.KIEinheitVernichten (EinheitRasseNummer => EinheitRasseNummer);
       case Vernichten is
          when True =>
             return;
@@ -70,28 +70,28 @@ package body KISiedler is
             null;
       end case;
             
-      KIBewegung.KIBewegung (EinheitRasseUndNummer => EinheitRasseUndNummer,
+      KIBewegung.KIBewegung (EinheitRasseNummer => EinheitRasseNummer,
                              Aufgabe               => 's');
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBewegungspunkte := 0.00;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte := 0.00;
       
    end KISiedler;
 
 
 
-   function StadtUmgebungVerbessern (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean is
+   function StadtUmgebungVerbessern (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
    
-      if Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.EAchse,
-                        GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.YAchse,
-                        GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.XAchse).DurchStadtBelegterGrund
-      in GlobaleDatentypen.BelegterGrund (EinheitRasseUndNummer.Rasse) * StadtWerteFestlegen.RassenMulitplikationWert .. GlobaleDatentypen.BelegterGrund (EinheitRasseUndNummer.Rasse)
+      if Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).DurchStadtBelegterGrund
+      in GlobaleDatentypen.BelegterGrund (EinheitRasseNummer.Rasse) * StadtWerteFestlegen.RassenMulitplikationWert .. GlobaleDatentypen.BelegterGrund (EinheitRasseNummer.Rasse)
         * StadtWerteFestlegen.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleVariablen.StadtGebaut'Last (2))
-        and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.EAchse,
-                            GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.YAchse,
-                            GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.XAchse).VerbesserungStraße = 0
-             or Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.EAchse,
-                               GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.YAchse,
-                               GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 0) then
+        and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungStraße = 0
+             or Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 0) then
          return True;
             
       else
@@ -102,7 +102,7 @@ package body KISiedler is
    
 
 
-   function NeueStadtBauenGehen (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean is
+   function NeueStadtBauenGehen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
       
       return False;
@@ -111,16 +111,16 @@ package body KISiedler is
 
 
 
-   function StadtBauenPrüfung (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean is
+   function StadtBauenPrüfung (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
       
-      if Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.EAchse,
-                        GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.YAchse,
-                        GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.XAchse).Felderwertung >= 90
-        and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.EAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition.XAchse).DurchStadtBelegterGrund = 0 then
-         return InDerStadt.StadtBauen (EinheitRasseUndNummer => EinheitRasseUndNummer);
+      if Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Felderwertung >= 90
+        and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).DurchStadtBelegterGrund = 0 then
+         return InDerStadt.StadtBauen (EinheitRasseNummer => EinheitRasseNummer);
 
       else
          return False;

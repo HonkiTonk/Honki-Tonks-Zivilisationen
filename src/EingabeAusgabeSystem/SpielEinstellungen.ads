@@ -28,12 +28,12 @@ private
    Spieler : Integer;
    Zufallswahl : Integer;
 
-   PositionWert : GlobaleRecords.RasseUndPlatznummerRecord;
-   GezogeneWerte : GlobaleRecords.AchsenAusKartenfeldPositivRecord;
-   KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
-   PlatzBelegt : GlobaleRecords.RasseUndPlatznummerRecord;
+   PositionWert : GlobaleRecords.RassePlatznummerRecord;
+   GezogeneWerte : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldRecord;
+   PlatzBelegt : GlobaleRecords.RassePlatznummerRecord;
 
-   type KoordinatenArray is array (1 .. 2) of GlobaleRecords.AchsenAusKartenfeldRecord;
+   type KoordinatenArray is array (1 .. 2) of GlobaleRecords.AchsenKartenfeldRecord;
    Koordinaten : KoordinatenArray;
 
    subtype ZufälligeKartengröße is Integer range 1 .. 9;

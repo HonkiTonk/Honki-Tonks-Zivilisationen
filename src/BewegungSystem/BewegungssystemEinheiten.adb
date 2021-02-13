@@ -7,10 +7,10 @@ with SchleifenPruefungen, KartenDatenbank, Karte, EinheitenDatenbank, Diplomatie
 
 package body BewegungssystemEinheiten is
 
-   procedure BewegungEinheitenRichtung (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure BewegungEinheitenRichtung (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
 
-      Karte.AnzeigeKarte (RasseExtern => EinheitRasseUndNummer.Rasse);
+      Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummer.Rasse);
 
       BewegenSchleife:
       loop
@@ -53,25 +53,25 @@ package body BewegungssystemEinheiten is
                return;
          end case;
          
-         RückgabeWert := ZwischenEbene (EinheitRasseUndNummer => EinheitRasseUndNummer,
+         RückgabeWert := ZwischenEbene (EinheitRasseNummer => EinheitRasseNummer,
                                          ÄnderungExtern       => Änderung);
 
          case RückgabeWert is
             when 1 => -- Einheit wurde bewegt.          
-               Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseUndNummer => EinheitRasseUndNummer);
+               Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummer => EinheitRasseNummer);
                
             when others => -- Einheit wurde nicht bewegt.
                null;
          end case;
          
-         if GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBewegungspunkte = 0.00 then
+         if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte = 0.00 then
             return;
 
-         elsif GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleLebenspunkte <= 0 then
+         elsif GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleLebenspunkte <= 0 then
             return;
                
          else
-            Karte.AnzeigeKarte (RasseExtern => EinheitRasseUndNummer.Rasse);
+            Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummer.Rasse);
          end if;
          
       end loop BewegenSchleife;
@@ -83,10 +83,10 @@ package body BewegungssystemEinheiten is
    -- 1 = Bewegung auf Feld möglich.
    -- 0 = Außerhalb der Karte, Feld blockiert durch eigene Einheit oder Kampf gegen gegnerische Einheit verloren.
    -- -1 = Gegnerische Einheit oder Stadt auf dem Feld.
-   function ZwischenEbene (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; ÄnderungExtern : in GlobaleRecords.AchsenAusKartenfeldRecord) return GlobaleDatentypen.LoopRangeMinusEinsZuEins is
+   function ZwischenEbene (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord) return GlobaleDatentypen.LoopRangeMinusEinsZuEins is
    begin
 
-      KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition,
+      KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
                                                         Änderung       => ÄnderungExtern,
                                                         ZusatzYAbstand => 0);
 
@@ -95,7 +95,7 @@ package body BewegungssystemEinheiten is
             return 0;
             
          when others =>
-            FeldPassierbar := FeldFürDieseEinheitPassierbar (EinheitRasseUndNummer => EinheitRasseUndNummer,
+            FeldPassierbar := FeldFürDieseEinheitPassierbar (EinheitRasseNummer => EinheitRasseNummer,
                                                               NeuePosition          => (GlobaleDatentypen.EbeneVorhanden (KartenWert.EAchse), GlobaleDatentypen.KartenfeldPositiv (KartenWert.YAchse),
                                                                                         GlobaleDatentypen.KartenfeldPositiv (KartenWert.XAchse)));
       end case;
@@ -108,26 +108,26 @@ package body BewegungssystemEinheiten is
             return 0;
       end case;
 
-      GegnerWert := BefindetSichDortEineEinheit (RasseExtern    => EinheitRasseUndNummer.Rasse,
+      GegnerWert := BefindetSichDortEineEinheit (RasseExtern    => EinheitRasseNummer.Rasse,
                                                  NeuePosition  => (GlobaleDatentypen.EbeneVorhanden (KartenWert.EAchse), GlobaleDatentypen.KartenfeldPositiv (KartenWert.YAchse),
                                                                    GlobaleDatentypen.KartenfeldPositiv (KartenWert.XAchse)));
 
-      if GegnerWert.Rasse = EinheitRasseUndNummer.Rasse and GegnerWert.Platznummer = 1 then
+      if GegnerWert.Rasse = EinheitRasseNummer.Rasse and GegnerWert.Platznummer = 1 then
          return 0;
 
       elsif GegnerWert.Platznummer = SchleifenPruefungen.RückgabeWertEinheitNummer then
-         BewegungEinheitenBerechnung (EinheitRasseUndNummer => EinheitRasseUndNummer,
+         BewegungEinheitenBerechnung (EinheitRasseNummer => EinheitRasseNummer,
                                       NeuePosition          => (GlobaleDatentypen.EbeneVorhanden (KartenWert.EAchse), GlobaleDatentypen.KartenfeldPositiv (KartenWert.YAchse),
                                                                 GlobaleDatentypen.KartenfeldPositiv (KartenWert.XAchse)));
          return 1;
          
       else
-         ErgebnisGegnerAngreifen := Diplomatie.GegnerAngreifenOderNicht (EinheitRasseUndNummer => EinheitRasseUndNummer,
+         ErgebnisGegnerAngreifen := Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummer => EinheitRasseNummer,
                                                                          Gegner                => GegnerWert);
 
          case ErgebnisGegnerAngreifen is
             when True =>
-               BewegungEinheitenBerechnung (EinheitRasseUndNummer => EinheitRasseUndNummer,
+               BewegungEinheitenBerechnung (EinheitRasseNummer => EinheitRasseNummer,
                                             NeuePosition          => (GlobaleDatentypen.EbeneVorhanden (KartenWert.EAchse), GlobaleDatentypen.KartenfeldPositiv (KartenWert.YAchse),
                                                                       GlobaleDatentypen.KartenfeldPositiv (KartenWert.XAchse)));
                return 1;
@@ -141,18 +141,18 @@ package body BewegungssystemEinheiten is
 
 
 
-   function FeldFürDieseEinheitPassierbar (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return Boolean is
+   function FeldFürDieseEinheitPassierbar (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Boolean is
    begin
       
       
-      if EinheitenDatenbank.EinheitenListe (EinheitRasseUndNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).ID).Passierbarkeit = 3 then
+      if EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit = 3 then
          null;
                
-      elsif EinheitenDatenbank.EinheitenListe (EinheitRasseUndNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).ID).Passierbarkeit
+      elsif EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit
         /= KartenDatenbank.KartenListe (Karten.Karten (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).Grund).Passierbarkeit then
-         case EinheitenDatenbank.EinheitenListe (EinheitRasseUndNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).ID).Passierbarkeit is
+         case EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit is
             when 2 =>
-               Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (RasseExtern  => EinheitRasseUndNummer.Rasse,
+               Stadtnummer := SchleifenPruefungen.KoordinatenStadtMitRasseSuchen (RasseExtern  => EinheitRasseNummer.Rasse,
                                                                                   Koordinaten  => NeuePosition);
          
                case Stadtnummer is
@@ -177,7 +177,7 @@ package body BewegungssystemEinheiten is
    
    
    
-   function BefindetSichDortEineEinheit (RasseExtern : GlobaleDatentypen.RassenMitNullwert; NeuePosition : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return GlobaleRecords.RasseUndPlatznummerRecord is
+   function BefindetSichDortEineEinheit (RasseExtern : GlobaleDatentypen.RassenMitNullwert; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
    begin
 
       GegnerEinheitWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => NeuePosition);
@@ -205,10 +205,10 @@ package body BewegungssystemEinheiten is
 
    
 
-   procedure BewegungEinheitenBerechnung (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) is
+   procedure BewegungEinheitenBerechnung (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
    begin
       
-      case StraßeUndFlussPrüfen (EinheitRasseUndNummer => EinheitRasseUndNummer,
+      case StraßeUndFlussPrüfen (EinheitRasseNummer => EinheitRasseNummer,
                                  NeuePosition          => NeuePosition) is         
          when 1 | 2 =>
             BewegungspunkteModifikator := 0.50;
@@ -222,38 +222,38 @@ package body BewegungssystemEinheiten is
 
       case Karten.Karten (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).Grund is
          when  1 | 7 | 9 | 32 =>
-            if GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBewegungspunkte < 1.00 then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBewegungspunkte := 0.00;
+            if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte < 1.00 then
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte := 0.00;
                return;
                      
             else                     
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBewegungspunkte
-                 := GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBewegungspunkte - 2.00 + BewegungspunkteModifikator;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte
+                 := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte - 2.00 + BewegungspunkteModifikator;
             end if;
                
          when others =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBewegungspunkte
-              := GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBewegungspunkte - 1.00 + BewegungspunkteModifikator;
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte
+              := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte - 1.00 + BewegungspunkteModifikator;
       end case;
 
-      if GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBewegungspunkte < 0.00 then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AktuelleBewegungspunkte := 0.00;
+      if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte < 0.00 then
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte := 0.00;
                   
       else
          null;
       end if;
 
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).AchsenPosition := NeuePosition;
-      GlobaleVariablen.CursorImSpiel (EinheitRasseUndNummer.Rasse).AchsenPosition := NeuePosition;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition := NeuePosition;
+      GlobaleVariablen.CursorImSpiel (EinheitRasseNummer.Rasse).AchsenPosition := NeuePosition;
                        
    end BewegungEinheitenBerechnung;
 
 
 
-   function StraßeUndFlussPrüfen (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) return Integer is
+   function StraßeUndFlussPrüfen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Integer is
    begin
 
-      case EinheitenDatenbank.EinheitenListe (EinheitRasseUndNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseUndNummer.Rasse, EinheitRasseUndNummer.Platznummer).ID).Passierbarkeit is
+      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit is
          when 1 =>
             BonusBeiBewegung := 0;
 

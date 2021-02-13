@@ -14,16 +14,18 @@ private
    EinheitenBeschäftigt : Natural;
    StadtBeschäftigt : Natural;
 
-   procedure AKtivitätEinheit (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
-     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
+   EinheitRassePlatznummerID : GlobaleRecords.RassePlatznummerIDRecord;
 
-   procedure AKtivitätEinheitAbbrechen (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
-     Pre => EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure AKtivitätEinheit (EinheitRasseNummerID : in GlobaleRecords.RassePlatznummerIDRecord) with
+     Pre => EinheitRasseNummerID.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummerID.Rasse in GlobaleDatentypen.Rassen;
 
-   procedure AktivitätStadt (StadtRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
-     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure AKtivitätEinheitAbbrechen (EinheitRasseNummerID : in GlobaleRecords.RassePlatznummerIDRecord) with
+     Pre => EinheitRasseNummerID.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummerID.Rasse in GlobaleDatentypen.Rassen;
 
-   procedure AktivitätStadtAbbrechen (StadtRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) with
-     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure AktivitätStadt (StadtRasseNummerID : in GlobaleRecords.RassePlatznummerIDRecord) with
+     Pre => StadtRasseNummerID.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and StadtRasseNummerID.Rasse in GlobaleDatentypen.Rassen;
+
+   procedure AktivitätStadtAbbrechen (StadtRasseNummerID : in GlobaleRecords.RassePlatznummerIDRecord) with
+     Pre => StadtRasseNummerID.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and StadtRasseNummerID.Rasse in GlobaleDatentypen.Rassen;
 
 end KI;

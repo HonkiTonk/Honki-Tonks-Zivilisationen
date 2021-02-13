@@ -16,8 +16,8 @@ package body Cheat is
       MenüSchleife:
       loop
 
-         Put_Line (Item => "n = nächste Einheit, i = Informationen, s = Sichtbarkeit, r = Rasse ändern, e = Einheit festlegen");
-         Put_Line (Item => "g = Geld auf 1_000_000 setzen, t = Technologie, v = Verbesserung, b = Grund");
+         Put_Line (Item => "n = nächste Einheit, i = Informationen, s = Sichtbarkeit, e = Einheit festlegen");
+         Put_Line (Item => "g = Geld auf 1_000_000 setzen, t = Technologie, v = Verbesserung, b = Grund, a = Verteilung ändern");
          Get_Immediate (Item => Taste);
 
          case To_Lower (Item => Taste) is               
@@ -44,6 +44,9 @@ package body Cheat is
                
             when 'b' =>
                GrundFestlegen (RasseExtern => RasseExtern);
+
+            when 'a' =>
+               RassenverteilungÄndern;
                
             when others =>
                return;
@@ -223,7 +226,7 @@ package body Cheat is
       
       else
          Put_Line (Item => "Einheit festlegen");
-         EinheitenDatenbank.EinheitErzeugen (StadtRasseUndNummer => (GlobaleDatentypen.Rassen (RasseZahl), Stadt),
+         EinheitenDatenbank.EinheitErzeugen (StadtRasseNummer => (GlobaleDatentypen.Rassen (RasseZahl), Stadt),
                                              ID          => ID);
       end if;
       
@@ -273,5 +276,22 @@ package body Cheat is
       end case;
       
    end VerbesserungFestlegen;
+
+
+
+   procedure RassenverteilungÄndern is
+   begin
+      
+      RassenverteilungÄndernSchleife:
+      for Rasse in GlobaleDatentypen.Rassen'Range loop
+         
+         GlobaleVariablen.RassenImSpiel (Rasse) := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (WelcheDatei   => 0,
+                                                                                                WelcherText   => 0,
+                                                                                                ZahlenMinimum => 0,
+                                                                                                ZahlenMaximum => 2));
+         
+      end loop RassenverteilungÄndernSchleife;
+      
+   end RassenverteilungÄndern;
 
 end Cheat;

@@ -75,7 +75,7 @@ package body BefehleImSpiel is
                when others =>
                   if EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = 1 and
                     GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00 then
-                     Nullwert := InDerStadt.StadtBauen (EinheitRasseUndNummer => (RasseExtern, EinheitNummer));
+                     Nullwert := InDerStadt.StadtBauen (EinheitRasseNummer => (RasseExtern, EinheitNummer));
                      
                   else
                      null;
@@ -196,7 +196,7 @@ package body BefehleImSpiel is
                                          LetzteZeile        => 8);
                      
                   else
-                     Verbesserungen.Verbesserung (EinheitRasseUndNummer => (RasseExtern, EinheitNummer),
+                     Verbesserungen.Verbesserung (EinheitRasseNummer => (RasseExtern, EinheitNummer),
                                                   Befehl                => Verbesserungen.Befehle'Val (WelcherBefehl));
                   end if;
             end case;               
@@ -235,7 +235,7 @@ package body BefehleImSpiel is
          when -3 =>
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse := 1;
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse := 1;
-            InDerStadt.InDerStadt (StadtRasseUndNummer => (RasseExtern, StadtNummer));
+            InDerStadt.InDerStadt (StadtRasseNummer => (RasseExtern, StadtNummer));
             
          when others =>
             if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung /= 0 then
@@ -252,7 +252,7 @@ package body BefehleImSpiel is
                null;
                      
             else
-               BewegungssystemEinheiten.BewegungEinheitenRichtung (EinheitRasseUndNummer => (RasseExtern, EinheitNummer));
+               BewegungssystemEinheiten.BewegungEinheitenRichtung (EinheitRasseNummer => (RasseExtern, EinheitNummer));
             end if;
       end case;
       

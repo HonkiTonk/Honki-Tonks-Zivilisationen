@@ -5,8 +5,8 @@ use GlobaleDatentypen;
 
 package KarteStadt is
    
-   procedure AnzeigeStadt (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
-     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure AnzeigeStadt (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
+     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
 
    procedure Beschreibung (RasseExtern : in GlobaleDatentypen.Rassen);
 
@@ -28,9 +28,9 @@ private
 
    Wert : Integer;
 
-   KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldRecord;
    
-   RasseUndPlatznummer : GlobaleRecords.RasseUndPlatznummerRecord;
+   RasseUndPlatznummer : GlobaleRecords.RassePlatznummerRecord;
    
    procedure FarbenStadt;
    procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; RasseExtern : in GlobaleDatentypen.Rassen);

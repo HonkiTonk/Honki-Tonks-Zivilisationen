@@ -20,11 +20,11 @@ private
    SichtweiteFestlegen : Integer;
    BewegungsfeldFestlegen : Integer;
 
-   Kartenwert : GlobaleRecords.AchsenAusKartenfeldRecord;
+   Kartenwert : GlobaleRecords.AchsenKartenfeldRecord;
 
-   RasseUndPlatznummer : GlobaleRecords.RasseUndPlatznummerRecord;
+   RasseUndPlatznummer : GlobaleRecords.RassePlatznummerRecord;
 
-   type SichtweiteArray is array (1 .. 3) of GlobaleRecords.AchsenAusKartenfeldPositivRecord;
+   type SichtweiteArray is array (1 .. 3) of GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    Sichtweite : constant SichtweiteArray := (1 => (0, 6, 10), -- Hier noch was für die Sichtweite einfügen, vor allem in den Himmel. Eventuell auch von der Technologie abhängig machen.
                                              2 => (0, 6, 22),

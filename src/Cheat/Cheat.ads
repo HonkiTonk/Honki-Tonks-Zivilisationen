@@ -26,5 +26,6 @@ private
    procedure Geld (RasseExtern : in GlobaleDatentypen.Rassen);
    procedure Technologie (RasseExtern : in GlobaleDatentypen.Rassen);
    procedure VerbesserungFestlegen (RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure RassenverteilungÄndern;
 
 end Cheat;

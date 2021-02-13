@@ -10,10 +10,10 @@ package Wachstum is
 
 private
    
-   procedure WachstumEinwohner (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
-     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure WachstumEinwohner (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
+     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   procedure WachstumProduktion (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) with
-     Pre => StadtRasseUndNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseUndNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure WachstumProduktion (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
+     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
 
 end Wachstum;

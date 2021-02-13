@@ -12,8 +12,8 @@ package Diplomatie is
    function DiplomatischenStatusPrüfen (AngreifendeRasse, VerteidigendeRasse : in GlobaleDatentypen.Rassen) return Integer with
      Pre => AngreifendeRasse /= VerteidigendeRasse;
 
-   function GegnerAngreifenOderNicht (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; Gegner : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean with
-     Pre => EinheitRasseUndNummer.Rasse /= Gegner.Rasse and EinheitRasseUndNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseUndNummer.Rasse in GlobaleDatentypen.Rassen
+   function GegnerAngreifenOderNicht (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Gegner : in GlobaleRecords.RassePlatznummerRecord) return Boolean with
+     Pre => EinheitRasseNummer.Rasse /= Gegner.Rasse and EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
      and Gegner.Rasse in GlobaleDatentypen.Rassen and Gegner.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2);
 
 private

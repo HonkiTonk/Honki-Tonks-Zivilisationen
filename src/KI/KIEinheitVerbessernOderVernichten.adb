@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 package body KIEinheitVerbessernOderVernichten is
 
-   function KIEinheitVerbessern (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean is
+   function KIEinheitVerbessern (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
       
       return False;
@@ -11,7 +11,7 @@ package body KIEinheitVerbessernOderVernichten is
 
 
 
-   function KIEinheitVernichten (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean is
+   function KIEinheitVernichten (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
       
       return False;

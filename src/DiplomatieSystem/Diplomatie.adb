@@ -32,13 +32,13 @@ package body Diplomatie is
 
 
 
-   function GegnerAngreifenOderNicht (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord; Gegner : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean is
+   function GegnerAngreifenOderNicht (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Gegner : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
 
       Gewonnen := False;
       Angreifen := False;
       
-      BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasse   => EinheitRasseUndNummer.Rasse,
+      BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasse   => EinheitRasseNummer.Rasse,
                                                                 VerteidigendeRasse => Gegner.Rasse);
       case BereitsImKrieg is
          when 1 .. 2 =>
@@ -51,7 +51,7 @@ package body Diplomatie is
             case Wahl is
                when -3 =>
                   Angreifen := True;
-                  --Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasse   => EinheitRasseUndNummer.Rasse,
+                  --Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasse   => EinheitRasseNummer.Rasse,
                   -- VerteidigendeRasse => Gegner.Rasse);
                   return True;   
                   
@@ -69,8 +69,8 @@ package body Diplomatie is
       case Angreifen is
          when True =>
             Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerStadtNummer           => Gegner.Platznummer,
-                                                         RasseAngriff                => EinheitRasseUndNummer.Rasse,
-                                                         EinheitenNummerAngriff      => EinheitRasseUndNummer.Platznummer,
+                                                         RasseAngriff                => EinheitRasseNummer.Rasse,
+                                                         EinheitenNummerAngriff      => EinheitRasseNummer.Platznummer,
                                                          RasseVerteidigung           => Gegner.Rasse,
                                                          EinheitenNummerVerteidigung => Gegner.Platznummer);
                

@@ -5,8 +5,9 @@ use GlobaleDatentypen;
 
 package Karten is
 
-   -- Hier noch hinschreiben welcher Wert was ist!
-   LeererWertKarte : constant GlobaleRecords.KartenRecord := (0, False, (others => False), 0, 0, 0, 0, 0, 0);
+   LeererWertKarte : constant GlobaleRecords.KartenRecord := (0, False, (others => False), -- 1. Wert = Kartengrund, 2. Wert = Ist da ein Hügel?, 3. Wert = Welche Rasse kann was sehen
+                                                              0, 0, 0, 0, -- 4. Wert = Welcher Fluss, 5. Wert = Welche Straße, 6. Wert = Welche Verbesserung, 7. Wert = Welche Ressource
+                                                              0, 0); -- 8. Wert = Durch welche Stadt welcher Rasse belegter Grund, 9. Wert = Felderbewertung
 
    type KartenArray is array (GlobaleDatentypen.EbeneVorhanden'Range, GlobaleDatentypen.KartenfeldPositiv'Range, GlobaleDatentypen.KartenfeldPositiv'Range) of GlobaleRecords.KartenRecord;
    Karten : KartenArray := (others => (others => (others => LeererWertKarte)));

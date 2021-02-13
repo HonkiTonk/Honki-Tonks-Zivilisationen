@@ -7,7 +7,7 @@ use GlobaleDatentypen;
 
 package ZufallsGeneratoren is
 
-   function YXPosition return GlobaleRecords.AchsenAusKartenfeldPositivRecord;
+   function YXPosition return GlobaleRecords.AchsenKartenfeldPositivRecord;
    function Chaoskarte return GlobaleDatentypen.KartenGrund;
 
 private   

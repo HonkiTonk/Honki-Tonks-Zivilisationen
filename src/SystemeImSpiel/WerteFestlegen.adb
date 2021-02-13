@@ -4,7 +4,7 @@ with SchleifenPruefungen, KartenDatenbank, VerbesserungenDatenbank;
 
 package body WerteFestlegen is
 
-   procedure KartenfelderBewerten (Generierung : Boolean; Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) is
+   procedure KartenfelderBewerten (Generierung : Boolean; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
    begin
       
       case Generierung is
@@ -40,7 +40,7 @@ package body WerteFestlegen is
       
 
 
-   procedure KartenfelderBewertenKleineSchleife (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord) is
+   procedure KartenfelderBewertenKleineSchleife (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
    begin
       
       BewertungYÄnderungSchleife:
@@ -84,7 +84,7 @@ package body WerteFestlegen is
    
    
    
-   procedure BewertungSelbst (Koordinaten : in GlobaleRecords.AchsenAusKartenfeldPositivRecord; YAchseFeldAufschlag, XAchseFeldAufschlag : GlobaleDatentypen.KartenfeldPositiv;
+   procedure BewertungSelbst (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord; YAchseFeldAufschlag, XAchseFeldAufschlag : GlobaleDatentypen.KartenfeldPositiv;
                               Teiler : GlobaleDatentypen.LoopRangeMinusDreiZuDrei) is
    begin
       

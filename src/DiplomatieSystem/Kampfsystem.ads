@@ -25,10 +25,10 @@ private
    AngriffVerteidigungWert : Float;
    Wert : Float;
 
-   procedure KampfBerechnung (VerteidigerRasseUndEinheitNummer : in GlobaleRecords.RasseUndPlatznummerRecord; AngriffWert, VerteidigungWert : in Float) with
+   procedure KampfBerechnung (VerteidigerRasseUndEinheitNummer : in GlobaleRecords.RassePlatznummerRecord; AngriffWert, VerteidigungWert : in Float) with
      Pre => VerteidigerRasseUndEinheitNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and VerteidigerRasseUndEinheitNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   function Kampf (VerteidigerRasseUndEinheitNummer, AngreiferRasseUndEinheitNummer : in GlobaleRecords.RasseUndPlatznummerRecord; VerteidigungBonus : in Float) return Boolean with
+   function Kampf (VerteidigerRasseUndEinheitNummer, AngreiferRasseUndEinheitNummer : in GlobaleRecords.RassePlatznummerRecord; VerteidigungBonus : in Float) return Boolean with
      Pre => VerteidigerRasseUndEinheitNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and VerteidigerRasseUndEinheitNummer.Rasse in GlobaleDatentypen.Rassen
      and AngreiferRasseUndEinheitNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and AngreiferRasseUndEinheitNummer.Rasse in GlobaleDatentypen.Rassen
      and AngreiferRasseUndEinheitNummer.Rasse /= VerteidigerRasseUndEinheitNummer.Rasse;

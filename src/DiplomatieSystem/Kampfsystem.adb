@@ -37,7 +37,7 @@ package body Kampfsystem is
 
 
 
-   function Kampf (VerteidigerRasseUndEinheitNummer, AngreiferRasseUndEinheitNummer : in GlobaleRecords.RasseUndPlatznummerRecord; VerteidigungBonus : in Float) return Boolean is
+   function Kampf (VerteidigerRasseUndEinheitNummer, AngreiferRasseUndEinheitNummer : in GlobaleRecords.RassePlatznummerRecord; VerteidigungBonus : in Float) return Boolean is
    begin
 
       AngriffAngriffWert := Float (EinheitenDatenbank.EinheitenListe (AngreiferRasseUndEinheitNummer.Rasse,
@@ -87,7 +87,7 @@ package body Kampfsystem is
                           VerteidigungWert                 => VerteidigungVerteidigungWert);
 
          if GlobaleVariablen.EinheitenGebaut (VerteidigerRasseUndEinheitNummer.Rasse, VerteidigerRasseUndEinheitNummer.Platznummer).AktuelleLebenspunkte <= 0 then
-            EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseUndNummer => VerteidigerRasseUndEinheitNummer);
+            EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseNummer => VerteidigerRasseUndEinheitNummer);
             return True;
             
          else
@@ -101,7 +101,7 @@ package body Kampfsystem is
          
          
          if GlobaleVariablen.EinheitenGebaut (AngreiferRasseUndEinheitNummer.Rasse, AngreiferRasseUndEinheitNummer.Platznummer).AktuelleLebenspunkte <= 0 then
-            EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseUndNummer => AngreiferRasseUndEinheitNummer);
+            EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseNummer => AngreiferRasseUndEinheitNummer);
             return False;
 
          else
@@ -114,7 +114,7 @@ package body Kampfsystem is
 
 
 
-   procedure KampfBerechnung (VerteidigerRasseUndEinheitNummer : in GlobaleRecords.RasseUndPlatznummerRecord; AngriffWert, VerteidigungWert : in Float) is
+   procedure KampfBerechnung (VerteidigerRasseUndEinheitNummer : in GlobaleRecords.RassePlatznummerRecord; AngriffWert, VerteidigungWert : in Float) is
    begin
 
       Wert := Random (Gewählt);

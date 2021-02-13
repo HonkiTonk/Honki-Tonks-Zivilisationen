@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 package body KIGefahr is
 
    -- Aufteilen nach Unbewaffnet, Fernkämpfer und Nahkämpfer?
-   function KIGefahr (EinheitRasseUndNummer : in GlobaleRecords.RasseUndPlatznummerRecord) return Boolean is
+   function KIGefahr (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
       
       return False;

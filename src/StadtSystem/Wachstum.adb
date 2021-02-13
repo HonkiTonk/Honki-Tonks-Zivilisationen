@@ -26,7 +26,7 @@ package body Wachstum is
                   exit StadtSchleife;
                
                when others =>
-                  WachstumEinwohner (StadtRasseUndNummer => (RasseIntern, StadtNummer));
+                  WachstumEinwohner (StadtRasseNummer => (RasseIntern, StadtNummer));
             end case;
 
             GlobaleVariablen.Wichtiges (RasseIntern).AktuelleForschungsrate
@@ -39,7 +39,7 @@ package body Wachstum is
                   null;
                   
                when others =>
-                  WachstumProduktion (StadtRasseUndNummer => (RasseIntern, StadtNummer));
+                  WachstumProduktion (StadtRasseNummer => (RasseIntern, StadtNummer));
             end case;              
             
          end loop StadtSchleife;
@@ -82,33 +82,33 @@ package body Wachstum is
 
 
 
-   procedure WachstumEinwohner (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure WachstumEinwohner (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
    begin      
                      
-      GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleNahrungsmittel
-        := GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleNahrungsmittel
-        + GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleNahrungsproduktion);
+      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsmittel
+        := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsmittel
+        + GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsproduktion);
 
-      if GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleNahrungsmittel
-        >= GlobaleDatentypen.KostenLager (10 + GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).Einwohner * 5) then
-         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleNahrungsmittel := 0;
-         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).Einwohner := GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).Einwohner + 1;
+      if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsmittel
+        >= GlobaleDatentypen.KostenLager (10 + GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner * 5) then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsmittel := 0;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner + 1;
          StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwund  => True,
-                                                            StadtRasseUndNummer => StadtRasseUndNummer);
+                                                            StadtRasseNummer => StadtRasseNummer);
 
-      elsif GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleNahrungsmittel < 0 then
-         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleNahrungsmittel := 0;
-         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).Einwohner := GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).Einwohner - 1;
+      elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsmittel < 0 then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsmittel := 0;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner - 1;
          StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwund  => False,
-                                                            StadtRasseUndNummer => StadtRasseUndNummer);
+                                                            StadtRasseNummer => StadtRasseNummer);
                   
       else
          null;
       end if;
 
-      case GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).Einwohner is
+      case GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner is
          when 9 | 10 | 19 | 20 =>
-            StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseUndNummer => StadtRasseUndNummer);
+            StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummer => StadtRasseNummer);
             
          when others =>
             return;
@@ -118,22 +118,22 @@ package body Wachstum is
    
    
    
-   procedure WachstumProduktion (StadtRasseUndNummer : GlobaleRecords.RasseUndPlatznummerRecord) is
+   procedure WachstumProduktion (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      if GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt = 0 then
-         GlobaleVariablen.Wichtiges (StadtRasseUndNummer.Rasse).AktuelleGeldmenge
-           := GlobaleVariablen.Wichtiges (StadtRasseUndNummer.Rasse).AktuelleGeldmenge + Integer (GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleProduktionrate / 5);
-         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen := 0;
+      if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt = 0 then
+         GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge
+           := GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge + Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate / 5);
+         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen := 0;
                   
-      elsif GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt in 1_001 .. 9_999 then
-         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen
-           := GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen
-           + GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleProduktionrate);
-         if GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen
-           >= GebaeudeDatenbank.GebäudeListe (StadtRasseUndNummer.Rasse, GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt - 1_000).PreisRessourcen then
-            GebaeudeDatenbank.GebäudeProduktionBeenden (StadtRasseUndNummer => StadtRasseUndNummer,
-                                                        ID                  => GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt - 1_000);
+      elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt in 1_001 .. 9_999 then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen
+           := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen
+           + GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate);
+         if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen
+           >= GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 1_000).PreisRessourcen then
+            GebaeudeDatenbank.GebäudeProduktionBeenden (StadtRasseNummer => StadtRasseNummer,
+                                                        ID                  => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 1_000);
             Anzeige.EinfacheAnzeige (Mit_Line => True,
                                      Datei    => 1,
                                      Eintrag  => 1);
@@ -142,16 +142,16 @@ package body Wachstum is
             null;
          end if;
                   
-      elsif GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt in 10_001 .. 99_999 then
-         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen
-           := GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen
-           + GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleProduktionrate);
-         if GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen
-           >= EinheitenDatenbank.EinheitenListe (StadtRasseUndNummer.Rasse,
-                                                 GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt - 10_000)).PreisRessourcen then
-            EinheitenDatenbank.EinheitErzeugen (StadtRasseUndNummer => StadtRasseUndNummer,
-                                                ID                  => GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt - 10_000);
-            if GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuellesBauprojekt - 10_000 > 0 then
+      elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt in 10_001 .. 99_999 then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen
+           := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen
+           + GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate);
+         if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen
+           >= EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse,
+                                                 GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 10_000)).PreisRessourcen then
+            EinheitenDatenbank.EinheitErzeugen (StadtRasseNummer => StadtRasseNummer,
+                                                ID                  => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 10_000);
+            if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 10_000 > 0 then
                Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
                                    AktuelleAuswahl    => 0,
                                    FrageDatei         => 0,
@@ -171,9 +171,9 @@ package body Wachstum is
          end if;
 
       else
-         GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen
-           := GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleRessourcen
-           + GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseUndNummer.Rasse, StadtRasseUndNummer.Platznummer).AktuelleProduktionrate);
+         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen
+           := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen
+           + GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate);
       end if;
       
    end WachstumProduktion;

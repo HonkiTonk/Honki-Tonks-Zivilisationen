@@ -136,7 +136,7 @@ package body BewegungssystemCursor is
    
    
 
-   procedure BewegungCursorBerechnen (ÄnderungExtern : in GlobaleRecords.AchsenAusKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
+   procedure BewegungCursorBerechnen (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       if ÄnderungExtern.EAchse = 1 and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Karten'Last (1) then
@@ -175,7 +175,7 @@ package body BewegungssystemCursor is
 
 
 
-   procedure BewegungCursorBerechnenStadt (ÄnderungExtern : in GlobaleRecords.AchsenAusKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
+   procedure BewegungCursorBerechnenStadt (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
       if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse + ÄnderungExtern.YAchse < Karten.Stadtkarte'First (1) then

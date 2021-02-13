@@ -28,8 +28,8 @@ private
 
    Wert : Float;
 
-   KartenWert : GlobaleRecords.AchsenAusKartenfeldRecord;
-   KartenWertHügel : GlobaleRecords.AchsenAusKartenfeldRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldRecord;
+   KartenWertHügel : GlobaleRecords.AchsenKartenfeldRecord;
 
    type GrößeLandartArray is array (1 .. 4) of GlobaleDatentypen.KartenfeldPositiv;
    GrößeLandart : GrößeLandartArray;
