@@ -57,11 +57,11 @@ package body Laden is
                      Karten.Kartengröße);
 
       EAchseSchleife:
-      for EAchse in Karten.Karten'Range (1) loop
+      for EAchse in Karten.KartenArray'Range (1) loop
          YAchseSchleife:
-         for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
                GlobaleRecords.KartenRecord'Read (Stream (File => DateiLadenNeu),
                                                  Karten.Karten (EAchse, YAchse, XAchse));
@@ -82,7 +82,7 @@ package body Laden is
 
       -- Schleife zum Laden der Einheiten
       EinheitenRassenSchleife:
-      for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop
+      for Rasse in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
 
          case GlobaleVariablen.RassenImSpiel (Rasse) is
             when 0 =>
@@ -90,7 +90,7 @@ package body Laden is
                
             when others =>
                EinheitenSchleife:
-               for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+               for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
                   GlobaleRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
                                                              GlobaleVariablen.EinheitenGebaut (Rasse, EinheitNummer));
@@ -105,7 +105,7 @@ package body Laden is
 
       -- Schleife zum Laden der Städte
       StadtRassenSchleife:
-      for Rasse in GlobaleVariablen.EinheitenGebaut'Range (1) loop
+      for Rasse in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
 
          case GlobaleVariablen.RassenImSpiel (Rasse) is
             when 0 =>
@@ -113,7 +113,7 @@ package body Laden is
                
             when others =>
                StadtSchleife:
-               for StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+               for StadtNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
                   
                   GlobaleRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
                                                              GlobaleVariablen.EinheitenGebaut (Rasse, StadtNummer));
@@ -128,7 +128,7 @@ package body Laden is
 
       -- Schleife zum Laden von Wichtiges
       WichtigesSchleife:
-      for Rasse in GlobaleVariablen.Wichtiges'Range loop
+      for Rasse in GlobaleVariablen.WichtigesArray'Range loop
          
          case GlobaleVariablen.RassenImSpiel (Rasse) is
             when 0 =>
@@ -146,7 +146,7 @@ package body Laden is
 
       -- Schleife zum Laden von Diplomatie
       DiplomatieSchleifeAußen:
-      for Rasse in GlobaleVariablen.Diplomatie'Range (1) loop
+      for Rasse in GlobaleVariablen.DiplomatieArray'Range (1) loop
          
          case GlobaleVariablen.RassenImSpiel (Rasse) is
             when 0 =>
@@ -154,15 +154,15 @@ package body Laden is
 
             when others =>               
                DiplomatieSchleifeInnen:
-               for Rassen in GlobaleVariablen.Diplomatie'Range (2) loop
+               for Rassen in GlobaleVariablen.DiplomatieArray'Range (2) loop
 
                   case GlobaleVariablen.RassenImSpiel (Rassen) is
                      when 0 =>
                         null;
                      
                      when others =>
-                        Integer'Read (Stream (File => DateiLadenNeu),
-                                      GlobaleVariablen.Diplomatie (Rasse, Rassen));
+                        GlobaleVariablen.StatusUntereinander'Read (Stream (File => DateiLadenNeu),
+                                                                   GlobaleVariablen.Diplomatie (Rasse, Rassen));
                   end case;
 
                end loop DiplomatieSchleifeInnen;
@@ -175,7 +175,7 @@ package body Laden is
 
       -- Schleife zum Laden der Cursorpositionen
       CursorSchleife:
-      for Rasse in GlobaleVariablen.CursorImSpiel'Range loop
+      for Rasse in GlobaleVariablen.CursorImSpielArray'Range loop
          
          case GlobaleVariablen.RassenImSpiel (Rasse) is
             when 0 =>

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Karten, StadtWerteFestlegen, InDerStadt, KIBewegung, KIGefahr, KIEinheitVerbessernOderVernichten;
+with Karten, StadtWerteFestlegen, StadtBauen, KIBewegung, KIGefahr, KIEinheitVerbessernOderVernichten, KIDatentypen;
 
 package body KISiedler is
 
@@ -27,7 +27,7 @@ package body KISiedler is
       case Gefahr is
          when True =>
             KIBewegung.KIBewegung (EinheitRasseNummer => EinheitRasseNummer,
-                                   Aufgabe               => 'f');
+                                   Aufgabe            => KIDatentypen.Flucht);
             return;
                   
          when False =>
@@ -71,7 +71,7 @@ package body KISiedler is
       end case;
             
       KIBewegung.KIBewegung (EinheitRasseNummer => EinheitRasseNummer,
-                             Aufgabe               => 's');
+                             Aufgabe            => KIDatentypen.Stadt_Bauen);
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte := 0.00;
       
    end KISiedler;
@@ -120,7 +120,7 @@ package body KISiedler is
         and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).DurchStadtBelegterGrund = 0 then
-         return InDerStadt.StadtBauen (EinheitRasseNummer => EinheitRasseNummer);
+         return StadtBauen.StadtBauen (EinheitRasseNummer => EinheitRasseNummer);
 
       else
          return False;

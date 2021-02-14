@@ -14,7 +14,7 @@ package body KIZuruecksetzen is
             when 2 =>
                KIVariablen.EinheitenSchonBefehleErteilt (RassenIntern) := 0;
                EinheitenSchleife:
-               for EinheitNummer in KIVariablen.EinheitenNochBefehleErteilbar'Range (2) loop
+               for EinheitNummer in KIVariablen.EinheitenNochBefehleErteilbarArray'Range (2) loop
                   
                   KIVariablen.EinheitenNochBefehleErteilbar (RassenIntern, EinheitNummer) := True;
                   

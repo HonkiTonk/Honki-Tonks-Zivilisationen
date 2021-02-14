@@ -4,7 +4,7 @@ with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wi
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
 
 with ForschungsDatenbank, InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, EinheitenDatenbank, NaechstesObjekt, Verbesserungen,
-     Anzeige, Diplomatie, SchleifenPruefungen, Cheat;
+     Anzeige, Diplomatie, SchleifenPruefungen, Cheat, StadtBauen;
 
 package body BefehleImSpiel is
 
@@ -75,7 +75,7 @@ package body BefehleImSpiel is
                when others =>
                   if EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = 1 and
                     GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00 then
-                     Nullwert := InDerStadt.StadtBauen (EinheitRasseNummer => (RasseExtern, EinheitNummer));
+                     Nullwert := StadtBauen.StadtBauen (EinheitRasseNummer => (RasseExtern, EinheitNummer));
                      
                   else
                      null;
@@ -197,7 +197,7 @@ package body BefehleImSpiel is
                      
                   else
                      Verbesserungen.Verbesserung (EinheitRasseNummer => (RasseExtern, EinheitNummer),
-                                                  Befehl                => Verbesserungen.Befehle'Val (WelcherBefehl));
+                                                  Befehl             => Verbesserungen.Befehle'Val (WelcherBefehl));
                   end if;
             end case;               
             return 1;

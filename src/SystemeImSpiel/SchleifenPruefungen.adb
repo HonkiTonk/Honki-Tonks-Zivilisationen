@@ -6,18 +6,18 @@ package body SchleifenPruefungen is
 
    function KartenUmgebung (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord; Änderung : in GlobaleRecords.AchsenKartenfeldRecord;
                             ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenKartenfeldRecord is
-   begin -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= Karten.Karten'First (2) oder 4 für <= Karten.Karten'First (2) + 3
+   begin -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
          
-      if Koordinaten.EAchse + Änderung.EAchse < Karten.Karten'First (1) or Koordinaten.EAchse + Änderung.EAchse > Karten.Karten'Last (1) then
+      if Koordinaten.EAchse + Änderung.EAchse < Karten.KartenArray'First (1) or Koordinaten.EAchse + Änderung.EAchse > Karten.KartenArray'Last (1) then
          return (GlobaleDatentypen.Ebene'First, GlobaleDatentypen.Kartenfeld'First, GlobaleDatentypen.Kartenfeld'First);
 
-      elsif Koordinaten.YAchse + Änderung.YAchse < Karten.Karten'First (2) + ZusatzYAbstand or Koordinaten.YAchse + Änderung.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
+      elsif Koordinaten.YAchse + Änderung.YAchse < Karten.KartenArray'First (2) + ZusatzYAbstand or Koordinaten.YAchse + Änderung.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
          return (GlobaleDatentypen.Ebene'First, GlobaleDatentypen.Kartenfeld'First, GlobaleDatentypen.Kartenfeld'First);
 
-      elsif Koordinaten.XAchse + Änderung.XAchse < Karten.Karten'First (3) then
+      elsif Koordinaten.XAchse + Änderung.XAchse < Karten.KartenArray'First (3) then
          Überhang := Integer (Koordinaten.XAchse + Änderung.XAchse + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
          SchleifeKleiner:
-         while Überhang < Integer (Karten.Karten'First (3)) loop
+         while Überhang < Integer (Karten.KartenArray'First (3)) loop
             
             Überhang := Überhang + Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
@@ -46,7 +46,7 @@ package body SchleifenPruefungen is
    begin
       
       StadtSchleife:
-      for Stadtnummer in GlobaleVariablen.StadtGebaut'Range (2) loop
+      for Stadtnummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
          
          if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).ID = 0 then
             exit StadtSchleife;
@@ -70,7 +70,7 @@ package body SchleifenPruefungen is
    begin
       
       EinheitSchleife:
-      for Einheitennummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+      for Einheitennummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
          if GlobaleVariablen.EinheitenGebaut (RasseExtern, Einheitennummer).ID = 0 then
             exit EinheitSchleife;
@@ -94,9 +94,9 @@ package body SchleifenPruefungen is
    begin
 
       RasseSchleife:
-      for RasseIntern in GlobaleVariablen.StadtGebaut'Range (1) loop
+      for RasseIntern in GlobaleVariablen.StadtGebautArray'Range (1) loop
          StadtSchleife:
-         for Stadtnummer in GlobaleVariablen.StadtGebaut'Range (2) loop
+         for Stadtnummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
             if GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).ID = 0 then
                exit StadtSchleife;
@@ -121,9 +121,9 @@ package body SchleifenPruefungen is
    begin
 
       RasseSchleife:
-      for RasseIntern in GlobaleVariablen.StadtGebaut'Range (1) loop
+      for RasseIntern in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
          EinheitSchleife:
-         for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+         for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
             if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID = 0 then
                exit EinheitSchleife;
@@ -141,6 +141,70 @@ package body SchleifenPruefungen is
       return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWertEinheitNummer);
       
    end KoordinatenEinheitOhneRasseSuchen;
+
+
+
+   function KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
+   begin
+
+      RasseSchleife:
+      for RasseIntern in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
+         EinheitSchleife:
+         for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+
+            if RasseExtern = RasseIntern then
+               exit EinheitSchleife;
+                  
+            else
+               if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID = 0 then
+                  exit EinheitSchleife;
+               
+               elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition = Koordinaten then
+                  return (RasseIntern, EinheitNummer);
+               
+               else
+                  null;
+               end if;
+            end if;
+            
+         end loop EinheitSchleife;
+      end loop RasseSchleife;
+      
+      return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWertEinheitNummer);
+      
+   end KoordinatenEinheitOhneSpezielleRasseSuchen;
+   
+
+
+   function KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
+   begin
+
+      RasseSchleife:
+      for RasseIntern in GlobaleVariablen.StadtGebautArray'Range (1) loop
+         StadtSchleife:
+         for Stadtnummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
+
+            if RasseExtern = RasseIntern then
+               exit StadtSchleife;
+                  
+            else            
+               if GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).ID = 0 then
+                  exit StadtSchleife;
+               
+               elsif GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).AchsenPosition = Koordinaten then
+                  return (RasseIntern, Stadtnummer);
+               
+               else
+                  null;
+               end if;
+            end if;
+            
+         end loop StadtSchleife;
+      end loop RasseSchleife;
+      
+      return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWertEinheitNummer);
+      
+   end KoordinatenStadtOhneSpezielleRasseSuchen;
    
    
    

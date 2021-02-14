@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with KIBewegung;
+with KIBewegung, KIDatentypen;
 
 package body KINahkampfUnterirdisch is
 
@@ -8,7 +8,7 @@ package body KINahkampfUnterirdisch is
    begin
       
       KIBewegung.KIBewegung (EinheitRasseNummer => EinheitRasseNummer,
-                             Aufgabe               => 'e');
+                             Aufgabe            => KIDatentypen.Erkunden);
       
    end KINahkampfUnterirdisch;
 

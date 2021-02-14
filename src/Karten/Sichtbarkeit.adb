@@ -11,7 +11,7 @@ package body Sichtbarkeit is
    begin
       
       EinheitenPlätzeSchleife:
-      for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+      for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 
          case GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID is
             when 0 =>
@@ -24,7 +24,7 @@ package body Sichtbarkeit is
       end loop EinheitenPlätzeSchleife;
 
       StadtPlätzeSchleife:
-      for StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+      for StadtNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 
          case GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ID is
             when 0 =>
@@ -139,9 +139,9 @@ package body Sichtbarkeit is
          end if;
                   
          RassenEinheitenPrüfenSchleife:
-         for RasseIntern in GlobaleVariablen.EinheitenGebaut'Range (1) loop
+         for RasseIntern in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
             EinheitenPrüfenSchleife:
-            for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+            for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
                if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID = 0 then
                   exit EinheitenPrüfenSchleife;
@@ -164,9 +164,9 @@ package body Sichtbarkeit is
          end loop RassenEinheitenPrüfenSchleife;
 
          RassenStädtePrüfenSchleife:
-         for RasseIntern in GlobaleVariablen.StadtGebaut'Range (1) loop
+         for RasseIntern in GlobaleVariablen.StadtGebautArray'Range (1) loop
             StädtePrüfenSchleife:
-            for StadtNummer in GlobaleVariablen.StadtGebaut'Range (2) loop
+            for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
                if GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummer).ID = 0 then
                   exit StädtePrüfenSchleife;

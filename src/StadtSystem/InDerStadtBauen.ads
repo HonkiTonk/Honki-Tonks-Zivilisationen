@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 use GlobaleDatentypen;
 
-package Bauen is
+package InDerStadtBauen is
 
    procedure Bauen (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
      Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
@@ -24,4 +24,4 @@ private
    function AuswahlStadt (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) return Integer with
      Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
 
-end Bauen;
+end InDerStadtBauen;

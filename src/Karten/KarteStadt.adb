@@ -19,9 +19,9 @@ package body KarteStadt is
       CursorXAchsePlus := -10;
       
       YAchseSchleife:
-      for YAchse in Karten.Stadtkarte'Range (1) loop
+      for YAchse in Karten.StadtkarteArray'Range (1) loop
          XAchseSchleife:
-         for XAchse in Karten.Stadtkarte'Range (2) loop
+         for XAchse in Karten.StadtkarteArray'Range (2) loop
                         
             if YAchse < Karten.Stadtkarte'First (1) + 7 and XAchse > Karten.Stadtkarte'Last (2) - 7 then               
                if YAchsenabstraktion > Stadtumgebungsgröße then
@@ -366,24 +366,31 @@ package body KarteStadt is
             -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Stadt befindet
             case GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID is
                when 1 =>
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 6);
+                  if RasseExtern = RasseUndPlatznummer.Rasse then
+                     Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                              Datei    => 3,
+                                              Eintrag  => 6);
+
+                  else
+                     Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                              Datei    => 3,
+                                              Eintrag  => 8);
+                  end if;
                   
                when 2 =>
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 7);
-                  
-               when 3 =>
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 8);
-                  
-               when others =>
-                  Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                           Datei    => 3,
-                                           Eintrag  => 9);
+                  if RasseExtern = RasseUndPlatznummer.Rasse then
+                     Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                              Datei    => 3,
+                                              Eintrag  => 7);
+                        
+                  else
+                     Anzeige.EinfacheAnzeige (Mit_Line => False,
+                                              Datei    => 3,
+                                              Eintrag  => 9);
+                  end if;
+
+               when 0 =>
+                  null;
             end case;
             Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Name) & "    ");
             Anzeige.EinfacheAnzeige (Mit_Line => False,

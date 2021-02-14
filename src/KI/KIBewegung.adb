@@ -4,25 +4,28 @@ with BewegungssystemEinheiten, SchleifenPruefungen, KIVariablen;
 
 package body KIBewegung is
 
-   procedure KIBewegung (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Aufgabe : Wide_Wide_Character) is
+   procedure KIBewegung (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Aufgabe : KIDatentypen.Aufgabe) is
    begin
 
-      -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
-      -- f = Flucht, s = Stadt bauen, e = Erkunden, a = Angreifen
-      case Aufgabe is -- Aufgabe als Enum?
-         when 'f' =>
+      -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft, 9 = NahkampfUnterirdisch, 10 = FernkampfUnterirdisch,
+      -- 11 = NahkampfOrbital, 12 = FernkampfOrbital
+      case Aufgabe is
+         when KIDatentypen.Flucht =>
             BewegungBeliebig (EinheitRasseNummer => EinheitRasseNummer);
 
-         when 's' =>
+         when KIDatentypen.Stadt_Bauen =>
             BewegungBeliebig (EinheitRasseNummer => EinheitRasseNummer);
 
-         when 'e' =>
+         when KIDatentypen.Erkunden =>
             BewegungBeliebig (EinheitRasseNummer => EinheitRasseNummer);
             
-         when 'a' =>
+         when KIDatentypen.Angreifen =>
             BewegungBeliebig (EinheitRasseNummer => EinheitRasseNummer);
+
+         when KIDatentypen.Verbesserung_Anlegen =>
+            null;
             
-         when others =>
+         when KIDatentypen.Verteidigen =>
             BewegungBeliebig (EinheitRasseNummer => EinheitRasseNummer);
       end case;    
       

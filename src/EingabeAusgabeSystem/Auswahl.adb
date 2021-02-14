@@ -12,7 +12,7 @@ package body Auswahl is
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
-      for A in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
          
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (0, A)) = "|" then
             exit;

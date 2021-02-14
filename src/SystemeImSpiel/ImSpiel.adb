@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with InDerStadt, Wachstum, Bauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, GlobaleVariablen, KI, Ladezeiten, Speichern, Laden, GlobaleDatentypen, KIZuruecksetzen;
+with InDerStadt, Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, GlobaleVariablen, KI, Ladezeiten, Speichern, Laden, GlobaleDatentypen, KIZuruecksetzen;
 use GlobaleDatentypen;
 
 package body ImSpiel is
@@ -82,7 +82,7 @@ package body ImSpiel is
                EinheitenDatenbank.HeilungBewegungspunkteFürNeueRundeSetzen;
                Verbesserungen.VerbesserungFertiggestellt;
                Wachstum.Wachstum;
-               Bauen.BauzeitAlle;
+               InDerStadtBauen.BauzeitAlle;
                InDerStadt.StadtProduktionPrüfen ((0, 0));
                ForschungsDatenbank.ForschungFortschritt;
                GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;

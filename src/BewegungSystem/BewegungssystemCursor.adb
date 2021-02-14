@@ -48,8 +48,8 @@ package body BewegungssystemCursor is
                                      RasseExtern    => RasseExtern);
             
          when False =>
-            BewegungCursorBerechnen (ÄnderungExtern => Änderung,
-                                     RasseExtern    => RasseExtern);
+            BewegungCursorBerechnenStadt (ÄnderungExtern => Änderung,
+                                          RasseExtern    => RasseExtern);
       end case;
       
    end BewegungCursorRichtung;

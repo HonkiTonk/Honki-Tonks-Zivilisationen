@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Charac
 
 with GebaeudeDatenbank, EinheitenDatenbank, Anzeige;
 
-package body Bauen is
+package body InDerStadtBauen is
 
    procedure Bauen (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
    begin
@@ -105,7 +105,7 @@ package body Bauen is
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       GebäudeSchleife:
-      for G in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
+      for G in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
          
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (16, G)) = "|" then
             exit GebäudeSchleife;
@@ -135,7 +135,7 @@ package body Bauen is
       end loop GebäudeSchleife;
 
       EinheitenSchleife:
-      for E in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
+      for E in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
          
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (12, E)) = "|" then
             exit EinheitenSchleife;
@@ -228,4 +228,4 @@ package body Bauen is
       
    end AuswahlStadt;
 
-end Bauen;
+end InDerStadtBauen;

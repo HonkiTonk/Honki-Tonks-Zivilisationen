@@ -16,14 +16,14 @@ package body Diplomatie is
    procedure KriegDurchDirektenAngriff (AngreifendeRasse, VerteidigendeRasse : in GlobaleDatentypen.Rassen) is
    begin
       
-      GlobaleVariablen.Diplomatie (AngreifendeRasse, VerteidigendeRasse) := -1;
-      GlobaleVariablen.Diplomatie (VerteidigendeRasse, AngreifendeRasse) := -1;
+      GlobaleVariablen.Diplomatie (AngreifendeRasse, VerteidigendeRasse) := GlobaleVariablen.Krieg;
+      GlobaleVariablen.Diplomatie (VerteidigendeRasse, AngreifendeRasse) := GlobaleVariablen.Krieg;
       
    end KriegDurchDirektenAngriff;
 
 
 
-   function DiplomatischenStatusPrüfen (AngreifendeRasse, VerteidigendeRasse : in GlobaleDatentypen.Rassen) return Integer is
+   function DiplomatischenStatusPrüfen (AngreifendeRasse, VerteidigendeRasse : in GlobaleDatentypen.Rassen) return GlobaleVariablen.StatusUntereinander is
    begin
       
       return GlobaleVariablen.Diplomatie (AngreifendeRasse, VerteidigendeRasse);
@@ -41,7 +41,7 @@ package body Diplomatie is
       BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasse   => EinheitRasseNummer.Rasse,
                                                                 VerteidigendeRasse => Gegner.Rasse);
       case BereitsImKrieg is
-         when 1 .. 2 =>
+         when GlobaleVariablen.Neutral | GlobaleVariablen.Offene_Grenzen =>
             Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
                                         FrageDatei         => 10,
                                         FrageZeile         => 11,
@@ -59,7 +59,7 @@ package body Diplomatie is
                   Angreifen := False;
             end case;
                   
-         when -1 =>
+         when GlobaleVariablen.Krieg =>
             Angreifen := True;
 
          when others =>

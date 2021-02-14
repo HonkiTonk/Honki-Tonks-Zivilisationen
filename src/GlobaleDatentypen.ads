@@ -33,7 +33,7 @@ package GlobaleDatentypen is
    subtype KartenVerbesserung is KartenverbesserungEinheitenID range 0 .. 23;
    type Ebene is range -3 .. 2; -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    subtype EbeneVorhanden is Ebene range -2 .. 2;
-   type BelegterGrund is range 0 .. 18_100;
+   type BelegterGrund is range 0 .. Rassen'Last * 1_000 + 100;
 
    type SichtbarkeitArray is array (GlobaleDatentypen.Rassen'Range) of Boolean;
    -- Für Karte
@@ -80,5 +80,11 @@ package GlobaleDatentypen is
 
    type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
    -- Für Stadt
+
+
+
+   -- Enums hierher verschieben?
+
+   -- Enums hierher verschieben?
 
 end GlobaleDatentypen;

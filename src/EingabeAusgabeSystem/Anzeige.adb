@@ -107,7 +107,7 @@ package body Anzeige is
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
-      for A in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
          if To_Wide_Wide_String (Source => TextBauen (A).Text) = "|" then
             exit TextlängePrüfenSchleife;
             
@@ -120,7 +120,7 @@ package body Anzeige is
       end loop TextlängePrüfenSchleife;
       
       AnzeigeSchleife:
-      for A in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
 
          if AktuelleAuswahl = A then
             for B in 1 .. LängsterText loop
@@ -185,7 +185,7 @@ package body Anzeige is
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
-      for A in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
          if To_Wide_Wide_String (Source => TextForschung (A).Text) = "|" then
             exit TextlängePrüfenSchleife;
             
@@ -198,7 +198,7 @@ package body Anzeige is
       end loop TextlängePrüfenSchleife;
       
       AnzeigeSchleife:
-      for A in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
+      for A in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
 
          if AktuelleAuswahl = A then
             for B in 1 .. LängsterText loop
@@ -297,8 +297,5 @@ package body Anzeige is
       New_Line;
       
    end AnzeigeLangerText;
-
-
-
 
 end Anzeige;

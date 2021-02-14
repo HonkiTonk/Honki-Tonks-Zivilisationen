@@ -13,6 +13,9 @@ package StadtWerteFestlegen is
    procedure StadtUmgebungGrößeFestlegen (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
      Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
 
+   procedure BelegteStadtfelderFreigeben (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
+     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+
 private
    
    NutzbarerBereich : GlobaleDatentypen.Kartenfeld;

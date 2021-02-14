@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with KIBewegung;
+with KIBewegung, KIDatentypen;
 
 package body KIFernkampfSeeEinheit is
 
@@ -8,7 +8,7 @@ package body KIFernkampfSeeEinheit is
    begin
       
       KIBewegung.KIBewegung (EinheitRasseNummer => EinheitRasseNummer,
-                             Aufgabe               => 'e');
+                             Aufgabe            => KIDatentypen.Erkunden);
       
    end KIFernkampfSeeEinheit;
 

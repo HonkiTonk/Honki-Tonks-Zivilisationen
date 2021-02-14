@@ -1,6 +1,7 @@
 pragma SPARK_Mode (On);
 
 with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+use GlobaleDatentypen, GlobaleVariablen;
 
 package KIGefahr is
 
@@ -9,8 +10,14 @@ package KIGefahr is
 
 private
 
-   function Unbewaffnet return Boolean;
-   function Nahkämpfer return Boolean;
-   function Fernkämpfer return Boolean;
+   EinheitTyp : GlobaleDatentypen.EinheitenTyp;
+
+   KartenWert : GlobaleRecords.AchsenKartenfeldRecord;
+
+   EinheitRassePlatznummer : GlobaleRecords.RassePlatznummerRecord;
+
+   function Unbewaffnet (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean;
+   function Nahkämpfer (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean;
+   function Fernkämpfer (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean;
 
 end KIGefahr;

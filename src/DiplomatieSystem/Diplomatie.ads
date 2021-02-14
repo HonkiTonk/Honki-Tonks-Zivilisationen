@@ -9,7 +9,7 @@ package Diplomatie is
    procedure KriegDurchDirektenAngriff (AngreifendeRasse, VerteidigendeRasse : in GlobaleDatentypen.Rassen) with
      Pre => AngreifendeRasse /= VerteidigendeRasse;
 
-   function DiplomatischenStatusPrüfen (AngreifendeRasse, VerteidigendeRasse : in GlobaleDatentypen.Rassen) return Integer with
+   function DiplomatischenStatusPrüfen (AngreifendeRasse, VerteidigendeRasse : in GlobaleDatentypen.Rassen) return GlobaleVariablen.StatusUntereinander with
      Pre => AngreifendeRasse /= VerteidigendeRasse;
 
    function GegnerAngreifenOderNicht (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Gegner : in GlobaleRecords.RassePlatznummerRecord) return Boolean with
@@ -21,7 +21,8 @@ private
    Angreifen : Boolean;
    Gewonnen : Boolean;
 
-   BereitsImKrieg : Integer;
+   BereitsImKrieg : GlobaleVariablen.StatusUntereinander;
+
    Wahl : Integer;
 
 end Diplomatie;

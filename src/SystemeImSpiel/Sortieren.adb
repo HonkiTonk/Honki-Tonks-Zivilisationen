@@ -41,7 +41,7 @@ package body Sortieren is
    begin
       
       StädteTauschenSchleife:
-      for StädteTauschen in GlobaleVariablen.StadtGebaut'Range (2) loop
+      for StädteTauschen in GlobaleVariablen.StadtGebautArray'Range (2) loop
 
          SortierenStädte (StädteTauschen) := GlobaleVariablen.StadtGebaut (RasseExtern, StädteTauschen);
          GlobaleVariablen.StadtGebaut (RasseExtern, StädteTauschen) := GlobaleVariablen.LeererWertStadt;

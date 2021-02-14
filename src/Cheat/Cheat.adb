@@ -157,11 +157,11 @@ package body Cheat is
    begin
       
       EbeneSchleife:
-      for EAchse in Karten.Karten'Range (1) loop
+      for EAchse in Karten.KartenArray'Range (1) loop
          YAchseSchleife:
-         for YAchse in Karten.Karten'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.Karten'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
                Karten.Karten (EAchse, YAchse, XAchse).Sichtbar (RasseExtern) := True;
                

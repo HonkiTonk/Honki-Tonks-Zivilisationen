@@ -1,15 +1,14 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleDatentypen, EinheitenDatenbank, SchleifenPruefungen, KIRecords;
+with KIRecords, GlobaleRecords, GlobaleDatentypen;
 use GlobaleDatentypen;
 
 package KIPruefungen is
    
-   function SpezielleEinheitArtSuchen (RasseExtern : in GlobaleDatentypen.Rassen; WelcheEinheitArt : in Positive) return Integer;
-   function EinheitMitBewegungspunktenSuchen (RasseExtern : in GlobaleDatentypen.Rassen) return KIRecords.EinheitStatusRecord;
+   function EinheitenAbstandBerechnen (EinheitEinsRasseNummer, EinheitZweiRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Natural;
    
 private
 
-   
+   KartenfeldAbstand : GlobaleDatentypen.Kartenfeld;
    
 end KIPruefungen;

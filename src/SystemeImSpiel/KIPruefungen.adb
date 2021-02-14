@@ -1,71 +1,62 @@
 pragma SPARK_Mode (On);
 
+with GlobaleVariablen;
+
 package body KIPruefungen is
-
-   function SpezielleEinheitArtSuchen (RasseExtern : in GlobaleDatentypen.Rassen; WelcheEinheitArt : in Positive) return Integer is
-   begin
-      
-      EinheitSchleife:
-      for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
-         
-         if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 0 then
-            exit EinheitSchleife;
-
-         elsif EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).SiedlerLandeinheitSeeeinheitLufteinheit = WelcheEinheitArt then
-            return EinheitNummer;
-            
-         else
-            null;
-         end if;
-         
-      end loop EinheitSchleife;
-
-      return SchleifenPruefungen.RückgabeWert;
-      
-   end SpezielleEinheitArtSuchen;
-
-
-
-   -- 0 = Keine Bewegungspunkte/Beschäftigung, 1 = Bewegungspunkte ohne Beschäftigung, 2 = Beschäftigung ohne Bewegungspunkte, 3 = Beschäftigung/Bewegungspunkte
-   function EinheitMitBewegungspunktenSuchen (RasseExtern : in GlobaleDatentypen.Rassen) return KIRecords.EinheitStatusRecord is
+   
+   function EinheitenAbstandBerechnen (EinheitEinsRasseNummer, EinheitZweiRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Natural is
    begin
 
-      EinheitSchleife:
-      for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+      if GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummer.Rasse, EinheitEinsRasseNummer.Platznummer).AchsenPosition.EAchse
+        = GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummer.Rasse, EinheitZweiRasseNummer.Platznummer).AchsenPosition.EAchse then
+         KartenfeldAbstand := abs (GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummer.Rasse, EinheitEinsRasseNummer.Platznummer).AchsenPosition.YAchse
+                                   - GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummer.Rasse, EinheitZweiRasseNummer.Platznummer).AchsenPosition.YAchse);
+         case KartenfeldAbstand is
+            when 1 =>
+               return 1;
 
-         if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 0 then
-            return (SchleifenPruefungen.RückgabeWert, SchleifenPruefungen.RückgabeWert, SchleifenPruefungen.RückgabeWert);
+            when others =>
+               null;
+         end case;
 
-         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte /= 0.00 then
-            case GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung is
-               when 0 =>
-                  return (EinheitNummer, 1, EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).SiedlerLandeinheitSeeeinheitLufteinheit);
-                  
-               when others =>
-                  return (EinheitNummer, 3, EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).SiedlerLandeinheitSeeeinheitLufteinheit);
-            end case;
-            
-         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00 then
-            case GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung is
-               when 0 =>
-                  return (EinheitNummer, 0, EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).SiedlerLandeinheitSeeeinheitLufteinheit);
-                  
-               when others =>
-                  return (EinheitNummer, 2, EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).SiedlerLandeinheitSeeeinheitLufteinheit);
-            end case;
-                  
-         else
-            null;
-         end if;
-         
-      end loop EinheitSchleife;
+         KartenfeldAbstand := abs (GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummer.Rasse, EinheitEinsRasseNummer.Platznummer).AchsenPosition.XAchse
+                                   - GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummer.Rasse, EinheitZweiRasseNummer.Platznummer).AchsenPosition.XAchse);
+         case KartenfeldAbstand is
+            when 1 =>
+               return 1;
+
+            when others =>
+               null;
+         end case;
+
+      elsif abs (GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummer.Rasse, EinheitEinsRasseNummer.Platznummer).AchsenPosition.EAchse
+                 - GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummer.Rasse, EinheitZweiRasseNummer.Platznummer).AchsenPosition.EAchse) = 1 then
+         KartenfeldAbstand := abs (GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummer.Rasse, EinheitEinsRasseNummer.Platznummer).AchsenPosition.YAchse
+                                   - GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummer.Rasse, EinheitZweiRasseNummer.Platznummer).AchsenPosition.YAchse);
+         case KartenfeldAbstand is
+            when 0 .. 1 =>
+               return 1;
+
+            when others =>
+               null;
+         end case;
+
+         KartenfeldAbstand := abs (GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummer.Rasse, EinheitEinsRasseNummer.Platznummer).AchsenPosition.XAchse
+                                   - GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummer.Rasse, EinheitZweiRasseNummer.Platznummer).AchsenPosition.XAchse);
+         case KartenfeldAbstand is
+            when 0 .. 1 =>
+               return 1;
+
+            when others =>
+               null;
+         end case;
+
+      else
+         null;
+      end if;
+           
+      return 10;
       
-      return (SchleifenPruefungen.RückgabeWert, SchleifenPruefungen.RückgabeWert, SchleifenPruefungen.RückgabeWert);
-      
-   end EinheitMitBewegungspunktenSuchen;
-
-
-
-   -- function
+   end EinheitenAbstandBerechnen;
 
 end KIPruefungen;

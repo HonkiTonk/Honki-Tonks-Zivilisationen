@@ -94,7 +94,7 @@ package body ForschungsDatenbank is
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       ForschungSchleife:
-      for Forschung in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
+      for Forschung in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
          
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (18, Forschung)) = "|" then
             exit ForschungSchleife;
@@ -200,7 +200,7 @@ package body ForschungsDatenbank is
    begin
       
       RasseSchleife:
-      for RasseIntern in GlobaleVariablen.EinheitenGebaut'Range (1) loop
+      for RasseIntern in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
          
          if GlobaleVariablen.Wichtiges (RasseIntern).AktuellesForschungsprojekt = 0 then
             null;

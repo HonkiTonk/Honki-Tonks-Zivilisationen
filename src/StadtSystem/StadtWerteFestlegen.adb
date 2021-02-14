@@ -18,7 +18,7 @@ package body StadtWerteFestlegen is
       end if;
 
       YAchseSchleife:
-      for YÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+      for YÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop -- StadtUmgebungGröße darf hier nicht genutzt werden, damit bei einer Verkleinerung auch alle Felder zurückgenommen werden können.
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
@@ -114,5 +114,38 @@ package body StadtWerteFestlegen is
       end loop YAchseSchleife;
       
    end BewirtschaftbareFelderBelegen;
+
+
+
+   procedure BelegteStadtfelderFreigeben (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
+   begin
+      
+      YAchseSchleife:
+      for YÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+         XAchseSchleife:
+         for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+            
+            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
+                                                              Änderung       => (0, YÄnderung, XÄnderung),
+                                                              ZusatzYAbstand => 0);
+            
+            case KartenWert.YAchse is
+               when GlobaleDatentypen.Kartenfeld'First =>
+                  exit XAchseSchleife;
+                  
+               when others =>
+                  if Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
+                    = GlobaleDatentypen.BelegterGrund (StadtRasseNummer.Rasse) * StadtWerteFestlegen.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtRasseNummer.Platznummer) then
+                     Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund := 0;
+                        
+                  else
+                     null;
+                  end if;
+            end case;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+   end BelegteStadtfelderFreigeben;
 
 end StadtWerteFestlegen;

@@ -35,9 +35,9 @@ package body EinheitenDatenbank is
    begin
       
       RassenSchleife:
-      for RasseIntern in GlobaleVariablen.EinheitenGebaut'Range (1) loop
+      for RasseIntern in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
          EinheitenSchleife:
-         for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+         for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
             if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID = 0 then
                exit EinheitenSchleife;
@@ -85,7 +85,7 @@ package body EinheitenDatenbank is
       EinheitenPosition := 0;
             
       EinheitenSchleife:
-      for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+      for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
          if GlobaleVariablen.EinheitenGebaut (StadtRasseNummer.Rasse, EinheitNummer).ID = 0 then
             EinheitenPosition := EinheitNummer;

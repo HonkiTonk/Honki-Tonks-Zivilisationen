@@ -57,7 +57,7 @@ package body Einlesen is
                   
          else  
             VerzeichnisInnenSchleife:
-            for Sprache in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
+            for Sprache in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
             
                if GlobaleVariablen.TexteEinlesenNeu (0, Sprache) /= "|" then
                   null;
@@ -93,7 +93,7 @@ package body Einlesen is
             Name => "Dateien/Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0");
       
       EinlesenSchleife:
-      for WelcheDateien in WelcheTexteEinlesenNeu'Range loop
+      for WelcheDateien in WelcheTexteEinlesenNeuArray'Range loop
 
          if End_Of_File (File => DateiNeuWelcheTexteEinlesen) = True then
             exit;
@@ -109,7 +109,7 @@ package body Einlesen is
       Close (File => DateiNeuWelcheTexteEinlesen);
       
       DateiSchleife:
-      for Datei in 1 .. GlobaleVariablen.TexteEinlesenNeu'Last (1) loop
+      for Datei in 1 .. GlobaleVariablen.TexteEinlesenNeuArray'Last (1) loop
 
          case Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheTexteEinlesenNeu (Datei))))) is
             when True =>
@@ -124,7 +124,7 @@ package body Einlesen is
                Name => Encode (Item => (To_Wide_Wide_String (WelcheTexteEinlesenNeu (Datei)))));
       
          ZeilenSchleife:
-         for Zeile in GlobaleVariablen.TexteEinlesenNeu'Range (2) loop
+         for Zeile in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
 
             if End_Of_File (File => DateiNeuText) = True then
                exit ZeilenSchleife;
@@ -168,7 +168,7 @@ package body Einlesen is
             Mode => In_File,
             Name => "Dateien/WelcheWerteEinlesen");
 
-      for A in WelcheWerteEinlesenNeu'Range loop
+      for A in WelcheWerteEinlesenNeuArray'Range loop
 
          if End_Of_File (File => DateiNeuWelcheWerteEinlesen) = True then
             exit;
@@ -184,7 +184,7 @@ package body Einlesen is
       close (File => DateiNeuWelcheWerteEinlesen);
 
       WelcheWerteSchleife:
-      for B in WelcheWerteEinlesenNeu'Range loop
+      for B in WelcheWerteEinlesenNeuArray'Range loop
 
          case Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheWerteEinlesenNeu (B))))) is
             when True =>

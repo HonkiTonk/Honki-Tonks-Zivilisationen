@@ -73,9 +73,9 @@ package GlobaleVariablen is
    type WichtigesArray is array (GlobaleDatentypen.Rassen'Range) of GlobaleRecords.WichtigesRecord;
    Wichtiges : WichtigesArray := (others => LeererWertWichtigesZeug);
    
-   -- 0 = Kein Kontakt, -1 = Krieg, 1 = Neutral, 2 = Offene Grenzen, 3 = Nichtangriffspakt, 4 = Defensivbündnis, 5 = Offensivbündnis
-   type DiplomatieArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.Rassen'Range) of Integer;
-   Diplomatie : DiplomatieArray := (others => (others => 1));
+   type StatusUntereinander is (Kein_Kontakt, Krieg, Neutral, Offene_Grenzen, Nichtangriffspakt, Defensivbündnis, Offensivbündnis);
+   type DiplomatieArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.Rassen'Range) of StatusUntereinander;
+   Diplomatie : DiplomatieArray := (others => (others => Kein_Kontakt));
    -- Wichtiges Zeug
    
    

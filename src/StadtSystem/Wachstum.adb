@@ -8,9 +8,9 @@ package body Wachstum is
    begin
       
       RasseSchleife:
-      for RasseIntern in GlobaleVariablen.StadtGebaut'Range (1) loop
+      for RasseIntern in GlobaleVariablen.StadtGebautArray'Range (1) loop
          StadtSchleife:
-         for StadtNummer in GlobaleVariablen.StadtGebaut'Range (2) loop
+         for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
             case StadtNummer is
                when 1 =>
@@ -45,7 +45,7 @@ package body Wachstum is
          end loop StadtSchleife;
       end loop RasseSchleife;
 
-      for RasseInternZwei in GlobaleVariablen.StadtGebaut'Range (1) loop
+      for RasseInternZwei in GlobaleVariablen.StadtGebautArray'Range (1) loop
          
          GlobaleVariablen.Wichtiges (RasseInternZwei).AktuelleGeldmenge := GlobaleVariablen.Wichtiges (RasseInternZwei).AktuelleGeldmenge + Integer (GlobaleVariablen.Wichtiges (RasseInternZwei).GeldZugewinnProRunde);
          GlobaleVariablen.Wichtiges (RasseInternZwei).AktuelleForschungsmenge := GlobaleVariablen.Wichtiges (RasseInternZwei).AktuelleForschungsmenge + GlobaleVariablen.Wichtiges (RasseInternZwei).AktuelleForschungsrate;
@@ -60,7 +60,7 @@ package body Wachstum is
    begin
       
       StadtSchleife:
-      for StadtNummer in GlobaleVariablen.StadtGebaut'Range (2) loop
+      for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
          case StadtNummer is
             when 1 =>
