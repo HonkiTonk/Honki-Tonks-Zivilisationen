@@ -59,8 +59,6 @@ package body Ladezeiten is
    procedure Speichern (WelcheZeit : in Positive) is
    begin
       
-      Gesamtzeit := 0.00;
-
       Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
                           AktuelleAuswahl    => 0,
                           FrageDatei         => 0,
@@ -85,8 +83,6 @@ package body Ladezeiten is
    procedure Laden (WelcheZeit : in Positive) is
    begin
       
-      Gesamtzeit := 0.00;
-
       Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
                           AktuelleAuswahl    => 0,
                           FrageDatei         => 0,
@@ -111,8 +107,6 @@ package body Ladezeiten is
    procedure SpielStart (WelcheZeit : in Positive) is
    begin
       
-      Gesamtzeit := 0.00;
-
       Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
                           AktuelleAuswahl    => 0,
                           FrageDatei         => 0,
@@ -137,8 +131,6 @@ package body Ladezeiten is
    procedure BerechnungenNachZugendeAllerSpieler (WelcheZeit : in Positive) is
    begin
       
-      Gesamtzeit := 0.00;
-
       Put (Item => "Berechnungszeit am Zugende aller Spieler: ");
 
       case WelcheZeit is

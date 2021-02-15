@@ -10,6 +10,8 @@ package KIGefahr is
 
 private
 
+   BestehtGefahr : Boolean;
+
    EinheitTyp : GlobaleDatentypen.EinheitenTyp;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldRecord;

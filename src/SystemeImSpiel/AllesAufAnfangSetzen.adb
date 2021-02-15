@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, Karten, KIVariablen;
+with GlobaleVariablen, Karten;
 
 package body AllesAufAnfangSetzen is
 
@@ -17,9 +17,6 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.CursorImSpiel := (others => GlobaleVariablen.LeererWertCursor);
 
       Karten.Karten := (others => (others => (others => Karten.LeererWertKarte)));
-
-      KIVariablen.LetzteBewegungen := (others => (others => (others => (0, 0, 0))));
-      KIVariablen.ZielBewegung := (others => (others => (others => (0, 0, 0))));
       
    end AllesAufAnfangSetzen;
 

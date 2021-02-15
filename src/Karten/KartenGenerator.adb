@@ -28,20 +28,11 @@ package body KartenGenerator is
 
       Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 2) := Clock;
       YAchseSchleife:
-      for YAchse in Karten.KartenArray'Range (2) loop -- Ist es noch nötig über den gesamten Bereich zu loopen? Die Kartengröße steht doch schon fest!
-                                                      -- Auch für die anderen Ebenen ist das doch Unsinn!
+      for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
          XAchseSchleife:
-         for XAchse in Karten.KartenArray'Range (3) loop
-                        
-            if YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               Karten.Karten (0, YAchse, XAchse).Grund := -2;
-               exit YAchseSchleife;
+         for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
-            elsif XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-               Karten.Karten (0, YAchse, XAchse).Grund := -1;
-               exit XAchseSchleife;   
-               
-            elsif YAchse = Karten.Karten'First (2) or YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+            if YAchse = Karten.Karten'First (2) or YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
                Karten.Karten (0, YAchse, XAchse).Grund := 1;
                
             else
@@ -326,7 +317,7 @@ package body KartenGenerator is
       YAbstandVonEisschichtSchleife2:
       for YAchse in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 3 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
          XAbstandVonEisschichtSchleife2:
-         for XAchse in Karten.KartenArray'Range (3) loop
+         for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             GeneratorKarte (YAchse, XAchse) := 4;
             
@@ -886,25 +877,11 @@ package body KartenGenerator is
          Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 8) := Clock;
          
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'Range (2) loop
+         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'Range (3) loop
+            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
-               case Karten.Karten (0, YAchse, XAchse).Grund is
-                  when -1 =>
-                     Karten.Karten (1, YAchse, XAchse).Grund := -1;
-                     exit XAchseSchleife;
-                     
-                  when -2 =>
-                     Karten.Karten (1, YAchse, XAchse).Grund := -2;
-                     exit YAchseSchleife;
-                     
-                  when 0 =>
-                     exit XAchseSchleife;
-                     
-                  when others =>
-                     Karten.Karten (1, YAchse, XAchse).Grund := 37;
-               end case;
+               Karten.Karten (1, YAchse, XAchse).Grund := 37;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -921,25 +898,11 @@ package body KartenGenerator is
          Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 9) := Clock;
 
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'Range (2) loop
+         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'Range (3) loop
+            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
 
-               case Karten.Karten (0, YAchse, XAchse).Grund is
-                  when -1 =>
-                     Karten.Karten (1, YAchse, XAchse).Grund := -1;
-                     exit XAchseSchleife;
-                     
-                  when -2 =>
-                     Karten.Karten (1, YAchse, XAchse).Grund := -2;
-                     exit YAchseSchleife;
-                     
-                  when 0 =>
-                     exit XAchseSchleife;
-                     
-                  when others =>
-                     Karten.Karten (2, YAchse, XAchse).Grund := 38;
-               end case;
+               Karten.Karten (2, YAchse, XAchse).Grund := 38;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -956,22 +919,11 @@ package body KartenGenerator is
          Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 10) := Clock;
          
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'Range (2) loop
+         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'Range (3) loop
+            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
                case Karten.Karten (0, YAchse, XAchse).Grund is
-                  when 0 =>
-                     exit XAchseSchleife;
-                     
-                  when -1 =>
-                     Karten.Karten (1, YAchse, XAchse).Grund := -1;
-                     exit XAchseSchleife;
-                     
-                  when -2 =>
-                     Karten.Karten (1, YAchse, XAchse).Grund := -2;
-                     exit YAchseSchleife;     
-                     
                   when 1 | 2 | 31 =>
                      Karten.Karten (-1, YAchse, XAchse).Grund := Karten.Karten (0, YAchse, XAchse).Grund;
                      
@@ -1013,25 +965,11 @@ package body KartenGenerator is
          Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 11) := Clock;
          
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'Range (2) loop
+         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'Range (3) loop
+            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
-               case Karten.Karten (0, YAchse, XAchse).Grund is
-                  when -1 =>
-                     Karten.Karten (1, YAchse, XAchse).Grund := -1;
-                     exit XAchseSchleife;
-                     
-                  when -2 =>
-                     Karten.Karten (1, YAchse, XAchse).Grund := -2;
-                     exit YAchseSchleife;
-                     
-                  when 0 =>
-                     exit XAchseSchleife;
-                     
-                  when others =>
-                     Karten.Karten (-2, YAchse, XAchse).Grund := 39;
-               end case;
+               Karten.Karten (-2, YAchse, XAchse).Grund := 39;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -1152,19 +1090,11 @@ package body KartenGenerator is
       EAchseSchleife:
       for EAchse in Karten.KartenArray'Range (1) loop
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'Range (2) loop
+         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'Range (3) loop
+            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                         
-               if YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-                  Karten.Karten (EAchse, YAchse, XAchse).Grund := -2;
-                  exit YAchseSchleife;
-               
-               elsif XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-                  Karten.Karten (EAchse, YAchse, XAchse).Grund := -1;
-                  exit XAchseSchleife;   
-               
-               elsif YAchse = Karten.Karten'First (2) or YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+               if YAchse = Karten.Karten'First (2) or YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
                   Karten.Karten (EAchse, YAchse, XAchse).Grund := 1;
                
                else

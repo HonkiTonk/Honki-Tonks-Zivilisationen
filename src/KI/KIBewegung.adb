@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with BewegungssystemEinheiten, SchleifenPruefungen, KIVariablen;
+with BewegungssystemEinheiten, SchleifenPruefungen;
 
 package body KIBewegung is
 
@@ -30,6 +30,15 @@ package body KIBewegung is
       end case;    
       
    end KIBewegung;
+
+
+
+   procedure NeuesZielErmitteln (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Richtung : in KIDatentypen.Richtung) is
+   begin
+      
+      null;
+      
+   end NeuesZielErmitteln;
 
 
 
@@ -139,17 +148,6 @@ package body KIBewegung is
    function IstDasEineAltePosition (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; EAchse : in GlobaleDatentypen.EbeneVorhanden; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
    begin
       
-      for AltePositionen in KIVariablen.LetzteBewegungen'Range (3) loop
-         
-         if KIVariablen.LetzteBewegungen (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer, AltePositionen) = (EAchse, YAchse, XAchse) then
-            return True;
-            
-         else
-            null;
-         end if;
-         
-      end loop;
-      
       return False;
       
    end IstDasEineAltePosition;
@@ -158,11 +156,7 @@ package body KIBewegung is
 
    procedure BewegungDurchführen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; EAchse : in GlobaleDatentypen.EbeneVorhanden; YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) is
    begin
-      
-      KIVariablen.LetzteBewegungen (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer, 3) := KIVariablen.LetzteBewegungen (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer, 2);
-      KIVariablen.LetzteBewegungen (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer, 2) := KIVariablen.LetzteBewegungen (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer, 1);
-      KIVariablen.LetzteBewegungen (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer, 1) := (EAchse, YAchse, XAchse);
-      
+                
       BewegungssystemEinheiten.BewegungEinheitenBerechnung (EinheitRasseNummer => EinheitRasseNummer,
                                                             NeuePosition          => (EAchse, YAchse, XAchse));
       

@@ -1,12 +1,16 @@
 pragma SPARK_Mode (On);
 
 with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, Karten, KIDatentypen;
-use GlobaleDatentypen, GlobaleRecords;
+use GlobaleDatentypen, KIDatentypen;
 
 package KIBewegung is
    
    procedure KIBewegung (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Aufgabe : KIDatentypen.Aufgabe) with
      Pre => EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+
+   procedure NeuesZielErmitteln (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Richtung : in KIDatentypen.Richtung) with
+     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
+             and (Richtung = KIDatentypen.Norden or Richtung = Nord_Ost or Richtung = Osten or Richtung = Süd_Ost or Richtung = Süden or Richtung = Süd_West or Richtung = Westen or Richtung = Nord_West));
 
 private
 

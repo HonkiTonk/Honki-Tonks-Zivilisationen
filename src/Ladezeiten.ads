@@ -13,26 +13,38 @@ package Ladezeiten is
    BerechnungenNachZugendeAllerSpielerZeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 1);
    KIZeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 18);
 
-   procedure LadezeitenSpielweltErstellen (WelcheZeit : Positive) with
-     Pre => WelcheZeit in LadezeitenSpielweltErstellenZeit'Range (2);
+   procedure LadezeitenSpielweltErstellen (WelcheZeit : in Positive) with
+     Global  => (Input => LadezeitenSpielweltErstellenZeit),
+     Depends => (null => (LadezeitenSpielweltErstellenZeit, WelcheZeit)),
+     Pre     => (WelcheZeit in LadezeitenSpielweltErstellenZeit'Range (2));
 
    procedure Speichern (WelcheZeit : in Positive) with
-     Pre => WelcheZeit in Speicherzeiten'Range (2);
+     Global  => (Input => LadezeitenSpielweltErstellenZeit),
+     Depends => (null => (LadezeitenSpielweltErstellenZeit, WelcheZeit)),
+     Pre     => (WelcheZeit in Speicherzeiten'Range (2));
 
    procedure Laden (WelcheZeit : in Positive) with
-     Pre => WelcheZeit in LadenLadezeiten'Range (2);
+     Global  => (Input => LadezeitenSpielweltErstellenZeit),
+     Depends => (null => (LadezeitenSpielweltErstellenZeit, WelcheZeit)),
+     Pre     => (WelcheZeit in LadenLadezeiten'Range (2));
 
    procedure SpielStart (WelcheZeit : in Positive) with
-     Pre => WelcheZeit in SpielStartzeiten'Range (2);
+     Global  => (Input => LadezeitenSpielweltErstellenZeit),
+     Depends => (null => (LadezeitenSpielweltErstellenZeit, WelcheZeit)),
+     Pre     => (WelcheZeit in SpielStartzeiten'Range (2));
 
    procedure BerechnungenNachZugendeAllerSpieler (WelcheZeit : in Positive) with
-     Pre => WelcheZeit in BerechnungenNachZugendeAllerSpielerZeiten'Range (2);
+     Global  => (Input => LadezeitenSpielweltErstellenZeit),
+     Depends => (null => (LadezeitenSpielweltErstellenZeit, WelcheZeit)),
+     Pre     => (WelcheZeit in BerechnungenNachZugendeAllerSpielerZeiten'Range (2));
 
    procedure KIZeit (WelcheZeit : in Positive) with
-     Pre => WelcheZeit in KIZeiten'Range (2);
+     Global  => (Input => LadezeitenSpielweltErstellenZeit),
+     Depends => (null => (LadezeitenSpielweltErstellenZeit, WelcheZeit)),
+     Pre     => (WelcheZeit in KIZeiten'Range (2));
 
 private
-   
+                                                 
    Warten : Wide_Wide_Character;
 
    AufschlagSpielstart : constant Positive := 19; -- Für die Textausgabe

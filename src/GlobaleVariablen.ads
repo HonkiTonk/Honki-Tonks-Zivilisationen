@@ -43,7 +43,8 @@ package GlobaleVariablen is
    LeererWertEinheit : constant GlobaleRecords.EinheitenGebautRecord := (0, 0,          -- 1. Wert = Aktuelle Beschäftigung, 2. Wert = Zweite aktuelle Beschäftigung
                                                                          0, (0, 1, 1),  -- 3. Wert = ID, 4. Wert = AchsenPosition
                                                                          0, 0.00, 0, 0, -- 5. Wert = Aktuelle Lebenspunkte, 6. Wert = Aktuelle Bewegungspunkte, 7. Wert = Aktuelle Erfahrungspunkte, 8. Wert = Aktueller Rang
-                                                                         0, 0);         -- 9. Wert = Aktuelle Beschäftigungszeit, 10. Wert = Zweite AktuelleBeschäftigungszeit
+                                                                         0, 0,          -- 9. Wert = Aktuelle Beschäftigungszeit, 10. Wert = Zweite AktuelleBeschäftigungszeit
+                                                                         (0, 1, 1));    -- 11. Wert = Zielkoordinaten der KI
 
    type EinheitenGebautArray is array (GlobaleDatentypen.Rassen'Range, 1 .. 1_000) of GlobaleRecords.EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => LeererWertEinheit));

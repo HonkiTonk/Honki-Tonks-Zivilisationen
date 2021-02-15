@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with KIVariablen, GlobaleVariablen;
+with GlobaleVariablen;
 
 package body KIZuruecksetzen is
 
@@ -12,11 +12,10 @@ package body KIZuruecksetzen is
          
          case GlobaleVariablen.RassenImSpiel (RassenIntern) is
             when 2 =>
-               KIVariablen.EinheitenSchonBefehleErteilt (RassenIntern) := 0;
                EinheitenSchleife:
-               for EinheitNummer in KIVariablen.EinheitenNochBefehleErteilbarArray'Range (2) loop
+               for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
                   
-                  KIVariablen.EinheitenNochBefehleErteilbar (RassenIntern, EinheitNummer) := True;
+                  null;
                   
                end loop EinheitenSchleife;
                

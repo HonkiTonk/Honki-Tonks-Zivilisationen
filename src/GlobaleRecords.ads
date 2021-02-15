@@ -43,8 +43,6 @@ package GlobaleRecords is
       
    end record;
 
-
-
    type RassePlatznummerIDRecord is new RassePlatznummerRecord with record
       
       ID : GlobaleDatentypen.KartenverbesserungEinheitenID;
@@ -80,6 +78,10 @@ package GlobaleRecords is
       
       AktuelleBeschäftigungszeit : Natural;
       AktuelleBeschäftigungszeit2 : Natural;
+
+      KIZielKoordinaten : AchsenKartenfeldPositivRecord;
+      -- KIBeschäftigt : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
+      -- Hier nochwas mit letzten Koordinaten einfügen?
       
    end record;
 

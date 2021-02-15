@@ -120,7 +120,7 @@ package body EinheitenDatenbank is
    procedure EinheitEntfernenMitSortieren (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0);      
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer) := GlobaleVariablen.LeererWertEinheit;
       Sortieren.EinheitenSortieren (RasseExtern => EinheitRasseNummer.Rasse);
 
       if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, 1).ID = 0 then
@@ -137,7 +137,7 @@ package body EinheitenDatenbank is
    procedure EinheitEntfernenOhneSortieren (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
 
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer) := (0, 0,    0, (0, 1, 1),    0, 0.00, 0, 0,    0, 0); 
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer) := GlobaleVariablen.LeererWertEinheit;
 
       if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, 1).ID = 0 then
          GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) := 0;

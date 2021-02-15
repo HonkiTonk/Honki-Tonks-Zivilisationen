@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with EinheitenDatenbank, SchleifenPruefungen, Umwandlung, KIPruefungen;
+with EinheitenDatenbank, SchleifenPruefungen, Umwandlung, KIPruefungen, KIVariablen;
 
 package body KIGefahr is
 
@@ -8,6 +8,8 @@ package body KIGefahr is
    function KIGefahr (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
       
+      KIVariablen.FeindlicheEinheiten := (others => (others => (others => (others => 0))));
+      BestehtGefahr := False;
       EinheitTyp := EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).EinheitTyp;
 
       case EinheitTyp is
@@ -55,12 +57,16 @@ package body KIGefahr is
                            
                         when others =>
                            if GlobaleVariablen.Diplomatie (EinheitRasseNummer.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Krieg then
-                              return True;
+                              KIVariablen.FeindlicheEinheiten (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer, YÄnderung, XÄnderung)
+                                := GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).ID;
+                              BestehtGefahr := True;
 
                            elsif GlobaleVariablen.Diplomatie (EinheitRasseNummer.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
                              and KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummer => EinheitRasseNummer,
                                                                          EinheitZweiRasseNummer => EinheitRassePlatznummer) <= 1 then
-                             return True;
+                              KIVariablen.FeindlicheEinheiten (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer, YÄnderung, XÄnderung)
+                                := GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).ID;
+                              BestehtGefahr := True;
                               
                            else
                               null;
@@ -72,7 +78,14 @@ package body KIGefahr is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
 
-      return False;
+      case BestehtGefahr is
+         when True =>
+            KIPruefungen.ZielBerechnenGefahr (EinheitRasseNummer => EinheitRasseNummer);
+            return True;
+            
+         when False =>
+            return False;
+      end case;
       
    end Unbewaffnet;
    
