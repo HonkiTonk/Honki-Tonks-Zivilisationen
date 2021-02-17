@@ -131,9 +131,10 @@ package body Wachstum is
            := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen
            + GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate);
          if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen
-           >= GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 1_000).PreisRessourcen then
+           >= GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse,
+                                               GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 1_000)).PreisRessourcen then
             GebaeudeDatenbank.GebäudeProduktionBeenden (StadtRasseNummer => StadtRasseNummer,
-                                                        ID                  => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 1_000);
+                                                        ID               => GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 1_000));
             Anzeige.EinfacheAnzeige (Mit_Line => True,
                                      Datei    => 1,
                                      Eintrag  => 1);

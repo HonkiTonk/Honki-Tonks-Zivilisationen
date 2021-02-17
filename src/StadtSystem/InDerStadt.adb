@@ -96,29 +96,30 @@ package body InDerStadt is
             when 'v' => -- Gebäude verkaufen
                if GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.YAchse = 1 and GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse < 13 then
                   case GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse,
-                                                     StadtRasseNummer.Platznummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse)) is
-                     when '0' =>
+                                                     StadtRasseNummer.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse)) is
+                     when False =>
                         null;
                         
                      when others =>
                         GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge
-                          := GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse,
-                                                                                                              Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse)).PreisGeld / 2);
+                          := GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge
+                          + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse)).PreisGeld / 2);
                         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse,
-                                                      StadtRasseNummer.Platznummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse)) := '0';
+                                                      StadtRasseNummer.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse)) := False;
                   end case;
             
                elsif GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.YAchse = 2 and GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse < 13 then
-                  case GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse) + 12) is
-                     when '0' =>
+                  case GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse,
+                                                     StadtRasseNummer.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse) + 12) is
+                     when False =>
                         null;
                         
                      when others =>
-                        GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge
-                          := GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse,
-                                                                                                              Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse) + 12).PreisGeld / 2);
+                        GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge := GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge
+                          + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse) + 12).PreisGeld / 2);
                         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse,
-                                                      StadtRasseNummer.Platznummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse) + 12) := '0';
+                                                      StadtRasseNummer.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse)
+                                                                                                       + 12) := False;
                   end case;
                   
                else

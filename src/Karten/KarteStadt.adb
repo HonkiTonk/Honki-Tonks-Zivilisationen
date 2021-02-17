@@ -127,8 +127,8 @@ package body KarteStadt is
                Put (Item => " ");
 
             elsif YAchse = 1 and XAchse < 13 then
-               if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (Integer (XAchse)) /= '0' then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, Integer (XAchse)).GebäudeGrafik);
+               if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (XAchse)) = True then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, GlobaleDatentypen.GebäudeID (XAchse)).GebäudeGrafik);
 
                else
                   Sichtbarkeit.Farben (Einheit      => 0,
@@ -142,8 +142,8 @@ package body KarteStadt is
                end if;
 
             elsif YAchse = 2 and XAchse < 13 then
-               if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (Integer (XAchse) + 12) /= '0' then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, Integer (XAchse) + 12).GebäudeGrafik);
+               if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (XAchse) + 12) = True then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, GlobaleDatentypen.GebäudeID (XAchse) + 12).GebäudeGrafik);
 
                else
                   Sichtbarkeit.Farben (Einheit      => 0,
@@ -183,18 +183,18 @@ package body KarteStadt is
                           XAufschlag  => CursorXAchsePlus,
                           RasseExtern => StadtRasseNummer.Rasse);
       if GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.YAchse = 1 and GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse < 13 then
-         if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse))
-           /= '0' then
-            GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse));
+         if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse,
+                                          StadtRasseNummer.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse)) = True then
+            GebaeudeDatenbank.Beschreibung (ID => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse));
             
          else
             null;
          end if;
 
       elsif GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.YAchse = 2 and GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse < 13 then
-         if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse) + 12)
-           /= '0' then
-            GebaeudeDatenbank.Beschreibung (ID => Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse) + 12);
+         if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse,
+                                          StadtRasseNummer.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse) + 12) = True then
+            GebaeudeDatenbank.Beschreibung (ID => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse) + 12);
             
          else
             null;

@@ -8,11 +8,11 @@ package body WerteFestlegen is
    begin
       
       case Generierung is
-         when False => -- Funktioniert scheinbar nicht, herausfinden warum.
+         when False =>
             YAchseÄnderungSchleife:
-            for YAchseÄnderung in Koordinaten.YAchse - 3 .. Koordinaten.YAchse + 3 loop
+            for YAchseÄnderung in LoopRangeMinusDreiZuDrei'Range loop
                XAchseÄnderungSchleife:
-               for XAchseÄnderung in Koordinaten.XAchse - 3 .. Koordinaten.XAchse + 3 loop
+               for XAchseÄnderung in LoopRangeMinusDreiZuDrei'Range loop
 
                   Kartenwert (Koordinaten.EAchse) := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => Koordinaten,
                                                                                                Änderung       => (0, YAchseÄnderung, XAchseÄnderung),

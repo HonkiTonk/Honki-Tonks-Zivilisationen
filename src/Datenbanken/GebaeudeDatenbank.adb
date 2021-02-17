@@ -4,7 +4,7 @@ with Anzeige;
 
 package body GebaeudeDatenbank is
 
-   procedure Beschreibung (ID : in Positive) is
+   procedure Beschreibung (ID : in GebäudeID) is
    begin
       
       Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
@@ -12,8 +12,8 @@ package body GebaeudeDatenbank is
                           FrageDatei         => 0,
                           FrageZeile         => 0,
                           TextDatei          => 16,
-                          ErsteZeile         => ID,
-                          LetzteZeile        => ID);
+                          ErsteZeile         => Integer (ID),
+                          LetzteZeile        => Integer (ID));
       -- Hier wichtige Werte einfügen
       -- Hier dann eine lange Textanzeige für eine Beschreibung des Gebäudes? Das auch für die Einheiten/Verbesserungen machen?
       
@@ -21,10 +21,10 @@ package body GebaeudeDatenbank is
    
    
 
-   procedure GebäudeProduktionBeenden (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord; ID : in Positive) is
+   procedure GebäudeProduktionBeenden (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord; ID : in GebäudeID) is
    begin     
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (ID) := GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, ID).GebäudeGrafik;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (ID) := True;
       GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).VerbleibendeBauzeit := 0;
       GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen := 0;
       GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt := 0;

@@ -17,10 +17,10 @@ package body Kampfsystem is
             return Ergebnis;
             
          when others =>
-            if GlobaleVariablen.StadtGebaut (RasseVerteidigung, GegnerStadtNummer).GebäudeVorhanden (15) /= '0' then
+            if GlobaleVariablen.StadtGebaut (RasseVerteidigung, GegnerStadtNummer).GebäudeVorhanden (15) = True then
                VerteidigungBonusDurchStadt := 2.00;
                
-            elsif GlobaleVariablen.StadtGebaut (RasseVerteidigung, GegnerStadtNummer).GebäudeVorhanden (5) /= '0' then
+            elsif GlobaleVariablen.StadtGebaut (RasseVerteidigung, GegnerStadtNummer).GebäudeVorhanden (5) = True then
                VerteidigungBonusDurchStadt := 1.50;
 
             else               

@@ -66,7 +66,7 @@ package body StadtBauen is
                -- 9. Wert = Aktuelle Geldgewinnung, 10. Wert = Aktuelle Forschungsrate, 11. Wert = Aktuelles Bauprojekt, 12. Wert = Verbleibende Bauzeit
                0, 0, 0, 0,
                -- 13. Wert = Korruption, 14. Wert = Gebäude Vorhanden, 15. Wert = Stadtname
-               0, "000000000000000000000000", To_Unbounded_Wide_Wide_String (Source => "Name"),
+               0, (others => False), To_Unbounded_Wide_Wide_String (Source => "Name"),
                  -- 16. Wert = UmgebungBewirtschaftung, 17. Wert = Arbeitende Einwohner, 18. Wert = StadtUmgebungGröße
                (0 => (0 => True, others => False), others => (others => False)), 1, 1,
                -- 19. Wert = KI aktuelle Beschäftigung

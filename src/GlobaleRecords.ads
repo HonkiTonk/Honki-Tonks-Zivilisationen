@@ -72,7 +72,7 @@ package GlobaleRecords is
       
       -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen)
       AktuelleBeschäftigung : Natural;
-      AktuelleBeschäftigung2 : Natural;
+      AktuelleBeschäftigungNachfolger : Natural;
       
       ID : GlobaleDatentypen.KartenverbesserungEinheitenID;
       AchsenPosition : AchsenKartenfeldPositivRecord;
@@ -83,7 +83,7 @@ package GlobaleRecords is
       AktuellerRang : Natural;
       
       AktuelleBeschäftigungszeit : Natural;
-      AktuelleBeschäftigungszeit2 : Natural;
+      AktuelleBeschäftigungszeitNachfolger : Natural;
 
       KIZielKoordinaten : AchsenKartenfeldPositivRecord;
       KIBeschäftigt : KIDatentypen.Aufgabe_Enum;
@@ -92,6 +92,8 @@ package GlobaleRecords is
    end record;
 
 
+
+   type GebäudeVorhandenArray is array (GlobaleDatentypen.GebäudeID'Range) of Boolean;
 
    type StadtGebautRecord is record
       
@@ -112,7 +114,7 @@ package GlobaleRecords is
 
       Korruption : GlobaleDatentypen.GesamtproduktionStadt;      
       -- Eine Liste anlegen welche Nummer welches Gebäude ist.
-      GebäudeVorhanden : Wide_Wide_String (Integer (GlobaleDatentypen.GebäudeID'First) .. Integer (GlobaleDatentypen.GebäudeID'Last));
+      GebäudeVorhanden : GebäudeVorhandenArray;
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : GlobaleDatentypen.UmgebungBewirtschaftungArray;

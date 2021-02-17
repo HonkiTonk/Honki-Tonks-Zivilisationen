@@ -50,13 +50,12 @@ package GlobaleDatentypen is
    subtype UnbewaffneterTyp is EinheitenTyp range 1 .. 2; -- Für später merken, jetzt aber noch nicht einbauen/nutzen, da sonst ständig Zeug verschoben werden muss
    subtype NahkämpferTyp is EinheitenTyp range 3 .. 4;
    subtype FernkampfTyp is EinheitenTyp range 5 .. 6;
-
    -- Für Einheiten
 
 
 
    -- Für Gebäude
-   type GebäudeID is range 1 .. 24;
+   type GebäudeID is range 1 .. 27;
    -- Für Gebäude
 
 
@@ -67,7 +66,7 @@ package GlobaleDatentypen is
    type ForschungIDMitNullWert is range 0 .. 6;
    subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
 
-   type ErforschtArray is array (1 .. 7) of Integer;
+   type ErforschtArray is array (1 .. 7) of Natural;
    -- Für Forschung
 
 

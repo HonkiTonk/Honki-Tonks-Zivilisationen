@@ -49,7 +49,8 @@ package body InDerStadtBauen is
             
       elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt < 10_000 then
          GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).VerbleibendeBauzeit
-           := (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 1_000).PreisRessourcen
+           := (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse,
+               GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 1_000)).PreisRessourcen
                - GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen)
              / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate);
                
@@ -105,61 +106,61 @@ package body InDerStadtBauen is
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       GebäudeSchleife:
-      for G in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
+      for Gebäude in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (16, G)) = "|" then
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (16, Gebäude)) = "|" then
             exit GebäudeSchleife;
 
-         elsif G > GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden'Last then
+         elsif Gebäude > Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden'Last) then
             exit GebäudeSchleife;
 
-         elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (G) /= '0' then
+         elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (Gebäude)) = True then
             null;
 
-         elsif GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, G).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, G).Anforderungen) = 0 then 
+         elsif GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, GlobaleDatentypen.GebäudeID (Gebäude)).Anforderungen /= 0 then
+            if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, GlobaleDatentypen.GebäudeID (Gebäude)).Anforderungen) = 0 then 
                null;
 
             else
-               Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (16, G);
-               Anzeige.TextBauen (Ende).Nummer := 1_000 + G;
+               Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (16, Gebäude);
+               Anzeige.TextBauen (Ende).Nummer := 1_000 + Gebäude;
                Ende := Ende + 1;
             end if;
             
          else
-            Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (16, G);
-            Anzeige.TextBauen (Ende).Nummer := 1_000 + G;
+            Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (16, Gebäude);
+            Anzeige.TextBauen (Ende).Nummer := 1_000 + Gebäude;
             Ende := Ende + 1;
          end if;
          
       end loop GebäudeSchleife;
 
       EinheitenSchleife:
-      for E in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
+      for Einheit in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (12, E)) = "|" then
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (12, Einheit)) = "|" then
             exit EinheitenSchleife;
 
-         elsif E > Integer (EinheitenDatenbank.EinheitenListeArry'Last (2)) then
+         elsif Einheit > Integer (EinheitenDatenbank.EinheitenListeArry'Last (2)) then
             exit EinheitenSchleife;
 
          elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AmWasser = False
-           and EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, GlobaleDatentypen.EinheitenID (E)).Passierbarkeit = 2 then
+           and EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, GlobaleDatentypen.EinheitenID (Einheit)).Passierbarkeit = 2 then
             null;
 
-         elsif EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, GlobaleDatentypen.EinheitenID (E)).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, GlobaleDatentypen.EinheitenID (E)).Anforderungen) = 0 then
+         elsif EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, GlobaleDatentypen.EinheitenID (Einheit)).Anforderungen /= 0 then
+            if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, GlobaleDatentypen.EinheitenID (Einheit)).Anforderungen) = 0 then
                null;
                
             else
-               Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (12, E);
-               Anzeige.TextBauen (Ende).Nummer := 10_000 + E;
+               Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (12, Einheit);
+               Anzeige.TextBauen (Ende).Nummer := 10_000 + Einheit;
                Ende := Ende + 1;
             end if;
             
          else
-            Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (12, E);
-            Anzeige.TextBauen (Ende).Nummer := 10_000 + E;
+            Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (12, Einheit);
+            Anzeige.TextBauen (Ende).Nummer := 10_000 + Einheit;
             Ende := Ende + 1;
          end if;
          
