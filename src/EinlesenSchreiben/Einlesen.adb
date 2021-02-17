@@ -96,7 +96,7 @@ package body Einlesen is
       for WelcheDateien in WelcheTexteEinlesenNeuArray'Range loop
 
          if End_Of_File (File => DateiNeuWelcheTexteEinlesen) = True then
-            exit;
+            exit EinlesenSchleife;
                
          else
             Set_Line (File => DateiNeuWelcheTexteEinlesen,

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
 
-with Wachstum, VerbesserungenDatenbank, SchleifenPruefungen, KartenDatenbank, Auswahl, InDerStadtBauen, GebaeudeDatenbank, KarteStadt, BewegungssystemCursor, Karten;
+with Wachstum, VerbesserungenDatenbank, KartenDatenbank, Auswahl, InDerStadtBauen, GebaeudeDatenbank, KarteStadt, BewegungssystemCursor, Karten, KartenPruefungen;
 
 package body InDerStadt is
 
@@ -45,15 +45,15 @@ package body InDerStadt is
                              := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).ArbeitendeEinwohner - 1;
                         
                         when False =>
-                           KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
-                                                                             Änderung       => (0, RelativeCursorPositionY, RelativeCursorPositionX),
-                                                                             ZusatzYAbstand => 0);
+                           KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
+                                                                                   Änderung       => (0, RelativeCursorPositionY, RelativeCursorPositionX),
+                                                                                   ZusatzYAbstand => 0);
                            
-                           case KartenWert.YAchse is
-                              when GlobaleDatentypen.Kartenfeld'First =>
+                           case KartenWert.Erfolgreich is
+                              when False =>
                                  null;
                                  
-                              when others =>
+                              when True =>
                                  if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).ArbeitendeEinwohner
                                    < GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner then
                                     GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) := True;
@@ -103,7 +103,7 @@ package body InDerStadt is
                      when others =>
                         GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge
                           := GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse,
-                                                                                                   Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse)).PreisGeld / 2);
+                                                                                                              Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse)).PreisGeld / 2);
                         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse,
                                                       StadtRasseNummer.Platznummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse)) := '0';
                   end case;
@@ -116,7 +116,7 @@ package body InDerStadt is
                      when others =>
                         GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge
                           := GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).AktuelleGeldmenge + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse,
-                                                                                                                 Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse) + 12).PreisGeld / 2);
+                                                                                                              Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse) + 12).PreisGeld / 2);
                         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse,
                                                       StadtRasseNummer.Platznummer).GebäudeVorhanden (Integer (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse) + 12) := '0';
                   end case;
@@ -183,15 +183,15 @@ package body InDerStadt is
          XAchseSchleife:
          for XÄnderung in -NutzbarerBereich .. NutzbarerBereich loop
 
-            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
-                                                              Änderung       => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstand => 0);
 
-            case KartenWert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case KartenWert.Erfolgreich is
+               when False =>
                   exit XAchseSchleife;                                 
                                  
-               when others =>
+               when True =>
                   case GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).UmgebungBewirtschaftung (YÄnderung, XÄnderung) is
                      when True =>
                         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsproduktion

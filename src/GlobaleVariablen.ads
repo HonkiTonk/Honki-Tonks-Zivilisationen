@@ -3,14 +3,14 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, KIDatentypen;
 
 package GlobaleVariablen is
 
    -- Schreiben/Ausgabe
    type TexteEinlesenNeuArray is array (0 .. 22, 1 .. 84) of Unbounded_Wide_Wide_String;
    TexteEinlesenNeu : TexteEinlesenNeuArray := (others => (others => (To_Unbounded_Wide_Wide_String ("|"))));
-
+   
    GewählteSprache : Unbounded_Wide_Wide_String;
    -- Schreiben/Ausgabe
    
@@ -44,7 +44,7 @@ package GlobaleVariablen is
                                                                          0, (0, 1, 1),  -- 3. Wert = ID, 4. Wert = AchsenPosition
                                                                          0, 0.00, 0, 0, -- 5. Wert = Aktuelle Lebenspunkte, 6. Wert = Aktuelle Bewegungspunkte, 7. Wert = Aktuelle Erfahrungspunkte, 8. Wert = Aktueller Rang
                                                                          0, 0,          -- 9. Wert = Aktuelle Beschäftigungszeit, 10. Wert = Zweite AktuelleBeschäftigungszeit
-                                                                         (0, 1, 1));    -- 11. Wert = Zielkoordinaten der KI
+                                                                         (0, 1, 1), KIDatentypen.Keine_Aufgabe);    -- 11. Wert = Zielkoordinaten der KI, 12. Wert = Beschäftigunggrad der KI
 
    type EinheitenGebautArray is array (GlobaleDatentypen.Rassen'Range, 1 .. 1_000) of GlobaleRecords.EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => LeererWertEinheit));

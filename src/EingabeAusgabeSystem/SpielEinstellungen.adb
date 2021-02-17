@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 
-with SchleifenPruefungen, GlobaleVariablen, ImSpiel, KartenGenerator, Eingabe, Auswahl, EinheitenDatenbank, Anzeige, ZufallsGeneratoren, Ladezeiten;
+with GlobaleVariablen, ImSpiel, KartenGenerator, Eingabe, Auswahl, EinheitenDatenbank, Anzeige, ZufallsGeneratoren, Ladezeiten, KartenPruefungen, EinheitSuchen;
 
 package body SpielEinstellungen is
 
@@ -418,14 +418,14 @@ package body SpielEinstellungen is
    function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) return Boolean is
    begin
       
-      PrüfungGrund := SchleifenPruefungen.KartenGrund (Koordinaten => (0, YPosition, XPosition));
+      PrüfungGrund := KartenPruefungen.KartenGrund (Koordinaten => (0, YPosition, XPosition));
 
       case PrüfungGrund is
          when False =>
             return False;
             
          when True =>
-            PositionWert := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (0, YPosition, XPosition));
+            PositionWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (0, YPosition, XPosition));
       end case;
 
       case PositionWert.Platznummer is
@@ -436,23 +436,23 @@ package body SpielEinstellungen is
                XAchseSchleife:
                for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-                  KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YPosition, XPosition),
-                                                                    Änderung       => (0, YÄnderung, XÄnderung),
-                                                                    ZusatzYAbstand => 0);
-                  case KartenWert.YAchse is
-                     when GlobaleDatentypen.Kartenfeld'First =>
+                  KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YPosition, XPosition),
+                                                                          Änderung       => (0, YÄnderung, XÄnderung),
+                                                                          ZusatzYAbstand => 0);
+                  case KartenWert.Erfolgreich is
+                     when False =>
                         exit XAchseSchleife;
                   
-                     when others =>
+                     when True =>
                         if YÄnderung /= 0 or XÄnderung /= 0 then
-                           PrüfungGrund := SchleifenPruefungen.KartenGrund (Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+                           PrüfungGrund := KartenPruefungen.KartenGrund (Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
                            case PrüfungGrund is
                               when False =>
                                  PlatzBelegt := (1, 1);
             
                               when True =>
-                                 PlatzBelegt := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+                                 PlatzBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
                            end case;                    
                            
                            case PlatzBelegt.Platznummer is

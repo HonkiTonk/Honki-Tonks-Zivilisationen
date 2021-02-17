@@ -5,9 +5,9 @@ use GlobaleDatentypen;
 
 package Verbesserungen is
 
-   type Befehle is (Leer, Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Einheit_Auflösen, Plündern);
+   type Befehle_Enum is (Leer, Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Einheit_Auflösen, Plündern);
 
-   procedure Verbesserung (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Befehl : in Befehle) with
+   procedure Verbesserung (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Befehl : in Befehle_Enum) with
      Pre => EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen;
    
    procedure VerbesserungFertiggestellt;
@@ -18,9 +18,9 @@ private
 
    Straßenwert : Integer;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
    
-   procedure VerbesserungeFestgelegt (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Befehl : in Befehle) with
+   procedure VerbesserungeFestgelegt (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Befehl : in Befehle_Enum) with
      Pre => EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen;
 
    procedure VerbesserungAngelegt (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with

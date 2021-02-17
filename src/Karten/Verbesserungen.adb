@@ -1,19 +1,16 @@
 pragma SPARK_Mode (On);
 
-with SchleifenPruefungen, EinheitenDatenbank, Anzeige, WerteFestlegen;
+with EinheitenDatenbank, Anzeige, WerteFestlegen, KartenPruefungen;
 
 package body Verbesserungen is
 
-   -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen), -10 = Die KI hat irgendwas gemacht und es soll nicht geändert werden, < 0 = KI Einheit die irgendetwas erledigt hat
-   procedure Verbesserung (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Befehl : in Befehle) is
+   -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen)
+   procedure Verbesserung (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Befehl : in Befehle_Enum) is
    begin
 
       if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung = 0 then
          VerbesserungeFestgelegt (EinheitRasseNummer => EinheitRasseNummer,
                                   Befehl                => Befehl);
-         
-      elsif GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung < 0 then
-         return;
          
       else
          Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 7);
@@ -31,8 +28,8 @@ package body Verbesserungen is
    
 
 
-   -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen), -10 = Die KI hat irgendwas gemacht und es soll nicht geändert werden, < 0 = KI Einheit die irgendetwas erledigt hat
-   procedure VerbesserungeFestgelegt (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Befehl : in Befehle) is
+   -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen)
+   procedure VerbesserungeFestgelegt (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Befehl : in Befehle_Enum) is
    begin
 
       if Befehl = Straße_Bauen and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
@@ -178,11 +175,11 @@ package body Verbesserungen is
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 1 | 3 .. 6 | 8 | 10 .. 28 =>
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
 
                when 7 | 9 | 32 =>
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 6;
                
                when others =>
@@ -200,17 +197,17 @@ package body Verbesserungen is
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 1 | 3 .. 6 | 10 .. 28 =>
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
 
                when 7 =>
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 5;
 
                when 8 | 9 | 32 =>
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := 6;
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung2 := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung2 := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit2 := 3;
                
                when others =>
@@ -228,17 +225,17 @@ package body Verbesserungen is
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 3 .. 6 | 10 .. 28 =>
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
 
                when 7 =>
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 5;
 
                when 8 .. 9 | 32 =>
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := 6;
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung2 := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung2 := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit2 := 3;
                
                when others =>
@@ -256,11 +253,11 @@ package body Verbesserungen is
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 1 | 3 .. 6 | 8 .. 28 | 32 =>
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
 
                when 7 =>
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 5;
                
                when others =>
@@ -278,13 +275,13 @@ package body Verbesserungen is
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 3 | 6 | 10 .. 28 =>
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
 
                when 9 | 32 =>
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := 6;
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung2 := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung2 := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit2 := 3;
                
                when others =>
@@ -302,7 +299,7 @@ package body Verbesserungen is
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 8 | 9 | 32 =>
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
               
                when others =>
@@ -331,7 +328,7 @@ package body Verbesserungen is
                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                   when 1 .. 32 =>
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle'Pos (Befehl);
+                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                
                   when others =>
                      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
@@ -349,7 +346,7 @@ package body Verbesserungen is
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 1 .. 32 =>
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle'Pos (Befehl);
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                
                when others =>
                   Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
@@ -524,15 +521,15 @@ package body Verbesserungen is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => Koordinaten,
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => Koordinaten,
                                                               Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 0);
 
-            case KartenWert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case KartenWert.Erfolgreich is
+               when False =>
                   exit XAchseSchleife;
 
-               when others =>
+               when True =>
                   if XÄnderung = -1 and YÄnderung = 0 then
                      case Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
                         when 0 =>

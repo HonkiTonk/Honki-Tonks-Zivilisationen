@@ -99,7 +99,7 @@ package body ForschungsDatenbank is
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (18, Forschung)) = "|" then
             exit ForschungSchleife;
 
-         elsif Forschung > Integer (ForschungListe'Last) then
+         elsif Forschung > Integer (ForschungListeArray'Last (2)) then
             exit ForschungSchleife;
 
          elsif GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (Forschung) /= 0 then

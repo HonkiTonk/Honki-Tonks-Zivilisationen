@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Anzeige, GlobaleVariablen, Karten, Eingabe, SchleifenPruefungen;
+with Anzeige, GlobaleVariablen, Karten, Eingabe, KartenPruefungen;
 
 package body BewegungssystemCursor is
 
@@ -159,15 +159,15 @@ package body BewegungssystemCursor is
          null;
       end if;
       
-      KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition,
-                                                        Änderung       => ÄnderungExtern,
-                                                        ZusatzYAbstand => 0);
+      KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition,
+                                                              Änderung       => ÄnderungExtern,
+                                                              ZusatzYAbstand => 0);
       
-      case KartenWert.YAchse is
-         when GlobaleDatentypen.Kartenfeld'First =>
+      case KartenWert.Erfolgreich is
+         when False =>
             return;
               
-         when others =>
+         when True =>
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
       end case;
       

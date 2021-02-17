@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with SchleifenPruefungen, Ladezeiten, WerteFestlegen, ZufallsGeneratoren;
+with Ladezeiten, WerteFestlegen, ZufallsGeneratoren, KartenPruefungen;
 
 package body KartenGenerator is
 
@@ -160,15 +160,15 @@ package body KartenGenerator is
          XAchseSchleife:
          for XÄnderung in -GrößeLandart (Kartenart) / 2 .. GrößeLandart (Kartenart) / 2 loop
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YPositionLandmasse, XPositionLandmasse),
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YPositionLandmasse, XPositionLandmasse),
                                                               Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
-            case KartenWert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case KartenWert.Erfolgreich is
+               when False =>
                   exit XAchseSchleife;
                   
-               when others =>         
+               when True =>         
                   Wert := Random (Gewählt);
                   GenerierungLandmasseÜberhang (YAchse  => KartenWert.YAchse,
                                                  XAchse  => KartenWert.XAchse,
@@ -183,15 +183,15 @@ package body KartenGenerator is
          XAchseZweiSchleife:
          for XÄnderung in -FelderVonLandartZuLandart (Kartenart) .. FelderVonLandartZuLandart (Kartenart) loop
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YPositionLandmasse, XPositionLandmasse),
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YPositionLandmasse, XPositionLandmasse),
                                                               Änderung      => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
             
-            case KartenWert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case KartenWert.Erfolgreich is
+               when False =>
                   exit XAchseZweiSchleife;
                   
-               when others =>
+               when True =>
                   case GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) is
                      when 1 .. 2 =>
                         null;
@@ -265,15 +265,15 @@ package body KartenGenerator is
                      ZweiteXAchseSchleife:
                      for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                      
-                        KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YPosition, XPosition),
+                        KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YPosition, XPosition),
                                                                           Änderung       => (0, YÄnderung, XÄnderung),
                                                                           ZusatzYAbstand => 0);
 
-                        case KartenWert.YAchse is
-                           when GlobaleDatentypen.Kartenfeld'First =>
+                        case KartenWert.Erfolgreich is
+                           when False =>
                               exit ZweiteYAchseSchleife;
                                 
-                           when others =>
+                           when True =>
                               case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund is
                                  when 3 =>
                                     Karten.Karten (0, YPosition, XPosition).Grund := 31;
@@ -389,15 +389,15 @@ package body KartenGenerator is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeNullZuEins'Range loop            
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YAchse, XAchse),
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YAchse, XAchse),
                                                               Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 1);
 
-            case KartenWert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case KartenWert.Erfolgreich is
+               when False =>
                   exit XAchseSchleife;
                   
-               when others =>
+               when True =>
                   if Karten.Karten (0, YAchse, XAchse).Grund < 3 or Karten.Karten (0, YAchse, XAchse).Grund = 31 then
                      null;
                      
@@ -444,15 +444,15 @@ package body KartenGenerator is
                ZweiteXAchseSchleife:
                for XÄnderung in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
             
-                  KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YAchse, XAchse),
+                  KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YAchse, XAchse),
                                                                     Änderung       => (0, YÄnderung, XÄnderung),
                                                                     ZusatzYAbstand => 1);
 
-                  case KartenWert.YAchse is
-                     when GlobaleDatentypen.Kartenfeld'First =>
+                  case KartenWert.Erfolgreich is
+                     when False =>
                         exit ZweiteXAchseSchleife;
                   
-                     when others =>
+                     when True =>
                         if GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) /= 0 then
                            null;
                                      
@@ -481,15 +481,15 @@ package body KartenGenerator is
          XAchseHügelSchleife:
          for XÄnderungHügel in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop            
             
-            KartenWertHügel := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YAchse, XAchse),
+            KartenWertHügel := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YAchse, XAchse),
                                                                     Änderung       => (0, YÄnderungHügel, XÄnderungHügel),
                                                                     ZusatzYAbstand => 1);
 
-            case KartenWertHügel.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case KartenWertHügel.Erfolgreich is
+               when False =>
                   exit XAchseHügelSchleife;
                   
-               when others =>
+               when True =>
                   if YÄnderungHügel = 0 and XÄnderungHügel = 0 then
                      null;
                                  
@@ -569,15 +569,15 @@ package body KartenGenerator is
                   XAchseSchleifeZwei:
                   for B in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                   
-                     KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YAchse, XAchse),
+                     KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YAchse, XAchse),
                                                                        Änderung       => (0, A, B),
                                                                        ZusatzYAbstand => 0); -- Hier muss < geprüft werden, deswegen 0
                      
-                     case KartenWert.YAchse is
-                        when GlobaleDatentypen.Kartenfeld'First =>
+                     case KartenWert.Erfolgreich is
+                        when False =>
                            exit XAchseSchleifeZwei;
                            
-                        when others =>
+                        when True =>
                            if Karten.Karten (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= 0 and Wert >= WahrscheinlichkeitFluss / 2.50 then                        
                               Karten.Karten (0, YAchse, XAchse).Fluss := 15;
 
@@ -615,15 +615,15 @@ package body KartenGenerator is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (0, YKoordinate, XKoordinate),
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YKoordinate, XKoordinate),
                                                               Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 0);
 
-            case KartenWert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case KartenWert.Erfolgreich is
+               when False =>
                   exit XAchseSchleife;
 
-               when others =>
+               when True =>
                   if XÄnderung = -1 and YÄnderung = 0 then
                      case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
                         when 0 =>

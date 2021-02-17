@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with SchleifenPruefungen, GebaeudeDatenbank, KartenDatenbank, Karten, VerbesserungenDatenbank, Sichtbarkeit, Anzeige;
+with GebaeudeDatenbank, KartenDatenbank, Karten, VerbesserungenDatenbank, Sichtbarkeit, Anzeige, KartenPruefungen, StadtSuchen;
 
 package body KarteStadt is
 
@@ -95,15 +95,15 @@ package body KarteStadt is
                         Put (Item => " ");
 
                      else
-                        KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition,
-                                                                          Änderung       => (0, YAchsenabstraktion, Umgebung),
-                                                                          ZusatzYAbstand => 0);
+                        KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition,
+                                                                                Änderung       => (0, YAchsenabstraktion, Umgebung),
+                                                                                ZusatzYAbstand => 0);
 
-                        case KartenWert.YAchse is
-                           when GlobaleDatentypen.Kartenfeld'First =>
+                        case KartenWert.Erfolgreich is
+                           when False =>
                               Put (Item => " ");
 
-                           when others =>
+                           when True =>
                               Sichtbarkeit.Sichtbarkeit (InDerStadt  => True,
                                                          Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse),
                                                          RasseExtern => StadtRasseNummer.Rasse);
@@ -227,15 +227,15 @@ package body KarteStadt is
       Geldgewinnung := 0;
       Wissensgewinnung := 0;
 
-      KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition,
-                                                        Änderung       => (0, YAufschlag, XAufschlag),
-                                                        ZusatzYAbstand => 0);
+      KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition,
+                                                              Änderung       => (0, YAufschlag, XAufschlag),
+                                                              ZusatzYAbstand => 0);
 
-      case KartenWert.YAchse is
-         when GlobaleDatentypen.Kartenfeld'First =>
+      case KartenWert.Erfolgreich is
+         when False =>
             YAchse := -10;
          
-         when others =>
+         when True =>
             YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse + YAufschlag;
       end case;
 
@@ -356,10 +356,10 @@ package body KarteStadt is
    procedure Beschreibung (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
-      RasseUndPlatznummer := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+      RasseUndPlatznummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
       case RasseUndPlatznummer.Platznummer is
-         when SchleifenPruefungen.RückgabeWertEinheitNummer =>
+         when StadtSuchen.RückgabeWertStadtNummer =>
             null; -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat
       
          when others =>

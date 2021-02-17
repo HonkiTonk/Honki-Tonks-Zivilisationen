@@ -1,7 +1,8 @@
 pragma SPARK_Mode (On);
 
 with EinheitenDatenbank, KISiedler, KINahkampfLandEinheit, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit, KINahkampfUnterirdisch,
-     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, Sortieren;
+     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, Sortieren, KIDatentypen;
+use KIDatentypen;
 
 package body KI is
 
@@ -13,8 +14,8 @@ package body KI is
          EinheitenSchleife:
          for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
                      
-            if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung /= 0 and GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung /= -10
-              and GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID > 0 and GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00 then
+            if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung /= 0 and GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID > 0
+              and GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00 then
                AKtivitätEinheitAbbrechen (EinheitRasseNummer => (RasseExtern, EinheitNummer));
 
             elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung /= 0 or GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 0 then
@@ -27,11 +28,11 @@ package body KI is
          end loop EinheitenSchleife;
 
          EinheitenBeschäftigt := 0;
-
+         
          KannEineEinheitNochWasMachenSchleife:
          for Platznummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
-            if GlobaleVariablen.EinheitenGebaut (RasseExtern, Platznummer).AktuelleBeschäftigung > -10 and GlobaleVariablen.EinheitenGebaut (RasseExtern, Platznummer).ID > 0
+            if GlobaleVariablen.EinheitenGebaut (RasseExtern, Platznummer).KIBeschäftigt = KIDatentypen.Keine_Aufgabe and GlobaleVariablen.EinheitenGebaut (RasseExtern, Platznummer).ID > 0
               and GlobaleVariablen.EinheitenGebaut (RasseExtern, Platznummer).AktuelleBewegungspunkte > 0.00 then
                exit KannEineEinheitNochWasMachenSchleife;
                

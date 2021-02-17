@@ -26,6 +26,6 @@ private
    Sichtweite : GlobaleDatentypen.Sichtweite := 2;
    Wert : Integer;
 
-   Kartenwert : GlobaleRecords.AchsenKartenfeldRecord;
+   Kartenwert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
 end Sichtbarkeit;

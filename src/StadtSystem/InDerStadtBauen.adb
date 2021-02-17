@@ -140,7 +140,7 @@ package body InDerStadtBauen is
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (12, E)) = "|" then
             exit EinheitenSchleife;
 
-         elsif E > Integer (EinheitenDatenbank.EinheitenListe'Last) then
+         elsif E > Integer (EinheitenDatenbank.EinheitenListeArry'Last (2)) then
             exit EinheitenSchleife;
 
          elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AmWasser = False

@@ -20,6 +20,6 @@ private
 
    Stadtart : GlobaleDatentypen.StadtID;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
 end StadtBauen;

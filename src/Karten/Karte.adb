@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with KarteStadt, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, SchleifenPruefungen;
+with KarteStadt, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, KartenPruefungen, EinheitSuchen, StadtSuchen;
 
 package body Karte is
 
@@ -83,17 +83,17 @@ package body Karte is
          XAchseSchleife:
          for XAchse in -Sichtweite (SichtweiteFestlegen).XAchse .. Sichtweite (SichtweiteFestlegen).XAchse loop
             
-            Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.EAchse,
-                                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.YAchse,
-                                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse),
-                                                              Änderung       => (0, YAchse, XAchse),
-                                                              ZusatzYAbstand => 0);
+            Kartenwert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.EAchse,
+                                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.YAchse,
+                                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse),
+                                                                    Änderung       => (0, YAchse, XAchse),
+                                                                    ZusatzYAbstand => 0);
             
-            case Kartenwert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case Kartenwert.Erfolgreich is
+               when False =>
                   exit XAchseSchleife;
                   
-               when others =>
+               when True =>
                   Sichtbarkeit.Sichtbarkeit (InDerStadt  => False,
                                              Koordinaten => (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse),
                                              RasseExtern => RasseExtern);
@@ -141,10 +141,10 @@ package body Karte is
       case Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Sichtbar (RasseExtern) is
          when True =>
-            RasseUndPlatznummer := SchleifenPruefungen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            RasseUndPlatznummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
             
             case RasseUndPlatznummer.Platznummer is
-               when SchleifenPruefungen.RückgabeWertEinheitNummer =>
+               when EinheitSuchen.RückgabeWertEinheitNummer =>
                   null;
                   
                when others => -- Allgemeine Einheiteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Einheit befindet
@@ -199,10 +199,10 @@ package body Karte is
                   end case;
             end case;
             
-            RasseUndPlatznummer := SchleifenPruefungen.KoordinatenStadtOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            RasseUndPlatznummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
             case RasseUndPlatznummer.Platznummer is
-               when SchleifenPruefungen.RückgabeWertEinheitNummer =>
+               when StadtSuchen.RückgabeWertStadtNummer =>
                   null;
                      
                when others => -- Stadtinformationsaufruf
@@ -433,9 +433,9 @@ package body Karte is
             Put (Item => "Kartenfeldbewertung: " & Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Felderwertung'Wide_Wide_Image);
             Put_Line (Item => "    Aktuelle GrundID: " & Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund'Wide_Wide_Image);
+                      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund'Wide_Wide_Image);
             Put_Line (Item => "Aktuelle Stadtbelegung: " & Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).DurchStadtBelegterGrund'Wide_Wide_Image);
+                      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).DurchStadtBelegterGrund'Wide_Wide_Image);
       end case;
       
    end Information; 

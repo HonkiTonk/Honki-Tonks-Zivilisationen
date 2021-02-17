@@ -5,12 +5,12 @@ use GlobaleDatentypen, KIDatentypen;
 
 package KIBewegung is
    
-   procedure KIBewegung (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Aufgabe : KIDatentypen.Aufgabe) with
+   procedure KIBewegung (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Aufgabe : KIDatentypen.Aufgabe_Enum) with
      Pre => EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen;
 
-   procedure NeuesZielErmitteln (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Richtung : in KIDatentypen.Richtung) with
+   procedure NeuesZielErmittelnGefahr (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Richtung : in KIDatentypen.Richtung_Enum) with
      Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (Richtung = KIDatentypen.Norden or Richtung = Nord_Ost or Richtung = Osten or Richtung = Süd_Ost or Richtung = Süden or Richtung = Süd_West or Richtung = Westen or Richtung = Nord_West));
+             and (Richtung = KIDatentypen.Norden or Richtung = Nord_Ost or Richtung = Osten or Richtung = Süd_Ost or Richtung = Süden or Richtung = Süd_West or Richtung = Westen or Richtung = Nord_West or Richtung = Beliebig));
 
 private
 
@@ -18,8 +18,10 @@ private
    ErfolgreichBewegt : Boolean;
    
    Bewegung : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
+
+   ZielKoordinaten : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
    
-   Kartenwert : GlobaleRecords.AchsenKartenfeldRecord;
+   Kartenwert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
    procedure BewegungBeliebig (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
      Pre => EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen;

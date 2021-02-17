@@ -14,7 +14,7 @@ private
 
    EinheitTyp : GlobaleDatentypen.EinheitenTyp;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
    EinheitRassePlatznummer : GlobaleRecords.RassePlatznummerRecord;
 

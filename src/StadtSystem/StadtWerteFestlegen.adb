@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with SchleifenPruefungen, Karten;
+with Karten, KartenPruefungen;
 
 package body StadtWerteFestlegen is
 
@@ -22,19 +22,19 @@ package body StadtWerteFestlegen is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
-                                                              Änderung       => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstand => 0);
             
-            case KartenWert.YAchse is -- Der Wert ist nicht nur dazu da um unmögliche Positionen auszuschließen, sondern auch um die entsprechende XPosition zu haben!
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case KartenWert.Erfolgreich is -- Der Wert ist nicht nur dazu da um unmögliche Positionen auszuschließen, sondern auch um die entsprechende XPosition zu haben!
+               when False =>
                   exit XAchseSchleife;
                   
-               when others =>
+               when True =>
                   if (YÄnderung < -GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße or YÄnderung > GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße
                       or XÄnderung < -GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße or XÄnderung > GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße)
                     and Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund 
-                      = GlobaleDatentypen.BelegterGrund (StadtRasseNummer.Rasse) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtRasseNummer.Platznummer) then
+                    = GlobaleDatentypen.BelegterGrund (StadtRasseNummer.Rasse) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtRasseNummer.Platznummer) then
                      Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund := 0;
 
                   elsif YÄnderung < -GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße or YÄnderung > GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße
@@ -74,14 +74,14 @@ package body StadtWerteFestlegen is
                         null;
                   
                      when others =>
-                        KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
-                                                                          Änderung       => (0, YPosition, XPosition),
-                                                                          ZusatzYAbstand => 0);
-                        case KartenWert.YAchse is
-                           when GlobaleDatentypen.Kartenfeld'First =>
+                        KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
+                                                                                Änderung       => (0, YPosition, XPosition),
+                                                                                ZusatzYAbstand => 0);
+                        case KartenWert.Erfolgreich is
+                           when False =>
                               exit XAchseSchleife;
                               
-                           when others =>
+                           when True =>
                               if Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
                                 = GlobaleDatentypen.BelegterGrund (StadtRasseNummer.Rasse) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtRasseNummer.Platznummer) then
                                  GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).UmgebungBewirtschaftung (YPosition, XPosition) := True;
@@ -125,15 +125,15 @@ package body StadtWerteFestlegen is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
-                                                              Änderung       => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstand => 0);
             
-            case KartenWert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case KartenWert.Erfolgreich is
+               when False =>
                   exit XAchseSchleife;
                   
-               when others =>
+               when True =>
                   if Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
                     = GlobaleDatentypen.BelegterGrund (StadtRasseNummer.Rasse) * StadtWerteFestlegen.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtRasseNummer.Platznummer) then
                      Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund := 0;

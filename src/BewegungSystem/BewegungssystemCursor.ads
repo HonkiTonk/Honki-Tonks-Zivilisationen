@@ -18,7 +18,7 @@ private
    Position : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    Änderung : GlobaleRecords.AchsenKartenfeldRecord;
-   KartenWert : GlobaleRecords.AchsenKartenfeldRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
    
    procedure BewegungCursorBerechnen (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => ÄnderungExtern.EAchse /= 0 or ÄnderungExtern.YAchse /= 0 or ÄnderungExtern.XAchse /= 0;

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, SchleifenPruefungen;
+with KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, KartenPruefungen;
 
 package body Sichtbarkeit is
 
@@ -61,15 +61,15 @@ package body Sichtbarkeit is
          XÄnderungEinheitenSchleife:
          for XÄnderung in -Sichtweite .. Sichtweite loop
                
-            Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
+            Kartenwert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
                                                               Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 0);
 
-            case Kartenwert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case Kartenwert.Erfolgreich is
+               when False =>
                   exit XÄnderungEinheitenSchleife;
                      
-               when others =>
+               when True =>
                   Karten.Karten (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (EinheitRasseNummer.Rasse) := True;
             end case;
             
@@ -95,15 +95,15 @@ package body Sichtbarkeit is
          XÄnderungStadtSchleife:
          for XÄnderung in -Sichtweite .. Sichtweite loop
 
-            Kartenwert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
+            Kartenwert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
                                                               Änderung       => (0, YÄnderung, XÄnderung),
                                                               ZusatzYAbstand => 0);
                
-            case Kartenwert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case Kartenwert.Erfolgreich is
+               when False =>
                   exit XÄnderungStadtSchleife;
                      
-               when others =>
+               when True =>
                   Karten.Karten (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (StadtRasseNummer.Rasse) := True;
             end case;
             

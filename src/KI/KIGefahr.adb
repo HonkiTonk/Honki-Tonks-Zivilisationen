@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with EinheitenDatenbank, SchleifenPruefungen, Umwandlung, KIPruefungen, KIVariablen;
+with EinheitenDatenbank, KIPruefungen, KIVariablen, KartenPruefungen, EinheitSuchen;
 
 package body KIGefahr is
 
@@ -35,21 +35,21 @@ package body KIGefahr is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
-                                                              Änderung       => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstand => 0);
 
-            case KartenWert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case KartenWert.Erfolgreich is
+               when False =>
                   exit XAchseSchleife;
                   
-               when others =>
+               when True =>
                   if YÄnderung = 0 and XÄnderung = 0 then
                      null;
                      
                   else
-                     EinheitRassePlatznummer := SchleifenPruefungen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                                                                Koordinaten => Umwandlung.KartenfeldNachKartenfeldPositiv (Koordinaten => KartenWert));
+                     EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern => EinheitRasseNummer.Rasse,
+                                                                                                          Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
                      case EinheitRassePlatznummer.Rasse is
                         when GlobaleDatentypen.RassenMitNullwert'First =>
@@ -99,21 +99,21 @@ package body KIGefahr is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
-                                                              Änderung       => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstand => 0);
 
-            case KartenWert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case KartenWert.Erfolgreich is
+               when False =>
                   exit XAchseSchleife;
                   
-               when others =>
+               when True =>
                   if YÄnderung = 0 and XÄnderung = 0 then
                      null;
                      
                   else
-                     EinheitRassePlatznummer := SchleifenPruefungen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                                                                Koordinaten => Umwandlung.KartenfeldNachKartenfeldPositiv (Koordinaten => KartenWert));
+                     EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern => EinheitRasseNummer.Rasse,
+                                                                                                          Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
                      case EinheitRassePlatznummer.Rasse is
                         when GlobaleDatentypen.RassenMitNullwert'First =>
@@ -126,7 +126,7 @@ package body KIGefahr is
                            elsif GlobaleVariablen.Diplomatie (EinheitRasseNummer.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
                              and KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummer => EinheitRasseNummer,
                                                                          EinheitZweiRasseNummer => EinheitRassePlatznummer) <= 1 then
-                             return True;
+                              return True;
                               
                            else
                               null;
@@ -152,21 +152,21 @@ package body KIGefahr is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
-            KartenWert := SchleifenPruefungen.KartenUmgebung (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
-                                                              Änderung       => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstand => 0);
 
-            case KartenWert.YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case KartenWert.Erfolgreich is
+               when False =>
                   exit XAchseSchleife;
                   
-               when others =>
+               when True =>
                   if YÄnderung = 0 and XÄnderung = 0 then
                      null;
                      
                   else
-                     EinheitRassePlatznummer := SchleifenPruefungen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                                                                Koordinaten => Umwandlung.KartenfeldNachKartenfeldPositiv (Koordinaten => KartenWert));
+                     EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern => EinheitRasseNummer.Rasse,
+                                                                                                          Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
                      case EinheitRassePlatznummer.Rasse is
                         when GlobaleDatentypen.RassenMitNullwert'First =>
@@ -179,7 +179,7 @@ package body KIGefahr is
                            elsif GlobaleVariablen.Diplomatie (EinheitRasseNummer.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
                              and KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummer => EinheitRasseNummer,
                                                                          EinheitZweiRasseNummer => EinheitRassePlatznummer) <= 1 then
-                             return True;
+                              return True;
                               
                            else
                               null;

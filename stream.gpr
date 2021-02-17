@@ -9,8 +9,12 @@ project Stream is
    end Naming;
 
    package Compiler is
-      for Switches ("ada") use ("-g", "-gnatwa", "-gnatW8");
+      for Switches ("ada") use ("-gnatVa", "-gnatwa", "-gnatyAOekp", "-g", "-gnatW8", "-gnatf", "-gnat12", "-fstack-check", "-gnato");
    end Compiler;
+
+   package Builder is
+      for Switches ("ada") use ("-k", "-j4", "-s");
+   end Builder;
 
 end Stream;
 

@@ -10,7 +10,7 @@ package WerteFestlegen is
 
 private
    
-   type KartenwertArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleRecords.AchsenKartenfeldRecord;
+   type KartenwertArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
    Kartenwert : KartenwertArray;
 
    procedure KartenfelderBewertenKleineSchleife (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) with

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with SchleifenPruefungen, KartenDatenbank, VerbesserungenDatenbank;
+with KartenDatenbank, VerbesserungenDatenbank, KartenPruefungen;
 
 package body WerteFestlegen is
 
@@ -8,25 +8,25 @@ package body WerteFestlegen is
    begin
       
       case Generierung is
-         when False =>
+         when False => -- Funktioniert scheinbar nicht, herausfinden warum.
             YAchseÄnderungSchleife:
             for YAchseÄnderung in Koordinaten.YAchse - 3 .. Koordinaten.YAchse + 3 loop
                XAchseÄnderungSchleife:
                for XAchseÄnderung in Koordinaten.XAchse - 3 .. Koordinaten.XAchse + 3 loop
 
-                  Kartenwert (Koordinaten.EAchse) := SchleifenPruefungen.KartenUmgebung (Koordinaten    => Koordinaten,
-                                                                                         Änderung       => (0, YAchseÄnderung, XAchseÄnderung),
-                                                                                         ZusatzYAbstand => 0);
+                  Kartenwert (Koordinaten.EAchse) := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => Koordinaten,
+                                                                                               Änderung       => (0, YAchseÄnderung, XAchseÄnderung),
+                                                                                               ZusatzYAbstand => 0);
 
-                  case Kartenwert (Koordinaten.EAchse).YAchse is
-                     when GlobaleDatentypen.Kartenfeld'First =>
+                  case Kartenwert (Koordinaten.EAchse).Erfolgreich is
+                     when False =>
                         exit XAchseÄnderungSchleife;
                         
-                     when others =>
+                     when True =>
                         Karten.Karten (Kartenwert (Koordinaten.EAchse).EAchse, Kartenwert (Koordinaten.EAchse).YAchse, Kartenwert (Koordinaten.EAchse).XAchse).Felderwertung := 0;
-                        KartenfelderBewertenKleineSchleife (Koordinaten => (GlobaleDatentypen.EbeneVorhanden (Kartenwert (Koordinaten.EAchse).EAchse),
-                                                                            GlobaleDatentypen.KartenfeldPositiv (Kartenwert (Koordinaten.EAchse).YAchse),
-                                                                            GlobaleDatentypen.KartenfeldPositiv (Kartenwert (Koordinaten.EAchse).XAchse)));
+                        KartenfelderBewertenKleineSchleife (Koordinaten => (Kartenwert (Koordinaten.EAchse).EAchse,
+                                                                            Kartenwert (Koordinaten.EAchse).YAchse,
+                                                                            Kartenwert (Koordinaten.EAchse).XAchse));
                   end case;
                                                             
                end loop XAchseÄnderungSchleife;
@@ -48,15 +48,15 @@ package body WerteFestlegen is
          BewertungXÄnderungSchleife:
          for BewertungXÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
                      
-            Kartenwert (Koordinaten.EAchse) := SchleifenPruefungen.KartenUmgebung (Koordinaten    => Koordinaten,
-                                                                                   Änderung       => (0, BewertungYÄnderung, BewertungXÄnderung),
-                                                                                   ZusatzYAbstand => 0);
+            Kartenwert (Koordinaten.EAchse) := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => Koordinaten,
+                                                                                         Änderung       => (0, BewertungYÄnderung, BewertungXÄnderung),
+                                                                                         ZusatzYAbstand => 0);
             
-            case Kartenwert (Koordinaten.EAchse).YAchse is
-               when GlobaleDatentypen.Kartenfeld'First =>
+            case Kartenwert (Koordinaten.EAchse).Erfolgreich is
+               when False =>
                   exit BewertungXÄnderungSchleife;
                   
-               when others =>                  
+               when True =>                  
                   if abs (BewertungYÄnderung) = 2 or abs (BewertungXÄnderung) = 2 then
                      BewertungSelbst (Koordinaten         => Koordinaten,
                                       YAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).YAchse,

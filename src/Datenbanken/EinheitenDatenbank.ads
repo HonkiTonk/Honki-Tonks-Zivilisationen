@@ -16,7 +16,7 @@ package EinheitenDatenbank is
 
                                                                ('L',    3, 25, 20, 0,    1, 5, 3.00,    30, 3, 1, 3, 1), -- Steinbeilkämpfer
                                                                ('L',    3, 25, 20, 1,    1, 5, 1.00,    30, 3, 1, 3, 1), -- Bogenschütze
-                                                    
+                                                               
                                                                ('L',    4, 50, 5, 0,     1, 3, 3.00,    30, 3, 3, 8, 1), -- Kanone
 
                                                                ('S',    5, 20, 10, 0,    2, 2, 1.00,    30, 3, 1, 1, 1), -- Segelschiff
@@ -24,7 +24,7 @@ package EinheitenDatenbank is
                                                     
                                                                ('F',    7, 100, 10, 0,   3, 8, 1.00,    30, 3, 1, 10, 1), -- Jäger
                                                                ('F',    8, 100, 10, 0,   3, 8, 1.00,    30, 3, 1, 10, 1), -- Bomber
-                                                    
+                                                               
                                                                others => LeererWertEinheitListe));
 
    procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID);

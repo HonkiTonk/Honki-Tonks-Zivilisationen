@@ -30,7 +30,7 @@ private
 
    PositionWert : GlobaleRecords.RassePlatznummerRecord;
    GezogeneWerte : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWert : GlobaleRecords.AchsenKartenfeldRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
    PlatzBelegt : GlobaleRecords.RassePlatznummerRecord;
 
    type KoordinatenArray is array (1 .. 2) of GlobaleRecords.AchsenKartenfeldRecord;

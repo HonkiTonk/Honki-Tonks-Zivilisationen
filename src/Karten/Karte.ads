@@ -20,7 +20,7 @@ private
    SichtweiteFestlegen : Integer;
    BewegungsfeldFestlegen : Integer;
 
-   Kartenwert : GlobaleRecords.AchsenKartenfeldRecord;
+   Kartenwert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
    RasseUndPlatznummer : GlobaleRecords.RassePlatznummerRecord;
 

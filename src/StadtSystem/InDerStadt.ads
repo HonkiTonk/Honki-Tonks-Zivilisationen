@@ -22,7 +22,7 @@ private
    RelativeCursorPositionY : GlobaleDatentypen.Kartenfeld;
    RelativeCursorPositionX : GlobaleDatentypen.Kartenfeld;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
    procedure StadtProduktionPrüfenBerechnung (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
      Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;

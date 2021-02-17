@@ -38,7 +38,7 @@ private
    BewegungspunkteModifikator : Float;
 
    Änderung : GlobaleRecords.AchsenKartenfeldRecord;
-   KartenWert : GlobaleRecords.AchsenKartenfeldRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
    GegnerWert : GlobaleRecords.RassePlatznummerRecord;
    GegnerEinheitWert : GlobaleRecords.RassePlatznummerRecord;
    GegnerStadtWert : GlobaleRecords.RassePlatznummerRecord;

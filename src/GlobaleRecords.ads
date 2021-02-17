@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, KIDatentypen;
 
 package GlobaleRecords is
    
@@ -16,11 +16,17 @@ package GlobaleRecords is
    
    
    
-   type AchsenKartenfeldPositivRecord is record
+   type AchsenKartenfeldPositivRecord is tagged record
       
       EAchse : GlobaleDatentypen.EbeneVorhanden;
       YAchse : GlobaleDatentypen.KartenfeldPositiv;
       XAchse : GlobaleDatentypen.KartenfeldPositiv;
+      
+   end record;
+
+   type AchsenKartenfeldPositivErfolgreichRecord is new AchsenKartenfeldPositivRecord with record
+      
+      Erfolgreich : Boolean;
       
    end record;
    
@@ -64,8 +70,8 @@ package GlobaleRecords is
 
    type EinheitenGebautRecord is record
       
-      -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen), -10 = Die KI hat irgendwas gemacht und es soll nicht geändert werden, < 0 = KI Einheit die irgendetwas erledigt hat
-      AktuelleBeschäftigung : Integer;
+      -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen)
+      AktuelleBeschäftigung : Natural;
       AktuelleBeschäftigung2 : Natural;
       
       ID : GlobaleDatentypen.KartenverbesserungEinheitenID;
@@ -80,7 +86,7 @@ package GlobaleRecords is
       AktuelleBeschäftigungszeit2 : Natural;
 
       KIZielKoordinaten : AchsenKartenfeldPositivRecord;
-      -- KIBeschäftigt : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
+      KIBeschäftigt : KIDatentypen.Aufgabe_Enum;
       -- Hier nochwas mit letzten Koordinaten einfügen?
       
    end record;
