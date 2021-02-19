@@ -134,11 +134,15 @@ package body Wachstum is
            >= GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse,
                                                GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 1_000)).PreisRessourcen then
             GebaeudeDatenbank.GebäudeProduktionBeenden (StadtRasseNummer => StadtRasseNummer,
-                                                        ID               => GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 1_000));
-            Anzeige.EinfacheAnzeige (Mit_Line => True,
-                                     Datei    => 1,
-                                     Eintrag  => 1);
-
+                                                         ID               => GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 1_000));
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                        ÜberschriftZeile      => 0,
+                                        TextDatei             => 9,
+                                        ErsteZeile            => 29,
+                                        LetzteZeile           => 29,
+                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineAmEnde     => 0);
+            
          else
             null;
          end if;
@@ -153,18 +157,22 @@ package body Wachstum is
             EinheitenDatenbank.EinheitErzeugen (StadtRasseNummer => StadtRasseNummer,
                                                 ID                  => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 10_000);
             if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt - 10_000 > 0 then
-               Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                   AktuelleAuswahl    => 0,
-                                   FrageDatei         => 0,
-                                   FrageZeile         => 0,
-                                   TextDatei          => 8,
-                                   ErsteZeile         => 11,
-                                   LetzteZeile        => 11);
-                               
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                           ÜberschriftZeile      => 0,
+                                           TextDatei             => 8,
+                                           ErsteZeile            => 11,
+                                           LetzteZeile           => 11,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);
+               
             else
-               Anzeige.EinfacheAnzeige (Mit_Line => True,
-                                        Datei    => 1,
-                                        Eintrag  => 1);
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                           ÜberschriftZeile      => 0,
+                                           TextDatei             => 9,
+                                           ErsteZeile            => 29,
+                                           LetzteZeile           => 29,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);
             end if;
 
          else

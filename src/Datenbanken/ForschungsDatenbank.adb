@@ -12,22 +12,22 @@ package body ForschungsDatenbank is
       
       case ID is
          when 0 =>
-            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                AktuelleAuswahl    => 0,
-                                FrageDatei         => 0,
-                                FrageZeile         => 0,
-                                TextDatei          => 9,
-                                ErsteZeile         => 28,
-                                LetzteZeile        => 28);
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                        ÜberschriftZeile      => 0,
+                                        TextDatei             => 9,
+                                        ErsteZeile            => 28,
+                                        LetzteZeile           => 28,
+                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineAmEnde     => 0);
             
          when others =>
-            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                AktuelleAuswahl    => 0,
-                                FrageDatei         => 0,
-                                FrageZeile         => 0,
-                                TextDatei          => 18,
-                                ErsteZeile         => ID,
-                                LetzteZeile        => ID);
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                        ÜberschriftZeile      => 0,
+                                        TextDatei             => 18,
+                                        ErsteZeile            => Positive (ID),
+                                        LetzteZeile           => Positive (ID),
+                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineAmEnde     => 0);
       end case;
       
    end Beschreibung;

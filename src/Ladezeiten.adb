@@ -11,14 +11,14 @@ package body Ladezeiten is
    begin
 
       Gesamtzeit := 0.00;
-
-      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                          AktuelleAuswahl    => 0,
-                          FrageDatei         => 0,
-                          FrageZeile         => 0,
-                          TextDatei          => 11,
-                          ErsteZeile         => WelcheZeit,
-                          LetzteZeile        => WelcheZeit);
+      
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0, -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Weiter unten! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 11,
+                                  ErsteZeile            => WelcheZeit,
+                                  LetzteZeile           => WelcheZeit,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
       
       case WelcheZeit is
          when 1 =>
@@ -59,13 +59,13 @@ package body Ladezeiten is
    procedure Speichern (WelcheZeit : in Positive) is
    begin
       
-      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                          AktuelleAuswahl    => 0,
-                          FrageDatei         => 0,
-                          FrageZeile         => 0,
-                          TextDatei          => 11,
-                          ErsteZeile         => WelcheZeit + AufschlagSpeichern,
-                          LetzteZeile        => WelcheZeit + AufschlagSpeichern);
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 11,
+                                  ErsteZeile            => WelcheZeit + AufschlagSpeichern,
+                                  LetzteZeile           => WelcheZeit + AufschlagSpeichern,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
 
       case WelcheZeit is
          when others =>
@@ -83,13 +83,13 @@ package body Ladezeiten is
    procedure Laden (WelcheZeit : in Positive) is
    begin
       
-      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                          AktuelleAuswahl    => 0,
-                          FrageDatei         => 0,
-                          FrageZeile         => 0,
-                          TextDatei          => 11,
-                          ErsteZeile         => WelcheZeit + AufschlagLaden,
-                          LetzteZeile        => WelcheZeit + AufschlagLaden);
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 11,
+                                  ErsteZeile            => WelcheZeit + AufschlagLaden,
+                                  LetzteZeile           => WelcheZeit + AufschlagLaden,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
 
       case WelcheZeit is
          when others =>
@@ -107,13 +107,13 @@ package body Ladezeiten is
    procedure SpielStart (WelcheZeit : in Positive) is
    begin
       
-      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                          AktuelleAuswahl    => 0,
-                          FrageDatei         => 0,
-                          FrageZeile         => 0,
-                          TextDatei          => 11,
-                          ErsteZeile         => WelcheZeit + AufschlagSpielstart,
-                          LetzteZeile        => WelcheZeit + AufschlagSpielstart);
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 11,
+                                  ErsteZeile            => WelcheZeit + AufschlagSpielstart,
+                                  LetzteZeile           => WelcheZeit + AufschlagSpielstart,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
 
       case WelcheZeit is
          when others =>

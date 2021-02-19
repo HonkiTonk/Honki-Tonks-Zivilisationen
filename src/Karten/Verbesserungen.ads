@@ -19,6 +19,8 @@ private
    Straßenwert : Integer;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+
+   procedure VerbesserungFehler (WelcherFehler : in Positive);
    
    procedure VerbesserungeFestgelegt (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Befehl : in Befehle_Enum) with
      Pre => EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen;

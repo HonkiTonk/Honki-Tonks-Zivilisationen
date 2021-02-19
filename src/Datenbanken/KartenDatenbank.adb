@@ -1,8 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO;
-use Ada.Wide_Wide_Text_IO;
-
 with Anzeige;
 
 package body KartenDatenbank is
@@ -15,14 +12,13 @@ package body KartenDatenbank is
             null;
             
          when others =>
-            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                AktuelleAuswahl    => 0,
-                                FrageDatei         => 0,
-                                FrageZeile         => 0,
-                                TextDatei          => 6,
-                                ErsteZeile         => Integer (ID),
-                                LetzteZeile        => Integer (ID));
-            Put (Item => "    ");
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                        ÜberschriftZeile      => 0,
+                                        TextDatei             => 6,
+                                        ErsteZeile            => Positive (ID),
+                                        LetzteZeile           => Positive (ID),
+                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineAmEnde     => 0);
       end case;
       
    end Beschreibung;

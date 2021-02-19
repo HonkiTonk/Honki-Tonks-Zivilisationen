@@ -13,7 +13,7 @@ package body Einlesen is
       Ladezeiten.SpielStartzeiten (1, 1) := Clock;
       
       Schreiben.SchreibenStartAufruf;
-      Erfolgreich := EinlesenSprache;
+      Erfolgreich := True; -- EinlesenSprache;
       
       case Erfolgreich is
          when True =>

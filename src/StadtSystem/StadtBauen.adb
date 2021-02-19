@@ -21,13 +21,14 @@ package body StadtBauen is
                return False;
                
             else
-               Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                   AktuelleAuswahl    => 1,
-                                   FrageDatei         => 0,
-                                   FrageZeile         => 0,
-                                   TextDatei          => 8,
-                                   ErsteZeile         => 6,
-                                   LetzteZeile        => 6);
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                           ÜberschriftZeile      => 0,
+                                           TextDatei             => 8,
+                                           ErsteZeile            => 6,
+                                           LetzteZeile           => 6,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);
+               delay 1.00;
                return False;
             end if;
       end case;
@@ -39,13 +40,15 @@ package body StadtBauen is
             null;
             
          elsif StadtNummer = GlobaleVariablen.StadtGebautArray'Last (2) and GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, StadtNummer).ID /= 0 then
-            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                AktuelleAuswahl    => 1,
-                                FrageDatei         => 0,
-                                FrageZeile         => 0,
-                                TextDatei          => 8,
-                                ErsteZeile         => 7,
-                                LetzteZeile        => 7);
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                        ÜberschriftZeile      => 0,
+                                        TextDatei             => 8,
+                                        ErsteZeile            => 7,
+                                        LetzteZeile           => 7,
+                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineAmEnde     => 0);
+            delay 1.00;
+            return False;
             
          else
             case StadtNummer is

@@ -12,13 +12,13 @@ package body Optionen is
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
-      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                          AktuelleAuswahl    => 0,
-                          FrageDatei         => 0,
-                          FrageZeile         => 0,
-                          TextDatei          => 9,
-                          ErsteZeile         => 41,
-                          LetzteZeile        => 41);
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 9,
+                                  ErsteZeile            => 41,
+                                  LetzteZeile           => 41,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
       
       Wert := Eingabe.GanzeZahl (WelcheDatei   => 0,
                                  WelcherText   => 0,

@@ -28,14 +28,15 @@ package body Auswahl is
       AuswahlSchleife:
       loop         
 
+         -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
          Put_Line (Item => "Sprache auswählen:");
-         Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                             AktuelleAuswahl    => 0,
-                             FrageDatei         => 0,
-                             FrageZeile         => 0,
-                             TextDatei          => 0,
-                             ErsteZeile         => 0,
-                             LetzteZeile        => 0);        
+         Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                     ÜberschriftZeile      => 0,
+                                     TextDatei             => 0,
+                                     ErsteZeile            => 0,
+                                     LetzteZeile           => 0,
+                                     MitNew_LineMittendrin => 0,
+                                     MitNew_LineAmEnde     => 0);        
          
          Get_Immediate (Item => Taste);
          
@@ -83,13 +84,13 @@ package body Auswahl is
             AktuelleAuswahl := ErsteZeile;
                
          when False => -- Wenn nur Text angezeigt werden soll
-            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => AuswahlOderAnzeige,
-                                AktuelleAuswahl    => AktuelleAuswahl,
-                                FrageDatei         => FrageDatei,
-                                FrageZeile         => FrageZeile,
-                                TextDatei          => TextDatei,
-                                ErsteZeile         => ErsteZeile,
-                                LetzteZeile        => LetzteZeile);
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => FrageDatei,
+                                        ÜberschriftZeile      => FrageZeile,
+                                        TextDatei             => TextDatei,
+                                        ErsteZeile            => ErsteZeile,
+                                        LetzteZeile           => LetzteZeile,
+                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineAmEnde     => 0);
             return 1;
       end case;
 
@@ -109,13 +110,13 @@ package body Auswahl is
                null;
             
             when others => -- Wenn Text benötigt wird hierüber ausgegeben
-               Anzeige.AnzeigeNeu (AuswahlOderAnzeige => AuswahlOderAnzeige,
-                                   AktuelleAuswahl    => AktuelleAuswahl,
-                                   FrageDatei         => FrageDatei,
-                                   FrageZeile         => FrageZeile,
-                                   TextDatei          => TextDatei,
-                                   ErsteZeile         => ErsteZeile,
-                                   LetzteZeile        => LetzteZeile);
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => FrageDatei,
+                                           ÜberschriftZeile      => FrageZeile,
+                                           TextDatei             => TextDatei,
+                                           ErsteZeile            => ErsteZeile,
+                                           LetzteZeile           => LetzteZeile,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);
          end case;
 
          Get_Immediate (Item => Taste);

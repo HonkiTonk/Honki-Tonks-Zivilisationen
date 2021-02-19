@@ -38,26 +38,14 @@ package body Verbesserungen is
         and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungStraße <= 19 then
-         Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                             AktuelleAuswahl    => 1,
-                             FrageDatei         => 0,
-                             FrageZeile         => 0,
-                             TextDatei          => 8,
-                             ErsteZeile         => 4,
-                             LetzteZeile        => 4);
+         VerbesserungFehler (WelcherFehler => 4);
          return;
 
       elsif Befehl = Mine_Bauen
         and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 21 then
-         Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                             AktuelleAuswahl    => 1,
-                             FrageDatei         => 0,
-                             FrageZeile         => 0,
-                             TextDatei          => 8,
-                             ErsteZeile         => 4,
-                             LetzteZeile        => 4);
+         VerbesserungFehler (WelcherFehler => 4);
          return;
 
       elsif Befehl = Mine_Bauen
@@ -79,25 +67,13 @@ package body Verbesserungen is
       elsif Befehl = Farm_Bauen and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
                                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 20 then
-         Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                             AktuelleAuswahl    => 1,
-                             FrageDatei         => 0,
-                             FrageZeile         => 0,
-                             TextDatei          => 8,
-                             ErsteZeile         => 4,
-                             LetzteZeile        => 4);
+         VerbesserungFehler (WelcherFehler => 4);
          return;
 
       elsif Befehl = Farm_Bauen and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
                                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund = 1 then
-         Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                             AktuelleAuswahl    => 1,
-                             FrageDatei         => 0,
-                             FrageZeile         => 0,
-                             TextDatei          => 8,
-                             ErsteZeile         => 1,
-                             LetzteZeile        => 1);
+         VerbesserungFehler (WelcherFehler => 1);
          return;
 
       elsif Befehl = Farm_Bauen and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
@@ -118,13 +94,7 @@ package body Verbesserungen is
       elsif Befehl = Festung_Bauen and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
                                                       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
                                                       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 22 then
-         Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                             AktuelleAuswahl    => 1,
-                             FrageDatei         => 0,
-                             FrageZeile         => 0,
-                             TextDatei          => 8,
-                             ErsteZeile         => 4,
-                             LetzteZeile        => 4);
+         VerbesserungFehler (WelcherFehler => 4);
          return;
 
       elsif Befehl = Festung_Bauen and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
@@ -184,13 +154,7 @@ package body Verbesserungen is
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 6;
                
                when others =>
-                  Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                      AktuelleAuswahl    => 1,
-                                      FrageDatei         => 0,
-                                      FrageZeile         => 0,
-                                      TextDatei          => 8,
-                                      ErsteZeile         => 1,
-                                      LetzteZeile        => 1);
+                  VerbesserungFehler (WelcherFehler => 1);
             end case;
                               
          when Mine_Bauen => -- Tiefengrabung
@@ -212,13 +176,7 @@ package body Verbesserungen is
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeitNachfolger := 3;
                
                when others =>
-                  Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                      AktuelleAuswahl    => 1,
-                                      FrageDatei         => 0,
-                                      FrageZeile         => 0,
-                                      TextDatei          => 8,
-                                      ErsteZeile         => 1,
-                                      LetzteZeile        => 1);
+                  VerbesserungFehler (WelcherFehler => 1);
             end case;
             
          when Farm_Bauen => -- Farm bauen
@@ -240,13 +198,7 @@ package body Verbesserungen is
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeitNachfolger := 3;
                
                when others =>
-                  Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                      AktuelleAuswahl    => 1,
-                                      FrageDatei         => 0,
-                                      FrageZeile         => 0,
-                                      TextDatei          => 8,
-                                      ErsteZeile         => 1,
-                                      LetzteZeile        => 1);
+                  VerbesserungFehler (WelcherFehler => 1);
             end case;
             
          when Festung_Bauen => -- Festung bauen
@@ -262,13 +214,7 @@ package body Verbesserungen is
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 5;
                
                when others =>
-                  Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                      AktuelleAuswahl    => 1,
-                                      FrageDatei         => 0,
-                                      FrageZeile         => 0,
-                                      TextDatei          => 8,
-                                      ErsteZeile         => 1,
-                                      LetzteZeile        => 1);
+                  VerbesserungFehler (WelcherFehler => 1);
             end case;
             
          when Wald_Aufforsten => -- Wald aufforsten
@@ -286,13 +232,7 @@ package body Verbesserungen is
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeitNachfolger := 3;
                
                when others =>
-                  Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                      AktuelleAuswahl    => 1,
-                                      FrageDatei         => 0,
-                                      FrageZeile         => 0,
-                                      TextDatei          => 8,
-                                      ErsteZeile         => 1,
-                                      LetzteZeile        => 1);
+                  VerbesserungFehler (WelcherFehler => 1);
             end case;
 
          when Roden_Trockenlegen => -- Roden-Trockenlegen
@@ -304,25 +244,13 @@ package body Verbesserungen is
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
               
                when others =>
-                  Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                      AktuelleAuswahl    => 1,
-                                      FrageDatei         => 0,
-                                      FrageZeile         => 0,
-                                      TextDatei          => 8,
-                                      ErsteZeile         => 2,
-                                      LetzteZeile        => 2);
+                  VerbesserungFehler (WelcherFehler => 2);
             end case;
             
          when Heilen => -- Heilen
             if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleLebenspunkte
               = EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).MaximaleLebenspunkte then
-               Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                   AktuelleAuswahl    => 1,
-                                   FrageDatei         => 0,
-                                   FrageZeile         => 0,
-                                   TextDatei          => 8,
-                                   ErsteZeile         => 5,
-                                   LetzteZeile        => 5);
+               VerbesserungFehler (WelcherFehler => 5);
                
             else
                case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
@@ -332,13 +260,7 @@ package body Verbesserungen is
                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                
                   when others =>
-                     Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                         AktuelleAuswahl    => 1,
-                                         FrageDatei         => 0,
-                                         FrageZeile         => 0,
-                                         TextDatei          => 8,
-                                         ErsteZeile         => 2,
-                                         LetzteZeile        => 2);
+                     VerbesserungFehler (WelcherFehler => 2);
                end case;
             end if;
 
@@ -350,13 +272,7 @@ package body Verbesserungen is
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                
                when others =>
-                  Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                      AktuelleAuswahl    => 1,
-                                      FrageDatei         => 0,
-                                      FrageZeile         => 0,
-                                      TextDatei          => 8,
-                                      ErsteZeile         => 2,
-                                      LetzteZeile        => 2);
+                  VerbesserungFehler (WelcherFehler => 2);
             end case;
 
          when Einheit_Auflösen => -- Einheit auflösen
@@ -390,6 +306,22 @@ package body Verbesserungen is
       end case;
             
    end VerbesserungeFestgelegt;
+   
+
+
+   procedure VerbesserungFehler (WelcherFehler : in Positive) is
+   begin
+      
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 8,
+                                  ErsteZeile            => WelcherFehler,
+                                  LetzteZeile           => WelcherFehler,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
+      delay 1.00;
+      
+   end VerbesserungFehler;
    
 
 

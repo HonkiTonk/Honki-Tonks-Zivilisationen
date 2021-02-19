@@ -251,9 +251,13 @@ package body KarteStadt is
          
       else
          if Karten.Karten (0, YAchse, XAchse).Hügel = True and Karten.Karten (0, YAchse, XAchse).Grund /= 6 then
-            Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                     Datei    => 3,
-                                     Eintrag  => 1);
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                        ÜberschriftZeile      => 0,
+                                        TextDatei             => 6,
+                                        ErsteZeile            => 34,
+                                        LetzteZeile           => 34,
+                                        MitNew_LineMittendrin => 1_000,
+                                        MitNew_LineAmEnde     => 0);
             KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
 
             Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
@@ -328,24 +332,40 @@ package body KarteStadt is
             
          New_Line;
          
-         Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                  Datei    => 3,
-                                  Eintrag  => 2);
+         Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                     ÜberschriftZeile      => 0,
+                                     TextDatei             => 9,
+                                     ErsteZeile            => 20,
+                                     LetzteZeile           => 20,
+                                     MitNew_LineMittendrin => 0,
+                                     MitNew_LineAmEnde     => 0);
          Put_Line (Item => Nahrungsgewinnung'Wide_Wide_Image);
          
-         Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                  Datei    => 3,
-                                  Eintrag  => 3);
-         Put (Item => Ressourcengewinnung'Wide_Wide_Image);
+         Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                     ÜberschriftZeile      => 0,
+                                     TextDatei             => 9,
+                                     ErsteZeile            => 21,
+                                     LetzteZeile           => 21,
+                                     MitNew_LineMittendrin => 0,
+                                     MitNew_LineAmEnde     => 0);
+         Put_Line (Item => Ressourcengewinnung'Wide_Wide_Image);
          
-         Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                  Datei    => 3,
-                                  Eintrag  => 4);
+         Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                     ÜberschriftZeile      => 0,
+                                     TextDatei             => 9,
+                                     ErsteZeile            => 22,
+                                     LetzteZeile           => 22,
+                                     MitNew_LineMittendrin => 0,
+                                     MitNew_LineAmEnde     => 0);
          Put (Item => Geldgewinnung'Wide_Wide_Image);
          
-         Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                  Datei    => 3,
-                                  Eintrag  => 5);
+         Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                     ÜberschriftZeile      => 0,
+                                     TextDatei             => 9,
+                                     ErsteZeile            => 23,
+                                     LetzteZeile           => 23,
+                                     MitNew_LineMittendrin => 0,
+                                     MitNew_LineAmEnde     => 0);
          Put_Line (Item => Wissensgewinnung'Wide_Wide_Image);
       end if;
       
@@ -367,95 +387,157 @@ package body KarteStadt is
             case GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID is
                when 1 =>
                   if RasseExtern = RasseUndPlatznummer.Rasse then
-                     Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                              Datei    => 3,
-                                              Eintrag  => 6);
+                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                                 ÜberschriftZeile      => 0,
+                                                 TextDatei             => 9,
+                                                 ErsteZeile            => 1,
+                                                 LetzteZeile           => 1,
+                                                 MitNew_LineMittendrin => 0,
+                                                 MitNew_LineAmEnde     => 0);
 
                   else
-                     Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                              Datei    => 3,
-                                              Eintrag  => 8);
+                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                                 ÜberschriftZeile      => 0,
+                                                 TextDatei             => 9,
+                                                 ErsteZeile            => 3,
+                                                 LetzteZeile           => 3,
+                                                 MitNew_LineMittendrin => 0,
+                                                 MitNew_LineAmEnde     => 0);
                   end if;
                   
                when 2 =>
                   if RasseExtern = RasseUndPlatznummer.Rasse then
-                     Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                              Datei    => 3,
-                                              Eintrag  => 7);
+                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                                 ÜberschriftZeile      => 0,
+                                                 TextDatei             => 9,
+                                                 ErsteZeile            => 2,
+                                                 LetzteZeile           => 2,
+                                                 MitNew_LineMittendrin => 0,
+                                                 MitNew_LineAmEnde     => 0);
                         
                   else
-                     Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                              Datei    => 3,
-                                              Eintrag  => 9);
+                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                                 ÜberschriftZeile      => 0,
+                                                 TextDatei             => 9,
+                                                 ErsteZeile            => 4,
+                                                 LetzteZeile           => 4,
+                                                 MitNew_LineMittendrin => 0,
+                                                 MitNew_LineAmEnde     => 0);
                   end if;
 
                when 0 =>
                   null;
             end case;
-            Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Name) & "    ");
-            Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                     Datei    => 3,
-                                     Eintrag  => 10);
-            Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Einwohner'Wide_Wide_Image);
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Name));
+
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                        ÜberschriftZeile      => 0,
+                                        TextDatei             => 9,
+                                        ErsteZeile            => 5,
+                                        LetzteZeile           => 5,
+                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineAmEnde     => 0);
+            Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Einwohner'Wide_Wide_Image);
 
             -- "Volle" Stadtinformationen, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist                      
             if RasseUndPlatznummer.Rasse = RasseExtern or GlobaleVariablen.FeindlicheInformationenSehen = True then
-               Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                        Datei    => 3,
-                                        Eintrag  => 11);
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                           ÜberschriftZeile      => 0,
+                                           TextDatei             => 9,
+                                           ErsteZeile            => 6,
+                                           LetzteZeile           => 6,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);
                Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleNahrungsmittel'Wide_Wide_Image);
-               Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                        Datei    => 3,
-                                        Eintrag  => 12);
-               Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleNahrungsproduktion'Wide_Wide_Image);
-                        
-               Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                        Datei    => 3,
-                                        Eintrag  => 13);
-               Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleProduktionrate'Wide_Wide_Image);
-               Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                        Datei    => 3,
-                                        Eintrag  => 14);
-               Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleGeldgewinnung'Wide_Wide_Image);
 
-               Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                        Datei    => 3,
-                                        Eintrag  => 15);
-               Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleForschungsrate'Wide_Wide_Image); 
-               Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                        Datei    => 3,
-                                        Eintrag  => 16);
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                           ÜberschriftZeile      => 0,
+                                           TextDatei             => 9,
+                                           ErsteZeile            => 7,
+                                           LetzteZeile           => 7,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);
+               Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleNahrungsproduktion'Wide_Wide_Image);
+                        
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                           ÜberschriftZeile      => 0,
+                                           TextDatei             => 9,
+                                           ErsteZeile            => 8,
+                                           LetzteZeile           => 8,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);
+               Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleProduktionrate'Wide_Wide_Image);
+
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                           ÜberschriftZeile      => 0,
+                                           TextDatei             => 9,
+                                           ErsteZeile            => 9,
+                                           LetzteZeile           => 9,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);
+               Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleGeldgewinnung'Wide_Wide_Image);
+
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                           ÜberschriftZeile      => 0,
+                                           TextDatei             => 9,
+                                           ErsteZeile            => 10,
+                                           LetzteZeile           => 10,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);
+               Put (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleForschungsrate'Wide_Wide_Image);
+
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                           ÜberschriftZeile      => 0,
+                                           TextDatei             => 9,
+                                           ErsteZeile            => 11,
+                                           LetzteZeile           => 11,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);
                Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Korruption'Wide_Wide_Image);
                         
-               Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                        Datei    => 3,
-                                        Eintrag  => 17);
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                           ÜberschriftZeile      => 0,
+                                           TextDatei             => 9,
+                                           ErsteZeile            => 12,
+                                           LetzteZeile           => 12,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);
                case GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt is
                   when 0 => -- Nichts                     
-                     Anzeige.EinfacheAnzeige (Mit_Line => False,
-                                              Datei    => 3,
-                                              Eintrag  => 18);
+                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                                 ÜberschriftZeile      => 0,
+                                                 TextDatei             => 9,
+                                                 ErsteZeile            => 28,
+                                                 LetzteZeile           => 28,
+                                                 MitNew_LineMittendrin => 0,
+                                                 MitNew_LineAmEnde     => 0);
             
                   when 1 .. 9_999 => -- Gebäude
-                     Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                         AktuelleAuswahl    => 1,
-                                         FrageDatei         => 0,
-                                         FrageZeile         => 0,
-                                         TextDatei          => 9,
-                                         ErsteZeile         => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 1_000,
-                                         LetzteZeile        => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 1_000);
+                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                                 ÜberschriftZeile      => 0,
+                                                 TextDatei             => 9,
+                                                 ErsteZeile            => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 1_000,
+                                                 LetzteZeile           => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 1_000,
+                                                 MitNew_LineMittendrin => 0,
+                                                 MitNew_LineAmEnde     => 0);
 
                   when others => -- Einheiten
-                     Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                         AktuelleAuswahl    => 1,
-                                         FrageDatei         => 0,
-                                         FrageZeile         => 0,
-                                         TextDatei          => 9,
-                                         ErsteZeile         => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 10_000,
-                                         LetzteZeile        => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 10_000);
+                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                                 ÜberschriftZeile      => 0,
+                                                 TextDatei             => 9,
+                                                 ErsteZeile            => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 10_000,
+                                                 LetzteZeile           => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 10_000,
+                                                 MitNew_LineMittendrin => 0,
+                                                 MitNew_LineAmEnde     => 0);
                end case;
                                               
-               Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 13)));   
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                           ÜberschriftZeile      => 0,
+                                           TextDatei             => 9,
+                                           ErsteZeile            => 13,
+                                           LetzteZeile           => 13,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);  
                Put_Line (Item => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).VerbleibendeBauzeit'Wide_Wide_Image);
 
             else

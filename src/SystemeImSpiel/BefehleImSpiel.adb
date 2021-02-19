@@ -171,31 +171,34 @@ package body BefehleImSpiel is
                   
                when others =>
                   if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID /= 1 and WelcherBefehl > 0 and WelcherBefehl <= 6 then
-                     Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                         AktuelleAuswahl    => 1,
-                                         FrageDatei         => 0,
-                                         FrageZeile         => 0,
-                                         TextDatei          => 8,
-                                         ErsteZeile         => 3,
-                                         LetzteZeile        => 3);
+                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                                 ÜberschriftZeile      => 0,
+                                                 TextDatei             => 8,
+                                                 ErsteZeile            => 3,
+                                                 LetzteZeile           => 3,
+                                                 MitNew_LineMittendrin => 0,
+                                                 MitNew_LineAmEnde     => 0);
+                     delay 1.00;
 
                   elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 1 and WelcherBefehl = 11 then
-                     Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                         AktuelleAuswahl    => 1,
-                                         FrageDatei         => 0,
-                                         FrageZeile         => 0,
-                                         TextDatei          => 8,
-                                         ErsteZeile         => 3,
-                                         LetzteZeile        => 3);
+                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                                 ÜberschriftZeile      => 0,
+                                                 TextDatei             => 8,
+                                                 ErsteZeile            => 3,
+                                                 LetzteZeile           => 3,
+                                                 MitNew_LineMittendrin => 0,
+                                                 MitNew_LineAmEnde     => 0);
+                     delay 1.00;
                      
                   elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00 then
-                     Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                         AktuelleAuswahl    => 1,
-                                         FrageDatei         => 0,
-                                         FrageZeile         => 0,
-                                         TextDatei          => 8,
-                                         ErsteZeile         => 8,
-                                         LetzteZeile        => 8);
+                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                                 ÜberschriftZeile      => 0,
+                                                 TextDatei             => 8,
+                                                 ErsteZeile            => 8,
+                                                 LetzteZeile           => 8,
+                                                 MitNew_LineMittendrin => 0,
+                                                 MitNew_LineAmEnde     => 0);
+                     delay 1.00;
                      
                   else
                      Verbesserungen.Verbesserung (EinheitRasseNummer => (RasseExtern, EinheitNummer),

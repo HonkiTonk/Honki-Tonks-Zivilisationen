@@ -8,7 +8,7 @@ package BefehleImSpiel is
    function Befehle (RasseExtern : in GlobaleDatentypen.Rassen) return Integer with
      Global  => (null),
      Pre     => (RasseExtern in GlobaleDatentypen.Rassen'Range),
-     Post    => (Befehle'Result >= -1);
+     Post    => (Befehle'Result in -1_000 .. 1);
 
 private
 

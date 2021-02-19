@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Text_IO;
+use Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Text_IO;
 
 with GlobaleVariablen, GlobaleDatentypen;
 
@@ -31,10 +31,38 @@ package Anzeige is
    procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Positive);
    procedure AnzeigeForschung (AktuelleAuswahl : in Positive);
 
-   procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; AktuelleAuswahl, FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Natural) with
-     Pre => ErsteZeile <= LetzteZeile;
+   procedure AnzeigeOhneAuswahl (ÜberschriftDatei, ÜberschriftZeile, TextDatei, ErsteZeile, LetzteZeile, MitNew_LineMittendrin : in Natural; MitNew_LineAmEnde : in Ada.Wide_Wide_Text_IO.Count) with
+     Pre => (ErsteZeile <= LetzteZeile and (if ÜberschriftDatei = 0 then ÜberschriftZeile = 0) and (if ÜberschriftZeile = 0 then ÜberschriftDatei = 0));
 
-   procedure EinfacheAnzeige (Mit_Line : in Boolean; Datei, Eintrag : in Positive);
+   procedure EinzeiligeAnzeigeOhneAuswahl (TextDatei, TextZeile : in Positive);
+
+   procedure AnzeigeMitAuswahl (FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile, AktuelleAuswahl : in Natural) with
+     Pre => (ErsteZeile <= LetzteZeile and (if FrageDatei = 0 then FrageZeile = 0) and (if FrageZeile = 0 then FrageDatei = 0));
+
+   -- Dateien nicht einfach ändern!!!
+   -- Datei 0 = 0, sollte niemals von Anzeige aufgerufen werden!
+   -- Datei 1 = 1Start
+   -- Datei 2 = 2FesteAbfragen
+   -- Datei 3 = 3SpielEinstellungen
+   -- Datei 4 = 4Rassenbeschreibung
+   -- Datei 5 = 5MenueAuswahl
+   -- Datei 6 = 6BeschreibungenKartenfelderKurz
+   -- Datei 7 = 7BeschreibungenKartenfelderLang
+   -- Datei 8 = 8Fehlermeldungen
+   -- Datei 9 = 9Zeug
+   -- Datei 10 = 10Fragen
+   -- Datei 11 = 11Ladezeiten
+   -- Datei 12 = 12BeschreibungenEinheitenKurz
+   -- Datei 13 = 13BeschreibungenEinheitenLang
+   -- Datei 14 = 14BeschreibungenVerbesserungenKurz
+   -- Datei 15 = 15BeschreibungenVerbesserungenLang
+   -- Datei 16 = 16BeschreibungenGebäudeKurz
+   -- Datei 17 = 17BeschreibungenGebäudeLang
+   -- Datei 18 = 18BeschreibungenForschungKurz
+   -- Datei 19 = 19BeschreibungenForschungLang
+   -- Datei 20 = 20BeschreibungenBeschäftigungKurz
+   -- Datei 21 = 21BeschreibungenBeschäftigungLang
+   -- Datei 22 = 22StädtenamenKI
 
 private
    
@@ -47,23 +75,7 @@ private
    Teilung : Float;
    
    Text : Wide_Wide_String (1 .. 1_000);
- 
-   type Test is record
-      
-      Zieldatei : Positive;
-      Zielzeile : Positive;
-      
-   end record;
    
-   type JaArray is array (1 .. 3, 1 .. 18) of Test;
-   -- 1 = Wachstum, 2 = BewegungssystemCursor, 3 = KarteStadt
-   Ja : constant JaArray := (1 => (1 => (9, 29), others => (100, 100)),
-                             2 => (1 => (9, 30), 2 => (9, 31), others => (100, 100)),
-                             3 => (1 => (9, 34), 2 => (9, 20), 3 => (9, 21), 4 => (9, 22), 5 => (9, 23), 6 => (9, 1), 7 => (9, 2), 8 => (9, 3), 9 => (9, 4), 10 => (9, 5),
-                                   11 => (9, 6), 12 => (9, 7), 13 => (9, 8), 14 => (9, 9), 15 => (9, 10), 16 => (9, 11), 17 => (9, 12), 18 => (9, 28), others => (100, 100)));
-
-
-
    type WelcheDateienWelcheTexteRecord is record
             
       TextDatei : GlobaleDatentypen.TextDateien;

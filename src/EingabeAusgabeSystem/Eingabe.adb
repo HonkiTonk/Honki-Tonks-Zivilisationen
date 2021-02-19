@@ -175,13 +175,14 @@ package body Eingabe is
    function StadtName return Unbounded_Wide_Wide_String is
    begin
       
-      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                          AktuelleAuswahl    => 0,
-                          FrageDatei         => 0,
-                          FrageZeile         => 0,
-                          TextDatei          => 9,
-                          ErsteZeile         => 32,
-                          LetzteZeile        => 32);
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 9,
+                                  ErsteZeile            => 32,
+                                  LetzteZeile           => 32,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
+
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
       
       return Name;
@@ -193,13 +194,14 @@ package body Eingabe is
    function SpielstandName return Unbounded_Wide_Wide_String is
    begin            
       
-      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                          AktuelleAuswahl    => 0,
-                          FrageDatei         => 0,
-                          FrageZeile         => 0,
-                          TextDatei          => 9,
-                          ErsteZeile         => 40,
-                          LetzteZeile        => 40);
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 9,
+                                  ErsteZeile            => 40,
+                                  LetzteZeile           => 40,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
+
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
 
       case To_Wide_Wide_String (Source => Name)'Length is

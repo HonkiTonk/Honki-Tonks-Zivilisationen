@@ -7,13 +7,14 @@ package body GebaeudeDatenbank is
    procedure Beschreibung (ID : in GebäudeID) is
    begin
       
-      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                          AktuelleAuswahl    => 0,
-                          FrageDatei         => 0,
-                          FrageZeile         => 0,
-                          TextDatei          => 16,
-                          ErsteZeile         => Integer (ID),
-                          LetzteZeile        => Integer (ID));
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 16,
+                                  ErsteZeile            => Positive (ID),
+                                  LetzteZeile           => Positive (ID),
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
+
       -- Hier wichtige Werte einfügen
       -- Hier dann eine lange Textanzeige für eine Beschreibung des Gebäudes? Das auch für die Einheiten/Verbesserungen machen?
       

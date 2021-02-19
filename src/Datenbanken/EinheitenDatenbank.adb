@@ -7,13 +7,13 @@ package body EinheitenDatenbank is
    procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID) is
    begin
       
-      Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                          AktuelleAuswahl    => 0,
-                          FrageDatei         => 0,
-                          FrageZeile         => 0,
-                          TextDatei          => 12,
-                          ErsteZeile         => Integer (ID),
-                          LetzteZeile        => Integer (ID));
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 12,
+                                  ErsteZeile            => Positive (ID),
+                                  LetzteZeile           => Positive (ID),
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
       
    end Beschreibung;
 
@@ -155,22 +155,22 @@ package body EinheitenDatenbank is
       
       case Arbeit is
          when 0 =>
-            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                AktuelleAuswahl    => 0,
-                                FrageDatei         => 0,
-                                FrageZeile         => 0,
-                                TextDatei          => 20,
-                                ErsteZeile         => 9,
-                                LetzteZeile        => 9);            
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                        ÜberschriftZeile      => 0,
+                                        TextDatei             => 20,
+                                        ErsteZeile            => 9,
+                                        LetzteZeile           => 9,
+                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineAmEnde     => 0);          
             
          when others =>
-            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                AktuelleAuswahl    => 0,
-                                FrageDatei         => 0,
-                                FrageZeile         => 0,
-                                TextDatei          => 20,
-                                ErsteZeile         => Arbeit,
-                                LetzteZeile        => Arbeit);
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                        ÜberschriftZeile      => 0,
+                                        TextDatei             => 20,
+                                        ErsteZeile            => Arbeit,
+                                        LetzteZeile           => Arbeit,
+                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineAmEnde     => 0);
       end case;
       
    end Beschäftigung;

@@ -1,103 +1,145 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO;
-use Ada.Wide_Wide_Text_IO;
-
 package body Anzeige is
 
-   procedure AnzeigeNeu (AuswahlOderAnzeige : in Boolean; AktuelleAuswahl, FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Natural) is
+   procedure AnzeigeOhneAuswahl (ÜberschriftDatei, ÜberschriftZeile, TextDatei, ErsteZeile, LetzteZeile, MitNew_LineMittendrin : in Natural; MitNew_LineAmEnde : in Ada.Wide_Wide_Text_IO.Count) is
    begin
-      
-      case AuswahlOderAnzeige is
-         when True =>
-            LängsterText := 1;
-      
-            TextlängePrüfenSchleife:
-            for Zeilen in ErsteZeile .. LetzteZeile loop            
-               if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeilen))'Length > LängsterText then
-                  LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeilen))'Length;
-            
-               else
+
+      case ÜberschriftDatei is
+         when 0 =>
+            null;
+
+         when others =>
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (ÜberschriftDatei, ÜberschriftZeile)));
+      end case;
+
+      TextAnzeigeSchleife:
+      for TextZeile in ErsteZeile .. LetzteZeile loop
+         
+         Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, TextZeile)));
+
+         case MitNew_LineMittendrin is
+            when 0 =>
+               New_Line;
+               
+            when others =>               
+               if TextZeile < LetzteZeile and TextZeile > ErsteZeile and (TextZeile - ErsteZeile) mod 2 = 0 and ErsteZeile /= LetzteZeile then
+                  New_Line;
+
+               elsif ErsteZeile = LetzteZeile and MitNew_LineMittendrin = 1_000 then
                   null;
-               end if;
-            end loop TextlängePrüfenSchleife;
-      
-            AnzeigeSchleife:
-            for Zeile in ErsteZeile .. LetzteZeile loop
-
-               if AktuelleAuswahl = Zeile then
-                  RahmenTeilEinsSchleife:
-                  for TextlängeEins in 1 .. LängsterText loop
                   
-                     if TextlängeEins = 1 then
-                        Put (Item => "╔");
-                        Put (Item => "═");
-
-                     elsif TextlängeEins = LängsterText then                  
-                        Put (Item => "═");
-                        Put_Line (Item => "╗");
-                        Put (Item => "║");
-                        Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeile)));
-
-                        for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeile))'Length loop
-                        
-                           Put (" ");
-                        
-                        end loop;
-                        Put_Line (Item => "║");
-                        Put (Item => "╚");
-
-                     else
-                        Put (Item => "═");
-                     end if;
-               
-                  end loop RahmenTeilEinsSchleife;
-
-                  RahmenTeilZweiSchleife:
-                  for TextlängeZwei in 1 .. LängsterText loop
-               
-                     if TextlängeZwei = LängsterText then
-                        Put (Item => "═");
-                        Put_Line (Item => "╝");
-               
-                     else
-                        Put (Item => "═");
-                     end if;
-            
-                  end loop RahmenTeilZweiSchleife;
-         
                else
-                  Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeile)));
+                  Put (Item => "    ");
                end if;
+         end case;
          
-            end loop AnzeigeSchleife;
+      end loop TextAnzeigeSchleife;
+      
+      case MitNew_LineAmEnde is
+         when 0 =>
+            null;
             
-         when False =>
-            case AktuelleAuswahl is
-               when 0 =>
-                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, ErsteZeile)));
-                  
-               when others =>
-                  Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, ErsteZeile)));
-            end case;
+         when others =>
+            New_Line (MitNew_LineAmEnde);
       end case;
       
-   end AnzeigeNeu;
+   end AnzeigeOhneAuswahl;
 
 
 
-   procedure EinfacheAnzeige (Mit_Line : in Boolean; Datei, Eintrag : in Positive) is
+   procedure EinzeiligeAnzeigeOhneAuswahl (TextDatei, TextZeile : in Positive) is
    begin
       
-      case Mit_Line is
-         when True =>
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (Ja (Datei, Eintrag).Zieldatei, Ja (Datei, Eintrag).Zielzeile)));
-            
-         when False =>
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (Ja (Datei, Eintrag).Zieldatei, Ja (Datei, Eintrag).Zielzeile)));
-      end case;
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => TextDatei,
+                                  ErsteZeile            => TextZeile,
+                                  LetzteZeile           => TextZeile,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
       
-   end EinfacheAnzeige;
+   end EinzeiligeAnzeigeOhneAuswahl;
+
+
+
+   procedure AnzeigeMitAuswahl (FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile, AktuelleAuswahl : in Natural) is
+   begin
+
+      LängsterText := 1;
+      
+      TextlängePrüfenSchleife:
+      for Zeilen in ErsteZeile .. LetzteZeile loop
+         
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeilen))'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeilen))'Length;
+            
+         else
+            null;
+         end if;
+         
+      end loop TextlängePrüfenSchleife;  
+
+      case FrageDatei is
+         when 0 =>
+            null;
+
+         when others =>
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (FrageDatei, FrageZeile)));
+      end case;                
+      
+      AnzeigeSchleife:
+      for Zeile in ErsteZeile .. LetzteZeile loop
+
+         if AktuelleAuswahl = Zeile then
+            RahmenTeilEinsSchleife:
+            for TextlängeEins in 1 .. LängsterText loop
+                  
+               if TextlängeEins = 1 then
+                  Put (Item => "╔");
+                  Put (Item => "═");
+
+               elsif TextlängeEins = LängsterText then                  
+                  Put (Item => "═");
+                  Put_Line (Item => "╗");
+                  Put (Item => "║");
+                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeile)));
+
+                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeile))'Length loop
+                        
+                     Put (" ");
+                        
+                  end loop;
+
+                  Put_Line (Item => "║");
+                  Put (Item => "╚");
+
+               else
+                  Put (Item => "═");
+               end if;
+               
+            end loop RahmenTeilEinsSchleife;
+
+            RahmenTeilZweiSchleife:
+            for TextlängeZwei in 1 .. LängsterText loop
+               
+               if TextlängeZwei = LängsterText then
+                  Put (Item => "═");
+                  Put_Line (Item => "╝");
+               
+               else
+                  Put (Item => "═");
+               end if;
+            
+            end loop RahmenTeilZweiSchleife;
+         
+         else
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeile)));
+         end if;
+         
+      end loop AnzeigeSchleife;
+      
+   end AnzeigeMitAuswahl;
 
    
 

@@ -59,9 +59,13 @@ package body BewegungssystemCursor is
    procedure GeheZuCursor (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
-      Anzeige.EinfacheAnzeige (Mit_Line => False, -- Hier noch entsprechend die Textdatei ändern, verweist auf YAchse und nicht EAchse
-                               Datei    => 2,
-                               Eintrag  => 1);
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 9,
+                                  ErsteZeile            => 42,
+                                  LetzteZeile           => 42,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
       
       Wert := Eingabe.GanzeZahl (WelcheDatei   => 0,
                                  WelcherText   => 0,
@@ -70,22 +74,26 @@ package body BewegungssystemCursor is
       
       case Wert is
          when -1 =>
-            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                AktuelleAuswahl    => 1,
-                                FrageDatei         => 0,
-                                FrageZeile         => 0,
-                                TextDatei          => 8,
-                                ErsteZeile         => 12,
-                                LetzteZeile        => 12);
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                        ÜberschriftZeile      => 0,
+                                        TextDatei             => 8,
+                                        ErsteZeile            => 12,
+                                        LetzteZeile           => 12,
+                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineAmEnde     => 0);
             return;
          
          when others =>
             Position.EAchse := GlobaleDatentypen.EbeneVorhanden (Wert);
       end case;
 
-      Anzeige.EinfacheAnzeige (Mit_Line => False,
-                               Datei    => 2,
-                               Eintrag  => 1);
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 9,
+                                  ErsteZeile            => 30,
+                                  LetzteZeile           => 30,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
       
       Wert := Eingabe.GanzeZahl (WelcheDatei   => 0,
                                  WelcherText   => 0,
@@ -94,22 +102,27 @@ package body BewegungssystemCursor is
       
       case Wert is
          when -1 =>
-            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                AktuelleAuswahl    => 1,
-                                FrageDatei         => 0,
-                                FrageZeile         => 0,
-                                TextDatei          => 8,
-                                ErsteZeile         => 12,
-                                LetzteZeile        => 12);
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                        ÜberschriftZeile      => 0,
+                                        TextDatei             => 8,
+                                        ErsteZeile            => 12,
+                                        LetzteZeile           => 12,
+                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineAmEnde     => 0);
             return;
          
          when others =>
             Position.YAchse := GlobaleDatentypen.Kartenfeld (Wert);
       end case;
       
-      Anzeige.EinfacheAnzeige (Mit_Line => False,
-                               Datei    => 2,
-                               Eintrag  => 2);
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 9,
+                                  ErsteZeile            => 31,
+                                  LetzteZeile           => 31,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
+
       Wert := Eingabe.GanzeZahl (WelcheDatei   => 0,
                                  WelcherText   => 0,
                                  ZahlenMinimum => Integer (Karten.Karten'First (3)),
@@ -117,13 +130,13 @@ package body BewegungssystemCursor is
 
       case Wert is
          when -1 =>
-            Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                AktuelleAuswahl    => 1,
-                                FrageDatei         => 0,
-                                FrageZeile         => 0,
-                                TextDatei          => 8,
-                                ErsteZeile         => 12,
-                                LetzteZeile        => 12);
+            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                        ÜberschriftZeile      => 0,
+                                        TextDatei             => 8,
+                                        ErsteZeile            => 12,
+                                        LetzteZeile           => 12,
+                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineAmEnde     => 0);
             return;
          
          when others =>

@@ -77,13 +77,13 @@ package body SpielEinstellungen is
 
             when 10 =>
                Karten.Kartengröße := Wahl;
-               Anzeige.AnzeigeNeu (AuswahlOderAnzeige => False,
-                                   AktuelleAuswahl    => 0,
-                                   FrageDatei         => 0,
-                                   FrageZeile         => 0,
-                                   TextDatei          => 10,
-                                   ErsteZeile         => 19,
-                                   LetzteZeile        => 19);
+               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                           ÜberschriftZeile      => 0,
+                                           TextDatei             => 10,
+                                           ErsteZeile            => 19,
+                                           LetzteZeile           => 19,
+                                           MitNew_LineMittendrin => 0,
+                                           MitNew_LineAmEnde     => 0);
 
                BenutzerdefinierteGröße := Eingabe.GanzeZahl (WelcheDatei   => 0,
                                                                WelcherText   => 0,
