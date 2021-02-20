@@ -337,16 +337,16 @@ package body KarteStadt is
                                      TextDatei             => 9,
                                      ErsteZeile            => 20,
                                      LetzteZeile           => 20,
-                                     MitNew_LineMittendrin => 0,
+                                     MitNew_LineMittendrin => 1_001,
                                      MitNew_LineAmEnde     => 0);
-         Put_Line (Item => Nahrungsgewinnung'Wide_Wide_Image);
+         Put (Item => Nahrungsgewinnung'Wide_Wide_Image);
          
          Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
                                      ÜberschriftZeile      => 0,
                                      TextDatei             => 9,
                                      ErsteZeile            => 21,
                                      LetzteZeile           => 21,
-                                     MitNew_LineMittendrin => 0,
+                                     MitNew_LineMittendrin => 1_001,
                                      MitNew_LineAmEnde     => 0);
          Put_Line (Item => Ressourcengewinnung'Wide_Wide_Image);
          
@@ -355,7 +355,7 @@ package body KarteStadt is
                                      TextDatei             => 9,
                                      ErsteZeile            => 22,
                                      LetzteZeile           => 22,
-                                     MitNew_LineMittendrin => 0,
+                                     MitNew_LineMittendrin => 1_001,
                                      MitNew_LineAmEnde     => 0);
          Put (Item => Geldgewinnung'Wide_Wide_Image);
          
@@ -364,7 +364,7 @@ package body KarteStadt is
                                      TextDatei             => 9,
                                      ErsteZeile            => 23,
                                      LetzteZeile           => 23,
-                                     MitNew_LineMittendrin => 0,
+                                     MitNew_LineMittendrin => -1_000,
                                      MitNew_LineAmEnde     => 0);
          Put_Line (Item => Wissensgewinnung'Wide_Wide_Image);
       end if;

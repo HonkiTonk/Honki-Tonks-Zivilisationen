@@ -17,7 +17,7 @@ package body Ladezeiten is
                                   TextDatei             => 11,
                                   ErsteZeile            => WelcheZeit,
                                   LetzteZeile           => WelcheZeit,
-                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineMittendrin => -1_000,
                                   MitNew_LineAmEnde     => 0);
       
       case WelcheZeit is
@@ -64,7 +64,7 @@ package body Ladezeiten is
                                   TextDatei             => 11,
                                   ErsteZeile            => WelcheZeit + AufschlagSpeichern,
                                   LetzteZeile           => WelcheZeit + AufschlagSpeichern,
-                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineMittendrin => -1_000,
                                   MitNew_LineAmEnde     => 0);
 
       case WelcheZeit is
@@ -88,7 +88,7 @@ package body Ladezeiten is
                                   TextDatei             => 11,
                                   ErsteZeile            => WelcheZeit + AufschlagLaden,
                                   LetzteZeile           => WelcheZeit + AufschlagLaden,
-                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineMittendrin => -1_000,
                                   MitNew_LineAmEnde     => 0);
 
       case WelcheZeit is
@@ -112,7 +112,7 @@ package body Ladezeiten is
                                   TextDatei             => 11,
                                   ErsteZeile            => WelcheZeit + AufschlagSpielstart,
                                   LetzteZeile           => WelcheZeit + AufschlagSpielstart,
-                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineMittendrin => -1_000,
                                   MitNew_LineAmEnde     => 0);
 
       case WelcheZeit is

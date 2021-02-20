@@ -17,7 +17,7 @@ package body KartenDatenbank is
                                         TextDatei             => 6,
                                         ErsteZeile            => Positive (ID),
                                         LetzteZeile           => Positive (ID),
-                                        MitNew_LineMittendrin => 0,
+                                        MitNew_LineMittendrin => -1_000,
                                         MitNew_LineAmEnde     => 0);
       end case;
       

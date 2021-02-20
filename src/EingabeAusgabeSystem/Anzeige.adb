@@ -2,7 +2,25 @@ pragma SPARK_Mode (On);
 
 package body Anzeige is
 
-   procedure AnzeigeOhneAuswahl (ÜberschriftDatei, ÜberschriftZeile, TextDatei, ErsteZeile, LetzteZeile, MitNew_LineMittendrin : in Natural; MitNew_LineAmEnde : in Ada.Wide_Wide_Text_IO.Count) is
+   procedure AnzeigeOhneAuswahlNeu is
+   begin
+        
+      null;
+      -- ÜbeschriftDatei, ÜberschriftZeile
+
+      -- TextDatei, ErsteZeile, LetzteZeile
+      
+      -- Abstand am Anfang (klein), Abstand am Anfang (groß) -- Negativ?
+      
+      -- Abstand am Ende (klein), Abstand am Ende (groß) -- Natural?
+
+      -- New_Lines am Ende (0 bis x)
+      
+   end AnzeigeOhneAuswahlNeu;
+   
+   
+
+   procedure AnzeigeOhneAuswahl (ÜberschriftDatei, ÜberschriftZeile, TextDatei, ErsteZeile, LetzteZeile : Natural ; MitNew_LineMittendrin : in Integer; MitNew_LineAmEnde : in Ada.Wide_Wide_Text_IO.Count) is
    begin
 
       case ÜberschriftDatei is
@@ -15,24 +33,39 @@ package body Anzeige is
 
       TextAnzeigeSchleife:
       for TextZeile in ErsteZeile .. LetzteZeile loop
+
+         if MitNew_LineMittendrin <= -1_000 then
+            Put (Item => " ");
+
+         elsif MitNew_LineMittendrin < 0 then
+            Put (Item => "    ");
+
+         else
+            null;
+         end if;
          
          Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, TextZeile)));
 
-         case MitNew_LineMittendrin is
-            when 0 =>
-               New_Line;
+         if MitNew_LineMittendrin = 0 then
+            New_Line;
                
-            when others =>               
-               if TextZeile < LetzteZeile and TextZeile > ErsteZeile and (TextZeile - ErsteZeile) mod 2 = 0 and ErsteZeile /= LetzteZeile then
-                  New_Line;
+         elsif MitNew_LineMittendrin > 0 then               
+            if TextZeile < LetzteZeile and TextZeile > ErsteZeile and (TextZeile - ErsteZeile) mod 2 = 0 and ErsteZeile /= LetzteZeile then
+               New_Line;
 
-               elsif ErsteZeile = LetzteZeile and MitNew_LineMittendrin = 1_000 then
-                  null;
+            elsif ErsteZeile = LetzteZeile and MitNew_LineMittendrin < 1_000 then
+               null;
+
+            elsif ErsteZeile = LetzteZeile and MitNew_LineMittendrin > 1_000 then
+               Put (Item => " ");
                   
-               else
-                  Put (Item => "    ");
-               end if;
-         end case;
+            else
+               Put (Item => "    ");
+            end if;
+
+         else
+            null;
+         end if;
          
       end loop TextAnzeigeSchleife;
       
@@ -60,6 +93,21 @@ package body Anzeige is
                                   MitNew_LineAmEnde     => 0);
       
    end EinzeiligeAnzeigeOhneAuswahl;
+
+
+
+   procedure FehlerAnzeigen (FehlerNummer : in Positive) is
+   begin
+      
+      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
+                                  ÜberschriftZeile      => 0,
+                                  TextDatei             => 8,
+                                  ErsteZeile            => FehlerNummer,
+                                  LetzteZeile           => FehlerNummer,
+                                  MitNew_LineMittendrin => 0,
+                                  MitNew_LineAmEnde     => 0);
+      
+   end FehlerAnzeigen;
 
 
 
