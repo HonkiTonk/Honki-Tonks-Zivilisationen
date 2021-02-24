@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, Karten, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen;
+
+with Karten;
 
 package Verbesserungen is
 

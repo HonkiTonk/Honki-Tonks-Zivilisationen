@@ -2,8 +2,10 @@ pragma SPARK_Mode (On);
 
 with Ada.Numerics.Discrete_Random;
 
-with GlobaleDatentypen, GlobaleRecords, Karten;
+with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
+
+with Karten;
 
 package SpielEinstellungen is
 

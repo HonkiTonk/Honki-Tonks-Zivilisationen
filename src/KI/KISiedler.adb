@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with Karten, StadtWerteFestlegen, StadtBauen, KIBewegung, KIGefahr, KIEinheitVerbessernOderVernichten, KIDatentypen;
+with KIDatentypen;
+
+with Karten, StadtWerteFestlegen, StadtBauen, KIBewegung, KIGefahr, KIEinheitVerbessernOderVernichten;
 
 package body KISiedler is
 

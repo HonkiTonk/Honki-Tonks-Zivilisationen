@@ -3,8 +3,10 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with InDerStadt, Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, GlobaleVariablen, KI, Ladezeiten, Speichern, Laden, GlobaleDatentypen, KIZuruecksetzen;
+with GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
+
+with InDerStadt, Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, KI, Ladezeiten, Speichern, Laden, KIZuruecksetzen;
 
 package body ImSpiel is
 

@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with EinheitenDatenbank, KIPruefungen, KIVariablen, KartenPruefungen, EinheitSuchen;
+with KIVariablen;
+
+with EinheitenDatenbank, KIPruefungen, KartenPruefungen, EinheitSuchen;
 
 package body KIGefahr is
 

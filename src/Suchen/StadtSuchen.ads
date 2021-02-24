@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with Karten, GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen, GlobaleRecords;
+
+with Karten;
 
 package StadtSuchen is
 

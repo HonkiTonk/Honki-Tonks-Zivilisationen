@@ -3,7 +3,9 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
 
-with Anzeige, GlobaleVariablen;
+with GlobaleVariablen;
+
+with Anzeige;
 
 package body Auswahl is
 
@@ -13,9 +15,9 @@ package body Auswahl is
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
       EndeBestimmenSchleife:
-      for LetztesEnde in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
+      for LetztesEnde in GlobaleVariablen.SprachenEinlesenArray'Range loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (0, LetztesEnde)) = "|" then
+         if To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (LetztesEnde)) = "|" then
             exit EndeBestimmenSchleife;
             
          else
@@ -29,18 +31,15 @@ package body Auswahl is
       AuswahlSchleife:
       loop         
 
-         Anzeige.AnzeigeMitAuswahlNeu (FrageDatei      => GlobaleDatentypen.Leer,
-                                       TextDatei       => GlobaleDatentypen.Leer,
-                                       FrageZeile      => 0,
-                                       ErsteZeile      => 1,
-                                       LetzteZeile     => Ende,
-                                       AktuelleAuswahl => AktuelleAuswahl);
+         Anzeige.AnzeigeSprache (AktuelleAuswahl => AktuelleAuswahl,
+                                 ErsteZeile      => GlobaleVariablen.SprachenEinlesenArray'First,
+                                 LetzteZeile     => Ende);
          
          Get_Immediate (Item => Taste);
          
-         case To_Lower (Item => Taste) is               
+         case To_Lower (Item => Taste) is
             when 'w' | '8' => 
-               if AktuelleAuswahl = GlobaleVariablen.TexteEinlesenNeu'First (2) then
+               if AktuelleAuswahl = GlobaleVariablen.SprachenEinlesenArray'First then
                   AktuelleAuswahl := Ende;
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
@@ -48,14 +47,14 @@ package body Auswahl is
 
             when 's' | '2' =>
                if AktuelleAuswahl = Ende then
-                  AktuelleAuswahl := GlobaleVariablen.TexteEinlesenNeu'First (2);
+                  AktuelleAuswahl := GlobaleVariablen.SprachenEinlesenArray'First;
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
             when 'e' | '5' =>    
                Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-               return GlobaleVariablen.TexteEinlesenNeu (0, AktuelleAuswahl);
+               return GlobaleVariablen.SprachenEinlesen (AktuelleAuswahl);
                      
             when others =>
                null;                    

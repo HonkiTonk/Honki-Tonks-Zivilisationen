@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with KIVariablen, KIBewegung;
+with KIVariablen;
+
+with KIBewegung;
 
 package body KIPruefungen is
    

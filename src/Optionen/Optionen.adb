@@ -3,7 +3,9 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with Eingabe, Anzeige, GlobaleVariablen, Steuerung, GlobaleDatentypen;
+with GlobaleVariablen, GlobaleDatentypen;
+
+with Eingabe, Anzeige, Steuerung;
 
 package body Optionen is
 

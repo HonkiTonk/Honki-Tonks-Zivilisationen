@@ -3,7 +3,9 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with Anzeige, GlobaleDatentypen;
+with GlobaleDatentypen;
+
+with Anzeige;
 
 package body Ladezeiten is
 
@@ -146,7 +148,7 @@ package body Ladezeiten is
 
       case WelcheZeit is
          when others =>
-            Ada.Float_Text_IO.Put (Item => Float (SpielStartzeiten (2, WelcheZeit) - SpielStartzeiten (1, WelcheZeit)),
+            Ada.Float_Text_IO.Put (Item => Float (BerechnungenNachZugendeAllerSpielerZeiten (2, WelcheZeit) - BerechnungenNachZugendeAllerSpielerZeiten (1, WelcheZeit)),
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
@@ -169,6 +171,15 @@ package body Ladezeiten is
                                      AbstandAnfang    => GlobaleDatentypen.Keiner,
                                      AbstandMitte     => GlobaleDatentypen.Keiner,
                                      AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+
+      case WelcheZeit is
+         when others =>
+            Ada.Float_Text_IO.Put (Item => Float (KIZeiten (2, WelcheZeit) - KIZeiten (1, WelcheZeit)),
+                                   Fore => 1,
+                                   Aft  => 6,
+                                   Exp  => 0);
+            Get_Immediate (Item => Warten);
+      end case;
       
    end KIZeit;
 

@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, Karten, KIDatentypen;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KIDatentypen;
 use GlobaleDatentypen, KIDatentypen;
+
+with Karten;
 
 package KIBewegung is
    

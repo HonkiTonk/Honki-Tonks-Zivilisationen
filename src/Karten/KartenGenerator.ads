@@ -3,8 +3,10 @@ pragma SPARK_Mode (On);
 with Ada.Numerics.Float_Random;
 use Ada.Numerics.Float_Random;
 
-with Karten, GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
+
+with Karten;
 
 package KartenGenerator is -- Klein = 40x40, Mittel = 80x80, Groß = 160x160, Riesig = 240x240, Gigantisch = 320x320, Absurd = 1000x1000
 

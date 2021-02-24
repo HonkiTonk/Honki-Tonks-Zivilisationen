@@ -3,7 +3,9 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories, Ada.Calendar;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories, Ada.Calendar;
 
-with Karten, GlobaleVariablen, Eingabe, Auswahl, Ladezeiten, GlobaleRecords, Informationen;
+with GlobaleVariablen, GlobaleRecords;
+
+with Karten, Eingabe, Auswahl, Ladezeiten, Informationen;
 
 package body Speichern is
 

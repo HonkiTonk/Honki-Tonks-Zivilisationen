@@ -182,6 +182,78 @@ package body Anzeige is
 
 
 
+   procedure AnzeigeSprache (AktuelleAuswahl, ErsteZeile, LetzteZeile : in Positive) is
+   begin
+      
+      LängsterText := 1;
+      
+      TextlängePrüfenSchleife:
+      for Zeilen in ErsteZeile .. LetzteZeile loop
+         
+         if To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeilen))'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeilen))'Length;
+            
+         else
+            null;
+         end if;
+         
+      end loop TextlängePrüfenSchleife;
+      
+      AnzeigeSchleife:
+      for Zeile in ErsteZeile .. LetzteZeile loop
+
+         if AktuelleAuswahl = Zeile then
+            RahmenTeilEinsSchleife:
+            for TextlängeEins in 1 .. LängsterText loop
+                  
+               if TextlängeEins = 1 then
+                  Put (Item => "╔");
+                  Put (Item => "═");
+
+               elsif TextlängeEins = LängsterText then                  
+                  Put (Item => "═");
+                  Put_Line (Item => "╗");
+                  Put (Item => "║");
+                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeile)));
+
+                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeile))'Length loop
+                        
+                     Put (" ");
+                        
+                  end loop;
+
+                  Put_Line (Item => "║");
+                  Put (Item => "╚");
+
+               else
+                  Put (Item => "═");
+               end if;
+               
+            end loop RahmenTeilEinsSchleife;
+
+            RahmenTeilZweiSchleife:
+            for TextlängeZwei in 1 .. LängsterText loop
+               
+               if TextlängeZwei = LängsterText then
+                  Put (Item => "═");
+                  Put_Line (Item => "╝");
+               
+               else
+                  Put (Item => "═");
+               end if;
+            
+            end loop RahmenTeilZweiSchleife;
+         
+         else
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeile)));
+         end if;
+         
+      end loop AnzeigeSchleife;
+      
+   end AnzeigeSprache;
+
+
+
    procedure AnzeigeStadt (AktuelleAuswahl : in Positive) is
    begin
       

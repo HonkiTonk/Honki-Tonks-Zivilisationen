@@ -1,7 +1,10 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, Karten;
-use Karten, GlobaleDatentypen;
+with GlobaleRecords, GlobaleDatentypen;
+use GlobaleDatentypen;
+
+with Karten;
+use Karten;
 
 package KartenPruefungen is
 

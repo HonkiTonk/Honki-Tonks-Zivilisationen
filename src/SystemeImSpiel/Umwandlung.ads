@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, Karten;
+with GlobaleRecords, GlobaleDatentypen;
 use GlobaleDatentypen;
+
+with Karten;
 
 package Umwandlung is
 

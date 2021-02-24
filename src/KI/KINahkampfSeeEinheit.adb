@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with KIBewegung, KIDatentypen;
+with KIDatentypen;
+
+with KIBewegung;
 
 package body KINahkampfSeeEinheit is
 

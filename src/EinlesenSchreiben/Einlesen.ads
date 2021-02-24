@@ -15,7 +15,7 @@ private
 
    Wert : Integer;
 
-   type WelcheTexteEinlesenNeuArray is array (1 .. GlobaleVariablen.TexteEinlesenNeu'Last (1)) of Unbounded_Wide_Wide_String;
+   type WelcheTexteEinlesenNeuArray is array (GlobaleVariablen.TexteEinlesenNeuArray'Range (1)) of Unbounded_Wide_Wide_String;
    WelcheTexteEinlesenNeu : WelcheTexteEinlesenNeuArray;
 
    DateiNeuWelcheTexteEinlesen : File_Type;

@@ -1,8 +1,10 @@
 pragma SPARK_Mode (On);
 
-with EinheitenDatenbank, KISiedler, KINahkampfLandEinheit, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit, KINahkampfUnterirdisch,
-     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, Sortieren, KIDatentypen;
+with KIDatentypen;
 use KIDatentypen;
+
+with EinheitenDatenbank, KISiedler, KINahkampfLandEinheit, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit, KINahkampfUnterirdisch,
+     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, Sortieren;
 
 package body KI is
 

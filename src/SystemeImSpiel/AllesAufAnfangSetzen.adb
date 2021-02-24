@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, Karten;
+with GlobaleVariablen;
+
+with Karten;
 
 package body AllesAufAnfangSetzen is
 

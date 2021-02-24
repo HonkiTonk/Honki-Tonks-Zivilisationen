@@ -3,18 +3,43 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9, Ada.Integer_Text_IO;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with GebaeudeDatenbank, KartenDatenbank, Karten, VerbesserungenDatenbank, Sichtbarkeit, Anzeige, KartenPruefungen, StadtSuchen;
+with GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, Sichtbarkeit, Anzeige, KartenPruefungen, StadtSuchen;
 
 package body KarteStadt is
+
+   procedure AnzeigeStadtNeu (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
+   begin
+      
+      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+
+      StadtumgebungsgrößeFest := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße;
+      StadtumgebungsgrößeVariabel := StadtumgebungsgrößeFest;
+
+      YAchseSchleife:
+      for YAchse in Karten.StadtkarteArray'Range (1) loop
+         XAchseSchleife:
+         for XAchse in Karten.StadtkarteArray'Range (2) loop
+            
+            if YAchse < FelderFensterYAchse and XAchse > FelderFensterXAchse then
+               null;
+               
+            else
+               null;
+            end if;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+   end AnzeigeStadtNeu;
 
    procedure AnzeigeStadt (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
    begin
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
-      Stadtumgebungsgröße := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße;
+      StadtumgebungsgrößeFest := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße;
 
-      YAchsenabstraktion := -Stadtumgebungsgröße;
+      YAchsenabstraktion := -StadtumgebungsgrößeFest;
       CursorYAchsePlus := -10;
       CursorXAchsePlus := -10;
       
@@ -24,7 +49,7 @@ package body KarteStadt is
          for XAchse in Karten.StadtkarteArray'Range (2) loop
                         
             if YAchse < Karten.Stadtkarte'First (1) + 7 and XAchse > Karten.Stadtkarte'Last (2) - 7 then               
-               if YAchsenabstraktion > Stadtumgebungsgröße then
+               if YAchsenabstraktion > StadtumgebungsgrößeFest then
                   for Umgebung in 0 .. 6 loop
                      
                      if YAchse = GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.YAchse
@@ -40,7 +65,7 @@ package body KarteStadt is
                   New_Line;
                   exit XAchseSchleife;
 
-               elsif Stadtumgebungsgröße = 1 and YAchse < 3 then
+               elsif StadtumgebungsgrößeFest = 1 and YAchse < 3 then
                   for Umgebung in 0 .. 6 loop                  
                                           
                      if YAchse = GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.YAchse
@@ -56,7 +81,7 @@ package body KarteStadt is
                   New_Line;
                   exit XAchseSchleife;
 
-               elsif Stadtumgebungsgröße = 2 and YAchse < 2 then
+               elsif StadtumgebungsgrößeFest = 2 and YAchse < 2 then
                   for Umgebung in 0 .. 6 loop               
                                           
                      if YAchse = GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.YAchse
@@ -81,17 +106,17 @@ package body KarteStadt is
                         Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).CursorGrafik & CSI & "0m");
                         CursorYAchsePlus := YAchse - 4;
 
-                        if Umgebung < -Stadtumgebungsgröße or Umgebung > Stadtumgebungsgröße then
+                        if Umgebung < -StadtumgebungsgrößeFest or Umgebung > StadtumgebungsgrößeFest then
                            null;
                            
                         else
                            CursorXAchsePlus := Umgebung;
                         end if;
                            
-                     elsif Umgebung < -Stadtumgebungsgröße then
+                     elsif Umgebung < -StadtumgebungsgrößeFest then
                         Put (Item => " ");
                            
-                     elsif Umgebung > Stadtumgebungsgröße then
+                     elsif Umgebung > StadtumgebungsgrößeFest then
                         Put (Item => " ");
 
                      else
@@ -211,7 +236,7 @@ package body KarteStadt is
    
    
    procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
-   begin      
+   begin
       
       Nahrungsgewinnung := 0;
       Ressourcengewinnung := 0;
@@ -227,13 +252,13 @@ package body KarteStadt is
             YAchse := -10;
          
          when True =>
-            YAchse := GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.YAchse + YAufschlag;
+            YAchse := KartenWert.YAchse;
       end case;
 
       if XAufschlag = -10 then
          XAchse := XAufschlag;
 
-      else         
+      else
          XAchse := KartenWert.XAchse;
       end if;
       
@@ -390,11 +415,11 @@ package body KarteStadt is
                                         AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
                                         AbstandMitte     => GlobaleDatentypen.Keiner,
                                         AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
-         -- Funktioniert so nicht richtig, sondern nur für einige Stadtfelder
-         case GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).UmgebungBewirtschaftung (abs (abs (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.YAchse)
-                                                                                                                           - abs (YAchse)),
-                                                                                                                           abs (abs (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.XAchse)
-                                                                                                                             - abs (XAchse))) is
+         -- Funktioniert so nicht richtig, sondern nur für Stadtfelder die sich recht, unten oder unten rechts vom Zentrum befinden
+         FeldBelegt := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).UmgebungBewirtschaftung
+           (abs (abs (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.YAchse) - abs (YAchse)),
+            abs (abs (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.XAchse) - abs (XAchse)));
+         case FeldBelegt is
             when True =>
                Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Menü_Auswahl,
                                                      TextZeile => 10);

@@ -43,6 +43,8 @@ package body Einlesen is
 
    function EinlesenSprache return Boolean is
    begin
+
+      GlobaleVariablen.SprachenEinlesen := (others => (To_Unbounded_Wide_Wide_String (Source => "|")));
       
       Start_Search (Search    => Suche,
                     Directory => "Dateien/Sprachen",
@@ -58,13 +60,13 @@ package body Einlesen is
                   
          else  
             VerzeichnisInnenSchleife:
-            for Sprache in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
+            for Sprache in GlobaleVariablen.SprachenEinlesenArray'Range loop
             
-               if GlobaleVariablen.TexteEinlesenNeu (0, Sprache) /= "|" then
+               if GlobaleVariablen.SprachenEinlesen (Sprache) /= "|" then
                   null;
             
                else        
-                  GlobaleVariablen.TexteEinlesenNeu (0, Sprache) := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
+                  GlobaleVariablen.SprachenEinlesen (Sprache) := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
                   exit VerzeichnisInnenSchleife;
                end if;            
          
@@ -73,7 +75,7 @@ package body Einlesen is
 
       end loop VerzeichnisAußenSchleife;
       
-      if GlobaleVariablen.TexteEinlesenNeu (0, 1) = "|" then
+      if GlobaleVariablen.SprachenEinlesen (1) = "|" then
          return False;
          
       else

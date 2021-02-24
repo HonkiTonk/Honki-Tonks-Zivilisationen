@@ -3,7 +3,10 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar;
 
-with Karten, GlobaleVariablen, Ladezeiten, GlobaleRecords, Informationen, Auswahl, Eingabe;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+use GlobaleDatentypen;
+
+with Karten, Ladezeiten, Informationen, Auswahl, Eingabe;
 
 package body Laden is
 

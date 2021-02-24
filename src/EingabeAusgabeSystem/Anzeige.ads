@@ -31,6 +31,7 @@ package Anzeige is
    procedure AnzeigeStadt (AktuelleAuswahl : in Positive);
    procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Positive);
    procedure AnzeigeForschung (AktuelleAuswahl : in Positive);
+   procedure AnzeigeSprache (AktuelleAuswahl, ErsteZeile, LetzteZeile : in Positive);
 
    procedure AnzeigeOhneAuswahlNeu (ÜberschriftDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeile, ErsteZeile, LetzteZeile : in Natural;
                                     AbstandAnfang, AbstandMitte, AbstandEnde : in GlobaleDatentypen.WelcherAbstand_Enum) with
