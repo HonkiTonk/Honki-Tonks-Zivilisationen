@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with Eingabe, Anzeige, GlobaleVariablen, Steuerung;
+with Eingabe, Anzeige, GlobaleVariablen, Steuerung, GlobaleDatentypen;
 
 package body Optionen is
 
@@ -12,13 +12,8 @@ package body Optionen is
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
-      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                  ÜberschriftZeile      => 0,
-                                  TextDatei             => 9,
-                                  ErsteZeile            => 41,
-                                  LetzteZeile           => 41,
-                                  MitNew_LineMittendrin => 0,
-                                  MitNew_LineAmEnde     => 0);
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fragen,
+                                            TextZeile => 23);
       
       Wert := Eingabe.GanzeZahl (WelcheDatei   => 0,
                                  WelcherText   => 0,

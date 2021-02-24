@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Wide_Wide_Text_IO;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar;
 
 with Karten, GlobaleVariablen, Ladezeiten, GlobaleRecords, Informationen, Auswahl, Eingabe;
@@ -23,14 +23,9 @@ package body Laden is
       if VersionsnummerPrüfung = Informationen.Versionsnummer then
          null;
          
-      else         
-         Ada.Wide_Wide_Text_IO.Put_Line ("Falsche Version!"); -- Hier noch eine Fehlermeldung einbauen
-         Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                     FrageDatei         => 10,
-                                     FrageZeile         => 18,
-                                     TextDatei          => 5,
-                                     ErsteZeile         => 10,
-                                     LetzteZeile        => 11);
+      else -- Falsche Versionsnummer
+         Wahl := Auswahl.AuswahlJaNein (FrageZeile => 24);
+         
          case Wahl is
             when -3 =>
                null;

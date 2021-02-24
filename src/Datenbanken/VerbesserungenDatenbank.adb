@@ -12,13 +12,8 @@ package body VerbesserungenDatenbank is
             null;
             
          when others =>
-            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                        ÜberschriftZeile      => 0,
-                                        TextDatei             => 14,
-                                        ErsteZeile            => Positive (ID),
-                                        LetzteZeile           => Positive (ID),
-                                        MitNew_LineMittendrin => 0,
-                                        MitNew_LineAmEnde     => 0);
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Beschreibungen_Verbesserungen_Kurz,
+                                                  TextZeile => Positive (ID));
       end case;
       
    end Beschreibung;

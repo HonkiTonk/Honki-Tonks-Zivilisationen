@@ -27,12 +27,7 @@ package body BefehleImSpiel is
                                                                        Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
             if EinheitNummer /= 0 and StadtNummer /= 0 then
-               StadtOderEinheit := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                                       FrageDatei         => 10,
-                                                       FrageZeile         => 15,
-                                                       TextDatei          => 5,
-                                                       ErsteZeile         => 10,
-                                                       LetzteZeile        => 11);
+               StadtOderEinheit := Auswahl.AuswahlJaNein (FrageZeile => 15);
 
                EinheitOderStadt (RasseExtern         => RasseExtern,
                                  Auswahl             => StadtOderEinheit,
@@ -58,12 +53,11 @@ package body BefehleImSpiel is
             return 1;
             
          when 'q' => -- Menüaufruf
-            return Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                       FrageDatei         => 0,
-                                       FrageZeile         => 0,
-                                       TextDatei          => 5,
-                                       ErsteZeile         => 2,
-                                       LetzteZeile        => 7);
+            return Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Leer,
+                                    TextDatei   => GlobaleDatentypen.Menü_Auswahl,
+                                    FrageZeile  => 0,
+                                    ErsteZeile  => 2,
+                                    LetzteZeile => 7);
 
          when 'b' => -- Baue Stadt
             EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern => RasseExtern,
@@ -91,12 +85,7 @@ package body BefehleImSpiel is
                   ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
                      
                when others =>
-                  WahlForschung := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                                       FrageDatei         => 10,
-                                                       FrageZeile         => 17,
-                                                       TextDatei          => 5,
-                                                       ErsteZeile         => 10,
-                                                       LetzteZeile        => 11);
+                  WahlForschung := Auswahl.AuswahlJaNein (FrageZeile => 17);
                   case WahlForschung is
                      when -3 =>
                         ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
@@ -171,34 +160,16 @@ package body BefehleImSpiel is
                   
                when others =>
                   if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID /= 1 and WelcherBefehl > 0 and WelcherBefehl <= 6 then
-                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                                 ÜberschriftZeile      => 0,
-                                                 TextDatei             => 8,
-                                                 ErsteZeile            => 3,
-                                                 LetzteZeile           => 3,
-                                                 MitNew_LineMittendrin => 0,
-                                                 MitNew_LineAmEnde     => 0);
-                     delay 1.00;
+                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
+                                                           TextZeile => 3);
 
                   elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 1 and WelcherBefehl = 11 then
-                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                                 ÜberschriftZeile      => 0,
-                                                 TextDatei             => 8,
-                                                 ErsteZeile            => 3,
-                                                 LetzteZeile           => 3,
-                                                 MitNew_LineMittendrin => 0,
-                                                 MitNew_LineAmEnde     => 0);
-                     delay 1.00;
+                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
+                                                           TextZeile => 3);
                      
                   elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00 then
-                     Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                                 ÜberschriftZeile      => 0,
-                                                 TextDatei             => 8,
-                                                 ErsteZeile            => 8,
-                                                 LetzteZeile           => 8,
-                                                 MitNew_LineMittendrin => 0,
-                                                 MitNew_LineAmEnde     => 0);
-                     delay 1.00;
+                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
+                                                           TextZeile => 8);
                      
                   else
                      Verbesserungen.Verbesserung (EinheitRasseNummer => (RasseExtern, EinheitNummer),

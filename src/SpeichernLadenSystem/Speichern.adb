@@ -16,12 +16,7 @@ package body Speichern is
 
             case Exists (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is -- Anzeige der vorhandenen Spielstände einbauen
                when True =>
-                  Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                              FrageDatei         => 10,
-                                              FrageZeile         => 18,
-                                              TextDatei          => 5,
-                                              ErsteZeile         => 10,
-                                              LetzteZeile        => 11);
+                  Wahl := Auswahl.AuswahlJaNein (FrageZeile => 18);
                   case Wahl is
                      when -3 =>
                         null;

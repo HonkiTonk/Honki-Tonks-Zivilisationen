@@ -1,140 +1,131 @@
 pragma SPARK_Mode (On);
 
+with Ada.Wide_Wide_Text_IO;
+use Ada.Wide_Wide_Text_IO;
+
 package body Anzeige is
 
-   procedure AnzeigeOhneAuswahlNeu is
+   procedure AnzeigeOhneAuswahlNeu (ÜberschriftDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeile, ErsteZeile, LetzteZeile : in Natural;
+                                    AbstandAnfang, AbstandMitte, AbstandEnde : in GlobaleDatentypen.WelcherAbstand_Enum) is
    begin
         
-      null;
-      -- ÜbeschriftDatei, ÜberschriftZeile
-
-      -- TextDatei, ErsteZeile, LetzteZeile
-      
-      -- Abstand am Anfang (klein), Abstand am Anfang (groß) -- Negativ?
-      
-      -- Abstand am Ende (klein), Abstand am Ende (groß) -- Natural?
-
-      -- New_Lines am Ende (0 bis x)
-      
-   end AnzeigeOhneAuswahlNeu;
-   
-   
-
-   procedure AnzeigeOhneAuswahl (ÜberschriftDatei, ÜberschriftZeile, TextDatei, ErsteZeile, LetzteZeile : Natural ; MitNew_LineMittendrin : in Integer; MitNew_LineAmEnde : in Ada.Wide_Wide_Text_IO.Count) is
-   begin
-
       case ÜberschriftDatei is
-         when 0 =>
+         when GlobaleDatentypen.Leer =>
+            null;
+            
+         when others =>
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (ÜberschriftDatei), ÜberschriftZeile)));
+      end case;
+
+      case AbstandAnfang is
+         when GlobaleDatentypen.Keiner =>
             null;
 
-         when others =>
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (ÜberschriftDatei, ÜberschriftZeile)));
+         when GlobaleDatentypen.Kleiner_Abstand =>
+            Put (Item => " ");
+            
+         when GlobaleDatentypen.Großer_Abstand =>
+            Put (Item => "    ");
+            
+         when GlobaleDatentypen.Neue_Zeile =>
+            New_Line;
       end case;
 
       TextAnzeigeSchleife:
       for TextZeile in ErsteZeile .. LetzteZeile loop
-
-         if MitNew_LineMittendrin <= -1_000 then
-            Put (Item => " ");
-
-         elsif MitNew_LineMittendrin < 0 then
-            Put (Item => "    ");
-
-         else
-            null;
-         end if;
          
-         Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, TextZeile)));
-
-         if MitNew_LineMittendrin = 0 then
-            New_Line;
-               
-         elsif MitNew_LineMittendrin > 0 then               
-            if TextZeile < LetzteZeile and TextZeile > ErsteZeile and (TextZeile - ErsteZeile) mod 2 = 0 and ErsteZeile /= LetzteZeile then
-               New_Line;
-
-            elsif ErsteZeile = LetzteZeile and MitNew_LineMittendrin < 1_000 then
-               null;
-
-            elsif ErsteZeile = LetzteZeile and MitNew_LineMittendrin > 1_000 then
-               Put (Item => " ");
+         Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), TextZeile)));
                   
-            else
-               Put (Item => "    ");
-            end if;
-
-         else
-            null;
-         end if;
-         
-      end loop TextAnzeigeSchleife;
-      
-      case MitNew_LineAmEnde is
-         when 0 =>
+         if ErsteZeile = LetzteZeile or AbstandMitte = GlobaleDatentypen.Keiner then
             null;
             
-         when others =>
-            New_Line (MitNew_LineAmEnde);
+         elsif TextZeile < LetzteZeile and TextZeile > ErsteZeile and (TextZeile - ErsteZeile) mod 2 = 0 then
+            case AbstandMitte is
+               when GlobaleDatentypen.Keiner =>
+                  null;
+                  
+               when GlobaleDatentypen.Kleiner_Abstand =>
+                  Put (Item => " ");
+            
+               when GlobaleDatentypen.Großer_Abstand =>
+                  Put (Item => "    ");
+            
+               when GlobaleDatentypen.Neue_Zeile =>
+                  New_Line;
+            end case;
+
+         else
+            null;
+         end if;
+
+      end loop TextAnzeigeSchleife;
+      
+      case AbstandEnde is
+         when GlobaleDatentypen.Keiner =>
+            null;
+
+         when GlobaleDatentypen.Kleiner_Abstand =>
+            Put (Item => " ");
+            
+         when GlobaleDatentypen.Großer_Abstand =>
+            Put (Item => "    ");
+            
+         when GlobaleDatentypen.Neue_Zeile =>
+            New_Line;
       end case;
       
-   end AnzeigeOhneAuswahl;
+   end AnzeigeOhneAuswahlNeu;
 
 
 
-   procedure EinzeiligeAnzeigeOhneAuswahl (TextDatei, TextZeile : in Positive) is
+   procedure EinzeiligeAnzeigeOhneAuswahl (TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; TextZeile : in Positive) is
    begin
       
-      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                  ÜberschriftZeile      => 0,
-                                  TextDatei             => TextDatei,
-                                  ErsteZeile            => TextZeile,
-                                  LetzteZeile           => TextZeile,
-                                  MitNew_LineMittendrin => 0,
-                                  MitNew_LineAmEnde     => 0);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => TextDatei,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => TextZeile,
+                                     LetzteZeile      => TextZeile,
+                                     AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Neue_Zeile);
+
+      case TextDatei is
+         when GlobaleDatentypen.Fehlermeldungen =>
+            delay 1.0;
+            
+         when others =>
+            null;
+      end case;
       
    end EinzeiligeAnzeigeOhneAuswahl;
 
 
 
-   procedure FehlerAnzeigen (FehlerNummer : in Positive) is
+   procedure AnzeigeMitAuswahlNeu (FrageDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; FrageZeile, ErsteZeile, LetzteZeile, AktuelleAuswahl : in Natural) is
    begin
-      
-      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                  ÜberschriftZeile      => 0,
-                                  TextDatei             => 8,
-                                  ErsteZeile            => FehlerNummer,
-                                  LetzteZeile           => FehlerNummer,
-                                  MitNew_LineMittendrin => 0,
-                                  MitNew_LineAmEnde     => 0);
-      
-   end FehlerAnzeigen;
-
-
-
-   procedure AnzeigeMitAuswahl (FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile, AktuelleAuswahl : in Natural) is
-   begin
-
+        
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
       for Zeilen in ErsteZeile .. LetzteZeile loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeilen))'Length > LängsterText then
-            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeilen))'Length;
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), Zeilen))'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), Zeilen))'Length;
             
          else
             null;
          end if;
          
-      end loop TextlängePrüfenSchleife;  
+      end loop TextlängePrüfenSchleife;
 
       case FrageDatei is
-         when 0 =>
+         when GlobaleDatentypen.Leer =>
             null;
 
          when others =>
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (FrageDatei, FrageZeile)));
-      end case;                
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (FrageDatei), FrageZeile)));
+      end case;
       
       AnzeigeSchleife:
       for Zeile in ErsteZeile .. LetzteZeile loop
@@ -151,9 +142,9 @@ package body Anzeige is
                   Put (Item => "═");
                   Put_Line (Item => "╗");
                   Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeile)));
+                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), Zeile)));
 
-                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeile))'Length loop
+                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), Zeile))'Length loop
                         
                      Put (" ");
                         
@@ -182,14 +173,14 @@ package body Anzeige is
             end loop RahmenTeilZweiSchleife;
          
          else
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (TextDatei, Zeile)));
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), Zeile)));
          end if;
          
       end loop AnzeigeSchleife;
       
-   end AnzeigeMitAuswahl;
+   end AnzeigeMitAuswahlNeu;
 
-   
+
 
    procedure AnzeigeStadt (AktuelleAuswahl : in Positive) is
    begin

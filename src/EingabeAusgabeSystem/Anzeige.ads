@@ -1,9 +1,10 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Text_IO;
-use Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Text_IO;
+with Ada.Strings.Wide_Wide_Unbounded;
+use Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleVariablen, GlobaleDatentypen;
+use GlobaleDatentypen;
 
 package Anzeige is
    
@@ -31,19 +32,17 @@ package Anzeige is
    procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Positive);
    procedure AnzeigeForschung (AktuelleAuswahl : in Positive);
 
-   procedure AnzeigeOhneAuswahlNeu;
+   procedure AnzeigeOhneAuswahlNeu (ÜberschriftDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeile, ErsteZeile, LetzteZeile : in Natural;
+                                    AbstandAnfang, AbstandMitte, AbstandEnde : in GlobaleDatentypen.WelcherAbstand_Enum) with
+     Pre => (ErsteZeile <= LetzteZeile and (if ÜberschriftDatei = GlobaleDatentypen.Leer then ÜberschriftZeile = 0) and (if ÜberschriftZeile = 0 then ÜberschriftDatei = GlobaleDatentypen.Leer)
+             and TextDatei /= GlobaleDatentypen.Leer);
 
-   procedure AnzeigeOhneAuswahl (ÜberschriftDatei, ÜberschriftZeile, TextDatei, ErsteZeile, LetzteZeile : Natural ; MitNew_LineMittendrin : in Integer; MitNew_LineAmEnde : in Ada.Wide_Wide_Text_IO.Count) with
-     Pre => (ErsteZeile <= LetzteZeile and (if ÜberschriftDatei = 0 then ÜberschriftZeile = 0) and (if ÜberschriftZeile = 0 then ÜberschriftDatei = 0));
+   procedure EinzeiligeAnzeigeOhneAuswahl (TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; TextZeile : in Positive);
 
-   procedure EinzeiligeAnzeigeOhneAuswahl (TextDatei, TextZeile : in Positive);
+   procedure AnzeigeMitAuswahlNeu (FrageDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; FrageZeile, ErsteZeile, LetzteZeile, AktuelleAuswahl : in Natural) with
+     Pre => (ErsteZeile <= LetzteZeile and (if FrageDatei = GlobaleDatentypen.Leer then FrageZeile = 0) and (if FrageZeile = 0 then FrageDatei = GlobaleDatentypen.Leer) and TextDatei /= GlobaleDatentypen.Leer);
 
-   procedure AnzeigeMitAuswahl (FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile, AktuelleAuswahl : in Natural) with
-     Pre => (ErsteZeile <= LetzteZeile and (if FrageDatei = 0 then FrageZeile = 0) and (if FrageZeile = 0 then FrageDatei = 0));
-
-   procedure FehlerAnzeigen (FehlerNummer : in Positive);
-
-   -- Dateien nicht einfach ändern!!!
+   -- Bei Änderung der Dateien GlobaleDatentypen.WelcheDatei_Enum beachten!
    -- Datei 0 = 0, sollte niemals von Anzeige aufgerufen werden!
    -- Datei 1 = 1Start
    -- Datei 2 = 2FesteAbfragen

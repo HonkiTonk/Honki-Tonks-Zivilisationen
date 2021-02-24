@@ -7,13 +7,14 @@ package body EinheitenDatenbank is
    procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID) is
    begin
       
-      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                  ÜberschriftZeile      => 0,
-                                  TextDatei             => 12,
-                                  ErsteZeile            => Positive (ID),
-                                  LetzteZeile           => Positive (ID),
-                                  MitNew_LineMittendrin => 0,
-                                  MitNew_LineAmEnde     => 0);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Beschreibungen_Einheiten_Kurz,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => Positive (ID),
+                                     LetzteZeile      => Positive (ID),
+                                     AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Keiner);
       
    end Beschreibung;
 
@@ -155,22 +156,24 @@ package body EinheitenDatenbank is
       
       case Arbeit is
          when 0 =>
-            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                        ÜberschriftZeile      => 0,
-                                        TextDatei             => 20,
-                                        ErsteZeile            => 9,
-                                        LetzteZeile           => 9,
-                                        MitNew_LineMittendrin => 0,
-                                        MitNew_LineAmEnde     => 0);          
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Beschreibungen_Beschäftigung_Kurz,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => 9,
+                                           LetzteZeile      => 9,
+                                           AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Keiner);
             
          when others =>
-            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                        ÜberschriftZeile      => 0,
-                                        TextDatei             => 20,
-                                        ErsteZeile            => Arbeit,
-                                        LetzteZeile           => Arbeit,
-                                        MitNew_LineMittendrin => 0,
-                                        MitNew_LineAmEnde     => 0);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Beschreibungen_Beschäftigung_Kurz,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => Arbeit,
+                                           LetzteZeile      => Arbeit,
+                                           AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Keiner);
       end case;
       
    end Beschäftigung;
@@ -180,12 +183,7 @@ package body EinheitenDatenbank is
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Natural) return Boolean is
    begin
       
-      Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                  FrageDatei         => 10,
-                                  FrageZeile         => 7,
-                                  TextDatei          => 5,
-                                  ErsteZeile         => 10,
-                                  LetzteZeile        => 11);
+      Wahl := Auswahl.AuswahlJaNein (FrageZeile => 7);
       case Wahl is
          when -3 =>
             return True;

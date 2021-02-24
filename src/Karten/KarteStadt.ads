@@ -32,7 +32,7 @@ private
    
    RasseUndPlatznummer : GlobaleRecords.RassePlatznummerRecord;
    
-   procedure FarbenStadt;
-   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
+     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
 
 end KarteStadt;

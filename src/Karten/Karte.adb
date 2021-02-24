@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Integer_Text_IO;
+use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with KarteStadt, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, KartenPruefungen, EinheitSuchen, StadtSuchen;
+with KarteStadt, KartenDatenbank, Karten, GlobaleVariablen, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, KartenPruefungen, EinheitSuchen, StadtSuchen, Anzeige;
 
 package body Karte is
 
@@ -125,18 +125,84 @@ package body Karte is
       Wissensgewinnung := 0;
       
       -- Allgemeine Informationen über die eigene Rasse, immer sichtbar
-      Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 33)) & GlobaleVariablen.RundenAnzahl'Wide_Wide_Image);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => 33,
+                                     LetzteZeile      => 33,
+                                     AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.RundenAnzahl,
+                               Width => 1);
 
-      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 34)) & GlobaleVariablen.Wichtiges (RasseExtern).AktuelleGeldmenge'Wide_Wide_Image);
-      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 35)) & GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde'Wide_Wide_Image);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => 34,
+                                     LetzteZeile      => 34,
+                                     AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.Wichtiges (RasseExtern).AktuelleGeldmenge,
+                               Width => 1);
 
-      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 38)));
-      ForschungsDatenbank.Beschreibung (ID => GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt);
-      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 36)) & GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit'Wide_Wide_Image);
-
-      Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 39)) & GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsmenge'Wide_Wide_Image);
-      Put_Line (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 37)) & GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsrate'Wide_Wide_Image);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => 35,
+                                     LetzteZeile      => 35,
+                                     AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde),
+                               Width => 1);
       New_Line;
+
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => 38,
+                                     LetzteZeile      => 38,
+                                     AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      ForschungsDatenbank.Beschreibung (ID => GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt);
+
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => 36,
+                                     LetzteZeile      => 36,
+                                     AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit),
+                               Width => 1);
+      New_Line;
+
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => 39,
+                                     LetzteZeile      => 39,
+                                     AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsmenge),
+                               Width => 1);
+
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => 37,
+                                     LetzteZeile      => 37,
+                                     AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsrate),
+                               Width => 1);
+      New_Line (Spacing => 2);
       
       case Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Sichtbar (RasseExtern) is
@@ -148,46 +214,126 @@ package body Karte is
                   null;
                   
                when others => -- Allgemeine Einheiteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Einheit befindet
-                  EinheitenDatenbank.Beschreibung (GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID);                        
-                  Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 14)));
-                  Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleLebenspunkte'Wide_Wide_Image & " /"
-                            & EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse,
-                              GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).MaximaleLebenspunkte'Wide_Wide_Image);
+                  EinheitenDatenbank.Beschreibung (GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID);
+                  New_Line;
+                  
+                  Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                                 TextDatei        => GlobaleDatentypen.Zeug,
+                                                 ÜberschriftZeile => 0,
+                                                 ErsteZeile       => 14,
+                                                 LetzteZeile      => 14,
+                                                 AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                                 AbstandMitte     => GlobaleDatentypen.Keiner,
+                                                 AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                  Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleLebenspunkte,
+                                           Width => 1);
+                  Put (Item => " / ");
+                  Ada.Integer_Text_IO.Put (Item  => EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse,
+                                           GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).MaximaleLebenspunkte,
+                                           Width => 1);
             
                   -- "Volle" Einheiteninformationen, nur sichtbar wenn eigene Einheit oder wenn Cheat aktiviert ist
                   if RasseExtern = RasseUndPlatznummer.Rasse or GlobaleVariablen.FeindlicheInformationenSehen = True then
-                     Put (Item => "           " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesenNeu (9, 15)));
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                                    TextDatei        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeile => 0,
+                                                    ErsteZeile       => 15,
+                                                    LetzteZeile      => 15,
+                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
+                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
                      Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBewegungspunkte,
                                             Fore => 1,
-                                            Aft  => 1,
+                                            Aft  => 2,
                                             Exp  => 0);
                      Put (Item => " / ");
                      Ada.Float_Text_IO.Put (Item => EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse,
                                             RasseUndPlatznummer.Platznummer).ID).MaximaleBewegungspunkte,
                                             Fore => 1,
-                                            Aft  => 1,
+                                            Aft  => 2,
                                             Exp  => 0);
-                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesenNeu (9, 16)));
-                     Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleErfahrungspunkte'Wide_Wide_Image & " /"
-                               & EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse,
-                                 RasseUndPlatznummer.Platznummer).ID).Beförderungsgrenze'Wide_Wide_Image);
-                              
-                     Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 17)));
-                     EinheitenDatenbank.Beschäftigung (GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBeschäftigung);
-                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesenNeu (9, 18)));
-                     Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBeschäftigungszeit'Wide_Wide_Image);
 
-                     Put (Item => "           " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 24)));
-                     Put (Item => EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).Angriff'Wide_Wide_Image);
-                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesenNeu (9, 25)));
-                     Put (Item => EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).Verteidigung'Wide_Wide_Image);
-                     Put (Item => "    " & To_Wide_Wide_String (GlobaleVariablen.TexteEinlesenNeu (9, 26)));
-                     Put_Line (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellerRang'Wide_Wide_Image & " /"
-                               & EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).MaximalerRang'Wide_Wide_Image);
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                                    TextDatei        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeile => 0,
+                                                    ErsteZeile       => 16,
+                                                    LetzteZeile      => 16,
+                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
+                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleErfahrungspunkte,
+                                              Width => 1);
+                     Put (Item => " / ");
+                     Ada.Integer_Text_IO.Put (Item  => EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse, GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse,
+                                              RasseUndPlatznummer.Platznummer).ID).Beförderungsgrenze,
+                                              Width => 1);
+                     New_Line;
+                              
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                                    TextDatei        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeile => 0,
+                                                    ErsteZeile       => 17,
+                                                    LetzteZeile      => 17,
+                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
+                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     EinheitenDatenbank.Beschäftigung (GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBeschäftigung);
+
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                                    TextDatei        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeile => 0,
+                                                    ErsteZeile       => 18,
+                                                    LetzteZeile      => 18,
+                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
+                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBeschäftigungszeit,
+                                              Width => 1);
+                     New_Line;
+
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                                    TextDatei        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeile => 0,
+                                                    ErsteZeile       => 24,
+                                                    LetzteZeile      => 24,
+                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
+                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     Ada.Integer_Text_IO.Put (Item  => Integer (EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse,
+                                              GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).Angriff),
+                                              Width => 1);
+
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                                    TextDatei        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeile => 0,
+                                                    ErsteZeile       => 25,
+                                                    LetzteZeile      => 25,
+                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
+                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     Ada.Integer_Text_IO.Put (Item  => Integer (EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse,
+                                              GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).Verteidigung),
+                                              Width => 1);
+                     
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                                    TextDatei        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeile => 0,
+                                                    ErsteZeile       => 26,
+                                                    LetzteZeile      => 26,
+                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
+                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellerRang,
+                                              Width => 1);
+                     Put (Item => " / ");
+                     Ada.Integer_Text_IO.Put (Item  => EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse,
+                                              GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).MaximalerRang,
+                                              Width => 1);
+                     New_Line;
                               
                   else
                      null;
-                  end if;                           
+                  end if;
                         
                   New_Line;
                   case GlobaleVariablen.FeindlicheInformationenSehen is
@@ -236,7 +382,14 @@ package body Karte is
                               GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Hügel = True
               and Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund /= 6 then
-               Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (6, 34)));
+               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                              TextDatei        => GlobaleDatentypen.Beschreibungen_Kartenfelder_Kurz,
+                                              ÜberschriftZeile => 0,
+                                              ErsteZeile       => 34,
+                                              LetzteZeile      => 34,
+                                              AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                              AbstandMitte     => GlobaleDatentypen.Keiner,
+                                              AbstandEnde      => GlobaleDatentypen.Keiner);
                KartenDatenbank.Beschreibung (ID => Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund);
 
@@ -406,16 +559,62 @@ package body Karte is
             end if;
             
             New_Line;
-            Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 19)));
-            Put (Item => Verteidigungsbonus'Wide_Wide_Image);
-            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 20)));
-            Put_Line (Item => Nahrungsgewinnung'Wide_Wide_Image);
-            Put (Item => "       " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 21)));
-            Put (Item => Ressourcengewinnung'Wide_Wide_Image);
-            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 22)));
-            Put (Item => Geldgewinnung'Wide_Wide_Image);
-            Put (Item => "    " & To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (9, 23)));
-            Put_Line (Item => Wissensgewinnung'Wide_Wide_Image);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => 19,
+                                           LetzteZeile      => 19,
+                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Ada.Integer_Text_IO.Put (Item  => Integer (Verteidigungsbonus),
+                                     Width => 1);
+            
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => 20,
+                                           LetzteZeile      => 20,
+                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Ada.Integer_Text_IO.Put (Item  => Integer (Nahrungsgewinnung),
+                                     Width => 1);
+            New_Line;
+            
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => 21,
+                                           LetzteZeile      => 21,
+                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Ada.Integer_Text_IO.Put (Item  => Integer (Ressourcengewinnung),
+                                     Width => 1);
+            
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => 22,
+                                           LetzteZeile      => 22,
+                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Ada.Integer_Text_IO.Put (Item  => Integer (Geldgewinnung),
+                                     Width => 1);
+            
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => 23,
+                                           LetzteZeile      => 23,
+                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Ada.Integer_Text_IO.Put (Item  => Integer (Wissensgewinnung),
+                                     Width => 1);
+            New_Line;
             
          when False =>
             null;

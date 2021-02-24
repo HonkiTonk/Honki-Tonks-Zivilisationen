@@ -12,13 +12,14 @@ package body KartenDatenbank is
             null;
             
          when others =>
-            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                        ÜberschriftZeile      => 0,
-                                        TextDatei             => 6,
-                                        ErsteZeile            => Positive (ID),
-                                        LetzteZeile           => Positive (ID),
-                                        MitNew_LineMittendrin => -1_000,
-                                        MitNew_LineAmEnde     => 0);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Beschreibungen_Kartenfelder_Kurz,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => Positive (ID),
+                                           LetzteZeile      => Positive (ID),
+                                           AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
       end case;
       
    end Beschreibung;

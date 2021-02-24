@@ -9,7 +9,7 @@ package Ladezeiten is
    LadezeitenSpielweltErstellenZeit : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 2 .. 12);
    Speicherzeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 1);
    LadenLadezeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 1);
-   SpielStartzeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 1);
+   SpielStartzeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 2);
    BerechnungenNachZugendeAllerSpielerZeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 1);
    KIZeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 18);
 
@@ -47,9 +47,13 @@ private
                                                  
    Warten : Wide_Wide_Character;
 
-   AufschlagSpielstart : constant Positive := 19; -- Für die Textausgabe
-   AufschlagSpeichern : constant Positive := 29;
-   AufschlagLaden : constant Positive := 39;
+   -- Für die Textausgabe
+   AufschlagSpeichern : constant Positive := 12;
+   AufschlagLaden : constant Positive := 13;
+   AufschlagZwischenDenRunden : constant Positive := 14;
+   AufschlagKIRechenzeit : constant Positive := 15;
+   AufschlagSpielstart : constant Positive := 16;
+   -- Für die Textausgabe
 
    Gesamtzeit : Float;
 

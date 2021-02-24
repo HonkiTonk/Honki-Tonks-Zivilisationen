@@ -10,14 +10,14 @@ package body Verbesserungen is
 
       if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung = 0 then
          VerbesserungeFestgelegt (EinheitRasseNummer => EinheitRasseNummer,
-                                  Befehl                => Befehl);
+                                  Befehl             => Befehl);
          
       else
          Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 7);
          case Wahl is
             when True =>
                VerbesserungeFestgelegt (EinheitRasseNummer => EinheitRasseNummer,
-                                        Befehl                => Befehl);
+                                        Befehl             => Befehl);
                      
             when False =>
                null;
@@ -312,14 +312,8 @@ package body Verbesserungen is
    procedure VerbesserungFehler (WelcherFehler : in Positive) is
    begin
       
-      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                  ÜberschriftZeile      => 0,
-                                  TextDatei             => 8,
-                                  ErsteZeile            => WelcherFehler,
-                                  LetzteZeile           => WelcherFehler,
-                                  MitNew_LineMittendrin => 0,
-                                  MitNew_LineAmEnde     => 0);
-      delay 1.00;
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
+                                            TextZeile => WelcherFehler);
       
    end VerbesserungFehler;
    

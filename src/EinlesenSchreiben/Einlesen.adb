@@ -3,33 +3,34 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Characters.Conversions;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar;
 
-with Ladezeiten, Schreiben;
+with Ladezeiten, Schreiben, Auswahl;
 
 package body Einlesen is
 
    function Einlesen return Boolean is
    begin
       
-      Ladezeiten.SpielStartzeiten (1, 1) := Clock;
-      
+      Ladezeiten.SpielStartzeiten (1, 1) := Clock;      
       Schreiben.SchreibenStartAufruf;
-      Erfolgreich := True; -- EinlesenSprache;
+      Erfolgreich := EinlesenSprache;
+      Ladezeiten.SpielStartzeiten (2, 1) := Clock;
       
       case Erfolgreich is
          when True =>
-            GlobaleVariablen.GewählteSprache := To_Unbounded_Wide_Wide_String (Source => "Deutsch"); -- Auswahl.AuswahlSprache;
+            GlobaleVariablen.GewählteSprache := Auswahl.AuswahlSprache;
             
          when False =>
             return Erfolgreich;
       end case;
       
+      Ladezeiten.SpielStartzeiten (1, 2) := Clock;
       Erfolgreich := EinlesenTextNeu;
 
       case Erfolgreich is
          when True =>
             EinlesenWerte;
-            Ladezeiten.SpielStartzeiten (2, 1) := Clock;
-            -- Ladezeiten.SpielStart (WelcheZeit => 1);
+            Ladezeiten.SpielStartzeiten (2, 2) := Clock;
+            Ladezeiten.SpielStart (WelcheZeit => 1);
             return Erfolgreich;
 
          when False =>
@@ -69,9 +70,15 @@ package body Einlesen is
          
             end loop VerzeichnisInnenSchleife;
          end if;
+
       end loop VerzeichnisAußenSchleife;
       
-      return True;
+      if GlobaleVariablen.TexteEinlesenNeu (0, 1) = "|" then
+         return False;
+         
+      else
+         return True;
+      end if;
       
    end EinlesenSprache;
 

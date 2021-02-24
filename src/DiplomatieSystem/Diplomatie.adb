@@ -42,12 +42,7 @@ package body Diplomatie is
                                                                 VerteidigendeRasse => Gegner.Rasse);
       case BereitsImKrieg is
          when GlobaleVariablen.Neutral | GlobaleVariablen.Offene_Grenzen =>
-            Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                        FrageDatei         => 10,
-                                        FrageZeile         => 11,
-                                        TextDatei          => 5,
-                                        ErsteZeile         => 10,
-                                        LetzteZeile        => 11);
+            Wahl := Auswahl.AuswahlJaNein (FrageZeile => 11);
             case Wahl is
                when -3 =>
                   Angreifen := True;

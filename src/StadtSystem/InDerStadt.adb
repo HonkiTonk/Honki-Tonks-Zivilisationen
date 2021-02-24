@@ -78,12 +78,7 @@ package body InDerStadt is
                      InDerStadtBauen.Bauen (StadtRasseNummer => StadtRasseNummer);
                      
                   when others =>
-                     Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                                 FrageDatei         => 10,
-                                                 FrageZeile         => 14,
-                                                 TextDatei          => 5,
-                                                 ErsteZeile         => 10,
-                                                 LetzteZeile        => 11);
+                     Wahl := Auswahl.AuswahlJaNein (FrageZeile => 14);
                      case Wahl is
                         when -3 =>
                            InDerStadtBauen.Bauen (StadtRasseNummer => StadtRasseNummer);

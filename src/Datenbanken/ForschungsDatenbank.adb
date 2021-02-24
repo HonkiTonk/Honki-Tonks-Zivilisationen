@@ -12,22 +12,24 @@ package body ForschungsDatenbank is
       
       case ID is
          when 0 =>
-            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                        ÜberschriftZeile      => 0,
-                                        TextDatei             => 9,
-                                        ErsteZeile            => 28,
-                                        LetzteZeile           => 28,
-                                        MitNew_LineMittendrin => 0,
-                                        MitNew_LineAmEnde     => 0);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => 28,
+                                           LetzteZeile      => 28,
+                                           AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Keiner);
             
          when others =>
-            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                        ÜberschriftZeile      => 0,
-                                        TextDatei             => 18,
-                                        ErsteZeile            => Positive (ID),
-                                        LetzteZeile           => Positive (ID),
-                                        MitNew_LineMittendrin => 0,
-                                        MitNew_LineAmEnde     => 0);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => Positive (ID),
+                                           LetzteZeile      => Positive (ID),
+                                           AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Keiner);
       end case;
       
    end Beschreibung;

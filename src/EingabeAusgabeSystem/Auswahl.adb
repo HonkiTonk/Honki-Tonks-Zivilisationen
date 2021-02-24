@@ -12,31 +12,29 @@ package body Auswahl is
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
-      for A in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
+      EndeBestimmenSchleife:
+      for LetztesEnde in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (0, A)) = "|" then
-            exit;
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (0, LetztesEnde)) = "|" then
+            exit EndeBestimmenSchleife;
             
          else
-            Ende := A;
+            Ende := LetztesEnde;
          end if;
          
-      end loop;
+      end loop EndeBestimmenSchleife;
 
       AktuelleAuswahl := 1;
       
       AuswahlSchleife:
       loop         
 
-         -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-         Put_Line (Item => "Sprache auswählen:");
-         Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                     ÜberschriftZeile      => 0,
-                                     TextDatei             => 0,
-                                     ErsteZeile            => 0,
-                                     LetzteZeile           => 0,
-                                     MitNew_LineMittendrin => 0,
-                                     MitNew_LineAmEnde     => 0);        
+         Anzeige.AnzeigeMitAuswahlNeu (FrageDatei      => GlobaleDatentypen.Leer,
+                                       TextDatei       => GlobaleDatentypen.Leer,
+                                       FrageZeile      => 0,
+                                       ErsteZeile      => 1,
+                                       LetzteZeile     => Ende,
+                                       AktuelleAuswahl => AktuelleAuswahl);
          
          Get_Immediate (Item => Taste);
          
@@ -71,53 +69,23 @@ package body Auswahl is
 
 
 
-
-   function AuswahlNeu (AuswahlOderAnzeige : in Boolean; FrageDatei, FrageZeile, TextDatei, ErsteZeile, LetzteZeile : in Natural) return Integer is
+   function Auswahl (FrageDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; FrageZeile, ErsteZeile, LetzteZeile : in Natural) return Integer is
    begin
 
-      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");    
-      
-      case AuswahlOderAnzeige is
-         when True =>
-            Anfang := ErsteZeile;
-            Ende := LetzteZeile;
-            AktuelleAuswahl := ErsteZeile;
-               
-         when False => -- Wenn nur Text angezeigt werden soll
-            Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => FrageDatei,
-                                        ÜberschriftZeile      => FrageZeile,
-                                        TextDatei             => TextDatei,
-                                        ErsteZeile            => ErsteZeile,
-                                        LetzteZeile           => LetzteZeile,
-                                        MitNew_LineMittendrin => 0,
-                                        MitNew_LineAmEnde     => 0);
-            return 1;
-      end case;
+      Anfang := ErsteZeile;
+      Ende := LetzteZeile;
+      AktuelleAuswahl := ErsteZeile;
+      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       AuswahlSchleife:
-      loop         
-                        
-         case FrageDatei is
-            when 0 =>
-               null;
-            
-            when others => -- Wenn Frage benötigt wird hierüber ausgeben
-               Put_Line (To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (FrageDatei, FrageZeile)));
-         end case;
-
-         case TextDatei is
-            when 0 =>
-               null;
-            
-            when others => -- Wenn Text benötigt wird hierüber ausgegeben
-               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => FrageDatei,
-                                           ÜberschriftZeile      => FrageZeile,
-                                           TextDatei             => TextDatei,
-                                           ErsteZeile            => ErsteZeile,
-                                           LetzteZeile           => LetzteZeile,
-                                           MitNew_LineMittendrin => 0,
-                                           MitNew_LineAmEnde     => 0);
-         end case;
+      loop
+         
+         Anzeige.AnzeigeMitAuswahlNeu (FrageDatei      => FrageDatei,
+                                       TextDatei       => TextDatei,
+                                       FrageZeile      => FrageZeile,
+                                       ErsteZeile      => ErsteZeile,
+                                       LetzteZeile     => LetzteZeile,
+                                       AktuelleAuswahl => AktuelleAuswahl);
 
          Get_Immediate (Item => Taste);
          
@@ -139,31 +107,31 @@ package body Auswahl is
                end if;
                               
             when 'e' | '5' =>                  
-               if GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 1) then -- Hauptmenü
+               if GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 1) then -- Hauptmenü
                   return 0;
                   
-               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 2) then -- Spiel beenden
+               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 2) then -- Spiel beenden
                   return -1;
                   
-               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 3) then -- Zurück
+               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 3) then -- Zurück
                   return -2;
                   
-               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 4) then -- Ja
+               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 4) then -- Ja
                   return -3;
                   
-               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 5) then -- Nein
+               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 5) then -- Nein
                   return -4;
 
-               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 6) then -- Speichern
+               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 6) then -- Speichern
                   return 2;
 
-               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 7) then -- Laden
+               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 7) then -- Laden
                   return 3;
 
-               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 8) then -- Optionen
+               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 8) then -- Optionen
                   return 4;
 
-               elsif GlobaleVariablen.TexteEinlesenNeu (TextDatei, AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 9) then -- Informationen
+               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 9) then -- Informationen
                   return 5;
                      
                else
@@ -179,6 +147,19 @@ package body Auswahl is
 
       end loop AuswahlSchleife;
       
-   end AuswahlNeu;
+   end Auswahl;
+
+
+
+   function AuswahlJaNein (FrageZeile : in Positive) return Integer is
+   begin
+      
+      return Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
+                      TextDatei   => GlobaleDatentypen.Menü_Auswahl,
+                      FrageZeile  => FrageZeile,
+                      ErsteZeile  => 10,
+                      LetzteZeile => 11);
+      
+   end AuswahlJaNein;
 
 end Auswahl;

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with Anzeige;
+with Anzeige, GlobaleDatentypen;
 
 package body Ladezeiten is
 
@@ -12,13 +12,14 @@ package body Ladezeiten is
 
       Gesamtzeit := 0.00;
       
-      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0, -- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Weiter unten! !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                                  ÜberschriftZeile      => 0,
-                                  TextDatei             => 11,
-                                  ErsteZeile            => WelcheZeit,
-                                  LetzteZeile           => WelcheZeit,
-                                  MitNew_LineMittendrin => -1_000,
-                                  MitNew_LineAmEnde     => 0);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Ladezeiten,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => WelcheZeit,
+                                     LetzteZeile      => WelcheZeit,
+                                     AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
       
       case WelcheZeit is
          when 1 =>
@@ -59,13 +60,14 @@ package body Ladezeiten is
    procedure Speichern (WelcheZeit : in Positive) is
    begin
       
-      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                  ÜberschriftZeile      => 0,
-                                  TextDatei             => 11,
-                                  ErsteZeile            => WelcheZeit + AufschlagSpeichern,
-                                  LetzteZeile           => WelcheZeit + AufschlagSpeichern,
-                                  MitNew_LineMittendrin => -1_000,
-                                  MitNew_LineAmEnde     => 0);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Ladezeiten,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => WelcheZeit + AufschlagSpeichern,
+                                     LetzteZeile      => WelcheZeit + AufschlagSpeichern,
+                                     AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
 
       case WelcheZeit is
          when others =>
@@ -83,13 +85,14 @@ package body Ladezeiten is
    procedure Laden (WelcheZeit : in Positive) is
    begin
       
-      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                  ÜberschriftZeile      => 0,
-                                  TextDatei             => 11,
-                                  ErsteZeile            => WelcheZeit + AufschlagLaden,
-                                  LetzteZeile           => WelcheZeit + AufschlagLaden,
-                                  MitNew_LineMittendrin => -1_000,
-                                  MitNew_LineAmEnde     => 0);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Ladezeiten,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => WelcheZeit + AufschlagLaden,
+                                     LetzteZeile      => WelcheZeit + AufschlagLaden,
+                                     AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
 
       case WelcheZeit is
          when others =>
@@ -107,17 +110,18 @@ package body Ladezeiten is
    procedure SpielStart (WelcheZeit : in Positive) is
    begin
       
-      Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                  ÜberschriftZeile      => 0,
-                                  TextDatei             => 11,
-                                  ErsteZeile            => WelcheZeit + AufschlagSpielstart,
-                                  LetzteZeile           => WelcheZeit + AufschlagSpielstart,
-                                  MitNew_LineMittendrin => -1_000,
-                                  MitNew_LineAmEnde     => 0);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Ladezeiten,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => WelcheZeit + AufschlagSpielstart,
+                                     LetzteZeile      => WelcheZeit + AufschlagSpielstart,
+                                     AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
 
       case WelcheZeit is
          when others =>
-            Ada.Float_Text_IO.Put (Item => Float (SpielStartzeiten (2, WelcheZeit) - SpielStartzeiten (1, WelcheZeit)),
+            Ada.Float_Text_IO.Put (Item => Float (SpielStartzeiten (2, WelcheZeit) - SpielStartzeiten (1, WelcheZeit)) + Float (SpielStartzeiten (2, WelcheZeit + 1) - SpielStartzeiten (1, WelcheZeit + 1)),
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
@@ -131,7 +135,14 @@ package body Ladezeiten is
    procedure BerechnungenNachZugendeAllerSpieler (WelcheZeit : in Positive) is
    begin
       
-      Put (Item => "Berechnungszeit am Zugende aller Spieler: ");
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Ladezeiten,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => WelcheZeit + AufschlagZwischenDenRunden,
+                                     LetzteZeile      => WelcheZeit + AufschlagZwischenDenRunden,
+                                     AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
 
       case WelcheZeit is
          when others =>
@@ -150,7 +161,14 @@ package body Ladezeiten is
    procedure KIZeit (WelcheZeit : in Positive) is
    begin
       
-      null;
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                     TextDatei        => GlobaleDatentypen.Ladezeiten,
+                                     ÜberschriftZeile => 0,
+                                     ErsteZeile       => WelcheZeit + AufschlagKIRechenzeit,
+                                     LetzteZeile      => WelcheZeit + AufschlagKIRechenzeit,
+                                     AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                     AbstandMitte     => GlobaleDatentypen.Keiner,
+                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
       
    end KIZeit;
 

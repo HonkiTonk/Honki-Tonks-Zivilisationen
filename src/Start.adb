@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden;
+with Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden, GlobaleDatentypen;
 
 procedure Start is
 
@@ -20,12 +20,11 @@ begin
          StartSchleife:
          loop
 
-            Startauswahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                                FrageDatei         => 0,
-                                                FrageZeile         => 0,
-                                                TextDatei          => 1,
-                                                ErsteZeile         => 1,
-                                                LetzteZeile        => 5);
+            Startauswahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Leer,
+                                             TextDatei   => GlobaleDatentypen.Start,
+                                             FrageZeile  => 1,
+                                             ErsteZeile  => 1,
+                                             LetzteZeile => 5);
 
             case Startauswahl is
                when 1 => -- Start

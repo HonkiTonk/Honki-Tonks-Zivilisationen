@@ -63,12 +63,11 @@ package body SpielEinstellungen is
       KartengrößeSchleife:
       loop
          
-         Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                     FrageDatei         => 10,
-                                     FrageZeile         => 1,
-                                     TextDatei          => 3,
-                                     ErsteZeile         => 2,
-                                     LetzteZeile        => 14);
+         Wahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
+                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
+                                  FrageZeile  => 1,
+                                  ErsteZeile  => 2,
+                                  LetzteZeile => 14);
          
          case Wahl is
             when 1 .. 9 =>
@@ -77,13 +76,8 @@ package body SpielEinstellungen is
 
             when 10 =>
                Karten.Kartengröße := Wahl;
-               Anzeige.AnzeigeOhneAuswahl (ÜberschriftDatei      => 0,
-                                           ÜberschriftZeile      => 0,
-                                           TextDatei             => 10,
-                                           ErsteZeile            => 19,
-                                           LetzteZeile           => 19,
-                                           MitNew_LineMittendrin => 0,
-                                           MitNew_LineAmEnde     => 0);
+               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fragen,
+                                                     TextZeile => 19);
 
                BenutzerdefinierteGröße := Eingabe.GanzeZahl (WelcheDatei   => 0,
                                                                WelcherText   => 0,
@@ -137,12 +131,11 @@ package body SpielEinstellungen is
       KartenartSchleife:
       loop
 
-         Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                     FrageDatei         => 10,
-                                     FrageZeile         => 2,
-                                     TextDatei          => 3,
-                                     ErsteZeile         => 17,
-                                     LetzteZeile        => 25);
+         Wahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
+                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
+                                  FrageZeile  => 2,
+                                  ErsteZeile  => 17,
+                                  LetzteZeile => 25);
                   
          case Wahl is
             when 1 .. 5 =>
@@ -178,12 +171,11 @@ package body SpielEinstellungen is
       KartentemperaturSchleife:
       loop
 
-         Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                     FrageDatei         => 10,
-                                     FrageZeile         => 3,
-                                     TextDatei          => 3,
-                                     ErsteZeile         => 28,
-                                     LetzteZeile        => 36);
+         Wahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
+                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
+                                  FrageZeile  => 3,
+                                  ErsteZeile  => 28,
+                                  LetzteZeile => 36);
                   
          case Wahl is
             when 1 .. 5 =>
@@ -219,12 +211,11 @@ package body SpielEinstellungen is
       SpieleranzahlSchleife:
       loop
 
-         Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                     FrageDatei         => 10,
-                                     FrageZeile         => 4,
-                                     TextDatei          => 3,
-                                     ErsteZeile         => 39,
-                                     LetzteZeile        => 60);
+         Wahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
+                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
+                                  FrageZeile  => 4,
+                                  ErsteZeile  => 39,
+                                  LetzteZeile => 60);
          
          case Wahl is
             when 1 .. 18 =>
@@ -277,12 +268,7 @@ package body SpielEinstellungen is
          
          case GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen (Wert))is
             when 0 =>
-               Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                           FrageDatei         => 10,
-                                           FrageZeile         => 21,
-                                           TextDatei          => 5,
-                                           ErsteZeile         => 10,
-                                           LetzteZeile        => 11);
+               Wahl := Auswahl.AuswahlJaNein (FrageZeile => 21);
          
                case Wahl is
                   when -3 =>
@@ -317,23 +303,17 @@ package body SpielEinstellungen is
       RasseSchleife:
       loop
          
-         Wahl := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                     FrageDatei         => 10,
-                                     FrageZeile         => 5,
-                                     TextDatei          => 3,
-                                     ErsteZeile         => 63,
-                                     LetzteZeile        => 84);
+         Wahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
+                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
+                                  FrageZeile  => 5,
+                                  ErsteZeile  => 63,
+                                  LetzteZeile => 84);
 
          case Wahl is
             when 1 .. 18 =>      
                Anzeige.AnzeigeLangerText (WelcherText => 7,
                                           WelcheZeile => Wahl);
-               Wahl2 := Auswahl.AuswahlNeu (AuswahlOderAnzeige => True,
-                                            FrageDatei         => 10,
-                                            FrageZeile         => 6,
-                                            TextDatei          => 5,
-                                            ErsteZeile         => 10,
-                                            LetzteZeile        => 11);
+               Wahl2 := Auswahl.AuswahlJaNein (FrageZeile => 6);
                case Wahl2 is
                   when -3 =>
                      return Wahl;
