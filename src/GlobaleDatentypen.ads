@@ -27,7 +27,7 @@ package GlobaleDatentypen is
    type Kartenfeld is range -1_001 .. 1_000; -- Linke Seite muss stehts eins kleiner sein als die rechte Seite, aufgrund des aktuellen Kartengenerators (Kartengenerator.adb 181, Übergabe geht sonst nicht)!
    subtype KartenfeldPositiv is Kartenfeld range 1 .. 1_000;
    subtype Stadtfeld is KartenfeldPositiv range 1 .. 20;
-   subtype Sichtweite is KartenfeldPositiv range 1 .. 10;
+   subtype Sichtweite is Stadtfeld range 1 .. 10;
    subtype LoopRangeMinusEinsZuEins is Kartenfeld range -1 .. 1;
    subtype LoopRangeMinusZweiZuZwei is Kartenfeld range -2 .. 2;
    subtype LoopRangeMinusDreiZuDrei is Kartenfeld range -3 .. 3;
