@@ -14,34 +14,22 @@ package Ladezeiten is
    KIZeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 18);
 
    procedure LadezeitenSpielweltErstellen (WelcheZeit : in Positive) with
-     Global  => (Input => LadezeitenSpielweltErstellenZeit),
-     Depends => (null => (LadezeitenSpielweltErstellenZeit, WelcheZeit)),
-     Pre     => (WelcheZeit in LadezeitenSpielweltErstellenZeit'Range (2));
+     Pre => (WelcheZeit in LadezeitenSpielweltErstellenZeit'Range (2));
 
    procedure Speichern (WelcheZeit : in Positive) with
-     Global  => (Input => LadezeitenSpielweltErstellenZeit),
-     Depends => (null => (LadezeitenSpielweltErstellenZeit, WelcheZeit)),
-     Pre     => (WelcheZeit in Speicherzeiten'Range (2));
+     Pre => (WelcheZeit in Speicherzeiten'Range (2));
 
    procedure Laden (WelcheZeit : in Positive) with
-     Global  => (Input => LadezeitenSpielweltErstellenZeit),
-     Depends => (null => (LadezeitenSpielweltErstellenZeit, WelcheZeit)),
-     Pre     => (WelcheZeit in LadenLadezeiten'Range (2));
+     Pre => (WelcheZeit in LadenLadezeiten'Range (2));
 
    procedure SpielStart (WelcheZeit : in Positive) with
-     Global  => (Input => LadezeitenSpielweltErstellenZeit),
-     Depends => (null => (LadezeitenSpielweltErstellenZeit, WelcheZeit)),
-     Pre     => (WelcheZeit in SpielStartzeiten'Range (2));
+     Pre => (WelcheZeit in SpielStartzeiten'Range (2));
 
    procedure BerechnungenNachZugendeAllerSpieler (WelcheZeit : in Positive) with
-     Global  => (Input => LadezeitenSpielweltErstellenZeit),
-     Depends => (null => (LadezeitenSpielweltErstellenZeit, WelcheZeit)),
-     Pre     => (WelcheZeit in BerechnungenNachZugendeAllerSpielerZeiten'Range (2));
+     Pre => (WelcheZeit in BerechnungenNachZugendeAllerSpielerZeiten'Range (2));
 
    procedure KIZeit (WelcheZeit : in Positive) with
-     Global  => (Input => LadezeitenSpielweltErstellenZeit),
-     Depends => (null => (LadezeitenSpielweltErstellenZeit, WelcheZeit)),
-     Pre     => (WelcheZeit in KIZeiten'Range (2));
+     Pre => (WelcheZeit in KIZeiten'Range (2));
 
 private
                                                  

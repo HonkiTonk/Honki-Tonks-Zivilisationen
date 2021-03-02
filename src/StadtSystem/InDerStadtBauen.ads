@@ -5,11 +5,11 @@ use GlobaleDatentypen;
 
 package InDerStadtBauen is
 
-   procedure Bauen (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
-     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure Bauen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen and GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) = 1);
 
-   procedure BauzeitEinzeln (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
-     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure BauzeitEinzeln (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen and GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0);
 
    procedure BauzeitAlle;
 
@@ -21,7 +21,7 @@ private
    Ende : Integer;
    AktuelleAuswahl : Integer := 1;
 
-   function AuswahlStadt (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) return Integer with
-     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+   function AuswahlStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Integer with
+     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen and GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) = 1);
 
 end InDerStadtBauen;

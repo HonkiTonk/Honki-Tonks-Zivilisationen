@@ -1,11 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen, GlobaleRecords;
 
 package Karte is
 
-   procedure AnzeigeKarte (RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure AnzeigeKarte (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
 private
 
@@ -34,6 +35,7 @@ private
                                                 2 => (0, 5, 21),
                                                 3 => (0, 5, 34));
 
-   procedure Information (RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure Information (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
 end Karte;

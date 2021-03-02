@@ -7,7 +7,7 @@ with GebaeudeDatenbank, EinheitenDatenbank, Anzeige;
 
 package body InDerStadtBauen is
 
-   procedure Bauen (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
+   procedure Bauen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
 
       GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt := 0;
@@ -38,7 +38,7 @@ package body InDerStadtBauen is
 
 
 
-   procedure BauzeitEinzeln (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
+   procedure BauzeitEinzeln (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
 
       if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate = 0 then
@@ -97,7 +97,7 @@ package body InDerStadtBauen is
    
    
    
-   function AuswahlStadt (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) return Integer is
+   function AuswahlStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Integer is
    begin
 
       Ende := 1;

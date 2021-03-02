@@ -5,11 +5,12 @@ use GlobaleDatentypen;
 
 package InDerStadt is
 
-   procedure InDerStadt (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
-     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure InDerStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen and GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) = 1);
 
-   procedure StadtProduktionPrüfen (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
-     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure StadtProduktionPrüfen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
+             and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0));
 
 private
 
@@ -24,7 +25,8 @@ private
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
-   procedure StadtProduktionPrüfenBerechnung (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
-     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure StadtProduktionPrüfenBerechnung (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
+             and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0));
 
 end InDerStadt;

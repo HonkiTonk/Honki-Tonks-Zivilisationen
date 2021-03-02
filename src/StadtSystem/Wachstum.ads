@@ -6,14 +6,15 @@ use GlobaleDatentypen;
 package Wachstum is
    
    procedure Wachstum;
-   procedure WachstumBeiStadtGründung (RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure WachstumBeiStadtGründung (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
 private
    
-   procedure WachstumEinwohner (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
-     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure WachstumEinwohner (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen and GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0);
 
-   procedure WachstumProduktion (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
-     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure WachstumProduktion (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen and GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0);
 
 end Wachstum;

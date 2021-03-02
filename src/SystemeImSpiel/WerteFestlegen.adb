@@ -4,7 +4,7 @@ with KartenDatenbank, VerbesserungenDatenbank, KartenPruefungen;
 
 package body WerteFestlegen is
 
-   procedure KartenfelderBewerten (Generierung : Boolean; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
+   procedure KartenfelderBewerten (Generierung : in Boolean; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
    begin
       
       case Generierung is
@@ -84,8 +84,8 @@ package body WerteFestlegen is
    
    
    
-   procedure BewertungSelbst (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord; YAchseFeldAufschlag, XAchseFeldAufschlag : GlobaleDatentypen.KartenfeldPositiv;
-                              Teiler : GlobaleDatentypen.LoopRangeMinusDreiZuDrei) is
+   procedure BewertungSelbst (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord; YAchseFeldAufschlag, XAchseFeldAufschlag : in GlobaleDatentypen.KartenfeldPositiv;
+                              Teiler : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei) is
    begin
       
       Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Felderwertung := Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Felderwertung

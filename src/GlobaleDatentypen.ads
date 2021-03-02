@@ -18,7 +18,7 @@ package GlobaleDatentypen is
    -- Für Rassen
    type RassenMitNullwert is range 0 .. 18; -- Unbelegt, Rasse 1 bis 18
    subtype Rassen is RassenMitNullwert range 1 .. 18;
-   type RassenImSpielArray is array (Rassen'Range) of RassenMitNullwert;
+   type RassenImSpielArray is array (Rassen'Range) of RassenMitNullwert; -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
    -- Für Rassen
 
 

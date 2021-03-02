@@ -42,6 +42,6 @@ package VerbesserungenDatenbank is
                                                   ('S',    9,    0, 0, 0, 0, 0)); -- 23 Sperre
 
    procedure Beschreibung (ID : in GlobaleDatentypen.KartenVerbesserung) with
-     Pre => ID > 0;
+     Pre => (ID > 0);
    
 end VerbesserungenDatenbank;

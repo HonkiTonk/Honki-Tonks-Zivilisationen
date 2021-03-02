@@ -5,8 +5,11 @@ use GlobaleDatentypen;
 
 package Sortieren is
 
-   procedure EinheitenSortieren (RasseExtern : in GlobaleDatentypen.Rassen);
-   procedure StädteSortieren (RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure EinheitenSortieren (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+
+   procedure StädteSortieren (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
 private
    

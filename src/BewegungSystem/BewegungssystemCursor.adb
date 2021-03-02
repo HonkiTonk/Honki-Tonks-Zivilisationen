@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen;
-
 with Anzeige, Karten, Eingabe, KartenPruefungen;
 
 package body BewegungssystemCursor is

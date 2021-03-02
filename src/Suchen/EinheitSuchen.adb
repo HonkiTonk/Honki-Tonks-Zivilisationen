@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen;
-
 package body EinheitSuchen is
 
    function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Natural is

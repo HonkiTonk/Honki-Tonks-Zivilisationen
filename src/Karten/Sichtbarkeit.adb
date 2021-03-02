@@ -80,7 +80,7 @@ package body Sichtbarkeit is
 
 
 
-   procedure SichtbarkeitsprüfungFürStadt (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
+   procedure SichtbarkeitsprüfungFürStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
       if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner < 10 then
@@ -114,7 +114,7 @@ package body Sichtbarkeit is
 
 
 
-   procedure Sichtbarkeit (InDerStadt : Boolean; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
+   procedure Sichtbarkeit (InDerStadt : in Boolean; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen
@@ -253,7 +253,7 @@ package body Sichtbarkeit is
 
 
 
-   procedure Farben (Einheit : GlobaleDatentypen.KartenverbesserungEinheitenID; Verbesserung : GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund;
+   procedure Farben (Einheit : in GlobaleDatentypen.KartenverbesserungEinheitenID; Verbesserung : in GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund;
                      Cursor : in Boolean; RasseExtern, RasseIntern : in GlobaleDatentypen.RassenMitNullwert) is
    begin
 

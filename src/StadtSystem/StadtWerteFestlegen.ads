@@ -7,14 +7,14 @@ package StadtWerteFestlegen is
 
    RassenMulitplikationWert : constant GlobaleDatentypen.BelegterGrund := 1_000;
 
-   procedure BewirtschaftbareFelderBelegen (ZuwachsOderSchwund : Boolean; StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
-     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure BewirtschaftbareFelderBelegen (ZuwachsOderSchwund : in Boolean; StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen and GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0);
 
-   procedure StadtUmgebungGrößeFestlegen (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
-     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure StadtUmgebungGrößeFestlegen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen and GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0);
 
-   procedure BelegteStadtfelderFreigeben (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) with
-     Pre => StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen;
+   procedure BelegteStadtfelderFreigeben (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen and GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0);
 
 private
    

@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen;
-
 package body NaechstesObjekt is
 
    procedure NächsteEinheitMitBewegungspunkten (RasseExtern : in GlobaleDatentypen.Rassen) is -- Nochmal über die loops schauen, möglicherweise wird eine Einheit ausgelassen

@@ -43,7 +43,7 @@ package GebaeudeDatenbank is
 
    procedure Beschreibung (ID : in GebäudeID);
    procedure GebäudeProduktionBeenden (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord; ID : in GebäudeID) with
-     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen);
+     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen and GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0);
 
 private
    

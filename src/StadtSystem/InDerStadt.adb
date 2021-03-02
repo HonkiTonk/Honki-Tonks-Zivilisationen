@@ -7,7 +7,7 @@ with Wachstum, VerbesserungenDatenbank, KartenDatenbank, Auswahl, InDerStadtBaue
 
 package body InDerStadt is
 
-   procedure InDerStadt (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
+   procedure InDerStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
       StadtSchleife:
@@ -134,7 +134,7 @@ package body InDerStadt is
 
 
 
-   procedure StadtProduktionPrüfen (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
+   procedure StadtProduktionPrüfen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
       case StadtRasseNummer.Rasse is
@@ -164,7 +164,7 @@ package body InDerStadt is
    
 
 
-   procedure StadtProduktionPrüfenBerechnung (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is -- Legt erst eine Runde später die neuen Werte fest, prüfen warum.
+   procedure StadtProduktionPrüfenBerechnung (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is -- Legt erst eine Runde später die neuen Werte fest, prüfen warum.
    begin
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsproduktion := 0;

@@ -61,6 +61,6 @@ package KartenDatenbank is
                                                (' ',    1,    0, 0, 0, 0, 0)); -- 40 Gestein
                                                                        
    procedure Beschreibung (ID : in GlobaleDatentypen.KartenGrund) with
-     Pre => ID > 0;
+     Pre => (ID > 0);
 
 end KartenDatenbank;

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with Ada.Numerics.Discrete_Random;
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
 with Karten;
@@ -63,27 +63,28 @@ private
    RassenGewählt : RassenWählen.Generator;
 
    procedure StartwerteErmitteln;
-   procedure StartpunktFestlegen (RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure StartpunktFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
    function KartengrößeWählen return Integer with
-     Post => KartengrößeWählen'Result >= -2;
+     Post => (KartengrößeWählen'Result >= -2);
 
    function KartenartWählen return Integer with
-     Post => KartenartWählen'Result >= -2;
+     Post => (KartenartWählen'Result >= -2);
 
    function KartentemperaturWählen return Integer with
-     Post => KartentemperaturWählen'Result >= -2;
+     Post => (KartentemperaturWählen'Result >= -2);
 
    function SpieleranzahlWählen return Integer with
-     Post => SpieleranzahlWählen'Result >= -2;
+     Post => (SpieleranzahlWählen'Result >= -2);
 
    function MenschlicheSpieleranzahl return Integer with
-     Post => MenschlicheSpieleranzahl'Result >= -2;
+     Post => (MenschlicheSpieleranzahl'Result >= -2);
 
    function RasseWählen return Integer with
-     Post => RasseWählen'Result >= -2;
+     Post => (RasseWählen'Result >= -2);
 
    function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) return Boolean with
-     Pre => YPosition <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XPosition <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+     Pre => (YPosition <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XPosition <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
 end SpielEinstellungen;

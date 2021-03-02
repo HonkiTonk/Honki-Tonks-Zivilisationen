@@ -15,8 +15,7 @@ package body KarteStadt is
       Stadtumgebungsgröße := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße;
 
       YAchsenabstraktion := -Stadtumgebungsgröße;
-      CursorYAchsePlus := -10;
-      CursorXAchsePlus := -10;
+      InformationenStadtAufrufen := False;
       
       YAchseSchleife:
       for YAchse in Karten.StadtkarteArray'Range (1) loop
@@ -24,7 +23,7 @@ package body KarteStadt is
          for XAchse in Karten.StadtkarteArray'Range (2) loop
                         
             if YAchse < Karten.Stadtkarte'First (1) + 7 and XAchse > Karten.Stadtkarte'Last (2) - 7 then               
-               if YAchsenabstraktion > Stadtumgebungsgröße then
+               if YAchsenabstraktion < -Stadtumgebungsgröße or YAchsenabstraktion > Stadtumgebungsgröße then
                   SchleifeFenster (YAchse => YAchse,
                                    XAchse => XAchse,
                                    Rasse  => StadtRasseNummer.Rasse);
@@ -40,7 +39,7 @@ package body KarteStadt is
                   SchleifeFenster (YAchse => YAchse,
                                    XAchse => XAchse,
                                    Rasse  => StadtRasseNummer.Rasse);
-                  exit XAchseSchleife;
+                  exit XAchseSchleife;               
                   
                else
                   UmgebungsSchleife:
@@ -48,20 +47,46 @@ package body KarteStadt is
 
                      Cursor := CursorKonstant + Umgebung;
                      if GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt = (YAchse, XAchse + Cursor) then
-                        Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).CursorGrafik & CSI & "0m");
-                        CursorYAchsePlus := YAchse - 4;
-
                         if Umgebung < -Stadtumgebungsgröße or Umgebung > Stadtumgebungsgröße then
-                           null;
-                           
+                           Sichtbarkeit.Farben (Einheit      => 0,
+                                                Verbesserung => 0,
+                                                Ressource    => 0,
+                                                Grund        => 0,
+                                                Cursor       => True,
+                                                RasseExtern  => StadtRasseNummer.Rasse,
+                                                RasseIntern  => 0);
+
                         else
-                           CursorXAchsePlus := Umgebung;
+                           CursorYAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.YAchse - 4;
+                           CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse - 17;
+
+                           KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition,
+                                                                                   Änderung       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
+                                                                                   ZusatzYAbstand => 0);
+
+                           case KartenWert.Erfolgreich is
+                              when False =>
+                                 Sichtbarkeit.Farben (Einheit      => 0,
+                                                      Verbesserung => 0,
+                                                      Ressource    => 0,
+                                                      Grund        => 0,
+                                                      Cursor       => True,
+                                                      RasseExtern  => StadtRasseNummer.Rasse,
+                                                      RasseIntern  => 0);
+                           
+                              when True =>
+                                 Sichtbarkeit.Farben (Einheit      => 0,
+                                                      Verbesserung => 0,
+                                                      Ressource    => 0,
+                                                      Grund        => Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund,
+                                                      Cursor       => True,
+                                                      RasseExtern  => StadtRasseNummer.Rasse,
+                                                      RasseIntern  => 0);
+                           end case;                        
+                           InformationenStadtAufrufen := True;
                         end if;
                            
-                     elsif Umgebung < -Stadtumgebungsgröße then
-                        Put (Item => " ");
-                           
-                     elsif Umgebung > Stadtumgebungsgröße then
+                     elsif Umgebung < -Stadtumgebungsgröße or Umgebung > Stadtumgebungsgröße then
                         Put (Item => " ");
 
                      else
@@ -101,7 +126,8 @@ package body KarteStadt is
                   Sichtbarkeit.Farben (Einheit      => 0,
                                        Verbesserung => 0,
                                        Ressource    => 0,
-                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.YAchse,
+                                       Grund        => Karten.Karten (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.EAchse,
+                                         GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.YAchse,
                                          GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.XAchse).Grund,
                                        Cursor       => True,
                                        RasseExtern  => StadtRasseNummer.Rasse,
@@ -123,7 +149,8 @@ package body KarteStadt is
                   Sichtbarkeit.Farben (Einheit      => 0,
                                        Verbesserung => 0,
                                        Ressource    => 0,
-                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.YAchse,
+                                       Grund        => Karten.Karten (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.EAchse,
+                                         GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.YAchse,
                                          GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.XAchse).Grund,
                                        Cursor       => False,
                                        RasseExtern  => StadtRasseNummer.Rasse,
@@ -138,7 +165,8 @@ package body KarteStadt is
                   Sichtbarkeit.Farben (Einheit      => 0,
                                        Verbesserung => 0,
                                        Ressource    => 0,
-                                       Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.YAchse,
+                                       Grund        => Karten.Karten (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.EAchse,
+                                         GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.YAchse,
                                          GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.XAchse).Grund,
                                        Cursor       => False,
                                        RasseExtern  => StadtRasseNummer.Rasse,
@@ -149,7 +177,8 @@ package body KarteStadt is
                Sichtbarkeit.Farben (Einheit      => 0,
                                     Verbesserung => 0,
                                     Ressource    => 0,
-                                    Grund        => Karten.Karten (0, GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.YAchse,
+                                    Grund        => Karten.Karten (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.EAchse,
+                                      GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.YAchse,
                                       GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.XAchse).Grund,
                                     Cursor       => False,
                                     RasseExtern  => StadtRasseNummer.Rasse,
@@ -168,9 +197,15 @@ package body KarteStadt is
       end loop YAchseSchleife;
 
       Beschreibung (RasseExtern => StadtRasseNummer.Rasse);
-      InformationenStadt (YAufschlag       => CursorYAchsePlus,
-                          XAufschlag       => CursorXAchsePlus,
-                          StadtRasseNummer => StadtRasseNummer);
+
+      case InformationenStadtAufrufen is
+         when True =>
+            InformationenStadt (StadtRasseNummer => StadtRasseNummer);
+
+         when False =>
+            null;
+      end case;
+
       if GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.YAchse = 1 and GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse < 13 then
          if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse,
                                           StadtRasseNummer.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse)) = True then
@@ -202,7 +237,7 @@ package body KarteStadt is
    procedure SchleifeFenster (YAchse, XAchse : in GlobaleDatentypen.Stadtfeld; Rasse : in GlobaleDatentypen.Rassen) is
    begin
       
-      -- Hier muss nur von 0 .. 6 geloopt werden, da aber Stadtfeld nur von 0 .. 20 geht, wird eins weiter geloopt und im if eins abgezogen
+      -- Hier muss nur von 0 .. 6 geloopt werden, da aber Stadtfeld nur von 1 .. 20 geht, wird eins weiter geloopt und im if eins abgezogen
       UmgebungSchleife:      
       for Umgebung in KonstanterWertEins .. KonstanterWertSieben loop
                      
@@ -227,7 +262,7 @@ package body KarteStadt is
    
    
    
-   procedure InformationenStadt (YAufschlag, XAufschlag : in GlobaleDatentypen.Kartenfeld; StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   procedure InformationenStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
       Nahrungsgewinnung := 0;
@@ -235,196 +270,169 @@ package body KarteStadt is
       Geldgewinnung := 0;
       Wissensgewinnung := 0;
 
+      CursorYAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.YAchse - 4;
+      CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPositionStadt.XAchse - 17;
+
       KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition,
-                                                              Änderung       => (0, YAufschlag, XAufschlag),
+                                                              Änderung       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
                                                               ZusatzYAbstand => 0);
 
       case KartenWert.Erfolgreich is
          when False =>
-            YAchse := -10;
+            null;
          
          when True =>
-            YAchse := KartenWert.YAchse;
-      end case;
+            if Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Hügel = True and Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= 6 then
+               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                              TextDatei        => GlobaleDatentypen.Beschreibungen_Kartenfelder_Kurz,
+                                              ÜberschriftZeile => 0,
+                                              ErsteZeile       => 34,
+                                              LetzteZeile      => 34,
+                                              AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                              AbstandMitte     => GlobaleDatentypen.Keiner,
+                                              AbstandEnde      => GlobaleDatentypen.Keiner);
+               KartenDatenbank.Beschreibung (ID => Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
 
-      if XAufschlag = -10 then
-         XAchse := XAufschlag;
-
-      else
-         XAchse := KartenWert.XAchse;
-      end if;
-      
-      if YAchse = -10 or XAchse = -10 then
-         null;
+               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung;
+               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung;
+               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung;
+               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung;
          
-      else
-         if Karten.Karten (0, YAchse, XAchse).Hügel = True and Karten.Karten (0, YAchse, XAchse).Grund /= 6 then
+            elsif Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Hügel = True then
+               KartenDatenbank.Beschreibung (ID => Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
+
+               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung;
+               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung;
+               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung;
+               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung;
+               
+            else         
+               KartenDatenbank.Beschreibung (ID => Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
+
+               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung;
+               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung;
+               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung;
+               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung;
+            end if;
+      
+            if Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource /= 0 then
+               KartenDatenbank.Beschreibung (ID => Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource);
+
+               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Nahrungsgewinnung;
+               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Ressourcengewinnung;
+               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Geldgewinnung;
+               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Wissensgewinnung;
+         
+            else
+               null;
+            end if;
+      
+            if Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet /= 0 then
+               VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet);
+
+               Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Nahrungsbonus;
+               Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Ressourcenbonus;
+               Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Geldbonus;
+               Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Wissensbonus;
+         
+            else
+               null;
+            end if;
+      
+            if Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße /= 0 then
+               VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße);
+
+               Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Nahrungsbonus;
+               Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Ressourcenbonus;
+               Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Geldbonus;
+               Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Wissensbonus;
+         
+            else
+               null;
+            end if;
+      
+            if Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss /= 0 then
+               KartenDatenbank.Beschreibung (ID => Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss);
+
+               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss).Nahrungsgewinnung;
+               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss).Ressourcengewinnung;
+               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss).Geldgewinnung;
+               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss).Wissensgewinnung;
+         
+            else
+               null;
+            end if;
+            New_Line;
+         
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                           TextDatei        => GlobaleDatentypen.Beschreibungen_Kartenfelder_Kurz,
+                                           TextDatei        => GlobaleDatentypen.Zeug,
                                            ÜberschriftZeile => 0,
-                                           ErsteZeile       => 34,
-                                           LetzteZeile      => 34,
-                                           AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                           ErsteZeile       => 20,
+                                           LetzteZeile      => 20,
+                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
                                            AbstandMitte     => GlobaleDatentypen.Keiner,
-                                           AbstandEnde      => GlobaleDatentypen.Keiner);
-            KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
-
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
+                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Ada.Integer_Text_IO.Put (Item  => Integer (Nahrungsgewinnung),
+                                     Width => 1);
          
-         elsif Karten.Karten (0, YAchse, XAchse).Hügel = True then
-            KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => 21,
+                                           LetzteZeile      => 21,
+                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Ada.Integer_Text_IO.Put (Item  => Integer (Ressourcengewinnung),
+                                     Width => 1);
+            New_Line;
+         
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => 22,
+                                           LetzteZeile      => 22,
+                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Ada.Integer_Text_IO.Put (Item  => Integer (Geldgewinnung),
+                                     Width => 1);
+         
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => 23,
+                                           LetzteZeile      => 23,
+                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Ada.Integer_Text_IO.Put (Item  => Integer (Wissensgewinnung),
+                                     Width => 1);
+            New_Line;            
 
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                           TextDatei        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeile => 0,
+                                           ErsteZeile       => 42,
+                                           LetzteZeile      => 42,
+                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitte     => GlobaleDatentypen.Keiner,
+                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            FeldBelegt := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).UmgebungBewirtschaftung (CursorYAchseabstraktion, CursorXAchseabstraktion);
+            case FeldBelegt is
+               when True =>
+                  Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Menü_Auswahl,
+                                                        TextZeile => 10);
                
-         else         
-            KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Grund);
-
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Grund).Wissensgewinnung;
-         end if;
-      
-         if Karten.Karten (0, YAchse, XAchse).Ressource /= 0 then
-            KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Ressource);
-
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Ressource).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Ressource).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Ressource).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Ressource).Wissensgewinnung;
-         
-         else
-            null;
-         end if;
-      
-         if Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet /= 0 then
-            VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet);
-
-            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Nahrungsbonus;
-            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Ressourcenbonus;
-            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Geldbonus;
-            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungGebiet).Wissensbonus;
-         
-         else
-            null;
-         end if;
-      
-         if Karten.Karten (0, YAchse, XAchse).VerbesserungStraße /= 0 then
-            VerbesserungenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).VerbesserungStraße);
-
-            Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Nahrungsbonus;
-            Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Ressourcenbonus;
-            Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Geldbonus;
-            Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (0, YAchse, XAchse).VerbesserungStraße).Wissensbonus;
-         
-         else
-            null;
-         end if;
-      
-         if Karten.Karten (0, YAchse, XAchse).Fluss /= 0 then
-            KartenDatenbank.Beschreibung (ID => Karten.Karten (0, YAchse, XAchse).Fluss);
-
-            Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Fluss).Nahrungsgewinnung;
-            Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Fluss).Ressourcengewinnung;
-            Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Fluss).Geldgewinnung;
-            Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Karten (0, YAchse, XAchse).Fluss).Wissensgewinnung;
-         
-         else
-            null;
-         end if;
-
-         New_Line;
-         
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                        TextDatei        => GlobaleDatentypen.Zeug,
-                                        ÜberschriftZeile => 0,
-                                        ErsteZeile       => 20,
-                                        LetzteZeile      => 20,
-                                        AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                        AbstandMitte     => GlobaleDatentypen.Keiner,
-                                        AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => Integer (Nahrungsgewinnung),
-                                  Width => 1);
-         
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                        TextDatei        => GlobaleDatentypen.Zeug,
-                                        ÜberschriftZeile => 0,
-                                        ErsteZeile       => 21,
-                                        LetzteZeile      => 21,
-                                        AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                        AbstandMitte     => GlobaleDatentypen.Keiner,
-                                        AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => Integer (Ressourcengewinnung),
-                                  Width => 1);
-         New_Line;
-         
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                        TextDatei        => GlobaleDatentypen.Zeug,
-                                        ÜberschriftZeile => 0,
-                                        ErsteZeile       => 22,
-                                        LetzteZeile      => 22,
-                                        AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                        AbstandMitte     => GlobaleDatentypen.Keiner,
-                                        AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => Integer (Geldgewinnung),
-                                  Width => 1);
-         
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                        TextDatei        => GlobaleDatentypen.Zeug,
-                                        ÜberschriftZeile => 0,
-                                        ErsteZeile       => 23,
-                                        LetzteZeile      => 23,
-                                        AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                        AbstandMitte     => GlobaleDatentypen.Keiner,
-                                        AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => Integer (Wissensgewinnung),
-                                  Width => 1);
-         New_Line;
-
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                        TextDatei        => GlobaleDatentypen.Zeug,
-                                        ÜberschriftZeile => 0,
-                                        ErsteZeile       => 41,
-                                        LetzteZeile      => 41,
-                                        AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                        AbstandMitte     => GlobaleDatentypen.Keiner,
-                                        AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner
-                                  - GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).ArbeitendeEinwohner,
-                                  Width => 1);
-
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                        TextDatei        => GlobaleDatentypen.Zeug,
-                                        ÜberschriftZeile => 0,
-                                        ErsteZeile       => 42,
-                                        LetzteZeile      => 42,
-                                        AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                        AbstandMitte     => GlobaleDatentypen.Keiner,
-                                        AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
-         -- Funktioniert so nicht richtig, sondern nur für Stadtfelder die sich recht, unten oder unten rechts vom Zentrum befinden
-         FeldBelegt := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).UmgebungBewirtschaftung
-           (abs (abs (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.YAchse) - abs (YAchse)),
-            abs (abs (GlobaleVariablen.CursorImSpiel (StadtRasseNummer.Rasse).AchsenPosition.XAchse) - abs (XAchse)));
-         case FeldBelegt is
-            when True =>
-               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Menü_Auswahl,
-                                                     TextZeile => 10);
-               
-            when False =>
-               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Menü_Auswahl,
-                                                     TextZeile => 11);
-         end case;
-      end if;
+               when False =>
+                  Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Menü_Auswahl,
+                                                        TextZeile => 11);
+            end case;
+      end case;
       
    end InformationenStadt;
    
-
+   
 
    procedure Beschreibung (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
@@ -567,8 +575,21 @@ package body KarteStadt is
                                               AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
                Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Korruption),
                                         Width => 1);
+
+               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                              TextDatei        => GlobaleDatentypen.Zeug,
+                                              ÜberschriftZeile => 0,
+                                              ErsteZeile       => 41,
+                                              LetzteZeile      => 41,
+                                              AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
+                                              AbstandMitte     => GlobaleDatentypen.Keiner,
+                                              AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+               Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Einwohner
+                                        - GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ArbeitendeEinwohner,
+                                        Width => 1);
+
                New_Line;
-                        
+               
                Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
                                               TextDatei        => GlobaleDatentypen.Zeug,
                                               ÜberschriftZeile => 0,
@@ -624,8 +645,7 @@ package body KarteStadt is
             else
                null;
             end if;
-      end case;
-      
+      end case;      
       New_Line;
       
    end Beschreibung;

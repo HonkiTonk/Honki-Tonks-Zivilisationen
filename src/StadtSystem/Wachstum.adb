@@ -82,7 +82,7 @@ package body Wachstum is
 
 
 
-   procedure WachstumEinwohner (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
+   procedure WachstumEinwohner (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin      
                      
       GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsmittel
@@ -118,7 +118,7 @@ package body Wachstum is
    
    
    
-   procedure WachstumProduktion (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord) is
+   procedure WachstumProduktion (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
       if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt = 0 then

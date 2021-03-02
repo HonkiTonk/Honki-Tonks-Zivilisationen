@@ -3,8 +3,6 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
-with GlobaleVariablen;
-
 with Karte, Karten, Eingabe, EinheitenDatenbank, VerbesserungenDatenbank;
 
 package body Cheat is

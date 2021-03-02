@@ -1,14 +1,21 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package NaechstesObjekt is
 
-   procedure NächsteEinheitMitBewegungspunkten (RasseExtern : in GlobaleDatentypen.Rassen);
-   procedure NächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen);
-   procedure NächsteEinheitOhneBewegungspunkte (RasseExtern : in GlobaleDatentypen.Rassen);
-   procedure NächsteStadt (RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure NächsteEinheitMitBewegungspunkten (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+
+   procedure NächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+
+   procedure NächsteEinheitOhneBewegungspunkte (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+
+   procedure NächsteStadt (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
    
 private
    

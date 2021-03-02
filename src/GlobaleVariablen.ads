@@ -36,7 +36,6 @@ package GlobaleVariablen is
    RundenBisAutosave : Positive := 10;
 
    RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => 0); -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
-                                                                          -- Ändern das alle RassenBereiche hierauf gehen?
    RasseAmZugNachLaden : GlobaleDatentypen.RassenMitNullwert := 0;
    -- Zeug?
                                                          

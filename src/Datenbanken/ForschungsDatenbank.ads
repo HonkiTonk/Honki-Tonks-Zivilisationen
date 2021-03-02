@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, DatenbankRecords;
+with GlobaleDatentypen, DatenbankRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package ForschungsDatenbank is
@@ -20,9 +20,12 @@ package ForschungsDatenbank is
                                                        others => LeererWertForschungListe));
 
    procedure Beschreibung (ID : in Natural);
-   procedure Forschung (RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure Forschung (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+
    procedure ForschungFortschritt;
-   procedure ForschungZeit (RasseExtern : in GlobaleDatentypen.Rassen);
+   procedure ForschungZeit (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
 private
 
@@ -34,6 +37,7 @@ private
    AktuelleAuswahl : Integer;
    Ende : Integer;
 
-   function AuswahlForschung (RasseExtern : in GlobaleDatentypen.Rassen) return Integer;
+   function AuswahlForschung (RasseExtern : in GlobaleDatentypen.Rassen) return Integer with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
 end ForschungsDatenbank;
