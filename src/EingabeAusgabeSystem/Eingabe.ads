@@ -9,7 +9,8 @@ use GlobaleDatentypen;
 package Eingabe is
 
    function GanzeZahl (WelcheDatei, WelcherText : in Natural; ZahlenMinimum, ZahlenMaximum : Integer) return Integer with
-     Pre => (ZahlenMaximum <= 999_999_999 and ZahlenMinimum < ZahlenMaximum and ZahlenMinimum >= -999_999_999);
+     Pre  => (ZahlenMaximum <= 999_999_999 and ZahlenMinimum < ZahlenMaximum and ZahlenMinimum >= -999_999_999),
+     Post => (GanzeZahl'Result in -1_000_000_000 .. 999_999_999);
 
    function StadtName return Unbounded_Wide_Wide_String;
    function SpielstandName return Unbounded_Wide_Wide_String;

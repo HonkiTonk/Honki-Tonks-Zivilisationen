@@ -27,7 +27,7 @@ package body Eingabe is
                exit ZahlenAußenSchleife;
                
             when -1 =>
-               return -1;
+               return -1_000_000_000;
                         
             when others =>
                null;

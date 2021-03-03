@@ -42,7 +42,7 @@ begin
                         exit StartSchleife;
 
                      when others =>
-                        Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Start");
+                        null;
                   end case;
 
                when 3 => -- Laden
@@ -59,7 +59,7 @@ begin
                               exit StartSchleife;
 
                            when others =>
-                              Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Laden");
+                              null;
                         end case;
 
                      when False =>
@@ -76,7 +76,7 @@ begin
                   exit StartSchleife;
 
                when others =>
-                  Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Start2");
+                  null;
             end case;
 
          end loop StartSchleife;
@@ -91,7 +91,7 @@ begin
                                         AbstandEnde      => GlobaleDatentypen.Keiner);
 
       when False =>
-         Put_Line (Item => "Benötigte Dateien nicht gefunden.");
+         Put_Line (Item => "Benötigte Dateien nicht gefunden (Start.EinlesenErgebnis => False)!"); -- Nicht über Anzeige regeln, da die benötigten Dateien ja gar nicht eingelesen wurden!
    end case;
 
 end Start;

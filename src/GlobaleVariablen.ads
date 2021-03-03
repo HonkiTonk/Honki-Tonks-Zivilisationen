@@ -34,7 +34,7 @@ package GlobaleVariablen is
    -- Zeug
    RundenAnzahl : Positive := 1;
    RundenBisAutosave : Positive := 10;
-   AnzahlAutosave : Natural := 100;
+   AnzahlAutosave : Natural := 10;
 
    RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => 0); -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
    RasseAmZugNachLaden : GlobaleDatentypen.RassenMitNullwert := 0;

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-package body Steuerung is
+package body OptionenSteuerung is
 
    procedure SteuerungBelegen is
    begin
@@ -9,4 +9,4 @@ package body Steuerung is
       
    end SteuerungBelegen;
 
-end Steuerung;
+end OptionenSteuerung;

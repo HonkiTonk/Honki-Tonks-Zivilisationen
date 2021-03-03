@@ -34,7 +34,7 @@ package body Speichern is
          when True =>                        
             SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
             if GlobaleVariablen.AnzahlAutosave = 1 then
-               AutospeichernWert := 1;
+               null;
 
             elsif AutospeichernWert <= GlobaleVariablen.AnzahlAutosave - 1 then
                AutospeichernWert := AutospeichernWert + 1;

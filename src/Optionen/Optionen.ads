@@ -8,6 +8,7 @@ private
 
    Taste : Wide_Wide_Character;
 
-   Wert : Integer;
+   AuswahlWert : Integer;
+   RückgabeWert : Integer;
 
 end Optionen;

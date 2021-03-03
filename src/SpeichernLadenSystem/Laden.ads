@@ -15,6 +15,9 @@ private
 
    SpielstandName : Unbounded_Wide_Wide_String;
 
+   type SpielständeArray is array (1 .. 10) of Unbounded_Wide_Wide_String;
+   VorhandeneSpielstände : SpielständeArray;
+
    DateiLadenNeu : File_Type;
 
 end Laden;

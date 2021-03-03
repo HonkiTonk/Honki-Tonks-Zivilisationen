@@ -1,4 +1,4 @@
-|Menueauswahl
+| Menueauswahl
 Weiter
 Speichern
 Laden
@@ -6,6 +6,19 @@ Optionen
 Hauptmenü
 Spiel beenden
 |
-|JaNein
+| JaNein
 Ja
 Nein
+|
+| Optionen
+Grafik (nicht implementiert)
+Sound (nicht implementiert)
+Steuerung (nicht implementiert)
+Sonstiges
+Zurück
+|
+| Sonstiges (Optionen)
+Anzahl der automatischen Spielstände
+Runden bis zum Autospeichern
+Zurück
+Hauptmenü
