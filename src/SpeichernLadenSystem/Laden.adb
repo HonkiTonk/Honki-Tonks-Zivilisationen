@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar;
-use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar;
+with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Directories;
+use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Directories;
 
 with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 use GlobaleDatentypen;
@@ -10,10 +10,18 @@ with Karten, Ladezeiten, Informationen, Auswahl, Eingabe;
 
 package body Laden is
 
-   procedure LadenNeu is
+   function LadenNeu return Boolean is
    begin
       
       SpielstandName := Eingabe.SpielstandName;
+
+      case Exists (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is -- Anzeige der vorhandenen Spielstände einbauen
+         when True =>
+            null;
+
+         when False =>
+            return False;
+      end case;
       Ladezeiten.LadenLadezeiten (1, 1) := Clock;
 
       Open (File => DateiLadenNeu,
@@ -35,9 +43,8 @@ package body Laden is
                      
             when others =>
                Close (File => DateiLadenNeu); -- Hier noch eine Fehlermeldung einbauen
-               return;
+               return false;
          end case;
-         return;
       end if;
 
       -- Rundenanzahl und Rundenanzahl bis zum Autospeichern speichern
@@ -191,6 +198,8 @@ package body Laden is
 
       Ladezeiten.LadenLadezeiten (2, 1) := Clock;
       Ladezeiten.Laden (WelcheZeit => 1);
+
+      return True;
       
    end LadenNeu;
 

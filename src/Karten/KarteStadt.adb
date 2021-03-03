@@ -503,7 +503,7 @@ package body KarteStadt is
                                            AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
                                            AbstandMitte     => GlobaleDatentypen.Keiner,
                                            AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
-            Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Einwohner,
+            Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Einwohner),
                                      Width => 1);
 
             -- "Volle" Stadtinformationen, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist                      
@@ -584,8 +584,8 @@ package body KarteStadt is
                                               AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
                                               AbstandMitte     => GlobaleDatentypen.Keiner,
                                               AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
-               Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Einwohner
-                                        - GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ArbeitendeEinwohner,
+               Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Einwohner
+                                        - GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ArbeitendeEinwohner),
                                         Width => 1);
 
                New_Line;

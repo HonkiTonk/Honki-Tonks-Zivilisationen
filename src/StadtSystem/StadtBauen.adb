@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with Anzeige, StadtWerteFestlegen, ForschungsDatenbank, EinheitenDatenbank, Eingabe, Karten, InDerStadt, KartenPruefungen;
+with Anzeige, StadtWerteFestlegen, ForschungsDatenbank, EinheitenDatenbank, Eingabe, Karten, KartenPruefungen, Sortieren, StadtProduktion;
 
 package body StadtBauen is
 
@@ -97,7 +97,7 @@ package body StadtBauen is
             end case;
             
             StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummer => (EinheitRasseNummer.Rasse, StadtNummer));
-            InDerStadt.StadtProduktionPrüfen (StadtRasseNummer => (EinheitRasseNummer.Rasse, StadtNummer));
+            StadtProduktion.StadtProduktionPrüfen (StadtRasseNummer => (EinheitRasseNummer.Rasse, StadtNummer));
             ForschungsDatenbank.ForschungZeit (RasseExtern => EinheitRasseNummer.Rasse); 
             
             case GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) is
@@ -136,7 +136,7 @@ package body StadtBauen is
          
       else
          return False;
-      end if;      
+      end if;
       
    end StadtBauenPrüfen;
 
@@ -174,5 +174,38 @@ package body StadtBauen is
       return True;
 
    end ErweitertesStadtBauenPrüfen;
+
+
+
+   procedure StadtEntfernenMitSortieren (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   begin
+      
+      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer) := GlobaleVariablen.LeererWertStadt;
+      Sortieren.StädteSortieren (RasseExtern => StadtRasseNummer.Rasse);
+
+      if GlobaleVariablen.EinheitenGebaut (StadtRasseNummer.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, 1).ID = 0 then
+         GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) := 0;
+         
+      else
+         null;
+      end if;
+      
+   end StadtEntfernenMitSortieren;
+
+
+
+   procedure StadtEntfernenOhneSortieren (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   begin
+      
+      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer) := GlobaleVariablen.LeererWertStadt;
+
+      if GlobaleVariablen.EinheitenGebaut (StadtRasseNummer.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, 1).ID = 0 then
+         GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) := 0;
+         
+      else
+         null;
+      end if;
+      
+   end StadtEntfernenOhneSortieren;
 
 end StadtBauen;

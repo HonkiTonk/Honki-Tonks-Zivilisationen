@@ -77,9 +77,9 @@ package GlobaleDatentypen is
 
    
    -- Für Stadt
-   type GesamtproduktionStadt is range -500 .. 500;
-   subtype GrundwerteNRGWVA is GesamtproduktionStadt range -100 .. 100; -- NRGWVA = Grundwert für Nahrung, Ressourcen, Geld, Wissenschaft, Verteidigung, Angriff
    type KostenLager is range -10_000 .. 10_000;
+   subtype GesamtproduktionStadt is KostenLager range -500 .. 500;
+   subtype GrundwerteNRGWVA is GesamtproduktionStadt range -100 .. 100; -- NRGWVA = Grundwert für Nahrung, Ressourcen, Geld, Wissenschaft, Verteidigung, Angriff
    subtype StadtID is KartenVerbesserung range 0 .. 2;
 
    type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;

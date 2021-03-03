@@ -32,7 +32,7 @@ private
 
    function GanzeZahlPrüfung (Zeichen : in Wide_Wide_Character) return GlobaleDatentypen.LoopRangeMinusDreiZuDrei with
      Pre => (Zeichen = '0' or Zeichen = '1' or Zeichen = '2' or Zeichen = '3' or Zeichen = '4' or Zeichen = '5' or Zeichen = '6' or Zeichen = '7' or Zeichen = '8' or Zeichen = '9' or Zeichen = '-' or Zeichen = '+'
-             or Zeichen = 'q' or Zeichen = Del or Zeichen = 'e' or Zeichen = 'Q' or Zeichen = 'E');
+             or Zeichen = 'q' or Zeichen = DEL or Zeichen = 'e' or Zeichen = 'Q' or Zeichen = 'E');
 
    function ZahlSchleife (WelcheDatei, WelcherText : in Natural; ZahlenMinimum, ZahlenMaximum : Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei with
      Pre => (ZahlenMaximum <= 999_999_999 and ZahlenMinimum < ZahlenMaximum and ZahlenMinimum >= -999_999_999);

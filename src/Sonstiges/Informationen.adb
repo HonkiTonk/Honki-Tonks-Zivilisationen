@@ -1,12 +1,14 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO;
-use Ada.Wide_Wide_Text_IO;
+with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 package body Informationen is
 
    procedure Informationen is
    begin
+
+      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
       Put_Line (Item => "Aktuelle Version:");
       Put_Line (Item => Versionsnummer);
@@ -30,13 +32,6 @@ package body Informationen is
       Put_Line (Item => "Meine Internetseite:");
       Put_Line (Item => "http://www.totalplanlos.de/");
       New_Line;
-
-      -- Notizen:
-      -- -1 = Spiel beenden, 0 = Hauptmenü, -2 = Zurück, -3 = Ja, -4 = Nein, 2 = Speichern, 3 = Laden
-      -- Gebäude haben immer die Nummer 1_000 + ihren Datenbankwert, Einheiten haben immer die Nummer 10_000 + ihren Datenbankwert.
-      -- In der Übergabe immer StadtNummer oder EinheitNummer verwenden.
-      -- Nicht über das Array selbst loopen, da bei Aufteilung es zu Problemen kommen kann.
-      -- Für Rassen im Spiel gilt: 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI.
       
       Put_Line (Item => "Taste drücken um zurück ins Hauptmenü zu kommen.");
       Get_Immediate (Item => Taste);
@@ -44,3 +39,10 @@ package body Informationen is
    end Informationen;
 
 end Informationen;
+
+-- Notizen:
+-- -1 = Spiel beenden, 0 = Hauptmenü, -2 = Zurück, -3 = Ja, -4 = Nein, 2 = Speichern, 3 = Laden
+-- Gebäude haben immer die Nummer 1_000 + ihren Datenbankwert, Einheiten haben immer die Nummer 10_000 + ihren Datenbankwert.
+-- In der Übergabe immer StadtNummer oder EinheitNummer verwenden.
+-- Nicht über das Array selbst loopen, da bei Aufteilung es zu Problemen kommen kann.
+-- Für Rassen im Spiel gilt: 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI.

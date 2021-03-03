@@ -25,15 +25,15 @@ private
    AngriffVerteidigungWert : Float;
    Wert : Float;
 
-   procedure KampfBerechnung (VerteidigerRasseUndEinheitNummer : in GlobaleRecords.RassePlatznummerRecord; AngriffWert, VerteidigungWert : in Float) with
-     Pre => (VerteidigerRasseUndEinheitNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and VerteidigerRasseUndEinheitNummer.Rasse in GlobaleDatentypen.Rassen
-             and GlobaleVariablen.RassenImSpiel (VerteidigerRasseUndEinheitNummer.Rasse) /= 0);
+   procedure KampfBerechnung (VerteidigerRasseEinheitNummer : in GlobaleRecords.RassePlatznummerRecord; AngriffWert, VerteidigungWert : in Float) with
+     Pre => (VerteidigerRasseEinheitNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and VerteidigerRasseEinheitNummer.Rasse in GlobaleDatentypen.Rassen
+             and (if VerteidigerRasseEinheitNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (VerteidigerRasseEinheitNummer.Rasse) /= 0));
 
-   function Kampf (VerteidigerRasseUndEinheitNummer, AngreiferRasseUndEinheitNummer : in GlobaleRecords.RassePlatznummerRecord; VerteidigungBonus : in Float) return Boolean with
-     Pre => (VerteidigerRasseUndEinheitNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and VerteidigerRasseUndEinheitNummer.Rasse in GlobaleDatentypen.Rassen
-             and AngreiferRasseUndEinheitNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and AngreiferRasseUndEinheitNummer.Rasse in GlobaleDatentypen.Rassen
-             and AngreiferRasseUndEinheitNummer.Rasse /= VerteidigerRasseUndEinheitNummer.Rasse and GlobaleVariablen.RassenImSpiel (VerteidigerRasseUndEinheitNummer.Rasse) /= 0
-             and GlobaleVariablen.RassenImSpiel (AngreiferRasseUndEinheitNummer.Rasse) /= 0);
+   function Kampf (VerteidigerRasseEinheitNummer, AngreiferRasseEinheitNummer : in GlobaleRecords.RassePlatznummerRecord; VerteidigungBonus : in Float) return Boolean with
+     Pre => (VerteidigerRasseEinheitNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and VerteidigerRasseEinheitNummer.Rasse in GlobaleDatentypen.Rassen
+             and AngreiferRasseEinheitNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and AngreiferRasseEinheitNummer.Rasse in GlobaleDatentypen.Rassen
+             and AngreiferRasseEinheitNummer.Rasse /= VerteidigerRasseEinheitNummer.Rasse and (if VerteidigerRasseEinheitNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (VerteidigerRasseEinheitNummer.Rasse) /= 0)
+             and (if AngreiferRasseEinheitNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (AngreiferRasseEinheitNummer.Rasse) /= 0));
 
    function Prüfen return Boolean;
 

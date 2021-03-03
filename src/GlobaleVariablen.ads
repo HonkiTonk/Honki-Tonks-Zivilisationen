@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Strings.Wide_Wide_Unbounded; 
 use Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleDatentypen, GlobaleRecords, KIDatentypen;
@@ -31,13 +31,14 @@ package GlobaleVariablen is
    
    
 
-   -- Zeug?
+   -- Zeug
    RundenAnzahl : Positive := 1;
    RundenBisAutosave : Positive := 10;
+   AnzahlAutosave : Natural := 100;
 
    RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => 0); -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
    RasseAmZugNachLaden : GlobaleDatentypen.RassenMitNullwert := 0;
-   -- Zeug?
+   -- Zeug
                                                          
 
    

@@ -241,7 +241,7 @@ package body SpielEinstellungen is
          
       end loop SpieleranzahlSchleife;
       
-   end SpielerAnzahlWählen;
+   end SpieleranzahlWählen;
 
 
 

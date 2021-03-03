@@ -100,9 +100,9 @@ package GlobaleRecords is
       ID : GlobaleDatentypen.StadtID;
       AchsenPosition : AchsenKartenfeldPositivRecord;
       AmWasser : Boolean;
-      Einwohner : Natural;
+      Einwohner : GlobaleDatentypen.GrundwerteNRGWVA;
       
-      AktuelleNahrungsmittel : GlobaleDatentypen.KostenLager;
+      AktuelleNahrungsmittel : GlobaleDatentypen.GesamtproduktionStadt;
       AktuelleNahrungsproduktion : GlobaleDatentypen.GesamtproduktionStadt;
       AktuelleRessourcen : GlobaleDatentypen.KostenLager;
       AktuelleProduktionrate : GlobaleDatentypen.GesamtproduktionStadt;
@@ -118,8 +118,8 @@ package GlobaleRecords is
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : GlobaleDatentypen.UmgebungBewirtschaftungArray;
-      ArbeitendeEinwohner : Natural;
-      StadtUmgebungGröße : GlobaleDatentypen.Stadtfeld;
+      ArbeitendeEinwohner : GlobaleDatentypen.GrundwerteNRGWVA;
+      StadtUmgebungGröße : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
       
       -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Gebäude bauen), -10 = Die KI hat irgendwas gemacht und es soll nicht geändert werden, < 0 = KI Einheit die irgendetwas erledigt hat
       KIAktuelleBeschäftigung : Integer;

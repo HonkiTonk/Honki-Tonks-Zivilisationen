@@ -5,7 +5,7 @@ use Ada.Strings.Wide_Wide_Unbounded, Ada.Streams.Stream_IO;
 
 package Laden is
 
-   procedure LadenNeu;
+   function LadenNeu return Boolean;
 
 private
 

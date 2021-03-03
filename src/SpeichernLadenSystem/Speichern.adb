@@ -9,7 +9,7 @@ with Karten, Eingabe, Auswahl, Ladezeiten, Informationen;
 
 package body Speichern is
 
-   procedure SpeichernNeu (Autospeichern : Boolean) is
+   procedure SpeichernNeu (Autospeichern : in Boolean) is
    begin      
 
       case Autospeichern is
@@ -31,15 +31,17 @@ package body Speichern is
                   null;
             end case;
 
-         when True =>
-            case AutospeichernWert is
-               when 1 .. 100 =>
-                  null;
+         when True =>                        
+            SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
+            if GlobaleVariablen.AnzahlAutosave = 1 then
+               AutospeichernWert := 1;
+
+            elsif AutospeichernWert <= GlobaleVariablen.AnzahlAutosave - 1 then
+               AutospeichernWert := AutospeichernWert + 1;
                   
-               when others =>                  
-                  AutospeichernWert := 1;
-            end case;            
-            SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutoSpeichernWert'Wide_Wide_Image);
+            else               
+               AutospeichernWert := 1;
+            end if;
       end case;
 
       Ladezeiten.Speicherzeiten (1, 1) := Clock;
@@ -213,7 +215,7 @@ package body Speichern is
       
       case GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.RundenBisAutosave is
          when 0 =>
-            SpeichernNeu (AutoSpeichern => True);
+            SpeichernNeu (Autospeichern => True);
          
          when others =>
             null;

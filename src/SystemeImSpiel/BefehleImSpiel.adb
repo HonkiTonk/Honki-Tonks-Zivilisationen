@@ -31,20 +31,20 @@ package body BefehleImSpiel is
 
                EinheitOderStadt (RasseExtern         => RasseExtern,
                                  Auswahl             => StadtOderEinheit,
-                                 Stadtnummer         => StadtNummer,
+                                 StadtNummer         => StadtNummer,
                                  EinheitNummer       => EinheitNummer);
                
                
             elsif StadtNummer /= 0 then
                EinheitOderStadt (RasseExtern         => RasseExtern,
                                  Auswahl             => -3,
-                                 Stadtnummer         => StadtNummer,
+                                 StadtNummer         => StadtNummer,
                                  EinheitNummer       => EinheitNummer);
                
             elsif EinheitNummer /= 0 then
                EinheitOderStadt (RasseExtern         => RasseExtern,
                                  Auswahl             => -1_000, -- Hauptsache ungleich -3
-                                 Stadtnummer         => StadtNummer,
+                                 StadtNummer         => StadtNummer,
                                  EinheitNummer       => EinheitNummer);
                
             else

@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen;
-
 package body StadtSuchen is
 
    function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Natural is

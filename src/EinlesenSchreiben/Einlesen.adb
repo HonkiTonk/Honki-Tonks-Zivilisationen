@@ -190,7 +190,7 @@ package body Einlesen is
 
       end loop;
 
-      close (File => DateiNeuWelcheWerteEinlesen);
+      Close (File => DateiNeuWelcheWerteEinlesen);
 
       WelcheWerteSchleife:
       for B in WelcheWerteEinlesenNeuArray'Range loop
@@ -207,7 +207,7 @@ package body Einlesen is
                Mode => In_File,
                Name => Encode (Item => (To_Wide_Wide_String (WelcheWerteEinlesenNeu (B)))));
 
-         close (File => DateiNeuWerte);
+         Close (File => DateiNeuWerte);
 
       end loop WelcheWerteSchleife;
    

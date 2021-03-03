@@ -6,7 +6,7 @@ use Ada.Calendar;
 with GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
-with InDerStadt, Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, KI, Ladezeiten, Speichern, Laden, KIZuruecksetzen;
+with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, KI, Ladezeiten, Speichern, Laden, KIZuruecksetzen, StadtProduktion;
 
 package body ImSpiel is
 
@@ -44,11 +44,17 @@ package body ImSpiel is
 
                            when 2 => -- Speichern
                               GlobaleVariablen.RasseAmZugNachLaden := RasseIntern;
-                              Speichern.SpeichernNeu (AutoSpeichern => False);
+                              Speichern.SpeichernNeu (Autospeichern => False);
                
                            when 3 => -- Laden
-                              Laden.LadenNeu;
-                              exit RassenSchleife;
+                              LadenErfolgreich := Laden.LadenNeu;
+                              case LadenErfolgreich is
+                                 when True =>
+                                    exit RassenSchleife;
+
+                                 when False =>
+                                    null;
+                              end case;
                
                            when 4 =>
                               Optionen.Optionen;
@@ -77,28 +83,45 @@ package body ImSpiel is
             end if;
             
          end loop RassenSchleife;
-                  
+               
          case GlobaleVariablen.RasseAmZugNachLaden is
-            when 0 =>
-               Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (1, 1) := Clock;
-               EinheitenDatenbank.HeilungBewegungspunkteFürNeueRundeSetzen;
-               Verbesserungen.VerbesserungFertiggestellt;
-               Wachstum.Wachstum;
-               InDerStadtBauen.BauzeitAlle;
-               InDerStadt.StadtProduktionPrüfen ((0, 0));
-               ForschungsDatenbank.ForschungFortschritt;
-               GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
-               Speichern.AutoSpeichern;
-               KIZuruecksetzen.KIZurücksetzenAmRundenende;
-               Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (2, 1) := Clock;
-               Ladezeiten.BerechnungenNachZugendeAllerSpieler (WelcheZeit => 1);
+            when 0 =>   
+               BerechnungenNachZugendeAllerSpieler;
                
             when others =>
                null;
          end case;
-         
+            
       end loop SpielSchleife;
             
    end ImSpiel;
+
+
+
+   procedure BerechnungenNachZugendeAllerSpieler is
+   begin
+            
+      Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (1, 1) := Clock;
+      EinheitenDatenbank.HeilungBewegungspunkteFürNeueRundeSetzen;
+      Verbesserungen.VerbesserungFertiggestellt;
+      Wachstum.Wachstum;
+      InDerStadtBauen.BauzeitAlle;
+      StadtProduktion.StadtProduktionPrüfen ((0, 0));
+      ForschungsDatenbank.ForschungFortschritt;
+      GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
+
+      case GlobaleVariablen.AnzahlAutosave is
+         when 0 =>
+            null;
+
+         when others =>
+            Speichern.AutoSpeichern;
+      end case;
+      
+      KIZuruecksetzen.KIZurücksetzenAmRundenende;
+      Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (2, 1) := Clock;
+      Ladezeiten.BerechnungenNachZugendeAllerSpieler (WelcheZeit => 1);
+      
+   end BerechnungenNachZugendeAllerSpieler;
 
 end ImSpiel;

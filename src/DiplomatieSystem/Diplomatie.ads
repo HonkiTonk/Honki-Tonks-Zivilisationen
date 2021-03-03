@@ -14,8 +14,9 @@ package Diplomatie is
 
    function GegnerAngreifenOderNicht (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Gegner : in GlobaleRecords.RassePlatznummerRecord) return Boolean with
      Pre => (EinheitRasseNummer.Rasse /= Gegner.Rasse and EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and Gegner.Rasse in GlobaleDatentypen.Rassen and Gegner.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0
-             and GlobaleVariablen.RassenImSpiel (Gegner.Rasse) /= 0);
+             and Gegner.Rasse in GlobaleDatentypen.Rassen and Gegner.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2)
+             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0)
+             and (if Gegner.Rasse > 0 then GlobaleVariablen.RassenImSpiel (Gegner.Rasse) /= 0));
 
 private
 

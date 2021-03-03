@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 package body Umwandlung is
 
-   function KartenfeldNachKartenfeldPositiv (Koordinaten : GlobaleRecords.AchsenKartenfeldRecord) return GlobaleRecords.AchsenKartenfeldPositivRecord is
+   function KartenfeldNachKartenfeldPositiv (Koordinaten : in GlobaleRecords.AchsenKartenfeldRecord) return GlobaleRecords.AchsenKartenfeldPositivRecord is
    begin
       
       KoordinatenUmgewandelt := (GlobaleDatentypen.EbeneVorhanden (Koordinaten.EAchse),

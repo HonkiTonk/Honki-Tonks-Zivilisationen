@@ -74,7 +74,7 @@ private
    procedure GenerierungLandmasseÜberhang (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv; Gezogen : in Float) with
      Pre => (YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
-   procedure Generierungpangäa (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) with
+   procedure GenerierungPangäa (YAchse, XAchse : in GlobaleDatentypen.KartenfeldPositiv) with
      Pre => (YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure GenerierungKüstenSeeGewässer;

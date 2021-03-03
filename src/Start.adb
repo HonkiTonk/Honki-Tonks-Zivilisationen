@@ -5,13 +5,15 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleDatentypen;
 
-with Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden;
+with Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden, Anzeige;
 
 procedure Start is
 
+   EinlesenErgebnis : Boolean;
+   LadenErfolgreich : Boolean;
+
    Startauswahl : Integer;
    RückgabeKampagne : Integer;
-   EinlesenErgebnis : Boolean;
 
 begin
 
@@ -22,11 +24,11 @@ begin
          StartSchleife:
          loop
 
-            Startauswahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Leer,
+            Startauswahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Start,
                                              TextDatei   => GlobaleDatentypen.Start,
                                              FrageZeile  => 1,
-                                             ErsteZeile  => 1,
-                                             LetzteZeile => 5);
+                                             ErsteZeile  => 2,
+                                             LetzteZeile => 6);
 
             case Startauswahl is
                when 1 => -- Start
@@ -44,17 +46,24 @@ begin
                   end case;
 
                when 3 => -- Laden
-                  Laden.LadenNeu;
-                  RückgabeKampagne := ImSpiel.ImSpiel;
-                  case RückgabeKampagne is
-                     when 0 =>
-                        AllesAufAnfangSetzen.AllesAufAnfangSetzen;
+                  LadenErfolgreich := Laden.LadenNeu;
 
-                     when -1 =>
-                        exit StartSchleife;
+                  case LadenErfolgreich is
+                     when True =>
+                        RückgabeKampagne := ImSpiel.ImSpiel;
+                        case RückgabeKampagne is
+                           when 0 =>
+                              AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
-                     when others =>
-                        Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Laden");
+                           when -1 =>
+                              exit StartSchleife;
+
+                           when others =>
+                              Put_Line (Item => "Sollte niemals aufgerufen werden, Start.Laden");
+                        end case;
+
+                     when False =>
+                        null;
                   end case;
 
                when 4 => -- Optionen
@@ -72,7 +81,14 @@ begin
 
          end loop StartSchleife;
 
-         Put_Line (Item => "Auf Wiedersehen!");
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                        TextDatei        => GlobaleDatentypen.Start,
+                                        ÜberschriftZeile => 0,
+                                        ErsteZeile       => 7,
+                                        LetzteZeile      => 7,
+                                        AbstandAnfang    => GlobaleDatentypen.Neue_Zeile,
+                                        AbstandMitte     => GlobaleDatentypen.Keiner,
+                                        AbstandEnde      => GlobaleDatentypen.Keiner);
 
       when False =>
          Put_Line (Item => "Benötigte Dateien nicht gefunden.");
