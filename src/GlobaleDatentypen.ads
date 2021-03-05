@@ -43,7 +43,7 @@ package GlobaleDatentypen is
    subtype LoopRangeNullZuEins is Kartenfeld range 0 .. 1;
 
    type KartenGrund is range -2 .. 40;
-   type KartenverbesserungEinheitenID is range 0 .. 50;
+   type KartenverbesserungEinheitenID is range 0 .. 78; -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
    subtype KartenVerbesserung is KartenverbesserungEinheitenID range 0 .. 23;
    type Ebene is range -3 .. 2; -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    subtype EbeneVorhanden is Ebene range -2 .. 2;

@@ -11,23 +11,19 @@ package Anzeige is
    type TextBauenRecord is record
       
       Text : Unbounded_Wide_Wide_String;
-      Nummer : Integer;
+      Nummer : Natural;
       
    end record;
 
-   type TextBauenNeuArray is array (GlobaleDatentypen.GebäudeID'First .. GlobaleDatentypen.EinheitenID'Last + GlobaleDatentypen.GebäudeID'Last) of TextBauenRecord;
+   type TextBauenNeuArray is array (GlobaleDatentypen.KartenverbesserungEinheitenID'First + 1 .. GlobaleDatentypen.KartenverbesserungEinheitenID'Last) of TextBauenRecord;
    TextBauenNeu : TextBauenNeuArray;
-
-
-   type TextBauenArray is array (GlobaleVariablen.TexteEinlesenNeuArray'First (2) .. 2 * GlobaleVariablen.TexteEinlesenNeuArray'Last (2) + 1) of TextBauenRecord;
-   TextBauen : TextBauenArray;
 
 
 
    type TextForschungRecord is record
       
       Text : Unbounded_Wide_Wide_String;
-      Nummer : Integer;
+      Nummer : Natural;
       
    end record;
    
@@ -36,6 +32,7 @@ package Anzeige is
 
    procedure AnzeigeStadt (AktuelleAuswahl : in Positive);
    procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Positive);
+   procedure AnzeigeLangerTextNeu;
    procedure AnzeigeForschung (AktuelleAuswahl : in Positive);
    procedure AnzeigeSprache (AktuelleAuswahl, ErsteZeile, LetzteZeile : in Positive);
 

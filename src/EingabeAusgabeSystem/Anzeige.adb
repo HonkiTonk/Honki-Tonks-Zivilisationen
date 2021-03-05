@@ -260,12 +260,12 @@ package body Anzeige is
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
-      for A in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
-         if To_Wide_Wide_String (Source => TextBauen (A).Text) = "|" then
+      for A in TextBauenNeuArray'Range loop
+         if To_Wide_Wide_String (Source => TextBauenNeu (A).Text) = "|" then
             exit TextlängePrüfenSchleife;
             
-         elsif To_Wide_Wide_String (Source => TextBauen (A).Text)'Length > LängsterText then
-            LängsterText := To_Wide_Wide_String (Source => TextBauen (A).Text)'Length;
+         elsif To_Wide_Wide_String (Source => TextBauenNeu (A).Text)'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => TextBauenNeu (A).Text)'Length;
             
          else
             null;
@@ -273,15 +273,12 @@ package body Anzeige is
       end loop TextlängePrüfenSchleife;
       
       AnzeigeSchleife:
-      for A in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
+      for A in TextBauenNeuArray'Range loop
 
-         if AktuelleAuswahl = A then
+         if AktuelleAuswahl = Positive (A) then
             for B in 1 .. LängsterText loop
-
-               if To_Wide_Wide_String (Source => TextBauen (A).Text) = "|" then
-                  exit AnzeigeSchleife;
                   
-               elsif B = 1 then
+               if B = 1 then
                   Put (Item => "╔");
                   Put (Item => "═");
 
@@ -289,9 +286,9 @@ package body Anzeige is
                   Put (Item => "═");
                   Put_Line (Item => "╗");
                   Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => TextBauen (A).Text));
+                  Put (Item => To_Wide_Wide_String (Source => TextBauenNeu (A).Text));
 
-                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => TextBauen (A).Text)'Length loop
+                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => TextBauenNeu (A).Text)'Length loop
                         
                      Put (" ");
                         
@@ -318,11 +315,11 @@ package body Anzeige is
             end loop;
          
          else
-            if To_Wide_Wide_String (Source => TextBauen (A).Text) = "|" then
+            if To_Wide_Wide_String (Source => TextBauenNeu (A).Text) = "|" then
                exit AnzeigeSchleife; 
             
             else
-               Put_Line (Item => To_Wide_Wide_String (Source => TextBauen (A).Text));
+               Put_Line (Item => To_Wide_Wide_String (Source => TextBauenNeu (A).Text));
             end if;
          end if;
          
@@ -407,6 +404,15 @@ package body Anzeige is
       end loop AnzeigeSchleife;
       
    end AnzeigeForschung;
+
+
+
+   procedure AnzeigeLangerTextNeu is
+   begin
+      
+      null;
+      
+   end AnzeigeLangerTextNeu;
 
 
 
