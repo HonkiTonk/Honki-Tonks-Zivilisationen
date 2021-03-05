@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 package Optionen is
 
-   procedure Optionen;
+   function Optionen return Integer;
 
 private
 

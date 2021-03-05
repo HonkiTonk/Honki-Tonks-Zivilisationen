@@ -3,7 +3,9 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
 
-with Auswahl, InDerStadtBauen, GebaeudeDatenbank, KarteStadt, BewegungssystemCursor, Karten, KartenPruefungen;
+with GlobaleKonstanten;
+
+with Auswahl, InDerStadtBauen, GebaeudeDatenbank, KarteStadt, BewegungssystemCursor, Karten, KartenPruefungen, Eingabe;
 
 package body InDerStadt is
 
@@ -77,10 +79,10 @@ package body InDerStadt is
                   when 0 =>
                      InDerStadtBauen.Bauen (StadtRasseNummer => StadtRasseNummer);
                      
-                  when others =>
+                  when others => -- Diese Auswahl nach InDerStadtBauen verschieben
                      Wahl := Auswahl.AuswahlJaNein (FrageZeile => 14);
                      case Wahl is
-                        when -3 =>
+                        when GlobaleKonstanten.JaKonstante =>
                            InDerStadtBauen.Bauen (StadtRasseNummer => StadtRasseNummer);
                      
                         when others =>
@@ -121,7 +123,10 @@ package body InDerStadt is
                   null;
                end if;
 
-            when 'q' =>
+            when 'n' => -- Stadt umbenennen
+               GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Name := Eingabe.StadtName;
+
+            when 'q' => -- Stadt verlassen
                return;
                
             when others =>

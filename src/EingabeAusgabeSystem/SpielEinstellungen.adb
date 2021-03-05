@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 
+with GlobaleKonstanten;
+
 with ImSpiel, KartenGenerator, Eingabe, Auswahl, EinheitenDatenbank, Anzeige, ZufallsGeneratoren, Ladezeiten, KartenPruefungen, EinheitSuchen;
 
 package body SpielEinstellungen is
@@ -34,7 +36,7 @@ package body SpielEinstellungen is
             when 6 =>
                exit AuswahlSchleife;
 
-            when -1 | 0 =>
+            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return Wahl;
 
             when others =>
@@ -110,7 +112,7 @@ package body SpielEinstellungen is
                Karten.Kartengröße := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt);
                return 2;
 
-            when -1 | 0 =>
+            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return Wahl;
                
             when others =>
@@ -150,7 +152,7 @@ package body SpielEinstellungen is
             when -2 =>
                return 1;
 
-            when -1 | 0 =>
+            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return Wahl;
                
             when others =>
@@ -190,7 +192,7 @@ package body SpielEinstellungen is
             when -2 =>
                return 2;
 
-            when -1 | 0 =>
+            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return Wahl;
                
             when others =>
@@ -230,7 +232,7 @@ package body SpielEinstellungen is
             when -2 =>
                return 3;
 
-            when -1 | 0 =>
+            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return Wahl;
                
             when others =>
@@ -259,7 +261,7 @@ package body SpielEinstellungen is
             when -2 =>
                return 4;
 
-            when -1 | 0 =>
+            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return Wahl;
                
             when others =>
@@ -271,11 +273,11 @@ package body SpielEinstellungen is
                Wahl := Auswahl.AuswahlJaNein (FrageZeile => 21);
          
                case Wahl is
-                  when -3 =>
+                  when GlobaleKonstanten.JaKonstante =>
                      GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (Wert)) := 1;
                      Spieler := Spieler + 1;
                      
-                  when -4 =>
+                  when GlobaleKonstanten.NeinKonstante =>
                      GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (Wert)) := 2;
                      Spieler := Spieler + 1;
 
@@ -315,7 +317,7 @@ package body SpielEinstellungen is
                                           WelcheZeile => Wahl);
                Wahl2 := Auswahl.AuswahlJaNein (FrageZeile => 6);
                case Wahl2 is
-                  when -3 =>
+                  when GlobaleKonstanten.JaKonstante =>
                      return Wahl;
                      
                   when others =>

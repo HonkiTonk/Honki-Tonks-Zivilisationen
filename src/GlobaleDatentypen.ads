@@ -2,6 +2,15 @@ pragma SPARK_Mode (On);
 
 package GlobaleDatentypen is
 
+   -- Für Eingabe, Eingaberückgabe und Integerersatz? ||| Später einbauen
+   -- type KleinerInteger is range -1_000_000_000 .. 999_999_999;
+   -- subtype KleinesNatural is KleinerInteger range 0 .. 999_999_999;
+   -- subtype KleinesPositiv is KleinerInteger range 1 .. 999_999_999;
+   -- subtype KleinesNegativ is KleinerInteger range -1_000_000_000 .. -1;
+   -- Für Eingabe, Eingaberückgabe und Integerersatz? ||| Später einbauen
+   
+   
+
    -- Für Anzeige
    type TextDateien is range 0 .. 22;
    type TextZeilen is range 0 .. 84;
@@ -60,18 +69,17 @@ package GlobaleDatentypen is
 
 
    -- Für Gebäude
-   type GebäudeID is range 1 .. 27;
+   subtype GebäudeID is KartenverbesserungEinheitenID range 1 .. 27;
    -- Für Gebäude
 
 
 
    -- Für Forschung
-   type AnforderungForschungArray is array (1 .. 4) of Integer;
-
-   type ForschungIDMitNullWert is range 0 .. 6;
+   subtype ForschungIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 6;
    subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
-
-   type ErforschtArray is array (1 .. 7) of Natural;
+   
+   type AnforderungForschungArray is array (1 .. 4) of ForschungIDMitNullWert;
+   type ErforschtArray is array (1 .. 7) of ForschungIDMitNullWert;
    -- Für Forschung
 
 

@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 package body EinheitSuchen is
 
    function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Natural is
@@ -20,7 +22,7 @@ package body EinheitSuchen is
          
       end loop EinheitSchleife;
       
-      return RückgabeWertEinheitNummer;
+      return GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch;
       
    end KoordinatenEinheitMitRasseSuchen;
 
@@ -47,7 +49,7 @@ package body EinheitSuchen is
          end loop EinheitSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWertEinheitNummer);
+      return (GlobaleDatentypen.RassenMitNullwert'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
       
    end KoordinatenEinheitOhneRasseSuchen;
 
@@ -79,7 +81,7 @@ package body EinheitSuchen is
          end loop EinheitSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWertEinheitNummer);
+      return (GlobaleDatentypen.RassenMitNullwert'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
       
    end KoordinatenEinheitOhneSpezielleRasseSuchen;
 

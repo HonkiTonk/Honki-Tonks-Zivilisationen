@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with GlobaleVariablen, GlobaleDatentypen;
+with GlobaleVariablen, GlobaleDatentypen, GlobaleKonstanten;
 use GlobaleDatentypen;
 
 with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, KI, Ladezeiten, Speichern, Laden, KIZuruecksetzen, StadtProduktion;
@@ -39,14 +39,14 @@ package body ImSpiel is
                         Karte.AnzeigeKarte (RasseExtern => RasseIntern);
                         AktuellerBefehl := BefehleImSpiel.Befehle (RasseExtern => RasseIntern);
                         case AktuellerBefehl is
-                           when 1 =>
+                           when GlobaleKonstanten.StartNormalKonstante =>
                               null;
 
-                           when 2 => -- Speichern
+                           when GlobaleKonstanten.SpeichernKonstante => -- Speichern
                               GlobaleVariablen.RasseAmZugNachLaden := RasseIntern;
                               Speichern.SpeichernNeu (Autospeichern => False);
                
-                           when 3 => -- Laden
+                           when GlobaleKonstanten.LadenKonstante => -- Laden
                               LadenErfolgreich := Laden.LadenNeu;
                               case LadenErfolgreich is
                                  when True =>
@@ -56,14 +56,18 @@ package body ImSpiel is
                                     null;
                               end case;
                
-                           when 4 =>
-                              Optionen.Optionen;
+                           when GlobaleKonstanten.OptionenKonstante => -- Optionen
+                              RückgabeOptionen := Optionen.Optionen;
+                              case RückgabeOptionen is
+                                 when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+                                    return RückgabeOptionen;
+                                    
+                                 when others =>
+                                    null;
+                              end case;
                
-                           when 0 => -- Hauptmenü
-                              return 0;
-
-                           when -1 => -- Spiel beenden
-                              return -1;
+                           when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante => -- Spiel beenden oder Hauptmenü
+                              return AktuellerBefehl;
 
                            when -1_000 => -- Runde beenden
                               exit SpielerSchleife;      

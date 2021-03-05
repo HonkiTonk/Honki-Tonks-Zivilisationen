@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Integer_Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
+with GlobaleKonstanten;
+
 with Anzeige;
 
 package body Eingabe is 
@@ -21,13 +23,13 @@ package body Eingabe is
                                WelcherText   => WelcherText,
                                ZahlenMinimum => ZahlenMinimum,
                                ZahlenMaximum => ZahlenMaximum);
-                       
+         
          case Test is
             when 2 =>
                exit ZahlenAußenSchleife;
                
             when -1 =>
-               return -1_000_000_000;
+               return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
                         
             when others =>
                null;
@@ -96,7 +98,7 @@ package body Eingabe is
                if Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximum then
                   null;
                   
-               else -- Hier noch eine Fehlermeldung einbauen
+               else -- Einfach auf ZahlenMaximum setzen
                   ZahlenNachRechtsVerschiebenSchleife:
                   for Zahl in reverse ZahlenString'First + 1 .. ZahlenString'Last loop
                   
@@ -116,7 +118,7 @@ package body Eingabe is
                elsif Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimum then
                   return 2;
                      
-               else -- Hier noch eine Fehlermeldung einbauen
+               else -- Einfach auf ZahlenMinimum setzen
                   null;
                end if;
 

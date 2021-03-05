@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleKonstanten;
 
 with Auswahl, Eingabe;
 
@@ -15,8 +15,8 @@ package body OptionenSonstiges is
          AuswahlWert := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Leer,
                                          TextDatei   => GlobaleDatentypen.Menü_Auswahl,
                                          FrageZeile  => 0,
-                                         ErsteZeile  => 21,
-                                         LetzteZeile => 24);
+                                         ErsteZeile  => GlobaleKonstanten.OptionenSonstigesErsteZeile,
+                                         LetzteZeile => GlobaleKonstanten.OptionenSonstigesLetzteZeile);
 
          case AuswahlWert is
             when 1 =>
@@ -49,7 +49,7 @@ package body OptionenSonstiges is
                      null;
                end case;
                
-            when 0 | -2 =>
+            when GlobaleKonstanten.ZurückKonstante | GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return AuswahlWert;
                
             when others =>

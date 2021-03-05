@@ -136,7 +136,7 @@ package GlobaleRecords is
       AktuelleForschungsrate : GlobaleDatentypen.KostenLager;
       AktuelleForschungsmenge : GlobaleDatentypen.KostenLager;
       VerbleibendeForschungszeit : GlobaleDatentypen.KostenLager;
-      AktuellesForschungsprojekt : Natural;
+      AktuellesForschungsprojekt : GlobaleDatentypen.ForschungIDMitNullWert;
 
       Erforscht : GlobaleDatentypen.ErforschtArray;
       

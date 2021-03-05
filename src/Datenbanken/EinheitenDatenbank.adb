@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with Auswahl, Anzeige, Sortieren;
 
 package body EinheitenDatenbank is
@@ -185,7 +187,7 @@ package body EinheitenDatenbank is
       
       Wahl := Auswahl.AuswahlJaNein (FrageZeile => 7);
       case Wahl is
-         when -3 =>
+         when GlobaleKonstanten.JaKonstante =>
             return True;
                      
          when others =>

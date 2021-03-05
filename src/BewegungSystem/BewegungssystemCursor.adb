@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with Anzeige, Karten, Eingabe, KartenPruefungen;
 
 package body BewegungssystemCursor is
@@ -68,7 +70,7 @@ package body BewegungssystemCursor is
                                  ZahlenMaximum => Integer (Karten.Karten'Last (1)));
       
       case Wert is
-         when -1 =>
+         when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
             Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
                                                   TextZeile => 12);
             return;
@@ -86,7 +88,7 @@ package body BewegungssystemCursor is
                                  ZahlenMaximum => Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
       
       case Wert is
-         when -1 =>
+         when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
             Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
                                                   TextZeile => 12);
             return;
@@ -104,7 +106,7 @@ package body BewegungssystemCursor is
                                  ZahlenMaximum => Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
 
       case Wert is
-         when -1 =>
+         when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
             Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
                                                   TextZeile => 12);
             return;

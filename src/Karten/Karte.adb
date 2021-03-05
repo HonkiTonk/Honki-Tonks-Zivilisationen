@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Integer_Text_IO;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
+with GlobaleKonstanten;
+
 with KarteStadt, KartenDatenbank, Karten, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, KartenPruefungen, EinheitSuchen, StadtSuchen, Anzeige;
 
 package body Karte is
@@ -210,7 +212,7 @@ package body Karte is
             RasseUndPlatznummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
             
             case RasseUndPlatznummer.Platznummer is
-               when EinheitSuchen.RückgabeWertEinheitNummer =>
+               when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
                   null;
                  
                when others => -- Allgemeine Einheiteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Einheit befindet
@@ -348,7 +350,7 @@ package body Karte is
             RasseUndPlatznummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
             case RasseUndPlatznummer.Platznummer is
-               when StadtSuchen.RückgabeWertStadtNummer =>
+               when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
                   null;
                      
                when others => -- Stadtinformationsaufruf

@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank, Karten, EinheitSuchen;
+with GlobaleKonstanten;
+
+with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank, Karten;
 
 package body Kampfsystem is
 
@@ -10,7 +12,7 @@ package body Kampfsystem is
       VerteidigungBonusDurchStadt := 1.00;
 
       case GegnerStadtNummer is
-         when EinheitSuchen.RückgabeWert | 0 =>
+         when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
             Ergebnis := Kampf (VerteidigerRasseEinheitNummer => (RasseVerteidigung, EinheitenNummerVerteidigung),
                                AngreiferRasseEinheitNummer   => (RasseAngriff, EinheitenNummerAngriff),
                                VerteidigungBonus             => VerteidigungBonusDurchStadt);

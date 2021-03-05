@@ -10,6 +10,7 @@ private
    LadenErfolgreich : Boolean;
 
    AktuellerBefehl : Integer;
+   RückgabeOptionen : Integer;
 
    procedure BerechnungenNachZugendeAllerSpieler;
 

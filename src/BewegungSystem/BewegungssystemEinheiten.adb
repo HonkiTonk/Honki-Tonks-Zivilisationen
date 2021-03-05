@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
+with GlobaleKonstanten;
+
 with KartenDatenbank, Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenbank, KartenPruefungen, EinheitSuchen, StadtSuchen;
 
 package body BewegungssystemEinheiten is
@@ -113,7 +115,7 @@ package body BewegungssystemEinheiten is
       if GegnerWert.Rasse = EinheitRasseNummer.Rasse and GegnerWert.Platznummer = 1 then
          return 0;
 
-      elsif GegnerWert.Platznummer = EinheitSuchen.RückgabeWertEinheitNummer then
+      elsif GegnerWert.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch then
          BewegungEinheitenBerechnung (EinheitRasseNummer => EinheitRasseNummer,
                                       NeuePosition       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
          return 1;

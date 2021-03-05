@@ -17,13 +17,20 @@ package InDerStadtBauen is
 
 private
 
+
+
    Taste : Wide_Wide_Character;
 
-   WasGebautWerdenSoll : Integer;
-   Ende : Integer;
-   AktuelleAuswahl : Integer := 1;
+   WasGebautWerdenSoll : Natural;
+   Ende : Positive;
+   AktuelleAuswahl : Positive := 1;
 
-   function AuswahlStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Integer with
+   function BauobjektAuswählen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Natural with
+     Pre  => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
+             and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) = 1)),
+     Post => (BauobjektAuswählen'Result in 0 .. 99_999);
+
+   function AuswahlStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Natural with
      Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
              and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) = 1));
 

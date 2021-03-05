@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 package body StadtSuchen is
 
    function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Natural is
@@ -20,7 +22,7 @@ package body StadtSuchen is
          
       end loop StadtSchleife;
       
-      return RückgabeWertStadtNummer;
+      return GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch;
       
    end KoordinatenStadtMitRasseSuchen;
 
@@ -47,7 +49,7 @@ package body StadtSuchen is
          end loop StadtSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWertStadtNummer);
+      return (GlobaleDatentypen.RassenMitNullwert'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
       
    end KoordinatenStadtOhneRasseSuchen;
    
@@ -79,7 +81,7 @@ package body StadtSuchen is
          end loop StadtSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.RassenMitNullwert'First, RückgabeWertStadtNummer);
+      return (GlobaleDatentypen.RassenMitNullwert'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
       
    end KoordinatenStadtOhneSpezielleRasseSuchen;
 

@@ -15,8 +15,14 @@ package Anzeige is
       
    end record;
 
+   type TextBauenNeuArray is array (GlobaleDatentypen.GebäudeID'First .. GlobaleDatentypen.EinheitenID'Last + GlobaleDatentypen.GebäudeID'Last) of TextBauenRecord;
+   TextBauenNeu : TextBauenNeuArray;
+
+
    type TextBauenArray is array (GlobaleVariablen.TexteEinlesenNeuArray'First (2) .. 2 * GlobaleVariablen.TexteEinlesenNeuArray'Last (2) + 1) of TextBauenRecord;
    TextBauen : TextBauenArray;
+
+
 
    type TextForschungRecord is record
       

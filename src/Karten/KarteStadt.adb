@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9, Ada.Integer_Text_IO;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
+with GlobaleKonstanten;
+
 with GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, Sichtbarkeit, Anzeige, KartenPruefungen, StadtSuchen, Karten;
 
 package body KarteStadt is
@@ -440,7 +442,7 @@ package body KarteStadt is
       RasseUndPlatznummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
       case RasseUndPlatznummer.Platznummer is
-         when StadtSuchen.RückgabeWertStadtNummer =>
+         when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
             null; -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat
       
          when others =>

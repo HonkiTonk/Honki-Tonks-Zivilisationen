@@ -19,7 +19,7 @@ package ForschungsDatenbank is
 
                                                        others => LeererWertForschungListe));
 
-   procedure Beschreibung (ID : in Natural);
+   procedure Beschreibung (ID : in GlobaleDatentypen.ForschungIDMitNullWert);
    procedure Forschung (RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
@@ -33,11 +33,12 @@ private
 
    Taste : Wide_Wide_Character;
 
-   WasErforschtWerdenSoll : Integer;
-   AktuelleAuswahl : Integer;
-   Ende : Integer;
+   WasErforschtWerdenSoll : GlobaleDatentypen.ForschungIDMitNullWert;
 
-   function AuswahlForschung (RasseExtern : in GlobaleDatentypen.Rassen) return Integer with
+   AktuelleAuswahl : Natural;
+   Ende : Natural;
+
+   function AuswahlForschung (RasseExtern : in GlobaleDatentypen.Rassen) return GlobaleDatentypen.ForschungIDMitNullWert with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
 end ForschungsDatenbank;

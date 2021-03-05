@@ -1,12 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleKonstanten;
 
 with OptionenSteuerung, Auswahl, OptionenSound, OptionenGrafik, OptionenSonstiges;
 
 package body Optionen is
 
-   procedure Optionen is
+   function Optionen return Integer is
    begin
 
       OptionenSchleife:
@@ -15,10 +15,13 @@ package body Optionen is
          AuswahlWert := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Leer,
                                          TextDatei   => GlobaleDatentypen.Menü_Auswahl,
                                          FrageZeile  => 0,
-                                         ErsteZeile  => 14,
-                                         LetzteZeile => 18);
+                                         ErsteZeile  => GlobaleKonstanten.OptionenErsteZeileKonstante,
+                                         LetzteZeile => GlobaleKonstanten.OptionenLetzteZeileKonstante);
 
          case AuswahlWert is
+            when GlobaleKonstanten.ZurückKonstante | GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+               return AuswahlWert;
+               
             when 1 => -- Grafik
                OptionenGrafik.OptionenGrafik;
                
@@ -32,15 +35,15 @@ package body Optionen is
                RückgabeWert := OptionenSonstiges.Sonstiges;
 
                case RückgabeWert is
-                  when 0 =>
-                     return;
+                  when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+                     return RückgabeWert;
                      
                   when others =>
                      null;
                end case;
                
             when others =>
-               return;
+               null;
          end case;
 
       end loop OptionenSchleife;

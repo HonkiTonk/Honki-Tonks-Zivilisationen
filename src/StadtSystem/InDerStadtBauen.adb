@@ -78,7 +78,7 @@ package body InDerStadtBauen is
                
             when others =>
                StadtSchleife:
-               for StadtNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+               for StadtNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
       
                   case GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummer).ID is
                      when 0 =>
@@ -94,10 +94,95 @@ package body InDerStadtBauen is
       end loop RassenSchleife;
       
    end BauzeitAlle;
+
+
+
+   function BauobjektAuswählen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Natural is
+   begin
+
+      Ende := 1;
+      AktuelleAuswahl := 1;
+      Anzeige.TextBauenNeu := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
+
+      GebäudeSchleife:
+      for Gebäude in GlobaleDatentypen.GebäudeID loop
+         
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Gebäude)) = "|" then
+            exit GebäudeSchleife;
+
+         elsif Gebäude > Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden'Last) then
+            exit GebäudeSchleife;
+
+         elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (Gebäude) = True then
+            null;
+
+         elsif GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, Gebäude).Anforderungen /= 0 then
+            if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, Gebäude).Anforderungen) = 0 then 
+               null;
+
+            else
+               Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (16, Gebäude);
+               Anzeige.TextBauen (Ende).Nummer := 1_000 + Gebäude;
+               Ende := Ende + 1;
+            end if;
+            
+         else
+            Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (16, Gebäude);
+            Anzeige.TextBauen (Ende).Nummer := 1_000 + Gebäude;
+            Ende := Ende + 1;
+         end if;
+         
+      end loop GebäudeSchleife;
+
+      EinheitenSchleife:
+      for Einheit in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
+         
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (12, Einheit)) = "|" then
+            exit EinheitenSchleife;
+
+         elsif Einheit > Integer (EinheitenDatenbank.EinheitenListeArray'Last (2)) then
+            exit EinheitenSchleife;
+
+         elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AmWasser = False
+           and EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, GlobaleDatentypen.EinheitenID (Einheit)).Passierbarkeit = 2 then
+            null;
+
+         elsif EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, GlobaleDatentypen.EinheitenID (Einheit)).Anforderungen /= 0 then
+            if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, GlobaleDatentypen.EinheitenID (Einheit)).Anforderungen) = 0 then
+               null;
+               
+            else
+               Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (12, Einheit);
+               Anzeige.TextBauen (Ende).Nummer := 10_000 + Einheit;
+               Ende := Ende + 1;
+            end if;
+            
+         else
+            Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (12, Einheit);
+            Anzeige.TextBauen (Ende).Nummer := 10_000 + Einheit;
+            Ende := Ende + 1;
+         end if;
+         
+      end loop EinheitenSchleife;
+
+      if Anzeige.TextBauen (Ende).Nummer = 0 and Ende > 1 then
+         Anzeige.TextBauen (Ende).Text := To_Unbounded_Wide_Wide_String (Source => "Zurück");
+
+      elsif Anzeige.TextBauen (Ende).Nummer = 0 and Ende = 1 then
+         return 0;
+         
+      else
+         Ende := Ende + 1;
+         Anzeige.TextBauen (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (9, 27);
+      end if;
+      
+      return 1;
+      
+   end BauobjektAuswählen;
    
    
    
-   function AuswahlStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Integer is
+   function AuswahlStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Natural is
    begin
 
       Ende := 1;
@@ -141,7 +226,7 @@ package body InDerStadtBauen is
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (12, Einheit)) = "|" then
             exit EinheitenSchleife;
 
-         elsif Einheit > Integer (EinheitenDatenbank.EinheitenListeArry'Last (2)) then
+         elsif Einheit > Integer (EinheitenDatenbank.EinheitenListeArray'Last (2)) then
             exit EinheitenSchleife;
 
          elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AmWasser = False

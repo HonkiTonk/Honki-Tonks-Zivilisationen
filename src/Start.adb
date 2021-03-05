@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleKonstanten;
 
 with Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden, Anzeige;
 
@@ -14,6 +14,7 @@ procedure Start is
 
    Startauswahl : Integer;
    RückgabeKampagne : Integer;
+   RückgabeOptionen : Integer;
 
 begin
 
@@ -31,31 +32,31 @@ begin
                                              LetzteZeile => 6);
 
             case Startauswahl is
-               when 1 => -- Start
+               when GlobaleKonstanten.StartNormalKonstante => -- Start
                   RückgabeKampagne := SpielEinstellungen.SpielEinstellungen;
 
                   case RückgabeKampagne is
-                     when 0 =>
+                     when GlobaleKonstanten.HauptmenüKonstante =>
                         AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
-                     when -1 =>
+                     when GlobaleKonstanten.SpielBeendenKonstante =>
                         exit StartSchleife;
 
                      when others =>
                         null;
                   end case;
 
-               when 3 => -- Laden
+               when GlobaleKonstanten.LadenKonstante => -- Laden
                   LadenErfolgreich := Laden.LadenNeu;
 
                   case LadenErfolgreich is
                      when True =>
                         RückgabeKampagne := ImSpiel.ImSpiel;
                         case RückgabeKampagne is
-                           when 0 =>
+                           when GlobaleKonstanten.HauptmenüKonstante =>
                               AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
-                           when -1 =>
+                           when GlobaleKonstanten.SpielBeendenKonstante =>
                               exit StartSchleife;
 
                            when others =>
@@ -66,13 +67,20 @@ begin
                         null;
                   end case;
 
-               when 4 => -- Optionen
-                  Optionen.Optionen;
+               when GlobaleKonstanten.OptionenKonstante => -- Optionen
+                  RückgabeOptionen := Optionen.Optionen;
+                  case RückgabeOptionen is
+                     when GlobaleKonstanten.SpielBeendenKonstante =>
+                        exit StartSchleife;
 
-               when 5 => -- Informationen
+                     when others =>
+                        null;
+                  end case;
+
+               when GlobaleKonstanten.InformationenKonstante => -- Informationen
                   Informationen.Informationen;
 
-               when -1 => -- Beenden
+               when GlobaleKonstanten.SpielBeendenKonstante => -- Beenden
                   exit StartSchleife;
 
                when others =>

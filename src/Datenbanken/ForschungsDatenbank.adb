@@ -7,7 +7,7 @@ with Anzeige;
 
 package body ForschungsDatenbank is
 
-   procedure Beschreibung (ID : in Natural) is
+   procedure Beschreibung (ID : in GlobaleDatentypen.ForschungIDMitNullWert) is
    begin
       
       case ID is
@@ -53,9 +53,6 @@ package body ForschungsDatenbank is
                GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt := WasErforschtWerdenSoll;
                ForschungZeit (RasseExtern => RasseExtern);
                return;
-                 
-            when others =>
-               null;
          end case;
          
       end loop ForschungSchleife;
@@ -75,7 +72,7 @@ package body ForschungsDatenbank is
 
       else
          GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit
-           := (ForschungListe (RasseExtern, GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt).PreisForschung
+           := (ForschungListe (RasseExtern, Natural (GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt)).PreisForschung
                - GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsmenge) / GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsrate;
          return;
       end if;      
@@ -86,7 +83,7 @@ package body ForschungsDatenbank is
 
 
 
-   function AuswahlForschung (RasseExtern : in GlobaleDatentypen.Rassen) return Integer is
+   function AuswahlForschung (RasseExtern : in GlobaleDatentypen.Rassen) return GlobaleDatentypen.ForschungIDMitNullWert is
    begin
 
       Anzeige.TextForschung := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
@@ -114,7 +111,7 @@ package body ForschungsDatenbank is
                if ForschungListe (RasseExtern, Forschung).AnforderungForschung (Anforderung) = 0 then
                   null;
                   
-               elsif GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ForschungListe (RasseExtern, Forschung).AnforderungForschung (Anforderung)) /= 0 then                  
+               elsif GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (Integer (ForschungListe (RasseExtern, Forschung).AnforderungForschung (Anforderung))) /= 0 then                  
                   null;
                   
                else
@@ -181,7 +178,7 @@ package body ForschungsDatenbank is
                
             when 'e' | '5' =>
                Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-               return Anzeige.TextForschung (AktuelleAuswahl).Nummer;
+               return GlobaleDatentypen.ForschungIDMitNullWert (Anzeige.TextForschung (AktuelleAuswahl).Nummer);
 
             when 'q' =>
                return 0;
@@ -207,8 +204,8 @@ package body ForschungsDatenbank is
          if GlobaleVariablen.Wichtiges (RasseIntern).AktuellesForschungsprojekt = 0 then
             null;
          
-         elsif GlobaleVariablen.Wichtiges (RasseIntern).AktuelleForschungsmenge >= ForschungListe (RasseIntern, GlobaleVariablen.Wichtiges (RasseIntern).AktuellesForschungsprojekt).PreisForschung then
-            GlobaleVariablen.Wichtiges (RasseIntern).Erforscht (GlobaleVariablen.Wichtiges (RasseIntern).AktuellesForschungsprojekt) := 1;
+         elsif GlobaleVariablen.Wichtiges (RasseIntern).AktuelleForschungsmenge >= ForschungListe (RasseIntern, Integer (GlobaleVariablen.Wichtiges (RasseIntern).AktuellesForschungsprojekt)).PreisForschung then
+            GlobaleVariablen.Wichtiges (RasseIntern).Erforscht (Integer (GlobaleVariablen.Wichtiges (RasseIntern).AktuellesForschungsprojekt)) := 1;
             GlobaleVariablen.Wichtiges (RasseIntern).AktuellesForschungsprojekt := AuswahlForschung (RasseExtern => RasseIntern);
             GlobaleVariablen.Wichtiges (RasseIntern).AktuelleForschungsmenge := 0;
             

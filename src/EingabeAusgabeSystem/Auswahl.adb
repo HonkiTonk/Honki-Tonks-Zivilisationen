@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleVariablen;
+with GlobaleVariablen, GlobaleKonstanten;
 
 with Anzeige;
 
@@ -74,10 +74,11 @@ package body Auswahl is
       Anfang := ErsteZeile;
       Ende := LetzteZeile;
       AktuelleAuswahl := ErsteZeile;
-      Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       AuswahlSchleife:
       loop
+
+         Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          
          Anzeige.AnzeigeMitAuswahlNeu (FrageDatei      => FrageDatei,
                                        TextDatei       => TextDatei,
@@ -107,31 +108,31 @@ package body Auswahl is
                               
             when 'e' | '5' =>                  
                if GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 1) then -- Hauptmenü
-                  return 0;
+                  return GlobaleKonstanten.HauptmenüKonstante;
                   
                elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 2) then -- Spiel beenden
-                  return -1;
+                  return GlobaleKonstanten.SpielBeendenKonstante;
                   
                elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 3) then -- Zurück
-                  return -2;
+                  return GlobaleKonstanten.ZurückKonstante;
                   
                elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 4) then -- Ja
-                  return -3;
+                  return GlobaleKonstanten.JaKonstante;
                   
                elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 5) then -- Nein
-                  return -4;
+                  return GlobaleKonstanten.NeinKonstante;
 
                elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 6) then -- Speichern
-                  return 2;
+                  return GlobaleKonstanten.SpeichernKonstante;
 
                elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 7) then -- Laden
-                  return 3;
+                  return GlobaleKonstanten.LadenKonstante;
 
                elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 8) then -- Optionen
-                  return 4;
+                  return GlobaleKonstanten.OptionenKonstante;
 
                elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 9) then -- Informationen
-                  return 5;
+                  return GlobaleKonstanten.InformationenKonstante;
                      
                else
                   Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
@@ -141,8 +142,6 @@ package body Auswahl is
             when others =>
                null;                    
          end case;
-
-         Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
 
       end loop AuswahlSchleife;
       
@@ -156,8 +155,8 @@ package body Auswahl is
       return Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
                       TextDatei   => GlobaleDatentypen.Menü_Auswahl,
                       FrageZeile  => FrageZeile,
-                      ErsteZeile  => 10,
-                      LetzteZeile => 11);
+                      ErsteZeile  => GlobaleKonstanten.JaAnzeigeKonstante,
+                      LetzteZeile => GlobaleKonstanten.NeinAnzeigeKonstante);
       
    end AuswahlJaNein;
 

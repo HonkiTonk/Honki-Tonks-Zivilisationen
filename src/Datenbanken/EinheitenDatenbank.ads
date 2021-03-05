@@ -11,8 +11,8 @@ package EinheitenDatenbank is
                                                                                1, 1, 0, 0, 1); -- 9. Wert = Beförderungsgrenze, 10. Wert = MaximalerRang, 11. Wert = Reichweite, 12. Wert = Angriff, 13. Wert = Verteidigung
 
    -- 1. EinheitTyp = Siedler, 2. EinheitenTyp = Bauarbeiter, 3. EinheitenTyp = Platzhalter für Anderes !!!Später einbauen/nutzen!!!
-   type EinheitenListeArry is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.EinheitenID'Range) of DatenbankRecords.EinheitenListeRecord;
-   EinheitenListe : constant EinheitenListeArry := (others => (('S',    1, 10, 10, 0,    1, 3, 1.00,    30, 3, 1, 1, 1), -- Siedler
+   type EinheitenListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.EinheitenID'Range) of DatenbankRecords.EinheitenListeRecord;
+   EinheitenListe : constant EinheitenListeArray := (others => (('S',    1, 10, 10, 0,    1, 3, 1.00,    30, 3, 1, 1, 1), -- Siedler
 
                                                                ('L',    3, 25, 20, 0,    1, 5, 3.00,    30, 3, 1, 3, 1), -- Steinbeilkämpfer
                                                                ('L',    3, 25, 20, 1,    1, 5, 1.00,    30, 3, 1, 3, 1), -- Bogenschütze

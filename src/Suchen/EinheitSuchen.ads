@@ -7,9 +7,6 @@ with Karten;
 
 package EinheitSuchen is
 
-   RückgabeWert : constant Integer := -1_000_000;
-   RückgabeWertEinheitNummer : constant Natural := 0;
-
    function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Natural with
      Pre => (Koordinaten.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and Koordinaten.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
