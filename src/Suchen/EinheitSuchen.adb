@@ -32,7 +32,7 @@ package body EinheitSuchen is
    begin
 
       RasseSchleife:
-      for RasseIntern in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
+      for RasseIntern in GlobaleDatentypen.Rassen loop
          EinheitSchleife:
          for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
@@ -59,23 +59,21 @@ package body EinheitSuchen is
    begin
 
       RasseSchleife:
-      for RasseIntern in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
+      for RasseIntern in GlobaleDatentypen.Rassen loop
          EinheitSchleife:
          for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 
             if RasseExtern = RasseIntern then
                exit EinheitSchleife;
-                  
+               
+            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID = 0 then
+               exit EinheitSchleife;
+               
+            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition = Koordinaten then
+               return (RasseIntern, EinheitNummer);
+               
             else
-               if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID = 0 then
-                  exit EinheitSchleife;
-               
-               elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition = Koordinaten then
-                  return (RasseIntern, EinheitNummer);
-               
-               else
-                  null;
-               end if;
+               null;
             end if;
             
          end loop EinheitSchleife;

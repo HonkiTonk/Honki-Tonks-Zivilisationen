@@ -207,7 +207,7 @@ package body BefehleImSpiel is
 
 
 
-   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; Auswahl, StadtNummer, EinheitNummer : in Integer) is
+   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; Auswahl : in Integer; StadtNummer, EinheitNummer : in Natural) is
    begin
       
       case Auswahl is

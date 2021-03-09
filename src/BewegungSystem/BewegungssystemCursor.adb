@@ -61,12 +61,10 @@ package body BewegungssystemCursor is
    procedure GeheZuCursor (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Zeug,
-                                            TextZeile => 40);
       
-      Wert := Eingabe.GanzeZahl (WelcheDatei   => 0,
-                                 WelcherText   => 0,
-                                 ZahlenMinimum => Integer (Karten.Karten'First (1)), -- Integer (Karten.Karten'First (1)), -- Hierfür brauche ich auch negative Zahlen
+      Wert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Zeug,
+                                 Zeile         => 40,
+                                 ZahlenMinimum => Integer (Karten.Karten'First (1)),
                                  ZahlenMaximum => Integer (Karten.Karten'Last (1)));
       
       case Wert is
@@ -82,8 +80,8 @@ package body BewegungssystemCursor is
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Zeug,
                                             TextZeile => 30);
       
-      Wert := Eingabe.GanzeZahl (WelcheDatei   => 0,
-                                 WelcherText   => 0,
+      Wert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Zeug,
+                                 Zeile         => 30,
                                  ZahlenMinimum => Integer (Karten.Karten'First (2)),
                                  ZahlenMaximum => Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
       
@@ -96,12 +94,9 @@ package body BewegungssystemCursor is
          when others =>
             Position.YAchse := GlobaleDatentypen.Kartenfeld (Wert);
       end case;
-      
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Zeug,
-                                            TextZeile => 31);
 
-      Wert := Eingabe.GanzeZahl (WelcheDatei   => 0,
-                                 WelcherText   => 0,
+      Wert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Zeug,
+                                 Zeile         => 31,
                                  ZahlenMinimum => Integer (Karten.Karten'First (3)),
                                  ZahlenMaximum => Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
 

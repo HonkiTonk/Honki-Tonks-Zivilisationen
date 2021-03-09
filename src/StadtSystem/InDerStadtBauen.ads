@@ -66,6 +66,6 @@ private
    function BauobjektAuswählen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Natural with
      Pre  => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
               and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) = 1)),
-     Post => (BauobjektAuswählen'Result in 0 .. 99_999);
+     Post => (BauobjektAuswählen'Result <= 99_999);
 
 end InDerStadtBauen;

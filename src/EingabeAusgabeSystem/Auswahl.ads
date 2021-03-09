@@ -13,8 +13,7 @@ package Auswahl is
    function Auswahl (FrageDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; FrageZeile, ErsteZeile, LetzteZeile : in Natural) return Integer with
      Pre => (ErsteZeile <= LetzteZeile and (if FrageDatei = GlobaleDatentypen.Leer then FrageZeile = 0) and (if FrageZeile = 0 then FrageDatei = GlobaleDatentypen.Leer) and TextDatei /= GlobaleDatentypen.Leer);
 
-   function AuswahlJaNein (FrageZeile : in Positive) return Integer with
-     Pre => (FrageZeile /= 0);
+   function AuswahlJaNein (FrageZeile : in Positive) return Integer;
 
 private
 

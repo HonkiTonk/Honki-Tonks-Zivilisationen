@@ -16,7 +16,7 @@ package body Speichern is
          when False =>
             SpielstandName := Eingabe.SpielstandName;
 
-            case Exists (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is -- Anzeige der vorhandenen Spielstände einbauen
+            case Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is -- Anzeige der vorhandenen Spielstände einbauen
                when True =>
                   Wahl := Auswahl.AuswahlJaNein (FrageZeile => 18);
                   case Wahl is
@@ -48,7 +48,7 @@ package body Speichern is
       
       Create (File => DateiSpeichernNeu,
               Mode => Out_File,
-              Name => "Dateien/Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => SpielstandName))));
+              Name => "Spielstand/" & Encode (Item => (To_Wide_Wide_String (Source => SpielstandName))));
 
       -- Versionsnummer speichern
       Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu), 

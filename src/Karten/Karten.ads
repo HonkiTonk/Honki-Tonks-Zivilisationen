@@ -26,6 +26,6 @@ package Karten is
    type KartengrößenArray is array (1 .. 10) of KartengrößenRecord;
    Kartengrößen : KartengrößenArray := ((20, 20, 12), (40, 40, 50), (80, 80, 200), (120, 80, 300), (120, 160, 600), (160, 160, 800), (240, 240, 1_800), (320, 320, 3200), (1_000, 1_000, 31_250), (1, 1, 1));
 
-   Kartengröße : Positive := 1;
+   Kartengröße : Positive;
 
 end Karten;

@@ -6,8 +6,8 @@ use GlobaleDatentypen;
 package BefehleImSpiel is
 
    function Befehle (RasseExtern : in GlobaleDatentypen.Rassen) return Integer with
-     Pre  => (RasseExtern in GlobaleDatentypen.Rassen'Range and GlobaleVariablen.RassenImSpiel (RasseExtern) = 1),
-     Post => (Befehle'Result in -1_000 .. 1);
+     Pre  => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1),
+     Post => (Befehle'Result in -1_000 .. 5);
 
 private
 
@@ -16,13 +16,14 @@ private
          
    Taste : Wide_Wide_Character;
 
-   EinheitNummer : Integer;
-   StadtNummer : Integer;
+   EinheitNummer : Natural;
+   StadtNummer : Natural;
+   
    WelcherBefehl : Integer;
    StadtOderEinheit : Integer;
    WahlForschung : Integer;
 
-   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; Auswahl, StadtNummer, EinheitNummer : in Integer) with
-     Pre => (StadtNummer in GlobaleVariablen.StadtGebaut'Range (2) and EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) and GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; Auswahl : in Integer; StadtNummer, EinheitNummer : in Natural) with
+     Pre => (StadtNummer <= GlobaleVariablen.StadtGebaut'Last (2) and EinheitNummer <= GlobaleVariablen.EinheitenGebaut'Last (2) and GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
    
 end BefehleImSpiel;

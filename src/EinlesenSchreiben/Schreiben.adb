@@ -18,12 +18,12 @@ package body Schreiben is
 
 
       
-      case Exists (Name => "Dateien/Spielstand") is
+      case Exists (Name => "Spielstand") is
          when True =>
             null;
 
          when False =>
-            Create_Directory (New_Directory => "Dateien/Spielstand");
+            Create_Directory (New_Directory => "Spielstand");
       end case;
 
 

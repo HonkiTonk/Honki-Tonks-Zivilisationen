@@ -20,8 +20,8 @@ package body OptionenSonstiges is
 
          case AuswahlWert is
             when 1 =>
-               AuswahlWert := Eingabe.GanzeZahl (WelcheDatei   => 0,
-                                                 WelcherText   => 0,
+               AuswahlWert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Menü_Auswahl,
+                                                 Zeile         => GlobaleKonstanten.OptionenSonstigesErsteZeile,
                                                  ZahlenMinimum => 0,
                                                  ZahlenMaximum => 999_999_999);
                case AuswahlWert is
@@ -33,8 +33,8 @@ package body OptionenSonstiges is
                end case;                  
                
             when 2 =>
-               AuswahlWert := Eingabe.GanzeZahl (WelcheDatei   => 0,
-                                                 WelcherText   => 0,
+               AuswahlWert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Menü_Auswahl,
+                                                 Zeile         => GlobaleKonstanten.OptionenSonstigesErsteZeile + 1,
                                                  ZahlenMinimum => 0,
                                                  ZahlenMaximum => 999_999_999);
 

@@ -41,19 +41,19 @@ private
    Kandidaten : KandidatenArray;
 
    procedure StadtImNorden (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in Positive) with
-     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebautArray'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen and StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2)
+     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebautArray'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen and StadtNummer <= GlobaleVariablen.StadtGebautArray'Last (2)
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
    
    procedure StadtImSüden (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in Positive) with
-     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebautArray'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen and StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2)
+     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebautArray'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen and StadtNummer <= GlobaleVariablen.StadtGebautArray'Last (2)
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
    
    procedure StadtImWesten (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in Positive) with
-     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebautArray'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen and StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2)
+     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebautArray'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen and StadtNummer <= GlobaleVariablen.StadtGebautArray'Last (2)
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
    
    procedure StadtImOsten (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in Positive) with
-     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebautArray'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen and StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2)
+     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebautArray'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen and StadtNummer <= GlobaleVariablen.StadtGebautArray'Last (2)
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
    
 end KIPruefungen;

@@ -11,7 +11,7 @@ package GlobaleVariablen is
    type SprachenEinlesenArray is array (1 .. 100) of Unbounded_Wide_Wide_String;
    SprachenEinlesen : SprachenEinlesenArray;
 
-   type TexteEinlesenNeuArray is array (1 .. 22, 1 .. 84) of Unbounded_Wide_Wide_String;
+   type TexteEinlesenNeuArray is array (1 .. 23, 1 .. 93) of Unbounded_Wide_Wide_String;
    TexteEinlesenNeu : TexteEinlesenNeuArray := (others => (others => (To_Unbounded_Wide_Wide_String (Source => "|"))));
    
    GewählteSprache : Unbounded_Wide_Wide_String;
@@ -38,6 +38,8 @@ package GlobaleVariablen is
 
    RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => 0); -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
    RasseAmZugNachLaden : GlobaleDatentypen.RassenMitNullwert := 0;
+
+   Schwierigkeitsgrad : Positive;
    -- Zeug
                                                          
 

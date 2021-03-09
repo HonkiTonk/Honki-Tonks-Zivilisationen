@@ -32,7 +32,7 @@ package body StadtSuchen is
    begin
 
       RasseSchleife:
-      for RasseIntern in GlobaleVariablen.StadtGebautArray'Range (1) loop
+      for RasseIntern in GlobaleDatentypen.Rassen loop
          StadtSchleife:
          for Stadtnummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
@@ -59,28 +59,26 @@ package body StadtSuchen is
    begin
 
       RasseSchleife:
-      for RasseIntern in GlobaleVariablen.StadtGebautArray'Range (1) loop
+      for RasseIntern in GlobaleDatentypen.Rassen loop
          StadtSchleife:
          for Stadtnummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
 
             if RasseExtern = RasseIntern then
                exit StadtSchleife;
-                  
-            else            
-               if GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).ID = 0 then
-                  exit StadtSchleife;
                
-               elsif GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).AchsenPosition = Koordinaten then
-                  return (RasseIntern, Stadtnummer);
+            elsif GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).ID = 0 then
+               exit StadtSchleife;
                
-               else
-                  null;
-               end if;
+            elsif GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).AchsenPosition = Koordinaten then
+               return (RasseIntern, Stadtnummer);
+               
+            else
+               null;
             end if;
             
          end loop StadtSchleife;
       end loop RasseSchleife;
-      
+   
       return (GlobaleDatentypen.RassenMitNullwert'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
       
    end KoordinatenStadtOhneSpezielleRasseSuchen;

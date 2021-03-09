@@ -43,6 +43,6 @@ private
              and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) = 1));
 
    procedure SchleifeFenster (YAchse, XAchse : in GlobaleDatentypen.Stadtfeld; Rasse : in GlobaleDatentypen.Rassen) with
-     Pre => (Rasse in GlobaleDatentypen.Rassen and GlobaleVariablen.RassenImSpiel (Rasse) = 1);
+     Pre => (GlobaleVariablen.RassenImSpiel (Rasse) = 1);
 
 end KarteStadt;

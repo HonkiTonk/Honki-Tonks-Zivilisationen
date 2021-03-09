@@ -323,7 +323,7 @@ package body Verbesserungen is
    begin
       
       RassenSchleife:
-      for RasseIntern in GlobaleVariablen.RassenImSpiel'Range loop
+      for RasseIntern in GlobaleDatentypen.Rassen loop
          
          case GlobaleVariablen.RassenImSpiel (RasseIntern) is
             when 0 =>

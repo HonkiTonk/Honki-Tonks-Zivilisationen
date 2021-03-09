@@ -8,7 +8,7 @@ package body Wachstum is
    begin
       
       RasseSchleife:
-      for RasseIntern in GlobaleVariablen.StadtGebautArray'Range (1) loop
+      for RasseIntern in GlobaleDatentypen.Rassen loop
          StadtSchleife:
          for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
             

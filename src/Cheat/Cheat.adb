@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
-with Karte, Karten, Eingabe, EinheitenDatenbank, VerbesserungenDatenbank;
+with Karte, Karten, EinheitenDatenbank;
 
 package body Cheat is
 
@@ -176,10 +176,10 @@ package body Cheat is
    procedure GrundFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      ID := Eingabe.GanzeZahl (WelcheDatei   => 0,
-                               WelcherText   => 0,
-                               ZahlenMinimum => 1,
-                               ZahlenMaximum => Integer (GlobaleDatentypen.KartenGrund'Last));
+      ID := 1; -- Eingabe.GanzeZahl (WelcheDatei   => 0,
+                               -- WelcherText   => 0,
+                               -- ZahlenMinimum => 1,
+                               -- ZahlenMaximum => Integer (GlobaleDatentypen.KartenGrund'Last));
 
       case ID is
          when 1 .. 9 | 31 .. 32 | 35 .. 40 =>
@@ -208,18 +208,18 @@ package body Cheat is
    procedure EinheitFestlegen is
    begin
 
-      RasseZahl := Eingabe.GanzeZahl (WelcheDatei   => 0,
-                                      WelcherText   => 0,
-                                      ZahlenMinimum => Integer (GlobaleDatentypen.Rassen'First),
-                                      ZahlenMaximum => Integer (GlobaleDatentypen.Rassen'Last));
-      Stadt := Eingabe.GanzeZahl (WelcheDatei   => 0,
-                                  WelcherText   => 0,
-                                  ZahlenMinimum => 1,
-                                  ZahlenMaximum => GlobaleVariablen.StadtGebaut'Last (2));
-      ID := Eingabe.GanzeZahl (WelcheDatei   => 0,
-                               WelcherText   => 0,
-                               ZahlenMinimum => 1,
-                               ZahlenMaximum => Integer (EinheitenDatenbank.EinheitenListe'Last (2)));
+      RasseZahl := 1; -- Eingabe.GanzeZahl (WelcheDatei   => 0,
+                                      -- WelcherText   => 0,
+                                      -- ZahlenMinimum => Integer (GlobaleDatentypen.Rassen'First),
+                                      -- ZahlenMaximum => Integer (GlobaleDatentypen.Rassen'Last));
+      Stadt := 1; -- Eingabe.GanzeZahl (WelcheDatei   => 0,
+                                  -- WelcherText   => 0,
+                                  -- ZahlenMinimum => 1,
+                                  -- ZahlenMaximum => GlobaleVariablen.StadtGebaut'Last (2));
+      ID := 1; -- Eingabe.GanzeZahl (WelcheDatei   => 0,
+                               -- WelcherText   => 0,
+                               -- ZahlenMinimum => 1,
+                               -- ZahlenMaximum => Integer (EinheitenDatenbank.EinheitenListe'Last (2)));
 
       if RasseZahl = -1 or Stadt = -1 or ID = -1 then
          null;
@@ -255,10 +255,10 @@ package body Cheat is
    procedure VerbesserungFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      ID := Eingabe.GanzeZahl (WelcheDatei   => 0,
-                               WelcherText   => 0,
-                               ZahlenMinimum => 5,
-                               ZahlenMaximum => Integer (VerbesserungenDatenbank.VerbesserungListe'Last));
+      ID := 1; -- Eingabe.GanzeZahl (WelcheDatei   => 0,
+                               -- WelcherText   => 0,
+                               -- ZahlenMinimum => 5,
+                               -- ZahlenMaximum => Integer (VerbesserungenDatenbank.VerbesserungListe'Last));
 
       case ID is
          when 5 .. 19 =>
@@ -285,10 +285,11 @@ package body Cheat is
       RassenverteilungÄndernSchleife:
       for Rasse in GlobaleDatentypen.Rassen'Range loop
          
-         GlobaleVariablen.RassenImSpiel (Rasse) := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (WelcheDatei   => 0,
-                                                                                                WelcherText   => 0,
-                                                                                                ZahlenMinimum => 0,
-                                                                                                ZahlenMaximum => 2));
+         null;
+         -- GlobaleVariablen.RassenImSpiel (Rasse) := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (WelcheDatei   => 0,
+                                                                                               -- WelcherText   => 0,
+                                                                                                -- ZahlenMinimum => 0,
+                                                                                               -- ZahlenMaximum => 2));
          
       end loop RassenverteilungÄndernSchleife;
       

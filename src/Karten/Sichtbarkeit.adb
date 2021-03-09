@@ -139,7 +139,7 @@ package body Sichtbarkeit is
          end if;
                   
          RassenEinheitenPrüfenSchleife:
-         for RasseIntern in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
+         for RasseIntern in GlobaleDatentypen.Rassen loop
             EinheitenPrüfenSchleife:
             for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             

@@ -10,7 +10,7 @@ package body StadtProduktion is
       case StadtRasseNummer.Rasse is
          when 0 => -- Überprüfung für alle Rassen bei Runde beenden.
             RassenSchleife:
-            for RasseIntern in GlobaleVariablen.StadtGebautArray'Range (1) loop
+            for RasseIntern in GlobaleDatentypen.Rassen loop
                StadtSchleife:
                for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
                

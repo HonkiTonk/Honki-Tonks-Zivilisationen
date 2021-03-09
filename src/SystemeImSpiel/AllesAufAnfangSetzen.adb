@@ -19,6 +19,7 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.CursorImSpiel := (others => GlobaleVariablen.LeererWertCursor);
 
       Karten.Karten := (others => (others => (others => Karten.LeererWertKarte)));
+      Karten.Kartengrößen := ((20, 20, 12), (40, 40, 50), (80, 80, 200), (120, 80, 300), (120, 160, 600), (160, 160, 800), (240, 240, 1_800), (320, 320, 3200), (1_000, 1_000, 31_250), (1, 1, 1));
       
    end AllesAufAnfangSetzen;
 

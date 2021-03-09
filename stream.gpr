@@ -9,7 +9,7 @@ project Stream is
    end Naming;
 
    package Compiler is
-      for Switches ("ada") use ("-gnatVa", "-gnatw.f.h.k.l.o.sat", "-gnatyAOekprsx", "-g", "-gnatW8", "-gnatf", "-gnat12", "-fstack-check", "-gnato");
+      for Switches ("ada") use ("-gnatVacdefimoprst", "-gnatw.a.b.c.f.h.i.j.k.l.m.o.p.q.r.s.t.v.x.zacfgijkmopqrtuvwxyz", "-gnatyACOSefhklnprsx", "-g", "-gnatW8", "-gnatf", "-gnat12", "-fstack-check", "-gnato", "-gnata");
    end Compiler;
 
    package Builder is

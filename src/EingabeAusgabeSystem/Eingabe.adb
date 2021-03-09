@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Integer_Wide_Wide_Text_IO;
-use Ada.Wide_Wide_Text_IO;
+with Ada.Wide_Wide_Text_IO, Ada.Integer_Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten;
 
@@ -10,21 +10,21 @@ with Anzeige;
 package body Eingabe is 
 
    -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
-   function GanzeZahl (WelcheDatei, WelcherText : in Natural; ZahlenMinimum, ZahlenMaximum : Integer) return Integer is
+   function GanzeZahl (TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; Zeile : in Positive; ZahlenMinimum, ZahlenMaximum : in Integer) return Integer is
    begin
       
       ZahlenString := ("000000000");
       WelchesVorzeichen := True;
 
       ZahlenAußenSchleife:
-      loop
+      loop         
          
-         Test := ZahlSchleife (WelcheDatei   => WelcheDatei,
-                               WelcherText   => WelcherText,
-                               ZahlenMinimum => ZahlenMinimum,
-                               ZahlenMaximum => ZahlenMaximum);
+         SchleifeVerlassen := ZahlSchleife (TextDatei     => TextDatei,
+                                            Zeile         => Zeile,
+                                            ZahlenMinimum => ZahlenMinimum,
+                                            ZahlenMaximum => ZahlenMaximum);
          
-         case Test is
+         case SchleifeVerlassen is
             when 2 =>
                exit ZahlenAußenSchleife;
                
@@ -50,13 +50,20 @@ package body Eingabe is
 
 
 
-   function ZahlSchleife (WelcheDatei, WelcherText : in Natural; ZahlenMinimum, ZahlenMaximum : Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei is
+   function ZahlSchleife (TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; Zeile : in Positive; ZahlenMinimum, ZahlenMaximum : in Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei is
    begin
 
       ZahlenSchleife: -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
       loop
 
-         -- Hier die einzugebenden Zahlen als Meldung ausgeben.
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                        TextDatei        => TextDatei,
+                                        ÜberschriftZeile => 0,
+                                        ErsteZeile       => Zeile,
+                                        LetzteZeile      => Zeile,
+                                        AbstandAnfang    => GlobaleDatentypen.Keiner,
+                                        AbstandMitte     => GlobaleDatentypen.Keiner,
+                                        AbstandEnde      => GlobaleDatentypen.Neue_Zeile);
 
          if ZahlenMinimum > 0 and Integer'Wide_Wide_Value (ZahlenString) = 0 then
             null;

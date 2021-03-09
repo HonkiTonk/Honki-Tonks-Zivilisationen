@@ -70,7 +70,7 @@ package body InDerStadtBauen is
    begin
          
       RassenSchleife:
-      for RasseIntern in GlobaleVariablen.RassenImSpiel'Range loop
+      for RasseIntern in GlobaleDatentypen.Rassen loop
 
          case GlobaleVariablen.RassenImSpiel (RasseIntern) is
             when 0 =>
@@ -78,7 +78,7 @@ package body InDerStadtBauen is
                
             when others =>
                StadtSchleife:
-               for StadtNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+               for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
       
                   case GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummer).ID is
                      when 0 =>
@@ -191,12 +191,22 @@ package body InDerStadtBauen is
             null;
                   
          elsif Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer > 10_000 then
-            Anzeige.AnzeigeLangerText (WelcherText => 13,
-                                       WelcheZeile => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - 10_000);
+            Anzeige.AnzeigeLangerTextNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                          TextDatei        => GlobaleDatentypen.Beschreibungen_Einheiten_Lang,
+                                          ÜberschriftZeile => 0,
+                                          ErsteZeile       => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - 10_000,
+                                          LetzteZeile      => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - 10_000,
+                                          AbstandAnfang    => GlobaleDatentypen.Neue_Zeile,
+                                          AbstandEnde      => GlobaleDatentypen.Keiner);
             
          else
-            Anzeige.AnzeigeLangerText (WelcherText => 17,
-                                       WelcheZeile => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - 1_000);
+            Anzeige.AnzeigeLangerTextNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
+                                          TextDatei        => GlobaleDatentypen.Beschreibungen_Gebäude_Lang,
+                                          ÜberschriftZeile => 0,
+                                          ErsteZeile       => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - 1_000,
+                                          LetzteZeile      => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - 1_000,
+                                          AbstandAnfang    => GlobaleDatentypen.Neue_Zeile,
+                                          AbstandEnde      => GlobaleDatentypen.Keiner);
          end if;
          
          Get_Immediate (Item => Taste);

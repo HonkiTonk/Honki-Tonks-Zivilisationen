@@ -15,7 +15,7 @@ package body Laden is
       
       SpielstandName := Eingabe.SpielstandName;
 
-      case Exists (Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is -- Anzeige der vorhandenen Spielstände einbauen
+      case Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is -- Anzeige der vorhandenen Spielstände einbauen
          when True =>
             null;
 
@@ -26,7 +26,7 @@ package body Laden is
 
       Open (File => DateiLadenNeu,
             Mode => In_File,
-            Name => "Dateien/Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)));
+            Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)));
 
       Wide_Wide_String'Read (Stream (File => DateiLadenNeu),
                              VersionsnummerPrüfung);
@@ -43,7 +43,7 @@ package body Laden is
                      
             when others =>
                Close (File => DateiLadenNeu); -- Hier noch eine Fehlermeldung einbauen
-               return false;
+               return False;
          end case;
       end if;
 

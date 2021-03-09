@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO;
 
 package body Anzeige is
 
-   procedure AnzeigeOhneAuswahlNeu (ÜberschriftDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeile, ErsteZeile, LetzteZeile : in Natural;
+   procedure AnzeigeOhneAuswahlNeu (ÜberschriftDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeile : in Natural; ErsteZeile, LetzteZeile : in Positive;
                                     AbstandAnfang, AbstandMitte, AbstandEnde : in GlobaleDatentypen.WelcherAbstand_Enum) is
    begin
         
@@ -407,54 +407,71 @@ package body Anzeige is
 
 
 
-   procedure AnzeigeLangerTextNeu is
+   procedure AnzeigeLangerTextNeu (ÜberschriftDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeile : in Natural; ErsteZeile, LetzteZeile : in Positive;
+                                   AbstandAnfang, AbstandEnde : in GlobaleDatentypen.WelcherAbstand_Enum) is
    begin
       
-      null;
-      
-   end AnzeigeLangerTextNeu;
+      case ÜberschriftDatei is
+         when GlobaleDatentypen.Leer =>
+            null;
+            
+         when others =>
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (ÜberschriftDatei), ÜberschriftZeile)));
+      end case;
 
+      case AbstandAnfang is
+         when GlobaleDatentypen.Keiner =>
+            null;
 
+         when GlobaleDatentypen.Kleiner_Abstand =>
+            Put (Item => " ");
+            
+         when GlobaleDatentypen.Großer_Abstand =>
+            Put (Item => "    ");
+            
+         when GlobaleDatentypen.Neue_Zeile =>
+            New_Line;
+      end case;
 
-   procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Positive) is
-   begin
-      
-      Text := (others => ('|'));
       N := 1;
-      New_Line;
 
-      for A in To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (WelcherText, WelcheZeile))'Range loop
-         
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (WelcherText, WelcheZeile)) (A) = '|' then
-            exit;
-            
-         else
-            Text (A) := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (WelcherText, WelcheZeile)) (A);
-         end if;
-         
-      end loop;
+      TextNeu := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), ErsteZeile);
       
-      for B in Text'Range loop
+      AnzeigeSchleife:
+      for Zeichen in To_Wide_Wide_String (Source => TextNeu)'Range loop
          
-         if Text (B) = '|' then
-            exit;
+         if To_Wide_Wide_String (Source => TextNeu) (Zeichen) = '|' then
+            exit AnzeigeSchleife;
             
-         elsif B - 80 * N > 1 then
-            if Text (B) = ' ' then
+         elsif Zeichen - Zeichengrenze * N > 1 then
+            if To_Wide_Wide_String (Source => TextNeu) (Zeichen) = ' ' then
                N := N + 1;
                New_Line;
                
             else
-               Put (Item => Text (B));
+               Put (Item => To_Wide_Wide_String (Source => TextNeu) (Zeichen));
             end if;
             
          else
-            Put (Item => Text (B));
+            Put (Item => To_Wide_Wide_String (Source => TextNeu) (Zeichen));
          end if;
          
-      end loop;
-      New_Line;
+      end loop AnzeigeSchleife;
+
+      case AbstandEnde is
+         when GlobaleDatentypen.Keiner =>
+            null;
+
+         when GlobaleDatentypen.Kleiner_Abstand =>
+            Put (Item => " ");
+            
+         when GlobaleDatentypen.Großer_Abstand =>
+            Put (Item => "    ");
+            
+         when GlobaleDatentypen.Neue_Zeile =>
+            New_Line;
+      end case;
       
-   end AnzeigeLangerText;
+   end AnzeigeLangerTextNeu;
 
 end Anzeige;

@@ -7,10 +7,36 @@ use GlobaleDatentypen;
 
 package ZufallsGeneratoren is
 
+   function Spieleinstellungen (WelcheEinstellung : in Positive) return Positive with
+     Pre  => (WelcheEinstellung <= 6),
+     Post => (Spieleinstellungen'Result <= Positive (GlobaleDatentypen.Rassen'Last));
+     
    function YXPosition return GlobaleRecords.AchsenKartenfeldPositivRecord;
    function Chaoskarte return GlobaleDatentypen.KartenGrund;
 
-private   
+private
+
+   -- Generatoren für zufällige Spieleinstellungen
+   subtype ZufälligeKartengröße is Positive range 1 .. 9;
+   subtype ZufälligeKartenart is Positive range 1 .. 5;
+   subtype ZufälligeKartentemperatur is Positive range 1 .. 5;
+   subtype ZufälligeSpieleranzahlRasse is Positive range Positive (GlobaleDatentypen.Rassen'First) .. Positive (GlobaleDatentypen.Rassen'Last);
+   subtype ZufälligerSchwierigkeitsgrad is Positive range 1 .. 3;
+
+   package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (ZufälligeKartengröße);
+   package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (ZufälligeKartenart);
+   package ZufälligeKartentemperaturWählen is new Ada.Numerics.Discrete_Random (ZufälligeKartentemperatur);
+   package ZufälligeSpieleranzahlRasseWählen is new Ada.Numerics.Discrete_Random (ZufälligeSpieleranzahlRasse);
+   package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (ZufälligerSchwierigkeitsgrad);
+
+   ZufälligeKartengrößeGewählt : ZufälligeKartengrößeWählen.Generator;
+   ZufälligeKartenartGewählt : ZufälligeKartenartWählen.Generator;
+   ZufälligeKartentemperaturGewählt : ZufälligeKartentemperaturWählen.Generator;
+   ZufälligeSpieleranzahlRasseGewählt : ZufälligeSpieleranzahlRasseWählen.Generator;
+   ZufälligerSchwierigkeitsgradGewählt : ZufälligenSchwierigkeitsgradWählen.Generator;
+   -- Generatoren für zufällige Spieleinstellungen
+
+
 
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
    subtype Kartenwert20 is GlobaleDatentypen.KartenfeldPositiv range 1 .. 20;

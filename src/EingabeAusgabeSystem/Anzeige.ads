@@ -31,12 +31,15 @@ package Anzeige is
    TextForschung : TextForschungArray;
 
    procedure AnzeigeStadt (AktuelleAuswahl : in Positive);
-   procedure AnzeigeLangerText (WelcherText, WelcheZeile : in Positive);
-   procedure AnzeigeLangerTextNeu;
+   procedure AnzeigeLangerTextNeu (ÜberschriftDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeile : in Natural; ErsteZeile, LetzteZeile : in Positive;
+                                   AbstandAnfang, AbstandEnde : in GlobaleDatentypen.WelcherAbstand_Enum) with
+     Pre => (ErsteZeile <= LetzteZeile and (if ÜberschriftDatei = GlobaleDatentypen.Leer then ÜberschriftZeile = 0) and (if ÜberschriftZeile = 0 then ÜberschriftDatei = GlobaleDatentypen.Leer)
+             and TextDatei /= GlobaleDatentypen.Leer);
+
    procedure AnzeigeForschung (AktuelleAuswahl : in Positive);
    procedure AnzeigeSprache (AktuelleAuswahl, ErsteZeile, LetzteZeile : in Positive);
 
-   procedure AnzeigeOhneAuswahlNeu (ÜberschriftDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeile, ErsteZeile, LetzteZeile : in Natural;
+   procedure AnzeigeOhneAuswahlNeu (ÜberschriftDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeile : in Natural; ErsteZeile, LetzteZeile : in Positive;
                                     AbstandAnfang, AbstandMitte, AbstandEnde : in GlobaleDatentypen.WelcherAbstand_Enum) with
      Pre => (ErsteZeile <= LetzteZeile and (if ÜberschriftDatei = GlobaleDatentypen.Leer then ÜberschriftZeile = 0) and (if ÜberschriftZeile = 0 then ÜberschriftDatei = GlobaleDatentypen.Leer)
              and TextDatei /= GlobaleDatentypen.Leer);
@@ -74,14 +77,16 @@ package Anzeige is
 private
    
    Taste : Wide_Wide_Character;
+
+   Zeichengrenze : constant Positive := 100;
       
-   LängsterText : Integer := 1;
+   LängsterText : Integer;
    Wert : Integer;
    N : Integer;
    
    Teilung : Float;
-   
-   Text : Wide_Wide_String (1 .. 1_000);
+
+   TextNeu : Unbounded_Wide_Wide_String;
    
    type WelcheDateienWelcheTexteRecord is record
             

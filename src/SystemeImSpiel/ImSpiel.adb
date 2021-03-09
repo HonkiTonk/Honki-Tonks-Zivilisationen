@@ -16,7 +16,7 @@ package body ImSpiel is
       SpielSchleife:
       loop         
          RassenSchleife:
-         for RasseIntern in GlobaleVariablen.RassenImSpiel'Range loop
+         for RasseIntern in GlobaleDatentypen.Rassen'Range loop
             
             if GlobaleVariablen.RasseAmZugNachLaden = 0 or RasseIntern = GlobaleVariablen.RasseAmZugNachLaden then
                GlobaleVariablen.RasseAmZugNachLaden := 0;

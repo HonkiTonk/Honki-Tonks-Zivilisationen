@@ -46,7 +46,7 @@ package body Diplomatie is
             case Wahl is
                when -3 =>
                   Angreifen := True;
-                  --Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasse   => EinheitRasseNummer.Rasse,
+                  -- Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasse   => EinheitRasseNummer.Rasse,
                   -- VerteidigendeRasse => Gegner.Rasse);
                   return True;   
                   
