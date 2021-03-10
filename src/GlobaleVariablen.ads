@@ -11,7 +11,7 @@ package GlobaleVariablen is
    type SprachenEinlesenArray is array (1 .. 100) of Unbounded_Wide_Wide_String;
    SprachenEinlesen : SprachenEinlesenArray;
 
-   type TexteEinlesenNeuArray is array (1 .. 23, 1 .. 93) of Unbounded_Wide_Wide_String;
+   type TexteEinlesenNeuArray is array (1 .. 24, 1 .. 93) of Unbounded_Wide_Wide_String;
    TexteEinlesenNeu : TexteEinlesenNeuArray := (others => (others => (To_Unbounded_Wide_Wide_String (Source => "|"))));
    
    GewählteSprache : Unbounded_Wide_Wide_String;
@@ -74,7 +74,7 @@ package GlobaleVariablen is
    -- Wichtiges Zeug   
    LeererWertWichtigesZeug : constant GlobaleRecords.WichtigesRecord := (0, 0,            -- 1. Wert = Aktuelle Geldmenge, 2. Wert = GeldZugewinn Pro Runde
                                                                          0, 0, 10_000, 0, -- 3. Wert = Forschungsrate, 4. Wert = Aktuelle Forschungsmenge, 5. Wert = Verbleibende Forschungszeit, 6. Wert = Forschungsprojekt
-                                                                         (others => 0));  -- 7. Wert = Erforscht
+                                                                         (others => False));  -- 7. Wert = Erforscht
 
    type WichtigesArray is array (GlobaleDatentypen.Rassen'Range) of GlobaleRecords.WichtigesRecord;
    Wichtiges : WichtigesArray := (others => LeererWertWichtigesZeug);

@@ -62,8 +62,8 @@ package body Sichtbarkeit is
          for XÄnderung in -Sichtweite .. Sichtweite loop
                
             Kartenwert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
-                                                              Änderung       => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 0);
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstand => 0);
 
             case Kartenwert.Erfolgreich is
                when False =>
@@ -96,8 +96,8 @@ package body Sichtbarkeit is
          for XÄnderung in -Sichtweite .. Sichtweite loop
 
             Kartenwert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
-                                                              Änderung       => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 0);
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstand => 0);
                
             case Kartenwert.Erfolgreich is
                when False =>

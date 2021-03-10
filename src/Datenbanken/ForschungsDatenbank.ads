@@ -8,7 +8,7 @@ package ForschungsDatenbank is
    -- Hier noch hinschreiben welcher Wert was ist!
    LeererWertForschungListe : constant DatenbankRecords.ForschungListeRecord := (0, (others => 0)); -- 1. Wert = PreisForschung, 2. Wert = AnforderungForschung
 
-   type ForschungListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.ErforschtArray'Range) of DatenbankRecords.ForschungListeRecord;
+   type ForschungListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.ForschungID'Range) of DatenbankRecords.ForschungListeRecord;
    ForschungListe : ForschungListeArray := (others => (1 => (100, (others => 0)),
                                                        2 => (100, (others => 0)),
                                                        3 => (100, (others => 0)),
@@ -18,6 +18,26 @@ package ForschungsDatenbank is
                                                        6 => (250, (4, 0, 0, 0)),
 
                                                        others => LeererWertForschungListe));
+
+   type RassenAufschlagArray is array (GlobaleDatentypen.Rassen'Range) of Natural;
+   RassenAufschlagForschung : constant RassenAufschlagArray := (1 => 0,
+                                                                2 => 0,
+                                                                3 => 0,
+                                                                4 => 0,
+                                                                5 => 0,
+                                                                6 => 0,
+                                                                7 => 0,
+                                                                8 => 0,
+                                                                9 => 0,
+                                                                10 => 0,
+                                                                11 => 0,
+                                                                12 => 0,
+                                                                13 => 0,
+                                                                14 => 0,
+                                                                15 => 0,
+                                                                16 => 0,
+                                                                17 => 0,
+                                                                18 => 0);
 
    procedure Beschreibung (ID : in GlobaleDatentypen.ForschungIDMitNullWert);
    procedure Forschung (RasseExtern : in GlobaleDatentypen.Rassen) with
@@ -35,10 +55,10 @@ private
 
    WasErforschtWerdenSoll : GlobaleDatentypen.ForschungIDMitNullWert;
 
-   AktuelleAuswahl : Natural;
-   Ende : Natural;
+   AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
+   Ende : GlobaleDatentypen.ForschungID;
 
-   function AuswahlForschung (RasseExtern : in GlobaleDatentypen.Rassen) return GlobaleDatentypen.ForschungIDMitNullWert with
+   function AuswahlForschungNeu (RasseExtern : in GlobaleDatentypen.Rassen) return GlobaleDatentypen.ForschungIDMitNullWert with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
 end ForschungsDatenbank;

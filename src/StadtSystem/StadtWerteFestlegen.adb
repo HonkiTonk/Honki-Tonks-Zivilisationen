@@ -7,10 +7,10 @@ package body StadtWerteFestlegen is
    procedure StadtUmgebungGrößeFestlegen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin    
             
-      if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (2) /= 0 and GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner >= 10 then
+      if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (2) = True and GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner >= 10 then
          GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße := 2;
 
-      elsif GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (4) /= 0 and GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner >= 20 then
+      elsif GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (4) = True and GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner >= 20 then
          GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße := 3;
 
       elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner = 0 then

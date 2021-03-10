@@ -15,7 +15,7 @@ package DatenbankRecords is
       EinheitTyp : GlobaleDatentypen.EinheitenTyp; -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
       PreisGeld : GlobaleDatentypen.KostenLager;
       PreisRessourcen : GlobaleDatentypen.KostenLager;
-      Anforderungen : Integer;
+      Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
 
       Passierbarkeit : GlobaleDatentypen.PassierbarkeitType;
       MaximaleLebenspunkte : Integer;
@@ -50,7 +50,7 @@ package DatenbankRecords is
       
       PreisGeld : GlobaleDatentypen.KostenLager;      
       PreisRessourcen : GlobaleDatentypen.KostenLager;
-      Anforderungen : Integer;
+      Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
       PermanenteKosten : GlobaleDatentypen.KostenLager;
       
       ProduktionBonus : GlobaleDatentypen.GrundwerteNRGWVA;

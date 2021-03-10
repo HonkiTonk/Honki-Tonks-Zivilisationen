@@ -38,7 +38,14 @@ package body Karte is
          when others =>
             SichtweiteFestlegen := 3;
             BewegungsfeldFestlegen := 3;            
-      end case;      
+      end case;
+      
+      if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.EAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse then
+         null;
+            
+      else
+         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse;
+      end if;
 
       if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.YAchse + Bewegungsfeld (BewegungsfeldFestlegen).YAchse
         or GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.YAchse - Bewegungsfeld (BewegungsfeldFestlegen).YAchse then
@@ -85,9 +92,7 @@ package body Karte is
          XAchseSchleife:
          for XAchse in -Sichtweite (SichtweiteFestlegen).XAchse .. Sichtweite (SichtweiteFestlegen).XAchse loop
             
-            Kartenwert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.EAchse,
-                                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.YAchse,
-                                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse),
+            Kartenwert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt,
                                                                     Änderung       => (0, YAchse, XAchse),
                                                                     ZusatzYAbstand => 0);
             

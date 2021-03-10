@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Anzeige, Karten, Eingabe, KartenPruefungen;
+with Karten, Eingabe, KartenPruefungen;
 
 package body BewegungssystemCursor is
 
@@ -69,16 +69,11 @@ package body BewegungssystemCursor is
       
       case Wert is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
-                                                  TextZeile => 12);
             return;
          
          when others =>
             Position.EAchse := GlobaleDatentypen.EbeneVorhanden (Wert);
       end case;
-
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Zeug,
-                                            TextZeile => 30);
       
       Wert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Zeug,
                                  Zeile         => 30,
@@ -87,8 +82,6 @@ package body BewegungssystemCursor is
       
       case Wert is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
-                                                  TextZeile => 12);
             return;
          
          when others =>
@@ -102,8 +95,6 @@ package body BewegungssystemCursor is
 
       case Wert is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
-                                                  TextZeile => 12);
             return;
          
          when others =>
@@ -123,16 +114,12 @@ package body BewegungssystemCursor is
          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := Karten.Karten'First (1);
          return;
          
-      elsif Änderung.EAchse = -1 and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Karten'First (1) then
+      elsif ÄnderungExtern.EAchse = -1 and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Karten'First (1) then
          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := Karten.Karten'Last (1);
          return;
          
-      elsif Änderung.EAchse = 1 then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse + 1;
-         return;
-         
-      elsif Änderung.EAchse = -1 then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse - 1;
+      elsif ÄnderungExtern.EAchse /= 0 then
+         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse + ÄnderungExtern.EAchse;
          return;
          
       else

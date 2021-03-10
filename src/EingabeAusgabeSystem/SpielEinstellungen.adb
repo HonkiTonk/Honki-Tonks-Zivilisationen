@@ -12,35 +12,35 @@ package body SpielEinstellungen is
    function SpielEinstellungen return Integer is
    begin
 
-      Wahl := 1;
+      HauptAuswahl := 1;
 
       AuswahlSchleife:
       loop
 
-         case Wahl is
+         case HauptAuswahl is
             when 1 =>
-               Wahl := KartengrößeWählen;
+               HauptAuswahl := KartengrößeWählen;
 
             when 2 =>
-               Wahl := KartenartWählen;
+               HauptAuswahl := KartenartWählen;
 
             when 3 =>            
-               Wahl := KartentemperaturWählen;
+               HauptAuswahl := KartentemperaturWählen;
                
             when 4 =>
-               Wahl := SpieleranzahlWählen;
+               HauptAuswahl := SpieleranzahlWählen;
 
             when 5 =>
-               Wahl := MenschlicheSpieleranzahl;
+               HauptAuswahl := MenschlicheSpieleranzahl;
 
             when 6 =>
-               Wahl := SchwierigkeitsgradFestlegen;
+               HauptAuswahl := SchwierigkeitsgradFestlegen;
                
             when 7 =>
                exit AuswahlSchleife;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-               return Wahl;
+               return HauptAuswahl;
 
             when others =>
                null;
@@ -68,43 +68,44 @@ package body SpielEinstellungen is
       KartengrößeSchleife:
       loop
          
-         Wahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
-                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
-                                  FrageZeile  => 1,
-                                  ErsteZeile  => 2,
-                                  LetzteZeile => 14);
+         KartengrößeAuswahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
+                                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
+                                                  FrageZeile  => 1,
+                                                  ErsteZeile  => 2,
+                                                  LetzteZeile => 14);
          
-         case Wahl is
+         case KartengrößeAuswahl is
             when 1 .. 9 =>
-               Karten.Kartengröße := Wahl;
+               Karten.Kartengröße := KartengrößeAuswahl;
                return 2;
 
             when 10 =>
-               Karten.Kartengröße := Wahl;
+               Karten.Kartengröße := KartengrößeAuswahl;
                BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Fragen,
-                                                             Zeile         => 19,
-                                                             ZahlenMinimum => 20,
-                                                             ZahlenMaximum => 1_000);
+                                                               Zeile         => 19,
+                                                               ZahlenMinimum => 20,
+                                                               ZahlenMaximum => 1_000);
                case BenutzerdefinierteGröße is
                   when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
                      return 1;
                      
                   when others =>
-                     Karten.Kartengrößen (Wahl).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-                     BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Fragen,
-                                                                     Zeile         => 25,
-                                                                     ZahlenMinimum => 20,
-                                                                     ZahlenMaximum => 1_000);
+                     null;
+               end case;
+               Karten.Kartengrößen (KartengrößeAuswahl).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+               BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Fragen,
+                                                               Zeile         => 25,
+                                                               ZahlenMinimum => 20,
+                                                               ZahlenMaximum => 1_000);
                      
-                     case BenutzerdefinierteGröße is
-                        when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
-                           return 1;
+               case BenutzerdefinierteGröße is
+                  when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
+                     return 1;
                            
-                        when others =>
-                           Karten.Kartengrößen (Wahl).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-                           Karten.Kartengrößen (Wahl).Ressourcenmenge := Integer (Karten.Kartengrößen (Wahl).YAchsenGröße) * Integer (Karten.Kartengrößen (Wahl).XAchsenGröße) / 32;
-                           return 2;
-                     end case;
+                  when others =>
+                     Karten.Kartengrößen (KartengrößeAuswahl).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+                     Karten.Kartengrößen (KartengrößeAuswahl).Ressourcenmenge := Integer (Karten.Kartengrößen (KartengrößeAuswahl).YAchsenGröße) * Integer (Karten.Kartengrößen (KartengrößeAuswahl).XAchsenGröße) / 32;
+                     return 2;
                end case;
                
             when 11 =>               
@@ -112,7 +113,7 @@ package body SpielEinstellungen is
                return 2;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-               return Wahl;
+               return KartengrößeAuswahl;
                
             when others =>
                null;
@@ -132,29 +133,29 @@ package body SpielEinstellungen is
       KartenartSchleife:
       loop
 
-         Wahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
-                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
-                                  FrageZeile  => 2,
-                                  ErsteZeile  => 17,
-                                  LetzteZeile => 25);
+         KartenartAuswahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
+                                              TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
+                                              FrageZeile  => 2,
+                                              ErsteZeile  => 17,
+                                              LetzteZeile => 25);
                   
-         case Wahl is
-            when 1 .. 5 =>
-               KartenGenerator.Kartenart := Wahl;
-               return 3;
+         case KartenartAuswahl is
+         when 1 .. 5 =>
+            KartenGenerator.Kartenart := KartenartAuswahl;
+            return 3;
                
-            when 6 =>               
-               KartenGenerator.Kartenart := ZufallsGeneratoren.Spieleinstellungen (WelcheEinstellung => 2);
-               return 3;
+         when 6 =>               
+            KartenGenerator.Kartenart := ZufallsGeneratoren.Spieleinstellungen (WelcheEinstellung => 2);
+            return 3;
                
-            when -2 =>
-               return 1;
+         when -2 =>
+            return 1;
 
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-               return Wahl;
+         when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            return KartenartAuswahl;
                
-            when others =>
-               null;
+         when others =>
+            null;
          end case;
 
          Put (Item => CSI & "2J" & CSI & "H");                  
@@ -171,15 +172,15 @@ package body SpielEinstellungen is
       KartentemperaturSchleife:
       loop
 
-         Wahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
-                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
-                                  FrageZeile  => 3,
-                                  ErsteZeile  => 28,
-                                  LetzteZeile => 36);
+         KartentemperaturAuswahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
+                                                     TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
+                                                     FrageZeile  => 3,
+                                                     ErsteZeile  => 28,
+                                                     LetzteZeile => 36);
                   
-         case Wahl is
+         case KartentemperaturAuswahl is
             when 1 .. 5 =>
-               KartenGenerator.Kartentemperatur := Wahl;
+               KartenGenerator.Kartentemperatur := KartentemperaturAuswahl;
                return 4;
                
             when 6 =>               
@@ -190,7 +191,7 @@ package body SpielEinstellungen is
                return 2;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-               return Wahl;
+               return KartentemperaturAuswahl;
                
             when others =>
                null;
@@ -210,15 +211,15 @@ package body SpielEinstellungen is
       SpieleranzahlSchleife:
       loop
 
-         Wahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
-                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
-                                  FrageZeile  => 4,
-                                  ErsteZeile  => 39,
-                                  LetzteZeile => 60);
+         SpieleranzahlAuswahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
+                                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
+                                                  FrageZeile  => 4,
+                                                  ErsteZeile  => 39,
+                                                  LetzteZeile => 60);
          
-         case Wahl is
+         case SpieleranzahlAuswahl is
             when 1 .. 18 =>
-               SpielerAnzahl := Wahl;
+               SpielerAnzahl := SpieleranzahlAuswahl;
                return 5;
 
             when 19 =>               
@@ -229,7 +230,7 @@ package body SpielEinstellungen is
                return 3;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-               return Wahl;
+               return SpieleranzahlAuswahl;
                
             when others =>
                null;
@@ -252,29 +253,29 @@ package body SpielEinstellungen is
       SpielerSchleife:
       while Spieler < SpielerAnzahl loop
          
-         Wert := RasseWählen;
-         case Wert is                  
+         SpielerartAuswahl := RasseWählen;
+         case SpielerartAuswahl is                  
             when -2 =>
                return 4;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-               return Wahl;
+               return SpielerartAuswahl;
                
             when others =>
                null;
          end case;
          
-         case GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen (Wert))is
+         case GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen (SpielerartAuswahl))is
             when 0 =>
-               Wahl := Auswahl.AuswahlJaNein (FrageZeile => 21);
+               JaOderNein := Auswahl.AuswahlJaNein (FrageZeile => 21);
          
-               case Wahl is
+               case JaOderNein is
                   when GlobaleKonstanten.JaKonstante =>
-                     GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (Wert)) := 1;
+                     GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := 1;
                      Spieler := Spieler + 1;
                      
                   when GlobaleKonstanten.NeinKonstante =>
-                     GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (Wert)) := 2;
+                     GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := 2;
                      Spieler := Spieler + 1;
 
                   when others =>
@@ -301,26 +302,26 @@ package body SpielEinstellungen is
       RasseSchleife:
       loop
          
-         Wahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
-                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
-                                  FrageZeile  => 5,
-                                  ErsteZeile  => 63,
-                                  LetzteZeile => 84);
+         RassenAuswahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
+                                           TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
+                                           FrageZeile  => 5,
+                                           ErsteZeile  => 63,
+                                           LetzteZeile => 84);
 
-         case Wahl is
+         case RassenAuswahl is
             when 1 .. 18 =>
                Anzeige.AnzeigeLangerTextNeu (ÜberschriftDatei => GlobaleDatentypen.Spiel_Einstellungen,
-                                             TextDatei        => GlobaleDatentypen.RassenBeschreibung,
-                                             ÜberschriftZeile => Wahl + 62,
-                                             ErsteZeile       => Wahl,
-                                             LetzteZeile      => Wahl,
+                                             TextDatei        => GlobaleDatentypen.Rassen_Beschreibung_Lang,
+                                             ÜberschriftZeile => RassenAuswahl + 62,
+                                             ErsteZeile       => RassenAuswahl,
+                                             LetzteZeile      => RassenAuswahl,
                                              AbstandAnfang    => GlobaleDatentypen.Keiner,
                                              AbstandEnde      => GlobaleDatentypen.Keiner);
                Get_Immediate (Taste);
-               Wahl2 := Auswahl.AuswahlJaNein (FrageZeile => 6);
-               case Wahl2 is
+               JaOderNein := Auswahl.AuswahlJaNein (FrageZeile => 6);
+               case JaOderNein is
                   when GlobaleKonstanten.JaKonstante =>
-                     return Wahl;
+                     return RassenAuswahl;
                      
                   when others =>
                      null;
@@ -331,7 +332,7 @@ package body SpielEinstellungen is
                return Zufallswahl;
 
             when -2 .. 0 =>
-               return Wahl;
+               return RassenAuswahl;
                
             when others =>
                null;
@@ -364,9 +365,9 @@ package body SpielEinstellungen is
                   Koordinaten := ((0, 0, 0), (0, 0, 0));
                   GezogeneWerte := ZufallsGeneratoren.YXPosition;
 
-                  PrüfungEinheit := UmgebungPrüfen (YPosition       => GezogeneWerte.YAchse,
-                                                      XPosition       => GezogeneWerte.XAchse,
-                                                      RasseExtern     => RasseIntern);
+                  PrüfungEinheit := UmgebungPrüfen (YPosition   => GezogeneWerte.YAchse,
+                                                      XPosition   => GezogeneWerte.XAchse,
+                                                      RasseExtern => RasseIntern);
 
                   case PrüfungEinheit is
                      when True =>
@@ -378,10 +379,13 @@ package body SpielEinstellungen is
 
                   case SicherheitsTestWert is
                      when 10_000 =>
-                        Put_Line ("Keine geeignete Startposition für Rasse" & RasseIntern'Wide_Wide_Image & " gefunden!");
-                        Put_Line ("Rasse wird entfernt. Wenden sie sich an den Entwickler.");
+                        Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
+                                                              TextZeile => 16);
+                        Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Rassen_Beschreibung_Kurz,
+                                                              TextZeile => Positive (RasseIntern));
+                        Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
+                                                              TextZeile => 17);
                         GlobaleVariablen.RassenImSpiel (RasseIntern) := 0;
-                        delay 1.5;
                         exit StartwerteFestlegenSchleife;
                         
                      when others =>
@@ -427,31 +431,33 @@ package body SpielEinstellungen is
                         exit XAchseSchleife;
                   
                      when True =>
-                        if YÄnderung /= 0 or XÄnderung /= 0 then
-                           PrüfungGrund := KartenPruefungen.KartenGrund (Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-
-                           case PrüfungGrund is
-                              when False =>
-                                 PlatzBelegt := (1, 1);
-            
-                              when True =>
-                                 PlatzBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-                           end case;                    
-                           
-                           case PlatzBelegt.Platznummer is
-                              when 0 =>
-                                 Koordinaten (2) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
-                                 StartpunktFestlegen (RasseExtern => RasseExtern);
-                                 return True;
-                                 
-                              when others =>
-                                 null;
-                           end case;
-                                             
-                        else
-                           null;
-                        end if;
+                        null;
                   end case;
+                  
+                  if YÄnderung /= 0 or XÄnderung /= 0 then
+                     PrüfungGrund := KartenPruefungen.KartenGrund (Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+
+                     case PrüfungGrund is
+                        when False =>
+                           PlatzBelegt := (1, 1);
+            
+                        when True =>
+                           PlatzBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+                     end case;                    
+                           
+                     case PlatzBelegt.Platznummer is
+                        when 0 =>
+                           Koordinaten (2) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
+                           StartpunktFestlegen (RasseExtern => RasseExtern);
+                           return True;
+                                 
+                        when others =>
+                           null;
+                     end case;
+                                             
+                  else
+                     null;
+                  end if;
 
                end loop XAchseSchleife;
             end loop YAchseSchleife;
@@ -494,29 +500,29 @@ package body SpielEinstellungen is
       SpieleranzahlSchleife:
       loop
 
-         Wahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
-                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
-                                  FrageZeile  => 26,
-                                  ErsteZeile  => 87,
-                                  LetzteZeile => 93);
+         SchwierigkeitAuswahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Fragen,
+                                                  TextDatei   => GlobaleDatentypen.Spiel_Einstellungen,
+                                                  FrageZeile  => 26,
+                                                  ErsteZeile  => 87,
+                                                  LetzteZeile => 93);
          
-         case Wahl is
-            when 1 .. 3 =>
-               GlobaleVariablen.Schwierigkeitsgrad := Wahl;
-               return 7;
+         case SchwierigkeitAuswahl is
+         when 1 .. 3 =>
+            GlobaleVariablen.Schwierigkeitsgrad := SchwierigkeitAuswahl;
+            return 7;
 
-            when 4 =>
-               GlobaleVariablen.Schwierigkeitsgrad := ZufallsGeneratoren.Spieleinstellungen (WelcheEinstellung => 6);
-               return 7;
+         when 4 =>
+            GlobaleVariablen.Schwierigkeitsgrad := ZufallsGeneratoren.Spieleinstellungen (WelcheEinstellung => 6);
+            return 7;
                
-            when -2 =>
-               return 5;
+         when -2 =>
+            return 5;
 
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-               return Wahl;
+         when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+            return SchwierigkeitAuswahl;
                
-            when others =>
-               null;
+         when others =>
+            null;
          end case;
 
          Put (Item => CSI & "2J" & CSI & "H");

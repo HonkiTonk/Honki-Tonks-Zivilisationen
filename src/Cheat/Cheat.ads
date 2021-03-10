@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 use GlobaleDatentypen;
 
 package Cheat is
@@ -12,14 +12,23 @@ private
    
    Taste : Wide_Wide_Character;
 
-   AktuelleRasse : GlobaleDatentypen.Rassen;
-   RasseZahl : Integer;
+   AktuelleRasseEinheit : GlobaleDatentypen.Rassen := 1;
+   AktuelleRasseStadt : GlobaleDatentypen.Rassen := 1;
+
+   KartenGrundID : Integer;
+   RasseNummer : Integer;
    
-   AktuelleEinheit : Integer;
-   Stadt : Integer;
-   ID : Integer;
+   AktuelleEinheit : Positive := 1;
+   AktuelleStadt : Positive := 1;
+   EinheitID : Integer;
+   VerbesserungID : Integer;
+
+   EinheitPosition : GlobaleRecords.RassePlatznummerRecord;
 
    procedure BeliebigeNächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+
+   procedure BeliebigeNächsteStadt (RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
    procedure Informationen;
@@ -29,7 +38,9 @@ private
    procedure GrundFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
-   procedure EinheitFestlegen;
+   procedure EinheitFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+
    procedure Geld (RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 

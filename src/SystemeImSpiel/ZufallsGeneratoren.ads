@@ -5,18 +5,25 @@ with Ada.Numerics.Discrete_Random;
 with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
 
+with Karten;
+
 package ZufallsGeneratoren is
 
    function Spieleinstellungen (WelcheEinstellung : in Positive) return Positive with
      Pre  => (WelcheEinstellung <= 6),
      Post => (Spieleinstellungen'Result <= Positive (GlobaleDatentypen.Rassen'Last));
      
-   function YXPosition return GlobaleRecords.AchsenKartenfeldPositivRecord;
-   function Chaoskarte return GlobaleDatentypen.KartenGrund;
+   function YXPosition return GlobaleRecords.AchsenKartenfeldPositivRecord with
+     Post => (YXPosition'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and YXPosition'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+     
+   function Chaoskarte return GlobaleDatentypen.KartenGrund with
+     Post => (Chaoskarte'Result >= 1);
 
 private
 
    -- Generatoren für zufällige Spieleinstellungen
+   SpieleinstellungenAuswahl : Positive;
+
    subtype ZufälligeKartengröße is Positive range 1 .. 9;
    subtype ZufälligeKartenart is Positive range 1 .. 5;
    subtype ZufälligeKartentemperatur is Positive range 1 .. 5;
@@ -39,6 +46,8 @@ private
 
 
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
+   ZufallsPunktKarte : GlobaleRecords.AchsenKartenfeldPositivRecord;
+
    subtype Kartenwert20 is GlobaleDatentypen.KartenfeldPositiv range 1 .. 20;
    subtype Kartenwert40 is GlobaleDatentypen.KartenfeldPositiv range 1 .. 40;
    subtype Kartenwert80 is GlobaleDatentypen.KartenfeldPositiv range 1 .. 80;
@@ -70,7 +79,7 @@ private
 
 
    -- Generator für Chaoskarte
-   Wert : GlobaleDatentypen.KartenGrund;
+   KartenGrundGewählt : GlobaleDatentypen.KartenGrund;
 
    subtype ChaoskarteWert is GlobaleDatentypen.KartenGrund range 1 .. GlobaleDatentypen.KartenGrund'Last;
 

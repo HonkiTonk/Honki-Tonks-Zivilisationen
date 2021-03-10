@@ -107,27 +107,27 @@ package body InDerStadtBauen is
       for Gebäude in GlobaleDatentypen.GebäudeID'Range loop
          
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz),
-                                 Integer (Gebäude) + RassenAufschlagGebäude (StadtRasseNummer.Rasse))) = "|" then
+                                 Positive (Gebäude) + RassenAufschlagGebäude (StadtRasseNummer.Rasse))) = "|" then
             exit GebäudeSchleife;
 
          elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).GebäudeVorhanden (Gebäude) = True then
             null;
 
          elsif GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, Gebäude).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, Gebäude).Anforderungen) = 0 then 
+            if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummer.Rasse, Gebäude).Anforderungen) = False then 
                null;
 
             else
                Anzeige.TextBauenNeu (Ende).Text
-                 := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Integer (Gebäude) + RassenAufschlagGebäude (StadtRasseNummer.Rasse));
-               Anzeige.TextBauenNeu (Ende).Nummer := 1_000 + Integer (Gebäude);
+                 := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Positive (Gebäude) + RassenAufschlagGebäude (StadtRasseNummer.Rasse));
+               Anzeige.TextBauenNeu (Ende).Nummer := 1_000 + Positive (Gebäude);
                Ende := Ende + 1;
             end if;
             
          else
             Anzeige.TextBauenNeu (Ende).Text
-              := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Integer (Gebäude) + RassenAufschlagGebäude (StadtRasseNummer.Rasse));
-            Anzeige.TextBauenNeu (Ende).Nummer := 1_000 + Integer (Gebäude);
+              := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Positive (Gebäude) + RassenAufschlagGebäude (StadtRasseNummer.Rasse));
+            Anzeige.TextBauenNeu (Ende).Nummer := 1_000 + Positive (Gebäude);
             Ende := Ende + 1;
          end if;
          
@@ -137,7 +137,7 @@ package body InDerStadtBauen is
       for Einheit in GlobaleDatentypen.EinheitenID loop
          
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
-                                 Integer (Einheit) + RassenAufschlagEinheiten (StadtRasseNummer.Rasse))) = "|" then
+                                 Positive (Einheit) + RassenAufschlagEinheiten (StadtRasseNummer.Rasse))) = "|" then
             exit EinheitenSchleife;
 
          elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AmWasser = False
@@ -145,20 +145,20 @@ package body InDerStadtBauen is
             null;
 
          elsif EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, Einheit).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, Einheit).Anforderungen) = 0 then
+            if GlobaleVariablen.Wichtiges (StadtRasseNummer.Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, Einheit).Anforderungen) = False then
                null;
                
             else
                Anzeige.TextBauenNeu (Ende).Text
-                 := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Integer (Einheit) + RassenAufschlagEinheiten (StadtRasseNummer.Rasse));
-               Anzeige.TextBauenNeu (Ende).Nummer := 10_000 + Integer (Einheit);
+                 := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Positive (Einheit) + RassenAufschlagEinheiten (StadtRasseNummer.Rasse));
+               Anzeige.TextBauenNeu (Ende).Nummer := 10_000 + Positive (Einheit);
                Ende := Ende + 1;
             end if;
             
          else
             Anzeige.TextBauenNeu (Ende).Text
-              := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Integer (Einheit) + RassenAufschlagEinheiten (StadtRasseNummer.Rasse));
-            Anzeige.TextBauenNeu (Ende).Nummer := 10_000 + Integer (Einheit);
+              := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Positive (Einheit) + RassenAufschlagEinheiten (StadtRasseNummer.Rasse));
+            Anzeige.TextBauenNeu (Ende).Nummer := 10_000 + Positive (Einheit);
             Ende := Ende + 1;
          end if;
          
@@ -185,7 +185,7 @@ package body InDerStadtBauen is
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fragen,
                                                TextZeile => 13);
 
-         Anzeige.AnzeigeStadt (AktuelleAuswahl => Integer (AktuelleAuswahl));
+         Anzeige.AnzeigeStadt (AktuelleAuswahl => AktuelleAuswahl);
          
          if AktuelleAuswahl = Ende then
             null;
@@ -227,7 +227,6 @@ package body InDerStadtBauen is
                end if;
                               
             when 'e' | '5' =>
-               Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                return Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer;
 
             when 'q' =>

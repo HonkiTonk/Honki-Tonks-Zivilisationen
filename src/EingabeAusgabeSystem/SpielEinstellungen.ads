@@ -20,14 +20,20 @@ private
    XPosition : GlobaleDatentypen.Kartenfeld;
 
    SpielerAnzahl : Positive; -- 1 .. 18
-   Wahl : Integer;
-   Wahl2 : Integer;
-   Wert : Integer;
+   HauptAuswahl : Integer;
+   KartengrößeAuswahl : Integer;
+   KartenartAuswahl : Integer;
+   KartentemperaturAuswahl : Integer;
+   SpieleranzahlAuswahl : Integer;
+   SpielerartAuswahl : Integer;
+   RassenAuswahl : Integer;
+   JaOderNein : Integer;
+   SchwierigkeitAuswahl : Integer;
    Rasse : Integer;
    RassenAusgewählt : Integer;
    SicherheitsTestWert : Integer;
    BenutzerdefinierteGröße : Integer;
-   Spieler : Integer;
+   Spieler : Natural;
    Zufallswahl : Integer;
 
    PositionWert : GlobaleRecords.RassePlatznummerRecord;

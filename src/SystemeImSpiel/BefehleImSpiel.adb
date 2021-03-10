@@ -223,7 +223,7 @@ package body BefehleImSpiel is
                   when True =>
                      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung := 0;
                            
-                  when others =>
+                  when False =>
                      null;
                end case;
                   
