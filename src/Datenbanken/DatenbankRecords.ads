@@ -5,6 +5,8 @@ with GlobaleDatentypen;
 package DatenbankRecords is
 
    -- EinheitenDatenbank
+   type PassierbarkeitArray is array (GlobaleDatentypen.PassierbarkeitType'Range) of Boolean;
+
    type EinheitenListeRecord is record
       
       -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
@@ -17,15 +19,18 @@ package DatenbankRecords is
       PreisRessourcen : GlobaleDatentypen.KostenLager;
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
 
-      Passierbarkeit : GlobaleDatentypen.PassierbarkeitType;
+      Passierbarkeit : PassierbarkeitArray;
       MaximaleLebenspunkte : Integer;
       MaximaleBewegungspunkte : Float;
 
-      Beförderungsgrenze : Integer;
-      MaximalerRang : Integer;
-      Reichweite : Integer;
+      Beförderungsgrenze : Positive;
+      MaximalerRang : Natural;
+      Reichweite : GlobaleDatentypen.GrundwerteNRGWVA;
       Angriff : GlobaleDatentypen.GrundwerteNRGWVA;
       Verteidigung : GlobaleDatentypen.GrundwerteNRGWVA;
+
+      KannTransportieren : Natural;
+      KannTransportiertWerden : Natural;
       
    end record;
    -- EinheitenDatenbank

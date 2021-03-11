@@ -260,7 +260,7 @@ package body Sichtbarkeit is
       case Cursor is
          when True =>
             case Grund is
-               when 1 | 4 | 5 | 31 | 37 =>
+               when 1 | 4 | 5 | 31 | 37 | 42 =>
                   Put (Item => CSI & "38;2;0;0;0m");
                   
                when others =>
@@ -274,7 +274,7 @@ package body Sichtbarkeit is
       case Einheit is
          when EinheitenDatenbank.EinheitenListe'Range (2) =>
             case Grund is
-               when 1 | 4 | 5 | 31 | 37 =>
+               when 1 | 4 | 5 | 31 | 37 | 42 =>
                   Put (Item => CSI & "38;2;0;0;0m");
                   
                when others =>
@@ -347,7 +347,7 @@ package body Sichtbarkeit is
          when 1 =>
             Put (Item => CSI & "48;2;255;245;238m");
             
-         when 2 =>
+         when 2 | 41 =>
             Put (Item => CSI & "48;2;0;0;205m");
             
          when 3 =>
@@ -371,7 +371,7 @@ package body Sichtbarkeit is
          when 9 =>
             Put (Item => CSI & "48;2;0;70;0m");
             
-         when 31 =>
+         when 31 | 42 =>
             Put (Item => CSI & "48;2;135;206;250m");
             
          when 32 =>
@@ -393,7 +393,7 @@ package body Sichtbarkeit is
             Put (Item => CSI & "48;2;97;56;11m");
             
          when 40 =>
-            Put (Item => CSI & "48;2;87;87;87m");
+            Put (Item => CSI & "48;2;87;87;87m");            
             
          when others =>
             null;

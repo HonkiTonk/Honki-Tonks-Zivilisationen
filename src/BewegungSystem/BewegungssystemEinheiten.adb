@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
 with GlobaleKonstanten;
 
-with KartenDatenbank, Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenbank, KartenPruefungen, EinheitSuchen, StadtSuchen;
+with Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenbank, KartenPruefungen, BewegungEinheitenMoeglichPruefen;
 
 package body BewegungssystemEinheiten is
 
@@ -56,7 +56,7 @@ package body BewegungssystemEinheiten is
          end case;
          
          RückgabeWert := ZwischenEbene (EinheitRasseNummer => EinheitRasseNummer,
-                                         ÄnderungExtern       => Änderung);
+                                         ÄnderungExtern     => Änderung);
 
          case RückgabeWert is
             when 1 => -- Einheit wurde bewegt.          
@@ -97,8 +97,8 @@ package body BewegungssystemEinheiten is
             return 0;
             
          when True =>
-            FeldPassierbar := FeldFürDieseEinheitPassierbar (EinheitRasseNummer => EinheitRasseNummer,
-                                                              NeuePosition       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+            FeldPassierbar := BewegungEinheitenMoeglichPruefen.FeldFürDieseEinheitPassierbar (EinheitRasseNummer => EinheitRasseNummer,
+                                                                                               NeuePosition       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
       end case;
 
       case FeldPassierbar is
@@ -109,8 +109,8 @@ package body BewegungssystemEinheiten is
             return 0;
       end case;
 
-      GegnerWert := BefindetSichDortEineEinheit (RasseExtern   => EinheitRasseNummer.Rasse,
-                                                 NeuePosition  => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+      GegnerWert := BewegungEinheitenMoeglichPruefen.BefindetSichDortEineEinheit (RasseExtern   => EinheitRasseNummer.Rasse,
+                                                                                  NeuePosition  => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
       if GegnerWert.Rasse = EinheitRasseNummer.Rasse and GegnerWert.Platznummer = 1 then
          return 0;
@@ -136,70 +136,6 @@ package body BewegungssystemEinheiten is
       end if;
       
    end ZwischenEbene;
-
-
-
-   function FeldFürDieseEinheitPassierbar (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Boolean is
-   begin
-      
-      
-      if EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit = 3 then
-         null;
-               
-      elsif EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit
-        /= KartenDatenbank.KartenListe (Karten.Karten (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).Grund).Passierbarkeit then
-         case EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit is
-            when 2 =>
-               Stadtnummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern  => EinheitRasseNummer.Rasse,
-                                                                          Koordinaten  => NeuePosition);
-         
-               case Stadtnummer is
-                  when 0 =>
-                     return False;
-               
-                  when others =>
-                     null;
-               end case;
-                     
-            when others =>
-               return False;
-         end case;
-            
-      else
-         null;
-      end if;
-
-      return True;
-      
-   end FeldFürDieseEinheitPassierbar;
-   
-   
-   
-   function BefindetSichDortEineEinheit (RasseExtern : GlobaleDatentypen.RassenMitNullwert; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
-   begin
-
-      GegnerEinheitWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => NeuePosition);
-
-      if GegnerEinheitWert.Rasse = RasseExtern then
-         return (GegnerEinheitWert.Rasse, 1);
-
-      elsif GegnerEinheitWert.Rasse = GlobaleDatentypen.RassenMitNullwert'First then
-         null;
-                  
-      else
-         return GegnerEinheitWert;
-      end if;
-
-      GegnerStadtWert := StadtSuchen.KoordinatenStadtOhneRasseSuchen (Koordinaten => NeuePosition);
-
-      if GegnerStadtWert.Rasse = RasseExtern then
-         return (GegnerStadtWert.Rasse, 0);
-         
-      else
-         return GegnerStadtWert;
-      end if;
-      
-   end BefindetSichDortEineEinheit;
 
    
 
@@ -251,9 +187,9 @@ package body BewegungssystemEinheiten is
    function StraßeUndFlussPrüfen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Integer is
    begin
 
-      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit is
-         when 1 =>
-            BonusBeiBewegung := 0;
+      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit (1) is
+         when True =>
+            BonusBeiBewegung := 0; -- Hier bekommen auch Flugeinheiten einen Bonus für die Straße, später noch korrigieren
 
             case Karten.Karten (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).VerbesserungStraße is
                when 5 .. 19 =>
@@ -276,7 +212,7 @@ package body BewegungssystemEinheiten is
             
             return BonusBeiBewegung;
 
-         when others =>
+         when False =>
             return 0;
       end case;
       

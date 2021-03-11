@@ -924,8 +924,14 @@ package body KartenGenerator is
             for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
                case Karten.Karten (0, YAchse, XAchse).Grund is
-                  when 1 | 2 | 31 =>
+                  when 1 =>
                      Karten.Karten (-1, YAchse, XAchse).Grund := Karten.Karten (0, YAchse, XAchse).Grund;
+                     
+                  when 2 =>
+                     Karten.Karten (-1, YAchse, XAchse).Grund := 41;
+                     
+                  when 31 =>
+                     Karten.Karten (-1, YAchse, XAchse).Grund := 42;
                      
                   when 7 =>
                      Karten.Karten (-1, YAchse, XAchse).Grund := 40;

@@ -44,7 +44,7 @@ package GlobaleDatentypen is
    subtype LoopRangeMinusDreiZuDrei is Kartenfeld range -3 .. 3;
    subtype LoopRangeNullZuEins is Kartenfeld range 0 .. 1;
 
-   type KartenGrund is range -2 .. 40;
+   type KartenGrund is range -2 .. 42;
    type KartenverbesserungEinheitenID is range 0 .. 78; -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
    subtype KartenVerbesserung is KartenverbesserungEinheitenID range 0 .. 23;
    type Ebene is range -3 .. 2; -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
@@ -57,9 +57,10 @@ package GlobaleDatentypen is
 
 
    -- Für Einheiten
-   subtype EinheitenID is KartenverbesserungEinheitenID range 1 .. 50;
+   subtype EinheitenIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 50;
+   subtype EinheitenID is EinheitenIDMitNullWert range 1 .. EinheitenIDMitNullWert'Last;
 
-   type PassierbarkeitType is range 1 .. 15; -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
+   type PassierbarkeitType is range 1 .. 7; -- 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
                                              -- Addieren für genaue Passierbarkeit
 
    type EinheitenTyp is range 1 .. 12;

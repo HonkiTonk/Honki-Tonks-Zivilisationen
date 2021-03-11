@@ -51,7 +51,7 @@ package GlobaleRecords is
 
    type RassePlatznummerIDRecord is new RassePlatznummerRecord with record
       
-      ID : GlobaleDatentypen.KartenverbesserungEinheitenID;
+      ID : GlobaleDatentypen.EinheitenIDMitNullWert;
 
    end record;
    
@@ -68,13 +68,15 @@ package GlobaleRecords is
 
 
 
+   type TransporterArray is array (1 .. 5) of Natural;
+
    type EinheitenGebautRecord is record
       
       -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen)
       AktuelleBeschäftigung : Natural;
       AktuelleBeschäftigungNachfolger : Natural;
       
-      ID : GlobaleDatentypen.KartenverbesserungEinheitenID;
+      ID : GlobaleDatentypen.EinheitenIDMitNullWert;
       AchsenPosition : AchsenKartenfeldPositivRecord;
       
       AktuelleLebenspunkte : Integer;
@@ -88,6 +90,8 @@ package GlobaleRecords is
       KIZielKoordinaten : AchsenKartenfeldPositivRecord;
       KIBeschäftigt : KIDatentypen.Aufgabe_Enum;
       -- Hier nochwas mit letzten Koordinaten einfügen?
+      
+      Transportiert : TransporterArray;
       
    end record;
 

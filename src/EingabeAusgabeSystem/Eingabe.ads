@@ -14,6 +14,7 @@ package Eingabe is
 
    function StadtName return Unbounded_Wide_Wide_String;
    function SpielstandName return Unbounded_Wide_Wide_String;
+   function TastenEingabe return Wide_Wide_Character;
 
 private
 

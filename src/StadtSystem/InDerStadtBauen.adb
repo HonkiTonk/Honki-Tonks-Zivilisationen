@@ -141,7 +141,7 @@ package body InDerStadtBauen is
             exit EinheitenSchleife;
 
          elsif GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AmWasser = False
-           and EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, Einheit).Passierbarkeit = 2 then
+           and EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, Einheit).Passierbarkeit (2) = True then
             null;
 
          elsif EinheitenDatenbank.EinheitenListe (StadtRasseNummer.Rasse, Einheit).Anforderungen /= 0 then

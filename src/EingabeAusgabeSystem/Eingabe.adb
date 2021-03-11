@@ -213,4 +213,13 @@ package body Eingabe is
       
    end SpielstandName;
 
+
+
+   function TastenEingabe return Wide_Wide_Character is
+   begin
+      
+      return '1';
+      
+   end TastenEingabe;
+
 end Eingabe;

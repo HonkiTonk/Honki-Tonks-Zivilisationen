@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
+with GlobaleVariablen;
+
 package body Anzeige is
 
    procedure AnzeigeOhneAuswahlNeu (ÜberschriftDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeile : in Natural; ErsteZeile, LetzteZeile : in Positive;
