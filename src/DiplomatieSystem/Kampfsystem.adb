@@ -49,19 +49,19 @@ package body Kampfsystem is
 
       VerteidigungVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (VerteidigerRasseEinheitNummer.Rasse,
                                              GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).ID).Verteidigung)
-        + Float (KartenDatenbank.KartenListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
+        + Float (KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
                  GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
                  GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
-        + Float (VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
+        + Float (VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
                  GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
                  GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
 
-      if Karten.Karten (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
-                        GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
-                        GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).Hügel = True
-        and Karten.Karten (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
+      if Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
                            GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).Grund /= 6 then
+                           GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).Hügel = True
+        and Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
+                              GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
+                              GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).Grund /= 6 then
          VerteidigungVerteidigungWert := Float (KartenDatenbank.KartenListe (6).Verteidigungsbonus);
 
       else
@@ -72,10 +72,10 @@ package body Kampfsystem is
 
       VerteidigungAngriffWert := Float (EinheitenDatenbank.EinheitenListe (VerteidigerRasseEinheitNummer.Rasse,
                                         GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).ID).Verteidigung)
-        + Float (KartenDatenbank.KartenListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
+        + Float (KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
                  GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
                  GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
-        + Float (VerbesserungenDatenbank.VerbesserungListe (Karten.Karten (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
+        + Float (VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
                  GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
                  GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
 

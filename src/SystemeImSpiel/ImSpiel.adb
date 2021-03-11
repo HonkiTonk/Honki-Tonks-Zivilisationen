@@ -44,7 +44,7 @@ package body ImSpiel is
 
                            when GlobaleKonstanten.SpeichernKonstante => -- Speichern
                               GlobaleVariablen.RasseAmZugNachLaden := RasseIntern;
-                              Speichern.SpeichernNeu (Autospeichern => False);
+                              Speichern.SpeichernNeu (AutospeichernExtern => False);
                
                            when GlobaleKonstanten.LadenKonstante => -- Laden
                               LadenErfolgreich := Laden.LadenNeu;

@@ -38,7 +38,7 @@ private
 
    type FelderVonLandartZuLandartArray is array (1 .. 4) of GlobaleDatentypen.Kartenfeld;
    FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 30, 0, 0); -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
-                                                                                       -- Sollte so aber ganz gut sein, da bei halbem Loop zu wenig Wasser ist, aber eventuell Werte ein wenig verringern.
+                                                                                          -- Sollte so aber ganz gut sein, da bei halbem Loop zu wenig Wasser ist, aber eventuell Werte ein wenig verringern.
 
    type WahrscheinlichkeitenFürLandArray is array (1 .. 4, 1 .. 7) of Float;
    WahrscheinlichkeitenFürLand : constant WahrscheinlichkeitenFürLandArray := (1 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
@@ -48,10 +48,10 @@ private
                                                                                  3 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
                                                                                  4 => (0.50, 0.00, 0.50, 0.00, 0.50, 0.00, 0.50));
 
-   type GeneratorKarteArray is array (Karten.Karten'Range (2), Karten.Karten'Range (3)) of GlobaleDatentypen.Kartenfeld;
+   type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of GlobaleDatentypen.Kartenfeld;
    GeneratorKarte : GeneratorKarteArray;
 
-   type GeneratorGrundArray is array (Karten.Karten'Range (2), Karten.Karten'Range (3)) of Boolean;
+   type GeneratorGrundArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of Boolean;
    GeneratorGrund : GeneratorGrundArray;
 
    type KartengrundWahrscheinlichkeitenArray is array (1 .. 5, 4 .. 10) of Float; -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste

@@ -23,7 +23,7 @@ private
    StadtOderEinheit : Integer;
    WahlForschung : Integer;
 
-   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; Auswahl : in Integer; StadtNummer, EinheitNummer : in Natural) with
+   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; Auswahl : in Integer; StadtNummerExtern, EinheitNummerExtern : in Natural) with
      Pre => (StadtNummer <= GlobaleVariablen.StadtGebaut'Last (2) and EinheitNummer <= GlobaleVariablen.EinheitenGebaut'Last (2) and GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
    
 end BefehleImSpiel;

@@ -64,8 +64,8 @@ package body BewegungssystemCursor is
       
       Wert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Zeug,
                                  Zeile         => 40,
-                                 ZahlenMinimum => Integer (Karten.Karten'First (1)),
-                                 ZahlenMaximum => Integer (Karten.Karten'Last (1)));
+                                 ZahlenMinimum => Integer (Karten.Weltkarte'First (1)),
+                                 ZahlenMaximum => Integer (Karten.Weltkarte'Last (1)));
       
       case Wert is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
@@ -77,7 +77,7 @@ package body BewegungssystemCursor is
       
       Wert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Zeug,
                                  Zeile         => 30,
-                                 ZahlenMinimum => Integer (Karten.Karten'First (2)),
+                                 ZahlenMinimum => Integer (Karten.Weltkarte'First (2)),
                                  ZahlenMaximum => Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
       
       case Wert is
@@ -90,7 +90,7 @@ package body BewegungssystemCursor is
 
       Wert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Zeug,
                                  Zeile         => 31,
-                                 ZahlenMinimum => Integer (Karten.Karten'First (3)),
+                                 ZahlenMinimum => Integer (Karten.Weltkarte'First (3)),
                                  ZahlenMaximum => Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
 
       case Wert is
@@ -110,12 +110,12 @@ package body BewegungssystemCursor is
    procedure BewegungCursorBerechnen (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      if ÄnderungExtern.EAchse = 1 and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Karten'Last (1) then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := Karten.Karten'First (1);
+      if ÄnderungExtern.EAchse = 1 and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Weltkarte'Last (1) then
+         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := Karten.Weltkarte'First (1);
          return;
          
-      elsif ÄnderungExtern.EAchse = -1 and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Karten'First (1) then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := Karten.Karten'Last (1);
+      elsif ÄnderungExtern.EAchse = -1 and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Weltkarte'First (1) then
+         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := Karten.Weltkarte'Last (1);
          return;
          
       elsif ÄnderungExtern.EAchse /= 0 then

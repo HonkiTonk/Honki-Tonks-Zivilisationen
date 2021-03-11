@@ -28,22 +28,22 @@ package body KartenGenerator is
 
       Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 2) := Clock;
       YAchseSchleife:
-      for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+      for YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
          XAchseSchleife:
-         for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+         for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
-            if YAchse = Karten.Karten'First (2) or YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               Karten.Karten (0, YAchse, XAchse).Grund := 1;
+            if YAchse = Karten.WeltkarteArray'First (2) or YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+               Karten.Weltkarte (0, YAchse, XAchse).Grund := 1;
                
             else
-               case Karten.Karten (0, YAchse, XAchse).Grund is -- Abfrage ist hier nötig, da sonst eine erstellte Landmasse wieder überschrieben wird!
+               case Karten.Weltkarte (0, YAchse, XAchse).Grund is -- Abfrage ist hier nötig, da sonst eine erstellte Landmasse wieder überschrieben wird!
                   when 0 =>
                      case Kartenart is
                         when 4 =>
-                           Karten.Karten (0, YAchse, XAchse).Grund := 3;
+                           Karten.Weltkarte (0, YAchse, XAchse).Grund := 3;
                            
                         when others =>
-                           Karten.Karten (0, YAchse, XAchse).Grund := 2;
+                           Karten.Weltkarte (0, YAchse, XAchse).Grund := 2;
                      end case;
 
                   when others =>
@@ -112,12 +112,12 @@ package body KartenGenerator is
             null;
 
          when 0 =>
-            if YAchse <= Karten.Karten'First (2) + 3  or YAchse >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 3 then
+            if YAchse <= Karten.WeltkarteArray'First (2) + 3  or YAchse >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 3 then
                if Wert > WahrscheinlichkeitenFürLand (Kartenart, 1) and Wert < WahrscheinlichkeitenFürLand (Kartenart, 2) then
-                  Karten.Karten (0, YAchse, XAchse).Grund := 3;
+                  Karten.Weltkarte (0, YAchse, XAchse).Grund := 3;
                            
                elsif Wert >= WahrscheinlichkeitenFürLand (Kartenart, 2) then
-                  Karten.Karten (0, YAchse, XAchse).Grund := 3;
+                  Karten.Weltkarte (0, YAchse, XAchse).Grund := 3;
                   GenerierungLandmasse (YPositionLandmasse => YAchse,
                                         XPositionLandmasse => XAchse);
                            
@@ -127,10 +127,10 @@ package body KartenGenerator is
                               
             else
                if Wert > WahrscheinlichkeitenFürLand (Kartenart, 3) and Wert < WahrscheinlichkeitenFürLand (Kartenart, 4) then
-                  Karten.Karten (0, YAchse, XAchse).Grund := 3;
+                  Karten.Weltkarte (0, YAchse, XAchse).Grund := 3;
                                  
                elsif Wert >= WahrscheinlichkeitenFürLand (Kartenart, 4) then
-                  Karten.Karten (0, YAchse, XAchse).Grund := 3;
+                  Karten.Weltkarte (0, YAchse, XAchse).Grund := 3;
                   GenerierungLandmasse (YPositionLandmasse => YAchse,
                                         XPositionLandmasse => XAchse);
                                  
@@ -141,7 +141,7 @@ package body KartenGenerator is
 
          when others =>
             if Wert >= WahrscheinlichkeitenFürLand (Kartenart, 5) then                           
-               Karten.Karten (0, YAchse, XAchse).Grund := 3;
+               Karten.Weltkarte (0, YAchse, XAchse).Grund := 3;
                            
             else
                null;
@@ -161,8 +161,8 @@ package body KartenGenerator is
          for XÄnderung in -GrößeLandart (Kartenart) / 2 .. GrößeLandart (Kartenart) / 2 loop
             
             KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YPositionLandmasse, XPositionLandmasse),
-                                                              Änderung       => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
 
             case KartenWert.Erfolgreich is
                when False =>
@@ -184,8 +184,8 @@ package body KartenGenerator is
          for XÄnderung in -FelderVonLandartZuLandart (Kartenart) .. FelderVonLandartZuLandart (Kartenart) loop
             
             KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YPositionLandmasse, XPositionLandmasse),
-                                                              Änderung      => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
+                                                                    Änderung      => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstand => 1); -- Hier muss <= geprüft werden, deswegen 1
             
             case KartenWert.Erfolgreich is
                when False =>
@@ -212,11 +212,11 @@ package body KartenGenerator is
    begin
    
       if Gezogen >= WahrscheinlichkeitenFürLand (Kartenart, 6) and GeneratorKarte (YAchse, XAchse) = 0 then
-         Karten.Karten (0, YAchse, XAchse).Grund := 3;
+         Karten.Weltkarte (0, YAchse, XAchse).Grund := 3;
          GeneratorKarte (YAchse, XAchse) := 1;
 
       elsif Gezogen >= WahrscheinlichkeitenFürLand (Kartenart, 7) then
-         Karten.Karten (0, YAchse, XAchse).Grund := 3;
+         Karten.Weltkarte (0, YAchse, XAchse).Grund := 3;
          GeneratorKarte (YAchse, XAchse) := 1;
                
       else
@@ -238,7 +238,7 @@ package body KartenGenerator is
       else
          Wert := Random (Gewählt);
          if Wert >= WahrscheinlichkeitenFürLand (Kartenart, 2) then
-            Karten.Karten (0, YAchse, XAchse).Grund := 3;
+            Karten.Weltkarte (0, YAchse, XAchse).Grund := 3;
             GeneratorKarte (YAchse, XAchse) := 1;
          
          else
@@ -254,11 +254,11 @@ package body KartenGenerator is
    begin
       
       YAchseSchleife:
-      for YPosition in Karten.KartenArray'First (2) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
+      for YPosition in Karten.WeltkarteArray'First (2) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
          XAchseSchleife:
-         for XPosition in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+         for XPosition in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                               
-            case Karten.Karten (0, YPosition, XPosition).Grund is
+            case Karten.Weltkarte (0, YPosition, XPosition).Grund is
                when 2 =>
                   ZweiteYAchseSchleife:
                   for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
@@ -266,17 +266,17 @@ package body KartenGenerator is
                      for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                      
                         KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YPosition, XPosition),
-                                                                          Änderung       => (0, YÄnderung, XÄnderung),
-                                                                          ZusatzYAbstand => 0);
+                                                                                Änderung       => (0, YÄnderung, XÄnderung),
+                                                                                ZusatzYAbstand => 0);
 
                         case KartenWert.Erfolgreich is
                            when False =>
                               exit ZweiteYAchseSchleife;
                                 
                            when True =>
-                              case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund is
+                              case Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Grund is
                                  when 3 =>
-                                    Karten.Karten (0, YPosition, XPosition).Grund := 31;
+                                    Karten.Weltkarte (0, YPosition, XPosition).Grund := 31;
                                     exit ZweiteYAchseSchleife;
 
                                  when others =>
@@ -305,9 +305,9 @@ package body KartenGenerator is
       GeneratorGrund := (others => (others => (False)));
 
       YAbstandVonEisschichtSchleife:
-      for YAchse in Karten.KartenArray'First (2) .. Karten.KartenArray'First (2) + 3 loop
+      for YAchse in Karten.WeltkarteArray'First (2) .. Karten.WeltkarteArray'First (2) + 3 loop
          XAbstandVonEisschichtSchleife:
-         for XAchse in Karten.KartenArray'Range (3) loop
+         for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             GeneratorKarte (YAchse, XAchse) := 4;
             
@@ -317,7 +317,7 @@ package body KartenGenerator is
       YAbstandVonEisschichtSchleife2:
       for YAchse in Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 3 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
          XAbstandVonEisschichtSchleife2:
-         for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+         for XAchse in Karten.Weltkarte'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             GeneratorKarte (YAchse, XAchse) := 4;
             
@@ -325,11 +325,11 @@ package body KartenGenerator is
       end loop YAbstandVonEisschichtSchleife2;
             
       YAchseSchleife:
-      for YAchse in Karten.KartenArray'First (2) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
+      for YAchse in Karten.WeltkarteArray'First (2) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
          XAchseSchleife:
-         for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+         for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-            if Karten.Karten (0, YAchse, XAchse).Grund < 3 or Karten.Karten (0, YAchse, XAchse).Grund = 31 then
+            if Karten.Weltkarte (0, YAchse, XAchse).Grund < 3 or Karten.Weltkarte (0, YAchse, XAchse).Grund = 31 then
                GeneratorGrund (YAchse, XAchse) := True;
 
             else
@@ -390,19 +390,19 @@ package body KartenGenerator is
          for XÄnderung in GlobaleDatentypen.LoopRangeNullZuEins'Range loop            
             
             KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YAchse, XAchse),
-                                                              Änderung       => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 1);
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstand => 1);
 
             case KartenWert.Erfolgreich is
                when False =>
                   exit XAchseSchleife;
                   
                when True =>
-                  if Karten.Karten (0, YAchse, XAchse).Grund < 3 or Karten.Karten (0, YAchse, XAchse).Grund = 31 then
+                  if Karten.Weltkarte (0, YAchse, XAchse).Grund < 3 or Karten.Weltkarte (0, YAchse, XAchse).Grund = 31 then
                      null;
                      
                   elsif YÄnderung = 0 and XÄnderung = 0 then
-                     Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund := Grund;
+                     Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Grund := Grund;
                      GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
                      
                   else
@@ -415,7 +415,7 @@ package body KartenGenerator is
                            null;
                            
                         else
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Grund := Grund;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Grund := Grund;
                            GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
                         end if;
                         
@@ -445,8 +445,8 @@ package body KartenGenerator is
                for XÄnderung in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
             
                   KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YAchse, XAchse),
-                                                                    Änderung       => (0, YÄnderung, XÄnderung),
-                                                                    ZusatzYAbstand => 1);
+                                                                          Änderung       => (0, YÄnderung, XÄnderung),
+                                                                          ZusatzYAbstand => 1);
 
                   case KartenWert.Erfolgreich is
                      when False =>
@@ -482,8 +482,8 @@ package body KartenGenerator is
          for XÄnderungHügel in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop            
             
             KartenWertHügel := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YAchse, XAchse),
-                                                                    Änderung       => (0, YÄnderungHügel, XÄnderungHügel),
-                                                                    ZusatzYAbstand => 1);
+                                                                          Änderung       => (0, YÄnderungHügel, XÄnderungHügel),
+                                                                          ZusatzYAbstand => 1);
 
             case KartenWertHügel.Erfolgreich is
                when False =>
@@ -493,8 +493,8 @@ package body KartenGenerator is
                   if YÄnderungHügel = 0 and XÄnderungHügel = 0 then
                      null;
                                  
-                  elsif Karten.Karten (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund = 6 or Karten.Karten (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund = 7
-                    or Karten.Karten (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Hügel = True then
+                  elsif Karten.Weltkarte (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund = 6 or Karten.Weltkarte (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund = 7
+                    or Karten.Weltkarte (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Hügel = True then
                      HügelGebirgeUmgebung := HügelGebirgeUmgebung + 1;
                                  
                   else
@@ -510,7 +510,7 @@ package body KartenGenerator is
          when 1 .. 3 =>
             Wert := Random (Gewählt);
             if Wert >= 0.85 then
-               Karten.Karten (0, YAchse, XAchse).Hügel := True;
+               Karten.Weltkarte (0, YAchse, XAchse).Hügel := True;
                      
             else
                null;
@@ -519,7 +519,7 @@ package body KartenGenerator is
          when 4 .. 7 =>
             Wert := Random (Gewählt);
             if Wert >= 0.66 then
-               Karten.Karten (0, YAchse, XAchse).Hügel := True;
+               Karten.Weltkarte (0, YAchse, XAchse).Hügel := True;
                      
             else
                null;
@@ -528,7 +528,7 @@ package body KartenGenerator is
          when 8 =>
             Wert := Random (Gewählt);
             if Wert >= 0.33 then
-               Karten.Karten (0, YAchse, XAchse).Hügel := True;
+               Karten.Weltkarte (0, YAchse, XAchse).Hügel := True;
                      
             else
                null;
@@ -537,7 +537,7 @@ package body KartenGenerator is
          when others =>                  
             Wert := Random (Gewählt);
             if Wert >= 0.95 then
-               Karten.Karten (0, YAchse, XAchse).Hügel := True;
+               Karten.Weltkarte (0, YAchse, XAchse).Hügel := True;
                      
             else
                null;
@@ -552,16 +552,16 @@ package body KartenGenerator is
    begin
       
       YAchseSchleife:
-      for YAchse in Karten.KartenArray'First (2) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
+      for YAchse in Karten.WeltkarteArray'First (2) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
          XAchseSchleife:
-         for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop            
+         for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop            
 
             Wert := Random (Gewählt);
-            if Karten.Karten (0, YAchse, XAchse).Grund < 3 or Karten.Karten (0, YAchse, XAchse).Grund = 31 then
+            if Karten.Weltkarte (0, YAchse, XAchse).Grund < 3 or Karten.Weltkarte (0, YAchse, XAchse).Grund = 31 then
                null;
                            
             elsif Wert >= WahrscheinlichkeitFluss then
-               Karten.Karten (0, YAchse, XAchse).Fluss := 15;
+               Karten.Weltkarte (0, YAchse, XAchse).Fluss := 15;
                
             else
                YAchseSchleifeZwei:
@@ -570,16 +570,16 @@ package body KartenGenerator is
                   for B in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                   
                      KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YAchse, XAchse),
-                                                                       Änderung       => (0, A, B),
-                                                                       ZusatzYAbstand => 0); -- Hier muss < geprüft werden, deswegen 0
+                                                                             Änderung       => (0, A, B),
+                                                                             ZusatzYAbstand => 0); -- Hier muss < geprüft werden, deswegen 0
                      
                      case KartenWert.Erfolgreich is
                         when False =>
                            exit XAchseSchleifeZwei;
                            
                         when True =>
-                           if Karten.Karten (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= 0 and Wert >= WahrscheinlichkeitFluss / 2.50 then                        
-                              Karten.Karten (0, YAchse, XAchse).Fluss := 15;
+                           if Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= 0 and Wert >= WahrscheinlichkeitFluss / 2.50 then                        
+                              Karten.Weltkarte (0, YAchse, XAchse).Fluss := 15;
 
                            else
                               null;
@@ -590,7 +590,7 @@ package body KartenGenerator is
                end loop YAchseSchleifeZwei;
             end if;
 
-            case Karten.Karten (0, YAchse, XAchse).Fluss is
+            case Karten.Weltkarte (0, YAchse, XAchse).Fluss is
                when 0 =>
                   null;
                   
@@ -616,8 +616,8 @@ package body KartenGenerator is
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
             KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YKoordinate, XKoordinate),
-                                                              Änderung       => (0, YÄnderung, XÄnderung),
-                                                              ZusatzYAbstand => 0);
+                                                                    Änderung       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstand => 0);
 
             case KartenWert.Erfolgreich is
                when False =>
@@ -625,30 +625,30 @@ package body KartenGenerator is
 
                when True =>
                   if XÄnderung = -1 and YÄnderung = 0 then
-                     case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
+                     case Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
                         when 0 =>
                            Flusswert := Flusswert - 1_000;
 
                         when 16 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
                      
                         when 18 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
 
                         when 20 =>                     
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
 
                         when 24 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
 
                         when 26 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 15;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 15;
 
                         when 27 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 19;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 19;
 
                         when 28 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
                      
                         when others =>
                            null;
@@ -656,30 +656,30 @@ package body KartenGenerator is
                      Flusswert := Flusswert + 1_000;
                
                   elsif XÄnderung = 1 and YÄnderung = 0 then
-                     case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
+                     case Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
                         when 0 =>
                            Flusswert := Flusswert - 100;
 
                         when 16 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
                      
                         when 17 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
 
                         when 19 =>                     
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
 
                         when 23 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
 
                         when 25 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 15;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 15;
 
                         when 27 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 20;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 20;
 
                         when 28 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
                      
                         when others =>
                            null;
@@ -687,30 +687,30 @@ package body KartenGenerator is
                      Flusswert := Flusswert + 100;
                
                   elsif YÄnderung = -1 and XÄnderung = 0 then
-                     case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
+                     case Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
                         when 0 =>
                            Flusswert := Flusswert - 10;
                      
                         when 15 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
                      
                         when 19 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
 
                         when 20 =>                     
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
 
                         when 21 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
 
                         when 25 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
 
                         when 26 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
 
                         when 27 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
                      
                         when others =>
                            null;
@@ -718,30 +718,30 @@ package body KartenGenerator is
                      Flusswert := Flusswert + 10;
                
                   elsif YÄnderung = 1 and XÄnderung = 0 then
-                     case Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
+                     case Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss is
                         when 0 =>
                            Flusswert := Flusswert - 1;
                      
                         when 15 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
                      
                         when 17 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
 
                         when 18 =>                     
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
 
                         when 22 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
 
                         when 25 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 19;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 19;
 
                         when 26 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 20;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 20;
 
                         when 28 =>
-                           Karten.Karten (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
+                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
                      
                         when others =>
                            null;
@@ -758,46 +758,46 @@ package body KartenGenerator is
 
       case Flusswert is
          when 11_000 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 26;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 26;
 
          when 10_100 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 25;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 25;
 
          when 10_010 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 27;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 27;
 
          when 10_001 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 28;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 28;
 
          when 11_010 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 20;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 20;
 
          when 11_001 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 18;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 18;
 
          when 11_110 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 21;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 21;
 
          when 11_101 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 22;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 22;
 
          when 11_111 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 14;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 14;
 
          when 10_110 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 19;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 19;
 
          when 10_101 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 17;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 17;
 
          when 10_111 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 23;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 23;
 
          when 10_011 =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 16;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 16;
          
          when others =>
-            Karten.Karten (0, YKoordinate, XKoordinate).Fluss := 15;
+            Karten.Weltkarte (0, YKoordinate, XKoordinate).Fluss := 15;
       end case;
       
    end FlussBerechnung;
@@ -809,9 +809,9 @@ package body KartenGenerator is
 
       while NochVerteilbareRessourcen /= 0 loop      
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
+         for YAchse in Karten.WeltkarteArray'First (2) + Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - Eisrand loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
                case NochVerteilbareRessourcen is
                   when 0 =>
@@ -819,35 +819,35 @@ package body KartenGenerator is
                   
                   when others =>
                      Wert := Random (Gewählt);
-                     if Wert >= 0.98 and (Karten.Karten (0, YAchse, XAchse).Grund = 2 or Karten.Karten (0, YAchse, XAchse).Grund = 31) then
-                        if Karten.Karten (0, YAchse, XAchse).Grund = 2 and Wert > 0.99 then
-                           Karten.Karten (0, YAchse, XAchse).Ressource := 30;
+                     if Wert >= 0.98 and (Karten.Weltkarte (0, YAchse, XAchse).Grund = 2 or Karten.Weltkarte (0, YAchse, XAchse).Grund = 31) then
+                        if Karten.Weltkarte (0, YAchse, XAchse).Grund = 2 and Wert > 0.99 then
+                           Karten.Weltkarte (0, YAchse, XAchse).Ressource := 30;
                            NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;
                            
                         else
-                           Karten.Karten (0, YAchse, XAchse).Ressource := 29;
+                           Karten.Weltkarte (0, YAchse, XAchse).Ressource := 29;
                            NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;
                         end if;
                         
-                     elsif Wert <= 0.05 and Karten.Karten (0, YAchse, XAchse).Grund /= 2 and Karten.Karten (0, YAchse, XAchse).Grund /= 31 then
+                     elsif Wert <= 0.05 and Karten.Weltkarte (0, YAchse, XAchse).Grund /= 2 and Karten.Weltkarte (0, YAchse, XAchse).Grund /= 31 then
                         if Wert < 0.01 then
-                           Karten.Karten (0, YAchse, XAchse).Ressource := 11;
+                           Karten.Weltkarte (0, YAchse, XAchse).Ressource := 11;
                            NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                      
 
                         elsif Wert < 0.02 then
-                           Karten.Karten (0, YAchse, XAchse).Ressource := 12;
+                           Karten.Weltkarte (0, YAchse, XAchse).Ressource := 12;
                            NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                      
 
                         elsif Wert < 0.03 then
-                           Karten.Karten (0, YAchse, XAchse).Ressource := 13;
+                           Karten.Weltkarte (0, YAchse, XAchse).Ressource := 13;
                            NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                      
 
                         elsif Wert < 0.04 then
-                           Karten.Karten (0, YAchse, XAchse).Ressource := 33;
+                           Karten.Weltkarte (0, YAchse, XAchse).Ressource := 33;
                            NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                           
                            
                         else
-                           Karten.Karten (0, YAchse, XAchse).Ressource := 10;
+                           Karten.Weltkarte (0, YAchse, XAchse).Ressource := 10;
                            NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;
                         end if;
                         
@@ -877,11 +877,11 @@ package body KartenGenerator is
          Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 8) := Clock;
          
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
-               Karten.Karten (1, YAchse, XAchse).Grund := 37;
+               Karten.Weltkarte (1, YAchse, XAchse).Grund := 37;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -898,11 +898,11 @@ package body KartenGenerator is
          Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 9) := Clock;
 
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
 
-               Karten.Karten (2, YAchse, XAchse).Grund := 38;
+               Karten.Weltkarte (2, YAchse, XAchse).Grund := 38;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -919,41 +919,41 @@ package body KartenGenerator is
          Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 10) := Clock;
          
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
-               case Karten.Karten (0, YAchse, XAchse).Grund is
+               case Karten.Weltkarte (0, YAchse, XAchse).Grund is
                   when 1 =>
-                     Karten.Karten (-1, YAchse, XAchse).Grund := Karten.Karten (0, YAchse, XAchse).Grund;
+                     Karten.Weltkarte (-1, YAchse, XAchse).Grund := Karten.Weltkarte (0, YAchse, XAchse).Grund;
                      
                   when 2 =>
-                     Karten.Karten (-1, YAchse, XAchse).Grund := 41;
+                     Karten.Weltkarte (-1, YAchse, XAchse).Grund := 41;
                      
                   when 31 =>
-                     Karten.Karten (-1, YAchse, XAchse).Grund := 42;
+                     Karten.Weltkarte (-1, YAchse, XAchse).Grund := 42;
                      
                   when 7 =>
-                     Karten.Karten (-1, YAchse, XAchse).Grund := 40;
+                     Karten.Weltkarte (-1, YAchse, XAchse).Grund := 40;
                      
                   when others =>
-                     Karten.Karten (-1, YAchse, XAchse).Grund := 35;
+                     Karten.Weltkarte (-1, YAchse, XAchse).Grund := 35;
                end case;
 
-               case Karten.Karten (0, YAchse, XAchse).Ressource is
+               case Karten.Weltkarte (0, YAchse, XAchse).Ressource is
                   when 10 .. 13 | 29 .. 30 | 33 =>
-                     Karten.Karten (-1, YAchse, XAchse).Ressource := Karten.Karten (0, YAchse, XAchse).Ressource;
+                     Karten.Weltkarte (-1, YAchse, XAchse).Ressource := Karten.Weltkarte (0, YAchse, XAchse).Ressource;
                        
                   when others =>
                      null;
                end case;
 
-               case Karten.Karten (0, YAchse, XAchse).Fluss is
+               case Karten.Weltkarte (0, YAchse, XAchse).Fluss is
                   when 0 =>
                      null;
                      
                   when others =>
-                     Karten.Karten (-1, YAchse, XAchse).Fluss := Karten.Karten (0, YAchse, XAchse).Fluss;
+                     Karten.Weltkarte (-1, YAchse, XAchse).Fluss := Karten.Weltkarte (0, YAchse, XAchse).Fluss;
                end case;
                
             end loop XAchseSchleife;
@@ -971,11 +971,11 @@ package body KartenGenerator is
          Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 11) := Clock;
          
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
-               Karten.Karten (-2, YAchse, XAchse).Grund := 39;
+               Karten.Weltkarte (-2, YAchse, XAchse).Grund := 39;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -1005,9 +1005,9 @@ package body KartenGenerator is
       begin
 
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
+         for YAchse in Karten.WeltkarteArray'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
                WerteFestlegen.KartenfelderBewerten (Generierung => True,
                                                     Koordinaten => (1, YAchse, XAchse));
@@ -1023,9 +1023,9 @@ package body KartenGenerator is
       begin
          
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
+         for YAchse in Karten.WeltkarteArray'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
                WerteFestlegen.KartenfelderBewerten (Generierung => True,
                                                     Koordinaten => (2, YAchse, XAchse));
@@ -1041,9 +1041,9 @@ package body KartenGenerator is
       begin
          
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
+         for YAchse in Karten.WeltkarteArray'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
                WerteFestlegen.KartenfelderBewerten (Generierung => True,
                                                     Koordinaten => (-1, YAchse, XAchse));
@@ -1059,9 +1059,9 @@ package body KartenGenerator is
       begin
          
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
+         for YAchse in Karten.WeltkarteArray'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
                WerteFestlegen.KartenfelderBewerten (Generierung => True,
                                                     Koordinaten => (-2, YAchse, XAchse));
@@ -1076,9 +1076,9 @@ package body KartenGenerator is
    begin
       
       YAchseSchleife:
-      for YAchse in Karten.KartenArray'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
+      for YAchse in Karten.WeltkarteArray'First (2) + 1 .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 1 loop
          XAchseSchleife:
-         for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+         for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             WerteFestlegen.KartenfelderBewerten (Generierung => True,
                                                  Koordinaten => (0, YAchse, XAchse));
@@ -1094,17 +1094,17 @@ package body KartenGenerator is
    begin
             
       EAchseSchleife:
-      for EAchse in Karten.KartenArray'Range (1) loop
+      for EAchse in Karten.WeltkarteArray'Range (1) loop
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                         
-               if YAchse = Karten.Karten'First (2) or YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-                  Karten.Karten (EAchse, YAchse, XAchse).Grund := 1;
+               if YAchse = Karten.Weltkarte'First (2) or YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
+                  Karten.Weltkarte (EAchse, YAchse, XAchse).Grund := 1;
                
                else
-                  Karten.Karten (EAchse, YAchse, XAchse).Grund := ZufallsGeneratoren.Chaoskarte;
+                  Karten.Weltkarte (EAchse, YAchse, XAchse).Grund := ZufallsGeneratoren.Chaoskarte;
                end if;
             
             end loop XAchseSchleife;

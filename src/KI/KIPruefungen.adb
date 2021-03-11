@@ -155,14 +155,14 @@ package body KIPruefungen is
 
       -- 1 = Norden = (-1, 0), 2 = Nord_Ost = (-1, 1), 3 = Osten = (0, 1), 4 = Süd_Osten = (1, 1), 5 = Süden = (1, 0), 6 = Süd_West = (1, -1), 7 = Westen = (0, -1), 8 = Nord_West = (-1, -1)      
       KIBewegung.NeuesZielErmittelnGefahr (EinheitRasseNummer => EinheitRasseNummer,
-                                           Richtung           => KIDatentypen.Richtung_Enum'Val (Richtung));
+                                           RichtungExtern     => KIDatentypen.Richtung_Enum'Val (Richtung));
 
    end ZielBerechnenGefahr;
 
 
 
    -- 1 = Norden = (-1, 0), 2 = Nord_Ost = (-1, 1), 3 = Osten = (0, 1), 4 = Süd_Osten = (1, 1), 5 = Süden = (1, 0), 6 = Süd_West = (1, -1), 7 = Westen = (0, -1), 8 = Nord_West = (-1, -1)
-   function NähesteEigeneStadtSuchen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Richtung : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord is
+   function NähesteEigeneStadtSuchen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord is
    begin
 
       -- Kandidaten (1) ist die jetzt näheste gefundene Stadt, Kandidaten (2) ist Norden oder Süden und Kandidaten (3) ist Westen oder Osten.
@@ -175,13 +175,13 @@ package body KIPruefungen is
             exit StadtSchleife;
             
          else
-            case Richtung is
+            case RichtungExtern is
                when KIDatentypen.Norden | KIDatentypen.Nord_Ost | KIDatentypen.Nord_West =>
                   
                   StadtImNorden (EinheitRasseNummer => EinheitRasseNummer,
                                  StadtNummer        => StadtNummer);
 
-                  case Richtung is
+                  case RichtungExtern is
                      when KIDatentypen.Nord_Ost =>
                         StadtImOsten (EinheitRasseNummer => EinheitRasseNummer,
                                       StadtNummer        => StadtNummer);
@@ -223,7 +223,7 @@ package body KIPruefungen is
                   StadtImSüden (EinheitRasseNummer => EinheitRasseNummer,
                                  StadtNummer        => StadtNummer);
 
-                  case Richtung is
+                  case RichtungExtern is
                      when KIDatentypen.Süd_Ost =>
                         StadtImOsten (EinheitRasseNummer => EinheitRasseNummer,
                                       StadtNummer        => StadtNummer);
@@ -424,7 +424,7 @@ package body KIPruefungen is
 
 
    -- 1 = Norden = (-1, 0), 2 = Nord_Ost = (-1, 1), 3 = Osten = (0, 1), 4 = Süd_Osten = (1, 1), 5 = Süden = (1, 0), 6 = Süd_West = (1, -1), 7 = Westen = (0, -1), 8 = Nord_West = (-1, -1)
-   function NähesteEigeneEinheitSuchen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Richtung : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord is
+   function NähesteEigeneEinheitSuchen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord is
    begin
 
       EinheitenSchleife:

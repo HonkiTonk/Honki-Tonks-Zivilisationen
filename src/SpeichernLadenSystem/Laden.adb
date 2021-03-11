@@ -62,14 +62,14 @@ package body Laden is
                      Karten.Kartengröße);
 
       EAchseSchleife:
-      for EAchse in Karten.KartenArray'Range (1) loop
+      for EAchse in Karten.WeltkarteArray'Range (1) loop
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
                GlobaleRecords.KartenRecord'Read (Stream (File => DateiLadenNeu),
-                                                 Karten.Karten (EAchse, YAchse, XAchse));
+                                                 Karten.Weltkarte (EAchse, YAchse, XAchse));
                               
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -159,15 +159,15 @@ package body Laden is
 
             when others =>               
                DiplomatieSchleifeInnen:
-               for Rassen in GlobaleVariablen.DiplomatieArray'Range (2) loop
+               for RassenIntern in GlobaleVariablen.DiplomatieArray'Range (2) loop
 
-                  case GlobaleVariablen.RassenImSpiel (Rassen) is
+                  case GlobaleVariablen.RassenImSpiel (RassenIntern) is
                      when 0 =>
                         null;
                      
                      when others =>
                         GlobaleVariablen.StatusUntereinander'Read (Stream (File => DateiLadenNeu),
-                                                                   GlobaleVariablen.Diplomatie (Rasse, Rassen));
+                                                                   GlobaleVariablen.Diplomatie (Rasse, RassenIntern));
                   end case;
 
                end loop DiplomatieSchleifeInnen;

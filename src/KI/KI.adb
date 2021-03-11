@@ -18,13 +18,13 @@ package body KI is
                      
             if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung /= 0 and GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID > 0
               and GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00 then
-               AKtivitätEinheitAbbrechen (EinheitRasseNummer => (RasseExtern, EinheitNummer));
+               AKtivitätEinheitAbbrechen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
 
             elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung /= 0 or GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 0 then
                null;
                
             else
-               AKtivitätEinheit (EinheitRasseNummer => (RasseExtern, EinheitNummer));
+               AKtivitätEinheit (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
             end if;
             
          end loop EinheitenSchleife;
@@ -104,56 +104,56 @@ package body KI is
       
    
 
-   procedure AKtivitätEinheit (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is -- Von hier aus dann die einzelnen Tätigkeiten aufrufen
+   procedure AKtivitätEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is -- Von hier aus dann die einzelnen Tätigkeiten aufrufen
    begin
 
-      EinheitTyp := EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).EinheitTyp;
+      EinheitTyp := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).EinheitTyp;
       
       -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft, 9 = NahkampfUnterirdisch, 10 = FernkampfUnterirdisch,
       -- 11 = NahkampfOrbital, 12 = FernkampfOrbital
       case EinheitTyp is
          when 1 =>
-            KISiedler.KISiedler (EinheitRasseNummer => EinheitRasseNummer);
+            KISiedler.KISiedler (EinheitRasseNummer => EinheitRasseNummerExtern);
             
          when 2 => -- Bauarbeiter kommt vielleicht später
             null;
             
          when 3 =>
-            KINahkampfLandEinheit.KINahkampfLandEinheit (EinheitRasseNummer => EinheitRasseNummer);
+            KINahkampfLandEinheit.KINahkampfLandEinheit (EinheitRasseNummer => EinheitRasseNummerExtern);
             
          when 4 =>
-            KIFernkampfLandEinheit.KIFernkampfLandEinheit (EinheitRasseNummer => EinheitRasseNummer);
+            KIFernkampfLandEinheit.KIFernkampfLandEinheit (EinheitRasseNummer => EinheitRasseNummerExtern);
             
          when 5 =>
-            KINahkampfSeeEinheit.KINahkampfSeeEinheit (EinheitRasseNummer => EinheitRasseNummer);
+            KINahkampfSeeEinheit.KINahkampfSeeEinheit (EinheitRasseNummer => EinheitRasseNummerExtern);
             
          when 6 =>
-            KIFernkampfSeeEinheit.KIFernkampfSeeEinheit (EinheitRasseNummer => EinheitRasseNummer);
+            KIFernkampfSeeEinheit.KIFernkampfSeeEinheit (EinheitRasseNummer => EinheitRasseNummerExtern);
             
          when 7 =>
-            KINahkampfLuftEinheit.KINahkampfLuftEinheit (EinheitRasseNummer => EinheitRasseNummer);
+            KINahkampfLuftEinheit.KINahkampfLuftEinheit (EinheitRasseNummer => EinheitRasseNummerExtern);
             
          when 8 =>
-            KIFernkampfLuftEinheit.KIFernkampfLuftEinheit (EinheitRasseNummer => EinheitRasseNummer);
+            KIFernkampfLuftEinheit.KIFernkampfLuftEinheit (EinheitRasseNummer => EinheitRasseNummerExtern);
             
          when 9 =>
-            KINahkampfUnterirdisch.KINahkampfUnterirdisch (EinheitRasseNummer => EinheitRasseNummer);
+            KINahkampfUnterirdisch.KINahkampfUnterirdisch (EinheitRasseNummer => EinheitRasseNummerExtern);
 
          when 10 =>
-            KIFernkampfUnterirdisch.KIFernkampfUnterirdisch (EinheitRasseNummer => EinheitRasseNummer);
+            KIFernkampfUnterirdisch.KIFernkampfUnterirdisch (EinheitRasseNummer => EinheitRasseNummerExtern);
             
          when 11 =>
-            KINahkampfOrbital.KINahkampfOrbital (EinheitRasseNummer => EinheitRasseNummer);
+            KINahkampfOrbital.KINahkampfOrbital (EinheitRasseNummer => EinheitRasseNummerExtern);
 
          when 12 =>
-            KIFernkampfOrbital.KIFernkampfOrbital (EinheitRasseNummer => EinheitRasseNummer);
+            KIFernkampfOrbital.KIFernkampfOrbital (EinheitRasseNummer => EinheitRasseNummerExtern);
       end case;
       
    end AKtivitätEinheit;
 
 
 
-   procedure AKtivitätEinheitAbbrechen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is -- Aufrufen um den Abbruch der aktuellen Tätigkeit zu prüfen
+   procedure AKtivitätEinheitAbbrechen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is -- Aufrufen um den Abbruch der aktuellen Tätigkeit zu prüfen
    begin
       
       null;

@@ -17,11 +17,11 @@ package KIPruefungen is
              and (if EinheitEinsRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitEinsRasseNummer.Rasse) = 2)
              and (if EinheitZweiRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitZweiRasseNummer.Rasse) = 2));
 
-   function NähesteEigeneStadtSuchen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Richtung : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord with
+   function NähesteEigeneStadtSuchen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord with
      Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebautArray'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
 
-   function NähesteEigeneEinheitSuchen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Richtung : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord with
+   function NähesteEigeneEinheitSuchen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord with
      Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebautArray'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
    

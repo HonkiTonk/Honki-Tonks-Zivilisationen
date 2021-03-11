@@ -66,7 +66,7 @@ private
    function RasseWählen return Integer with
      Post => (RasseWählen'Result >= -2);
 
-   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) return Boolean with
+   function UmgebungPrüfen (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) return Boolean with
      Pre => ((if Karten.Kartengröße /= 10 then YPosition <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße)
              and (if Karten.Kartengröße /= 10 then XPosition <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße) and GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 

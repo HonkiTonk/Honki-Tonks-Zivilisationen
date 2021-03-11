@@ -32,21 +32,21 @@ package body BefehleImSpiel is
 
                EinheitOderStadt (RasseExtern         => RasseExtern,
                                  Auswahl             => StadtOderEinheit,
-                                 StadtNummer         => StadtNummer,
-                                 EinheitNummer       => EinheitNummer);
+                                 StadtNummerExtern   => StadtNummer,
+                                 EinheitNummerExtern => EinheitNummer);
                
                
             elsif StadtNummer /= 0 then
                EinheitOderStadt (RasseExtern         => RasseExtern,
                                  Auswahl             => GlobaleKonstanten.JaKonstante, -- Ja
-                                 StadtNummer         => StadtNummer,
-                                 EinheitNummer       => EinheitNummer);
+                                 StadtNummerExtern   => StadtNummer,
+                                 EinheitNummerExtern => EinheitNummer);
                
             elsif EinheitNummer /= 0 then
                EinheitOderStadt (RasseExtern         => RasseExtern,
                                  Auswahl             => GlobaleKonstanten.NeinKonstante, -- Hauptsache ungleich -3 für Nein
-                                 StadtNummer         => StadtNummer,
-                                 EinheitNummer       => EinheitNummer);
+                                 StadtNummerExtern   => StadtNummer,
+                                 EinheitNummerExtern => EinheitNummer);
                
             else
                null;
@@ -207,31 +207,31 @@ package body BefehleImSpiel is
 
 
 
-   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; Auswahl : in Integer; StadtNummer, EinheitNummer : in Natural) is
+   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; Auswahl : in Integer; StadtNummerExtern, EinheitNummerExtern : in Natural) is
    begin
       
       case Auswahl is
          when GlobaleKonstanten.JaKonstante =>
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse := 1;
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse := 1;
-            InDerStadt.InDerStadt (StadtRasseNummer => (RasseExtern, StadtNummer));
+            InDerStadt.InDerStadt (StadtRasseNummer => (RasseExtern, StadtNummerExtern));
             
          when others =>
-            if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung /= 0 then
+            if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).AktuelleBeschäftigung /= 0 then
                Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7);
                case Wahl is
                   when True =>
-                     GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBeschäftigung := 0;
+                     GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).AktuelleBeschäftigung := 0;
                            
                   when False =>
                      null;
                end case;
                   
-            elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00 then
+            elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).AktuelleBewegungspunkte = 0.00 then
                null;
                      
             else
-               BewegungssystemEinheiten.BewegungEinheitenRichtung (EinheitRasseNummer => (RasseExtern, EinheitNummer));
+               BewegungssystemEinheiten.BewegungEinheitenRichtung (EinheitRasseNummer => (RasseExtern, EinheitNummerExtern));
             end if;
       end case;
       

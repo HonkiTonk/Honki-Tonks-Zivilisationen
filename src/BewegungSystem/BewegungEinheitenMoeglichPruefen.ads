@@ -20,7 +20,9 @@ private
 
    PassierbarkeitNummer : GlobaleDatentypen.PassierbarkeitType;
    
-   Stadtnummer : Integer;
+   StadtNummer : Natural;
+   EinheitNummer : Natural;
+   Transportplatz : Natural;
    
    GegnerWert : GlobaleRecords.RassePlatznummerRecord;
    GegnerEinheitWert : GlobaleRecords.RassePlatznummerRecord;

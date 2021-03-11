@@ -90,12 +90,12 @@ package body ForschungsDatenbank is
       Ende := 1;
 
       ForschungSchleife:
-      for Forschung in GlobaleDatentypen.ForschungID loop
+      for Forschungen in GlobaleDatentypen.ForschungID loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Forschung_Kurz), Positive (Forschung) + RassenAufschlagForschung (RasseExtern))) = "|" then
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Forschung_Kurz), Positive (Forschungen) + RassenAufschlagForschung (RasseExtern))) = "|" then
             exit ForschungSchleife;
 
-         elsif GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (Forschung) = True then
+         elsif GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (Forschungen) = True then
             null;
 
          else
@@ -103,10 +103,10 @@ package body ForschungsDatenbank is
             AnforderungSchleife:
             for Anforderung in AnforderungForschungArray'Range loop
             
-               if ForschungListe (RasseExtern, Forschung).AnforderungForschung (Anforderung) = 0 then
+               if ForschungListe (RasseExtern, Forschungen).AnforderungForschung (Anforderung) = 0 then
                   null;
                   
-               elsif GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ForschungListe (RasseExtern, Forschung).AnforderungForschung (Anforderung)) = True then                  
+               elsif GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ForschungListe (RasseExtern, Forschungen).AnforderungForschung (Anforderung)) = True then                  
                   null;
                   
                else
@@ -119,8 +119,8 @@ package body ForschungsDatenbank is
             case AnforderungenErfüllt is
                when True =>
                   Anzeige.TextForschungNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Forschung_Kurz),
-                                                                                             Positive (Forschung) + RassenAufschlagForschung (RasseExtern));
-                  Anzeige.TextForschungNeu (Ende).Nummer := Forschung;
+                                                                                             Positive (Forschungen) + RassenAufschlagForschung (RasseExtern));
+                  Anzeige.TextForschungNeu (Ende).Nummer := Forschungen;
                   Ende := Ende + 1;
                   
                when False =>

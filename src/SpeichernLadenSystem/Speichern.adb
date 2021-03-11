@@ -9,10 +9,10 @@ with Karten, Eingabe, Auswahl, Ladezeiten, Informationen;
 
 package body Speichern is
 
-   procedure SpeichernNeu (Autospeichern : in Boolean) is
+   procedure SpeichernNeu (AutospeichernExtern : in Boolean) is
    begin      
 
-      case Autospeichern is
+      case AutospeichernExtern is
          when False =>
             SpielstandName := Eingabe.SpielstandName;
 
@@ -69,14 +69,14 @@ package body Speichern is
                       Karten.Kartengröße);
 
       EAchseSchleife:
-      for EAchse in Karten.KartenArray'Range (1) loop
+      for EAchse in Karten.WeltkarteArray'Range (1) loop
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
 
                GlobaleRecords.KartenRecord'Write (Stream (File => DateiSpeichernNeu),
-                                                  Karten.Karten (EAchse, YAchse, XAchse));
+                                                  Karten.Weltkarte (EAchse, YAchse, XAchse));
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -166,15 +166,15 @@ package body Speichern is
 
             when others =>               
                DiplomatieSchleifeInnen:
-               for Rassen in GlobaleVariablen.DiplomatieArray'Range (2) loop
+               for RassenIntern in GlobaleVariablen.DiplomatieArray'Range (2) loop
 
-                  case GlobaleVariablen.RassenImSpiel (Rassen) is
+                  case GlobaleVariablen.RassenImSpiel (RassenIntern) is
                      when 0 =>
                         null;
                      
                      when others =>
                         GlobaleVariablen.StatusUntereinander'Write (Stream (File => DateiSpeichernNeu),
-                                                                    GlobaleVariablen.Diplomatie (Rasse, Rassen));
+                                                                    GlobaleVariablen.Diplomatie (Rasse, RassenIntern));
                   end case;
 
                end loop DiplomatieSchleifeInnen;
@@ -215,7 +215,7 @@ package body Speichern is
       
       case GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.RundenBisAutosave is
          when 0 =>
-            SpeichernNeu (Autospeichern => True);
+            SpeichernNeu (AutospeichernExtern => True);
          
          when others =>
             null;

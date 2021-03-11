@@ -15,8 +15,8 @@ package body Cheat is
       MenüSchleife:
       loop
 
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Cheat,
-                                        TextDatei        => GlobaleDatentypen.Cheat,
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Cheat_Menü,
+                                        TextDatei        => GlobaleDatentypen.Cheat_Menü,
                                         ÜberschriftZeile => 1,
                                         ErsteZeile       => 2,
                                         LetzteZeile      => 11,
@@ -160,13 +160,13 @@ package body Cheat is
    begin
       
       EbeneSchleife:
-      for EAchse in Karten.KartenArray'Range (1) loop
+      for EAchse in Karten.WeltkarteArray'Range (1) loop
          YAchseSchleife:
-         for YAchse in Karten.KartenArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.KartenArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-               Karten.Karten (EAchse, YAchse, XAchse).Sichtbar (RasseExtern) := True;
+               Karten.Weltkarte (EAchse, YAchse, XAchse).Sichtbar (RasseExtern) := True;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -179,26 +179,26 @@ package body Cheat is
    procedure GrundFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      KartenGrundID := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat,
+      KartenGrundID := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
                                           Zeile         => 12,
                                           ZahlenMinimum => 1,
                                           ZahlenMaximum => 40);
 
       case KartenGrundID is
          when 1 .. 9 | 31 .. 32 | 35 .. 40 =>
-            Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund := GlobaleDatentypen.KartenGrund (KartenGrundID);
+            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund := GlobaleDatentypen.KartenGrund (KartenGrundID);
 
          when 10 .. 13 | 29 .. 30 | 33 =>
-            Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource := GlobaleDatentypen.KartenGrund (KartenGrundID);
+            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource := GlobaleDatentypen.KartenGrund (KartenGrundID);
 
          when 14 .. 28 =>
-            Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss := GlobaleDatentypen.KartenGrund (KartenGrundID);
+            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss := GlobaleDatentypen.KartenGrund (KartenGrundID);
             
          when others =>
             null;
@@ -211,7 +211,7 @@ package body Cheat is
    procedure EinheitFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
-      RasseNummer := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat,
+      RasseNummer := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
                                         Zeile         => 13,
                                         ZahlenMinimum => Integer (GlobaleDatentypen.Rassen'First),
                                         ZahlenMaximum => Integer (GlobaleDatentypen.Rassen'Last));
@@ -224,7 +224,7 @@ package body Cheat is
             null;
       end case;
 
-      EinheitID := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat,
+      EinheitID := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
                                       Zeile         => 14,
                                       ZahlenMinimum => Integer (EinheitenDatenbank.EinheitenListe'First (2)),
                                       ZahlenMaximum => Integer (EinheitenDatenbank.EinheitenListe'Last (2)));
@@ -323,21 +323,21 @@ package body Cheat is
    procedure VerbesserungFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      VerbesserungID := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat,
+      VerbesserungID := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
                                            Zeile         => 15,
                                            ZahlenMinimum => 5,
                                            ZahlenMaximum => Integer (VerbesserungenDatenbank.VerbesserungListe'Last));
 
       case VerbesserungID is
          when 5 .. 19 =>
-            Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße := GlobaleDatentypen.KartenVerbesserung (VerbesserungID);
+            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße := GlobaleDatentypen.KartenVerbesserung (VerbesserungID);
 
          when 20 .. 22 =>
-            Karten.Karten (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet := GlobaleDatentypen.KartenVerbesserung (VerbesserungID);
+            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet := GlobaleDatentypen.KartenVerbesserung (VerbesserungID);
             
          when others =>
             null;
@@ -358,7 +358,7 @@ package body Cheat is
                null;
                
             when others =>
-               GlobaleVariablen.RassenImSpiel (Rasse) := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat,
+               GlobaleVariablen.RassenImSpiel (Rasse) := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
                                                                                                       Zeile         => 16,
                                                                                                       ZahlenMinimum => 1,
                                                                                                       ZahlenMaximum => 2));

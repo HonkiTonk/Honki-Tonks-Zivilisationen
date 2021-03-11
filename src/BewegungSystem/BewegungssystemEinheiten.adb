@@ -154,7 +154,7 @@ package body BewegungssystemEinheiten is
             BewegungspunkteModifikator := 0.00;
       end case;
 
-      case Karten.Karten (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).Grund is
+      case Karten.Weltkarte (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).Grund is
          when  1 | 7 | 9 | 32 =>
             if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte < 1.00 then
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte := 0.00;
@@ -179,7 +179,7 @@ package body BewegungssystemEinheiten is
 
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition := NeuePosition;
       GlobaleVariablen.CursorImSpiel (EinheitRasseNummer.Rasse).AchsenPosition := NeuePosition;
-                       
+      
    end BewegungEinheitenBerechnung;
 
 
@@ -187,34 +187,34 @@ package body BewegungssystemEinheiten is
    function StraßeUndFlussPrüfen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Integer is
    begin
 
-      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit (1) is
-         when True =>
-            BonusBeiBewegung := 0; -- Hier bekommen auch Flugeinheiten einen Bonus für die Straße, später noch korrigieren
+      if EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit (1) = True and
+        EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit (3) = False then
+         BonusBeiBewegung := 0;
 
-            case Karten.Karten (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).VerbesserungStraße is
-               when 5 .. 19 =>
-                  BonusBeiBewegung := BonusBeiBewegung + 1;
+         case Karten.Weltkarte (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).VerbesserungStraße is
+            when 5 .. 19 =>
+               BonusBeiBewegung := BonusBeiBewegung + 1;
 
-               when 20 .. VerbesserungenDatenbank.VerbesserungListe'Last =>
-                  BonusBeiBewegung := BonusBeiBewegung + 10;
+            when 20 .. VerbesserungenDatenbank.VerbesserungListe'Last =>
+               BonusBeiBewegung := BonusBeiBewegung + 10;
                   
-               when others =>
-                  null;
-            end case;               
+            when others =>
+               null;
+         end case;               
 
-            case Karten.Karten (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).Fluss is
-               when 0 =>
-                  null;
+         case Karten.Weltkarte (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).Fluss is
+            when 0 =>
+               null;
 
-               when others =>
-                  BonusBeiBewegung := BonusBeiBewegung + 1;
-            end case;
+            when others =>
+               BonusBeiBewegung := BonusBeiBewegung + 1;
+         end case;
             
-            return BonusBeiBewegung;
+         return BonusBeiBewegung;
 
-         when False =>
-            return 0;
-      end case;
+      else
+         return 0;
+      end if;
       
    end StraßeUndFlussPrüfen;
 

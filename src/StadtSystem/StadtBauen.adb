@@ -79,7 +79,7 @@ package body StadtBauen is
                               exit XAchsenSchleife;
                         
                            when True =>
-                              case Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund is
+                              case Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund is
                                  when 2 | 29 .. 31 =>
                                     GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, StadtNummer).AmWasser := True;
                                     exit YAchsenSchleife;
@@ -129,9 +129,9 @@ package body StadtBauen is
    function StadtBauenPrüfen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
       
-      if Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).DurchStadtBelegterGrund = 0 then
+      if Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).DurchStadtBelegterGrund = 0 then
          return True;
          
       else
@@ -159,7 +159,7 @@ package body StadtBauen is
                   exit XAchseSchleife;
                   
                when True =>
-                  case Karten.Karten (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund is
+                  case Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund is
                      when 0 =>
                         null;
                         

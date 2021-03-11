@@ -9,12 +9,15 @@ project Stream is
    end Naming;
 
    package Compiler is
-      for Switches ("ada") use ("-gnatVacdefimoprst", "-gnatw.a.b.c.f.h.i.j.k.l.m.o.p.q.r.s.t.v.x.zacfgijkmopqrtuvwxyz", "-gnatyACOSefhklnprsx", "-g", "-gnatW8", "-gnatf", "-gnat12", "-fstack-check", "-gnato", "-gnata");
+      for Switches ("ada") use ("-gnatVacdefimoprst", "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.w.x.zacdfghijklmopqrtuvwxyz", "-gnatyACOSadefhklnprsx", "-g", "-gnatW8", "-gnat12", "-fstack-check", "-gnato", "-gnata", "-gnatf");
    end Compiler;
 
    package Builder is
-      for Switches ("ada") use ("-k", "-j4", "-s");
+      for Switches ("ada") use ("-k", "-s", "-j4");
    end Builder;
+
+   package Binder is
+   end Binder;
 
 end Stream;
 

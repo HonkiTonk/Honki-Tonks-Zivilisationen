@@ -43,23 +43,23 @@ package body Sichtbarkeit is
    procedure SichtbarkeitsprüfungFürEinheit (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
+      case Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
          when 7 =>
-            Sichtweite := 3;
+            SichtweiteObjekt := 3;
 
          when 9 =>
-            Sichtweite := 1;
+            SichtweiteObjekt := 1;
                
          when others =>
-            Sichtweite := 2;
+            SichtweiteObjekt := 2;
       end case;
 
       YÄnderungEinheitenSchleife:
-      for YÄnderung in -Sichtweite .. Sichtweite loop            
+      for YÄnderung in -SichtweiteObjekt .. SichtweiteObjekt loop            
          XÄnderungEinheitenSchleife:
-         for XÄnderung in -Sichtweite .. Sichtweite loop
+         for XÄnderung in -SichtweiteObjekt .. SichtweiteObjekt loop
                
             Kartenwert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
                                                                     Änderung       => (0, YÄnderung, XÄnderung),
@@ -70,7 +70,7 @@ package body Sichtbarkeit is
                   exit XÄnderungEinheitenSchleife;
                      
                when True =>
-                  Karten.Karten (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (EinheitRasseNummer.Rasse) := True;
+                  Karten.Weltkarte (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (EinheitRasseNummer.Rasse) := True;
             end case;
             
          end loop XÄnderungEinheitenSchleife;
@@ -84,16 +84,16 @@ package body Sichtbarkeit is
    begin
       
       if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner < 10 then
-         Sichtweite := 2;
+         SichtweiteObjekt := 2;
             
       else
-         Sichtweite := 3;
+         SichtweiteObjekt := 3;
       end if;
 
       YÄnderungStadtSchleife:         
-      for YÄnderung in -Sichtweite .. Sichtweite loop            
+      for YÄnderung in -SichtweiteObjekt .. SichtweiteObjekt loop            
          XÄnderungStadtSchleife:
-         for XÄnderung in -Sichtweite .. Sichtweite loop
+         for XÄnderung in -SichtweiteObjekt .. SichtweiteObjekt loop
 
             Kartenwert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
                                                                     Änderung       => (0, YÄnderung, XÄnderung),
@@ -104,7 +104,7 @@ package body Sichtbarkeit is
                   exit XÄnderungStadtSchleife;
                      
                when True =>
-                  Karten.Karten (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (StadtRasseNummer.Rasse) := True;
+                  Karten.Weltkarte (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse).Sichtbar (StadtRasseNummer.Rasse) := True;
             end case;
             
          end loop XÄnderungStadtSchleife;
@@ -123,12 +123,12 @@ package body Sichtbarkeit is
       -- Über die Städte kommen die Einheiten
       -- Über den Einheiten kommt der Cursor      
        
-      if Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Sichtbar (RasseExtern) = True then
+      if Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Sichtbar (RasseExtern) = True then
          if Koordinaten = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition and InDerStadt = False then
             Farben (Einheit            => 0,
                     Verbesserung       => 0,
                     Ressource          => 0,
-                    Grund              => Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
+                    Grund              => Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
                     Cursor             => True,
                     RasseExtern        => RasseExtern,
                     RasseIntern        => 0);
@@ -150,7 +150,7 @@ package body Sichtbarkeit is
                   Farben (Einheit            => GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID,
                           Verbesserung       => 0,
                           Ressource          => 0,
-                          Grund              => Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
+                          Grund              => Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
                           Cursor             => False,
                           RasseExtern        => RasseExtern,
                           RasseIntern        => RasseIntern);
@@ -175,7 +175,7 @@ package body Sichtbarkeit is
                   Farben (Einheit            => 0,
                           Verbesserung       => GlobaleDatentypen.KartenVerbesserung (GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummer).ID),
                           Ressource          => 0,
-                          Grund              => Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
+                          Grund              => Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
                           Cursor             => False,
                           RasseExtern        => RasseExtern,
                           RasseIntern        => RasseIntern);
@@ -188,38 +188,38 @@ package body Sichtbarkeit is
             end loop StädtePrüfenSchleife;
          end loop RassenStädtePrüfenSchleife;
 
-         if Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungGebiet /= 0 then            
+         if Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungGebiet /= 0 then            
             Farben (Einheit            => 0,
-                    Verbesserung       => Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungGebiet,
+                    Verbesserung       => Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungGebiet,
                     Ressource          => 0,
-                    Grund              => Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
+                    Grund              => Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
                     Cursor             => False,
                     RasseExtern        => RasseExtern,
                     RasseIntern        => 0);
            
-         elsif Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße /= 0 then
+         elsif Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße /= 0 then
             Farben (Einheit            => 0,
-                    Verbesserung       => Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße,
+                    Verbesserung       => Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße,
                     Ressource          => 0,
-                    Grund              => Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
+                    Grund              => Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
                     Cursor             => False,
                     RasseExtern        => RasseExtern,
                     RasseIntern        => 0);
             
-         elsif Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Ressource /= 0 then
+         elsif Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Ressource /= 0 then
             Farben (Einheit            => 0,
                     Verbesserung       => 0,
-                    Ressource          => Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Ressource,
-                    Grund              => Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
+                    Ressource          => Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Ressource,
+                    Grund              => Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
                     Cursor             => False,
                     RasseExtern        => RasseExtern,
                     RasseIntern        => 0);
             
-         elsif Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Fluss /= 0 then
+         elsif Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Fluss /= 0 then
             Farben (Einheit            => 0,
                     Verbesserung       => 0,
-                    Ressource          => Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Fluss,
-                    Grund              => Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
+                    Ressource          => Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Fluss,
+                    Grund              => Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
                     Cursor             => False,
                     RasseExtern        => RasseExtern,
                     RasseIntern        => 0);
@@ -228,7 +228,7 @@ package body Sichtbarkeit is
             Farben (Einheit            => 0,
                     Verbesserung       => 0,
                     Ressource          => 0,
-                    Grund              => Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
+                    Grund              => Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund,
                     Cursor             => False,
                     RasseExtern        => RasseExtern,
                     RasseIntern        => 0);

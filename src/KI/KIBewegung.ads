@@ -11,10 +11,10 @@ package KIBewegung is
      Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
 
-   procedure NeuesZielErmittelnGefahr (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Richtung : in KIDatentypen.Richtung_Enum) with
+   procedure NeuesZielErmittelnGefahr (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) with
      Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (Richtung = KIDatentypen.Norden or Richtung = Nord_Ost or Richtung = Osten or Richtung = Süd_Ost or Richtung = Süden or Richtung = Süd_West or Richtung = Westen or Richtung = Nord_West or Richtung = Beliebig)
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
+             and (RichtungExtern = KIDatentypen.Norden or RichtungExtern = Nord_Ost or RichtungExtern = Osten or RichtungExtern = Süd_Ost or RichtungExtern = Süden or RichtungExtern = Süd_West or RichtungExtern = Westen
+               or RichtungExtern = Nord_West or RichtungExtern = Beliebig) and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
 
 private
 

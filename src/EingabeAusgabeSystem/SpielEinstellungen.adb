@@ -365,9 +365,9 @@ package body SpielEinstellungen is
                   Koordinaten := ((0, 0, 0), (0, 0, 0));
                   GezogeneWerte := ZufallsGeneratoren.YXPosition;
 
-                  PrüfungEinheit := UmgebungPrüfen (YPosition   => GezogeneWerte.YAchse,
-                                                      XPosition   => GezogeneWerte.XAchse,
-                                                      RasseExtern => RasseIntern);
+                  PrüfungEinheit := UmgebungPrüfen (YPositionExtern   => GezogeneWerte.YAchse,
+                                                      XPositionExtern   => GezogeneWerte.XAchse,
+                                                      RasseExtern       => RasseIntern);
 
                   case PrüfungEinheit is
                      when True =>
@@ -402,28 +402,28 @@ package body SpielEinstellungen is
 
 
 
-   function UmgebungPrüfen (YPosition, XPosition : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) return Boolean is
+   function UmgebungPrüfen (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) return Boolean is
    begin
       
-      PrüfungGrund := KartenPruefungen.KartenGrund (Koordinaten => (0, YPosition, XPosition));
+      PrüfungGrund := KartenPruefungen.KartenGrund (Koordinaten => (0, YPositionExtern, XPositionExtern));
 
       case PrüfungGrund is
          when False =>
             return False;
             
          when True =>
-            PositionWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (0, YPosition, XPosition));
+            PositionWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => (0, YPositionExtern, XPositionExtern));
       end case;
 
       case PositionWert.Platznummer is
          when 0 =>
-            Koordinaten (1) := (0, YPosition, XPosition);
+            Koordinaten (1) := (0, YPositionExtern, XPositionExtern);
             YAchseSchleife:
             for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                XAchseSchleife:
                for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-                  KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YPosition, XPosition),
+                  KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => (0, YPositionExtern, XPositionExtern),
                                                                           Änderung       => (0, YÄnderung, XÄnderung),
                                                                           ZusatzYAbstand => 0);
                   case KartenWert.Erfolgreich is

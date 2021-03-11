@@ -36,11 +36,11 @@ package body KIBewegung is
 
 
 
-   procedure NeuesZielErmittelnGefahr (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Richtung : in KIDatentypen.Richtung_Enum) is
+   procedure NeuesZielErmittelnGefahr (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) is
    begin
       
       ZielKoordinaten := KIPruefungen.NähesteEigeneStadtSuchen (EinheitRasseNummer => EinheitRasseNummer,
-                                                                 Richtung           => Richtung);
+                                                                 RichtungExtern     => RichtungExtern);
 
       case ZielKoordinaten.Erfolgreich is
          when True =>
@@ -48,7 +48,7 @@ package body KIBewegung is
             
          when False =>
             ZielKoordinaten := KIPruefungen.NähesteEigeneEinheitSuchen (EinheitRasseNummer => EinheitRasseNummer,
-                                                                         Richtung           => Richtung);
+                                                                         RichtungExtern     => RichtungExtern);
       end case;            
 
    end NeuesZielErmittelnGefahr;
@@ -118,8 +118,8 @@ package body KIBewegung is
       
       case Durchgang is
          when 1 =>
-            if Karten.Karten (EAchse, YAchse, XAchse).Felderwertung > Karten.Karten (0, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                                                                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Felderwertung then
+            if Karten.Weltkarte (EAchse, YAchse, XAchse).Felderwertung > Karten.Weltkarte (0, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                                                                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Felderwertung then
                AltePosition := IstDasEineAltePosition (EinheitRasseNummer => EinheitRasseNummer,
                                                        EAchse              => EAchse,
                                                        YAchse              => YAchse,

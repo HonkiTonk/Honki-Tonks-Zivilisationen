@@ -30,7 +30,7 @@ private
 
    NichtSichtbar : constant Wide_Wide_Character := ' ';
 
-   Sichtweite : GlobaleDatentypen.Sichtweite := 2;
+   SichtweiteObjekt : GlobaleDatentypen.Sichtweite := 2;
    Wert : Integer;
 
    Kartenwert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;

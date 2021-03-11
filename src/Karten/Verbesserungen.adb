@@ -32,29 +32,29 @@ package body Verbesserungen is
    procedure VerbesserungeFestgelegt (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Befehl : in Befehle_Enum) is
    begin
 
-      if Befehl = Straße_Bauen and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungStraße >= 5
-        and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungStraße <= 19 then
+      if Befehl = Straße_Bauen and Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungStraße >= 5
+        and Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungStraße <= 19 then
          VerbesserungFehler (WelcherFehler => 4);
          return;
 
       elsif Befehl = Mine_Bauen
-        and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 21 then
+        and Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 21 then
          VerbesserungFehler (WelcherFehler => 4);
          return;
 
       elsif Befehl = Mine_Bauen
-        and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 20
-             or Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+        and (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 22) then
+                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 20
+             or Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 22) then
          Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 8);
          case Wahl is
             when True =>
@@ -64,24 +64,24 @@ package body Verbesserungen is
                return;
          end case;
       
-      elsif Befehl = Farm_Bauen and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 20 then
+      elsif Befehl = Farm_Bauen and Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 20 then
          VerbesserungFehler (WelcherFehler => 4);
          return;
 
-      elsif Befehl = Farm_Bauen and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund = 1 then
+      elsif Befehl = Farm_Bauen and Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund = 1 then
          VerbesserungFehler (WelcherFehler => 1);
          return;
 
-      elsif Befehl = Farm_Bauen and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 21
-                                     or Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+      elsif Befehl = Farm_Bauen and (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
                                                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                                       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 22) then
+                                                       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 21
+                                     or Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 22) then
          Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 8);
          case Wahl is
             when True =>
@@ -91,18 +91,18 @@ package body Verbesserungen is
                return;
          end case;
       
-      elsif Befehl = Festung_Bauen and Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 22 then
+      elsif Befehl = Festung_Bauen and Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                                         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                                         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 22 then
          VerbesserungFehler (WelcherFehler => 4);
          return;
 
-      elsif Befehl = Festung_Bauen and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                                       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                                       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 20
-                                        or Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+      elsif Befehl = Festung_Bauen and (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
                                                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 21) then
+                                                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 20
+                                        or Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 21) then
          Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 8);
          case Wahl is
             when True =>
@@ -112,12 +112,12 @@ package body Verbesserungen is
                return;
          end case;
 
-      elsif Befehl = Wald_Aufforsten and (Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                                         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                                         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 20
-                                          or Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+      elsif Befehl = Wald_Aufforsten and (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
                                                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 21) then
+                                                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 20
+                                          or Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 21) then
          Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 8);
          case Wahl is
             when True =>
@@ -142,9 +142,9 @@ package body Verbesserungen is
       
       case Befehl is
          when Straße_Bauen => -- Landstraße
-            case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
+            case Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 1 | 3 .. 6 | 8 | 10 .. 28 =>
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
@@ -158,9 +158,9 @@ package body Verbesserungen is
             end case;
                               
          when Mine_Bauen => -- Tiefengrabung
-            case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
+            case Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 1 | 3 .. 6 | 10 .. 28 =>
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
@@ -180,9 +180,9 @@ package body Verbesserungen is
             end case;
             
          when Farm_Bauen => -- Farm bauen
-            case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
+            case Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 3 .. 6 | 10 .. 28 =>
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
@@ -202,9 +202,9 @@ package body Verbesserungen is
             end case;
             
          when Festung_Bauen => -- Festung bauen
-            case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
+            case Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 1 | 3 .. 6 | 8 .. 28 | 32 =>
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
@@ -218,9 +218,9 @@ package body Verbesserungen is
             end case;
             
          when Wald_Aufforsten => -- Wald aufforsten
-            case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
+            case Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 3 | 6 | 10 .. 28 =>
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
@@ -236,9 +236,9 @@ package body Verbesserungen is
             end case;
 
          when Roden_Trockenlegen => -- Roden-Trockenlegen
-            case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
+            case Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 8 | 9 | 32 =>
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigungszeit := 3;
@@ -253,9 +253,9 @@ package body Verbesserungen is
                VerbesserungFehler (WelcherFehler => 5);
                
             else
-               case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
+               case Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                   when 1 .. 32 =>
                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                
@@ -265,9 +265,9 @@ package body Verbesserungen is
             end if;
 
          when Verschanzen => -- Verschanzen
-            case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
+            case Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund is
                when 1 .. 32 =>
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (Befehl);
                
@@ -289,12 +289,12 @@ package body Verbesserungen is
             Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl => 12);
             case Wahl is
                when True =>
-                  Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 0;
-                  Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungStraße := 0;
+                  Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 0;
+                  Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungStraße := 0;
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte := 0.0;
                      
                when False =>
@@ -383,49 +383,49 @@ package body Verbesserungen is
             StraßeBerechnung (Koordinaten => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition);
               
          when 2 =>
-            Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 21;
+            Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 21;
             
          when 3 =>
-            Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 20;
+            Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 20;
             
          when 4 =>
-            Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 22;
+            Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 22;
               
          when 5 =>
-            Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund := 8;
-            case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet is
+            Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund := 8;
+            case Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet is
                when 20 .. 21 =>
-                  Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 0;
+                  Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 0;
                   
                when others =>
                   null;
             end case;
               
          when 6 =>
-            case Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Hügel is
+            case Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Hügel is
                when True =>
-                  Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund := 6;
+                  Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund := 6;
                   
                when False =>
-                  Karten.Karten (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund := 3;
+                  Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Grund := 3;
             end case;
             
          when others =>
@@ -459,30 +459,30 @@ package body Verbesserungen is
 
                when True =>
                   if XÄnderung = -1 and YÄnderung = 0 then
-                     case Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
+                     case Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
                         when 0 =>
                            Straßenwert := Straßenwert - 1_000;
 
                         when 7 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
                      
                         when 9 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
 
                         when 11 =>                     
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
 
                         when 15 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
 
                         when 17 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
 
                         when 18 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
 
                         when 19 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
                      
                         when others =>
                            null;
@@ -490,30 +490,30 @@ package body Verbesserungen is
                      Straßenwert := Straßenwert + 1_000;
                
                   elsif XÄnderung = 1 and YÄnderung = 0 then
-                     case Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
+                     case Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
                         when 0 =>
                            Straßenwert := Straßenwert - 100;
 
                         when 7 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
                      
                         when 8 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
 
                         when 10 =>                     
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
 
                         when 14 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
 
                         when 16 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
 
                         when 18 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
 
                         when 19 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
                      
                         when others =>
                            null;
@@ -521,30 +521,30 @@ package body Verbesserungen is
                      Straßenwert := Straßenwert + 100;
                
                   elsif YÄnderung = -1 and XÄnderung = 0 then
-                     case Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
+                     case Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
                         when 0 =>
                            Straßenwert := Straßenwert - 10;
                      
                         when 6 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
                      
                         when 10 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
 
                         when 11 =>                     
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
 
                         when 12 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
 
                         when 16 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
 
                         when 17 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
 
                         when 18 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
                      
                         when others =>
                            null;
@@ -552,30 +552,30 @@ package body Verbesserungen is
                      Straßenwert := Straßenwert + 10;
                
                   elsif YÄnderung = 1 and XÄnderung = 0 then
-                     case Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
+                     case Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
                         when 0 =>
                            Straßenwert := Straßenwert - 1;
                      
                         when 6 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
                      
                         when 8 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
 
                         when 9 =>                     
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
 
                         when 13 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
 
                         when 16 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
 
                         when 17 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
 
                         when 19 =>
-                           Karten.Karten (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
+                           Karten.Weltkarte (Koordinaten.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
                      
                         when others =>
                            null;
@@ -592,46 +592,46 @@ package body Verbesserungen is
 
       case Straßenwert is
          when 11_000 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 17;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 17;
 
          when 10_100 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 16;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 16;
 
          when 10_010 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 18;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 18;
 
          when 10_001 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 19;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 19;
 
          when 11_010 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 11;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 11;
 
          when 11_001 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 9;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 9;
 
          when 11_110 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 12;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 12;
 
          when 11_101 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 13;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 13;
 
          when 11_111 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 5;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 5;
 
          when 10_110 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 10;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 10;
 
          when 10_101 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 8;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 8;
 
          when 10_111 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 14;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 14;
 
          when 10_011 =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 7;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 7;
          
          when others =>
-            Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 6;
+            Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).VerbesserungStraße := 6;
       end case;
       
    end StraßeBerechnung;

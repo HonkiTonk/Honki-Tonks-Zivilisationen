@@ -6,16 +6,16 @@ package body KartenPruefungen is
                                      ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord is
    begin -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
       
-      if Koordinaten.EAchse + Änderung.EAchse < Karten.KartenArray'First (1) or Koordinaten.EAchse + Änderung.EAchse > Karten.KartenArray'Last (1) then
+      if Koordinaten.EAchse + Änderung.EAchse < Karten.WeltkarteArray'First (1) or Koordinaten.EAchse + Änderung.EAchse > Karten.WeltkarteArray'Last (1) then
          return (GlobaleDatentypen.EbeneVorhanden'First, GlobaleDatentypen.KartenfeldPositiv'First, GlobaleDatentypen.KartenfeldPositiv'First, False);
 
-      elsif Koordinaten.YAchse + Änderung.YAchse < Karten.KartenArray'First (2) + ZusatzYAbstand or Koordinaten.YAchse + Änderung.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
+      elsif Koordinaten.YAchse + Änderung.YAchse < Karten.WeltkarteArray'First (2) + ZusatzYAbstand or Koordinaten.YAchse + Änderung.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
          return (GlobaleDatentypen.EbeneVorhanden'First, GlobaleDatentypen.KartenfeldPositiv'First, GlobaleDatentypen.KartenfeldPositiv'First, False);
 
-      elsif Koordinaten.XAchse + Änderung.XAchse < Karten.KartenArray'First (3) then
+      elsif Koordinaten.XAchse + Änderung.XAchse < Karten.WeltkarteArray'First (3) then
          Überhang := Integer (Koordinaten.XAchse + Änderung.XAchse + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
          SchleifeKleiner:
-         while Überhang < Integer (Karten.KartenArray'First (3)) loop
+         while Überhang < Integer (Karten.WeltkarteArray'First (3)) loop
             
             Überhang := Überhang + Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
@@ -44,7 +44,7 @@ package body KartenPruefungen is
    function KartenGrund (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Boolean is
    begin
       
-      case Karten.Karten (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund is
+      case Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund is
          when 1 .. 2 | 29 .. 31 | 36 =>
             return False;
             

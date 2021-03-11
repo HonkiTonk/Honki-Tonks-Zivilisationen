@@ -1,13 +1,14 @@
 pragma SPARK_Mode (On);
 
-with EinheitenDatenbank, EinheitSuchen, StadtSuchen, KartenDatenbank;
+with EinheitenDatenbank, EinheitSuchen, StadtSuchen, KartenDatenbank, GlobaleKonstanten;
 
 package body BewegungEinheitenMoeglichPruefen is
 
    function FeldFürDieseEinheitPassierbar (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Boolean is
    begin
 
-      PassierbarkeitNummer := KartenDatenbank.KartenListe (Karten.Karten (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).Grund).Passierbarkeit;
+      PassierbarkeitNummer := KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).Grund).Passierbarkeit;
+
       
       if EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit (PassierbarkeitNummer) = True then
          return True;
@@ -15,27 +16,70 @@ package body BewegungEinheitenMoeglichPruefen is
       else
          null;
       end if;
-               
-      -- if EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit
-        -- /= KartenDatenbank.KartenListe (Karten.Karten (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).Grund).Passierbarkeit then
-         case EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit (2) is
-            when True =>
-               Stadtnummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern  => EinheitRasseNummer.Rasse,
-                                                                          Koordinaten  => NeuePosition);
+      
+      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit (2) is
+         when True =>
+            StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern  => EinheitRasseNummer.Rasse,
+                                                                       Koordinaten  => NeuePosition);
          
-               case Stadtnummer is
-                  when 0 =>
-                     return False;
+            case StadtNummer is
+               when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
+                  return False;
                
-                  when others =>
-                     null;
-               end case;
+               when others =>
+                  return True;
+            end case;
                      
-            when False =>
-               return False;
-         end case;
+         when False =>
+            null;
+      end case;
 
-      return True;
+      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit (1) is
+         when True =>
+            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern => EinheitRasseNummer.Rasse,
+                                                                             Koordinaten => NeuePosition);
+
+            case EinheitNummer is
+               when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
+                  return False;
+               
+               when others =>
+                  if EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).KannTransportiertWerden > 0
+                    and EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).KannTransportiertWerden 
+                      <= EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitNummer).ID).KannTransportieren then
+                     Transportplatz := 0;
+                     FreierPlatzSchleife:
+                     for FreierPlatz in GlobaleRecords.TransporterArray'Range loop
+                        
+                        case GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitNummer).Transportiert (FreierPlatz) is
+                           when 0 =>
+                              Transportplatz := FreierPlatz;
+                              exit FreierPlatzSchleife;
+                              
+                           when others =>
+                              null;
+                        end case;
+                        
+                     end loop FreierPlatzSchleife;
+
+                     case Transportplatz is
+                        when 0 =>
+                           return False;
+                           
+                        when others =>
+                           return True;
+                     end case;
+
+                  else
+                     return False;
+                  end if;
+            end case;
+
+         when False =>
+            null;
+      end case;
+      
+      return False;
       
    end FeldFürDieseEinheitPassierbar;
    

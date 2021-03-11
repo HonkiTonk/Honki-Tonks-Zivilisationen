@@ -146,11 +146,12 @@ package body Anzeige is
                   Put (Item => "║");
                   Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), Zeile)));
 
-                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), Zeile))'Length loop
+                  LeererPlatzSchleife:
+                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDatei), Zeile))'Length loop
                         
                      Put (" ");
                         
-                  end loop;
+                  end loop LeererPlatzSchleife;
 
                   Put_Line (Item => "║");
                   Put (Item => "╚");
@@ -218,11 +219,12 @@ package body Anzeige is
                   Put (Item => "║");
                   Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeile)));
 
-                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeile))'Length loop
+                  LeererPlatzSchleife:
+                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeile))'Length loop
                         
                      Put (" ");
                         
-                  end loop;
+                  end loop LeererPlatzSchleife;
 
                   Put_Line (Item => "║");
                   Put (Item => "╚");
@@ -290,11 +292,12 @@ package body Anzeige is
                   Put (Item => "║");
                   Put (Item => To_Wide_Wide_String (Source => TextBauenNeu (A).Text));
 
-                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => TextBauenNeu (A).Text)'Length loop
+                  LeererPlatzSchleife:
+                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => TextBauenNeu (A).Text)'Length loop
                         
                      Put (" ");
                         
-                  end loop;
+                  end loop LeererPlatzSchleife;
                   Put_Line (Item => "║");
                   Put (Item => "╚");
 
@@ -365,11 +368,12 @@ package body Anzeige is
                   Put (Item => "║");
                   Put (Item => To_Wide_Wide_String (Source => TextForschungNeu (A).Text));
 
-                  for Leer in 1 .. LängsterText - To_Wide_Wide_String (Source => TextForschungNeu (A).Text)'Length loop
+                  LeererPlatzSchleife:
+                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => TextForschungNeu (A).Text)'Length loop
                         
                      Put (" ");
                         
-                  end loop;
+                  end loop LeererPlatzSchleife;
                   Put_Line (Item => "║");
                   Put (Item => "╚");
 

@@ -17,11 +17,11 @@ private
 
    EinheitRasseNummer : GlobaleRecords.RassePlatznummerRecord;
 
-   procedure AKtivitätEinheit (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
+   procedure AKtivitätEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
      Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
 
-   procedure AKtivitätEinheitAbbrechen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
+   procedure AKtivitätEinheitAbbrechen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
      Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
 
