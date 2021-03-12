@@ -15,13 +15,13 @@ private
    AktuelleRasseEinheit : GlobaleDatentypen.Rassen := 1;
    AktuelleRasseStadt : GlobaleDatentypen.Rassen := 1;
 
-   KartenGrundID : Integer;
+   KartenGrundID : GlobaleDatentypen.KartenGrund;
    RasseNummer : Integer;
    
-   AktuelleEinheit : Positive := 1;
-   AktuelleStadt : Positive := 1;
+   AktuelleEinheit : GlobaleDatentypen.MaximaleEinheiten := 1;
+   AktuelleStadt : GlobaleDatentypen.MaximaleStädte := 1;
    EinheitID : Integer;
-   VerbesserungID : Integer;
+   VerbesserungID : GlobaleDatentypen.KartenVerbesserung;
 
    EinheitPosition : GlobaleRecords.RassePlatznummerRecord;
 

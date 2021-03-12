@@ -7,8 +7,8 @@ with Karten;
 
 package BewegungEinheitenMoeglichPruefen is
 
-   function FeldFürDieseEinheitPassierbar (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Boolean  with
-     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
+   function FeldFürDieseEinheitPassierbar (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Boolean with
+     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
              and NeuePosition.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and NeuePosition.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0));
    
@@ -20,8 +20,8 @@ private
 
    PassierbarkeitNummer : GlobaleDatentypen.PassierbarkeitType;
    
-   StadtNummer : Natural;
-   EinheitNummer : Natural;
+   StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    Transportplatz : Natural;
    
    GegnerWert : GlobaleRecords.RassePlatznummerRecord;

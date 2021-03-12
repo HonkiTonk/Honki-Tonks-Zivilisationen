@@ -19,9 +19,9 @@ package NaechstesObjekt is
    
 private
    
-   AktuelleEinheit : Integer := 1;
-   Endwert : Integer;
-   Startwert : Integer;
-   AktuelleStadt : Integer := 1;
+   AktuelleEinheit : GlobaleDatentypen.MaximaleEinheiten := 1;
+   Endwert : GlobaleDatentypen.MaximaleEinheiten;
+   Startwert : GlobaleDatentypen.MaximaleEinheiten;
+   AktuelleStadt : GlobaleDatentypen.MaximaleStädte := 1;
 
 end NaechstesObjekt;

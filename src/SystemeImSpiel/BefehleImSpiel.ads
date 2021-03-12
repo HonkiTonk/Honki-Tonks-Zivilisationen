@@ -16,14 +16,14 @@ private
          
    Taste : Wide_Wide_Character;
 
-   EinheitNummer : Natural;
-   StadtNummer : Natural;
+   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
    WelcherBefehl : Integer;
    StadtOderEinheit : Integer;
    WahlForschung : Integer;
 
-   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; Auswahl : in Integer; StadtNummerExtern, EinheitNummerExtern : in Natural) with
-     Pre => (StadtNummer <= GlobaleVariablen.StadtGebaut'Last (2) and EinheitNummer <= GlobaleVariablen.EinheitenGebaut'Last (2) and GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; Auswahl : in Integer; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte; EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
    
 end BefehleImSpiel;

@@ -179,26 +179,26 @@ package body Cheat is
    procedure GrundFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      KartenGrundID := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
-                                          Zeile         => 12,
-                                          ZahlenMinimum => 1,
-                                          ZahlenMaximum => 40);
+      KartenGrundID := GlobaleDatentypen.KartenGrund (Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
+                                                                         Zeile         => 12,
+                                                                         ZahlenMinimum => 1,
+                                                                         ZahlenMaximum => 42));
 
       case KartenGrundID is
-         when 1 .. 9 | 31 .. 32 | 35 .. 40 =>
+         when 1 .. 9 | 31 .. 32 | 35 .. 42 =>
             Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                               GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund := GlobaleDatentypen.KartenGrund (KartenGrundID);
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund := KartenGrundID;
 
          when 10 .. 13 | 29 .. 30 | 33 =>
             Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                               GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource := GlobaleDatentypen.KartenGrund (KartenGrundID);
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource := KartenGrundID;
 
          when 14 .. 28 =>
             Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                               GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss := GlobaleDatentypen.KartenGrund (KartenGrundID);
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss := KartenGrundID;
             
          when others =>
             null;
@@ -323,21 +323,21 @@ package body Cheat is
    procedure VerbesserungFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      VerbesserungID := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
-                                           Zeile         => 15,
-                                           ZahlenMinimum => 5,
-                                           ZahlenMaximum => Integer (VerbesserungenDatenbank.VerbesserungListe'Last));
+      VerbesserungID := GlobaleDatentypen.KartenVerbesserung (Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
+                                                                                 Zeile         => 15,
+                                                                                 ZahlenMinimum => 5,
+                                                                                 ZahlenMaximum => Integer (VerbesserungenDatenbank.VerbesserungListe'Last)));
 
       case VerbesserungID is
          when 5 .. 19 =>
             Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                               GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße := GlobaleDatentypen.KartenVerbesserung (VerbesserungID);
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße := VerbesserungID;
 
          when 20 .. 22 =>
             Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                               GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet := GlobaleDatentypen.KartenVerbesserung (VerbesserungID);
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet := VerbesserungID;
             
          when others =>
             null;

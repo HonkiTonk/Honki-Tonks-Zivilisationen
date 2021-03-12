@@ -1,4 +1,6 @@
--- with GlobaleDatentypen;
+pragma SPARK_Mode (On);
+
+with GlobaleDatentypen;
 -- use GlobaleDatentypen;
 
 package GlobaleKonstanten is
@@ -38,7 +40,7 @@ package GlobaleKonstanten is
 
 
    -- Für Einheiten/Städte
-   RückgabeEinheitStadtNummerFalsch : constant Natural := 0;
+   RückgabeEinheitStadtNummerFalsch : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := 0;
    -- Für Einheiten/Städte
 
 end GlobaleKonstanten;

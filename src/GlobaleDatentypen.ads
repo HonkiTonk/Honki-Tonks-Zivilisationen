@@ -35,7 +35,7 @@ package GlobaleDatentypen is
 
    
    -- Für Karte
-   type Kartenfeld is range -1_001 .. 1_000; -- Linke Seite muss stehts eins kleiner sein als die rechte Seite, aufgrund des aktuellen Kartengenerators (Kartengenerator.adb 181, Übergabe geht sonst nicht)!
+   type Kartenfeld is range -3 .. 1_000;
    subtype KartenfeldPositiv is Kartenfeld range 1 .. 1_000;
    subtype Stadtfeld is KartenfeldPositiv range 1 .. 20;
    subtype Sichtweite is Stadtfeld range 1 .. 10;
@@ -57,6 +57,9 @@ package GlobaleDatentypen is
 
 
    -- Für Einheiten
+   type MaximaleEinheitenMitNullWert is range 0 .. 1_000;
+   subtype MaximaleEinheiten is MaximaleEinheitenMitNullWert range 1 .. 1_000;
+
    subtype EinheitenIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 50;
    subtype EinheitenID is EinheitenIDMitNullWert range 1 .. EinheitenIDMitNullWert'Last;
 
@@ -88,6 +91,9 @@ package GlobaleDatentypen is
 
    
    -- Für Stadt
+   subtype MaximaleStädteMitNullWert is MaximaleEinheitenMitNullWert range 0 .. 100;
+   subtype MaximaleStädte is MaximaleStädteMitNullWert range 1 .. 100;
+
    type KostenLager is range -10_000 .. 10_000;
    subtype GesamtproduktionStadt is KostenLager range -500 .. 500;
    subtype GrundwerteNRGWVA is GesamtproduktionStadt range -100 .. 100; -- NRGWVA = Grundwert für Nahrung, Ressourcen, Geld, Wissenschaft, Verteidigung, Angriff

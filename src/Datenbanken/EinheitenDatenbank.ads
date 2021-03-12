@@ -30,20 +30,20 @@ package EinheitenDatenbank is
 
    procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID);
    procedure LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
+     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0));
    
    procedure HeilungBewegungspunkteFürNeueRundeSetzen;
-   procedure EinheitErzeugen (StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord; ID : in Positive) with
+   procedure EinheitErzeugen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord; ID : in Positive) with
      Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
              and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0));
 
    procedure EinheitEntfernenMitSortieren (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
+     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0));
 
    procedure EinheitEntfernenOhneSortieren (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
+     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0));
    
    procedure Beschäftigung (Arbeit : in Natural);
@@ -53,9 +53,9 @@ package EinheitenDatenbank is
 private
    
    Wahl : Integer;
-   EinheitenPosition : Integer;
+   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
-   Heilungsrate : constant Integer := 10;   
+   Heilungsrate : constant Integer := 10;
 
    Position : GlobaleRecords.AchsenKartenfeldPositivRecord;
 

@@ -279,7 +279,7 @@ package body KIPruefungen is
 
 
 
-   procedure StadtImNorden (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in Positive) is
+   procedure StadtImNorden (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in GlobaleDatentypen.MaximaleStädte) is
    begin
       
       if GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, StadtNummer).AchsenPosition.EAchse
@@ -315,7 +315,7 @@ package body KIPruefungen is
 
    
 
-   procedure StadtImSüden (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in Positive) is
+   procedure StadtImSüden (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in GlobaleDatentypen.MaximaleStädte) is
    begin
       
       if GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, StadtNummer).AchsenPosition.EAchse
@@ -351,7 +351,7 @@ package body KIPruefungen is
 
 
 
-   procedure StadtImWesten (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in Positive) is
+   procedure StadtImWesten (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in GlobaleDatentypen.MaximaleStädte) is
    begin
       
       if GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, StadtNummer).AchsenPosition.EAchse
@@ -387,7 +387,7 @@ package body KIPruefungen is
 
 
 
-   procedure StadtImOsten (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in Positive) is
+   procedure StadtImOsten (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in GlobaleDatentypen.MaximaleStädte) is
    begin
       
       if GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, StadtNummer).AchsenPosition.EAchse

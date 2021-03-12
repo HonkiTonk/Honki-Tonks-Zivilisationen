@@ -6,7 +6,8 @@ with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank, Karten;
 
 package body Kampfsystem is
 
-   function KampfsystemNahkampf (RasseAngriff, RasseVerteidigung : in GlobaleDatentypen.Rassen; GegnerStadtNummer, EinheitenNummerAngriff, EinheitenNummerVerteidigung : in Integer) return Boolean is
+   function KampfsystemNahkampf (RasseAngriff, RasseVerteidigung : in GlobaleDatentypen.Rassen; GegnerStadtNummer : in GlobaleDatentypen.MaximaleStädteMitNullWert;
+                                 EinheitenNummerAngriff, EinheitenNummerVerteidigung : in GlobaleDatentypen.MaximaleEinheiten) return Boolean is
    begin
 
       VerteidigungBonusDurchStadt := 1.00;

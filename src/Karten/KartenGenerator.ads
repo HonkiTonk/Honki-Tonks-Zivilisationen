@@ -36,8 +36,8 @@ private
    type GrößeLandartArray is array (1 .. 4) of GlobaleDatentypen.KartenfeldPositiv;
    GrößeLandart : GrößeLandartArray;
 
-   type FelderVonLandartZuLandartArray is array (1 .. 4) of GlobaleDatentypen.Kartenfeld;
-   FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 30, 0, 0); -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
+   type FelderVonLandartZuLandartArray is array (1 .. 4) of GlobaleDatentypen.KartenfeldPositiv;
+   FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 30, 1, 1); -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
                                                                                           -- Sollte so aber ganz gut sein, da bei halbem Loop zu wenig Wasser ist, aber eventuell Werte ein wenig verringern.
 
    type WahrscheinlichkeitenFürLandArray is array (1 .. 4, 1 .. 7) of Float;

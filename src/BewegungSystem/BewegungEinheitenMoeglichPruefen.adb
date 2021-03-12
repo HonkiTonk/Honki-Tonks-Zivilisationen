@@ -8,7 +8,6 @@ package body BewegungEinheitenMoeglichPruefen is
    begin
 
       PassierbarkeitNummer := KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).Grund).Passierbarkeit;
-
       
       if EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit (PassierbarkeitNummer) = True then
          return True;

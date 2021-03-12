@@ -11,7 +11,7 @@ package Sichtbarkeit is
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
    procedure SichtbarkeitsprüfungFürEinheit (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (EinheitRasseNummer.Platznummer in GlobaleVariablen.EinheitenGebaut'Range (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
+     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
              and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0));
 
    procedure SichtbarkeitsprüfungFürStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with

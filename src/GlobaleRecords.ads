@@ -45,7 +45,7 @@ package GlobaleRecords is
    type RassePlatznummerRecord is tagged record
       
       Rasse : GlobaleDatentypen.RassenMitNullwert;
-      Platznummer : Natural;
+      Platznummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       
    end record;
 

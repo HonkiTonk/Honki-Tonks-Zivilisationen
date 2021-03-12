@@ -52,7 +52,7 @@ package GlobaleVariablen is
                                                                          (0, 1, 1), KIDatentypen.Keine_Aufgabe,    -- 11. Wert = Zielkoordinaten der KI, 12. Wert = Beschäftigunggrad der KI
                                                                          (others => 0)); -- 13. Wert = Platznummer der transportierten Einheiten
 
-   type EinheitenGebautArray is array (GlobaleDatentypen.Rassen'Range, 1 .. 1_000) of GlobaleRecords.EinheitenGebautRecord;
+   type EinheitenGebautArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.MaximaleEinheiten'Range) of GlobaleRecords.EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => LeererWertEinheit));
    -- Einheiten
    
@@ -66,7 +66,7 @@ package GlobaleVariablen is
                                                                    (others => (others => False)), 0, 1, -- 16. Wert = UmgebungBewirtschaftung, 17. Wert = Arbeitende Einwohner, 18. Wert = StadtUmgebungGröße
                                                                    0); -- 19. Wert = KI aktuelle Beschäftigung
 
-   type StadtGebautArray is array (GlobaleDatentypen.Rassen'Range, 1 .. 100) of GlobaleRecords.StadtGebautRecord;
+   type StadtGebautArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.MaximaleStädte'Range) of GlobaleRecords.StadtGebautRecord;
    StadtGebaut : StadtGebautArray := (others => (others => LeererWertStadt));
    -- Städte
    
