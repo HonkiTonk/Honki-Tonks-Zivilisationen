@@ -5,25 +5,25 @@ use GlobaleDatentypen, GlobaleRecords;
 
 package KIPruefungen is
 
-   procedure ZielBerechnenGefahr (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
+   procedure ZielBerechnenGefahr (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
 
 
 
-   function EinheitenAbstandBerechnen (EinheitEinsRasseNummer, EinheitZweiRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Natural with
-     Pre => (EinheitEinsRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitEinsRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and EinheitZweiRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitZweiRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitEinsRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitEinsRasseNummer.Rasse) = 2)
-             and (if EinheitZweiRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitZweiRasseNummer.Rasse) = 2));
+   function EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern, EinheitZweiRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Natural with
+     Pre => (EinheitEinsRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitEinsRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and EinheitZweiRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitZweiRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitEinsRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitEinsRasseNummerExtern.Rasse) = 2)
+             and (if EinheitZweiRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitZweiRasseNummerExtern.Rasse) = 2));
 
-   function NähesteEigeneStadtSuchen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
+   function NähesteEigeneStadtSuchen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
 
-   function NähesteEigeneEinheitSuchen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
+   function NähesteEigeneEinheitSuchen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
    
 private
 
@@ -40,20 +40,20 @@ private
    type KandidatenArray is array (1 .. 3) of GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
    Kandidaten : KandidatenArray;
 
-   procedure StadtImNorden (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in GlobaleDatentypen.MaximaleStädte) with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
+   procedure StadtImNorden (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte) with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
    
-   procedure StadtImSüden (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in GlobaleDatentypen.MaximaleStädte) with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
+   procedure StadtImSüden (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte) with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
    
-   procedure StadtImWesten (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in GlobaleDatentypen.MaximaleStädte) with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
+   procedure StadtImWesten (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte) with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
    
-   procedure StadtImOsten (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; StadtNummer : in GlobaleDatentypen.MaximaleStädte) with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
+   procedure StadtImOsten (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte) with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
    
 end KIPruefungen;

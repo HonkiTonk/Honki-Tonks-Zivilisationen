@@ -5,9 +5,9 @@ use GlobaleDatentypen;
 
 package BewegungssystemCursor is
 
-   procedure BewegungCursorRichtung (Karte : in Boolean; Richtung : in Wide_Wide_Character; RasseExtern : in GlobaleDatentypen.Rassen) with
-     Pre => ((Richtung = 'w' or Richtung = 'a' or Richtung = 's' or Richtung = 'd' or Richtung = '1' or Richtung = '2' or Richtung = '3' or Richtung = '4' or Richtung = '6' or Richtung = '7' or Richtung = '8' or Richtung = '9'
-             or Richtung = '+' or Richtung = '-') and GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+   procedure BewegungCursorRichtung (KarteExtern : in Boolean; RichtungExtern : in Wide_Wide_Character; RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => ((RichtungExtern = 'w' or RichtungExtern = 'a' or RichtungExtern = 's' or RichtungExtern = 'd' or RichtungExtern = '1' or RichtungExtern = '2' or RichtungExtern = '3' or RichtungExtern = '4'
+             or RichtungExtern = '6' or RichtungExtern = '7' or RichtungExtern = '8' or RichtungExtern = '9' or RichtungExtern = '+' or RichtungExtern = '-') and GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
      
    procedure GeheZuCursor (RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);

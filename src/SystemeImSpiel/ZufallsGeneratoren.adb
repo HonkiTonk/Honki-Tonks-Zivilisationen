@@ -2,10 +2,10 @@ pragma SPARK_Mode (Off);
 
 package body ZufallsGeneratoren is
 
-   function Spieleinstellungen (WelcheEinstellung : in Positive) return Positive is
+   function Spieleinstellungen (WelcheEinstellungExtern : in Positive) return Positive is
    begin
       
-      case WelcheEinstellung is
+      case WelcheEinstellungExtern is
          when 1 => -- Kartengröße wählen
             ZufälligeKartengrößeWählen.Reset (ZufälligeKartenGrößeGewählt);
             SpieleinstellungenAuswahl := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt); 

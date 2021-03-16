@@ -63,13 +63,13 @@ package body KI is
             
             if GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ID > 0 and GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).KIAktuelleBeschäftigung /= 0
               and GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).KIAktuelleBeschäftigung /= -10 then
-               AktivitätStadtAbbrechen (StadtRasseNummer => (RasseExtern, StadtNummer));
+               AktivitätStadtAbbrechen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
 
             elsif GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ID = 0 or GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).KIAktuelleBeschäftigung /= 0 then
                null;
                
             else
-               AktivitätStadt (StadtRasseNummer => (RasseExtern, StadtNummer));
+               AktivitätStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
             end if;
 
          end loop StadtSchleife;
@@ -113,40 +113,40 @@ package body KI is
       -- 11 = NahkampfOrbital, 12 = FernkampfOrbital
       case EinheitTyp is
          when 1 =>
-            KISiedler.KISiedler (EinheitRasseNummer => EinheitRasseNummerExtern);
+            KISiedler.KISiedler (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 2 => -- Bauarbeiter kommt vielleicht später
             null;
             
          when 3 =>
-            KINahkampfLandEinheit.KINahkampfLandEinheit (EinheitRasseNummer => EinheitRasseNummerExtern);
+            KINahkampfLandEinheit.KINahkampfLandEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 4 =>
-            KIFernkampfLandEinheit.KIFernkampfLandEinheit (EinheitRasseNummer => EinheitRasseNummerExtern);
+            KIFernkampfLandEinheit.KIFernkampfLandEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 5 =>
-            KINahkampfSeeEinheit.KINahkampfSeeEinheit (EinheitRasseNummer => EinheitRasseNummerExtern);
+            KINahkampfSeeEinheit.KINahkampfSeeEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 6 =>
-            KIFernkampfSeeEinheit.KIFernkampfSeeEinheit (EinheitRasseNummer => EinheitRasseNummerExtern);
+            KIFernkampfSeeEinheit.KIFernkampfSeeEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 7 =>
-            KINahkampfLuftEinheit.KINahkampfLuftEinheit (EinheitRasseNummer => EinheitRasseNummerExtern);
+            KINahkampfLuftEinheit.KINahkampfLuftEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 8 =>
-            KIFernkampfLuftEinheit.KIFernkampfLuftEinheit (EinheitRasseNummer => EinheitRasseNummerExtern);
+            KIFernkampfLuftEinheit.KIFernkampfLuftEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 9 =>
-            KINahkampfUnterirdisch.KINahkampfUnterirdisch (EinheitRasseNummer => EinheitRasseNummerExtern);
+            KINahkampfUnterirdisch.KINahkampfUnterirdisch (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
 
          when 10 =>
-            KIFernkampfUnterirdisch.KIFernkampfUnterirdisch (EinheitRasseNummer => EinheitRasseNummerExtern);
+            KIFernkampfUnterirdisch.KIFernkampfUnterirdisch (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 11 =>
-            KINahkampfOrbital.KINahkampfOrbital (EinheitRasseNummer => EinheitRasseNummerExtern);
+            KINahkampfOrbital.KINahkampfOrbital (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
 
          when 12 =>
-            KIFernkampfOrbital.KIFernkampfOrbital (EinheitRasseNummer => EinheitRasseNummerExtern);
+            KIFernkampfOrbital.KIFernkampfOrbital (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
       
    end AKtivitätEinheit;
@@ -162,7 +162,7 @@ package body KI is
    
    
                
-   procedure AktivitätStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   procedure AktivitätStadt (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
             
       null;
@@ -171,7 +171,7 @@ package body KI is
 
 
 
-   procedure AktivitätStadtAbbrechen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is -- Aufrufen um den Abbruch der aktuellen Tätigkeit zu prüfen
+   procedure AktivitätStadtAbbrechen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is -- Aufrufen um den Abbruch der aktuellen Tätigkeit zu prüfen
    begin
             
       null;

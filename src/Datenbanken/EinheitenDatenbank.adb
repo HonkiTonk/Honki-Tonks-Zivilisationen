@@ -6,29 +6,29 @@ with Auswahl, Anzeige, Sortieren;
 
 package body EinheitenDatenbank is
 
-   procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID) is
+   procedure Beschreibung (IDExtern : in GlobaleDatentypen.EinheitenID) is
    begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                     TextDatei        => GlobaleDatentypen.Beschreibungen_Einheiten_Kurz,
-                                     ÜberschriftZeile => 0,
-                                     ErsteZeile       => Positive (ID),
-                                     LetzteZeile      => Positive (ID),
-                                     AbstandAnfang    => GlobaleDatentypen.Keiner,
-                                     AbstandMitte     => GlobaleDatentypen.Keiner,
-                                     AbstandEnde      => GlobaleDatentypen.Keiner);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Einheiten_Kurz,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => Positive (IDExtern),
+                                     LetzteZeileExtern      => Positive (IDExtern),
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Keiner);
       
    end Beschreibung;
 
 
 
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleLebenspunkte
-        := EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).MaximaleLebenspunkte;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AktuelleBewegungspunkte
-        := EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).MaximaleBewegungspunkte;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleLebenspunkte
+        := EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte
+        := EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleBewegungspunkte;
       
    end LebenspunkteBewegungspunkteAufMaximumSetzen;
 
@@ -81,22 +81,23 @@ package body EinheitenDatenbank is
    
 
 
-   procedure EinheitErzeugen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord; ID : in Positive) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
+   procedure EinheitErzeugen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; IDExtern : in GlobaleDatentypen.EinheitenID) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
    begin
 
-      Position := (GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition.EAchse,
-                   GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition.YAchse,
-                   GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition.XAchse);
+      Position := (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
+                   GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
+                   GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition.XAchse);
       EinheitNummer := 0;
             
       EinheitenSchleife:
       for EinheitNummerSchleife in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
-         if GlobaleVariablen.EinheitenGebaut (StadtRasseNummer.Rasse, EinheitNummerSchleife).ID = 0 then
+         if GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleife).ID = 0 then
             EinheitNummer := EinheitNummerSchleife;
             exit EinheitenSchleife;
 
-         elsif GlobaleVariablen.EinheitenGebaut (StadtRasseNummer.Rasse, EinheitNummerSchleife).AchsenPosition = GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition then
+         elsif GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleife).AchsenPosition
+           = GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition then
             return;
             
          else
@@ -110,26 +111,26 @@ package body EinheitenDatenbank is
             return;
             
          when others =>
-            GlobaleVariablen.EinheitenGebaut (StadtRasseNummer.Rasse, EinheitNummer).ID := GlobaleDatentypen.EinheitenID (ID);
-            GlobaleVariablen.EinheitenGebaut (StadtRasseNummer.Rasse, EinheitNummer).AchsenPosition := Position;
-            LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummer => (StadtRasseNummer.Rasse, EinheitNummer));
-            GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).VerbleibendeBauzeit := 0;
-            GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleRessourcen := 0;
-            GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuellesBauprojekt := 0;
+            GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummer).ID := IDExtern;
+            GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummer).AchsenPosition := Position;
+            LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummer));
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).VerbleibendeBauzeit := 0;
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleRessourcen := 0;
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt := 0;
       end case;
             
    end EinheitErzeugen;
 
 
 
-   procedure EinheitEntfernenMitSortieren (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   procedure EinheitEntfernenMitSortieren (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer) := GlobaleVariablen.LeererWertEinheit;
-      Sortieren.EinheitenSortieren (RasseExtern => EinheitRasseNummer.Rasse);
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) := GlobaleVariablen.LeererWertEinheit;
+      Sortieren.EinheitenSortieren (RasseExtern => EinheitRasseNummerExtern.Rasse);
 
-      if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, 1).ID = 0 then
-         GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) := 0;
+      if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, 1).ID = 0 then
+         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) := 0;
          
       else
          null;
@@ -139,13 +140,13 @@ package body EinheitenDatenbank is
 
 
 
-   procedure EinheitEntfernenOhneSortieren (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   procedure EinheitEntfernenOhneSortieren (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
 
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer) := GlobaleVariablen.LeererWertEinheit;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) := GlobaleVariablen.LeererWertEinheit;
 
-      if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (EinheitRasseNummer.Rasse, 1).ID = 0 then
-         GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) := 0;
+      if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, 1).ID = 0 then
+         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) := 0;
          
       else
          null;
@@ -155,43 +156,43 @@ package body EinheitenDatenbank is
    
    
 
-   procedure Beschäftigung (Arbeit : in Natural) is
+   procedure Beschäftigung (ArbeitExtern : in Natural) is
    begin
       
-      case Arbeit is
+      case ArbeitExtern is
          when 0 =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                           TextDatei        => GlobaleDatentypen.Beschreibungen_Beschäftigung_Kurz,
-                                           ÜberschriftZeile => 0,
-                                           ErsteZeile       => 9,
-                                           LetzteZeile      => 9,
-                                           AbstandAnfang    => GlobaleDatentypen.Keiner,
-                                           AbstandMitte     => GlobaleDatentypen.Keiner,
-                                           AbstandEnde      => GlobaleDatentypen.Keiner);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Beschäftigung_Kurz,
+                                           ÜberschriftZeileExtern => 0,
+                                           ErsteZeileExtern       => 9,
+                                           LetzteZeileExtern      => 9,
+                                           AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
+                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
             
          when others =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                           TextDatei        => GlobaleDatentypen.Beschreibungen_Beschäftigung_Kurz,
-                                           ÜberschriftZeile => 0,
-                                           ErsteZeile       => Arbeit,
-                                           LetzteZeile      => Arbeit,
-                                           AbstandAnfang    => GlobaleDatentypen.Keiner,
-                                           AbstandMitte     => GlobaleDatentypen.Keiner,
-                                           AbstandEnde      => GlobaleDatentypen.Keiner);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Beschäftigung_Kurz,
+                                           ÜberschriftZeileExtern => 0,
+                                           ErsteZeileExtern       => ArbeitExtern,
+                                           LetzteZeileExtern      => ArbeitExtern,
+                                           AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
+                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
       end case;
       
    end Beschäftigung;
    
 
 
-   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Natural) return Boolean is
+   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern : in Natural) return Boolean is
    begin
       
-      Wahl := Auswahl.AuswahlJaNein (FrageZeile => 7);
+      Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 7);
       case Wahl is
          when GlobaleKonstanten.JaKonstante =>
             return True;
-                     
+            
          when others =>
             return False;
       end case;

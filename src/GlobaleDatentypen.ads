@@ -35,8 +35,8 @@ package GlobaleDatentypen is
 
    
    -- Für Karte
-   type Kartenfeld is range -3 .. 1_000;
-   subtype KartenfeldPositiv is Kartenfeld range 1 .. 1_000;
+   type Kartenfeld is range -1_000 .. 1_000;
+   subtype KartenfeldPositiv is Kartenfeld range 1 .. Kartenfeld'Last;
    subtype Stadtfeld is KartenfeldPositiv range 1 .. 20;
    subtype Sichtweite is Stadtfeld range 1 .. 10;
    subtype LoopRangeMinusEinsZuEins is Kartenfeld range -1 .. 1;
@@ -58,7 +58,7 @@ package GlobaleDatentypen is
 
    -- Für Einheiten
    type MaximaleEinheitenMitNullWert is range 0 .. 1_000;
-   subtype MaximaleEinheiten is MaximaleEinheitenMitNullWert range 1 .. 1_000;
+   subtype MaximaleEinheiten is MaximaleEinheitenMitNullWert range 1 .. MaximaleEinheitenMitNullWert'Last;
 
    subtype EinheitenIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 50;
    subtype EinheitenID is EinheitenIDMitNullWert range 1 .. EinheitenIDMitNullWert'Last;

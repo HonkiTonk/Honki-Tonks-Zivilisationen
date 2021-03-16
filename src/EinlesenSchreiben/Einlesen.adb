@@ -30,7 +30,7 @@ package body Einlesen is
          when True =>
             EinlesenWerte;
             Ladezeiten.SpielStartzeiten (2, 2) := Clock;
-            Ladezeiten.SpielStart (WelcheZeit => 1);
+            Ladezeiten.SpielStart (WelcheZeitExtern => 1);
             return Erfolgreich;
 
          when False =>

@@ -4,17 +4,17 @@ with GlobaleKonstanten;
 
 package body StadtSuchen is
 
-   function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.MaximaleEinheitenMitNullWert is
+   function KoordinatenStadtMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.MaximaleStädteMitNullWert is
    begin
       
       StadtSchleife:
-      for Stadtnummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
+      for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
          
-         if GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).ID = 0 then
+         if GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).ID = 0 then
             exit StadtSchleife;
             
-         elsif GlobaleVariablen.StadtGebaut (RasseExtern, Stadtnummer).AchsenPosition = Koordinaten then
-            return Stadtnummer;
+         elsif GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).AchsenPosition = KoordinatenExtern then
+            return StadtNummer;
             
          else
             null;
@@ -28,7 +28,7 @@ package body StadtSuchen is
 
 
 
-   function KoordinatenStadtOhneRasseSuchen (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
+   function KoordinatenStadtOhneRasseSuchen (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -39,7 +39,7 @@ package body StadtSuchen is
             if GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).ID = 0 then
                exit StadtSchleife;
                
-            elsif GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).AchsenPosition = Koordinaten then
+            elsif GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).AchsenPosition = KoordinatenExtern then
                return (RasseIntern, Stadtnummer);
                
             else
@@ -55,7 +55,7 @@ package body StadtSuchen is
    
    
    
-   function KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
+   function KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -69,7 +69,7 @@ package body StadtSuchen is
             elsif GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).ID = 0 then
                exit StadtSchleife;
                
-            elsif GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).AchsenPosition = Koordinaten then
+            elsif GlobaleVariablen.StadtGebaut (RasseIntern, Stadtnummer).AchsenPosition = KoordinatenExtern then
                return (RasseIntern, Stadtnummer);
                
             else

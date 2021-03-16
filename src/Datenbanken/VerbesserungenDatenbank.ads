@@ -41,7 +41,7 @@ package VerbesserungenDatenbank is
                                                   ('B',    1,    0, 0, 0, 0, 2), -- 22 Festung
                                                   ('S',    3,    0, 0, 0, 0, 0)); -- 23 Sperre
 
-   procedure Beschreibung (ID : in GlobaleDatentypen.KartenVerbesserung) with
-     Pre => (ID > 0);
+   procedure Beschreibung (IDExtern : in GlobaleDatentypen.KartenVerbesserung) with
+     Pre => (IDExtern > 0);
    
 end VerbesserungenDatenbank;

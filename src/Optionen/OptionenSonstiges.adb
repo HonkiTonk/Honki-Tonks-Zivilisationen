@@ -12,18 +12,18 @@ package body OptionenSonstiges is
       SonstigesSchleife:
       loop
 
-         AuswahlWert := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Leer,
-                                         TextDatei   => GlobaleDatentypen.Menü_Auswahl,
-                                         FrageZeile  => 0,
-                                         ErsteZeile  => GlobaleKonstanten.OptionenSonstigesErsteZeile,
-                                         LetzteZeile => GlobaleKonstanten.OptionenSonstigesLetzteZeile);
+         AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Leer,
+                                         TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
+                                         FrageZeileExtern  => 0,
+                                         ErsteZeileExtern  => GlobaleKonstanten.OptionenSonstigesErsteZeile,
+                                         LetzteZeileExtern => GlobaleKonstanten.OptionenSonstigesLetzteZeile);
 
          case AuswahlWert is
             when 1 =>
-               AuswahlWert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Menü_Auswahl,
-                                                 Zeile         => GlobaleKonstanten.OptionenSonstigesErsteZeile,
-                                                 ZahlenMinimum => 0,
-                                                 ZahlenMaximum => 999_999_999);
+               AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Menü_Auswahl,
+                                                 ZeileExtern         => GlobaleKonstanten.OptionenSonstigesErsteZeile,
+                                                 ZahlenMinimumExtern => 0,
+                                                 ZahlenMaximumExtern => 999_999_999);
                case AuswahlWert is
                   when 0 .. 999_999_999 =>
                      GlobaleVariablen.AnzahlAutosave := AuswahlWert;
@@ -33,10 +33,10 @@ package body OptionenSonstiges is
                end case;                  
                
             when 2 =>
-               AuswahlWert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Menü_Auswahl,
-                                                 Zeile         => GlobaleKonstanten.OptionenSonstigesErsteZeile + 1,
-                                                 ZahlenMinimum => 0,
-                                                 ZahlenMaximum => 999_999_999);
+               AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Menü_Auswahl,
+                                                 ZeileExtern         => GlobaleKonstanten.OptionenSonstigesErsteZeile + 1,
+                                                 ZahlenMinimumExtern=> 0,
+                                                 ZahlenMaximumExtern => 999_999_999);
 
                case AuswahlWert is
                   when 0 =>

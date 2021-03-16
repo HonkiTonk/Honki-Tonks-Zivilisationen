@@ -25,11 +25,11 @@ begin
          StartSchleife:
          loop
 
-            Startauswahl := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Start,
-                                             TextDatei   => GlobaleDatentypen.Start,
-                                             FrageZeile  => 1,
-                                             ErsteZeile  => 2,
-                                             LetzteZeile => 6);
+            Startauswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Start,
+                                             TextDateiExtern   => GlobaleDatentypen.Start,
+                                             FrageZeileExtern  => 1,
+                                             ErsteZeileExtern  => 2,
+                                             LetzteZeileExtern => 6);
 
             case Startauswahl is
                when GlobaleKonstanten.StartNormalKonstante => -- Start
@@ -89,14 +89,14 @@ begin
 
          end loop StartSchleife;
 
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                        TextDatei        => GlobaleDatentypen.Start,
-                                        ÜberschriftZeile => 0,
-                                        ErsteZeile       => 7,
-                                        LetzteZeile      => 7,
-                                        AbstandAnfang    => GlobaleDatentypen.Neue_Zeile,
-                                        AbstandMitte     => GlobaleDatentypen.Keiner,
-                                        AbstandEnde      => GlobaleDatentypen.Keiner);
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                        TextDateiExtern        => GlobaleDatentypen.Start,
+                                        ÜberschriftZeileExtern => 0,
+                                        ErsteZeileExtern       => 7,
+                                        LetzteZeileExtern      => 7,
+                                        AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
+                                        AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                        AbstandEndeExtern      => GlobaleDatentypen.Keiner);
 
       when False =>
          Put_Line (Item => "Benötigte Dateien nicht gefunden (Start.EinlesenErgebnis => False)!"); -- Nicht über Anzeige regeln, da die benötigten Dateien ja gar nicht eingelesen wurden!

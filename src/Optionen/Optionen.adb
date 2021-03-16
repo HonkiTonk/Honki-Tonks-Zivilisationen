@@ -12,11 +12,11 @@ package body Optionen is
       OptionenSchleife:
       loop
 
-         AuswahlWert := Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Leer,
-                                         TextDatei   => GlobaleDatentypen.Menü_Auswahl,
-                                         FrageZeile  => 0,
-                                         ErsteZeile  => GlobaleKonstanten.OptionenErsteZeileKonstante,
-                                         LetzteZeile => GlobaleKonstanten.OptionenLetzteZeileKonstante);
+         AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Leer,
+                                         TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
+                                         FrageZeileExtern  => 0,
+                                         ErsteZeileExtern  => GlobaleKonstanten.OptionenErsteZeileKonstante,
+                                         LetzteZeileExtern => GlobaleKonstanten.OptionenLetzteZeileKonstante);
 
          case AuswahlWert is
             when GlobaleKonstanten.ZurückKonstante | GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>

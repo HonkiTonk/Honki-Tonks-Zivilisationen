@@ -28,27 +28,28 @@ package Anzeige is
    type TextForschungNeuArray is array (GlobaleDatentypen.ForschungID'Range) of TextForschungRecord;
    TextForschungNeu : TextForschungNeuArray;
 
-   procedure AnzeigeStadt (AktuelleAuswahl : in GlobaleDatentypen.KartenverbesserungEinheitenID);
-   procedure AnzeigeLangerTextNeu (ÜberschriftDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeile : in Natural; ErsteZeile, LetzteZeile : in Positive;
-                                   AbstandAnfang, AbstandEnde : in GlobaleDatentypen.WelcherAbstand_Enum) with
-     Pre => (ErsteZeile <= LetzteZeile and (if ÜberschriftDatei = GlobaleDatentypen.Leer then ÜberschriftZeile = 0) and (if ÜberschriftZeile = 0 then ÜberschriftDatei = GlobaleDatentypen.Leer)
-             and TextDatei /= GlobaleDatentypen.Leer);
+   procedure AnzeigeStadt (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID);
+   procedure AnzeigeLangerTextNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
+                                   AbstandAnfangExtern, AbstandEndeExtern : in GlobaleDatentypen.WelcherAbstand_Enum) with
+     Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if ÜberschriftDateiExtern = GlobaleDatentypen.Leer then ÜberschriftZeileExtern = 0) and (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleDatentypen.Leer)
+             and TextDateiExtern /= GlobaleDatentypen.Leer);
 
-   procedure AnzeigeForschungNeu (AktuelleAuswahl : in GlobaleDatentypen.KartenverbesserungEinheitenID) with
-     Pre => (AktuelleAuswahl <= GlobaleDatentypen.ForschungID'Last);
+   procedure AnzeigeForschungNeu (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID) with
+     Pre => (AktuelleAuswahlExtern <= GlobaleDatentypen.ForschungID'Last);
 
-   procedure AnzeigeSprache (AktuelleAuswahl, ErsteZeile, LetzteZeile : in Positive) with
-     Pre => (ErsteZeile <= LetzteZeile);
+   procedure AnzeigeSprache (AktuelleAuswahlExtern, ErsteZeileExtern, LetzteZeileExtern : in Positive) with
+     Pre => (ErsteZeileExtern <= LetzteZeileExtern);
 
-   procedure AnzeigeOhneAuswahlNeu (ÜberschriftDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeile : in Natural; ErsteZeile, LetzteZeile : in Positive;
-                                    AbstandAnfang, AbstandMitte, AbstandEnde : in GlobaleDatentypen.WelcherAbstand_Enum) with
-     Pre => (ErsteZeile <= LetzteZeile and (if ÜberschriftDatei = GlobaleDatentypen.Leer then ÜberschriftZeile = 0) and (if ÜberschriftZeile = 0 then ÜberschriftDatei = GlobaleDatentypen.Leer)
-             and TextDatei /= GlobaleDatentypen.Leer);
+   procedure AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
+                                    AbstandAnfangExtern, AbstandMitteExtern, AbstandEndeExtern : in GlobaleDatentypen.WelcherAbstand_Enum) with
+     Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if ÜberschriftDateiExtern = GlobaleDatentypen.Leer then ÜberschriftZeileExtern = 0)
+             and (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleDatentypen.Leer) and TextDateiExtern /= GlobaleDatentypen.Leer);
 
-   procedure EinzeiligeAnzeigeOhneAuswahl (TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; TextZeile : in Positive);
+   procedure EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; TextZeileExtern : in Positive);
 
-   procedure AnzeigeMitAuswahlNeu (FrageDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; FrageZeile, ErsteZeile, LetzteZeile, AktuelleAuswahl : in Natural) with
-     Pre => (ErsteZeile <= LetzteZeile and (if FrageDatei = GlobaleDatentypen.Leer then FrageZeile = 0) and (if FrageZeile = 0 then FrageDatei = GlobaleDatentypen.Leer) and TextDatei /= GlobaleDatentypen.Leer);
+   procedure AnzeigeMitAuswahlNeu (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern, AktuelleAuswahlExtern : in Natural) with
+     Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if FrageDateiExtern = GlobaleDatentypen.Leer then FrageZeileExtern = 0) and (if FrageZeileExtern = 0 then FrageDateiExtern = GlobaleDatentypen.Leer)
+             and TextDateiExtern /= GlobaleDatentypen.Leer);
 
 private
    

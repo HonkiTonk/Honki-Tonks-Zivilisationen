@@ -6,11 +6,11 @@ with KIBewegung;
 
 package body KIFernkampfLandEinheit is
 
-   procedure KIFernkampfLandEinheit (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   procedure KIFernkampfLandEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      KIBewegung.KIBewegung (EinheitRasseNummer => EinheitRasseNummer,
-                             Aufgabe            => KIDatentypen.Erkunden);
+      KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                             AufgabeExtern            => KIDatentypen.Erkunden);
       
    end KIFernkampfLandEinheit;
 

@@ -18,7 +18,7 @@ package body Speichern is
 
             case Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is -- Anzeige der vorhandenen Spielstände einbauen
                when True =>
-                  Wahl := Auswahl.AuswahlJaNein (FrageZeile => 18);
+                  Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 18);
                   case Wahl is
                      when -3 =>
                         null;
@@ -204,7 +204,7 @@ package body Speichern is
       Close (File => DateiSpeichernNeu);
          
       Ladezeiten.Speicherzeiten (2, 1) := Clock;
-      Ladezeiten.Speichern (WelcheZeit => 1);
+      Ladezeiten.Speichern (WelcheZeitExtern => 1);
    
    end SpeichernNeu;
    

@@ -5,9 +5,9 @@ use GlobaleDatentypen, GlobaleRecords;
 
 package KarteStadt is
 
-   procedure AnzeigeStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) = 1));
+   procedure AnzeigeStadt (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1));
 
    procedure Beschreibung (RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
@@ -38,11 +38,11 @@ private
    
    RasseUndPlatznummer : GlobaleRecords.RassePlatznummerRecord;
    
-   procedure InformationenStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) = 1));
+   procedure InformationenStadt (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1));
 
-   procedure SchleifeFenster (YAchse, XAchse : in GlobaleDatentypen.Stadtfeld; Rasse : in GlobaleDatentypen.Rassen) with
-     Pre => (GlobaleVariablen.RassenImSpiel (Rasse) = 1);
+   procedure SchleifeFenster (YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld; RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
 end KarteStadt;

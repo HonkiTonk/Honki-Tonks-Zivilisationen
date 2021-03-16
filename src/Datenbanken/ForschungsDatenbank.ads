@@ -39,7 +39,7 @@ package ForschungsDatenbank is
                                                                 17 => 0,
                                                                 18 => 0);
 
-   procedure Beschreibung (ID : in GlobaleDatentypen.ForschungIDMitNullWert);
+   procedure Beschreibung (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert);
    procedure Forschung (RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 

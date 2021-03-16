@@ -5,27 +5,27 @@ use GlobaleDatentypen;
 
 package StadtBauen is
 
-   procedure StadtEntfernenMitSortieren (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0));
+   procedure StadtEntfernenMitSortieren (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
-   procedure StadtEntfernenOhneSortieren (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0));
+   procedure StadtEntfernenOhneSortieren (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
 
 
-   function StadtBauen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0));
+   function StadtBauen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
 
-   function StadtBauenPrüfen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0));
+   function StadtBauenPrüfen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
 
-   function ErweitertesStadtBauenPrüfen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0));
+   function ErweitertesStadtBauenPrüfen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
 
 private
 

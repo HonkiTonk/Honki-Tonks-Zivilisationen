@@ -7,29 +7,29 @@ with Anzeige;
 
 package body ForschungsDatenbank is
 
-   procedure Beschreibung (ID : in GlobaleDatentypen.ForschungIDMitNullWert) is
+   procedure Beschreibung (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert) is
    begin
       
-      case ID is
+      case IDExtern is
          when 0 =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                           TextDatei        => GlobaleDatentypen.Zeug,
-                                           ÜberschriftZeile => 0,
-                                           ErsteZeile       => 28,
-                                           LetzteZeile      => 28,
-                                           AbstandAnfang    => GlobaleDatentypen.Keiner,
-                                           AbstandMitte     => GlobaleDatentypen.Keiner,
-                                           AbstandEnde      => GlobaleDatentypen.Keiner);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeileExtern => 0,
+                                           ErsteZeileExtern       => 28,
+                                           LetzteZeileExtern      => 28,
+                                           AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
+                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
             
          when others =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                           TextDatei        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
-                                           ÜberschriftZeile => 0,
-                                           ErsteZeile       => Positive (ID),
-                                           LetzteZeile      => Positive (ID),
-                                           AbstandAnfang    => GlobaleDatentypen.Keiner,
-                                           AbstandMitte     => GlobaleDatentypen.Keiner,
-                                           AbstandEnde      => GlobaleDatentypen.Keiner);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
+                                           ÜberschriftZeileExtern => 0,
+                                           ErsteZeileExtern       => Positive (IDExtern),
+                                           LetzteZeileExtern      => Positive (IDExtern),
+                                           AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
+                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
       end case;
       
    end Beschreibung;
@@ -148,22 +148,22 @@ package body ForschungsDatenbank is
 
          Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
 
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fragen,
-                                               TextZeile => 16);
+         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fragen,
+                                               TextZeileExtern => 16);
 
-         Anzeige.AnzeigeForschungNeu (AktuelleAuswahl => AktuelleAuswahl);
+         Anzeige.AnzeigeForschungNeu (AktuelleAuswahlExtern => AktuelleAuswahl);
          
          if AktuelleAuswahl = Ende then
             null;
                   
          else
-            Anzeige.AnzeigeLangerTextNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                          TextDatei        => GlobaleDatentypen.Beschreibungen_Forschung_Lang,
-                                          ÜberschriftZeile => 0,
-                                          ErsteZeile       => Positive (Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer),
-                                          LetzteZeile      => Positive (Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer),
-                                          AbstandAnfang    => GlobaleDatentypen.Neue_Zeile,
-                                          AbstandEnde      => GlobaleDatentypen.Keiner);
+            Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                          TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Lang,
+                                          ÜberschriftZeileExtern => 0,
+                                          ErsteZeileExtern       => Positive (Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer),
+                                          LetzteZeileExtern      => Positive (Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer),
+                                          AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
+                                          AbstandEndeExtern      => GlobaleDatentypen.Keiner);
          end if;
          
          Get_Immediate (Item => Taste);

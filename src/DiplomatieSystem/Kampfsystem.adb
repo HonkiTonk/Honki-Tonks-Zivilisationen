@@ -6,33 +6,33 @@ with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank, Karten;
 
 package body Kampfsystem is
 
-   function KampfsystemNahkampf (RasseAngriff, RasseVerteidigung : in GlobaleDatentypen.Rassen; GegnerStadtNummer : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-                                 EinheitenNummerAngriff, EinheitenNummerVerteidigung : in GlobaleDatentypen.MaximaleEinheiten) return Boolean is
+   function KampfsystemNahkampf (RasseAngriffExtern, RasseVerteidigungExtern : in GlobaleDatentypen.Rassen; GegnerStadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
+                                 EinheitenNummerAngriffExtern, EinheitenNummerVerteidigungExtern : in GlobaleDatentypen.MaximaleEinheiten) return Boolean is
    begin
 
       VerteidigungBonusDurchStadt := 1.00;
 
-      case GegnerStadtNummer is
+      case GegnerStadtNummerExtern is
          when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-            Ergebnis := Kampf (VerteidigerRasseEinheitNummer => (RasseVerteidigung, EinheitenNummerVerteidigung),
-                               AngreiferRasseEinheitNummer   => (RasseAngriff, EinheitenNummerAngriff),
-                               VerteidigungBonus             => VerteidigungBonusDurchStadt);
+            Ergebnis := Kampf (VerteidigerRasseEinheitNummerExtern => (RasseVerteidigungExtern, EinheitenNummerVerteidigungExtern),
+                               AngreiferRasseEinheitNummerExtern   => (RasseAngriffExtern, EinheitenNummerAngriffExtern),
+                               VerteidigungBonusExtern             => VerteidigungBonusDurchStadt);
             return Ergebnis;
             
          when others =>
-            if GlobaleVariablen.StadtGebaut (RasseVerteidigung, GegnerStadtNummer).GebäudeVorhanden (15) = True then
+            if GlobaleVariablen.StadtGebaut (RasseVerteidigungExtern, GegnerStadtNummerExtern).GebäudeVorhanden (15) = True then
                VerteidigungBonusDurchStadt := 2.00;
                
-            elsif GlobaleVariablen.StadtGebaut (RasseVerteidigung, GegnerStadtNummer).GebäudeVorhanden (5) = True then
+            elsif GlobaleVariablen.StadtGebaut (RasseVerteidigungExtern, GegnerStadtNummerExtern).GebäudeVorhanden (5) = True then
                VerteidigungBonusDurchStadt := 1.50;
 
             else               
                VerteidigungBonusDurchStadt := 1.25;
             end if;
 
-            Ergebnis := Kampf (VerteidigerRasseEinheitNummer => (RasseVerteidigung, EinheitenNummerVerteidigung),
-                               AngreiferRasseEinheitNummer   => (RasseAngriff, EinheitenNummerAngriff),
-                               VerteidigungBonus             => VerteidigungBonusDurchStadt);
+            Ergebnis := Kampf (VerteidigerRasseEinheitNummerExtern => (RasseVerteidigungExtern, EinheitenNummerVerteidigungExtern),
+                               AngreiferRasseEinheitNummerExtern   => (RasseAngriffExtern, EinheitenNummerAngriffExtern),
+                               VerteidigungBonusExtern             => VerteidigungBonusDurchStadt);
             return Ergebnis;
       end case;      
       
@@ -40,71 +40,71 @@ package body Kampfsystem is
 
 
 
-   function Kampf (VerteidigerRasseEinheitNummer, AngreiferRasseEinheitNummer : in GlobaleRecords.RassePlatznummerRecord; VerteidigungBonus : in Float) return Boolean is
+   function Kampf (VerteidigerRasseEinheitNummerExtern, AngreiferRasseEinheitNummerExtern : in GlobaleRecords.RassePlatznummerRecord; VerteidigungBonusExtern : in Float) return Boolean is
    begin
 
-      AngriffAngriffWert := Float (EinheitenDatenbank.EinheitenListe (AngreiferRasseEinheitNummer.Rasse,
-                                   GlobaleVariablen.EinheitenGebaut (AngreiferRasseEinheitNummer.Rasse, AngreiferRasseEinheitNummer.Platznummer).ID).Angriff);
-      AngriffVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (VerteidigerRasseEinheitNummer.Rasse,
-                                        GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).ID).Angriff);
+      AngriffAngriffWert := Float (EinheitenDatenbank.EinheitenListe (AngreiferRasseEinheitNummerExtern.Rasse,
+                                   GlobaleVariablen.EinheitenGebaut (AngreiferRasseEinheitNummerExtern.Rasse, AngreiferRasseEinheitNummerExtern.Platznummer).ID).Angriff);
+      AngriffVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (VerteidigerRasseEinheitNummerExtern.Rasse,
+                                        GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).ID).Angriff);
 
-      VerteidigungVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (VerteidigerRasseEinheitNummer.Rasse,
-                                             GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).ID).Verteidigung)
-        + Float (KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
-                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
-                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
-        + Float (VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
-                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
-                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
+      VerteidigungVerteidigungWert := Float (EinheitenDatenbank.EinheitenListe (VerteidigerRasseEinheitNummerExtern.Rasse,
+                                             GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).ID).Verteidigung)
+        + Float (KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
+                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
+                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
+        + Float (VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
+                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
+                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
 
-      if Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
-                           GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).Hügel = True
-        and Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
-                              GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).Grund /= 6 then
+      if Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
+                           GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
+                           GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).Hügel = True
+        and Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
+                              GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
+                              GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).Grund /= 6 then
          VerteidigungVerteidigungWert := Float (KartenDatenbank.KartenListe (6).Verteidigungsbonus);
 
       else
          null;
       end if;
       
-      VerteidigungVerteidigungWert := VerteidigungVerteidigungWert * VerteidigungBonus * VerteidigerBonus;
+      VerteidigungVerteidigungWert := VerteidigungVerteidigungWert * VerteidigungBonusExtern * VerteidigerBonus;
 
-      VerteidigungAngriffWert := Float (EinheitenDatenbank.EinheitenListe (VerteidigerRasseEinheitNummer.Rasse,
-                                        GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).ID).Verteidigung)
-        + Float (KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
-                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
-                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
-        + Float (VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.EAchse,
-                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.YAchse,
-                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
+      VerteidigungAngriffWert := Float (EinheitenDatenbank.EinheitenListe (VerteidigerRasseEinheitNummerExtern.Rasse,
+                                        GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).ID).Verteidigung)
+        + Float (KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
+                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
+                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
+        + Float (VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
+                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
+                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
 
       Reset (Gewählt);
       
       KampfSchleife:
       loop
 
-         KampfBerechnung (VerteidigerRasseEinheitNummer => VerteidigerRasseEinheitNummer,
-                          AngriffWert                   => AngriffAngriffWert,
-                          VerteidigungWert              => VerteidigungVerteidigungWert);
+         KampfBerechnung (VerteidigerRasseEinheitNummerExtern => VerteidigerRasseEinheitNummerExtern,
+                          AngriffWertExtern                   => AngriffAngriffWert,
+                          VerteidigungWertExtern              => VerteidigungVerteidigungWert);
 
-         if GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AktuelleLebenspunkte <= 0 then
-            EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseNummer => VerteidigerRasseEinheitNummer);
+         if GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte <= 0 then
+            EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseNummerExtern => VerteidigerRasseEinheitNummerExtern);
             return True;
             
          else
             null;
          end if;
          
-         KampfBerechnung (VerteidigerRasseEinheitNummer => VerteidigerRasseEinheitNummer,
-                          AngriffWert                   => AngriffVerteidigungWert,
-                          VerteidigungWert              => VerteidigungAngriffWert);
+         KampfBerechnung (VerteidigerRasseEinheitNummerExtern => VerteidigerRasseEinheitNummerExtern,
+                          AngriffWertExtern                   => AngriffVerteidigungWert,
+                          VerteidigungWertExtern              => VerteidigungAngriffWert);
             
          
          
-         if GlobaleVariablen.EinheitenGebaut (AngreiferRasseEinheitNummer.Rasse, AngreiferRasseEinheitNummer.Platznummer).AktuelleLebenspunkte <= 0 then
-            EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseNummer => AngreiferRasseEinheitNummer);
+         if GlobaleVariablen.EinheitenGebaut (AngreiferRasseEinheitNummerExtern.Rasse, AngreiferRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte <= 0 then
+            EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseNummerExtern => AngreiferRasseEinheitNummerExtern);
             return False;
 
          else
@@ -117,30 +117,30 @@ package body Kampfsystem is
 
 
 
-   procedure KampfBerechnung (VerteidigerRasseEinheitNummer : in GlobaleRecords.RassePlatznummerRecord; AngriffWert, VerteidigungWert : in Float) is
+   procedure KampfBerechnung (VerteidigerRasseEinheitNummerExtern : in GlobaleRecords.RassePlatznummerRecord; AngriffWertExtern, VerteidigungWertExtern : in Float) is
    begin
 
       Wert := Random (Gewählt);
       
-      if AngriffWert > 2.00 * VerteidigungWert and Wert > 0.15 then
-         GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AktuelleLebenspunkte
-           := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AktuelleLebenspunkte - 1;
+      if AngriffWertExtern > 2.00 * VerteidigungWertExtern and Wert > 0.15 then
+         GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
+           := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
 
-      elsif AngriffWert > VerteidigungWert and Wert > 0.35 then
-         GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AktuelleLebenspunkte
-           := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AktuelleLebenspunkte - 1;
+      elsif AngriffWertExtern > VerteidigungWertExtern and Wert > 0.35 then
+         GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
+           := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
 
-      elsif AngriffWert = VerteidigungWert and Wert > 0.50 then
-         GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AktuelleLebenspunkte
-           := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AktuelleLebenspunkte - 1;
+      elsif AngriffWertExtern = VerteidigungWertExtern and Wert > 0.50 then
+         GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
+           := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
 
-      elsif AngriffWert < VerteidigungWert and 2.00 * AngriffWert > VerteidigungWert and Wert > 0.80 then
-         GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AktuelleLebenspunkte
-           := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AktuelleLebenspunkte - 1;
+      elsif AngriffWertExtern < VerteidigungWertExtern and 2.00 * AngriffWertExtern > VerteidigungWertExtern and Wert > 0.80 then
+         GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
+           := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
 
-      elsif 2.00 * AngriffWert < VerteidigungWert and Wert > 0.95 then
-         GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AktuelleLebenspunkte
-           := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummer.Rasse, VerteidigerRasseEinheitNummer.Platznummer).AktuelleLebenspunkte - 1;
+      elsif 2.00 * AngriffWertExtern < VerteidigungWertExtern and Wert > 0.95 then
+         GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
+           := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
 
       else
          null;

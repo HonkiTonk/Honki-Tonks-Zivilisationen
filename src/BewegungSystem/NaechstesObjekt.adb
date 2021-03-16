@@ -88,6 +88,7 @@ package body NaechstesObjekt is
             Startwert := 1;
       end case;
       
+      EinheitSuchenSchleife:
       loop
                
          if AktuelleEinheit + 1 > GlobaleVariablen.EinheitenGebaut'Last (2) then
@@ -106,7 +107,7 @@ package body NaechstesObjekt is
          end if;
 
          if GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit).AktuelleBewegungspunkte <= 0.0 then
-            exit;
+            exit EinheitSuchenSchleife;
             
          else
             null;
@@ -119,7 +120,7 @@ package body NaechstesObjekt is
             null;
          end if;
 
-      end loop;
+      end loop EinheitSuchenSchleife;
          
       GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit).AchsenPosition;
       

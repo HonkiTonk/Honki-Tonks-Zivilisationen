@@ -92,17 +92,17 @@ package body Karte is
          XAchseSchleife:
          for XAchse in -Sichtweiten (SichtweiteFestlegen).XAchse .. Sichtweiten (SichtweiteFestlegen).XAchse loop
             
-            Kartenwert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt,
-                                                                    Änderung       => (0, YAchse, XAchse),
-                                                                    ZusatzYAbstand => 0);
+            Kartenwert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt,
+                                                                    ÄnderungExtern       => (0, YAchse, XAchse),
+                                                                    ZusatzYAbstandExtern => 0);
             
             case Kartenwert.Erfolgreich is
                when False =>
                   exit XAchseSchleife;
                   
                when True =>
-                  Sichtbarkeit.Sichtbarkeit (InDerStadt  => False,
-                                             Koordinaten => (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse),
+                  Sichtbarkeit.Sichtbarkeit (InDerStadtExtern  => False,
+                                             KoordinatenExtern => (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse),
                                              RasseExtern => RasseExtern);
             end case;
             
@@ -132,81 +132,81 @@ package body Karte is
       Wissensgewinnung := 0;
       
       -- Allgemeine Informationen über die eigene Rasse, immer sichtbar
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                     TextDatei        => GlobaleDatentypen.Zeug,
-                                     ÜberschriftZeile => 0,
-                                     ErsteZeile       => 33,
-                                     LetzteZeile      => 33,
-                                     AbstandAnfang    => GlobaleDatentypen.Keiner,
-                                     AbstandMitte     => GlobaleDatentypen.Keiner,
-                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 33,
+                                     LetzteZeileExtern      => 33,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.RundenAnzahl,
                                Width => 1);
 
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                     TextDatei        => GlobaleDatentypen.Zeug,
-                                     ÜberschriftZeile => 0,
-                                     ErsteZeile       => 34,
-                                     LetzteZeile      => 34,
-                                     AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                     AbstandMitte     => GlobaleDatentypen.Keiner,
-                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 34,
+                                     LetzteZeileExtern      => 34,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.Wichtiges (RasseExtern).AktuelleGeldmenge,
                                Width => 1);
 
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                     TextDatei        => GlobaleDatentypen.Zeug,
-                                     ÜberschriftZeile => 0,
-                                     ErsteZeile       => 35,
-                                     LetzteZeile      => 35,
-                                     AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                     AbstandMitte     => GlobaleDatentypen.Keiner,
-                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 35,
+                                     LetzteZeileExtern      => 35,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde),
                                Width => 1);
       New_Line;
 
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                     TextDatei        => GlobaleDatentypen.Zeug,
-                                     ÜberschriftZeile => 0,
-                                     ErsteZeile       => 38,
-                                     LetzteZeile      => 38,
-                                     AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                     AbstandMitte     => GlobaleDatentypen.Keiner,
-                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
-      ForschungsDatenbank.Beschreibung (ID => GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 38,
+                                     LetzteZeileExtern      => 38,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+      ForschungsDatenbank.Beschreibung (IDExtern => GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt);
 
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                     TextDatei        => GlobaleDatentypen.Zeug,
-                                     ÜberschriftZeile => 0,
-                                     ErsteZeile       => 36,
-                                     LetzteZeile      => 36,
-                                     AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                     AbstandMitte     => GlobaleDatentypen.Keiner,
-                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 36,
+                                     LetzteZeileExtern      => 36,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit),
                                Width => 1);
       New_Line;
 
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                     TextDatei        => GlobaleDatentypen.Zeug,
-                                     ÜberschriftZeile => 0,
-                                     ErsteZeile       => 39,
-                                     LetzteZeile      => 39,
-                                     AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                     AbstandMitte     => GlobaleDatentypen.Keiner,
-                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 39,
+                                     LetzteZeileExtern      => 39,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsmenge),
                                Width => 1);
 
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                     TextDatei        => GlobaleDatentypen.Zeug,
-                                     ÜberschriftZeile => 0,
-                                     ErsteZeile       => 37,
-                                     LetzteZeile      => 37,
-                                     AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                     AbstandMitte     => GlobaleDatentypen.Keiner,
-                                     AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 37,
+                                     LetzteZeileExtern      => 37,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsrate),
                                Width => 1);
       New_Line (Spacing => 2);
@@ -214,7 +214,7 @@ package body Karte is
       case Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Sichtbar (RasseExtern) is
          when True =>
-            RasseUndPlatznummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            RasseUndPlatznummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
             
             case RasseUndPlatznummer.Platznummer is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
@@ -224,14 +224,14 @@ package body Karte is
                   EinheitenDatenbank.Beschreibung (GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID);
                   New_Line;
                   
-                  Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                                 TextDatei        => GlobaleDatentypen.Zeug,
-                                                 ÜberschriftZeile => 0,
-                                                 ErsteZeile       => 14,
-                                                 LetzteZeile      => 14,
-                                                 AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                                 AbstandMitte     => GlobaleDatentypen.Keiner,
-                                                 AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                  Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                                 TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                                 ÜberschriftZeileExtern => 0,
+                                                 ErsteZeileExtern       => 14,
+                                                 LetzteZeileExtern      => 14,
+                                                 AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                                 AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                                 AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
                   Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleLebenspunkte,
                                            Width => 1);
                   Put (Item => " / ");
@@ -241,14 +241,14 @@ package body Karte is
             
                   -- "Volle" Einheiteninformationen, nur sichtbar wenn eigene Einheit oder wenn Cheat aktiviert ist
                   if RasseExtern = RasseUndPlatznummer.Rasse or GlobaleVariablen.FeindlicheInformationenSehen = True then
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                                    TextDatei        => GlobaleDatentypen.Zeug,
-                                                    ÜberschriftZeile => 0,
-                                                    ErsteZeile       => 15,
-                                                    LetzteZeile      => 15,
-                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
-                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeileExtern => 0,
+                                                    ErsteZeileExtern       => 15,
+                                                    LetzteZeileExtern      => 15,
+                                                    AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
                      Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBewegungspunkte,
                                             Fore => 1,
                                             Aft  => 2,
@@ -260,14 +260,14 @@ package body Karte is
                                             Aft  => 2,
                                             Exp  => 0);
 
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                                    TextDatei        => GlobaleDatentypen.Zeug,
-                                                    ÜberschriftZeile => 0,
-                                                    ErsteZeile       => 16,
-                                                    LetzteZeile      => 16,
-                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
-                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeileExtern => 0,
+                                                    ErsteZeileExtern       => 16,
+                                                    LetzteZeileExtern      => 16,
+                                                    AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
                      Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleErfahrungspunkte,
                                               Width => 1);
                      Put (Item => " / ");
@@ -276,60 +276,60 @@ package body Karte is
                                               Width => 1);
                      New_Line;
                               
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                                    TextDatei        => GlobaleDatentypen.Zeug,
-                                                    ÜberschriftZeile => 0,
-                                                    ErsteZeile       => 17,
-                                                    LetzteZeile      => 17,
-                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
-                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeileExtern => 0,
+                                                    ErsteZeileExtern       => 17,
+                                                    LetzteZeileExtern      => 17,
+                                                    AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
                      EinheitenDatenbank.Beschäftigung (GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBeschäftigung);
 
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                                    TextDatei        => GlobaleDatentypen.Zeug,
-                                                    ÜberschriftZeile => 0,
-                                                    ErsteZeile       => 18,
-                                                    LetzteZeile      => 18,
-                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
-                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeileExtern => 0,
+                                                    ErsteZeileExtern       => 18,
+                                                    LetzteZeileExtern      => 18,
+                                                    AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
                      Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleBeschäftigungszeit,
                                               Width => 1);
                      New_Line;
 
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                                    TextDatei        => GlobaleDatentypen.Zeug,
-                                                    ÜberschriftZeile => 0,
-                                                    ErsteZeile       => 24,
-                                                    LetzteZeile      => 24,
-                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
-                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeileExtern => 0,
+                                                    ErsteZeileExtern       => 24,
+                                                    LetzteZeileExtern      => 24,
+                                                    AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
                      Ada.Integer_Text_IO.Put (Item  => Integer (EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse,
                                               GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).Angriff),
                                               Width => 1);
 
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                                    TextDatei        => GlobaleDatentypen.Zeug,
-                                                    ÜberschriftZeile => 0,
-                                                    ErsteZeile       => 25,
-                                                    LetzteZeile      => 25,
-                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
-                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeileExtern => 0,
+                                                    ErsteZeileExtern       => 25,
+                                                    LetzteZeileExtern      => 25,
+                                                    AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
                      Ada.Integer_Text_IO.Put (Item  => Integer (EinheitenDatenbank.EinheitenListe (RasseUndPlatznummer.Rasse,
                                               GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID).Verteidigung),
                                               Width => 1);
                      
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                                    TextDatei        => GlobaleDatentypen.Zeug,
-                                                    ÜberschriftZeile => 0,
-                                                    ErsteZeile       => 26,
-                                                    LetzteZeile      => 26,
-                                                    AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                                    AbstandMitte     => GlobaleDatentypen.Keiner,
-                                                    AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                                    ÜberschriftZeileExtern => 0,
+                                                    ErsteZeileExtern       => 26,
+                                                    LetzteZeileExtern      => 26,
+                                                    AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
                      Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellerRang,
                                               Width => 1);
                      Put (Item => " / ");
@@ -352,7 +352,7 @@ package body Karte is
                   end case;
             end case;
             
-            RasseUndPlatznummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            RasseUndPlatznummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
             case RasseUndPlatznummer.Platznummer is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
@@ -389,15 +389,15 @@ package body Karte is
                                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Hügel = True
               and Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                                     GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund /= 6 then
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                              TextDatei        => GlobaleDatentypen.Beschreibungen_Kartenfelder_Kurz,
-                                              ÜberschriftZeile => 0,
-                                              ErsteZeile       => 34,
-                                              LetzteZeile      => 34,
-                                              AbstandAnfang    => GlobaleDatentypen.Keiner,
-                                              AbstandMitte     => GlobaleDatentypen.Keiner,
-                                              AbstandEnde      => GlobaleDatentypen.Keiner);
-               KartenDatenbank.Beschreibung (ID => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                              TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Kartenfelder_Kurz,
+                                              ÜberschriftZeileExtern => 0,
+                                              ErsteZeileExtern       => 34,
+                                              LetzteZeileExtern      => 34,
+                                              AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
+                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                              AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+               KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund);
 
                Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
@@ -418,7 +418,7 @@ package body Karte is
          
             elsif Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                     GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Hügel = True then
-               KartenDatenbank.Beschreibung (ID => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+               KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund);
 
                Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
@@ -438,7 +438,7 @@ package body Karte is
                                                                                    GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund).Wissensgewinnung;
                
             else         
-               KartenDatenbank.Beschreibung (ID => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+               KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund);
 
                Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
@@ -460,7 +460,7 @@ package body Karte is
       
             if Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource /= 0 then
-               KartenDatenbank.Beschreibung (ID => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+               KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource);
 
                Verteidigungsbonus
@@ -485,7 +485,7 @@ package body Karte is
       
             if Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet /= 0 then
-               VerbesserungenDatenbank.Beschreibung (ID => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+               VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                                      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet);
 
                Verteidigungsbonus
@@ -514,7 +514,7 @@ package body Karte is
       
             if Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße /= 0 then
-               VerbesserungenDatenbank.Beschreibung (ID => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+               VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                                      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße);
 
                Verteidigungsbonus
@@ -542,7 +542,7 @@ package body Karte is
       
             if Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss /= 0 then
-               KartenDatenbank.Beschreibung (ID => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+               KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss);
 
                Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
@@ -566,59 +566,59 @@ package body Karte is
             end if;
             
             New_Line;
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                           TextDatei        => GlobaleDatentypen.Zeug,
-                                           ÜberschriftZeile => 0,
-                                           ErsteZeile       => 19,
-                                           LetzteZeile      => 19,
-                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandMitte     => GlobaleDatentypen.Keiner,
-                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeileExtern => 0,
+                                           ErsteZeileExtern       => 19,
+                                           LetzteZeileExtern      => 19,
+                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
             Ada.Integer_Text_IO.Put (Item  => Integer (Verteidigungsbonus),
                                      Width => 1);
             
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                           TextDatei        => GlobaleDatentypen.Zeug,
-                                           ÜberschriftZeile => 0,
-                                           ErsteZeile       => 20,
-                                           LetzteZeile      => 20,
-                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandMitte     => GlobaleDatentypen.Keiner,
-                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeileExtern => 0,
+                                           ErsteZeileExtern       => 20,
+                                           LetzteZeileExtern      => 20,
+                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
             Ada.Integer_Text_IO.Put (Item  => Integer (Nahrungsgewinnung),
                                      Width => 1);
             New_Line;
             
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                           TextDatei        => GlobaleDatentypen.Zeug,
-                                           ÜberschriftZeile => 0,
-                                           ErsteZeile       => 21,
-                                           LetzteZeile      => 21,
-                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandMitte     => GlobaleDatentypen.Keiner,
-                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeileExtern => 0,
+                                           ErsteZeileExtern       => 21,
+                                           LetzteZeileExtern      => 21,
+                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
             Ada.Integer_Text_IO.Put (Item  => Integer (Ressourcengewinnung),
                                      Width => 1);
             
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                           TextDatei        => GlobaleDatentypen.Zeug,
-                                           ÜberschriftZeile => 0,
-                                           ErsteZeile       => 22,
-                                           LetzteZeile      => 22,
-                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandMitte     => GlobaleDatentypen.Keiner,
-                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeileExtern => 0,
+                                           ErsteZeileExtern       => 22,
+                                           LetzteZeileExtern      => 22,
+                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
             Ada.Integer_Text_IO.Put (Item  => Integer (Geldgewinnung),
                                      Width => 1);
             
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                           TextDatei        => GlobaleDatentypen.Zeug,
-                                           ÜberschriftZeile => 0,
-                                           ErsteZeile       => 23,
-                                           LetzteZeile      => 23,
-                                           AbstandAnfang    => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandMitte     => GlobaleDatentypen.Keiner,
-                                           AbstandEnde      => GlobaleDatentypen.Kleiner_Abstand);
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                           ÜberschriftZeileExtern => 0,
+                                           ErsteZeileExtern       => 23,
+                                           LetzteZeileExtern      => 23,
+                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
             Ada.Integer_Text_IO.Put (Item  => Integer (Wissensgewinnung),
                                      Width => 1);
             New_Line;

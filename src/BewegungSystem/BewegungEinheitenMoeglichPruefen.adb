@@ -4,22 +4,23 @@ with EinheitenDatenbank, EinheitSuchen, StadtSuchen, KartenDatenbank, GlobaleKon
 
 package body BewegungEinheitenMoeglichPruefen is
 
-   function FeldFürDieseEinheitPassierbar (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Boolean is
+   function FeldFürDieseEinheitPassierbar (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Boolean is
    begin
 
-      PassierbarkeitNummer := KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePosition.EAchse, NeuePosition.YAchse, NeuePosition.XAchse).Grund).Passierbarkeit;
+      PassierbarkeitNummer := KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund).Passierbarkeit;
       
-      if EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit (PassierbarkeitNummer) = True then
+      if EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
+                                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitNummer) = True then
          return True;
          
       else
          null;
       end if;
       
-      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit (2) is
+      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (2) is
          when True =>
-            StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern  => EinheitRasseNummer.Rasse,
-                                                                       Koordinaten  => NeuePosition);
+            StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                       KoordinatenExtern => NeuePositionExtern);
          
             case StadtNummer is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
@@ -33,24 +34,24 @@ package body BewegungEinheitenMoeglichPruefen is
             null;
       end case;
 
-      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).Passierbarkeit (1) is
+      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (1) is
          when True =>
-            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                             Koordinaten => NeuePosition);
+            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                             KoordinatenExtern => NeuePositionExtern);
 
             case EinheitNummer is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
                   return False;
                
                when others =>
-                  if EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).KannTransportiertWerden > 0
-                    and EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).KannTransportiertWerden 
-                      <= EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitNummer).ID).KannTransportieren then
+                  if EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportiertWerden > 0
+                    and EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportiertWerden 
+                      <= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).KannTransportieren then
                      Transportplatz := 0;
                      FreierPlatzSchleife:
                      for FreierPlatz in GlobaleRecords.TransporterArray'Range loop
                         
-                        case GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitNummer).Transportiert (FreierPlatz) is
+                        case GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Transportiert (FreierPlatz) is
                            when 0 =>
                               Transportplatz := FreierPlatz;
                               exit FreierPlatzSchleife;
@@ -84,10 +85,10 @@ package body BewegungEinheitenMoeglichPruefen is
    
    
    
-   function BefindetSichDortEineEinheit (RasseExtern : GlobaleDatentypen.RassenMitNullwert; NeuePosition : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
+   function BefindetSichDortEineEinheit (RasseExtern : GlobaleDatentypen.RassenMitNullwert; NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
    begin
 
-      GegnerEinheitWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => NeuePosition);
+      GegnerEinheitWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
 
       if GegnerEinheitWert.Rasse = RasseExtern then
          return (GegnerEinheitWert.Rasse, 1);
@@ -99,7 +100,7 @@ package body BewegungEinheitenMoeglichPruefen is
          return GegnerEinheitWert;
       end if;
 
-      GegnerStadtWert := StadtSuchen.KoordinatenStadtOhneRasseSuchen (Koordinaten => NeuePosition);
+      GegnerStadtWert := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
 
       if GegnerStadtWert.Rasse = RasseExtern then
          return (GegnerStadtWert.Rasse, 0);

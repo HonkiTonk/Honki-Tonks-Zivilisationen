@@ -4,10 +4,10 @@ with Wachstum, KartenPruefungen, Karten, VerbesserungenDatenbank, KartenDatenban
 
 package body StadtProduktion is
 
-   procedure StadtProduktionPrüfen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   procedure StadtProduktionPrüfen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      case StadtRasseNummer.Rasse is
+      case StadtRasseNummerExtern.Rasse is
          when 0 => -- Überprüfung für alle Rassen bei Runde beenden.
             RassenSchleife:
             for RasseIntern in GlobaleDatentypen.Rassen loop
@@ -19,72 +19,72 @@ package body StadtProduktion is
                         exit StadtSchleife;
                   
                      when others =>
-                        StadtProduktionPrüfenBerechnung (StadtRasseNummer => (RasseIntern, StadtNummer));
+                        StadtProduktionPrüfenBerechnung (StadtRasseNummerExtern => (RasseIntern, StadtNummer));
                   end case;
                
                end loop StadtSchleife;
             end loop RassenSchleife;
          
          when others => -- Überprüfung beim Bauen einer Stadt
-            StadtProduktionPrüfenBerechnung (StadtRasseNummer => StadtRasseNummer);
-            Wachstum.WachstumBeiStadtGründung (RasseExtern => StadtRasseNummer.Rasse);
+            StadtProduktionPrüfenBerechnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            Wachstum.WachstumBeiStadtGründung (RasseExtern => StadtRasseNummerExtern.Rasse);
       end case;
       
    end StadtProduktionPrüfen;
    
 
 
-   procedure StadtProduktionPrüfenBerechnung (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   procedure StadtProduktionPrüfenBerechnung (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsproduktion := 0;
-      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate := 0;
-      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleGeldgewinnung := 0;
-      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleForschungsrate := 0;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsproduktion := 0;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate := 0;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleGeldgewinnung := 0;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleForschungsrate := 0;
 
-      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Korruption := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner / 3;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner / 3;
 
-      NutzbarerBereich := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).StadtUmgebungGröße;
+      NutzbarerBereich := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).StadtUmgebungGröße;
       
       YAchseSchleife:
       for YÄnderung in -NutzbarerBereich .. NutzbarerBereich loop
          XAchseSchleife:
          for XÄnderung in -NutzbarerBereich .. NutzbarerBereich loop
 
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AchsenPosition,
-                                                                    Änderung       => (0, YÄnderung, XÄnderung),
-                                                                    ZusatzYAbstand => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition,
+                                                                    ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstandExtern => 0);
 
             case KartenWert.Erfolgreich is
                when False =>
                   exit XAchseSchleife;                                 
                                  
                when True =>
-                  case GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).UmgebungBewirtschaftung (YÄnderung, XÄnderung) is
+                  case GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YÄnderung, XÄnderung) is
                      when True =>
-                        GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsproduktion
-                          := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsproduktion
+                        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsproduktion
+                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsproduktion
                           + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung
                           + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Nahrungsgewinnung
                           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Nahrungsbonus
                           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Nahrungsbonus;
 
-                        GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate
-                          := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate
+                        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate
+                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate
                           + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung
                           + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Ressourcengewinnung
                           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Ressourcenbonus
                           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Ressourcenbonus;
 
-                        GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleGeldgewinnung
-                          := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleGeldgewinnung
+                        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleGeldgewinnung
+                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleGeldgewinnung
                           + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung
                           + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Geldgewinnung
                           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Geldbonus
                           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Geldbonus;
 
-                        GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleForschungsrate
-                          := GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleForschungsrate
+                        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleForschungsrate
+                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleForschungsrate
                           + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung
                           + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Wissensgewinnung
                           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Wissensbonus
@@ -98,19 +98,19 @@ package body StadtProduktion is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
 
-      WeitereNahrungsproduktionÄnderungen (StadtRasseNummer => StadtRasseNummer);
-      WeitereProduktionrateÄnderungen (StadtRasseNummer => StadtRasseNummer);
-      WeitereGeldgewinnungÄnderungen (StadtRasseNummer => StadtRasseNummer);
-      WeitereForschungsrateÄnderungen (StadtRasseNummer => StadtRasseNummer);
+      WeitereNahrungsproduktionÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      WeitereProduktionrateÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      WeitereGeldgewinnungÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      WeitereForschungsrateÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end StadtProduktionPrüfenBerechnung;
    
    
    
-   procedure WeitereNahrungsproduktionÄnderungen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   procedure WeitereNahrungsproduktionÄnderungen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
 
-      case GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner is
+      case GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner is
          when 0 .. 1 =>
             NahrungsverbrauchEinwohnerMultiplikator := 0;
             
@@ -124,18 +124,18 @@ package body StadtProduktion is
             NahrungsverbrauchEinwohnerMultiplikator := 3;
       end case;
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsproduktion :=
-        GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleNahrungsproduktion
-        - GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner * NahrungsverbrauchEinwohnerMultiplikator;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsproduktion :=
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsproduktion
+        - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner * NahrungsverbrauchEinwohnerMultiplikator;
       
    end WeitereNahrungsproduktionÄnderungen;
 
 
 
-   procedure WeitereProduktionrateÄnderungen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   procedure WeitereProduktionrateÄnderungen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      case GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Korruption is
+      case GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption is
          when 0 =>
             RessourcenverbrauchKorruptionMultiplikator := 0;
             
@@ -152,12 +152,12 @@ package body StadtProduktion is
             RessourcenverbrauchKorruptionMultiplikator := 10;
       end case;
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate :=
-        GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate
-        - GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner * RessourcenverbrauchKorruptionMultiplikator;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate :=
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate
+        - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner * RessourcenverbrauchKorruptionMultiplikator;
 
-      if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate < 0 then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleProduktionrate := 0;
+      if GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate < 0 then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate := 0;
          
       else
          null;
@@ -167,10 +167,10 @@ package body StadtProduktion is
 
 
 
-   procedure WeitereGeldgewinnungÄnderungen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   procedure WeitereGeldgewinnungÄnderungen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
 
-      case GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Korruption is
+      case GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption is
          when 0 =>
             GeldverbrauchKorruptionMultiplikator := 0;
             
@@ -187,18 +187,18 @@ package body StadtProduktion is
             GeldverbrauchKorruptionMultiplikator := 10;
       end case;
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleGeldgewinnung :=
-        GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleGeldgewinnung
-        - GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner * GeldverbrauchKorruptionMultiplikator;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleGeldgewinnung :=
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleGeldgewinnung
+        - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner * GeldverbrauchKorruptionMultiplikator;
       
    end WeitereGeldgewinnungÄnderungen;
 
 
 
-   procedure WeitereForschungsrateÄnderungen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) is
+   procedure WeitereForschungsrateÄnderungen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
 
-      case GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Korruption is
+      case GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption is
          when 0 =>
             ForschungsverbrauchKorruptionMultiplikator := 0;
             
@@ -215,12 +215,12 @@ package body StadtProduktion is
             ForschungsverbrauchKorruptionMultiplikator := 10;
       end case;
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleForschungsrate :=
-        GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleForschungsrate
-        - GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).Einwohner * ForschungsverbrauchKorruptionMultiplikator;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleForschungsrate :=
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleForschungsrate
+        - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner * ForschungsverbrauchKorruptionMultiplikator;
 
-      if GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleForschungsrate < 0 then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummer.Rasse, StadtRasseNummer.Platznummer).AktuelleForschungsrate := 0;
+      if GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleForschungsrate < 0 then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleForschungsrate := 0;
          
       else
          null;

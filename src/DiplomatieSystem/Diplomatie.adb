@@ -13,41 +13,41 @@ package body Diplomatie is
 
 
 
-   procedure KriegDurchDirektenAngriff (AngreifendeRasse, VerteidigendeRasse : in GlobaleDatentypen.Rassen) is
+   procedure KriegDurchDirektenAngriff (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      GlobaleVariablen.Diplomatie (AngreifendeRasse, VerteidigendeRasse) := GlobaleVariablen.Krieg;
-      GlobaleVariablen.Diplomatie (VerteidigendeRasse, AngreifendeRasse) := GlobaleVariablen.Krieg;
+      GlobaleVariablen.Diplomatie (AngreifendeRasseExtern, VerteidigendeRasseExtern) := GlobaleVariablen.Krieg;
+      GlobaleVariablen.Diplomatie (VerteidigendeRasseExtern, AngreifendeRasseExtern) := GlobaleVariablen.Krieg;
       
    end KriegDurchDirektenAngriff;
 
 
 
-   function DiplomatischenStatusPrüfen (AngreifendeRasse, VerteidigendeRasse : in GlobaleDatentypen.Rassen) return GlobaleVariablen.StatusUntereinander is
+   function DiplomatischenStatusPrüfen (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen) return GlobaleVariablen.StatusUntereinander is
    begin
       
-      return GlobaleVariablen.Diplomatie (AngreifendeRasse, VerteidigendeRasse);
+      return GlobaleVariablen.Diplomatie (AngreifendeRasseExtern, VerteidigendeRasseExtern);
       
    end DiplomatischenStatusPrüfen;
 
 
 
-   function GegnerAngreifenOderNicht (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord; Gegner : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
+   function GegnerAngreifenOderNicht (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; GegnerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
 
       Gewonnen := False;
       Angreifen := False;
       
-      BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasse   => EinheitRasseNummer.Rasse,
-                                                                VerteidigendeRasse => Gegner.Rasse);
+      BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasseExtern   => EinheitRasseNummerExtern.Rasse,
+                                                                VerteidigendeRasseExtern => GegnerExtern.Rasse);
       case BereitsImKrieg is
          when GlobaleVariablen.Neutral | GlobaleVariablen.Offene_Grenzen =>
-            Wahl := Auswahl.AuswahlJaNein (FrageZeile => 11);
+            Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 11);
             case Wahl is
                when -3 =>
                   Angreifen := True;
-                  -- Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasse   => EinheitRasseNummer.Rasse,
-                  -- VerteidigendeRasse => Gegner.Rasse);
+                  -- Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasseExtern => EinheitRasseNummerExtern.Rasse,
+                  -- VerteidigendeRasseExtern => GegnerExtern.Rasse);
                   return True;   
                   
                when others =>
@@ -63,11 +63,11 @@ package body Diplomatie is
          
       case Angreifen is
          when True =>
-            Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerStadtNummer           => Gegner.Platznummer,
-                                                         RasseAngriff                => EinheitRasseNummer.Rasse,
-                                                         EinheitenNummerAngriff      => EinheitRasseNummer.Platznummer,
-                                                         RasseVerteidigung           => Gegner.Rasse,
-                                                         EinheitenNummerVerteidigung => Gegner.Platznummer);
+            Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerStadtNummerExtern           => GegnerExtern.Platznummer,
+                                                         RasseAngriffExtern                => EinheitRasseNummerExtern.Rasse,
+                                                         EinheitenNummerAngriffExtern      => EinheitRasseNummerExtern.Platznummer,
+                                                         RasseVerteidigungExtern           => GegnerExtern.Rasse,
+                                                         EinheitenNummerVerteidigungExtern => GegnerExtern.Platznummer);
                
          when False =>
             return False;

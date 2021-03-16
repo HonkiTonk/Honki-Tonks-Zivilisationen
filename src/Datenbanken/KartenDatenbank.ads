@@ -62,7 +62,7 @@ package KartenDatenbank is
                                                (' ',    5,    1, 0, 1, 1, 0), -- 41 Wasser für Unterwasser
                                                (' ',    5,    2, 0, 1, 0, 0)); -- 42 Küsten/Seegewässer für Unterwasser
                                                                        
-   procedure Beschreibung (ID : in GlobaleDatentypen.KartenGrund) with
-     Pre => (ID > 0);
+   procedure Beschreibung (IDExtern : in GlobaleDatentypen.KartenGrund) with
+     Pre => (IDExtern > 0);
 
 end KartenDatenbank;

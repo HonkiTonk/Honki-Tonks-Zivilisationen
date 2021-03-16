@@ -28,34 +28,35 @@ package EinheitenDatenbank is
                                                                
                                                                 others => LeererWertEinheitListe));
 
-   procedure Beschreibung (ID : in GlobaleDatentypen.EinheitenID);
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0));
+   procedure Beschreibung (IDExtern : in GlobaleDatentypen.EinheitenID);
+   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
    
    procedure HeilungBewegungspunkteFürNeueRundeSetzen;
-   procedure EinheitErzeugen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord; ID : in Positive) with
-     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0));
+   procedure EinheitErzeugen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; IDExtern : in GlobaleDatentypen.EinheitenID) with
+     Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
-   procedure EinheitEntfernenMitSortieren (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0));
+   procedure EinheitEntfernenMitSortieren (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
 
-   procedure EinheitEntfernenOhneSortieren (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0));
+   procedure EinheitEntfernenOhneSortieren (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
    
-   procedure Beschäftigung (Arbeit : in Natural);
+   procedure Beschäftigung (ArbeitExtern : in Natural);
 
-   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahl : in Natural) return Boolean;
+   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern : in Natural) return Boolean;
 
 private
    
-   Wahl : Integer;
-   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   Heilungsrate : constant Positive := 10;
    
-   Heilungsrate : constant Integer := 10;
+   Wahl : Integer;
+
+   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
    Position : GlobaleRecords.AchsenKartenfeldPositivRecord;
 

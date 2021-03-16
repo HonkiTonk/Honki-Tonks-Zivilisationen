@@ -6,10 +6,10 @@ with Karten, Eingabe, KartenPruefungen;
 
 package body BewegungssystemCursor is
 
-   procedure BewegungCursorRichtung (Karte : in Boolean; Richtung : in Wide_Wide_Character; RasseExtern : in GlobaleDatentypen.Rassen) is -- Hier noch Bewegung für Stadt einbauen
+   procedure BewegungCursorRichtung (KarteExtern : in Boolean; RichtungExtern : in Wide_Wide_Character; RasseExtern : in GlobaleDatentypen.Rassen) is -- Hier noch Bewegung für Stadt einbauen
    begin
       
-      case Richtung is
+      case RichtungExtern is
          when 'w' | '8' =>
             Änderung := (0, -1, 0);
             
@@ -44,7 +44,7 @@ package body BewegungssystemCursor is
             return;
       end case;
       
-      case Karte is
+      case KarteExtern is
          when True =>
             BewegungCursorBerechnen (ÄnderungExtern => Änderung,
                                      RasseExtern    => RasseExtern);
@@ -62,10 +62,10 @@ package body BewegungssystemCursor is
    begin
 
       
-      Wert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Zeug,
-                                 Zeile         => 40,
-                                 ZahlenMinimum => Integer (Karten.Weltkarte'First (1)),
-                                 ZahlenMaximum => Integer (Karten.Weltkarte'Last (1)));
+      Wert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
+                                 ZeileExtern         => 40,
+                                 ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (1)),
+                                 ZahlenMaximumExtern => Integer (Karten.Weltkarte'Last (1)));
       
       case Wert is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
@@ -75,10 +75,10 @@ package body BewegungssystemCursor is
             Position.EAchse := GlobaleDatentypen.EbeneVorhanden (Wert);
       end case;
       
-      Wert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Zeug,
-                                 Zeile         => 30,
-                                 ZahlenMinimum => Integer (Karten.Weltkarte'First (2)),
-                                 ZahlenMaximum => Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
+      Wert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
+                                 ZeileExtern         => 30,
+                                 ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (2)),
+                                 ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
       
       case Wert is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
@@ -88,10 +88,10 @@ package body BewegungssystemCursor is
             Position.YAchse := GlobaleDatentypen.Kartenfeld (Wert);
       end case;
 
-      Wert := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Zeug,
-                                 Zeile         => 31,
-                                 ZahlenMinimum => Integer (Karten.Weltkarte'First (3)),
-                                 ZahlenMaximum => Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+      Wert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
+                                 ZeileExtern         => 31,
+                                 ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (3)),
+                                 ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
 
       case Wert is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
@@ -126,9 +126,9 @@ package body BewegungssystemCursor is
          null;
       end if;
       
-      KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition,
-                                                              Änderung       => ÄnderungExtern,
-                                                              ZusatzYAbstand => 0);
+      KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition,
+                                                              ÄnderungExtern       => ÄnderungExtern,
+                                                              ZusatzYAbstandExtern => 0);
       
       case KartenWert.Erfolgreich is
          when False =>

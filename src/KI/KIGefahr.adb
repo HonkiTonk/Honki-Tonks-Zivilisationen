@@ -7,29 +7,29 @@ with EinheitenDatenbank, KIPruefungen, KartenPruefungen, EinheitSuchen;
 package body KIGefahr is
 
    -- Aufteilen nach Unbewaffnet, Fernkämpfer und Nahkämpfer?
-   function KIGefahr (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
+   function KIGefahr (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
       
       KIVariablen.FeindlicheEinheiten := (others => (others => (others => (others => 0))));
       BestehtGefahr := False;
-      EinheitTyp := EinheitenDatenbank.EinheitenListe (EinheitRasseNummer.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).ID).EinheitTyp;
+      EinheitTyp := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).EinheitTyp;
 
       case EinheitTyp is
          when 1 .. 2 =>
-            return Unbewaffnet (EinheitRasseNummer => EinheitRasseNummer);
+            return Unbewaffnet (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 3 | 5 | 7 | 9 | 11 =>
-            return Nahkämpfer (EinheitRasseNummer => EinheitRasseNummer);
+            return Nahkämpfer (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 4 | 6 | 8 | 10 | 12 =>
-            return Fernkämpfer (EinheitRasseNummer => EinheitRasseNummer);
+            return Fernkämpfer (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
       
    end KIGefahr;
 
 
 
-   function Unbewaffnet (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
+   function Unbewaffnet (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
       
       YAchseSchleife:
@@ -37,9 +37,9 @@ package body KIGefahr is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
-                                                                    Änderung       => (0, YÄnderung, XÄnderung),
-                                                                    ZusatzYAbstand => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+                                                                    ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstandExtern => 0);
 
             case KartenWert.Erfolgreich is
                when False =>
@@ -50,23 +50,23 @@ package body KIGefahr is
                      null;
                      
                   else
-                     EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                                                          Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+                     EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                                          KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
                      case EinheitRassePlatznummer.Rasse is
                         when GlobaleDatentypen.RassenMitNullwert'First =>
                            null;
                            
                         when others =>
-                           if GlobaleVariablen.Diplomatie (EinheitRasseNummer.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Krieg then
-                              KIVariablen.FeindlicheEinheiten (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer, YÄnderung, XÄnderung)
+                           if GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Krieg then
+                              KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YÄnderung, XÄnderung)
                                 := GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).ID;
                               BestehtGefahr := True;
 
-                           elsif GlobaleVariablen.Diplomatie (EinheitRasseNummer.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
-                             and KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummer => EinheitRasseNummer,
-                                                                         EinheitZweiRasseNummer => EinheitRassePlatznummer) <= 1 then
-                              KIVariablen.FeindlicheEinheiten (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer, YÄnderung, XÄnderung)
+                           elsif GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
+                             and KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                         EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1 then
+                              KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YÄnderung, XÄnderung)
                                 := GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).ID;
                               BestehtGefahr := True;
                               
@@ -82,7 +82,7 @@ package body KIGefahr is
 
       case BestehtGefahr is
          when True =>
-            KIPruefungen.ZielBerechnenGefahr (EinheitRasseNummer => EinheitRasseNummer);
+            KIPruefungen.ZielBerechnenGefahr (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             return True;
             
          when False =>
@@ -93,7 +93,7 @@ package body KIGefahr is
    
    
    
-   function Nahkämpfer (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
+   function Nahkämpfer (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
       
       YAchseSchleife:
@@ -101,9 +101,9 @@ package body KIGefahr is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
-                                                                    Änderung       => (0, YÄnderung, XÄnderung),
-                                                                    ZusatzYAbstand => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+                                                                    ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstandExtern => 0);
 
             case KartenWert.Erfolgreich is
                when False =>
@@ -114,20 +114,20 @@ package body KIGefahr is
                      null;
                      
                   else
-                     EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                                                          Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+                     EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                                          KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
                      case EinheitRassePlatznummer.Rasse is
                         when GlobaleDatentypen.RassenMitNullwert'First =>
                            null;
                            
                         when others =>
-                           if GlobaleVariablen.Diplomatie (EinheitRasseNummer.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Krieg then
+                           if GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Krieg then
                               return True;
 
-                           elsif GlobaleVariablen.Diplomatie (EinheitRasseNummer.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
-                             and KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummer => EinheitRasseNummer,
-                                                                         EinheitZweiRasseNummer => EinheitRassePlatznummer) <= 1 then
+                           elsif GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
+                             and KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                         EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1 then
                               return True;
                               
                            else
@@ -146,7 +146,7 @@ package body KIGefahr is
    
    
    
-   function Fernkämpfer (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
+   function Fernkämpfer (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
    begin
       
       YAchseSchleife:
@@ -154,9 +154,9 @@ package body KIGefahr is
          XAchseSchleife:
          for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition,
-                                                                    Änderung       => (0, YÄnderung, XÄnderung),
-                                                                    ZusatzYAbstand => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+                                                                    ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                    ZusatzYAbstandExtern => 0);
 
             case KartenWert.Erfolgreich is
                when False =>
@@ -167,20 +167,20 @@ package body KIGefahr is
                      null;
                      
                   else
-                     EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern => EinheitRasseNummer.Rasse,
-                                                                                                          Koordinaten => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+                     EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                                          KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
                      case EinheitRassePlatznummer.Rasse is
                         when GlobaleDatentypen.RassenMitNullwert'First =>
                            null;
                            
                         when others =>
-                           if GlobaleVariablen.Diplomatie (EinheitRasseNummer.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Krieg then
+                           if GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Krieg then
                               return True;
 
-                           elsif GlobaleVariablen.Diplomatie (EinheitRasseNummer.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
-                             and KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummer => EinheitRasseNummer,
-                                                                         EinheitZweiRasseNummer => EinheitRassePlatznummer) <= 1 then
+                           elsif GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
+                             and KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                         EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1 then
                               return True;
                               
                            else

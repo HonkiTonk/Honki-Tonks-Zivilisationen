@@ -15,14 +15,14 @@ package body Cheat is
       MenüSchleife:
       loop
 
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Cheat_Menü,
-                                        TextDatei        => GlobaleDatentypen.Cheat_Menü,
-                                        ÜberschriftZeile => 1,
-                                        ErsteZeile       => 2,
-                                        LetzteZeile      => 11,
-                                        AbstandAnfang    => GlobaleDatentypen.Keiner,
-                                        AbstandMitte     => GlobaleDatentypen.Neue_Zeile,
-                                        AbstandEnde      => GlobaleDatentypen.Neue_Zeile);
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Cheat_Menü,
+                                        TextDateiExtern        => GlobaleDatentypen.Cheat_Menü,
+                                        ÜberschriftZeileExtern => 1,
+                                        ErsteZeileExtern       => 2,
+                                        LetzteZeileExtern      => 11,
+                                        AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
+                                        AbstandMitteExtern     => GlobaleDatentypen.Neue_Zeile,
+                                        AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
          Get_Immediate (Item => Taste);
 
          case To_Lower (Item => Taste) is               
@@ -179,10 +179,10 @@ package body Cheat is
    procedure GrundFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      KartenGrundID := GlobaleDatentypen.KartenGrund (Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
-                                                                         Zeile         => 12,
-                                                                         ZahlenMinimum => 1,
-                                                                         ZahlenMaximum => 42));
+      KartenGrundID := GlobaleDatentypen.KartenGrund (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
+                                                                         ZeileExtern         => 12,
+                                                                         ZahlenMinimumExtern => 1,
+                                                                         ZahlenMaximumExtern => 42));
 
       case KartenGrundID is
          when 1 .. 9 | 31 .. 32 | 35 .. 42 =>
@@ -211,10 +211,10 @@ package body Cheat is
    procedure EinheitFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
-      RasseNummer := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
-                                        Zeile         => 13,
-                                        ZahlenMinimum => Integer (GlobaleDatentypen.Rassen'First),
-                                        ZahlenMaximum => Integer (GlobaleDatentypen.Rassen'Last));
+      RasseNummer := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
+                                        ZeileExtern         => 13,
+                                        ZahlenMinimumExtern => Integer (GlobaleDatentypen.Rassen'First),
+                                        ZahlenMaximumExtern => Integer (GlobaleDatentypen.Rassen'Last));
 
       case RasseNummer is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
@@ -224,10 +224,10 @@ package body Cheat is
             null;
       end case;
 
-      EinheitID := Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
-                                      Zeile         => 14,
-                                      ZahlenMinimum => Integer (EinheitenDatenbank.EinheitenListe'First (2)),
-                                      ZahlenMaximum => Integer (EinheitenDatenbank.EinheitenListe'Last (2)));
+      EinheitID := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
+                                      ZeileExtern         => 14,
+                                      ZahlenMinimumExtern => Integer (EinheitenDatenbank.EinheitenListe'First (2)),
+                                      ZahlenMaximumExtern => Integer (EinheitenDatenbank.EinheitenListe'Last (2)));
 
       case EinheitID is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
@@ -237,7 +237,7 @@ package body Cheat is
             null;
       end case;
 
-      EinheitPosition := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+      EinheitPosition := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
       
       case EinheitPosition.Platznummer is
          when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
@@ -269,7 +269,7 @@ package body Cheat is
             end loop EinheitenSchleife;
             
          when others =>
-            EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseNummer => EinheitPosition);
+            EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseNummerExtern => EinheitPosition);
             GelöschtEinheitenSchleife:
             for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 
@@ -323,10 +323,10 @@ package body Cheat is
    procedure VerbesserungFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      VerbesserungID := GlobaleDatentypen.KartenVerbesserung (Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
-                                                                                 Zeile         => 15,
-                                                                                 ZahlenMinimum => 5,
-                                                                                 ZahlenMaximum => Integer (VerbesserungenDatenbank.VerbesserungListe'Last)));
+      VerbesserungID := GlobaleDatentypen.KartenVerbesserung (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
+                                                                                 ZeileExtern         => 15,
+                                                                                 ZahlenMinimumExtern => 5,
+                                                                                 ZahlenMaximumExtern => Integer (VerbesserungenDatenbank.VerbesserungListe'Last)));
 
       case VerbesserungID is
          when 5 .. 19 =>
@@ -358,10 +358,10 @@ package body Cheat is
                null;
                
             when others =>
-               GlobaleVariablen.RassenImSpiel (Rasse) := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (TextDatei     => GlobaleDatentypen.Cheat_Menü,
-                                                                                                      Zeile         => 16,
-                                                                                                      ZahlenMinimum => 1,
-                                                                                                      ZahlenMaximum => 2));
+               GlobaleVariablen.RassenImSpiel (Rasse) := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
+                                                                                                      ZeileExtern         => 16,
+                                                                                                      ZahlenMinimumExtern => 1,
+                                                                                                      ZahlenMaximumExtern => 2));
          end case;
          
       end loop RassenverteilungÄndernSchleife;

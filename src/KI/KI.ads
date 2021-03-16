@@ -18,19 +18,19 @@ private
    EinheitRasseNummer : GlobaleRecords.RassePlatznummerRecord;
 
    procedure AKtivitätEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummer.Rasse > 0
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummerExtern.Rasse > 0
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
 
    procedure AKtivitätEinheitAbbrechen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummer.Rasse > 0
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) = 2));
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummerExtern.Rasse > 0
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
 
-   procedure AktivitätStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (StadtRasseNummer.Platznummer >= GlobaleVariablen.StadtGebaut'First (2) and StadtRasseNummer.Rasse > 0
-             and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) = 2));
+   procedure AktivitätStadt (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebaut'First (2) and StadtRasseNummerExtern.Rasse > 0
+             and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 2));
 
-   procedure AktivitätStadtAbbrechen (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (StadtRasseNummer.Platznummer >= GlobaleVariablen.StadtGebaut'First (2) and StadtRasseNummer.Rasse > 0
-             and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) = 2));
+   procedure AktivitätStadtAbbrechen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebaut'First (2) and StadtRasseNummerExtern.Rasse > 0
+             and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 2));
 
 end KI;

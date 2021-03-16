@@ -17,34 +17,34 @@ package body BefehleImSpiel is
 
       case To_Lower (Item => Taste) is -- Cursor bewegen
          when 'w' | 's' | 'a' | 'd' | '1' | '2' | '3' | '4' | '6' | '7' | '8' | '9' | '+' | '-' =>
-            BewegungssystemCursor.BewegungCursorRichtung (Karte       => True,
-                                                          Richtung    => To_Lower (Item => Taste),
+            BewegungssystemCursor.BewegungCursorRichtung (KarteExtern       => True,
+                                                          RichtungExtern    => To_Lower (Item => Taste),
                                                           RasseExtern => RasseExtern);
             
          when 'e' | '5' => -- Einheit bewegen/Stadt betreten
-            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern => RasseExtern,
-                                                                             Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern => RasseExtern,
-                                                                       Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                             KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
             if EinheitNummer /= 0 and StadtNummer /= 0 then
-               StadtOderEinheit := Auswahl.AuswahlJaNein (FrageZeile => 15);
+               StadtOderEinheit := Auswahl.AuswahlJaNein (FrageZeileExtern => 15);
 
                EinheitOderStadt (RasseExtern         => RasseExtern,
-                                 Auswahl             => StadtOderEinheit,
+                                 AuswahlExtern       => StadtOderEinheit,
                                  StadtNummerExtern   => StadtNummer,
                                  EinheitNummerExtern => EinheitNummer);
                
                
             elsif StadtNummer /= 0 then
                EinheitOderStadt (RasseExtern         => RasseExtern,
-                                 Auswahl             => GlobaleKonstanten.JaKonstante, -- Ja
+                                 AuswahlExtern       => GlobaleKonstanten.JaKonstante,
                                  StadtNummerExtern   => StadtNummer,
                                  EinheitNummerExtern => EinheitNummer);
                
             elsif EinheitNummer /= 0 then
                EinheitOderStadt (RasseExtern         => RasseExtern,
-                                 Auswahl             => GlobaleKonstanten.NeinKonstante, -- Hauptsache ungleich -3 für Nein
+                                 AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
                                  StadtNummerExtern   => StadtNummer,
                                  EinheitNummerExtern => EinheitNummer);
                
@@ -53,15 +53,15 @@ package body BefehleImSpiel is
             end if;
             
          when 'q' => -- Menüaufruf
-            return Auswahl.Auswahl (FrageDatei  => GlobaleDatentypen.Leer,
-                                    TextDatei   => GlobaleDatentypen.Menü_Auswahl,
-                                    FrageZeile  => 0,
-                                    ErsteZeile  => 2,
-                                    LetzteZeile => 7);
+            return Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Leer,
+                                    TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
+                                    FrageZeileExtern  => 0,
+                                    ErsteZeileExtern  => 2,
+                                    LetzteZeileExtern => 7);
 
          when 'b' => -- Baue Stadt
-            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern => RasseExtern,
-                                                                             Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                             KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
             case EinheitNummer is
                when 0 =>
                   null;
@@ -71,7 +71,7 @@ package body BefehleImSpiel is
                     EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = 1
                     and GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00
                   then
-                     Nullwert := StadtBauen.StadtBauen (EinheitRasseNummer => (RasseExtern, EinheitNummer));
+                     Nullwert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                      
                   else
                      null;
@@ -84,7 +84,7 @@ package body BefehleImSpiel is
                   ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
                      
                when others =>
-                  WahlForschung := Auswahl.AuswahlJaNein (FrageZeile => 17);
+                  WahlForschung := Auswahl.AuswahlJaNein (FrageZeileExtern => 17);
                   case WahlForschung is
                      when GlobaleKonstanten.JaKonstante =>
                         ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
@@ -146,28 +146,28 @@ package body BefehleImSpiel is
                   WelcherBefehl := 0;
             end case;
                
-            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern => RasseExtern,
-                                                                             Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                             KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
             case EinheitNummer is
                when 0 =>
                   null;
                   
                when others =>
                   if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID /= 1 and WelcherBefehl > 0 and WelcherBefehl <= 6 then
-                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
-                                                           TextZeile => 3);
+                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                                                           TextZeileExtern => 3);
 
                   elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 1 and WelcherBefehl = 11 then
-                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
-                                                           TextZeile => 3);
+                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                                                           TextZeileExtern => 3);
                      
                   elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00 then
-                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fehlermeldungen,
-                                                           TextZeile => 8);
+                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                                                           TextZeileExtern => 8);
                      
                   else
-                     Verbesserungen.Verbesserung (EinheitRasseNummer => (RasseExtern, EinheitNummer),
-                                                  Befehl             => Verbesserungen.Befehle_Enum'Val (WelcherBefehl));
+                     Verbesserungen.Verbesserung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
+                                                  BefehlExtern             => Verbesserungen.Befehle_Enum'Val (WelcherBefehl));
                   end if;
             end case;
             
@@ -181,8 +181,8 @@ package body BefehleImSpiel is
             BewegungssystemCursor.GeheZuCursor (RasseExtern => RasseExtern);
 
          when 'n' => -- Stadt umbenennen
-            StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern => RasseExtern,
-                                                                       Koordinaten => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
             case StadtNummer is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
                   null;
@@ -207,14 +207,15 @@ package body BefehleImSpiel is
 
 
 
-   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; Auswahl : in Integer; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte; EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten) is
+   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; AuswahlExtern : in Integer; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
+                               EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert) is
    begin
       
-      case Auswahl is
+      case AuswahlExtern is
          when GlobaleKonstanten.JaKonstante =>
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse := 1;
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse := 1;
-            InDerStadt.InDerStadt (StadtRasseNummer => (RasseExtern, StadtNummerExtern));
+            InDerStadt.InDerStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
             
          when others =>
             if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).AktuelleBeschäftigung /= 0 then
@@ -231,7 +232,7 @@ package body BefehleImSpiel is
                null;
                      
             else
-               BewegungssystemEinheiten.BewegungEinheitenRichtung (EinheitRasseNummer => (RasseExtern, EinheitNummerExtern));
+               BewegungssystemEinheiten.BewegungEinheitenRichtung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
             end if;
       end case;
       

@@ -8,8 +8,8 @@ use GlobaleDatentypen;
 
 package Eingabe is
 
-   function GanzeZahl (TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; Zeile : in Positive; ZahlenMinimum, ZahlenMaximum : in Integer) return Integer with
-     Pre  => (ZahlenMaximum <= 999_999_999 and ZahlenMinimum < ZahlenMaximum and ZahlenMinimum >= -999_999_999),
+   function GanzeZahl (TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return Integer with
+     Pre  => (ZahlenMaximumExtern <= 999_999_999 and ZahlenMinimumExtern < ZahlenMaximumExtern and ZahlenMinimumExtern >= -999_999_999),
      Post => (GanzeZahl'Result in -1_000_000_000 .. 999_999_999);
 
    function StadtName return Unbounded_Wide_Wide_String;
@@ -32,9 +32,9 @@ private
 
    Name : Unbounded_Wide_Wide_String;
 
-   function GanzeZahlPrüfung (Zeichen : in Wide_Wide_Character) return GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+   function GanzeZahlPrüfung (ZeichenExtern : in Wide_Wide_Character) return GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
 
-   function ZahlSchleife (TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; Zeile : in Positive; ZahlenMinimum, ZahlenMaximum : in Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei with
-     Pre => (ZahlenMaximum <= 999_999_999 and ZahlenMinimum < ZahlenMaximum and ZahlenMinimum >= -999_999_999);
+   function ZahlSchleife (TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei with
+     Pre => (ZahlenMaximumExtern <= 999_999_999 and ZahlenMinimumExtern < ZahlenMaximumExtern and ZahlenMinimumExtern >= -999_999_999);
 
 end Eingabe;

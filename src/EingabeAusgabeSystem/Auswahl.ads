@@ -10,17 +10,18 @@ package Auswahl is
 
    function AuswahlSprache return Unbounded_Wide_Wide_String;
 
-   function Auswahl (FrageDatei, TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; FrageZeile, ErsteZeile, LetzteZeile : in Natural) return Integer with
-     Pre => (ErsteZeile <= LetzteZeile and (if FrageDatei = GlobaleDatentypen.Leer then FrageZeile = 0) and (if FrageZeile = 0 then FrageDatei = GlobaleDatentypen.Leer) and TextDatei /= GlobaleDatentypen.Leer);
+   function Auswahl (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern : in Natural) return Integer with
+     Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if FrageDateiExtern = GlobaleDatentypen.Leer then FrageZeileExtern = 0) and (if FrageZeileExtern = 0 then FrageDateiExtern = GlobaleDatentypen.Leer)
+             and TextDateiExtern /= GlobaleDatentypen.Leer);
 
-   function AuswahlJaNein (FrageZeile : in Positive) return Integer;
+   function AuswahlJaNein (FrageZeileExtern : in Positive) return Integer;
 
 private
 
    Taste : Wide_Wide_Character;
 
-   AktuelleAuswahl : Natural := 1;
+   AktuelleAuswahl : Natural;
    Anfang : Natural;
-   Ende : Natural := 1;
+   Ende : Natural;
    
 end Auswahl;

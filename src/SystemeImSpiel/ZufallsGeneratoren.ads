@@ -9,8 +9,8 @@ with Karten;
 
 package ZufallsGeneratoren is
 
-   function Spieleinstellungen (WelcheEinstellung : in Positive) return Positive with
-     Pre  => (WelcheEinstellung <= 6),
+   function Spieleinstellungen (WelcheEinstellungExtern : in Positive) return Positive with
+     Pre  => (WelcheEinstellungExtern <= 6),
      Post => (Spieleinstellungen'Result <= Positive (GlobaleDatentypen.Rassen'Last));
      
    function YXPosition return GlobaleRecords.AchsenKartenfeldPositivRecord with

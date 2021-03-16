@@ -10,7 +10,7 @@ with Anzeige;
 package body Eingabe is 
 
    -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
-   function GanzeZahl (TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; Zeile : in Positive; ZahlenMinimum, ZahlenMaximum : in Integer) return Integer is
+   function GanzeZahl (TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return Integer is
    begin
       
       ZahlenString := ("000000000");
@@ -19,10 +19,10 @@ package body Eingabe is
       ZahlenAußenSchleife:
       loop         
          
-         SchleifeVerlassen := ZahlSchleife (TextDatei     => TextDatei,
-                                            Zeile         => Zeile,
-                                            ZahlenMinimum => ZahlenMinimum,
-                                            ZahlenMaximum => ZahlenMaximum);
+         SchleifeVerlassen := ZahlSchleife (TextDateiExtern     => TextDateiExtern,
+                                            ZeileExtern         => ZeileExtern,
+                                            ZahlenMinimumExtern => ZahlenMinimumExtern,
+                                            ZahlenMaximumExtern => ZahlenMaximumExtern);
          
          case SchleifeVerlassen is
             when 2 =>
@@ -50,25 +50,25 @@ package body Eingabe is
 
 
 
-   function ZahlSchleife (TextDatei : in GlobaleDatentypen.WelcheDatei_Enum; Zeile : in Positive; ZahlenMinimum, ZahlenMaximum : in Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei is
+   function ZahlSchleife (TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei is
    begin
 
       ZahlenSchleife: -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
       loop
 
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDatei => GlobaleDatentypen.Leer,
-                                        TextDatei        => TextDatei,
-                                        ÜberschriftZeile => 0,
-                                        ErsteZeile       => Zeile,
-                                        LetzteZeile      => Zeile,
-                                        AbstandAnfang    => GlobaleDatentypen.Keiner,
-                                        AbstandMitte     => GlobaleDatentypen.Keiner,
-                                        AbstandEnde      => GlobaleDatentypen.Neue_Zeile);
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                        TextDateiExtern        => TextDateiExtern,
+                                        ÜberschriftZeileExtern => 0,
+                                        ErsteZeileExtern       => ZeileExtern,
+                                        LetzteZeileExtern      => ZeileExtern,
+                                        AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
+                                        AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                        AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
 
-         if ZahlenMinimum > 0 and Integer'Wide_Wide_Value (ZahlenString) = 0 then
+         if ZahlenMinimumExtern > 0 and Integer'Wide_Wide_Value (ZahlenString) = 0 then
             null;
             
-         elsif ZahlenMinimum >= 0 and WelchesVorzeichen = False then
+         elsif ZahlenMinimumExtern >= 0 and WelchesVorzeichen = False then
             WelchesVorzeichen := True;
             Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
                                                Width => 1,
@@ -91,7 +91,7 @@ package body Eingabe is
             
          Get_Immediate (Item => Zahlen);
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-         IstZahl := GanzeZahlPrüfung (Zeichen => Zahlen);
+         IstZahl := GanzeZahlPrüfung (ZeichenExtern => Zahlen);
          case IstZahl is
             when 1 =>
                ZahlenNachLinksVerschiebenSchleife:
@@ -102,10 +102,10 @@ package body Eingabe is
                end loop ZahlenNachLinksVerschiebenSchleife;
                ZahlenString (ZahlenString'Last) := Zahlen;
 
-               if Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximum then
+               if Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximumExtern then
                   null;
                   
-               else -- Einfach auf ZahlenMaximum setzen
+               else -- Einfach auf ZahlenMaximumExtern setzen
                   ZahlenNachRechtsVerschiebenSchleife:
                   for Zahl in reverse ZahlenString'First + 1 .. ZahlenString'Last loop
                   
@@ -119,13 +119,13 @@ package body Eingabe is
                return -1;
 
             when 2 =>
-               if -Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimum and WelchesVorzeichen = False then
+               if -Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern and WelchesVorzeichen = False then
                   return 2;
                   
-               elsif Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimum then
+               elsif Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern then
                   return 2;
                      
-               else -- Einfach auf ZahlenMinimum setzen
+               else -- Einfach auf ZahlenMinimumExtern setzen
                   null;
                end if;
 
@@ -149,10 +149,10 @@ package body Eingabe is
 
 
    -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
-   function GanzeZahlPrüfung (Zeichen : in Wide_Wide_Character) return GlobaleDatentypen.LoopRangeMinusDreiZuDrei is
+   function GanzeZahlPrüfung (ZeichenExtern : in Wide_Wide_Character) return GlobaleDatentypen.LoopRangeMinusDreiZuDrei is
    begin
       
-      case Zeichen is
+      case ZeichenExtern is
          when '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' =>            
             return 1;
             
@@ -184,8 +184,8 @@ package body Eingabe is
    function StadtName return Unbounded_Wide_Wide_String is
    begin
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Zeug,
-                                            TextZeile => 32);
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Zeug,
+                                            TextZeileExtern => 32);
 
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
       
@@ -198,8 +198,8 @@ package body Eingabe is
    function SpielstandName return Unbounded_Wide_Wide_String is
    begin            
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDatei => GlobaleDatentypen.Fragen,
-                                            TextZeile => 22);
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fragen,
+                                            TextZeileExtern => 22);
 
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
 

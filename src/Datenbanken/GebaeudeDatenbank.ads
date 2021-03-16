@@ -41,10 +41,10 @@ package GebaeudeDatenbank is
                                                               
                                                               others => LeererWertGebäudeListe));
 
-   procedure Beschreibung (ID : in GebäudeID);
-   procedure GebäudeProduktionBeenden (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord; ID : in GebäudeID) with
-     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0));
+   procedure Beschreibung (IDExtern : in GebäudeID);
+   procedure GebäudeProduktionBeenden (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; IDExtern : in GebäudeID) with
+     Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
 private
    

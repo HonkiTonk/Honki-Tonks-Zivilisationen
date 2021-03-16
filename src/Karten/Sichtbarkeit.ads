@@ -10,21 +10,21 @@ package Sichtbarkeit is
    procedure SichtbarkeitsprüfungFürRasse (RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
-   procedure SichtbarkeitsprüfungFürEinheit (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0));
+   procedure SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
 
-   procedure SichtbarkeitsprüfungFürStadt (StadtRasseNummer : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (StadtRasseNummer.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummer.Rasse in GlobaleDatentypen.Rassen
-             and (if StadtRasseNummer.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummer.Rasse) /= 0));
+   procedure SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
-   procedure Sichtbarkeit (InDerStadt : in Boolean; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord; RasseExtern : in GlobaleDatentypen.Rassen) with
-     Pre => (Koordinaten.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and Koordinaten.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+   procedure Sichtbarkeit (InDerStadtExtern : in Boolean; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord; RasseExtern : in GlobaleDatentypen.Rassen) with
+     Pre => (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
              and GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
-   procedure Farben (Einheit : in GlobaleDatentypen.KartenverbesserungEinheitenID; Verbesserung : in GlobaleDatentypen.KartenVerbesserung; Ressource, Grund : in GlobaleDatentypen.KartenGrund;
-                     Cursor : in Boolean; RasseExtern, RasseIntern : in GlobaleDatentypen.RassenMitNullwert) with
-     Pre => (Grund >= 0 and Ressource >= 0 and (if RasseExtern > 0 then GlobaleVariablen.RassenImSpiel (RasseExtern) = 1) and (if RasseIntern > 0 then GlobaleVariablen.RassenImSpiel (RasseIntern) = 1));
+   procedure Farben (EinheitExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID; VerbesserungExtern : in GlobaleDatentypen.KartenVerbesserung; RessourceExtern, GrundExtern : in GlobaleDatentypen.KartenGrund;
+                     CursorExtern : in Boolean; RasseExtern, RasseIntern : in GlobaleDatentypen.RassenMitNullwert) with
+     Pre => (GrundExtern >= 0 and RessourceExtern >= 0 and (if RasseExtern > 0 then GlobaleVariablen.RassenImSpiel (RasseExtern) = 1) and (if RasseIntern > 0 then GlobaleVariablen.RassenImSpiel (RasseIntern) = 1));
 
 private
 

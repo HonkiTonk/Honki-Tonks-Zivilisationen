@@ -4,17 +4,17 @@ with GlobaleKonstanten;
 
 package body EinheitSuchen is
 
-   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.MaximaleEinheitenMitNullWert is
+   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.MaximaleEinheitenMitNullWert is
    begin
       
       EinheitSchleife:
-      for Einheitennummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
-         if GlobaleVariablen.EinheitenGebaut (RasseExtern, Einheitennummer).ID = 0 then
+         if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 0 then
             exit EinheitSchleife;
             
-         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, Einheitennummer).AchsenPosition = Koordinaten then
-            return Einheitennummer;
+         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition = KoordinatenExtern then
+            return EinheitNummer;
             
          else
             null;
@@ -28,7 +28,7 @@ package body EinheitSuchen is
 
 
 
-   function KoordinatenEinheitOhneRasseSuchen (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
+   function KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -39,7 +39,7 @@ package body EinheitSuchen is
             if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID = 0 then
                exit EinheitSchleife;
                
-            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition = Koordinaten then
+            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition = KoordinatenExtern then
                return (RasseIntern, EinheitNummer);
                
             else
@@ -55,7 +55,7 @@ package body EinheitSuchen is
 
 
 
-   function KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
+   function KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
    begin
 
       RasseSchleife:
@@ -69,7 +69,7 @@ package body EinheitSuchen is
             elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID = 0 then
                exit EinheitSchleife;
                
-            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition = Koordinaten then
+            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition = KoordinatenExtern then
                return (RasseIntern, EinheitNummer);
                
             else

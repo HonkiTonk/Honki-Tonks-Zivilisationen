@@ -35,7 +35,7 @@ package body Laden is
          null;
          
       else -- Falsche Versionsnummer
-         Wahl := Auswahl.AuswahlJaNein (FrageZeile => 24);
+         Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 24);
          
          case Wahl is
             when -3 =>
@@ -197,7 +197,7 @@ package body Laden is
       Close (File => DateiLadenNeu);
 
       Ladezeiten.LadenLadezeiten (2, 1) := Clock;
-      Ladezeiten.Laden (WelcheZeit => 1);
+      Ladezeiten.Laden (WelcheZeitExtern => 1);
 
       return True;
       

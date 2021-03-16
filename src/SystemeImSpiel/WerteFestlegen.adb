@@ -4,43 +4,43 @@ with KartenDatenbank, VerbesserungenDatenbank, KartenPruefungen;
 
 package body WerteFestlegen is
 
-   procedure KartenfelderBewerten (Generierung : in Boolean; Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
+   procedure KartenfelderBewerten (GenerierungExtern : in Boolean; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
    begin
       
-      case Generierung is
+      case GenerierungExtern is
          when False =>
             YAchseÄnderungSchleife:
             for YAchseÄnderung in LoopRangeMinusDreiZuDrei'Range loop
                XAchseÄnderungSchleife:
                for XAchseÄnderung in LoopRangeMinusDreiZuDrei'Range loop
 
-                  Kartenwert (Koordinaten.EAchse) := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => Koordinaten,
-                                                                                               Änderung       => (0, YAchseÄnderung, XAchseÄnderung),
-                                                                                               ZusatzYAbstand => 0);
+                  Kartenwert (KoordinatenExtern.EAchse) := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
+                                                                                                     ÄnderungExtern       => (0, YAchseÄnderung, XAchseÄnderung),
+                                                                                                     ZusatzYAbstandExtern => 0);
 
-                  case Kartenwert (Koordinaten.EAchse).Erfolgreich is
+                  case Kartenwert (KoordinatenExtern.EAchse).Erfolgreich is
                      when False =>
                         exit XAchseÄnderungSchleife;
                         
                      when True =>
-                        Karten.Weltkarte (Kartenwert (Koordinaten.EAchse).EAchse, Kartenwert (Koordinaten.EAchse).YAchse, Kartenwert (Koordinaten.EAchse).XAchse).Felderwertung := 0;
-                        KartenfelderBewertenKleineSchleife (Koordinaten => (Kartenwert (Koordinaten.EAchse).EAchse,
-                                                                            Kartenwert (Koordinaten.EAchse).YAchse,
-                                                                            Kartenwert (Koordinaten.EAchse).XAchse));
+                        Karten.Weltkarte (Kartenwert (KoordinatenExtern.EAchse).EAchse, Kartenwert (KoordinatenExtern.EAchse).YAchse, Kartenwert (KoordinatenExtern.EAchse).XAchse).Felderwertung := 0;
+                        KartenfelderBewertenKleineSchleife (KoordinatenExtern => (Kartenwert (KoordinatenExtern.EAchse).EAchse,
+                                                                                  Kartenwert (KoordinatenExtern.EAchse).YAchse,
+                                                                                  Kartenwert (KoordinatenExtern.EAchse).XAchse));
                   end case;
                                                             
                end loop XAchseÄnderungSchleife;
             end loop YAchseÄnderungSchleife;
             
          when True =>
-            KartenfelderBewertenKleineSchleife (Koordinaten => Koordinaten);
+            KartenfelderBewertenKleineSchleife (KoordinatenExtern => KoordinatenExtern);
       end case;
       
    end KartenfelderBewerten;
       
 
 
-   procedure KartenfelderBewertenKleineSchleife (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
+   procedure KartenfelderBewertenKleineSchleife (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
    begin
       
       BewertungYÄnderungSchleife:
@@ -48,32 +48,32 @@ package body WerteFestlegen is
          BewertungXÄnderungSchleife:
          for BewertungXÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
                      
-            Kartenwert (Koordinaten.EAchse) := KartenPruefungen.KartenPositionBestimmen (Koordinaten    => Koordinaten,
-                                                                                         Änderung       => (0, BewertungYÄnderung, BewertungXÄnderung),
-                                                                                         ZusatzYAbstand => 0);
+            Kartenwert (KoordinatenExtern.EAchse) := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
+                                                                                               ÄnderungExtern       => (0, BewertungYÄnderung, BewertungXÄnderung),
+                                                                                               ZusatzYAbstandExtern => 0);
             
-            case Kartenwert (Koordinaten.EAchse).Erfolgreich is
+            case Kartenwert (KoordinatenExtern.EAchse).Erfolgreich is
                when False =>
                   exit BewertungXÄnderungSchleife;
                   
                when True =>                  
                   if abs (BewertungYÄnderung) = 2 or abs (BewertungXÄnderung) = 2 then
-                     BewertungSelbst (Koordinaten         => Koordinaten,
-                                      YAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).YAchse,
-                                      XAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).XAchse,
-                                      Teiler              => 2);
+                     BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
+                                      YAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).YAchse,
+                                      XAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).XAchse,
+                                      TeilerExtern              => 2);
 
                   elsif abs (BewertungYÄnderung) = 3 or abs (BewertungXÄnderung) = 3 then
-                     BewertungSelbst (Koordinaten         => Koordinaten,
-                                      YAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).YAchse,
-                                      XAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).XAchse,
-                                      Teiler              => 3);
+                     BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
+                                      YAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).YAchse,
+                                      XAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).XAchse,
+                                      TeilerExtern              => 3);
 
                   else
-                     BewertungSelbst (Koordinaten         => Koordinaten,
-                                      YAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).YAchse,
-                                      XAchseFeldAufschlag => Kartenwert (Koordinaten.EAchse).XAchse,
-                                      Teiler              => 1);
+                     BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
+                                      YAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).YAchse,
+                                      XAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).XAchse,
+                                      TeilerExtern              => 1);
                   end if;
             end case;
                                  
@@ -84,34 +84,36 @@ package body WerteFestlegen is
    
    
    
-   procedure BewertungSelbst (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord; YAchseFeldAufschlag, XAchseFeldAufschlag : in GlobaleDatentypen.KartenfeldPositiv;
-                              Teiler : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei) is
+   procedure BewertungSelbst (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord; YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern : in GlobaleDatentypen.KartenfeldPositiv;
+                              TeilerExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei) is
    begin
       
-      Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Felderwertung := Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Felderwertung
-        + ((KartenDatenbank.KartenListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Nahrungsgewinnung
-           + KartenDatenbank.KartenListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Ressourcengewinnung
-           + KartenDatenbank.KartenListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Geldgewinnung
-           + KartenDatenbank.KartenListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Wissensgewinnung
-           + KartenDatenbank.KartenListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Grund).Verteidigungsbonus
+      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
+        := Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
+        + ((KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Grund).Nahrungsgewinnung
+           + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Grund).Ressourcengewinnung
+           + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Grund).Geldgewinnung
+           + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Grund).Wissensgewinnung
+           + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Grund).Verteidigungsbonus
 
-           + KartenDatenbank.KartenListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Nahrungsgewinnung
-           + KartenDatenbank.KartenListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Ressourcengewinnung
-           + KartenDatenbank.KartenListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Geldgewinnung
-           + KartenDatenbank.KartenListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Wissensgewinnung
-           + KartenDatenbank.KartenListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).Fluss).Verteidigungsbonus
+           + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Fluss).Nahrungsgewinnung
+           + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Fluss).Ressourcengewinnung
+           + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Fluss).Geldgewinnung
+           + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Fluss).Wissensgewinnung
+           + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Fluss).Verteidigungsbonus
 
-           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Nahrungsbonus
-           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Ressourcenbonus
-           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Geldbonus
-           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Wissensbonus
-           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungStraße).Verteidigungsbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungStraße).Nahrungsbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungStraße).Ressourcenbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungStraße).Geldbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungStraße).Wissensbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungStraße).Verteidigungsbonus
 
-           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Nahrungsbonus
-           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Ressourcenbonus
-           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Geldbonus
-           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Wissensbonus
-           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (Koordinaten.EAchse, YAchseFeldAufschlag, XAchseFeldAufschlag).VerbesserungGebiet).Verteidigungsbonus) / GesamtproduktionStadt (Teiler));
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungGebiet).Nahrungsbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungGebiet).Ressourcenbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungGebiet).Geldbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungGebiet).Wissensbonus
+           + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungGebiet).Verteidigungsbonus)
+           / GesamtproduktionStadt (TeilerExtern));
       
    end BewertungSelbst;
 

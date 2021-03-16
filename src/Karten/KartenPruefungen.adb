@@ -2,38 +2,39 @@ pragma SPARK_Mode (On);
 
 package body KartenPruefungen is
 
-   function KartenPositionBestimmen (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord; Änderung : in GlobaleRecords.AchsenKartenfeldRecord;
-                                     ZusatzYAbstand : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord is
-   begin -- Der ZusatzYAbstand ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
+   function KartenPositionBestimmen (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord; ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
+                                     ZusatzYAbstandExtern : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord is
+   begin -- Der ZusatzYAbstandExtern ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
       
-      if Koordinaten.EAchse + Änderung.EAchse < Karten.WeltkarteArray'First (1) or Koordinaten.EAchse + Änderung.EAchse > Karten.WeltkarteArray'Last (1) then
+      if KoordinatenExtern.EAchse + ÄnderungExtern.EAchse < Karten.WeltkarteArray'First (1) or KoordinatenExtern.EAchse + ÄnderungExtern.EAchse > Karten.WeltkarteArray'Last (1) then
          return (GlobaleDatentypen.EbeneVorhanden'First, GlobaleDatentypen.KartenfeldPositiv'First, GlobaleDatentypen.KartenfeldPositiv'First, False);
 
-      elsif Koordinaten.YAchse + Änderung.YAchse < Karten.WeltkarteArray'First (2) + ZusatzYAbstand or Koordinaten.YAchse + Änderung.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstand then
+      elsif KoordinatenExtern.YAchse + ÄnderungExtern.YAchse < Karten.WeltkarteArray'First (2) + ZusatzYAbstandExtern
+        or KoordinatenExtern.YAchse + ÄnderungExtern.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstandExtern then
          return (GlobaleDatentypen.EbeneVorhanden'First, GlobaleDatentypen.KartenfeldPositiv'First, GlobaleDatentypen.KartenfeldPositiv'First, False);
 
-      elsif Koordinaten.XAchse + Änderung.XAchse < Karten.WeltkarteArray'First (3) then
-         Überhang := Integer (Koordinaten.XAchse + Änderung.XAchse + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+      elsif KoordinatenExtern.XAchse + ÄnderungExtern.XAchse < Karten.WeltkarteArray'First (3) then
+         Überhang := Integer (KoordinatenExtern.XAchse + ÄnderungExtern.XAchse + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
          SchleifeKleiner:
          while Überhang < Integer (Karten.WeltkarteArray'First (3)) loop
             
             Überhang := Überhang + Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
          end loop SchleifeKleiner;
-         return (Koordinaten.EAchse + Änderung.EAchse, Koordinaten.YAchse + Änderung.YAchse, GlobaleDatentypen.Kartenfeld (Überhang), True);
+         return (KoordinatenExtern.EAchse + ÄnderungExtern.EAchse, KoordinatenExtern.YAchse + ÄnderungExtern.YAchse, GlobaleDatentypen.Kartenfeld (Überhang), True);
                
-      elsif Koordinaten.XAchse + Änderung.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-         Überhang := Integer (Koordinaten.XAchse + Änderung.XAchse - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+      elsif KoordinatenExtern.XAchse + ÄnderungExtern.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+         Überhang := Positive (KoordinatenExtern.XAchse + ÄnderungExtern.XAchse - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
          SchleifeGrößer:
-         while Überhang > Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße) loop
+         while Überhang > Positive (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße) loop
             
-            Überhang := Überhang - Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            Überhang := Überhang - Positive (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
             
          end loop SchleifeGrößer;
-         return (Koordinaten.EAchse + Änderung.EAchse, Koordinaten.YAchse + Änderung.YAchse, GlobaleDatentypen.Kartenfeld (Überhang), True);
+         return (KoordinatenExtern.EAchse + ÄnderungExtern.EAchse, KoordinatenExtern.YAchse + ÄnderungExtern.YAchse, GlobaleDatentypen.Kartenfeld (Überhang), True);
                
       else
-         return (Koordinaten.EAchse + Änderung.EAchse, Koordinaten.YAchse + Änderung.YAchse, Koordinaten.XAchse + Änderung.XAchse, True);
+         return (KoordinatenExtern.EAchse + ÄnderungExtern.EAchse, KoordinatenExtern.YAchse + ÄnderungExtern.YAchse, KoordinatenExtern.XAchse + ÄnderungExtern.XAchse, True);
       end if;
       
    end KartenPositionBestimmen;
@@ -41,10 +42,10 @@ package body KartenPruefungen is
    
    
    -- Sinnvoller benennen und weitere Prüfung für nur Wasser und so weiter einbauen
-   function KartenGrund (Koordinaten : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Boolean is
+   function KartenGrund (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Boolean is
    begin
       
-      case Karten.Weltkarte (Koordinaten.EAchse, Koordinaten.YAchse, Koordinaten.XAchse).Grund is
+      case Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund is
          when 1 .. 2 | 29 .. 31 | 36 =>
             return False;
             

@@ -124,7 +124,7 @@ package body ImSpiel is
       
       KIZuruecksetzen.KIZurücksetzenAmRundenende;
       Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (2, 1) := Clock;
-      Ladezeiten.BerechnungenNachZugendeAllerSpieler (WelcheZeit => 1);
+      Ladezeiten.BerechnungenNachZugendeAllerSpieler (WelcheZeitExtern => 1);
       
    end BerechnungenNachZugendeAllerSpieler;
 
