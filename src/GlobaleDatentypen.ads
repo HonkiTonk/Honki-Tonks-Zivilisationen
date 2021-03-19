@@ -2,12 +2,12 @@ pragma SPARK_Mode (On);
 
 package GlobaleDatentypen is
 
-   -- Für Eingabe, Eingaberückgabe und Integerersatz? ||| Später einbauen
+   -- Für Eingabe, Eingaberückgabe und Integerersatz? ||| Später einbauen?
    -- type KleinerInteger is range -1_000_000_000 .. 999_999_999;
    -- subtype KleinesNatural is KleinerInteger range 0 .. 999_999_999;
    -- subtype KleinesPositiv is KleinerInteger range 1 .. 999_999_999;
    -- subtype KleinesNegativ is KleinerInteger range -1_000_000_000 .. -1;
-   -- Für Eingabe, Eingaberückgabe und Integerersatz? ||| Später einbauen
+   -- Für Eingabe, Eingaberückgabe und Integerersatz? ||| Später einbauen?
    
    
 

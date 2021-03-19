@@ -20,109 +20,46 @@ package body KarteStadt is
       InformationenStadtAufrufen := False;
       
       YAchseSchleife:
-      for YAchse in Karten.StadtkarteArray'Range (1) loop
+      for YAchseSchleifenwert in Karten.StadtkarteArray'Range (1) loop
          XAchseSchleife:
-         for XAchse in Karten.StadtkarteArray'Range (2) loop
+         for XAchseSchleifenwert in Karten.StadtkarteArray'Range (2) loop
                         
-            if YAchse < Karten.Stadtkarte'First (1) + 7 and XAchse > Karten.Stadtkarte'Last (2) - 7 then               
+            if YAchseSchleifenwert < Karten.Stadtkarte'First (1) + 7 and XAchseSchleifenwert > Karten.Stadtkarte'Last (2) - 7 then               
                if YAchsenabstraktion < -Stadtumgebungsgröße or YAchsenabstraktion > Stadtumgebungsgröße then
-                  SchleifeFenster (YAchseExtern => YAchse,
-                                   XAchseExtern => XAchse,
+                  SchleifeFenster (YAchseExtern => YAchseSchleifenwert,
+                                   XAchseExtern => XAchseSchleifenwert,
                                    RasseExtern  => StadtRasseNummerExtern.Rasse);
                   exit XAchseSchleife;
 
-               elsif Stadtumgebungsgröße = 1 and YAchse < 3 then
-                  SchleifeFenster (YAchseExtern => YAchse,
-                                   XAchseExtern => XAchse,
+               elsif Stadtumgebungsgröße = 1 and YAchseSchleifenwert < 3 then
+                  SchleifeFenster (YAchseExtern => YAchseSchleifenwert,
+                                   XAchseExtern => XAchseSchleifenwert,
                                    RasseExtern  => StadtRasseNummerExtern.Rasse);
                   exit XAchseSchleife;
 
-               elsif Stadtumgebungsgröße = 2 and YAchse < 2 then
-                  SchleifeFenster (YAchseExtern => YAchse,
-                                   XAchseExtern => XAchse,
+               elsif Stadtumgebungsgröße = 2 and YAchseSchleifenwert < 2 then
+                  SchleifeFenster (YAchseExtern => YAchseSchleifenwert,
+                                   XAchseExtern => XAchseSchleifenwert,
                                    RasseExtern  => StadtRasseNummerExtern.Rasse);
                   exit XAchseSchleife;               
                   
                else
-                  UmgebungsSchleife:
-                  for Umgebung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
-
-                     Cursor := CursorKonstant + Umgebung;
-                     if GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt = (YAchse, XAchse + Cursor) then
-                        if Umgebung < -Stadtumgebungsgröße or Umgebung > Stadtumgebungsgröße then
-                           Sichtbarkeit.Farben (EinheitExtern      => 0,
-                                                VerbesserungExtern => 0,
-                                                RessourceExtern    => 0,
-                                                GrundExtern        => 0,
-                                                CursorExtern       => True,
-                                                RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                RasseIntern        => 0);
-
-                        else
-                           CursorYAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.YAchse - 4;
-                           CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse - 17;
-
-                           KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition,
-                                                                                   ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
-                                                                                   ZusatzYAbstandExtern => 0);
-
-                           case KartenWert.Erfolgreich is
-                              when False =>
-                                 Sichtbarkeit.Farben (EinheitExtern      => 0,
-                                                      VerbesserungExtern => 0,
-                                                      RessourceExtern    => 0,
-                                                      GrundExtern        => 0,
-                                                      CursorExtern       => True,
-                                                      RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                      RasseIntern        => 0);
-                           
-                              when True =>
-                                 Sichtbarkeit.Farben (EinheitExtern      => 0,
-                                                      VerbesserungExtern => 0,
-                                                      RessourceExtern    => 0,
-                                                      GrundExtern        => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund,
-                                                      CursorExtern       => True,
-                                                      RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                      RasseIntern        => 0);
-                           end case;                        
-                           InformationenStadtAufrufen := True;
-                        end if;
-                           
-                     elsif Umgebung < -Stadtumgebungsgröße or Umgebung > Stadtumgebungsgröße then
-                        Put (Item => " ");
-
-                     else
-                        KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition,
-                                                                                ÄnderungExtern       => (0, YAchsenabstraktion, Umgebung),
-                                                                                ZusatzYAbstandExtern => 0);
-
-                        case KartenWert.Erfolgreich is
-                           when False =>
-                              Put (Item => " ");
-
-                           when True =>
-                              Sichtbarkeit.Sichtbarkeit (InDerStadtExtern  => True,
-                                                         KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse),
-                                                         RasseExtern       => StadtRasseNummerExtern.Rasse);
-                        end case;
-                     end if;
-
-                  end loop UmgebungsSchleife;
-
-                  New_Line;
-                  YAchsenabstraktion := YAchsenabstraktion + 1;
+                  AnzeigeStadtUmgebung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                        YAchseExtern           => YAchseSchleifenwert,
+                                        XAchseExtern           => XAchseSchleifenwert);
                   exit XAchseSchleife;
                end if;
                
-            elsif GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt = (YAchse, XAchse) then
-               if (YAchse < Karten.Stadtkarte'First (1) + 7 and XAchse = Karten.Stadtkarte'Last (2) - 7) or (YAchse = Karten.Stadtkarte'First (1) + 7 and XAchse >= Karten.Stadtkarte'Last (2) - 7) then
+            elsif GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt = (YAchseSchleifenwert, XAchseSchleifenwert) then
+               if (YAchseSchleifenwert < Karten.Stadtkarte'First (1) + 7 and XAchseSchleifenwert = Karten.Stadtkarte'Last (2) - 7)
+                 or (YAchseSchleifenwert = Karten.Stadtkarte'First (1) + 7 and XAchseSchleifenwert >= Karten.Stadtkarte'Last (2) - 7) then
                   Sichtbarkeit.Farben (EinheitExtern      => 0,
                                        VerbesserungExtern => 0,
                                        RessourceExtern    => 0,
                                        GrundExtern        => 0,
                                        CursorExtern       => True,
-                                       RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                       RasseIntern        => 0);
+                                       EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
+                                       RasseExtern        => 0);
 
                else
                   Sichtbarkeit.Farben (EinheitExtern      => 0,
@@ -132,20 +69,20 @@ package body KarteStadt is
                                          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition.YAchse,
                                          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition.XAchse).Grund,
                                        CursorExtern       => True,
-                                       RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                       RasseIntern        => 0);
+                                       EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
+                                       RasseExtern        => 0);
 
                end if;
 
-            elsif YAchse < Karten.Stadtkarte'First (1) + 7 and XAchse = Karten.Stadtkarte'Last (2) - 7 then
+            elsif YAchseSchleifenwert < Karten.Stadtkarte'First (1) + 7 and XAchseSchleifenwert = Karten.Stadtkarte'Last (2) - 7 then
                Put (Item => " ");
 
-            elsif YAchse = Karten.Stadtkarte'First (1) + 7 and XAchse >= Karten.Stadtkarte'Last (2) - 7 then
+            elsif YAchseSchleifenwert = Karten.Stadtkarte'First (1) + 7 and XAchseSchleifenwert >= Karten.Stadtkarte'Last (2) - 7 then
                Put (Item => " ");
 
-            elsif YAchse = 1 and XAchse < 13 then
-               if GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (XAchse)) = True then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (XAchse)).GebäudeGrafik);
+            elsif YAchseSchleifenwert = 1 and XAchseSchleifenwert < 13 then
+               if GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert)) = True then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (XAchseSchleifenwert)).GebäudeGrafik);
 
                else
                   Sichtbarkeit.Farben (EinheitExtern      => 0,
@@ -155,13 +92,13 @@ package body KarteStadt is
                                          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition.YAchse,
                                          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition.XAchse).Grund,
                                        CursorExtern       => False,
-                                       RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                       RasseIntern        => 0);
+                                       EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
+                                       RasseExtern        => 0);
                end if;
 
-            elsif YAchse = 2 and XAchse < 13 then
-               if GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (XAchse) + 12) = True then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (XAchse) + 12).GebäudeGrafik);
+            elsif YAchseSchleifenwert = 2 and XAchseSchleifenwert < 13 then
+               if GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 12) = True then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 12).GebäudeGrafik);
 
                else
                   Sichtbarkeit.Farben (EinheitExtern      => 0,
@@ -171,8 +108,8 @@ package body KarteStadt is
                                          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition.YAchse,
                                          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition.XAchse).Grund,
                                        CursorExtern       => False,
-                                       RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                       RasseIntern        => 0);
+                                       EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
+                                       RasseExtern        => 0);
                end if;
 
             else
@@ -183,11 +120,11 @@ package body KarteStadt is
                                       GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition.YAchse,
                                       GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition.XAchse).Grund,
                                     CursorExtern       => False,
-                                    RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                    RasseIntern        => 0);
+                                    EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
+                                    RasseExtern        => 0);
             end if;
 
-            case XAchse is
+            case XAchseSchleifenwert is
                when Karten.Stadtkarte'Last (2) =>
                   New_Line;
                   
@@ -241,16 +178,16 @@ package body KarteStadt is
       
       -- Hier muss nur von 0 .. 6 geloopt werden, da aber Stadtfeld nur von 1 .. 20 geht, wird eins weiter geloopt und im if eins abgezogen
       UmgebungSchleife:      
-      for Umgebung in KonstanterWertEins .. KonstanterWertSieben loop
+      for UmgebungSchleifenwert in KonstanterWertEins .. KonstanterWertSieben loop
                      
-         if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt = (YAchseExtern, XAchseExtern + Umgebung - 1) then
+         if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt = (YAchseExtern, XAchseExtern + UmgebungSchleifenwert - 1) then
             Sichtbarkeit.Farben (EinheitExtern      => 0,
                                  VerbesserungExtern => 0,
                                  RessourceExtern    => 0,
                                  GrundExtern        => 0,
                                  CursorExtern       => True,
-                                 RasseExtern        => RasseExtern,
-                                 RasseIntern        => 0);
+                                 EigeneRasseExtern  => RasseExtern,
+                                 RasseExtern        => 0);
 
          else
             Put (Item => " ");
@@ -261,6 +198,81 @@ package body KarteStadt is
       New_Line;
       
    end SchleifeFenster;
+
+
+
+   procedure AnzeigeStadtUmgebung (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld) is
+   begin
+      
+      UmgebungsSchleife:
+      for UmgebungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+
+         Cursor := CursorKonstant + UmgebungSchleifenwert;
+         if GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt = (YAchseExtern, XAchseExtern + Cursor) then
+            if UmgebungSchleifenwert < -Stadtumgebungsgröße or UmgebungSchleifenwert > Stadtumgebungsgröße then
+               Sichtbarkeit.Farben (EinheitExtern      => 0,
+                                    VerbesserungExtern => 0,
+                                    RessourceExtern    => 0,
+                                    GrundExtern        => 0,
+                                    CursorExtern       => True,
+                                    EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
+                                    RasseExtern        => 0);
+
+            else
+               CursorYAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.YAchse - 4;
+               CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse - 17;
+
+               KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition,
+                                                                       ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
+                                                                       ZusatzYAbstandExtern => 0);
+
+               case KartenWert.Erfolgreich is
+                  when False =>
+                     Sichtbarkeit.Farben (EinheitExtern      => 0,
+                                          VerbesserungExtern => 0,
+                                          RessourceExtern    => 0,
+                                          GrundExtern        => 0,
+                                          CursorExtern       => True,
+                                          EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
+                                          RasseExtern        => 0);
+                           
+                  when True =>
+                     Sichtbarkeit.Farben (EinheitExtern      => 0,
+                                          VerbesserungExtern => 0,
+                                          RessourceExtern    => 0,
+                                          GrundExtern        => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund,
+                                          CursorExtern       => True,
+                                          EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
+                                          RasseExtern        => 0);
+               end case;                        
+               InformationenStadtAufrufen := True;
+            end if;
+                           
+         elsif UmgebungSchleifenwert < -Stadtumgebungsgröße or UmgebungSchleifenwert > Stadtumgebungsgröße then
+            Put (Item => " ");
+
+         else
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition,
+                                                                    ÄnderungExtern       => (0, YAchsenabstraktion, UmgebungSchleifenwert),
+                                                                    ZusatzYAbstandExtern => 0);
+
+            case KartenWert.Erfolgreich is
+               when False =>
+                  Put (Item => " ");
+
+               when True =>
+                  Sichtbarkeit.Sichtbarkeit (InDerStadtExtern  => True,
+                                             KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse),
+                                             RasseExtern       => StadtRasseNummerExtern.Rasse);
+            end case;
+         end if;
+
+      end loop UmgebungsSchleife;
+
+      New_Line;
+      YAchsenabstraktion := YAchsenabstraktion + 1;
+      
+   end AnzeigeStadtUmgebung;
    
    
    

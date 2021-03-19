@@ -33,12 +33,12 @@ package body KIGefahr is
    begin
       
       YAchseSchleife:
-      for YÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
+      for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
          XAchseSchleife:
-         for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
+         for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
-                                                                    ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
             case KartenWert.Erfolgreich is
@@ -46,7 +46,7 @@ package body KIGefahr is
                   exit XAchseSchleife;
                   
                when True =>
-                  if YÄnderung = 0 and XÄnderung = 0 then
+                  if YÄnderungSchleifenwert = 0 and XÄnderungSchleifenwert = 0 then
                      null;
                      
                   else
@@ -59,14 +59,14 @@ package body KIGefahr is
                            
                         when others =>
                            if GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Krieg then
-                              KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YÄnderung, XÄnderung)
+                              KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YÄnderungSchleifenwert, XÄnderungSchleifenwert)
                                 := GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).ID;
                               BestehtGefahr := True;
 
                            elsif GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
                              and KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
                                                                          EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1 then
-                              KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YÄnderung, XÄnderung)
+                              KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YÄnderungSchleifenwert, XÄnderungSchleifenwert)
                                 := GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).ID;
                               BestehtGefahr := True;
                               
@@ -97,12 +97,12 @@ package body KIGefahr is
    begin
       
       YAchseSchleife:
-      for YÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
+      for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
          XAchseSchleife:
-         for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
+         for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
-                                                                    ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
             case KartenWert.Erfolgreich is
@@ -110,7 +110,7 @@ package body KIGefahr is
                   exit XAchseSchleife;
                   
                when True =>
-                  if YÄnderung = 0 and XÄnderung = 0 then
+                  if YÄnderungSchleifenwert = 0 and XÄnderungSchleifenwert = 0 then
                      null;
                      
                   else
@@ -150,12 +150,12 @@ package body KIGefahr is
    begin
       
       YAchseSchleife:
-      for YÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
+      for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
          XAchseSchleife:
-         for XÄnderung in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
+         for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
-                                                                    ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
             case KartenWert.Erfolgreich is
@@ -163,7 +163,7 @@ package body KIGefahr is
                   exit XAchseSchleife;
                   
                when True =>
-                  if YÄnderung = 0 and XÄnderung = 0 then
+                  if YÄnderungSchleifenwert = 0 and XÄnderungSchleifenwert = 0 then
                      null;
                      
                   else

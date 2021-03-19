@@ -88,12 +88,12 @@ package body Karte is
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       YAchseSchleife:
-      for YAchse in -Sichtweiten (SichtweiteFestlegen).YAchse .. Sichtweiten (SichtweiteFestlegen).YAchse loop
+      for YAchseSchleifenwert in -Sichtweiten (SichtweiteFestlegen).YAchse .. Sichtweiten (SichtweiteFestlegen).YAchse loop
          XAchseSchleife:
-         for XAchse in -Sichtweiten (SichtweiteFestlegen).XAchse .. Sichtweiten (SichtweiteFestlegen).XAchse loop
+         for XAchseSchleifenwert in -Sichtweiten (SichtweiteFestlegen).XAchse .. Sichtweiten (SichtweiteFestlegen).XAchse loop
             
             Kartenwert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt,
-                                                                    ÄnderungExtern       => (0, YAchse, XAchse),
+                                                                    ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
             
             case Kartenwert.Erfolgreich is
@@ -106,7 +106,7 @@ package body Karte is
                                              RasseExtern => RasseExtern);
             end case;
             
-            if XAchse = Sichtweiten (SichtweiteFestlegen).XAchse then
+            if XAchseSchleifenwert = Sichtweiten (SichtweiteFestlegen).XAchse then
                New_Line;
                   
             else

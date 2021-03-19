@@ -350,9 +350,9 @@ package body SpielEinstellungen is
    begin
       
       SpieleranzahlWerteFestlegen:
-      for RasseIntern in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
         
-         case GlobaleVariablen.RassenImSpiel (RasseIntern) is
+         case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is
             when 0 =>
                null;
                
@@ -367,7 +367,7 @@ package body SpielEinstellungen is
 
                   PrüfungEinheit := UmgebungPrüfen (YPositionExtern   => GezogeneWerte.YAchse,
                                                       XPositionExtern   => GezogeneWerte.XAchse,
-                                                      RasseExtern       => RasseIntern);
+                                                      RasseExtern       => RasseSchleifenwert);
 
                   case PrüfungEinheit is
                      when True =>
@@ -382,10 +382,10 @@ package body SpielEinstellungen is
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
                                                               TextZeileExtern => 16);
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Rassen_Beschreibung_Kurz,
-                                                              TextZeileExtern => Positive (RasseIntern));
+                                                              TextZeileExtern => Positive (RasseSchleifenwert));
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
                                                               TextZeileExtern => 17);
-                        GlobaleVariablen.RassenImSpiel (RasseIntern) := 0;
+                        GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := 0;
                         exit StartwerteFestlegenSchleife;
                         
                      when others =>

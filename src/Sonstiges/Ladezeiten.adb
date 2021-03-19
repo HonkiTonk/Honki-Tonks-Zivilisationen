@@ -26,13 +26,14 @@ package body Ladezeiten is
       case WelcheZeitExtern is
          when 1 =>
             ZeitAuswahlSchleife:
-            for VerschiedeneZeiten in LadezeitenSpielweltErstellenZeit'Range (2) loop
+            for VerschiedeneZeitenSchleifenwert in LadezeitenSpielweltErstellenZeit'Range (2) loop
                ZeitUnterschiedSchleife:
-               for ZeitAnfangEnde in LadezeitenSpielweltErstellenZeit'Range (1) loop
+               for ZeitAnfangEndeSchleifenwert in LadezeitenSpielweltErstellenZeit'Range (1) loop
                   
-                  case ZeitAnfangEnde is
+                  case ZeitAnfangEndeSchleifenwert is
                      when 2 =>
-                        Gesamtzeit := Gesamtzeit + Float (LadezeitenSpielweltErstellenZeit (ZeitAnfangEnde, VerschiedeneZeiten) - LadezeitenSpielweltErstellenZeit (ZeitAnfangEnde - 1, VerschiedeneZeiten));
+                        Gesamtzeit:= Gesamtzeit + Float (LadezeitenSpielweltErstellenZeit (ZeitAnfangEndeSchleifenwert, VerschiedeneZeitenSchleifenwert)
+                                                         - LadezeitenSpielweltErstellenZeit (ZeitAnfangEndeSchleifenwert - 1, VerschiedeneZeitenSchleifenwert));
 
                      when 1 =>
                         null;

@@ -6,24 +6,24 @@ package body Sortieren is
    begin
 
       EinheitenTauschSchleife:
-      for EinheitenTauschen in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitenTauschenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
-         SortierenEinheiten (EinheitenTauschen) := GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitenTauschen);
-         GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitenTauschen) := GlobaleVariablen.LeererWertEinheit;
+         SortierenEinheiten (EinheitenTauschenSchleifenwert) := GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitenTauschenSchleifenwert);
+         GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitenTauschenSchleifenwert) := GlobaleVariablen.LeererWertEinheit;
          
       end loop EinheitenTauschSchleife;
 
       EinheitenSortierenAußenSchleife:
-      for Einsortieren in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinsortierenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          EinheitenSortierenInnenSchleife:
-         for Auswahl in SortierenEinheitenArray'Range loop
+         for AuswahlSchleifenwert in SortierenEinheitenArray'Range loop
             
-            if SortierenEinheiten (Auswahl).ID /= 0 then
-               GlobaleVariablen.EinheitenGebaut (RasseExtern, Einsortieren) := SortierenEinheiten (Auswahl);
-               SortierenEinheiten (Auswahl) := GlobaleVariablen.LeererWertEinheit;
+            if SortierenEinheiten (AuswahlSchleifenwert).ID /= 0 then
+               GlobaleVariablen.EinheitenGebaut (RasseExtern, EinsortierenSchleifenwert) := SortierenEinheiten (AuswahlSchleifenwert);
+               SortierenEinheiten (AuswahlSchleifenwert) := GlobaleVariablen.LeererWertEinheit;
                exit EinheitenSortierenInnenSchleife;
                
-            elsif Auswahl = SortierenEinheiten'Last then
+            elsif AuswahlSchleifenwert = SortierenEinheiten'Last then
                exit EinheitenSortierenAußenSchleife;
                
             else
@@ -41,24 +41,24 @@ package body Sortieren is
    begin
       
       StädteTauschenSchleife:
-      for StädteTauschen in GlobaleVariablen.StadtGebautArray'Range (2) loop
+      for StädteTauschenSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
 
-         SortierenStädte (StädteTauschen) := GlobaleVariablen.StadtGebaut (RasseExtern, StädteTauschen);
-         GlobaleVariablen.StadtGebaut (RasseExtern, StädteTauschen) := GlobaleVariablen.LeererWertStadt;
+         SortierenStädte (StädteTauschenSchleifenwert) := GlobaleVariablen.StadtGebaut (RasseExtern, StädteTauschenSchleifenwert);
+         GlobaleVariablen.StadtGebaut (RasseExtern, StädteTauschenSchleifenwert) := GlobaleVariablen.LeererWertStadt;
 
       end loop StädteTauschenSchleife;
 
       StädteSortierenAußenSchleife:
-      for Einsortieren in GlobaleVariablen.StadtGebautArray'Range (2) loop
+      for EinsortierenSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
          StädteSortierenInnenSchleife:
-         for Auswahl in SortierenStädteArray'Range loop
+         for AuswahlSchleifenwert in SortierenStädteArray'Range loop
             
-            if SortierenStädte (Auswahl).ID /= 0 then
-               GlobaleVariablen.StadtGebaut (RasseExtern, Einsortieren) := SortierenStädte (Auswahl);
-               SortierenStädte (Auswahl) := GlobaleVariablen.LeererWertStadt;
+            if SortierenStädte (AuswahlSchleifenwert).ID /= 0 then
+               GlobaleVariablen.StadtGebaut (RasseExtern, EinsortierenSchleifenwert) := SortierenStädte (AuswahlSchleifenwert);
+               SortierenStädte (AuswahlSchleifenwert) := GlobaleVariablen.LeererWertStadt;
                exit StädteSortierenInnenSchleife;
                
-            elsif Auswahl = SortierenStädte'Last then
+            elsif AuswahlSchleifenwert = SortierenStädte'Last then
                exit StädteSortierenAußenSchleife;
                
             else

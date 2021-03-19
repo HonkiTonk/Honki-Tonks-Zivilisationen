@@ -95,9 +95,9 @@ package body Eingabe is
          case IstZahl is
             when 1 =>
                ZahlenNachLinksVerschiebenSchleife:
-               for Zahl in ZahlenString'First + 1 .. ZahlenString'Last loop
+               for ZahlEinsSchleifenwert in ZahlenString'First + 1 .. ZahlenString'Last loop
                   
-                  ZahlenString (Zahl - 1) := ZahlenString (Zahl);
+                  ZahlenString (ZahlEinsSchleifenwert - 1) := ZahlenString (ZahlEinsSchleifenwert);
 
                end loop ZahlenNachLinksVerschiebenSchleife;
                ZahlenString (ZahlenString'Last) := Zahlen;
@@ -107,9 +107,9 @@ package body Eingabe is
                   
                else -- Einfach auf ZahlenMaximumExtern setzen
                   ZahlenNachRechtsVerschiebenSchleife:
-                  for Zahl in reverse ZahlenString'First + 1 .. ZahlenString'Last loop
+                  for ZahlZweiSchleifenwert in reverse ZahlenString'First + 1 .. ZahlenString'Last loop
                   
-                     ZahlenString (Zahl) := ZahlenString (Zahl - 1);
+                     ZahlenString (ZahlZweiSchleifenwert) := ZahlenString (ZahlZweiSchleifenwert - 1);
 
                   end loop ZahlenNachRechtsVerschiebenSchleife;
                   ZahlenString (1) := '0';
@@ -131,9 +131,9 @@ package body Eingabe is
 
             when -2 =>
                ZahlenNachRechtsVerschiebenSchleifeZwei:
-               for Zahl in reverse ZahlenString'First + 1 .. ZahlenString'Last loop
+               for ZahlDreiSchleifenwert in reverse ZahlenString'First + 1 .. ZahlenString'Last loop
                   
-                  ZahlenString (Zahl) := ZahlenString (Zahl - 1);
+                  ZahlenString (ZahlDreiSchleifenwert) := ZahlenString (ZahlDreiSchleifenwert - 1);
 
                end loop ZahlenNachRechtsVerschiebenSchleifeZwei;
                ZahlenString (1) := '0';
@@ -215,10 +215,12 @@ package body Eingabe is
 
 
 
-   function TastenEingabe return Wide_Wide_Character is
+   function TastenEingabe return Integer is
    begin
+
+      Get_Immediate (Taste);
       
-      return '1';
+      return 1;
       
    end TastenEingabe;
 

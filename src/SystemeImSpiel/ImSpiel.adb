@@ -3,8 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with GlobaleVariablen, GlobaleDatentypen, GlobaleKonstanten;
-use GlobaleDatentypen;
+with GlobaleVariablen, GlobaleKonstanten;
 
 with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, KI, Ladezeiten, Speichern, Laden, KIZuruecksetzen, StadtProduktion;
 
@@ -16,70 +15,37 @@ package body ImSpiel is
       SpielSchleife:
       loop         
          RassenSchleife:
-         for RasseIntern in GlobaleDatentypen.Rassen'Range loop
+         for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop
             
-            if GlobaleVariablen.RasseAmZugNachLaden = 0 or RasseIntern = GlobaleVariablen.RasseAmZugNachLaden then
+            if GlobaleVariablen.RasseAmZugNachLaden = 0 or RasseSchleifenwert = GlobaleVariablen.RasseAmZugNachLaden then
                GlobaleVariablen.RasseAmZugNachLaden := 0;
-               case GlobaleVariablen.RassenImSpiel (RasseIntern) is -- Einmal muss am Anfang die Sichtbarkeit geprüft werden, sonst crasht das Spiel
+               case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is -- Einmal muss am Anfang die Sichtbarkeit geprüft werden, sonst crasht das Spiel
                   when 0 =>
                      null;
                   
                   when others =>
-                     Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseIntern);
+                     Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
                end case;
             
-               case GlobaleVariablen.RassenImSpiel (RasseIntern) is -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+               case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
                   when 0 =>
                      null;
                      
                   when 1 =>
-                     SpielerSchleife:
-                     loop
-                     
-                        Karte.AnzeigeKarte (RasseExtern => RasseIntern);
-                        AktuellerBefehl := BefehleImSpiel.Befehle (RasseExtern => RasseIntern);
-                        case AktuellerBefehl is
-                           when GlobaleKonstanten.StartNormalKonstante =>
-                              null;
+                     RückgabeWert := MenschlicherSpieler (RasseExtern => RasseSchleifenwert);
+                     case RückgabeWert is
+                        when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+                           return RückgabeOptionen;
 
-                           when GlobaleKonstanten.SpeichernKonstante => -- Speichern
-                              GlobaleVariablen.RasseAmZugNachLaden := RasseIntern;
-                              Speichern.SpeichernNeu (AutospeichernExtern => False);
-               
-                           when GlobaleKonstanten.LadenKonstante => -- Laden
-                              LadenErfolgreich := Laden.LadenNeu;
-                              case LadenErfolgreich is
-                                 when True =>
-                                    exit RassenSchleife;
-
-                                 when False =>
-                                    null;
-                              end case;
-               
-                           when GlobaleKonstanten.OptionenKonstante => -- Optionen
-                              RückgabeOptionen := Optionen.Optionen;
-                              case RückgabeOptionen is
-                                 when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-                                    return RückgabeOptionen;
-                                    
-                                 when others =>
-                                    null;
-                              end case;
-               
-                           when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante => -- Spiel beenden oder Hauptmenü
-                              return AktuellerBefehl;
-
-                           when -1_000 => -- Runde beenden
-                              exit SpielerSchleife;      
-                  
-                           when others =>
-                              Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseIntern);
-                        end case;
-                     
-                     end loop SpielerSchleife;
+                        when -300 =>
+                           exit RassenSchleife;
+                        
+                        when others =>
+                           null;
+                     end case;
                   
                   when others =>
-                     KI.KI (RasseExtern => RasseIntern);
+                     KI.KI (RasseExtern => RasseSchleifenwert);
                end case;
 
             else
@@ -99,6 +65,58 @@ package body ImSpiel is
       end loop SpielSchleife;
             
    end ImSpiel;
+
+
+
+   function MenschlicherSpieler (RasseExtern : in GlobaleDatentypen.Rassen) return Integer is
+   begin
+      
+      SpielerSchleife:
+      loop
+                     
+         Karte.AnzeigeKarte (RasseExtern => RasseExtern);
+         AktuellerBefehlSpieler := BefehleImSpiel.Befehle (RasseExtern => RasseExtern);
+         case AktuellerBefehlSpieler is
+            when GlobaleKonstanten.StartNormalKonstante =>
+               null;
+
+            when GlobaleKonstanten.SpeichernKonstante => -- Speichern
+               GlobaleVariablen.RasseAmZugNachLaden := RasseExtern;
+               Speichern.SpeichernNeu (AutospeichernExtern => False);
+               
+            when GlobaleKonstanten.LadenKonstante => -- Laden
+               LadenErfolgreich := Laden.LadenNeu;
+               case LadenErfolgreich is
+                  when True =>
+                     return -300;
+
+                  when False =>
+                     null;
+               end case;
+               
+            when GlobaleKonstanten.OptionenKonstante => -- Optionen
+               RückgabeOptionen := Optionen.Optionen;
+               case RückgabeOptionen is
+                  when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+                     return RückgabeOptionen;
+                                    
+                  when others =>
+                     null;
+               end case;
+               
+            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante => -- Spiel beenden oder Hauptmenü
+               return AktuellerBefehlSpieler;
+
+            when -1_000 => -- Runde beenden
+               return GlobaleKonstanten.StartNormalKonstante;      
+                  
+            when others =>
+               Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseExtern);
+         end case;
+                     
+      end loop SpielerSchleife;
+      
+   end MenschlicherSpieler;
 
 
 

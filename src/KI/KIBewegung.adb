@@ -62,21 +62,21 @@ package body KIBewegung is
       -- Und den Durchgang da auch noch irgendwo und irgendwie reinstopfen
       for Durchgang in 1 .. 2 loop
          YAchseSchleife:
-         for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             XAchseSchleife:
-            for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
-               if YÄnderung = 0 and XÄnderung = 0 then
+               if YÄnderungSchleifenwert = 0 and XÄnderungSchleifenwert = 0 then
                   null;
 
                else
                   Bewegung := BewegungssystemEinheiten.ZwischenEbene (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                      ÄnderungExtern           => (0, YÄnderung, XÄnderung));
+                                                                      ÄnderungExtern           => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
 
                   case Bewegung is
                      when 1 => -- Bewegung auf Feld möglich.
                         Kartenwert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
-                                                                                ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                                ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                 ZusatzYAbstandExtern => 0);
                         
                         case Kartenwert.Erfolgreich is

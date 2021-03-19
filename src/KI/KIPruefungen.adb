@@ -70,32 +70,32 @@ package body KIPruefungen is
       Richtung := 0;
       
       YAchseSchleife:
-      for YAchse in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
+      for YAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
          XAchseSchleife:
-         for XAchse in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
+         for XAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
 
             -- 1 = Norden (-), 2 = Westen (-), 3 = Süden (+), 4 = Osten (+)
-            if YAchse < 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchse, XAchse) /= 0 then
+            if YAchseSchleifenwert < 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0 then
                RichtungenFeinde (1) := RichtungenFeinde (1) + 1;
 
-            elsif YAchse = 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchse, XAchse) /= 0 then  
+            elsif YAchseSchleifenwert = 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0 then  
                RichtungenFeinde (1) := RichtungenFeinde (1) + 1;
                RichtungenFeinde (3) := RichtungenFeinde (3) + 1;
                
-            elsif YAchse > 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchse, XAchse) /= 0 then 
+            elsif YAchseSchleifenwert > 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0 then 
                RichtungenFeinde (3) := RichtungenFeinde (3) + 1;
             else
                null;
             end if;
 
-            if XAchse < 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchse, XAchse) /= 0 then
+            if XAchseSchleifenwert < 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0 then
                RichtungenFeinde (2) := RichtungenFeinde (2) + 1;
 
-            elsif XAchse = 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchse, XAchse) /= 0 then  
+            elsif XAchseSchleifenwert = 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0 then  
                RichtungenFeinde (2) := RichtungenFeinde (2) + 1;
                RichtungenFeinde (4) := RichtungenFeinde (4) + 1;
                
-            elsif XAchse > 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchse, XAchse) /= 0 then 
+            elsif XAchseSchleifenwert > 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0 then 
                RichtungenFeinde (4) := RichtungenFeinde (4) + 1;
             else
                null;
@@ -169,9 +169,9 @@ package body KIPruefungen is
       Kandidaten := (others => (0, 1, 1, False));
 
       StadtSchleife:
-      for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
+      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
 
-         if GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).ID = 0 then
+         if GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID = 0 then
             exit StadtSchleife;
             
          else
@@ -179,16 +179,16 @@ package body KIPruefungen is
                when KIDatentypen.Norden | KIDatentypen.Nord_Ost | KIDatentypen.Nord_West =>
                   
                   StadtImNorden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                 StadtNummerExtern        => StadtNummer);
+                                 StadtNummerExtern        => StadtNummerSchleifenwert);
 
                   case RichtungExtern is
                      when KIDatentypen.Nord_Ost =>
                         StadtImOsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                      StadtNummerExtern        => StadtNummer);
+                                      StadtNummerExtern        => StadtNummerSchleifenwert);
                         
                      when KIDatentypen.Nord_West =>
                         StadtImWesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       StadtNummerExtern        => StadtNummer);
+                                       StadtNummerExtern        => StadtNummerSchleifenwert);
                            
                      when others =>
                         Kandidaten (3) := Kandidaten (2);
@@ -206,7 +206,7 @@ package body KIPruefungen is
                
                when KIDatentypen.Osten =>
                   StadtImOsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                StadtNummerExtern        => StadtNummer);
+                                StadtNummerExtern        => StadtNummerSchleifenwert);
                   Kandidaten (2) := Kandidaten (3);
 
                   if Kandidaten (2) = Kandidaten (3) then
@@ -221,16 +221,16 @@ package body KIPruefungen is
                
                when KIDatentypen.Süden | KIDatentypen.Süd_Ost | KIDatentypen.Süd_West =>
                   StadtImSüden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                 StadtNummerExtern        => StadtNummer);
+                                 StadtNummerExtern        => StadtNummerSchleifenwert);
 
                   case RichtungExtern is
                      when KIDatentypen.Süd_Ost =>
                         StadtImOsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                      StadtNummerExtern        => StadtNummer);
+                                      StadtNummerExtern        => StadtNummerSchleifenwert);
                            
                      when KIDatentypen.Süd_West =>
                         StadtImWesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       StadtNummerExtern        => StadtNummer);
+                                       StadtNummerExtern        => StadtNummerSchleifenwert);
                            
                      when others =>
                         Kandidaten (3) := Kandidaten (2);
@@ -248,7 +248,7 @@ package body KIPruefungen is
                
                when KIDatentypen.Westen =>
                   StadtImWesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                 StadtNummerExtern        => StadtNummer);
+                                 StadtNummerExtern        => StadtNummerSchleifenwert);
                   Kandidaten (2) := Kandidaten (3);
 
                   if Kandidaten (2) = Kandidaten (3) then
@@ -428,9 +428,9 @@ package body KIPruefungen is
    begin
 
       EinheitenSchleife:
-      for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
-         if EinheitNummer = EinheitRasseNummerExtern.Platznummer then
+         if EinheitNummerSchleifenwert = EinheitRasseNummerExtern.Platznummer then
             null;
             
          else

@@ -11,7 +11,7 @@ with ForschungsDatenbank, InDerStadt, BewegungssystemEinheiten, BewegungssystemC
 package body BefehleImSpiel is
 
    function Befehle (RasseExtern : in GlobaleDatentypen.Rassen) return Integer is
-   begin
+   begin 
             
       Get_Immediate (Item => Taste);
 

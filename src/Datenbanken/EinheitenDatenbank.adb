@@ -38,37 +38,38 @@ package body EinheitenDatenbank is
    begin
       
       RassenSchleife:
-      for RasseIntern in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
          EinheitenSchleife:
-         for EinheitNummerSchleife in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+         for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
-            if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).ID = 0 then
+            if GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0 then
                exit EinheitenSchleife;
 
             else
                null;
             end if;
 
-            if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).AktuelleBeschäftigung = 0 then
-               GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).AktuelleBewegungspunkte
-                 := EinheitenListe (RasseIntern, GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).ID).MaximaleBewegungspunkte;
+            if GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigung = 0 then
+               GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBewegungspunkte
+                 := EinheitenListe (RasseSchleifenwert, GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID).MaximaleBewegungspunkte;
 
             else
-               GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).AktuelleBewegungspunkte := 0.00;
+               GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBewegungspunkte := 0.00;
             end if;
 
-            if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).AktuelleBeschäftigung = 7
-              and GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).AktuelleLebenspunkte + Heilungsrate
-              >= EinheitenListe (RasseIntern, GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).ID).MaximaleLebenspunkte then
-               GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).AktuelleLebenspunkte
-                 := EinheitenListe (RasseIntern, GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).ID).MaximaleLebenspunkte;
-               GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).AktuelleBeschäftigung := 0;
-               GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).AktuelleBeschäftigungszeit := 0;
+            if GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigung = 7
+              and GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleLebenspunkte + Heilungsrate
+              >= EinheitenListe (RasseSchleifenwert, GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID).MaximaleLebenspunkte then
+               GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleLebenspunkte
+                 := EinheitenListe (RasseSchleifenwert, GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID).MaximaleLebenspunkte;
+               GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigung := 0;
+               GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigungszeit := 0;
                   
-            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).AktuelleBeschäftigung = 7
-              and GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).AktuelleLebenspunkte + Heilungsrate
-              < EinheitenListe (RasseIntern, GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).ID).MaximaleLebenspunkte then
-               GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).AktuelleLebenspunkte := GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummerSchleife).AktuelleLebenspunkte + Heilungsrate;
+            elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigung = 7
+              and GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleLebenspunkte + Heilungsrate
+              < EinheitenListe (RasseSchleifenwert, GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID).MaximaleLebenspunkte then
+               GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleLebenspunkte
+                 := GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleLebenspunkte + Heilungsrate;
                
             else
                null;
@@ -90,13 +91,13 @@ package body EinheitenDatenbank is
       EinheitNummer := 0;
             
       EinheitenSchleife:
-      for EinheitNummerSchleife in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
-         if GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleife).ID = 0 then
-            EinheitNummer := EinheitNummerSchleife;
+         if GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert).ID = 0 then
+            EinheitNummer := EinheitNummerSchleifenwert;
             exit EinheitenSchleife;
 
-         elsif GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleife).AchsenPosition
+         elsif GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert).AchsenPosition
            = GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition then
             return;
             

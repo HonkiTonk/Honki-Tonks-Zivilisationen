@@ -102,15 +102,15 @@ package body Einlesen is
             Name => "Dateien/Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0");
       
       EinlesenSchleife:
-      for WelcheDateien in WelcheTexteEinlesenNeuArray'Range loop
+      for WelcheDateienSchleifenwert in WelcheTexteEinlesenNeuArray'Range loop
 
          if End_Of_File (File => DateiNeuWelcheTexteEinlesen) = True then
             exit EinlesenSchleife;
                
          else
             Set_Line (File => DateiNeuWelcheTexteEinlesen,
-                      To   => Ada.Wide_Wide_Text_IO.Count (WelcheDateien));         
-            WelcheTexteEinlesenNeu (WelcheDateien) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuWelcheTexteEinlesen));
+                      To   => Ada.Wide_Wide_Text_IO.Count (WelcheDateienSchleifenwert));         
+            WelcheTexteEinlesenNeu (WelcheDateienSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuWelcheTexteEinlesen));
          end if;
 
       end loop EinlesenSchleife;
@@ -118,9 +118,9 @@ package body Einlesen is
       Close (File => DateiNeuWelcheTexteEinlesen);
       
       DateiSchleife:
-      for Datei in 1 .. GlobaleVariablen.TexteEinlesenNeuArray'Last (1) loop
+      for DateiSchleifenwert in 1 .. GlobaleVariablen.TexteEinlesenNeuArray'Last (1) loop
 
-         case Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheTexteEinlesenNeu (Datei))))) is
+         case Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheTexteEinlesenNeu (DateiSchleifenwert))))) is
             when True =>
                null;
 
@@ -130,18 +130,18 @@ package body Einlesen is
          
          Open (File => DateiNeuText,
                Mode => In_File,
-               Name => Encode (Item => (To_Wide_Wide_String (WelcheTexteEinlesenNeu (Datei)))));
+               Name => Encode (Item => (To_Wide_Wide_String (WelcheTexteEinlesenNeu (DateiSchleifenwert)))));
       
          ZeilenSchleife:
-         for Zeile in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
+         for ZeileSchleifenwert in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
 
             if End_Of_File (File => DateiNeuText) = True then
                exit ZeilenSchleife;
                
             else
                Set_Line (File => DateiNeuText,
-                         To   => Ada.Wide_Wide_Text_IO.Count (Zeile));         
-               GlobaleVariablen.TexteEinlesenNeu (Datei, Zeile) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuText));
+                         To   => Ada.Wide_Wide_Text_IO.Count (ZeileSchleifenwert));         
+               GlobaleVariablen.TexteEinlesenNeu (DateiSchleifenwert, ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuText));
             end if;
 
          end loop ZeilenSchleife;
@@ -177,25 +177,26 @@ package body Einlesen is
             Mode => In_File,
             Name => "Dateien/WelcheWerteEinlesen");
 
-      for A in WelcheWerteEinlesenNeuArray'Range loop
+      DateiSchleife:
+      for DateiSchleifenwert in WelcheWerteEinlesenNeuArray'Range loop
 
          if End_Of_File (File => DateiNeuWelcheWerteEinlesen) = True then
-            exit;
+            exit DateiSchleife;
                
          else
             Set_Line (File => DateiNeuWelcheWerteEinlesen,
-                      To   => Ada.Wide_Wide_Text_IO.Count (A));         
-            WelcheWerteEinlesenNeu (A) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuWelcheWerteEinlesen));
+                      To   => Ada.Wide_Wide_Text_IO.Count (DateiSchleifenwert));         
+            WelcheWerteEinlesenNeu (DateiSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuWelcheWerteEinlesen));
          end if;
 
-      end loop;
+      end loop DateiSchleife;
 
       Close (File => DateiNeuWelcheWerteEinlesen);
 
       WelcheWerteSchleife:
-      for B in WelcheWerteEinlesenNeuArray'Range loop
+      for WerteSchleifenwert in WelcheWerteEinlesenNeuArray'Range loop
 
-         case Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheWerteEinlesenNeu (B))))) is
+         case Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheWerteEinlesenNeu (WerteSchleifenwert))))) is
             when True =>
                null;
 
@@ -205,7 +206,7 @@ package body Einlesen is
          
          Open (File => DateiNeuWerte,
                Mode => In_File,
-               Name => Encode (Item => (To_Wide_Wide_String (WelcheWerteEinlesenNeu (B)))));
+               Name => Encode (Item => (To_Wide_Wide_String (WelcheWerteEinlesenNeu (WerteSchleifenwert)))));
 
          Close (File => DateiNeuWerte);
 

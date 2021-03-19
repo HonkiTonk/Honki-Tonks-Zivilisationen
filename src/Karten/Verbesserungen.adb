@@ -323,41 +323,43 @@ package body Verbesserungen is
    begin
       
       RassenSchleife:
-      for RasseIntern in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
          
-         case GlobaleVariablen.RassenImSpiel (RasseIntern) is
+         case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is
             when 0 =>
                null;
                
             when others =>
-               VerbesserungInArbeitSchleife:
-               for EinheitNummer in GlobaleVariablen.EinheitenGebaut'Range (2) loop
+               EinheitenSchleife:
+               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebaut'Range (2) loop
          
-                  case GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID is
+                  case GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID is
                      when 0 =>
-                        exit VerbesserungInArbeitSchleife;
+                        exit EinheitenSchleife;
                
                      when others =>
-                        case GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigung is
+                        case GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigung is
                            when 0 | 7 .. 8 =>
                               null;
                
                            when others =>
-                              GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigungszeit := GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigungszeit - 1;
-                              if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigungszeit = 0 then
-                                 VerbesserungAngelegt (EinheitRasseNummerExtern => (RasseIntern, EinheitNummer));
+                              GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigungszeit
+                                := GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigungszeit - 1;
+                              if GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigungszeit = 0 then
+                                 VerbesserungAngelegt (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
 
-                                 case GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigungNachfolger is
+                                 case GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigungNachfolger is
                                     when 0 =>
-                                       GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigung := 0;
-                                       GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigungszeit := 0;
+                                       GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigung := 0;
+                                       GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigungszeit := 0;
 
                                     when others =>
-                                       GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigung := GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigungNachfolger;
-                                       GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigungszeit
-                                         := GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigungszeitNachfolger;
-                                       GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigungNachfolger := 0;
-                                       GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AktuelleBeschäftigungszeitNachfolger := 0;
+                                       GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigung
+                                         := GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigungNachfolger;
+                                       GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigungszeit
+                                         := GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigungszeitNachfolger;
+                                       GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigungNachfolger := 0;
+                                       GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigungszeitNachfolger := 0;
                                  end case;
                         
                               else
@@ -366,7 +368,7 @@ package body Verbesserungen is
                         end case;
                   end case;
          
-               end loop VerbesserungInArbeitSchleife;
+               end loop EinheitenSchleife;
          end case;
 
       end loop RassenSchleife;
@@ -445,12 +447,12 @@ package body Verbesserungen is
       Straßenwert := 10_000;
       
       YAchseSchleife:
-      for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
          XAchseSchleife:
-         for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                                    ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
             case KartenWert.Erfolgreich is
@@ -458,7 +460,7 @@ package body Verbesserungen is
                   exit XAchseSchleife;
 
                when True =>
-                  if XÄnderung = -1 and YÄnderung = 0 then
+                  if XÄnderungSchleifenwert = -1 and YÄnderungSchleifenwert = 0 then
                      case Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
                         when 0 =>
                            Straßenwert := Straßenwert - 1_000;
@@ -489,7 +491,7 @@ package body Verbesserungen is
                      end case;
                      Straßenwert := Straßenwert + 1_000;
                
-                  elsif XÄnderung = 1 and YÄnderung = 0 then
+                  elsif XÄnderungSchleifenwert = 1 and YÄnderungSchleifenwert = 0 then
                      case Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
                         when 0 =>
                            Straßenwert := Straßenwert - 100;
@@ -520,7 +522,7 @@ package body Verbesserungen is
                      end case;
                      Straßenwert := Straßenwert + 100;
                
-                  elsif YÄnderung = -1 and XÄnderung = 0 then
+                  elsif YÄnderungSchleifenwert = -1 and XÄnderungSchleifenwert = 0 then
                      case Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
                         when 0 =>
                            Straßenwert := Straßenwert - 10;
@@ -551,7 +553,7 @@ package body Verbesserungen is
                      end case;
                      Straßenwert := Straßenwert + 10;
                
-                  elsif YÄnderung = 1 and XÄnderung = 0 then
+                  elsif YÄnderungSchleifenwert = 1 and XÄnderungSchleifenwert = 0 then
                      case Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße is
                         when 0 =>
                            Straßenwert := Straßenwert - 1;

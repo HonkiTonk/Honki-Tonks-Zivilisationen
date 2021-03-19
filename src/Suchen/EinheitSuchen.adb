@@ -8,13 +8,13 @@ package body EinheitSuchen is
    begin
       
       EinheitSchleife:
-      for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
-         if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 0 then
+         if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID = 0 then
             exit EinheitSchleife;
             
-         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AchsenPosition = KoordinatenExtern then
-            return EinheitNummer;
+         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
+            return EinheitNummerSchleifenwert;
             
          else
             null;
@@ -32,15 +32,15 @@ package body EinheitSuchen is
    begin
 
       RasseSchleife:
-      for RasseIntern in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
          EinheitSchleife:
-         for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+         for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
-            if GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID = 0 then
+            if GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0 then
                exit EinheitSchleife;
                
-            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition = KoordinatenExtern then
-               return (RasseIntern, EinheitNummer);
+            elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
+               return (RasseSchleifenwert, EinheitNummerSchleifenwert);
                
             else
                null;
@@ -59,18 +59,18 @@ package body EinheitSuchen is
    begin
 
       RasseSchleife:
-      for RasseIntern in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
          EinheitSchleife:
-         for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+         for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 
-            if RasseExtern = RasseIntern then
+            if RasseExtern = RasseSchleifenwert then
                exit EinheitSchleife;
                
-            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).ID = 0 then
+            elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0 then
                exit EinheitSchleife;
                
-            elsif GlobaleVariablen.EinheitenGebaut (RasseIntern, EinheitNummer).AchsenPosition = KoordinatenExtern then
-               return (RasseIntern, EinheitNummer);
+            elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
+               return (RasseSchleifenwert, EinheitNummerSchleifenwert);
                
             else
                null;

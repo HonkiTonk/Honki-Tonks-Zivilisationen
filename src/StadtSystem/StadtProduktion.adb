@@ -10,16 +10,16 @@ package body StadtProduktion is
       case StadtRasseNummerExtern.Rasse is
          when 0 => -- Überprüfung für alle Rassen bei Runde beenden.
             RassenSchleife:
-            for RasseIntern in GlobaleDatentypen.Rassen loop
+            for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
                StadtSchleife:
-               for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
+               for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
                
-                  case GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummer).ID is
+                  case GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID is
                      when 0 =>
                         exit StadtSchleife;
                   
                      when others =>
-                        StadtProduktionPrüfenBerechnung (StadtRasseNummerExtern => (RasseIntern, StadtNummer));
+                        StadtProduktionPrüfenBerechnung (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert));
                   end case;
                
                end loop StadtSchleife;
@@ -47,12 +47,12 @@ package body StadtProduktion is
       NutzbarerBereich := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).StadtUmgebungGröße;
       
       YAchseSchleife:
-      for YÄnderung in -NutzbarerBereich .. NutzbarerBereich loop
+      for YÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
          XAchseSchleife:
-         for XÄnderung in -NutzbarerBereich .. NutzbarerBereich loop
+         for XÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
 
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition,
-                                                                    ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
             case KartenWert.Erfolgreich is
@@ -60,7 +60,7 @@ package body StadtProduktion is
                   exit XAchseSchleife;                                 
                                  
                when True =>
-                  case GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YÄnderung, XÄnderung) is
+                  case GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YÄnderungSchleifenwert, XÄnderungSchleifenwert) is
                      when True =>
                         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsproduktion
                           := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsproduktion

@@ -8,9 +8,9 @@ package body KIZuruecksetzen is
    begin
       
       RassenSchleife:
-      for RassenIntern in GlobaleVariablen.RassenImSpiel'Range loop
+      for RasseSchleifenwert in GlobaleVariablen.RassenImSpiel'Range loop
          
-         case GlobaleVariablen.RassenImSpiel (RassenIntern) is
+         case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is
             when 2 =>
                EinheitenSchleife:
                for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop

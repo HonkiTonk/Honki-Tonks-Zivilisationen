@@ -14,7 +14,7 @@ package Eingabe is
 
    function StadtName return Unbounded_Wide_Wide_String;
    function SpielstandName return Unbounded_Wide_Wide_String;
-   function TastenEingabe return Wide_Wide_Character;
+   function TastenEingabe return Integer;
 
 private
 
@@ -22,6 +22,7 @@ private
    WelchesVorzeichen : Boolean;
 
    Zahlen : Wide_Wide_Character;
+   Taste : Wide_Wide_Character;
 
    SchleifeVerlassen : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
    IstZahl : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;

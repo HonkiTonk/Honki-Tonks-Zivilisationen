@@ -15,13 +15,13 @@ package body Auswahl is
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
       EndeBestimmenSchleife:
-      for LetztesEnde in GlobaleVariablen.SprachenEinlesenArray'Range loop
+      for LetztesEndeSchleifenwert in GlobaleVariablen.SprachenEinlesenArray'Range loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (LetztesEnde)) = "|" then
+         if To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (LetztesEndeSchleifenwert)) = "|" then
             exit EndeBestimmenSchleife;
             
          else
-            Ende := LetztesEnde;
+            Ende := LetztesEndeSchleifenwert;
          end if;
          
       end loop EndeBestimmenSchleife;

@@ -34,9 +34,9 @@ package body Anzeige is
       end case;
 
       TextAnzeigeSchleife:
-      for TextZeile in ErsteZeileExtern .. LetzteZeileExtern loop
+      for TextZeileSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
          
-         Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), TextZeile)));
+         Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), TextZeileSchleifenwert)));
                   
          if ErsteZeileExtern = LetzteZeileExtern or AbstandMitteExtern = GlobaleDatentypen.Keiner then
             null;
@@ -110,10 +110,10 @@ package body Anzeige is
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
-      for Zeilen in ErsteZeileExtern .. LetzteZeileExtern loop
+      for ZeilenSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), Zeilen))'Length > LängsterText then
-            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), Zeilen))'Length;
+         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), ZeilenSchleifenwert))'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), ZeilenSchleifenwert))'Length;
             
          else
             null;
@@ -130,9 +130,9 @@ package body Anzeige is
       end case;
       
       AnzeigeSchleife:
-      for Zeile in ErsteZeileExtern .. LetzteZeileExtern loop
+      for ZeileSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
 
-         if AktuelleAuswahlExtern = Zeile then
+         if AktuelleAuswahlExtern = ZeileSchleifenwert then
             RahmenTeilEinsSchleife:
             for TextlängeEins in 1 .. LängsterText loop
                   
@@ -144,10 +144,10 @@ package body Anzeige is
                   Put (Item => "═");
                   Put_Line (Item => "╗");
                   Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), Zeile)));
+                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert)));
 
                   LeererPlatzSchleife:
-                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), Zeile))'Length loop
+                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert))'Length loop
                         
                      Put (" ");
                         
@@ -163,9 +163,9 @@ package body Anzeige is
             end loop RahmenTeilEinsSchleife;
 
             RahmenTeilZweiSchleife:
-            for TextlängeZwei in 1 .. LängsterText loop
+            for TextlängeZweiSchleifenwert in 1 .. LängsterText loop
                
-               if TextlängeZwei = LängsterText then
+               if TextlängeZweiSchleifenwert = LängsterText then
                   Put (Item => "═");
                   Put_Line (Item => "╝");
                
@@ -176,7 +176,7 @@ package body Anzeige is
             end loop RahmenTeilZweiSchleife;
          
          else
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), Zeile)));
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert)));
          end if;
          
       end loop AnzeigeSchleife;
@@ -191,10 +191,10 @@ package body Anzeige is
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
-      for Zeilen in ErsteZeileExtern .. LetzteZeileExtern loop
+      for ZeilenSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeilen))'Length > LängsterText then
-            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeilen))'Length;
+         if To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (ZeilenSchleifenwert))'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (ZeilenSchleifenwert))'Length;
             
          else
             null;
@@ -203,9 +203,9 @@ package body Anzeige is
       end loop TextlängePrüfenSchleife;
       
       AnzeigeSchleife:
-      for Zeile in ErsteZeileExtern .. LetzteZeileExtern loop
+      for ZeileSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
 
-         if AktuelleAuswahlExtern = Zeile then
+         if AktuelleAuswahlExtern = ZeileSchleifenwert then
             RahmenTeilEinsSchleife:
             for TextlängeEins in 1 .. LängsterText loop
                   
@@ -217,10 +217,10 @@ package body Anzeige is
                   Put (Item => "═");
                   Put_Line (Item => "╗");
                   Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeile)));
+                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (ZeileSchleifenwert)));
 
                   LeererPlatzSchleife:
-                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeile))'Length loop
+                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (ZeileSchleifenwert))'Length loop
                         
                      Put (" ");
                         
@@ -236,9 +236,9 @@ package body Anzeige is
             end loop RahmenTeilEinsSchleife;
 
             RahmenTeilZweiSchleife:
-            for TextlängeZwei in 1 .. LängsterText loop
+            for TextlängeZweiSchleifenwert in 1 .. LängsterText loop
                
-               if TextlängeZwei = LängsterText then
+               if TextlängeZweiSchleifenwert = LängsterText then
                   Put (Item => "═");
                   Put_Line (Item => "╝");
                
@@ -249,7 +249,7 @@ package body Anzeige is
             end loop RahmenTeilZweiSchleife;
          
          else
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (Zeile)));
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (ZeileSchleifenwert)));
          end if;
          
       end loop AnzeigeSchleife;
@@ -264,12 +264,12 @@ package body Anzeige is
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
-      for Zeichen in TextBauenNeuArray'Range loop
-         if To_Wide_Wide_String (Source => TextBauenNeu (Zeichen).Text) = "|" then
+      for ZeichenSchleifenwert in TextBauenNeuArray'Range loop
+         if To_Wide_Wide_String (Source => TextBauenNeu (ZeichenSchleifenwert).Text) = "|" then
             exit TextlängePrüfenSchleife;
             
-         elsif To_Wide_Wide_String (Source => TextBauenNeu (Zeichen).Text)'Length > LängsterText then
-            LängsterText := To_Wide_Wide_String (Source => TextBauenNeu (Zeichen).Text)'Length;
+         elsif To_Wide_Wide_String (Source => TextBauenNeu (ZeichenSchleifenwert).Text)'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => TextBauenNeu (ZeichenSchleifenwert).Text)'Length;
             
          else
             null;
@@ -277,23 +277,24 @@ package body Anzeige is
       end loop TextlängePrüfenSchleife;
       
       AnzeigeSchleife:
-      for A in TextBauenNeuArray'Range loop
+      for AnzeigeSchleifenwert in TextBauenNeuArray'Range loop
 
-         if AktuelleAuswahlExtern = A then
-            for B in 1 .. LängsterText loop
+         if AktuelleAuswahlExtern = AnzeigeSchleifenwert then
+            RahmenEinsSchleife:
+            for RahmenEinsSchleifenwert in 1 .. LängsterText loop
                   
-               if B = 1 then
+               if RahmenEinsSchleifenwert = 1 then
                   Put (Item => "╔");
                   Put (Item => "═");
 
-               elsif B = LängsterText then                  
+               elsif RahmenEinsSchleifenwert = LängsterText then                  
                   Put (Item => "═");
                   Put_Line (Item => "╗");
                   Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => TextBauenNeu (A).Text));
+                  Put (Item => To_Wide_Wide_String (Source => TextBauenNeu (AnzeigeSchleifenwert).Text));
 
                   LeererPlatzSchleife:
-                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => TextBauenNeu (A).Text)'Length loop
+                  for LeererPlatzSchleifenwert in 1 .. LängsterText - To_Wide_Wide_String (Source => TextBauenNeu (AnzeigeSchleifenwert).Text)'Length loop
                         
                      Put (" ");
                         
@@ -305,11 +306,12 @@ package body Anzeige is
                   Put (Item => "═");
                end if;
                
-            end loop;
+            end loop RahmenEinsSchleife;
 
-            for C in 1 .. LängsterText loop
+            RahmenZweiSchleife:
+            for RahmenZweiSchleifenwert in 1 .. LängsterText loop
                
-               if C = LängsterText then
+               if RahmenZweiSchleifenwert = LängsterText then
                   Put (Item => "═");
                   Put_Line (Item => "╝");
                
@@ -317,14 +319,14 @@ package body Anzeige is
                   Put (Item => "═");
                end if;
             
-            end loop;
+            end loop RahmenZweiSchleife;
          
          else
-            if To_Wide_Wide_String (Source => TextBauenNeu (A).Text) = "|" then
+            if To_Wide_Wide_String (Source => TextBauenNeu (AnzeigeSchleifenwert).Text) = "|" then
                exit AnzeigeSchleife; 
             
             else
-               Put_Line (Item => To_Wide_Wide_String (Source => TextBauenNeu (A).Text));
+               Put_Line (Item => To_Wide_Wide_String (Source => TextBauenNeu (AnzeigeSchleifenwert).Text));
             end if;
          end if;
          
@@ -340,12 +342,12 @@ package body Anzeige is
       LängsterText := 1;
       
       TextlängePrüfenSchleife:
-      for Zeichen in TextForschungNeuArray'Range loop
-         if To_Wide_Wide_String (Source => TextForschungNeu (Zeichen).Text) = "|" then
+      for ZeichenSchleifenwert in TextForschungNeuArray'Range loop
+         if To_Wide_Wide_String (Source => TextForschungNeu (ZeichenSchleifenwert).Text) = "|" then
             exit TextlängePrüfenSchleife;
             
-         elsif To_Wide_Wide_String (Source => TextForschungNeu (Zeichen).Text)'Length > LängsterText then
-            LängsterText := To_Wide_Wide_String (Source => TextForschungNeu (Zeichen).Text)'Length;
+         elsif To_Wide_Wide_String (Source => TextForschungNeu (ZeichenSchleifenwert).Text)'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => TextForschungNeu (ZeichenSchleifenwert).Text)'Length;
             
          else
             null;
@@ -353,23 +355,24 @@ package body Anzeige is
       end loop TextlängePrüfenSchleife;
       
       AnzeigeSchleife:
-      for A in TextForschungNeuArray'Range loop
+      for AnzeigeSchleifenwert in TextForschungNeuArray'Range loop
 
-         if AktuelleAuswahlExtern = A then
-            for B in 1 .. LängsterText loop
+         if AktuelleAuswahlExtern = AnzeigeSchleifenwert then
+            RahmenEinsSchleife:
+            for RahmenEinsSchleifenwert in 1 .. LängsterText loop
                   
-               if B = 1 then
+               if RahmenEinsSchleifenwert = 1 then
                   Put (Item => "╔");
                   Put (Item => "═");
 
-               elsif B = LängsterText then                  
+               elsif RahmenEinsSchleifenwert = LängsterText then                  
                   Put (Item => "═");
                   Put_Line (Item => "╗");
                   Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => TextForschungNeu (A).Text));
+                  Put (Item => To_Wide_Wide_String (Source => TextForschungNeu (AnzeigeSchleifenwert).Text));
 
                   LeererPlatzSchleife:
-                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => TextForschungNeu (A).Text)'Length loop
+                  for LeererPlatzSchleifenwert in 1 .. LängsterText - To_Wide_Wide_String (Source => TextForschungNeu (AnzeigeSchleifenwert).Text)'Length loop
                         
                      Put (" ");
                         
@@ -381,11 +384,12 @@ package body Anzeige is
                   Put (Item => "═");
                end if;
                
-            end loop;
+            end loop RahmenEinsSchleife;
 
-            for C in 1 .. LängsterText loop
+            RahmenZweiSchleife:
+            for RahmenZweiSchleifenwert in 1 .. LängsterText loop
                
-               if C = LängsterText then
+               if RahmenZweiSchleifenwert = LängsterText then
                   Put (Item => "═");
                   Put_Line (Item => "╝");
                
@@ -393,14 +397,14 @@ package body Anzeige is
                   Put (Item => "═");
                end if;
             
-            end loop;
+            end loop RahmenZweiSchleife;
          
          else
-            if To_Wide_Wide_String (Source => TextForschungNeu (A).Text) = "|" then
+            if To_Wide_Wide_String (Source => TextForschungNeu (AnzeigeSchleifenwert).Text) = "|" then
                exit AnzeigeSchleife; 
             
             else
-               Put_Line (Item => To_Wide_Wide_String (Source => TextForschungNeu (A).Text));
+               Put_Line (Item => To_Wide_Wide_String (Source => TextForschungNeu (AnzeigeSchleifenwert).Text));
             end if;
          end if;
          
@@ -436,27 +440,27 @@ package body Anzeige is
             New_Line;
       end case;
 
-      N := 1;
+      ZeichengrenzenMultiplikator := 1;
 
       TextNeu := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), ErsteZeileExtern);
       
       AnzeigeSchleife:
-      for Zeichen in To_Wide_Wide_String (Source => TextNeu)'Range loop
+      for ZeichenSchleifenwert in To_Wide_Wide_String (Source => TextNeu)'Range loop
          
-         if To_Wide_Wide_String (Source => TextNeu) (Zeichen) = '|' then
+         if To_Wide_Wide_String (Source => TextNeu) (ZeichenSchleifenwert) = '|' then
             exit AnzeigeSchleife;
             
-         elsif Zeichen - Zeichengrenze * N > 1 then
-            if To_Wide_Wide_String (Source => TextNeu) (Zeichen) = ' ' then
-               N := N + 1;
+         elsif ZeichenSchleifenwert - Zeichengrenze * ZeichengrenzenMultiplikator > 1 then
+            if To_Wide_Wide_String (Source => TextNeu) (ZeichenSchleifenwert) = ' ' then
+               ZeichengrenzenMultiplikator := ZeichengrenzenMultiplikator + 1;
                New_Line;
                
             else
-               Put (Item => To_Wide_Wide_String (Source => TextNeu) (Zeichen));
+               Put (Item => To_Wide_Wide_String (Source => TextNeu) (ZeichenSchleifenwert));
             end if;
             
          else
-            Put (Item => To_Wide_Wide_String (Source => TextNeu) (Zeichen));
+            Put (Item => To_Wide_Wide_String (Source => TextNeu) (ZeichenSchleifenwert));
          end if;
          
       end loop AnzeigeSchleife;

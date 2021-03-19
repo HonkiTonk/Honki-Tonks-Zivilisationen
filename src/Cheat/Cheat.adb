@@ -160,13 +160,13 @@ package body Cheat is
    begin
       
       EbeneSchleife:
-      for EAchse in Karten.WeltkarteArray'Range (1) loop
+      for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
          YAchseSchleife:
-         for YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
-            for XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-               Karten.Weltkarte (EAchse, YAchse, XAchse).Sichtbar (RasseExtern) := True;
+               Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Sichtbar (RasseExtern) := True;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -351,17 +351,17 @@ package body Cheat is
    begin
       
       RassenverteilungÄndernSchleife:
-      for Rasse in GlobaleDatentypen.Rassen'Range loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop
          
-         case GlobaleVariablen.RassenImSpiel (Rasse) is
+         case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is
             when 0 =>
                null;
                
             when others =>
-               GlobaleVariablen.RassenImSpiel (Rasse) := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
-                                                                                                      ZeileExtern         => 16,
-                                                                                                      ZahlenMinimumExtern => 1,
-                                                                                                      ZahlenMaximumExtern => 2));
+               GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
+                                                                                                                   ZeileExtern         => 16,
+                                                                                                                   ZahlenMinimumExtern => 1,
+                                                                                                                   ZahlenMaximumExtern => 2));
          end case;
          
       end loop RassenverteilungÄndernSchleife;

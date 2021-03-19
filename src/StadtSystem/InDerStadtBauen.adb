@@ -70,9 +70,9 @@ package body InDerStadtBauen is
    begin
          
       RassenSchleife:
-      for RasseIntern in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
 
-         case GlobaleVariablen.RassenImSpiel (RasseIntern) is
+         case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is
             when 0 =>
                null;
                
@@ -80,12 +80,12 @@ package body InDerStadtBauen is
                StadtSchleife:
                for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
       
-                  case GlobaleVariablen.StadtGebaut (RasseIntern, StadtNummer).ID is
+                  case GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummer).ID is
                      when 0 =>
                         exit StadtSchleife;
                         
                      when others =>
-                        BauzeitEinzeln (StadtRasseNummerExtern => (RasseIntern, StadtNummer));
+                        BauzeitEinzeln (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummer));
                   end case;
       
                end loop StadtSchleife;
@@ -104,61 +104,61 @@ package body InDerStadtBauen is
       Anzeige.TextBauenNeu := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
 
       GebäudeSchleife:
-      for Gebäude in GlobaleDatentypen.GebäudeID'Range loop
+      for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
          
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz),
-                                 Positive (Gebäude) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse))) = "|" then
+                                 Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse))) = "|" then
             exit GebäudeSchleife;
 
-         elsif GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (Gebäude) = True then
+         elsif GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = True then
             null;
 
-         elsif GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, Gebäude).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, Gebäude).Anforderungen) = False then 
+         elsif GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen /= 0 then
+            if GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen) = False then 
                null;
 
             else
                Anzeige.TextBauenNeu (Ende).Text
-                 := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Positive (Gebäude) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
-               Anzeige.TextBauenNeu (Ende).Nummer := 1_000 + Positive (Gebäude);
+                 := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
+               Anzeige.TextBauenNeu (Ende).Nummer := 1_000 + Positive (GebäudeSchleifenwert);
                Ende := Ende + 1;
             end if;
             
          else
             Anzeige.TextBauenNeu (Ende).Text
-              := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Positive (Gebäude) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
-            Anzeige.TextBauenNeu (Ende).Nummer := 1_000 + Positive (Gebäude);
+              := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
+            Anzeige.TextBauenNeu (Ende).Nummer := 1_000 + Positive (GebäudeSchleifenwert);
             Ende := Ende + 1;
          end if;
          
       end loop GebäudeSchleife;
 
       EinheitenSchleife:
-      for Einheit in GlobaleDatentypen.EinheitenID loop
+      for EinheitSchleifenwert in GlobaleDatentypen.EinheitenID loop
          
          if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
-                                 Positive (Einheit) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse))) = "|" then
+                                 Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse))) = "|" then
             exit EinheitenSchleife;
 
          elsif GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AmWasser = False
-           and EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, Einheit).Passierbarkeit (2) = True then
+           and EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (2) = True then
             null;
 
-         elsif EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, Einheit).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, Einheit).Anforderungen) = False then
+         elsif EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Anforderungen /= 0 then
+            if GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Anforderungen) = False then
                null;
                
             else
                Anzeige.TextBauenNeu (Ende).Text
-                 := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Positive (Einheit) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
-               Anzeige.TextBauenNeu (Ende).Nummer := 10_000 + Positive (Einheit);
+                 := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
+               Anzeige.TextBauenNeu (Ende).Nummer := 10_000 + Positive (EinheitSchleifenwert);
                Ende := Ende + 1;
             end if;
             
          else
             Anzeige.TextBauenNeu (Ende).Text
-              := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Positive (Einheit) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
-            Anzeige.TextBauenNeu (Ende).Nummer := 10_000 + Positive (Einheit);
+              := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
+            Anzeige.TextBauenNeu (Ende).Nummer := 10_000 + Positive (EinheitSchleifenwert);
             Ende := Ende + 1;
          end if;
          

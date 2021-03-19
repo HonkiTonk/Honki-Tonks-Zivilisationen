@@ -45,4 +45,8 @@ private
    procedure SchleifeFenster (YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld; RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
+   procedure AnzeigeStadtUmgebung (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld) with
+     Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1));
+
 end KarteStadt;
