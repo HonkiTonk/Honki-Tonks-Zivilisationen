@@ -68,7 +68,7 @@ package GlobaleRecords is
 
 
 
-   type TransporterArray is array (1 .. 5) of Natural;
+   type TransporterArray is array (1 .. 5) of GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
    type EinheitenGebautRecord is record
       

@@ -4,14 +4,18 @@ with EinheitenDatenbank, EinheitSuchen, StadtSuchen, KartenDatenbank, GlobaleKon
 
 package body BewegungEinheitenMoeglichPruefen is
 
-   function FeldFürDieseEinheitPassierbar (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Boolean is
+   -- 0 = Einheit kann sich auf das Feld bewegen
+   -- -1 = Bewegung dahin nicht möglich und da ist keine Stadt/Transporter auf die die Einheit sich bewegen kann
+   -- 1 = Da ist ein Transporter mit freiem Platz
+   function FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+                                               NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.LoopRangeMinusEinsZuEins is
    begin
-
+      
       PassierbarkeitNummer := KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund).Passierbarkeit;
       
       if EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
                                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitNummer) = True then
-         return True;
+         return 0;
          
       else
          null;
@@ -24,10 +28,10 @@ package body BewegungEinheitenMoeglichPruefen is
          
             case StadtNummer is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-                  return False;
+                  return -1;
                
                when others =>
-                  return True;
+                  return 0;
             end case;
                      
          when False =>
@@ -41,7 +45,7 @@ package body BewegungEinheitenMoeglichPruefen is
 
             case EinheitNummer is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-                  return False;
+                  return -1;
                
                when others =>
                   if EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportiertWerden > 0
@@ -64,14 +68,14 @@ package body BewegungEinheitenMoeglichPruefen is
 
                      case Transportplatz is
                         when 0 =>
-                           return False;
+                           return -1;
                            
                         when others =>
-                           return True;
+                           return 1;
                      end case;
 
                   else
-                     return False;
+                     return -1;
                   end if;
             end case;
 
@@ -79,9 +83,9 @@ package body BewegungEinheitenMoeglichPruefen is
             null;
       end case;
       
-      return False;
-      
-   end FeldFürDieseEinheitPassierbar;
+      return -1;
+
+   end FeldFürDieseEinheitPassierbarNeu;
    
    
    

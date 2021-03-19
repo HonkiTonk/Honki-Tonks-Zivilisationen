@@ -207,7 +207,7 @@ package body Eingabe is
          when 0 =>
             return To_Unbounded_Wide_Wide_String (Source => "Kein Name"); -- Später noch durch eine Prüfung ersetzen ob das ein nicht leerer Name ist.
               
-         when others =>      
+         when others =>
             return Name;
       end case;
       

@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleDatentypen, GlobaleKonstanten;
 
-with Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden, Anzeige;
+with Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden, Anzeige, Wuerdigung;
 
 procedure Start is
 
@@ -79,6 +79,9 @@ begin
 
                when GlobaleKonstanten.InformationenKonstante => -- Informationen
                   Informationen.Informationen;
+
+               when 10 => -- Wuerdigung
+                  Wuerdigung.Wuerdigung;
 
                when GlobaleKonstanten.SpielBeendenKonstante => -- Beenden
                   exit StartSchleife;

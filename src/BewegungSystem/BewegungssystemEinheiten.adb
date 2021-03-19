@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
 with GlobaleKonstanten;
 
-with Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenbank, KartenPruefungen, BewegungEinheitenMoeglichPruefen;
+with Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenbank, KartenPruefungen, BewegungEinheitenMoeglichPruefen, BewegungZwischenEbene, EinheitSuchen;
 
 package body BewegungssystemEinheiten is
 
@@ -54,15 +54,31 @@ package body BewegungssystemEinheiten is
             when others =>
                return;
          end case;
-         
-         RückgabeWert := ZwischenEbene (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                         ÄnderungExtern     => Änderung);
 
+         RückgabeWert := BewegungZwischenEbene.PassierbarkeitOderTransporter (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                               ÄnderungExtern          => Änderung);
+         
          case RückgabeWert is
-            when 1 => -- Einheit wurde bewegt.          
+            when 1 => -- Da ist ein Transporter mit freiem Platz
+               TransporterBeladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                   ÄnderungExtern           => Änderung);
+               return;
+               
+            when 0 => -- Einheit kann sich auf das Feld bewegen
+               null;
+               
+            when -1 => -- Bewegung dahin nicht möglich und da ist keine Stadt/Transporter auf die die Einheit sich bewegen kann
+               EinheitBewegtNichtEingeladen := False;
+         end case;
+
+
+
+
+         case EinheitBewegtNichtEingeladen is
+            when True => -- Einheit wurde bewegt.          
                Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
-            when others => -- Einheit wurde nicht bewegt.
+            when False => -- Einheit wurde nicht bewegt.
                null;
          end case;
          
@@ -82,9 +98,6 @@ package body BewegungssystemEinheiten is
    
 
 
-   -- 1 = Bewegung auf Feld möglich.
-   -- 0 = Außerhalb der Karte, Feld blockiert durch eigene Einheit oder Kampf gegen gegnerische Einheit verloren.
-   -- -1 = Gegnerische Einheit oder Stadt auf dem Feld.
    function ZwischenEbene (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord) return GlobaleDatentypen.LoopRangeMinusEinsZuEins is
    begin
 
@@ -94,20 +107,16 @@ package body BewegungssystemEinheiten is
 
       case KartenWert.Erfolgreich is
          when False =>
-            return 0;
+            return -1;
             
          when True =>
-            FeldPassierbar := BewegungEinheitenMoeglichPruefen.FeldFürDieseEinheitPassierbar (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                              NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+            FeldPassierbar := BewegungEinheitenMoeglichPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                  NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
       end case;
 
-      case FeldPassierbar is
-         when True =>
-            null;
-            
-         when False =>
-            return 0;
-      end case;
+      
+      
+      
 
       GegnerWert := BewegungEinheitenMoeglichPruefen.BefindetSichDortEineEinheit (RasseExtern        => EinheitRasseNummerExtern.Rasse,
                                                                                   NeuePositionExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
@@ -136,6 +145,39 @@ package body BewegungssystemEinheiten is
       end if;
       
    end ZwischenEbene;
+
+
+
+   procedure TransporterBeladen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord) is
+   begin
+
+      KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+                                                              ÄnderungExtern       => ÄnderungExtern,
+                                                              ZusatzYAbstandExtern => 0);
+      
+      EinheitNummerTransporter := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                  KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+      
+      TransporterSchleife:
+      for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+        
+         case GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummerTransporter).Transportiert (FreierPlatzSchleifenwert) is
+            when 0 =>
+               null;
+               
+            when others =>
+               FreierPlatzNummer := FreierPlatzSchleifenwert;
+               exit TransporterSchleife;
+         end case;
+         
+      end loop TransporterSchleife;
+
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummerTransporter).Transportiert (FreierPlatzNummer) := EinheitRasseNummerExtern.Platznummer;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte := 0.00;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition
+        := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummerTransporter).AchsenPosition;
+      
+   end TransporterBeladen;
 
    
 
