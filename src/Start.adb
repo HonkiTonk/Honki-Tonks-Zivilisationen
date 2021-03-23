@@ -4,6 +4,7 @@ with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
 with GlobaleDatentypen, GlobaleKonstanten;
+-- with Programmanalyse;
 
 with Auswahl, Einlesen, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden, Anzeige, Wuerdigung;
 
@@ -17,6 +18,8 @@ procedure Start is
    RückgabeOptionen : Integer;
 
 begin
+
+   -- Programmanalyse.Auswahl;
 
    EinlesenErgebnis := Einlesen.Einlesen;
 

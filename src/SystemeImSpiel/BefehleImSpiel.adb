@@ -43,15 +43,31 @@ package body BefehleImSpiel is
                                  EinheitNummerExtern => EinheitNummer);
                
             elsif EinheitNummer /= 0 then
-               EinheitOderStadt (RasseExtern         => RasseExtern,
-                                 AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
-                                 StadtNummerExtern   => StadtNummer,
-                                 EinheitNummerExtern => EinheitNummer);
+               Transportiert := EinheitSuchen.IstEinheitAufTransporter (EinheitRassePlatznummer => (RasseExtern, EinheitNummer));
+               if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert = 0 and Transportiert = False then
+                  EinheitOderStadt (RasseExtern         => RasseExtern,
+                                    AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
+                                    StadtNummerExtern   => StadtNummer,
+                                    EinheitNummerExtern => EinheitNummer);
+
+               else
+                  EinheitTransportNummer := EinheitenDatenbank.EinheitTransporterAuswählen;
+                  case EinheitTransportNummer is
+                     when 0 =>
+                        null;
+                        
+                     when others =>
+                        EinheitOderStadt (RasseExtern         => RasseExtern,
+                                          AuswahlExtern       => GlobaleKonstanten.JaKonstante,
+                                          StadtNummerExtern   => StadtNummer,
+                                          EinheitNummerExtern => EinheitTransportNummer);
+                  end case;
+               end if;
                
             else
                null;
             end if;
-            
+                                                                        
          when 'q' => -- Menüaufruf
             return Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Leer,
                                     TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,

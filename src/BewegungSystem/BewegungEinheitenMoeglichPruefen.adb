@@ -86,33 +86,5 @@ package body BewegungEinheitenMoeglichPruefen is
       return -1;
 
    end FeldFürDieseEinheitPassierbarNeu;
-   
-   
-   
-   function BefindetSichDortEineEinheit (RasseExtern : GlobaleDatentypen.RassenMitNullwert; NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
-   begin
-
-      GegnerEinheitWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
-
-      if GegnerEinheitWert.Rasse = RasseExtern then
-         return (GegnerEinheitWert.Rasse, 1);
-
-      elsif GegnerEinheitWert.Rasse = GlobaleDatentypen.RassenMitNullwert'First then
-         null;
-                  
-      else
-         return GegnerEinheitWert;
-      end if;
-
-      GegnerStadtWert := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
-
-      if GegnerStadtWert.Rasse = RasseExtern then
-         return (GegnerStadtWert.Rasse, 0);
-         
-      else
-         return GegnerStadtWert;
-      end if;
-      
-   end BefindetSichDortEineEinheit;
 
 end BewegungEinheitenMoeglichPruefen;

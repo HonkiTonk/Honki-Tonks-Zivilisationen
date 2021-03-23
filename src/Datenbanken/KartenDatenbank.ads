@@ -12,7 +12,7 @@ package KartenDatenbank is
    
    -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
    -- Addieren für genaue Passierbarkeit
-   type KartenListeArray is array (0 .. GlobaleDatentypen.KartenGrund'Last) of DatenbankRecords.KartenListeRecord;
+   type KartenListeArray is array (GlobaleDatentypen.KartenGrund'Range) of DatenbankRecords.KartenListeRecord;
    KartenListe : constant KartenListeArray := (LeererWertKartenListe, -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
                                                -- Sollte mit Einlesen und Textausgabe funktionieren, wenn nicht auf letzte Position verschieben.
                                                (' ',    1,    0, 0, 0, 1, 0), -- 1 Eis █

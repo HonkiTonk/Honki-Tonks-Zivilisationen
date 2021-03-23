@@ -200,4 +200,13 @@ package body EinheitenDatenbank is
       
    end BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen;
 
+
+
+   function EinheitTransporterAuswählen return GlobaleDatentypen.MaximaleEinheitenMitNullWert is
+   begin
+      
+      return 0;
+      
+   end EinheitTransporterAuswählen;
+
 end EinheitenDatenbank;

@@ -13,10 +13,12 @@ private
 
    Wahl : Boolean;
    Nullwert : Boolean;
+   Transportiert : Boolean;
          
    Taste : Wide_Wide_Character;
 
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   EinheitTransportNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
    WelcherBefehl : Integer;

@@ -9,7 +9,9 @@ package BewegungZwischenEbene is
      Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
              and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
 
-   function Gegner (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return GlobaleDatentypen.LoopRangeMinusEinsZuEins;
+   function Gegner (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord) return GlobaleDatentypen.LoopRangeMinusEinsZuEins with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
 
 private
 
@@ -19,6 +21,6 @@ private
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
-   GegnerWert : GlobaleRecords.RassePlatznummerRecord;
+   EinheitWert : GlobaleRecords.RassePlatznummerRecord;
 
 end BewegungZwischenEbene;

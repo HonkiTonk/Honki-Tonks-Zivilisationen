@@ -24,7 +24,7 @@ package Sichtbarkeit is
 
    procedure Farben (EinheitExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID; VerbesserungExtern : in GlobaleDatentypen.KartenVerbesserung; RessourceExtern, GrundExtern : in GlobaleDatentypen.KartenGrund;
                      CursorExtern : in Boolean; EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.RassenMitNullwert) with
-     Pre => (GrundExtern >= 0 and RessourceExtern >= 0 and (if EigeneRasseExtern > 0 then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1) and (if RasseExtern > 0 then GlobaleVariablen.RassenImSpiel (RasseExtern) = 1));
+     Pre => ((if EigeneRasseExtern > 0 then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1) and (if RasseExtern > 0 then GlobaleVariablen.RassenImSpiel (RasseExtern) >= 1));
 
 private
 

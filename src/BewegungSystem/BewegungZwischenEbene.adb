@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with KartenPruefungen, BewegungEinheitenMoeglichPruefen, GlobaleKonstanten, Diplomatie;
+with GlobaleKonstanten;
+
+with KartenPruefungen, BewegungEinheitenMoeglichPruefen, EinheitSuchen;
 
 package body BewegungZwischenEbene is
 
@@ -18,41 +20,33 @@ package body BewegungZwischenEbene is
          when True =>
             FeldPassierbar := BewegungEinheitenMoeglichPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                   NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+            return FeldPassierbar;
       end case;
-
-      return FeldPassierbar;
 
    end PassierbarkeitOderTransporter;
 
 
 
-   function Gegner (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return GlobaleDatentypen.LoopRangeMinusEinsZuEins is
+   -- 0 = Einheit kann sich auf das Feld bewegen
+   -- -1 = Bewegung dahin nicht möglich da von eigener Einheit blockiert oder Einheit im Kampf vernichtet
+   -- 1 = Da ist ein Feind
+   function Gegner (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord) return GlobaleDatentypen.LoopRangeMinusEinsZuEins is
    begin
       
-      GegnerWert := BewegungEinheitenMoeglichPruefen.BefindetSichDortEineEinheit (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                                                                  NeuePositionExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+      KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+                                                              ÄnderungExtern       => ÄnderungExtern,
+                                                              ZusatzYAbstandExtern => 0);
 
-      if GegnerWert.Rasse = EinheitRasseNummerExtern.Rasse and GegnerWert.Platznummer = 1 then
+      EinheitWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+
+      if EinheitWert.Rasse = EinheitRasseNummerExtern.Rasse then
+         return -1;
+
+      elsif EinheitWert.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch then
          return 0;
-
-      elsif GegnerWert.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch then
-         -- BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     -- NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-         return 1;
          
       else
-         ErgebnisGegnerAngreifen := Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                         GegnerExtern             => GegnerWert);
-
-         case ErgebnisGegnerAngreifen is
-            when True =>
-               -- BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                            -- NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-               return 1;
-               
-            when False =>
-               return 0;
-         end case;
+         return 1;
       end if;
       
    end Gegner;

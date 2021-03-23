@@ -3,9 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
-with GlobaleKonstanten;
-
-with Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenbank, KartenPruefungen, BewegungEinheitenMoeglichPruefen, BewegungZwischenEbene, EinheitSuchen;
+with Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenbank, BewegungZwischenEbene, EinheitSuchen, KartenPruefungen;
 
 package body BewegungssystemEinheiten is
 
@@ -65,14 +63,29 @@ package body BewegungssystemEinheiten is
                return;
                
             when 0 => -- Einheit kann sich auf das Feld bewegen
-               null;
+               Gegner := BewegungZwischenEbene.Gegner (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       ÄnderungExtern           => Änderung);
                
             when -1 => -- Bewegung dahin nicht möglich und da ist keine Stadt/Transporter auf die die Einheit sich bewegen kann
                EinheitBewegtNichtEingeladen := False;
          end case;
 
-
-
+         if Gegner = 1 and RückgabeWert /= -1 then -- 1 = Da ist ein Feind
+            ErgebnisGegnerAngreifen := Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                            GegnerExtern             => EinheitRasseNummerExtern);
+            EinheitBewegtNichtEingeladen := True;
+            
+         elsif Gegner = 0 and RückgabeWert /= -1 then -- 0 = Einheit kann sich auf das Feld bewegen
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+                                                                    ÄnderungExtern       => Änderung,
+                                                                    ZusatzYAbstandExtern => 0);
+            BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                         NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+            EinheitBewegtNichtEingeladen := True;
+               
+         else -- -1 = Bewegung dahin nicht möglich da von eigener Einheit blockiert oder Einheit im Kampf vernichtet
+            EinheitBewegtNichtEingeladen := False;
+         end if;         
 
          case EinheitBewegtNichtEingeladen is
             when True => -- Einheit wurde bewegt.          
@@ -95,56 +108,6 @@ package body BewegungssystemEinheiten is
       end loop BewegenSchleife;
       
    end BewegungEinheitenRichtung;
-   
-
-
-   function ZwischenEbene (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord) return GlobaleDatentypen.LoopRangeMinusEinsZuEins is
-   begin
-
-      KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
-                                                              ÄnderungExtern       => ÄnderungExtern,
-                                                              ZusatzYAbstandExtern => 0);
-
-      case KartenWert.Erfolgreich is
-         when False =>
-            return -1;
-            
-         when True =>
-            FeldPassierbar := BewegungEinheitenMoeglichPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                  NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-      end case;
-
-      
-      
-      
-
-      GegnerWert := BewegungEinheitenMoeglichPruefen.BefindetSichDortEineEinheit (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                                                                  NeuePositionExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-
-      if GegnerWert.Rasse = EinheitRasseNummerExtern.Rasse and GegnerWert.Platznummer = 1 then
-         return 0;
-
-      elsif GegnerWert.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch then
-         BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                      NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-         return 1;
-         
-      else
-         ErgebnisGegnerAngreifen := Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                         GegnerExtern             => GegnerWert);
-
-         case ErgebnisGegnerAngreifen is
-            when True =>
-               BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                            NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-               return 1;
-               
-            when False =>
-               return 0;
-         end case;
-      end if;
-      
-   end ZwischenEbene;
 
 
 
@@ -163,19 +126,26 @@ package body BewegungssystemEinheiten is
         
          case GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummerTransporter).Transportiert (FreierPlatzSchleifenwert) is
             when 0 =>
-               null;
-               
-            when others =>
                FreierPlatzNummer := FreierPlatzSchleifenwert;
                exit TransporterSchleife;
+               
+            when others =>
+               null;
          end case;
          
       end loop TransporterSchleife;
+
+      Put_Line (Item => EinheitRasseNummerExtern.Platznummer'Wide_Wide_Image);
+      Put_Line (Item => EinheitNummerTransporter'Wide_Wide_Image);
+      Put_Line (Item => FreierPlatzNummer'Wide_Wide_Image);
 
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummerTransporter).Transportiert (FreierPlatzNummer) := EinheitRasseNummerExtern.Platznummer;
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte := 0.00;
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition
         := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummerTransporter).AchsenPosition;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert := EinheitNummerTransporter;
+      
+      GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).AchsenPosition := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition;
       
    end TransporterBeladen;
 
@@ -218,6 +188,48 @@ package body BewegungssystemEinheiten is
       else
          null;
       end if;
+
+      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportieren is
+         when 0 =>
+            null;
+            
+         when others =>
+            TransporterEinsSchleife:
+            for TransporterPlatzEinsSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+               
+               case GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzEinsSchleifenwert) is
+                  when 0 =>
+                     null;
+                     
+                  when others =>
+                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert
+                                                       (TransporterPlatzEinsSchleifenwert)).AchsenPosition := NeuePositionExtern;
+               end case;
+               
+            end loop TransporterEinsSchleife;
+      end case;
+
+      case GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert is
+         when 0 =>
+            null;
+            
+         when others =>
+            EinheitAusladen := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert;
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert := 0;
+
+            TransporterZweiSchleife:
+            for TransporterPlatzZweiSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+
+               if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitAusladen).Transportiert (TransporterPlatzZweiSchleifenwert) = EinheitRasseNummerExtern.Platznummer then
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitAusladen).Transportiert (TransporterPlatzZweiSchleifenwert) := 0;
+                  exit TransporterZweiSchleife;
+                     
+               else
+                  null;
+               end if;
+               
+            end loop TransporterZweiSchleife;
+      end case;
 
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition := NeuePositionExtern;
       GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).AchsenPosition := NeuePositionExtern;

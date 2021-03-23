@@ -83,4 +83,46 @@ package body EinheitSuchen is
       
    end KoordinatenEinheitOhneSpezielleRasseSuchen;
 
+
+
+   function EinheitAufTransporterSuchen (EinheitRassePlatznummer : in GlobaleRecords.RassePlatznummerRecord; EinheitNummer : in GlobaleDatentypen.MaximaleEinheiten) return Natural is
+   begin
+
+      TransporterSchleife:
+      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+         
+         if GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).Transportiert (TransporterPlatzSchleifenwert) = EinheitNummer then
+            return TransporterPlatzSchleifenwert;
+            
+         else
+            null;
+         end if;
+         
+      end loop TransporterSchleife;
+      
+      return Natural (GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      
+   end EinheitAufTransporterSuchen;
+
+
+
+   function IstEinheitAufTransporter (EinheitRassePlatznummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
+   begin
+      
+      TransporterSchleife:
+      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+         
+         if GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).Transportiert (TransporterPlatzSchleifenwert) /= 0 then
+            return True;
+            
+         else
+            null;
+         end if;
+         
+      end loop TransporterSchleife;
+      
+      return False;
+      
+   end IstEinheitAufTransporter;
+
 end EinheitSuchen;

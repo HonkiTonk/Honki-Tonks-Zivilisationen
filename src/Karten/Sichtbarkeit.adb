@@ -120,8 +120,9 @@ package body Sichtbarkeit is
       -- Über den Kartenfeldern kommen die Kartenressourcen
       -- Über den Kartenressourcen kommen die Kartenverbesserungen
       -- Über die Kartenverbesserungen kommen die Städte
-      -- Über die Städte kommen die Einheiten
-      -- Über den Einheiten kommt der Cursor      
+      -- Über die Städte kommen die nicht Transporteinheiten
+      -- Über den nicht Transporteinheiten kommen die Transporteinheiten
+      -- Über den Transporteinheiten kommt der Cursor      
        
       if Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern) = True then
          if KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition and InDerStadtExtern = False then
@@ -146,7 +147,8 @@ package body Sichtbarkeit is
                if GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0 then
                   exit EinheitenSchleife;
                
-               elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
+               elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
+                 and GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).WirdTransportiert = 0 then
                   Farben (EinheitExtern            => GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID,
                           VerbesserungExtern       => 0,
                           RessourceExtern          => 0,

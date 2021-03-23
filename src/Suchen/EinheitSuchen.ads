@@ -20,6 +20,13 @@ package EinheitSuchen is
               and GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0),
      Post => ((if KoordinatenEinheitOhneSpezielleRasseSuchen'Result.Rasse > 0 then GlobaleVariablen.RassenImSpiel (KoordinatenEinheitOhneSpezielleRasseSuchen'Result.Rasse) /= 0));
 
+   function EinheitAufTransporterSuchen (EinheitRassePlatznummer : in GlobaleRecords.RassePlatznummerRecord; EinheitNummer : in GlobaleDatentypen.MaximaleEinheiten) return Natural with
+     Pre  => (GlobaleVariablen.RassenImSpiel (EinheitRassePlatznummer.Rasse) /= 0 and EinheitRassePlatznummer.Platznummer > 0),
+     Post => (EinheitAufTransporterSuchen'Result <= GlobaleRecords.TransporterArray'Last);
+
+   function IstEinheitAufTransporter (EinheitRassePlatznummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean with
+     Pre  => (GlobaleVariablen.RassenImSpiel (EinheitRassePlatznummer.Rasse) /= 0 and EinheitRassePlatznummer.Platznummer > 0);
+
 private
    
    

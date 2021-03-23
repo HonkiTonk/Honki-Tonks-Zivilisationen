@@ -92,6 +92,7 @@ package GlobaleRecords is
       -- Hier nochwas mit letzten Koordinaten einfügen?
       
       Transportiert : TransporterArray;
+      WirdTransportiert : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       
    end record;
 

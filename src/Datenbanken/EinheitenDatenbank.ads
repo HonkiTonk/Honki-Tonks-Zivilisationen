@@ -50,6 +50,7 @@ package EinheitenDatenbank is
    procedure Beschäftigung (ArbeitExtern : in Natural);
 
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern : in Natural) return Boolean;
+   function EinheitTransporterAuswählen return GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
 private
    
