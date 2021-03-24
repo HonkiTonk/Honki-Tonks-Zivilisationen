@@ -34,16 +34,12 @@ package EinheitenDatenbank is
      Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
              and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
    
-   procedure HeilungBewegungspunkteFürNeueRundeSetzen;
+   procedure HeilungBewegungspunkteNeueRundeErmitteln;
    procedure EinheitErzeugen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; IDExtern : in GlobaleDatentypen.EinheitenID) with
      Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
              and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
-   procedure EinheitEntfernenMitSortieren (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-             and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
-
-   procedure EinheitEntfernenOhneSortieren (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+   procedure EinheitEntfernen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
      Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
              and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
    
@@ -66,5 +62,10 @@ private
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
    Position : GlobaleRecords.AchsenKartenfeldPositivRecord;
+
+   procedure HeilungBewegungspunkteNeueRundeSetzen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+     Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+             and GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0);
+     
 
 end EinheitenDatenbank;

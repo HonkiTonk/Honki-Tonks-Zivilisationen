@@ -15,7 +15,7 @@ package body Sichtbarkeit is
 
          case GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID is
             when 0 =>
-               exit EinheitenSchleife;
+               null;
             
             when others =>
                SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert));
@@ -24,11 +24,11 @@ package body Sichtbarkeit is
       end loop EinheitenSchleife;
 
       StädteSchleife:
-      for StadtNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
 
          case GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID is
             when 0 =>
-               exit StädteSchleife;
+               null;
                
             when others =>
                SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert));
@@ -145,7 +145,7 @@ package body Sichtbarkeit is
             for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
                if GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0 then
-                  exit EinheitenSchleife;
+                  null;
                
                elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
                  and GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).WirdTransportiert = 0 then
@@ -171,7 +171,7 @@ package body Sichtbarkeit is
             for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
                if GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID = 0 then
-                  exit StädteSchleife;
+                  null;
 
                elsif GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
                   Farben (EinheitExtern            => 0,

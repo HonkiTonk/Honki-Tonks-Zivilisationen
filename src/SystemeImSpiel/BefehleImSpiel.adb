@@ -120,13 +120,16 @@ package body BefehleImSpiel is
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
             
          when '.' => -- Einheiten mit Bewegungspunkten
-            NaechstesObjekt.NächsteEinheitMitBewegungspunkten (RasseExtern => RasseExtern);
+            NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
+                                             BewegungspunkteExtern => NaechstesObjekt.Hat_Bewegungspunkte);
             
          when '*' => -- Alle Einheiten
-            NaechstesObjekt.NächsteEinheit (RasseExtern => RasseExtern);
+            NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
+                                             BewegungspunkteExtern => NaechstesObjekt.Egal_Bewegeungspunkte);
             
          when ',' => -- Einheiten ohne Bewegungspunkte
-            NaechstesObjekt.NächsteEinheitOhneBewegungspunkte (RasseExtern => RasseExtern);
+            NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
+                                             BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte);
             
          when 'l' | 'm' | 'f' | 'u' | 'z' | 'p' | 'h' | 'v' | Space | DEL | 'j' => -- l/1 = Straße, m/2 = Mine, f/3 = Farm, u/4 = Festung, z/5 = Wald aufforsten, p/6 = /Roden-Trockenlegen,
             -- h/7 = Heilen, v/8 = Verschanzen, Space/9 = Runde aussetzen, DEL/10 = Einheit auflösen, j/11 = Plündern

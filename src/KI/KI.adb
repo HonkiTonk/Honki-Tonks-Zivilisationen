@@ -4,7 +4,7 @@ with KIDatentypen;
 use KIDatentypen;
 
 with EinheitenDatenbank, KISiedler, KINahkampfLandEinheit, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit, KINahkampfUnterirdisch,
-     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, Sortieren;
+     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital;
 
 package body KI is
 
@@ -53,8 +53,6 @@ package body KI is
          end case;
 
       end loop EinheitenMachenIrgendwasSchleife;
-
-      Sortieren.EinheitenSortieren (RasseExtern => RasseExtern);
       
       StädteMachenIrgendwasSchleife:
       loop
@@ -97,8 +95,6 @@ package body KI is
          end case;
             
       end loop StädteMachenIrgendwasSchleife;
-
-      Sortieren.StädteSortieren (RasseExtern => RasseExtern);
       
    end KI;
       

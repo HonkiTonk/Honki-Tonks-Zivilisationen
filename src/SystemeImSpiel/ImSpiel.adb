@@ -124,7 +124,7 @@ package body ImSpiel is
    begin
             
       Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (1, 1) := Clock;
-      EinheitenDatenbank.HeilungBewegungspunkteFürNeueRundeSetzen;
+      EinheitenDatenbank.HeilungBewegungspunkteNeueRundeErmitteln;
       Verbesserungen.VerbesserungFertiggestellt;
       Wachstum.Wachstum;
       InDerStadtBauen.BauzeitAlle;

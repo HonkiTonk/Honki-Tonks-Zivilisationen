@@ -279,7 +279,7 @@ package body Verbesserungen is
             Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 9);
             case Wahl is
                when True =>
-                  EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                  EinheitenDatenbank.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                      
                when False =>
                   null;
@@ -335,7 +335,7 @@ package body Verbesserungen is
          
                   case GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID is
                      when 0 =>
-                        exit EinheitenSchleife;
+                        null;
                
                      when others =>
                         case GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AktuelleBeschäftigung is

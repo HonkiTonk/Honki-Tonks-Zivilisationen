@@ -269,7 +269,7 @@ package body Cheat is
             end loop EinheitenSchleife;
             
          when others =>
-            EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseNummerExtern => EinheitPosition);
+            EinheitenDatenbank.EinheitEntfernen (EinheitRasseNummerExtern => EinheitPosition);
             GelöschtEinheitenSchleife:
             for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 

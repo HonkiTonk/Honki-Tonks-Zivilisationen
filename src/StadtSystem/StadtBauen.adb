@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with Anzeige, StadtWerteFestlegen, ForschungsDatenbank, EinheitenDatenbank, Eingabe, Karten, KartenPruefungen, Sortieren, StadtProduktion;
+with Anzeige, StadtWerteFestlegen, ForschungsDatenbank, EinheitenDatenbank, Eingabe, Karten, KartenPruefungen, StadtProduktion;
 
 package body StadtBauen is
 
@@ -100,13 +100,7 @@ package body StadtBauen is
             StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert));
             ForschungsDatenbank.ForschungZeit (RasseExtern => EinheitRasseNummerExtern.Rasse); 
             
-            case GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) is
-               when 2 =>
-                  EinheitenDatenbank.EinheitEntfernenOhneSortieren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-                  
-               when others =>
-                  EinheitenDatenbank.EinheitEntfernenMitSortieren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            end case;
+            EinheitenDatenbank.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
             case GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) is
                when 2 =>
@@ -181,14 +175,6 @@ package body StadtBauen is
    begin
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := GlobaleVariablen.LeererWertStadt;
-      Sortieren.StädteSortieren (RasseExtern => StadtRasseNummerExtern.Rasse);
-
-      if GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, 1).ID = 0 and GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, 1).ID = 0 then
-         GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) := 0;
-         
-      else
-         null;
-      end if;
       
    end StadtEntfernenMitSortieren;
 

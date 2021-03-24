@@ -1,150 +1,84 @@
 pragma SPARK_Mode (On);
 
-package body NaechstesObjekt is
+package body NaechstesObjekt is  
 
-   procedure NächsteEinheitMitBewegungspunkten (RasseExtern : in GlobaleDatentypen.Rassen) is -- Nochmal über die loops schauen, möglicherweise wird eine Einheit ausgelassen
+   procedure NächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen; BewegungspunkteExtern : in Bewegungspunkte) is
    begin
-
-      case GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID is
-         when 0 =>
-            return;
-         
-         when others  =>
-            Endwert := GlobaleVariablen.EinheitenGebaut'Last (2);
-            Startwert := 1;
-      end case;
+      
+      SchleifenBegrenzung := 0;
       
       EinheitSuchenSchleife:
       loop
-               
-         if AktuelleEinheit + 1 > GlobaleVariablen.EinheitenGebaut'Last (2) then
-            Endwert := AktuelleEinheit;
-            Startwert := Startwert + 1;
-            AktuelleEinheit := 1;
 
-         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit + 1).ID = 0 then
-            Endwert := AktuelleEinheit;
-            Startwert := Startwert + 1;
-            AktuelleEinheit := 1;
+         case AktuelleEinheit (RasseExtern) is
+            when GlobaleDatentypen.MaximaleEinheiten'Last =>
+               AktuelleEinheit (RasseExtern) := 1;
+               
+            when others =>
+               AktuelleEinheit (RasseExtern) := AktuelleEinheit (RasseExtern) + 1;
+         end case;
+               
+         if GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).ID = 0
+           or (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AktuelleBewegungspunkte <= 0.00 and BewegungspunkteExtern = Hat_Bewegungspunkte)
+           or (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AktuelleBewegungspunkte > 0.00 and BewegungspunkteExtern = Keine_Bewegungspunkte) then
+            null;
          
          else
-            AktuelleEinheit := AktuelleEinheit + 1;
-            Startwert := Startwert + 1;
-         end if;
-
-         if GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit).AktuelleBewegungspunkte > 0.0 then
             exit EinheitSuchenSchleife;
-            
-         else
-            null;
          end if;
 
-         if Startwert >= Endwert then
-            return;
-            
-         else
-            null;
-         end if;
+         SchleifenBegrenzung := SchleifenBegrenzung + 1;
+         case SchleifenBegrenzung is
+            when GlobaleDatentypen.MaximaleEinheiten'Last =>
+               return;
+               
+            when others =>
+               null;
+         end case;
 
       end loop EinheitSuchenSchleife;
-         
-      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit).AchsenPosition;
       
-   end NächsteEinheitMitBewegungspunkten;
-   
-   
-
-   procedure NächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
-      
-      if GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID = 0 then
-         return;
-      
-      elsif AktuelleEinheit + 1 > GlobaleVariablen.EinheitenGebaut'Last (2) then
-         AktuelleEinheit := 1;
-
-      elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit + 1).ID = 0 then
-         AktuelleEinheit := 1;
-         
-      else
-         AktuelleEinheit := AktuelleEinheit + 1;
-      end if;
-      
-      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit).AchsenPosition;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AchsenPosition;
       
    end NächsteEinheit;
-
-
-
-   procedure NächsteEinheitOhneBewegungspunkte (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
-      
-      case GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID is
-         when 0 =>
-            return;
-         
-         when others  =>
-            Endwert := GlobaleVariablen.EinheitenGebaut'Last (2);
-            Startwert := 1;
-      end case;
-      
-      EinheitSuchenSchleife:
-      loop
-               
-         if AktuelleEinheit + 1 > GlobaleVariablen.EinheitenGebaut'Last (2) then
-            Endwert := AktuelleEinheit;
-            Startwert := Startwert + 1;
-            AktuelleEinheit := 1;
-
-         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit + 1).ID = 0 then
-            Endwert := AktuelleEinheit;
-            Startwert := Startwert + 1;
-            AktuelleEinheit := 1;
-         
-         else
-            AktuelleEinheit := AktuelleEinheit + 1;
-            Startwert := Startwert + 1;
-         end if;
-
-         if GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit).AktuelleBewegungspunkte <= 0.0 then
-            exit EinheitSuchenSchleife;
-            
-         else
-            null;
-         end if;
-
-         if Startwert >= Endwert then
-            return;
-            
-         else
-            null;
-         end if;
-
-      end loop EinheitSuchenSchleife;
-         
-      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit).AchsenPosition;
-      
-   end NächsteEinheitOhneBewegungspunkte;
    
    
    
    procedure NächsteStadt (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
-      
-      if GlobaleVariablen.StadtGebaut (RasseExtern, 1).ID = 0 then
-         return;
-      
-      elsif AktuelleStadt + 1 > GlobaleVariablen.StadtGebaut'Last (2) then
-         AktuelleStadt := 1;
 
-      elsif GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt + 1).ID = 0 then
-         AktuelleStadt := 1;
-         
-      else
-         AktuelleStadt := AktuelleStadt + 1;
-      end if;
+      SchleifenBegrenzung := 0;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).AchsenPosition;
+      StadtSuchenSchleife:
+      loop
+
+         case AktuelleStadt (RasseExtern) is
+            when GlobaleDatentypen.MaximaleStädte'Last =>
+               AktuelleStadt (RasseExtern) := 1;
+               
+            when others =>
+               AktuelleStadt (RasseExtern) := AktuelleStadt (RasseExtern) + 1;
+         end case;
+               
+         if GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt (RasseExtern)).ID = 0 then
+            null;
+         
+         else
+            exit StadtSuchenSchleife;
+         end if;
+
+         SchleifenBegrenzung := SchleifenBegrenzung + 1;
+         case SchleifenBegrenzung is
+            when GlobaleDatentypen.MaximaleStädte'Last =>
+               return;
+               
+            when others =>
+               null;
+         end case;
+
+      end loop StadtSuchenSchleife;
+      
+      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt (RasseExtern)).AchsenPosition;
       
    end NächsteStadt;
 

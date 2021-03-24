@@ -5,23 +5,22 @@ use GlobaleDatentypen;
 
 package NaechstesObjekt is
 
-   procedure NächsteEinheitMitBewegungspunkten (RasseExtern : in GlobaleDatentypen.Rassen) with
-     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+   type Bewegungspunkte is (Hat_Bewegungspunkte, Keine_Bewegungspunkte, Egal_Bewegeungspunkte);
 
-   procedure NächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen) with
-     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
-
-   procedure NächsteEinheitOhneBewegungspunkte (RasseExtern : in GlobaleDatentypen.Rassen) with
+   procedure NächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen; BewegungspunkteExtern : in Bewegungspunkte) with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
    procedure NächsteStadt (RasseExtern : in GlobaleDatentypen.Rassen) with
      Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
    
 private
+
+   SchleifenBegrenzung : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
-   AktuelleEinheit : GlobaleDatentypen.MaximaleEinheiten := 1;
-   Endwert : GlobaleDatentypen.MaximaleEinheiten;
-   Startwert : GlobaleDatentypen.MaximaleEinheiten;
-   AktuelleStadt : GlobaleDatentypen.MaximaleStädte := 1;
+   type AktuelleEinheitArray is array (GlobaleDatentypen.Rassen'Range) of GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   AktuelleEinheit : AktuelleEinheitArray := (others => 0);
+
+   type AktuelleStadtArray is array (GlobaleDatentypen.Rassen'Range) of GlobaleDatentypen.MaximaleStädteMitNullWert;
+   AktuelleStadt : AktuelleStadtArray := (others => 0);
 
 end NaechstesObjekt;
