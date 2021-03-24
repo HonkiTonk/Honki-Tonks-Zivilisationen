@@ -18,6 +18,9 @@ private
    Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
    Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
    Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+
+   EinheitNummer : GlobaleDatentypen.MaximaleEinheiten;
+
    SichtweiteFestlegen : Integer;
    BewegungsfeldFestlegen : Integer;
 

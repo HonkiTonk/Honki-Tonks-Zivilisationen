@@ -50,12 +50,17 @@ package EinheitenDatenbank is
    procedure Beschäftigung (ArbeitExtern : in Natural);
 
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern : in Natural) return Boolean;
-   function EinheitTransporterAuswählen return GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   function EinheitTransporterAuswählen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
 private
    
    Heilungsrate : constant Positive := 10;
+
+   Taste : Wide_Wide_Character;
    
+   AktuelleAuswahl : Natural;
+   Ende : Natural;
+   AktuellePosition : Positive;
    Wahl : Integer;
 
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;

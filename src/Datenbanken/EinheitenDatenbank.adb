@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
+use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
+
 with GlobaleKonstanten;
 
 with Auswahl, Anzeige, Sortieren;
@@ -202,10 +205,74 @@ package body EinheitenDatenbank is
 
 
 
-   function EinheitTransporterAuswählen return GlobaleDatentypen.MaximaleEinheitenMitNullWert is
+   function EinheitTransporterAuswählen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return GlobaleDatentypen.MaximaleEinheitenMitNullWert is
    begin
-      
-      return 0;
+
+      Anzeige.TextTransporter := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
+      Anzeige.TextTransporter (0) := (GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
+                                      Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID)), EinheitRasseNummerExtern.Platznummer);
+      AktuellePosition := 1;
+      Ende := 0;
+
+      TransporterSchleife:
+      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. GlobaleRecords.TransporterArray'Last loop
+         
+         if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert) = 0 then
+            null;
+            
+         else
+            Anzeige.TextTransporter (AktuellePosition)
+              := (GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
+                  Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert)).ID)),
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert));
+
+            AktuellePosition := AktuellePosition + 1;
+            Ende := Ende + 1;
+         end if;
+         
+      end loop TransporterSchleife;
+
+      AktuelleAuswahl := 0;
+
+      EinheitAuswählenSchleife:
+      loop
+         
+         Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
+
+         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fragen,
+                                               TextZeileExtern => 27);
+
+         Anzeige.AnzeigeTransporter (AktuelleAuswahlExtern => AktuelleAuswahl);
+         
+         Get_Immediate (Item => Taste);
+         
+         case To_Lower (Item => Taste) is               
+            when 'w' | '8' => 
+               if AktuelleAuswahl = Anzeige.TextTransporter'First then
+                  AktuelleAuswahl := Ende;
+               else
+                  AktuelleAuswahl := AktuelleAuswahl - 1;
+               end if;
+
+            when 's' | '2' =>
+               if AktuelleAuswahl = Ende then
+                  AktuelleAuswahl := Anzeige.TextTransporter'First;
+               else
+                  AktuelleAuswahl := AktuelleAuswahl + 1;
+               end if;
+                              
+            when 'e' | '5' =>
+               return Anzeige.TextTransporter (AktuelleAuswahl).Nummer;
+
+            when 'q' =>
+               return 0;
+                     
+            when others =>
+               null;
+         end case;
+         
+      end loop EinheitAuswählenSchleife;
       
    end EinheitTransporterAuswählen;
 

@@ -50,7 +50,7 @@ package GlobaleVariablen is
                                                                          0, 0.00, 0, 0, -- 5. Wert = Aktuelle Lebenspunkte, 6. Wert = Aktuelle Bewegungspunkte, 7. Wert = Aktuelle Erfahrungspunkte, 8. Wert = Aktueller Rang
                                                                          0, 0,          -- 9. Wert = Aktuelle Beschäftigungszeit, 10. Wert = Zweite AktuelleBeschäftigungszeit
                                                                          (0, 1, 1), KIDatentypen.Keine_Aufgabe,    -- 11. Wert = Zielkoordinaten der KI, 12. Wert = Beschäftigunggrad der KI
-                                                                         (others => 0), 0); -- 13. Wert = Platznummer der transportierten Einheiten
+                                                                         (others => 0), 0); -- 13. Wert = Platznummer der transportierten Einheiten, 14. Wert = Platznummer der transportierenden Einheit
 
    type EinheitenGebautArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.MaximaleEinheiten'Range) of GlobaleRecords.EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => LeererWertEinheit));

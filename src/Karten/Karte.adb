@@ -221,6 +221,13 @@ package body Karte is
                   null;
                  
                when others => -- Allgemeine Einheiteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Einheit befindet
+                  case GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).WirdTransportiert is -- Das hier noch besser einbauen
+                     when 0 =>
+                        EinheitNummer := RasseUndPlatznummer.Platznummer;
+                        
+                     when others =>
+                        EinheitNummer := GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).WirdTransportiert;
+                  end case;
                   EinheitenDatenbank.Beschreibung (GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID);
                   New_Line;
                   

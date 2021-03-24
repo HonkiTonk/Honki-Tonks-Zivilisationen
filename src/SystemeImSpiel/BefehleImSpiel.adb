@@ -51,14 +51,20 @@ package body BefehleImSpiel is
                                     EinheitNummerExtern => EinheitNummer);
 
                else
-                  EinheitTransportNummer := EinheitenDatenbank.EinheitTransporterAuswählen;
+                  if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert /= 0 then
+                     EinheitTransportNummer := EinheitenDatenbank.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert));
+
+                  else
+                     EinheitTransportNummer := EinheitenDatenbank.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
+                  end if;
+                  
                   case EinheitTransportNummer is
                      when 0 =>
                         null;
                         
                      when others =>
                         EinheitOderStadt (RasseExtern         => RasseExtern,
-                                          AuswahlExtern       => GlobaleKonstanten.JaKonstante,
+                                          AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
                                           StadtNummerExtern   => StadtNummer,
                                           EinheitNummerExtern => EinheitTransportNummer);
                   end case;

@@ -215,6 +215,7 @@ package body InDerStadtBauen is
             when 'w' | '8' => 
                if AktuelleAuswahl = Anzeige.TextBauenNeu'First then
                   AktuelleAuswahl := Ende;
+                  
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
@@ -222,6 +223,7 @@ package body InDerStadtBauen is
             when 's' | '2' =>
                if AktuelleAuswahl = Ende then
                   AktuelleAuswahl := Anzeige.TextBauenNeu'First;
+                  
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;

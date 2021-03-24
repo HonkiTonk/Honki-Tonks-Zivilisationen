@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
 
 package Anzeige is
@@ -28,6 +28,16 @@ package Anzeige is
    type TextForschungNeuArray is array (GlobaleDatentypen.ForschungID'Range) of TextForschungRecord;
    TextForschungNeu : TextForschungNeuArray;
 
+   type TextTransporterRecord is record
+      
+      Text : Unbounded_Wide_Wide_String;
+      Nummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      
+   end record;
+
+   type TextTransporterArray is array (GlobaleRecords.TransporterArray'First - 1 .. GlobaleRecords.TransporterArray'Last) of TextTransporterRecord;
+   TextTransporter : TextTransporterArray;
+
    procedure AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
                                     AbstandAnfangExtern, AbstandMitteExtern, AbstandEndeExtern : in GlobaleDatentypen.WelcherAbstand_Enum) with
      Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if ÜberschriftDateiExtern = GlobaleDatentypen.Leer then ÜberschriftZeileExtern = 0)
@@ -46,6 +56,8 @@ package Anzeige is
 
    procedure AnzeigeForschungNeu (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID) with
      Pre => (AktuelleAuswahlExtern <= GlobaleDatentypen.ForschungID'Last);
+
+   procedure AnzeigeTransporter (AktuelleAuswahlExtern : in Natural);
 
    procedure AnzeigeLangerTextNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
                                    AbstandAnfangExtern, AbstandEndeExtern : in GlobaleDatentypen.WelcherAbstand_Enum) with

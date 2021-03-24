@@ -414,6 +414,84 @@ package body Anzeige is
 
 
 
+   procedure AnzeigeTransporter (AktuelleAuswahlExtern : in Natural) is
+   begin
+      
+      LängsterText := 1;
+      
+      TextlängePrüfenSchleife:
+      for ZeichenSchleifenwert in TextTransporter'Range loop
+         if To_Wide_Wide_String (Source => TextTransporter (ZeichenSchleifenwert).Text) = "|" then
+            exit TextlängePrüfenSchleife;
+            
+         elsif To_Wide_Wide_String (Source => TextTransporter (ZeichenSchleifenwert).Text)'Length > LängsterText then
+            LängsterText := To_Wide_Wide_String (Source => TextTransporter (ZeichenSchleifenwert).Text)'Length;
+            
+         else
+            null;
+         end if;
+      end loop TextlängePrüfenSchleife;
+      
+      AnzeigeSchleife:
+      for AnzeigeSchleifenwert in TextTransporter'Range loop
+
+         if AktuelleAuswahlExtern = AnzeigeSchleifenwert then
+            RahmenEinsSchleife:
+            for RahmenEinsSchleifenwert in 1 .. LängsterText loop
+                  
+               if RahmenEinsSchleifenwert = 1 then
+                  Put (Item => "╔");
+                  Put (Item => "═");
+
+               elsif RahmenEinsSchleifenwert = LängsterText then                  
+                  Put (Item => "═");
+                  Put_Line (Item => "╗");
+                  Put (Item => "║");
+                  Put (Item => To_Wide_Wide_String (Source => TextTransporter (AnzeigeSchleifenwert).Text));
+
+                  LeererPlatzSchleife:
+                  for LeererPlatzSchleifenwert in 1 .. LängsterText - To_Wide_Wide_String (Source => TextTransporter (AnzeigeSchleifenwert).Text)'Length loop
+                        
+                     Put (" ");
+                        
+                  end loop LeererPlatzSchleife;
+                  Put_Line (Item => "║");
+                  Put (Item => "╚");
+
+               else
+                  Put (Item => "═");
+               end if;
+               
+            end loop RahmenEinsSchleife;
+
+            RahmenZweiSchleife:
+            for RahmenZweiSchleifenwert in 1 .. LängsterText loop
+               
+               if RahmenZweiSchleifenwert = LängsterText then
+                  Put (Item => "═");
+                  Put_Line (Item => "╝");
+               
+               else
+                  Put (Item => "═");
+               end if;
+            
+            end loop RahmenZweiSchleife;
+         
+         else
+            if To_Wide_Wide_String (Source => TextTransporter (AnzeigeSchleifenwert).Text) = "|" then
+               exit AnzeigeSchleife; 
+            
+            else
+               Put_Line (Item => To_Wide_Wide_String (Source => TextTransporter (AnzeigeSchleifenwert).Text));
+            end if;
+         end if;
+         
+      end loop AnzeigeSchleife;
+      
+   end AnzeigeTransporter;
+
+
+
    procedure AnzeigeLangerTextNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
                                    AbstandAnfangExtern, AbstandEndeExtern : in GlobaleDatentypen.WelcherAbstand_Enum) is
    begin
