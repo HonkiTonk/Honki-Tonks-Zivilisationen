@@ -172,7 +172,7 @@ package body KIPruefungen is
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
 
          if GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID = 0 then
-            exit StadtSchleife;
+            null;
             
          else
             case RichtungExtern is

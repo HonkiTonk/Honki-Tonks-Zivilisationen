@@ -95,10 +95,10 @@ package body Laden is
                
             when others =>
                EinheitenSchleife:
-               for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
                   GlobaleRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
-                                                             GlobaleVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummer));
+                                                             GlobaleVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
             
                end loop EinheitenSchleife;
          end case;
@@ -118,10 +118,10 @@ package body Laden is
                
             when others =>
                StadtSchleife:
-               for StadtNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+               for StadtNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
                   
                   GlobaleRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
-                                                             GlobaleVariablen.EinheitenGebaut (RasseStadtSchleifenwert, StadtNummer));
+                                                             GlobaleVariablen.EinheitenGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));
             
                end loop StadtSchleife;
          end case;

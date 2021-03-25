@@ -5,11 +5,7 @@ use GlobaleDatentypen;
 
 package StadtBauen is
 
-   procedure StadtEntfernenMitSortieren (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
-     Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-             and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
-
-   procedure StadtEntfernenOhneSortieren (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
+   procedure StadtEntfernen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with
      Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
              and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
@@ -33,6 +29,11 @@ private
 
    Stadtart : GlobaleDatentypen.StadtID;
 
+   StadtNummer : GlobaleDatentypen.MaximaleStädte;
+
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+
+   function HauptstadtPrüfen (RasseExtern : in GlobaleDatentypen.Rassen) return GlobaleDatentypen.StadtID with
+     Post => (HauptstadtPrüfen'Result <= 2);
 
 end StadtBauen;

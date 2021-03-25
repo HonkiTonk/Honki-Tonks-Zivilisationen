@@ -24,6 +24,8 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
    procedure VerbesserungFehler (WelcherFehlerExtern : in Positive);
+
+   procedure VerbesserungFertiggestelltPrüfen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
    
    procedure VerbesserungeFestgelegt (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; BefehlExtern : in Befehle_Enum) with
      Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen

@@ -22,4 +22,6 @@ private
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
+   procedure EinwohnerZuweisen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+
 end InDerStadt;

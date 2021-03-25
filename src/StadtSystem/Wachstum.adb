@@ -23,7 +23,7 @@ package body Wachstum is
             
             case GlobaleVariablen.StadtGebaut (RasseEinsSchleifenwert, StadtNummerSchleifenwert).ID is
                when 0 =>
-                  exit StadtSchleife;
+                  null;
                
                when others =>
                   WachstumEinwohner (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert));
@@ -114,7 +114,7 @@ package body Wachstum is
                                                             StadtRasseNummerExtern   => StadtRasseNummerExtern);
          case GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner is
             when 0 =>
-               StadtBauen.StadtEntfernenMitSortieren (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               StadtBauen.StadtEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
             when others =>
                null;

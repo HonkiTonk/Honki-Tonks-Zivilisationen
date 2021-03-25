@@ -17,6 +17,7 @@ private
    GehStadtBauen : Boolean;
    Verbessern : Boolean;
    Vernichten : Boolean;
+   StadtBauenRückgabeWert : Boolean;
 
    function StadtUmgebungVerbessern (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean with
      Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen

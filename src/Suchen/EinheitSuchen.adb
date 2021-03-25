@@ -10,10 +10,7 @@ package body EinheitSuchen is
       EinheitSchleife:
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
-         if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID = 0 then
-            exit EinheitSchleife;
-            
-         elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
+         if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
             return EinheitNummerSchleifenwert;
             
          else
@@ -36,10 +33,7 @@ package body EinheitSuchen is
          EinheitSchleife:
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
-            if GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0 then
-               exit EinheitSchleife;
-               
-            elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
+            if GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
                return (RasseSchleifenwert, EinheitNummerSchleifenwert);
                
             else
@@ -64,9 +58,6 @@ package body EinheitSuchen is
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 
             if RasseExtern = RasseSchleifenwert then
-               exit EinheitSchleife;
-               
-            elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0 then
                exit EinheitSchleife;
                
             elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern then

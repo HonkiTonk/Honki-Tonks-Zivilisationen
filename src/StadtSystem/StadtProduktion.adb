@@ -16,7 +16,7 @@ package body StadtProduktion is
                
                   case GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID is
                      when 0 =>
-                        exit StadtSchleife;
+                        null;
                   
                      when others =>
                         StadtProduktionPrüfenBerechnung (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert));

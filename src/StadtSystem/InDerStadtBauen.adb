@@ -82,7 +82,7 @@ package body InDerStadtBauen is
       
                   case GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummer).ID is
                      when 0 =>
-                        exit StadtSchleife;
+                        null;
                         
                      when others =>
                         BauzeitEinzeln (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummer));
