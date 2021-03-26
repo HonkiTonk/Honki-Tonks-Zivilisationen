@@ -3,69 +3,29 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with Ladezeiten, WerteFestlegen, ZufallsGeneratoren, KartenPruefungen;
+with Ladezeiten, WerteFestlegen, KartenPruefungen, KartenGeneratorChaos, KartenGeneratorStandard, KartenGeneratorKueste, KartenGeneratorLandschaft, KartenGeneratorFluss, KartenGeneratorRessourcen;
 
 package body KartenGenerator is
 
    procedure KartenGenerator is
    begin
 
-      case Kartenart is
+      NochVerteilbareRessourcen := Karten.Kartengrößen (Karten.Kartengröße).Ressourcenmenge;
+      Karten.GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2, 10); -- Inseln, Kontinente, Pangäa
+      -- GrößeLandart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
+
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 1) := Clock;
+      case Karten.Kartenart is
          when 5 =>
-            Chaos;
-            return;
+            KartenGeneratorChaos.Chaos;
             
          when others =>
-            null;
+            KartenGeneratorStandard.StandardKarte;
       end case;
-
-      Reset (Gewählt);
-
-      NochVerteilbareRessourcen := Karten.Kartengrößen (Karten.Kartengröße).Ressourcenmenge;
-      GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2, 10); -- Inseln, Kontinente, Pangäa
-      -- GrößeLandart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
-      GeneratorKarte := (others => (others => (0)));
-
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 2) := Clock;
-      YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
-         XAchseSchleife:
-         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
-               
-            if YAchseSchleifenwert = Karten.WeltkarteArray'First (2) or YAchseSchleifenwert = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-               Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund := 1;
-               
-            else
-               case Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund is -- Abfrage ist hier nötig, da sonst eine erstellte Landmasse wieder überschrieben wird!
-                  when 0 =>
-                     case Kartenart is
-                        when 4 =>
-                           Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund := 3;
-                           
-                        when others =>
-                           Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund := 2;
-                     end case;
-
-                  when others =>
-                     null;
-               end case;
-               
-            
-               case Kartenart is
-                  when 3 =>
-                     GenerierungPangäa (YAchseExtern => YAchseSchleifenwert,
-                                         XAchseExtern => XAchseSchleifenwert);
-                  
-                  when others =>                     
-                     GenerierungKartenart (YAchseExtern => YAchseSchleifenwert,
-                                           XAchseExtern => XAchseSchleifenwert);
-               end case;
-            end if;
-            
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 2) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 2);
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 1) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 1);
+      
+      
             
       Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 3) := Clock;
       GenerierungKüstenSeeGewässer;
@@ -93,160 +53,12 @@ package body KartenGenerator is
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 9);
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 10);
 
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 11) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 10) := Clock;
       KartenfelderBewerten;
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 11) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 10) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 11);
       
    end KartenGenerator;
-
-
-
-   procedure GenerierungKartenart (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) is
-   begin
-
-      Wert := Random (Gewählt);
-
-      case GeneratorKarte (YAchseExtern, XAchseExtern) is -- Die Werte werden eingetragen, wenn Landmassen erzeugt werden
-         when 1 .. 2 =>
-            null;
-
-         when 0 =>
-            if YAchseExtern <= Karten.WeltkarteArray'First (2) + 3  or YAchseExtern >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - 3 then
-               if Wert > WahrscheinlichkeitenFürLand (Kartenart, 1) and Wert < WahrscheinlichkeitenFürLand (Kartenart, 2) then
-                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := 3;
-                           
-               elsif Wert >= WahrscheinlichkeitenFürLand (Kartenart, 2) then
-                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := 3;
-                  GenerierungLandmasse (YPositionLandmasseExtern => YAchseExtern,
-                                        XPositionLandmasseExtern => XAchseExtern);
-                           
-               else
-                  null;
-               end if;
-                              
-            else
-               if Wert > WahrscheinlichkeitenFürLand (Kartenart, 3) and Wert < WahrscheinlichkeitenFürLand (Kartenart, 4) then
-                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := 3;
-                                 
-               elsif Wert >= WahrscheinlichkeitenFürLand (Kartenart, 4) then
-                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := 3;
-                  GenerierungLandmasse (YPositionLandmasseExtern => YAchseExtern,
-                                        XPositionLandmasseExtern => XAchseExtern);
-                                 
-               else
-                  null;
-               end if;
-            end if;
-
-         when others =>
-            if Wert >= WahrscheinlichkeitenFürLand (Kartenart, 5) then                           
-               Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := 3;
-                           
-            else
-               null;
-            end if;
-      end case;
-      
-   end GenerierungKartenart;
-
-   
-   
-   procedure GenerierungLandmasse (YPositionLandmasseExtern, XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv) is
-   begin
-      
-      YAchseEinsSchleife:
-      for YÄnderungEinsSchleifenwert in -GrößeLandart (Kartenart) / 2 .. GrößeLandart (Kartenart) / 2 loop
-         XAchseEinsSchleife:
-         for XÄnderungEinsSchleifenwert in -GrößeLandart (Kartenart) / 2 .. GrößeLandart (Kartenart) / 2 loop
-            
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
-                                                                    ÄnderungExtern       => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
-                                                                    ZusatzYAbstandExtern => 1); -- Hier muss <= geprüft werden, deswegen 1
-
-            case KartenWert.Erfolgreich is
-               when False =>
-                  exit XAchseEinsSchleife;
-                  
-               when True =>         
-                  Wert := Random (Gewählt);
-                  GenerierungLandmasseÜberhang (YAchseExtern => KartenWert.YAchse,
-                                                 XAchseExtern => KartenWert.XAchse,
-                                                 GezogenExtern => Wert);
-            end case;
-            
-         end loop XAchseEinsSchleife;
-      end loop YAchseEinsSchleife;
-      
-      YAchseZweiSchleife: -- Funktioniert nicht mit Kontinenten bei kleinen Karten weil der Abstandswert zu groß ist! An Kartengrößen angepasste Werte anlegen, wie bei der Kartenanzeige.
-      for YÄnderungZweiSchleifenwert in -FelderVonLandartZuLandart (Kartenart) .. FelderVonLandartZuLandart (Kartenart) loop
-         XAchseZweiSchleife:
-         for XÄnderungZweiSchleifenwert in -FelderVonLandartZuLandart (Kartenart) .. FelderVonLandartZuLandart (Kartenart) loop
-            
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
-                                                                    ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
-                                                                    ZusatzYAbstandExtern => 1); -- Hier muss <= geprüft werden, deswegen 1
-            
-            case KartenWert.Erfolgreich is
-               when False =>
-                  exit XAchseZweiSchleife;
-                  
-               when True =>
-                  case GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) is
-                     when 1 .. 2 =>
-                        null;
-                        
-                     when others =>
-                        GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := 3;                           
-                  end case;
-            end case;
-                    
-         end loop XAchseZweiSchleife; 
-      end loop YAchseZweiSchleife; 
-      
-   end GenerierungLandmasse;
-   
-   
-   
-   procedure GenerierungLandmasseÜberhang (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv; GezogenExtern : in Float) is
-   begin
-   
-      if GezogenExtern >= WahrscheinlichkeitenFürLand (Kartenart, 6) and GeneratorKarte (YAchseExtern, XAchseExtern) = 0 then
-         Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := 3;
-         GeneratorKarte (YAchseExtern, XAchseExtern) := 1;
-
-      elsif GezogenExtern >= WahrscheinlichkeitenFürLand (Kartenart, 7) then
-         Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := 3;
-         GeneratorKarte (YAchseExtern, XAchseExtern) := 1;
-               
-      else
-         null;
-      end if;
-         
-      
-   end GenerierungLandmasseÜberhang;
-
-
-
-   procedure GenerierungPangäa (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) is
-   begin
-      
-      if YAchseExtern = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2 and XAchseExtern = Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2 then
-         GenerierungLandmasse (YPositionLandmasseExtern => YAchseExtern,
-                               XPositionLandmasseExtern => XAchseExtern);
-        
-      else
-         Wert := Random (Gewählt);
-         if Wert >= WahrscheinlichkeitenFürLand (Kartenart, 2) then
-            Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := 3;
-            GeneratorKarte (YAchseExtern, XAchseExtern) := 1;
-         
-         else
-            null;
-         end if;
-      end if;
-      
-   end GenerierungPangäa;
 
 
 
@@ -301,15 +113,15 @@ package body KartenGenerator is
    procedure GenerierungLandschaft is
    begin
 
-      GeneratorKarte := (others => (others => (0)));
-      GeneratorGrund := (others => (others => (False)));
+      Karten.GeneratorKarte := (others => (others => (0)));
+      Karten.GeneratorGrund := (others => (others => (False)));
 
       YAbstandEisschichtEinsSchleife:
       for YAchseEinsSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.WeltkarteArray'First (2) + 3 loop
          XAbstandEisschichtEinsSchleife:
          for XAchseEinsSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-            GeneratorKarte (YAchseEinsSchleifenwert, XAchseEinsSchleifenwert) := 4;
+            Karten.GeneratorKarte (YAchseEinsSchleifenwert, XAchseEinsSchleifenwert) := 4;
             
          end loop XAbstandEisschichtEinsSchleife;
       end loop YAbstandEisschichtEinsSchleife;
@@ -319,7 +131,7 @@ package body KartenGenerator is
          XAbstandEisschichtZweiSchleife:
          for XAchseZweiSchleifenwert in Karten.Weltkarte'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-            GeneratorKarte (YAchseZweiSchleifenwert, XAchseZweiSchleifenwert) := 4;
+            Karten.GeneratorKarte (YAchseZweiSchleifenwert, XAchseZweiSchleifenwert) := 4;
             
          end loop XAbstandEisschichtZweiSchleife;
       end loop YAbstandEisschichtZweiSchleife;
@@ -330,49 +142,49 @@ package body KartenGenerator is
          for XAchseDreiSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             if Karten.Weltkarte (0, YAchseDreiSchleifenwert, XAchseDreiSchleifenwert).Grund < 3 or Karten.Weltkarte (0, YAchseDreiSchleifenwert, XAchseDreiSchleifenwert).Grund = 31 then
-               GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) := True;
+               Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) := True;
 
             else
                Wert := Random (Gewählt);
-               if Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 4) and GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
-                 and GeneratorKarte (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) /= 5 then
+               if Wert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 4) and Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
+                 and Karten.GeneratorKarte (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) /= 5 then
                   GenerierungLandschaftFelder (GrundExtern  => 4,
                                                YAchseExtern => YAchseDreiSchleifenwert,
                                                XAchseExtern => XAchseDreiSchleifenwert);
 
-               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 5) and GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
-                 and GeneratorKarte (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) /= 4 then
+               elsif Wert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 5) and Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
+                 and Karten.GeneratorKarte (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) /= 4 then
                   GenerierungLandschaftFelder (GrundExtern  => 5,
                                                YAchseExtern => YAchseDreiSchleifenwert,
                                                XAchseExtern => XAchseDreiSchleifenwert);
 
-               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 6) and GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False then
+               elsif Wert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 6) and Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False then
                   GenerierungLandschaftFelder (GrundExtern  => 6,
                                                YAchseExtern => YAchseDreiSchleifenwert,
                                                XAchseExtern => XAchseDreiSchleifenwert);
 
-               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 7) and GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False then
+               elsif Wert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 7) and Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False then
                   GenerierungLandschaftFelder (GrundExtern  => 7,
                                                YAchseExtern => YAchseDreiSchleifenwert,
                                                XAchseExtern => XAchseDreiSchleifenwert);
 
-               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 8) and GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False then
+               elsif Wert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 8) and Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False then
                   GenerierungLandschaftFelder (GrundExtern  => 8,
                                                YAchseExtern => YAchseDreiSchleifenwert,
                                                XAchseExtern => XAchseDreiSchleifenwert);
 
-               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 9) and GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False then
+               elsif Wert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 9) and Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False then
                   GenerierungLandschaftFelder (GrundExtern  => 9,
                                                YAchseExtern => YAchseDreiSchleifenwert,
                                                XAchseExtern => XAchseDreiSchleifenwert);
 
-               elsif Wert <= KartengrundWahrscheinlichkeiten (Kartentemperatur, 10) and GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False then
+               elsif Wert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 10) and Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False then
                   GenerierungLandschaftFelder (GrundExtern  => 32,
                                                YAchseExtern => YAchseDreiSchleifenwert,
                                                XAchseExtern => XAchseDreiSchleifenwert);
                   
                else
-                  GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) := True;
+                  Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) := True;
                end if;
             end if;            
                         
@@ -405,24 +217,24 @@ package body KartenGenerator is
                      
                   elsif YÄnderungSchleifenwert = 0 and XÄnderungSchleifenwert = 0 then
                      Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
-                     GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
+                     Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
                      
                   else
                      Wert := Random (Gewählt);
-                     if Wert > 0.50 and GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) = False then
-                        if GrundExtern = 4 and GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 5 then
+                     if Wert > 0.50 and Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) = False then
+                        if GrundExtern = 4 and Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 5 then
                            null;
                            
-                        elsif GrundExtern = 5 and GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 4 then
+                        elsif GrundExtern = 5 and Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 4 then
                            null;
                            
                         else
                            Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
-                           GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
+                           Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
                         end if;
                         
                      else
-                        GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;                       
+                        Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;                       
                      end if;
                   end if;
             end case;
@@ -455,11 +267,11 @@ package body KartenGenerator is
                         exit XAchseZweiSchleife;
                   
                      when True =>
-                        if GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) /= 0 then
+                        if Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) /= 0 then
                            null;
                                      
                         else
-                           GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := GlobaleDatentypen.Kartenfeld (GrundExtern);
+                           Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := GlobaleDatentypen.Kartenfeld (GrundExtern);
                         end if;
                   end case;
             
@@ -970,7 +782,7 @@ package body KartenGenerator is
       task body PlanetenInneres is
       begin
          
-         Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 11) := Clock;
+         Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 10) := Clock;
          
          YAchseInneresSchleife:
          for YAchseInneresSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
@@ -982,7 +794,7 @@ package body KartenGenerator is
             end loop XAchseInneresSchleife;
          end loop YAchseInneresSchleife;
          
-         Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 11) := Clock;
+         Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 10) := Clock;
          
       end PlanetenInneres;
 
@@ -1088,33 +900,6 @@ package body KartenGenerator is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
    
-   end KartenfelderBewerten;
-
-
-
-   procedure Chaos is
-   begin
-            
-      EAchseSchleife:
-      for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
-                        
-               if YAchseSchleifenwert = Karten.Weltkarte'First (2) or YAchseSchleifenwert = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße then
-                  Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Grund := 1;
-               
-               else
-                  Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Grund := ZufallsGeneratoren.Chaoskarte;
-               end if;
-            
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
-
-      KartenfelderBewerten;
-      
-   end Chaos;
+   end KartenfelderBewerten;   
 
 end KartenGenerator;

@@ -19,5 +19,8 @@ project Stream is
    package Binder is
    end Binder;
 
+   package Pretty_Printer is
+   end Pretty_Printer;
+
 end Stream;
 

@@ -5,15 +5,15 @@ use Ada.Calendar;
 
 package Ladezeiten is
 
-   type LadezeitenSpielweltErstellenZeitArray is array (Positive range <>, Positive range <>) of Time;
-   LadezeitenSpielweltErstellenZeit : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 12);
+   type LadezeitenSpielweltErstellenZeitArray is array (Positive range <>, Natural range <>) of Time;
+   LadezeitenSpielweltErstellenZeit : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 0 .. 10);
    Speicherzeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 1);
    LadenLadezeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 1);
    SpielStartzeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 2);
    BerechnungenNachZugendeAllerSpielerZeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 1);
    KIZeiten : LadezeitenSpielweltErstellenZeitArray (1 .. 2, 1 .. 18);
 
-   procedure LadezeitenSpielweltErstellen (WelcheZeitExtern : in Positive) with
+   procedure LadezeitenSpielweltErstellen (WelcheZeitExtern : in Natural) with
      Pre => (WelcheZeitExtern <= LadezeitenSpielweltErstellenZeit'Last (2));
 
    procedure Speichern (WelcheZeitExtern : in Positive) with

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (Off);
 
-package body ZufallsGeneratoren is
+package body ZufallGeneratorenKarten is
 
    function Spieleinstellungen (WelcheEinstellungExtern : in Positive) return Positive is
    begin
@@ -97,7 +97,10 @@ package body ZufallsGeneratoren is
                
                ZufallsPunktKarte := (0, WerteWählen1000.Random (PositionGewählt1000), WerteWählen1000.Random (PositionGewählt1000));
 
-               if ZufallsPunktKarte.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and ZufallsPunktKarte.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+               if  ZufallsPunktKarte.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+                 and
+                   ZufallsPunktKarte.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+               then
                   return ZufallsPunktKarte;
 
                else
@@ -108,6 +111,18 @@ package body ZufallsGeneratoren is
       end case;
       
    end YXPosition;
+
+
+
+   function ZufälligerLandwert return Float is
+   begin
+
+      Ada.Numerics.Float_Random.Reset (ZufälligerFloatWert);
+      GewählterLandwert := Ada.Numerics.Float_Random.Random (ZufälligerFloatWert);
+      
+      return GewählterLandwert;
+      
+   end ZufälligerLandwert;
 
 
 
@@ -133,4 +148,4 @@ package body ZufallsGeneratoren is
       
    end Chaoskarte;
 
-end ZufallsGeneratoren;
+end ZufallGeneratorenKarten;

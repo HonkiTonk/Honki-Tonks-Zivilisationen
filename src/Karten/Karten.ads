@@ -28,4 +28,17 @@ package Karten is
 
    Kartengröße : Positive;
 
+   type GrößeLandartArray is array (1 .. 4) of GlobaleDatentypen.KartenfeldPositiv;
+   GrößeLandart : GrößeLandartArray; -- Inseln, Kontinente, Pangäa
+                                         -- GrößeLandart bekommt erst innerhalb der Kartengenerierung Werte, da sonst die Werte für Pangäa nicht bekannt wären.
+
+   Kartenart : Positive := 1; -- 1 = Inseln, 2 = Kontinente, 3 = Pangäa, 4 = Nur Land, 5 = Chaos
+   Kartentemperatur : Positive := 1; -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
+
+   type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of GlobaleDatentypen.Kartenfeld;
+   GeneratorKarte : GeneratorKarteArray;
+
+   type GeneratorGrundArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of Boolean;
+   GeneratorGrund : GeneratorGrundArray;
+
 end Karten;

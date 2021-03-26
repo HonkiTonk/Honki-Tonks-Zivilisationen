@@ -1,13 +1,14 @@
 pragma SPARK_Mode (Off);
 
 with Ada.Numerics.Discrete_Random;
+with Ada.Numerics.Float_Random;
 
 with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
 
 with Karten;
 
-package ZufallsGeneratoren is
+package ZufallGeneratorenKarten is
 
    function Spieleinstellungen (WelcheEinstellungExtern : in Positive) return Positive with
      Pre  => (WelcheEinstellungExtern <= 6),
@@ -15,6 +16,8 @@ package ZufallsGeneratoren is
      
    function YXPosition return GlobaleRecords.AchsenKartenfeldPositivRecord with
      Post => (YXPosition'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and YXPosition'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+
+   function ZufälligerLandwert return Float;
      
    function Chaoskarte return GlobaleDatentypen.KartenGrund with
      Post => (Chaoskarte'Result >= 1);
@@ -78,6 +81,13 @@ private
 
 
 
+   -- Generatoren für KartenGeneratorStadnard
+   ZufälligerFloatWert : Ada.Numerics.Float_Random.Generator;
+   GewählterLandwert : Float;
+   -- Generatoren für KartenGeneratorStadnard
+
+
+
    -- Generator für Chaoskarte
    KartenGrundGewählt : GlobaleDatentypen.KartenGrund;
 
@@ -88,4 +98,4 @@ private
    GrundGewählt : WerteWählenChaoskarte.Generator;
    -- Generator für Chaoskarte
 
-end ZufallsGeneratoren;
+end ZufallGeneratorenKarten;

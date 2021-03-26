@@ -9,7 +9,7 @@ with Anzeige;
 
 package body Ladezeiten is
 
-   procedure LadezeitenSpielweltErstellen (WelcheZeitExtern : in Positive) is
+   procedure LadezeitenSpielweltErstellen (WelcheZeitExtern : in Natural) is
    begin
 
       Gesamtzeit := 0.00;
@@ -24,7 +24,7 @@ package body Ladezeiten is
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
       
       case WelcheZeitExtern is
-         when 1 =>
+         when 0 =>
             ZeitAuswahlSchleife:
             for VerschiedeneZeitenSchleifenwert in LadezeitenSpielweltErstellenZeit'Range (2) loop
                ZeitUnterschiedSchleife:

@@ -1,8 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Numerics.Float_Random;
-use Ada.Numerics.Float_Random;
-
 with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
 
@@ -10,14 +7,9 @@ with Karten;
 
 package KartenGenerator is -- Klein = 40x40, Mittel = 80x80, Groß = 160x160, Riesig = 240x240, Gigantisch = 320x320, Absurd = 1000x1000
 
-   Kartenart : Integer := 1; -- 1 = Inseln, 2 = Kontinente, 3 = Pangäa, 4 = Nur Land, 5 = Chaos
-   Kartentemperatur : Integer := 1; -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
-
    procedure KartenGenerator;
 
 private
-
-   Gewählt : Generator;
 
    NochVerteilbareRessourcen : Integer;
    Flusswert : Integer;
@@ -33,9 +25,6 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
    KartenWertHügel : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
-   type GrößeLandartArray is array (1 .. 4) of GlobaleDatentypen.KartenfeldPositiv;
-   GrößeLandart : GrößeLandartArray;
-
    type FelderVonLandartZuLandartArray is array (1 .. 4) of GlobaleDatentypen.KartenfeldPositiv;
    FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 30, 1, 1); -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
                                                                                           -- Sollte so aber ganz gut sein, da bei halbem Loop zu wenig Wasser ist, aber eventuell Werte ein wenig verringern.
@@ -48,11 +37,7 @@ private
                                                                                  3 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
                                                                                  4 => (0.50, 0.00, 0.50, 0.00, 0.50, 0.00, 0.50));
 
-   type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of GlobaleDatentypen.Kartenfeld;
-   GeneratorKarte : GeneratorKarteArray;
 
-   type GeneratorGrundArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of Boolean;
-   GeneratorGrund : GeneratorGrundArray;
 
    type KartengrundWahrscheinlichkeitenArray is array (1 .. 5, 4 .. 10) of Float; -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
    KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray := (1 => (0.25, 0.35, 0.45, 0.55, 0.70, 0.75, 0.85),
@@ -64,18 +49,6 @@ private
 
    type WahrscheinlichkeitFürLandschaftArray is array (6 .. 10) of Float;
    WahrscheinlichkeitFürLandschaft : constant WahrscheinlichkeitFürLandschaftArray := (0.85, 0.75, 0.50, 0.30, 0.20);
-
-   procedure GenerierungKartenart (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) with
-     Pre => (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
-
-   procedure GenerierungLandmasse (YPositionLandmasseExtern, XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv) with
-     Pre => (YPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
-
-   procedure GenerierungLandmasseÜberhang (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv; GezogenExtern : in Float) with
-     Pre => (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
-
-   procedure GenerierungPangäa (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) with
-     Pre => (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure GenerierungKüstenSeeGewässer;
 
@@ -96,6 +69,6 @@ private
 
    procedure KartenfelderBewerten;
 
-   procedure Chaos;
+
 
 end KartenGenerator;

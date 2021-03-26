@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 
 with GlobaleKonstanten;
 
-with ImSpiel, KartenGenerator, Eingabe, Auswahl, EinheitenDatenbank, Anzeige, ZufallsGeneratoren, Ladezeiten, KartenPruefungen, EinheitSuchen;
+with ImSpiel, KartenGenerator, Eingabe, Auswahl, EinheitenDatenbank, Anzeige, ZufallGeneratorenKarten, Ladezeiten, KartenPruefungen, EinheitSuchen;
 
 package body SpielEinstellungen is
 
@@ -50,9 +50,9 @@ package body SpielEinstellungen is
 
       KartenGenerator.KartenGenerator;
       
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 12) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 10) := Clock;
       StartwerteErmitteln;
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 12) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 10) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 12);
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 1);
          
@@ -109,7 +109,7 @@ package body SpielEinstellungen is
                end case;
                
             when 11 =>               
-               Karten.Kartengröße := ZufallsGeneratoren.Spieleinstellungen (WelcheEinstellungExtern => 1);
+               Karten.Kartengröße := ZufallGeneratorenKarten.Spieleinstellungen (WelcheEinstellungExtern => 1);
                return 2;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
@@ -141,11 +141,11 @@ package body SpielEinstellungen is
                   
          case KartenartAuswahl is
          when 1 .. 5 =>
-            KartenGenerator.Kartenart := KartenartAuswahl;
+            Karten.Kartenart := KartenartAuswahl;
             return 3;
                
          when 6 =>               
-            KartenGenerator.Kartenart := ZufallsGeneratoren.Spieleinstellungen (WelcheEinstellungExtern => 2);
+            Karten.Kartenart := ZufallGeneratorenKarten.Spieleinstellungen (WelcheEinstellungExtern => 2);
             return 3;
                
          when -2 =>
@@ -180,11 +180,11 @@ package body SpielEinstellungen is
                   
          case KartentemperaturAuswahl is
             when 1 .. 5 =>
-               KartenGenerator.Kartentemperatur := KartentemperaturAuswahl;
+               Karten.Kartentemperatur := KartentemperaturAuswahl;
                return 4;
                
             when 6 =>               
-               KartenGenerator.Kartentemperatur := ZufallsGeneratoren.Spieleinstellungen (WelcheEinstellungExtern => 3);
+               Karten.Kartentemperatur := ZufallGeneratorenKarten.Spieleinstellungen (WelcheEinstellungExtern => 3);
                return 4;
                
             when -2 =>
@@ -223,7 +223,7 @@ package body SpielEinstellungen is
                return 5;
 
             when 19 =>               
-               SpielerAnzahl := ZufallsGeneratoren.Spieleinstellungen (WelcheEinstellungExtern => 4);
+               SpielerAnzahl := ZufallGeneratorenKarten.Spieleinstellungen (WelcheEinstellungExtern => 4);
                return 5;
                
             when -2 =>
@@ -328,7 +328,7 @@ package body SpielEinstellungen is
                end case;
 
             when 19 =>               
-               Zufallswahl := ZufallsGeneratoren.Spieleinstellungen (WelcheEinstellungExtern => 5);
+               Zufallswahl := ZufallGeneratorenKarten.Spieleinstellungen (WelcheEinstellungExtern => 5);
                return Zufallswahl;
 
             when -2 .. 0 =>
@@ -363,7 +363,7 @@ package body SpielEinstellungen is
                loop
                   
                   Koordinaten := ((0, 0, 0), (0, 0, 0));
-                  GezogeneWerte := ZufallsGeneratoren.YXPosition;
+                  GezogeneWerte := ZufallGeneratorenKarten.YXPosition;
 
                   PrüfungEinheit := UmgebungPrüfen (YPositionExtern   => GezogeneWerte.YAchse,
                                                       XPositionExtern   => GezogeneWerte.XAchse,
@@ -512,7 +512,7 @@ package body SpielEinstellungen is
             return 7;
 
          when 4 =>
-            GlobaleVariablen.Schwierigkeitsgrad := ZufallsGeneratoren.Spieleinstellungen (WelcheEinstellungExtern => 6);
+            GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenKarten.Spieleinstellungen (WelcheEinstellungExtern => 6);
             return 7;
                
          when -2 =>
