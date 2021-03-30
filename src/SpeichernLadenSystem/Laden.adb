@@ -15,7 +15,9 @@ package body Laden is
       
       SpielstandName := Eingabe.SpielstandName;
 
-      case Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is -- Anzeige der vorhandenen Spielstände einbauen
+      case
+        Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)))
+      is -- Anzeige der vorhandenen Spielstände einbauen
          when True =>
             null;
 
@@ -31,13 +33,17 @@ package body Laden is
       Wide_Wide_String'Read (Stream (File => DateiLadenNeu),
                              VersionsnummerPrüfung);
 
-      if VersionsnummerPrüfung = Informationen.Versionsnummer then
+      if
+        VersionsnummerPrüfung = Informationen.Versionsnummer
+      then
          null;
          
       else -- Falsche Versionsnummer
          Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 24);
          
-         case Wahl is
+         case
+           Wahl
+         is
             when -3 =>
                null;
                      
@@ -89,7 +95,9 @@ package body Laden is
       EinheitenRassenSchleife:
       for RasseEinheitenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
 
-         case GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
+         is
             when 0 =>
                null;
                
@@ -112,7 +120,9 @@ package body Laden is
       StadtRassenSchleife:
       for RasseStadtSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
 
-         case GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
+         is
             when 0 =>
                null;
                
@@ -135,7 +145,9 @@ package body Laden is
       WichtigesSchleife:
       for RasseWichtigesSchleifenwert in GlobaleVariablen.WichtigesArray'Range loop
          
-         case GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
+         is
             when 0 =>
                null;
                
@@ -153,7 +165,9 @@ package body Laden is
       DiplomatieSchleifeAußen:
       for RasseDiplomatieEinsSchleifenwert in GlobaleVariablen.DiplomatieArray'Range (1) loop
          
-         case GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
+         is
             when 0 =>
                null;
 
@@ -161,7 +175,9 @@ package body Laden is
                DiplomatieSchleifeInnen:
                for RasseDiplomatieZweiSchleifenwert in GlobaleVariablen.DiplomatieArray'Range (2) loop
 
-                  case GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert) is
+                  case
+                    GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
+                  is
                      when 0 =>
                         null;
                      
@@ -182,7 +198,9 @@ package body Laden is
       CursorSchleife:
       for RasseCursorSchleifenwert in GlobaleVariablen.CursorImSpielArray'Range loop
          
-         case GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
+         is
             when 0 =>
                null;
                

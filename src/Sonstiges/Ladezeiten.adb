@@ -17,20 +17,24 @@ package body Ladezeiten is
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                      TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
                                      ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => WelcheZeitExtern,
-                                     LetzteZeileExtern      => WelcheZeitExtern,
+                                     ErsteZeileExtern       => WelcheZeitExtern + 1,
+                                     LetzteZeileExtern      => WelcheZeitExtern + 1,
                                      AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
       
-      case WelcheZeitExtern is
+      case
+        WelcheZeitExtern
+      is
          when 0 =>
             ZeitAuswahlSchleife:
             for VerschiedeneZeitenSchleifenwert in LadezeitenSpielweltErstellenZeit'Range (2) loop
                ZeitUnterschiedSchleife:
                for ZeitAnfangEndeSchleifenwert in LadezeitenSpielweltErstellenZeit'Range (1) loop
                   
-                  case ZeitAnfangEndeSchleifenwert is
+                  case
+                    ZeitAnfangEndeSchleifenwert
+                  is
                      when 2 =>
                         Gesamtzeit:= Gesamtzeit + Float (LadezeitenSpielweltErstellenZeit (ZeitAnfangEndeSchleifenwert, VerschiedeneZeitenSchleifenwert)
                                                          - LadezeitenSpielweltErstellenZeit (ZeitAnfangEndeSchleifenwert - 1, VerschiedeneZeitenSchleifenwert));
@@ -72,7 +76,9 @@ package body Ladezeiten is
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
 
-      case WelcheZeitExtern is
+      case
+        WelcheZeitExtern
+      is
          when others =>
             Ada.Float_Text_IO.Put (Item => Float (Speicherzeiten (2, WelcheZeitExtern) - Speicherzeiten (1, WelcheZeitExtern)),
                                    Fore => 1,
@@ -97,7 +103,9 @@ package body Ladezeiten is
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
 
-      case WelcheZeitExtern is
+      case
+        WelcheZeitExtern
+      is
          when others =>
             Ada.Float_Text_IO.Put (Item => Float (LadenLadezeiten (2, WelcheZeitExtern) - LadenLadezeiten (1, WelcheZeitExtern)),
                                    Fore => 1,
@@ -122,7 +130,9 @@ package body Ladezeiten is
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
 
-      case WelcheZeitExtern is
+      case
+        WelcheZeitExtern
+      is
          when others =>
             Ada.Float_Text_IO.Put (Item => Float (SpielStartzeiten (2, WelcheZeitExtern) - SpielStartzeiten (1, WelcheZeitExtern))
                                    + Float (SpielStartzeiten (2, WelcheZeitExtern + 1) - SpielStartzeiten (1, WelcheZeitExtern + 1)),
@@ -148,7 +158,9 @@ package body Ladezeiten is
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
 
-      case WelcheZeitExtern is
+      case
+        WelcheZeitExtern
+      is
          when others =>
             Ada.Float_Text_IO.Put (Item => Float (BerechnungenNachZugendeAllerSpielerZeiten (2, WelcheZeitExtern) - BerechnungenNachZugendeAllerSpielerZeiten (1, WelcheZeitExtern)),
                                    Fore => 1,
@@ -174,7 +186,9 @@ package body Ladezeiten is
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
 
-      case WelcheZeitExtern is
+      case
+        WelcheZeitExtern
+      is
          when others =>
             Ada.Float_Text_IO.Put (Item => Float (KIZeiten (2, WelcheZeitExtern) - KIZeiten (1, WelcheZeitExtern)),
                                    Fore => 1,

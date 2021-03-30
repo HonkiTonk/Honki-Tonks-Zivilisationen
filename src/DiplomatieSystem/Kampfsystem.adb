@@ -12,7 +12,9 @@ package body Kampfsystem is
 
       VerteidigungBonusDurchStadt := 1.00;
 
-      case GegnerStadtNummerExtern is
+      case
+        GegnerStadtNummerExtern
+      is
          when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
             Ergebnis := Kampf (VerteidigerRasseEinheitNummerExtern => (RasseVerteidigungExtern, EinheitenNummerVerteidigungExtern),
                                AngreiferRasseEinheitNummerExtern   => (RasseAngriffExtern, EinheitenNummerAngriffExtern),
@@ -20,10 +22,14 @@ package body Kampfsystem is
             return Ergebnis;
             
          when others =>
-            if GlobaleVariablen.StadtGebaut (RasseVerteidigungExtern, GegnerStadtNummerExtern).GebäudeVorhanden (15) = True then
+            if
+              GlobaleVariablen.StadtGebaut (RasseVerteidigungExtern, GegnerStadtNummerExtern).GebäudeVorhanden (15) = True
+            then
                VerteidigungBonusDurchStadt := 2.00;
                
-            elsif GlobaleVariablen.StadtGebaut (RasseVerteidigungExtern, GegnerStadtNummerExtern).GebäudeVorhanden (5) = True then
+            elsif
+              GlobaleVariablen.StadtGebaut (RasseVerteidigungExtern, GegnerStadtNummerExtern).GebäudeVorhanden (5) = True
+            then
                VerteidigungBonusDurchStadt := 1.50;
 
             else               
@@ -57,12 +63,15 @@ package body Kampfsystem is
                  GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
                  GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
 
-      if Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
+      if
+        Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
                            GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
                            GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).Hügel = True
-        and Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
+        and
+          Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
                               GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).Grund /= 6 then
+                            GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).Grund /= 6
+      then
          VerteidigungVerteidigungWert := Float (KartenDatenbank.KartenListe (6).Verteidigungsbonus);
 
       else
@@ -89,7 +98,9 @@ package body Kampfsystem is
                           AngriffWertExtern                   => AngriffAngriffWert,
                           VerteidigungWertExtern              => VerteidigungVerteidigungWert);
 
-         if GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte <= 0 then
+         if
+           GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte <= 0
+         then
             EinheitenDatenbank.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerRasseEinheitNummerExtern);
             return True;
             
@@ -103,7 +114,9 @@ package body Kampfsystem is
             
          
          
-         if GlobaleVariablen.EinheitenGebaut (AngreiferRasseEinheitNummerExtern.Rasse, AngreiferRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte <= 0 then
+         if
+           GlobaleVariablen.EinheitenGebaut (AngreiferRasseEinheitNummerExtern.Rasse, AngreiferRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte <= 0
+         then
             EinheitenDatenbank.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferRasseEinheitNummerExtern);
             return False;
 
@@ -122,23 +135,45 @@ package body Kampfsystem is
 
       Wert := Random (Gewählt);
       
-      if AngriffWertExtern > 2.00 * VerteidigungWertExtern and Wert > 0.15 then
+      if
+        AngriffWertExtern > 2.00 * VerteidigungWertExtern
+        and
+          Wert > 0.15
+      then
          GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
            := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
 
-      elsif AngriffWertExtern > VerteidigungWertExtern and Wert > 0.35 then
+      elsif
+        AngriffWertExtern > VerteidigungWertExtern
+        and
+          Wert > 0.35
+      then
          GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
            := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
 
-      elsif AngriffWertExtern = VerteidigungWertExtern and Wert > 0.50 then
+      elsif
+        AngriffWertExtern = VerteidigungWertExtern
+        and
+          Wert > 0.50
+      then
          GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
            := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
 
-      elsif AngriffWertExtern < VerteidigungWertExtern and 2.00 * AngriffWertExtern > VerteidigungWertExtern and Wert > 0.80 then
+      elsif
+        AngriffWertExtern < VerteidigungWertExtern
+        and
+          2.00 * AngriffWertExtern > VerteidigungWertExtern
+          and
+            Wert > 0.80
+      then
          GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
            := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
 
-      elsif 2.00 * AngriffWertExtern < VerteidigungWertExtern and Wert > 0.95 then
+      elsif
+        2.00 * AngriffWertExtern < VerteidigungWertExtern
+        and
+          Wert > 0.95
+      then
          GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
            := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
 

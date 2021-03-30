@@ -25,7 +25,9 @@ package body Cheat is
                                         AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
          Get_Immediate (Item => Taste);
 
-         case To_Lower (Item => Taste) is               
+         case
+           To_Lower (Item => Taste)
+         is               
             when 'n' => -- Nächste Einheit (unabhängig von der Rasse)
                BeliebigeNächsteEinheit (RasseExtern => RasseExtern);
 
@@ -69,8 +71,12 @@ package body Cheat is
       EinheitenSchleife:
       loop         
          
-         if GlobaleVariablen.EinheitenGebaut (AktuelleRasseEinheit, AktuelleEinheit).ID = 0 then
-            case AktuelleRasseEinheit is
+         if
+           GlobaleVariablen.EinheitenGebaut (AktuelleRasseEinheit, AktuelleEinheit).ID = 0
+         then
+            case
+              AktuelleRasseEinheit
+            is
                when GlobaleDatentypen.Rassen'Last =>
                   AktuelleRasseEinheit := GlobaleDatentypen.Rassen'First;
                     
@@ -82,7 +88,9 @@ package body Cheat is
          else
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasseEinheit, AktuelleEinheit).AchsenPosition.YAchse;
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasseEinheit, AktuelleEinheit).AchsenPosition.XAchse;
-            case AktuelleEinheit is
+            case
+              AktuelleEinheit
+            is
                when GlobaleVariablen.EinheitenGebaut'Last (2) =>
                   case AktuelleRasseEinheit is
                      when GlobaleDatentypen.Rassen'Last =>
@@ -111,8 +119,12 @@ package body Cheat is
       StädteSchleife:
       loop         
          
-         if GlobaleVariablen.StadtGebaut (AktuelleRasseStadt, AktuelleStadt).ID = 0 then
-            case AktuelleRasseStadt is
+         if
+           GlobaleVariablen.StadtGebaut (AktuelleRasseStadt, AktuelleStadt).ID = 0
+         then
+            case
+              AktuelleRasseStadt
+            is
                when GlobaleDatentypen.Rassen'Last =>
                   AktuelleRasseStadt := GlobaleDatentypen.Rassen'First;
                     
@@ -124,9 +136,13 @@ package body Cheat is
          else
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse := GlobaleVariablen.StadtGebaut (AktuelleRasseStadt, AktuelleStadt).AchsenPosition.YAchse;
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse := GlobaleVariablen.StadtGebaut (AktuelleRasseStadt, AktuelleStadt).AchsenPosition.XAchse;
-            case AktuelleStadt is
+            case
+              AktuelleStadt
+            is
                when GlobaleVariablen.StadtGebaut'Last (2) =>
-                  case AktuelleRasseStadt is
+                  case
+                    AktuelleRasseStadt
+                  is
                      when GlobaleDatentypen.Rassen'Last =>
                         AktuelleRasseStadt := GlobaleDatentypen.Rassen'First;
                     
@@ -216,7 +232,9 @@ package body Cheat is
                                         ZahlenMinimumExtern => Integer (GlobaleDatentypen.Rassen'First),
                                         ZahlenMaximumExtern => Integer (GlobaleDatentypen.Rassen'Last));
 
-      case RasseNummer is
+      case
+        RasseNummer
+      is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
             return;
             
@@ -229,7 +247,9 @@ package body Cheat is
                                       ZahlenMinimumExtern => Integer (EinheitenDatenbank.EinheitenListe'First (2)),
                                       ZahlenMaximumExtern => Integer (EinheitenDatenbank.EinheitenListe'Last (2)));
 
-      case EinheitID is
+      case
+        EinheitID
+      is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
             return;
             
@@ -239,12 +259,16 @@ package body Cheat is
 
       EinheitPosition := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
       
-      case EinheitPosition.Platznummer is
+      case
+        EinheitPosition.Platznummer
+      is
          when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
             EinheitenSchleife:
             for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 
-               case GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID is
+               case
+                 GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID
+               is
                   when 0 =>
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBeschäftigung := 0;
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBeschäftigungNachfolger := 0;
@@ -273,7 +297,9 @@ package body Cheat is
             GelöschtEinheitenSchleife:
             for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 
-               case GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID is
+               case
+                 GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID
+               is
                   when 0 =>
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBeschäftigung := 0;
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBeschäftigungNachfolger := 0;
@@ -328,7 +354,9 @@ package body Cheat is
                                                                                  ZahlenMinimumExtern => 5,
                                                                                  ZahlenMaximumExtern => Integer (VerbesserungenDatenbank.VerbesserungListe'Last)));
 
-      case VerbesserungID is
+      case
+        VerbesserungID
+      is
          when 5 .. 19 =>
             Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                               GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
@@ -353,7 +381,9 @@ package body Cheat is
       RassenverteilungÄndernSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop
          
-         case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+         is
             when 0 =>
                null;
                

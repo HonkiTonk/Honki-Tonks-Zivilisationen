@@ -18,7 +18,9 @@ package body BewegungssystemEinheiten is
          Get_Immediate (Item => Richtung);
          Richtung := To_Lower (Item => Richtung);
               
-         case Richtung is
+         case
+           Richtung
+         is
             when 'w' | '8' =>
                Änderung := (0, -1, 0);
             
@@ -56,7 +58,9 @@ package body BewegungssystemEinheiten is
          RückgabeWert := BewegungZwischenEbene.PassierbarkeitOderTransporter (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                ÄnderungExtern          => Änderung);
          
-         case RückgabeWert is
+         case
+           RückgabeWert
+         is
             when 1 => -- Da ist ein Transporter mit freiem Platz
                TransporterBeladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                    ÄnderungExtern           => Änderung);
@@ -70,12 +74,20 @@ package body BewegungssystemEinheiten is
                EinheitBewegtNichtEingeladen := False;
          end case;
 
-         if Gegner = 1 and RückgabeWert /= -1 then -- 1 = Da ist ein Feind
+         if
+           Gegner = 1
+           and
+             RückgabeWert /= -1
+         then -- 1 = Da ist ein Feind
             ErgebnisGegnerAngreifen := Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                             GegnerExtern             => EinheitRasseNummerExtern);
             EinheitBewegtNichtEingeladen := True;
             
-         elsif Gegner = 0 and RückgabeWert /= -1 then -- 0 = Einheit kann sich auf das Feld bewegen
+         elsif
+           Gegner = 0
+           and
+             RückgabeWert /= -1
+         then -- 0 = Einheit kann sich auf das Feld bewegen
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
                                                                     ÄnderungExtern       => Änderung,
                                                                     ZusatzYAbstandExtern => 0);
@@ -87,7 +99,9 @@ package body BewegungssystemEinheiten is
             EinheitBewegtNichtEingeladen := False;
          end if;         
 
-         case EinheitBewegtNichtEingeladen is
+         case
+           EinheitBewegtNichtEingeladen
+         is
             when True => -- Einheit wurde bewegt.          
                Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
@@ -95,10 +109,14 @@ package body BewegungssystemEinheiten is
                null;
          end case;
          
-         if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte = 0.00 then
+         if
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte = 0.00
+         then
             return;
 
-         elsif GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleLebenspunkte <= 0 then
+         elsif
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleLebenspunkte <= 0
+         then
             return;
                
          else
@@ -124,7 +142,9 @@ package body BewegungssystemEinheiten is
       TransporterSchleife:
       for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
         
-         case GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummerTransporter).Transportiert (FreierPlatzSchleifenwert) is
+         case
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummerTransporter).Transportiert (FreierPlatzSchleifenwert)
+         is
             when 0 =>
                FreierPlatzNummer := FreierPlatzSchleifenwert;
                exit TransporterSchleife;
@@ -154,8 +174,12 @@ package body BewegungssystemEinheiten is
    procedure BewegungEinheitenBerechnung (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
    begin
       
-      case StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                 NeuePositionExtern       => NeuePositionExtern) is         
+      StraßeFlussVorhanden := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                 NeuePositionExtern       => NeuePositionExtern);
+
+      case
+        StraßeFlussVorhanden
+      is
          when 1 | 2 =>
             BewegungspunkteModifikator := 0.50;
             
@@ -166,9 +190,13 @@ package body BewegungssystemEinheiten is
             BewegungspunkteModifikator := 0.00;
       end case;
 
-      case Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund is
+      case
+        Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund
+      is
          when  1 | 7 | 9 | 32 =>
-            if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte < 1.00 then
+            if
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte < 1.00
+            then
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte := 0.00;
                return;
                      
@@ -182,14 +210,18 @@ package body BewegungssystemEinheiten is
               := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte - 1.00 + BewegungspunkteModifikator;
       end case;
 
-      if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte < 0.00 then
+      if
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte < 0.00
+      then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte := 0.00;
                   
       else
          null;
       end if;
 
-      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportieren is
+      case
+        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportieren
+      is
          when 0 =>
             null;
             
@@ -197,7 +229,9 @@ package body BewegungssystemEinheiten is
             TransporterEinsSchleife:
             for TransporterPlatzEinsSchleifenwert in GlobaleRecords.TransporterArray'Range loop
                
-               case GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzEinsSchleifenwert) is
+               case
+                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzEinsSchleifenwert)
+               is
                   when 0 =>
                      null;
                      
@@ -209,7 +243,9 @@ package body BewegungssystemEinheiten is
             end loop TransporterEinsSchleife;
       end case;
 
-      case GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert is
+      case
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert
+      is
          when 0 =>
             null;
             
@@ -220,7 +256,9 @@ package body BewegungssystemEinheiten is
             TransporterZweiSchleife:
             for TransporterPlatzZweiSchleifenwert in GlobaleRecords.TransporterArray'Range loop
 
-               if GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitAusladen).Transportiert (TransporterPlatzZweiSchleifenwert) = EinheitRasseNummerExtern.Platznummer then
+               if
+                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitAusladen).Transportiert (TransporterPlatzZweiSchleifenwert) = EinheitRasseNummerExtern.Platznummer
+               then
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitAusladen).Transportiert (TransporterPlatzZweiSchleifenwert) := 0;
                   exit TransporterZweiSchleife;
                      
@@ -241,11 +279,16 @@ package body BewegungssystemEinheiten is
    function StraßeUndFlussPrüfen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Integer is
    begin
 
-      if EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (1) = True and
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (3) = False then
+      if
+        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (1) = True
+        and
+          EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (3) = False
+      then
          BonusBeiBewegung := 0;
 
-         case Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße is
+         case
+           Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße
+         is
             when 5 .. 19 =>
                BonusBeiBewegung := BonusBeiBewegung + 1;
 
@@ -256,7 +299,9 @@ package body BewegungssystemEinheiten is
                null;
          end case;               
 
-         case Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Fluss is
+         case
+           Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Fluss
+         is
             when 0 =>
                null;
 

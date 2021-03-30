@@ -17,9 +17,15 @@ package body ImSpiel is
          RassenSchleife:
          for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop
             
-            if GlobaleVariablen.RasseAmZugNachLaden = 0 or RasseSchleifenwert = GlobaleVariablen.RasseAmZugNachLaden then
+            if
+              GlobaleVariablen.RasseAmZugNachLaden = 0
+              or
+                RasseSchleifenwert = GlobaleVariablen.RasseAmZugNachLaden
+            then
                GlobaleVariablen.RasseAmZugNachLaden := 0;
-               case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is -- Einmal muss am Anfang die Sichtbarkeit geprüft werden, sonst crasht das Spiel
+               case
+                 GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+               is -- Einmal muss am Anfang die Sichtbarkeit geprüft werden, sonst crasht das Spiel
                   when 0 =>
                      null;
                   
@@ -27,13 +33,17 @@ package body ImSpiel is
                      Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
                end case;
             
-               case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+               case
+                 GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+               is -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
                   when 0 =>
                      null;
                      
                   when 1 =>
                      RückgabeWert := MenschlicherSpieler (RasseExtern => RasseSchleifenwert);
-                     case RückgabeWert is
+                     case
+                       RückgabeWert
+                     is
                         when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                            return RückgabeOptionen;
 
@@ -54,7 +64,9 @@ package body ImSpiel is
             
          end loop RassenSchleife;
                
-         case GlobaleVariablen.RasseAmZugNachLaden is
+         case
+           GlobaleVariablen.RasseAmZugNachLaden
+         is
             when 0 =>   
                BerechnungenNachZugendeAllerSpieler;
                
@@ -76,7 +88,9 @@ package body ImSpiel is
                      
          Karte.AnzeigeKarte (RasseExtern => RasseExtern);
          AktuellerBefehlSpieler := BefehleImSpiel.Befehle (RasseExtern => RasseExtern);
-         case AktuellerBefehlSpieler is
+         case
+           AktuellerBefehlSpieler
+         is
             when GlobaleKonstanten.StartNormalKonstante =>
                null;
 
@@ -86,7 +100,9 @@ package body ImSpiel is
                
             when GlobaleKonstanten.LadenKonstante => -- Laden
                LadenErfolgreich := Laden.LadenNeu;
-               case LadenErfolgreich is
+               case
+                 LadenErfolgreich
+               is
                   when True =>
                      return -300;
 
@@ -96,7 +112,9 @@ package body ImSpiel is
                
             when GlobaleKonstanten.OptionenKonstante => -- Optionen
                RückgabeOptionen := Optionen.Optionen;
-               case RückgabeOptionen is
+               case
+                 RückgabeOptionen
+               is
                   when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                      return RückgabeOptionen;
                                     
@@ -132,7 +150,9 @@ package body ImSpiel is
       ForschungsDatenbank.ForschungFortschritt;
       GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
 
-      case GlobaleVariablen.AnzahlAutosave is
+      case
+        GlobaleVariablen.AnzahlAutosave
+      is
          when 0 =>
             null;
 

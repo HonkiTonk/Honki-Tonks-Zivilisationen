@@ -43,4 +43,10 @@ package GlobaleKonstanten is
    RückgabeEinheitStadtNummerFalsch : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := 0;
    -- Für Einheiten/Städte
 
+
+
+   -- Für die Kartengenerierung
+   Eisrand : constant GlobaleDatentypen.KartenfeldPositiv := 1;
+   -- Für die Kartengenerierung
+
 end GlobaleKonstanten;

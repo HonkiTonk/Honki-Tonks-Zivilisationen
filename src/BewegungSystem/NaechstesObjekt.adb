@@ -10,7 +10,9 @@ package body NaechstesObjekt is
       EinheitSuchenSchleife:
       loop
 
-         case AktuelleEinheit (RasseExtern) is
+         case
+           AktuelleEinheit (RasseExtern)
+         is
             when GlobaleDatentypen.MaximaleEinheiten'Last =>
                AktuelleEinheit (RasseExtern) := 1;
                
@@ -18,9 +20,11 @@ package body NaechstesObjekt is
                AktuelleEinheit (RasseExtern) := AktuelleEinheit (RasseExtern) + 1;
          end case;
                
-         if GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).ID = 0
+         if
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).ID = 0
            or (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AktuelleBewegungspunkte <= 0.00 and BewegungspunkteExtern = Hat_Bewegungspunkte)
-           or (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AktuelleBewegungspunkte > 0.00 and BewegungspunkteExtern = Keine_Bewegungspunkte) then
+           or (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AktuelleBewegungspunkte > 0.00 and BewegungspunkteExtern = Keine_Bewegungspunkte)
+         then
             null;
          
          else
@@ -28,7 +32,9 @@ package body NaechstesObjekt is
          end if;
 
          SchleifenBegrenzung := SchleifenBegrenzung + 1;
-         case SchleifenBegrenzung is
+         case
+           SchleifenBegrenzung
+         is
             when GlobaleDatentypen.MaximaleEinheiten'Last =>
                return;
                
@@ -52,7 +58,9 @@ package body NaechstesObjekt is
       StadtSuchenSchleife:
       loop
 
-         case AktuelleStadt (RasseExtern) is
+         case
+           AktuelleStadt (RasseExtern)
+         is
             when GlobaleDatentypen.MaximaleStädte'Last =>
                AktuelleStadt (RasseExtern) := 1;
                
@@ -60,7 +68,9 @@ package body NaechstesObjekt is
                AktuelleStadt (RasseExtern) := AktuelleStadt (RasseExtern) + 1;
          end case;
                
-         if GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt (RasseExtern)).ID = 0 then
+         if
+           GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt (RasseExtern)).ID = 0
+         then
             null;
          
          else
@@ -68,7 +78,9 @@ package body NaechstesObjekt is
          end if;
 
          SchleifenBegrenzung := SchleifenBegrenzung + 1;
-         case SchleifenBegrenzung is
+         case
+           SchleifenBegrenzung
+         is
             when GlobaleDatentypen.MaximaleStädte'Last =>
                return;
                

@@ -13,7 +13,9 @@ package body BewegungZwischenEbene is
                                                               ÄnderungExtern       => ÄnderungExtern,
                                                               ZusatzYAbstandExtern => 0);
 
-      case KartenWert.Erfolgreich is
+      case
+        KartenWert.Erfolgreich
+      is
          when False =>
             return -1;
             
@@ -39,10 +41,14 @@ package body BewegungZwischenEbene is
 
       EinheitWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
-      if EinheitWert.Rasse = EinheitRasseNummerExtern.Rasse then
+      if
+        EinheitWert.Rasse = EinheitRasseNummerExtern.Rasse
+      then
          return -1;
 
-      elsif EinheitWert.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch then
+      elsif
+        EinheitWert.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+      then
          return 0;
          
       else

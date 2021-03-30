@@ -18,7 +18,9 @@ package body Optionen is
                                          ErsteZeileExtern  => GlobaleKonstanten.OptionenErsteZeileKonstante,
                                          LetzteZeileExtern => GlobaleKonstanten.OptionenLetzteZeileKonstante);
 
-         case AuswahlWert is
+         case
+           AuswahlWert
+         is
             when GlobaleKonstanten.ZurückKonstante | GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return AuswahlWert;
                
@@ -34,7 +36,9 @@ package body Optionen is
             when 4 => -- Sonstiges
                RückgabeWert := OptionenSonstiges.Sonstiges;
 
-               case RückgabeWert is
+               case
+                 RückgabeWert
+               is
                   when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                      return RückgabeWert;
                      

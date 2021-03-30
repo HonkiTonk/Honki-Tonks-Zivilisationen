@@ -18,13 +18,17 @@ package body OptionenSonstiges is
                                          ErsteZeileExtern  => GlobaleKonstanten.OptionenSonstigesErsteZeile,
                                          LetzteZeileExtern => GlobaleKonstanten.OptionenSonstigesLetzteZeile);
 
-         case AuswahlWert is
+         case
+           AuswahlWert
+         is
             when 1 =>
                AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Menü_Auswahl,
                                                  ZeileExtern         => GlobaleKonstanten.OptionenSonstigesErsteZeile,
                                                  ZahlenMinimumExtern => 0,
                                                  ZahlenMaximumExtern => 999_999_999);
-               case AuswahlWert is
+               case
+                 AuswahlWert
+               is
                   when 0 .. 999_999_999 =>
                      GlobaleVariablen.AnzahlAutosave := AuswahlWert;
                         
@@ -38,7 +42,9 @@ package body OptionenSonstiges is
                                                  ZahlenMinimumExtern=> 0,
                                                  ZahlenMaximumExtern => 999_999_999);
 
-               case AuswahlWert is
+               case
+                 AuswahlWert
+               is
                   when 0 =>
                      GlobaleVariablen.RundenBisAutosave := 1;
                      

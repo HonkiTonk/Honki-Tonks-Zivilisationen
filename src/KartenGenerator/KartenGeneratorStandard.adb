@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with ZufallGeneratorenKarten;
+with ZufallGeneratorenKarten, KartenPruefungen;
 
 package body KartenGeneratorStandard is
 
@@ -59,9 +59,11 @@ package body KartenGeneratorStandard is
    procedure GenerierungKartenart (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) is
    begin
 
-      BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerLandwert
+      BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
 
-      case Karten.GeneratorKarte (YAchseExtern, XAchseExtern) is -- Die Werte werden eingetragen, wenn Landmassen erzeugt werden
+      case
+        Karten.GeneratorKarte (YAchseExtern, XAchseExtern)
+      is -- Die Werte werden eingetragen, wenn Landmassen erzeugt werden
          when 1 .. 2 =>
             null;
 
@@ -136,15 +138,17 @@ package body KartenGeneratorStandard is
                                                                     ÄnderungExtern       => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
                                                                     ZusatzYAbstandExtern => 1);
 
-            case KartenWert.Erfolgreich is
+            case
+              KartenWert.Erfolgreich
+            is
                when False =>
                   exit XAchseEinsSchleife;
                   
                when True =>
-                  BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerLandwert
-                    GenerierungLandmasseÜberhang (YAchseExtern  => KartenWert.YAchse,
-                                                   XAchseExtern  => KartenWert.XAchse,
-                                                   GezogenExtern => Wert);
+                  BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
+                  GenerierungLandmasseÜberhang (YAchseExtern  => KartenWert.YAchse,
+                                                 XAchseExtern  => KartenWert.XAchse,
+                                                 GezogenExtern => BeliebigerLandwert);
             end case;
             
          end loop XAchseEinsSchleife;
@@ -159,7 +163,9 @@ package body KartenGeneratorStandard is
                                                                     ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
                                                                     ZusatzYAbstandExtern => 1);
             
-            case KartenWert.Erfolgreich is
+            case
+              KartenWert.Erfolgreich
+            is
                when False =>
                   exit XAchseZweiSchleife;
                   
@@ -167,7 +173,9 @@ package body KartenGeneratorStandard is
                   null;
             end case;
             
-            case Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) is
+            case
+              Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse)
+            is
                when 1 .. 2 =>
                   null;
                         
@@ -185,14 +193,16 @@ package body KartenGeneratorStandard is
    procedure GenerierungLandmasseÜberhang (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv; GezogenExtern : in Float) is
    begin
    
-      if  GezogenExtern >= WahrscheinlichkeitenFürLand (Karten.Kartenart, 6)
+      if
+        GezogenExtern >= WahrscheinlichkeitenFürLand (Karten.Kartenart, 6)
         and
           Karten.GeneratorKarte (YAchseExtern, XAchseExtern) = 0
       then
          Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := 3;
          Karten.GeneratorKarte (YAchseExtern, XAchseExtern) := 1;
 
-      elsif  GezogenExtern >= WahrscheinlichkeitenFürLand (Karten.Kartenart, 7)
+      elsif
+        GezogenExtern >= WahrscheinlichkeitenFürLand (Karten.Kartenart, 7)
       then
          Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := 3;
          Karten.GeneratorKarte (YAchseExtern, XAchseExtern) := 1;
@@ -218,7 +228,7 @@ package body KartenGeneratorStandard is
                                XPositionLandmasseExtern => XAchseExtern);
         
       else
-         BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerLandwert
+         BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
          if
            BeliebigerLandwert >= WahrscheinlichkeitenFürLand (Karten.Kartenart, 2)
          then

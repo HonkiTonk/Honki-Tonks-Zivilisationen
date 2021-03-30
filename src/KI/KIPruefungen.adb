@@ -9,11 +9,15 @@ package body KIPruefungen is
    function EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern, EinheitZweiRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Natural is
    begin
 
-      if GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummerExtern.Rasse, EinheitEinsRasseNummerExtern.Platznummer).AchsenPosition.EAchse
-        = GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummerExtern.Rasse, EinheitZweiRasseNummerExtern.Platznummer).AchsenPosition.EAchse then
+      if
+        GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummerExtern.Rasse, EinheitEinsRasseNummerExtern.Platznummer).AchsenPosition.EAchse
+        = GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummerExtern.Rasse, EinheitZweiRasseNummerExtern.Platznummer).AchsenPosition.EAchse
+      then
          KartenfeldAbstand := abs (GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummerExtern.Rasse, EinheitEinsRasseNummerExtern.Platznummer).AchsenPosition.YAchse
                                    - GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummerExtern.Rasse, EinheitZweiRasseNummerExtern.Platznummer).AchsenPosition.YAchse);
-         case KartenfeldAbstand is
+         case
+           KartenfeldAbstand
+         is
             when 1 =>
                return 1;
 
@@ -23,7 +27,9 @@ package body KIPruefungen is
 
          KartenfeldAbstand := abs (GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummerExtern.Rasse, EinheitEinsRasseNummerExtern.Platznummer).AchsenPosition.XAchse
                                    - GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummerExtern.Rasse, EinheitZweiRasseNummerExtern.Platznummer).AchsenPosition.XAchse);
-         case KartenfeldAbstand is
+         case
+           KartenfeldAbstand
+         is
             when 1 =>
                return 1;
 
@@ -31,11 +37,15 @@ package body KIPruefungen is
                null;
          end case;
 
-      elsif abs (GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummerExtern.Rasse, EinheitEinsRasseNummerExtern.Platznummer).AchsenPosition.EAchse
-                 - GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummerExtern.Rasse, EinheitZweiRasseNummerExtern.Platznummer).AchsenPosition.EAchse) = 1 then
+      elsif
+      abs (GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummerExtern.Rasse, EinheitEinsRasseNummerExtern.Platznummer).AchsenPosition.EAchse
+           - GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummerExtern.Rasse, EinheitZweiRasseNummerExtern.Platznummer).AchsenPosition.EAchse) = 1
+      then
          KartenfeldAbstand := abs (GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummerExtern.Rasse, EinheitEinsRasseNummerExtern.Platznummer).AchsenPosition.YAchse
                                    - GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummerExtern.Rasse, EinheitZweiRasseNummerExtern.Platznummer).AchsenPosition.YAchse);
-         case KartenfeldAbstand is
+         case
+           KartenfeldAbstand
+         is
             when 0 .. 1 =>
                return 1;
 
@@ -45,7 +55,9 @@ package body KIPruefungen is
 
          KartenfeldAbstand := abs (GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummerExtern.Rasse, EinheitEinsRasseNummerExtern.Platznummer).AchsenPosition.XAchse
                                    - GlobaleVariablen.EinheitenGebaut (EinheitZweiRasseNummerExtern.Rasse, EinheitZweiRasseNummerExtern.Platznummer).AchsenPosition.XAchse);
-         case KartenfeldAbstand is
+         case
+           KartenfeldAbstand
+         is
             when 0 .. 1 =>
                return 1;
 
@@ -75,27 +87,51 @@ package body KIPruefungen is
          for XAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
 
             -- 1 = Norden (-), 2 = Westen (-), 3 = Süden (+), 4 = Osten (+)
-            if YAchseSchleifenwert < 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0 then
+            if
+              YAchseSchleifenwert < 0
+              and
+                KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0
+            then
                RichtungenFeinde (1) := RichtungenFeinde (1) + 1;
 
-            elsif YAchseSchleifenwert = 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0 then  
+            elsif
+              YAchseSchleifenwert = 0
+              and
+                KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0
+            then  
                RichtungenFeinde (1) := RichtungenFeinde (1) + 1;
                RichtungenFeinde (3) := RichtungenFeinde (3) + 1;
                
-            elsif YAchseSchleifenwert > 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0 then 
+            elsif
+              YAchseSchleifenwert > 0
+              and
+                KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0
+            then 
                RichtungenFeinde (3) := RichtungenFeinde (3) + 1;
             else
                null;
             end if;
 
-            if XAchseSchleifenwert < 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0 then
+            if
+              XAchseSchleifenwert < 0
+              and
+                KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0
+            then
                RichtungenFeinde (2) := RichtungenFeinde (2) + 1;
 
-            elsif XAchseSchleifenwert = 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0 then  
+            elsif
+              XAchseSchleifenwert = 0
+              and
+                KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0
+            then  
                RichtungenFeinde (2) := RichtungenFeinde (2) + 1;
                RichtungenFeinde (4) := RichtungenFeinde (4) + 1;
                
-            elsif XAchseSchleifenwert > 0 and KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0 then 
+            elsif
+              XAchseSchleifenwert > 0
+              and
+                KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YAchseSchleifenwert, XAchseSchleifenwert) /= 0
+            then 
                RichtungenFeinde (4) := RichtungenFeinde (4) + 1;
             else
                null;
@@ -105,11 +141,19 @@ package body KIPruefungen is
       end loop YAchseSchleife;      
       
       -- 1 = Norden (-), 2 = Westen (-), 3 = Süden (+), 4 = Osten (+)
-      if RichtungenFeinde (1) /= 0 or RichtungenFeinde (3) /= 0 then
-         if RichtungenFeinde (1) > RichtungenFeinde (3) then
+      if
+        RichtungenFeinde (1) /= 0
+        or
+          RichtungenFeinde (3) /= 0
+      then
+         if
+           RichtungenFeinde (1) > RichtungenFeinde (3)
+         then
             Richtung := 5;
 
-         elsif RichtungenFeinde (1) = RichtungenFeinde (3) then
+         elsif
+           RichtungenFeinde (1) = RichtungenFeinde (3)
+         then
             null;
          
          else
@@ -120,9 +164,17 @@ package body KIPruefungen is
          null;
       end if;
       
-      if RichtungenFeinde (2) /= 0 or RichtungenFeinde (4) /= 0 then
-         if RichtungenFeinde (2) > RichtungenFeinde (4) then
-            case Richtung is
+      if
+        RichtungenFeinde (2) /= 0
+        or
+          RichtungenFeinde (4) /= 0
+      then
+         if
+           RichtungenFeinde (2) > RichtungenFeinde (4)
+         then
+            case
+              Richtung
+            is
                when 5 =>
                   Richtung := 4;
 
@@ -133,11 +185,15 @@ package body KIPruefungen is
                   Richtung := 3;
             end case;
 
-         elsif RichtungenFeinde (2) = RichtungenFeinde (4) then
+         elsif
+           RichtungenFeinde (2) = RichtungenFeinde (4)
+         then
             null;
             
          else            
-            case Richtung is
+            case
+              Richtung
+            is
                when 5 =>
                   Richtung := 6;
 
@@ -171,17 +227,23 @@ package body KIPruefungen is
       StadtSchleife:
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
 
-         if GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID = 0 then
+         if
+           GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID = 0
+         then
             null;
             
          else
-            case RichtungExtern is
+            case
+              RichtungExtern
+            is
                when KIDatentypen.Norden | KIDatentypen.Nord_Ost | KIDatentypen.Nord_West =>
                   
                   StadtImNorden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                  StadtNummerExtern        => StadtNummerSchleifenwert);
 
-                  case RichtungExtern is
+                  case
+                    RichtungExtern
+                  is
                      when KIDatentypen.Nord_Ost =>
                         StadtImOsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                       StadtNummerExtern        => StadtNummerSchleifenwert);
@@ -194,7 +256,9 @@ package body KIPruefungen is
                         Kandidaten (3) := Kandidaten (2);
                   end case;
 
-                  if Kandidaten (2) = Kandidaten (3) then
+                  if
+                    Kandidaten (2) = Kandidaten (3)
+                  then
                      Kandidaten (1) := Kandidaten (2);
                      Kandidaten (2) := (0, 1, 1, False);
                      Kandidaten (3) := (0, 1, 1, False);
@@ -209,7 +273,9 @@ package body KIPruefungen is
                                 StadtNummerExtern        => StadtNummerSchleifenwert);
                   Kandidaten (2) := Kandidaten (3);
 
-                  if Kandidaten (2) = Kandidaten (3) then
+                  if
+                    Kandidaten (2) = Kandidaten (3)
+                  then
                      Kandidaten (1) := Kandidaten (2);
                      Kandidaten (2) := (0, 1, 1, False);
                      Kandidaten (3) := (0, 1, 1, False);
@@ -223,7 +289,9 @@ package body KIPruefungen is
                   StadtImSüden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                  StadtNummerExtern        => StadtNummerSchleifenwert);
 
-                  case RichtungExtern is
+                  case
+                    RichtungExtern
+                  is
                      when KIDatentypen.Süd_Ost =>
                         StadtImOsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                       StadtNummerExtern        => StadtNummerSchleifenwert);
@@ -236,7 +304,9 @@ package body KIPruefungen is
                         Kandidaten (3) := Kandidaten (2);
                   end case;
 
-                  if Kandidaten (2) = Kandidaten (3) then
+                  if
+                    Kandidaten (2) = Kandidaten (3)
+                  then
                      Kandidaten (1) := Kandidaten (2);
                      Kandidaten (2) := (0, 1, 1, False);
                      Kandidaten (3) := (0, 1, 1, False);
@@ -251,7 +321,9 @@ package body KIPruefungen is
                                  StadtNummerExtern        => StadtNummerSchleifenwert);
                   Kandidaten (2) := Kandidaten (3);
 
-                  if Kandidaten (2) = Kandidaten (3) then
+                  if
+                    Kandidaten (2) = Kandidaten (3)
+                  then
                      Kandidaten (1) := Kandidaten (2);
                      Kandidaten (2) := (0, 1, 1, False);
                      Kandidaten (3) := (0, 1, 1, False);
@@ -268,7 +340,9 @@ package body KIPruefungen is
          
       end loop StadtSchleife;
       
-      if Kandidaten (1).Erfolgreich = True then
+      if
+        Kandidaten (1).Erfolgreich = True
+      then
          return Kandidaten (1);
          
       else
@@ -282,25 +356,33 @@ package body KIPruefungen is
    procedure StadtImNorden (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte) is
    begin
       
-      if GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse
-        /= GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse then
+      if
+        GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse
+        /= GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse
+      then
          null;
 
-      elsif GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse
-        > GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse then
+      elsif
+        GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse
+        > GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse
+      then
          null;
          
       else
-         case Kandidaten (1).Erfolgreich is
+         case
+           Kandidaten (1).Erfolgreich
+         is
             when False =>
                Kandidaten (2) := (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse,
                                   GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse,
                                   GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse, True);
 
             when True =>
-               if abs (Kandidaten (1).YAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse)
+               if
+               abs (Kandidaten (1).YAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse)
                  <= abs (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse
-                         - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse) then
+                         - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse)
+               then
                   null;
                   
                else
@@ -318,25 +400,33 @@ package body KIPruefungen is
    procedure StadtImSüden (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte) is
    begin
       
-      if GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse
-        /= GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse then
+      if
+        GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse
+        /= GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse
+      then
          null;
 
-      elsif GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse
-        < GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse then
+      elsif
+        GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse
+        < GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse
+      then
          null;
          
       else
-         case Kandidaten (1).Erfolgreich is
+         case
+           Kandidaten (1).Erfolgreich
+         is
             when False =>
                Kandidaten (2) := (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse,
                                   GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse,
                                   GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse, True);
 
             when True =>
-               if abs (Kandidaten (1).YAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse)
+               if
+               abs (Kandidaten (1).YAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse)
                  <= abs (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse
-                         - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse) then
+                         - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse)
+               then
                   null;
                   
                else
@@ -354,25 +444,32 @@ package body KIPruefungen is
    procedure StadtImWesten (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte) is
    begin
       
-      if GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse
-        /= GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse then
+      if
+        GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse
+        /= GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse
+      then
          null;
 
       elsif GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse
-        > GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse then
+        > GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse
+      then
          null;
          
       else
-         case Kandidaten (1).Erfolgreich is
+         case
+           Kandidaten (1).Erfolgreich
+         is
             when False =>
                Kandidaten (3) := (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse,
                                   GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse,
                                   GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse, True);
 
             when True =>
-               if abs (Kandidaten (1).XAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse)
+               if
+               abs (Kandidaten (1).XAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse)
                  <= abs (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse
-                         - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse) then
+                         - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse)
+               then
                   null;
                   
                else
@@ -390,25 +487,33 @@ package body KIPruefungen is
    procedure StadtImOsten (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte) is
    begin
       
-      if GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse
-        /= GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse then
+      if
+        GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse
+        /= GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse
+      then
          null;
 
-      elsif GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse
-        < GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse then
+      elsif
+        GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse
+        < GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse
+      then
          null;
          
       else
-         case Kandidaten (1).Erfolgreich is
+         case
+           Kandidaten (1).Erfolgreich
+         is
             when False =>
                Kandidaten (3) := (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse,
                                   GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse,
                                   GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse, True);
 
             when True =>
-               if abs (Kandidaten (1).XAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse)
+               if
+               abs (Kandidaten (1).XAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse)
                  <= abs (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse
-                         - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse) then
+                         - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse)
+               then
                   null;
                   
                else
@@ -430,7 +535,9 @@ package body KIPruefungen is
       EinheitenSchleife:
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
-         if EinheitNummerSchleifenwert = EinheitRasseNummerExtern.Platznummer then
+         if
+           EinheitNummerSchleifenwert = EinheitRasseNummerExtern.Platznummer
+         then
             null;
             
          else

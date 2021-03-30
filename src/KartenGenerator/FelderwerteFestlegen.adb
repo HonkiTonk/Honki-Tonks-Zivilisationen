@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartenDatenbank, VerbesserungenDatenbank, KartenPruefungen;
 
-package body WerteFestlegen is
+package body FelderwerteFestlegen is
 
    procedure KartenfelderBewerten (GenerierungExtern : in Boolean; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
    begin
@@ -18,7 +18,9 @@ package body WerteFestlegen is
                                                                                                      ÄnderungExtern       => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
                                                                                                      ZusatzYAbstandExtern => 0);
 
-                  case Kartenwert (KoordinatenExtern.EAchse).Erfolgreich is
+                  case
+                    Kartenwert (KoordinatenExtern.EAchse).Erfolgreich
+                  is
                      when False =>
                         exit XAchseÄnderungSchleife;
                         
@@ -52,18 +54,28 @@ package body WerteFestlegen is
                                                                                                ÄnderungExtern       => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert),
                                                                                                ZusatzYAbstandExtern => 0);
             
-            case Kartenwert (KoordinatenExtern.EAchse).Erfolgreich is
+            case
+              Kartenwert (KoordinatenExtern.EAchse).Erfolgreich
+            is
                when False =>
                   exit BewertungXÄnderungSchleife;
                   
                when True =>                  
-                  if abs (BewertungYÄnderungSchleifenwert) = 2 or abs (BewertungXÄnderungSchleifenwert) = 2 then
+                  if
+                  abs (BewertungYÄnderungSchleifenwert) = 2
+                    or
+                  abs (BewertungXÄnderungSchleifenwert) = 2
+                  then
                      BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
                                       YAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).YAchse,
                                       XAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).XAchse,
                                       TeilerExtern              => 2);
 
-                  elsif abs (BewertungYÄnderungSchleifenwert) = 3 or abs (BewertungXÄnderungSchleifenwert) = 3 then
+                  elsif
+                  abs (BewertungYÄnderungSchleifenwert) = 3
+                    or
+                  abs (BewertungXÄnderungSchleifenwert) = 3
+                  then
                      BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
                                       YAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).YAchse,
                                       XAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).XAchse,
@@ -96,7 +108,9 @@ package body WerteFestlegen is
            + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Grund).Wissensgewinnung
            + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Grund).Verteidigungsbonus) / GesamtproduktionStadt (TeilerExtern);
 
-      case Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Fluss is
+      case
+        Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Fluss
+      is
          when 0 =>
             null;
             
@@ -110,7 +124,9 @@ package body WerteFestlegen is
                  + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Fluss).Verteidigungsbonus) / GesamtproduktionStadt (TeilerExtern);
       end case;
 
-      case Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungStraße is
+      case
+        Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungStraße
+      is
          when 0 =>
             null;
             
@@ -125,7 +141,9 @@ package body WerteFestlegen is
               / GesamtproduktionStadt (TeilerExtern);
       end case;
 
-      case Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungGebiet is
+      case
+        Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungGebiet
+      is
          when 0 =>
             null;
             
@@ -142,4 +160,4 @@ package body WerteFestlegen is
       
    end BewertungSelbst;
 
-end WerteFestlegen;
+end FelderwerteFestlegen;

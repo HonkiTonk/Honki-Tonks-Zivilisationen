@@ -24,7 +24,9 @@ package body Eingabe is
                                             ZahlenMinimumExtern => ZahlenMinimumExtern,
                                             ZahlenMaximumExtern => ZahlenMaximumExtern);
          
-         case SchleifeVerlassen is
+         case
+           SchleifeVerlassen
+         is
             when 2 =>
                exit ZahlenAußenSchleife;
                
@@ -37,7 +39,9 @@ package body Eingabe is
                
       end loop ZahlenAußenSchleife;
 
-      case WelchesVorzeichen is
+      case
+        WelchesVorzeichen
+      is
          when True =>
             return Integer'Wide_Wide_Value (ZahlenString);
                   
@@ -65,20 +69,34 @@ package body Eingabe is
                                         AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                         AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
 
-         if ZahlenMinimumExtern > 0 and Integer'Wide_Wide_Value (ZahlenString) = 0 then
+         if
+           ZahlenMinimumExtern > 0
+           and
+             Integer'Wide_Wide_Value (ZahlenString) = 0
+         then
             null;
             
-         elsif ZahlenMinimumExtern >= 0 and WelchesVorzeichen = False then
+         elsif
+           ZahlenMinimumExtern >= 0
+           and
+             WelchesVorzeichen = False
+         then
             WelchesVorzeichen := True;
             Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
                                                Width => 1,
                                                Base  => 10);
             
          else
-            if WelchesVorzeichen = True then
+            if
+              WelchesVorzeichen = True
+            then
                null;
 
-            elsif WelchesVorzeichen = False and Integer'Wide_Wide_Value (ZahlenString) = 0 then
+            elsif
+              WelchesVorzeichen = False
+              and
+                Integer'Wide_Wide_Value (ZahlenString) = 0
+            then
                null;
                   
             else
@@ -92,7 +110,9 @@ package body Eingabe is
          Get_Immediate (Item => Zahlen);
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          IstZahl := GanzeZahlPrüfung (ZeichenExtern => Zahlen);
-         case IstZahl is
+         case
+           IstZahl
+         is
             when 1 =>
                ZahlenNachLinksVerschiebenSchleife:
                for ZahlEinsSchleifenwert in ZahlenString'First + 1 .. ZahlenString'Last loop
@@ -102,7 +122,9 @@ package body Eingabe is
                end loop ZahlenNachLinksVerschiebenSchleife;
                ZahlenString (ZahlenString'Last) := Zahlen;
 
-               if Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximumExtern then
+               if
+                 Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximumExtern
+               then
                   null;
                   
                else -- Einfach auf ZahlenMaximumExtern setzen
@@ -119,10 +141,16 @@ package body Eingabe is
                return -1;
 
             when 2 =>
-               if -Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern and WelchesVorzeichen = False then
+               if
+                 -Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern
+                 and
+                   WelchesVorzeichen = False
+               then
                   return 2;
                   
-               elsif Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern then
+               elsif
+                 Integer'Wide_Wide_Value (ZahlenString) >= ZahlenMinimumExtern
+               then
                   return 2;
                      
                else -- Einfach auf ZahlenMinimumExtern setzen
@@ -152,7 +180,9 @@ package body Eingabe is
    function GanzeZahlPrüfung (ZeichenExtern : in Wide_Wide_Character) return GlobaleDatentypen.LoopRangeMinusDreiZuDrei is
    begin
       
-      case ZeichenExtern is
+      case
+        ZeichenExtern
+      is
          when '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' =>            
             return 1;
             
@@ -203,7 +233,9 @@ package body Eingabe is
 
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
 
-      case To_Wide_Wide_String (Source => Name)'Length is
+      case
+        To_Wide_Wide_String (Source => Name)'Length
+      is
          when 0 =>
             return To_Unbounded_Wide_Wide_String (Source => "Kein Name"); -- Später noch durch eine Prüfung ersetzen ob das ein nicht leerer Name ist.
               
@@ -215,13 +247,22 @@ package body Eingabe is
 
 
 
-   function TastenEingabe return Integer is
+   function TastenEingabe return Wide_Wide_Character is
    begin
 
       Get_Immediate (Taste);
       
-      return 1;
+      return 'a';
       
    end TastenEingabe;
+
+
+
+   procedure WartenEingabe is
+   begin
+      
+      Get_Immediate (Taste);
+      
+   end WartenEingabe;
 
 end Eingabe;

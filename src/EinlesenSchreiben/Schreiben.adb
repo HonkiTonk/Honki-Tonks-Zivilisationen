@@ -8,7 +8,9 @@ package body Schreiben is
    procedure SchreibenStartAufruf is
    begin
 
-      case Exists (Name => "Dateien") is
+      case
+        Exists (Name => "Dateien")
+      is
          when True =>
             null;
             
@@ -18,7 +20,9 @@ package body Schreiben is
 
 
       
-      case Exists (Name => "Spielstand") is
+      case
+        Exists (Name => "Spielstand")
+      is
          when True =>
             null;
 
@@ -28,7 +32,9 @@ package body Schreiben is
 
 
 
-      case Exists (Name => "Dateien/Werte") is
+      case
+        Exists (Name => "Dateien/Werte")
+      is
          when True =>
             Korrekt := WertePrüfen;
             case Korrekt is
@@ -45,7 +51,9 @@ package body Schreiben is
 
 
 
-      case Exists (Name => "Dateien/Sprachen") is -- Für Deutsch mit in das Programm übernehmen?
+      case
+        Exists (Name => "Dateien/Sprachen")
+      is -- Für Deutsch mit in das Programm übernehmen?
          when True =>
             null;
 
@@ -55,10 +63,14 @@ package body Schreiben is
 
  
       
-      case Exists (Name => "Dateien/Einstellungen") is
+      case
+        Exists (Name => "Dateien/Einstellungen")
+      is
          when True =>
             Korrekt := EinstellungenPrüfen;
-            case Korrekt is
+            case
+              Korrekt
+            is
                when True =>
                   null;
                   

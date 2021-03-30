@@ -18,7 +18,9 @@ package body InDerStadtBauen is
       
          WasGebautWerdenSoll := BauobjektAuswählen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-         case WasGebautWerdenSoll is
+         case
+           WasGebautWerdenSoll
+         is
             when 0 =>
                return;
 
@@ -41,13 +43,19 @@ package body InDerStadtBauen is
    procedure BauzeitEinzeln (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
 
-      if GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate = 0 then
+      if
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate = 0
+      then
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).VerbleibendeBauzeit := 10_000;
 
-      elsif GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt = 0 then
+      elsif
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt = 0
+      then
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).VerbleibendeBauzeit := 0;
             
-      elsif GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt < 10_000 then
+      elsif
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt < 10_000
+      then
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).VerbleibendeBauzeit
            := (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse,
                GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - 1_000)).PreisRessourcen
@@ -72,7 +80,9 @@ package body InDerStadtBauen is
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
 
-         case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+         is
             when 0 =>
                null;
                
@@ -80,7 +90,9 @@ package body InDerStadtBauen is
                StadtSchleife:
                for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
       
-                  case GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummer).ID is
+                  case
+                    GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummer).ID
+                  is
                      when 0 =>
                         null;
                         
@@ -106,15 +118,23 @@ package body InDerStadtBauen is
       GebäudeSchleife:
       for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz),
-                                 Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse))) = "|" then
+         if
+           To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Gebäude_Kurz),
+                                Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse))) = "|"
+         then
             exit GebäudeSchleife;
 
-         elsif GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = True then
+         elsif
+           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = True
+         then
             null;
 
-         elsif GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen) = False then 
+         elsif
+           GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen /= 0
+         then
+            if
+              GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen) = False
+            then 
                null;
 
             else
@@ -136,16 +156,25 @@ package body InDerStadtBauen is
       EinheitenSchleife:
       for EinheitSchleifenwert in GlobaleDatentypen.EinheitenID loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
-                                 Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse))) = "|" then
+         if
+           To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
+                                Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse))) = "|"
+         then
             exit EinheitenSchleife;
 
-         elsif GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AmWasser = False
-           and EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (2) = True then
+         elsif
+           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AmWasser = False
+           and
+             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (2) = True
+         then
             null;
 
-         elsif EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Anforderungen /= 0 then
-            if GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Anforderungen) = False then
+         elsif
+           EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Anforderungen /= 0
+         then
+            if
+              GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Anforderungen) = False
+            then
                null;
                
             else
@@ -164,10 +193,18 @@ package body InDerStadtBauen is
          
       end loop EinheitenSchleife;
 
-      if Anzeige.TextBauenNeu (Ende).Nummer = 0 and Ende > 1 then
+      if
+        Anzeige.TextBauenNeu (Ende).Nummer = 0
+        and
+          Ende > 1
+      then
          Anzeige.TextBauenNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Feste_Abfragen), 3);
 
-      elsif Anzeige.TextBauenNeu (Ende).Nummer = 0 and Ende = 1 then
+      elsif
+        Anzeige.TextBauenNeu (Ende).Nummer = 0
+        and
+          Ende = 1
+      then
          return 0;
          
       else
@@ -187,10 +224,14 @@ package body InDerStadtBauen is
 
          Anzeige.AnzeigeStadt (AktuelleAuswahlExtern => AktuelleAuswahl);
          
-         if AktuelleAuswahl = Ende then
+         if
+           AktuelleAuswahl = Ende
+         then
             null;
                   
-         elsif Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer > 10_000 then
+         elsif
+           Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer > 10_000
+         then
             Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Einheiten_Lang,
                                           ÜberschriftZeileExtern => 0,
@@ -211,9 +252,13 @@ package body InDerStadtBauen is
          
          Get_Immediate (Item => Taste);
          
-         case To_Lower (Item => Taste) is               
+         case
+           To_Lower (Item => Taste)
+         is               
             when 'w' | '8' => 
-               if AktuelleAuswahl = Anzeige.TextBauenNeu'First then
+               if
+                 AktuelleAuswahl = Anzeige.TextBauenNeu'First
+               then
                   AktuelleAuswahl := Ende;
                   
                else
@@ -221,7 +266,9 @@ package body InDerStadtBauen is
                end if;
 
             when 's' | '2' =>
-               if AktuelleAuswahl = Ende then
+               if
+                 AktuelleAuswahl = Ende
+               then
                   AktuelleAuswahl := Anzeige.TextBauenNeu'First;
                   
                else

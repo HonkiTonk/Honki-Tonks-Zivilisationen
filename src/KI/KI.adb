@@ -16,11 +16,20 @@ package body KI is
          EinheitenSchleife:
          for EinheitNummerEinsSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
                      
-            if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).AktuelleBeschäftigung /= 0 and GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).ID > 0
-              and GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).AktuelleBewegungspunkte > 0.00 then
+            if
+              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).AktuelleBeschäftigung /= 0
+              and
+                GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).ID > 0
+              and
+                GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).AktuelleBewegungspunkte > 0.00
+            then
                AKtivitätEinheitAbbrechen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerEinsSchleifenwert));
 
-            elsif GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).AktuelleBeschäftigung /= 0 or GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).ID = 0 then
+            elsif
+              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).AktuelleBeschäftigung /= 0
+              or
+                GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).ID = 0
+            then
                null;
                
             else
@@ -34,8 +43,13 @@ package body KI is
          KannEineEinheitNochWasMachenSchleife:
          for EinheitNummerZweiSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
-            if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerZweiSchleifenwert).KIBeschäftigt = KIDatentypen.Keine_Aufgabe and GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerZweiSchleifenwert).ID > 0
-              and GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerZweiSchleifenwert).AktuelleBewegungspunkte > 0.00 then
+            if
+              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerZweiSchleifenwert).KIBeschäftigt = KIDatentypen.Keine_Aufgabe
+              and
+                GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerZweiSchleifenwert).ID > 0
+              and
+                GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerZweiSchleifenwert).AktuelleBewegungspunkte > 0.00
+            then
                exit KannEineEinheitNochWasMachenSchleife;
                
             else
@@ -44,7 +58,9 @@ package body KI is
             
          end loop KannEineEinheitNochWasMachenSchleife;
 
-         case EinheitenBeschäftigt is
+         case
+           EinheitenBeschäftigt
+         is
             when GlobaleVariablen.EinheitenGebautArray'Last (2) =>
                exit EinheitenMachenIrgendwasSchleife;
                
@@ -59,11 +75,20 @@ package body KI is
          StadtSchleife:
          for StadtNummerEinsSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
-            if GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).ID > 0 and GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).KIAktuelleBeschäftigung /= 0
-              and GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).KIAktuelleBeschäftigung /= -10 then
+            if
+              GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).ID > 0
+              and
+                GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).KIAktuelleBeschäftigung /= 0
+              and
+                GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).KIAktuelleBeschäftigung /= -10
+            then
                AktivitätStadtAbbrechen (StadtRasseNummerExtern => (RasseExtern, StadtNummerEinsSchleifenwert));
 
-            elsif GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).ID = 0 or GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).KIAktuelleBeschäftigung /= 0 then
+            elsif
+              GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).ID = 0
+              or
+                GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).KIAktuelleBeschäftigung /= 0
+            then
                null;
                
             else
@@ -77,7 +102,11 @@ package body KI is
          KannEineStadtNochWasMachenSchleife:
          for StadtNummerZweiSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
-            if GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerZweiSchleifenwert).KIAktuelleBeschäftigung > -10 and GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerZweiSchleifenwert).ID > 0 then
+            if
+              GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerZweiSchleifenwert).KIAktuelleBeschäftigung > -10
+              and
+                GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerZweiSchleifenwert).ID > 0
+            then
                exit KannEineStadtNochWasMachenSchleife;
                
             else
@@ -86,7 +115,9 @@ package body KI is
 
          end loop KannEineStadtNochWasMachenSchleife;
          
-         case StadtBeschäftigt is
+         case
+           StadtBeschäftigt
+         is
             when GlobaleVariablen.StadtGebautArray'Last (2) =>
                exit StädteMachenIrgendwasSchleife;
                   
@@ -107,7 +138,9 @@ package body KI is
       
       -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft, 9 = NahkampfUnterirdisch, 10 = FernkampfUnterirdisch,
       -- 11 = NahkampfOrbital, 12 = FernkampfOrbital
-      case EinheitTyp is
+      case
+        EinheitTyp
+      is
          when 1 =>
             KISiedler.KISiedler (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             

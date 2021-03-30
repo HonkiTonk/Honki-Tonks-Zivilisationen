@@ -7,7 +7,9 @@ package body KartenDatenbank is
    procedure Beschreibung (IDExtern : in GlobaleDatentypen.KartenGrund) is
    begin
 
-      case IDExtern is
+      case
+        IDExtern
+      is
          when 0 =>
             null;
             

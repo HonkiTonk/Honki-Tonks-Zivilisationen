@@ -9,7 +9,9 @@ package body KIBewegung is
 
       -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft, 9 = NahkampfUnterirdisch, 10 = FernkampfUnterirdisch,
       -- 11 = NahkampfOrbital, 12 = FernkampfOrbital
-      case AufgabeExtern is
+      case
+        AufgabeExtern
+      is
          when KIDatentypen.Flucht =>
             BewegungBeliebig (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
 
@@ -42,7 +44,9 @@ package body KIBewegung is
       ZielKoordinaten := KIPruefungen.NähesteEigeneStadtSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                  RichtungExtern         => RichtungExtern);
 
-      case ZielKoordinaten.Erfolgreich is
+      case
+        ZielKoordinaten.Erfolgreich
+      is
          when True =>
             return;
             
@@ -66,20 +70,28 @@ package body KIBewegung is
             XAchseSchleife:
             for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
-               if YÄnderungSchleifenwert = 0 and XÄnderungSchleifenwert = 0 then
+               if
+                 YÄnderungSchleifenwert = 0
+                 and
+                   XÄnderungSchleifenwert = 0
+               then
                   null;
 
                else
                   Bewegung := BewegungZwischenEbene.PassierbarkeitOderTransporter (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                    ÄnderungExtern           => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
 
-                  case Bewegung is
+                  case
+                    Bewegung
+                  is
                      when 1 => -- Bewegung auf Feld möglich.
                         Kartenwert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
                                                                                 ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                 ZusatzYAbstandExtern => 0);
                         
-                        case Kartenwert.Erfolgreich is
+                        case
+                          Kartenwert.Erfolgreich
+                        is
                            when False =>
                               ErfolgreichBewegt := False;
                                  
@@ -91,7 +103,9 @@ package body KIBewegung is
                                                             XAchseExtern             => Kartenwert.XAchse);
                         end case;
 
-                        case ErfolgreichBewegt is
+                        case
+                          ErfolgreichBewegt
+                        is
                            when True =>
                               exit BewegungSchleife;
                               
@@ -116,18 +130,24 @@ package body KIBewegung is
                      YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
    begin
       
-      case DurchgangExtern is
+      case
+        DurchgangExtern
+      is
          when 1 =>
-            if Karten.Weltkarte (EAchseExtern, YAchseExtern, XAchseExtern).Felderwertung
+            if
+              Karten.Weltkarte (EAchseExtern, YAchseExtern, XAchseExtern).Felderwertung
               > Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Felderwertung then
+                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Felderwertung
+            then
                AltePosition := IstDasEineAltePosition (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        EAchseExtern             => EAchseExtern,
                                                        YAchseExtern             => YAchseExtern,
                                                        XAchseExtern             => XAchseExtern);
                
-               case AltePosition is
+               case
+                 AltePosition
+               is
                   when True =>
                      return False;
                               
@@ -149,7 +169,9 @@ package body KIBewegung is
                                                     YAchseExtern              => YAchseExtern,
                                                     XAchseExtern              => XAchseExtern);
                                     
-            case AltePosition is
+            case
+              AltePosition
+            is
                when True =>
                   return False;
                   

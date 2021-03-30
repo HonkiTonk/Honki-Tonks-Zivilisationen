@@ -12,14 +12,20 @@ package body Speichern is
    procedure SpeichernNeu (AutospeichernExtern : in Boolean) is
    begin      
 
-      case AutospeichernExtern is
+      case
+        AutospeichernExtern
+      is
          when False =>
             SpielstandName := Eingabe.SpielstandName;
 
-            case Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) is -- Anzeige der vorhandenen Spielstände einbauen
+            case
+              Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)))
+            is -- Anzeige der vorhandenen Spielstände einbauen
                when True =>
                   Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 18);
-                  case Wahl is
+                  case
+                    Wahl
+                  is
                      when -3 =>
                         null;
                      
@@ -33,10 +39,14 @@ package body Speichern is
 
          when True =>                        
             SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
-            if GlobaleVariablen.AnzahlAutosave = 1 then
+            if
+              GlobaleVariablen.AnzahlAutosave = 1
+            then
                null;
 
-            elsif AutospeichernWert <= GlobaleVariablen.AnzahlAutosave - 1 then
+            elsif
+              AutospeichernWert <= GlobaleVariablen.AnzahlAutosave - 1
+            then
                AutospeichernWert := AutospeichernWert + 1;
                   
             else               
@@ -96,7 +106,9 @@ package body Speichern is
       EinheitenRassenSchleife:
       for RasseEinheitenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
 
-         case GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
+         is
             when 0 =>
                null;
                
@@ -119,7 +131,9 @@ package body Speichern is
       StadtRassenSchleife:
       for RasseStadtSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
          
-         case GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
+         is
             when 0 =>
                null;
 
@@ -142,7 +156,9 @@ package body Speichern is
       WichtigesSchleife:
       for RasseWichtigesSchleifenwert in GlobaleVariablen.WichtigesArray'Range loop
          
-         case GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
+         is
             when 0 =>
                null;
                
@@ -160,7 +176,9 @@ package body Speichern is
       DiplomatieSchleifeAußen:
       for RasseDiplomatieEinsSchleifenwert in GlobaleVariablen.DiplomatieArray'Range (1) loop
          
-         case GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
+         is
             when 0 =>
                null;
 
@@ -168,7 +186,9 @@ package body Speichern is
                DiplomatieSchleifeInnen:
                for RasseDiplomatieZweiSchleifenwert in GlobaleVariablen.DiplomatieArray'Range (2) loop
 
-                  case GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert) is
+                  case
+                    GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
+                  is
                      when 0 =>
                         null;
                      
@@ -189,7 +209,9 @@ package body Speichern is
       CursorSchleife:
       for RasseCursorSchleifenwert in GlobaleVariablen.CursorImSpielArray'Range loop
          
-         case GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
+         is
             when 0 =>
                null;
                
@@ -213,7 +235,9 @@ package body Speichern is
    procedure AutoSpeichern is
    begin
       
-      case GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.RundenBisAutosave is
+      case
+        GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.RundenBisAutosave
+      is
          when 0 =>
             SpeichernNeu (AutospeichernExtern => True);
          

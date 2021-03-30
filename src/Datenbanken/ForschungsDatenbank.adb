@@ -10,7 +10,9 @@ package body ForschungsDatenbank is
    procedure Beschreibung (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert) is
    begin
       
-      case IDExtern is
+      case
+        IDExtern
+      is
          when 0 =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                            TextDateiExtern        => GlobaleDatentypen.Zeug,
@@ -44,7 +46,9 @@ package body ForschungsDatenbank is
          
          WasErforschtWerdenSoll := AuswahlForschungNeu (RasseExtern => RasseExtern);
 
-         case WasErforschtWerdenSoll is
+         case
+           WasErforschtWerdenSoll
+         is
             when 0 =>
                return;
                
@@ -64,10 +68,11 @@ package body ForschungsDatenbank is
    procedure ForschungZeit (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      if GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt = 0 then
-         null;
-         
-      elsif GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsrate = 0 then
+      if
+        GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt = 0
+        or
+          GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsrate = 0
+      then
          null;
 
       else
@@ -92,11 +97,15 @@ package body ForschungsDatenbank is
       ForschungSchleife:
       for ForschungenSchleifenwert in GlobaleDatentypen.ForschungID loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Forschung_Kurz),
-                                 Positive (ForschungenSchleifenwert) + RassenAufschlagForschung (RasseExtern))) = "|" then
+         if
+           To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Forschung_Kurz),
+                                Positive (ForschungenSchleifenwert) + RassenAufschlagForschung (RasseExtern))) = "|"
+         then
             exit ForschungSchleife;
 
-         elsif GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ForschungenSchleifenwert) = True then
+         elsif
+           GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ForschungenSchleifenwert) = True
+         then
             null;
 
          else
@@ -104,7 +113,9 @@ package body ForschungsDatenbank is
             AnforderungSchleife:
             for Anforderung in AnforderungForschungArray'Range loop
             
-               if ForschungListe (RasseExtern, ForschungenSchleifenwert).AnforderungForschung (Anforderung) = 0 then
+               if
+                 ForschungListe (RasseExtern, ForschungenSchleifenwert).AnforderungForschung (Anforderung) = 0
+               then
                   null;
                   
                elsif GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ForschungListe (RasseExtern, ForschungenSchleifenwert).AnforderungForschung (Anforderung)) = True then                  
@@ -117,7 +128,9 @@ package body ForschungsDatenbank is
                
             end loop AnforderungSchleife;
 
-            case AnforderungenErfüllt is
+            case
+              AnforderungenErfüllt
+            is
                when True =>
                   Anzeige.TextForschungNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Forschung_Kurz),
                                                                                              Positive (ForschungenSchleifenwert) + RassenAufschlagForschung (RasseExtern));
@@ -131,10 +144,18 @@ package body ForschungsDatenbank is
                   
       end loop ForschungSchleife;
 
-      if Anzeige.TextForschungNeu (Ende).Nummer = 0 and Ende > 1 then
+      if
+        Anzeige.TextForschungNeu (Ende).Nummer = 0
+        and
+          Ende > 1
+      then
          Anzeige.TextForschungNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Feste_Abfragen), 3);
 
-      elsif Anzeige.TextForschungNeu (Ende).Nummer = 0 and Ende = 1 then
+      elsif
+        Anzeige.TextForschungNeu (Ende).Nummer = 0
+        and
+          Ende = 1
+      then
          return 0;
          
       else
@@ -154,7 +175,9 @@ package body ForschungsDatenbank is
 
          Anzeige.AnzeigeForschungNeu (AktuelleAuswahlExtern => AktuelleAuswahl);
          
-         if AktuelleAuswahl = Ende then
+         if
+           AktuelleAuswahl = Ende
+         then
             null;
                   
          else
@@ -169,7 +192,9 @@ package body ForschungsDatenbank is
          
          Get_Immediate (Item => Taste);
          
-         case To_Lower (Item => Taste) is               
+         case
+           To_Lower (Item => Taste)
+         is               
             when 'w' | '8' => 
                if AktuelleAuswahl = Anzeige.TextForschungNeu'First then
                   AktuelleAuswahl := Ende;
@@ -206,16 +231,22 @@ package body ForschungsDatenbank is
       RasseSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
          
-         case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+         is
             when 0 =>
                null;
                
             when others =>
-               if GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt = 0 then
+               if
+                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt = 0
+               then
                   null;
          
-               elsif GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuelleForschungsmenge
-                 >= ForschungListe (RasseSchleifenwert, GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt).PreisForschung then
+               elsif
+                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuelleForschungsmenge
+                 >= ForschungListe (RasseSchleifenwert, GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt).PreisForschung
+               then
                   GlobaleVariablen.Wichtiges (RasseSchleifenwert).Erforscht (GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt) := True;
                   GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt := AuswahlForschungNeu (RasseExtern => RasseSchleifenwert);
                   GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuelleForschungsmenge := 0;

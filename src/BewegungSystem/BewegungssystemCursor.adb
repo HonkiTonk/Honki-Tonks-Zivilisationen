@@ -9,7 +9,9 @@ package body BewegungssystemCursor is
    procedure BewegungCursorRichtung (KarteExtern : in Boolean; RichtungExtern : in Wide_Wide_Character; RasseExtern : in GlobaleDatentypen.Rassen) is -- Hier noch Bewegung für Stadt einbauen
    begin
       
-      case RichtungExtern is
+      case
+        RichtungExtern
+      is
          when 'w' | '8' =>
             Änderung := (0, -1, 0);
             
@@ -44,7 +46,9 @@ package body BewegungssystemCursor is
             return;
       end case;
       
-      case KarteExtern is
+      case
+        KarteExtern
+      is
          when True =>
             BewegungCursorBerechnen (ÄnderungExtern => Änderung,
                                      RasseExtern    => RasseExtern);
@@ -60,14 +64,15 @@ package body BewegungssystemCursor is
 
    procedure GeheZuCursor (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
-
       
       Wert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
                                  ZeileExtern         => 40,
                                  ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (1)),
                                  ZahlenMaximumExtern => Integer (Karten.Weltkarte'Last (1)));
       
-      case Wert is
+      case
+        Wert
+      is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
             return;
          
@@ -80,7 +85,9 @@ package body BewegungssystemCursor is
                                  ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (2)),
                                  ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
       
-      case Wert is
+      case
+        Wert
+      is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
             return;
          
@@ -93,7 +100,9 @@ package body BewegungssystemCursor is
                                  ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (3)),
                                  ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
 
-      case Wert is
+      case
+        Wert
+      is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
             return;
          
@@ -110,15 +119,25 @@ package body BewegungssystemCursor is
    procedure BewegungCursorBerechnen (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      if ÄnderungExtern.EAchse = 1 and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Weltkarte'Last (1) then
+      if
+        ÄnderungExtern.EAchse = 1
+        and
+          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Weltkarte'Last (1)
+      then
          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := Karten.Weltkarte'First (1);
          return;
          
-      elsif ÄnderungExtern.EAchse = -1 and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Weltkarte'First (1) then
+      elsif
+        ÄnderungExtern.EAchse = -1
+        and
+          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Weltkarte'First (1)
+      then
          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := Karten.Weltkarte'Last (1);
          return;
          
-      elsif ÄnderungExtern.EAchse /= 0 then
+      elsif
+        ÄnderungExtern.EAchse /= 0
+      then
          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse + ÄnderungExtern.EAchse;
          return;
          
@@ -130,7 +149,9 @@ package body BewegungssystemCursor is
                                                               ÄnderungExtern       => ÄnderungExtern,
                                                               ZusatzYAbstandExtern => 0);
       
-      case KartenWert.Erfolgreich is
+      case
+        KartenWert.Erfolgreich
+      is
          when False =>
             return;
               
@@ -145,20 +166,28 @@ package body BewegungssystemCursor is
    procedure BewegungCursorBerechnenStadt (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
 
-      if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse + ÄnderungExtern.YAchse < Karten.Stadtkarte'First (1) then
+      if
+        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse + ÄnderungExtern.YAchse < Karten.Stadtkarte'First (1)
+      then
          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse := Karten.Stadtkarte'Last (1);
 
-      elsif GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse + ÄnderungExtern.YAchse > Karten.Stadtkarte'Last (1) then
+      elsif
+        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse + ÄnderungExtern.YAchse > Karten.Stadtkarte'Last (1)
+      then
          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse := Karten.Stadtkarte'First (1);
 
       else
          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse + ÄnderungExtern.YAchse;
       end if;
       
-      if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse + ÄnderungExtern.XAchse < Karten.Stadtkarte'First (2) then
+      if
+        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse + ÄnderungExtern.XAchse < Karten.Stadtkarte'First (2)
+      then
          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse := Karten.Stadtkarte'Last (2);
 
-      elsif GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse + ÄnderungExtern.XAchse > Karten.Stadtkarte'Last (2) then
+      elsif
+        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse + ÄnderungExtern.XAchse > Karten.Stadtkarte'Last (2)
+      then
          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse := Karten.Stadtkarte'First (2);
 
       else

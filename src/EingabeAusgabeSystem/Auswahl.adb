@@ -17,7 +17,9 @@ package body Auswahl is
       EndeBestimmenSchleife:
       for LetztesEndeSchleifenwert in GlobaleVariablen.SprachenEinlesenArray'Range loop
          
-         if To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (LetztesEndeSchleifenwert)) = "|" then
+         if
+           To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (LetztesEndeSchleifenwert)) = "|"
+         then
             exit EndeBestimmenSchleife;
             
          else
@@ -37,16 +39,22 @@ package body Auswahl is
          
          Get_Immediate (Item => Taste);
          
-         case To_Lower (Item => Taste) is
+         case
+           To_Lower (Item => Taste)
+         is
             when 'w' | '8' => 
-               if AktuelleAuswahl = GlobaleVariablen.SprachenEinlesenArray'First then
+               if
+                 AktuelleAuswahl = GlobaleVariablen.SprachenEinlesenArray'First
+               then
                   AktuelleAuswahl := Ende;
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
             when 's' | '2' =>
-               if AktuelleAuswahl = Ende then
+               if
+                 AktuelleAuswahl = Ende
+               then
                   AktuelleAuswahl := GlobaleVariablen.SprachenEinlesenArray'First;
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
@@ -91,7 +99,9 @@ package body Auswahl is
          
          case To_Lower (Item => Taste) is               
             when 'w' | '8' => 
-               if AktuelleAuswahl = Anfang then
+               if
+                 AktuelleAuswahl = Anfang
+               then
                   AktuelleAuswahl := Ende;
 
                else
@@ -99,7 +109,9 @@ package body Auswahl is
                end if;
 
             when 's' | '2' =>
-               if AktuelleAuswahl = Ende then
+               if
+                 AktuelleAuswahl = Ende
+               then
                   AktuelleAuswahl := Anfang;
 
                else
@@ -107,31 +119,49 @@ package body Auswahl is
                end if;
                               
             when 'e' | '5' =>                  
-               if GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 1) then -- Hauptmenü
+               if
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 1)
+               then -- Hauptmenü
                   return GlobaleKonstanten.HauptmenüKonstante;
                   
-               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 2) then -- Spiel beenden
+               elsif
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 2)
+               then -- Spiel beenden
                   return GlobaleKonstanten.SpielBeendenKonstante;
                   
-               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 3) then -- Zurück
+               elsif
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 3)
+               then -- Zurück
                   return GlobaleKonstanten.ZurückKonstante;
                   
-               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 4) then -- Ja
+               elsif
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 4)
+               then -- Ja
                   return GlobaleKonstanten.JaKonstante;
                   
-               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 5) then -- Nein
+               elsif
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 5)
+               then -- Nein
                   return GlobaleKonstanten.NeinKonstante;
 
-               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 6) then -- Speichern
+               elsif
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 6)
+               then -- Speichern
                   return GlobaleKonstanten.SpeichernKonstante;
 
-               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 7) then -- Laden
+               elsif
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 7)
+               then -- Laden
                   return GlobaleKonstanten.LadenKonstante;
 
-               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 8) then -- Optionen
+               elsif
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 8)
+               then -- Optionen
                   return GlobaleKonstanten.OptionenKonstante;
 
-               elsif GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 9) then -- Informationen
+               elsif
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 9)
+               then -- Informationen
                   return GlobaleKonstanten.InformationenKonstante;
                      
                else
@@ -151,12 +181,14 @@ package body Auswahl is
 
    function AuswahlJaNein (FrageZeileExtern : in Positive) return Integer is
    begin
+
+      JaNein := Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
+                         TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
+                         FrageZeileExtern  => FrageZeileExtern,
+                         ErsteZeileExtern  => GlobaleKonstanten.JaAnzeigeKonstante,
+                         LetzteZeileExtern => GlobaleKonstanten.NeinAnzeigeKonstante);
       
-      return Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
-                      TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
-                      FrageZeileExtern  => FrageZeileExtern,
-                      ErsteZeileExtern  => GlobaleKonstanten.JaAnzeigeKonstante,
-                      LetzteZeileExtern => GlobaleKonstanten.NeinAnzeigeKonstante);
+      return JaNein;
       
    end AuswahlJaNein;
 

@@ -5,7 +5,7 @@ use GlobaleDatentypen;
 
 with Karten;
 
-package WerteFestlegen is
+package FelderwerteFestlegen is
    
    procedure KartenfelderBewerten (GenerierungExtern : in Boolean; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) with
      Pre => (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
@@ -22,4 +22,4 @@ private
                               TeilerExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei) with
      Pre => (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and TeilerExtern > 0);
 
-end WerteFestlegen;
+end FelderwerteFestlegen;

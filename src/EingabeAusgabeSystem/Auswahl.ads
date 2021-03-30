@@ -23,5 +23,7 @@ private
    AktuelleAuswahl : Natural;
    Anfang : Natural;
    Ende : Natural;
+
+   JaNein : Integer;
    
 end Auswahl;

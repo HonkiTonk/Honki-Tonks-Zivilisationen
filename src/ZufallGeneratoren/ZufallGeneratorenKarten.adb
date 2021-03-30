@@ -2,47 +2,12 @@ pragma SPARK_Mode (Off);
 
 package body ZufallGeneratorenKarten is
 
-   function Spieleinstellungen (WelcheEinstellungExtern : in Positive) return Positive is
-   begin
-      
-      case WelcheEinstellungExtern is
-         when 1 => -- Kartengröße wählen
-            ZufälligeKartengrößeWählen.Reset (ZufälligeKartenGrößeGewählt);
-            SpieleinstellungenAuswahl := ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt); 
-            return SpieleinstellungenAuswahl;
-
-         when 2 => -- Kartenart wählen
-            ZufälligeKartenartWählen.Reset (ZufälligeKartenartGewählt);
-            SpieleinstellungenAuswahl := ZufälligeKartenartWählen.Random (ZufälligeKartenartGewählt);
-            return SpieleinstellungenAuswahl;
-
-         when 3 => -- Kartentemperatur wählen
-            ZufälligeKartentemperaturWählen.Reset (ZufälligeKartentemperaturGewählt);
-            SpieleinstellungenAuswahl := ZufälligeKartentemperaturWählen.Random (ZufälligeKartentemperaturGewählt);
-            return SpieleinstellungenAuswahl;
-
-         when 4 .. 5 => -- Spieleranzahl oder Rasse wählen
-            ZufälligeSpieleranzahlRasseWählen.Reset (ZufälligeSpieleranzahlRasseGewählt);
-            SpieleinstellungenAuswahl := ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt);
-            return SpieleinstellungenAuswahl;
-
-         when 6 => -- Schwierigkeitsgrad wählen
-            ZufälligenSchwierigkeitsgradWählen.Reset (ZufälligerSchwierigkeitsgradGewählt);
-            SpieleinstellungenAuswahl := ZufälligenSchwierigkeitsgradWählen.Random (ZufälligerSchwierigkeitsgradGewählt);
-            return SpieleinstellungenAuswahl;
-              
-         when others =>
-            return 1;
-      end case;
-      
-   end Spieleinstellungen;
-
-
-
    function YXPosition return GlobaleRecords.AchsenKartenfeldPositivRecord is
    begin
 
-      case Karten.Kartengröße is
+      case
+        Karten.Kartengröße
+      is
          when 1 =>
             WerteWählen20.Reset (PositionGewählt20);
             ZufallsPunktKarte := (0, WerteWählen20.Random (PositionGewählt20), WerteWählen20.Random (PositionGewählt20));
@@ -97,7 +62,8 @@ package body ZufallGeneratorenKarten is
                
                ZufallsPunktKarte := (0, WerteWählen1000.Random (PositionGewählt1000), WerteWählen1000.Random (PositionGewählt1000));
 
-               if  ZufallsPunktKarte.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+               if
+                 ZufallsPunktKarte.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
                  and
                    ZufallsPunktKarte.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
                then
@@ -114,15 +80,15 @@ package body ZufallGeneratorenKarten is
 
 
 
-   function ZufälligerLandwert return Float is
+   function ZufälligerWert return Float is
    begin
 
       Ada.Numerics.Float_Random.Reset (ZufälligerFloatWert);
-      GewählterLandwert := Ada.Numerics.Float_Random.Random (ZufälligerFloatWert);
+      GewählterFloatWert := Ada.Numerics.Float_Random.Random (ZufälligerFloatWert);
       
-      return GewählterLandwert;
+      return GewählterFloatWert;
       
-   end ZufälligerLandwert;
+   end ZufälligerWert;
 
 
 
@@ -136,7 +102,9 @@ package body ZufallGeneratorenKarten is
          
          KartenGrundGewählt := WerteWählenChaoskarte.Random (GrundGewählt);
       
-         case KartenGrundGewählt is
+         case
+           KartenGrundGewählt
+         is
             when 1 .. 9 | 31 .. 32 | 35 .. 40 =>
                return KartenGrundGewählt;
             

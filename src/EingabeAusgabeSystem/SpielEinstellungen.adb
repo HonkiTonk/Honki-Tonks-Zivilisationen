@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 
 with GlobaleKonstanten;
 
-with ImSpiel, KartenGenerator, Eingabe, Auswahl, EinheitenDatenbank, Anzeige, ZufallGeneratorenKarten, Ladezeiten, KartenPruefungen, EinheitSuchen;
+with ImSpiel, KartenGenerator, Eingabe, Auswahl, EinheitenDatenbank, Anzeige, ZufallGeneratorenKarten, Ladezeiten, KartenPruefungen, EinheitSuchen, ZufallGeneratorenSpieleinstellungen;
 
 package body SpielEinstellungen is
 
@@ -17,7 +17,9 @@ package body SpielEinstellungen is
       AuswahlSchleife:
       loop
 
-         case HauptAuswahl is
+         case
+           HauptAuswahl
+         is
             when 1 =>
                HauptAuswahl := KartengrößeWählen;
 
@@ -50,11 +52,12 @@ package body SpielEinstellungen is
 
       KartenGenerator.KartenGenerator;
       
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 10) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 11) := Clock;
       StartwerteErmitteln;
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 10) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 12);
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 1);
+      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 11) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 11);
+
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 0);
          
       return ImSpiel.ImSpiel;
               
@@ -74,7 +77,9 @@ package body SpielEinstellungen is
                                                   ErsteZeileExtern  => 2,
                                                   LetzteZeileExtern => 14);
          
-         case KartengrößeAuswahl is
+         case
+           KartengrößeAuswahl
+         is
             when 1 .. 9 =>
                Karten.Kartengröße := KartengrößeAuswahl;
                return 2;
@@ -85,7 +90,9 @@ package body SpielEinstellungen is
                                                                ZeileExtern         => 19,
                                                                ZahlenMinimumExtern => 20,
                                                                ZahlenMaximumExtern => 1_000);
-               case BenutzerdefinierteGröße is
+               case
+                 BenutzerdefinierteGröße
+               is
                   when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
                      return 1;
                      
@@ -98,7 +105,9 @@ package body SpielEinstellungen is
                                                                ZahlenMinimumExtern => 20,
                                                                ZahlenMaximumExtern => 1_000);
                      
-               case BenutzerdefinierteGröße is
+               case
+                 BenutzerdefinierteGröße
+               is
                   when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
                      return 1;
                            
@@ -109,7 +118,7 @@ package body SpielEinstellungen is
                end case;
                
             when 11 =>               
-               Karten.Kartengröße := ZufallGeneratorenKarten.Spieleinstellungen (WelcheEinstellungExtern => 1);
+               Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 1);
                return 2;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
@@ -139,13 +148,15 @@ package body SpielEinstellungen is
                                               ErsteZeileExtern  => 17,
                                               LetzteZeileExtern=> 25);
                   
-         case KartenartAuswahl is
+         case
+           KartenartAuswahl
+         is
          when 1 .. 5 =>
             Karten.Kartenart := KartenartAuswahl;
             return 3;
                
          when 6 =>               
-            Karten.Kartenart := ZufallGeneratorenKarten.Spieleinstellungen (WelcheEinstellungExtern => 2);
+            Karten.Kartenart := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2);
             return 3;
                
          when -2 =>
@@ -178,13 +189,15 @@ package body SpielEinstellungen is
                                                      ErsteZeileExtern  => 28,
                                                      LetzteZeileExtern => 36);
                   
-         case KartentemperaturAuswahl is
+         case
+           KartentemperaturAuswahl
+         is
             when 1 .. 5 =>
                Karten.Kartentemperatur := KartentemperaturAuswahl;
                return 4;
                
             when 6 =>               
-               Karten.Kartentemperatur := ZufallGeneratorenKarten.Spieleinstellungen (WelcheEinstellungExtern => 3);
+               Karten.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 3);
                return 4;
                
             when -2 =>
@@ -217,13 +230,15 @@ package body SpielEinstellungen is
                                                   ErsteZeileExtern  => 39,
                                                   LetzteZeileExtern => 60);
          
-         case SpieleranzahlAuswahl is
+         case
+           SpieleranzahlAuswahl
+         is
             when 1 .. 18 =>
                SpielerAnzahl := SpieleranzahlAuswahl;
                return 5;
 
             when 19 =>               
-               SpielerAnzahl := ZufallGeneratorenKarten.Spieleinstellungen (WelcheEinstellungExtern => 4);
+               SpielerAnzahl := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 4);
                return 5;
                
             when -2 =>
@@ -254,7 +269,9 @@ package body SpielEinstellungen is
       while Spieler < SpielerAnzahl loop
          
          SpielerartAuswahl := RasseWählen;
-         case SpielerartAuswahl is                  
+         case
+           SpielerartAuswahl
+         is                  
             when -2 =>
                return 4;
 
@@ -265,11 +282,15 @@ package body SpielEinstellungen is
                null;
          end case;
          
-         case GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen (SpielerartAuswahl))is
+         case
+           GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen (SpielerartAuswahl))
+         is
             when 0 =>
                JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 21);
          
-               case JaOderNein is
+               case
+                 JaOderNein
+               is
                   when GlobaleKonstanten.JaKonstante =>
                      GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := 1;
                      Spieler := Spieler + 1;
@@ -308,7 +329,9 @@ package body SpielEinstellungen is
                                            ErsteZeileExtern  => 63,
                                            LetzteZeileExtern => 84);
 
-         case RassenAuswahl is
+         case
+           RassenAuswahl
+         is
             when 1 .. 18 =>
                Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Spiel_Einstellungen,
                                              TextDateiExtern        => GlobaleDatentypen.Rassen_Beschreibung_Lang,
@@ -319,7 +342,9 @@ package body SpielEinstellungen is
                                              AbstandEndeExtern      => GlobaleDatentypen.Keiner);
                Get_Immediate (Taste);
                JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 6);
-               case JaOderNein is
+               case
+                 JaOderNein
+               is
                   when GlobaleKonstanten.JaKonstante =>
                      return RassenAuswahl;
                      
@@ -328,7 +353,7 @@ package body SpielEinstellungen is
                end case;
 
             when 19 =>               
-               Zufallswahl := ZufallGeneratorenKarten.Spieleinstellungen (WelcheEinstellungExtern => 5);
+               Zufallswahl := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 5);
                return Zufallswahl;
 
             when -2 .. 0 =>
@@ -352,7 +377,9 @@ package body SpielEinstellungen is
       SpieleranzahlWerteFestlegen:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
         
-         case GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) is
+         case
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+         is
             when 0 =>
                null;
                
@@ -369,7 +396,9 @@ package body SpielEinstellungen is
                                                       XPositionExtern   => GezogeneWerte.XAchse,
                                                       RasseExtern       => RasseSchleifenwert);
 
-                  case PrüfungEinheit is
+                  case
+                    PrüfungEinheit
+                  is
                      when True =>
                         exit StartwerteFestlegenSchleife;
                         
@@ -377,7 +406,9 @@ package body SpielEinstellungen is
                         SicherheitsTestWert := SicherheitsTestWert + 1;
                   end case;
 
-                  case SicherheitsTestWert is
+                  case
+                    SicherheitsTestWert
+                  is
                      when 10_000 =>
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
                                                               TextZeileExtern => 16);
@@ -407,7 +438,9 @@ package body SpielEinstellungen is
       
       PrüfungGrund := KartenPruefungen.KartenGrund (KoordinatenExtern => (0, YPositionExtern, XPositionExtern));
 
-      case PrüfungGrund is
+      case
+        PrüfungGrund
+      is
          when False =>
             return False;
             
@@ -415,7 +448,9 @@ package body SpielEinstellungen is
             PositionWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => (0, YPositionExtern, XPositionExtern));
       end case;
 
-      case PositionWert.Platznummer is
+      case
+        PositionWert.Platznummer
+      is
          when 0 =>
             Koordinaten (1) := (0, YPositionExtern, XPositionExtern);
             YAchseSchleife:
@@ -426,7 +461,9 @@ package body SpielEinstellungen is
                   KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionExtern, XPositionExtern),
                                                                           ÄnderungExtern       => (0, YÄnderung, XÄnderung),
                                                                           ZusatzYAbstandExtern => 0);
-                  case KartenWert.Erfolgreich is
+                  case
+                    KartenWert.Erfolgreich
+                  is
                      when False =>
                         exit XAchseSchleife;
                   
@@ -434,10 +471,16 @@ package body SpielEinstellungen is
                         null;
                   end case;
                   
-                  if YÄnderung /= 0 or XÄnderung /= 0 then
+                  if
+                    YÄnderung /= 0
+                    or
+                      XÄnderung /= 0
+                  then
                      PrüfungGrund := KartenPruefungen.KartenGrund (KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
-                     case PrüfungGrund is
+                     case
+                       PrüfungGrund
+                     is
                         when False =>
                            PlatzBelegt := (1, 1);
             
@@ -445,7 +488,9 @@ package body SpielEinstellungen is
                            PlatzBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
                      end case;                    
                            
-                     case PlatzBelegt.Platznummer is
+                     case
+                       PlatzBelegt.Platznummer
+                     is
                         when 0 =>
                            Koordinaten (2) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
                            StartpunktFestlegen (RasseExtern => RasseExtern);
@@ -506,13 +551,15 @@ package body SpielEinstellungen is
                                                   ErsteZeileExtern  => 87,
                                                   LetzteZeileExtern => 93);
          
-         case SchwierigkeitAuswahl is
+         case
+           SchwierigkeitAuswahl
+         is
          when 1 .. 3 =>
             GlobaleVariablen.Schwierigkeitsgrad := SchwierigkeitAuswahl;
             return 7;
 
          when 4 =>
-            GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenKarten.Spieleinstellungen (WelcheEinstellungExtern => 6);
+            GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 6);
             return 7;
                
          when -2 =>

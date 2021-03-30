@@ -40,10 +40,14 @@ package body Diplomatie is
       
       BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasseExtern   => EinheitRasseNummerExtern.Rasse,
                                                                 VerteidigendeRasseExtern => GegnerExtern.Rasse);
-      case BereitsImKrieg is
+      case
+        BereitsImKrieg
+      is
          when GlobaleVariablen.Neutral | GlobaleVariablen.Offene_Grenzen =>
             Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 11);
-            case Wahl is
+            case
+              Wahl
+            is
                when -3 =>
                   Angreifen := True;
                   -- Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasseExtern => EinheitRasseNummerExtern.Rasse,
@@ -61,7 +65,9 @@ package body Diplomatie is
             Angreifen := False;
       end case;
          
-      case Angreifen is
+      case
+        Angreifen
+      is
          when True =>
             Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerStadtNummerExtern           => GegnerExtern.Platznummer,
                                                          RasseAngriffExtern                => EinheitRasseNummerExtern.Rasse,

@@ -12,7 +12,9 @@ package body Karte is
    procedure AnzeigeKarte (RasseExtern : in GlobaleDatentypen.Rassen) is
    begin
       
-      case Karten.Kartengröße is
+      case
+        Karten.Kartengröße
+      is
          when 1 =>
             SichtweiteFestlegen := 1;
             BewegungsfeldFestlegen := 1;
@@ -22,11 +24,19 @@ package body Karte is
             BewegungsfeldFestlegen := 2;
 
          when Karten.KartengrößenArray'Last =>
-            if Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (1).YAchsenGröße or Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (1).XAchsenGröße then
+            if
+              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (1).YAchsenGröße
+              or
+                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (1).XAchsenGröße
+            then
                SichtweiteFestlegen := 1;
                BewegungsfeldFestlegen := 1;
                
-            elsif Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (2).YAchsenGröße or Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (2).XAchsenGröße then
+            elsif
+              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (2).YAchsenGröße
+              or
+                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (2).XAchsenGröße
+            then
                SichtweiteFestlegen := 2;
                BewegungsfeldFestlegen := 2;
                
@@ -40,35 +50,50 @@ package body Karte is
             BewegungsfeldFestlegen := 3;            
       end case;
       
-      if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.EAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse then
+      if
+        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.EAchse = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse
+      then
          null;
             
       else
          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse;
       end if;
 
-      if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.YAchse + Bewegungsfeld (BewegungsfeldFestlegen).YAchse
-        or GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.YAchse - Bewegungsfeld (BewegungsfeldFestlegen).YAchse then
+      if
+        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.YAchse + Bewegungsfeld (BewegungsfeldFestlegen).YAchse
+        or
+          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.YAchse - Bewegungsfeld (BewegungsfeldFestlegen).YAchse
+      then
          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse;
          
       else
          null;
       end if;
             
-      if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
-         if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse
-           and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse
-           - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+      if
+        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+      then
+         if
+           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse
+           and
+             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse
+           - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+         then
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse;         
             
          else
             null;
          end if;
          
-      elsif GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse < Karten.WeltkarteArray'First (3) then
-         if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse
-           and GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse
-           + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße then
+      elsif
+        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse < Karten.WeltkarteArray'First (3)
+      then
+         if
+           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse
+           and
+             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse
+           + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+         then
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse;         
             
          else
@@ -76,8 +101,11 @@ package body Karte is
          end if;
          
       else
-         if GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse
-           or GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse then
+         if
+           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegen).XAchse
+           or
+             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse - Bewegungsfeld (BewegungsfeldFestlegen).XAchse
+         then
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt.XAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse;
             
          else
@@ -96,7 +124,9 @@ package body Karte is
                                                                     ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
             
-            case Kartenwert.Erfolgreich is
+            case
+              Kartenwert.Erfolgreich
+            is
                when False =>
                   exit XAchseSchleife;
                   
@@ -106,7 +136,9 @@ package body Karte is
                                              RasseExtern => RasseExtern);
             end case;
             
-            if XAchseSchleifenwert = Sichtweiten (SichtweiteFestlegen).XAchse then
+            if
+              XAchseSchleifenwert = Sichtweiten (SichtweiteFestlegen).XAchse
+            then
                New_Line;
                   
             else
@@ -211,17 +243,23 @@ package body Karte is
                                Width => 1);
       New_Line (Spacing => 2);
       
-      case Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Sichtbar (RasseExtern) is
+      case
+        Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                          GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Sichtbar (RasseExtern)
+      is
          when True =>
             RasseUndPlatznummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
             
-            case RasseUndPlatznummer.Platznummer is
+            case
+              RasseUndPlatznummer.Platznummer
+            is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
                   null;
                  
                when others => -- Allgemeine Einheiteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Einheit befindet
-                  case GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).WirdTransportiert is -- Das hier noch besser einbauen
+                  case
+                    GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).WirdTransportiert
+                  is -- Das hier noch besser einbauen
                      when 0 =>
                         EinheitNummer := RasseUndPlatznummer.Platznummer;
                         
@@ -247,7 +285,11 @@ package body Karte is
                                            Width => 1);
             
                   -- "Volle" Einheiteninformationen, nur sichtbar wenn eigene Einheit oder wenn Cheat aktiviert ist
-                  if RasseExtern = RasseUndPlatznummer.Rasse or GlobaleVariablen.FeindlicheInformationenSehen = True then
+                  if
+                    RasseExtern = RasseUndPlatznummer.Rasse
+                    or
+                      GlobaleVariablen.FeindlicheInformationenSehen = True 
+                  then
                      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
                                                     ÜberschriftZeileExtern => 0,
@@ -350,7 +392,9 @@ package body Karte is
                   end if;
                         
                   New_Line;
-                  case GlobaleVariablen.FeindlicheInformationenSehen is
+                  case
+                    GlobaleVariablen.FeindlicheInformationenSehen
+                  is
                      when False =>
                         null;
                                  
@@ -361,16 +405,24 @@ package body Karte is
             
             RasseUndPlatznummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
-            case RasseUndPlatznummer.Platznummer is
+            case
+              RasseUndPlatznummer.Platznummer
+            is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
                   null;
                      
                when others => -- Stadtinformationsaufruf
-                  if GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AchsenPosition = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition then
+                  if
+                    GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AchsenPosition = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition
+                  then
                      KarteStadt.Beschreibung (RasseExtern => RasseExtern);
 
                      -- Stadtverteidigungsinformation, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist
-                     if RasseUndPlatznummer.Rasse = RasseExtern or GlobaleVariablen.FeindlicheInformationenSehen = True then                              
+                     if
+                       RasseUndPlatznummer.Rasse = RasseExtern
+                       or
+                         GlobaleVariablen.FeindlicheInformationenSehen = True
+                     then                              
                         Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungListe (KartenVerbesserung (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse,
                                                                                                               RasseUndPlatznummer.Platznummer).ID)).Verteidigungsbonus;
 
@@ -378,7 +430,9 @@ package body Karte is
                         null;
                      end if;
 
-                     case GlobaleVariablen.FeindlicheInformationenSehen is
+                     case
+                       GlobaleVariablen.FeindlicheInformationenSehen
+                     is
                         when False =>
                            null;
                                  
@@ -392,10 +446,13 @@ package body Karte is
             end case;
                   
             -- Allgemeine Karteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist
-            if Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Hügel = True
-              and Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                                    GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund /= 6 then
+            if
+              Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
+                                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Hügel = True
+              and
+                Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
+                                  GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund /= 6
+            then
                Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                               TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Kartenfelder_Kurz,
                                               ÜberschriftZeileExtern => 0,
@@ -423,8 +480,10 @@ package body Karte is
                                                                                    GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                                                                    GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund).Wissensgewinnung;
          
-            elsif Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                                    GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Hügel = True then
+            elsif
+              Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Hügel = True
+            then
                KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund);
 
@@ -465,8 +524,10 @@ package body Karte is
                                                                                    GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund).Wissensgewinnung;
             end if;
       
-            if Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource /= 0 then
+            if
+              Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource /= 0
+            then
                KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource);
 
@@ -490,8 +551,10 @@ package body Karte is
                null;
             end if;
       
-            if Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet /= 0 then
+            if
+              Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet /= 0
+            then
                VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                                      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet);
 
@@ -519,8 +582,10 @@ package body Karte is
                null;
             end if;
       
-            if Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße /= 0 then
+            if
+              Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße /= 0
+            then
                VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                                      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße);
 
@@ -547,8 +612,10 @@ package body Karte is
                null;
             end if;
       
-            if Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss /= 0 then
+            if
+              Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss /= 0
+            then
                KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss);
 
@@ -635,7 +702,9 @@ package body Karte is
       end case;
 
       New_Line;
-      case GlobaleVariablen.FeindlicheInformationenSehen is -- Für Cheat
+      case
+        GlobaleVariablen.FeindlicheInformationenSehen
+      is -- Für Cheat
          when False =>
             null;
                                  

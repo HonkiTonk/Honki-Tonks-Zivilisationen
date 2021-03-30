@@ -13,20 +13,26 @@ package body BewegungEinheitenMoeglichPruefen is
       
       PassierbarkeitNummer := KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund).Passierbarkeit;
       
-      if EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitNummer) = True then
+      if
+        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitNummer)
+        = True
+      then
          return 0;
          
       else
          null;
       end if;
       
-      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (2) is
+      case
+        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (2)
+      is
          when True =>
             StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                        KoordinatenExtern => NeuePositionExtern);
          
-            case StadtNummer is
+            case
+              StadtNummer
+            is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
                   return -1;
                
@@ -38,12 +44,16 @@ package body BewegungEinheitenMoeglichPruefen is
             null;
       end case;
 
-      case EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (1) is
+      case
+        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (1)
+      is
          when True =>
             EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                              KoordinatenExtern => NeuePositionExtern);
 
-            case EinheitNummer is
+            case
+              EinheitNummer
+            is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
                   return -1;
                
@@ -58,7 +68,9 @@ package body BewegungEinheitenMoeglichPruefen is
                      FreierPlatzSchleife:
                      for FreierPlatz in GlobaleRecords.TransporterArray'Range loop
                         
-                        case GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Transportiert (FreierPlatz) is
+                        case
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Transportiert (FreierPlatz)
+                        is
                            when 0 =>
                               Transportplatz := FreierPlatz;
                               exit FreierPlatzSchleife;
@@ -69,7 +81,9 @@ package body BewegungEinheitenMoeglichPruefen is
                         
                      end loop FreierPlatzSchleife;
 
-                     case Transportplatz is
+                     case
+                       Transportplatz
+                     is
                         when 0 =>
                            return -1;
                            

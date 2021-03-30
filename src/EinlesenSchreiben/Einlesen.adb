@@ -15,7 +15,9 @@ package body Einlesen is
       Erfolgreich := EinlesenSprache;
       Ladezeiten.SpielStartzeiten (2, 1) := Clock;
       
-      case Erfolgreich is
+      case
+        Erfolgreich
+      is
          when True =>
             GlobaleVariablen.GewählteSprache := Auswahl.AuswahlSprache;
             
@@ -26,7 +28,9 @@ package body Einlesen is
       Ladezeiten.SpielStartzeiten (1, 2) := Clock;
       Erfolgreich := EinlesenTextNeu;
 
-      case Erfolgreich is
+      case
+        Erfolgreich
+      is
          when True =>
             EinlesenWerte;
             Ladezeiten.SpielStartzeiten (2, 2) := Clock;
@@ -55,14 +59,20 @@ package body Einlesen is
 
          Get_Next_Entry (Search          => Suche,
                          Directory_Entry => Verzeichnis);
-         if Simple_Name (Directory_Entry => Verzeichnis) = "." or Simple_Name (Directory_Entry => Verzeichnis) = ".." then
+         if
+           Simple_Name (Directory_Entry => Verzeichnis) = "."
+           or
+             Simple_Name (Directory_Entry => Verzeichnis) = ".."
+         then
             null;
                   
          else  
             VerzeichnisInnenSchleife:
             for Sprache in GlobaleVariablen.SprachenEinlesenArray'Range loop
             
-               if GlobaleVariablen.SprachenEinlesen (Sprache) /= "|" then
+               if
+                 GlobaleVariablen.SprachenEinlesen (Sprache) /= "|"
+               then
                   null;
             
                else        
@@ -75,7 +85,9 @@ package body Einlesen is
 
       end loop VerzeichnisAußenSchleife;
       
-      if GlobaleVariablen.SprachenEinlesen (1) = "|" then
+      if
+        GlobaleVariablen.SprachenEinlesen (1) = "|"
+      then
          return False;
          
       else
@@ -89,7 +101,9 @@ package body Einlesen is
    function EinlesenTextNeu return Boolean is
    begin
       
-      case Exists (Name => "Dateien/Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0") is
+      case
+        Exists (Name => "Dateien/Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0")
+      is
          when True =>
             null;
 
@@ -104,7 +118,9 @@ package body Einlesen is
       EinlesenSchleife:
       for WelcheDateienSchleifenwert in WelcheTexteEinlesenNeuArray'Range loop
 
-         if End_Of_File (File => DateiNeuWelcheTexteEinlesen) = True then
+         if
+           End_Of_File (File => DateiNeuWelcheTexteEinlesen) = True
+         then
             exit EinlesenSchleife;
                
          else
@@ -120,7 +136,9 @@ package body Einlesen is
       DateiSchleife:
       for DateiSchleifenwert in 1 .. GlobaleVariablen.TexteEinlesenNeuArray'Last (1) loop
 
-         case Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheTexteEinlesenNeu (DateiSchleifenwert))))) is
+         case
+           Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheTexteEinlesenNeu (DateiSchleifenwert)))))
+         is
             when True =>
                null;
 
@@ -135,7 +153,9 @@ package body Einlesen is
          ZeilenSchleife:
          for ZeileSchleifenwert in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
 
-            if End_Of_File (File => DateiNeuText) = True then
+            if
+              End_Of_File (File => DateiNeuText) = True
+            then
                exit ZeilenSchleife;
                
             else
@@ -151,12 +171,6 @@ package body Einlesen is
       end loop DateiSchleife;
 
       return True;
-
-   exception
-      when Storage_Error =>
-         Put_Line (Item => "Zu lange Zeile, Einlesen.EinlesenText");
-         Close (File => DateiNeuText);
-         raise;
          
    end EinlesenTextNeu;
 
@@ -165,7 +179,9 @@ package body Einlesen is
    procedure EinlesenWerte is
    begin
         
-      case Exists (Name => "Dateien/WelcheWerteEinlesen") is
+      case
+        Exists (Name => "Dateien/WelcheWerteEinlesen")
+      is
          when True =>
             null;
 
@@ -180,7 +196,9 @@ package body Einlesen is
       DateiSchleife:
       for DateiSchleifenwert in WelcheWerteEinlesenNeuArray'Range loop
 
-         if End_Of_File (File => DateiNeuWelcheWerteEinlesen) = True then
+         if
+           End_Of_File (File => DateiNeuWelcheWerteEinlesen) = True
+         then
             exit DateiSchleife;
                
          else
@@ -196,7 +214,9 @@ package body Einlesen is
       WelcheWerteSchleife:
       for WerteSchleifenwert in WelcheWerteEinlesenNeuArray'Range loop
 
-         case Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheWerteEinlesenNeu (WerteSchleifenwert))))) is
+         case
+           Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheWerteEinlesenNeu (WerteSchleifenwert)))))
+         is
             when True =>
                null;
 

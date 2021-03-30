@@ -10,7 +10,9 @@ package body EinheitSuchen is
       EinheitSchleife:
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
-         if GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
+         if
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
+         then
             return EinheitNummerSchleifenwert;
             
          else
@@ -33,7 +35,9 @@ package body EinheitSuchen is
          EinheitSchleife:
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
-            if GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
+            if
+              GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
+            then
                return (RasseSchleifenwert, EinheitNummerSchleifenwert);
                
             else
@@ -57,10 +61,14 @@ package body EinheitSuchen is
          EinheitSchleife:
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 
-            if RasseExtern = RasseSchleifenwert then
+            if
+              RasseExtern = RasseSchleifenwert
+            then
                exit EinheitSchleife;
                
-            elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
+            elsif
+              GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
+            then
                return (RasseSchleifenwert, EinheitNummerSchleifenwert);
                
             else
@@ -82,7 +90,9 @@ package body EinheitSuchen is
       TransporterSchleife:
       for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
          
-         if GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).Transportiert (TransporterPlatzSchleifenwert) = EinheitNummer then
+         if
+           GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).Transportiert (TransporterPlatzSchleifenwert) = EinheitNummer
+         then
             return TransporterPlatzSchleifenwert;
             
          else
@@ -103,7 +113,9 @@ package body EinheitSuchen is
       TransporterSchleife:
       for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
          
-         if GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).Transportiert (TransporterPlatzSchleifenwert) /= 0 then
+         if
+           GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).Transportiert (TransporterPlatzSchleifenwert) /= 0
+         then
             return True;
             
          else

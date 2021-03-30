@@ -13,7 +13,9 @@ package body Sichtbarkeit is
       EinheitenSchleife:
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 
-         case GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID is
+         case
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID
+         is
             when 0 =>
                null;
             
@@ -26,7 +28,9 @@ package body Sichtbarkeit is
       StädteSchleife:
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
 
-         case GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID is
+         case
+           GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID
+         is
             when 0 =>
                null;
                
@@ -43,9 +47,11 @@ package body Sichtbarkeit is
    procedure SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      case Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
+      case
+        Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Grund is
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Grund
+      is
          when 7 =>
             SichtweiteObjekt := 3;
 
@@ -65,7 +71,9 @@ package body Sichtbarkeit is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
-            case Kartenwert.Erfolgreich is
+            case
+              Kartenwert.Erfolgreich
+            is
                when False =>
                   exit XÄnderungEinheitenSchleife;
                      
@@ -83,7 +91,9 @@ package body Sichtbarkeit is
    procedure SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
    begin
       
-      if GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner < 10 then
+      if
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner < 10
+      then
          SichtweiteObjekt := 2;
             
       else
@@ -99,7 +109,9 @@ package body Sichtbarkeit is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
                
-            case Kartenwert.Erfolgreich is
+            case
+              Kartenwert.Erfolgreich
+            is
                when False =>
                   exit XÄnderungStadtSchleife;
                      
@@ -124,8 +136,14 @@ package body Sichtbarkeit is
       -- Über den nicht Transporteinheiten kommen die Transporteinheiten
       -- Über den Transporteinheiten kommt der Cursor      
        
-      if Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern) = True then
-         if KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition and InDerStadtExtern = False then
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern) = True
+      then
+         if
+           KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition
+           and
+             InDerStadtExtern = False
+         then
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => 0,
                     RessourceExtern          => 0,
@@ -144,11 +162,16 @@ package body Sichtbarkeit is
             EinheitenSchleife:
             for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
-               if GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0 then
+               if
+                 GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0
+               then
                   null;
                
-               elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
-                 and GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).WirdTransportiert = 0 then
+               elsif
+                 GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
+                 and
+                   GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).WirdTransportiert = 0
+               then
                   Farben (EinheitExtern            => GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID,
                           VerbesserungExtern       => 0,
                           RessourceExtern          => 0,
@@ -170,10 +193,14 @@ package body Sichtbarkeit is
             StädteSchleife:
             for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
-               if GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID = 0 then
+               if
+                 GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID = 0
+               then
                   null;
 
-               elsif GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).AchsenPosition = KoordinatenExtern then
+               elsif
+                 GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).AchsenPosition = KoordinatenExtern
+               then
                   Farben (EinheitExtern            => 0,
                           VerbesserungExtern       => GlobaleDatentypen.KartenVerbesserung (GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID),
                           RessourceExtern          => 0,
@@ -190,7 +217,9 @@ package body Sichtbarkeit is
             end loop StädteSchleife;
          end loop RassenStädteSchleife;
 
-         if Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet /= 0 then            
+         if
+           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet /= 0
+         then            
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet,
                     RessourceExtern          => 0,
@@ -199,7 +228,9 @@ package body Sichtbarkeit is
                     EigeneRasseExtern        => RasseExtern,
                     RasseExtern              => 0);
            
-         elsif Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße /= 0 then
+         elsif
+           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße /= 0
+         then
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße,
                     RessourceExtern          => 0,
@@ -208,7 +239,9 @@ package body Sichtbarkeit is
                     EigeneRasseExtern        => RasseExtern,
                     RasseExtern              => 0);
             
-         elsif Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource /= 0 then
+         elsif
+           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource /= 0
+         then
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => 0,
                     RessourceExtern          => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource,
@@ -217,7 +250,9 @@ package body Sichtbarkeit is
                     EigeneRasseExtern        => RasseExtern,
                     RasseExtern              => 0);
             
-         elsif Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss /= 0 then
+         elsif
+           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss /= 0
+         then
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => 0,
                     RessourceExtern          => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss,
@@ -237,7 +272,9 @@ package body Sichtbarkeit is
          end if;
          
       else
-         if KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition then         
+         if
+           KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition
+         then         
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => 0,
                     RessourceExtern          => 0,
@@ -259,9 +296,13 @@ package body Sichtbarkeit is
                      CursorExtern : in Boolean; EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.RassenMitNullwert) is
    begin
 
-      case CursorExtern is
+      case
+        CursorExtern
+      is
          when True =>
-            case GrundExtern is
+            case
+              GrundExtern
+            is
                when 1 | 4 | 5 | 31 | 37 | 42 =>
                   Put (Item => CSI & "38;2;0;0;0m");
                   
@@ -273,9 +314,13 @@ package body Sichtbarkeit is
             null;
       end case;
 
-      case EinheitExtern is
+      case
+        EinheitExtern
+      is
          when EinheitenDatenbank.EinheitenListe'Range (2) =>
-            case GrundExtern is
+            case
+              GrundExtern
+            is
                when 1 | 4 | 5 | 31 | 37 | 42 =>
                   Put (Item => CSI & "38;2;0;0;0m");
                   
@@ -287,7 +332,9 @@ package body Sichtbarkeit is
             null;
       end case;
       
-      case VerbesserungExtern is
+      case
+        VerbesserungExtern
+      is
          when 1 =>
             Put (Item => CSI & "38;2;0;0;0m");
          
@@ -316,7 +363,9 @@ package body Sichtbarkeit is
             null;
       end case;
       
-      case RessourceExtern is
+      case
+        RessourceExtern
+      is
          when 10 =>
             Put (Item => CSI & "38;2;0;0;0m");
 
@@ -345,7 +394,9 @@ package body Sichtbarkeit is
             null;
       end case;
       
-      case GrundExtern is
+      case
+        GrundExtern
+      is
          when 1 =>
             Put (Item => CSI & "48;2;255;245;238m");
             
@@ -401,30 +452,50 @@ package body Sichtbarkeit is
             null;
       end case;
       
-      if CursorExtern = True then
+      if
+        CursorExtern = True
+      then
          Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (EigeneRasseExtern).CursorGrafik & CSI & "0m");
          
-      elsif EinheitExtern /= 0 then
+      elsif
+        EinheitExtern /= 0
+      then
          Put (Item => EinheitenDatenbank.EinheitenListe (EigeneRasseExtern, EinheitExtern).EinheitenGrafik & CSI & "0m");
         
-      elsif VerbesserungExtern /= 0 then
-         if VerbesserungExtern = 1 and RasseExtern = EigeneRasseExtern then            
+      elsif
+        VerbesserungExtern /= 0
+      then
+         if
+           VerbesserungExtern = 1
+           and
+             RasseExtern = EigeneRasseExtern
+         then            
             Put (Item => VerbesserungenDatenbank.VerbesserungListe (1).VerbesserungGrafik & CSI & "0m");
             
-         elsif VerbesserungExtern = 2 and RasseExtern = EigeneRasseExtern then            
+         elsif
+           VerbesserungExtern = 2
+           and
+             RasseExtern = EigeneRasseExtern
+         then            
             Put (Item => VerbesserungenDatenbank.VerbesserungListe (2).VerbesserungGrafik & CSI & "0m");
             
-         elsif VerbesserungExtern = 1 then
+         elsif
+           VerbesserungExtern = 1
+         then
             Put (Item => VerbesserungenDatenbank.VerbesserungListe (3).VerbesserungGrafik & CSI & "0m");
             
-         elsif VerbesserungExtern = 2 then
+         elsif
+           VerbesserungExtern = 2
+         then
             Put (Item => VerbesserungenDatenbank.VerbesserungListe (4).VerbesserungGrafik & CSI & "0m");
             
          else
             Put (Item => VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).VerbesserungGrafik & CSI & "0m");
          end if;
 
-      elsif RessourceExtern /= 0 then
+      elsif
+        RessourceExtern /= 0
+      then
          Put (Item => KartenDatenbank.KartenListe (RessourceExtern).KartenGrafik & CSI & "0m");
             
       else

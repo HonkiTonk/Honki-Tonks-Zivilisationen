@@ -34,6 +34,7 @@ private
    
    BonusBeiBewegung : Integer;
    Stadtnummer : Integer;
+   StraßeFlussVorhanden : Integer;
    
    BewegungspunkteModifikator : Float;
 

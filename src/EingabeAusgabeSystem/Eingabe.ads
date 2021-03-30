@@ -8,13 +8,15 @@ use GlobaleDatentypen;
 
 package Eingabe is
 
+   procedure WartenEingabe;
+
    function GanzeZahl (TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return Integer with
      Pre  => (ZahlenMaximumExtern <= 999_999_999 and ZahlenMinimumExtern < ZahlenMaximumExtern and ZahlenMinimumExtern >= -999_999_999),
      Post => (GanzeZahl'Result in -1_000_000_000 .. 999_999_999);
 
    function StadtName return Unbounded_Wide_Wide_String;
    function SpielstandName return Unbounded_Wide_Wide_String;
-   function TastenEingabe return Integer;
+   function TastenEingabe return Wide_Wide_Character;
 
 private
 
