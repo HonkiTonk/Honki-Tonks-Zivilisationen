@@ -22,8 +22,10 @@ package body NaechstesObjekt is
                
          if
            GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).ID = 0
-           or (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AktuelleBewegungspunkte <= 0.00 and BewegungspunkteExtern = Hat_Bewegungspunkte)
-           or (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AktuelleBewegungspunkte > 0.00 and BewegungspunkteExtern = Keine_Bewegungspunkte)
+           or
+             (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AktuelleBewegungspunkte <= 0.00 and BewegungspunkteExtern = Hat_Bewegungspunkte)
+           or
+             (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AktuelleBewegungspunkte > 0.00 and BewegungspunkteExtern = Keine_Bewegungspunkte)
          then
             null;
          

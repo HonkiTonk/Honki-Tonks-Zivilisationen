@@ -10,7 +10,7 @@ package Auswahl is
 
    function AuswahlSprache return Unbounded_Wide_Wide_String;
 
-   function Auswahl (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern : in Natural) return Integer with
+   function Auswahl (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern : in Natural) return Integer with
      Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if FrageDateiExtern = GlobaleDatentypen.Leer then FrageZeileExtern = 0) and (if FrageZeileExtern = 0 then FrageDateiExtern = GlobaleDatentypen.Leer)
              and TextDateiExtern /= GlobaleDatentypen.Leer);
 

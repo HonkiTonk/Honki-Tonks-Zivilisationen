@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleVariablen, GlobaleKonstanten;
 
-with Anzeige;
+with Anzeige, Eingabe;
 
 package body Auswahl is
 
@@ -37,10 +37,10 @@ package body Auswahl is
                                  ErsteZeileExtern      => GlobaleVariablen.SprachenEinlesenArray'First,
                                  LetzteZeileExtern     => Ende);
          
-         Get_Immediate (Item => Taste);
+         Taste := Eingabe.TastenEingabe;
          
          case
-           To_Lower (Item => Taste)
+           Taste
          is
             when 'w' | '8' => 
                if
@@ -76,7 +76,7 @@ package body Auswahl is
 
 
 
-   function Auswahl (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern : in Natural) return Integer is
+   function Auswahl (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern : in Natural) return Integer is
    begin
 
       Anfang := ErsteZeileExtern;
@@ -95,9 +95,11 @@ package body Auswahl is
                                        LetzteZeileExtern     => LetzteZeileExtern,
                                        AktuelleAuswahlExtern => AktuelleAuswahl);
 
-         Get_Immediate (Item => Taste);
+         Taste := Eingabe.TastenEingabe;
          
-         case To_Lower (Item => Taste) is               
+         case
+           Taste
+         is
             when 'w' | '8' => 
                if
                  AktuelleAuswahl = Anfang
@@ -120,47 +122,47 @@ package body Auswahl is
                               
             when 'e' | '5' =>                  
                if
-                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 1)
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 1)
                then -- Hauptmenü
                   return GlobaleKonstanten.HauptmenüKonstante;
                   
                elsif
-                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 2)
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 2)
                then -- Spiel beenden
                   return GlobaleKonstanten.SpielBeendenKonstante;
                   
                elsif
-                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 3)
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 3)
                then -- Zurück
                   return GlobaleKonstanten.ZurückKonstante;
                   
                elsif
-                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 4)
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 4)
                then -- Ja
                   return GlobaleKonstanten.JaKonstante;
                   
                elsif
-                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 5)
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 5)
                then -- Nein
                   return GlobaleKonstanten.NeinKonstante;
 
                elsif
-                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 6)
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 6)
                then -- Speichern
                   return GlobaleKonstanten.SpeichernKonstante;
 
                elsif
-                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 7)
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 7)
                then -- Laden
                   return GlobaleKonstanten.LadenKonstante;
 
                elsif
-                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 8)
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 8)
                then -- Optionen
                   return GlobaleKonstanten.OptionenKonstante;
 
                elsif
-                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 9)
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 9)
                then -- Informationen
                   return GlobaleKonstanten.InformationenKonstante;
                      

@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
+use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleKonstanten;
 
-with Auswahl, Anzeige;
+with Auswahl, Anzeige, Eingabe;
 
 package body EinheitenDatenbank is
 
@@ -215,7 +215,7 @@ package body EinheitenDatenbank is
    begin
 
       Anzeige.TextTransporter := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
-      Anzeige.TextTransporter (0) := (GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
+      Anzeige.TextTransporter (0) := (GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
                                       Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID)), EinheitRasseNummerExtern.Platznummer);
       AktuellePosition := 1;
       Ende := 0;
@@ -230,7 +230,7 @@ package body EinheitenDatenbank is
             
          else
             Anzeige.TextTransporter (AktuellePosition)
-              := (GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
+              := (GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
                   Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert)).ID)),
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert));
@@ -253,10 +253,10 @@ package body EinheitenDatenbank is
 
          Anzeige.AnzeigeTransporter (AktuelleAuswahlExtern => AktuelleAuswahl);
          
-         Get_Immediate (Item => Taste);
+         Taste := Eingabe.TastenEingabe;
          
          case
-           To_Lower (Item => Taste)
+           Taste
          is               
             when 'w' | '8' => 
                if AktuelleAuswahl = Anzeige.TextTransporter'First then

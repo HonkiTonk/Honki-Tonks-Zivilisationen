@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
+with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten;
 
@@ -19,14 +19,14 @@ package body InDerStadt is
          KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
          New_Line;  
 
-         Get_Immediate (Item => Taste);
+         Taste := Eingabe.TastenEingabe;
          
          case
-           To_Lower (Item => Taste)
+           Taste
          is
             when 'w' | 's' | 'a' | 'd' | '1' | '2' | '3' | '4' | '6' | '7' | '8' | '9' =>
                BewegungssystemCursor.BewegungCursorRichtung (KarteExtern    => False,
-                                                             RichtungExtern => To_Lower (Item => Taste),
+                                                             RichtungExtern => Taste,
                                                              RasseExtern    => StadtRasseNummerExtern.Rasse);
 
             when 'e' => -- Einwohner von Feld entfernen/zuweisen
@@ -101,7 +101,8 @@ package body InDerStadt is
                      when others =>
                         GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).AktuelleGeldmenge
                           := GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).AktuelleGeldmenge
-                          + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse)).PreisGeld / 2);
+                          + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse,
+                                     GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse)).PreisGeld / 2);
                         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
                           (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse)) := False;
                   end case;
@@ -120,7 +121,8 @@ package body InDerStadt is
                         
                      when others =>
                         GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).AktuelleGeldmenge := GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).AktuelleGeldmenge
-                          + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse) + 12).PreisGeld / 2);
+                          + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse,
+                                     GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse) + 12).PreisGeld / 2);
                         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
                           (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse) + 12) := False;
                   end case;

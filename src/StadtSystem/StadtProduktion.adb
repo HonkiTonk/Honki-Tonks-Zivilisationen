@@ -121,10 +121,10 @@ package body StadtProduktion is
       case
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner
       is
-         when 0 .. 1 =>
+         when 0 .. 3 =>
             NahrungsverbrauchEinwohnerMultiplikator := 0;
             
-         when 2 .. 9 =>
+         when 4 .. 9 =>
             NahrungsverbrauchEinwohnerMultiplikator := 1;
             
          when 10 .. 19 =>
@@ -151,13 +151,13 @@ package body StadtProduktion is
          when 0 =>
             RessourcenverbrauchKorruptionMultiplikator := 0;
             
-         when 1 .. 3 =>
+         when 1 .. 4 =>
             RessourcenverbrauchKorruptionMultiplikator := 1;
             
-         when 4 .. 6 =>
+         when 5 .. 7 =>
             RessourcenverbrauchKorruptionMultiplikator := 2;
             
-         when 7 .. 9 =>
+         when 8 .. 10 =>
             RessourcenverbrauchKorruptionMultiplikator := 5;
             
          when others =>
@@ -190,13 +190,13 @@ package body StadtProduktion is
          when 0 =>
             GeldverbrauchKorruptionMultiplikator := 0;
             
-         when 1 .. 3 =>
+         when 1 .. 4 =>
             GeldverbrauchKorruptionMultiplikator := 1;
             
-         when 4 .. 6 =>
+         when 5 .. 7 =>
             GeldverbrauchKorruptionMultiplikator := 2;
             
-         when 7 .. 9 =>
+         when 8 .. 10 =>
             GeldverbrauchKorruptionMultiplikator := 5;
             
          when others =>
@@ -220,13 +220,13 @@ package body StadtProduktion is
          when 0 =>
             ForschungsverbrauchKorruptionMultiplikator := 0;
             
-         when 1 .. 3 =>
+         when 1 .. 4 =>
             ForschungsverbrauchKorruptionMultiplikator := 1;
             
-         when 4 .. 6 =>
+         when 5 .. 7 =>
             ForschungsverbrauchKorruptionMultiplikator := 2;
             
-         when 7 .. 9 =>
+         when 8 .. 10 =>
             ForschungsverbrauchKorruptionMultiplikator := 5;
             
          when others =>

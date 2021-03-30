@@ -1,8 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
-use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
-
 with GlobaleKonstanten, KIDatentypen;
 
 with Karte, Karten, EinheitenDatenbank, Anzeige, Eingabe, EinheitSuchen, VerbesserungenDatenbank;
@@ -23,11 +20,12 @@ package body Cheat is
                                         AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                         AbstandMitteExtern     => GlobaleDatentypen.Neue_Zeile,
                                         AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
-         Get_Immediate (Item => Taste);
+         
+         Taste := Eingabe.TastenEingabe;
 
          case
-           To_Lower (Item => Taste)
-         is               
+           Taste
+         is
             when 'n' => -- Nächste Einheit (unabhängig von der Rasse)
                BeliebigeNächsteEinheit (RasseExtern => RasseExtern);
 
@@ -92,7 +90,9 @@ package body Cheat is
               AktuelleEinheit
             is
                when GlobaleVariablen.EinheitenGebaut'Last (2) =>
-                  case AktuelleRasseEinheit is
+                  case
+                    AktuelleRasseEinheit
+                  is
                      when GlobaleDatentypen.Rassen'Last =>
                         AktuelleRasseEinheit := GlobaleDatentypen.Rassen'First;
                     

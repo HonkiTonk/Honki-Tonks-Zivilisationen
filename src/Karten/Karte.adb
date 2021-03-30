@@ -133,7 +133,7 @@ package body Karte is
                when True =>
                   Sichtbarkeit.Sichtbarkeit (InDerStadtExtern  => False,
                                              KoordinatenExtern => (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse),
-                                             RasseExtern => RasseExtern);
+                                             RasseExtern       => RasseExtern);
             end case;
             
             if

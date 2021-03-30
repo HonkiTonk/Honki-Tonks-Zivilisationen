@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Integer_Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO, Ada.Integer_Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
+use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
 
 with GlobaleKonstanten;
 
@@ -10,7 +10,7 @@ with Anzeige;
 package body Eingabe is 
 
    -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
-   function GanzeZahl (TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return Integer is
+   function GanzeZahl (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return Integer is
    begin
       
       ZahlenString := ("000000000");
@@ -54,7 +54,7 @@ package body Eingabe is
 
 
 
-   function ZahlSchleife (TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei is
+   function ZahlSchleife (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei is
    begin
 
       ZahlenSchleife: -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
@@ -252,7 +252,7 @@ package body Eingabe is
 
       Get_Immediate (Taste);
       
-      return 'a';
+      return To_Lower (Item => Taste);
       
    end TastenEingabe;
 

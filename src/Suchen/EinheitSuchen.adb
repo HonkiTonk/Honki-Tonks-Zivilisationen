@@ -27,6 +27,31 @@ package body EinheitSuchen is
 
 
 
+   function KoordinatenTransporterMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.MaximaleEinheitenMitNullWert is
+   begin
+      
+      EinheitSchleife:
+      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+         
+         if
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
+           and then
+             EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID).KannTransportieren /= 0
+         then
+            return EinheitNummerSchleifenwert;
+            
+         else
+            null;
+         end if;
+         
+      end loop EinheitSchleife;
+      
+      return GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch;
+      
+   end KoordinatenTransporterMitRasseSuchen;
+
+
+
    function KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
    begin
 
@@ -36,6 +61,11 @@ package body EinheitSuchen is
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
             if
+              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+            then
+               exit EinheitSchleife;
+               
+            elsif
               GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
             then
                return (RasseSchleifenwert, EinheitNummerSchleifenwert);
@@ -63,6 +93,8 @@ package body EinheitSuchen is
 
             if
               RasseExtern = RasseSchleifenwert
+              or
+                GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
             then
                exit EinheitSchleife;
                

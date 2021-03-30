@@ -21,13 +21,15 @@ private
    EinheitBewegtNichtEingeladen : Boolean;
    ErgebnisGegnerAngreifen : Boolean;
 
+   Bewegung : GlobaleDatentypen.Bewegung_Enum;
+
    FeldPassierbar : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
    RückgabeWert : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
    Gegner : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
 
    Richtung : Wide_Wide_Character;
       
-   EinheitNummerTransporter : GlobaleDatentypen.MaximaleEinheiten;
+   TransporterNummer : GlobaleDatentypen.MaximaleEinheiten;
    EinheitAusladen : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
    FreierPlatzNummer : Positive;

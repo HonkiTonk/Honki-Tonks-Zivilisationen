@@ -38,14 +38,14 @@ package Anzeige is
    type TextTransporterArray is array (GlobaleRecords.TransporterArray'First - 1 .. GlobaleRecords.TransporterArray'Last) of TextTransporterRecord;
    TextTransporter : TextTransporterArray;
 
-   procedure AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
-                                    AbstandAnfangExtern, AbstandMitteExtern, AbstandEndeExtern : in GlobaleDatentypen.WelcherAbstand_Enum) with
+   procedure AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
+                                    AbstandAnfangExtern, AbstandMitteExtern, AbstandEndeExtern : in GlobaleDatentypen.Welcher_Abstand_Enum) with
      Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if ÜberschriftDateiExtern = GlobaleDatentypen.Leer then ÜberschriftZeileExtern = 0)
              and (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleDatentypen.Leer) and TextDateiExtern /= GlobaleDatentypen.Leer);
 
-   procedure EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; TextZeileExtern : in Positive);
+   procedure EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; TextZeileExtern : in Positive);
 
-   procedure AnzeigeMitAuswahlNeu (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern, AktuelleAuswahlExtern : in Natural) with
+   procedure AnzeigeMitAuswahlNeu (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern, AktuelleAuswahlExtern : in Natural) with
      Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if FrageDateiExtern = GlobaleDatentypen.Leer then FrageZeileExtern = 0) and (if FrageZeileExtern = 0 then FrageDateiExtern = GlobaleDatentypen.Leer)
              and TextDateiExtern /= GlobaleDatentypen.Leer);
 
@@ -59,8 +59,8 @@ package Anzeige is
 
    procedure AnzeigeTransporter (AktuelleAuswahlExtern : in Natural);
 
-   procedure AnzeigeLangerTextNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
-                                   AbstandAnfangExtern, AbstandEndeExtern : in GlobaleDatentypen.WelcherAbstand_Enum) with
+   procedure AnzeigeLangerTextNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
+                                   AbstandAnfangExtern, AbstandEndeExtern : in GlobaleDatentypen.Welcher_Abstand_Enum) with
      Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if ÜberschriftDateiExtern = GlobaleDatentypen.Leer then ÜberschriftZeileExtern = 0) and (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleDatentypen.Leer)
              and TextDateiExtern /= GlobaleDatentypen.Leer);
 

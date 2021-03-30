@@ -26,7 +26,7 @@ package body BewegungEinheitenMoeglichPruefen is
       case
         EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (2)
       is
-         when True =>
+         when True => -- Hier noch prüfen ob es ein Transporter ist und Einheiten zum Ausladen dabei hat. Siehe auskommentierten Code weiter unten.
             StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                        KoordinatenExtern => NeuePositionExtern);
          
@@ -39,6 +39,36 @@ package body BewegungEinheitenMoeglichPruefen is
                when others =>
                   return 0;
             end case;
+
+            -- if
+            -- EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportieren /= 0
+            -- then
+            -- Transportplatz := 0;
+            -- BelegterPlatzSchleife:
+            -- for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+                        
+            -- case
+            -- GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransporterNummer).Transportiert (BelegterPlatzSchleifenwert)
+            -- is
+            -- when 0 =>
+            -- null;
+                              
+            -- when others =>
+            -- Transportplatz := 1;
+            -- exit BelegterPlatzSchleife;
+            -- end case;
+                  
+            -- end loop BelegterPlatzSchleife;
+
+            -- case
+            -- Transportplatz
+            -- is
+            -- when 0 =>
+            -- return -1;
+                           
+            -- when others =>
+            -- return 0;
+            -- end case;
                      
          when False =>
             null;
@@ -48,11 +78,11 @@ package body BewegungEinheitenMoeglichPruefen is
         EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (1)
       is
          when True =>
-            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                             KoordinatenExtern => NeuePositionExtern);
+            TransporterNummer := EinheitSuchen.KoordinatenTransporterMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                     KoordinatenExtern => NeuePositionExtern);
 
             case
-              EinheitNummer
+              TransporterNummer
             is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
                   return -1;
@@ -62,17 +92,17 @@ package body BewegungEinheitenMoeglichPruefen is
                     EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportiertWerden > 0
                     and
                       EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportiertWerden 
-                        <= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).KannTransportieren
+                        <= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransporterNummer).ID).KannTransportieren
                   then
                      Transportplatz := 0;
                      FreierPlatzSchleife:
-                     for FreierPlatz in GlobaleRecords.TransporterArray'Range loop
+                     for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
                         
                         case
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Transportiert (FreierPlatz)
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransporterNummer).Transportiert (FreierPlatzSchleifenwert)
                         is
                            when 0 =>
-                              Transportplatz := FreierPlatz;
+                              Transportplatz := FreierPlatzSchleifenwert;
                               exit FreierPlatzSchleife;
                               
                            when others =>

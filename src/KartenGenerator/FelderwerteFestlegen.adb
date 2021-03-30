@@ -60,34 +60,44 @@ package body FelderwerteFestlegen is
                when False =>
                   exit BewertungXÄnderungSchleife;
                   
-               when True =>                  
-                  if
-                  abs (BewertungYÄnderungSchleifenwert) = 2
-                    or
-                  abs (BewertungXÄnderungSchleifenwert) = 2
-                  then
-                     BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
-                                      YAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).YAchse,
-                                      XAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).XAchse,
-                                      TeilerExtern              => 2);
-
-                  elsif
-                  abs (BewertungYÄnderungSchleifenwert) = 3
-                    or
-                  abs (BewertungXÄnderungSchleifenwert) = 3
-                  then
-                     BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
-                                      YAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).YAchse,
-                                      XAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).XAchse,
-                                      TeilerExtern              => 3);
-
-                  else
-                     BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
-                                      YAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).YAchse,
-                                      XAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).XAchse,
-                                      TeilerExtern              => 1);
-                  end if;
+               when True =>
+                  null;
             end case;
+
+            if
+              BewertungYÄnderungSchleifenwert = 2
+              or
+                BewertungYÄnderungSchleifenwert = -2
+                or
+                  BewertungXÄnderungSchleifenwert = 2
+                  or
+                    BewertungXÄnderungSchleifenwert = -2
+            then
+               BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
+                                YAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).YAchse,
+                                XAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).XAchse,
+                                TeilerExtern              => 2);
+
+            elsif
+              BewertungYÄnderungSchleifenwert = 3
+              or
+                BewertungYÄnderungSchleifenwert = -3
+                or
+                  BewertungXÄnderungSchleifenwert = 3
+                  or
+                    BewertungXÄnderungSchleifenwert = -3
+            then
+               BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
+                                YAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).YAchse,
+                                XAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).XAchse,
+                                TeilerExtern              => 3);
+
+            else
+               BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
+                                YAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).YAchse,
+                                XAchseFeldAufschlagExtern => Kartenwert (KoordinatenExtern.EAchse).XAchse,
+                                TeilerExtern              => 1);
+            end if;
                                  
          end loop BewertungXÄnderungSchleife;
       end loop BewertungYÄnderungSchleife;

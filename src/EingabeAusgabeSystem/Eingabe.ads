@@ -10,7 +10,7 @@ package Eingabe is
 
    procedure WartenEingabe;
 
-   function GanzeZahl (TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return Integer with
+   function GanzeZahl (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return Integer with
      Pre  => (ZahlenMaximumExtern <= 999_999_999 and ZahlenMinimumExtern < ZahlenMaximumExtern and ZahlenMinimumExtern >= -999_999_999),
      Post => (GanzeZahl'Result in -1_000_000_000 .. 999_999_999);
 
@@ -37,7 +37,7 @@ private
 
    function GanzeZahlPrüfung (ZeichenExtern : in Wide_Wide_Character) return GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
 
-   function ZahlSchleife (TextDateiExtern : in GlobaleDatentypen.WelcheDatei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei with
+   function ZahlSchleife (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei with
      Pre => (ZahlenMaximumExtern <= 999_999_999 and ZahlenMinimumExtern < ZahlenMaximumExtern and ZahlenMinimumExtern >= -999_999_999);
 
 end Eingabe;

@@ -151,22 +151,22 @@ package body SpielEinstellungen is
          case
            KartenartAuswahl
          is
-         when 1 .. 5 =>
-            Karten.Kartenart := KartenartAuswahl;
-            return 3;
+            when 1 .. 5 =>
+               Karten.Kartenart := KartenartAuswahl;
+               return 3;
                
-         when 6 =>               
-            Karten.Kartenart := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2);
-            return 3;
+            when 6 =>               
+               Karten.Kartenart := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2);
+               return 3;
                
-         when -2 =>
-            return 1;
+            when -2 =>
+               return 1;
 
-         when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-            return KartenartAuswahl;
+            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+               return KartenartAuswahl;
                
-         when others =>
-            null;
+            when others =>
+               null;
          end case;
 
          Put (Item => CSI & "2J" & CSI & "H");                  
@@ -554,22 +554,22 @@ package body SpielEinstellungen is
          case
            SchwierigkeitAuswahl
          is
-         when 1 .. 3 =>
-            GlobaleVariablen.Schwierigkeitsgrad := SchwierigkeitAuswahl;
-            return 7;
+            when 1 .. 3 =>
+               GlobaleVariablen.Schwierigkeitsgrad := SchwierigkeitAuswahl;
+               return 7;
 
-         when 4 =>
-            GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 6);
-            return 7;
+            when 4 =>
+               GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 6);
+               return 7;
                
-         when -2 =>
-            return 5;
+            when -2 =>
+               return 5;
 
-         when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-            return SchwierigkeitAuswahl;
+            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+               return SchwierigkeitAuswahl;
                
-         when others =>
-            null;
+            when others =>
+               null;
          end case;
 
          Put (Item => CSI & "2J" & CSI & "H");

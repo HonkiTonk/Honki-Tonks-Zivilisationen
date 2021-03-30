@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
+use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with Anzeige;
+with Anzeige, Eingabe;
 
 package body ForschungsDatenbank is
 
@@ -98,7 +98,7 @@ package body ForschungsDatenbank is
       for ForschungenSchleifenwert in GlobaleDatentypen.ForschungID loop
          
          if
-           To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Forschung_Kurz),
+           To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Forschung_Kurz),
                                 Positive (ForschungenSchleifenwert) + RassenAufschlagForschung (RasseExtern))) = "|"
          then
             exit ForschungSchleife;
@@ -132,7 +132,7 @@ package body ForschungsDatenbank is
               AnforderungenErfüllt
             is
                when True =>
-                  Anzeige.TextForschungNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Beschreibungen_Forschung_Kurz),
+                  Anzeige.TextForschungNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Forschung_Kurz),
                                                                                              Positive (ForschungenSchleifenwert) + RassenAufschlagForschung (RasseExtern));
                   Anzeige.TextForschungNeu (Ende).Nummer := ForschungenSchleifenwert;
                   Ende := Ende + 1;
@@ -149,7 +149,7 @@ package body ForschungsDatenbank is
         and
           Ende > 1
       then
-         Anzeige.TextForschungNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Feste_Abfragen), 3);
+         Anzeige.TextForschungNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
 
       elsif
         Anzeige.TextForschungNeu (Ende).Nummer = 0
@@ -160,7 +160,7 @@ package body ForschungsDatenbank is
          
       else
          Ende := Ende + 1;
-         Anzeige.TextForschungNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.WelcheDatei_Enum'Pos (Feste_Abfragen), 3);
+         Anzeige.TextForschungNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
       end if;
 
       AktuelleAuswahl := 1;
@@ -190,10 +190,10 @@ package body ForschungsDatenbank is
                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
          end if;
          
-         Get_Immediate (Item => Taste);
+         Taste := Eingabe.TastenEingabe;
          
          case
-           To_Lower (Item => Taste)
+           Taste
          is               
             when 'w' | '8' => 
                if AktuelleAuswahl = Anzeige.TextForschungNeu'First then

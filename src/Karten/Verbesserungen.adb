@@ -196,7 +196,7 @@ package body Verbesserungen is
       case
         BefehlExtern
       is
-         when Straße_Bauen => -- Landstraße
+         when Straße_Bauen => -- Landstraße und später Schiene
             case
               Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
@@ -322,32 +322,12 @@ package body Verbesserungen is
                VerbesserungFehler (WelcherFehlerExtern => 5);
                
             else
-               case
-                 Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Grund
-               is
-                  when 1 .. 32 =>
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (BefehlExtern);
-               
-                  when others =>
-                     VerbesserungFehler (WelcherFehlerExtern => 2);
-               end case;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (BefehlExtern);
             end if;
 
          when Verschanzen => -- Verschanzen
-            case
-              Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Grund
-            is
-               when 1 .. 32 =>
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (BefehlExtern);
-               
-               when others =>
-                  VerbesserungFehler (WelcherFehlerExtern => 2);
-            end case;
-
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := Befehle_Enum'Pos (BefehlExtern);
+            
          when Einheit_Auflösen => -- Einheit auflösen
             Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 9);
             case
@@ -564,158 +544,160 @@ package body Verbesserungen is
                   exit XAchseSchleife;
 
                when True =>
-                  if
-                    XÄnderungSchleifenwert = -1
-                    and
-                      YÄnderungSchleifenwert = 0
-                  then
-                     case
-                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
-                     is
-                        when 0 =>
-                           Straßenwert := Straßenwert - 1_000;
-
-                        when 7 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
-                     
-                        when 9 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
-
-                        when 11 =>                     
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
-
-                        when 15 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
-
-                        when 17 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
-
-                        when 18 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
-
-                        when 19 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
-                     
-                        when others =>
-                           null;
-                     end case;
-                     Straßenwert := Straßenwert + 1_000;
-               
-                  elsif
-                    XÄnderungSchleifenwert = 1
-                    and
-                      YÄnderungSchleifenwert = 0
-                  then
-                     case
-                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
-                     is
-                        when 0 =>
-                           Straßenwert := Straßenwert - 100;
-
-                        when 7 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
-                     
-                        when 8 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
-
-                        when 10 =>                     
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
-
-                        when 14 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
-
-                        when 16 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
-
-                        when 18 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
-
-                        when 19 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
-                     
-                        when others =>
-                           null;
-                     end case;
-                     Straßenwert := Straßenwert + 100;
-               
-                  elsif
-                    YÄnderungSchleifenwert = -1
-                    and
-                      XÄnderungSchleifenwert = 0
-                  then
-                     case
-                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
-                     is
-                        when 0 =>
-                           Straßenwert := Straßenwert - 10;
-                     
-                        when 6 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
-                     
-                        when 10 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
-
-                        when 11 =>                     
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
-
-                        when 12 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
-
-                        when 16 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
-
-                        when 17 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
-
-                        when 18 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
-                     
-                        when others =>
-                           null;
-                     end case;
-                     Straßenwert := Straßenwert + 10;
-               
-                  elsif
-                    YÄnderungSchleifenwert = 1
-                    and
-                      XÄnderungSchleifenwert = 0
-                  then
-                     case
-                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
-                     is
-                        when 0 =>
-                           Straßenwert := Straßenwert - 1;
-                     
-                        when 6 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
-                     
-                        when 8 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
-
-                        when 9 =>                     
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
-
-                        when 13 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
-
-                        when 16 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
-
-                        when 17 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
-
-                        when 19 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
-                     
-                        when others =>
-                           null;
-                     end case;
-                     Straßenwert := Straßenwert + 1;
-               
-                  else
-                     null;
-                  end if;
+                  null;
             end case;
+
+            if
+              XÄnderungSchleifenwert = -1
+              and
+                YÄnderungSchleifenwert = 0
+            then
+               case
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
+               is
+                  when 0 =>
+                     Straßenwert := Straßenwert - 1_000;
+
+                  when 7 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
+                     
+                  when 9 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
+
+                  when 11 =>                     
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
+
+                  when 15 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
+
+                  when 17 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
+
+                  when 18 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
+
+                  when 19 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
+                     
+                  when others =>
+                     null;
+               end case;
+               Straßenwert := Straßenwert + 1_000;
+               
+            elsif
+              XÄnderungSchleifenwert = 1
+              and
+                YÄnderungSchleifenwert = 0
+            then
+               case
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
+               is
+                  when 0 =>
+                     Straßenwert := Straßenwert - 100;
+
+                  when 7 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
+                     
+                  when 8 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
+
+                  when 10 =>                     
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
+
+                  when 14 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
+
+                  when 16 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
+
+                  when 18 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
+
+                  when 19 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
+                     
+                  when others =>
+                     null;
+               end case;
+               Straßenwert := Straßenwert + 100;
+               
+            elsif
+              YÄnderungSchleifenwert = -1
+              and
+                XÄnderungSchleifenwert = 0
+            then
+               case
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
+               is
+                  when 0 =>
+                     Straßenwert := Straßenwert - 10;
+                     
+                  when 6 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
+                     
+                  when 10 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
+
+                  when 11 =>                     
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
+
+                  when 12 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
+
+                  when 16 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
+
+                  when 17 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
+
+                  when 18 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
+                     
+                  when others =>
+                     null;
+               end case;
+               Straßenwert := Straßenwert + 10;
+               
+            elsif
+              YÄnderungSchleifenwert = 1
+              and
+                XÄnderungSchleifenwert = 0
+            then
+               case
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
+               is
+                  when 0 =>
+                     Straßenwert := Straßenwert - 1;
+                     
+                  when 6 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
+                     
+                  when 8 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
+
+                  when 9 =>                     
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
+
+                  when 13 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
+
+                  when 16 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
+
+                  when 17 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
+
+                  when 19 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
+                     
+                  when others =>
+                     null;
+               end case;
+               Straßenwert := Straßenwert + 1;
+               
+            else
+               null;
+            end if;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;

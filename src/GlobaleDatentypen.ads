@@ -16,12 +16,12 @@ package GlobaleDatentypen is
    type TextZeilen is range 0 .. 84;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. 84;
 
-   type WelcheDatei_Enum is (Leer, Start, Feste_Abfragen, Spiel_Einstellungen, Rassen_Beschreibung_Lang, Menü_Auswahl, Beschreibungen_Kartenfelder_Kurz, Beschreibungen_Kartenfelder_Lang, Fehlermeldungen, Zeug,
+   type Welche_Datei_Enum is (Leer, Start, Feste_Abfragen, Spiel_Einstellungen, Rassen_Beschreibung_Lang, Menü_Auswahl, Beschreibungen_Kartenfelder_Kurz, Beschreibungen_Kartenfelder_Lang, Fehlermeldungen, Zeug,
                              Fragen, Ladezeiten, Beschreibungen_Einheiten_Kurz, Beschreibungen_Einheiten_Lang, Beschreibungen_Verbesserungen_Kurz, Beschreibungen_Verbesserungen_Lang, Beschreibungen_Gebäude_Kurz,
                              Beschreibungen_Gebäude_Lang, Beschreibungen_Forschung_Kurz, Beschreibungen_Forschung_Lang, Beschreibungen_Beschäftigung_Kurz, Beschreibungen_Beschäftigung_Lang, Städtenamen_KI, Cheat_Menü,
                             Rassen_Beschreibung_Kurz);
 
-   type WelcherAbstand_Enum is (Keiner, Kleiner_Abstand, Großer_Abstand, Neue_Zeile); 
+   type Welcher_Abstand_Enum is (Keiner, Kleiner_Abstand, Großer_Abstand, Neue_Zeile); 
    -- Für Anzeige
 
 
@@ -57,6 +57,8 @@ package GlobaleDatentypen is
 
 
    -- Für Einheiten
+   type Bewegung_Enum is (Leer, Keine_Bewegung_Möglich, Normale_Bewegung_Möglich, Beladen_Bewegung_Möglich, Entladen_Bewegung_Möglich, Gegner_Blockiert, Transporter_Stadt_Möglich);
+
    type MaximaleEinheitenMitNullWert is range 0 .. 1_000;
    subtype MaximaleEinheiten is MaximaleEinheitenMitNullWert range 1 .. MaximaleEinheitenMitNullWert'Last;
 

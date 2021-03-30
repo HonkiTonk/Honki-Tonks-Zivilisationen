@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Characters.Wide_Wide_Latin_9;
+use Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten;
 
@@ -13,14 +13,14 @@ package body BefehleImSpiel is
    function Befehle (RasseExtern : in GlobaleDatentypen.Rassen) return Integer is
    begin 
             
-      Get_Immediate (Item => Taste);
+      Taste := Eingabe.TastenEingabe;
 
       case
-        To_Lower (Item => Taste)
+        Taste
       is -- Cursor bewegen
          when 'w' | 's' | 'a' | 'd' | '1' | '2' | '3' | '4' | '6' | '7' | '8' | '9' | '+' | '-' =>
             BewegungssystemCursor.BewegungCursorRichtung (KarteExtern       => True,
-                                                          RichtungExtern    => To_Lower (Item => Taste),
+                                                          RichtungExtern    => Taste,
                                                           RasseExtern => RasseExtern);
             
          when 'e' | '5' => -- Einheit bewegen/Stadt betreten
@@ -159,7 +159,7 @@ package body BefehleImSpiel is
          when 'l' | 'm' | 'f' | 'u' | 'z' | 'p' | 'h' | 'v' | Space | DEL | 'j' => -- l/1 = Straße, m/2 = Mine, f/3 = Farm, u/4 = Festung, z/5 = Wald aufforsten, p/6 = /Roden-Trockenlegen,
             -- h/7 = Heilen, v/8 = Verschanzen, Space/9 = Runde aussetzen, DEL/10 = Einheit auflösen, j/11 = Plündern
             case
-              To_Lower (Taste)
+              Taste
             is
                when 'l' =>
                   WelcherBefehl := 1;

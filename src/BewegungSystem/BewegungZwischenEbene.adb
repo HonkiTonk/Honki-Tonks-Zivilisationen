@@ -6,6 +6,13 @@ with KartenPruefungen, BewegungEinheitenMoeglichPruefen, EinheitSuchen;
 
 package body BewegungZwischenEbene is
 
+   function PassierbarOderTransporter (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord) return GlobaleDatentypen.Bewegung_Enum is
+   begin
+
+      return GlobaleDatentypen.Keine_Bewegung_Möglich;
+      
+   end PassierbarOderTransporter;
+
    function PassierbarkeitOderTransporter (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord) return GlobaleDatentypen.LoopRangeMinusEinsZuEins is
    begin
 

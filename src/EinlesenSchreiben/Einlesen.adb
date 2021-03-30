@@ -68,7 +68,7 @@ package body Einlesen is
                   
          else  
             VerzeichnisInnenSchleife:
-            for Sprache in GlobaleVariablen.SprachenEinlesenArray'Range loop
+            for Sprache in GlobaleVariablen.SprachenEinlesenArray'Range loop -- Alphabetisch in ein Stringarray einlesen und dann entsprechend weitersuchen lassen
             
                if
                  GlobaleVariablen.SprachenEinlesen (Sprache) /= "|"

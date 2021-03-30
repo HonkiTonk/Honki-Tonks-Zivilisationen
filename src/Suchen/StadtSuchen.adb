@@ -36,6 +36,11 @@ package body StadtSuchen is
          for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
             if
+              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+            then
+               exit StadtSchleife;
+               
+            elsif
               GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).AchsenPosition = KoordinatenExtern
             then
                return (RasseSchleifenwert, StadtNummerSchleifenwert);
@@ -63,6 +68,8 @@ package body StadtSuchen is
 
             if
               RasseExtern = RasseSchleifenwert
+              or
+                GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
             then
                exit StadtSchleife;
                

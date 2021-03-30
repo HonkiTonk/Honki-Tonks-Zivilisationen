@@ -18,7 +18,7 @@ private
    PassierbarkeitNummer : GlobaleDatentypen.PassierbarkeitType;
    
    StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
-   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   TransporterNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    Transportplatz : Natural;
    
    GegnerWert : GlobaleRecords.RassePlatznummerRecord;

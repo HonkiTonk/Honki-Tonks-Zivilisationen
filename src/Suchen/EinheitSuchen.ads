@@ -3,13 +3,19 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen, GlobaleRecords;
 
-with Karten;
+with Karten, EinheitenDatenbank;
 
 package EinheitSuchen is
 
    function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.MaximaleEinheitenMitNullWert with
      Pre => (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
              and GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+
+   function KoordinatenTransporterMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.MaximaleEinheitenMitNullWert with
+     Pre  => (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+             and GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0),
+     Post => ((if KoordinatenTransporterMitRasseSuchen'Result /= 0 then
+                  EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, KoordinatenTransporterMitRasseSuchen'Result).ID).KannTransportieren /= 0));
 
    function KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord with
      Pre  => (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
