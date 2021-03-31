@@ -28,6 +28,7 @@ package EinheitenDatenbank is
                     ('F',    8, 100, 10, 0,   (1 => True, 2 => True, 3 => True, others => False), 8, 1.00,    30, 3, 1, 10, 1,    0, 1), -- Bomber
                                                                
                     others => LeererWertEinheitListe));
+   -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
 
    procedure Beschreibung (IDExtern : in GlobaleDatentypen.EinheitenID);
    procedure LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) with

@@ -66,7 +66,6 @@ package GlobaleDatentypen is
    subtype EinheitenID is EinheitenIDMitNullWert range 1 .. EinheitenIDMitNullWert'Last;
 
    type PassierbarkeitType is range 1 .. 7; -- 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
-                                             -- Addieren für genaue Passierbarkeit
 
    type EinheitenTyp is range 1 .. 12;
    subtype UnbewaffneterTyp is EinheitenTyp range 1 .. 2; -- Für später merken, jetzt aber noch nicht einbauen/nutzen, da sonst ständig Zeug verschoben werden muss

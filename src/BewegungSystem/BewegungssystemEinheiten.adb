@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenbank, BewegungZwischenEbene, EinheitSuchen, KartenPruefungen, Eingabe;
+with Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenbank, BewegungZwischenEbene, EinheitSuchen, KartenPruefungen, Eingabe, BewegungEinheitenMoeglichPruefen;
 
 package body BewegungssystemEinheiten is
 
@@ -59,40 +59,36 @@ package body BewegungssystemEinheiten is
            KartenWert.Erfolgreich
          is
             when True =>
-               Bewegung := BewegungZwischenEbene.PassierbarOderTransporter (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                            ÄnderungExtern           => Änderung);
+               Bewegung := BewegungEinheitenMoeglichPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                               NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
                
             when False =>
-               null;
+               Bewegung := GlobaleDatentypen.Leer;
          end case;
 
          case
            Bewegung
          is
-            when GlobaleDatentypen.Leer =>
-               null;
+            when GlobaleDatentypen.Leer | GlobaleDatentypen.Keine_Bewegung_Möglich =>
+               EinheitBewegtNichtEingeladen := False;
                
-            when others =>
+            when GlobaleDatentypen.Normale_Bewegung_Möglich =>
                null;
-         end case;
 
-         RückgabeWert := BewegungZwischenEbene.PassierbarkeitOderTransporter (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                               ÄnderungExtern          => Änderung);
-         
-         case
-           RückgabeWert
-         is
-            when 1 => -- Da ist ein Transporter mit freiem Platz
+            when GlobaleDatentypen.Beladen_Bewegung_Möglich =>
                TransporterBeladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                    ÄnderungExtern           => Änderung);
                return;
                
-            when 0 => -- Einheit kann sich auf das Feld bewegen
+            when GlobaleDatentypen.Entladen_Bewegung_Möglich =>
+               null;
+               
+            when GlobaleDatentypen.Gegner_Blockiert =>
                Gegner := BewegungZwischenEbene.Gegner (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        ÄnderungExtern           => Änderung);
                
-            when -1 => -- Bewegung dahin nicht möglich und da ist keine Stadt/Transporter auf die die Einheit sich bewegen kann
-               EinheitBewegtNichtEingeladen := False;
+            when GlobaleDatentypen.Transporter_Stadt_Möglich =>
+               null;
          end case;
 
          if

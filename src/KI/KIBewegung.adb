@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with BewegungssystemEinheiten, KIPruefungen, KartenPruefungen, BewegungZwischenEbene;
+with BewegungssystemEinheiten, KIPruefungen, KartenPruefungen;
 
 package body KIBewegung is
 
@@ -78,8 +78,8 @@ package body KIBewegung is
                   null;
 
                else
-                  Bewegung := BewegungZwischenEbene.PassierbarkeitOderTransporter (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                   ÄnderungExtern           => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                  -- Bewegung := BewegungZwischenEbene.PassierbarkeitOderTransporter (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                   -- ÄnderungExtern           => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
 
                   case
                     Bewegung

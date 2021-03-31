@@ -9,9 +9,6 @@ package DatenbankRecords is
 
    type EinheitenListeRecord is record
       
-      -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
-      -- Addieren für genaue Passierbarkeit
-      
       EinheitenGrafik : Wide_Wide_Character;
       
       EinheitTyp : GlobaleDatentypen.EinheitenTyp; -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
@@ -19,7 +16,7 @@ package DatenbankRecords is
       PreisRessourcen : GlobaleDatentypen.KostenLager;
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
 
-      Passierbarkeit : PassierbarkeitArray;
+      Passierbarkeit : PassierbarkeitArray; -- 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
       MaximaleLebenspunkte : Integer;
       MaximaleBewegungspunkte : Float;
 

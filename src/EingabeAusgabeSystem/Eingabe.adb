@@ -250,7 +250,47 @@ package body Eingabe is
    function TastenEingabe return Wide_Wide_Character is
    begin
 
-      Get_Immediate (Taste);
+      Get_Immediate (Item => Taste);
+
+      if
+        Taste = ESC
+      then
+         Get_Immediate (Item => Taste);
+         if
+             Taste = '['
+         then
+            Get_Immediate (Item => Taste);
+            if
+              Taste = 'A' -- Pfeiltaste hoch
+            then
+               return 'w';
+               
+            elsif
+              Taste = 'B' -- Pfeiltaste runter
+            then
+               return 's';
+
+            elsif
+              Taste = 'C' -- Pfeiltaste rechts
+            then
+               return 'd';
+                 
+            elsif
+              Taste = 'D' -- Pfeiltaste links
+            then
+               return 'a';
+                 
+            else
+               return '0';
+            end if;
+         
+         else
+            return ESC;
+         end if;
+
+      else
+         null;
+      end if;
       
       return To_Lower (Item => Taste);
       
