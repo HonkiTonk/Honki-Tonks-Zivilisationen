@@ -49,7 +49,7 @@ package body Sichtbarkeit is
       
       case
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Grund
       is
          when 7 =>
@@ -295,42 +295,6 @@ package body Sichtbarkeit is
    procedure Farben (EinheitExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID; VerbesserungExtern : in GlobaleDatentypen.KartenVerbesserung; RessourceExtern, GrundExtern : in GlobaleDatentypen.KartenGrund;
                      CursorExtern : in Boolean; EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.RassenMitNullwert) is
    begin
-
-      case
-        CursorExtern
-      is
-         when True =>
-            case
-              GrundExtern
-            is
-               when 1 | 4 | 5 | 31 | 37 | 42 =>
-                  Put (Item => CSI & "38;2;0;0;0m");
-                  
-               when others =>
-                  Put (Item => CSI & "38;2;255;255;255m");
-            end case;
-            
-         when False =>
-            null;
-      end case;
-
-      case
-        EinheitExtern
-      is
-         when EinheitenDatenbank.EinheitenListe'Range (2) =>
-            case
-              GrundExtern
-            is
-               when 1 | 4 | 5 | 31 | 37 | 42 =>
-                  Put (Item => CSI & "38;2;0;0;0m");
-                  
-               when others =>
-                  Put (Item => CSI & "38;2;255;255;255m");
-            end case;
-            
-         when others =>
-            null;
-      end case;
       
       case
         VerbesserungExtern
@@ -452,6 +416,16 @@ package body Sichtbarkeit is
             null;
       end case;
       
+      case
+        GrundExtern
+      is
+         when 1 | 4 | 5 | 31 | 37 | 42 =>
+            Put (Item => CSI & "38;2;0;0;0m");
+                  
+         when others =>
+            Put (Item => CSI & "38;2;255;255;255m");
+      end case;
+      
       if
         CursorExtern = True
       then
@@ -464,7 +438,7 @@ package body Sichtbarkeit is
         
       elsif
         VerbesserungExtern /= 0
-      then
+      then         
          if
            VerbesserungExtern = 1
            and

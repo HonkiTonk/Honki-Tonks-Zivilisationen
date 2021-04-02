@@ -50,6 +50,7 @@ package body StadtBauen is
             
          else
             StadtNummer := StadtNummerSchleifenwert;
+            exit StadtSchleife;
          end if;
          
       end loop StadtSchleife;

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with EinheitenDatenbank, EinheitSuchen, StadtSuchen, KartenDatenbank, GlobaleKonstanten;
 
-package body BewegungEinheitenMoeglichPruefen is
+package body BewegungPassierbarkeitPruefen is
    
    -- 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
    function FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -156,9 +156,12 @@ package body BewegungEinheitenMoeglichPruefen is
 
 
 
-   function Wasser (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-                    NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.Bewegung_Enum is
-   begin
+   function Wasser
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return
+     GlobaleDatentypen.Bewegung_Enum
+   is begin
 
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                  KoordinatenExtern => NeuePositionExtern);
@@ -170,39 +173,60 @@ package body BewegungEinheitenMoeglichPruefen is
             return GlobaleDatentypen.Keine_Bewegung_Möglich;
                
          when others =>
-            return GlobaleDatentypen.Normale_Bewegung_Möglich;
+            null;
       end case;
 
-      -- if
-      -- EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportieren /= 0
-      -- then
-      -- Transportplatz := 0;
-      -- BelegterPlatzSchleife:
-      -- for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+      if
+        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportieren /= 0
+      then
+         Transportplatz := 0;
+         BelegterPlatzSchleife:
+         for
+           BelegterPlatzSchleifenwert
+         in
+           GlobaleRecords.TransporterArray'Range
+         loop
                         
-      -- case
-      -- GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransporterNummer).Transportiert (BelegterPlatzSchleifenwert)
-      -- is
-      -- when 0 =>
-      -- null;
+            case
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)
+            is
+               when 0 =>
+                  null;
                               
-      -- when others =>
-      -- Transportplatz := 1;
-      -- exit BelegterPlatzSchleife;
-      -- end case;
-                  
-      -- end loop BelegterPlatzSchleife;
+               when others =>
+                  Transportplatz := 1;
+                  exit BelegterPlatzSchleife;
+            end case;
+                
+         end loop BelegterPlatzSchleife;
 
-      -- case
-      -- Transportplatz
-      -- is
-      -- when 0 =>
-      -- return -1;
-                           
-      -- when others =>
-      -- return 0;
-      -- end case;
+         case
+           Transportplatz
+         is
+            when 0 =>
+               return GlobaleDatentypen.Transporter_Stadt_Möglich;
+                          
+            when others =>
+               return GlobaleDatentypen.Keine_Bewegung_Möglich;
+         end case;
+
+      else
+         return GlobaleDatentypen.Normale_Bewegung_Möglich;
+      end if;
 
    end Wasser;
 
-end BewegungEinheitenMoeglichPruefen;
+
+
+   -- Brauch ich da noch weitere Funktionen aktuell? Oder vielleicht erst später wenn weiter Funktionen im Spiel sind?
+   function Unterwasser (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.Bewegung_Enum is
+   begin
+
+      StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                 KoordinatenExtern => NeuePositionExtern);
+      
+      return GlobaleDatentypen.Keine_Bewegung_Möglich;
+      
+   end Unterwasser;
+
+end BewegungPassierbarkeitPruefen;

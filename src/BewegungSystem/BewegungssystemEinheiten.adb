@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenbank, BewegungZwischenEbene, EinheitSuchen, KartenPruefungen, Eingabe, BewegungEinheitenMoeglichPruefen;
+with Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenbank, BewegungBlockiert, EinheitSuchen, KartenPruefungen, Eingabe, BewegungPassierbarkeitPruefen;
 
 package body BewegungssystemEinheiten is
 
@@ -59,8 +59,8 @@ package body BewegungssystemEinheiten is
            KartenWert.Erfolgreich
          is
             when True =>
-               Bewegung := BewegungEinheitenMoeglichPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                               NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+               Bewegung := BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                            NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
                
             when False =>
                Bewegung := GlobaleDatentypen.Leer;
@@ -69,62 +69,41 @@ package body BewegungssystemEinheiten is
          case
            Bewegung
          is
-            when GlobaleDatentypen.Leer | GlobaleDatentypen.Keine_Bewegung_Möglich =>
-               EinheitBewegtNichtEingeladen := False;
-               
-            when GlobaleDatentypen.Normale_Bewegung_Möglich =>
-               null;
-
             when GlobaleDatentypen.Beladen_Bewegung_Möglich =>
                TransporterBeladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                    ÄnderungExtern           => Änderung);
                return;
                
-            when GlobaleDatentypen.Entladen_Bewegung_Möglich =>
-               null;
-               
-            when GlobaleDatentypen.Gegner_Blockiert =>
-               Gegner := BewegungZwischenEbene.Gegner (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       ÄnderungExtern           => Änderung);
-               
-            when GlobaleDatentypen.Transporter_Stadt_Möglich =>
-               null;
+            when others =>
+               Blockiert := BewegungBlockiert.BlockiertStadtEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                     NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
          end case;
 
          if
-           Gegner = 1
+           (Bewegung = GlobaleDatentypen.Normale_Bewegung_Möglich
+            or
+              Bewegung = GlobaleDatentypen.Transporter_Stadt_Möglich)
            and
-             RückgabeWert /= -1
-         then -- 1 = Da ist ein Feind
-            ErgebnisGegnerAngreifen := Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                            GegnerExtern             => EinheitRasseNummerExtern);
-            EinheitBewegtNichtEingeladen := True;
-            
-         elsif
-           Gegner = 0
-           and
-             RückgabeWert /= -1
-         then -- 0 = Einheit kann sich auf das Feld bewegen
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
-                                                                    ÄnderungExtern       => Änderung,
-                                                                    ZusatzYAbstandExtern => 0);
+             Blockiert = GlobaleDatentypen.Normale_Bewegung_Möglich
+         then
             BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                          NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-            EinheitBewegtNichtEingeladen := True;
+            Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
-         else -- -1 = Bewegung dahin nicht möglich da von eigener Einheit blockiert oder Einheit im Kampf vernichtet
-            EinheitBewegtNichtEingeladen := False;
-         end if;         
-
-         case
-           EinheitBewegtNichtEingeladen
-         is
-            when True => -- Einheit wurde bewegt.          
-               Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         elsif
+           (Bewegung = GlobaleDatentypen.Normale_Bewegung_Möglich
+            or
+              Bewegung = GlobaleDatentypen.Transporter_Stadt_Möglich)
+           and
+             Blockiert = GlobaleDatentypen.Gegner_Blockiert
+         then
+            ErgebnisGegnerAngreifen := Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                            GegnerExtern             => EinheitRasseNummerExtern);
+            Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern); -- Das hier später anpassen, damit bei einer Vernichtung der Einheit keine Prüfung mehr stattfindet.
                
-            when False => -- Einheit wurde nicht bewegt.
-               null;
-         end case;
+         else
+            null;
+         end if;
          
          if
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte = 0.00

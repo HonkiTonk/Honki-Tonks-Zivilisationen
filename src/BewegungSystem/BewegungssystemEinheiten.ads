@@ -22,6 +22,7 @@ private
    ErgebnisGegnerAngreifen : Boolean;
 
    Bewegung : GlobaleDatentypen.Bewegung_Enum;
+   Blockiert : GlobaleDatentypen.Bewegung_Enum;
 
    FeldPassierbar : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
    RückgabeWert : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
