@@ -10,8 +10,12 @@ with Anzeige;
 package body Eingabe is 
 
    -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
-   function GanzeZahl (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return Integer is
-   begin
+   function GanzeZahl
+     (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      ZeileExtern : in Positive;
+      ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
+      return Integer
+   is begin
       
       ZahlenString := ("000000000");
       WelchesVorzeichen := True;
@@ -54,8 +58,12 @@ package body Eingabe is
 
 
 
-   function ZahlSchleife (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei is
-   begin
+   function ZahlSchleife
+     (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      ZeileExtern : in Positive; 
+      ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
+      return GlobaleDatentypen.LoopRangeMinusZweiZuZwei
+   is begin
 
       ZahlenSchleife: -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
       loop
@@ -177,8 +185,10 @@ package body Eingabe is
 
 
    -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
-   function GanzeZahlPrüfung (ZeichenExtern : in Wide_Wide_Character) return GlobaleDatentypen.LoopRangeMinusDreiZuDrei is
-   begin
+   function GanzeZahlPrüfung
+     (ZeichenExtern : in Wide_Wide_Character)
+      return GlobaleDatentypen.LoopRangeMinusDreiZuDrei
+   is begin
       
       case
         ZeichenExtern
@@ -211,8 +221,9 @@ package body Eingabe is
 
    
 
-   function StadtName return Unbounded_Wide_Wide_String is
-   begin
+   function StadtName
+     return Unbounded_Wide_Wide_String
+   is begin
       
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Zeug,
                                             TextZeileExtern => 32);
@@ -225,8 +236,9 @@ package body Eingabe is
 
 
 
-   function SpielstandName return Unbounded_Wide_Wide_String is
-   begin            
+   function SpielstandName
+     return Unbounded_Wide_Wide_String
+   is begin            
       
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fragen,
                                             TextZeileExtern => 22);
@@ -247,8 +259,9 @@ package body Eingabe is
 
 
 
-   function TastenEingabe return Wide_Wide_Character is
-   begin
+   function TastenEingabe
+     return Wide_Wide_Character
+   is begin
 
       Get_Immediate (Item => Taste);
 
@@ -298,8 +311,8 @@ package body Eingabe is
 
 
 
-   procedure WartenEingabe is
-   begin
+   procedure WartenEingabe
+   is begin
       
       Get_Immediate (Taste);
       

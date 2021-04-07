@@ -9,8 +9,9 @@ with KarteStadt, KartenDatenbank, Karten, EinheitenDatenbank, VerbesserungenDate
 
 package body Karte is
 
-   procedure AnzeigeKarte (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure AnzeigeKarte
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       case
         Karten.Kartengröße
@@ -154,8 +155,9 @@ package body Karte is
    
 
 
-   procedure Information (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure Information
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
 
       Verteidigungsbonus := 0;
       Nahrungsgewinnung := 0;

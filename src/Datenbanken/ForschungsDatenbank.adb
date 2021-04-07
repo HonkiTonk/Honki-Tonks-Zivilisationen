@@ -7,8 +7,9 @@ with Anzeige, Eingabe;
 
 package body ForschungsDatenbank is
 
-   procedure Beschreibung (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert) is
-   begin
+   procedure Beschreibung
+     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert)
+   is begin
       
       case
         IDExtern
@@ -38,8 +39,9 @@ package body ForschungsDatenbank is
 
 
 
-   procedure Forschung (RasseExtern : in GlobaleDatentypen.Rassen) is -- Hier noch mehr Optionen einbauen, z. B. Informationen über bereits erforschte Technologien
-   begin
+   procedure Forschung -- Hier noch mehr Optionen einbauen, z. B. Informationen über bereits erforschte Technologien
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       ForschungSchleife:
       loop
@@ -65,8 +67,9 @@ package body ForschungsDatenbank is
 
 
 
-   procedure ForschungZeit (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure ForschungZeit
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       if
         GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt = 0
@@ -88,8 +91,10 @@ package body ForschungsDatenbank is
 
 
 
-   function AuswahlForschungNeu (RasseExtern : in GlobaleDatentypen.Rassen) return GlobaleDatentypen.ForschungIDMitNullWert is
-   begin
+   function AuswahlForschungNeu
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.ForschungIDMitNullWert
+   is begin
       
       Anzeige.TextForschungNeu := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
       Ende := 1;
@@ -225,8 +230,8 @@ package body ForschungsDatenbank is
 
 
 
-   procedure ForschungFortschritt is
-   begin
+   procedure ForschungFortschritt
+   is begin
       
       RasseSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen loop

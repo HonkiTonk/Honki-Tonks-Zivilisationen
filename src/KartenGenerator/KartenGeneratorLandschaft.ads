@@ -28,10 +28,15 @@ private
                                                                                        4 => (0.40, 0.44, 0.45, 0.55, 0.70, 0.71, 0.80),
                                                                                        5 => (0.00, 0.50, 0.55, 0.60, 0.70, 0.75, 0.95));
    
-   procedure GenerierungLandschaftFelder (GrundExtern : in GlobaleDatentypen.KartenGrund; YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) with
-     Pre => (GrundExtern > 0 and YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   procedure GenerierungLandschaftFelder
+     (GrundExtern : in GlobaleDatentypen.KartenGrund;
+      YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     with
+       Pre => (GrundExtern > 0 and YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
-   procedure GenerierungLandschaftHügel (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) with
-     Pre => (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   procedure GenerierungLandschaftHügel
+     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     with
+       Pre => (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 end KartenGeneratorLandschaft;

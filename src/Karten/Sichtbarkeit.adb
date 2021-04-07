@@ -7,8 +7,9 @@ with KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, KartenPruefun
 
 package body Sichtbarkeit is
 
-   procedure SichtbarkeitsprüfungFürRasse (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure SichtbarkeitsprüfungFürRasse
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       EinheitenSchleife:
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
@@ -44,8 +45,9 @@ package body Sichtbarkeit is
 
 
 
-   procedure SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure SichtbarkeitsprüfungFürEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       case
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
@@ -88,8 +90,9 @@ package body Sichtbarkeit is
 
 
 
-   procedure SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure SichtbarkeitsprüfungFürStadt
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       if
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner < 10
@@ -126,8 +129,11 @@ package body Sichtbarkeit is
 
 
 
-   procedure Sichtbarkeit (InDerStadtExtern : in Boolean; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure Sichtbarkeit
+     (InDerStadtExtern : in Boolean;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       -- Über den Kartenfeldern kommen die Kartenressourcen
       -- Über den Kartenressourcen kommen die Kartenverbesserungen
@@ -292,9 +298,13 @@ package body Sichtbarkeit is
 
 
 
-   procedure Farben (EinheitExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID; VerbesserungExtern : in GlobaleDatentypen.KartenVerbesserung; RessourceExtern, GrundExtern : in GlobaleDatentypen.KartenGrund;
-                     CursorExtern : in Boolean; EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.RassenMitNullwert) is
-   begin
+   procedure Farben
+     (EinheitExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
+      VerbesserungExtern : in GlobaleDatentypen.KartenVerbesserung;
+      RessourceExtern, GrundExtern : in GlobaleDatentypen.KartenGrund;
+      CursorExtern : in Boolean;
+      EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.RassenMitNullwert)
+   is begin
       
       case
         VerbesserungExtern

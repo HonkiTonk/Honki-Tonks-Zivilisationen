@@ -4,8 +4,11 @@ with GlobaleDatentypen;
 
 package ZufallGeneratorenSpieleinstellungen is
 
-   function Spieleinstellungen (WelcheEinstellungExtern : in Positive) return Positive with
-     Pre  => (WelcheEinstellungExtern <= 6),
+   function Spieleinstellungen
+     (WelcheEinstellungExtern : in Positive)
+      return Positive
+     with
+       Pre  => (WelcheEinstellungExtern <= 6),
      Post => (Spieleinstellungen'Result <= Positive (GlobaleDatentypen.Rassen'Last));
 
 private

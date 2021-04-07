@@ -10,8 +10,8 @@ with Karten, Ladezeiten;
 
 package body KartenGeneratorPlanetenInneres is
 
-   procedure PlanetenInneres is
-   begin
+   procedure PlanetenInneres
+   is begin
       
       Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 9) := Clock;
          

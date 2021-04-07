@@ -9,9 +9,12 @@ with Eingabe;
 
 package body Anzeige is
 
-   procedure AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
-                                    AbstandAnfangExtern, AbstandMitteExtern, AbstandEndeExtern : in GlobaleDatentypen.Welcher_Abstand_Enum) is
-   begin
+   procedure AnzeigeOhneAuswahlNeu
+     (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      ÜberschriftZeileExtern : in Natural;
+      ErsteZeileExtern, LetzteZeileExtern : in Positive;
+      AbstandAnfangExtern, AbstandMitteExtern, AbstandEndeExtern : in GlobaleDatentypen.Welcher_Abstand_Enum)
+   is begin
         
       case
         ÜberschriftDateiExtern
@@ -96,8 +99,10 @@ package body Anzeige is
 
 
 
-   procedure EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; TextZeileExtern : in Positive) is
-   begin
+   procedure EinzeiligeAnzeigeOhneAuswahl
+     (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      TextZeileExtern : in Positive)
+   is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                      TextDateiExtern        => TextDateiExtern,
@@ -122,8 +127,10 @@ package body Anzeige is
 
 
 
-   procedure AnzeigeMitAuswahlNeu (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern, AktuelleAuswahlExtern : in Natural) is
-   begin
+   procedure AnzeigeMitAuswahlNeu
+     (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern, AktuelleAuswahlExtern : in Natural)
+   is begin
         
       LängsterText := 1;
       
@@ -213,8 +220,9 @@ package body Anzeige is
 
 
 
-   procedure AnzeigeSprache (AktuelleAuswahlExtern, ErsteZeileExtern, LetzteZeileExtern : in Positive) is
-   begin
+   procedure AnzeigeSprache
+     (AktuelleAuswahlExtern, ErsteZeileExtern, LetzteZeileExtern : in Positive)
+   is begin
       
       LängsterText := 1;
       
@@ -296,8 +304,9 @@ package body Anzeige is
 
 
 
-   procedure AnzeigeStadt (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID) is
-   begin
+   procedure AnzeigeStadt
+     (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
+   is begin
       
       LängsterText := 1;
       
@@ -388,8 +397,9 @@ package body Anzeige is
    
    
    
-   procedure AnzeigeForschungNeu (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID) is
-   begin
+   procedure AnzeigeForschungNeu
+     (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
+   is begin
       
       LängsterText := 1;
       
@@ -480,8 +490,9 @@ package body Anzeige is
 
 
 
-   procedure AnzeigeTransporter (AktuelleAuswahlExtern : in Natural) is
-   begin
+   procedure AnzeigeTransporter
+     (AktuelleAuswahlExtern : in Natural)
+   is begin
       
       LängsterText := 1;
       
@@ -572,9 +583,12 @@ package body Anzeige is
 
    
 
-   procedure AnzeigeLangerTextNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
-                                   AbstandAnfangExtern, AbstandEndeExtern : in GlobaleDatentypen.Welcher_Abstand_Enum) is
-   begin
+   procedure AnzeigeLangerTextNeu
+     (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      ÜberschriftZeileExtern : in Natural;
+      ErsteZeileExtern, LetzteZeileExtern : in Positive;
+      AbstandAnfangExtern, AbstandEndeExtern : in GlobaleDatentypen.Welcher_Abstand_Enum)
+   is begin
       
       case
         ÜberschriftDateiExtern

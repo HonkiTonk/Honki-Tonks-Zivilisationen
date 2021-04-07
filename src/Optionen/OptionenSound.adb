@@ -2,8 +2,8 @@ pragma SPARK_Mode (On);
 
 package body OptionenSound is
 
-   procedure OptionenSound is
-   begin
+   procedure OptionenSound
+   is begin
       
       null;
       

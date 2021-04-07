@@ -10,8 +10,9 @@ with Karten, Ladezeiten, Informationen, Auswahl, Eingabe;
 
 package body Laden is
 
-   function LadenNeu return Boolean is
-   begin
+   function LadenNeu
+     return Boolean
+   is begin
       
       SpielstandName := Eingabe.SpielstandName;
 

@@ -6,8 +6,11 @@ with Karten, Eingabe, KartenPruefungen;
 
 package body BewegungssystemCursor is
 
-   procedure BewegungCursorRichtung (KarteExtern : in Boolean; RichtungExtern : in Wide_Wide_Character; RasseExtern : in GlobaleDatentypen.Rassen) is -- Hier noch Bewegung für Stadt einbauen
-   begin
+   procedure BewegungCursorRichtung
+     (KarteExtern : in Boolean;
+      RichtungExtern : in Wide_Wide_Character;
+      RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       case
         RichtungExtern
@@ -62,8 +65,9 @@ package body BewegungssystemCursor is
 
 
 
-   procedure GeheZuCursor (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure GeheZuCursor
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       Wert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
                                  ZeileExtern         => 40,
@@ -116,8 +120,10 @@ package body BewegungssystemCursor is
    
    
 
-   procedure BewegungCursorBerechnen (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure BewegungCursorBerechnen
+     (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       if
         ÄnderungExtern.EAchse = 1
@@ -163,8 +169,10 @@ package body BewegungssystemCursor is
 
 
 
-   procedure BewegungCursorBerechnenStadt (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord; RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure BewegungCursorBerechnenStadt
+     (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
 
       if
         GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse + ÄnderungExtern.YAchse < Karten.Stadtkarte'First (1)

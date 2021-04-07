@@ -10,8 +10,10 @@ with ForschungsDatenbank, InDerStadt, BewegungssystemEinheiten, BewegungssystemC
 
 package body BefehleImSpiel is
 
-   function Befehle (RasseExtern : in GlobaleDatentypen.Rassen) return Integer is
-   begin 
+   function Befehle
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return Integer
+   is begin 
             
       Taste := Eingabe.TastenEingabe;
 
@@ -275,9 +277,12 @@ package body BefehleImSpiel is
 
 
 
-   procedure EinheitOderStadt (RasseExtern : in GlobaleDatentypen.Rassen; AuswahlExtern : in Integer; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-                               EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert) is
-   begin
+   procedure EinheitOderStadt
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      AuswahlExtern : in Integer;
+      StadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
+      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
+   is begin
       
       case
         AuswahlExtern

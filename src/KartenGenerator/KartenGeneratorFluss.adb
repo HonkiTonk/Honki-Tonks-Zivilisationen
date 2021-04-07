@@ -6,8 +6,8 @@ with KartenPruefungen, ZufallGeneratorenKarten;
 
 package body KartenGeneratorFluss is
 
-   procedure GenerierungFlüsse is
-   begin
+   procedure GenerierungFlüsse
+   is begin
       
       YAchseEinsSchleife:
       for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand loop
@@ -81,8 +81,9 @@ package body KartenGeneratorFluss is
 
 
    -- Hier scheint noch etwas nicht zu stimmen, nochmal drüber schauen oder gleich was besseres zusammenbasteln.
-   procedure FlussBerechnung (YKoordinateExtern, XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv) is
-   begin
+   procedure FlussBerechnung
+     (YKoordinateExtern, XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv)
+   is begin
                     
       Flusswert := 10_000;   
       YAchseSchleife:

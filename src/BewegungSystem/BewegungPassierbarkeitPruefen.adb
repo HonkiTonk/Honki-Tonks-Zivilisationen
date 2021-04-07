@@ -5,9 +5,11 @@ with EinheitenDatenbank, EinheitSuchen, StadtSuchen, KartenDatenbank, GlobaleKon
 package body BewegungPassierbarkeitPruefen is
    
    -- 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
-   function FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-                                               NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.Bewegung_Enum is
-   begin
+   function FeldFürDieseEinheitPassierbarNeu
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleDatentypen.Bewegung_Enum
+   is begin
       
       PassierbarkeitNummer := KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund).Passierbarkeit;
       
@@ -98,9 +100,11 @@ package body BewegungPassierbarkeitPruefen is
 
 
 
-   function Boden (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-                   NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.Bewegung_Enum is
-   begin
+   function Boden
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleDatentypen.Bewegung_Enum
+   is begin
       
       TransporterNummer := EinheitSuchen.KoordinatenTransporterMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                                KoordinatenExtern => NeuePositionExtern);
@@ -219,8 +223,11 @@ package body BewegungPassierbarkeitPruefen is
 
 
    -- Brauch ich da noch weitere Funktionen aktuell? Oder vielleicht erst später wenn weiter Funktionen im Spiel sind?
-   function Unterwasser (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.Bewegung_Enum is
-   begin
+   function Unterwasser
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleDatentypen.Bewegung_Enum
+   is begin
 
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                  KoordinatenExtern => NeuePositionExtern);

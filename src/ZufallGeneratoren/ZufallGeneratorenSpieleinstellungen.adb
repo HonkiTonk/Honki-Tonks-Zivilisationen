@@ -1,7 +1,9 @@
 package body ZufallGeneratorenSpieleinstellungen is
 
-   function Spieleinstellungen (WelcheEinstellungExtern : in Positive) return Positive is
-   begin
+   function Spieleinstellungen
+     (WelcheEinstellungExtern : in Positive)
+      return Positive
+   is begin
       
       case
         WelcheEinstellungExtern

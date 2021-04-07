@@ -9,8 +9,9 @@ with Auswahl, Anzeige, Eingabe;
 
 package body EinheitenDatenbank is
 
-   procedure Beschreibung (IDExtern : in GlobaleDatentypen.EinheitenID) is
-   begin
+   procedure Beschreibung
+     (IDExtern : in GlobaleDatentypen.EinheitenID)
+   is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                      TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Einheiten_Kurz,
@@ -25,8 +26,9 @@ package body EinheitenDatenbank is
 
 
 
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure LebenspunkteBewegungspunkteAufMaximumSetzen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleLebenspunkte
         := EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte;
@@ -37,8 +39,8 @@ package body EinheitenDatenbank is
 
 
 
-   procedure HeilungBewegungspunkteNeueRundeErmitteln is
-   begin
+   procedure HeilungBewegungspunkteNeueRundeErmitteln
+   is begin
       
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
@@ -64,8 +66,9 @@ package body EinheitenDatenbank is
 
 
 
-   procedure HeilungBewegungspunkteNeueRundeSetzen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure HeilungBewegungspunkteNeueRundeSetzen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung = 0
@@ -105,8 +108,10 @@ package body EinheitenDatenbank is
    
 
 
-   procedure EinheitErzeugen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; IDExtern : in GlobaleDatentypen.EinheitenID) is -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
-   begin
+   procedure EinheitErzeugen -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.EinheitenID)
+   is begin
 
       Position := (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
                    GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
@@ -153,8 +158,9 @@ package body EinheitenDatenbank is
 
 
 
-   procedure EinheitEntfernen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure EinheitEntfernen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
 
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) := GlobaleVariablen.LeererWertEinheit;
       
@@ -162,8 +168,9 @@ package body EinheitenDatenbank is
    
    
 
-   procedure Beschäftigung (ArbeitExtern : in Natural) is
-   begin
+   procedure Beschäftigung
+     (ArbeitExtern : in Natural)
+   is begin
       
       case
         ArbeitExtern
@@ -193,8 +200,10 @@ package body EinheitenDatenbank is
    
 
 
-   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern : in Natural) return Boolean is
-   begin
+   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen
+     (WelcheAuswahlExtern : in Natural)
+      return Boolean
+   is begin
       
       Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 7);
       case
@@ -211,8 +220,10 @@ package body EinheitenDatenbank is
 
 
 
-   function EinheitTransporterAuswählen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return GlobaleDatentypen.MaximaleEinheitenMitNullWert is
-   begin
+   function EinheitTransporterAuswählen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+   is begin
 
       Anzeige.TextTransporter := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
       Anzeige.TextTransporter (0) := (GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz),

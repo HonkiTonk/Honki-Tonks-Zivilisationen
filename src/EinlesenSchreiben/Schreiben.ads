@@ -18,8 +18,10 @@ private
    procedure WerteSchreiben;
    procedure EinstellungenSchreiben;
 
-   function EinstellungenPrüfen return Boolean;
-   function WertePrüfen return Boolean;
+   function EinstellungenPrüfen
+     return Boolean;
+   function WertePrüfen
+     return Boolean;
 
    -- Hier Standard Zeug zum Schreiben in die Einstellungsdatei beim Erzeugen hinschreiben
    

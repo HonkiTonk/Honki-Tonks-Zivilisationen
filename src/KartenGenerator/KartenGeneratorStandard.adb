@@ -4,8 +4,8 @@ with ZufallGeneratorenKarten, KartenPruefungen;
 
 package body KartenGeneratorStandard is
 
-   procedure StandardKarte is
-   begin
+   procedure StandardKarte
+   is begin
 
       Karten.GeneratorKarte := (others => (others => (0)));
       
@@ -56,8 +56,9 @@ package body KartenGeneratorStandard is
 
 
 
-   procedure GenerierungKartenart (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) is
-   begin
+   procedure GenerierungKartenart
+     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+   is begin
 
       BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
 
@@ -126,8 +127,9 @@ package body KartenGeneratorStandard is
 
    
    
-   procedure GenerierungLandmasse (YPositionLandmasseExtern, XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv) is
-   begin
+   procedure GenerierungLandmasse
+     (YPositionLandmasseExtern, XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+   is begin
       
       YAchseEinsSchleife:
       for YÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart) / 2 .. Karten.GrößeLandart (Karten.Kartenart) / 2 loop
@@ -190,8 +192,10 @@ package body KartenGeneratorStandard is
    
    
    
-   procedure GenerierungLandmasseÜberhang (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv; GezogenExtern : in Float) is
-   begin
+   procedure GenerierungLandmasseÜberhang
+     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      GezogenExtern : in Float)
+   is begin
    
       if
         GezogenExtern >= WahrscheinlichkeitenFürLand (Karten.Kartenart, 6)
@@ -216,8 +220,9 @@ package body KartenGeneratorStandard is
 
 
 
-   procedure GenerierungPangäa (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) is
-   begin
+   procedure GenerierungPangäa
+     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+   is begin
       
       if
         YAchseExtern = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2

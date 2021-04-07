@@ -6,8 +6,11 @@ with EinheitSuchen, StadtSuchen;
 
 package body BewegungBlockiert is
    
-   function BlockiertStadtEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.Bewegung_Enum is
-   begin   
+   function BlockiertStadtEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleDatentypen.Bewegung_Enum
+   is begin
 
       StadtWert := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
       

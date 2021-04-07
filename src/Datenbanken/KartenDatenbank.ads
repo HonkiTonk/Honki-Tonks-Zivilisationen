@@ -8,7 +8,7 @@ package KartenDatenbank is
    LeererWertKartenListe : constant DatenbankRecords.KartenListeRecord := (' ', -- 1. Wert = KartenGrafik
                                                                            1, -- 2. Wert = Passierbarkeit
                                                                            0, 0, 0, 0, 0); -- 3. Wert = Nahrungsgewinnung, 4. Wert = Ressourcengewinnung, 5. Wert = Geldgewinnung, 6. Wert = Wissensgewinnung,
-                                                                                           -- 7. Wert = Verteidigungsbonus
+   -- 7. Wert = Verteidigungsbonus
    
    -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
    -- Addieren für genaue Passierbarkeit
@@ -62,7 +62,9 @@ package KartenDatenbank is
                                                (' ',    5,    1, 0, 1, 1, 0), -- 41 Wasser für Unterwasser
                                                (' ',    5,    2, 0, 1, 0, 0)); -- 42 Küsten/Seegewässer für Unterwasser
                                                                        
-   procedure Beschreibung (IDExtern : in GlobaleDatentypen.KartenGrund) with
-     Pre => (IDExtern > 0);
+   procedure Beschreibung
+     (IDExtern : in GlobaleDatentypen.KartenGrund)
+     with
+       Pre => (IDExtern > 0);
 
 end KartenDatenbank;

@@ -9,8 +9,9 @@ with Anzeige, Eingabe;
 
 package body Auswahl is
 
-   function AuswahlSprache return Unbounded_Wide_Wide_String is
-   begin
+   function AuswahlSprache
+     return Unbounded_Wide_Wide_String
+   is begin
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
       
@@ -76,8 +77,11 @@ package body Auswahl is
 
 
 
-   function Auswahl (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern : in Natural) return Integer is
-   begin
+   function Auswahl
+     (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern : in Natural)
+      return Integer
+   is begin
 
       Anfang := ErsteZeileExtern;
       Ende := LetzteZeileExtern;
@@ -181,8 +185,10 @@ package body Auswahl is
 
 
 
-   function AuswahlJaNein (FrageZeileExtern : in Positive) return Integer is
-   begin
+   function AuswahlJaNein
+     (FrageZeileExtern : in Positive)
+      return Integer
+   is begin
 
       JaNein := Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
                          TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,

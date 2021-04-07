@@ -5,8 +5,8 @@ use Ada.Directories;
 
 package body Schreiben is
 
-   procedure SchreibenStartAufruf is
-   begin
+   procedure SchreibenStartAufruf
+   is begin
 
       case
         Exists (Name => "Dateien")
@@ -86,8 +86,9 @@ package body Schreiben is
    
    
    
-   function WertePrüfen return Boolean is
-   begin
+   function WertePrüfen
+     return Boolean
+   is begin
       
       return True;
       
@@ -95,8 +96,8 @@ package body Schreiben is
 
 
 
-   procedure WerteSchreiben is
-   begin
+   procedure WerteSchreiben
+   is begin
       
       null;
    
@@ -104,8 +105,8 @@ package body Schreiben is
    
    
 
-   procedure EinstellungenSchreiben is
-   begin
+   procedure EinstellungenSchreiben
+   is begin
       
       Create (File => EinstellungenDatei,
               Mode => Out_File,
@@ -115,8 +116,9 @@ package body Schreiben is
 
 
 
-   function EinstellungenPrüfen return Boolean is
-   begin
+   function EinstellungenPrüfen
+     return Boolean
+   is begin
       
       return True;
       

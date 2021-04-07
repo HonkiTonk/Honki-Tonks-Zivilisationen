@@ -6,8 +6,8 @@ with Karten;
 
 package body AllesAufAnfangSetzen is
 
-   procedure AllesAufAnfangSetzen is
-   begin
+   procedure AllesAufAnfangSetzen
+   is begin
       
       GlobaleVariablen.RassenImSpiel := (others => 0);
       GlobaleVariablen.EinheitenGebaut := (others => (others => GlobaleVariablen.LeererWertEinheit));

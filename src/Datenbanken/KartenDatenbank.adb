@@ -4,8 +4,9 @@ with Anzeige;
 
 package body KartenDatenbank is
 
-   procedure Beschreibung (IDExtern : in GlobaleDatentypen.KartenGrund) is
-   begin
+   procedure Beschreibung
+     (IDExtern : in GlobaleDatentypen.KartenGrund)
+   is begin
 
       case
         IDExtern

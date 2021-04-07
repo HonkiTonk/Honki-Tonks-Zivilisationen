@@ -8,7 +8,8 @@ with GlobaleDatentypen;
 
 with Einlesen, Anzeige, Hauptmenue;
 
-procedure Start is
+procedure Start
+is
 
    EinlesenErgebnis : Boolean;
 
@@ -18,7 +19,9 @@ begin
 
    EinlesenErgebnis := Einlesen.Einlesen;
 
-   case EinlesenErgebnis is
+   case
+     EinlesenErgebnis
+   is
       when True =>
          Hauptmenue.Hauptmenü;
 

@@ -5,8 +5,10 @@ use GlobaleDatentypen, GlobaleRecords;
 
 package Karte is
 
-   procedure AnzeigeKarte (RasseExtern : in GlobaleDatentypen.Rassen) with
-     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+   procedure AnzeigeKarte
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
 private
 
@@ -35,10 +37,12 @@ private
                                                3 => (0, 6, 35));
 
    Bewegungsfeld : constant SichtweitenArray := (1 => (0, 5, 9), -- Hier noch was für die Bewegung einfügen und von der Technologie abhängig machen.
-                                                2 => (0, 5, 21),
-                                                3 => (0, 5, 34));
+                                                 2 => (0, 5, 21),
+                                                 3 => (0, 5, 34));
 
-   procedure Information (RasseExtern : in GlobaleDatentypen.Rassen) with
-     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+   procedure Information
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
 end Karte;

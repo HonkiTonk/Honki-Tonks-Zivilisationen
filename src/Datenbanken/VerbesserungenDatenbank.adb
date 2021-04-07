@@ -4,8 +4,9 @@ with Anzeige;
 
 package body VerbesserungenDatenbank is
 
-   procedure Beschreibung (IDExtern : in GlobaleDatentypen.KartenVerbesserung) is
-   begin
+   procedure Beschreibung
+     (IDExtern : in GlobaleDatentypen.KartenVerbesserung)
+   is begin
       
       case
         IDExtern

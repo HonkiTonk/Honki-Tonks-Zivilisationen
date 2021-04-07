@@ -8,7 +8,8 @@ use GlobaleDatentypen;
 
 package Speichern is
 
-   procedure SpeichernNeu (AutospeichernExtern : in Boolean);
+   procedure SpeichernNeu
+     (AutospeichernExtern : in Boolean);
    procedure AutoSpeichern;
 
 private

@@ -5,8 +5,10 @@ use GlobaleDatentypen;
 
 package ImSpiel is
 
-   function ImSpiel return Integer with
-     Post => (ImSpiel'Result in -1 .. 0);
+   function ImSpiel
+     return Integer
+     with
+       Post => (ImSpiel'Result in -1 .. 0);
 
 private
 
@@ -18,6 +20,8 @@ private
 
    procedure BerechnungenNachZugendeAllerSpieler;
 
-   function MenschlicherSpieler (RasseExtern : in GlobaleDatentypen.Rassen) return Integer;
+   function MenschlicherSpieler
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return Integer;
 
 end ImSpiel;

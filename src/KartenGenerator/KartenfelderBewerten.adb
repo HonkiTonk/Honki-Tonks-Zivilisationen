@@ -7,15 +7,16 @@ with Karten, FelderwerteFestlegen;
 
 package body KartenfelderBewerten is
 
-   procedure KartenfelderBewerten is
+   procedure KartenfelderBewerten
+   is
 
       task Himmel;
       task Weltraum;
       task UnterwasserUnterirdisch;
       task PlanetenInneres;
       
-      task body Himmel is
-      begin
+      task body Himmel
+      is begin
 
          YAchseHimmelSchleife:
          for YAchseHimmelSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand loop
@@ -32,8 +33,8 @@ package body KartenfelderBewerten is
 
 
 
-      task body Weltraum is
-      begin
+      task body Weltraum
+      is begin
          
          YAchseWeltraumSchleife:
          for YAchseWeltraumSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand loop
@@ -50,8 +51,8 @@ package body KartenfelderBewerten is
       
       
       
-      task body UnterwasserUnterirdisch is
-      begin
+      task body UnterwasserUnterirdisch
+      is begin
          
          YAchseUnterwasserSchleife:
          for YAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand loop
@@ -68,8 +69,8 @@ package body KartenfelderBewerten is
       
       
       
-      task body PlanetenInneres is
-      begin
+      task body PlanetenInneres
+      is begin
          
          YAchseInneresSchleife:
          for YAchseInneresSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand loop

@@ -25,18 +25,27 @@ private
 
    type FelderVonLandartZuLandartArray is array (1 .. 4) of GlobaleDatentypen.KartenfeldPositiv;
    FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 30, 1, 1); -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
-                                                                                          -- Sollte so aber ganz gut sein, da bei halbem Loop zu wenig Wasser ist, aber eventuell Werte ein wenig verringern.
+   -- Sollte so aber ganz gut sein, da bei halbem Loop zu wenig Wasser ist, aber eventuell Werte ein wenig verringern.
    
-   procedure GenerierungKartenart (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) with
-     Pre => (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   procedure GenerierungKartenart
+     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     with
+       Pre => (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
-   procedure GenerierungLandmasse (YPositionLandmasseExtern, XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv) with
-     Pre => (YPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   procedure GenerierungLandmasse
+     (YPositionLandmasseExtern, XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     with
+       Pre => (YPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
-   procedure GenerierungLandmasseÜberhang (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv; GezogenExtern : in Float) with
-     Pre => (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   procedure GenerierungLandmasseÜberhang
+     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      GezogenExtern : in Float)
+     with
+       Pre => (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
-   procedure GenerierungPangäa (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) with
-     Pre => (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   procedure GenerierungPangäa
+     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     with
+       Pre => (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 end KartenGeneratorStandard;

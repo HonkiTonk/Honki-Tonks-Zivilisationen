@@ -7,7 +7,8 @@ with GlobaleVariablen;
 
 package Einlesen is
 
-   function Einlesen return Boolean;
+   function Einlesen
+     return Boolean;
 
 private
 
@@ -32,7 +33,9 @@ private
 
    procedure EinlesenWerte;
 
-   function EinlesenSprache return Boolean;
-   function EinlesenTextNeu return Boolean;
+   function EinlesenSprache
+     return Boolean;
+   function EinlesenTextNeu
+     return Boolean;
 
 end Einlesen;

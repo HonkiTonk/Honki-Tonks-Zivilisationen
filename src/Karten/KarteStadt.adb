@@ -9,8 +9,9 @@ with GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, Sichtbarkeit, 
 
 package body KarteStadt is
 
-   procedure AnzeigeStadt (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure AnzeigeStadt
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
 
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
@@ -234,8 +235,10 @@ package body KarteStadt is
 
 
 
-   procedure SchleifeFenster (YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld; RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure SchleifeFenster
+     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld;
+      RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       -- Hier muss nur von 0 .. 6 geloopt werden, da aber Stadtfeld nur von 1 .. 20 geht, wird eins weiter geloopt und im if eins abgezogen
       UmgebungSchleife:      
@@ -264,8 +267,10 @@ package body KarteStadt is
 
 
 
-   procedure AnzeigeStadtUmgebung (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld) is
-   begin
+   procedure AnzeigeStadtUmgebung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld)
+   is begin
       
       UmgebungsSchleife:
       for UmgebungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
@@ -351,8 +356,9 @@ package body KarteStadt is
    
    
    
-   procedure InformationenStadt (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure InformationenStadt
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       Nahrungsgewinnung := 0;
       Ressourcengewinnung := 0;
@@ -541,8 +547,9 @@ package body KarteStadt is
    
    
 
-   procedure Beschreibung (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure Beschreibung
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
 
       RasseUndPlatznummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 

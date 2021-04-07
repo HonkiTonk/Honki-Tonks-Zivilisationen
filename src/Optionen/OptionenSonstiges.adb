@@ -6,8 +6,9 @@ with Auswahl, Eingabe;
 
 package body OptionenSonstiges is
 
-   function Sonstiges return Integer is
-   begin
+   function Sonstiges
+     return Integer
+   is begin
       
       SonstigesSchleife:
       loop

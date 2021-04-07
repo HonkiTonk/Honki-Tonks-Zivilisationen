@@ -4,8 +4,11 @@ with GlobaleKonstanten;
 
 package body EinheitSuchen is
 
-   function KoordinatenEinheitMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.MaximaleEinheitenMitNullWert is
-   begin
+   function KoordinatenEinheitMitRasseSuchen
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+   is begin
       
       EinheitSchleife:
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
@@ -27,8 +30,11 @@ package body EinheitSuchen is
 
 
 
-   function KoordinatenTransporterMitRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleDatentypen.MaximaleEinheitenMitNullWert is
-   begin
+   function KoordinatenTransporterMitRasseSuchen
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+   is begin
       
       EinheitSchleife:
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
@@ -52,8 +58,10 @@ package body EinheitSuchen is
 
 
 
-   function KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
-   begin
+   function KoordinatenEinheitOhneRasseSuchen
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleRecords.RassePlatznummerRecord
+   is begin
 
       RasseSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
@@ -83,8 +91,11 @@ package body EinheitSuchen is
 
 
 
-   function KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern : in GlobaleDatentypen.Rassen; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return GlobaleRecords.RassePlatznummerRecord is
-   begin
+   function KoordinatenEinheitOhneSpezielleRasseSuchen
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleRecords.RassePlatznummerRecord
+   is begin
 
       RasseSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
@@ -116,8 +127,11 @@ package body EinheitSuchen is
 
 
 
-   function EinheitAufTransporterSuchen (EinheitRassePlatznummer : in GlobaleRecords.RassePlatznummerRecord; EinheitNummer : in GlobaleDatentypen.MaximaleEinheiten) return Natural is
-   begin
+   function EinheitAufTransporterSuchen
+     (EinheitRassePlatznummer : in GlobaleRecords.RassePlatznummerRecord;
+      EinheitNummer : in GlobaleDatentypen.MaximaleEinheiten)
+      return Natural
+   is begin
 
       TransporterSchleife:
       for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
@@ -139,8 +153,10 @@ package body EinheitSuchen is
 
 
 
-   function IstEinheitAufTransporter (EinheitRassePlatznummer : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
-   begin
+   function IstEinheitAufTransporter
+     (EinheitRassePlatznummer : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
       
       TransporterSchleife:
       for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop

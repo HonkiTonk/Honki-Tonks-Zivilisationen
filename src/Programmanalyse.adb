@@ -5,8 +5,8 @@ use Ada.Wide_Wide_Text_IO;
 
 package body Programmanalyse is
 
-   procedure Auswahl is
-   begin
+   procedure Auswahl
+   is begin
       
       DatentypGröße;
       WerteAufrufprüfung;
@@ -15,8 +15,8 @@ package body Programmanalyse is
      
      
 
-   procedure DatentypGröße is
-   begin
+   procedure DatentypGröße
+   is begin
 
       Put (Item => "Belegte Bits: ");
       Ada.Float_Text_IO.Put (Item => Bit,
@@ -44,8 +44,8 @@ package body Programmanalyse is
 
 
 
-   procedure WerteAufrufprüfung is
-   begin
+   procedure WerteAufrufprüfung
+   is begin
 
       Put_Line (Item => "Los gehts!");      
       Put_Line (Item => "Fertig!");

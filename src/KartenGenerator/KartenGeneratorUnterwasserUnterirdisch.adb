@@ -10,8 +10,8 @@ with Ladezeiten, Karten;
 
 package body KartenGeneratorUnterwasserUnterirdisch is
 
-   procedure UnterwasserUnterirdisch is
-   begin
+   procedure UnterwasserUnterirdisch
+   is begin
       
       Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 8) := Clock;
          

@@ -8,7 +8,7 @@ package VerbesserungenDatenbank is
    LeererWertVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (' ', -- 1. Wert = VerbesserungGrafik
                                                                                        1, -- 2. Wert = Passierbarkeit
                                                                                        0, 0, 0, 0, 0); -- 3. Wert = Nahrungsbonus, 4. Wert = Ressourcenbonus, 5. Wert = Geldbonus, 6. Wert = Wissensbonus,
-                                                                                                       -- 7. Wert = Verteidigungsbonus
+   -- 7. Wert = Verteidigungsbonus
       
    -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
    -- Addieren für genaue Passierbarkeit
@@ -41,7 +41,9 @@ package VerbesserungenDatenbank is
                                                   ('B',    1,    0, 0, 0, 0, 2), -- 22 Festung
                                                   ('S',    3,    0, 0, 0, 0, 0)); -- 23 Sperre
 
-   procedure Beschreibung (IDExtern : in GlobaleDatentypen.KartenVerbesserung) with
-     Pre => (IDExtern > 0);
+   procedure Beschreibung
+     (IDExtern : in GlobaleDatentypen.KartenVerbesserung)
+     with
+       Pre => (IDExtern > 0);
    
 end VerbesserungenDatenbank;

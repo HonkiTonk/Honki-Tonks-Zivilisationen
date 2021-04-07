@@ -11,8 +11,8 @@ with Ladezeiten, KartenfelderBewerten, KartenGeneratorChaos, KartenGeneratorStan
 
 package body KartenGenerator is
 
-   procedure KartenGenerator is
-   begin
+   procedure KartenGenerator
+   is begin
       
       Karten.GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2, 10); -- Inseln, Kontinente, Pangäa
       -- GrößeLandart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
@@ -65,15 +65,16 @@ package body KartenGenerator is
 
 
 
-   procedure AndereEbenen is
+   procedure AndereEbenen
+   is
       
       task Himmel;
       task Weltraum;
       task UnterwasserUnterirdisch;
       task PlanetenInneres;
       
-      task body Himmel is
-      begin
+      task body Himmel
+      is begin
          
          KartenGeneratorHimmel.Himmel;
          
@@ -81,8 +82,8 @@ package body KartenGenerator is
       
       
       
-      task body Weltraum is
-      begin
+      task body Weltraum
+      is begin
 
          KartenGeneratorWeltraum.Weltraum;
          
@@ -90,8 +91,8 @@ package body KartenGenerator is
       
       
 
-      task body UnterwasserUnterirdisch is
-      begin
+      task body UnterwasserUnterirdisch
+      is begin
          
          KartenGeneratorUnterwasserUnterirdisch.UnterwasserUnterirdisch;
          
@@ -99,8 +100,8 @@ package body KartenGenerator is
       
       
       
-      task body PlanetenInneres is
-      begin
+      task body PlanetenInneres
+      is begin
          
          KartenGeneratorPlanetenInneres.PlanetenInneres;
          

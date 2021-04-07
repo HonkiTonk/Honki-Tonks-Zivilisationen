@@ -2,8 +2,10 @@ pragma SPARK_Mode (On);
 
 package body NaechstesObjekt is  
 
-   procedure NächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen; BewegungspunkteExtern : in Bewegungspunkte) is
-   begin
+   procedure NächsteEinheit
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      BewegungspunkteExtern : in Bewegungspunkte)
+   is begin
       
       SchleifenBegrenzung := 0;
       
@@ -52,8 +54,9 @@ package body NaechstesObjekt is
    
    
    
-   procedure NächsteStadt (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure NächsteStadt
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
 
       SchleifenBegrenzung := 0;
       

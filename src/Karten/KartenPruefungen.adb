@@ -2,9 +2,12 @@ pragma SPARK_Mode (On);
 
 package body KartenPruefungen is
 
-   function KartenPositionBestimmen (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord; ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
-                                     ZusatzYAbstandExtern : in GlobaleDatentypen.Kartenfeld) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord is
-   begin -- Der ZusatzYAbstandExtern ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
+   function KartenPositionBestimmen
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
+      ZusatzYAbstandExtern : in GlobaleDatentypen.Kartenfeld)
+      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+   is begin -- Der ZusatzYAbstandExtern ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
       
       if
         KoordinatenExtern.EAchse + ÄnderungExtern.EAchse < Karten.WeltkarteArray'First (1)
@@ -53,8 +56,10 @@ package body KartenPruefungen is
    
    
    -- Sinnvoller benennen und weitere Prüfung für nur Wasser und so weiter einbauen
-   function KartenGrund (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Boolean is
-   begin
+   function KartenGrund
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+   is begin
       
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund

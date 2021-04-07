@@ -7,8 +7,8 @@ with Karten, ZufallGeneratorenKarten;
 
 package body KartenGeneratorRessourcen is
 
-   procedure GenerierungRessourcen is -- Die Verteilung mehrmals loopen lassen? Einmal von oben zur mitte, von unten zur mitte, von mitte nach oben und von mitte nach unten?
-   begin
+   procedure GenerierungRessourcen -- Die Verteilung mehrmals loopen lassen? Einmal von oben zur mitte, von unten zur mitte, von mitte nach oben und von mitte nach unten?
+   is begin
 
       NochVerteilbareRessourcen := Karten.Kartengrößen (Karten.Kartengröße).Ressourcenmenge;
 

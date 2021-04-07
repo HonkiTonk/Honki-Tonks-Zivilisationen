@@ -9,8 +9,9 @@ with Karten, Eingabe, Auswahl, Ladezeiten, Informationen;
 
 package body Speichern is
 
-   procedure SpeichernNeu (AutospeichernExtern : in Boolean) is
-   begin      
+   procedure SpeichernNeu
+     (AutospeichernExtern : in Boolean)
+   is begin      
 
       case
         AutospeichernExtern
@@ -232,8 +233,8 @@ package body Speichern is
    
    
 
-   procedure AutoSpeichern is
-   begin
+   procedure AutoSpeichern
+   is begin
       
       case
         GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.RundenBisAutosave

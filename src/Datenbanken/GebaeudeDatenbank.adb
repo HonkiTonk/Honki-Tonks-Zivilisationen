@@ -4,8 +4,9 @@ with Anzeige;
 
 package body GebaeudeDatenbank is
 
-   procedure Beschreibung (IDExtern : in GebäudeID) is
-   begin
+   procedure Beschreibung
+     (IDExtern : in GebäudeID)
+   is begin
       
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Beschreibungen_Gebäude_Kurz,
                                             TextZeileExtern => Positive (IDExtern));
@@ -17,8 +18,10 @@ package body GebaeudeDatenbank is
    
    
 
-   procedure GebäudeProduktionBeenden (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; IDExtern : in GebäudeID) is
-   begin     
+   procedure GebäudeProduktionBeenden
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GebäudeID)
+   is begin     
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (IDExtern) := True;
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).VerbleibendeBauzeit := 0;

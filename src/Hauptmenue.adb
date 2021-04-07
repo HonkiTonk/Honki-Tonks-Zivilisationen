@@ -6,8 +6,8 @@ with Auswahl, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen,
 
 package body Hauptmenue is
 
-   procedure Hauptmenü is
-   begin
+   procedure Hauptmenü
+   is begin
       
       HauptmenüSchleife:
       loop

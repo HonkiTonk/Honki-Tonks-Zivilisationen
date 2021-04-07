@@ -5,8 +5,10 @@ with EinheitenDatenbank, Anzeige, FelderwerteFestlegen, KartenPruefungen;
 package body Verbesserungen is
 
    -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen)
-   procedure Verbesserung (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; BefehlExtern : in Befehle_Enum) is
-   begin
+   procedure Verbesserung
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      BefehlExtern : in Befehle_Enum)
+   is begin
 
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung = 0
@@ -33,8 +35,10 @@ package body Verbesserungen is
 
 
    -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen)
-   procedure VerbesserungeFestgelegt (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; BefehlExtern : in Befehle_Enum) is
-   begin
+   procedure VerbesserungeFestgelegt
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      BefehlExtern : in Befehle_Enum)
+   is begin
 
       if
         BefehlExtern = Straße_Bauen
@@ -366,8 +370,9 @@ package body Verbesserungen is
    
 
 
-   procedure VerbesserungFehler (WelcherFehlerExtern : in Positive) is
-   begin
+   procedure VerbesserungFehler
+     (WelcherFehlerExtern : in Positive)
+   is begin
       
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
                                             TextZeileExtern => WelcherFehlerExtern);
@@ -376,8 +381,8 @@ package body Verbesserungen is
    
 
 
-   procedure VerbesserungFertiggestellt is
-   begin
+   procedure VerbesserungFertiggestellt
+   is begin
       
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
@@ -411,8 +416,9 @@ package body Verbesserungen is
 
 
 
-   procedure VerbesserungFertiggestelltPrüfen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure VerbesserungFertiggestelltPrüfen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       case
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung
@@ -453,8 +459,9 @@ package body Verbesserungen is
 
 
 
-   procedure VerbesserungAngelegt (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure VerbesserungAngelegt
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       case
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung
@@ -523,8 +530,9 @@ package body Verbesserungen is
 
 
 
-   procedure StraßeBerechnung (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
-   begin
+   procedure StraßeBerechnung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
 
       Straßenwert := 10_000;
       

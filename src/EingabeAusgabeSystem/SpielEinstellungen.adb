@@ -9,8 +9,9 @@ with ImSpiel, KartenGenerator, Eingabe, Auswahl, EinheitenDatenbank, Anzeige, Zu
 
 package body SpielEinstellungen is
 
-   function SpielEinstellungen return Integer is
-   begin
+   function SpielEinstellungen
+     return Integer
+   is begin
 
       HauptAuswahl := 1;
 
@@ -65,8 +66,9 @@ package body SpielEinstellungen is
 
 
 
-   function KartengrößeWählen return Integer is
-   begin
+   function KartengrößeWählen
+     return Integer
+   is begin
       
       KartengrößeSchleife:
       loop
@@ -136,8 +138,9 @@ package body SpielEinstellungen is
 
 
 
-   function KartenartWählen return Integer is
-   begin
+   function KartenartWählen
+     return Integer
+   is begin
             
       KartenartSchleife:
       loop
@@ -177,8 +180,9 @@ package body SpielEinstellungen is
 
 
 
-   function KartentemperaturWählen return Integer is
-   begin
+   function KartentemperaturWählen
+     return Integer
+   is begin
             
       KartentemperaturSchleife:
       loop
@@ -218,8 +222,9 @@ package body SpielEinstellungen is
 
 
 
-   function SpieleranzahlWählen return Integer is
-   begin
+   function SpieleranzahlWählen
+     return Integer
+   is begin
       
       SpieleranzahlSchleife:
       loop
@@ -259,8 +264,9 @@ package body SpielEinstellungen is
 
 
 
-   function MenschlicheSpieleranzahl return Integer is
-   begin
+   function MenschlicheSpieleranzahl
+     return Integer
+   is begin
       
       GlobaleVariablen.RassenImSpiel := (others => 0);
       Spieler := 0;
@@ -317,8 +323,9 @@ package body SpielEinstellungen is
 
 
    
-   function RasseWählen return Integer is -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
-   begin
+   function RasseWählen -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+     return Integer
+   is begin
 
       RasseSchleife:
       loop
@@ -371,8 +378,8 @@ package body SpielEinstellungen is
 
 
 
-   procedure StartwerteErmitteln is
-   begin
+   procedure StartwerteErmitteln
+   is begin
       
       SpieleranzahlWerteFestlegen:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
@@ -433,8 +440,11 @@ package body SpielEinstellungen is
 
 
 
-   function UmgebungPrüfen (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv; RasseExtern : in GlobaleDatentypen.Rassen) return Boolean is
-   begin
+   function UmgebungPrüfen
+     (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      RasseExtern : in GlobaleDatentypen.Rassen) 
+     return Boolean
+   is begin
       
       PrüfungGrund := KartenPruefungen.KartenGrund (KoordinatenExtern => (0, YPositionExtern, XPositionExtern));
 
@@ -517,8 +527,9 @@ package body SpielEinstellungen is
 
 
 
-   procedure StartpunktFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure StartpunktFestlegen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
 
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID := 1;
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.EAchse := Koordinaten (1).EAchse;
@@ -539,8 +550,9 @@ package body SpielEinstellungen is
 
 
 
-   function SchwierigkeitsgradFestlegen return Integer is
-   begin
+   function SchwierigkeitsgradFestlegen
+     return Integer
+   is begin
       
       SpieleranzahlSchleife:
       loop

@@ -2,8 +2,9 @@ pragma SPARK_Mode (Off);
 
 package body ZufallGeneratorenKarten is
 
-   function YXPosition return GlobaleRecords.AchsenKartenfeldPositivRecord is
-   begin
+   function YXPosition
+     return GlobaleRecords.AchsenKartenfeldPositivRecord
+   is begin
 
       case
         Karten.Kartengröße
@@ -80,8 +81,9 @@ package body ZufallGeneratorenKarten is
 
 
 
-   function ZufälligerWert return Float is
-   begin
+   function ZufälligerWert
+     return Float
+   is begin
 
       Ada.Numerics.Float_Random.Reset (ZufälligerFloatWert);
       GewählterFloatWert := Ada.Numerics.Float_Random.Random (ZufälligerFloatWert);
@@ -92,8 +94,9 @@ package body ZufallGeneratorenKarten is
 
 
 
-   function Chaoskarte return GlobaleDatentypen.KartenGrund is
-   begin
+   function Chaoskarte
+     return GlobaleDatentypen.KartenGrund
+   is begin
       
       WerteWählenChaoskarte.Reset (GrundGewählt);
       

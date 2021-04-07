@@ -7,8 +7,8 @@ with Karten, ZufallGeneratorenKarten;
 
 package body KartenGeneratorChaos is
 
-   procedure Chaos is
-   begin
+   procedure Chaos
+   is begin
             
       EAchseSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop

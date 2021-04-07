@@ -4,8 +4,9 @@ with Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenban
 
 package body BewegungssystemEinheiten is
 
-   procedure BewegungEinheitenRichtung (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure BewegungEinheitenRichtung
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
 
       Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
 
@@ -99,7 +100,18 @@ package body BewegungssystemEinheiten is
          then
             ErgebnisGegnerAngreifen := Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                             GegnerExtern             => EinheitRasseNummerExtern);
-            Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern); -- Das hier später anpassen, damit bei einer Vernichtung der Einheit keine Prüfung mehr stattfindet.
+            if
+              ErgebnisGegnerAngreifen = True
+              or
+                (ErgebnisGegnerAngreifen = False
+                 and
+                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleLebenspunkte > 0)
+            then
+               Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               
+            else
+               return;
+            end if;
                
          else
             null;
@@ -125,8 +137,10 @@ package body BewegungssystemEinheiten is
 
 
 
-   procedure TransporterBeladen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord) is
-   begin
+   procedure TransporterBeladen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
+   is begin
 
       KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
                                                               ÄnderungExtern       => ÄnderungExtern,
@@ -163,8 +177,10 @@ package body BewegungssystemEinheiten is
 
    
 
-   procedure BewegungEinheitenBerechnung (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
-   begin
+   procedure BewegungEinheitenBerechnung
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
       
       StraßeFlussVorhanden := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        NeuePositionExtern       => NeuePositionExtern);
@@ -268,8 +284,11 @@ package body BewegungssystemEinheiten is
 
 
 
-   function StraßeUndFlussPrüfen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) return Integer is
-   begin
+   function StraßeUndFlussPrüfen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Integer
+   is begin
 
       if
         EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (1) = True

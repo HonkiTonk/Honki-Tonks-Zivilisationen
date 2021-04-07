@@ -6,8 +6,9 @@ with Karte, Karten, EinheitenDatenbank, Anzeige, Eingabe, EinheitSuchen, Verbess
 
 package body Cheat is
 
-   procedure Menü (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure Menü
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       MenüSchleife:
       loop
@@ -63,8 +64,9 @@ package body Cheat is
    end Menü;
 
 
-   procedure BeliebigeNächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure BeliebigeNächsteEinheit
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       EinheitenSchleife:
       loop         
@@ -113,8 +115,9 @@ package body Cheat is
 
 
 
-   procedure BeliebigeNächsteStadt (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure BeliebigeNächsteStadt
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       StädteSchleife:
       loop         
@@ -163,8 +166,8 @@ package body Cheat is
 
 
 
-   procedure Informationen is
-   begin
+   procedure Informationen
+   is begin
       
       GlobaleVariablen.FeindlicheInformationenSehen := not GlobaleVariablen.FeindlicheInformationenSehen;
    
@@ -172,8 +175,9 @@ package body Cheat is
 
 
 
-   procedure Sichtbarkeit (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure Sichtbarkeit
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       EbeneSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
@@ -192,8 +196,9 @@ package body Cheat is
 
 
 
-   procedure GrundFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure GrundFestlegen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       KartenGrundID := GlobaleDatentypen.KartenGrund (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
                                                                          ZeileExtern         => 12,
@@ -224,8 +229,9 @@ package body Cheat is
    
    
    
-   procedure EinheitFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure EinheitFestlegen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
 
       RasseNummer := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
                                         ZeileExtern         => 13,
@@ -328,17 +334,19 @@ package body Cheat is
    
    
    
-   procedure Geld (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure Geld
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       GlobaleVariablen.Wichtiges (RasseExtern).AktuelleGeldmenge := Integer'Last;
       
    end Geld;
    
    
-   
-   procedure Technologie (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+
+   procedure Technologie
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       null;
       
@@ -346,8 +354,9 @@ package body Cheat is
    
    
    
-   procedure VerbesserungFestlegen (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure VerbesserungFestlegen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       VerbesserungID := GlobaleDatentypen.KartenVerbesserung (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
                                                                                  ZeileExtern         => 15,
@@ -375,8 +384,8 @@ package body Cheat is
 
 
 
-   procedure RassenverteilungÄndern is
-   begin
+   procedure RassenverteilungÄndern
+   is begin
       
       RassenverteilungÄndernSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop

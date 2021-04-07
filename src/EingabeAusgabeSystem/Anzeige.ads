@@ -38,31 +38,50 @@ package Anzeige is
    type TextTransporterArray is array (GlobaleRecords.TransporterArray'First - 1 .. GlobaleRecords.TransporterArray'Last) of TextTransporterRecord;
    TextTransporter : TextTransporterArray;
 
-   procedure AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
-                                    AbstandAnfangExtern, AbstandMitteExtern, AbstandEndeExtern : in GlobaleDatentypen.Welcher_Abstand_Enum) with
-     Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if ÜberschriftDateiExtern = GlobaleDatentypen.Leer then ÜberschriftZeileExtern = 0)
-             and (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleDatentypen.Leer) and TextDateiExtern /= GlobaleDatentypen.Leer);
+   procedure AnzeigeOhneAuswahlNeu
+     (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      ÜberschriftZeileExtern : in Natural;
+      ErsteZeileExtern, LetzteZeileExtern : in Positive;
+      AbstandAnfangExtern, AbstandMitteExtern, AbstandEndeExtern : in GlobaleDatentypen.Welcher_Abstand_Enum)
+     with
+       Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if ÜberschriftDateiExtern = GlobaleDatentypen.Leer then ÜberschriftZeileExtern = 0)
+               and (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleDatentypen.Leer) and TextDateiExtern /= GlobaleDatentypen.Leer);
 
-   procedure EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; TextZeileExtern : in Positive);
+   procedure EinzeiligeAnzeigeOhneAuswahl
+     (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      TextZeileExtern : in Positive);
 
-   procedure AnzeigeMitAuswahlNeu (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern, AktuelleAuswahlExtern : in Natural) with
-     Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if FrageDateiExtern = GlobaleDatentypen.Leer then FrageZeileExtern = 0) and (if FrageZeileExtern = 0 then FrageDateiExtern = GlobaleDatentypen.Leer)
-             and TextDateiExtern /= GlobaleDatentypen.Leer);
+   procedure AnzeigeMitAuswahlNeu
+     (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern, AktuelleAuswahlExtern : in Natural)
+     with
+       Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if FrageDateiExtern = GlobaleDatentypen.Leer then FrageZeileExtern = 0) and (if FrageZeileExtern = 0 then FrageDateiExtern = GlobaleDatentypen.Leer)
+               and TextDateiExtern /= GlobaleDatentypen.Leer);
 
-   procedure AnzeigeSprache (AktuelleAuswahlExtern, ErsteZeileExtern, LetzteZeileExtern : in Positive) with
-     Pre => (ErsteZeileExtern <= LetzteZeileExtern);
+   procedure AnzeigeSprache
+     (AktuelleAuswahlExtern, ErsteZeileExtern, LetzteZeileExtern : in Positive)
+     with
+       Pre => (ErsteZeileExtern <= LetzteZeileExtern);
 
-   procedure AnzeigeStadt (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID);
+   procedure AnzeigeStadt
+     (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID);
 
-   procedure AnzeigeForschungNeu (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID) with
-     Pre => (AktuelleAuswahlExtern <= GlobaleDatentypen.ForschungID'Last);
+   procedure AnzeigeForschungNeu
+     (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
+     with
+       Pre => (AktuelleAuswahlExtern <= GlobaleDatentypen.ForschungID'Last);
 
-   procedure AnzeigeTransporter (AktuelleAuswahlExtern : in Natural);
+   procedure AnzeigeTransporter
+     (AktuelleAuswahlExtern : in Natural);
 
-   procedure AnzeigeLangerTextNeu (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ÜberschriftZeileExtern : in Natural; ErsteZeileExtern, LetzteZeileExtern : in Positive;
-                                   AbstandAnfangExtern, AbstandEndeExtern : in GlobaleDatentypen.Welcher_Abstand_Enum) with
-     Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if ÜberschriftDateiExtern = GlobaleDatentypen.Leer then ÜberschriftZeileExtern = 0) and (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleDatentypen.Leer)
-             and TextDateiExtern /= GlobaleDatentypen.Leer);
+   procedure AnzeigeLangerTextNeu
+     (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      ÜberschriftZeileExtern : in Natural;
+      ErsteZeileExtern, LetzteZeileExtern : in Positive;
+      AbstandAnfangExtern, AbstandEndeExtern : in GlobaleDatentypen.Welcher_Abstand_Enum)
+     with
+       Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if ÜberschriftDateiExtern = GlobaleDatentypen.Leer then ÜberschriftZeileExtern = 0) and (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleDatentypen.Leer)
+               and TextDateiExtern /= GlobaleDatentypen.Leer);
 
 private
    

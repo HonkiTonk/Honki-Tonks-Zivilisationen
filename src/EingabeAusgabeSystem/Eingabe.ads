@@ -10,13 +10,21 @@ package Eingabe is
 
    procedure WartenEingabe;
 
-   function GanzeZahl (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return Integer with
-     Pre  => (ZahlenMaximumExtern <= 999_999_999 and ZahlenMinimumExtern < ZahlenMaximumExtern and ZahlenMinimumExtern >= -999_999_999),
+   function GanzeZahl
+     (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      ZeileExtern : in Positive;
+      ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
+      return Integer
+     with
+       Pre  => (ZahlenMaximumExtern <= 999_999_999 and ZahlenMinimumExtern < ZahlenMaximumExtern and ZahlenMinimumExtern >= -999_999_999),
      Post => (GanzeZahl'Result in -1_000_000_000 .. 999_999_999);
 
-   function StadtName return Unbounded_Wide_Wide_String;
-   function SpielstandName return Unbounded_Wide_Wide_String;
-   function TastenEingabe return Wide_Wide_Character;
+   function StadtName
+     return Unbounded_Wide_Wide_String;
+   function SpielstandName
+     return Unbounded_Wide_Wide_String;
+   function TastenEingabe
+     return Wide_Wide_Character;
 
 private
 
@@ -35,9 +43,16 @@ private
 
    Name : Unbounded_Wide_Wide_String;
 
-   function GanzeZahlPrüfung (ZeichenExtern : in Wide_Wide_Character) return GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+   function GanzeZahlPrüfung
+     (ZeichenExtern : in Wide_Wide_Character)
+      return GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
 
-   function ZahlSchleife (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum; ZeileExtern : in Positive; ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer) return GlobaleDatentypen.LoopRangeMinusZweiZuZwei with
-     Pre => (ZahlenMaximumExtern <= 999_999_999 and ZahlenMinimumExtern < ZahlenMaximumExtern and ZahlenMinimumExtern >= -999_999_999);
+   function ZahlSchleife
+     (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+      ZeileExtern : in Positive;
+      ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
+      return GlobaleDatentypen.LoopRangeMinusZweiZuZwei
+     with
+       Pre => (ZahlenMaximumExtern <= 999_999_999 and ZahlenMinimumExtern < ZahlenMaximumExtern and ZahlenMinimumExtern >= -999_999_999);
 
 end Eingabe;

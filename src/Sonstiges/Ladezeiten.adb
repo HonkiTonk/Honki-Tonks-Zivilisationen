@@ -9,8 +9,9 @@ with Anzeige;
 
 package body Ladezeiten is
 
-   procedure LadezeitenSpielweltErstellen (WelcheZeitExtern : in Natural) is
-   begin
+   procedure LadezeitenSpielweltErstellen
+     (WelcheZeitExtern : in Natural)
+   is begin
 
       Gesamtzeit := 0.00;
       
@@ -63,9 +64,9 @@ package body Ladezeiten is
 
 
 
-
-   procedure Speichern (WelcheZeitExtern : in Positive) is
-   begin
+   procedure Speichern
+     (WelcheZeitExtern : in Positive)
+   is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                      TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
@@ -91,8 +92,9 @@ package body Ladezeiten is
    
    
    
-   procedure Laden (WelcheZeitExtern : in Positive) is
-   begin
+   procedure Laden
+     (WelcheZeitExtern : in Positive)
+   is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                      TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
@@ -118,8 +120,9 @@ package body Ladezeiten is
    
    
    
-   procedure SpielStart (WelcheZeitExtern : in Positive) is
-   begin
+   procedure SpielStart
+     (WelcheZeitExtern : in Positive)
+   is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                      TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
@@ -146,8 +149,9 @@ package body Ladezeiten is
 
 
 
-   procedure BerechnungenNachZugendeAllerSpieler (WelcheZeitExtern : in Positive) is
-   begin
+   procedure BerechnungenNachZugendeAllerSpieler
+     (WelcheZeitExtern : in Positive)
+   is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                      TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
@@ -174,8 +178,9 @@ package body Ladezeiten is
 
 
 
-   procedure KIZeit (WelcheZeitExtern : in Positive) is
-   begin
+   procedure KIZeit
+     (WelcheZeitExtern : in Positive)
+   is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                      TextDateiExtern        => GlobaleDatentypen.Ladezeiten,

@@ -39,13 +39,18 @@ package ForschungsDatenbank is
                                                                 17 => 0,
                                                                 18 => 0);
 
-   procedure Beschreibung (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert);
-   procedure Forschung (RasseExtern : in GlobaleDatentypen.Rassen) with
-     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+   procedure Beschreibung
+     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert);
+   procedure Forschung
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
    procedure ForschungFortschritt;
-   procedure ForschungZeit (RasseExtern : in GlobaleDatentypen.Rassen) with
-     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+   procedure ForschungZeit
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
 private
 
@@ -58,7 +63,10 @@ private
    AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
    Ende : GlobaleDatentypen.ForschungID;
 
-   function AuswahlForschungNeu (RasseExtern : in GlobaleDatentypen.Rassen) return GlobaleDatentypen.ForschungIDMitNullWert with
-     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+   function AuswahlForschungNeu
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.ForschungIDMitNullWert
+     with
+       Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
 end ForschungsDatenbank;

@@ -4,8 +4,10 @@ with KartenDatenbank, VerbesserungenDatenbank, KartenPruefungen;
 
 package body FelderwerteFestlegen is
 
-   procedure KartenfelderBewerten (GenerierungExtern : in Boolean; KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
-   begin
+   procedure KartenfelderBewerten
+     (GenerierungExtern : in Boolean;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
       
       case GenerierungExtern is
          when False =>
@@ -42,8 +44,9 @@ package body FelderwerteFestlegen is
       
 
 
-   procedure KartenfelderBewertenKleineSchleife (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord) is
-   begin
+   procedure KartenfelderBewertenKleineSchleife
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
       
       BewertungYÄnderungSchleife:
       for BewertungYÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
@@ -106,9 +109,11 @@ package body FelderwerteFestlegen is
    
    
    
-   procedure BewertungSelbst (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord; YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern : in GlobaleDatentypen.KartenfeldPositiv;
-                              TeilerExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei) is
-   begin
+   procedure BewertungSelbst
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      TeilerExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+   is begin
       
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
         := Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung

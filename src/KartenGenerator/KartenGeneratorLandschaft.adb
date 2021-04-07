@@ -6,8 +6,8 @@ with ZufallGeneratorenKarten, KartenPruefungen;
 
 package body KartenGeneratorLandschaft is
 
-   procedure GenerierungLandschaft is
-   begin
+   procedure GenerierungLandschaft
+   is begin
 
       Karten.GeneratorKarte := (others => (others => (0)));
       Karten.GeneratorGrund := (others => (others => (False)));
@@ -124,8 +124,10 @@ package body KartenGeneratorLandschaft is
 
 
 
-   procedure GenerierungLandschaftFelder (GrundExtern : in GlobaleDatentypen.KartenGrund; YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) is
-   begin
+   procedure GenerierungLandschaftFelder
+     (GrundExtern : in GlobaleDatentypen.KartenGrund;
+      YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+   is begin
       
       YAchseEinsSchleife:
       for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeNullZuEins'Range loop
@@ -247,8 +249,9 @@ package body KartenGeneratorLandschaft is
 
 
 
-   procedure GenerierungLandschaftHügel (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) is
-   begin
+   procedure GenerierungLandschaftHügel
+     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+   is begin
       
       HügelGebirgeUmgebung := 0;
       YAchseHügelSchleife:

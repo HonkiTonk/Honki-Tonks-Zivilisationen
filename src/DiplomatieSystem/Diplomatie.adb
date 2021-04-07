@@ -4,8 +4,8 @@ with Kampfsystem, Auswahl;
 
 package body Diplomatie is
 
-   procedure DiplomatieAuswählen is
-   begin
+   procedure DiplomatieAuswählen
+   is begin
       
       null;
       
@@ -13,8 +13,9 @@ package body Diplomatie is
 
 
 
-   procedure KriegDurchDirektenAngriff (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure KriegDurchDirektenAngriff
+     (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       GlobaleVariablen.Diplomatie (AngreifendeRasseExtern, VerteidigendeRasseExtern) := GlobaleVariablen.Krieg;
       GlobaleVariablen.Diplomatie (VerteidigendeRasseExtern, AngreifendeRasseExtern) := GlobaleVariablen.Krieg;
@@ -23,8 +24,10 @@ package body Diplomatie is
 
 
 
-   function DiplomatischenStatusPrüfen (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen) return GlobaleVariablen.StatusUntereinander is
-   begin
+   function DiplomatischenStatusPrüfen
+     (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleVariablen.StatusUntereinander
+   is begin
       
       return GlobaleVariablen.Diplomatie (AngreifendeRasseExtern, VerteidigendeRasseExtern);
       
@@ -32,8 +35,11 @@ package body Diplomatie is
 
 
 
-   function GegnerAngreifenOderNicht (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; GegnerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
-   begin
+   function GegnerAngreifenOderNicht
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GegnerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
 
       Gewonnen := False;
       Angreifen := False;

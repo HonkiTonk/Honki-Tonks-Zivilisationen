@@ -7,11 +7,16 @@ package NaechstesObjekt is
 
    type Bewegungspunkte is (Hat_Bewegungspunkte, Keine_Bewegungspunkte, Egal_Bewegeungspunkte);
 
-   procedure NächsteEinheit (RasseExtern : in GlobaleDatentypen.Rassen; BewegungspunkteExtern : in Bewegungspunkte) with
-     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+   procedure NächsteEinheit
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      BewegungspunkteExtern : in Bewegungspunkte)
+     with
+       Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
-   procedure NächsteStadt (RasseExtern : in GlobaleDatentypen.Rassen) with
-     Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+   procedure NächsteStadt
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
    
 private
 

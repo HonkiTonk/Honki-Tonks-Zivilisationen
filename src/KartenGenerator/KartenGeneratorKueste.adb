@@ -7,8 +7,8 @@ with Karten, KartenPruefungen;
 
 package body KartenGeneratorKueste is
 
-   procedure GenerierungKüstenSeeGewässer is
-   begin
+   procedure GenerierungKüstenSeeGewässer
+   is begin
       
       YAchseSchleife:
       for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand loop

@@ -7,8 +7,8 @@ with Ladezeiten, Karten;
 
 package body KartenGeneratorWeltraum is
 
-   procedure Weltraum is
-   begin
+   procedure Weltraum
+   is begin
       
       Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 9) := Clock;
 

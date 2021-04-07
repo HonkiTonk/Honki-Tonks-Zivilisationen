@@ -6,9 +6,12 @@ with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank, Karten;
 
 package body Kampfsystem is
 
-   function KampfsystemNahkampf (RasseAngriffExtern, RasseVerteidigungExtern : in GlobaleDatentypen.Rassen; GegnerStadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-                                 EinheitenNummerAngriffExtern, EinheitenNummerVerteidigungExtern : in GlobaleDatentypen.MaximaleEinheiten) return Boolean is
-   begin
+   function KampfsystemNahkampf
+     (RasseAngriffExtern, RasseVerteidigungExtern : in GlobaleDatentypen.Rassen;
+      GegnerStadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
+      EinheitenNummerAngriffExtern, EinheitenNummerVerteidigungExtern : in GlobaleDatentypen.MaximaleEinheiten)
+      return Boolean
+   is begin
 
       VerteidigungBonusDurchStadt := 1.00;
 
@@ -46,8 +49,11 @@ package body Kampfsystem is
 
 
 
-   function Kampf (VerteidigerRasseEinheitNummerExtern, AngreiferRasseEinheitNummerExtern : in GlobaleRecords.RassePlatznummerRecord; VerteidigungBonusExtern : in Float) return Boolean is
-   begin
+   function Kampf
+     (VerteidigerRasseEinheitNummerExtern, AngreiferRasseEinheitNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      VerteidigungBonusExtern : in Float)
+      return Boolean
+   is begin
 
       AngriffAngriffWert := Float (EinheitenDatenbank.EinheitenListe (AngreiferRasseEinheitNummerExtern.Rasse,
                                    GlobaleVariablen.EinheitenGebaut (AngreiferRasseEinheitNummerExtern.Rasse, AngreiferRasseEinheitNummerExtern.Platznummer).ID).Angriff);
@@ -65,11 +71,11 @@ package body Kampfsystem is
 
       if
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
-                           GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).Hügel = True
+                          GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
+                          GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).Hügel = True
         and
           Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
-                              GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
+                            GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
                             GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).Grund /= 6
       then
          VerteidigungVerteidigungWert := Float (KartenDatenbank.KartenListe (6).Verteidigungsbonus);
@@ -130,8 +136,10 @@ package body Kampfsystem is
 
 
 
-   procedure KampfBerechnung (VerteidigerRasseEinheitNummerExtern : in GlobaleRecords.RassePlatznummerRecord; AngriffWertExtern, VerteidigungWertExtern : in Float) is
-   begin
+   procedure KampfBerechnung
+     (VerteidigerRasseEinheitNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      AngriffWertExtern, VerteidigungWertExtern : in Float)
+   is begin
 
       Wert := Random (Gewählt);
       
@@ -185,8 +193,9 @@ package body Kampfsystem is
 
 
 
-   function Prüfen return Boolean is
-   begin
+   function Prüfen
+     return Boolean
+   is begin
       
       return True;
       

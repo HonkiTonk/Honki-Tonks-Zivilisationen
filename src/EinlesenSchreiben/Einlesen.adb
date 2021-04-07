@@ -7,8 +7,9 @@ with Ladezeiten, Schreiben, Auswahl;
 
 package body Einlesen is
 
-   function Einlesen return Boolean is
-   begin
+   function Einlesen
+     return Boolean
+   is begin
       
       Ladezeiten.SpielStartzeiten (1, 1) := Clock;      
       Schreiben.SchreibenStartAufruf;
@@ -45,8 +46,9 @@ package body Einlesen is
 
 
 
-   function EinlesenSprache return Boolean is
-   begin
+   function EinlesenSprache
+     return Boolean
+   is begin
 
       GlobaleVariablen.SprachenEinlesen := (others => (To_Unbounded_Wide_Wide_String (Source => "|")));
       
@@ -98,8 +100,9 @@ package body Einlesen is
 
 
 
-   function EinlesenTextNeu return Boolean is
-   begin
+   function EinlesenTextNeu
+     return Boolean
+   is begin
       
       case
         Exists (Name => "Dateien/Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0")
@@ -176,8 +179,8 @@ package body Einlesen is
 
 
 
-   procedure EinlesenWerte is
-   begin
+   procedure EinlesenWerte
+   is begin
         
       case
         Exists (Name => "Dateien/WelcheWerteEinlesen")

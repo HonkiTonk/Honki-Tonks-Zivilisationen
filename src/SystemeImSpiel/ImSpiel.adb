@@ -9,8 +9,9 @@ with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, E
 
 package body ImSpiel is
 
-   function ImSpiel return Integer is
-   begin
+   function ImSpiel
+     return Integer
+   is begin
       
       SpielSchleife:
       loop         
@@ -80,8 +81,10 @@ package body ImSpiel is
 
 
 
-   function MenschlicherSpieler (RasseExtern : in GlobaleDatentypen.Rassen) return Integer is
-   begin
+   function MenschlicherSpieler
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return Integer
+   is begin
       
       SpielerSchleife:
       loop
@@ -138,8 +141,8 @@ package body ImSpiel is
 
 
 
-   procedure BerechnungenNachZugendeAllerSpieler is
-   begin
+   procedure BerechnungenNachZugendeAllerSpieler
+   is begin
             
       Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (1, 1) := Clock;
       EinheitenDatenbank.HeilungBewegungspunkteNeueRundeErmitteln;
