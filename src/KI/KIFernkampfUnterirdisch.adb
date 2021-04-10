@@ -6,8 +6,9 @@ with KIBewegung;
 
 package body KIFernkampfUnterirdisch is
 
-   procedure KIFernkampfUnterirdisch (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure KIFernkampfUnterirdisch
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                              AufgabeExtern            => KIDatentypen.Erkunden);

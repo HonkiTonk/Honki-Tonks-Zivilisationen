@@ -8,8 +8,9 @@ with EinheitenDatenbank, KISiedler, KINahkampfLandEinheit, KIFernkampfLandEinhei
 
 package body KI is
 
-   procedure KI (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure KI
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
                
       EinheitenMachenIrgendwasSchleife:
       loop
@@ -131,8 +132,10 @@ package body KI is
       
    
 
-   procedure AKtivitätEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is -- Von hier aus dann die einzelnen Tätigkeiten aufrufen
-   begin
+   -- Von hier aus dann die einzelnen Tätigkeiten aufrufen
+   procedure AKtivitätEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
 
       EinheitTyp := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).EinheitTyp;
       
@@ -182,8 +185,10 @@ package body KI is
 
 
 
-   procedure AKtivitätEinheitAbbrechen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is -- Aufrufen um den Abbruch der aktuellen Tätigkeit zu prüfen
-   begin
+   -- Aufrufen um den Abbruch der aktuellen Tätigkeit zu prüfen
+   procedure AKtivitätEinheitAbbrechen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       null;
       
@@ -191,8 +196,9 @@ package body KI is
    
    
                
-   procedure AktivitätStadt (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure AktivitätStadt
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
             
       null;
             
@@ -200,8 +206,10 @@ package body KI is
 
 
 
-   procedure AktivitätStadtAbbrechen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is -- Aufrufen um den Abbruch der aktuellen Tätigkeit zu prüfen
-   begin
+   -- Aufrufen um den Abbruch der aktuellen Tätigkeit zu prüfen
+   procedure AktivitätStadtAbbrechen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
             
       null;
             

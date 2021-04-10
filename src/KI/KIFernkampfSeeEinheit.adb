@@ -6,8 +6,9 @@ with KIBewegung;
 
 package body KIFernkampfSeeEinheit is
 
-   procedure KIFernkampfSeeEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure KIFernkampfSeeEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                              AufgabeExtern            => KIDatentypen.Erkunden);

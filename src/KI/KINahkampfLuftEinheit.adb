@@ -6,8 +6,9 @@ with KIBewegung;
 
 package body KINahkampfLuftEinheit is
 
-   procedure KINahkampfLuftEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure KINahkampfLuftEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                              AufgabeExtern            => KIDatentypen.Erkunden);

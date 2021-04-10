@@ -4,8 +4,10 @@ with BewegungssystemEinheiten, KIPruefungen, KartenPruefungen;
 
 package body KIBewegung is
 
-   procedure KIBewegung (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; AufgabeExtern : in KIDatentypen.Aufgabe_Enum) is
-   begin
+   procedure KIBewegung
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      AufgabeExtern : in KIDatentypen.Aufgabe_Enum)
+   is begin
 
       -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft, 9 = NahkampfUnterirdisch, 10 = FernkampfUnterirdisch,
       -- 11 = NahkampfOrbital, 12 = FernkampfOrbital
@@ -38,8 +40,10 @@ package body KIBewegung is
 
 
 
-   procedure NeuesZielErmittelnGefahr (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) is
-   begin
+   procedure NeuesZielErmittelnGefahr
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      RichtungExtern : in KIDatentypen.Richtung_Enum)
+   is begin
       
       ZielKoordinaten := KIPruefungen.NähesteEigeneStadtSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                  RichtungExtern         => RichtungExtern);
@@ -59,8 +63,9 @@ package body KIBewegung is
 
 
 
-   procedure BewegungBeliebig (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure BewegungBeliebig
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
 
       BewegungSchleife: -- Erst prüfen wohin die Einheit soll, dann ob die neue Position eine Alte is, dann durch das Bewegungssystem jagen und dann auf bewegt setzen oder nicht?
       -- Und den Durchgang da auch noch irgendwo und irgendwie reinstopfen
@@ -79,7 +84,7 @@ package body KIBewegung is
 
                else
                   -- Bewegung := BewegungZwischenEbene.PassierbarkeitOderTransporter (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                   -- ÄnderungExtern           => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                  -- ÄnderungExtern           => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
 
                   case
                     Bewegung
@@ -126,9 +131,13 @@ package body KIBewegung is
 
 
 
-   function Bewegen (DurchgangExtern : in Positive; EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; EAchseExtern : in GlobaleDatentypen.EbeneVorhanden;
-                     YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
-   begin
+   function Bewegen
+     (DurchgangExtern : in Positive;
+      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EAchseExtern : in GlobaleDatentypen.EbeneVorhanden;
+      YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+      return Boolean
+   is begin
       
       case
         DurchgangExtern
@@ -188,9 +197,12 @@ package body KIBewegung is
 
 
 
-   function IstDasEineAltePosition (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; EAchseExtern : in GlobaleDatentypen.EbeneVorhanden;
-                                    YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) return Boolean is
-   begin
+   function IstDasEineAltePosition
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EAchseExtern : in GlobaleDatentypen.EbeneVorhanden;
+      YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+      return Boolean
+   is begin
       
       return False;
       
@@ -198,8 +210,11 @@ package body KIBewegung is
 
 
 
-   procedure BewegungDurchführen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; EAchseExtern : in GlobaleDatentypen.EbeneVorhanden; YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv) is
-   begin
+   procedure BewegungDurchführen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EAchseExtern : in GlobaleDatentypen.EbeneVorhanden;
+      YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+   is begin
                 
       BewegungssystemEinheiten.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                             NeuePositionExtern       => (EAchseExtern, YAchseExtern, XAchseExtern));
@@ -208,8 +223,9 @@ package body KIBewegung is
 
 
 
-   procedure BewegungBauarbeiter (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is -- Einbauen oder nur Siedler?
-   begin
+   procedure BewegungBauarbeiter
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       null;
       
@@ -217,8 +233,9 @@ package body KIBewegung is
    
    
    
-   procedure BewegungBodenEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure BewegungBodenEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       null;
       
@@ -226,8 +243,9 @@ package body KIBewegung is
    
    
    
-   procedure BewegungLuftEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure BewegungLuftEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       null;
       
@@ -235,8 +253,9 @@ package body KIBewegung is
    
    
    
-   procedure BewegungWasserEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is -- Wasser- und Unterwassereinheit zusammenführen?
-   begin
+   procedure BewegungWasserEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       null;
       
@@ -244,8 +263,9 @@ package body KIBewegung is
    
    
    
-   procedure BewegungUnterwasserEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is -- Wasser- und Unterwassereinheit zusammenführen?
-   begin
+   procedure BewegungUnterwasserEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       null;
       
@@ -253,8 +273,9 @@ package body KIBewegung is
 
 
 
-   procedure BewegungUnterirdischeEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure BewegungUnterirdischeEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       null;
       
@@ -262,8 +283,9 @@ package body KIBewegung is
    
 
 
-   procedure BewegungOrbitaleEinheit (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure BewegungOrbitaleEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       null;
       

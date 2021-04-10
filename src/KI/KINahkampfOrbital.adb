@@ -6,8 +6,9 @@ with KIBewegung;
 
 package body KINahkampfOrbital is
 
-   procedure KINahkampfOrbital (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure KINahkampfOrbital
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                              AufgabeExtern            => KIDatentypen.Erkunden);

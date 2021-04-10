@@ -108,7 +108,8 @@ package body EinheitenDatenbank is
    
 
 
-   procedure EinheitErzeugen -- Kann Einheiten nur in Städten erzeugen und funktioniert nicht richtig
+   -- Kann Einheiten nur in Städten erzeugen
+   procedure EinheitErzeugen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.EinheitenID)
    is begin

@@ -6,8 +6,10 @@ with KIBewegung;
 
 package body KIPruefungen is
    
-   function EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern, EinheitZweiRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Natural is
-   begin
+   function EinheitenAbstandBerechnen
+     (EinheitEinsRasseNummerExtern, EinheitZweiRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Natural
+   is begin
 
       if
         GlobaleVariablen.EinheitenGebaut (EinheitEinsRasseNummerExtern.Rasse, EinheitEinsRasseNummerExtern.Platznummer).AchsenPosition.EAchse
@@ -75,8 +77,9 @@ package body KIPruefungen is
 
 
 
-   procedure ZielBerechnenGefahr (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure ZielBerechnenGefahr
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
 
       RichtungenFeinde := (others => 0);
       Richtung := 0;
@@ -218,8 +221,11 @@ package body KIPruefungen is
 
 
    -- 1 = Norden = (-1, 0), 2 = Nord_Ost = (-1, 1), 3 = Osten = (0, 1), 4 = Süd_Osten = (1, 1), 5 = Süden = (1, 0), 6 = Süd_West = (1, -1), 7 = Westen = (0, -1), 8 = Nord_West = (-1, -1)
-   function NähesteEigeneStadtSuchen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord is
-   begin
+   function NähesteEigeneStadtSuchen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      RichtungExtern : in KIDatentypen.Richtung_Enum)
+      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+   is begin
 
       -- Kandidaten (1) ist die jetzt näheste gefundene Stadt, Kandidaten (2) ist Norden oder Süden und Kandidaten (3) ist Westen oder Osten.
       Kandidaten := (others => (0, 1, 1, False));
@@ -353,8 +359,10 @@ package body KIPruefungen is
 
 
 
-   procedure StadtImNorden (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte) is
-   begin
+   procedure StadtImNorden
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte)
+   is begin
       
       if
         GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse
@@ -397,8 +405,10 @@ package body KIPruefungen is
 
    
 
-   procedure StadtImSüden (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte) is
-   begin
+   procedure StadtImSüden
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte)
+   is begin
       
       if
         GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse
@@ -441,8 +451,10 @@ package body KIPruefungen is
 
 
 
-   procedure StadtImWesten (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte) is
-   begin
+   procedure StadtImWesten
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte)
+   is begin
       
       if
         GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse
@@ -484,8 +496,10 @@ package body KIPruefungen is
 
 
 
-   procedure StadtImOsten (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte) is
-   begin
+   procedure StadtImOsten
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      StadtNummerExtern : in GlobaleDatentypen.MaximaleStädte)
+   is begin
       
       if
         GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse
@@ -529,8 +543,11 @@ package body KIPruefungen is
 
 
    -- 1 = Norden = (-1, 0), 2 = Nord_Ost = (-1, 1), 3 = Osten = (0, 1), 4 = Süd_Osten = (1, 1), 5 = Süden = (1, 0), 6 = Süd_West = (1, -1), 7 = Westen = (0, -1), 8 = Nord_West = (-1, -1)
-   function NähesteEigeneEinheitSuchen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; RichtungExtern : in KIDatentypen.Richtung_Enum) return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord is
-   begin
+   function NähesteEigeneEinheitSuchen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      RichtungExtern : in KIDatentypen.Richtung_Enum)
+      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+   is begin
 
       EinheitenSchleife:
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop

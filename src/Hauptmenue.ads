@@ -2,8 +2,13 @@ pragma SPARK_Mode (On);
 
 package Hauptmenue is
 
-   procedure Hauptmenü;
-
+   procedure Hauptmenü
+     with
+       Global => (null),
+     Depends => (null),
+     Pre => (True),
+     Post => (True);
+   
 private   
 
    LadenErfolgreich : Boolean;

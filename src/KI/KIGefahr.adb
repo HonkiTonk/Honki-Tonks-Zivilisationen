@@ -7,8 +7,10 @@ with EinheitenDatenbank, KIPruefungen, KartenPruefungen, EinheitSuchen;
 package body KIGefahr is
 
    -- Aufteilen nach Unbewaffnet, Fernkämpfer und Nahkämpfer?
-   function KIGefahr (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
-   begin
+   function KIGefahr
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) 
+     return Boolean
+   is begin
       
       KIVariablen.FeindlicheEinheiten := (others => (others => (others => (others => 0))));
       BestehtGefahr := False;
@@ -31,8 +33,10 @@ package body KIGefahr is
 
 
 
-   function Unbewaffnet (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
-   begin
+   function Unbewaffnet
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
       
       YAchseSchleife:
       for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
@@ -112,8 +116,10 @@ package body KIGefahr is
    
    
    
-   function Nahkämpfer (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
-   begin
+   function Nahkämpfer
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
       
       YAchseSchleife:
       for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
@@ -179,8 +185,10 @@ package body KIGefahr is
    
    
    
-   function Fernkämpfer (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
-   begin
+   function Fernkämpfer
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
       
       YAchseSchleife:
       for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop

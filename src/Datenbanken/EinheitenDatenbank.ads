@@ -18,14 +18,17 @@ package EinheitenDatenbank is
 
                     ('L',    3, 25, 20, 0,    (1 => True, others => False), 5, 3.00,    30, 3, 1, 3, 1,    0, 1), -- Steinbeilkämpfer
                     ('L',    3, 25, 20, 1,    (1 => True, others => False), 5, 1.00,    30, 3, 1, 3, 1,    0, 1), -- Bogenschütze
-                                                               
                     ('L',    4, 50, 5, 0,     (1 => True, others => False), 3, 3.00,    30, 3, 3, 8, 1,    0, 2), -- Kanone
 
                     ('S',    5, 20, 10, 0,    (2 => True, others => False), 2, 1.00,    30, 3, 1, 1, 1,    2, 0), -- Segelschiff
                     ('S',    6, 20, 10, 0,    (2 => True, others => False), 3, 3.00,    30, 3, 1, 8, 1,    2, 0), -- Kanonenschiff
+                    ('U',    6, 20, 10, 0,    (2 => True, 5 => True, others => False), 1000, 100.00,    30, 3, 1, 10, 10,    0, 0), -- UBoot
                                                     
                     ('F',    7, 100, 10, 0,   (1 => True, 2 => True, 3 => True, others => False), 8, 1.00,    30, 3, 1, 10, 1,    0, 1), -- Jäger
                     ('F',    8, 100, 10, 0,   (1 => True, 2 => True, 3 => True, others => False), 8, 1.00,    30, 3, 1, 10, 1,    0, 1), -- Bomber
+                    ('R',    7, 20, 10, 0,    (1 => True, 2 => True, 3 => True, 4 => True, others => False), 1000, 100.00,    30, 3, 1, 10, 10,    0, 0), -- Rakete
+                    ('R',    7, 20, 10, 0,    (1 => True, 2 => True, 3 => True, 4 => True, 5 => True, others => False), 1000, 100.00,    30, 3, 1, 10, 10,    0, 0), -- Unterwasserrakete
+                    
                                                                
                     others => LeererWertEinheitListe));
    -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres

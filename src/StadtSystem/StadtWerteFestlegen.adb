@@ -4,8 +4,9 @@ with Karten, KartenPruefungen;
 
 package body StadtWerteFestlegen is
 
-   procedure StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin    
+   procedure StadtUmgebungGrößeFestlegen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin    
             
       if
         GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (2) = True
@@ -89,8 +90,10 @@ package body StadtWerteFestlegen is
    
 
 
-   procedure BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern : in Boolean; StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure BewirtschaftbareFelderBelegen
+     (ZuwachsOderSchwundExtern : in Boolean;
+      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       NutzbarerBereich := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).StadtUmgebungGröße;
 
@@ -165,8 +168,9 @@ package body StadtWerteFestlegen is
 
 
 
-   procedure BelegteStadtfelderFreigeben (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure BelegteStadtfelderFreigeben
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       YAchseSchleife:
       for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop

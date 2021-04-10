@@ -9,8 +9,9 @@ with Auswahl, InDerStadtBauen, GebaeudeDatenbank, KarteStadt, BewegungssystemCur
 
 package body InDerStadt is
 
-   procedure InDerStadt (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure InDerStadt
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       StadtSchleife:
       loop
@@ -147,8 +148,9 @@ package body InDerStadt is
 
 
 
-   procedure EinwohnerZuweisen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure EinwohnerZuweisen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       case
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX)

@@ -430,10 +430,24 @@ package body Sichtbarkeit is
         GrundExtern
       is
          when 1 | 4 | 5 | 31 | 37 | 42 =>
-            Put (Item => CSI & "38;2;0;0;0m");
+            if
+              RessourceExtern in 14 .. 28
+            then
+               Put (Item => CSI & "38;2;0;0;205m");
+               
+            else
+               Put (Item => CSI & "38;2;0;0;0m");
+            end if;
                   
          when others =>
-            Put (Item => CSI & "38;2;255;255;255m");
+            if
+              RessourceExtern in 14 .. 28
+            then
+               Put (Item => CSI & "38;2;135;206;250m");
+               
+            else
+               Put (Item => CSI & "38;2;255;255;255m");
+            end if;
       end case;
       
       if

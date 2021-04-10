@@ -7,8 +7,9 @@ with GebaeudeDatenbank, EinheitenDatenbank, Anzeige, Eingabe;
 
 package body InDerStadtBauen is
 
-   procedure Bauen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure Bauen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
 
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt := 0;
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleRessourcen := 0;
@@ -40,8 +41,9 @@ package body InDerStadtBauen is
 
 
 
-   procedure BauzeitEinzeln (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure BauzeitEinzeln
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
 
       if
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate = 0
@@ -74,8 +76,8 @@ package body InDerStadtBauen is
 
 
 
-   procedure BauzeitAlle is
-   begin
+   procedure BauzeitAlle
+   is begin
          
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
@@ -109,8 +111,10 @@ package body InDerStadtBauen is
 
 
 
-   function BauobjektAuswählen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Natural is
-   begin
+   function BauobjektAuswählen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Natural
+   is begin
 
       Ende := 1;
       Anzeige.TextBauenNeu := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));

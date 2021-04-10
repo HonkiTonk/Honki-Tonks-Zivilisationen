@@ -4,8 +4,9 @@ with Wachstum, KartenPruefungen, Karten, VerbesserungenDatenbank, KartenDatenban
 
 package body StadtProduktion is
 
-   procedure StadtProduktionPrüfen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure StadtProduktionPrüfen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       case StadtRasseNummerExtern.Rasse is
          when 0 => -- Überprüfung für alle Rassen bei Runde beenden.
@@ -36,8 +37,9 @@ package body StadtProduktion is
    
 
 
-   procedure StadtProduktionPrüfenBerechnung (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure StadtProduktionPrüfenBerechnung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsproduktion := 0;
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate := 0;
@@ -115,8 +117,9 @@ package body StadtProduktion is
    
    
    
-   procedure WeitereNahrungsproduktionÄnderungen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure WeitereNahrungsproduktionÄnderungen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
 
       case
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner
@@ -142,8 +145,9 @@ package body StadtProduktion is
 
 
 
-   procedure WeitereProduktionrateÄnderungen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure WeitereProduktionrateÄnderungen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       case
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption
@@ -181,8 +185,9 @@ package body StadtProduktion is
 
 
 
-   procedure WeitereGeldgewinnungÄnderungen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure WeitereGeldgewinnungÄnderungen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
 
       case
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption
@@ -211,8 +216,9 @@ package body StadtProduktion is
 
 
 
-   procedure WeitereForschungsrateÄnderungen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure WeitereForschungsrateÄnderungen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
 
       case
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption

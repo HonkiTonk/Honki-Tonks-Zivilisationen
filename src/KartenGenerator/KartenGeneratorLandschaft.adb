@@ -145,52 +145,54 @@ package body KartenGeneratorLandschaft is
                   exit XAchseEinsSchleife;
                   
                when True =>
+                  null;
+            end case;
+            
+            if
+              Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund < 3
+              or
+                Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = 31
+            then
+               null;
+                     
+            elsif
+              YÄnderungSchleifenwert = 0
+              and
+                XÄnderungSchleifenwert = 0
+            then
+               Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
+               Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
+                     
+            else
+               BeliebigerLandschaftFeldwert := ZufallGeneratorenKarten.ZufälligerWert;
+               if
+                 BeliebigerLandschaftFeldwert > 0.50
+                 and
+                   Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) = False
+               then
                   if
-                    Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund < 3
-                    or
-                      Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = 31
+                    GrundExtern = 4
+                    and
+                      Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 5
                   then
                      null;
-                     
+                           
                   elsif
-                    YÄnderungSchleifenwert = 0
+                    GrundExtern = 5
                     and
-                      XÄnderungSchleifenwert = 0
+                      Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 4
                   then
+                     null;
+                           
+                  else
                      Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
                      Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
-                     
-                  else
-                     BeliebigerLandschaftFeldwert := ZufallGeneratorenKarten.ZufälligerWert;
-                     if
-                       BeliebigerLandschaftFeldwert > 0.50
-                       and
-                         Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) = False
-                     then
-                        if
-                          GrundExtern = 4
-                          and
-                            Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 5
-                        then
-                           null;
-                           
-                        elsif
-                          GrundExtern = 5
-                          and
-                            Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 4
-                        then
-                           null;
-                           
-                        else
-                           Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
-                           Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
-                        end if;
-                        
-                     else
-                        Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;                       
-                     end if;
                   end if;
-            end case;
+                        
+               else
+                  Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;                       
+               end if;
+            end if;
 
             case
               GrundExtern

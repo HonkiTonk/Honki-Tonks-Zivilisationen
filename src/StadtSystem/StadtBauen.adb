@@ -7,8 +7,10 @@ with Anzeige, StadtWerteFestlegen, ForschungsDatenbank, EinheitenDatenbank, Eing
 
 package body StadtBauen is
 
-   function StadtBauen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
-   begin
+   function StadtBauen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
 
       BauMöglich := StadtBauenPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);      
         
@@ -136,8 +138,10 @@ package body StadtBauen is
 
 
 
-   function StadtBauenPrüfen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
-   begin
+   function StadtBauenPrüfen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
       
       if
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
@@ -154,8 +158,10 @@ package body StadtBauen is
 
 
 
-   function ErweitertesStadtBauenPrüfen (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) return Boolean is
-   begin
+   function ErweitertesStadtBauenPrüfen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
       
       YAchseSchleife:
       for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
@@ -195,8 +201,9 @@ package body StadtBauen is
 
 
 
-   function HauptstadtPrüfen (RasseExtern : in GlobaleDatentypen.Rassen) return GlobaleDatentypen.StadtID is
-   begin
+   function HauptstadtPrüfen
+     (RasseExtern : in GlobaleDatentypen.Rassen) return GlobaleDatentypen.StadtID
+   is begin
       
       -- Wenn die Hauptstadt existiert gibt es eine Zwei zurück, sonst eine Eins.
       HauptsstadtSchleife:
@@ -220,8 +227,9 @@ package body StadtBauen is
 
 
 
-   procedure StadtEntfernen (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure StadtEntfernen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := GlobaleVariablen.LeererWertStadt;
       

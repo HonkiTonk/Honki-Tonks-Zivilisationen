@@ -4,8 +4,8 @@ with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, Anzeige, StadtB
 
 package body Wachstum is
 
-   procedure Wachstum is
-   begin
+   procedure Wachstum
+   is begin
       
       RassenEinsSchleife:
       for RasseEinsSchleifenwert in GlobaleDatentypen.Rassen loop
@@ -65,8 +65,9 @@ package body Wachstum is
 
 
 
-   procedure WachstumBeiStadtGründung (RasseExtern : in GlobaleDatentypen.Rassen) is
-   begin
+   procedure WachstumBeiStadtGründung
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
       
       StadtSchleife:
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
@@ -93,8 +94,9 @@ package body Wachstum is
 
 
 
-   procedure WachstumEinwohner (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin      
+   procedure WachstumEinwohner
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin      
                      
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsmittel
         := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsmittel
@@ -154,8 +156,9 @@ package body Wachstum is
    
    
    
-   procedure WachstumProduktion (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) is
-   begin
+   procedure WachstumProduktion
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       if
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt = 0

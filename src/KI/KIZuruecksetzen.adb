@@ -4,8 +4,8 @@ with GlobaleVariablen;
 
 package body KIZuruecksetzen is
 
-   procedure KIZurücksetzenAmRundenende is
-   begin
+   procedure KIZurücksetzenAmRundenende
+   is begin
       
       RassenSchleife:
       for RasseSchleifenwert in GlobaleVariablen.RassenImSpiel'Range loop
