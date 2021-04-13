@@ -11,20 +11,32 @@ package StadtWerteFestlegen is
      (ZuwachsOderSchwundExtern : in Boolean;
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
-       Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
    procedure StadtUmgebungGrößeFestlegen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
-       Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
    procedure BelegteStadtfelderFreigeben
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
-       Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
 private
    

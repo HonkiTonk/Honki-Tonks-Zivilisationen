@@ -89,7 +89,6 @@ package body BewegungssystemEinheiten is
          then
             BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                          NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-            Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                
          elsif
            (Bewegung = GlobaleDatentypen.Normale_Bewegung_Möglich
@@ -98,36 +97,32 @@ package body BewegungssystemEinheiten is
            and
              Blockiert = GlobaleDatentypen.Gegner_Blockiert
          then
-            ErgebnisGegnerAngreifen := Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                            GegnerExtern             => EinheitRasseNummerExtern);
+            GegnerWert := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                    KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+            Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 GegnerExtern             => GegnerWert);
             if
-              ErgebnisGegnerAngreifen = True
-              or
-                (ErgebnisGegnerAngreifen = False
-                 and
-                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleLebenspunkte > 0)
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleLebenspunkte <= 0
             then
-               Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               return;
                
             else
-               return;
+               BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                            NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
             end if;
-               
+              
          else
             null;
          end if;
-         
+
          if
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte = 0.00
          then
+            Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             return;
-
-         elsif
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleLebenspunkte <= 0
-         then
-            return;
-               
+            
          else
+            Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
          end if;
          

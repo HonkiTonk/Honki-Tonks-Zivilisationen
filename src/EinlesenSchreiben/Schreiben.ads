@@ -16,10 +16,12 @@ private
    type StandardZeug is (Einstellungen, Werte, Sprachen);
 
    procedure WerteSchreiben;
+
    procedure EinstellungenSchreiben;
 
    function EinstellungenPrüfen
      return Boolean;
+
    function WertePrüfen
      return Boolean;
 

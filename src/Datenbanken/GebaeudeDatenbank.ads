@@ -47,11 +47,11 @@ package GebaeudeDatenbank is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       IDExtern : in GebäudeID)
      with
-       Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
-
-private
-   
-   
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
 end GebaeudeDatenbank;

@@ -82,7 +82,7 @@ package GlobaleVariablen is
    
    type StatusUntereinander is (Kein_Kontakt, Krieg, Neutral, Offene_Grenzen, Nichtangriffspakt, Defensivbündnis, Offensivbündnis);
    type DiplomatieArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.Rassen'Range) of StatusUntereinander;
-   Diplomatie : DiplomatieArray := (others => (others => Kein_Kontakt));
+   Diplomatie : DiplomatieArray := (others => (others => Neutral));
    -- Wichtiges Zeug
    
    

@@ -8,7 +8,8 @@ package ImSpiel is
    function ImSpiel
      return Integer
      with
-       Post => (ImSpiel'Result in -1 .. 0);
+       Post =>
+         (ImSpiel'Result in -1 .. 0);
 
 private
 
@@ -22,6 +23,9 @@ private
 
    function MenschlicherSpieler
      (RasseExtern : in GlobaleDatentypen.Rassen)
-      return Integer;
+      return Integer
+     with
+       Post =>
+         (MenschlicherSpieler'Result in -1_000 .. 5); -- Müsste noch verkleinerbar sein
 
 end ImSpiel;

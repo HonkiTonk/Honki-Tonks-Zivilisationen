@@ -8,8 +8,12 @@ package InDerStadt is
    procedure InDerStadt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
-       Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1));
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1));
 
 private
 
@@ -25,6 +29,13 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
    procedure EinwohnerZuweisen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1));
 
 end InDerStadt;

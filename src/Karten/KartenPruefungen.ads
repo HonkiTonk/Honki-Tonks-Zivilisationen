@@ -14,13 +14,21 @@ package KartenPruefungen is
       ZusatzYAbstandExtern : in GlobaleDatentypen.Kartenfeld)
       return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
      with
-       Pre => (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and ZusatzYAbstandExtern >= 0);
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            ZusatzYAbstandExtern >= 0);
    
    function KartenGrund
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return Boolean
      with
-       Pre => (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 private
    

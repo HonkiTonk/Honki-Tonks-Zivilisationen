@@ -13,7 +13,10 @@ package ZufallGeneratorenKarten is
    function YXPosition
      return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
-       Post => (YXPosition'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and YXPosition'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+       Post =>
+         (YXPosition'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            YXPosition'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function ZufälligerWert
      return Float;
@@ -21,7 +24,8 @@ package ZufallGeneratorenKarten is
    function Chaoskarte
      return GlobaleDatentypen.KartenGrund
      with
-       Post => (Chaoskarte'Result >= 1);
+       Post =>
+         (Chaoskarte'Result >= 1);
 
 private
 
@@ -58,10 +62,10 @@ private
 
 
 
-   -- Generatoren für KartenGeneratorStadnard
+   -- Generatoren für KartenGeneratorStandard
    ZufälligerFloatWert : Ada.Numerics.Float_Random.Generator;
    GewählterFloatWert : Float;
-   -- Generatoren für KartenGeneratorStadnard
+   -- Generatoren für KartenGeneratorStandard
 
 
 

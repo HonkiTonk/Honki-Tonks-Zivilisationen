@@ -22,6 +22,9 @@ private
    procedure FlussBerechnung
      (YKoordinateExtern, XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv)
      with
-       Pre => (YKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+       Pre =>
+         (YKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 end KartenGeneratorFluss;

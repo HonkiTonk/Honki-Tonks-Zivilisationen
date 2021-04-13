@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank, Karten;
+with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank, Karten, ZufallGeneratorenKampf;
 
 package body Kampfsystem is
 
@@ -22,7 +22,6 @@ package body Kampfsystem is
             Ergebnis := Kampf (VerteidigerRasseEinheitNummerExtern => (RasseVerteidigungExtern, EinheitenNummerVerteidigungExtern),
                                AngreiferRasseEinheitNummerExtern   => (RasseAngriffExtern, EinheitenNummerAngriffExtern),
                                VerteidigungBonusExtern             => VerteidigungBonusDurchStadt);
-            return Ergebnis;
             
          when others =>
             if
@@ -42,8 +41,9 @@ package body Kampfsystem is
             Ergebnis := Kampf (VerteidigerRasseEinheitNummerExtern => (RasseVerteidigungExtern, EinheitenNummerVerteidigungExtern),
                                AngreiferRasseEinheitNummerExtern   => (RasseAngriffExtern, EinheitenNummerAngriffExtern),
                                VerteidigungBonusExtern             => VerteidigungBonusDurchStadt);
-            return Ergebnis;
-      end case;      
+      end case;
+      
+      return Ergebnis;
       
    end KampfsystemNahkampf;
 
@@ -94,8 +94,6 @@ package body Kampfsystem is
         + Float (VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.EAchse,
                  GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.YAchse,
                  GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
-
-      Reset (Gewählt);
       
       KampfSchleife:
       loop
@@ -141,12 +139,12 @@ package body Kampfsystem is
       AngriffWertExtern, VerteidigungWertExtern : in Float)
    is begin
 
-      Wert := Random (Gewählt);
+      Kampfglück := ZufallGeneratorenKampf.KampfErfolg;
       
       if
         AngriffWertExtern > 2.00 * VerteidigungWertExtern
         and
-          Wert > 0.15
+          Kampfglück > 0.15
       then
          GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
            := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
@@ -154,7 +152,7 @@ package body Kampfsystem is
       elsif
         AngriffWertExtern > VerteidigungWertExtern
         and
-          Wert > 0.35
+          Kampfglück > 0.35
       then
          GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
            := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
@@ -162,7 +160,7 @@ package body Kampfsystem is
       elsif
         AngriffWertExtern = VerteidigungWertExtern
         and
-          Wert > 0.50
+          Kampfglück > 0.50
       then
          GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
            := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
@@ -172,7 +170,7 @@ package body Kampfsystem is
         and
           2.00 * AngriffWertExtern > VerteidigungWertExtern
           and
-            Wert > 0.80
+            Kampfglück > 0.80
       then
          GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
            := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
@@ -180,7 +178,7 @@ package body Kampfsystem is
       elsif
         2.00 * AngriffWertExtern < VerteidigungWertExtern
         and
-          Wert > 0.95
+          Kampfglück > 0.95
       then
          GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte
            := GlobaleVariablen.EinheitenGebaut (VerteidigerRasseEinheitNummerExtern.Rasse, VerteidigerRasseEinheitNummerExtern.Platznummer).AktuelleLebenspunkte - 1;
@@ -190,15 +188,5 @@ package body Kampfsystem is
       end if;
       
    end KampfBerechnung;
-
-
-
-   function Prüfen
-     return Boolean
-   is begin
-      
-      return True;
-      
-   end Prüfen;
 
 end Kampfsystem;

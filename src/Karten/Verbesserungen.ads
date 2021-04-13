@@ -13,8 +13,12 @@ package Verbesserungen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       BefehlExtern : in Befehle_Enum)
      with
-       Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1));
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1));
    
    procedure VerbesserungFertiggestellt;
    
@@ -36,18 +40,29 @@ private
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       BefehlExtern : in Befehle_Enum)
      with
-       Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
 
    procedure VerbesserungAngelegt
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
-       Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
 
    procedure StraßeBerechnung
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
      with
-       Pre => (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 end Verbesserungen;

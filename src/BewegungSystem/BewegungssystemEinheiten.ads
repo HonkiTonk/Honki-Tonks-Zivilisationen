@@ -10,21 +10,31 @@ package BewegungssystemEinheiten is
    procedure BewegungEinheitenRichtung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
-       Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1));
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1));
 
    procedure BewegungEinheitenBerechnung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
      with
-       Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-               and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
    
 private
 
    EinheitBewegtNichtEingeladen : Boolean;
-   ErgebnisGegnerAngreifen : Boolean;
 
    Bewegung : GlobaleDatentypen.Bewegung_Enum;
    Blockiert : GlobaleDatentypen.Bewegung_Enum;
@@ -47,7 +57,9 @@ private
    BewegungspunkteModifikator : Float;
 
    Änderung : GlobaleRecords.AchsenKartenfeldRecord;
+
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+
    GegnerWert : GlobaleRecords.RassePlatznummerRecord;
    GegnerEinheitWert : GlobaleRecords.RassePlatznummerRecord;
    GegnerStadtWert : GlobaleRecords.RassePlatznummerRecord;
@@ -61,8 +73,15 @@ private
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return Integer
      with
-       Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-               and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
 
 end BewegungssystemEinheiten;

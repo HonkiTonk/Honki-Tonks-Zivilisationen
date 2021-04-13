@@ -8,7 +8,8 @@ package Karte is
    procedure AnzeigeKarte
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
-       Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
 private
 
@@ -43,6 +44,7 @@ private
    procedure Information
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
-       Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
 end Karte;

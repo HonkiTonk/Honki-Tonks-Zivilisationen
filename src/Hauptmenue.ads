@@ -1,20 +1,32 @@
 pragma SPARK_Mode (On);
 
-package Hauptmenue is
+package Hauptmenue with
+Abstract_State => (HauptmenüAbstraktion)
+is
 
    procedure Hauptmenü
      with
-       Global => (null),
-     Depends => (null),
-     Pre => (True),
-     Post => (True);
+       Global =>
+         (In_Out => HauptmenüAbstraktion),
+     Depends =>
+       (HauptmenüAbstraktion => HauptmenüAbstraktion);
    
 private   
 
-   LadenErfolgreich : Boolean;
+   LadenErfolgreich : Boolean
+     with Part_Of =>
+       HauptmenüAbstraktion;
 
-   Startauswahl : Integer;
-   RückgabeKampagne : Integer;
-   RückgabeOptionen : Integer;
+   Startauswahl : Integer
+     with Part_Of =>
+       HauptmenüAbstraktion;
+   
+   RückgabeKampagne : Integer
+     with Part_Of =>
+       HauptmenüAbstraktion;
+         
+   RückgabeOptionen : Integer
+     with Part_Of =>
+       HauptmenüAbstraktion;
 
 end Hauptmenue;

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Eingabe;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 package body Informationen is
@@ -34,7 +34,7 @@ package body Informationen is
       New_Line;
       
       Put_Line (Item => "Taste drücken um zurück ins Hauptmenü zu kommen.");
-      Get_Immediate (Item => Taste);
+      Eingabe.WartenEingabe;
       
    end Informationen;
 

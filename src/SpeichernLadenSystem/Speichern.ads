@@ -10,6 +10,7 @@ package Speichern is
 
    procedure SpeichernNeu
      (AutospeichernExtern : in Boolean);
+
    procedure AutoSpeichern;
 
 private

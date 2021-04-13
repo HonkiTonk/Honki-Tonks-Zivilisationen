@@ -65,6 +65,7 @@ package KartenDatenbank is
    procedure Beschreibung
      (IDExtern : in GlobaleDatentypen.KartenGrund)
      with
-       Pre => (IDExtern > 0);
+       Pre =>
+         (IDExtern > 0);
 
 end KartenDatenbank;

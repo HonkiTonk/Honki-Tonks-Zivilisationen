@@ -23,7 +23,7 @@ package body BefehleImSpiel is
          when 'w' | 's' | 'a' | 'd' | '1' | '2' | '3' | '4' | '6' | '7' | '8' | '9' | '+' | '-' =>
             BewegungssystemCursor.BewegungCursorRichtung (KarteExtern       => True,
                                                           RichtungExtern    => Taste,
-                                                          RasseExtern => RasseExtern);
+                                                          RasseExtern       => RasseExtern);
             
          when 'e' | '5' => -- Einheit bewegen/Stadt betreten
             EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,

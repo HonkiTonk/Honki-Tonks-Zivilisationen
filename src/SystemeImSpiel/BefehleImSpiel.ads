@@ -9,8 +9,10 @@ package BefehleImSpiel is
      (RasseExtern : in GlobaleDatentypen.Rassen)
       return Integer
      with
-       Pre  => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1),
-       Post => (Befehle'Result in -1_000 .. 5);
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1),
+         Post =>
+           (Befehle'Result in -1_000 .. 5);
 
 private
 
@@ -34,6 +36,7 @@ private
       StadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
      with
-       Pre => (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
    
 end BefehleImSpiel;

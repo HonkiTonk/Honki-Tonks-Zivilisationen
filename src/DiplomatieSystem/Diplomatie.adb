@@ -35,14 +35,10 @@ package body Diplomatie is
 
 
 
-   function GegnerAngreifenOderNicht
+   procedure GegnerAngreifenOderNicht
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       GegnerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
    is begin
-
-      Gewonnen := False;
-      Angreifen := False;
       
       BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasseExtern   => EinheitRasseNummerExtern.Rasse,
                                                                 VerteidigendeRasseExtern => GegnerExtern.Rasse);
@@ -55,37 +51,25 @@ package body Diplomatie is
               Wahl
             is
                when -3 =>
-                  Angreifen := True;
-                  -- Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasseExtern => EinheitRasseNummerExtern.Rasse,
-                  -- VerteidigendeRasseExtern => GegnerExtern.Rasse);
-                  return True;   
+                  Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                        VerteidigendeRasseExtern => GegnerExtern.Rasse);
                   
                when others =>
-                  Angreifen := False;
+                  return;
             end case;
                   
          when GlobaleVariablen.Krieg =>
-            Angreifen := True;
+            null;
 
          when others =>
-            Angreifen := False;
-      end case;
-         
-      case
-        Angreifen
-      is
-         when True =>
-            Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerStadtNummerExtern           => GegnerExtern.Platznummer,
-                                                         RasseAngriffExtern                => EinheitRasseNummerExtern.Rasse,
-                                                         EinheitenNummerAngriffExtern      => EinheitRasseNummerExtern.Platznummer,
-                                                         RasseVerteidigungExtern           => GegnerExtern.Rasse,
-                                                         EinheitenNummerVerteidigungExtern => GegnerExtern.Platznummer);
-               
-         when False =>
-            return False;
+            return;
       end case;
       
-      return Gewonnen;
+      Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerStadtNummerExtern           => GegnerExtern.Platznummer,
+                                                   RasseAngriffExtern                => EinheitRasseNummerExtern.Rasse,
+                                                   EinheitenNummerAngriffExtern      => EinheitRasseNummerExtern.Platznummer,
+                                                   RasseVerteidigungExtern           => GegnerExtern.Rasse,
+                                                   EinheitenNummerVerteidigungExtern => GegnerExtern.Platznummer);
       
    end GegnerAngreifenOderNicht;
 

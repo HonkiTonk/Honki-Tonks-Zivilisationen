@@ -35,25 +35,39 @@ package EinheitenDatenbank is
 
    procedure Beschreibung
      (IDExtern : in GlobaleDatentypen.EinheitenID);
+   
    procedure LebenspunkteBewegungspunkteAufMaximumSetzen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
-       Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
    
    procedure HeilungBewegungspunkteNeueRundeErmitteln;
+   
    procedure EinheitErzeugen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.EinheitenID)
      with
-       Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
    procedure EinheitEntfernen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
-       Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
    
    procedure Beschäftigung
      (ArbeitExtern : in Natural);
@@ -61,6 +75,7 @@ package EinheitenDatenbank is
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen
      (WelcheAuswahlExtern : in Natural)
       return Boolean;
+   
    function EinheitTransporterAuswählen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert;
@@ -83,8 +98,12 @@ private
    procedure HeilungBewegungspunkteNeueRundeSetzen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
-       Pre => (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2) and EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0);
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0);
      
 
 end EinheitenDatenbank;

@@ -1,3 +1,5 @@
+pragma SPARK_Mode (Off);
+
 with Ada.Numerics.Discrete_Random;
 
 with GlobaleDatentypen;
@@ -8,8 +10,10 @@ package ZufallGeneratorenSpieleinstellungen is
      (WelcheEinstellungExtern : in Positive)
       return Positive
      with
-       Pre  => (WelcheEinstellungExtern <= 6),
-     Post => (Spieleinstellungen'Result <= Positive (GlobaleDatentypen.Rassen'Last));
+       Pre =>
+         (WelcheEinstellungExtern <= 6),
+     Post =>
+       (Spieleinstellungen'Result <= Positive (GlobaleDatentypen.Rassen'Last));
 
 private
    

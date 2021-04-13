@@ -11,7 +11,10 @@ package FelderwerteFestlegen is
      (GenerierungExtern : in Boolean;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
      with
-       Pre => (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 private
    
@@ -21,13 +24,21 @@ private
    procedure KartenfelderBewertenKleineSchleife 
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
        with
-         Pre => (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure BewertungSelbst
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern : in GlobaleDatentypen.KartenfeldPositiv;
       TeilerExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
      with
-       Pre => (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße and KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße and TeilerExtern > 0);
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            TeilerExtern > 0);
 
 end FelderwerteFestlegen;

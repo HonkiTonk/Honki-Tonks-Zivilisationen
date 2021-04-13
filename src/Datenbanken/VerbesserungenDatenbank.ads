@@ -44,6 +44,7 @@ package VerbesserungenDatenbank is
    procedure Beschreibung
      (IDExtern : in GlobaleDatentypen.KartenVerbesserung)
      with
-       Pre => (IDExtern > 0);
+       Pre =>
+         (IDExtern > 0);
    
 end VerbesserungenDatenbank;

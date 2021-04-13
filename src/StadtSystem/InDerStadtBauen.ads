@@ -8,14 +8,22 @@ package InDerStadtBauen is
    procedure Bauen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
-       Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1));
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1));
 
    procedure BauzeitEinzeln
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
-       Pre => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-               and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
 
    procedure BauzeitAlle;
 
@@ -71,8 +79,13 @@ private
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Natural
      with
-       Pre  => (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2) and StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-                and (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1)),
-     Post => (BauobjektAuswählen'Result <= 99_999);
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+          and
+            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1)),
+     Post =>
+       (BauobjektAuswählen'Result <= 99_999);
 
 end InDerStadtBauen;

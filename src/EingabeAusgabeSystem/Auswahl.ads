@@ -16,8 +16,14 @@ package Auswahl is
       FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern : in Natural)
       return Integer
      with
-       Pre => (ErsteZeileExtern <= LetzteZeileExtern and (if FrageDateiExtern = GlobaleDatentypen.Leer then FrageZeileExtern = 0) and (if FrageZeileExtern = 0 then FrageDateiExtern = GlobaleDatentypen.Leer)
-               and TextDateiExtern /= GlobaleDatentypen.Leer);
+       Pre =>
+         (ErsteZeileExtern <= LetzteZeileExtern
+          and
+            (if FrageDateiExtern = GlobaleDatentypen.Leer then FrageZeileExtern = 0)
+          and
+            (if FrageZeileExtern = 0 then FrageDateiExtern = GlobaleDatentypen.Leer)
+          and
+            TextDateiExtern /= GlobaleDatentypen.Leer);
 
    function AuswahlJaNein
      (FrageZeileExtern : in Positive)
