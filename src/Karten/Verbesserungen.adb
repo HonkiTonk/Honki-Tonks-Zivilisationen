@@ -1,20 +1,20 @@
 pragma SPARK_Mode (On);
 
-with EinheitenDatenbank, Anzeige, FelderwerteFestlegen, KartenPruefungen;
+with EinheitenDatenbank, Anzeige, FelderwerteFestlegen, KartenPruefungen, KarteneigenschaftSuchen;
 
 package body Verbesserungen is
 
    -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen)
    procedure Verbesserung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      BefehlExtern : in Befehle_Enum)
+      BefehlExtern : in GlobaleDatentypen.Befehle_Enum)
    is begin
 
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung = 0
       then
-         VerbesserungeFestgelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                  BefehlExtern             => BefehlExtern);
+         VerbesserungFestgelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                 BefehlExtern             => BefehlExtern);
          
       else
          Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 7);
@@ -22,8 +22,8 @@ package body Verbesserungen is
            Wahl
          is
             when True =>
-               VerbesserungeFestgelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                        BefehlExtern             => BefehlExtern);
+               VerbesserungFestgelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                       BefehlExtern             => BefehlExtern);
                      
             when False =>
                null;
@@ -34,11 +34,75 @@ package body Verbesserungen is
    
 
 
-   -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen)
-   procedure VerbesserungeFestgelegt
+   procedure VerbesserungFestgelegt
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      BefehlExtern : in Befehle_Enum)
+      BefehlExtern : in GlobaleDatentypen.Befehle_Enum)
    is begin
+
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := 0;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger := 0;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 0;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 0;
+      -- Befehle_Enum is (Keine, Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Einheit_Auflösen, Plündern);
+      
+      if
+        BefehlExtern = Straße_Bauen
+      then
+         VerbesserungStraße (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      elsif
+        BefehlExtern = Mine_Bauen
+      then
+         VerbesserungMine (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      elsif
+        BefehlExtern = Farm_Bauen
+      then
+         VerbesserungFarm (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      elsif
+        BefehlExtern = Festung_Bauen
+      then
+         VerbesserungFestung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      elsif
+        BefehlExtern = Wald_Aufforsten
+      then
+         VerbesserungWald (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      elsif
+        BefehlExtern = Roden_Trockenlegen
+      then
+         VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      elsif
+        BefehlExtern = Heilen
+      then
+         VerbesserungHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      elsif
+        BefehlExtern = Verschanzen
+      then
+         VerbesserungVerschanzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      elsif
+        BefehlExtern = Runde_Aussetzen
+      then
+         VerbesserungAussetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      elsif
+        BefehlExtern = Einheit_Auflösen
+      then
+         VerbesserungAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      elsif
+        BefehlExtern = Plündern
+      then
+         VerbesserungPlündern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      else
+         null;
+      end if;
 
       if
         BefehlExtern = Straße_Bauen
@@ -191,11 +255,6 @@ package body Verbesserungen is
       else
          null;
       end if;
-                              
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := 0;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger := 0;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 0;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 0;
       
       case
         BefehlExtern
@@ -365,8 +424,118 @@ package body Verbesserungen is
          when others =>
             null;
       end case;
-            
-   end VerbesserungeFestgelegt;
+      
+   end VerbesserungFestgelegt;
+
+
+
+   procedure VerbesserungStraße
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end VerbesserungStraße;
+   
+   
+   
+   procedure VerbesserungMine
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end VerbesserungMine;
+
+   
+   
+   procedure VerbesserungFarm
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end VerbesserungFarm;
+   
+   
+   
+   procedure VerbesserungFestung
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end VerbesserungFestung;
+   
+   
+   
+   procedure VerbesserungWald
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end VerbesserungWald;
+   
+   
+   
+   procedure VerbesserungRoden
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end VerbesserungRoden;
+   
+   
+   
+   procedure VerbesserungHeilen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end VerbesserungHeilen;
+   
+   
+   
+   procedure VerbesserungVerschanzen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end VerbesserungVerschanzen;
+   
+   
+   
+   procedure VerbesserungAussetzen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end VerbesserungAussetzen;
+   
+   
+   
+   procedure VerbesserungAuflösen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end VerbesserungAuflösen;
+   
+   
+   
+   procedure VerbesserungPlündern
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end VerbesserungPlündern;
    
 
 
@@ -386,30 +555,24 @@ package body Verbesserungen is
       
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+         EinheitenSchleife:
+         for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebaut'Range (2) loop
          
-         case
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
-         is
-            when 0 =>
+            if
+              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+            then
+               exit EinheitenSchleife;
+               
+            elsif
+              GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0
+            then
                null;
-               
-            when others =>
-               EinheitenSchleife:
-               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebaut'Range (2) loop
-         
-                  case
-                    GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID
-                  is
-                     when 0 =>
-                        null;
-               
-                     when others =>
-                        VerbesserungFertiggestelltPrüfen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
-                  end case;
-         
-               end loop EinheitenSchleife;
-         end case;
 
+            else
+               VerbesserungFertiggestelltPrüfen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
+            end if;
+         
+         end loop EinheitenSchleife;
       end loop RassenSchleife;
       
    end VerbesserungFertiggestellt;
@@ -424,36 +587,38 @@ package body Verbesserungen is
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung
       is
          when 0 | 7 .. 8 =>
-            null;
+            return;
                
          when others =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit
-              := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit - 1;
-            if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit = 0
-            then
-               VerbesserungAngelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-
-               case
-                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger
-               is
-                  when 0 =>
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := 0;
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 0;
-
-                  when others =>
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung
-                       := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger;
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit
-                       := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger;
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger := 0;
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 0;
-               end case;
-                        
-            else
-               null;
-            end if;
+            null;
       end case;
+
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit
+        := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit - 1;
+      if
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit = 0
+      then
+         VerbesserungAngelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+
+         case
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger
+         is
+            when 0 =>
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := 0;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 0;
+
+            when others =>
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung
+                 := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit
+                 := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger := 0;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 0;
+         end case;
+                        
+      else
+         null;
+      end if;
       
    end VerbesserungFertiggestelltPrüfen;
 

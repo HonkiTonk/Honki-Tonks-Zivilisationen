@@ -235,7 +235,7 @@ package body BefehleImSpiel is
                      
                   else
                      Verbesserungen.Verbesserung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
-                                                  BefehlExtern             => Verbesserungen.Befehle_Enum'Val (WelcherBefehl));
+                                                  BefehlExtern             => GlobaleDatentypen.Befehle_Enum'Val (WelcherBefehl));
                   end if;
             end case;
             

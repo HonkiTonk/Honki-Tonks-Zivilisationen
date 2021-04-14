@@ -5,7 +5,7 @@ use GlobaleDatentypen, GlobaleRecords;
 
 with Karten;
 
-package StadtSuchen is 
+package StadtSuchen is
    
    function KoordinatenStadtMitRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen;

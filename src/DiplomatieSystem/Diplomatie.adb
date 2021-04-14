@@ -65,11 +65,8 @@ package body Diplomatie is
             return;
       end case;
       
-      Gewonnen := Kampfsystem.KampfsystemNahkampf (GegnerStadtNummerExtern           => GegnerExtern.Platznummer,
-                                                   RasseAngriffExtern                => EinheitRasseNummerExtern.Rasse,
-                                                   EinheitenNummerAngriffExtern      => EinheitRasseNummerExtern.Platznummer,
-                                                   RasseVerteidigungExtern           => GegnerExtern.Rasse,
-                                                   EinheitenNummerVerteidigungExtern => GegnerExtern.Platznummer);
+      Gewonnen := Kampfsystem.KampfsystemNahkampf (AngreiferRasseNummerExtern   => EinheitRasseNummerExtern,
+                                                   VerteidigerRasseNummerExtern => GegnerExtern);
       
    end GegnerAngreifenOderNicht;
 

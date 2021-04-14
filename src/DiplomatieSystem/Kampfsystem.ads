@@ -6,59 +6,57 @@ use GlobaleDatentypen;
 package Kampfsystem is
 
    function KampfsystemNahkampf
-     (RasseAngriffExtern, RasseVerteidigungExtern : in GlobaleDatentypen.Rassen;
-      GegnerStadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      EinheitenNummerAngriffExtern, EinheitenNummerVerteidigungExtern : in GlobaleDatentypen.MaximaleEinheiten)
+     (AngreiferRasseNummerExtern, VerteidigerRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>
-         (RasseAngriffExtern /= RasseVerteidigungExtern
+         (AngreiferRasseNummerExtern.Rasse /= VerteidigerRasseNummerExtern.Rasse
           and
-            GlobaleVariablen.RassenImSpiel (RasseAngriffExtern) /= 0
+            GlobaleVariablen.RassenImSpiel (AngreiferRasseNummerExtern.Rasse) /= 0
           and
-            GlobaleVariablen.RassenImSpiel (RasseVerteidigungExtern) /= 0);
+            GlobaleVariablen.RassenImSpiel (VerteidigerRasseNummerExtern.Rasse) /= 0
+          and
+            VerteidigerRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            AngreiferRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2));
 
 private
 
    Ergebnis : Boolean;
 
+   StadtVorhanden : GlobaleDatentypen.MaximaleStädteMitNullWert;
+
    VerteidigungBonusDurchStadt : Float;
    VerteidigerBonus : constant Float := 1.25;
-   VerteidigungVerteidigungWert : Float;
-   VerteidigungAngriffWert : Float;
-   AngriffAngriffWert : Float;
-   AngriffVerteidigungWert : Float;
+   AngreiferStärkeAngriff : Float;
+   AngreiferStärkeVerteidigung : Float;
+   VerteidigerStärkeAngriff : Float;
+   VerteidigerStärkeVerteidigung : Float;
    Kampfglück : Float;
 
    procedure KampfBerechnung
-     (VerteidigerRasseEinheitNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AngriffWertExtern, VerteidigungWertExtern : in Float)
+     (VerteidigerRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      AngreiferStärkeAngriffExtern, VerteidigerStärkeVerteidigungExtern : in Float)
      with
        Pre =>
-         (VerteidigerRasseEinheitNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (VerteidigerRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            VerteidigerRasseEinheitNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            GlobaleVariablen.RassenImSpiel (VerteidigerRasseEinheitNummerExtern.Rasse) /= 0);
+            GlobaleVariablen.RassenImSpiel (VerteidigerRasseNummerExtern.Rasse) /= 0);
 
    function Kampf
-     (VerteidigerRasseEinheitNummerExtern, AngreiferRasseEinheitNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      VerteidigungBonusExtern : in Float)
+     (VerteidigerRasseNummerExtern, AngreiferRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      VerteidigerBonusExtern : in Float)
       return Boolean
      with
        Pre =>
-         (VerteidigerRasseEinheitNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (AngreiferRasseNummerExtern.Rasse /= VerteidigerRasseNummerExtern.Rasse
           and
-            VerteidigerRasseEinheitNummerExtern.Rasse in GlobaleDatentypen.Rassen
+            GlobaleVariablen.RassenImSpiel (AngreiferRasseNummerExtern.Rasse) /= 0
           and
-            AngreiferRasseEinheitNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+            GlobaleVariablen.RassenImSpiel (VerteidigerRasseNummerExtern.Rasse) /= 0
           and
-            AngreiferRasseEinheitNummerExtern.Rasse in GlobaleDatentypen.Rassen
+            VerteidigerRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            AngreiferRasseEinheitNummerExtern.Rasse /= VerteidigerRasseEinheitNummerExtern.Rasse
-          and
-            GlobaleVariablen.RassenImSpiel (VerteidigerRasseEinheitNummerExtern.Rasse) /= 0
-          and
-            GlobaleVariablen.RassenImSpiel (AngreiferRasseEinheitNummerExtern.Rasse) /= 0);
+            AngreiferRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2));
 
 end Kampfsystem;
