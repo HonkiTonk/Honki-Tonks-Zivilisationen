@@ -72,10 +72,6 @@ package GlobaleRecords is
 
    type EinheitenGebautRecord is record
       
-      -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen)
-      AktuelleBeschäftigung : Natural;
-      AktuelleBeschäftigungNachfolger : Natural;
-      
       ID : GlobaleDatentypen.EinheitenIDMitNullWert;
       AchsenPosition : AchsenKartenfeldPositivRecord;
       
@@ -83,6 +79,10 @@ package GlobaleRecords is
       AktuelleBewegungspunkte : Float;
       AktuelleErfahrungspunkte : Natural;
       AktuellerRang : Natural;
+      
+      -- Befehle_Enum siehe GlobaleDatentypen
+      AktuelleBeschäftigung : GlobaleDatentypen.Befehle_Enum;
+      AktuelleBeschäftigungNachfolger : GlobaleDatentypen.Befehle_Enum;
       
       AktuelleBeschäftigungszeit : Natural;
       AktuelleBeschäftigungszeitNachfolger : Natural;

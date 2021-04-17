@@ -22,6 +22,8 @@ private
    
    Wahl : Boolean;
 
+   Grund : GlobaleDatentypen.KartenGrund;
+
    Straßenwert : Integer;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;

@@ -64,7 +64,7 @@ package EinheitenDatenbank is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0);
    
    procedure Beschäftigung
-     (ArbeitExtern : in Natural);
+     (ArbeitExtern : in GlobaleDatentypen.Befehle_Enum);
 
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen
      (WelcheAuswahlExtern : in Natural)

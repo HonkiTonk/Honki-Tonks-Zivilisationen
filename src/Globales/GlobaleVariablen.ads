@@ -41,13 +41,13 @@ package GlobaleVariablen is
 
    Schwierigkeitsgrad : Positive;
    -- Zeug
-                                                         
+   
 
    
    -- Einheiten
-   LeererWertEinheit : constant GlobaleRecords.EinheitenGebautRecord := (0, 0,          -- 1. Wert = Aktuelle Beschäftigung, 2. Wert = Zweite aktuelle Beschäftigung
-                                                                         0, (0, 1, 1),  -- 3. Wert = ID, 4. Wert = AchsenPosition
-                                                                         0, 0.00, 0, 0, -- 5. Wert = Aktuelle Lebenspunkte, 6. Wert = Aktuelle Bewegungspunkte, 7. Wert = Aktuelle Erfahrungspunkte, 8. Wert = Aktueller Rang
+   LeererWertEinheit : constant GlobaleRecords.EinheitenGebautRecord := (0, (0, 1, 1),  -- 1. Wert = ID, 2. Wert = AchsenPosition
+                                                                         0, 0.00, 0, 0, -- 3. Wert = Aktuelle Lebenspunkte, 4. Wert = Aktuelle Bewegungspunkte, 5. Wert = Aktuelle Erfahrungspunkte, 6. Wert = Aktueller Rang
+                                                                         GlobaleDatentypen.Keine, GlobaleDatentypen.Keine, -- 7. Wert = Aktuelle Beschäftigung, 8. Wert = Zweite Beschäftigung
                                                                          0, 0,          -- 9. Wert = Aktuelle Beschäftigungszeit, 10. Wert = Zweite AktuelleBeschäftigungszeit
                                                                          (0, 1, 1), KIDatentypen.Keine_Aufgabe,    -- 11. Wert = Zielkoordinaten der KI, 12. Wert = Beschäftigunggrad der KI
                                                                          (others => 0), 0); -- 13. Wert = Platznummer der transportierten Einheiten, 14. Wert = Platznummer der transportierenden Einheit

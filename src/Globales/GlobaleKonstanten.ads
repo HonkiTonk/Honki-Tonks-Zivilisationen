@@ -49,4 +49,10 @@ package GlobaleKonstanten is
    Eisrand : constant GlobaleDatentypen.KartenfeldPositiv := 1;
    -- Für die Kartengenerierung
 
+
+
+   -- Für die Leerwerte
+
+   -- Für die Leerwerte
+
 end GlobaleKonstanten;
