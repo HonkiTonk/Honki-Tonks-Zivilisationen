@@ -12,7 +12,7 @@ package KarteneigenschaftSuchen is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0
           and
-            EinheitRasseNummer.Platznummer > GlobaleVariablen.EinheitenGebautArray'First (2)),
+            EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)),
          Post =>
            (KartenGrundEinheitSuchen'Result > 0);
 
@@ -23,7 +23,7 @@ package KarteneigenschaftSuchen is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0
           and
-            EinheitRasseNummer.Platznummer > GlobaleVariablen.EinheitenGebautArray'First (2));
+            EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
    function KartenStraßeEinheitSuchen
      (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord)
@@ -32,7 +32,7 @@ package KarteneigenschaftSuchen is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0
           and
-            EinheitRasseNummer.Platznummer > GlobaleVariablen.EinheitenGebautArray'First (2));
+            EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
    function KartenVerbesserungEinheitSuchen
      (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord)
@@ -41,7 +41,7 @@ package KarteneigenschaftSuchen is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0
           and
-            EinheitRasseNummer.Platznummer > GlobaleVariablen.EinheitenGebautArray'First (2));
+            EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
    function KartenRessourceEinheitSuchen
      (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord)
@@ -50,11 +50,16 @@ package KarteneigenschaftSuchen is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0
           and
-            EinheitRasseNummer.Platznummer > GlobaleVariablen.EinheitenGebautArray'First (2));
+            EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
 private
 
+   Straße : GlobaleDatentypen.KartenVerbesserung;
+   Verbesserung : GlobaleDatentypen.KartenVerbesserung;
+
    Grund : GlobaleDatentypen.KartenGrund;
+   Fluss : GlobaleDatentypen.KartenGrund;
+   Ressource : GlobaleDatentypen.KartenGrund;
 
 
 end KarteneigenschaftSuchen;

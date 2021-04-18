@@ -44,36 +44,44 @@ package body Verbesserungen is
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger := GlobaleDatentypen.Keine;
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 0;
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 0;
+
+      Grund := KarteneigenschaftSuchen.KartenGrundEinheitSuchen (EinheitRasseNummer => EinheitRasseNummerExtern);
       
       if
         BefehlExtern = Straße_Bauen
       then
-         VerbesserungStraße (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         VerbesserungStraße (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                              GrundExtern              => Grund);
          
       elsif
         BefehlExtern = Mine_Bauen
       then
-         VerbesserungMine (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         VerbesserungMine (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                           GrundExtern              => Grund);
          
       elsif
         BefehlExtern = Farm_Bauen
       then
-         VerbesserungFarm (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         VerbesserungFarm (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                           GrundExtern              => Grund);
          
       elsif
         BefehlExtern = Festung_Bauen
       then
-         VerbesserungFestung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         VerbesserungFestung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                              GrundExtern              => Grund);
          
       elsif
         BefehlExtern = Wald_Aufforsten
       then
-         VerbesserungWald (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         VerbesserungWald (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                           GrundExtern              => Grund);
          
       elsif
         BefehlExtern = Roden_Trockenlegen
       then
-         VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                            GrundExtern              => Grund);
          
       elsif
         BefehlExtern = Heilen
@@ -109,7 +117,8 @@ package body Verbesserungen is
 
 
    procedure VerbesserungStraße
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GrundExtern : in GlobaleDatentypen.KartenGrund)
    is begin
       
       if
@@ -124,10 +133,8 @@ package body Verbesserungen is
          null;
       end if;
 
-      Grund := KarteneigenschaftSuchen.KartenGrundEinheitSuchen (EinheitRasseNummer => EinheitRasseNummerExtern);
-
       case
-        Grund
+        GrundExtern
       is
          when 1 | 3 .. 6 | 8 | 10 .. 28 =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Straße_Bauen;
@@ -146,7 +153,8 @@ package body Verbesserungen is
    
    
    procedure VerbesserungMine
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GrundExtern : in GlobaleDatentypen.KartenGrund)
    is begin
       
       if
@@ -170,21 +178,19 @@ package body Verbesserungen is
          case
            Wahl
          is
-         when True =>
-            null;
+            when True =>
+               null;
                      
-         when False =>
-            return;
+            when False =>
+               return;
          end case;
 
       else
          null;
       end if;
 
-      Grund := KarteneigenschaftSuchen.KartenGrundEinheitSuchen (EinheitRasseNummer => EinheitRasseNummerExtern);
-
       case
-        Grund
+        GrundExtern
       is
          when 1 | 3 .. 6 | 10 .. 28 =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Mine_Bauen;
@@ -195,8 +201,8 @@ package body Verbesserungen is
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 5;
 
          when 8 | 9 | 32 =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Roden_Trockenlegen;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 3;
+            VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                               GrundExtern              => GrundExtern);
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger := GlobaleDatentypen.Mine_Bauen;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 3;
                
@@ -209,7 +215,8 @@ package body Verbesserungen is
    
    
    procedure VerbesserungFarm
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GrundExtern : in GlobaleDatentypen.KartenGrund)
    is begin
       
       if
@@ -241,21 +248,19 @@ package body Verbesserungen is
          case
            Wahl
          is
-         when True =>
-            null;
+            when True =>
+               null;
                      
-         when False =>
-            return;
+            when False =>
+               return;
          end case;
 
       else
          null;
       end if;
 
-      Grund := KarteneigenschaftSuchen.KartenGrundEinheitSuchen (EinheitRasseNummer => EinheitRasseNummerExtern);
-
       case
-        Grund
+        GrundExtern
       is
          when 3 .. 6 | 10 .. 28 =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Farm_Bauen;
@@ -266,8 +271,8 @@ package body Verbesserungen is
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 5;
 
          when 8 .. 9 | 32 =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Roden_Trockenlegen;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 3;
+            VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                               GrundExtern              => GrundExtern);
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger := GlobaleDatentypen.Farm_Bauen;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 3;
                
@@ -280,7 +285,8 @@ package body Verbesserungen is
    
    
    procedure VerbesserungFestung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GrundExtern : in GlobaleDatentypen.KartenGrund)
    is begin
       
       if
@@ -315,10 +321,8 @@ package body Verbesserungen is
          null;
       end if;
 
-      Grund := KarteneigenschaftSuchen.KartenGrundEinheitSuchen (EinheitRasseNummer => EinheitRasseNummerExtern);
-
       case
-        Grund
+        GrundExtern
       is
          when 1 | 3 .. 6 | 8 .. 28 | 32 =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Festung_Bauen;
@@ -337,7 +341,8 @@ package body Verbesserungen is
    
    
    procedure VerbesserungWald
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GrundExtern : in GlobaleDatentypen.KartenGrund)
    is begin
       
       if
@@ -364,18 +369,16 @@ package body Verbesserungen is
          null;
       end if;
 
-      Grund := KarteneigenschaftSuchen.KartenGrundEinheitSuchen (EinheitRasseNummer => EinheitRasseNummerExtern);
-
       case
-        Grund
+        GrundExtern
       is
          when 3 | 6 | 10 .. 28 =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Wald_Aufforsten;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 3;
 
          when 9 | 32 =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Roden_Trockenlegen;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 3;
+            VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                               GrundExtern              => GrundExtern);
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger := GlobaleDatentypen.Wald_Aufforsten;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 3;
                
@@ -388,13 +391,12 @@ package body Verbesserungen is
    
    
    procedure VerbesserungRoden
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GrundExtern : in GlobaleDatentypen.KartenGrund)
    is begin
-      
-      Grund := KarteneigenschaftSuchen.KartenGrundEinheitSuchen (EinheitRasseNummer => EinheitRasseNummerExtern);
 
       case
-        Grund
+        GrundExtern
       is
          when 8 | 9 | 32 =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Roden_Trockenlegen;
@@ -582,7 +584,7 @@ package body Verbesserungen is
       
       case
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung
-      is -- Landstraße/Tiefengrabung/Farm/Festung/Wald aufforsten/Roden-Trockenlegen
+      is
          when GlobaleDatentypen.Straße_Bauen =>
             StraßeBerechnung (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition);
               

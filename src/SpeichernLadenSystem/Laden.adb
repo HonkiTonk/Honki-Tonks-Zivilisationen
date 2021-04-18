@@ -183,8 +183,8 @@ package body Laden is
                         null;
                      
                      when others =>
-                        GlobaleVariablen.StatusUntereinander'Read (Stream (File => DateiLadenNeu),
-                                                                   GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
+                        GlobaleDatentypen.StatusUntereinander'Read (Stream (File => DateiLadenNeu),
+                                                                    GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
                   end case;
 
                end loop DiplomatieSchleifeInnen;

@@ -19,7 +19,7 @@ package Diplomatie is
 
    function DiplomatischenStatusPrüfen
      (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen)
-      return GlobaleVariablen.StatusUntereinander
+      return GlobaleDatentypen.StatusUntereinander
      with
        Pre =>
          (AngreifendeRasseExtern /= VerteidigendeRasseExtern
@@ -51,7 +51,7 @@ private
 
    Gewonnen : Boolean;
 
-   BereitsImKrieg : GlobaleVariablen.StatusUntereinander;
+   BereitsImKrieg : GlobaleDatentypen.StatusUntereinander;
 
    Wahl : Integer;
 

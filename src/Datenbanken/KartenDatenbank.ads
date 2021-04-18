@@ -1,19 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, DatenbankRecords;
+with GlobaleDatentypen, DatenbankRecords, GlobaleKonstanten;
 use GlobaleDatentypen;
 
 package KartenDatenbank is
    
-   LeererWertKartenListe : constant DatenbankRecords.KartenListeRecord := (' ', -- 1. Wert = KartenGrafik
-                                                                           1, -- 2. Wert = Passierbarkeit
-                                                                           0, 0, 0, 0, 0); -- 3. Wert = Nahrungsgewinnung, 4. Wert = Ressourcengewinnung, 5. Wert = Geldgewinnung, 6. Wert = Wissensgewinnung,
-   -- 7. Wert = Verteidigungsbonus
-   
-   -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
-   -- Addieren für genaue Passierbarkeit
    type KartenListeArray is array (GlobaleDatentypen.KartenGrund'Range) of DatenbankRecords.KartenListeRecord;
-   KartenListe : constant KartenListeArray := (LeererWertKartenListe, -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
+   KartenListe : constant KartenListeArray := (GlobaleKonstanten.LeererWertKartenListe, -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
                                                -- Sollte mit Einlesen und Textausgabe funktionieren, wenn nicht auf letzte Position verschieben.
                                                (' ',    1,    0, 0, 0, 1, 0), -- 1 Eis █
                                                (' ',    2,    1, 0, 1, 1, 0), -- 2 Wasser ░

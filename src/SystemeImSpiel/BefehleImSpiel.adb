@@ -6,7 +6,7 @@ use Ada.Characters.Wide_Wide_Latin_9;
 with GlobaleKonstanten;
 
 with ForschungsDatenbank, InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, EinheitenDatenbank, NaechstesObjekt, Verbesserungen,
-     Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe;
+     Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, FeldInformationen;
 
 package body BefehleImSpiel is
 
@@ -197,7 +197,7 @@ package body BefehleImSpiel is
                   WelcherBefehl := 11;
                   
                when others =>
-                  WelcherBefehl := 0;
+                  return 1;
             end case;
                
             EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -206,41 +206,41 @@ package body BefehleImSpiel is
               EinheitNummer
             is
                when 0 =>
-                  null;
+                  return 1;
                   
                when others =>
-                  if
-                    GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID /= 1
-                    and
-                      WelcherBefehl > 0
-                      and
-                        WelcherBefehl <= 6
-                  then
-                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
-                                                           TextZeileExtern => 3);
-
-                  elsif
-                    GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 1
-                    and
-                      WelcherBefehl = 11
-                  then
-                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
-                                                           TextZeileExtern => 3);
-                     
-                  elsif
-                    GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00
-                  then
-                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
-                                                           TextZeileExtern => 8);
-                     
-                  else
-                     Verbesserungen.Verbesserung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
-                                                  BefehlExtern             => GlobaleDatentypen.Befehle_Enum'Val (WelcherBefehl));
-                  end if;
+                  null;
             end case;
+
+            if
+              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID /= 1
+              and
+                WelcherBefehl <= 6
+            then
+               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                                                     TextZeileExtern => 3);
+
+            elsif
+              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 1
+              and
+                WelcherBefehl = 11
+            then
+               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                                                     TextZeileExtern => 3);
+                     
+            elsif
+              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00
+            then
+               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                                                     TextZeileExtern => 8);
+                     
+            else
+               Verbesserungen.Verbesserung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
+                                            BefehlExtern             => GlobaleDatentypen.Befehle_Enum'Val (WelcherBefehl));
+            end if;
             
          when 'i' => -- Informationen für Einheiten, Verbesserungen, usw.
-            null;
+            FeldInformationen.Aufteilung (RasseExtern => RasseExtern);
 
          when '#' => -- Diplomatie
             Diplomatie.DiplomatieAuswählen;

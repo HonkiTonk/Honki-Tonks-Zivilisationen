@@ -23,8 +23,12 @@ package body KarteneigenschaftSuchen is
      (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenGrund
    is begin
+
+      Fluss := Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Fluss;
       
-      return 0;
+      return Fluss;
       
    end KartenFlussEinheitSuchen;
    
@@ -34,8 +38,12 @@ package body KarteneigenschaftSuchen is
      (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenVerbesserung
    is begin
+
+      Straße := Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungStraße;
       
-      return 0;
+      return Straße;
       
    end KartenStraßeEinheitSuchen;
    
@@ -45,8 +53,12 @@ package body KarteneigenschaftSuchen is
      (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenVerbesserung
    is begin
+
+      Verbesserung := Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet;
       
-      return 0;
+      return Verbesserung;
       
    end KartenVerbesserungEinheitSuchen;
    
@@ -56,8 +68,12 @@ package body KarteneigenschaftSuchen is
      (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenGrund
    is begin
+
+      Ressource := Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.EAchse,
+                                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.YAchse,
+                                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummer.Rasse, EinheitRasseNummer.Platznummer).AchsenPosition.XAchse).Ressource;
       
-      return 0;
+      return Ressource;
       
    end KartenRessourceEinheitSuchen;
 

@@ -227,16 +227,16 @@ package body StadtProduktion is
             ForschungsverbrauchKorruptionMultiplikator := 0;
             
          when 1 .. 4 =>
-            ForschungsverbrauchKorruptionMultiplikator := 1;
+            ForschungsverbrauchKorruptionMultiplikator := 0;
             
          when 5 .. 7 =>
-            ForschungsverbrauchKorruptionMultiplikator := 2;
+            ForschungsverbrauchKorruptionMultiplikator := 0;
             
          when 8 .. 10 =>
-            ForschungsverbrauchKorruptionMultiplikator := 5;
+            ForschungsverbrauchKorruptionMultiplikator := 0;
             
          when others =>
-            ForschungsverbrauchKorruptionMultiplikator := 10;
+            ForschungsverbrauchKorruptionMultiplikator := 0;
       end case;
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleForschungsrate :=

@@ -1,16 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, GlobaleKonstanten;
 use GlobaleDatentypen;
 
 package Karten is
 
-   LeererWertWeltkarte : constant GlobaleRecords.KartenRecord := (0, False, (others => False), -- 1. Wert = Kartengrund, 2. Wert = Ist da ein Hügel?, 3. Wert = Welche Rasse kann was sehen
-                                                                  0, 0, 0, 0, -- 4. Wert = Welcher Fluss, 5. Wert = Welche Straße, 6. Wert = Welche Verbesserung, 7. Wert = Welche Ressource
-                                                                  0, 0); -- 8. Wert = Durch welche Stadt welcher Rasse belegter Grund, 9. Wert = Felderbewertung
-
    type WeltkarteArray is array (GlobaleDatentypen.EbeneVorhanden'Range, GlobaleDatentypen.KartenfeldPositiv'Range, GlobaleDatentypen.KartenfeldPositiv'Range) of GlobaleRecords.KartenRecord;
-   Weltkarte : WeltkarteArray := (others => (others => (others => LeererWertWeltkarte)));
+   Weltkarte : WeltkarteArray := (others => (others => (others => GlobaleKonstanten.LeererWertWeltkarte)));
 
    type StadtkarteArray is array (GlobaleDatentypen.Stadtfeld'Range, GlobaleDatentypen.Stadtfeld'Range) of Integer;
    Stadtkarte : StadtkarteArray := (others => (others => (0)));

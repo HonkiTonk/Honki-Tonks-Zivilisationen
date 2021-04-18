@@ -76,14 +76,14 @@ package body KIGefahr is
                            
                   when others =>
                      if
-                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Krieg
+                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Krieg
                      then
                         KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YÄnderungSchleifenwert, XÄnderungSchleifenwert)
                           := GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).ID;
                         BestehtGefahr := True;
 
                      elsif
-                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
+                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Neutral
                        and
                          KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
                                                                  EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1
@@ -158,12 +158,12 @@ package body KIGefahr is
                            
                   when others =>
                      if
-                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Krieg
+                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Krieg
                      then
                         return True;
 
                      elsif
-                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
+                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Neutral
                        and
                          KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
                                                                  EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1
@@ -227,12 +227,12 @@ package body KIGefahr is
                            
                   when others =>
                      if
-                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Krieg
+                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Krieg
                      then
                         return True;
 
                      elsif
-                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleVariablen.Neutral
+                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Neutral
                        and
                          KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
                                                                  EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1

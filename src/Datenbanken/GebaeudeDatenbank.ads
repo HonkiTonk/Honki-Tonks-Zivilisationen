@@ -13,7 +13,7 @@ package GebaeudeDatenbank is
 
    type GebäudeListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.GebäudeID'Range) of DatenbankRecords.GebäudeListeRecord;
    GebäudeListe : constant GebäudeListeArray := (others => (('A',    100, 100, 0, 0,    0, 0, 0, 0, 0,    False), -- 1 
-                                                              ('B',    100, 100, 1, 0,    0, 0, 0, 0, 0,    False), -- 2 
+                                                              ('B',    100, 100, 0, 0,    0, 0, 0, 0, 0,    False), -- 2 
                                                               ('C',    150, 50, 2, 0,    0, 0, 0, 0, 0,    False), -- 3 
                                                               ('D',    1000, 100, 1, 1,    0, 0, 0, 0, 0,    False), -- 4
                                                               ('E',    1000, 100, 1, 1,    0, 0, 0, 0, 0,    False), -- 5

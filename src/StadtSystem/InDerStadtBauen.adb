@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
+with GlobaleKonstanten;
+
 with GebaeudeDatenbank, EinheitenDatenbank, Anzeige, Eingabe;
 
 package body InDerStadtBauen is
@@ -60,14 +62,14 @@ package body InDerStadtBauen is
       then
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).VerbleibendeBauzeit
            := (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse,
-               GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - 1_000)).PreisRessourcen
+               GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - GlobaleKonstanten.GebäudeAufschlag)).PreisRessourcen
                - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleRessourcen)
              / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate);
                
       else
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).VerbleibendeBauzeit
            := (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse,
-               GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - 10_000)).PreisRessourcen
+               GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - GlobaleKonstanten.EinheitAufschlag)).PreisRessourcen
                - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleRessourcen)
              / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate);
       end if;
@@ -81,30 +83,24 @@ package body InDerStadtBauen is
          
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+         StadtSchleife:
+         for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
 
-         case
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
-         is
-            when 0 =>
+            if
+              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+            then
+               exit StadtSchleife;
+                     
+            elsif
+              GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummer).ID = 0
+            then
                null;
-               
-            when others =>
-               StadtSchleife:
-               for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
-      
-                  case
-                    GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummer).ID
-                  is
-                     when 0 =>
-                        null;
                         
-                     when others =>
-                        BauzeitEinzeln (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummer));
-                  end case;
+            else
+               BauzeitEinzeln (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummer));
+            end if;
       
-               end loop StadtSchleife;
-         end case;
-         
+         end loop StadtSchleife;
       end loop RassenSchleife;
       
    end BauzeitAlle;
@@ -144,14 +140,14 @@ package body InDerStadtBauen is
             else
                Anzeige.TextBauenNeu (Ende).Text
                  := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
-               Anzeige.TextBauenNeu (Ende).Nummer := 1_000 + Positive (GebäudeSchleifenwert);
+               Anzeige.TextBauenNeu (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
                Ende := Ende + 1;
             end if;
             
          else
             Anzeige.TextBauenNeu (Ende).Text
               := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
-            Anzeige.TextBauenNeu (Ende).Nummer := 1_000 + Positive (GebäudeSchleifenwert);
+            Anzeige.TextBauenNeu (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
             Ende := Ende + 1;
          end if;
          
@@ -184,14 +180,14 @@ package body InDerStadtBauen is
             else
                Anzeige.TextBauenNeu (Ende).Text
                  := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
-               Anzeige.TextBauenNeu (Ende).Nummer := 10_000 + Positive (EinheitSchleifenwert);
+               Anzeige.TextBauenNeu (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
                Ende := Ende + 1;
             end if;
             
          else
             Anzeige.TextBauenNeu (Ende).Text
               := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
-            Anzeige.TextBauenNeu (Ende).Nummer := 10_000 + Positive (EinheitSchleifenwert);
+            Anzeige.TextBauenNeu (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
             Ende := Ende + 1;
          end if;
          
@@ -234,13 +230,13 @@ package body InDerStadtBauen is
             null;
                   
          elsif
-           Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer > 10_000
+           Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer > GlobaleKonstanten.EinheitAufschlag
          then
             Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Einheiten_Lang,
                                           ÜberschriftZeileExtern => 0,
-                                          ErsteZeileExtern       => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - 10_000,
-                                          LetzteZeileExtern      => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - 10_000,
+                                          ErsteZeileExtern       => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - GlobaleKonstanten.EinheitAufschlag,
+                                          LetzteZeileExtern      => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - GlobaleKonstanten.EinheitAufschlag,
                                           AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
             
@@ -248,8 +244,8 @@ package body InDerStadtBauen is
             Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Gebäude_Lang,
                                           ÜberschriftZeileExtern => 0,
-                                          ErsteZeileExtern       => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - 1_000,
-                                          LetzteZeileExtern      => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - 1_000,
+                                          ErsteZeileExtern       => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - GlobaleKonstanten.GebäudeAufschlag,
+                                          LetzteZeileExtern      => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - GlobaleKonstanten.GebäudeAufschlag,
                                           AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
          end if;
