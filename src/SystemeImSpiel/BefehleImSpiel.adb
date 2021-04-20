@@ -95,11 +95,12 @@ package body BefehleImSpiel is
             end if;
                                                                         
          when 'q' => -- Menüaufruf
-            return Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Leer,
-                                    TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
-                                    FrageZeileExtern  => 0,
-                                    ErsteZeileExtern  => 2,
-                                    LetzteZeileExtern => 7);
+            MenüAufruf := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Leer,
+                                            TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
+                                            FrageZeileExtern  => 0,
+                                            ErsteZeileExtern  => 1,
+                                            LetzteZeileExtern => 6);
+            return MenüAufruf;
 
          when 'b' => -- Baue Stadt
             EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -261,7 +262,20 @@ package body BefehleImSpiel is
                   GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Name := Eingabe.StadtName;
             end case;
             
-         when 'r' => -- Runde beenden            
+         when 'k' => -- Stadt abreißen
+            StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+            case
+              StadtNummer
+            is
+               when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
+                  null;
+                  
+               when others =>
+                  GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer) := GlobaleKonstanten.LeererWertStadt;
+            end case;
+            
+         when 'r' => -- Runde beenden
             return -1_000;
             
          when 'c' => -- Kleine Cheattaste

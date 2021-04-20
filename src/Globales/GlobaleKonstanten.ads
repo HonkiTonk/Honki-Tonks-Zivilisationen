@@ -29,14 +29,14 @@ package GlobaleKonstanten is
 
 
    -- Für die Optionen/Menüs
-   JaAnzeigeKonstante : constant Integer := 10;
-   NeinAnzeigeKonstante : constant Integer := 11;
+   JaAnzeigeKonstante : constant Integer := 7;
+   NeinAnzeigeKonstante : constant Integer := 8;
 
-   OptionenErsteZeileKonstante : constant Integer := 14;
-   OptionenLetzteZeileKonstante : constant Integer := 20;
+   OptionenErsteZeileKonstante : constant Integer := 9;
+   OptionenLetzteZeileKonstante : constant Integer := 15;
 
-   OptionenSonstigesErsteZeile : constant Integer := 23;
-   OptionenSonstigesLetzteZeile : constant Integer := 27;
+   OptionenSonstigesErsteZeile : constant Integer := 16;
+   OptionenSonstigesLetzteZeile : constant Integer := 20;
    -- Für die Optionen/Menüs
 
 

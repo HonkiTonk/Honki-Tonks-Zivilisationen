@@ -148,6 +148,8 @@ package body Einlesen is
             when False =>
                return False;
          end case;
+
+         LeereZeilenAbzieher := 0;
          
          Open (File => DateiNeuText,
                Mode => In_File,
@@ -155,7 +157,6 @@ package body Einlesen is
       
          ZeilenSchleife:
          for ZeileSchleifenwert in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
-
             if
               End_Of_File (File => DateiNeuText) = True
             then
@@ -164,7 +165,16 @@ package body Einlesen is
             else
                Set_Line (File => DateiNeuText,
                          To   => Ada.Wide_Wide_Text_IO.Count (ZeileSchleifenwert));         
-               GlobaleVariablen.TexteEinlesenNeu (DateiSchleifenwert, ZeileSchleifenwert) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuText));
+               GlobaleVariablen.TexteEinlesenNeu (DateiSchleifenwert, ZeileSchleifenwert - LeereZeilenAbzieher) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuText));
+
+               if
+                 To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (DateiSchleifenwert, ZeileSchleifenwert - LeereZeilenAbzieher)) (1) /= '|'
+               then
+                  null;                 
+                  
+               else
+                  LeereZeilenAbzieher := LeereZeilenAbzieher + 1;
+               end if;
             end if;
 
          end loop ZeilenSchleife;

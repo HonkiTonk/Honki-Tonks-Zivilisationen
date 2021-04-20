@@ -14,6 +14,7 @@ private
 
    Erfolgreich : Boolean;
 
+   LeereZeilenAbzieher : Natural;
    Wert : Integer;
 
    type WelcheTexteEinlesenNeuArray is array (GlobaleVariablen.TexteEinlesenNeuArray'Range (1)) of Unbounded_Wide_Wide_String;

@@ -76,8 +76,8 @@ package body SpielEinstellungen is
          KartengrößeAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
                                                   TextDateiExtern   => GlobaleDatentypen.Spiel_Einstellungen,
                                                   FrageZeileExtern  => 1,
-                                                  ErsteZeileExtern  => 2,
-                                                  LetzteZeileExtern => 14);
+                                                  ErsteZeileExtern  => 1,
+                                                  LetzteZeileExtern => 13);
          
          case
            KartengrößeAuswahl
@@ -148,8 +148,8 @@ package body SpielEinstellungen is
          KartenartAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
                                               TextDateiExtern   => GlobaleDatentypen.Spiel_Einstellungen,
                                               FrageZeileExtern  => 2,
-                                              ErsteZeileExtern  => 17,
-                                              LetzteZeileExtern=> 25);
+                                              ErsteZeileExtern  => 14,
+                                              LetzteZeileExtern=> 22);
                   
          case
            KartenartAuswahl
@@ -190,8 +190,8 @@ package body SpielEinstellungen is
          KartentemperaturAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
                                                      TextDateiExtern   => GlobaleDatentypen.Spiel_Einstellungen,
                                                      FrageZeileExtern  => 3,
-                                                     ErsteZeileExtern  => 28,
-                                                     LetzteZeileExtern => 36);
+                                                     ErsteZeileExtern  => 23,
+                                                     LetzteZeileExtern => 31);
                   
          case
            KartentemperaturAuswahl
@@ -232,8 +232,8 @@ package body SpielEinstellungen is
          SpieleranzahlAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
                                                   TextDateiExtern   => GlobaleDatentypen.Spiel_Einstellungen,
                                                   FrageZeileExtern  => 4,
-                                                  ErsteZeileExtern  => 39,
-                                                  LetzteZeileExtern => 60);
+                                                  ErsteZeileExtern  => 32,
+                                                  LetzteZeileExtern => 53);
          
          case
            SpieleranzahlAuswahl
@@ -333,8 +333,8 @@ package body SpielEinstellungen is
          RassenAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
                                            TextDateiExtern   => GlobaleDatentypen.Spiel_Einstellungen,
                                            FrageZeileExtern  => 5,
-                                           ErsteZeileExtern  => 63,
-                                           LetzteZeileExtern => 84);
+                                           ErsteZeileExtern  => 54,
+                                           LetzteZeileExtern => 75);
 
          case
            RassenAuswahl
@@ -342,7 +342,7 @@ package body SpielEinstellungen is
             when 1 .. 18 =>
                Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Spiel_Einstellungen,
                                              TextDateiExtern        => GlobaleDatentypen.Rassen_Beschreibung_Lang,
-                                             ÜberschriftZeileExtern => RassenAuswahl + 62,
+                                             ÜberschriftZeileExtern => RassenAuswahl + 53,
                                              ErsteZeileExtern       => RassenAuswahl,
                                              LetzteZeileExtern      => RassenAuswahl,
                                              AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
@@ -560,8 +560,8 @@ package body SpielEinstellungen is
          SchwierigkeitAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
                                                   TextDateiExtern   => GlobaleDatentypen.Spiel_Einstellungen,
                                                   FrageZeileExtern  => 26,
-                                                  ErsteZeileExtern  => 87,
-                                                  LetzteZeileExtern => 93);
+                                                  ErsteZeileExtern  => 76,
+                                                  LetzteZeileExtern => 82);
          
          case
            SchwierigkeitAuswahl

@@ -192,6 +192,14 @@ package body ForschungsDatenbank is
                                           ErsteZeileExtern       => Positive (Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer),
                                           LetzteZeileExtern      => Positive (Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer),
                                           AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
+                                          AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
+
+            Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Zeug,
+                                          TextDateiExtern        => GlobaleDatentypen.Beschreibung_Forschung_Ermöglicht,
+                                          ÜberschriftZeileExtern => 43,
+                                          ErsteZeileExtern       => Positive (Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer),
+                                          LetzteZeileExtern      => Positive (Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer),
+                                          AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
          end if;
          

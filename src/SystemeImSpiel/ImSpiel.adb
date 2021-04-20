@@ -46,7 +46,7 @@ package body ImSpiel is
                        RückgabeWert
                      is
                         when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-                           return RückgabeOptionen;
+                           return RückgabeWert;
 
                         when -300 =>
                            exit RassenSchleife;

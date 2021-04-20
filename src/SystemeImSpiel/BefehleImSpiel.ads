@@ -29,6 +29,7 @@ private
    WelcherBefehl : Integer;
    StadtOderEinheit : Integer;
    WahlForschung : Integer;
+   MenüAufruf : Integer;
 
    procedure EinheitOderStadt
      (RasseExtern : in GlobaleDatentypen.Rassen;
