@@ -10,12 +10,17 @@ package ForschungsDatenbank is
 
    type ForschungListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.ForschungID'Range) of DatenbankRecords.ForschungListeRecord;
    ForschungListe : ForschungListeArray := (1 => (1 => (100, (others => 0)), -- Einfache Landwirtschaft
-                                                  2 => (100, (others => 0)), --
-                                                  3 => (100, (others => 0)), --
+                                                  2 => (100, (others => 0)), -- Straßen
+                                                  3 => (100, (others => 0)), -- Mineralienkunde
+                                                  4 => (100, (others => 0)), -- Schrift
+                                                  5 => (100, (others => 0)), -- Primitive Werkzeuge
 
-                                                  4 => (250, (1, 2, 0, 0)), --
-                                                  5 => (250, (2, 3, 0, 0)), --
-                                                  6 => (250, (4, 0, 0, 0)), --
+                                                  6 => (250, (2, 0, 0, 0)), -- Rad
+                                                  7 => (250, (4, 0, 0, 0)), -- Mathematik
+                                                  8 => (250, (3, 5, 0, 0)), -- Metallverarbeitung
+                                                  9 => (250, (5, 0, 0, 0)), -- Steinbearbeitung
+                                                  10 => (250, (5, 7, 0, 0)), -- Frühe Konstruktionen
+                                                  11 => (250, (0, 0, 0, 0)), -- Ägyptisches Nilschiff
 
                                                   others => LeererWertForschungListe),
 
@@ -218,6 +223,12 @@ package ForschungsDatenbank is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
+   procedure ForschungsBaum
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+
    procedure ForschungFortschritt;
 
    procedure ForschungZeit
@@ -236,6 +247,20 @@ private
 
    AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
    Ende : GlobaleDatentypen.ForschungID;
+
+   procedure Ermöglicht
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+
+   procedure Benötigt
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
    function AuswahlForschungNeu
      (RasseExtern : in GlobaleDatentypen.Rassen)

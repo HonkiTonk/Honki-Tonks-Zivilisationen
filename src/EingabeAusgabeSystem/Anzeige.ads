@@ -21,7 +21,7 @@ package Anzeige is
    type TextForschungRecord is record
       
       Text : Unbounded_Wide_Wide_String;
-      Nummer : ForschungIDMitNullWert;
+      Nummer : GlobaleDatentypen.ForschungIDMitNullWert;
       
    end record;
    

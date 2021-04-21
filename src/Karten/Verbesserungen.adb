@@ -168,7 +168,7 @@ package body Verbesserungen is
       if
         EinheitRasseNummerExtern.Rasse in 1 .. 1
         and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
       then
          VerbesserungFehler (WelcherFehlerExtern => 18);
          return;
@@ -314,6 +314,14 @@ package body Verbesserungen is
    is begin
       
       if
+        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        and
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
+      then
+         VerbesserungFehler (WelcherFehlerExtern => 18);
+         return;
+      
+      elsif
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 22
@@ -418,6 +426,18 @@ package body Verbesserungen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       GrundExtern : in GlobaleDatentypen.KartenGrund)
    is begin
+      
+      if
+        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        and
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
+      then
+         VerbesserungFehler (WelcherFehlerExtern => 18);
+         return;
+      
+      else
+         null;
+      end if;
 
       case
         GrundExtern

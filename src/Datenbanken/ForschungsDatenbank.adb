@@ -194,13 +194,8 @@ package body ForschungsDatenbank is
                                           AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
                                           AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
 
-            Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Zeug,
-                                          TextDateiExtern        => GlobaleDatentypen.Beschreibung_Forschung_Ermöglicht,
-                                          ÜberschriftZeileExtern => 43,
-                                          ErsteZeileExtern       => Positive (Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer),
-                                          LetzteZeileExtern      => Positive (Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer),
-                                          AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                          AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+            Ermöglicht (RasseExtern           => RasseExtern,
+                         ForschungNummerExtern => Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer);
          end if;
          
          Taste := Eingabe.TastenEingabe;
@@ -235,6 +230,101 @@ package body ForschungsDatenbank is
       end loop AuswahlSchleife;
 
    end AuswahlForschungNeu;
+   
+   
+   
+   procedure Ermöglicht
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
+   is begin
+      
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Zeug,
+                                    TextDateiExtern        => GlobaleDatentypen.Beschreibung_Forschung_Ermöglicht,
+                                    ÜberschriftZeileExtern => 43,
+                                    ErsteZeileExtern       => Positive (ForschungNummerExtern) + RassenAufschlagForschung (RasseExtern),
+                                    LetzteZeileExtern      => Positive (ForschungNummerExtern) + RassenAufschlagForschung (RasseExtern),
+                                    AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                    AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
+      
+      TechnologienSchleife:
+      for TechnologieSchleifenwert in GlobaleDatentypen.ForschungID'Range loop         
+         ErmöglichtSchleife:
+         for NeueForschungSchleifenwert in GlobaleDatentypen.AnforderungForschungArray'Range loop
+         
+            if
+              ForschungListe (RasseExtern, TechnologieSchleifenwert).AnforderungForschung (NeueForschungSchleifenwert) = 0
+            then
+               exit ErmöglichtSchleife;
+            
+            elsif
+              ForschungListe (RasseExtern, TechnologieSchleifenwert).AnforderungForschung (NeueForschungSchleifenwert) = ForschungNummerExtern
+            then
+               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                              TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
+                                              ÜberschriftZeileExtern => 0,
+                                              ErsteZeileExtern       => Positive (TechnologieSchleifenwert) + RassenAufschlagForschung (RasseExtern),
+                                              LetzteZeileExtern      => Positive (TechnologieSchleifenwert) + RassenAufschlagForschung (RasseExtern),
+                                              AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                              AbstandMitteExtern     => GlobaleDatentypen.Großer_Abstand,
+                                              AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+               exit ErmöglichtSchleife;
+               
+            else              
+               null;
+            end if;
+         
+         end loop ErmöglichtSchleife;
+      end loop TechnologienSchleife;
+      
+   end Ermöglicht;
+   
+   
+   
+   -- Funktioniert noch nicht ganz richtig, weil durch die Schleife die Überschrift immer wieder ausgegeben wird!
+   procedure Benötigt
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
+   is begin
+          
+      BenötigtSchleife:
+      for NeueForschungSchleifenwert in GlobaleDatentypen.AnforderungForschungArray'Range loop
+         
+         if
+           ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert) = 0
+         then
+            exit BenötigtSchleife;
+               
+         else              
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Zeug,
+                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
+                                           ÜberschriftZeileExtern => 44,
+                                           ErsteZeileExtern       => NeueForschungSchleifenwert + RassenAufschlagForschung (RasseExtern),
+                                           LetzteZeileExtern      => NeueForschungSchleifenwert + RassenAufschlagForschung (RasseExtern),
+                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandMitteExtern     => GlobaleDatentypen.Großer_Abstand,
+                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+         end if;
+         
+      end loop BenötigtSchleife;
+      
+   end Benötigt;
+   
+   
+   
+   -- Einfach die Technologiennamen anzeigen und bei der aktuellen Auswahl Benötigt und Ermöglicht aufrufen?
+   procedure ForschungsBaum
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
+      
+      
+      
+      Benötigt (RasseExtern           => RasseExtern,
+                 ForschungNummerExtern => 1);
+      
+      Ermöglicht (RasseExtern           => RasseExtern,
+                   ForschungNummerExtern => 1);
+      
+   end ForschungsBaum;
 
 
 
