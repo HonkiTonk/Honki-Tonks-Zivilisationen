@@ -144,6 +144,9 @@ package body BefehleImSpiel is
                   end case;
             end case;
             
+         when 'x' => -- Anzeige des Forschungsbaums
+              ForschungsDatenbank.ForschungsBaum (RasseExtern => RasseExtern);
+            
          when '/' => -- Nächste Stadt
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
             

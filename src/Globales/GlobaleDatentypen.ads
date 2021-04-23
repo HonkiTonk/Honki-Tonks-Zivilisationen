@@ -68,7 +68,7 @@ package GlobaleDatentypen is
 
 
    -- Für Gebäude
-   subtype GebäudeID is KartenverbesserungEinheitenID range 1 .. 27;
+   subtype GebäudeID is KartenverbesserungEinheitenID range 1 .. 25;
    -- Für Gebäude
 
 

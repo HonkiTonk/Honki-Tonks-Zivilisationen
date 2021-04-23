@@ -5,9 +5,9 @@ use GlobaleDatentypen;
 
 package VerbesserungenDatenbank is
 
-   LeererWertVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (' ', -- 1. Wert = VerbesserungGrafik
-                                                                                       1, -- 2. Wert = Passierbarkeit
-                                                                                       0, 0, 0, 0, 0); -- 3. Wert = Nahrungsbonus, 4. Wert = Ressourcenbonus, 5. Wert = Geldbonus, 6. Wert = Wissensbonus,
+   LeererWertVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (' ', -- VerbesserungGrafik
+                                                                                       1, -- Passierbarkeit
+                                                                                       0, 0, 0, 0, 0); -- Nahrungsbonus, Ressourcenbonus, Geldbonus, Wissensbonus,
    -- 7. Wert = Verteidigungsbonus
       
    -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren

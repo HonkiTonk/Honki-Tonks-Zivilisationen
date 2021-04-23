@@ -208,7 +208,8 @@ package body Karte is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      ForschungsDatenbank.Beschreibung (IDExtern => GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt);
+      ForschungsDatenbank.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt,
+                                        RasseExtern => RasseExtern);
 
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                      TextDateiExtern        => GlobaleDatentypen.Zeug,

@@ -128,13 +128,13 @@ package body StadtProduktion is
             NahrungsverbrauchEinwohnerMultiplikator := 0;
             
          when 4 .. 9 =>
-            NahrungsverbrauchEinwohnerMultiplikator := 1;
+            NahrungsverbrauchEinwohnerMultiplikator := 0;
             
          when 10 .. 19 =>
-            NahrungsverbrauchEinwohnerMultiplikator := 2;
+            NahrungsverbrauchEinwohnerMultiplikator := 0;
             
          when others =>
-            NahrungsverbrauchEinwohnerMultiplikator := 3;
+            NahrungsverbrauchEinwohnerMultiplikator := 0;
       end case;
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsproduktion :=
@@ -156,16 +156,16 @@ package body StadtProduktion is
             RessourcenverbrauchKorruptionMultiplikator := 0;
             
          when 1 .. 4 =>
-            RessourcenverbrauchKorruptionMultiplikator := 1;
+            RessourcenverbrauchKorruptionMultiplikator := 0;
             
          when 5 .. 7 =>
-            RessourcenverbrauchKorruptionMultiplikator := 2;
+            RessourcenverbrauchKorruptionMultiplikator := 0;
             
          when 8 .. 10 =>
-            RessourcenverbrauchKorruptionMultiplikator := 5;
+            RessourcenverbrauchKorruptionMultiplikator := 0;
             
          when others =>
-            RessourcenverbrauchKorruptionMultiplikator := 10;
+            RessourcenverbrauchKorruptionMultiplikator := 0;
       end case;
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate :=
@@ -196,16 +196,16 @@ package body StadtProduktion is
             GeldverbrauchKorruptionMultiplikator := 0;
             
          when 1 .. 4 =>
-            GeldverbrauchKorruptionMultiplikator := 1;
+            GeldverbrauchKorruptionMultiplikator := 0;
             
          when 5 .. 7 =>
-            GeldverbrauchKorruptionMultiplikator := 2;
+            GeldverbrauchKorruptionMultiplikator := 0;
             
          when 8 .. 10 =>
-            GeldverbrauchKorruptionMultiplikator := 5;
+            GeldverbrauchKorruptionMultiplikator := 0;
             
          when others =>
-            GeldverbrauchKorruptionMultiplikator := 10;
+            GeldverbrauchKorruptionMultiplikator := 0;
       end case;
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleGeldgewinnung :=

@@ -6,7 +6,7 @@ use GlobaleDatentypen;
 package ForschungsDatenbank is
 
    -- Hier noch hinschreiben welcher Wert was ist!
-   LeererWertForschungListe : constant DatenbankRecords.ForschungListeRecord := (0, (others => 0)); -- 1. Wert = PreisForschung, 2. Wert = AnforderungForschung
+   LeererWertForschungListe : constant DatenbankRecords.ForschungListeRecord := (0, (others => 0)); -- PreisForschung, AnforderungForschung
 
    type ForschungListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.ForschungID'Range) of DatenbankRecords.ForschungListeRecord;
    ForschungListe : ForschungListeArray := (1 => (1 => (100, (others => 0)), -- Einfache Landwirtschaft
@@ -215,7 +215,11 @@ package ForschungsDatenbank is
                                                                 18 => 0);
 
    procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert);
+     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert;
+      RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
    procedure Forschung
      (RasseExtern : in GlobaleDatentypen.Rassen)

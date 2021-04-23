@@ -28,6 +28,7 @@ package DatenbankRecords is
 
       KannTransportieren : Natural;
       KannTransportiertWerden : Natural;
+      Transportkapazität : Natural;
       
    end record;
    -- EinheitenDatenbank
@@ -72,8 +73,7 @@ package DatenbankRecords is
 
       KartenGrafik : Wide_Wide_Character := ' ';
       
-      Passierbarkeit : GlobaleDatentypen.PassierbarkeitType; -- 1 = Landeinheiten können passieren, 2 = Wassereinheiten können passieren, Lufteinheiten können immer passieren
-      -- Addieren für genaue Passierbarkeit
+      Passierbarkeit : GlobaleDatentypen.PassierbarkeitType;
 
       Nahrungsgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
       Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
@@ -91,8 +91,7 @@ package DatenbankRecords is
 
       VerbesserungGrafik : Wide_Wide_Character;
       
-      Passierbarkeit : GlobaleDatentypen.PassierbarkeitType; -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
-      -- Addieren für genaue Passierbarkeit
+      Passierbarkeit : GlobaleDatentypen.PassierbarkeitType;
 
       Nahrungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
       Ressourcenbonus : GlobaleDatentypen.GrundwerteNRGWVA;

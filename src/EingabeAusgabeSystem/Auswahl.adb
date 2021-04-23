@@ -48,6 +48,7 @@ package body Auswahl is
                  AktuelleAuswahl = GlobaleVariablen.SprachenEinlesenArray'First
                then
                   AktuelleAuswahl := Ende;
+                  
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
@@ -57,6 +58,7 @@ package body Auswahl is
                  AktuelleAuswahl = Ende
                then
                   AktuelleAuswahl := GlobaleVariablen.SprachenEinlesenArray'First;
+                  
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;

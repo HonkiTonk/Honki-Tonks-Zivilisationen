@@ -8,7 +8,8 @@ with Anzeige, Eingabe;
 package body ForschungsDatenbank is
 
    procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert)
+     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert;
+      RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
       
       case
@@ -28,8 +29,8 @@ package body ForschungsDatenbank is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                            TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
                                            ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => Positive (IDExtern),
-                                           LetzteZeileExtern      => Positive (IDExtern),
+                                           ErsteZeileExtern       => Positive (IDExtern) + RassenAufschlagForschung (RasseExtern),
+                                           LetzteZeileExtern      => Positive (IDExtern) + RassenAufschlagForschung (RasseExtern),
                                            AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                            AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                            AbstandEndeExtern      => GlobaleDatentypen.Keiner);
@@ -276,6 +277,8 @@ package body ForschungsDatenbank is
          end loop ErmöglichtSchleife;
       end loop TechnologienSchleife;
       
+      New_Line;
+      
    end Ermöglicht;
    
    
@@ -298,8 +301,8 @@ package body ForschungsDatenbank is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Zeug,
                                            TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
                                            ÜberschriftZeileExtern => 44,
-                                           ErsteZeileExtern       => NeueForschungSchleifenwert + RassenAufschlagForschung (RasseExtern),
-                                           LetzteZeileExtern      => NeueForschungSchleifenwert + RassenAufschlagForschung (RasseExtern),
+                                           ErsteZeileExtern       => Positive (ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert)) + RassenAufschlagForschung (RasseExtern),
+                                           LetzteZeileExtern      => Positive (ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert)) + RassenAufschlagForschung (RasseExtern),
                                            AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                            AbstandMitteExtern     => GlobaleDatentypen.Großer_Abstand,
                                            AbstandEndeExtern      => GlobaleDatentypen.Keiner);
@@ -307,22 +310,83 @@ package body ForschungsDatenbank is
          
       end loop BenötigtSchleife;
       
+      New_Line;
+      
    end Benötigt;
    
    
    
-   -- Einfach die Technologiennamen anzeigen und bei der aktuellen Auswahl Benötigt und Ermöglicht aufrufen?
    procedure ForschungsBaum
      (RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
       
+      AktuelleAuswahl := 1;
       
+      ForschungsbaumSchleife:
+      loop
+         
+         Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+         
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Zeug,
+                                        TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
+                                        ÜberschriftZeileExtern => 45,
+                                        ErsteZeileExtern       => Positive (AktuelleAuswahl) + RassenAufschlagForschung (RasseExtern),
+                                        LetzteZeileExtern      => Positive (AktuelleAuswahl) + RassenAufschlagForschung (RasseExtern),
+                                        AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                        AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                        AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);         
+         New_Line;
+         
+         Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                       TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Lang,
+                                       ÜberschriftZeileExtern => 0,
+                                       ErsteZeileExtern       => Positive (AktuelleAuswahl) + RassenAufschlagForschung (RasseExtern),
+                                       LetzteZeileExtern      => Positive (AktuelleAuswahl) + RassenAufschlagForschung (RasseExtern),
+                                       AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
+                                       AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);         
+         New_Line;
       
-      Benötigt (RasseExtern           => RasseExtern,
-                 ForschungNummerExtern => 1);
+         Benötigt (RasseExtern           => RasseExtern,
+                    ForschungNummerExtern => AktuelleAuswahl);
+         New_Line;
       
-      Ermöglicht (RasseExtern           => RasseExtern,
-                   ForschungNummerExtern => 1);
+         Ermöglicht (RasseExtern           => RasseExtern,
+                      ForschungNummerExtern => AktuelleAuswahl);
+         
+         Taste := Eingabe.TastenEingabe;
+         
+         case
+           Taste
+         is
+            when 'd' | '6' => 
+               if
+                 AktuelleAuswahl = GlobaleDatentypen.ForschungID'Last
+               then
+                  AktuelleAuswahl := GlobaleDatentypen.ForschungID'First;
+                  
+               else
+                  AktuelleAuswahl := AktuelleAuswahl + 1;
+               end if;
+
+            when 'a' | '4' =>
+               if
+                 AktuelleAuswahl = GlobaleDatentypen.ForschungID'First
+               then
+                  AktuelleAuswahl := GlobaleDatentypen.ForschungID'Last;
+                  
+               else
+                  AktuelleAuswahl := AktuelleAuswahl - 1;
+               end if;               
+                              
+            when 'q' | '5' =>    
+               Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+               return;
+                     
+            when others =>
+               null;                    
+         end case;
+         
+      end loop ForschungsbaumSchleife;
       
    end ForschungsBaum;
 
