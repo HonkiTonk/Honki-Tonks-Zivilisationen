@@ -14,6 +14,11 @@ package body EinheitSuchen is
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
          if
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID = 0
+         then
+            null;
+            
+         elsif
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
          then
             return EinheitNummerSchleifenwert;
@@ -40,8 +45,13 @@ package body EinheitSuchen is
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
          if
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID = 0
+         then
+            null;
+            
+         elsif
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
-           and then
+           and
              EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID).KannTransportieren /= 0
          then
             return EinheitNummerSchleifenwert;
@@ -72,6 +82,11 @@ package body EinheitSuchen is
               GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
             then
                exit EinheitSchleife;
+               
+            elsif
+              GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0
+            then
+               null;
                
             elsif
               GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
@@ -108,6 +123,11 @@ package body EinheitSuchen is
                 GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
             then
                exit EinheitSchleife;
+               
+            elsif
+              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID = 0
+            then
+               null;
                
             elsif
               GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
@@ -175,5 +195,38 @@ package body EinheitSuchen is
       return False;
       
    end IstEinheitAufTransporter;
+   
+   
+   
+   function MengeEinesEinheitenTypsSuchen
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      EinheitTypExtern : in GlobaleDatentypen.EinheitenTyp)
+      return Natural
+   is begin
+      
+      AnzahlEinheitTyp := 0;
+      
+      EinheitSchleife:
+      for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+         
+         if
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert).ID = 0
+         then
+            null;
+         
+         elsif
+           EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert).ID).EinheitTyp = EinheitTypExtern
+         then
+            AnzahlEinheitTyp := AnzahlEinheitTyp + 1;
+            
+         else
+            null;
+         end if;
+         
+      end loop EinheitSchleife;
+      
+      return AnzahlEinheitTyp;
+      
+   end MengeEinesEinheitenTypsSuchen;
 
 end EinheitSuchen;

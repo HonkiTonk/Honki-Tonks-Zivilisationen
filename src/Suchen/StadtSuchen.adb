@@ -14,6 +14,11 @@ package body StadtSuchen is
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
          
          if
+           GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID = 0
+         then
+            null;
+            
+         elsif
            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).AchsenPosition = KoordinatenExtern
          then
             return StadtNummerSchleifenwert;
@@ -45,6 +50,11 @@ package body StadtSuchen is
             then
                exit StadtSchleife;
                
+            elsif
+              GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID = 0
+            then
+               null;
+            
             elsif
               GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).AchsenPosition = KoordinatenExtern
             then
@@ -81,6 +91,11 @@ package body StadtSuchen is
             then
                exit StadtSchleife;
                
+            elsif
+              GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID = 0
+            then
+               null;
+            
             elsif
               GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).AchsenPosition = KoordinatenExtern
             then

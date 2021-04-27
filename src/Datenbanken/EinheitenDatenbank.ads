@@ -11,7 +11,7 @@ package EinheitenDatenbank is
                                                                                1, 1, 0, 0, 1, -- Beförderungsgrenze, MaximalerRang, Reichweite, Angriff, Verteidigung
                                                                                0, 0, 0); -- Kann Dinge transportieren, Kann transportiert werden, Transportkapazität
 
-   -- 1. EinheitTyp = Siedler, 2. EinheitenTyp = Bauarbeiter, 3. EinheitenTyp = Platzhalter für Anderes !!!Später einbauen/nutzen!!!
+   -- EinheitTyp: 1 = Siedler, 2 = Bauarbeiter, 3 = Platzhalter für Anderes !!!Später einbauen/nutzen!!!
    -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
    type EinheitenListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.EinheitenID'Range) of DatenbankRecords.EinheitenListeRecord;
    EinheitenListe : EinheitenListeArray

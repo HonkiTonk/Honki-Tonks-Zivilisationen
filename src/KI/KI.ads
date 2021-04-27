@@ -18,6 +18,8 @@ private
    EinheitenBeschäftigt : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    StadtBeschäftigt : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
+   SiedlerVorhanden : Natural;
+
    EinheitRasseNummer : GlobaleRecords.RassePlatznummerRecord;
 
    procedure AKtivitätEinheit

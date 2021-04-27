@@ -5,6 +5,8 @@ use Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleKonstanten;
 
+with KIDatentypen;
+
 with Anzeige, StadtWerteFestlegen, ForschungsDatenbank, EinheitenDatenbank, Eingabe, Karten, KartenPruefungen, StadtProduktion;
 
 package body StadtBauen is
@@ -75,7 +77,7 @@ package body StadtBauen is
            -- 16. Wert = UmgebungBewirtschaftung, 17. Wert = Arbeitende Einwohner, 18. Wert = StadtUmgebungGröße
          (0 => (0 => True, others => False), others => (others => False)), 1, 1,
          -- 19. Wert = KI aktuelle Beschäftigung
-         0);
+         KIDatentypen.Keine_Aufgabe);
                
       case
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse

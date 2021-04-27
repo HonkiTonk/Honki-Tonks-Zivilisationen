@@ -88,7 +88,7 @@ package GlobaleRecords is
       AktuelleBeschäftigungszeitNachfolger : Natural;
 
       KIZielKoordinaten : AchsenKartenfeldPositivRecord;
-      KIBeschäftigt : KIDatentypen.Aufgabe_Enum;
+      KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
       -- Hier nochwas mit letzten Koordinaten einfügen?
       
       Transportiert : TransporterArray;
@@ -127,7 +127,7 @@ package GlobaleRecords is
       StadtUmgebungGröße : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
       
       -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Gebäude bauen), -10 = Die KI hat irgendwas gemacht und es soll nicht geändert werden, < 0 = KI Einheit die irgendetwas erledigt hat
-      KIAktuelleBeschäftigung : Integer;
+      KIAktuelleBeschäftigung : KIDatentypen.Stadt_Aufgabe_Enum;
       
    end record;
 

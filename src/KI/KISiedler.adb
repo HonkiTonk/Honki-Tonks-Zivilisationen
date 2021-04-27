@@ -10,23 +10,15 @@ package body KISiedler is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
+      StadtErfolgreichGebaut := StadtBauenPrüfung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+
       case
-        GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, 1).ID
+        StadtErfolgreichGebaut
       is
-         when 0 =>
-            StadtErfolgreichGebaut := StadtBauenPrüfung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when True =>
+            return;
 
-            case
-              StadtErfolgreichGebaut
-            is
-               when True =>
-                  return;
-
-               when False =>
-                  null;
-            end case;
-                                                                
-         when others =>
+         when False =>
             null;
       end case;
 
@@ -35,9 +27,10 @@ package body KISiedler is
         Gefahr
       is
          when True =>
-            KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                   AufgabeExtern            => KIDatentypen.Flucht);
-            return;
+            null;
+            -- KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+            --                       AufgabeExtern            => KIDatentypen.Flucht);
+            -- return;
                   
          when False =>
             null;
@@ -48,7 +41,7 @@ package body KISiedler is
         UmgebungVerbessern
       is
          when True =>
-            return;
+            null;
                   
          when False =>
             null;
@@ -59,7 +52,7 @@ package body KISiedler is
         GehStadtBauen
       is
          when True =>
-            return;
+            null;
                   
          when False =>
             null;
@@ -70,7 +63,7 @@ package body KISiedler is
         Verbessern
       is
          when True =>
-            return;
+            null;
                   
          when False =>
             null;
@@ -81,15 +74,28 @@ package body KISiedler is
         Vernichten
       is
          when True =>
-            return;
+            null;
                   
          when False =>
             null;
       end case;
+      
+      BewegungsSchleife:
+      loop
+         
+         KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                AufgabeExtern            => KIDatentypen.Stadt_Bauen);
+         
+         if
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte <= 0.00
+         then
+            exit BewegungsSchleife;
             
-      KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                             AufgabeExtern            => KIDatentypen.Stadt_Bauen);
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte := 0.00;
+         else
+            null;
+         end if;
+         
+      end loop BewegungsSchleife;
       
    end KISiedler;
 

@@ -74,7 +74,7 @@ package GlobaleKonstanten is
                                                                    0, 0, 0, 0, -- Aktuelle Geldgewinnung, Aktuelle Forschungsrate, Aktuelles Bauprojekt, Verbleibende Bauzeit
                                                                    0, (others => False), To_Unbounded_Wide_Wide_String (Source => ""), -- Korruption, Gebäude Vorhanden, Stadtname
                                                                    (others => (others => False)), 0, 1, -- UmgebungBewirtschaftung, Arbeitende Einwohner, StadtUmgebungGröße
-                                                                   0); -- 19. Wert = KI aktuelle Beschäftigung
+                                                                   KIDatentypen.Keine_Aufgabe); -- 19. Wert = KI aktuelle Beschäftigung
 
    LeererWertWichtigesZeug : constant GlobaleRecords.WichtigesRecord := (0, 0, -- Aktuelle Geldmenge, GeldZugewinn Pro Runde
                                                                          0, 0, 10_000, 0, -- Forschungsrate, Aktuelle Forschungsmenge, Verbleibende Forschungszeit, Forschungsprojekt
