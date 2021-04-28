@@ -14,11 +14,6 @@ package body StadtSuchen is
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
          
          if
-           GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID = 0
-         then
-            null;
-            
-         elsif
            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).AchsenPosition = KoordinatenExtern
          then
             return StadtNummerSchleifenwert;
@@ -49,11 +44,6 @@ package body StadtSuchen is
               GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
             then
                exit StadtSchleife;
-               
-            elsif
-              GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID = 0
-            then
-               null;
             
             elsif
               GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).AchsenPosition = KoordinatenExtern
@@ -90,11 +80,6 @@ package body StadtSuchen is
                 GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
             then
                exit StadtSchleife;
-               
-            elsif
-              GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID = 0
-            then
-               null;
             
             elsif
               GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).AchsenPosition = KoordinatenExtern
@@ -111,5 +96,32 @@ package body StadtSuchen is
       return (GlobaleDatentypen.RassenMitNullwert'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
       
    end KoordinatenStadtOhneSpezielleRasseSuchen;
+   
+   
+   
+   function AnzahlStädteErmitteln
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return Natural
+   is begin
+      
+      AnzahlStädte := 0;
+      
+      StädteSchleife:
+      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+         
+         if
+           GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID /= 0
+         then
+            AnzahlStädte := AnzahlStädte + 1;
+            
+         else
+            null;
+         end if;
+         
+      end loop StädteSchleife;
+         
+      return AnzahlStädte;
+      
+   end AnzahlStädteErmitteln;
 
 end StadtSuchen;

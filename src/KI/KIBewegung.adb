@@ -6,7 +6,7 @@ package body KIBewegung is
 
    procedure KIBewegung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum)
+      AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum) -- Ist unnötig, mit EinheitRasseNummerExtern kann ich das auch direkt hier nachprüfen
    is begin
 
       -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft, 9 = NahkampfUnterirdisch, 10 = FernkampfUnterirdisch,

@@ -58,18 +58,18 @@ package GlobaleKonstanten is
 
    -- Für die Leerwerte
    LeererWertCursor : constant GlobaleRecords.CursorRecord := ('©',       -- CursorGrafik
-                                                               (0, 1, 1), -- AchsenPosition
-                                                               (0, 1, 1), -- AchsenPositionAlt
+                                                               (0, 0, 0), -- AchsenPosition
+                                                               (0, 0, 0), -- AchsenPositionAlt
                                                                (1, 1));   -- AchsenPositionStadt
 
-   LeererWertEinheit : constant GlobaleRecords.EinheitenGebautRecord := (0, (0, 1, 1), -- ID, AchsenPosition
+   LeererWertEinheit : constant GlobaleRecords.EinheitenGebautRecord := (0, (0, 0, 0), -- ID, AchsenPosition
                                                                          0, 0.00, 0, 0, -- Aktuelle Lebenspunkte, Aktuelle Bewegungspunkte, Aktuelle Erfahrungspunkte, Aktueller Rang
                                                                          GlobaleDatentypen.Keine, GlobaleDatentypen.Keine, -- Aktuelle Beschäftigung, Zweite Beschäftigung
                                                                          0, 0, -- Aktuelle Beschäftigungszeit, Zweite AktuelleBeschäftigungszeit
                                                                          (0, 1, 1), KIDatentypen.Keine_Aufgabe, -- Zielkoordinaten der KI, Beschäftigunggrad der KI
                                                                          (others => 0), 0); -- Platznummer der transportierten Einheiten, Platznummer der transportierenden Einheit
 
-   LeererWertStadt : constant GlobaleRecords.StadtGebautRecord := (0, (0, 1, 1), False, 0, -- ID, AchsenPosition,Am Wasser, Einwohner
+   LeererWertStadt : constant GlobaleRecords.StadtGebautRecord := (0, (0, 0, 0), False, 0, -- ID, AchsenPosition,Am Wasser, Einwohner
                                                                    0, 0, 0, 0, -- Aktuelle Nahrungsmittel, Aktuelle Nahrungsproduktion, Aktuelle Ressourcen, Aktuelle Produktionrate
                                                                    0, 0, 0, 0, -- Aktuelle Geldgewinnung, Aktuelle Forschungsrate, Aktuelles Bauprojekt, Verbleibende Bauzeit
                                                                    0, (others => False), To_Unbounded_Wide_Wide_String (Source => ""), -- Korruption, Gebäude Vorhanden, Stadtname

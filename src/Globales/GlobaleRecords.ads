@@ -19,8 +19,8 @@ package GlobaleRecords is
    type AchsenKartenfeldPositivRecord is tagged record
       
       EAchse : GlobaleDatentypen.EbeneVorhanden;
-      YAchse : GlobaleDatentypen.KartenfeldPositiv;
-      XAchse : GlobaleDatentypen.KartenfeldPositiv;
+      YAchse : GlobaleDatentypen.KartenfeldPositivMitNullwert;
+      XAchse : GlobaleDatentypen.KartenfeldPositivMitNullwert;
       
    end record;
 
@@ -89,7 +89,7 @@ package GlobaleRecords is
 
       KIZielKoordinaten : AchsenKartenfeldPositivRecord;
       KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
-      -- Hier nochwas mit letzten Koordinaten einfügen?
+      -- KILetzteKoordinaten : AchsenKartenfeldPositivRecord;
       
       Transportiert : TransporterArray;
       WirdTransportiert : GlobaleDatentypen.MaximaleEinheitenMitNullWert;

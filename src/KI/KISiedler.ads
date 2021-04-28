@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
-use GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, KIDatentypen;
+use GlobaleDatentypen, KIDatentypen;
 
 package KISiedler is
 
@@ -20,10 +20,15 @@ private
    StadtErfolgreichGebaut : Boolean;
    Gefahr : Boolean;
    UmgebungVerbessern : Boolean;
-   GehStadtBauen : Boolean;
    Verbessern : Boolean;
    Vernichten : Boolean;
    StadtBauenRückgabeWert : Boolean;
+   
+   Aufgabe : KIDatentypen.Einheit_Befehl_Ermitteln_Enum;
+   
+   VorhandeneStädte : Natural;
+   VorhandeneSiedler : Natural;
+   SicherheitsZähler : Natural;
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -38,7 +43,7 @@ private
 
    function NeueStadtBauenGehen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
+      return KIDatentypen.Einheit_Befehl_Ermitteln_Enum
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)

@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 
-with KIDatentypen;
-
-with Karten, StadtWerteFestlegen, StadtBauen, KIBewegung, KIGefahr, KIEinheitVerbessernOderVernichten;
+with Karten, StadtWerteFestlegen, StadtBauen, KIBewegung, KIGefahr, KIEinheitVerbessernOderVernichten, StadtSuchen, EinheitSuchen;
 
 package body KISiedler is
 
@@ -10,94 +8,153 @@ package body KISiedler is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      StadtErfolgreichGebaut := StadtBauenPrüfung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-
-      case
-        StadtErfolgreichGebaut
-      is
-         when True =>
-            return;
-
-         when False =>
-            null;
-      end case;
-
-      Gefahr := KIGefahr.KIGefahr (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      case
-        Gefahr
-      is
-         when True =>
-            null;
-            -- KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-            --                       AufgabeExtern            => KIDatentypen.Flucht);
-            -- return;
-                  
-         when False =>
-            null;
-      end case;
-
-      UmgebungVerbessern := StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      case
-        UmgebungVerbessern
-      is
-         when True =>
-            null;
-                  
-         when False =>
-            null;
-      end case;
-
-      GehStadtBauen := NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      case
-        GehStadtBauen
-      is
-         when True =>
-            null;
-                  
-         when False =>
-            null;
-      end case;
-
-      Verbessern := KIEinheitVerbessernOderVernichten.KIEinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      case
-        Verbessern
-      is
-         when True =>
-            null;
-                  
-         when False =>
-            null;
-      end case;
-
-      Vernichten := KIEinheitVerbessernOderVernichten.KIEinheitVernichten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      case
-        Vernichten
-      is
-         when True =>
-            null;
-                  
-         when False =>
-            null;
-      end case;
+      Aufgabe := Anfang;
+      SicherheitsZähler := 0;
       
-      BewegungsSchleife:
-      loop
+      AufgabeErmittelnSchleife:
+      while SicherheitsZähler < 10_000 loop
          
-         KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                AufgabeExtern            => KIDatentypen.Stadt_Bauen);
+         case
+           Aufgabe
+         is
+            when KIDatentypen.Anfang =>         
+               Aufgabe := NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               
+            when KIDatentypen.Stadt_Bauen =>
+               StadtErfolgreichGebaut := StadtBauenPrüfung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               if
+                 StadtErfolgreichGebaut = True
+               then
+                  return;
+
+               else
+                  Aufgabe := KIDatentypen.Einheit_Bewegen;
+               end if;
+               
+            when KIDatentypen.Einheit_Bewegen =>
+               null;
+               
+            when KIDatentypen.Verbesserung =>
+               null;
+               
+            when KIDatentypen.Einheit_Auflösen =>
+               null;
+               
+            when KIDatentypen.Fliehen =>
+               null;
+               
+            when KIDatentypen.Fertig =>
+               null;
+         end case;         
+
+         Gefahr := KIGefahr.KIGefahr (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         case
+           Gefahr
+         is
+         when True =>
+            KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                   AufgabeExtern            => KIDatentypen.Flucht);
+            return;
+                  
+         when False =>
+            null;
+         end case;
+
+         UmgebungVerbessern := StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         case
+           UmgebungVerbessern
+         is
+         when True =>
+            null;
+                  
+         when False =>
+            null;
+         end case;
+
+      
+
+         Verbessern := KIEinheitVerbessernOderVernichten.KIEinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         case
+           Verbessern
+         is
+         when True =>
+            null;
+                  
+         when False =>
+            null;
+         end case;
+
+         Vernichten := KIEinheitVerbessernOderVernichten.KIEinheitVernichten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         case
+           Vernichten
+         is
+         when True =>
+            null;
+                  
+         when False =>
+            null;
+         end case;
+      
+         BewegungsSchleife:
+         loop
+         
+            KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                   AufgabeExtern            => KIDatentypen.Stadt_Bauen);
+         
+            if
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte <= 0.00
+            then
+               exit BewegungsSchleife;
+            
+            else
+               null;
+            end if;
+         
+         end loop BewegungsSchleife;
          
          if
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte <= 0.00
          then
-            exit BewegungsSchleife;
+            return;
             
          else
-            null;
+            SicherheitsZähler := SicherheitsZähler + 1;
          end if;
          
-      end loop BewegungsSchleife;
+      end loop AufgabeErmittelnSchleife;
       
    end KISiedler;
+   
+
+
+   function NeueStadtBauenGehen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return KIDatentypen.Einheit_Befehl_Ermitteln_Enum
+   is begin
+      
+      VorhandeneStädte := StadtSuchen.AnzahlStädteErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      VorhandeneSiedler := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern      => EinheitRasseNummerExtern.Rasse,
+                                                                        EinheitTypExtern => 1);
+      
+      if
+        VorhandeneStädte = 0
+      then
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
+         return KIDatentypen.Stadt_Bauen;
+         
+      elsif
+        VorhandeneSiedler < VorhandeneStädte * 2 - VorhandeneSiedler
+      then
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
+         return KIDatentypen.Stadt_Bauen;
+         
+      else
+         null;
+      end if;
+      
+      return KIDatentypen.Verbesserung;
+      
+   end NeueStadtBauenGehen;
 
 
 
@@ -129,17 +186,6 @@ package body KISiedler is
       end if;      
             
    end StadtUmgebungVerbessern;
-   
-
-
-   function NeueStadtBauenGehen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
-   is begin
-      
-      return False;
-      
-   end NeueStadtBauenGehen;
 
 
 

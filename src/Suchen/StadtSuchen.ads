@@ -43,9 +43,16 @@ package StadtSuchen is
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0),
          Post =>
            ((if KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse > 0 then GlobaleVariablen.RassenImSpiel (KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse) /= 0));
+   
+   function AnzahlStädteErmitteln
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return Natural
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
 private
    
-   
+   AnzahlStädte : Natural;
 
 end StadtSuchen;
