@@ -52,6 +52,15 @@ package KarteneigenschaftSuchen is
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
+   function KartenBelegterGrundEinheitSuchen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.BelegterGrund
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
+          and
+            EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
+
 private
 
    Straße : GlobaleDatentypen.KartenVerbesserung;
@@ -60,6 +69,8 @@ private
    Grund : GlobaleDatentypen.KartenGrund;
    Fluss : GlobaleDatentypen.KartenGrund;
    Ressource : GlobaleDatentypen.KartenGrund;
+
+   BelegterStadtGrund : GlobaleDatentypen.BelegterGrund;
 
 
 end KarteneigenschaftSuchen;

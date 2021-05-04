@@ -283,9 +283,11 @@ package body BefehleImSpiel is
             
                   when others =>
                      null;
-               end case;
-                  
+               end case;                  
             end if;
+            
+         when 'y' => -- Stadt mit Namen suchen
+            StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
             
          when 'r' => -- Runde beenden
             return -1_000;

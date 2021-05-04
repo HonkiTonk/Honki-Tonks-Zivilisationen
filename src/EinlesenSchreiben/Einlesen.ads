@@ -15,7 +15,10 @@ private
    Erfolgreich : Boolean;
 
    LeereZeilenAbzieher : Natural;
+   SchleifenAbzug : Natural;
    Wert : Integer;
+
+   ZwischenSpeicher : Unbounded_Wide_Wide_String;
 
    type WelcheTexteEinlesenNeuArray is array (GlobaleVariablen.TexteEinlesenNeuArray'Range (1)) of Unbounded_Wide_Wide_String;
    WelcheTexteEinlesenNeu : WelcheTexteEinlesenNeuArray;
@@ -33,6 +36,8 @@ private
    Verzeichnis : Directory_Entry_Type;
 
    procedure EinlesenWerte;
+
+   procedure SprachenSortieren;
 
    function EinlesenSprache
      return Boolean;

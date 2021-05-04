@@ -13,6 +13,8 @@ package GlobaleDatentypen is
                               Rassen_Beschreibung_Kurz, Beschreibung_Forschung_Ermöglicht);
 
    type Welcher_Abstand_Enum is (Keiner, Kleiner_Abstand, Großer_Abstand, Neue_Zeile);
+   
+   -- type Welche_Auswahl_Enum is (Gebäude_Einheit_Bauen, Technologie_Erforschen);
    -- Für Anzeige
 
 

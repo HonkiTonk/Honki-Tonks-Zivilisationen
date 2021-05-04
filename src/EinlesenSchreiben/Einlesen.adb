@@ -20,6 +20,7 @@ package body Einlesen is
         Erfolgreich
       is
          when True =>
+            SprachenSortieren;
             GlobaleVariablen.GewählteSprache := Auswahl.AuswahlSprache;
             
          when False =>
@@ -68,7 +69,7 @@ package body Einlesen is
          then
             null;
                   
-         else  
+         else
             VerzeichnisInnenSchleife:
             for Sprache in GlobaleVariablen.SprachenEinlesenArray'Range loop -- Alphabetisch in ein Stringarray einlesen und dann entsprechend weitersuchen lassen
             
@@ -97,6 +98,60 @@ package body Einlesen is
       end if;
       
    end EinlesenSprache;
+   
+   
+   
+   procedure SprachenSortieren
+   is begin
+      
+      SortierSchleife:
+      for PositionSchleifenwert in GlobaleVariablen.SprachenEinlesenArray'First + 1 .. GlobaleVariablen.SprachenEinlesenArray'Last loop
+         
+         if
+           GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert) = "|"
+         then
+            return;
+            
+         else
+            SchleifenAbzug := 0;
+            PrüfSchleife:
+            loop
+               
+               if
+                 PositionSchleifenwert - SchleifenAbzug > GlobaleVariablen.SprachenEinlesenArray'First
+                 and then
+                   GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert) < GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)                   
+               then
+                  SchleifenAbzug := SchleifenAbzug + 1;
+                  
+               else
+                  if
+                    PositionSchleifenwert = SchleifenAbzug
+                  then
+                     SchleifenAbzug := SchleifenAbzug - 1;
+                     
+                  else
+                     null;
+                  end if;
+                  
+                  VerschiebungSchleife:
+                  while SchleifenAbzug > 0 loop
+                     
+                     ZwischenSpeicher := GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert);
+                     GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert) := GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug);
+                     GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug) := ZwischenSpeicher;
+                     SchleifenAbzug := SchleifenAbzug - 1;
+                     
+                  end loop VerschiebungSchleife;
+                  exit PrüfSchleife;
+               end if;
+               
+            end loop PrüfSchleife;
+         end if;
+         
+      end loop SortierSchleife;
+      
+   end SprachenSortieren;
 
 
 

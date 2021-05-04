@@ -228,11 +228,11 @@ package body EinheitenDatenbank is
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
-      Anzeige.TextTransporter := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
-      Anzeige.TextTransporter (0) := (GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
-                                      Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID)), EinheitRasseNummerExtern.Platznummer);
-      AktuellePosition := 1;
-      Ende := 0;
+      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
+      Anzeige.AllgemeineAnzeigeText (1) := (GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
+                                            Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID)), Positive (EinheitRasseNummerExtern.Platznummer));
+      AktuellePosition := 2;
+      Ende := 1;
 
       TransporterSchleife:
       for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. GlobaleRecords.TransporterArray'Last loop
@@ -243,11 +243,11 @@ package body EinheitenDatenbank is
             null;
             
          else
-            Anzeige.TextTransporter (AktuellePosition)
+            Anzeige.AllgemeineAnzeigeText (AktuellePosition)
               := (GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
                   Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert)).ID)),
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert));
+                  Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert)));
 
             AktuellePosition := AktuellePosition + 1;
             Ende := Ende + 1;
@@ -255,7 +255,7 @@ package body EinheitenDatenbank is
          
       end loop TransporterSchleife;
 
-      AktuelleAuswahl := 0;
+      AktuelleAuswahl := 1;
 
       EinheitAuswählenSchleife:
       loop
@@ -265,7 +265,7 @@ package body EinheitenDatenbank is
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fragen,
                                                TextZeileExtern => 27);
 
-         Anzeige.AnzeigeTransporter (AktuelleAuswahlExtern => AktuelleAuswahl);
+         Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => GlobaleDatentypen.KartenverbesserungEinheitenID (AktuelleAuswahl));
          
          Taste := Eingabe.TastenEingabe;
          
@@ -273,7 +273,7 @@ package body EinheitenDatenbank is
            Taste
          is               
             when 'w' | '8' => 
-               if AktuelleAuswahl = Anzeige.TextTransporter'First then
+               if AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First then
                   AktuelleAuswahl := Ende;
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
@@ -281,13 +281,13 @@ package body EinheitenDatenbank is
 
             when 's' | '2' =>
                if AktuelleAuswahl = Ende then
-                  AktuelleAuswahl := Anzeige.TextTransporter'First;
+                  AktuelleAuswahl := Anzeige.AllgemeineAnzeigeText'First;
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
             when 'e' | '5' =>
-               return Anzeige.TextTransporter (AktuelleAuswahl).Nummer;
+               return GlobaleDatentypen.MaximaleEinheitenMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
             when 'q' =>
                return 0;

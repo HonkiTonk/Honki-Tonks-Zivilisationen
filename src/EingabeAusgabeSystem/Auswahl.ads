@@ -28,6 +28,10 @@ package Auswahl is
    function AuswahlJaNein
      (FrageZeileExtern : in Positive)
       return Integer;
+   
+   function AllgemeinAuswahl
+     (AktuelleAuswahlExtern, EndeExtern : in Natural)
+     return Natural;
 
 private
 

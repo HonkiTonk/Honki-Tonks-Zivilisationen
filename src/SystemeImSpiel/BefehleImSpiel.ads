@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 use GlobaleDatentypen;
 
 package BefehleImSpiel is
@@ -31,6 +31,8 @@ private
    WahlForschung : Integer;
    MenüAufruf : Integer;
    AbreißenAuswahl : Integer;
+   
+   StadtSuchenNachNamen : GlobaleRecords.RassePlatznummerRecord;
 
    procedure EinheitOderStadt
      (RasseExtern : in GlobaleDatentypen.Rassen;

@@ -113,7 +113,7 @@ package body InDerStadtBauen is
    is begin
 
       Ende := 1;
-      Anzeige.TextBauenNeu := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
+      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
 
       GebäudeSchleife:
       for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
@@ -138,16 +138,16 @@ package body InDerStadtBauen is
                null;
 
             else
-               Anzeige.TextBauenNeu (Ende).Text
+               Anzeige.AllgemeineAnzeigeText (Ende).Text
                  := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
-               Anzeige.TextBauenNeu (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
+               Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
                Ende := Ende + 1;
             end if;
             
          else
-            Anzeige.TextBauenNeu (Ende).Text
+            Anzeige.AllgemeineAnzeigeText (Ende).Text
               := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
-            Anzeige.TextBauenNeu (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
+            Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
             Ende := Ende + 1;
          end if;
          
@@ -178,30 +178,30 @@ package body InDerStadtBauen is
                null;
                
             else
-               Anzeige.TextBauenNeu (Ende).Text
+               Anzeige.AllgemeineAnzeigeText (Ende).Text
                  := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
-               Anzeige.TextBauenNeu (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
+               Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
                Ende := Ende + 1;
             end if;
             
          else
-            Anzeige.TextBauenNeu (Ende).Text
+            Anzeige.AllgemeineAnzeigeText (Ende).Text
               := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
-            Anzeige.TextBauenNeu (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
+            Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
             Ende := Ende + 1;
          end if;
          
       end loop EinheitenSchleife;
 
       if
-        Anzeige.TextBauenNeu (Ende).Nummer = 0
+        Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
         and
           Ende > 1
       then
-         Anzeige.TextBauenNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
 
       elsif
-        Anzeige.TextBauenNeu (Ende).Nummer = 0
+        Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
         and
           Ende = 1
       then
@@ -209,7 +209,7 @@ package body InDerStadtBauen is
          
       else
          Ende := Ende + 1;
-         Anzeige.TextBauenNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
       end if;
 
       AktuelleAuswahl := 1;
@@ -222,7 +222,7 @@ package body InDerStadtBauen is
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fragen,
                                                TextZeileExtern => 13);
 
-         Anzeige.AnzeigeStadt (AktuelleAuswahlExtern => AktuelleAuswahl);
+         Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => AktuelleAuswahl);
          
          if
            AktuelleAuswahl = Ende
@@ -230,13 +230,13 @@ package body InDerStadtBauen is
             null;
                   
          elsif
-           Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer > GlobaleKonstanten.EinheitAufschlag
+           Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer > GlobaleKonstanten.EinheitAufschlag
          then
             Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Einheiten_Lang,
                                           ÜberschriftZeileExtern => 0,
-                                          ErsteZeileExtern       => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - GlobaleKonstanten.EinheitAufschlag,
-                                          LetzteZeileExtern      => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - GlobaleKonstanten.EinheitAufschlag,
+                                          ErsteZeileExtern       => Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer - GlobaleKonstanten.EinheitAufschlag,
+                                          LetzteZeileExtern      => Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer - GlobaleKonstanten.EinheitAufschlag,
                                           AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
             
@@ -244,8 +244,8 @@ package body InDerStadtBauen is
             Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Gebäude_Lang,
                                           ÜberschriftZeileExtern => 0,
-                                          ErsteZeileExtern       => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - GlobaleKonstanten.GebäudeAufschlag,
-                                          LetzteZeileExtern      => Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer - GlobaleKonstanten.GebäudeAufschlag,
+                                          ErsteZeileExtern       => Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer - GlobaleKonstanten.GebäudeAufschlag,
+                                          LetzteZeileExtern      => Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer - GlobaleKonstanten.GebäudeAufschlag,
                                           AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
          end if;
@@ -257,7 +257,7 @@ package body InDerStadtBauen is
          is               
             when 'w' | '8' => 
                if
-                 AktuelleAuswahl = Anzeige.TextBauenNeu'First
+                 AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then
                   AktuelleAuswahl := Ende;
                   
@@ -269,14 +269,14 @@ package body InDerStadtBauen is
                if
                  AktuelleAuswahl = Ende
                then
-                  AktuelleAuswahl := Anzeige.TextBauenNeu'First;
+                  AktuelleAuswahl := Anzeige.AllgemeineAnzeigeText'First;
                   
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
             when 'e' | '5' =>
-               return Anzeige.TextBauenNeu (AktuelleAuswahl).Nummer;
+               return Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer;
 
             when 'q' =>
                return 0;

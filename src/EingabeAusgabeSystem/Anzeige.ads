@@ -3,40 +3,21 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen;
 use GlobaleDatentypen;
 
 package Anzeige is
    
-   type TextBauenRecord is record
+   type AllgemeineAnzeigeTextRecord is record
       
       Text : Unbounded_Wide_Wide_String;
       Nummer : Natural;
       
    end record;
-
-   type TextBauenNeuArray is array (GlobaleDatentypen.KartenverbesserungEinheitenID'First + 1 .. GlobaleDatentypen.KartenverbesserungEinheitenID'Last) of TextBauenRecord;
-   TextBauenNeu : TextBauenNeuArray;
-
-   type TextForschungRecord is record
-      
-      Text : Unbounded_Wide_Wide_String;
-      Nummer : GlobaleDatentypen.ForschungIDMitNullWert;
-      
-   end record;
    
-   type TextForschungNeuArray is array (GlobaleDatentypen.ForschungID'Range) of TextForschungRecord;
-   TextForschungNeu : TextForschungNeuArray;
-
-   type TextTransporterRecord is record
-      
-      Text : Unbounded_Wide_Wide_String;
-      Nummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-      
-   end record;
-
-   type TextTransporterArray is array (GlobaleRecords.TransporterArray'First - 1 .. GlobaleRecords.TransporterArray'Last) of TextTransporterRecord;
-   TextTransporter : TextTransporterArray;
+   -- Im Array immer die größte Auswahlfläche reinschreiben, damit es bei allen funktioniert.
+   type AlgemeineAnzeigeTextArray is array (GlobaleDatentypen.KartenverbesserungEinheitenID'First + 1 .. GlobaleDatentypen.KartenverbesserungEinheitenID'Last) of AllgemeineAnzeigeTextRecord;
+   AllgemeineAnzeigeText : AlgemeineAnzeigeTextArray;
 
    procedure AnzeigeOhneAuswahlNeu
      (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
@@ -76,18 +57,6 @@ package Anzeige is
        Pre =>
          (ErsteZeileExtern <= LetzteZeileExtern);
 
-   procedure AnzeigeStadt
-     (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID);
-
-   procedure AnzeigeForschungNeu
-     (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
-     with
-       Pre =>
-         (AktuelleAuswahlExtern <= GlobaleDatentypen.ForschungID'Last);
-
-   procedure AnzeigeTransporter
-     (AktuelleAuswahlExtern : in Natural);
-
    procedure AnzeigeLangerTextNeu
      (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
       ÜberschriftZeileExtern : in Natural;
@@ -102,6 +71,9 @@ package Anzeige is
             (if ÜberschriftZeileExtern = 0 then ÜberschriftDateiExtern = GlobaleDatentypen.Leer)
           and
             TextDateiExtern /= GlobaleDatentypen.Leer);
+   
+   procedure AllgemeineAnzeige
+     (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID);
 
 private
    

@@ -76,5 +76,20 @@ package body KarteneigenschaftSuchen is
       return Ressource;
       
    end KartenRessourceEinheitSuchen;
+   
+   
+   
+   function KartenBelegterGrundEinheitSuchen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.BelegterGrund
+   is begin
+
+      BelegterStadtGrund := Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
+                                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
+                                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).DurchStadtBelegterGrund;
+      
+      return BelegterStadtGrund;
+      
+   end KartenBelegterGrundEinheitSuchen;
 
 end KarteneigenschaftSuchen;

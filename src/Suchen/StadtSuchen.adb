@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, Eingabe;
 
 package body StadtSuchen is
 
@@ -123,5 +123,41 @@ package body StadtSuchen is
       return AnzahlStädte;
       
    end AnzahlStädteErmitteln;
+   
+   
+   
+   function StadtNachNamenSuchen
+     return GlobaleRecords.RassePlatznummerRecord
+   is begin
+      
+      StadtName := Eingabe.StadtName;
+      
+      RasseSchleife:
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+         StadtSchleife:
+         for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+            
+            if
+              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+            then
+               exit StadtSchleife;
+               
+            elsif
+              GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).Name = StadtName
+              and
+                GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID > 0
+            then
+               return (RasseSchleifenwert, StadtNummerSchleifenwert);
+               
+            else
+               null;
+            end if;
+            
+         end loop StadtSchleife;
+      end loop RasseSchleife;
+      
+      return (GlobaleDatentypen.RassenMitNullwert'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      
+   end StadtNachNamenSuchen;
 
 end StadtSuchen;

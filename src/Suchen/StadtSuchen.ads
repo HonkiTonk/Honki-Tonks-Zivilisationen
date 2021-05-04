@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with Ada.Strings.Wide_Wide_Unbounded;
+use Ada.Strings.Wide_Wide_Unbounded;
+
 with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen, GlobaleRecords;
 
@@ -50,9 +53,14 @@ package StadtSuchen is
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+   
+   function StadtNachNamenSuchen
+     return GlobaleRecords.RassePlatznummerRecord;
 
 private
    
    AnzahlStädte : Natural;
+   
+   StadtName : Unbounded_Wide_Wide_String;
 
 end StadtSuchen;

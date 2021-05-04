@@ -390,9 +390,9 @@ private
 
    Taste : Wide_Wide_Character;
    
-   AktuelleAuswahl : Natural;
-   Ende : Natural;
-   AktuellePosition : Positive;
+   AktuelleAuswahl : GlobaleDatentypen.EinheitenIDMitNullWert;
+   Ende : GlobaleDatentypen.EinheitenIDMitNullWert;
+   AktuellePosition : GlobaleDatentypen.EinheitenIDMitNullWert;
    Wahl : Integer;
 
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;

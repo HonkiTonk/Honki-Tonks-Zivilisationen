@@ -217,8 +217,101 @@ package body Anzeige is
       end loop AnzeigeSchleife;
       
    end AnzeigeMitAuswahlNeu;
+   
+   
+   
+   procedure AllgemeineAnzeige
+     (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
+   is begin
+      
+      LängsterText := 1;
+      
+      TextlängePrüfenSchleife:
+      for ZeichenSchleifenwert in AlgemeineAnzeigeTextArray'Range loop
+         if
+           To_Wide_Wide_String (Source => AllgemeineAnzeigeText (ZeichenSchleifenwert).Text) = "|"
+         then
+            exit TextlängePrüfenSchleife;
+            
+         elsif
+           To_Wide_Wide_String (Source => AllgemeineAnzeigeText (ZeichenSchleifenwert).Text)'Length > LängsterText
+         then
+            LängsterText := To_Wide_Wide_String (Source => AllgemeineAnzeigeText (ZeichenSchleifenwert).Text)'Length;
+            
+         else
+            null;
+         end if;
+      end loop TextlängePrüfenSchleife;
+      
+      AnzeigeSchleife:
+      for AnzeigeSchleifenwert in AlgemeineAnzeigeTextArray'Range loop
 
+         if
+           AktuelleAuswahlExtern = AnzeigeSchleifenwert
+         then
+            RahmenEinsSchleife:
+            for RahmenEinsSchleifenwert in 1 .. LängsterText loop
+                  
+               if
+                 RahmenEinsSchleifenwert = 1
+               then
+                  Put (Item => "╔");
+                  Put (Item => "═");
 
+               elsif
+                 RahmenEinsSchleifenwert = LängsterText
+               then                  
+                  Put (Item => "═");
+                  Put_Line (Item => "╗");
+                  Put (Item => "║");
+                  Put (Item => To_Wide_Wide_String (Source => AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text));
+
+                  LeererPlatzSchleife:
+                  for LeererPlatzSchleifenwert in 1 .. LängsterText - To_Wide_Wide_String (Source => AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text)'Length loop
+                        
+                     Put (" ");
+                        
+                  end loop LeererPlatzSchleife;
+                  Put_Line (Item => "║");
+                  Put (Item => "╚");
+
+               else
+                  Put (Item => "═");
+               end if;
+               
+            end loop RahmenEinsSchleife;
+
+            RahmenZweiSchleife:
+            for RahmenZweiSchleifenwert in 1 .. LängsterText loop
+               
+               if
+                 RahmenZweiSchleifenwert = LängsterText
+               then
+                  Put (Item => "═");
+                  Put_Line (Item => "╝");
+               
+               else
+                  Put (Item => "═");
+               end if;
+            
+            end loop RahmenZweiSchleife;
+         
+         else
+            if
+              To_Wide_Wide_String (Source => AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text) = "|"
+            then
+               exit AnzeigeSchleife; 
+            
+            else
+               Put_Line (Item => To_Wide_Wide_String (Source => AllgemeineAnzeigeText (AnzeigeSchleifenwert).Text));
+            end if;
+         end if;
+         
+      end loop AnzeigeSchleife;
+      
+   end AllgemeineAnzeige;
+
+   
 
    procedure AnzeigeSprache
      (AktuelleAuswahlExtern, ErsteZeileExtern, LetzteZeileExtern : in Positive)
@@ -301,285 +394,6 @@ package body Anzeige is
       end loop AnzeigeSchleife;
       
    end AnzeigeSprache;
-
-
-
-   procedure AnzeigeStadt
-     (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
-   is begin
-      
-      LängsterText := 1;
-      
-      TextlängePrüfenSchleife:
-      for ZeichenSchleifenwert in TextBauenNeuArray'Range loop
-         if
-           To_Wide_Wide_String (Source => TextBauenNeu (ZeichenSchleifenwert).Text) = "|"
-         then
-            exit TextlängePrüfenSchleife;
-            
-         elsif
-           To_Wide_Wide_String (Source => TextBauenNeu (ZeichenSchleifenwert).Text)'Length > LängsterText
-         then
-            LängsterText := To_Wide_Wide_String (Source => TextBauenNeu (ZeichenSchleifenwert).Text)'Length;
-            
-         else
-            null;
-         end if;
-      end loop TextlängePrüfenSchleife;
-      
-      AnzeigeSchleife:
-      for AnzeigeSchleifenwert in TextBauenNeuArray'Range loop
-
-         if
-           AktuelleAuswahlExtern = AnzeigeSchleifenwert
-         then
-            RahmenEinsSchleife:
-            for RahmenEinsSchleifenwert in 1 .. LängsterText loop
-                  
-               if
-                 RahmenEinsSchleifenwert = 1
-               then
-                  Put (Item => "╔");
-                  Put (Item => "═");
-
-               elsif
-                 RahmenEinsSchleifenwert = LängsterText
-               then                  
-                  Put (Item => "═");
-                  Put_Line (Item => "╗");
-                  Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => TextBauenNeu (AnzeigeSchleifenwert).Text));
-
-                  LeererPlatzSchleife:
-                  for LeererPlatzSchleifenwert in 1 .. LängsterText - To_Wide_Wide_String (Source => TextBauenNeu (AnzeigeSchleifenwert).Text)'Length loop
-                        
-                     Put (" ");
-                        
-                  end loop LeererPlatzSchleife;
-                  Put_Line (Item => "║");
-                  Put (Item => "╚");
-
-               else
-                  Put (Item => "═");
-               end if;
-               
-            end loop RahmenEinsSchleife;
-
-            RahmenZweiSchleife:
-            for RahmenZweiSchleifenwert in 1 .. LängsterText loop
-               
-               if
-                 RahmenZweiSchleifenwert = LängsterText
-               then
-                  Put (Item => "═");
-                  Put_Line (Item => "╝");
-               
-               else
-                  Put (Item => "═");
-               end if;
-            
-            end loop RahmenZweiSchleife;
-         
-         else
-            if
-              To_Wide_Wide_String (Source => TextBauenNeu (AnzeigeSchleifenwert).Text) = "|"
-            then
-               exit AnzeigeSchleife; 
-            
-            else
-               Put_Line (Item => To_Wide_Wide_String (Source => TextBauenNeu (AnzeigeSchleifenwert).Text));
-            end if;
-         end if;
-         
-      end loop AnzeigeSchleife;
-      
-   end AnzeigeStadt;
-   
-   
-   
-   procedure AnzeigeForschungNeu
-     (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
-   is begin
-      
-      LängsterText := 1;
-      
-      TextlängePrüfenSchleife:
-      for ZeichenSchleifenwert in TextForschungNeuArray'Range loop
-         if
-           To_Wide_Wide_String (Source => TextForschungNeu (ZeichenSchleifenwert).Text) = "|"
-         then
-            exit TextlängePrüfenSchleife;
-            
-         elsif
-           To_Wide_Wide_String (Source => TextForschungNeu (ZeichenSchleifenwert).Text)'Length > LängsterText
-         then
-            LängsterText := To_Wide_Wide_String (Source => TextForschungNeu (ZeichenSchleifenwert).Text)'Length;
-            
-         else
-            null;
-         end if;
-      end loop TextlängePrüfenSchleife;
-      
-      AnzeigeSchleife:
-      for AnzeigeSchleifenwert in TextForschungNeuArray'Range loop
-
-         if
-           AktuelleAuswahlExtern = AnzeigeSchleifenwert
-         then
-            RahmenEinsSchleife:
-            for RahmenEinsSchleifenwert in 1 .. LängsterText loop
-                  
-               if
-                 RahmenEinsSchleifenwert = 1
-               then
-                  Put (Item => "╔");
-                  Put (Item => "═");
-
-               elsif
-                 RahmenEinsSchleifenwert = LängsterText
-               then                  
-                  Put (Item => "═");
-                  Put_Line (Item => "╗");
-                  Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => TextForschungNeu (AnzeigeSchleifenwert).Text));
-
-                  LeererPlatzSchleife:
-                  for LeererPlatzSchleifenwert in 1 .. LängsterText - To_Wide_Wide_String (Source => TextForschungNeu (AnzeigeSchleifenwert).Text)'Length loop
-                        
-                     Put (" ");
-                        
-                  end loop LeererPlatzSchleife;
-                  Put_Line (Item => "║");
-                  Put (Item => "╚");
-
-               else
-                  Put (Item => "═");
-               end if;
-               
-            end loop RahmenEinsSchleife;
-
-            RahmenZweiSchleife:
-            for RahmenZweiSchleifenwert in 1 .. LängsterText loop
-               
-               if
-                 RahmenZweiSchleifenwert = LängsterText
-               then
-                  Put (Item => "═");
-                  Put_Line (Item => "╝");
-               
-               else
-                  Put (Item => "═");
-               end if;
-            
-            end loop RahmenZweiSchleife;
-         
-         else
-            if
-              To_Wide_Wide_String (Source => TextForschungNeu (AnzeigeSchleifenwert).Text) = "|"
-            then
-               exit AnzeigeSchleife; 
-            
-            else
-               Put_Line (Item => To_Wide_Wide_String (Source => TextForschungNeu (AnzeigeSchleifenwert).Text));
-            end if;
-         end if;
-         
-      end loop AnzeigeSchleife;
-      
-   end AnzeigeForschungNeu;
-
-
-
-   procedure AnzeigeTransporter
-     (AktuelleAuswahlExtern : in Natural)
-   is begin
-      
-      LängsterText := 1;
-      
-      TextlängePrüfenSchleife:
-      for ZeichenSchleifenwert in TextTransporter'Range loop
-         if
-           To_Wide_Wide_String (Source => TextTransporter (ZeichenSchleifenwert).Text) = "|"
-         then
-            exit TextlängePrüfenSchleife;
-            
-         elsif
-           To_Wide_Wide_String (Source => TextTransporter (ZeichenSchleifenwert).Text)'Length > LängsterText
-         then
-            LängsterText := To_Wide_Wide_String (Source => TextTransporter (ZeichenSchleifenwert).Text)'Length;
-            
-         else
-            null;
-         end if;
-      end loop TextlängePrüfenSchleife;
-      
-      AnzeigeSchleife:
-      for AnzeigeSchleifenwert in TextTransporter'Range loop
-
-         if
-           AktuelleAuswahlExtern = AnzeigeSchleifenwert
-         then
-            RahmenEinsSchleife:
-            for RahmenEinsSchleifenwert in 1 .. LängsterText loop
-                  
-               if
-                 RahmenEinsSchleifenwert = 1
-               then
-                  Put (Item => "╔");
-                  Put (Item => "═");
-
-               elsif
-                 RahmenEinsSchleifenwert = LängsterText
-               then                  
-                  Put (Item => "═");
-                  Put_Line (Item => "╗");
-                  Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => TextTransporter (AnzeigeSchleifenwert).Text));
-
-                  LeererPlatzSchleife:
-                  for LeererPlatzSchleifenwert in 1 .. LängsterText - To_Wide_Wide_String (Source => TextTransporter (AnzeigeSchleifenwert).Text)'Length loop
-                        
-                     Put (" ");
-                        
-                  end loop LeererPlatzSchleife;
-                  Put_Line (Item => "║");
-                  Put (Item => "╚");
-
-               else
-                  Put (Item => "═");
-               end if;
-               
-            end loop RahmenEinsSchleife;
-
-            RahmenZweiSchleife:
-            for RahmenZweiSchleifenwert in 1 .. LängsterText loop
-               
-               if
-                 RahmenZweiSchleifenwert = LängsterText
-               then
-                  Put (Item => "═");
-                  Put_Line (Item => "╝");
-               
-               else
-                  Put (Item => "═");
-               end if;
-            
-            end loop RahmenZweiSchleife;
-         
-         else
-            if
-              To_Wide_Wide_String (Source => TextTransporter (AnzeigeSchleifenwert).Text) = "|"
-            then
-               exit AnzeigeSchleife; 
-            
-            else
-               Put_Line (Item => To_Wide_Wide_String (Source => TextTransporter (AnzeigeSchleifenwert).Text));
-            end if;
-         end if;
-         
-      end loop AnzeigeSchleife;
-      
-   end AnzeigeTransporter;
 
    
 

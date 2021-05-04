@@ -97,7 +97,7 @@ package body ForschungsDatenbank is
       return GlobaleDatentypen.ForschungIDMitNullWert
    is begin
       
-      Anzeige.TextForschungNeu := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
+      Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
       Ende := 1;
 
       ForschungSchleife:
@@ -138,9 +138,9 @@ package body ForschungsDatenbank is
               AnforderungenErfüllt
             is
                when True =>
-                  Anzeige.TextForschungNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Forschung_Kurz),
-                                                                                             Positive (ForschungenSchleifenwert) + RassenAufschlagForschung (RasseExtern));
-                  Anzeige.TextForschungNeu (Ende).Nummer := ForschungenSchleifenwert;
+                  Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Forschung_Kurz),
+                                                                                                  Positive (ForschungenSchleifenwert) + RassenAufschlagForschung (RasseExtern));
+                  Anzeige.AllgemeineAnzeigeText (Ende).Nummer := Positive (ForschungenSchleifenwert);
                   Ende := Ende + 1;
                   
                when False =>
@@ -151,14 +151,14 @@ package body ForschungsDatenbank is
       end loop ForschungSchleife;
 
       if
-        Anzeige.TextForschungNeu (Ende).Nummer = 0
+        Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
         and
           Ende > 1
       then
-         Anzeige.TextForschungNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
 
       elsif
-        Anzeige.TextForschungNeu (Ende).Nummer = 0
+        Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
         and
           Ende = 1
       then
@@ -166,7 +166,7 @@ package body ForschungsDatenbank is
          
       else
          Ende := Ende + 1;
-         Anzeige.TextForschungNeu (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
       end if;
 
       AktuelleAuswahl := 1;
@@ -179,7 +179,7 @@ package body ForschungsDatenbank is
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fragen,
                                                TextZeileExtern => 16);
 
-         Anzeige.AnzeigeForschungNeu (AktuelleAuswahlExtern => AktuelleAuswahl);
+         Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => AktuelleAuswahl);
          
          if
            AktuelleAuswahl = Ende
@@ -190,13 +190,13 @@ package body ForschungsDatenbank is
             Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Lang,
                                           ÜberschriftZeileExtern => 0,
-                                          ErsteZeileExtern       => Positive (Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer),
-                                          LetzteZeileExtern      => Positive (Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer),
+                                          ErsteZeileExtern       => Positive (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer),
+                                          LetzteZeileExtern      => Positive (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer),
                                           AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
                                           AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
 
             Ermöglicht (RasseExtern           => RasseExtern,
-                         ForschungNummerExtern => Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer);
+                         ForschungNummerExtern => GlobaleDatentypen.ForschungID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer));
          end if;
          
          Taste := Eingabe.TastenEingabe;
@@ -205,7 +205,7 @@ package body ForschungsDatenbank is
            Taste
          is               
             when 'w' | '8' => 
-               if AktuelleAuswahl = Anzeige.TextForschungNeu'First then
+               if AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First then
                   AktuelleAuswahl := Ende;
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
@@ -213,13 +213,13 @@ package body ForschungsDatenbank is
 
             when 's' | '2' =>
                if AktuelleAuswahl = Ende then
-                  AktuelleAuswahl := Anzeige.TextForschungNeu'First;
+                  AktuelleAuswahl := Anzeige.AllgemeineAnzeigeText'First;
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                
             when 'e' | '5' =>
-               return Anzeige.TextForschungNeu (AktuelleAuswahl).Nummer;
+               return GlobaleDatentypen.ForschungIDMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
             when 'q' =>
                return 0;

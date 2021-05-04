@@ -135,7 +135,6 @@ package body Auswahl is
                elsif
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 2)
                then -- Spiel beenden
-                  Put_Line ("oui");
                   return GlobaleKonstanten.SpielBeendenKonstante;
                   
                elsif
@@ -202,5 +201,16 @@ package body Auswahl is
       return JaNein;
       
    end AuswahlJaNein;
+   
+   
+   
+   function AllgemeinAuswahl
+     (AktuelleAuswahlExtern, EndeExtern : in Natural)
+      return Natural
+   is begin
+      
+      return 1;
+      
+   end AllgemeinAuswahl;
 
 end Auswahl;
