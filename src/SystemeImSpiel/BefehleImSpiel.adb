@@ -145,7 +145,7 @@ package body BefehleImSpiel is
             end case;
             
          when 'x' => -- Anzeige des Forschungsbaums
-              ForschungsDatenbank.ForschungsBaum (RasseExtern => RasseExtern);
+            ForschungsDatenbank.ForschungsBaum (RasseExtern => RasseExtern);
             
          when '/' => -- Nächste Stadt
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
@@ -268,15 +268,24 @@ package body BefehleImSpiel is
          when 'k' => -- Stadt abreißen
             StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                        KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            case
-              StadtNummer
-            is
-               when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-                  null;
+            if
+              StadtNummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+            then
+               null;
+               
+            else
+               AbreißenAuswahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 7);
+               case
+                 AbreißenAuswahl
+               is
+                  when GlobaleKonstanten.JaKonstante =>
+                     GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer) := GlobaleKonstanten.LeererWertStadt;
+            
+                  when others =>
+                     null;
+               end case;
                   
-               when others =>
-                  GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer) := GlobaleKonstanten.LeererWertStadt;
-            end case;
+            end if;
             
          when 'r' => -- Runde beenden
             return -1_000;

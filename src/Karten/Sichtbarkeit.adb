@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, KartenPruefungen;
+with KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, KartenPruefungen, KarteneigenschaftSuchen;
 
 package body Sichtbarkeit is
 
@@ -49,10 +49,10 @@ package body Sichtbarkeit is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
+      KartenGrund := KarteneigenschaftSuchen.KartenGrundEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
       case
-        Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Grund
+        KartenGrund
       is
          when 7 =>
             SichtweiteObjekt := 3;

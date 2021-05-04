@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, Intro;
 -- with Programmanalyse;
 
 with Einlesen, Anzeige, Hauptmenue;
@@ -23,6 +23,7 @@ begin
      EinlesenErgebnis
    is
       when True =>
+         Intro.Intro;
          Hauptmenue.Hauptmenü;
 
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,

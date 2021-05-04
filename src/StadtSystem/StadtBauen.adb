@@ -7,7 +7,7 @@ with GlobaleKonstanten;
 
 with KIDatentypen;
 
-with Anzeige, StadtWerteFestlegen, ForschungsDatenbank, EinheitenDatenbank, Eingabe, Karten, KartenPruefungen, StadtProduktion;
+with Anzeige, StadtWerteFestlegen, ForschungsDatenbank, EinheitenDatenbank, Eingabe, Karten, KartenPruefungen, StadtProduktion, KarteneigenschaftSuchen;
 
 package body StadtBauen is
 

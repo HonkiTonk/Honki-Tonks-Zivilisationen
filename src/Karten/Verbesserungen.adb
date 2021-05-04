@@ -45,7 +45,7 @@ package body Verbesserungen is
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 0;
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 0;
 
-      Grund := KarteneigenschaftSuchen.KartenGrundEinheitSuchen (EinheitRasseNummer => EinheitRasseNummerExtern);
+      Grund := KarteneigenschaftSuchen.KartenGrundEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
         BefehlExtern = Straße_Bauen

@@ -8,6 +8,7 @@ with GlobaleDatentypen, GlobaleRecords, GlobaleKonstanten;
 package GlobaleVariablen is
 
    -- Schreiben/Ausgabe
+   -- Die einzelnen Textarrays hier rein oder in eine eigene Datei?
    type SprachenEinlesenArray is array (1 .. 100) of Unbounded_Wide_Wide_String;
    SprachenEinlesen : SprachenEinlesenArray;
 

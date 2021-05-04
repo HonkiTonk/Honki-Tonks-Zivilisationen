@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wi
 
 with GlobaleKonstanten;
 
-with Auswahl, Anzeige, Eingabe;
+with Auswahl, Anzeige, Eingabe, Umwandlung;
 
 package body EinheitenDatenbank is
 
@@ -118,9 +118,7 @@ package body EinheitenDatenbank is
       IDExtern : in GlobaleDatentypen.EinheitenID)
    is begin
 
-      Position := (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                   GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                   GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition.XAchse);
+      Position := Umwandlung.StadtNachKoordinaten (StadtRasseNummerExtern => StadtRasseNummerExtern);
       EinheitNummer := 0;
             
       EinheitenSchleife:

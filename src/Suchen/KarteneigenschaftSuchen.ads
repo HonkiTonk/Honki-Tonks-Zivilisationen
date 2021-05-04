@@ -6,51 +6,51 @@ use GlobaleDatentypen;
 package KarteneigenschaftSuchen is
 
    function KartenGrundEinheitSuchen
-     (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenGrund
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
           and
-            EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)),
+            EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)),
          Post =>
            (KartenGrundEinheitSuchen'Result > 0);
 
    function KartenFlussEinheitSuchen
-     (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenGrund
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
           and
-            EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
+            EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
    function KartenStraßeEinheitSuchen
-     (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenVerbesserung
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
           and
-            EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
+            EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
    function KartenVerbesserungEinheitSuchen
-     (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenVerbesserung
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
           and
-            EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
+            EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
    function KartenRessourceEinheitSuchen
-     (EinheitRasseNummer : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenGrund
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummer.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
           and
-            EinheitRasseNummer.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
+            EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
 private
 

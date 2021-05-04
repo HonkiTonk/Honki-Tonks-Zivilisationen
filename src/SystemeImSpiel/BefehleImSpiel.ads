@@ -30,6 +30,7 @@ private
    StadtOderEinheit : Integer;
    WahlForschung : Integer;
    MenüAufruf : Integer;
+   AbreißenAuswahl : Integer;
 
    procedure EinheitOderStadt
      (RasseExtern : in GlobaleDatentypen.Rassen;
