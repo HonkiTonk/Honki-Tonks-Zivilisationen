@@ -20,13 +20,13 @@ private
    Nullwert : Boolean;
    Transportiert : Boolean;
          
-   Taste : Wide_Wide_Character;
+   Befehl : Wide_Wide_Character;
 
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    EinheitTransportNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
-   WelcherBefehl : Integer;
+   WelcherBefehl : Positive;
    StadtOderEinheit : Integer;
    WahlForschung : Integer;
    MenüAufruf : Integer;

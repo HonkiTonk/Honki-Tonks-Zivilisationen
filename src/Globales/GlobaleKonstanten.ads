@@ -42,6 +42,8 @@ package GlobaleKonstanten is
 
 
    -- Für Einheiten/Städte
+   EinheitBefehlAbzug : constant Positive := 19;
+
    RückgabeEinheitStadtNummerFalsch : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := 0;
 
    GebäudeAufschlag : constant Positive := 1_000;

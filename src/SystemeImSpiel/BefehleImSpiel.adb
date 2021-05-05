@@ -1,12 +1,9 @@
 pragma SPARK_Mode (On);
 
-with Ada.Characters.Wide_Wide_Latin_9;
-use Ada.Characters.Wide_Wide_Latin_9;
-
 with GlobaleKonstanten;
 
 with ForschungsDatenbank, InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, EinheitenDatenbank, NaechstesObjekt, Verbesserungen,
-     Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, FeldInformationen;
+     Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, FeldInformationen, OptionenSteuerung;
 
 package body BefehleImSpiel is
 
@@ -15,289 +12,415 @@ package body BefehleImSpiel is
       return Integer
    is begin 
             
-      Taste := Eingabe.TastenEingabe;
+      Befehl := Eingabe.TastenEingabe;
 
-      case
-        Taste
-      is -- Cursor bewegen
-         when 'w' | 's' | 'a' | 'd' | '1' | '2' | '3' | '4' | '6' | '7' | '8' | '9' | '+' | '-' =>
-            BewegungssystemCursor.BewegungCursorRichtung (KarteExtern       => True,
-                                                          RichtungExtern    => Taste,
-                                                          RasseExtern       => RasseExtern);
+      if -- Cursor bewegen
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 1)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 2)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 3)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 4)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 5)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 6)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 7)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 8)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 9)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 10)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 1)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 2)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 3)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 4)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 5)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 6)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 7)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 8)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 9)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 10)
+      then
+         BewegungssystemCursor.BewegungCursorRichtung (KarteExtern       => True,
+                                                       RichtungExtern    => Befehl,
+                                                       RasseExtern       => RasseExtern);
             
-         when 'e' | '5' => -- Einheit bewegen/Stadt betreten
-            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                             KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+      elsif -- Auswählen
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 11)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 11)
+      then
+         EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                          KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+         StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                    KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
 
+         if
+           EinheitNummer /= 0
+           and
+             StadtNummer /= 0
+         then
+            StadtOderEinheit := Auswahl.AuswahlJaNein (FrageZeileExtern => 15);
+
+            EinheitOderStadt (RasseExtern         => RasseExtern,
+                              AuswahlExtern       => StadtOderEinheit,
+                              StadtNummerExtern   => StadtNummer,
+                              EinheitNummerExtern => EinheitNummer);
+               
+               
+         elsif
+           StadtNummer /= 0
+         then
+            EinheitOderStadt (RasseExtern         => RasseExtern,
+                              AuswahlExtern       => GlobaleKonstanten.JaKonstante,
+                              StadtNummerExtern   => StadtNummer,
+                              EinheitNummerExtern => EinheitNummer);
+               
+         elsif
+           EinheitNummer /= 0
+         then
+            Transportiert := EinheitSuchen.IstEinheitAufTransporter (EinheitRassePlatznummer => (RasseExtern, EinheitNummer));
             if
-              EinheitNummer /= 0
+              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert = 0
               and
-                StadtNummer /= 0
+                Transportiert = False
             then
-               StadtOderEinheit := Auswahl.AuswahlJaNein (FrageZeileExtern => 15);
+               EinheitOderStadt (RasseExtern         => RasseExtern,
+                                 AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
+                                 StadtNummerExtern   => StadtNummer,
+                                 EinheitNummerExtern => EinheitNummer);
 
-               EinheitOderStadt (RasseExtern         => RasseExtern,
-                                 AuswahlExtern       => StadtOderEinheit,
-                                 StadtNummerExtern   => StadtNummer,
-                                 EinheitNummerExtern => EinheitNummer);
-               
-               
-            elsif
-              StadtNummer /= 0
-            then
-               EinheitOderStadt (RasseExtern         => RasseExtern,
-                                 AuswahlExtern       => GlobaleKonstanten.JaKonstante,
-                                 StadtNummerExtern   => StadtNummer,
-                                 EinheitNummerExtern => EinheitNummer);
-               
-            elsif
-              EinheitNummer /= 0
-            then
-               Transportiert := EinheitSuchen.IstEinheitAufTransporter (EinheitRassePlatznummer => (RasseExtern, EinheitNummer));
+            else
                if
-                 GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert = 0
-                 and
-                   Transportiert = False
+                 GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert /= 0
                then
-                  EinheitOderStadt (RasseExtern         => RasseExtern,
-                                    AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
-                                    StadtNummerExtern   => StadtNummer,
-                                    EinheitNummerExtern => EinheitNummer);
+                  EinheitTransportNummer := EinheitenDatenbank.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert));
 
                else
-                  if
-                    GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert /= 0
-                  then
-                     EinheitTransportNummer := EinheitenDatenbank.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert));
-
-                  else
-                     EinheitTransportNummer := EinheitenDatenbank.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
-                  end if;
-                  
-                  case
-                    EinheitTransportNummer
-                  is
-                     when 0 =>
-                        null;
-                        
-                     when others =>
-                        EinheitOderStadt (RasseExtern         => RasseExtern,
-                                          AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
-                                          StadtNummerExtern   => StadtNummer,
-                                          EinheitNummerExtern => EinheitTransportNummer);
-                  end case;
+                  EinheitTransportNummer := EinheitenDatenbank.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                end if;
-               
-            else
-               null;
-            end if;
-                                                                        
-         when 'q' => -- Menüaufruf
-            MenüAufruf := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Leer,
-                                            TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
-                                            FrageZeileExtern  => 0,
-                                            ErsteZeileExtern  => 1,
-                                            LetzteZeileExtern => 6);
-            return MenüAufruf;
-
-         when 'b' => -- Baue Stadt
-            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                             KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            case
-              EinheitNummer
-            is
-               when 0 =>
-                  null;
                   
-               when others =>
-                  if 
-                    EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = 1
-                    and
-                      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00
-                  then
-                     Nullwert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
-                     
-                  else
+               case
+                 EinheitTransportNummer
+               is
+                  when 0 =>
                      null;
-                  end if;
-            end case;
-            
-         when 't' => -- Technologie/Forschung
-            case
-              GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt
-            is
-               when 0 =>
+                        
+                  when others =>
+                     EinheitOderStadt (RasseExtern         => RasseExtern,
+                                       AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
+                                       StadtNummerExtern   => StadtNummer,
+                                       EinheitNummerExtern => EinheitTransportNummer);
+               end case;
+            end if;
+               
+         else
+            null;
+         end if;
+                 
+      elsif -- Menüaufruf
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 12)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 12)
+      then
+         MenüAufruf := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Leer,
+                                         TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
+                                         FrageZeileExtern  => 0,
+                                         ErsteZeileExtern  => 1,
+                                         LetzteZeileExtern => 6);
+         return MenüAufruf;
+
+      elsif -- Baue Stadt
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 13)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 13)
+      then
+         EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                          KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+         case
+           EinheitNummer
+         is
+            when 0 =>
+               null;
+                  
+            when others =>
+               if 
+                 EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = 1
+                 and
+                   GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00
+               then
+                  Nullwert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
+                     
+               else
+                  null;
+               end if;
+         end case;
+           
+      elsif -- Technologie/Forschung
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 14)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 14)
+      then
+         case
+           GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt
+         is
+            when 0 =>
+               ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
+                     
+            when others =>
+               WahlForschung := Auswahl.AuswahlJaNein (FrageZeileExtern => 17);
+               if
+                 WahlForschung = GlobaleKonstanten.JaKonstante
+               then
                   ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
                      
-               when others =>
-                  WahlForschung := Auswahl.AuswahlJaNein (FrageZeileExtern => 17);
-                  case
-                    WahlForschung
-                  is
-                     when GlobaleKonstanten.JaKonstante =>
-                        ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
-                     
-                     when others =>
-                        null;
-                  end case;
-            end case;
+               else
+                  null;
+               end if;
+         end case;
             
-         when 'x' => -- Anzeige des Forschungsbaums
-            ForschungsDatenbank.ForschungsBaum (RasseExtern => RasseExtern);
+      elsif -- Anzeige des Forschungsbaums
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 15)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 15)
+      then
+         ForschungsDatenbank.ForschungsBaum (RasseExtern => RasseExtern);
             
-         when '/' => -- Nächste Stadt
-            NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
+      elsif -- Nächste Stadt
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 16)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 16)
+      then
+         NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
             
-         when '.' => -- Einheiten mit Bewegungspunkten
-            NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
-                                             BewegungspunkteExtern => NaechstesObjekt.Hat_Bewegungspunkte);
+      elsif -- Einheiten mit Bewegungspunkten
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 17)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 17)
+      then
+         NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
+                                          BewegungspunkteExtern => NaechstesObjekt.Hat_Bewegungspunkte);
             
-         when '*' => -- Alle Einheiten
-            NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
-                                             BewegungspunkteExtern => NaechstesObjekt.Egal_Bewegeungspunkte);
+      elsif -- Alle Einheiten
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 18)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 18)
+      then
+         NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
+                                          BewegungspunkteExtern => NaechstesObjekt.Egal_Bewegeungspunkte);
             
-         when ',' => -- Einheiten ohne Bewegungspunkte
-            NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
-                                             BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte);
+      elsif -- Einheiten ohne Bewegungspunkte
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 19)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 19)
+      then
+         NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
+                                          BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte);
             
-         when 'l' | 'm' | 'f' | 'u' | 'z' | 'p' | 'h' | 'v' | Space | DEL | 'j' => -- l/1 = Straße, m/2 = Mine, f/3 = Farm, u/4 = Festung, z/5 = Wald aufforsten, p/6 = /Roden-Trockenlegen,
-            -- h/7 = Heilen, v/8 = Verschanzen, Space/9 = Runde aussetzen, DEL/10 = Einheit auflösen, j/11 = Plündern
-            case
-              Taste
-            is
-               when 'l' =>
-                  WelcherBefehl := 1;
-                  
-               when 'm' =>
-                  WelcherBefehl := 2;
-                  
-               when 'f' =>
-                  WelcherBefehl := 3;
-                  
-               when 'u' =>
-                  WelcherBefehl := 4;
-                  
-               when 'z' =>
-                  WelcherBefehl := 5;
-                  
-               when 'p' =>
-                  WelcherBefehl := 6;
-                  
-               when 'h' =>
-                  WelcherBefehl := 7;
-                  
-               when 'v' =>
-                  WelcherBefehl := 8;
-
-               when Space =>
-                  WelcherBefehl := 9;
-                  
-               when DEL =>
-                  WelcherBefehl := 10;
-
-               when 'j' =>
-                  WelcherBefehl := 11;
-                  
-               when others =>
-                  return 1;
-            end case;
+      elsif -- 20 = Straße bauen, 21 = Mine bauen, 22 = Farm bauen, 23 = Festung bauen, 24 = Wald aufforsten, 25 = /Roden-Trockenlegen,
+      -- 26 = Heilen, 27 = Verschanzen, 28 = Runde aussetzen, 29 = Einheit auflösen, 30 = Plündern
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 20)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 21)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 22)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 23)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 24)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 25)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 26)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 27)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 28)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 29)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (1, 30)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 20)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 21)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 22)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 23)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 24)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 25)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 26)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 27)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 28)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 29)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 30)
+      then
+         SteuerungAußenSchleife:
+         for AußenSchleifenwert in OptionenSteuerung.Tastenbelegung'Range (1) loop
+            SteuerungInnenSchleife:
+            for BefehlSchleifenwert in OptionenSteuerung.Tastenbelegung'Range (2) loop
                
-            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                             KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            case
-              EinheitNummer
-            is
-               when 0 =>
-                  return 1;
+               if
+                 Befehl = OptionenSteuerung.Tastenbelegung (AußenSchleifenwert, BefehlSchleifenwert)
+               then
+                  WelcherBefehl := BefehlSchleifenwert - GlobaleKonstanten.EinheitBefehlAbzug;
+                  exit SteuerungAußenSchleife;
                   
-               when others =>
+               else
                   null;
-            end case;
-
-            if
-              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID /= 1
-              and
-                WelcherBefehl <= 6
-            then
-               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
-                                                     TextZeileExtern => 3);
-
-            elsif
-              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 1
-              and
-                WelcherBefehl = 11
-            then
-               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
-                                                     TextZeileExtern => 3);
-                     
-            elsif
-              GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00
-            then
-               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
-                                                     TextZeileExtern => 8);
-                     
-            else
-               Verbesserungen.Verbesserung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
-                                            BefehlExtern             => GlobaleDatentypen.Befehle_Enum'Val (WelcherBefehl));
-            end if;
-            
-         when 'i' => -- Informationen für Einheiten, Verbesserungen, usw.
-            FeldInformationen.Aufteilung (RasseExtern => RasseExtern);
-
-         when '#' => -- Diplomatie
-            Diplomatie.DiplomatieAuswählen;
-
-         when 'g' => -- GeheZu Cursor
-            BewegungssystemCursor.GeheZuCursor (RasseExtern => RasseExtern);
-
-         when 'n' => -- Stadt umbenennen
-            StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            case
-              StadtNummer
-            is
-               when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-                  null;
+               end if;
+               
+            end loop SteuerungInnenSchleife;
+         end loop SteuerungAußenSchleife;
+               
+         EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                          KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+         case
+           EinheitNummer
+         is
+            when 0 =>
+               return 1;
                   
-               when others =>
-                  GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Name := Eingabe.StadtName;
-            end case;
-            
-         when 'k' => -- Stadt abreißen
-            StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            if
-              StadtNummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
-            then
+            when others =>
                null;
-               
-            else
-               AbreißenAuswahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 7);
-               case
-                 AbreißenAuswahl
-               is
-                  when GlobaleKonstanten.JaKonstante =>
-                     GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer) := GlobaleKonstanten.LeererWertStadt;
+         end case;
+
+         if
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID /= 1
+           and
+             WelcherBefehl <= 6
+         then
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                                                  TextZeileExtern => 3);
+
+         elsif
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 1
+           and
+             WelcherBefehl = 11
+         then
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                                                  TextZeileExtern => 3);
+                     
+         elsif
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00
+         then
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                                                  TextZeileExtern => 8);
+                     
+         else
+            Verbesserungen.Verbesserung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
+                                         BefehlExtern             => GlobaleDatentypen.Befehle_Enum'Val (WelcherBefehl));
+         end if;
             
-                  when others =>
-                     null;
-               end case;                  
-            end if;
+      elsif -- Informationen für Einheiten, Verbesserungen, usw.
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 31)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 31)
+      then
+         FeldInformationen.Aufteilung (RasseExtern => RasseExtern);
+
+      elsif -- Diplomatie
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 32)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 32)
+      then
+         Diplomatie.DiplomatieAuswählen;
+
+      elsif -- GeheZu Cursor
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 33)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 33)
+      then
+         BewegungssystemCursor.GeheZuCursor (RasseExtern => RasseExtern);
+
+      elsif -- Stadt umbenennen
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 34)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 34)
+      then
+         StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                    KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+         case
+           StadtNummer
+         is
+            when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
+               null;
+                  
+            when others =>
+               GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Name := Eingabe.StadtName;
+         end case;
             
-         when 'y' => -- Stadt mit Namen suchen
-            StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
-            
-         when 'r' => -- Runde beenden
-            return -1_000;
-            
-         when 'c' => -- Kleine Cheattaste
-            Cheat.Menü (RasseExtern => RasseExtern);
-            
-         when others =>
+      elsif -- Stadt abreißen
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 35)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 35)
+      then
+         StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                    KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+         if
+           StadtNummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+         then
             null;
-      end case;
+               
+         else
+            AbreißenAuswahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 7);
+            case
+              AbreißenAuswahl
+            is
+               when GlobaleKonstanten.JaKonstante =>
+                  GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer) := GlobaleKonstanten.LeererWertStadt;
+            
+               when others =>
+                  null;
+            end case;                  
+         end if;
+            
+      elsif -- Stadt mit Namen suchen
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 36)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 36)
+      then
+         StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
+            
+      elsif -- Runde beenden
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 37)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 37)
+      then
+         return -1_000;
+            
+      elsif -- Kleine Cheattaste
+        Befehl = OptionenSteuerung.Tastenbelegung (1, 38)
+        or
+          Befehl = OptionenSteuerung.Tastenbelegung (2, 38)
+      then
+         Cheat.Menü (RasseExtern => RasseExtern);
+            
+      else
+         null;
+      end if;
 
       return 1;
       

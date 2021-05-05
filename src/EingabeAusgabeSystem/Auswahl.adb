@@ -201,16 +201,5 @@ package body Auswahl is
       return JaNein;
       
    end AuswahlJaNein;
-   
-   
-   
-   function AllgemeinAuswahl
-     (AktuelleAuswahlExtern, EndeExtern : in Natural)
-      return Natural
-   is begin
-      
-      return 1;
-      
-   end AllgemeinAuswahl;
 
 end Auswahl;

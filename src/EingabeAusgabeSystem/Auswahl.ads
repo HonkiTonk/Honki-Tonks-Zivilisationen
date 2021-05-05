@@ -29,10 +29,6 @@ package Auswahl is
      (FrageZeileExtern : in Positive)
       return Integer;
    
-   function AllgemeinAuswahl
-     (AktuelleAuswahlExtern, EndeExtern : in Natural)
-     return Natural;
-
 private
 
    Taste : Wide_Wide_Character;
