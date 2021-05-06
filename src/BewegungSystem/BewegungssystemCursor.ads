@@ -7,39 +7,11 @@ package BewegungssystemCursor is
 
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
-      RichtungExtern : in Wide_Wide_Character;
+      RichtungExtern : in Positive;
       RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         ((RichtungExtern = 'w'
-          or
-            RichtungExtern = 'a'
-          or
-            RichtungExtern = 's'
-          or
-            RichtungExtern = 'd'
-          or
-            RichtungExtern = '1'
-          or
-            RichtungExtern = '2'
-          or
-            RichtungExtern = '3'
-          or
-            RichtungExtern = '4'
-          or
-            RichtungExtern = '6'
-          or
-            RichtungExtern = '7'
-          or
-            RichtungExtern = '8'
-          or
-            RichtungExtern = '9'
-          or
-            RichtungExtern = '+'
-          or
-            RichtungExtern = '-')
-          and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
      
    procedure GeheZuCursor
      (RasseExtern : in GlobaleDatentypen.Rassen)

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Karten;
+with Karten, StadtWerteFestlegen;
 
 package body KarteneigenschaftSuchen is
 
@@ -91,5 +91,43 @@ package body KarteneigenschaftSuchen is
       return BelegterStadtGrund;
       
    end KartenBelegterGrundEinheitSuchen;
+   
+   
+   
+   function KartenBelegterGrundEinheitAbgleich
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
+      BelegterStadtGrund := KartenBelegterGrundEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      if
+        BelegterStadtGrund
+      in
+        GlobaleDatentypen.BelegterGrund (EinheitRasseNummerExtern.Rasse) * StadtWerteFestlegen.RassenMulitplikationWert .. GlobaleDatentypen.BelegterGrund (EinheitRasseNummerExtern.Rasse)
+        * StadtWerteFestlegen.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleVariablen.StadtGebaut'Last (2))
+      then      
+         return True;
+         
+      else
+         return False;
+      end if;
+      
+   end KartenBelegterGrundEinheitAbgleich;
+   
+   
+   
+   function KartenFelderbewertungEinheitSuchen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      KartenFeldbewertung := Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
+                                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
+                                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Felderwertung;
+      
+      return KartenFeldbewertung;
+      
+   end KartenFelderbewertungEinheitSuchen;
 
 end KarteneigenschaftSuchen;

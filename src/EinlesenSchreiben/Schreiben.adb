@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Directories;
 use Ada.Directories;
 
+with Eingabe;
+
 package body Schreiben is
 
    procedure SchreibenStartAufruf
@@ -17,8 +19,6 @@ package body Schreiben is
          when False =>
             Create_Directory (New_Directory => "Dateien");
       end case;
-
-
       
       case
         Exists (Name => "Spielstand")
@@ -29,8 +29,16 @@ package body Schreiben is
          when False =>
             Create_Directory (New_Directory => "Spielstand");
       end case;
+      
+      case
+        Exists (Name => "Einstellungen")
+      is
+         when True =>
+            null;
 
-
+         when False =>
+            Create_Directory (New_Directory => "Einstellungen");
+      end case;
 
       case
         Exists (Name => "Dateien/Werte")
@@ -49,8 +57,6 @@ package body Schreiben is
             Schreiben.WerteSchreiben;
       end case;
 
-
-
       case
         Exists (Name => "Dateien/Sprachen")
       is -- Für Deutsch mit in das Programm übernehmen?
@@ -59,9 +65,7 @@ package body Schreiben is
 
          when False =>
             Create_Directory (New_Directory => "Dateien/Spielstand");
-      end case;
-
- 
+      end case; 
       
       case
         Exists (Name => "Dateien/Einstellungen")
@@ -123,5 +127,29 @@ package body Schreiben is
       return True;
       
    end EinstellungenPrüfen;
+   
+   
+   
+   procedure TastenbelegungSchreiben
+   is begin
+      
+      Create (File => TastenbelegungSpeichern,
+              Mode => Out_File,
+              Name => "Einstellungen/Tastenbelegung");
+      
+      BelegungFeldSchleife:
+      for BelegungFeldSchleifenwert in Eingabe.TastenbelegungArray'Range (1) loop
+         BelegungPositionSchleife:
+         for BelegungPositionSchleifenwert in Eingabe.TastenbelegungArray'Range (2) loop
+            
+            Wide_Wide_Character'Write (Stream (File => TastenbelegungSpeichern),
+                                       Eingabe.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert));
+            
+         end loop BelegungPositionSchleife;
+      end loop BelegungFeldSchleife;      
+      
+      Close (File => TastenbelegungSpeichern);
+      
+   end TastenbelegungSchreiben;
 
 end Schreiben;

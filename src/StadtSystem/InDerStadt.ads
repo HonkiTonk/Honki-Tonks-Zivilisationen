@@ -17,12 +17,12 @@ package InDerStadt is
 
 private
 
-   Taste : Wide_Wide_Character;
 
    NutzbarerBereich : GlobaleDatentypen.Kartenfeld;
    RelativeCursorPositionY : GlobaleDatentypen.Kartenfeld;
    RelativeCursorPositionX : GlobaleDatentypen.Kartenfeld;
 
+   Befehl : Natural;
    Überhang : Integer;
    Wahl : Integer;
 

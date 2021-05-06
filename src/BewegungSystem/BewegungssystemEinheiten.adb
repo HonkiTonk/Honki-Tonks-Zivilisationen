@@ -13,39 +13,39 @@ package body BewegungssystemEinheiten is
       BewegenSchleife:
       loop
       
-         Richtung := Eingabe.TastenEingabe;
+         Richtung := Eingabe.Tastenwert;
               
          case
            Richtung
          is
-            when 'w' | '8' =>
+            when 1 =>
                Änderung := (0, -1, 0);
             
-            when 'a' | '4' =>
+            when 2 =>
                Änderung := (0, 0, -1);
             
-            when 's' | '2' =>
+            when 3 =>
                Änderung := (0, 1, 0);
             
-            when 'd' | '6'  =>
+            when 4  =>
                Änderung := (0, 0, 1);
             
-            when '1' =>
-               Änderung := (0, 1, -1);
-
-            when '3' =>
-               Änderung := (0, 1, 1);
-            
-            when '7' =>
+            when 5 =>
                Änderung := (0, -1, -1);
             
-            when '9' =>
+            when 6 =>
                Änderung := (0, -1, 1);
+            
+            when 7 =>
+               Änderung := (0, 1, -1);
 
-            when '+' =>
+            when 8 =>
+               Änderung := (0, 1, 1);
+
+            when 9 =>
                Änderung := (1, 0, 0);
                
-            when '-' =>
+            when 10 =>
                Änderung := (-1, 0, 0);
             
             when others =>

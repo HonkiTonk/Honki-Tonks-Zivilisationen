@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Characters.Conversions;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar;
 
-with Ladezeiten, Schreiben, Auswahl;
+with Ladezeiten, Schreiben, Auswahl, Eingabe;
 
 package body Einlesen is
 
@@ -35,6 +35,7 @@ package body Einlesen is
       is
          when True =>
             EinlesenWerte;
+            EinlesenTastaturbelegung;
             Ladezeiten.SpielStartzeiten (2, 2) := Clock;
             Ladezeiten.SpielStart (WelcheZeitExtern => 1);
             return Erfolgreich;
@@ -301,5 +302,39 @@ package body Einlesen is
       end loop WelcheWerteSchleife;
    
    end EinlesenWerte;
+   
+   
+   
+   procedure EinlesenTastaturbelegung
+   is begin
+      
+      case
+        Exists (Name => "Einstellungen/Tastenbelegung")
+      is
+         when True =>
+            null;
+
+         when False =>
+            return;
+      end case;
+      
+      Ada.Streams.Stream_IO.Open (File => TastenbelegungLaden,
+                                  Mode => Ada.Streams.Stream_IO.In_File,
+                                  Name => "Einstellungen/Tastenbelegung");
+      
+      BelegungFeldSchleife:
+      for BelegungFeldSchleifenwert in Eingabe.TastenbelegungArray'Range (1) loop
+         BelegungPositionSchleife:
+         for BelegungPositionSchleifenwert in Eingabe.TastenbelegungArray'Range (2) loop
+            
+            Wide_Wide_Character'Read (Ada.Streams.Stream_IO.Stream (File => TastenbelegungLaden),
+                                      Eingabe.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert));
+            
+         end loop BelegungPositionSchleife;
+      end loop BelegungFeldSchleife;
+      
+      Ada.Streams.Stream_IO.Close (File => TastenbelegungLaden);
+      
+   end EinlesenTastaturbelegung;
 
 end Einlesen;

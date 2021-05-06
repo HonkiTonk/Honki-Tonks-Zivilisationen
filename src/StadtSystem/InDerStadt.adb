@@ -20,17 +20,17 @@ package body InDerStadt is
          KarteStadt.AnzeigeStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
          New_Line;  
 
-         Taste := Eingabe.TastenEingabe;
+         Befehl := Eingabe.Tastenwert;
          
          case
-           Taste
+           Befehl
          is
-            when 'w' | 's' | 'a' | 'd' | '1' | '2' | '3' | '4' | '6' | '7' | '8' | '9' =>
+            when 1 .. 8 => -- Cursor in der Stadt bewegen
                BewegungssystemCursor.BewegungCursorRichtung (KarteExtern    => False,
-                                                             RichtungExtern => Taste,
+                                                             RichtungExtern => Befehl,
                                                              RasseExtern    => StadtRasseNummerExtern.Rasse);
 
-            when 'e' => -- Einwohner von Feld entfernen/zuweisen
+            when 11 => -- Einwohner von Feld entfernen/zuweisen
                if
                  GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.YAchse < Karten.Stadtkarte'First (1) + 7
                  and
@@ -66,7 +66,7 @@ package body InDerStadt is
                end if;
                   
                
-            when 'b' => -- Gebäude/Einheit bauen
+            when 13 => -- Gebäude/Einheit bauen
                case
                  GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt
                is
@@ -86,7 +86,7 @@ package body InDerStadt is
                      end case;
                end case;
                
-            when 'v' => -- Gebäude verkaufen
+            when 29 => -- Gebäude verkaufen
                if
                  GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.YAchse = 1
                  and
@@ -132,10 +132,10 @@ package body InDerStadt is
                   null;
                end if;
 
-            when 'n' => -- Stadt umbenennen
+            when 34 => -- Stadt umbenennen
                GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Name := Eingabe.StadtName;
 
-            when 'q' => -- Stadt verlassen
+            when 12 => -- Stadt verlassen
                return;
                
             when others =>

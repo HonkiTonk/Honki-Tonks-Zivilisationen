@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Integer_Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
-use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Wide_Wide_Characters.Handling;
+with Ada.Wide_Wide_Text_IO, Ada.Integer_Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
+use Ada.Wide_Wide_Text_IO, Ada.Wide_Wide_Characters.Handling;
 
 with GlobaleKonstanten;
 
@@ -270,7 +270,7 @@ package body Eingabe is
       then
          Get_Immediate (Item => Taste);
          if
-             Taste = '['
+           Taste = '['
          then
             Get_Immediate (Item => Taste);
             if
@@ -317,5 +317,34 @@ package body Eingabe is
       Get_Immediate (Taste);
       
    end WartenEingabe;
+   
+   
+   
+   function Tastenwert
+     return Natural
+   is begin
+      
+      Taste := TastenEingabe;
+      
+      BelegungFeldSchleife:
+      for BelegungFeldSchleifenwert in TastenbelegungArray'Range (1) loop
+         BelegungPositionSchleife:
+         for BelegungPositionSchleifenwert in TastenbelegungArray'Range (2) loop
+            
+            if
+              Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
+            then
+               return BelegungPositionSchleifenwert;
+               
+            else
+               null;
+            end if;
+            
+         end loop BelegungPositionSchleife;
+      end loop BelegungFeldSchleife;
+      
+      return 0;
+      
+   end Tastenwert;
 
 end Eingabe;

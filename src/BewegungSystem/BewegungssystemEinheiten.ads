@@ -43,12 +43,13 @@ private
    RückgabeWert : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
    Gegner : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
 
-   Richtung : Wide_Wide_Character;
       
    TransporterNummer : GlobaleDatentypen.MaximaleEinheiten;
    EinheitAusladen : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
    FreierPlatzNummer : Positive;
+   
+   Richtung : Natural;
    
    BonusBeiBewegung : Integer;
    Stadtnummer : Integer;

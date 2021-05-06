@@ -8,6 +8,8 @@ package body Optionen is
 
    function Optionen return Integer is
    begin
+      
+      RückgabeWert := 1000;
 
       OptionenSchleife:
       loop
@@ -31,21 +33,20 @@ package body Optionen is
                OptionenSound.OptionenSound;
                
             when 3 => -- Steuerung
-               OptionenSteuerung.SteuerungBelegen;
+               RückgabeWert := OptionenSteuerung.SteuerungBelegen;
                
             when 4 => -- Sonstiges
-               RückgabeWert := OptionenSonstiges.Sonstiges;
+               RückgabeWert := OptionenSonstiges.Sonstiges;               
+            when others =>
+               null;
+         end case;
 
-               case
-                 RückgabeWert
-               is
-                  when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-                     return RückgabeWert;
+         case
+           RückgabeWert
+         is
+            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+               return RückgabeWert;
                      
-                  when others =>
-                     null;
-               end case;
-               
             when others =>
                null;
          end case;

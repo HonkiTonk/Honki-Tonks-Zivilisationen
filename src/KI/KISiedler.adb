@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Karten, StadtWerteFestlegen, StadtBauen, KIBewegung, KIGefahr, KIEinheitVerbessernOderVernichten, StadtSuchen, EinheitSuchen;
+with StadtBauen, KIBewegung, KIGefahr, KIEinheitVerbessernOderVernichten, StadtSuchen, EinheitSuchen, KarteneigenschaftSuchen;
 
 package body KISiedler is
 
@@ -8,17 +8,20 @@ package body KISiedler is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      Aufgabe := Anfang;
-      SicherheitsZähler := 0;
+      SicherheitsZähler := 1;
+      
+      Wichtigkeit := (others => 0);
       
       AufgabeErmittelnSchleife:
-      while SicherheitsZähler < 10_000 loop
+      while SicherheitsZähler < 1_000 loop
+         
+         Aufgabe := VorhandeneMöglichkeiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          case
            Aufgabe
          is
-            when KIDatentypen.Anfang =>         
-               Aufgabe := NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            when KIDatentypen.Keine_Aufgabe =>         
+               null;
                
             when KIDatentypen.Stadt_Bauen =>
                StadtErfolgreichGebaut := StadtBauenPrüfung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -34,7 +37,7 @@ package body KISiedler is
             when KIDatentypen.Einheit_Bewegen =>
                null;
                
-            when KIDatentypen.Verbesserung =>
+            when KIDatentypen.Verbesserung_Anlegen =>
                null;
                
             when KIDatentypen.Einheit_Auflösen =>
@@ -43,7 +46,7 @@ package body KISiedler is
             when KIDatentypen.Fliehen =>
                null;
                
-            when KIDatentypen.Fertig =>
+            when others =>
                null;
          end case;         
 
@@ -51,66 +54,36 @@ package body KISiedler is
          case
            Gefahr
          is
-         when True =>
-            KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                   AufgabeExtern            => KIDatentypen.Flucht);
-            return;
+            when True =>
+               KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                      AufgabeExtern            => KIDatentypen.Flucht);
+               return;
                   
-         when False =>
-            null;
+            when False =>
+               null;
          end case;
-
-         UmgebungVerbessern := StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         case
-           UmgebungVerbessern
-         is
-         when True =>
-            null;
-                  
-         when False =>
-            null;
-         end case;
-
-      
 
          Verbessern := KIEinheitVerbessernOderVernichten.KIEinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          case
            Verbessern
          is
-         when True =>
-            null;
+            when True =>
+               null;
                   
-         when False =>
-            null;
+            when False =>
+               null;
          end case;
 
          Vernichten := KIEinheitVerbessernOderVernichten.KIEinheitVernichten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          case
            Vernichten
          is
-         when True =>
-            null;
-                  
-         when False =>
-            null;
-         end case;
-      
-         BewegungsSchleife:
-         loop
-         
-            KIBewegung.KIBewegung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                   AufgabeExtern            => KIDatentypen.Stadt_Bauen);
-         
-            if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte <= 0.00
-            then
-               exit BewegungsSchleife;
-            
-            else
+            when True =>
                null;
-            end if;
-         
-         end loop BewegungsSchleife;
+                  
+            when False =>
+               null;
+         end case;
          
          if
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte <= 0.00
@@ -125,11 +98,46 @@ package body KISiedler is
       
    end KISiedler;
    
+   
+   
+   function VorhandeneMöglichkeiten
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return KIDatentypen.Einheit_Befehl_Ermitteln_Enum
+   is begin
+      
+      GewählteMöglichkeit := 1;
+      
+      Wichtigkeit (1) := NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Wichtigkeit (2) := StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      -- Wichtigkeit (3) := Einheit_Auflösen;
+      -- Wichtigkeit (4) := Fliehen;
+      -- Wichtigkeit (5) := Heilen;
+      -- Wichtigkeit (6) := Festsetzen;
+      -- Wichtigkeit (7) := Einheit_Verbessern;
+      
+      WichtigkeitSchleife:
+      for WichtigkeitSchleifenwert in WichtigkeitArray'First .. WichtigkeitArray'Last - 1 loop
+         
+         if
+           Wichtigkeit (WichtigkeitSchleifenwert) > Wichtigkeit (WichtigkeitSchleifenwert + 1)
+         then
+            GewählteMöglichkeit := WichtigkeitSchleifenwert;
+            
+         else
+            null;
+         end if;
+         
+      end loop WichtigkeitSchleife;
+      
+      return Keine_Aufgabe;
+      
+   end VorhandeneMöglichkeiten;
+   
 
 
    function NeueStadtBauenGehen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return KIDatentypen.Einheit_Befehl_Ermitteln_Enum
+      return Natural
    is begin
       
       VorhandeneStädte := StadtSuchen.AnzahlStädteErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
@@ -140,19 +148,19 @@ package body KISiedler is
         VorhandeneStädte = 0
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
-         return KIDatentypen.Stadt_Bauen;
+         return 10;
          
       elsif
         VorhandeneSiedler < VorhandeneStädte * 2 - VorhandeneSiedler
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
-         return KIDatentypen.Stadt_Bauen;
+         return 5;
          
       else
          null;
       end if;
       
-      return KIDatentypen.Verbesserung;
+      return 0;
       
    end NeueStadtBauenGehen;
 
@@ -160,29 +168,24 @@ package body KISiedler is
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
+      return Natural
    is begin
+      
+      VerbesserungStraße := KarteneigenschaftSuchen.KartenStraßeEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      VerbesserungGebiet := KarteneigenschaftSuchen.KartenVerbesserungEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      DurchEigeneStadtBelegt := KarteneigenschaftSuchen.KartenBelegterGrundEinheitAbgleich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
    
       if
-        Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).DurchStadtBelegterGrund
-      in
-        GlobaleDatentypen.BelegterGrund (EinheitRasseNummerExtern.Rasse) * StadtWerteFestlegen.RassenMulitplikationWert .. GlobaleDatentypen.BelegterGrund (EinheitRasseNummerExtern.Rasse)
-        * StadtWerteFestlegen.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleVariablen.StadtGebaut'Last (2))
+        DurchEigeneStadtBelegt = True        
         and
-          (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungStraße = 0
+          (VerbesserungStraße = 0
            or
-             Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 0)
+             VerbesserungGebiet = 0)
       then
-         return True;
+         return 5;
             
       else
-         return False;
+         return 0;
       end if;      
             
    end StadtUmgebungVerbessern;
@@ -194,10 +197,10 @@ package body KISiedler is
       return Boolean
    is begin
       
+      KartenFeldbewertung := KarteneigenschaftSuchen.KartenFelderbewertungEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
       if
-        Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Felderwertung >= 90
+        KartenFeldbewertung >= 90
       then
          StadtBauenRückgabeWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          return StadtBauenRückgabeWert;

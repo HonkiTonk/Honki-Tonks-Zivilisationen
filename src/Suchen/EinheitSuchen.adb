@@ -190,6 +190,11 @@ package body EinheitSuchen is
       for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
          if
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert).ID = 0
+         then
+            null;
+         
+         elsif
            EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert).ID).EinheitTyp = EinheitTypExtern
          then
             AnzahlEinheitTyp := AnzahlEinheitTyp + 1;

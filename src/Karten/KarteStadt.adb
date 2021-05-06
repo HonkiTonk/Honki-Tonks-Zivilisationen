@@ -535,11 +535,11 @@ package body KarteStadt is
             is
                when True =>
                   Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Menü_Auswahl,
-                                                        TextZeileExtern => 10);
+                                                        TextZeileExtern => 7);
                
                when False =>
                   Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Menü_Auswahl,
-                                                        TextZeileExtern => 11);
+                                                        TextZeileExtern => 8);
             end case;
       end case;
       

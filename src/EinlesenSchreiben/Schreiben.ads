@@ -1,17 +1,21 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO;
-use Ada.Wide_Wide_Text_IO;
+with Ada.Streams.Stream_IO;
+use Ada.Streams.Stream_IO;
 
 package Schreiben is
 
    procedure SchreibenStartAufruf;
+
+   procedure TastenbelegungSchreiben;
    
 private
    
    Korrekt : Boolean;
 
-   EinstellungenDatei : Ada.Wide_Wide_Text_IO.File_Type;
+   EinstellungenDatei : File_Type;
+   
+   TastenbelegungSpeichern : File_Type;
 
    type StandardZeug is (Einstellungen, Werte, Sprachen);
 
@@ -24,9 +28,5 @@ private
 
    function WertePrüfen
      return Boolean;
-
-   -- Hier Standard Zeug zum Schreiben in die Einstellungsdatei beim Erzeugen hinschreiben
-   
-   -- Hier Standard Zeug zum Schreiben in die Einstellungsdatei beim Erzeugen hinschreiben
 
 end Schreiben;

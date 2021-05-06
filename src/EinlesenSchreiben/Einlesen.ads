@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Directories;
+with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Directories, Ada.Streams.Stream_IO;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Directories;
 
 with GlobaleVariablen;
@@ -35,9 +35,13 @@ private
    Suche : Search_Type;
    Verzeichnis : Directory_Entry_Type;
 
+   TastenbelegungLaden : Ada.Streams.Stream_IO.File_Type;
+
    procedure EinlesenWerte;
 
    procedure SprachenSortieren;
+
+   procedure EinlesenTastaturbelegung;
 
    function EinlesenSprache
      return Boolean;

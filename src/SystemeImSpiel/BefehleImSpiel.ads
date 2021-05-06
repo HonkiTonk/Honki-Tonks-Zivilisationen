@@ -20,7 +20,7 @@ private
    Nullwert : Boolean;
    Transportiert : Boolean;
          
-   Befehl : Wide_Wide_Character;
+   Befehl : Natural;
 
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    EinheitTransportNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
