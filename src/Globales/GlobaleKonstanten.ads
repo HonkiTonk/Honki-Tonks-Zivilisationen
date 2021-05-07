@@ -8,16 +8,17 @@ with GlobaleDatentypen, GlobaleRecords, KIDatentypen, DatenbankRecords;
 package GlobaleKonstanten is
 
    -- Für die Auswahl
-   StartNormalKonstante : constant Integer := 1;
-   HauptmenüKonstante : constant Integer := 0;
+   StartNormalKonstante : constant Positive := 1;
+   HauptmenüKonstante : constant Natural := 0;
    SpielBeendenKonstante : constant Integer := -1;
    ZurückKonstante : constant Integer := -2;
    JaKonstante : constant Integer := -3;
    NeinKonstante : constant Integer := -4;
-   SpeichernKonstante : constant Integer := 2;
-   LadenKonstante : constant Integer := 3;
-   OptionenKonstante : constant Integer := 4;
-   InformationenKonstante : constant Integer := 5;
+   SpeichernKonstante : constant Positive := 2;
+   LadenKonstante : constant Positive := 3;
+   OptionenKonstante : constant Positive := 4;
+   InformationenKonstante : constant Positive := 5;
+   WiederherstellenKonstante : constant Positive := 6;
    -- Für die Auswahl
 
 
@@ -29,14 +30,14 @@ package GlobaleKonstanten is
 
 
    -- Für die Optionen/Menüs
-   JaAnzeigeKonstante : constant Integer := 7;
-   NeinAnzeigeKonstante : constant Integer := 8;
+   JaAnzeigeKonstante : constant Positive := 7;
+   NeinAnzeigeKonstante : constant Positive := 8;
 
-   OptionenErsteZeileKonstante : constant Integer := 9;
-   OptionenLetzteZeileKonstante : constant Integer := 15;
+   OptionenErsteZeileKonstante : constant Positive := 9;
+   OptionenLetzteZeileKonstante : constant Positive := 15;
 
-   OptionenSonstigesErsteZeile : constant Integer := 16;
-   OptionenSonstigesLetzteZeile : constant Integer := 20;
+   OptionenSonstigesErsteZeile : constant Positive := 16;
+   OptionenSonstigesLetzteZeile : constant Positive := 20;
    -- Für die Optionen/Menüs
 
 

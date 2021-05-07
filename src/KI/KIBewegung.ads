@@ -14,9 +14,15 @@ package KIBewegung is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   procedure KIBewegungNeu
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
    procedure NeuesZielErmittelnGefahr
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -25,9 +31,7 @@ package KIBewegung is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
 private
 
@@ -46,9 +50,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
    procedure BewegungBauarbeiter
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -56,9 +58,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
    procedure BewegungBodenEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -66,9 +66,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
    procedure BewegungLuftEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -76,9 +74,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
    procedure BewegungWasserEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -86,9 +82,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
    procedure BewegungUnterwasserEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -96,9 +90,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
    procedure BewegungUnterirdischeEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -106,9 +98,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
    procedure BewegungOrbitaleEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -116,9 +106,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
    procedure BewegungDurchführen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -128,13 +116,11 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
             YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
    
 
@@ -147,12 +133,10 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
             YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
 end KIBewegung;

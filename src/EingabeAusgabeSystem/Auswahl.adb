@@ -171,6 +171,11 @@ package body Auswahl is
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 9)
                then -- Informationen
                   return GlobaleKonstanten.InformationenKonstante;
+
+               elsif
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 10)
+               then -- Wiederherstellen
+                  return GlobaleKonstanten.WiederherstellenKonstante;
                      
                else
                   Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");

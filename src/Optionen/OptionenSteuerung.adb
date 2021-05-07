@@ -20,7 +20,7 @@ package body OptionenSteuerung is
                                          TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
                                          FrageZeileExtern  => 28,
                                          ErsteZeileExtern  => 21,
-                                         LetzteZeileExtern => 62);
+                                         LetzteZeileExtern => 63);
          
          case
            AuswahlWert
@@ -29,6 +29,10 @@ package body OptionenSteuerung is
                return AuswahlWert;
                
             when GlobaleKonstanten.SpeichernKonstante =>
+               Schreiben.TastenbelegungSchreiben;
+               
+            when GlobaleKonstanten.WiederherstellenKonstante =>
+               Eingabe.StandardTastenbelegungWiederherstellen;
                Schreiben.TastenbelegungSchreiben;
                      
             when others =>
@@ -61,6 +65,8 @@ package body OptionenSteuerung is
             
                      if
                        Eingabe.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = NeueTaste
+                       and
+                         BelegungPositionSchleifenwert /= AuswahlWert
                      then
                         Eingabe.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) := NUL;
                         exit BelegungFeldSchleife;
@@ -73,8 +79,27 @@ package body OptionenSteuerung is
                end loop BelegungFeldSchleife;
          end case;
          
-         Eingabe.Tastenbelegung (2, AuswahlWert) := Eingabe.Tastenbelegung (1, AuswahlWert);
-         Eingabe.Tastenbelegung (1, AuswahlWert) := NeueTaste;
+         if
+           Eingabe.Tastenbelegung (1, AuswahlWert) = NeueTaste
+           or
+             Eingabe.Tastenbelegung (2, AuswahlWert) = NeueTaste
+         then
+            null;
+            
+         elsif
+           Eingabe.Tastenbelegung (1, AuswahlWert) = NUL
+         then
+            Eingabe.Tastenbelegung (1, AuswahlWert) := NeueTaste;
+            
+         elsif
+           Eingabe.Tastenbelegung (2, AuswahlWert) = NUL
+         then
+            Eingabe.Tastenbelegung (2, AuswahlWert) := NeueTaste;
+            
+         else
+            Eingabe.Tastenbelegung (2, AuswahlWert) := Eingabe.Tastenbelegung (1, AuswahlWert);
+            Eingabe.Tastenbelegung (1, AuswahlWert) := NeueTaste;
+         end if;
          
       end loop BelegungSchleife;
       

@@ -208,5 +208,32 @@ package body EinheitSuchen is
       return AnzahlEinheitTyp;
       
    end MengeEinesEinheitenTypsSuchen;
+   
+   
+   
+   function AnzahlEinheitenSuchen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return Natural
+   is begin
+      
+      AnzahlEinheiten := 0;
+      
+      EinheitenSchleife:
+      for EinheitenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+         
+         if
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitenSchleifenwert).ID /= 0
+         then
+            AnzahlEinheiten := AnzahlEinheiten + 1;
+            
+         else
+            null;
+         end if;
+         
+      end loop EinheitenSchleife;
+      
+      return 0;
+      
+   end AnzahlEinheitenSuchen;     
 
 end EinheitSuchen;

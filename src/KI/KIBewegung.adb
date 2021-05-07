@@ -37,6 +37,16 @@ package body KIBewegung is
       end case;    
       
    end KIBewegung;
+   
+   
+   
+   procedure KIBewegungNeu
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null;
+      
+   end KIBewegungNeu;
 
 
 

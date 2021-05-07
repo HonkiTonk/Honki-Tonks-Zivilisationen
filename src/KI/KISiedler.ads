@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, KIDatentypen;
-use GlobaleDatentypen, KIDatentypen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+use GlobaleDatentypen, GlobaleRecords;
 
 package KISiedler is
 
@@ -11,9 +11,7 @@ package KISiedler is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
 private
    
@@ -25,32 +23,47 @@ private
    StadtBauenRückgabeWert : Boolean;
    DurchEigeneStadtBelegt : Boolean;
    
-   Aufgabe : KIDatentypen.Einheit_Befehl_Ermitteln_Enum;
+   EinheitID : GlobaleDatentypen.EinheitenID;
    
    VerbesserungStraße : GlobaleDatentypen.KartenVerbesserung;
    VerbesserungGebiet : GlobaleDatentypen.KartenVerbesserung;
    
    KartenFeldbewertung : GlobaleDatentypen.GesamtproduktionStadt;
+   MindestBewertungKartenfeld : GlobaleDatentypen.GesamtproduktionStadt;
+   
+   FeldBelegt : GlobaleDatentypen.BelegterGrund;
    
    SicherheitsZähler : Positive;
-   GewählteMöglichkeit: Positive;
    
+   GewählteMöglichkeit: Natural;
+   Aufgabe : Natural; 
    VorhandeneStädte : Natural;
    VorhandeneSiedler : Natural;
    
-   type WichtigkeitArray is array (1 .. 7) of Natural;
-   Wichtigkeit : WichtigkeitArray;
+   NeueStadtPosition : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
    
-   function VorhandeneMöglichkeiten
+   type WichtigkeitArray is array (0 .. 7) of Natural;
+   Wichtigkeit : WichtigkeitArray;
+
+   function StadtBauenPrüfung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return KIDatentypen.Einheit_Befehl_Ermitteln_Enum
+      return Boolean
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   function VorhandeneMöglichkeiten
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Natural
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2),
+         Post =>
+           (VorhandeneMöglichkeiten'Result <= WichtigkeitArray'Last);
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -59,7 +72,23 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   function EinheitAuflösen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Natural
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   function Fliehen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Natural
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
@@ -70,18 +99,41 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
-
-   function StadtBauenPrüfung
+   
+   function SichHeilen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
+      return Natural
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   function SichBefestigen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Natural
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   function SichVerbessern
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Natural
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   function NichtsTun
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Natural
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 

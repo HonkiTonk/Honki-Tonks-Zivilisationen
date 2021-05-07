@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 
 with Karten, StadtWerteFestlegen;
 
-package body KarteneigenschaftSuchen is
+package body KarteneigenschaftVereinfachung is
 
-   function KartenGrundEinheitSuchen
+   function KartenGrundVereinfachung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenGrund
    is begin
@@ -15,11 +15,11 @@ package body KarteneigenschaftSuchen is
       
       return Grund;
       
-   end KartenGrundEinheitSuchen;
+   end KartenGrundVereinfachung;
 
 
 
-   function KartenFlussEinheitSuchen
+   function KartenFlussVereinfachung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenGrund
    is begin
@@ -30,11 +30,11 @@ package body KarteneigenschaftSuchen is
       
       return Fluss;
       
-   end KartenFlussEinheitSuchen;
+   end KartenFlussVereinfachung;
    
    
 
-   function KartenStraßeEinheitSuchen
+   function KartenStraßeVereinfachung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenVerbesserung
    is begin
@@ -45,11 +45,11 @@ package body KarteneigenschaftSuchen is
       
       return Straße;
       
-   end KartenStraßeEinheitSuchen;
+   end KartenStraßeVereinfachung;
    
    
 
-   function KartenVerbesserungEinheitSuchen
+   function KartenVerbesserungVereinfachung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenVerbesserung
    is begin
@@ -60,11 +60,11 @@ package body KarteneigenschaftSuchen is
       
       return Verbesserung;
       
-   end KartenVerbesserungEinheitSuchen;
+   end KartenVerbesserungVereinfachung;
    
    
 
-   function KartenRessourceEinheitSuchen
+   function KartenRessourceVereinfachung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenGrund
    is begin
@@ -75,11 +75,11 @@ package body KarteneigenschaftSuchen is
       
       return Ressource;
       
-   end KartenRessourceEinheitSuchen;
+   end KartenRessourceVereinfachung;
    
    
    
-   function KartenBelegterGrundEinheitSuchen
+   function KartenBelegterGrundVereinfachung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.BelegterGrund
    is begin
@@ -90,16 +90,16 @@ package body KarteneigenschaftSuchen is
       
       return BelegterStadtGrund;
       
-   end KartenBelegterGrundEinheitSuchen;
+   end KartenBelegterGrundVereinfachung;
    
    
    
-   function KartenBelegterGrundEinheitAbgleich
+   function KartenBelegterGrundAbgleich
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
-      BelegterStadtGrund := KartenBelegterGrundEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      BelegterStadtGrund := KartenBelegterGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
         BelegterStadtGrund
@@ -113,11 +113,11 @@ package body KarteneigenschaftSuchen is
          return False;
       end if;
       
-   end KartenBelegterGrundEinheitAbgleich;
+   end KartenBelegterGrundAbgleich;
    
    
    
-   function KartenFelderbewertungEinheitSuchen
+   function KartenFelderbewertungVereinfachung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
@@ -128,6 +128,6 @@ package body KarteneigenschaftSuchen is
       
       return KartenFeldbewertung;
       
-   end KartenFelderbewertungEinheitSuchen;
+   end KartenFelderbewertungVereinfachung;
 
-end KarteneigenschaftSuchen;
+end KarteneigenschaftVereinfachung;

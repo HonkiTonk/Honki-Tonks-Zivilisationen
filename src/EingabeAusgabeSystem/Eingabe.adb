@@ -346,5 +346,14 @@ package body Eingabe is
       return 0;
       
    end Tastenwert;
+   
+   
+   
+   procedure StandardTastenbelegungWiederherstellen
+   is begin
+      
+      Tastenbelegung := TastenbelegungStandard;
+      
+   end StandardTastenbelegungWiederherstellen;
 
 end Eingabe;

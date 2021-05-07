@@ -87,9 +87,17 @@ package EinheitSuchen is
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+   
+   function AnzahlEinheitenSuchen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return Natural
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
 
 private
    
    AnzahlEinheitTyp : Natural;
+   AnzahlEinheiten : Natural;
 
 end EinheitSuchen;

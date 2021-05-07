@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with EinheitenDatenbank, Anzeige, FelderwerteFestlegen, KartenPruefungen, KarteneigenschaftSuchen;
+with EinheitenDatenbank, Anzeige, FelderwerteFestlegen, KartenPruefungen, KarteneigenschaftVereinfachung;
 
 package body Verbesserungen is
 
@@ -45,7 +45,7 @@ package body Verbesserungen is
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 0;
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 0;
 
-      Grund := KarteneigenschaftSuchen.KartenGrundEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Grund := KarteneigenschaftVereinfachung.KartenGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
         BefehlExtern = Straße_Bauen

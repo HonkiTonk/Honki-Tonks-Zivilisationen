@@ -2,23 +2,21 @@ pragma SPARK_Mode (On);
 
 package body KIEinheitVerbessernOderVernichten is
 
-   function KIEinheitVerbessern
+   procedure KIEinheitVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
    is begin
       
-      return False;
+      null;
       
    end KIEinheitVerbessern;
 
 
 
-   function KIEinheitVernichten
+   procedure KIEinheitVernichten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
    is begin
       
-      return False;
+      null;
       
    end KIEinheitVernichten;
 

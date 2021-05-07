@@ -17,7 +17,6 @@ package BefehleImSpiel is
 private
 
    Wahl : Boolean;
-   Nullwert : Boolean;
    Transportiert : Boolean;
          
    Befehl : Natural;

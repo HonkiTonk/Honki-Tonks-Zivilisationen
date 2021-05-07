@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIVariablen;
 
-with KIBewegung;
+with KIBewegung, KartenPruefungen;
 
 package body KIPruefungen is
    
@@ -566,5 +566,172 @@ package body KIPruefungen is
       return (0, 1, 1, False);
 
    end NähesteEigeneEinheitSuchen;
+   
+   
+   
+   function UmgebungStadtBauenPrüfen     
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+   is begin
+      
+      FeldSchlechtOderBelegt := KartenfeldUmgebungPrüfen (KoordinatenExtern          => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+                                                           MindestBewertungFeldExtern => MindestBewertungFeldExtern);
+      
+      case
+        FeldSchlechtOderBelegt
+      is
+         when False =>
+            return (0, 0, 0, True);
+            
+         when True =>
+            null;
+      end case;
+      
+      YAchseKoordinatePrüfen := 2;
+      XAchseKoordinatePrüfen := 2;
+      YAchseKoordinatenSchonGeprüft := YAchseKoordinatePrüfen - 1;
+      XAchseKoordinatenSchonGeprüft := XAchseKoordinatePrüfen - 1;
+      
+      KartenfeldSuchenSchleife:
+      loop
+         YAchseKartenfeldSuchenSchleife:
+         for YAchseSchleifenwert in -YAchseKoordinatePrüfen .. YAchseKoordinatePrüfen loop
+            XAchseKartenfeldSuchenSchleife:
+            for XAchseSchleifenwert in -XAchseKoordinatePrüfen .. XAchseKoordinatePrüfen loop
+               
+               KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
+                                                                                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
+                                                                                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse),
+                                                                       ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                       ZusatzYAbstandExtern => 0);
+            
+               case
+                 KartenWert.Erfolgreich
+               is
+                  when False =>
+                     exit XAchseKartenfeldSuchenSchleife;
+                  
+                  when True =>
+                     null;
+               end case;
+                           
+               if
+                 YAchseKoordinatenSchonGeprüft >= abs (YAchseSchleifenwert)
+                 and
+                   XAchseKoordinatenSchonGeprüft >= abs (XAchseSchleifenwert)
+               then
+                  FeldSchlechtOderBelegt := True;
+               
+               else
+                  FeldSchlechtOderBelegt
+                    := KartenfeldUmgebungPrüfen (KoordinatenExtern          => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse),
+                                                  MindestBewertungFeldExtern => MindestBewertungFeldExtern);
+               end if;
+               
+               case
+                 FeldSchlechtOderBelegt
+               is
+                  when False =>
+                     return (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse, True);
+                     
+                  when True =>
+                     null;
+               end case;
+            
+            end loop XAchseKartenfeldSuchenSchleife;
+         end loop YAchseKartenfeldSuchenSchleife;
+         
+         if
+           YAchseKoordinatePrüfen >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           and
+             XAchseKoordinatePrüfen >= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+         then
+            exit KartenfeldSuchenSchleife;
+            
+         else
+            null;
+         end if;
+         
+         if
+           YAchseKoordinatePrüfen < Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         then
+            YAchseKoordinatePrüfen := YAchseKoordinatePrüfen + 1;
+            YAchseKoordinatenSchonGeprüft := YAchseKoordinatenSchonGeprüft + 1;
+            
+         else
+            null;
+         end if;
+            
+         if
+           XAchseKoordinatePrüfen < Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+         then
+            XAchseKoordinatePrüfen := XAchseKoordinatePrüfen + 1;
+            XAchseKoordinatenSchonGeprüft := XAchseKoordinatenSchonGeprüft + 1;
+            
+         else
+            null;
+         end if;           
+         
+      end loop KartenfeldSuchenSchleife;
+      
+      return (0, 0, 0, False);
+      
+   end UmgebungStadtBauenPrüfen;
+   
+   
+   
+   function KartenfeldUmgebungPrüfen
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      return Boolean
+   is begin
+      
+      KartenfeldBewertung := Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung;
+      
+      if
+        KartenfeldBewertung >= MindestBewertungFeldExtern
+      then
+         null;
+         
+      else
+         return True;
+      end if;      
+      
+      YAchseUmgebungSchleife:
+      for YAchseUmgebungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         XAchseUmgebungSchleife:
+         for XAchseUmgebungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
+                                                                    ÄnderungExtern       => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert),
+                                                                    ZusatzYAbstandExtern => 0);
+            
+            case
+              KartenWert.Erfolgreich
+            is
+               when False =>
+                  exit XAchseUmgebungSchleife;
+                  
+               when True =>
+                  null;
+            end case;
+               
+            case
+              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund 
+            is
+               when 0 =>
+                  null;
+                     
+               when others =>
+                  return True;
+            end case;
+            
+         end loop XAchseUmgebungSchleife;
+      end loop YAchseUmgebungSchleife;
+      
+      return False;
+      
+   end KartenfeldUmgebungPrüfen;
 
 end KIPruefungen;

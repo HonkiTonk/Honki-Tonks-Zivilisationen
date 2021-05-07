@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with KIRecords, GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, KIDatentypen;
 use GlobaleDatentypen, GlobaleRecords;
 
+with Karten;
+
 package KIPruefungen is
 
    procedure ZielBerechnenGefahr
@@ -11,9 +13,7 @@ package KIPruefungen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
 
 
@@ -24,15 +24,11 @@ package KIPruefungen is
        Pre =>
          (EinheitEinsRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitEinsRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
             EinheitZweiRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitZweiRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+            GlobaleVariablen.RassenImSpiel (EinheitEinsRasseNummerExtern.Rasse) = 2
           and
-            (if EinheitEinsRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitEinsRasseNummerExtern.Rasse) = 2)
-          and
-            (if EinheitZweiRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitZweiRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitZweiRasseNummerExtern.Rasse) = 2);
 
    function NähesteEigeneStadtSuchen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -42,9 +38,7 @@ package KIPruefungen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
    function NähesteEigeneEinheitSuchen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -54,15 +48,37 @@ package KIPruefungen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   function UmgebungStadtBauenPrüfen     
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2),
+         Post =>
+           (UmgebungStadtBauenPrüfen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            and
+              UmgebungStadtBauenPrüfen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);           
    
 private
+   
+   FeldSchlechtOderBelegt : Boolean;
 
    Richtung : Natural;
 
    AbstandKleiner : GlobaleDatentypen.KartenfeldPositiv;
+   YAchseKoordinatePrüfen : GlobaleDatentypen.KartenfeldPositiv;
+   XAchseKoordinatePrüfen : GlobaleDatentypen.KartenfeldPositiv;
+   YAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositiv;
+   XAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositiv;
+   
+   KartenfeldBewertung : GlobaleDatentypen.GesamtproduktionStadt;
+   
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
 
    -- 1 = Norden (-), 2 = Westen (-), 3 = Süden (+), 4 = Osten (+)
    type RichtungenFeindeArray is array (1 .. 4) of Natural;
@@ -80,9 +96,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
    procedure StadtImSüden
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -91,9 +105,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
    procedure StadtImWesten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -102,9 +114,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
    procedure StadtImOsten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -113,8 +123,18 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   
+   
+   function KartenfeldUmgebungPrüfen
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      return Boolean
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2));
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße); 
    
 end KIPruefungen;
