@@ -10,7 +10,7 @@ package KarteneigenschaftVereinfachung is
       return GlobaleDatentypen.KartenGrund
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)),
          Post =>
@@ -21,7 +21,7 @@ package KarteneigenschaftVereinfachung is
       return GlobaleDatentypen.KartenGrund
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
@@ -30,7 +30,7 @@ package KarteneigenschaftVereinfachung is
       return GlobaleDatentypen.KartenVerbesserung
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
@@ -39,7 +39,7 @@ package KarteneigenschaftVereinfachung is
       return GlobaleDatentypen.KartenVerbesserung
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
@@ -48,7 +48,7 @@ package KarteneigenschaftVereinfachung is
       return GlobaleDatentypen.KartenGrund
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
@@ -57,7 +57,7 @@ package KarteneigenschaftVereinfachung is
       return GlobaleDatentypen.BelegterGrund
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
@@ -66,7 +66,7 @@ package KarteneigenschaftVereinfachung is
       return Boolean
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
@@ -75,7 +75,7 @@ package KarteneigenschaftVereinfachung is
       return GlobaleDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 

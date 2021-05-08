@@ -54,7 +54,7 @@ private
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
    function KartengrößeWählen
      return Integer
@@ -102,7 +102,7 @@ private
           and
             (if Karten.Kartengröße /= 10 then XPosition <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße)
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
    function SchwierigkeitsgradFestlegen
      return Integer

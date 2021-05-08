@@ -11,7 +11,7 @@ package StadtProduktion is
        Pre =>
          (StadtRasseNummerExtern.Platznummer <= GlobaleVariablen.StadtGebaut'Last (2)
           and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0));
 
 private
 
@@ -30,9 +30,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
    procedure WeitereNahrungsproduktionÄnderungen 
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -40,9 +38,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
    procedure WeitereProduktionrateÄnderungen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -50,9 +46,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
    procedure WeitereGeldgewinnungÄnderungen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -60,9 +54,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
    procedure WeitereForschungsrateÄnderungen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -70,8 +62,6 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
 end StadtProduktion;

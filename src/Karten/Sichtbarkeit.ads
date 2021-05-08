@@ -11,7 +11,7 @@ package Sichtbarkeit is
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
    procedure SichtbarkeitsprüfungFürEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -19,9 +19,7 @@ package Sichtbarkeit is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0));
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
 
    procedure SichtbarkeitsprüfungFürStadt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -29,9 +27,7 @@ package Sichtbarkeit is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
@@ -55,7 +51,7 @@ package Sichtbarkeit is
        Pre =>
          ((if EigeneRasseExtern > 0 then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1)
           and
-            (if RasseExtern > 0 then GlobaleVariablen.RassenImSpiel (RasseExtern) >= 1));
+            (if RasseExtern > 0 then GlobaleVariablen.RassenImSpiel (RasseExtern) > 0));
 
 private
 

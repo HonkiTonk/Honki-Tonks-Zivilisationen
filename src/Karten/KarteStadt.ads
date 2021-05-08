@@ -11,9 +11,7 @@ package KarteStadt is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1);
 
    procedure Beschreibung
      (RasseExtern : in GlobaleDatentypen.Rassen)
@@ -53,9 +51,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1);
 
    procedure SchleifeFenster
      (YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld;
@@ -71,8 +67,6 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1);
 
 end KarteStadt;

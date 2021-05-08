@@ -45,7 +45,7 @@ package body KISiedler is
                      return;
                      
                   else
-                     null;
+                     KIBewegung.KIBewegungNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                   end if;
             
                when 2 => -- Stadtumgebung verbessern

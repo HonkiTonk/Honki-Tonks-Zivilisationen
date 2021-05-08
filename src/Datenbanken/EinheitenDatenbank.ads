@@ -352,7 +352,7 @@ package EinheitenDatenbank is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
    
    procedure HeilungBewegungspunkteNeueRundeErmitteln;
    
@@ -363,7 +363,7 @@ package EinheitenDatenbank is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
    procedure EinheitEntfernen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -371,7 +371,7 @@ package EinheitenDatenbank is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
    
    procedure Beschäftigung
      (ArbeitExtern : in GlobaleDatentypen.Befehle_Enum);
@@ -405,7 +405,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
      
 
 end EinheitenDatenbank;

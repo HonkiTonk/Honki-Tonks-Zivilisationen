@@ -14,9 +14,7 @@ package StadtWerteFestlegen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
    procedure StadtUmgebungGrößeFestlegen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -24,9 +22,7 @@ package StadtWerteFestlegen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
    procedure BelegteStadtfelderFreigeben
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -34,9 +30,7 @@ package StadtWerteFestlegen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
 private
    

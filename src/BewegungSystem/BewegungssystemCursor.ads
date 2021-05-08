@@ -40,7 +40,7 @@ private
           or
             ÄnderungExtern.XAchse /= 0)
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
    procedure BewegungCursorBerechnenStadt
      (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
@@ -53,6 +53,6 @@ private
           or
             ÄnderungExtern.XAchse /= 0)
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
 end BewegungssystemCursor;

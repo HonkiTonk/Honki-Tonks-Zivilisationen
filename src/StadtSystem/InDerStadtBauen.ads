@@ -11,9 +11,7 @@ package InDerStadtBauen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1);
 
    procedure BauzeitEinzeln
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -21,9 +19,7 @@ package InDerStadtBauen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= 0));
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
    procedure BauzeitAlle;
 
@@ -82,10 +78,8 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            StadtRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            (if StadtRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1)),
-     Post =>
-       (BauobjektAuswählen'Result <= 99_999);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1),
+         Post =>
+           (BauobjektAuswählen'Result <= 99_999);
 
 end InDerStadtBauen;

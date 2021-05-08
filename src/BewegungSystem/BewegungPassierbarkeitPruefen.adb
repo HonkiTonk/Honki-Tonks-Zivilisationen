@@ -11,18 +11,19 @@ package body BewegungPassierbarkeitPruefen is
       return GlobaleDatentypen.Bewegung_Enum
    is begin
       
-      PassierbarkeitNummer := KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund).Passierbarkeit;
-      
-      if
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitNummer)
-        = True
-      then
-         return GlobaleDatentypen.Normale_Bewegung_Möglich;
-         
-      else
-         null;
-      end if;
+      EinfachPassierbar := EinfachePassierbarkeitPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                          NeuePositionExtern       => NeuePositionExtern);
 
+      case
+        EinfachPassierbar
+      is
+         when True =>
+            return GlobaleDatentypen.Normale_Bewegung_Möglich;
+            
+         when False =>
+            null;
+      end case;
+      
       BewegungMöglich := GlobaleDatentypen.Leer;
       
       PassierbarSchleife:
@@ -97,7 +98,23 @@ package body BewegungPassierbarkeitPruefen is
       return GlobaleDatentypen.Keine_Bewegung_Möglich;
 
    end FeldFürDieseEinheitPassierbarNeu;
-
+   
+   
+   
+   function EinfachePassierbarkeitPrüfen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+   is begin
+      
+      PassierbarkeitNummer := KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund).Passierbarkeit;
+      
+      EinfachPassierbar := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
+                                                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitNummer);
+      
+      return EinfachPassierbar;
+      
+   end EinfachePassierbarkeitPrüfen;
 
 
    function Boden

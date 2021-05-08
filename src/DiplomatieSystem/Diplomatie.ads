@@ -13,9 +13,9 @@ package Diplomatie is
        Pre =>
          (AngreifendeRasseExtern /= VerteidigendeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (AngreifendeRasseExtern) /= 0
+            GlobaleVariablen.RassenImSpiel (AngreifendeRasseExtern) > 0
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigendeRasseExtern) /= 0);
+            GlobaleVariablen.RassenImSpiel (VerteidigendeRasseExtern) > 0);
 
    function DiplomatischenStatusPrüfen
      (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen)
@@ -24,9 +24,9 @@ package Diplomatie is
        Pre =>
          (AngreifendeRasseExtern /= VerteidigendeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (AngreifendeRasseExtern) /= 0
+            GlobaleVariablen.RassenImSpiel (AngreifendeRasseExtern) > 0
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigendeRasseExtern) /= 0);
+            GlobaleVariablen.RassenImSpiel (VerteidigendeRasseExtern) > 0);
 
    procedure GegnerAngreifenOderNicht
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -37,15 +37,11 @@ package Diplomatie is
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            EinheitRasseNummerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
-            GegnerExtern.Rasse in GlobaleDatentypen.Rassen
-          and
             GegnerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            (if EinheitRasseNummerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0)
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
           and
-            (if GegnerExtern.Rasse > 0 then GlobaleVariablen.RassenImSpiel (GegnerExtern.Rasse) /= 0));
+            GlobaleVariablen.RassenImSpiel (GegnerExtern.Rasse) > 0);
 
 private
 

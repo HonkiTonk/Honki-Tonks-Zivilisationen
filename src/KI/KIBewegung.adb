@@ -44,9 +44,110 @@ package body KIBewegung is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      null;
+      BewegungNochMöglichSchleife:
+      while GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte > 0.00 loop
+         
+         if
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition
+           = GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten
+         then
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := (0, 0, 0);
+            return;
+            
+         else
+            PlanungErfolgreich := BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         end if;
+         
+      end loop BewegungNochMöglichSchleife;
       
    end KIBewegungNeu;
+   
+   
+   
+   function BewegungPlanen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
+      AbbruchWert := 0;
+      AnfangKoordinaten := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition;
+      
+      PlanenSchleife:
+      while AbbruchWert <= 10 loop
+         
+         FeldNummer := 1;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (0 => (AnfangKoordinaten),
+                                                                                                                                    others => (0, 0, 0));
+         BewegungMöglich := False;
+         
+         FeldPrüfenSchleife:
+         loop
+            
+            if
+              FeldNummer > GlobaleRecords.KIBewegungPlanArray'Last
+            then
+               AbbruchWert := AbbruchWert + 1;
+               exit FeldPrüfenSchleife;
+               
+            else
+               null;
+            end if;
+            
+            YAchseSchleife:
+            for YAchseÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins loop
+               XAchseSchleife:
+               for XAchseÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins loop
+                  
+                  Kartenwert
+                    := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (FeldNummer - 1)),
+                                                                 ÄnderungExtern       => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
+                                                                 ZusatzYAbstandExtern => 0);
+                  
+                  case
+                    Kartenwert.Erfolgreich
+                  is
+                     when False =>
+                        exit XAchseSchleife;
+                  
+                     when True =>
+                        MöglicheNeueKoordinaten := (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse);
+                  end case;
+                  
+                  BewegungMöglich := BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                   NeuePositionExtern       => MöglicheNeueKoordinaten);
+                  
+                  case
+                    BewegungMöglich
+                  is
+                     when False =>
+                        null;
+                        
+                     when True =>
+                        if -- Das funktioniert so aber gar nicht
+                        abs (MöglicheNeueKoordinaten.YAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse)
+                          <= abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (FeldNummer - 1).YAchse
+                                  - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse)
+                        then
+                           null;
+                           
+                        else
+                           null;
+                        end if;
+                  end case;
+                  
+               end loop XAchseSchleife;
+            end loop YAchseSchleife;
+            
+            
+            
+            
+            
+         end loop FeldPrüfenSchleife;         
+      end loop PlanenSchleife;
+      
+      return False;
+      
+   end BewegungPlanen;
 
 
 

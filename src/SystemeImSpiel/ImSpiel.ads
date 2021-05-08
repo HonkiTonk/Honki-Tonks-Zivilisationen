@@ -26,6 +26,6 @@ private
       return Integer
      with
        Post =>
-         (MenschlicherSpieler'Result in -1_000 .. 5); -- Müsste noch verkleinerbar sein
+         (MenschlicherSpieler'Result in -1_000 .. 5);
 
 end ImSpiel;

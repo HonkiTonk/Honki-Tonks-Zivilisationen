@@ -20,7 +20,7 @@ package StadtSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
    
    function KoordinatenStadtOhneRasseSuchen
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
@@ -31,7 +31,7 @@ package StadtSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
          Post =>
-           ((if KoordinatenStadtOhneRasseSuchen'Result.Rasse > 0 then GlobaleVariablen.RassenImSpiel (KoordinatenStadtOhneRasseSuchen'Result.Rasse) /= 0));
+           ((if KoordinatenStadtOhneRasseSuchen'Result.Rasse > 0 then GlobaleVariablen.RassenImSpiel (KoordinatenStadtOhneRasseSuchen'Result.Rasse) > 0));
 
    function KoordinatenStadtOhneSpezielleRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen;
@@ -43,16 +43,16 @@ package StadtSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0),
+            GlobaleVariablen.RassenImSpiel (RasseExtern) > 0),
          Post =>
-           ((if KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse > 0 then GlobaleVariablen.RassenImSpiel (KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse) /= 0));
+           ((if KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse > 0 then GlobaleVariablen.RassenImSpiel (KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse) > 0));
    
    function AnzahlStädteErmitteln
      (RasseExtern : in GlobaleDatentypen.Rassen)
       return Natural
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
    
    function StadtNachNamenSuchen
      return GlobaleRecords.RassePlatznummerRecord;

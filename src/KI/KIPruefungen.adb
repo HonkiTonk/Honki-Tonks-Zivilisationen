@@ -717,15 +717,21 @@ package body KIPruefungen is
                   null;
             end case;
                
-            case
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund 
-            is
-               when 0 =>
-                  null;
-                     
-               when others =>
-                  return True;
-            end case;
+            if
+              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund = 0
+            then
+               null;
+               
+            elsif
+              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = 2
+              or
+                Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = 31
+            then
+               return True;
+               
+            else
+               return True;
+            end if;
             
          end loop XAchseUmgebungSchleife;
       end loop YAchseUmgebungSchleife;

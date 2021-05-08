@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
 with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen, KIDatentypen;
-use GlobaleDatentypen, KIDatentypen;
+use GlobaleDatentypen, KIDatentypen, GlobaleRecords;
 
 with Karten;
 
@@ -37,9 +37,17 @@ private
 
    AltePosition : Boolean;
    ErfolgreichBewegt : Boolean;
+   PlanungErfolgreich : Boolean;
+   BewegungMöglich : Boolean;
    
    Bewegung : GlobaleDatentypen.Bewegung_Enum;
+   
+   AbbruchWert : Natural;
+   FeldNummer : Positive;
 
+   AnfangKoordinaten : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   MöglicheNeueKoordinaten : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
    ZielKoordinaten : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
    
    Kartenwert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
@@ -136,6 +144,15 @@ private
             YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   function BewegungPlanen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 

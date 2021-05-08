@@ -41,7 +41,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
 
    procedure VerbesserungStraße
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -143,7 +143,7 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= 0);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
 
    procedure StraßeBerechnung
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)

@@ -219,19 +219,19 @@ package ForschungsDatenbank is
       RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
    procedure Forschung
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
    procedure ForschungsBaum
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
    procedure ForschungFortschritt;
 
@@ -239,7 +239,7 @@ package ForschungsDatenbank is
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
 private
 
@@ -257,20 +257,20 @@ private
       ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
    procedure Benötigt
      (RasseExtern : in GlobaleDatentypen.Rassen;
       ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
    function AuswahlForschungNeu
      (RasseExtern : in GlobaleDatentypen.Rassen)
       return GlobaleDatentypen.ForschungIDMitNullWert
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
 end ForschungsDatenbank;
