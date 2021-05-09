@@ -55,7 +55,7 @@ package body KIBewegung is
             return;
             
          else
-            PlanungErfolgreich := BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            PlanungErfolgreich := BewegungPlanenRichtung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          end if;
          
       end loop BewegungNochMöglichSchleife;
@@ -64,7 +64,65 @@ package body KIBewegung is
    
    
    
-   function BewegungPlanen
+   function BewegungPlanenRichtung
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
+      if -- Links ist kürzer und die Karte wird nicht verlassen
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse
+        >= GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse
+        and
+          (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse
+           + GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse)
+            >= 
+      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse
+           - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse)
+      then
+         WieLang := 1;
+         
+      elsif -- Rechts ist kürzer und die Karte wird verlassen
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse
+        >= GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse
+      then
+         WieLang := 2;
+         
+      elsif -- Rechts ist kürzer und die Karte wird nicht verlassen
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse
+        < GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse
+        and
+          (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse
+           + GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse)
+            >= 
+      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse
+           - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse)
+      then
+         WieLang := 3;
+         
+      else -- Links ist kürzer und die Karte wird verlassen
+         WieLang := 4;
+      end if;
+      
+      case
+        WieLang
+      is
+         when 1 | 3 =>
+            null;
+            
+         when 2 | 4 =>
+            null;
+            
+         when others =>
+            null;
+      end case;
+      
+      return False;
+      
+   end BewegungPlanenRichtung;
+   
+   
+   
+   function BewegungPlanenSchleife
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
@@ -93,61 +151,12 @@ package body KIBewegung is
                null;
             end if;
             
-            YAchseSchleife:
-            for YAchseÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins loop
-               XAchseSchleife:
-               for XAchseÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins loop
-                  
-                  Kartenwert
-                    := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (FeldNummer - 1)),
-                                                                 ÄnderungExtern       => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
-                                                                 ZusatzYAbstandExtern => 0);
-                  
-                  case
-                    Kartenwert.Erfolgreich
-                  is
-                     when False =>
-                        exit XAchseSchleife;
-                  
-                     when True =>
-                        MöglicheNeueKoordinaten := (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse);
-                  end case;
-                  
-                  BewegungMöglich := BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                   NeuePositionExtern       => MöglicheNeueKoordinaten);
-                  
-                  case
-                    BewegungMöglich
-                  is
-                     when False =>
-                        null;
-                        
-                     when True =>
-                        if -- Das funktioniert so aber gar nicht
-                        abs (MöglicheNeueKoordinaten.YAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse)
-                          <= abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (FeldNummer - 1).YAchse
-                                  - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse)
-                        then
-                           null;
-                           
-                        else
-                           null;
-                        end if;
-                  end case;
-                  
-               end loop XAchseSchleife;
-            end loop YAchseSchleife;
-            
-            
-            
-            
-            
-         end loop FeldPrüfenSchleife;         
+         end loop FeldPrüfenSchleife;
       end loop PlanenSchleife;
       
-      return False;
+      return True;
       
-   end BewegungPlanen;
+   end BewegungPlanenSchleife;
 
 
 

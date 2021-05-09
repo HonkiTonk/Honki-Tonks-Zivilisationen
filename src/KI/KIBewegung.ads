@@ -39,11 +39,12 @@ private
    ErfolgreichBewegt : Boolean;
    PlanungErfolgreich : Boolean;
    BewegungMöglich : Boolean;
-   
    Bewegung : GlobaleDatentypen.Bewegung_Enum;
    
-   AbbruchWert : Natural;
+   WieLang : Positive;
    FeldNummer : Positive;
+   
+   AbbruchWert : Natural;
 
    AnfangKoordinaten : GlobaleRecords.AchsenKartenfeldPositivRecord;
    MöglicheNeueKoordinaten : GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -147,7 +148,16 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
-   function BewegungPlanen
+   function BewegungPlanenRichtung
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   function BewegungPlanenSchleife
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
      with
