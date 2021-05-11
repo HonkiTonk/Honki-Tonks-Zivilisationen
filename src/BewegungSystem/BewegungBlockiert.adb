@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
-
 with EinheitSuchen, StadtSuchen;
 
 package body BewegungBlockiert is

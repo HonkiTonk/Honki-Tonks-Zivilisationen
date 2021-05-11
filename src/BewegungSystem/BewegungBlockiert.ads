@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen, GlobaleKonstanten;
 use GlobaleDatentypen;
 
 with Karten;
@@ -19,7 +19,10 @@ package BewegungBlockiert is
           and
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0),
+
+         Global =>
+           (Input => (GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch));
 
 private
 

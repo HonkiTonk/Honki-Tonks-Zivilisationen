@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 package Intro is
 
-   procedure Intro;
+   procedure Intro
+     with
+       Global => null;
 
 end Intro;

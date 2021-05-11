@@ -39,6 +39,7 @@ private
    ErfolgreichBewegt : Boolean;
    PlanungErfolgreich : Boolean;
    BewegungMöglich : Boolean;
+   
    Bewegung : GlobaleDatentypen.Bewegung_Enum;
    
    WieLang : Positive;
