@@ -6,6 +6,7 @@ package Informationen is
 
    procedure Informationen
      with
-       Global => (Input => Versionsnummer);
+       Global =>
+         (Input => Versionsnummer);
 
 end Informationen;

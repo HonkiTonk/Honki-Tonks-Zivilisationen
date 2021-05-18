@@ -20,9 +20,17 @@ package BewegungBlockiert is
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0),
-
-         Global =>
-           (Input => (GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch));
+         Post =>
+           (BlockiertStadtEinheit'Result = GlobaleDatentypen.Gegner_Blockiert
+            or
+              BlockiertStadtEinheit'Result = GlobaleDatentypen.Keine_Bewegung_Möglich
+            or
+              BlockiertStadtEinheit'Result = GlobaleDatentypen.Normale_Bewegung_Möglich),
+     Global =>
+       (Input => (GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch)),
+       Depends =>
+         (BlockiertStadtEinheit'Result => (EinheitRasseNummerExtern, NeuePositionExtern),
+          null => (GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch));
 
 private
 
