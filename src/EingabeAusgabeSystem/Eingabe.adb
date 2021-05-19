@@ -314,6 +314,8 @@ package body Eingabe is
    procedure WartenEingabe
    is begin
       
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Zeug,
+                                            TextZeileExtern => 47);
       Get_Immediate (Taste);
       
    end WartenEingabe;

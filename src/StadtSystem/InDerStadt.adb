@@ -67,24 +67,23 @@ package body InDerStadt is
                   
                
             when 13 => -- Gebäude/Einheit bauen
-               case
-                 GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt
-               is
-                  when 0 =>
-                     InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               if
+                 GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt = 0
+               then
+                  InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                      
-                  when others => -- Diese Auswahl nach InDerStadtBauen verschieben
-                     Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 14);
-                     case
-                       Wahl
-                     is
-                        when GlobaleKonstanten.JaKonstante =>
-                           InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               else -- Diese Auswahl nach InDerStadtBauen verschieben
+                  Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 14);
+                  case
+                    Wahl
+                  is
+                     when GlobaleKonstanten.JaKonstante =>
+                        InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                      
-                        when others =>
-                           null;
-                     end case;
-               end case;
+                     when others =>
+                        null;
+                  end case;
+               end if;
                
             when 29 => -- Gebäude verkaufen
                if
@@ -164,26 +163,28 @@ package body InDerStadt is
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition,
                                                                     ÄnderungExtern       => (0, RelativeCursorPositionY, RelativeCursorPositionX),
                                                                     ZusatzYAbstandExtern => 0);
-                           
+            
             case
               KartenWert.Erfolgreich
             is
                when False =>
-                  null;
+                  return;
                                  
                when True =>
-                  if
-                    GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ArbeitendeEinwohner
-                    < GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner
-                  then
-                     GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) := True;
-                     GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ArbeitendeEinwohner
-                       := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ArbeitendeEinwohner + 1;
-                           
-                  else
-                     null;
-                  end if;
+                  null;
             end case;
+            
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ArbeitendeEinwohner
+              < GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) := True;
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ArbeitendeEinwohner
+                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ArbeitendeEinwohner + 1;
+                           
+            else
+               null;
+            end if;
       end case;
       
    end EinwohnerZuweisen;

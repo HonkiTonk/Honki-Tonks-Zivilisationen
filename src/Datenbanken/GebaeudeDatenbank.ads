@@ -5,7 +5,6 @@ use GlobaleDatentypen;
 
 package GebaeudeDatenbank is
 
-   -- Hier noch hinschreiben welcher Wert was ist!
    LeererWertGebäudeListe : constant DatenbankRecords.GebäudeListeRecord := (' ', -- GebäudeGrafik
                                                                                0, 0, 0, 0, -- PreisGeld, PreisRessourcen, Anforderungen, PermanenteKosten
                                                                                0, 0, 0, 0, 0, -- ProduktionBonus, GeldBonus, WissenBonus, VerteidigungBonus, NahrungBonus

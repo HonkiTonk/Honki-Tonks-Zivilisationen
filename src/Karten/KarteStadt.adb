@@ -12,7 +12,7 @@ package body KarteStadt is
    procedure AnzeigeStadt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
-
+      
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
       Stadtumgebungsgröße := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).StadtUmgebungGröße;

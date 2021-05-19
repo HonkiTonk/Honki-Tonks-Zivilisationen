@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with EinheitSuchen, StadtSuchen;
 
-package body BewegungBlockiert is
+package body BewegungBlockiert with
+Refined_State => (Test => (StadtWert, EinheitWert))
+is
    
    function BlockiertStadtEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
