@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9, Ada.Integer_Text_IO;
-use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
+with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Integer_Text_IO;
+use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten;
 
-with GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, Sichtbarkeit, Anzeige, KartenPruefungen, StadtSuchen, Karten;
+with GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, Sichtbarkeit, Anzeige, KartenPruefungen, StadtSuchen, Karten, StadtInformationen;
 
 package body KarteStadt is
 
@@ -376,171 +376,173 @@ package body KarteStadt is
         KartenWert.Erfolgreich
       is
          when False =>
-            null;
+            return;
          
          when True =>
-            if
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Hügel = True
-              and
-                Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= 6
-            then
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Kartenfelder_Kurz,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 34,
-                                              LetzteZeileExtern      => 34,
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Keiner);
-               KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
+            null;
+      end case;
+      
+      if
+        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Hügel = True
+        and
+          Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= 6
+      then
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                        TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Kartenfelder_Kurz,
+                                        ÜberschriftZeileExtern => 0,
+                                        ErsteZeileExtern       => 34,
+                                        LetzteZeileExtern      => 34,
+                                        AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
+                                        AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                        AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
 
-               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung;
-               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung;
-               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung;
-               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung;
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung;
+         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung;
+         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung;
+         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung;
          
-            elsif
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Hügel = True
-            then
-               KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
+      elsif
+        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Hügel = True
+      then
+         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
 
-               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung;
-               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung;
-               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung;
-               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung;
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung;
+         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung;
+         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung;
+         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung;
                
-            else         
-               KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
+      else         
+         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
 
-               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung;
-               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung;
-               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung;
-               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung;
-            end if;
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung;
+         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung;
+         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung;
+         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung;
+      end if;
       
-            if
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource /= 0
-            then
-               KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource);
+      if
+        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource /= 0
+      then
+         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource);
 
-               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Nahrungsgewinnung;
-               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Ressourcengewinnung;
-               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Geldgewinnung;
-               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Wissensgewinnung;
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Nahrungsgewinnung;
+         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Ressourcengewinnung;
+         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Geldgewinnung;
+         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Wissensgewinnung;
          
-            else
-               null;
-            end if;
+      else
+         null;
+      end if;
       
-            if
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet /= 0
-            then
-               VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet);
+      if
+        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet /= 0
+      then
+         VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet);
 
-               Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Nahrungsbonus;
-               Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Ressourcenbonus;
-               Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Geldbonus;
-               Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Wissensbonus;
+         Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Nahrungsbonus;
+         Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Ressourcenbonus;
+         Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Geldbonus;
+         Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Wissensbonus;
          
-            else
-               null;
-            end if;
+      else
+         null;
+      end if;
       
-            if
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße /= 0
-            then
-               VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße);
+      if
+        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße /= 0
+      then
+         VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße);
 
-               Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Nahrungsbonus;
-               Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Ressourcenbonus;
-               Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Geldbonus;
-               Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Wissensbonus;
+         Nahrungsgewinnung := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Nahrungsbonus;
+         Ressourcengewinnung := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Ressourcenbonus;
+         Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Geldbonus;
+         Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Wissensbonus;
          
-            else
-               null;
-            end if;
+      else
+         null;
+      end if;
       
-            if
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss /= 0
-            then
-               KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss);
+      if
+        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss /= 0
+      then
+         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss);
 
-               Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss).Nahrungsgewinnung;
-               Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss).Ressourcengewinnung;
-               Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss).Geldgewinnung;
-               Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss).Wissensgewinnung;
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss).Nahrungsgewinnung;
+         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss).Ressourcengewinnung;
+         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss).Geldgewinnung;
+         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss).Wissensgewinnung;
          
-            else
-               null;
-            end if;
-            New_Line;
+      else
+         null;
+      end if;
+      New_Line;
          
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                           ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => 20,
-                                           LetzteZeileExtern      => 20,
-                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-            Ada.Integer_Text_IO.Put (Item  => Integer (Nahrungsgewinnung),
-                                     Width => 1);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 20,
+                                     LetzteZeileExtern      => 20,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (Nahrungsgewinnung),
+                               Width => 1);
          
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                           ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => 21,
-                                           LetzteZeileExtern      => 21,
-                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-            Ada.Integer_Text_IO.Put (Item  => Integer (Ressourcengewinnung),
-                                     Width => 1);
-            New_Line;
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 21,
+                                     LetzteZeileExtern      => 21,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (Ressourcengewinnung),
+                               Width => 1);
+      New_Line;
          
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                           ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => 22,
-                                           LetzteZeileExtern      => 22,
-                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-            Ada.Integer_Text_IO.Put (Item  => Integer (Geldgewinnung),
-                                     Width => 1);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 22,
+                                     LetzteZeileExtern      => 22,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (Geldgewinnung),
+                               Width => 1);
          
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                           ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => 23,
-                                           LetzteZeileExtern      => 23,
-                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-            Ada.Integer_Text_IO.Put (Item  => Integer (Wissensgewinnung),
-                                     Width => 1);
-            New_Line;            
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 23,
+                                     LetzteZeileExtern      => 23,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (Wissensgewinnung),
+                               Width => 1);
+      New_Line;            
 
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                           ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => 42,
-                                           LetzteZeileExtern      => 42,
-                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-            FeldBelegt := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (CursorYAchseabstraktion, CursorXAchseabstraktion);
-            case
-              FeldBelegt
-            is
-               when True =>
-                  Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Menü_Auswahl,
-                                                        TextZeileExtern => 7);
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 42,
+                                     LetzteZeileExtern      => 42,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+      FeldBelegt := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (CursorYAchseabstraktion, CursorXAchseabstraktion);
+      case
+        FeldBelegt
+      is
+         when True =>
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Menü_Auswahl,
+                                                  TextZeileExtern => 7);
                
-               when False =>
-                  Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Menü_Auswahl,
-                                                        TextZeileExtern => 8);
-            end case;
+         when False =>
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Menü_Auswahl,
+                                                  TextZeileExtern => 8);
       end case;
       
    end InformationenStadt;
@@ -557,223 +559,43 @@ package body KarteStadt is
         RasseUndPlatznummer.Platznummer
       is
          when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-            null; -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat
+            return; -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat. Kann entfernt werden?
       
          when others =>
-            -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Stadt befindet
-            case
-              GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ID
-            is
-               when 1 =>
-                  if
-                    RasseExtern = RasseUndPlatznummer.Rasse
-                  then
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                                    ÜberschriftZeileExtern => 0,
-                                                    ErsteZeileExtern       => 1,
-                                                    LetzteZeileExtern      => 1,
-                                                    AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+            null;
+      end case;
+      
+      -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Stadt befindet
+      StadtInformationen.StadtArtBesitzer (RasseExtern               => RasseExtern,
+                                           RasseUndPlatznummerExtern => RasseUndPlatznummer);
+      StadtInformationen.StadtName (RasseUndPlatznummerExtern => RasseUndPlatznummer);
+      StadtInformationen.Einwohner (RasseUndPlatznummerExtern => RasseUndPlatznummer);      
 
-                  else
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                                    ÜberschriftZeileExtern => 0,
-                                                    ErsteZeileExtern       => 3,
-                                                    LetzteZeileExtern      => 3,
-                                                    AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-                  end if;
-                  
-               when 2 =>
-                  if
-                    RasseExtern = RasseUndPlatznummer.Rasse
-                  then
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                                    ÜberschriftZeileExtern => 0,
-                                                    ErsteZeileExtern       => 2,
-                                                    LetzteZeileExtern      => 2,
-                                                    AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+      -- "Volle" Stadtinformationen, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist                      
+      if
+        RasseUndPlatznummer.Rasse = RasseExtern
+        or
+          GlobaleVariablen.FeindlicheInformationenSehen = True
+      then
+         
+         StadtInformationen.AktuelleNahrungsmittel (RasseUndPlatznummerExtern => RasseUndPlatznummer);
+         StadtInformationen.AktuelleNahrungsproduktion (RasseUndPlatznummerExtern => RasseUndPlatznummer);         
+         New_Line;
                         
-                  else
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                                    ÜberschriftZeileExtern => 0,
-                                                    ErsteZeileExtern       => 4,
-                                                    LetzteZeileExtern      => 4,
-                                                    AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-                  end if;
+         StadtInformationen.AktuelleProduktionrate (RasseUndPlatznummerExtern => RasseUndPlatznummer);
+         StadtInformationen.AktuelleGeldgewinnung (RasseUndPlatznummerExtern => RasseUndPlatznummer);
+         StadtInformationen.AktuelleForschungsrate (RasseUndPlatznummerExtern => RasseUndPlatznummer);         
+         New_Line;
 
-               when 0 =>
-                  null;
-            end case;
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Name));
-
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                           ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => 5,
-                                           LetzteZeileExtern      => 5,
-                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-            Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Einwohner),
-                                     Width => 1);
-
-            -- "Volle" Stadtinformationen, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist                      
-            if
-              RasseUndPlatznummer.Rasse = RasseExtern
-              or
-                GlobaleVariablen.FeindlicheInformationenSehen = True
-            then
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 6,
-                                              LetzteZeileExtern      => 6,
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-               Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleNahrungsmittel),
-                                        Width => 1);
-
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 7,
-                                              LetzteZeileExtern      => 7,
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-               Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleNahrungsproduktion),
-                                        Width => 1);
-               New_Line;
-                        
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 8,
-                                              LetzteZeileExtern      => 8,
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-               Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleProduktionrate),
-                                        Width => 1);
-
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 9,
-                                              LetzteZeileExtern      => 9,
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-               Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleGeldgewinnung),
-                                        Width => 1);
-
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 10,
-                                              LetzteZeileExtern      => 10,
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-               Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuelleForschungsrate),
-                                        Width => 1);
-               New_Line;
-
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 11,
-                                              LetzteZeileExtern      => 11,
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-               Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Korruption),
-                                        Width => 1);
-
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 41,
-                                              LetzteZeileExtern      => 41,
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-               Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).Einwohner
-                                        - GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).ArbeitendeEinwohner),
-                                        Width => 1);
-
-               New_Line;
+         StadtInformationen.Korruption (RasseUndPlatznummerExtern => RasseUndPlatznummer);
+         StadtInformationen.EinwohnerOhneArbeit (RasseUndPlatznummerExtern => RasseUndPlatznummer);
+         New_Line;
                
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 12,
-                                              LetzteZeileExtern      => 12,
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-               case
-                 GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt
-               is
-                  when 0 => -- Nichts                     
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                                    ÜberschriftZeileExtern => 0,
-                                                    ErsteZeileExtern       => 28,
-                                                    LetzteZeileExtern      => 28,
-                                                    AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                                    AbstandEndeExtern      => GlobaleDatentypen.Keiner);
-            
-                  when 1 .. 9_999 => -- Gebäude
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                                    TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Gebäude_Kurz,
-                                                    ÜberschriftZeileExtern => 0,
-                                                    ErsteZeileExtern       => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 1_000,
-                                                    LetzteZeileExtern      => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 1_000,
-                                                    AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                                    AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+         StadtInformationen.AktuellesBauprojekt (RasseUndPlatznummerExtern => RasseUndPlatznummer);
 
-                  when others => -- Einheiten
-                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                                    TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Einheiten_Kurz,
-                                                    ÜberschriftZeileExtern => 0,
-                                                    ErsteZeileExtern       => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 10_000,
-                                                    LetzteZeileExtern      => GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).AktuellesBauprojekt - 10_000,
-                                                    AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                                    AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                                    AbstandEndeExtern      => GlobaleDatentypen.Keiner);
-               end case;
-                                              
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Zeug,
-                                              ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => 13,
-                                              LetzteZeileExtern      => 13,
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-               Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).VerbleibendeBauzeit),
-                                        Width => 1);
-               New_Line;
-
-            else
-               null;
-            end if;
-      end case;      
+      else
+         null;
+      end if;   
       New_Line;
       
    end Beschreibung;

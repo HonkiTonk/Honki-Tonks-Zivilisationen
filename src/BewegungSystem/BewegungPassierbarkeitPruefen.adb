@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with EinheitenDatenbank, EinheitSuchen, StadtSuchen, KartenDatenbank, GlobaleKonstanten;
 
-package body BewegungPassierbarkeitPruefen is
+package body BewegungPassierbarkeitPruefen with
+Refined_State => (BewegungPassierbarkeitPruefenState => (EinfachPassierbar, PassierbarkeitNummer, BewegungMöglich, StadtNummer, TransporterNummer, Transportplatz))
+is
    
    -- 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
    function FeldFürDieseEinheitPassierbarNeu

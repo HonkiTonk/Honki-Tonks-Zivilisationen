@@ -4,7 +4,9 @@ with GlobaleKonstanten;
 
 with Karten, Eingabe, KartenPruefungen;
 
-package body BewegungssystemCursor is
+package body BewegungssystemCursor with
+Refined_State => (BewegungssystemCursorState => (Position, KartenWert, Änderung, Wert))
+is
 
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;

@@ -26,55 +26,54 @@ is
             when GlobaleKonstanten.StartNormalKonstante => -- Start
                RückgabeKampagne := SpielEinstellungen.SpielEinstellungen;
 
-               case
-                 RückgabeKampagne
-               is
-                  when GlobaleKonstanten.HauptmenüKonstante =>
-                     AllesAufAnfangSetzen.AllesAufAnfangSetzen;
+               if
+                 RückgabeKampagne = GlobaleKonstanten.HauptmenüKonstante
+               then
+                  AllesAufAnfangSetzen.AllesAufAnfangSetzen;
+                  
+               elsif
+                 RückgabeKampagne = GlobaleKonstanten.SpielBeendenKonstante
+               then
+                  exit HauptmenüSchleife;
 
-                  when GlobaleKonstanten.SpielBeendenKonstante =>
-                     exit HauptmenüSchleife;
-
-                  when others =>
-                     null;
-               end case;
+               else
+                  null;
+               end if;
 
             when GlobaleKonstanten.LadenKonstante => -- Laden
                LadenErfolgreich := Laden.LadenNeu;
 
-               case
-                 LadenErfolgreich
-               is
-                  when True =>
-                     RückgabeKampagne := ImSpiel.ImSpiel;
-                     case
-                       RückgabeKampagne
-                     is
-                        when GlobaleKonstanten.HauptmenüKonstante =>
-                           AllesAufAnfangSetzen.AllesAufAnfangSetzen;
+               if
+                 LadenErfolgreich = True
+               then
+                  RückgabeKampagne := ImSpiel.ImSpiel;
+                  case
+                    RückgabeKampagne
+                  is
+                     when GlobaleKonstanten.HauptmenüKonstante =>
+                        AllesAufAnfangSetzen.AllesAufAnfangSetzen;
 
-                        when GlobaleKonstanten.SpielBeendenKonstante =>
-                           exit HauptmenüSchleife;
+                     when GlobaleKonstanten.SpielBeendenKonstante =>
+                        exit HauptmenüSchleife;
 
-                        when others =>
-                           null;
-                     end case;
+                     when others =>
+                        null;
+                  end case;
 
-                  when False =>
-                     null;
-               end case;
+               else
+                  null;
+               end if;
 
             when GlobaleKonstanten.OptionenKonstante => -- Optionen
                RückgabeOptionen := Optionen.Optionen;
-               case
-                 RückgabeOptionen
-               is
-                  when GlobaleKonstanten.SpielBeendenKonstante =>
-                     exit HauptmenüSchleife;
+               if
+                 RückgabeOptionen = GlobaleKonstanten.SpielBeendenKonstante
+               then
+                  exit HauptmenüSchleife;
 
-                  when others =>
-                     null;
-               end case;
+               else
+                  null;
+               end if;
 
             when GlobaleKonstanten.InformationenKonstante => -- Informationen
                Informationen.Informationen;

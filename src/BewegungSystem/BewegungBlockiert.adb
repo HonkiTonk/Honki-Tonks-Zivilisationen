@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with EinheitSuchen, StadtSuchen;
 
 package body BewegungBlockiert with
-Refined_State => (Test => (StadtWert, EinheitWert))
+Refined_State => (BewegungBlockiertState => (StadtWert, EinheitWert))
 is
    
    function BlockiertStadtEinheit
