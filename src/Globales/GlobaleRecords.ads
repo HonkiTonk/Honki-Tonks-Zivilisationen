@@ -69,7 +69,7 @@ package GlobaleRecords is
 
 
    type TransporterArray is array (1 .. 5) of GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-   type KIBewegungPlanArray is array (0 .. 100) of GlobaleRecords.AchsenKartenfeldPositivRecord;
+   type KIBewegungPlanArray is array (0 .. 10) of GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    type EinheitenGebautRecord is record
       

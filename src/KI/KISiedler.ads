@@ -44,6 +44,22 @@ private
    
    type WichtigkeitArray is array (0 .. 7) of Natural;
    Wichtigkeit : WichtigkeitArray;
+   
+   procedure AufgabeErmitteln
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   procedure AufgabeDurchführen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
    function StadtBauenPrüfung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -53,17 +69,6 @@ private
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
-   
-   function VorhandeneMöglichkeiten
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2),
-         Post =>
-           (VorhandeneMöglichkeiten'Result <= WichtigkeitArray'Last);
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

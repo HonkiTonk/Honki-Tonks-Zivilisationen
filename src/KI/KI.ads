@@ -13,14 +13,24 @@ package KI is
 
 private
 
-   EinheitTyp : GlobaleDatentypen.EinheitenTyp;
-
    EinheitenBeschäftigt : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    StadtBeschäftigt : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
    SiedlerVorhanden : Natural;
 
    EinheitRasseNummer : GlobaleRecords.RassePlatznummerRecord;
+
+   procedure EinheitenDurchgehen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
+
+   procedure StädteDurchgehen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
 
    procedure AKtivitätEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

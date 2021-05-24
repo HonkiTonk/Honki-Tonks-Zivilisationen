@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIVariablen;
 
-with KIBewegung, KartenPruefungen;
+with KIBewegungBerechnen, KartenPruefungen;
 
 package body KIPruefungen is
    
@@ -213,8 +213,8 @@ package body KIPruefungen is
       end if;
 
       -- 1 = Norden = (-1, 0), 2 = Nord_Ost = (-1, 1), 3 = Osten = (0, 1), 4 = Süd_Osten = (1, 1), 5 = Süden = (1, 0), 6 = Süd_West = (1, -1), 7 = Westen = (0, -1), 8 = Nord_West = (-1, -1)      
-      KIBewegung.NeuesZielErmittelnGefahr (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                           RichtungExtern           => KIDatentypen.Richtung_Enum'Val (Richtung));
+      KIBewegungBerechnen.NeuesZielErmittelnGefahr (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       RichtungExtern           => KIDatentypen.Richtung_Enum'Val (Richtung));
 
    end ZielBerechnenGefahr;
 
