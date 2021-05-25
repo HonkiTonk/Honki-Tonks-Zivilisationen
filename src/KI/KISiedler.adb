@@ -5,7 +5,7 @@ use KIDatentypen;
 
 with EinheitenDatenbank;
 
-with StadtBauen, StadtSuchen, EinheitSuchen, KarteneigenschaftVereinfachung, DatenbankVereinfachung, KIPruefungen, KIBewegungDurchfuehren;
+with StadtBauen, StadtSuchen, EinheitSuchen, KarteneigenschaftVereinfachung, DatenbankVereinfachung, KIPruefungen, KIBewegungDurchfuehren, KIBewegungBerechnen;
 
 package body KISiedler is
 

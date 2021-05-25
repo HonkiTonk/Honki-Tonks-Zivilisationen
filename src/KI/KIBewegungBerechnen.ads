@@ -7,8 +7,9 @@ with Karten;
 
 package KIBewegungBerechnen is
    
-   procedure BewegungPlanen
+   function BewegungPlanen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
@@ -26,35 +27,75 @@ package KIBewegungBerechnen is
    
 private
    
-   BewegungMöglich : Boolean;
+   PlanungErfolgreich : Boolean;
+   FeldSchonBetreten : Boolean;
    
-   Bewegung : GlobaleDatentypen.Bewegung_Enum;
+   FeldPassierbar : GlobaleDatentypen.Bewegung_Enum;
+   FeldBlockiert : GlobaleDatentypen.Bewegung_Enum;
    
-   AbbruchWert : Natural;
-
-   AnfangKoordinaten : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   MöglicheNeueKoordinaten : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   BewertungPosition : Positive;
    
    ZielKoordinaten : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
    
    Kartenwert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
    
-   type WegpunkteArray is array (-GlobaleRecords.KIBewegungPlanArray'Last .. GlobaleRecords.KIBewegungPlanArray'Last,
-                                 -GlobaleRecords.KIBewegungPlanArray'Last .. GlobaleRecords.KIBewegungPlanArray'Last) of GlobaleRecords.AchsenKartenfeldPositivRecord;
-   Wegpunkte : WegpunkteArray;
-
-   function IstDasEineAltePosition
+   type FeldBewertungArray is array (GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range, GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range) of Natural;
+   FeldBewertung : FeldBewertungArray;
+   
+   type BewertungRecord is record
+      
+      Bewertung : Natural;
+      YÄnderung : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
+      XÄnderung : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
+      
+   end record;
+   
+   Sortieren : BewertungRecord;
+   
+   type BewertungArray is array (1 .. 9) of BewertungRecord;
+   Bewertung : BewertungArray;
+   
+   function PlanenRekursiv
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      EAchseExtern : in GlobaleDatentypen.EbeneVorhanden;
-      YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+      AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      AktuellePlanpositionExtern : in Positive)
       return Boolean
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            AktuelleKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+            AktuelleKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   function BewertungFeldposition
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      YÄnderungExtern, XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      return Natural
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   function FeldBereitsBetreten
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 

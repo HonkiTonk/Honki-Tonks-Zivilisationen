@@ -322,7 +322,7 @@ package body Eingabe is
    
    
    
-   function Tastenwert
+   function Tastenwert -- Überall einbauen/direkt nutzen
      return Natural
    is begin
       

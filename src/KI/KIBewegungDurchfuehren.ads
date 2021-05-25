@@ -15,6 +15,8 @@ package KIBewegungDurchfuehren is
 
 private
    
+   NeuerBewegungsplan : Boolean;
+   
    FeldImmerNochFrei : GlobaleDatentypen.Bewegung_Enum;
 
    procedure BewegungDurchführen

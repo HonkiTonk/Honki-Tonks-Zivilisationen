@@ -45,13 +45,14 @@ package body Schreiben is
       is
          when True =>
             Korrekt := WertePrüfen;
-            case Korrekt is
-               when True =>
-                  null;
+            if
+              Korrekt = True
+            then
+               null;
                   
-               when False =>
-                  Schreiben.WerteSchreiben;
-            end case;
+            else
+               Schreiben.WerteSchreiben;
+            end if;
             
          when False =>
             Schreiben.WerteSchreiben;
@@ -72,15 +73,14 @@ package body Schreiben is
       is
          when True =>
             Korrekt := EinstellungenPrüfen;
-            case
-              Korrekt
-            is
-               when True =>
-                  null;
+            if
+              Korrekt = True
+            then
+               null;
                   
-               when False =>
-                  Schreiben.EinstellungenSchreiben;
-            end case;
+            else
+               Schreiben.EinstellungenSchreiben;
+            end if;
             
          when False =>
             Schreiben.EinstellungenSchreiben;

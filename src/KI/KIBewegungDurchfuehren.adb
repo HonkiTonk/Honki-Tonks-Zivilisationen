@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with BewegungssystemEinheiten, BewegungBlockiert;
+with BewegungssystemEinheiten, BewegungBlockiert, KIBewegungBerechnen;
 
 package body KIBewegungDurchfuehren is
    
@@ -19,14 +19,24 @@ package body KIBewegungDurchfuehren is
             return;
             
          elsif
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (1) = (0, 0, 0)
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte <= 0.00
          then
             return;
             
          elsif
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte <= 0.00
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (1) = (0, 0, 0)
          then
-            return;
+            NeuerBewegungsplan := KIBewegungBerechnen.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+            case
+              NeuerBewegungsplan
+            is
+               when True =>
+                  null;
+                  
+               when False =>
+                  return;
+            end case;
             
          else
             BewegungDurchführen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

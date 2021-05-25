@@ -92,32 +92,31 @@ package body SpielEinstellungen is
                                                                ZeileExtern         => 19,
                                                                ZahlenMinimumExtern => 20,
                                                                ZahlenMaximumExtern => 1_000);
-               case
-                 BenutzerdefinierteGröße
-               is
-                  when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
-                     return 1;
+               if
+                 BenutzerdefinierteGröße = GlobaleKonstanten.GanzeZahlAbbruchKonstante
+               then
+                  return 1;
                      
-                  when others =>
-                     null;
-               end case;
+               else
+                  null;
+               end if;
+               
                Karten.Kartengrößen (KartengrößeAuswahl).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
                BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Fragen,
                                                                ZeileExtern         => 25,
                                                                ZahlenMinimumExtern => 20,
                                                                ZahlenMaximumExtern => 1_000);
                      
-               case
-                 BenutzerdefinierteGröße
-               is
-                  when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
-                     return 1;
+               if
+                 BenutzerdefinierteGröße = GlobaleKonstanten.GanzeZahlAbbruchKonstante
+               then
+                  return 1;
                            
-                  when others =>
-                     Karten.Kartengrößen (KartengrößeAuswahl).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-                     Karten.Kartengrößen (KartengrößeAuswahl).Ressourcenmenge := Integer (Karten.Kartengrößen (KartengrößeAuswahl).YAchsenGröße) * Integer (Karten.Kartengrößen (KartengrößeAuswahl).XAchsenGröße) / 32;
-                     return 2;
-               end case;
+               else
+                  Karten.Kartengrößen (KartengrößeAuswahl).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+                  Karten.Kartengrößen (KartengrößeAuswahl).Ressourcenmenge := Integer (Karten.Kartengrößen (KartengrößeAuswahl).YAchsenGröße) * Integer (Karten.Kartengrößen (KartengrößeAuswahl).XAchsenGröße) / 32;
+                  return 2;
+               end if;
                
             when 11 =>               
                Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 1);
@@ -294,20 +293,16 @@ package body SpielEinstellungen is
             when 0 =>
                JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 21);
          
-               case
-                 JaOderNein
-               is
-                  when GlobaleKonstanten.JaKonstante =>
-                     GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := 1;
-                     Spieler := Spieler + 1;
+               if
+                 JaOderNein = GlobaleKonstanten.JaKonstante
+               then
+                  GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := 1;
+                  Spieler := Spieler + 1;
                      
-                  when GlobaleKonstanten.NeinKonstante =>
-                     GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := 2;
-                     Spieler := Spieler + 1;
-
-                  when others =>
-                     null;
-               end case;
+               else
+                  GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := 2;
+                  Spieler := Spieler + 1;
+               end if;
                
             when others =>
                null;
@@ -349,15 +344,15 @@ package body SpielEinstellungen is
                                              AbstandEndeExtern      => GlobaleDatentypen.Keiner);
                Get_Immediate (Taste);
                JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 6);
-               case
-                 JaOderNein
-               is
-                  when GlobaleKonstanten.JaKonstante =>
-                     return RassenAuswahl;
+               
+               if
+                 JaOderNein = GlobaleKonstanten.JaKonstante
+               then
+                  return RassenAuswahl;
                      
-                  when others =>
-                     null;
-               end case;
+               else
+                  null;
+               end if;
 
             when 19 =>               
                Zufallswahl := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 5);
@@ -443,7 +438,7 @@ package body SpielEinstellungen is
    function UmgebungPrüfen
      (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
       RasseExtern : in GlobaleDatentypen.Rassen) 
-     return Boolean
+      return Boolean
    is begin
       
       PrüfungGrund := KartenPruefungen.KartenGrund (KoordinatenExtern => (0, YPositionExtern, XPositionExtern));

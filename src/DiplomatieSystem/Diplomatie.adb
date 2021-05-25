@@ -47,16 +47,15 @@ package body Diplomatie is
       is
          when GlobaleDatentypen.Neutral | GlobaleDatentypen.Offene_Grenzen =>
             Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 11);
-            case
-              Wahl
-            is
-               when -3 =>
-                  Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                        VerteidigendeRasseExtern => GegnerExtern.Rasse);
+            if
+              Wahl = -3
+            then
+               Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                     VerteidigendeRasseExtern => GegnerExtern.Rasse);
                   
-               when others =>
-                  return;
-            end case;
+            else
+               return;
+            end if;
                   
          when GlobaleDatentypen.Krieg =>
             null;
