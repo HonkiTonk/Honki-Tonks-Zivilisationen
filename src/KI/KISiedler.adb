@@ -199,7 +199,7 @@ package body KISiedler is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Natural
    is begin
-                                    
+      
       return 0;
                                     
    end EinheitAuflösen;
@@ -210,7 +210,7 @@ package body KISiedler is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Natural
    is begin
-                                    
+      
       return 0;
                                     
    end Fliehen;

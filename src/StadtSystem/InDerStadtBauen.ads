@@ -64,12 +64,11 @@ private
                                                                 17 => 0,
                                                                 18 => 0);
 
-   Taste : Wide_Wide_Character;
-
    AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
    Ende : GlobaleDatentypen.KartenverbesserungEinheitenID;
 
    WasGebautWerdenSoll : Natural;
+   Befehl : Natural;
 
    function BauobjektAuswählen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

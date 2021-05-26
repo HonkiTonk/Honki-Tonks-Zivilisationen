@@ -388,11 +388,13 @@ private
    
    Heilungsrate : constant Positive := 10;
 
-   Taste : Wide_Wide_Character;
+   
    
    AktuelleAuswahl : GlobaleDatentypen.EinheitenIDMitNullWert;
    Ende : GlobaleDatentypen.EinheitenIDMitNullWert;
    AktuellePosition : GlobaleDatentypen.EinheitenIDMitNullWert;
+   
+   Befehl : Natural;
    Wahl : Integer;
 
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;

@@ -9,18 +9,12 @@ with GlobaleDatentypen, Intro;
 with Einlesen, Anzeige, Hauptmenue;
 
 procedure Start
-is
-
-   EinlesenErgebnis : Boolean;
-
-begin
+is begin
 
    -- Programmanalyse.Auswahl;
 
-   EinlesenErgebnis := Einlesen.Einlesen;
-
    case
-     EinlesenErgebnis
+     Einlesen.Einlesen
    is
       when True =>
          Intro.Intro;

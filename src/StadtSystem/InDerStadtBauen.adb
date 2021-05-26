@@ -250,12 +250,12 @@ package body InDerStadtBauen is
                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
          end if;
          
-         Taste := Eingabe.TastenEingabe;
+         Befehl := Eingabe.Tastenwert;
          
          case
-           Taste
+           Befehl
          is               
-            when 'w' | '8' => 
+            when 1 => 
                if
                  AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then
@@ -265,7 +265,7 @@ package body InDerStadtBauen is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when 's' | '2' =>
+            when 3 =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -275,10 +275,10 @@ package body InDerStadtBauen is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when 'e' | '5' =>
+            when 11 =>
                return Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer;
 
-            when 'q' =>
+            when 12 =>
                return 0;
                      
             when others =>

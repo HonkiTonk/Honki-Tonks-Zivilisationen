@@ -267,29 +267,29 @@ package body EinheitenDatenbank is
 
          Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => GlobaleDatentypen.KartenverbesserungEinheitenID (AktuelleAuswahl));
          
-         Taste := Eingabe.TastenEingabe;
+         Befehl := Eingabe.Tastenwert;
          
          case
-           Taste
+           Befehl
          is               
-            when 'w' | '8' => 
+            when 1 => 
                if AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First then
                   AktuelleAuswahl := Ende;
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when 's' | '2' =>
+            when 3 =>
                if AktuelleAuswahl = Ende then
                   AktuelleAuswahl := Anzeige.AllgemeineAnzeigeText'First;
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when 'e' | '5' =>
+            when 11 =>
                return GlobaleDatentypen.MaximaleEinheitenMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
-            when 'q' =>
+            when 12 =>
                return 0;
                      
             when others =>

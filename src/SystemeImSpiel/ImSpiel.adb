@@ -42,18 +42,21 @@ package body ImSpiel is
                      
                   when 1 =>
                      RückgabeWert := MenschlicherSpieler (RasseExtern => RasseSchleifenwert);
-                     case
-                       RückgabeWert
-                     is
-                        when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-                           return RückgabeWert;
+                     if
+                       RückgabeWert = GlobaleKonstanten.SpielBeendenKonstante
+                       or
+                         RückgabeWert = GlobaleKonstanten.HauptmenüKonstante
+                     then
+                        return RückgabeWert;
 
-                        when -300 =>
-                           exit RassenSchleife;
+                     elsif
+                       RückgabeWert = -300
+                     then
+                        exit RassenSchleife;
                         
-                        when others =>
-                           null;
-                     end case;
+                     else
+                        null;
+                     end if;
                   
                   when others =>
                      KI.KI (RasseExtern => RasseSchleifenwert);
@@ -88,7 +91,7 @@ package body ImSpiel is
       
       SpielerSchleife:
       loop
-                     
+         
          Karte.AnzeigeKarte (RasseExtern => RasseExtern);
          AktuellerBefehlSpieler := BefehleImSpiel.Befehle (RasseExtern => RasseExtern);
          case
@@ -102,28 +105,27 @@ package body ImSpiel is
                Speichern.SpeichernNeu (AutospeichernExtern => False);
                
             when GlobaleKonstanten.LadenKonstante => -- Laden
-               LadenErfolgreich := Laden.LadenNeu;
-               case
-                 LadenErfolgreich
-               is
-                  when True =>
-                     return -300;
+               if
+                 Laden.LadenNeu = True
+               then
+                  return -300;
 
-                  when False =>
-                     null;
-               end case;
+               else
+                  null;
+               end if;
                
             when GlobaleKonstanten.OptionenKonstante => -- Optionen
                RückgabeOptionen := Optionen.Optionen;
-               case
-                 RückgabeOptionen
-               is
-                  when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-                     return RückgabeOptionen;
+               if
+                 RückgabeOptionen = GlobaleKonstanten.SpielBeendenKonstante
+                 or
+                   RückgabeOptionen = GlobaleKonstanten.HauptmenüKonstante
+               then
+                  return RückgabeOptionen;
                                     
-                  when others =>
-                     null;
-               end case;
+               else
+                  null;
+               end if;
                
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante => -- Spiel beenden oder Hauptmenü
                return AktuellerBefehlSpieler;

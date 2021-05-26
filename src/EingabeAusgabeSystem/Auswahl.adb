@@ -38,12 +38,12 @@ package body Auswahl is
                                  ErsteZeileExtern      => GlobaleVariablen.SprachenEinlesenArray'First,
                                  LetzteZeileExtern     => Ende);
          
-         Taste := Eingabe.TastenEingabe;
+         Befehl := Eingabe.Tastenwert;
          
          case
-           Taste
+           Befehl
          is
-            when 'w' | '8' => 
+            when 1 => 
                if
                  AktuelleAuswahl = GlobaleVariablen.SprachenEinlesenArray'First
                then
@@ -53,7 +53,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when 's' | '2' =>
+            when 3 =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -63,7 +63,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when 'e' | '5' =>    
+            when 11 =>    
                Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                return GlobaleVariablen.SprachenEinlesen (AktuelleAuswahl);
                      
@@ -101,12 +101,12 @@ package body Auswahl is
                                        LetzteZeileExtern     => LetzteZeileExtern,
                                        AktuelleAuswahlExtern => AktuelleAuswahl);
 
-         Taste := Eingabe.TastenEingabe;
+         Befehl := Eingabe.Tastenwert;
          
          case
-           Taste
+           Befehl
          is
-            when 'w' | '8' => 
+            when 1 => 
                if
                  AktuelleAuswahl = Anfang
                then
@@ -116,7 +116,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when 's' | '2' =>
+            when 3 =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -126,7 +126,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when 'e' | '5' =>                  
+            when 11 =>                  
                if
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 1)
                then -- Hauptmenü

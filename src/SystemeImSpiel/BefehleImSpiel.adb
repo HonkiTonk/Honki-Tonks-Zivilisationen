@@ -76,14 +76,14 @@ package body BefehleImSpiel is
                   case
                     EinheitTransportNummer
                   is
-                  when 0 =>
-                     null;
+                     when 0 =>
+                        null;
                         
-                  when others =>
-                     EinheitOderStadt (RasseExtern         => RasseExtern,
-                                       AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
-                                       StadtNummerExtern   => StadtNummer,
-                                       EinheitNummerExtern => EinheitTransportNummer);
+                     when others =>
+                        EinheitOderStadt (RasseExtern         => RasseExtern,
+                                          AuswahlExtern       => GlobaleKonstanten.NeinKonstante,
+                                          StadtNummerExtern   => StadtNummer,
+                                          EinheitNummerExtern => EinheitTransportNummer);
                   end case;
                end if;
                
@@ -102,43 +102,41 @@ package body BefehleImSpiel is
          when 13 => -- Baue Stadt
             EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                              KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            case
-              EinheitNummer
-            is
-               when 0 =>
-                  null;
+            if
+              EinheitNummer = 0
+            then
+               null;
                   
-               when others =>
-                  if 
-                    EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = 1
-                    and
-                      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00
-                  then
-                     StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
-                     
-                  else
-                     null;
-                  end if;
-            end case;
-           
-         when 14 => -- Technologie/Forschung
-            case
-              GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt
-            is
-            when 0 =>
-               ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
-                     
-            when others =>
-               WahlForschung := Auswahl.AuswahlJaNein (FrageZeileExtern => 17);
-               if
-                 WahlForschung = GlobaleKonstanten.JaKonstante
+            else
+               if 
+                 EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = 1
+                 and
+                   GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00
                then
-                  ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
+                  StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                      
                else
                   null;
                end if;
-            end case;
+            end if;
+           
+         when 14 => -- Technologie/Forschung
+            if
+              GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt = 0
+            then
+               ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
+                     
+            else
+               case
+                 Auswahl.AuswahlJaNein (FrageZeileExtern => 17)
+               is
+                  when GlobaleKonstanten.JaKonstante =>
+                     ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
+                     
+                  when others =>
+                     null;
+               end case;
+            end if;
             
          when 15 => -- Anzeige des Forschungsbaums
             ForschungsDatenbank.ForschungsBaum (RasseExtern => RasseExtern);
@@ -164,15 +162,14 @@ package body BefehleImSpiel is
                
             EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                              KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            case
-              EinheitNummer
-            is
-               when 0 =>
-                  return 1;
+            if
+              EinheitNummer = 0
+            then
+               return 1;
                   
-               when others =>
-                  null;
-            end case;
+            else
+               null;
+            end if;
 
             if
               GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID /= 1
@@ -213,15 +210,14 @@ package body BefehleImSpiel is
          when 34 => -- Stadt umbenennen
             StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                        KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
-            case
-              StadtNummer
-            is
-               when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-                  null;
+            if
+              StadtNummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+            then
+               null;
                   
-               when others =>
-                  GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Name := Eingabe.StadtName;
-            end case;
+            else
+               GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Name := Eingabe.StadtName;
+            end if;
             
          when 35 => -- Stadt abreißen
             StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -282,9 +278,8 @@ package body BefehleImSpiel is
             if
               GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).AktuelleBeschäftigung /= GlobaleDatentypen.Keine
             then
-               Wahl := EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7);
                case
-                 Wahl
+                 EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7)
                is
                   when True =>
                      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).AktuelleBeschäftigung := GlobaleDatentypen.Keine;

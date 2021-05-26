@@ -19,24 +19,23 @@ package body Speichern is
          when False =>
             SpielstandName := Eingabe.SpielstandName;
 
-            case
-              Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)))
-            is -- Anzeige der vorhandenen Spielstände einbauen
-               when True =>
-                  Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 18);
-                  case
-                    Wahl
-                  is
-                     when -3 =>
-                        null;
+            if
+              Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) = True
+            then -- Anzeige der vorhandenen Spielstände einbauen
+               Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 18);
+               case
+                 Wahl
+               is
+                  when -3 =>
+                     null;
                      
-                     when others =>
-                        return;
-                  end case;
+                  when others =>
+                     return;
+               end case;
 
-               when False =>
-                  null;
-            end case;
+            else
+               null;
+            end if;
 
          when True =>                        
             SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);

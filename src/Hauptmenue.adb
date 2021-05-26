@@ -5,7 +5,7 @@ with GlobaleDatentypen, GlobaleKonstanten;
 with Auswahl, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden, Wuerdigung;
 
 package body Hauptmenue with
-Refined_State => (HauptmenüAbstraktion => (LadenErfolgreich, Startauswahl, RückgabeKampagne, RückgabeOptionen))
+Refined_State => (HauptmenüAbstraktion => (RückgabeKampagne, RückgabeOptionen))
 is
 
    procedure Hauptmenü
@@ -14,14 +14,12 @@ is
       HauptmenüSchleife:
       loop
 
-         Startauswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Start,
-                                          TextDateiExtern   => GlobaleDatentypen.Start,
-                                          FrageZeileExtern  => 1,
-                                          ErsteZeileExtern  => 2,
-                                          LetzteZeileExtern => 6);
-
          case
-           Startauswahl
+           Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Start,
+                            TextDateiExtern   => GlobaleDatentypen.Start,
+                            FrageZeileExtern  => 1,
+                            ErsteZeileExtern  => 2,
+                            LetzteZeileExtern => 6)
          is
             when GlobaleKonstanten.StartNormalKonstante => -- Start
                RückgabeKampagne := SpielEinstellungen.SpielEinstellungen;
@@ -41,10 +39,8 @@ is
                end if;
 
             when GlobaleKonstanten.LadenKonstante => -- Laden
-               LadenErfolgreich := Laden.LadenNeu;
-
                if
-                 LadenErfolgreich = True
+                 Laden.LadenNeu = True
                then
                   RückgabeKampagne := ImSpiel.ImSpiel;
                   case

@@ -6,11 +6,8 @@ is
 
    procedure Hauptmenü;
    
-private   
-
-   LadenErfolgreich : Boolean with Part_Of => HauptmenüAbstraktion;
-
-   Startauswahl : Integer with Part_Of => HauptmenüAbstraktion;   
+private
+  
    RückgabeKampagne : Integer with Part_Of => HauptmenüAbstraktion;         
    RückgabeOptionen : Integer with Part_Of => HauptmenüAbstraktion;
 

@@ -27,15 +27,16 @@ package body OptionenSonstiges is
                                                  ZeileExtern         => GlobaleKonstanten.OptionenSonstigesErsteZeile,
                                                  ZahlenMinimumExtern => 0,
                                                  ZahlenMaximumExtern => 999_999_999);
-               case
+               if
                  AuswahlWert
-               is
-                  when 0 .. 999_999_999 =>
-                     GlobaleVariablen.AnzahlAutosave := AuswahlWert;
+               in
+                 0 .. 999_999_999
+               then
+                  GlobaleVariablen.AnzahlAutosave := AuswahlWert;
                         
-                  when others =>
-                     null;
-               end case;                  
+               else
+                  null;
+               end if;                  
                
             when 2 =>
                AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Menü_Auswahl,
@@ -43,18 +44,21 @@ package body OptionenSonstiges is
                                                  ZahlenMinimumExtern=> 0,
                                                  ZahlenMaximumExtern => 999_999_999);
 
-               case
+               if
+                 AuswahlWert = 0
+               then
+                  GlobaleVariablen.RundenBisAutosave := 1;
+                     
+               elsif
                  AuswahlWert
-               is
-                  when 0 =>
-                     GlobaleVariablen.RundenBisAutosave := 1;
+               in
+                 1 .. 999_999_999
+               then
+                  GlobaleVariablen.RundenBisAutosave := AuswahlWert;
                      
-                  when 1 .. 999_999_999 =>
-                     GlobaleVariablen.RundenBisAutosave := AuswahlWert;
-                     
-                  when others =>
-                     null;
-               end case;
+               else
+                  null;
+               end if;
                
             when GlobaleKonstanten.ZurückKonstante | GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return AuswahlWert;

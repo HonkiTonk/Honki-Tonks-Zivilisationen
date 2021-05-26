@@ -13,8 +13,6 @@ package ImSpiel is
 
 private
 
-   LadenErfolgreich : Boolean;
-
    AktuellerBefehlSpieler : Integer;
    RückgabeWert : Integer;
    RückgabeOptionen : Integer;

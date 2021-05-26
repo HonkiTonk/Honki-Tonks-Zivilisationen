@@ -139,6 +139,7 @@ package body KIGefahr is
                when True =>
                   null;
             end case;
+            
             if
               YÄnderungSchleifenwert = 0
               and
@@ -208,6 +209,7 @@ package body KIGefahr is
                when True =>
                   null;
             end case;
+            
             if
               YÄnderungSchleifenwert = 0
               and

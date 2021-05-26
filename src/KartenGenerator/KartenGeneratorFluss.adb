@@ -102,158 +102,160 @@ package body KartenGeneratorFluss is
                   exit XAchseSchleife;
 
                when True =>
-                  if
-                    XÄnderungSchleifenwert = -1
-                    and
-                      YÄnderungSchleifenwert = 0
-                  then
-                     case
-                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss
-                     is
-                        when 0 =>
-                           Flusswert := Flusswert - 1_000;
-
-                        when 16 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
-                     
-                        when 18 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
-
-                        when 20 =>                     
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
-
-                        when 24 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
-
-                        when 26 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 15;
-
-                        when 27 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 19;
-
-                        when 28 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
-                     
-                        when others =>
-                           null;
-                     end case;
-                     Flusswert := Flusswert + 1_000;
-               
-                  elsif
-                    XÄnderungSchleifenwert = 1
-                    and
-                      YÄnderungSchleifenwert = 0
-                  then
-                     case
-                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss
-                     is
-                        when 0 =>
-                           Flusswert := Flusswert - 100;
-
-                        when 16 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
-                     
-                        when 17 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
-
-                        when 19 =>                     
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
-
-                        when 23 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
-
-                        when 25 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 15;
-
-                        when 27 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 20;
-
-                        when 28 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
-                     
-                        when others =>
-                           null;
-                     end case;
-                     Flusswert := Flusswert + 100;
-               
-                  elsif
-                    YÄnderungSchleifenwert = -1
-                    and
-                      XÄnderungSchleifenwert = 0
-                  then
-                     case
-                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss
-                     is
-                        when 0 =>
-                           Flusswert := Flusswert - 10;
-                     
-                        when 15 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
-                     
-                        when 19 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
-
-                        when 20 =>                     
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
-
-                        when 21 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
-
-                        when 25 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
-
-                        when 26 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
-
-                        when 27 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
-                     
-                        when others =>
-                           null;
-                     end case;
-                     Flusswert := Flusswert + 10;
-               
-                  elsif
-                    YÄnderungSchleifenwert = 1
-                    and
-                      XÄnderungSchleifenwert = 0
-                  then
-                     case
-                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss
-                     is
-                        when 0 =>
-                           Flusswert := Flusswert - 1;
-                     
-                        when 15 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
-                     
-                        when 17 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
-
-                        when 18 =>                     
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
-
-                        when 22 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
-
-                        when 25 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 19;
-
-                        when 26 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 20;
-
-                        when 28 =>
-                           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
-                     
-                        when others =>
-                           null;
-                     end case;
-                     Flusswert := Flusswert + 1;
-               
-                  else
-                     null;
-                  end if;
+                  null;
             end case;
+            
+            if
+              XÄnderungSchleifenwert = -1
+              and
+                YÄnderungSchleifenwert = 0
+            then
+               case
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss
+               is
+                  when 0 =>
+                     Flusswert := Flusswert - 1_000;
+
+                  when 16 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
+                     
+                  when 18 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
+
+                  when 20 =>                     
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
+
+                  when 24 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
+
+                  when 26 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 15;
+
+                  when 27 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 19;
+
+                  when 28 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
+                     
+                  when others =>
+                     null;
+               end case;
+               Flusswert := Flusswert + 1_000;
+               
+            elsif
+              XÄnderungSchleifenwert = 1
+              and
+                YÄnderungSchleifenwert = 0
+            then
+               case
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss
+               is
+                  when 0 =>
+                     Flusswert := Flusswert - 100;
+
+                  when 16 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
+                     
+                  when 17 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
+
+                  when 19 =>                     
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
+
+                  when 23 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
+
+                  when 25 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 15;
+
+                  when 27 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 20;
+
+                  when 28 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
+                     
+                  when others =>
+                     null;
+               end case;
+               Flusswert := Flusswert + 100;
+               
+            elsif
+              YÄnderungSchleifenwert = -1
+              and
+                XÄnderungSchleifenwert = 0
+            then
+               case
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss
+               is
+                  when 0 =>
+                     Flusswert := Flusswert - 10;
+                     
+                  when 15 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
+                     
+                  when 19 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
+
+                  when 20 =>                     
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
+
+                  when 21 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
+
+                  when 25 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
+
+                  when 26 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
+
+                  when 27 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
+                     
+                  when others =>
+                     null;
+               end case;
+               Flusswert := Flusswert + 10;
+               
+            elsif
+              YÄnderungSchleifenwert = 1
+              and
+                XÄnderungSchleifenwert = 0
+            then
+               case
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss
+               is
+                  when 0 =>
+                     Flusswert := Flusswert - 1;
+                     
+                  when 15 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
+                     
+                  when 17 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
+
+                  when 18 =>                     
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
+
+                  when 22 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
+
+                  when 25 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 19;
+
+                  when 26 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 20;
+
+                  when 28 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
+                     
+                  when others =>
+                     null;
+               end case;
+               Flusswert := Flusswert + 1;
+               
+            else
+               null;
+            end if;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;

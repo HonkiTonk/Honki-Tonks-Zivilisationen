@@ -18,7 +18,7 @@ private
 
    Wahl : Boolean;
    Transportiert : Boolean;
-         
+   
    Befehl : Natural;
 
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;

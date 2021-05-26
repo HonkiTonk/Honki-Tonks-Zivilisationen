@@ -31,11 +31,10 @@ package Auswahl is
    
 private
 
-   Taste : Wide_Wide_Character;
-
    AktuelleAuswahl : Natural;
    Anfang : Natural;
    Ende : Natural;
+   Befehl : Natural;
 
    JaNein : Integer;
    

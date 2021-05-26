@@ -245,12 +245,12 @@ private
 
    AnforderungenErfüllt : Boolean;
 
-   Taste : Wide_Wide_Character;
-
    WasErforschtWerdenSoll : GlobaleDatentypen.ForschungIDMitNullWert;
 
    AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
    Ende : GlobaleDatentypen.ForschungID;
+
+   Befehl : Natural;
 
    procedure Ermöglicht
      (RasseExtern : in GlobaleDatentypen.Rassen;

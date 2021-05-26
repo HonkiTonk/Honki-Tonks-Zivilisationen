@@ -214,7 +214,7 @@ package body KIPruefungen is
 
       -- 1 = Norden = (-1, 0), 2 = Nord_Ost = (-1, 1), 3 = Osten = (0, 1), 4 = Süd_Osten = (1, 1), 5 = Süden = (1, 0), 6 = Süd_West = (1, -1), 7 = Westen = (0, -1), 8 = Nord_West = (-1, -1)      
       KIBewegungBerechnen.NeuesZielErmittelnGefahr (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       RichtungExtern           => KIDatentypen.Richtung_Enum'Val (Richtung));
+                                                    RichtungExtern           => KIDatentypen.Richtung_Enum'Val (Richtung));
 
    end ZielBerechnenGefahr;
 
@@ -247,20 +247,21 @@ package body KIPruefungen is
                   StadtImNorden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                  StadtNummerExtern        => StadtNummerSchleifenwert);
 
-                  case
-                    RichtungExtern
-                  is
-                     when KIDatentypen.Nord_Ost =>
-                        StadtImOsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                      StadtNummerExtern        => StadtNummerSchleifenwert);
+                  if
+                    RichtungExtern = KIDatentypen.Nord_Ost
+                  then
+                     StadtImOsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                   StadtNummerExtern        => StadtNummerSchleifenwert);
                         
-                     when KIDatentypen.Nord_West =>
-                        StadtImWesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       StadtNummerExtern        => StadtNummerSchleifenwert);
+                  elsif
+                    RichtungExtern = KIDatentypen.Nord_West
+                  then
+                     StadtImWesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                    StadtNummerExtern        => StadtNummerSchleifenwert);
                            
-                     when others =>
-                        Kandidaten (3) := Kandidaten (2);
-                  end case;
+                  else
+                     Kandidaten (3) := Kandidaten (2);
+                  end if;
 
                   if
                     Kandidaten (2) = Kandidaten (3)
@@ -295,20 +296,21 @@ package body KIPruefungen is
                   StadtImSüden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                  StadtNummerExtern        => StadtNummerSchleifenwert);
 
-                  case
-                    RichtungExtern
-                  is
-                     when KIDatentypen.Süd_Ost =>
-                        StadtImOsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                      StadtNummerExtern        => StadtNummerSchleifenwert);
+                  if
+                    RichtungExtern = KIDatentypen.Süd_Ost
+                  then
+                     StadtImOsten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                   StadtNummerExtern        => StadtNummerSchleifenwert);
                            
-                     when KIDatentypen.Süd_West =>
-                        StadtImWesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       StadtNummerExtern        => StadtNummerSchleifenwert);
+                  elsif
+                    RichtungExtern = KIDatentypen.Süd_West
+                  then
+                     StadtImWesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                    StadtNummerExtern        => StadtNummerSchleifenwert);
                            
-                     when others =>
-                        Kandidaten (3) := Kandidaten (2);
-                  end case;
+                  else
+                     Kandidaten (3) := Kandidaten (2);
+                  end if;
 
                   if
                     Kandidaten (2) = Kandidaten (3)

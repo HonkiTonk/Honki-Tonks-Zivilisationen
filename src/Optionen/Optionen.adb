@@ -9,7 +9,7 @@ package body Optionen is
    function Optionen return Integer is
    begin
       
-      RückgabeWert := 1000;
+      RückgabeWert := 1_000;
 
       OptionenSchleife:
       loop
