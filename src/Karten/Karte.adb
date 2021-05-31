@@ -402,6 +402,20 @@ package body Karte is
                                  
                   when True =>
                      Put_Line (Item => "Aktuelle Rasse: " & RasseUndPlatznummer.Rasse'Wide_Wide_Image);
+                     
+                     BewegungPlanSchleife:
+                     for BewegungGeplantSchleifenwert in GlobaleRecords.KIBewegungPlanArray'Range loop
+                        
+                        Put_Line (Item => "EAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).EAchse'Wide_Wide_Image & " "
+                                  & "YAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).YAchse'Wide_Wide_Image & " "
+                                  & "XAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).XAchse'Wide_Wide_Image);
+                        
+                     end loop BewegungPlanSchleife;
+                     
+                     Put_Line (Item => "Ziel EAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIZielKoordinaten.EAchse'Wide_Wide_Image & " "
+                               & "Ziel YAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIZielKoordinaten.YAchse'Wide_Wide_Image & " "
+                               & "Ziel XAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIZielKoordinaten.XAchse'Wide_Wide_Image);
+                     
                end case;
             end if;
             

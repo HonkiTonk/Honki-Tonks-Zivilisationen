@@ -659,7 +659,7 @@ package body KIPruefungen is
            YAchseKoordinatePrüfen < Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
          then
             YAchseKoordinatePrüfen := YAchseKoordinatePrüfen + 1;
-            YAchseKoordinatenSchonGeprüft := YAchseKoordinatenSchonGeprüft + 1;
+            YAchseKoordinatenSchonGeprüft := YAchseKoordinatePrüfen - 1;
             
          else
             null;
@@ -669,7 +669,7 @@ package body KIPruefungen is
            XAchseKoordinatePrüfen < Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
          then
             XAchseKoordinatePrüfen := XAchseKoordinatePrüfen + 1;
-            XAchseKoordinatenSchonGeprüft := XAchseKoordinatenSchonGeprüft + 1;
+            XAchseKoordinatenSchonGeprüft := XAchseKoordinatePrüfen - 1;
             
          else
             null;
@@ -720,9 +720,9 @@ package body KIPruefungen is
             end case;
                
             if
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund = 0
+              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund > 0
             then
-               null;
+               return True;
                
             elsif
               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = 2
@@ -732,7 +732,7 @@ package body KIPruefungen is
                return True;
                
             else
-               return True;
+               null;
             end if;
             
          end loop XAchseUmgebungSchleife;

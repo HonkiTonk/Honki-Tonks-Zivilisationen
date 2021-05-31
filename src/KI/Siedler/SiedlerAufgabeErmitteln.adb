@@ -5,59 +5,15 @@ use KIDatentypen;
 
 with EinheitenDatenbank;
 
-with StadtBauen, StadtSuchen, EinheitSuchen, KarteneigenschaftVereinfachung, DatenbankVereinfachung, KIPruefungen, KIBewegungDurchfuehren, KIBewegungBerechnen;
+with StadtSuchen, EinheitSuchen, KarteneigenschaftVereinfachung, DatenbankVereinfachung, SiedlerAufgabeFestlegen;
 
-package body KISiedler is
+package body SiedlerAufgabeErmitteln is
 
-   procedure KISiedler
+   procedure SiedlerAufgabeErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      AktivitätSchleife:
-      loop
-         
-         if
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten /= (0, 0, 0)
-         then
-            KIBewegungDurchfuehren.KIBewegungNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
-         elsif
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung = GlobaleDatentypen.Keine
-           and
-             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt = KIDatentypen.Keine_Aufgabe
-         then
-            AufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
-         else
-            null;
-         end if;
-      
-         if
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte > 0.00
-           and
-             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID > 0
-           and
-             (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt /= KIDatentypen.Keine_Aufgabe
-              or
-                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung /= GlobaleDatentypen.Keine)
-         then
-            AufgabeDurchführen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
-         else
-            return;
-         end if;
-         
-      end loop AktivitätSchleife;
-      
-   end KISiedler;
-   
-   
-   
-   procedure AufgabeErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-      
-      GewählteMöglichkeit := 0;
+      GewählteAufgabe := 0;
       
       Wichtigkeit (0) := NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (1) := NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -76,16 +32,16 @@ package body KISiedler is
             if
               Wichtigkeit (WichtigkeitEinsSchleifenwert) > Wichtigkeit (WichtigkeitZweiSchleifenwert)
               and
-                Wichtigkeit (GewählteMöglichkeit) < Wichtigkeit (WichtigkeitEinsSchleifenwert)
+                Wichtigkeit (GewählteAufgabe) < Wichtigkeit (WichtigkeitEinsSchleifenwert)
             then
-               GewählteMöglichkeit := WichtigkeitEinsSchleifenwert;
+               GewählteAufgabe := WichtigkeitEinsSchleifenwert;
                
             elsif
               Wichtigkeit (WichtigkeitEinsSchleifenwert) < Wichtigkeit (WichtigkeitZweiSchleifenwert)
               and
-                Wichtigkeit (GewählteMöglichkeit) < Wichtigkeit (WichtigkeitZweiSchleifenwert)
+                Wichtigkeit (GewählteAufgabe) < Wichtigkeit (WichtigkeitZweiSchleifenwert)
             then
-               GewählteMöglichkeit := WichtigkeitZweiSchleifenwert;
+               GewählteAufgabe := WichtigkeitZweiSchleifenwert;
                exit WichtigkeitZweiSchleife;
             
             else
@@ -95,46 +51,10 @@ package body KISiedler is
          end loop WichtigkeitZweiSchleife;
       end loop WichtigkeitEinsSchleife;
       
-      case
-        GewählteMöglichkeit
-      is
-         when 1 => -- Stadt bauen
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
-            
-         when 2 => -- Stadtumgebung verbessern
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Verbesserung_Anlegen;
-            
-         when 3 => -- Einheit auflösen
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Auflösen;
-            
-         when 4 => -- Fliehen
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Flucht;
-            
-         when 5 => -- Sich heilen
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Heilen;
-            
-         when 6 => -- Sich befestigen
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Festsetzen;
-            
-         when 7 => -- Sich verbessern
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Verbessern;
-            
-         when others => -- Nichts tun
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Keine;
-      end case;
+      SiedlerAufgabeFestlegen.SiedlerAufgabeFestlegen (GewählteAufgabeExtern    => GewählteAufgabe,
+                                                       EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-   end AufgabeErmitteln;
-   
-   
-   
-   procedure AufgabeDurchführen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-      
-      null;
-      
-   end AufgabeDurchführen;
+   end SiedlerAufgabeErmitteln;
    
 
 
@@ -285,45 +205,5 @@ package body KISiedler is
       return 1;
       
    end NichtsTun;
-   
 
-
-   function StadtBauenPrüfung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
-   is begin
-      
-      if -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln
-        EinheitRasseNummerExtern.Rasse in 1 .. 5
-      then
-         MindestBewertungKartenfeld := 90;
-            
-      else
-         MindestBewertungKartenfeld := 90;
-      end if;
-      
-      NeueStadtPosition := KIPruefungen.UmgebungStadtBauenPrüfen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                                                   MindestBewertungFeldExtern => MindestBewertungKartenfeld);
-      
-      if
-        NeueStadtPosition = (0, 0, 0, True)
-      then
-         StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         return True;
-         
-      elsif -- Wenn die YAchse /= 0 ist, dann ist auch die XAchse /= 0, keine weitere Prüfung nötig
-        NeueStadtPosition.YAchse /= 0
-      then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := (NeueStadtPosition.EAchse, NeueStadtPosition.YAchse, NeueStadtPosition.XAchse);
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
-         return True;
-         
-      else
-         null;
-      end if;
-      
-      return False;
-   
-   end StadtBauenPrüfung;
-
-end KISiedler;
+end SiedlerAufgabeErmitteln;

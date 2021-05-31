@@ -221,6 +221,15 @@ package body KIBewegungBerechnen is
       then
          return 5;
          
+      elsif        
+      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - Kartenwert.YAchse)
+        > abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse)
+        or
+      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - Kartenwert.XAchse)
+        > abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse)
+      then
+         return 2;
+         
       else
          return 1;
       end if;
@@ -232,7 +241,7 @@ package body KIBewegungBerechnen is
    function FeldBereitsBetreten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Boolean
+   return Boolean
    is begin
       
       FelderSchleife:
@@ -266,12 +275,12 @@ package body KIBewegungBerechnen is
       case
         ZielKoordinaten.Erfolgreich
       is
-         when True =>
-            return;
+      when True =>
+         return;
             
-         when False =>
-            ZielKoordinaten := KIPruefungen.NähesteEigeneEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                         RichtungExtern         => RichtungExtern);
+      when False =>
+         ZielKoordinaten := KIPruefungen.NähesteEigeneEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                      RichtungExtern         => RichtungExtern);
       end case;            
 
    end NeuesZielErmittelnGefahr;

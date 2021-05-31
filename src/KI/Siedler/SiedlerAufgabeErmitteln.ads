@@ -1,74 +1,33 @@
 pragma SPARK_Mode (On);
 
 with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
-use GlobaleDatentypen, GlobaleRecords;
+use GlobaleDatentypen;
 
-package KISiedler is
-
-   procedure KISiedler
+package SiedlerAufgabeErmitteln is
+   
+   procedure SiedlerAufgabeErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
-
+   
 private
    
-   StadtErfolgreichGebaut : Boolean;
-   Gefahr : Boolean;
-   UmgebungVerbessern : Boolean;
-   Verbessern : Boolean;
-   Vernichten : Boolean;
-   StadtBauenRückgabeWert : Boolean;
    DurchEigeneStadtBelegt : Boolean;
    
-   EinheitID : GlobaleDatentypen.EinheitenID;
+   GewählteAufgabe : Natural;
+   VorhandeneStädte : Natural;
+   VorhandeneSiedler : Natural;
    
    VerbesserungStraße : GlobaleDatentypen.KartenVerbesserung;
    VerbesserungGebiet : GlobaleDatentypen.KartenVerbesserung;
    
-   KartenFeldbewertung : GlobaleDatentypen.GesamtproduktionStadt;
-   MindestBewertungKartenfeld : GlobaleDatentypen.GesamtproduktionStadt;
-   
-   FeldBelegt : GlobaleDatentypen.BelegterGrund;
-   
-   SicherheitsZähler : Positive;
-   
-   GewählteMöglichkeit: Natural;
-   Aufgabe : Natural; 
-   VorhandeneStädte : Natural;
-   VorhandeneSiedler : Natural;
-   
-   NeueStadtPosition : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   EinheitID : GlobaleDatentypen.EinheitenID;
    
    type WichtigkeitArray is array (0 .. 7) of Natural;
    Wichtigkeit : WichtigkeitArray;
-   
-   procedure AufgabeErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
-   
-   procedure AufgabeDurchführen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
-
-   function StadtBauenPrüfung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -142,4 +101,4 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
-end KISiedler;
+end SiedlerAufgabeErmitteln;
