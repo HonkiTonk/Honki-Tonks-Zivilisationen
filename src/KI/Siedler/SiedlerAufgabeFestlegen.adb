@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen;
 
+with EinheitenDatenbank;
+
 with StadtBauen, KIPruefungen;
 
 package body SiedlerAufgabeFestlegen is
@@ -15,25 +17,25 @@ package body SiedlerAufgabeFestlegen is
         GewählteAufgabeExtern
       is
          when 1 => -- Stadt bauen
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
+            StadtBauenPrüfung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 2 => -- Stadtumgebung verbessern
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Verbesserung_Anlegen;
+            StadtUmgebungVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 3 => -- Einheit auflösen
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Auflösen;
+            EinheitenDatenbank.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 4 => -- Fliehen
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Flucht;
+            Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 5 => -- Sich heilen
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Heilen;
+            Heilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 6 => -- Sich befestigen
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Festsetzen;
+            Befestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 7 => -- Sich verbessern
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Verbessern;
+            Verbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when others => -- Nichts tun
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
@@ -61,12 +63,12 @@ package body SiedlerAufgabeFestlegen is
                                                                    MindestBewertungFeldExtern => MindestBewertungKartenfeld);
       
       if
-        NeueStadtPosition = (0, 0, 0, True)
+        NeueStadtPosition = (0, 0, 0)
       then
          StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-      elsif -- Wenn die YAchse /= 0 ist, dann ist auch die XAchse /= 0, keine weitere Prüfung nötig
-        NeueStadtPosition.Erfolgreich = True
+      elsif
+        NeueStadtPosition.YAchse /= 0
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := (NeueStadtPosition.EAchse, NeueStadtPosition.YAchse, NeueStadtPosition.XAchse);
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
@@ -76,5 +78,58 @@ package body SiedlerAufgabeFestlegen is
       end if;
    
    end StadtBauenPrüfung;
+   
+   
+   
+   procedure StadtUmgebungVerbesserung
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Verbesserung_Anlegen;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIPruefungen.StadtUmgebungPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      
+      
+      
+   end StadtUmgebungVerbesserung;
+   
+   
+   
+   procedure Fliehen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin      
+      
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Flucht;
+      
+   end Fliehen;
+     
+   
+   
+   procedure Heilen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Heilen;
+      
+   end Heilen;
+   
+   
+   
+   procedure Befestigen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Festsetzen;
+      
+   end Befestigen;
+   
+   
+   
+   procedure Verbessern
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Verbessern;
+      
+   end Verbessern;
 
 end SiedlerAufgabeFestlegen;

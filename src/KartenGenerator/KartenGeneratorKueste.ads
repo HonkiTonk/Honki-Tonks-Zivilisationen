@@ -8,6 +8,6 @@ package KartenGeneratorKueste is
 
 private
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
 end KartenGeneratorKueste;

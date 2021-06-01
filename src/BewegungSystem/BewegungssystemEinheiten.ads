@@ -55,7 +55,7 @@ private
 
    Änderung : GlobaleRecords.AchsenKartenfeldRecord;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    GegnerWert : GlobaleRecords.RassePlatznummerRecord;
    GegnerEinheitWert : GlobaleRecords.RassePlatznummerRecord;

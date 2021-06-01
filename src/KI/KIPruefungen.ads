@@ -14,8 +14,19 @@ package KIPruefungen is
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
-
-
+   
+   
+   
+   function StadtUmgebungPrüfen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2),
+         Post =>
+           (StadtUmgebungPrüfen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            and
+              StadtUmgebungPrüfen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function EinheitenAbstandBerechnen
      (EinheitEinsRasseNummerExtern, EinheitZweiRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -33,7 +44,7 @@ package KIPruefungen is
    function NähesteEigeneStadtSuchen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       RichtungExtern : in KIDatentypen.Richtung_Enum)
-      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
@@ -43,7 +54,7 @@ package KIPruefungen is
    function NähesteEigeneEinheitSuchen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       RichtungExtern : in KIDatentypen.Richtung_Enum)
-      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
@@ -53,7 +64,7 @@ package KIPruefungen is
    function UmgebungStadtBauenPrüfen     
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
-      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
@@ -76,9 +87,11 @@ private
    YAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositiv;
    XAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositiv;
    
+   VerbesserungAnlegen : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
    KartenfeldBewertung : GlobaleDatentypen.GesamtproduktionStadt;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    -- 1 = Norden (-), 2 = Westen (-), 3 = Süden (+), 4 = Osten (+)
    type RichtungenFeindeArray is array (1 .. 4) of Natural;
@@ -86,7 +99,7 @@ private
 
    KartenfeldAbstand : GlobaleDatentypen.Kartenfeld;
 
-   type KandidatenArray is array (1 .. 3) of GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   type KandidatenArray is array (1 .. 3) of GlobaleRecords.AchsenKartenfeldPositivRecord;
    Kandidaten : KandidatenArray;
 
    procedure StadtImNorden
@@ -135,6 +148,15 @@ private
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße); 
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+   function StadtUmgebungUnverbessert
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 2
+          and
+            StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'Range (2));
    
 end KIPruefungen;

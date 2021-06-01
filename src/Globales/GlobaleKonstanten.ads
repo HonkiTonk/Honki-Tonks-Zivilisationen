@@ -69,7 +69,7 @@ package GlobaleKonstanten is
                                                                          0, 0.00, 0, 0, -- Aktuelle Lebenspunkte, Aktuelle Bewegungspunkte, Aktuelle Erfahrungspunkte, Aktueller Rang
                                                                          GlobaleDatentypen.Keine, GlobaleDatentypen.Keine, -- Aktuelle Beschäftigung, Zweite Beschäftigung
                                                                          0, 0, -- Aktuelle Beschäftigungszeit, Zweite AktuelleBeschäftigungszeit
-                                                                         (0, 1, 1), KIDatentypen.Keine_Aufgabe, (others => (0, 0, 0)), -- Zielkoordinaten der KI, Beschäftigunggrad der KI, Bewegungsplan der KI
+                                                                         (0, 0, 0), KIDatentypen.Keine_Aufgabe, (others => (0, 0, 0)), -- Zielkoordinaten der KI, Beschäftigung der KI, Bewegungsplan der KI
                                                                          (others => 0), 0); -- Platznummer der transportierten Einheiten, Platznummer der transportierenden Einheit
 
    LeererWertStadt : constant GlobaleRecords.StadtGebautRecord := (0, (0, 0, 0), False, 0, -- ID, AchsenPosition,Am Wasser, Einwohner

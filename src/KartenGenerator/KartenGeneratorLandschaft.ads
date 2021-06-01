@@ -17,8 +17,8 @@ private
    BeliebigerLandschaftFeldwert : Float;
    BeliebigerHügelwert : Float;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
-   KartenWertHügel : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWertHügel : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    type KartengrundWahrscheinlichkeitenArray is array (1 .. 5, 4 .. 10) of Float; -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
    KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray := (1 => (0.25, 0.35, 0.45, 0.55, 0.70, 0.75, 0.85),

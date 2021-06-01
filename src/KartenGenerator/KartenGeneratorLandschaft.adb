@@ -139,12 +139,12 @@ package body KartenGeneratorLandschaft is
                                                                     ZusatzYAbstandExtern => 1);
 
             case
-              KartenWert.Erfolgreich
+              KartenWert.YAchse
             is
-               when False =>
+               when 0 =>
                   exit XAchseEinsSchleife;
                   
-               when True =>
+               when others =>
                   null;
             end case;
             
@@ -222,12 +222,12 @@ package body KartenGeneratorLandschaft is
                                                                           ZusatzYAbstandExtern => 1);
 
                   case
-                    KartenWert.Erfolgreich
+                    KartenWert.YAchse
                   is
-                     when False =>
+                     when 0 =>
                         exit XAchseZweiSchleife;
                   
-                     when True =>
+                     when others =>
                         null;
                   end case;
                   
@@ -266,12 +266,12 @@ package body KartenGeneratorLandschaft is
                                                                           ZusatzYAbstandExtern => 1);
 
             case
-              KartenWertHügel.Erfolgreich
+              KartenWertHügel.YAchse
             is
-               when False =>
+               when 0 =>
                   exit XAchseHügelSchleife;
                   
-               when True =>
+               when others =>
                   null;
             end case;
             

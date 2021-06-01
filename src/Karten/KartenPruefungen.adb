@@ -6,7 +6,7 @@ package body KartenPruefungen is
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
       ZusatzYAbstandExtern : in GlobaleDatentypen.Kartenfeld)
-      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
    is begin -- Der ZusatzYAbstandExtern ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
       
       if
@@ -14,14 +14,14 @@ package body KartenPruefungen is
         or
           KoordinatenExtern.EAchse + ÄnderungExtern.EAchse > Karten.WeltkarteArray'Last (1)
       then
-         return (GlobaleDatentypen.EbeneVorhanden'First, GlobaleDatentypen.KartenfeldPositiv'First, GlobaleDatentypen.KartenfeldPositiv'First, False);
+         return (GlobaleDatentypen.EbeneVorhanden'First, GlobaleDatentypen.KartenfeldPositivMitNullwert'First, GlobaleDatentypen.KartenfeldPositivMitNullwert'First);
 
       elsif
         KoordinatenExtern.YAchse + ÄnderungExtern.YAchse < Karten.WeltkarteArray'First (2) + ZusatzYAbstandExtern
         or
           KoordinatenExtern.YAchse + ÄnderungExtern.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstandExtern
       then
-         return (GlobaleDatentypen.EbeneVorhanden'First, GlobaleDatentypen.KartenfeldPositiv'First, GlobaleDatentypen.KartenfeldPositiv'First, False);
+         return (GlobaleDatentypen.EbeneVorhanden'First, GlobaleDatentypen.KartenfeldPositivMitNullwert'First, GlobaleDatentypen.KartenfeldPositivMitNullwert'First);
 
       elsif
         KoordinatenExtern.XAchse + ÄnderungExtern.XAchse < Karten.WeltkarteArray'First (3)
@@ -33,7 +33,7 @@ package body KartenPruefungen is
             Überhang := Überhang + Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
          end loop SchleifeKleiner;
-         return (KoordinatenExtern.EAchse + ÄnderungExtern.EAchse, KoordinatenExtern.YAchse + ÄnderungExtern.YAchse, GlobaleDatentypen.Kartenfeld (Überhang), True);
+         return (KoordinatenExtern.EAchse + ÄnderungExtern.EAchse, KoordinatenExtern.YAchse + ÄnderungExtern.YAchse, GlobaleDatentypen.Kartenfeld (Überhang));
                
       elsif
         KoordinatenExtern.XAchse + ÄnderungExtern.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
@@ -45,10 +45,10 @@ package body KartenPruefungen is
             Überhang := Überhang - Positive (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
             
          end loop SchleifeGrößer;
-         return (KoordinatenExtern.EAchse + ÄnderungExtern.EAchse, KoordinatenExtern.YAchse + ÄnderungExtern.YAchse, GlobaleDatentypen.Kartenfeld (Überhang), True);
+         return (KoordinatenExtern.EAchse + ÄnderungExtern.EAchse, KoordinatenExtern.YAchse + ÄnderungExtern.YAchse, GlobaleDatentypen.Kartenfeld (Überhang));
                
       else
-         return (KoordinatenExtern.EAchse + ÄnderungExtern.EAchse, KoordinatenExtern.YAchse + ÄnderungExtern.YAchse, KoordinatenExtern.XAchse + ÄnderungExtern.XAchse, True);
+         return (KoordinatenExtern.EAchse + ÄnderungExtern.EAchse, KoordinatenExtern.YAchse + ÄnderungExtern.YAchse, KoordinatenExtern.XAchse + ÄnderungExtern.XAchse);
       end if;
       
    end KartenPositionBestimmen;

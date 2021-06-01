@@ -121,19 +121,19 @@ package body Karte is
          XAchseSchleife:
          for XAchseSchleifenwert in -Sichtweiten (SichtweiteFestlegen).XAchse .. Sichtweiten (SichtweiteFestlegen).XAchse loop
             
-            Kartenwert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt,
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt,
                                                                     ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
             
             case
-              Kartenwert.Erfolgreich
+              KartenWert.YAchse
             is
-               when False =>
+               when 0 =>
                   exit XAchseSchleife;
                   
-               when True =>
+               when others =>
                   Sichtbarkeit.Sichtbarkeit (InDerStadtExtern  => False,
-                                             KoordinatenExtern => (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse),
+                                             KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse),
                                              RasseExtern       => RasseExtern);
             end case;
             
@@ -406,15 +406,17 @@ package body Karte is
                      BewegungPlanSchleife:
                      for BewegungGeplantSchleifenwert in GlobaleRecords.KIBewegungPlanArray'Range loop
                         
-                        Put_Line (Item => "EAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).EAchse'Wide_Wide_Image & " "
-                                  & "YAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).YAchse'Wide_Wide_Image & " "
-                                  & "XAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).XAchse'Wide_Wide_Image);
+                        Put_Line (Item => "EAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).EAchse'Wide_Wide_Image
+                                  & "    " & "YAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).YAchse'Wide_Wide_Image
+                                  & "    " & "XAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).XAchse'Wide_Wide_Image);
                         
                      end loop BewegungPlanSchleife;
                      
-                     Put_Line (Item => "Ziel EAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIZielKoordinaten.EAchse'Wide_Wide_Image & " "
-                               & "Ziel YAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIZielKoordinaten.YAchse'Wide_Wide_Image & " "
+                     Put_Line (Item => "Ziel EAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIZielKoordinaten.EAchse'Wide_Wide_Image & "    "
+                               & "Ziel YAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIZielKoordinaten.YAchse'Wide_Wide_Image & "    "
                                & "Ziel XAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIZielKoordinaten.XAchse'Wide_Wide_Image);
+                     
+                     Put_Line (Item => "Aufgabe: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBeschäftigt'Wide_Wide_Image);
                      
                end case;
             end if;

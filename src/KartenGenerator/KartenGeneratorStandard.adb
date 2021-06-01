@@ -141,12 +141,12 @@ package body KartenGeneratorStandard is
                                                                     ZusatzYAbstandExtern => 1);
 
             case
-              KartenWert.Erfolgreich
+              KartenWert.YAchse
             is
-               when False =>
+               when 0 =>
                   exit XAchseEinsSchleife;
                   
-               when True =>
+               when others =>
                   BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
                   GenerierungLandmasseÜberhang (YAchseExtern  => KartenWert.YAchse,
                                                  XAchseExtern  => KartenWert.XAchse,
@@ -166,12 +166,12 @@ package body KartenGeneratorStandard is
                                                                     ZusatzYAbstandExtern => 1);
             
             case
-              KartenWert.Erfolgreich
+              KartenWert.YAchse
             is
-               when False =>
+               when 0 =>
                   exit XAchseZweiSchleife;
                   
-               when True =>
+               when others =>
                   null;
             end case;
             

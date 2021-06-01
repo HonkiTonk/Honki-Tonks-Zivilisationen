@@ -24,7 +24,7 @@ private
    Überhang : Integer;
    Wahl : Integer;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    procedure EinwohnerZuweisen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

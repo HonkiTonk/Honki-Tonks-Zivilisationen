@@ -41,7 +41,7 @@ private
 
    Wert : Integer;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    RasseUndPlatznummer : GlobaleRecords.RassePlatznummerRecord;
    

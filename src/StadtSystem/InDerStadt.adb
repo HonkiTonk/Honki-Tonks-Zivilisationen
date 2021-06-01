@@ -164,12 +164,12 @@ package body InDerStadt is
                                                                  ZusatzYAbstandExtern => 0);
             
          case
-           KartenWert.Erfolgreich
+           KartenWert.YAchse
          is
-            when False =>
+            when 0 =>
                return;
                                  
-            when True =>
+            when others =>
                null;
          end case;
             

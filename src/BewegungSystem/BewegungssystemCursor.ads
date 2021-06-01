@@ -25,7 +25,7 @@ private
 
    Position : GlobaleRecords.AchsenKartenfeldPositivRecord with Part_Of => BewegungssystemCursorState;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord with Part_Of => BewegungssystemCursorState;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord with Part_Of => BewegungssystemCursorState;
    
    Änderung : GlobaleRecords.AchsenKartenfeldRecord with Part_Of => BewegungssystemCursorState;
 

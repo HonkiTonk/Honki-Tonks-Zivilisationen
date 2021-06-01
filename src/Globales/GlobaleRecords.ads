@@ -23,12 +23,6 @@ package GlobaleRecords is
       XAchse : GlobaleDatentypen.KartenfeldPositivMitNullwert;
       
    end record;
-
-   type AchsenKartenfeldPositivErfolgreichRecord is new AchsenKartenfeldPositivRecord with record
-      
-      Erfolgreich : Boolean;
-      
-   end record;
    
    
 

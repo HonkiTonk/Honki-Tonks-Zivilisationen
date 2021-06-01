@@ -78,7 +78,7 @@ package body StadtBauen is
          when others =>
             null;
       end case;
-            
+      
       StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
       StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
       ForschungsDatenbank.ForschungZeit (RasseExtern => EinheitRasseNummerExtern.Rasse); 
@@ -134,12 +134,12 @@ package body StadtBauen is
                                                                     ZusatzYAbstandExtern => 0);
             
             case
-              KartenWert.Erfolgreich
+              KartenWert.YAchse
             is
-               when False =>
+               when 0 =>
                   exit XAchseSchleife;
                   
-               when True =>
+               when others =>
                   null;
             end case;
             
@@ -203,12 +203,12 @@ package body StadtBauen is
                                                                     ZusatzYAbstandExtern => 0);
                         
             case
-              KartenWert.Erfolgreich
+              KartenWert.YAchse
             is
-               when False =>
+               when 0 =>
                   exit XAchsenSchleife;
                         
-               when True =>
+               when others =>
                   null;
             end case;
                   

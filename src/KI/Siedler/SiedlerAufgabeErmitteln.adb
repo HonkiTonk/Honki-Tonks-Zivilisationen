@@ -5,7 +5,7 @@ use KIDatentypen;
 
 with EinheitenDatenbank;
 
-with StadtSuchen, EinheitSuchen, KarteneigenschaftVereinfachung, DatenbankVereinfachung, SiedlerAufgabeFestlegen;
+with StadtSuchen, EinheitSuchen, DatenbankVereinfachung, SiedlerAufgabeFestlegen, KIPruefungen;
 
 package body SiedlerAufgabeErmitteln is
 
@@ -17,7 +17,7 @@ package body SiedlerAufgabeErmitteln is
       
       Wichtigkeit (0) := NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (1) := NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Wichtigkeit (2) := StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Wichtigkeit (2) := StadtUmgebungVerbessern (RasseExtern => EinheitRasseNummerExtern.Rasse);
       Wichtigkeit (3) := EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (4) := Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (5) := SichHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -74,7 +74,7 @@ package body SiedlerAufgabeErmitteln is
          return 10;
          
       elsif
-        VorhandeneSiedler < VorhandeneStädte * 2 - VorhandeneSiedler
+        VorhandeneSiedler > VorhandeneStädte * 2 - VorhandeneSiedler
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
          return 5;
@@ -90,26 +90,21 @@ package body SiedlerAufgabeErmitteln is
 
 
    function StadtUmgebungVerbessern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (RasseExtern : in GlobaleDatentypen.Rassen)
       return Natural
    is begin
       
-      VerbesserungStraße := KarteneigenschaftVereinfachung.KartenStraßeVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      VerbesserungGebiet := KarteneigenschaftVereinfachung.KartenVerbesserungVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      DurchEigeneStadtBelegt := KarteneigenschaftVereinfachung.KartenBelegterGrundAbgleich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-   
-      if
-        DurchEigeneStadtBelegt = True        
-        and
-          (VerbesserungStraße = 0
-           or
-             VerbesserungGebiet = 0)
-      then
-         return 5;
+      KartenWert := KIPruefungen.StadtUmgebungPrüfen (RasseExtern => RasseExtern);
+      
+      case
+        KartenWert.YAchse
+      is
+         when 0 =>
+            return 0;
             
-      else
-         return 0;
-      end if;      
+         when others =>
+            return 5;
+      end case;  
             
    end StadtUmgebungVerbessern;
                                     

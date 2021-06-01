@@ -42,7 +42,7 @@ private
 
    PositionWert : GlobaleRecords.RassePlatznummerRecord;
    GezogeneWerte : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    PlatzBelegt : GlobaleRecords.RassePlatznummerRecord;
 
    type KoordinatenArray is array (1 .. 2) of GlobaleRecords.AchsenKartenfeldRecord;

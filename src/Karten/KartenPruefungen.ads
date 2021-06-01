@@ -12,7 +12,7 @@ package KartenPruefungen is
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
       ZusatzYAbstandExtern : in GlobaleDatentypen.Kartenfeld)
-      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße

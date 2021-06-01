@@ -299,9 +299,9 @@ package body KarteStadt is
                                                                        ZusatzYAbstandExtern => 0);
 
                case
-                 KartenWert.Erfolgreich
+                 KartenWert.YAchse
                is
-                  when False =>
+                  when 0 =>
                      Sichtbarkeit.Farben (EinheitExtern      => 0,
                                           VerbesserungExtern => 0,
                                           RessourceExtern    => 0,
@@ -310,7 +310,7 @@ package body KarteStadt is
                                           EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
                                           RasseExtern        => 0);
                            
-                  when True =>
+                  when others =>
                      Sichtbarkeit.Farben (EinheitExtern      => 0,
                                           VerbesserungExtern => 0,
                                           RessourceExtern    => 0,
@@ -335,12 +335,12 @@ package body KarteStadt is
                                                                     ZusatzYAbstandExtern => 0);
 
             case
-              KartenWert.Erfolgreich
+              KartenWert.YAchse
             is
-               when False =>
+               when 0 =>
                   Put (Item => " ");
 
-               when True =>
+               when others =>
                   Sichtbarkeit.Sichtbarkeit (InDerStadtExtern  => True,
                                              KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse),
                                              RasseExtern       => StadtRasseNummerExtern.Rasse);
@@ -373,12 +373,12 @@ package body KarteStadt is
                                                               ZusatzYAbstandExtern => 0);
 
       case
-        KartenWert.Erfolgreich
+        KartenWert.YAchse
       is
-         when False =>
+         when 0 =>
             return;
          
-         when True =>
+         when others =>
             null;
       end case;
       

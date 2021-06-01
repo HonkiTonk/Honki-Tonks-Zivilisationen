@@ -158,12 +158,12 @@ is
                                                               ZusatzYAbstandExtern => 0);
       
       case
-        KartenWert.Erfolgreich
+        KartenWert.YAchse
       is
-         when False =>
+         when 0 =>
             return;
               
-         when True =>
+         when others =>
             GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
       end case;
       

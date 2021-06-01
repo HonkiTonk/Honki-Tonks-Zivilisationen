@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with KIDatentypen;
 use KIDatentypen;
 
-with KIBewegungDurchfuehren, SiedlerAufgabeErmitteln;
+with KIBewegungDurchfuehren, SiedlerAufgabeErmitteln, SiedlerAufgabeDurchfuehren;
 
 package body KISiedler is
 
@@ -16,6 +16,8 @@ package body KISiedler is
          
          if
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten /= (0, 0, 0)
+           and
+             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID > 0
          then
             KIBewegungDurchfuehren.KIBewegungNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -23,6 +25,8 @@ package body KISiedler is
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung = GlobaleDatentypen.Keine
            and
              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt = KIDatentypen.Keine_Aufgabe
+           and
+             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID > 0
          then
             SiedlerAufgabeErmitteln.SiedlerAufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -39,7 +43,7 @@ package body KISiedler is
               or
                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung /= GlobaleDatentypen.Keine)
          then
-            null; -- AufgabeDurchführen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            SiedlerAufgabeDurchfuehren.SiedlerAufgabeDurchfuehren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          else
             return;

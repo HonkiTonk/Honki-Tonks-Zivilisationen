@@ -6,6 +6,7 @@ use GlobaleDatentypen;
 package Wachstum is
    
    procedure Wachstum;
+   
    procedure WachstumBeiStadtGründung
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with

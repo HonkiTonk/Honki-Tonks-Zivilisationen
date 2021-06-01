@@ -2,9 +2,99 @@ pragma SPARK_Mode (On);
 
 with KIVariablen;
 
-with KIBewegungBerechnen, KartenPruefungen;
+with KIBewegungBerechnen, KartenPruefungen, StadtWerteFestlegen;
 
 package body KIPruefungen is
+   
+   function StadtUmgebungPrüfen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+   is begin
+      
+      VerbesserungAnlegen := (0, 0, 0);      
+      
+      StadtSchleife:
+      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+         
+         if
+           GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID > 0
+         then
+            VerbesserungAnlegen := StadtUmgebungUnverbessert (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert));
+            
+         else
+            null;
+         end if;
+         
+         case
+           VerbesserungAnlegen.YAchse
+         is
+            when 0 =>
+               null;
+               
+            when others =>
+               return VerbesserungAnlegen;
+         end case;
+         
+      end loop StadtSchleife;
+      
+      return (0, 0, 0);
+      
+   end StadtUmgebungPrüfen;
+   
+   
+   
+   function StadtUmgebungUnverbessert
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+   is begin
+      
+      YAchseSchleife:
+      for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         XAchseSchleife:
+         for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition,
+                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                    ZusatzYAbstandExtern => 0);
+            
+            case
+              KartenWert.YAchse
+            is
+               when 0 =>
+                  exit XAchseSchleife;
+                  
+               when others =>
+                  null;
+            end case;
+            
+            if
+              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= 2
+              and
+                Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= 31
+              and
+                Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
+            in
+              GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Rasse) * StadtWerteFestlegen.RassenMulitplikationWert .. GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Rasse)
+              * StadtWerteFestlegen.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleVariablen.StadtGebaut'Last (2))
+              and
+                (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet = 0
+                 or
+                   Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße = 0)
+            then
+               return KartenWert;
+               
+            else
+               null;
+            end if;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+      return (0, 0, 0);
+      
+   end StadtUmgebungUnverbessert;
+   
+   
    
    function EinheitenAbstandBerechnen
      (EinheitEinsRasseNummerExtern, EinheitZweiRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -224,11 +314,11 @@ package body KIPruefungen is
    function NähesteEigeneStadtSuchen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       RichtungExtern : in KIDatentypen.Richtung_Enum)
-      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
    is begin
 
       -- Kandidaten (1) ist die jetzt näheste gefundene Stadt, Kandidaten (2) ist Norden oder Süden und Kandidaten (3) ist Westen oder Osten.
-      Kandidaten := (others => (0, 1, 1, False));
+      Kandidaten := (others => (0, 0, 0));
 
       StadtSchleife:
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
@@ -267,12 +357,12 @@ package body KIPruefungen is
                     Kandidaten (2) = Kandidaten (3)
                   then
                      Kandidaten (1) := Kandidaten (2);
-                     Kandidaten (2) := (0, 1, 1, False);
-                     Kandidaten (3) := (0, 1, 1, False);
+                     Kandidaten (2) := (0, 0, 0);
+                     Kandidaten (3) := (0, 0, 0);
                      
                   else
-                     Kandidaten (2) := (0, 1, 1, False);
-                     Kandidaten (3) := (0, 1, 1, False);
+                     Kandidaten (2) := (0, 0, 0);
+                     Kandidaten (3) := (0, 0, 0);
                   end if;
                
                when KIDatentypen.Osten =>
@@ -284,12 +374,12 @@ package body KIPruefungen is
                     Kandidaten (2) = Kandidaten (3)
                   then
                      Kandidaten (1) := Kandidaten (2);
-                     Kandidaten (2) := (0, 1, 1, False);
-                     Kandidaten (3) := (0, 1, 1, False);
+                     Kandidaten (2) := (0, 0, 0);
+                     Kandidaten (3) := (0, 0, 0);
                      
                   else
-                     Kandidaten (2) := (0, 1, 1, False);
-                     Kandidaten (3) := (0, 1, 1, False);
+                     Kandidaten (2) := (0, 0, 0);
+                     Kandidaten (3) := (0, 0, 0);
                   end if;
                
                when KIDatentypen.Süden | KIDatentypen.Süd_Ost | KIDatentypen.Süd_West =>
@@ -316,12 +406,12 @@ package body KIPruefungen is
                     Kandidaten (2) = Kandidaten (3)
                   then
                      Kandidaten (1) := Kandidaten (2);
-                     Kandidaten (2) := (0, 1, 1, False);
-                     Kandidaten (3) := (0, 1, 1, False);
+                     Kandidaten (2) := (0, 0, 0);
+                     Kandidaten (3) := (0, 0, 0);
                      
                   else
-                     Kandidaten (2) := (0, 1, 1, False);
-                     Kandidaten (3) := (0, 1, 1, False);
+                     Kandidaten (2) := (0, 0, 0);
+                     Kandidaten (3) := (0, 0, 0);
                   end if;
                
                when KIDatentypen.Westen =>
@@ -333,12 +423,12 @@ package body KIPruefungen is
                     Kandidaten (2) = Kandidaten (3)
                   then
                      Kandidaten (1) := Kandidaten (2);
-                     Kandidaten (2) := (0, 1, 1, False);
-                     Kandidaten (3) := (0, 1, 1, False);
+                     Kandidaten (2) := (0, 0, 0);
+                     Kandidaten (3) := (0, 0, 0);
                      
                   else
-                     Kandidaten (2) := (0, 1, 1, False);
-                     Kandidaten (3) := (0, 1, 1, False);
+                     Kandidaten (2) := (0, 0, 0);
+                     Kandidaten (3) := (0, 0, 0);
                   end if;
                   
                when others =>
@@ -348,14 +438,15 @@ package body KIPruefungen is
          
       end loop StadtSchleife;
       
-      if
-        Kandidaten (1).Erfolgreich = True
-      then
-         return Kandidaten (1);
-         
-      else
-         return (0, 1, 1, False);
-      end if;
+      case
+        Kandidaten (1).YAchse
+      is
+         when 0 =>
+            return (0, 0, 0);
+            
+         when others =>
+            return Kandidaten (1);
+      end case;
 
    end NähesteEigeneStadtSuchen;
 
@@ -380,14 +471,14 @@ package body KIPruefungen is
          
       else
          case
-           Kandidaten (1).Erfolgreich
+           Kandidaten (1).YAchse
          is
-            when False =>
+            when 0 =>
                Kandidaten (2) := (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse,
                                   GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse,
-                                  GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse, True);
+                                  GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse);
 
-            when True =>
+            when others =>
                if
                abs (Kandidaten (1).YAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse)
                  <= abs (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse
@@ -398,7 +489,7 @@ package body KIPruefungen is
                else
                   Kandidaten (2) := (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse,
                                      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse,
-                                     GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse, True);
+                                     GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse);
                end if;
          end case;
       end if;
@@ -426,14 +517,14 @@ package body KIPruefungen is
          
       else
          case
-           Kandidaten (1).Erfolgreich
+           Kandidaten (1).YAchse
          is
-            when False =>
+            when 0 =>
                Kandidaten (2) := (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse,
                                   GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse,
-                                  GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse, True);
+                                  GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse);
 
-            when True =>
+            when others =>
                if
                abs (Kandidaten (1).YAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse)
                  <= abs (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse
@@ -444,7 +535,7 @@ package body KIPruefungen is
                else
                   Kandidaten (2) := (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse,
                                      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse,
-                                     GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse, True);
+                                     GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse);
                end if;
          end case;
       end if;
@@ -471,14 +562,14 @@ package body KIPruefungen is
          
       else
          case
-           Kandidaten (1).Erfolgreich
+           Kandidaten (1).YAchse
          is
-            when False =>
+            when 0 =>
                Kandidaten (3) := (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse,
                                   GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse,
-                                  GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse, True);
+                                  GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse);
 
-            when True =>
+            when others =>
                if
                abs (Kandidaten (1).XAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse)
                  <= abs (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse
@@ -489,7 +580,7 @@ package body KIPruefungen is
                else
                   Kandidaten (3) := (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse,
                                      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse,
-                                     GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse, True);
+                                     GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse);
                end if;
          end case;
       end if;
@@ -517,14 +608,14 @@ package body KIPruefungen is
          
       else
          case
-           Kandidaten (1).Erfolgreich
+           Kandidaten (1).YAchse
          is
-            when False =>
+            when 0 =>
                Kandidaten (3) := (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse,
                                   GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse,
-                                  GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse, True);
+                                  GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse);
 
-            when True =>
+            when others =>
                if
                abs (Kandidaten (1).XAchse - GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse)
                  <= abs (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse
@@ -535,7 +626,7 @@ package body KIPruefungen is
                else
                   Kandidaten (3) := (GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.EAchse,
                                      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.YAchse,
-                                     GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse, True);
+                                     GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerExtern).AchsenPosition.XAchse);
                end if;
          end case;
       end if;
@@ -548,7 +639,7 @@ package body KIPruefungen is
    function NähesteEigeneEinheitSuchen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       RichtungExtern : in KIDatentypen.Richtung_Enum)
-      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
    is begin
 
       EinheitenSchleife:
@@ -565,7 +656,7 @@ package body KIPruefungen is
          
       end loop EinheitenSchleife;
       
-      return (0, 1, 1, False);
+      return (0, 0, 0);
 
    end NähesteEigeneEinheitSuchen;
    
@@ -574,7 +665,7 @@ package body KIPruefungen is
    function UmgebungStadtBauenPrüfen     
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
-      return GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
    is begin
       
       FeldSchlechtOderBelegt := KartenfeldUmgebungPrüfen (KoordinatenExtern          => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
@@ -584,7 +675,7 @@ package body KIPruefungen is
         FeldSchlechtOderBelegt
       is
          when False =>
-            return (0, 0, 0, True);
+            return (0, 0, 0);
             
          when True =>
             null;
@@ -609,12 +700,12 @@ package body KIPruefungen is
                                                                        ZusatzYAbstandExtern => 0);
             
                case
-                 KartenWert.Erfolgreich
+                 KartenWert.YAchse
                is
-                  when False =>
+                  when 0 =>
                      exit XAchseKartenfeldSuchenSchleife;
                   
-                  when True =>
+                  when others =>
                      null;
                end case;
                            
@@ -635,7 +726,7 @@ package body KIPruefungen is
                  FeldSchlechtOderBelegt
                is
                   when False =>
-                     return (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse, True);
+                     return (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
                      
                   when True =>
                      null;
@@ -677,7 +768,7 @@ package body KIPruefungen is
          
       end loop KartenfeldSuchenSchleife;
       
-      return (0, 0, 0, False);
+      return (0, 0, 0);
       
    end UmgebungStadtBauenPrüfen;
    
@@ -710,12 +801,12 @@ package body KIPruefungen is
                                                                     ZusatzYAbstandExtern => 0);
             
             case
-              KartenWert.Erfolgreich
+              KartenWert.YAchse
             is
-               when False =>
+               when 0 =>
                   exit XAchseUmgebungSchleife;
                   
-               when True =>
+               when others =>
                   null;
             end case;
                

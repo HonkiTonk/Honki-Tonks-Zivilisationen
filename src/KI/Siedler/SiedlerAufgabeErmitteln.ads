@@ -15,28 +15,23 @@ package SiedlerAufgabeErmitteln is
    
 private
    
-   DurchEigeneStadtBelegt : Boolean;
-   
    GewählteAufgabe : Natural;
    VorhandeneStädte : Natural;
    VorhandeneSiedler : Natural;
    
-   VerbesserungStraße : GlobaleDatentypen.KartenVerbesserung;
-   VerbesserungGebiet : GlobaleDatentypen.KartenVerbesserung;
-   
    EinheitID : GlobaleDatentypen.EinheitenID;
+   
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    type WichtigkeitArray is array (0 .. 7) of Natural;
    Wichtigkeit : WichtigkeitArray;
 
    function StadtUmgebungVerbessern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (RasseExtern : in GlobaleDatentypen.Rassen)
       return Natural
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
    
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

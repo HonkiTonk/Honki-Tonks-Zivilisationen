@@ -35,9 +35,9 @@ private
    
    BewertungPosition : Positive;
    
-   ZielKoordinaten : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   ZielKoordinaten : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
-   Kartenwert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    type FeldBewertungArray is array (GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range, GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range) of Natural;
    FeldBewertung : FeldBewertungArray;

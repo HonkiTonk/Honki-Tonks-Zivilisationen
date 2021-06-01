@@ -57,14 +57,14 @@ package body BewegungssystemEinheiten is
                                                                  ZusatzYAbstandExtern => 0);
          
          case
-           KartenWert.Erfolgreich
-         is
-            when True =>
+           KartenWert.YAchse
+         is               
+            when 0 =>
+               Bewegung := GlobaleDatentypen.Leer;
+               
+            when others =>
                Bewegung := BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                             NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-               
-            when False =>
-               Bewegung := GlobaleDatentypen.Leer;
          end case;
 
          case

@@ -49,7 +49,7 @@ private
 
    StadtNummer : GlobaleDatentypen.MaximaleStädte;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    procedure AmWasser
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

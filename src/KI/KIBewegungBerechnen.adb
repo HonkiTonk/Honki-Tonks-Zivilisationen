@@ -145,22 +145,22 @@ package body KIBewegungBerechnen is
          null;
       end if;
       
-      Kartenwert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
+      KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
                                                               ÄnderungExtern       => (0, YÄnderungExtern, XÄnderungExtern),
                                                               ZusatzYAbstandExtern => 0);
             
       case
-        Kartenwert.Erfolgreich
+        KartenWert.YAchse
       is
-         when False =>
+         when 0 =>
             return 0;
                   
-         when True =>
+         when others =>
             null;
       end case;
       
       FeldSchonBetreten := FeldBereitsBetreten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                KoordinatenExtern        => (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse));
+                                                KoordinatenExtern        => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
       
       case
         FeldSchonBetreten
@@ -173,7 +173,7 @@ package body KIBewegungBerechnen is
       end case;
                   
       FeldPassierbar := BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                         NeuePositionExtern       => (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse));
+                                                                                         NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
                   
       case
         FeldPassierbar
@@ -186,7 +186,7 @@ package body KIBewegungBerechnen is
       end case;
    
       FeldBlockiert := BewegungBlockiert.BlockiertStadtEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                NeuePositionExtern       => (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse));
+                                                                NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
                   
       case
         FeldBlockiert
@@ -199,33 +199,33 @@ package body KIBewegungBerechnen is
       end case;
       
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten = (Kartenwert.EAchse, Kartenwert.YAchse, Kartenwert.XAchse)
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten = (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse)
       then
          return 11;
         
       elsif
-      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - Kartenwert.YAchse)
+      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KartenWert.YAchse)
         < abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse)
         and
-      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - Kartenwert.XAchse)
+      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KartenWert.XAchse)
         < abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse)
       then
          return 10;
          
       elsif
-      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - Kartenwert.YAchse)
+      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KartenWert.YAchse)
         < abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse)
         or
-      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - Kartenwert.XAchse)
+      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KartenWert.XAchse)
         < abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse)
       then
          return 5;
          
       elsif        
-      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - Kartenwert.YAchse)
+      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KartenWert.YAchse)
         > abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse)
         or
-      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - Kartenwert.XAchse)
+      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KartenWert.XAchse)
         > abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse)
       then
          return 2;
@@ -241,7 +241,7 @@ package body KIBewegungBerechnen is
    function FeldBereitsBetreten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-   return Boolean
+      return Boolean
    is begin
       
       FelderSchleife:
@@ -273,14 +273,14 @@ package body KIBewegungBerechnen is
                                                                  RichtungExtern         => RichtungExtern);
 
       case
-        ZielKoordinaten.Erfolgreich
-      is
-      when True =>
-         return;
+        ZielKoordinaten.YAchse
+      is            
+         when 0 =>
+            ZielKoordinaten := KIPruefungen.NähesteEigeneEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                         RichtungExtern         => RichtungExtern);
             
-      when False =>
-         ZielKoordinaten := KIPruefungen.NähesteEigeneEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                      RichtungExtern         => RichtungExtern);
+         when others =>
+            return;
       end case;            
 
    end NeuesZielErmittelnGefahr;

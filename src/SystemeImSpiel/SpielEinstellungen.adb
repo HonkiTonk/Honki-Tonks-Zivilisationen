@@ -467,12 +467,12 @@ package body SpielEinstellungen is
                                                                           ÄnderungExtern       => (0, YÄnderung, XÄnderung),
                                                                           ZusatzYAbstandExtern => 0);
                   case
-                    KartenWert.Erfolgreich
+                    KartenWert.YAchse
                   is
-                     when False =>
+                     when 0 =>
                         exit XAchseSchleife;
                   
-                     when True =>
+                     when others =>
                         null;
                   end case;
                   

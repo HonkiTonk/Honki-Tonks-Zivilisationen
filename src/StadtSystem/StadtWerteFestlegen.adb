@@ -40,11 +40,11 @@ package body StadtWerteFestlegen is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
             
-            case KartenWert.Erfolgreich is
-               when False =>
+            case KartenWert.YAchse is
+               when 0 =>
                   exit XAchseSchleife;
                   
-               when True =>
+               when others =>
                   null;
             end case;
             
@@ -116,12 +116,12 @@ package body StadtWerteFestlegen is
                                                                              ÄnderungExtern       => (0, YPositionSchleifenwert, XPositionSchleifenwert),
                                                                              ZusatzYAbstandExtern => 0);
                      case
-                       KartenWert.Erfolgreich
+                       KartenWert.YAchse
                      is
-                        when False =>
+                        when 0 =>
                            exit XAchseSchleife;
                               
-                        when True =>
+                        when others =>
                            null;
                      end case;
 
@@ -180,11 +180,11 @@ package body StadtWerteFestlegen is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
             
-            case KartenWert.Erfolgreich is
-               when False =>
+            case KartenWert.YAchse is
+               when 0 =>
                   exit XAchseSchleife;
                   
-               when True =>
+               when others =>
                   null;
             end case;
             

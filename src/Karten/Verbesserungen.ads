@@ -26,7 +26,7 @@ private
 
    Straßenwert : Integer;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    procedure VerbesserungFehler
      (WelcherFehlerExtern : in Positive);

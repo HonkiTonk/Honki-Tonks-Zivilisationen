@@ -22,7 +22,7 @@ private
    GeldverbrauchKorruptionMultiplikator : GlobaleDatentypen.GesamtproduktionStadt;
    ForschungsverbrauchKorruptionMultiplikator : GlobaleDatentypen.GesamtproduktionStadt;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    procedure StadtProduktionPrüfenBerechnung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

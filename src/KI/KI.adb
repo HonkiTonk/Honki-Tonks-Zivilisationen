@@ -4,7 +4,7 @@ with KIDatentypen;
 use KIDatentypen;
 
 with EinheitenDatenbank, KISiedler, KINahkampfLandEinheit, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit, KINahkampfUnterirdisch,
-     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, EinheitSuchen;
+     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, EinheitSuchen, KIStadt;
 
 package body KI is
 
@@ -152,6 +152,8 @@ package body KI is
       else
          null;
       end if;
+      
+      KIStadt.KIStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end AktivitätStadt;
 

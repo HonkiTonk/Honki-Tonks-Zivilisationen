@@ -61,12 +61,12 @@ package body StadtProduktion is
                                                                     ZusatzYAbstandExtern => 0);
 
             case
-              KartenWert.Erfolgreich
+              KartenWert.YAchse
             is
-               when False =>
+               when 0 =>
                   exit XAchseSchleife;                                 
                                  
-               when True =>
+               when others =>
                   null;
             end case;
             

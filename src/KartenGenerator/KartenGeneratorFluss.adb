@@ -38,12 +38,12 @@ package body KartenGeneratorFluss is
                                                                              ZusatzYAbstandExtern => 0);
                      
                      case
-                       KartenWert.Erfolgreich
+                       KartenWert.YAchse
                      is
-                        when False =>
+                        when 0 =>
                            exit XAchseZweiSchleife;
                            
-                        when True =>
+                        when others =>
                            null;
                      end case;
                      
@@ -96,12 +96,12 @@ package body KartenGeneratorFluss is
                                                                     ZusatzYAbstandExtern => 0);
 
             case
-              KartenWert.Erfolgreich
+              KartenWert.YAchse
             is
-               when False =>
+               when 0 =>
                   exit XAchseSchleife;
 
-               when True =>
+               when others =>
                   null;
             end case;
             

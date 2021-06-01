@@ -35,6 +35,6 @@ package StadtWerteFestlegen is
 private
    
    NutzbarerBereich : GlobaleDatentypen.Kartenfeld;
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
 end StadtWerteFestlegen;

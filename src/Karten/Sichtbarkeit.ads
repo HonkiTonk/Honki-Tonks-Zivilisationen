@@ -63,6 +63,6 @@ private
 
    Wert : Integer;
 
-   Kartenwert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
 end Sichtbarkeit;

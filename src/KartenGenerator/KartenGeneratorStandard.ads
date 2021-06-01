@@ -13,7 +13,7 @@ private
 
    BeliebigerLandwert : Float;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    type WahrscheinlichkeitenFürLandArray is array (1 .. 4, 1 .. 7) of Float;
    WahrscheinlichkeitenFürLand : constant WahrscheinlichkeitenFürLandArray := (1 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),

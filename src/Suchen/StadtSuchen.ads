@@ -62,5 +62,8 @@ private
    AnzahlStädte : Natural;
    
    StadtName : Unbounded_Wide_Wide_String;
+   
+   type AktuelleStadtArray is array (GlobaleDatentypen.Rassen) of GlobaleDatentypen.MaximaleStädteMitNullWert;
+   AktuelleStadt : AktuelleStadtArray := (others => 0);
 
 end StadtSuchen;
