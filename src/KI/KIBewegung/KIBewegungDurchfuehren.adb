@@ -72,6 +72,7 @@ package body KIBewegungDurchfuehren is
             
          when others =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => (0, 0, 0));
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := (0, 0, 0);
       end case;
       
    end BewegungDurchführen;

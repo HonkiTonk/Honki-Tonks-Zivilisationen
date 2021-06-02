@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 package body KartenPruefungen is
 
    function KartenPositionBestimmen
@@ -14,14 +16,14 @@ package body KartenPruefungen is
         or
           KoordinatenExtern.EAchse + ÄnderungExtern.EAchse > Karten.WeltkarteArray'Last (1)
       then
-         return (GlobaleDatentypen.EbeneVorhanden'First, GlobaleDatentypen.KartenfeldPositivMitNullwert'First, GlobaleDatentypen.KartenfeldPositivMitNullwert'First);
+         return GlobaleKonstanten.RückgabeKartenPositionFalsch;
 
       elsif
         KoordinatenExtern.YAchse + ÄnderungExtern.YAchse < Karten.WeltkarteArray'First (2) + ZusatzYAbstandExtern
         or
           KoordinatenExtern.YAchse + ÄnderungExtern.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - ZusatzYAbstandExtern
       then
-         return (GlobaleDatentypen.EbeneVorhanden'First, GlobaleDatentypen.KartenfeldPositivMitNullwert'First, GlobaleDatentypen.KartenfeldPositivMitNullwert'First);
+         return GlobaleKonstanten.RückgabeKartenPositionFalsch;
 
       elsif
         KoordinatenExtern.XAchse + ÄnderungExtern.XAchse < Karten.WeltkarteArray'First (3)

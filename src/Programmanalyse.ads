@@ -19,10 +19,10 @@ private
    Kilobyte : constant Float := Bit / Float ((System.Storage_Unit * 1_024));
    Megabyte : constant Float := Bit / Float ((System.Storage_Unit * 1_024**2));
 
-   Kartenwert : GlobaleRecords.AchsenKartenfeldPositivErfolgreichRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    procedure DatentypGröße;
-
-   procedure WerteAufrufprüfung;
+   
+   procedure KartenfelderBewertenTesten;
 
 end Programmanalyse;

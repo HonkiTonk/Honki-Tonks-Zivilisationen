@@ -74,7 +74,7 @@ package body SiedlerAufgabeErmitteln is
          return 10;
          
       elsif
-        VorhandeneSiedler > VorhandeneStädte * 2 - VorhandeneSiedler
+        VorhandeneSiedler >= VorhandeneStädte * 2 - VorhandeneSiedler
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
          return 5;

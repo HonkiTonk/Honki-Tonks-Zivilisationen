@@ -1,8 +1,10 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with KIVariablen;
 
-with KIBewegungBerechnen, KartenPruefungen, StadtWerteFestlegen;
+with KIBewegungBerechnen, KartenPruefungen, StadtWerteFestlegen, EinheitSuchen;
 
 package body KIPruefungen is
    
@@ -768,7 +770,7 @@ package body KIPruefungen is
          
       end loop KartenfeldSuchenSchleife;
       
-      return (0, 0, 0);
+      return GlobaleKonstanten.RückgabeKartenPositionFalsch;
       
    end UmgebungStadtBauenPrüfen;
    
@@ -780,6 +782,28 @@ package body KIPruefungen is
       return Boolean
    is begin
       
+      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+      
+      case
+        EinheitAufFeld.Platznummer
+      is
+         when 0 =>
+            null;
+            
+         when others =>
+            return True;
+      end case;
+      
+      case
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund
+      is
+         when 0 =>
+            null;
+            
+         when others =>
+            return True;
+      end case;
+      
       KartenfeldBewertung := Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung;
       
       if
@@ -789,7 +813,7 @@ package body KIPruefungen is
          
       else
          return True;
-      end if;      
+      end if;
       
       YAchseUmgebungSchleife:
       for YAchseUmgebungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
@@ -812,11 +836,8 @@ package body KIPruefungen is
                
             if
               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund > 0
-            then
-               return True;
-               
-            elsif
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = 2
+              or
+                Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund in 1 .. 2
               or
                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = 31
             then

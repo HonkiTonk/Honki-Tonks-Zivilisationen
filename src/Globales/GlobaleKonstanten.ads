@@ -59,6 +59,14 @@ package GlobaleKonstanten is
 
 
 
+   -- Für den KartenPruefungen.KartenPositionBestimmen Rückgabewert
+   RückgabeKartenPositionFalsch : constant GlobaleRecords.AchsenKartenfeldPositivRecord := (GlobaleDatentypen.EbeneVorhanden'First,
+                                                                                             GlobaleDatentypen.KartenfeldPositivMitNullwert'First,
+                                                                                             GlobaleDatentypen.KartenfeldPositivMitNullwert'First);
+   -- Für den KartenPruefungen.KartenPositionBestimmen Rückgabewert
+
+
+
    -- Für die Leerwerte
    LeererWertCursor : constant GlobaleRecords.CursorRecord := ('©',       -- CursorGrafik
                                                                (0, 0, 0), -- AchsenPosition

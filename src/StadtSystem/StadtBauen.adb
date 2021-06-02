@@ -13,21 +13,23 @@ package body StadtBauen is
 
    procedure StadtBauen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-
-      BauMöglich := StadtBauenPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);      
+   is begin     
         
-      case
-        BauMöglich
-      is
-         when True =>
-            null;
-                  
-         when False =>
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
-                                                  TextZeileExtern => 6);
-            return;
-      end case;
+      if
+        StadtBauenPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+      then
+         null;
+         
+      elsif
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+      then
+         return;
+         
+      else
+         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                                               TextZeileExtern => 6);
+         return;
+      end if;
 
       StadtSchleife:
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
@@ -37,9 +39,16 @@ package body StadtBauen is
            and
              GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= 0
          then
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
-                                                  TextZeileExtern => 7);
-            return;
+            if
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+            then
+               return;
+               
+            else
+               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                                                     TextZeileExtern => 7);
+               return;
+            end if;
 
          elsif
            GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= 0
@@ -89,7 +98,20 @@ package body StadtBauen is
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
          when 2 =>
-            null; -- KI Stadtnamen hier einfügen
+            StadtNameSchleife:
+            for StadtNameSchleifenwert in KIStadtNameArray'Range (2) loop
+               
+               if
+                 KIStadtName (EinheitRasseNummerExtern.Rasse, StadtNameSchleifenwert) = 0
+               then
+                  KIStadtName (EinheitRasseNummerExtern.Rasse, StadtNameSchleifenwert) := 1;
+                  -- Hier dann aus Datei eingelesene Stadtnamen reinbauen
+                  
+               else
+                  null;
+               end if;
+               
+            end loop StadtNameSchleife;
                   
          when others =>
             GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).Name := Eingabe.StadtName;

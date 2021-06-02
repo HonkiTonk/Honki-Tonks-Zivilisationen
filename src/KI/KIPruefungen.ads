@@ -91,6 +91,8 @@ private
    
    KartenfeldBewertung : GlobaleDatentypen.GesamtproduktionStadt;
    
+   EinheitAufFeld : GlobaleRecords.RassePlatznummerRecord;
+   
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    -- 1 = Norden (-), 2 = Westen (-), 3 = Süden (+), 4 = Osten (+)

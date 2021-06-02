@@ -17,13 +17,14 @@ package body KIBewegungBerechnen is
         PlanungErfolgreich
       is
          when True =>
-            null;
+            VorhandenenPlanVereinfachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when False => -- Hier noch eine Entfernung der Zielkoordinaten/Aufgabe einfügen, wenn die Planung fehlschlägt? Oder Ziel/Aufgabe ändern?
-            null;
+         when False =>
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := (0, 0, 0);
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => (0, 0, 0));
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Keine;
       end case;
-      
-      -- Hier noch eine Prüfung auf Vereinfachung des Wegplans einbauen?
       
       return PlanungErfolgreich;
       
@@ -261,6 +262,16 @@ package body KIBewegungBerechnen is
       return False;
       
    end FeldBereitsBetreten;
+   
+   
+   
+   procedure VorhandenenPlanVereinfachen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      null; -- Hier dann unnötige Zwischenzüge entfernen lassen
+      
+   end VorhandenenPlanVereinfachen;
    
 
 

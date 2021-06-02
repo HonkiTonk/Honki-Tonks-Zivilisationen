@@ -43,13 +43,14 @@ package StadtBauen is
 
 private
 
-   BauMöglich : Boolean;
-
    Stadtart : GlobaleDatentypen.StadtID;
 
    StadtNummer : GlobaleDatentypen.MaximaleStädte;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+
+   type KIStadtNameArray is array (GlobaleDatentypen.Rassen'Range, 1 .. GlobaleVariablen.StadtGebautArray'Last (2) * 2) of Natural;
+   KIStadtName : KIStadtNameArray := (others => (others => 0));
 
    procedure AmWasser
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -65,6 +66,8 @@ private
      (RasseExtern : in GlobaleDatentypen.Rassen)
       return GlobaleDatentypen.StadtID
      with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0),
        Post =>
          (HauptstadtPrüfen'Result > 0);
 

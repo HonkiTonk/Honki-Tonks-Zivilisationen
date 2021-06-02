@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with Ada.Wide_Wide_Text_IO;
+use Ada.Wide_Wide_Text_IO;
+
 with KartenDatenbank, VerbesserungenDatenbank, KartenPruefungen;
 
 package body FelderwerteFestlegen is
@@ -28,9 +31,7 @@ package body FelderwerteFestlegen is
                         
                      when others =>
                         Karten.Weltkarte (KartenWert (KoordinatenExtern.EAchse).EAchse, KartenWert (KoordinatenExtern.EAchse).YAchse, KartenWert (KoordinatenExtern.EAchse).XAchse).Felderwertung := 0;
-                        KartenfelderBewertenKleineSchleife (KoordinatenExtern => (KartenWert (KoordinatenExtern.EAchse).EAchse,
-                                                                                  KartenWert (KoordinatenExtern.EAchse).YAchse,
-                                                                                  KartenWert (KoordinatenExtern.EAchse).XAchse));
+                        KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
                   end case;
                                                             
                end loop XAchseÄnderungSchleife;

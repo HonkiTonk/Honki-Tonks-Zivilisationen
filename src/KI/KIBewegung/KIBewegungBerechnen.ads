@@ -55,6 +55,16 @@ private
    type BewertungArray is array (1 .. 9) of BewertungRecord;
    Bewertung : BewertungArray;
    
+   procedure VorhandenenPlanVereinfachen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   
+   
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
