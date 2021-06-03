@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with KIDatentypen;
+with KIDatentypen, KIKonstanten;
 
 with EinheitenDatenbank;
 
@@ -63,7 +63,7 @@ package body SiedlerAufgabeFestlegen is
                                                                    MindestBewertungFeldExtern => MindestBewertungKartenfeld);
       
       if
-        NeueStadtPosition = (0, 0, 0)
+        NeueStadtPosition = KIKonstanten.NullKoordinate
       then
          StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -87,8 +87,6 @@ package body SiedlerAufgabeFestlegen is
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Verbesserung_Anlegen;
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIPruefungen.StadtUmgebungPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
-      
-      
       
    end StadtUmgebungVerbesserung;
    

@@ -1,8 +1,5 @@
 pragma SPARK_Mode (On);
 
-with Ada.Wide_Wide_Text_IO;
-use Ada.Wide_Wide_Text_IO;
-
 with KartenDatenbank, VerbesserungenDatenbank, KartenPruefungen;
 
 package body FelderwerteFestlegen is
@@ -19,19 +16,19 @@ package body FelderwerteFestlegen is
                XAchseÄnderungSchleife:
                for XAchseÄnderungSchleifenwert in LoopRangeMinusDreiZuDrei'Range loop
 
-                  KartenWert (KoordinatenExtern.EAchse) := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                                                                     ÄnderungExtern       => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
-                                                                                                     ZusatzYAbstandExtern => 0);
+                  KartenWertEins (KoordinatenExtern.EAchse) := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
+                                                                                                         ÄnderungExtern       => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
+                                                                                                         ZusatzYAbstandExtern => 0);
 
                   case
-                    KartenWert (KoordinatenExtern.EAchse).YAchse
+                    KartenWertEins (KoordinatenExtern.EAchse).YAchse
                   is
                      when 0 =>
                         exit XAchseÄnderungSchleife;
                         
                      when others =>
-                        Karten.Weltkarte (KartenWert (KoordinatenExtern.EAchse).EAchse, KartenWert (KoordinatenExtern.EAchse).YAchse, KartenWert (KoordinatenExtern.EAchse).XAchse).Felderwertung := 0;
-                        KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWert (KoordinatenExtern.EAchse));
+                        Karten.Weltkarte (KartenWertEins (KoordinatenExtern.EAchse).EAchse, KartenWertEins (KoordinatenExtern.EAchse).YAchse, KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := 0;
+                        KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWertEins (KoordinatenExtern.EAchse));
                   end case;
                                                             
                end loop XAchseÄnderungSchleife;
@@ -54,12 +51,12 @@ package body FelderwerteFestlegen is
          BewertungXÄnderungSchleife:
          for BewertungXÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
                      
-            KartenWert (KoordinatenExtern.EAchse) := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                                                               ÄnderungExtern       => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert),
-                                                                                               ZusatzYAbstandExtern => 0);
+            KartenWertZwei (KoordinatenExtern.EAchse) := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
+                                                                                                   ÄnderungExtern       => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert),
+                                                                                                   ZusatzYAbstandExtern => 0);
             
             case
-              KartenWert (KoordinatenExtern.EAchse).YAchse
+              KartenWertZwei (KoordinatenExtern.EAchse).YAchse
             is
                when 0 =>
                   exit BewertungXÄnderungSchleife;
@@ -78,8 +75,8 @@ package body FelderwerteFestlegen is
                     BewertungXÄnderungSchleifenwert = -2
             then
                BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
-                                YAchseFeldAufschlagExtern => KartenWert (KoordinatenExtern.EAchse).YAchse,
-                                XAchseFeldAufschlagExtern => KartenWert (KoordinatenExtern.EAchse).XAchse,
+                                YAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).YAchse,
+                                XAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).XAchse,
                                 TeilerExtern              => 2);
 
             elsif
@@ -92,14 +89,14 @@ package body FelderwerteFestlegen is
                     BewertungXÄnderungSchleifenwert = -3
             then
                BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
-                                YAchseFeldAufschlagExtern => KartenWert (KoordinatenExtern.EAchse).YAchse,
-                                XAchseFeldAufschlagExtern => KartenWert (KoordinatenExtern.EAchse).XAchse,
+                                YAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).YAchse,
+                                XAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).XAchse,
                                 TeilerExtern              => 3);
 
             else
                BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
-                                YAchseFeldAufschlagExtern => KartenWert (KoordinatenExtern.EAchse).YAchse,
-                                XAchseFeldAufschlagExtern => KartenWert (KoordinatenExtern.EAchse).XAchse,
+                                YAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).YAchse,
+                                XAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).XAchse,
                                 TeilerExtern              => 1);
             end if;
                                  
@@ -115,7 +112,7 @@ package body FelderwerteFestlegen is
       YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern : in GlobaleDatentypen.KartenfeldPositiv;
       TeilerExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
    is begin
-      
+            
       Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
         := Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
         + (KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Grund).Nahrungsgewinnung

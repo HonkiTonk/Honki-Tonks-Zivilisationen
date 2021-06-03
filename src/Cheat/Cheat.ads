@@ -10,6 +10,14 @@ package Cheat is
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+   
+   procedure KarteInfos
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
+          and
+            EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
 private
    
@@ -41,6 +49,7 @@ private
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
    procedure Informationen;
+   
    procedure Sichtbarkeit
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with

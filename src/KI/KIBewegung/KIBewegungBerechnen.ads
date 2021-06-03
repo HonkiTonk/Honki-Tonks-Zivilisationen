@@ -28,10 +28,6 @@ package KIBewegungBerechnen is
 private
    
    PlanungErfolgreich : Boolean;
-   FeldSchonBetreten : Boolean;
-   
-   FeldPassierbar : GlobaleDatentypen.Bewegung_Enum;
-   FeldBlockiert : GlobaleDatentypen.Bewegung_Enum;
    
    BewertungPosition : Positive;
    

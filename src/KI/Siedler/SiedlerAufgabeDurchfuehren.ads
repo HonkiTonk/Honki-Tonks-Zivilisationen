@@ -13,4 +13,16 @@ package SiedlerAufgabeDurchfuehren is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
+private
+
+   Grund : GlobaleDatentypen.KartenGrund;
+
+   procedure WelcheVerbesserungAnlegen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+
 end SiedlerAufgabeDurchfuehren;

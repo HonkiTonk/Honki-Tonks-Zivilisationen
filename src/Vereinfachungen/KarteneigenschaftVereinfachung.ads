@@ -16,6 +16,15 @@ package KarteneigenschaftVereinfachung is
          Post =>
            (KartenGrundVereinfachung'Result > 0);
 
+   function KartenHügelVereinfachung
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
+          and
+            EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
+
    function KartenFlussVereinfachung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KartenGrund

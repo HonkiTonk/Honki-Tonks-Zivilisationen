@@ -77,7 +77,7 @@ package KIPruefungen is
    
 private
    
-   FeldSchlechtOderBelegt : Boolean;
+   FeldGutUndFrei : Boolean;
 
    Richtung : Natural;
 
@@ -88,8 +88,6 @@ private
    XAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositiv;
    
    VerbesserungAnlegen : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   
-   KartenfeldBewertung : GlobaleDatentypen.GesamtproduktionStadt;
    
    EinheitAufFeld : GlobaleRecords.RassePlatznummerRecord;
    
@@ -142,15 +140,20 @@ private
    
    
    
-   function KartenfeldUmgebungPrüfen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+   function KartenfeldUmgebungPrüfen     
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       MindestBewertungFeldExtern : in GlobaleDatentypen.GesamtproduktionStadt)
       return Boolean
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
    function StadtUmgebungUnverbessert
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

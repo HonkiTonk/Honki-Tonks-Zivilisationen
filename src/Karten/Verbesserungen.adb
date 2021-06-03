@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with KIDatentypen;
+
 with EinheitenDatenbank, Anzeige, FelderwerteFestlegen, KartenPruefungen, KarteneigenschaftVereinfachung;
 
 package body Verbesserungen is
@@ -12,6 +14,12 @@ package body Verbesserungen is
 
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung = GlobaleDatentypen.Keine
+      then
+         VerbesserungFestgelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                 BefehlExtern             => BefehlExtern);
+         
+      elsif
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
       then
          VerbesserungFestgelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                  BefehlExtern             => BefehlExtern);
@@ -48,63 +56,63 @@ package body Verbesserungen is
       Grund := KarteneigenschaftVereinfachung.KartenGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
-        BefehlExtern = Straße_Bauen
+        BefehlExtern = GlobaleDatentypen.Straße_Bauen
       then
          VerbesserungStraße (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                               GrundExtern              => Grund);
          
       elsif
-        BefehlExtern = Mine_Bauen
+        BefehlExtern = GlobaleDatentypen.Mine_Bauen
       then
          VerbesserungMine (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                            GrundExtern              => Grund);
          
       elsif
-        BefehlExtern = Farm_Bauen
+        BefehlExtern = GlobaleDatentypen.Farm_Bauen
       then
          VerbesserungFarm (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                            GrundExtern              => Grund);
          
       elsif
-        BefehlExtern = Festung_Bauen
+        BefehlExtern = GlobaleDatentypen.Festung_Bauen
       then
          VerbesserungFestung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                               GrundExtern              => Grund);
          
       elsif
-        BefehlExtern = Wald_Aufforsten
+        BefehlExtern = GlobaleDatentypen.Wald_Aufforsten
       then
          VerbesserungWald (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                            GrundExtern              => Grund);
          
       elsif
-        BefehlExtern = Roden_Trockenlegen
+        BefehlExtern = GlobaleDatentypen.Roden_Trockenlegen
       then
          VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                             GrundExtern              => Grund);
          
       elsif
-        BefehlExtern = Heilen
+        BefehlExtern = GlobaleDatentypen.Heilen
       then
          VerbesserungHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       elsif
-        BefehlExtern = Verschanzen
+        BefehlExtern = GlobaleDatentypen.Verschanzen
       then
          VerbesserungVerschanzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       elsif
-        BefehlExtern = Runde_Aussetzen
+        BefehlExtern = GlobaleDatentypen.Runde_Aussetzen
       then
          VerbesserungAussetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       elsif
-        BefehlExtern = Einheit_Auflösen
+        BefehlExtern = GlobaleDatentypen.Einheit_Auflösen
       then
          VerbesserungAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       elsif
-        BefehlExtern = Plündern
+        BefehlExtern = GlobaleDatentypen.Plündern
       then
          VerbesserungPlündern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -603,6 +611,7 @@ package body Verbesserungen is
          is
             when GlobaleDatentypen.Keine =>
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Keine;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 0;
 
             when others =>

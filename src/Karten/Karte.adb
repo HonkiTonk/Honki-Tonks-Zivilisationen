@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten;
 
-with KarteStadt, KartenDatenbank, Karten, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, KartenPruefungen, EinheitSuchen, StadtSuchen, Anzeige;
+with KarteStadt, KartenDatenbank, Karten, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, KartenPruefungen, EinheitSuchen, StadtSuchen, Anzeige, Cheat;
 
 package body Karte is
 
@@ -401,23 +401,7 @@ package body Karte is
                      null;
                                  
                   when True =>
-                     Put_Line (Item => "Aktuelle Rasse: " & RasseUndPlatznummer.Rasse'Wide_Wide_Image);
-                     
-                     BewegungPlanSchleife:
-                     for BewegungGeplantSchleifenwert in GlobaleRecords.KIBewegungPlanArray'Range loop
-                        
-                        Put_Line (Item => "EAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).EAchse'Wide_Wide_Image
-                                  & "    " & "YAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).YAchse'Wide_Wide_Image
-                                  & "    " & "XAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).XAchse'Wide_Wide_Image);
-                        
-                     end loop BewegungPlanSchleife;
-                     
-                     Put_Line (Item => "Ziel EAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIZielKoordinaten.EAchse'Wide_Wide_Image & "    "
-                               & "Ziel YAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIZielKoordinaten.YAchse'Wide_Wide_Image & "    "
-                               & "Ziel XAchse: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIZielKoordinaten.XAchse'Wide_Wide_Image);
-                     
-                     Put_Line (Item => "Aufgabe: " & GlobaleVariablen.EinheitenGebaut (RasseUndPlatznummer.Rasse, RasseUndPlatznummer.Platznummer).KIBeschäftigt'Wide_Wide_Image);
-                     
+                     Cheat.KarteInfos (EinheitRasseNummerExtern => RasseUndPlatznummer);                     
                end case;
             end if;
             

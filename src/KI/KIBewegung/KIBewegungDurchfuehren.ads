@@ -14,10 +14,6 @@ package KIBewegungDurchfuehren is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
 private
-   
-   NeuerBewegungsplan : Boolean;
-   
-   FeldImmerNochFrei : GlobaleDatentypen.Bewegung_Enum;
 
    procedure BewegungDurchführen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

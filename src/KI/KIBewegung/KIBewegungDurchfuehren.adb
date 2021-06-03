@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with BewegungssystemEinheiten, BewegungBlockiert, KIBewegungBerechnen;
+with BewegungssystemEinheiten, BewegungBlockiert, KIBewegungBerechnen, KINullwerteSetzen;
 
 package body KIBewegungDurchfuehren is
    
@@ -15,7 +15,8 @@ package body KIBewegungDurchfuehren is
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition
            = GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten
          then
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := (0, 0, 0);
+            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                      WelchenWertNullSetzten   => 0);
             return;
             
          elsif
@@ -26,10 +27,9 @@ package body KIBewegungDurchfuehren is
          elsif
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (1) = (0, 0, 0)
          then
-            NeuerBewegungsplan := KIBewegungBerechnen.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
             case
-              NeuerBewegungsplan
+              KIBewegungBerechnen.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
             is
                when True =>
                   null;
@@ -52,11 +52,9 @@ package body KIBewegungDurchfuehren is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      FeldImmerNochFrei := BewegungBlockiert.BlockiertStadtEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                    NeuePositionExtern       => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (1));
-      
       case
-        FeldImmerNochFrei
+        BewegungBlockiert.BlockiertStadtEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 NeuePositionExtern       => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (1))
       is
          when GlobaleDatentypen.Normale_Bewegung_Möglich =>      
             BewegungssystemEinheiten.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -71,8 +69,8 @@ package body KIBewegungDurchfuehren is
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (GlobaleRecords.KIBewegungPlanArray'Last) := (0, 0, 0);
             
          when others =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => (0, 0, 0));
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := (0, 0, 0);
+            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                      WelchenWertNullSetzten   => 0);
       end case;
       
    end BewegungDurchführen;
