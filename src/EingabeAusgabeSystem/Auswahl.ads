@@ -34,7 +34,6 @@ private
    AktuelleAuswahl : Natural;
    Anfang : Natural;
    Ende : Natural;
-   Befehl : Natural;
 
    JaNein : Integer;
    

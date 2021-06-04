@@ -401,7 +401,7 @@ package body Karte is
                      null;
                                  
                   when True =>
-                     Cheat.KarteInfos (EinheitRasseNummerExtern => RasseUndPlatznummer);                     
+                     Cheat.KarteInfosEinheiten (EinheitRasseNummerExtern => RasseUndPlatznummer);                     
                end case;
             end if;
             
@@ -711,15 +711,7 @@ package body Karte is
             null;
                                  
          when True =>
-            Put (Item => "Aktuelle EPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse'Wide_Wide_Image);
-            Put (Item => "    Aktuelle YPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse'Wide_Wide_Image);
-            Put_Line (Item => "    Aktuelle XPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse'Wide_Wide_Image);
-            Put (Item => "Kartenfeldbewertung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Felderwertung'Wide_Wide_Image);
-            Put_Line (Item => "    Aktuelle GrundID: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund'Wide_Wide_Image);
-            Put_Line (Item => "Aktuelle Stadtbelegung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).DurchStadtBelegterGrund'Wide_Wide_Image);
+            Cheat.KarteInfosFeld (RasseExtern => RasseExtern);
       end case;
       
    end Information; 

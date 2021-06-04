@@ -40,10 +40,9 @@ package body Diplomatie is
       GegnerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      BereitsImKrieg := Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasseExtern   => EinheitRasseNummerExtern.Rasse,
-                                                                VerteidigendeRasseExtern => GegnerExtern.Rasse);
       case
-        BereitsImKrieg
+        Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasseExtern   => EinheitRasseNummerExtern.Rasse,
+                                                                VerteidigendeRasseExtern => GegnerExtern.Rasse)
       is
          when GlobaleDatentypen.Neutral | GlobaleDatentypen.Offene_Grenzen =>
             Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 11);

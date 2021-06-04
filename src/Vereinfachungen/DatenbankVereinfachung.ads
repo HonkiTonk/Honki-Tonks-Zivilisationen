@@ -26,7 +26,5 @@ package DatenbankVereinfachung is
 private
    
    EinheitID : GlobaleDatentypen.EinheitenID;
-   
-   EinheitenGrafik : Wide_Wide_Character;
 
 end DatenbankVereinfachung;

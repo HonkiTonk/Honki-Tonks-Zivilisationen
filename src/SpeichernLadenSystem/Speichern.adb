@@ -22,9 +22,8 @@ package body Speichern is
             if
               Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) = True
             then -- Anzeige der vorhandenen Spielstände einbauen
-               Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 18);
                case
-                 Wahl
+                 Auswahl.AuswahlJaNein (FrageZeileExtern => 18)
                is
                   when -3 =>
                      null;

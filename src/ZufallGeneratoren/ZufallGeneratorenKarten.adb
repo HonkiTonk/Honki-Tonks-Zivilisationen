@@ -11,50 +11,41 @@ package body ZufallGeneratorenKarten is
       is
          when 1 =>
             WerteWählen20.Reset (PositionGewählt20);
-            ZufallsPunktKarte := (0, WerteWählen20.Random (PositionGewählt20), WerteWählen20.Random (PositionGewählt20));
-            return ZufallsPunktKarte;
+            return (0, WerteWählen20.Random (PositionGewählt20), WerteWählen20.Random (PositionGewählt20));
 
          when 2 =>
             WerteWählen40.Reset (PositionGewählt40);
-            ZufallsPunktKarte := (0, WerteWählen40.Random (PositionGewählt40), WerteWählen40.Random (PositionGewählt40));
-            return ZufallsPunktKarte;
+            return(0, WerteWählen40.Random (PositionGewählt40), WerteWählen40.Random (PositionGewählt40));
             
          when 3 =>
             WerteWählen80.Reset (PositionGewählt80);
-            ZufallsPunktKarte := (0, WerteWählen80.Random (PositionGewählt80), WerteWählen80.Random (PositionGewählt80));
-            return ZufallsPunktKarte;
+            return (0, WerteWählen80.Random (PositionGewählt80), WerteWählen80.Random (PositionGewählt80));
             
          when 4 =>
             WerteWählen80.Reset (PositionGewählt80);
             WerteWählen120.Reset (PositionGewählt120);
-            ZufallsPunktKarte := (0, WerteWählen120.Random (PositionGewählt120), WerteWählen80.Random (PositionGewählt80));
-            return ZufallsPunktKarte;
+            return (0, WerteWählen120.Random (PositionGewählt120), WerteWählen80.Random (PositionGewählt80));
             
          when 5 =>
             WerteWählen120.Reset (PositionGewählt120);
             WerteWählen160.Reset (PositionGewählt160);
-            ZufallsPunktKarte := (0, WerteWählen120.Random (PositionGewählt120), WerteWählen160.Random (PositionGewählt160));
-            return ZufallsPunktKarte;
+            return (0, WerteWählen120.Random (PositionGewählt120), WerteWählen160.Random (PositionGewählt160));
             
          when 6 =>
             WerteWählen160.Reset (PositionGewählt160);
-            ZufallsPunktKarte := (0, WerteWählen160.Random (PositionGewählt160), WerteWählen160.Random (PositionGewählt160));
-            return ZufallsPunktKarte;
+            return (0, WerteWählen160.Random (PositionGewählt160), WerteWählen160.Random (PositionGewählt160));
             
          when 7 =>
             WerteWählen240.Reset (PositionGewählt240);
-            ZufallsPunktKarte := (0, WerteWählen240.Random (PositionGewählt240), WerteWählen240.Random (PositionGewählt240));
-            return ZufallsPunktKarte;
+            return (0, WerteWählen240.Random (PositionGewählt240), WerteWählen240.Random (PositionGewählt240));
             
          when 8 =>
             WerteWählen320.Reset (PositionGewählt320);
-            ZufallsPunktKarte := (0, WerteWählen320.Random (PositionGewählt320), WerteWählen320.Random (PositionGewählt320));
-            return ZufallsPunktKarte;
+            return (0, WerteWählen320.Random (PositionGewählt320), WerteWählen320.Random (PositionGewählt320));
             
          when 9 =>
             WerteWählen1000.Reset (PositionGewählt1000);
-            ZufallsPunktKarte := (0, WerteWählen1000.Random (PositionGewählt1000), WerteWählen1000.Random (PositionGewählt1000));
-            return ZufallsPunktKarte;
+            return (0, WerteWählen1000.Random (PositionGewählt1000), WerteWählen1000.Random (PositionGewählt1000));
 
          when others => -- 10, benutzerdefinierte Auswahl
             WerteWählen1000.Reset (PositionGewählt1000);
@@ -86,9 +77,7 @@ package body ZufallGeneratorenKarten is
    is begin
 
       Ada.Numerics.Float_Random.Reset (ZufälligerFloatWert);
-      GewählterFloatWert := Ada.Numerics.Float_Random.Random (ZufälligerFloatWert);
-      
-      return GewählterFloatWert;
+      return Ada.Numerics.Float_Random.Random (ZufälligerFloatWert);
       
    end ZufälligerWert;
 

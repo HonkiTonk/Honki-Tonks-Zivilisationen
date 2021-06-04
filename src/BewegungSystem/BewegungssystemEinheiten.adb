@@ -118,11 +118,9 @@ package body BewegungssystemEinheiten is
          if
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte = 0.00
          then
-            Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             return;
             
          else
-            Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
          end if;
          
@@ -271,9 +269,19 @@ package body BewegungssystemEinheiten is
                
             end loop TransporterZweiSchleife;
       end case;
-
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition := NeuePositionExtern;
-      GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).AchsenPosition := NeuePositionExtern;
+      
+      case
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
+      is
+         when 2 =>
+            null;
+            
+         when others =>
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition := NeuePositionExtern;
+            GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).AchsenPosition := NeuePositionExtern;
+      end case;      
+      
+      Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end BewegungEinheitenBerechnung;
 

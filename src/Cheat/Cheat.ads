@@ -11,17 +11,21 @@ package Cheat is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
    
-   procedure KarteInfos
+   procedure KarteInfosEinheiten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
+   
+   procedure KarteInfosFeld
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
 private
-   
-   Taste : Wide_Wide_Character;
 
    AktuelleRasseEinheit : GlobaleDatentypen.Rassen := 1;
    AktuelleRasseStadt : GlobaleDatentypen.Rassen := 1;

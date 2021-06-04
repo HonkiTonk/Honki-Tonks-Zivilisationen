@@ -27,11 +27,13 @@ private
    Wichtigkeit : WichtigkeitArray;
 
    function StadtUmgebungVerbessern
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Natural
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

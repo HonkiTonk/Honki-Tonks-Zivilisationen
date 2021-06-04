@@ -20,8 +20,6 @@ package Verbesserungen is
    
 private
    
-   Wahl : Boolean;
-
    Grund : GlobaleDatentypen.KartenGrund;
 
    Straßenwert : Integer;

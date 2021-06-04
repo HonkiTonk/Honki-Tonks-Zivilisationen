@@ -19,6 +19,7 @@ package GlobaleKonstanten is
    OptionenKonstante : constant Positive := 4;
    InformationenKonstante : constant Positive := 5;
    WiederherstellenKonstante : constant Positive := 6;
+   WürdigungenKonstante : constant Positive := 7;
    -- Für die Auswahl
 
 

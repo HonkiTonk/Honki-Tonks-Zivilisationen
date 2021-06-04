@@ -59,8 +59,6 @@ private
 
    SichtweiteObjekt : GlobaleDatentypen.Sichtweite := 2;
 
-   KartenGrund : GlobaleDatentypen.KartenGrund;
-
    Wert : Integer;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;

@@ -49,10 +49,8 @@ package body Sichtbarkeit is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      KartenGrund := KarteneigenschaftVereinfachung.KartenGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
       case
-        KartenGrund
+        KarteneigenschaftVereinfachung.KartenGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when 7 =>
             SichtweiteObjekt := 3;

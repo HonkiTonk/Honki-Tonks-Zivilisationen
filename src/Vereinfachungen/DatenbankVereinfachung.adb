@@ -9,9 +9,7 @@ package body DatenbankVereinfachung is -- Im Prinzip für alles Möglichkeiten e
       return GlobaleDatentypen.EinheitenID
    is begin
       
-      EinheitID := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID;
-      
-      return EinheitID;
+      return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID;
       
    end EinheitenIDVereinfachung;
    
@@ -24,9 +22,7 @@ package body DatenbankVereinfachung is -- Im Prinzip für alles Möglichkeiten e
       
       EinheitID := EinheitenIDVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      EinheitenGrafik := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitID).EinheitenGrafik;
-      
-      return EinheitenGrafik;
+      return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitID).EinheitenGrafik;
       
    end EinheitenListeGrafikVereinfachung;
 

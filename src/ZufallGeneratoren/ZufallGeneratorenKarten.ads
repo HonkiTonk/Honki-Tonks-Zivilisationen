@@ -64,7 +64,6 @@ private
 
    -- Generatoren für KartenGeneratorStandard
    ZufälligerFloatWert : Ada.Numerics.Float_Random.Generator;
-   GewählterFloatWert : Float;
    -- Generatoren für KartenGeneratorStandard
 
 

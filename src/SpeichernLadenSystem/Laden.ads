@@ -10,8 +10,6 @@ package Laden is
 
 private
 
-   Wahl : Integer;
-
    VersionsnummerPrüfung : Wide_Wide_String (1 .. 9);
 
    SpielstandName : Unbounded_Wide_Wide_String;

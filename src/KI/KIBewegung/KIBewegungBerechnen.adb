@@ -42,7 +42,7 @@ package body KIBewegungBerechnen is
    is begin
       
       if
-        AktuellePlanpositionExtern > 10
+        AktuellePlanpositionExtern > GlobaleRecords.KIBewegungPlanArray'Last
       then
          return True;
          
@@ -65,7 +65,7 @@ package body KIBewegungBerechnen is
                                                                                                                     YÄnderungExtern          => YAchseÄnderungSchleifenwert,
                                                                                                                     XÄnderungExtern          => XAchseÄnderungSchleifenwert);
          
-               Bewertung (BewertungPosition) := (FeldBewertung (YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert), YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert);
+               Bewertung (BewertungPosition) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse, FeldBewertung (YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert));
                BewertungPosition := BewertungPosition + 1;
                
             end loop XAchseÄnderungSchleife;
@@ -98,17 +98,17 @@ package body KIBewegungBerechnen is
                
             when 11 =>
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (AktuellePlanpositionExtern)
-                 := (AktuelleKoordinatenExtern.EAchse, AktuelleKoordinatenExtern.YAchse + Bewertung (DurchlaufSchleifenwert).YÄnderung, AktuelleKoordinatenExtern.XAchse + Bewertung (DurchlaufSchleifenwert).XÄnderung);
+                 := (Bewertung (DurchlaufSchleifenwert).EAchse, Bewertung (DurchlaufSchleifenwert).YAchse, Bewertung (DurchlaufSchleifenwert).XAchse);
                return True;
                
             when others =>
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (AktuellePlanpositionExtern)
-                 := (AktuelleKoordinatenExtern.EAchse, AktuelleKoordinatenExtern.YAchse + Bewertung (DurchlaufSchleifenwert).YÄnderung, AktuelleKoordinatenExtern.XAchse + Bewertung (DurchlaufSchleifenwert).XÄnderung);
+                 := (Bewertung (DurchlaufSchleifenwert).EAchse, Bewertung (DurchlaufSchleifenwert).YAchse, Bewertung (DurchlaufSchleifenwert).XAchse);
                
                PlanungErfolgreich := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                                     AktuelleKoordinatenExtern  => (AktuelleKoordinatenExtern.EAchse,
-                                                                                    AktuelleKoordinatenExtern.YAchse + Bewertung (DurchlaufSchleifenwert).YÄnderung,
-                                                                                    AktuelleKoordinatenExtern.XAchse + Bewertung (DurchlaufSchleifenwert).XÄnderung),
+                                                     AktuelleKoordinatenExtern  => (Bewertung (DurchlaufSchleifenwert).EAchse,
+                                                                                    Bewertung (DurchlaufSchleifenwert).YAchse,
+                                                                                    Bewertung (DurchlaufSchleifenwert).XAchse),
                                                      AktuellePlanpositionExtern => AktuellePlanpositionExtern + 1);
          end case;
          
@@ -292,9 +292,90 @@ package body KIBewegungBerechnen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
+      ErsterZugSchleife:
+      for ErsterZugSchleifenwert in GlobaleRecords.KIBewegungPlanArray'Range loop
+         ÜberNächsterZugSchleife:
+         for ÜberNächsterZugSchleifenwert in GlobaleRecords.KIBewegungPlanArray'Range loop
+            
+            if
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ÜberNächsterZugSchleifenwert) = KIKonstanten.NullKoordinate
+              or
+                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ErsterZugSchleifenwert) = KIKonstanten.NullKoordinate
+            then
+               return;
+               
+            else
+               null;
+            end if;
+            
+            if
+              ÜberNächsterZugSchleifenwert <= ErsterZugSchleifenwert + 1
+            then
+               null;
+               
+            else
+               VorhandenenPlanVereinfachenPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                   ErsterZugExtern         => ErsterZugSchleifenwert,
+                                                   ÜberNächsterZugExtern   => ÜberNächsterZugSchleifenwert);
+            end if;                
+            
+         end loop ÜberNächsterZugSchleife;
+      end loop ErsterZugSchleife;
+      
       null; -- Hier dann unnötige Zwischenzüge entfernen lassen
       
    end VorhandenenPlanVereinfachen;
+   
+   
+   
+   procedure VorhandenenPlanVereinfachenPrüfen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      ErsterZugExtern, ÜberNächsterZugExtern : in Positive)
+   is begin
+      
+      EAchseSchleife:
+      for EÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         YAchseSchleife:
+         for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            XAchseSchleife:
+            for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+                  
+               KartenWertVereinfachung := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                                                    EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ErsterZugExtern),
+                                                                                    ÄnderungExtern       => (GlobaleDatentypen.Ebene (EÄnderungSchleifenwert), YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                    ZusatzYAbstandExtern => 0);
+                     
+               case
+                 KartenWertVereinfachung.YAchse
+               is
+                  when 0 =>
+                     exit XAchseSchleife;
+                              
+                  when others =>
+                     null;
+               end case;
+                        
+               if
+                 KartenWertVereinfachung = GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ÜberNächsterZugExtern)
+               then
+                  BewegungPlanVerschiebenSchleife:
+                  for PositionSchleifenwert in ErsterZugExtern .. GlobaleRecords.KIBewegungPlanArray'Last - 1 loop
+               
+                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PositionSchleifenwert + 1)
+                       := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ÜberNächsterZugExtern);
+               
+                  end loop BewegungPlanVerschiebenSchleife;
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (GlobaleRecords.KIBewegungPlanArray'Last) := KIKonstanten.NullKoordinate;
+                           
+               else
+                  null;
+               end if;
+                  
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+      end loop EAchseSchleife;
+      
+   end VorhandenenPlanVereinfachenPrüfen;
    
 
 
@@ -309,12 +390,12 @@ package body KIBewegungBerechnen is
       case
         ZielKoordinaten.YAchse
       is            
-         when 0 =>
-            ZielKoordinaten := KIPruefungen.NähesteEigeneEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                         RichtungExtern         => RichtungExtern);
+      when 0 =>
+         ZielKoordinaten := KIPruefungen.NähesteEigeneEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                      RichtungExtern         => RichtungExtern);
             
-         when others =>
-            return;
+      when others =>
+         return;
       end case;            
 
    end NeuesZielErmittelnGefahr;

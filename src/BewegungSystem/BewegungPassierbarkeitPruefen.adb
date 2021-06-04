@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with EinheitenDatenbank, EinheitSuchen, StadtSuchen, KartenDatenbank, GlobaleKonstanten;
 
 package body BewegungPassierbarkeitPruefen with
-Refined_State => (BewegungPassierbarkeitPruefenState => (EinfachPassierbar, PassierbarkeitNummer, BewegungMöglich, StadtNummer, TransporterNummer, Transportplatz))
+Refined_State => (BewegungPassierbarkeitPruefenState => (PassierbarkeitNummer, BewegungMöglich, StadtNummer, TransporterNummer, Transportplatz))
 is
    
    -- 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
@@ -12,12 +12,10 @@ is
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.Bewegung_Enum
    is begin
-      
-      EinfachPassierbar := EinfachePassierbarkeitPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                          NeuePositionExtern       => NeuePositionExtern);
 
       case
-        EinfachPassierbar
+        EinfachePassierbarkeitPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                       NeuePositionExtern       => NeuePositionExtern)
       is
          when True =>
             return GlobaleDatentypen.Normale_Bewegung_Möglich;
@@ -111,10 +109,8 @@ is
       
       PassierbarkeitNummer := KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund).Passierbarkeit;
       
-      EinfachPassierbar := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitNummer);
-      
-      return EinfachPassierbar;
+      return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
+                                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitNummer);
       
    end EinfachePassierbarkeitPrüfen;
 
@@ -185,12 +181,10 @@ is
       return
      GlobaleDatentypen.Bewegung_Enum
    is begin
-
-      StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                 KoordinatenExtern => NeuePositionExtern);
          
       case
-        StadtNummer
+        StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                    KoordinatenExtern => NeuePositionExtern)
       is
          when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
             return GlobaleDatentypen.Keine_Bewegung_Möglich;
@@ -238,21 +232,5 @@ is
       end if;
 
    end Wasser;
-
-
-
-   -- Brauch ich da noch weitere Funktionen aktuell? Oder vielleicht erst später wenn weiter Funktionen im Spiel sind?
-   function Unterwasser
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Bewegung_Enum
-   is begin
-
-      StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                 KoordinatenExtern => NeuePositionExtern);
-      
-      return GlobaleDatentypen.Keine_Bewegung_Möglich;
-      
-   end Unterwasser;
 
 end BewegungPassierbarkeitPruefen;

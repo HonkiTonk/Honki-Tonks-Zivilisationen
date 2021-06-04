@@ -18,8 +18,6 @@ package ZufallGeneratorenSpieleinstellungen is
 private
    
    -- Generatoren für zufällige Spieleinstellungen
-   SpieleinstellungenAuswahl : Positive;
-
    subtype ZufälligeKartengröße is Positive range 1 .. 9;
    subtype ZufälligeKartenart is Positive range 1 .. 5;
    subtype ZufälligeKartentemperatur is Positive range 1 .. 5;

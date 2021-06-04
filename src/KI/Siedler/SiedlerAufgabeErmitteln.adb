@@ -17,7 +17,7 @@ package body SiedlerAufgabeErmitteln is
       
       Wichtigkeit (0) := NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (1) := NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Wichtigkeit (2) := StadtUmgebungVerbessern (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      Wichtigkeit (2) := StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (3) := EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (4) := Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (5) := SichHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -83,6 +83,16 @@ package body SiedlerAufgabeErmitteln is
          null;
       end if;
       
+      case
+        StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      is
+         when 0 =>
+            return 2;
+            
+         when others =>
+            null;
+      end case;
+      
       return 0;
       
    end NeueStadtBauenGehen;
@@ -90,11 +100,11 @@ package body SiedlerAufgabeErmitteln is
 
 
    function StadtUmgebungVerbessern
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Natural
    is begin
       
-      KartenWert := KIPruefungen.StadtUmgebungPrüfen (RasseExtern => RasseExtern);
+      KartenWert := KIPruefungen.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       case
         KartenWert.YAchse

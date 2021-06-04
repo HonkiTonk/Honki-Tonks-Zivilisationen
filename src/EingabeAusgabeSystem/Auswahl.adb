@@ -38,10 +38,8 @@ package body Auswahl is
                                  ErsteZeileExtern      => GlobaleVariablen.SprachenEinlesenArray'First,
                                  LetzteZeileExtern     => Ende);
          
-         Befehl := Eingabe.Tastenwert;
-         
          case
-           Befehl
+           Eingabe.Tastenwert
          is
             when 1 => 
                if
@@ -101,10 +99,8 @@ package body Auswahl is
                                        LetzteZeileExtern     => LetzteZeileExtern,
                                        AktuelleAuswahlExtern => AktuelleAuswahl);
 
-         Befehl := Eingabe.Tastenwert;
-         
          case
-           Befehl
+           Eingabe.Tastenwert
          is
             when 1 => 
                if
@@ -176,6 +172,11 @@ package body Auswahl is
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 10)
                then -- Wiederherstellen
                   return GlobaleKonstanten.WiederherstellenKonstante;
+
+               elsif
+                 GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 11)
+               then -- Würdigungen
+                  return GlobaleKonstanten.WürdigungenKonstante;
                      
                else
                   Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
@@ -183,7 +184,7 @@ package body Auswahl is
                end if;
                      
             when others =>
-               null;                    
+               null;
          end case;
 
       end loop AuswahlSchleife;

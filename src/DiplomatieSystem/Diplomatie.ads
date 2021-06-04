@@ -47,8 +47,6 @@ private
 
    Gewonnen : Boolean;
 
-   BereitsImKrieg : GlobaleDatentypen.StatusUntereinander;
-
    Wahl : Integer;
 
 end Diplomatie;

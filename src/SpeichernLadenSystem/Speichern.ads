@@ -18,7 +18,6 @@ private
    Trennzeichen : constant Wide_Wide_Character := ' ';
 
    AutospeichernWert : Positive := 1;
-   Wahl : Integer;
 
    KartenPlusWert : GlobaleDatentypen.Kartenfeld;
 

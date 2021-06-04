@@ -34,15 +34,14 @@ private
    ZielKoordinaten : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWertVereinfachung : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    type FeldBewertungArray is array (GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range, GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range) of Natural;
    FeldBewertung : FeldBewertungArray;
    
-   type BewertungRecord is record
+   type BewertungRecord is new GlobaleRecords.AchsenKartenfeldPositivRecord with record
       
       Bewertung : Natural;
-      YÄnderung : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
-      XÄnderung : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
       
    end record;
    
@@ -58,6 +57,19 @@ private
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   procedure VorhandenenPlanVereinfachenPrüfen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      ErsterZugExtern, ÜberNächsterZugExtern : in Positive)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+          and
+            ErsterZugExtern <= GlobaleRecords.KIBewegungPlanArray'Last
+          and
+            ÜberNächsterZugExtern <= GlobaleRecords.KIBewegungPlanArray'Last);
    
    
    

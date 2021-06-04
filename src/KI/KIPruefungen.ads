@@ -18,11 +18,13 @@ package KIPruefungen is
    
    
    function StadtUmgebungPrüfen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2),
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2),
          Post =>
            (StadtUmgebungPrüfen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
@@ -91,7 +93,8 @@ private
    
    EinheitAufFeld : GlobaleRecords.RassePlatznummerRecord;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWertEins : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWertZwei : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    -- 1 = Norden (-), 2 = Westen (-), 3 = Süden (+), 4 = Osten (+)
    type RichtungenFeindeArray is array (1 .. 4) of Natural;
@@ -156,12 +159,23 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
    function StadtUmgebungUnverbessert
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 2
           and
             StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'Range (2));
+   
+   function UmgebungWirdBereitsVerbessert
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen)
+      return Boolean
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
 end KIPruefungen;

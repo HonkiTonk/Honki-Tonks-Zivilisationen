@@ -40,10 +40,8 @@ package body Laden is
          null;
          
       else -- Falsche Versionsnummer
-         Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 24);
-         
          case
-           Wahl
+           Auswahl.AuswahlJaNein (FrageZeileExtern => 24)
          is
             when -3 =>
                null;

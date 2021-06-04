@@ -250,10 +250,8 @@ package body InDerStadtBauen is
                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
          end if;
          
-         Befehl := Eingabe.Tastenwert;
-         
          case
-           Befehl
+           Eingabe.Tastenwert
          is               
             when 1 => 
                if

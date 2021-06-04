@@ -387,8 +387,6 @@ package EinheitenDatenbank is
 private
    
    Heilungsrate : constant Positive := 10;
-
-   
    
    AktuelleAuswahl : GlobaleDatentypen.EinheitenIDMitNullWert;
    Ende : GlobaleDatentypen.EinheitenIDMitNullWert;

@@ -19,7 +19,7 @@ is
                             TextDateiExtern   => GlobaleDatentypen.Start,
                             FrageZeileExtern  => 1,
                             ErsteZeileExtern  => 2,
-                            LetzteZeileExtern => 6)
+                            LetzteZeileExtern => 7)
          is
             when GlobaleKonstanten.StartNormalKonstante => -- Start
                RückgabeKampagne := SpielEinstellungen.SpielEinstellungen;
@@ -74,7 +74,7 @@ is
             when GlobaleKonstanten.InformationenKonstante => -- Informationen
                Informationen.Informationen;
 
-            when 10 => -- Wuerdigung
+            when GlobaleKonstanten.WürdigungenKonstante => -- Wuerdigung
                Wuerdigung.Wuerdigung;
 
             when GlobaleKonstanten.SpielBeendenKonstante => -- Beenden

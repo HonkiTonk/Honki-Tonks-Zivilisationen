@@ -39,8 +39,6 @@ is
 
 private
    
-   EinfachPassierbar : Boolean with Part_Of => BewegungPassierbarkeitPruefenState;
-
    PassierbarkeitNummer : GlobaleDatentypen.PassierbarkeitType with Part_Of => BewegungPassierbarkeitPruefenState;
 
    BewegungMöglich : GlobaleDatentypen.Bewegung_Enum with Part_Of => BewegungPassierbarkeitPruefenState;
@@ -77,19 +75,5 @@ private
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) >0);
-
-   function Unterwasser
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Bewegung_Enum
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
 
 end BewegungPassierbarkeitPruefen;

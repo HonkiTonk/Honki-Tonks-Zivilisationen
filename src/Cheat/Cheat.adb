@@ -24,11 +24,9 @@ package body Cheat is
                                         AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                         AbstandMitteExtern     => GlobaleDatentypen.Neue_Zeile,
                                         AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
-         
-         Taste := Eingabe.TastenEingabe;
 
          case
-           Taste
+           Eingabe.TastenEingabe
          is
             when 'n' => -- Nächste Einheit (unabhängig von der Rasse)
                BeliebigeNächsteEinheit (RasseExtern => RasseExtern);
@@ -412,7 +410,7 @@ package body Cheat is
    
    
    
-   procedure KarteInfos
+   procedure KarteInfosEinheiten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -435,6 +433,28 @@ package body Cheat is
       Put_Line (Item => "AufgabeEins: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung'Wide_Wide_Image);
       Put_Line (Item => "AufgabeZwei: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger'Wide_Wide_Image);
       
-   end KarteInfos;
+   end KarteInfosEinheiten;
+   
+   
+   
+   procedure KarteInfosFeld
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
+      
+      Put (Item => "Aktuelle EPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse'Wide_Wide_Image);
+      Put (Item => "    Aktuelle YPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse'Wide_Wide_Image);
+      Put_Line (Item => "    Aktuelle XPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse'Wide_Wide_Image);
+      Put (Item => "Kartenfeldbewertung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Felderwertung'Wide_Wide_Image);
+      Put_Line (Item => "    Aktuelle GrundID: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund'Wide_Wide_Image);
+      Put_Line (Item => "Aktuelle Stadtbelegung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).DurchStadtBelegterGrund'Wide_Wide_Image);
+      Put (Item => "Straße: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße'Wide_Wide_Image);
+      Put_Line (Item => "    Feldverbesserung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet'Wide_Wide_Image);
+      
+   end KarteInfosFeld;
 
 end Cheat;

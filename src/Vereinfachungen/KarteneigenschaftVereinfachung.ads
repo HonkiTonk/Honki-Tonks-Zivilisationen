@@ -90,15 +90,6 @@ package KarteneigenschaftVereinfachung is
 
 private
 
-   Straße : GlobaleDatentypen.KartenVerbesserung;
-   Verbesserung : GlobaleDatentypen.KartenVerbesserung;
-
-   Grund : GlobaleDatentypen.KartenGrund;
-   Fluss : GlobaleDatentypen.KartenGrund;
-   Ressource : GlobaleDatentypen.KartenGrund;
-
-   KartenFeldbewertung : GlobaleDatentypen.GesamtproduktionStadt;
-
    BelegterStadtGrund : GlobaleDatentypen.BelegterGrund;
 
 
