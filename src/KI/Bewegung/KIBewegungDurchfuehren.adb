@@ -28,8 +28,7 @@ package body KIBewegungDurchfuehren is
             
          elsif
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (1) = KIKonstanten.NullKoordinate
-         then
-            
+         then            
             case
               KIBewegungBerechnen.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
             is

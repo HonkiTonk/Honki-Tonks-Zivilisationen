@@ -4,7 +4,7 @@ with KIDatentypen, KIKonstanten;
 
 with StadtBauen, KINullwerteSetzen, Verbesserungen, KarteneigenschaftVereinfachung, Karten;
 
-package body SiedlerAufgabeDurchfuehren is
+package body KISiedlerAufgabeDurchfuehren is
 
    procedure SiedlerAufgabeDurchfuehren
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -109,4 +109,4 @@ package body SiedlerAufgabeDurchfuehren is
       
    end WelcheVerbesserungAnlegen;
 
-end SiedlerAufgabeDurchfuehren;
+end KISiedlerAufgabeDurchfuehren;

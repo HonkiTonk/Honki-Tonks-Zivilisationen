@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleVariablen, GlobaleRecords, GlobaleDatentypen;
 use GlobaleDatentypen, GlobaleRecords;
 
-package SiedlerAufgabeDurchfuehren is
+package KISiedlerAufgabeDurchfuehren is
 
    procedure SiedlerAufgabeDurchfuehren
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -25,4 +25,4 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
-end SiedlerAufgabeDurchfuehren;
+end KISiedlerAufgabeDurchfuehren;

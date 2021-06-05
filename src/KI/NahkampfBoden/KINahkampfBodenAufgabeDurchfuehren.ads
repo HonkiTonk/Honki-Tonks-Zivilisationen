@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
-use GlobaleDatentypen, GlobaleRecords;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
+use GlobaleDatentypen;
 
-package KISiedler is
+package KINahkampfBodenAufgabeDurchfuehren is
 
-   procedure KISiedler
+   procedure NahkampfBodenAufgabeDurchfuehren
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
@@ -13,4 +13,4 @@ package KISiedler is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
-end KISiedler;
+end KINahkampfBodenAufgabeDurchfuehren;

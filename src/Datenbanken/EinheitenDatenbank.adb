@@ -114,48 +114,15 @@ package body EinheitenDatenbank is
 
    -- Kann Einheiten nur in Städten erzeugen
    procedure EinheitErzeugen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.EinheitenID)
    is begin
-
-      Position := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition;
-      EinheitNummer := 0;
             
-      EinheitenSchleife:
-      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
-            
-         if
-           GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert).ID = 0
-         then
-            EinheitNummer := EinheitNummerSchleifenwert;
-            exit EinheitenSchleife;
-
-         elsif
-           GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert).AchsenPosition
-           = GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition
-         then
-            return;
-            
-         else
-            null;
-         end if;
-            
-      end loop EinheitenSchleife;
-
-      case
-        EinheitNummer
-      is
-         when 0 =>
-            return;
-            
-         when others =>
-            GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummer).ID := IDExtern;
-            GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummer).AchsenPosition := Position;
-            LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummer));
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).VerbleibendeBauzeit := 0;
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleRessourcen := 0;
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt := 0;
-      end case;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID := IDExtern;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition := KoordinatenExtern;
+      LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
             
    end EinheitErzeugen;
 

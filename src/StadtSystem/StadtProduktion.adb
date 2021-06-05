@@ -14,6 +14,16 @@ package body StadtProduktion is
             for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
                StadtSchleife:
                for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+                  
+                  case
+                    GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+                  is
+                     when 0 =>
+                        exit StadtSchleife;
+                        
+                     when others =>
+                        null;
+                  end case;
                
                   case
                     GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID

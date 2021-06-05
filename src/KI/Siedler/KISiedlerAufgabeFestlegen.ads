@@ -1,12 +1,13 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
-use GlobaleDatentypen;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
+use GlobaleDatentypen, GlobaleRecords;
 
-package SiedlerAufgabeErmitteln is
-   
-   procedure SiedlerAufgabeErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+package KISiedlerAufgabeFestlegen is
+
+   procedure SiedlerAufgabeFestlegen
+     (GewählteAufgabeExtern : in Natural;
+      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
@@ -15,87 +16,56 @@ package SiedlerAufgabeErmitteln is
    
 private
    
-   GewählteAufgabe : Natural;
-   VorhandeneStädte : Natural;
-   VorhandeneSiedler : Natural;
+   MindestBewertungKartenfeld : GlobaleDatentypen.GesamtproduktionStadt;
    
-   EinheitID : GlobaleDatentypen.EinheitenID;
-   
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   
-   type WichtigkeitArray is array (0 .. 7) of Natural;
-   Wichtigkeit : WichtigkeitArray;
+   NeueStadtPosition : GlobaleRecords.AchsenKartenfeldPositivRecord;   
 
-   function StadtUmgebungVerbessern
+   procedure StadtBauenPrüfung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
-   function EinheitAuflösen
+   procedure StadtUmgebungVerbesserung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
-   function Fliehen
+   procedure Fliehen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
-
-   function NeueStadtBauenGehen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
-   function SichHeilen
+   procedure Heilen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
-   function SichBefestigen
+   procedure Befestigen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
-   function SichVerbessern
+   procedure Verbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
-   
-   function NichtsTun
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
-end SiedlerAufgabeErmitteln;
+end KISiedlerAufgabeFestlegen;

@@ -5,9 +5,9 @@ use KIDatentypen;
 
 with EinheitenDatenbank;
 
-with StadtSuchen, EinheitSuchen, DatenbankVereinfachung, SiedlerAufgabeFestlegen, KIPruefungen;
+with StadtSuchen, EinheitSuchen, DatenbankVereinfachung, KISiedlerAufgabeFestlegen, KIPruefungen;
 
-package body SiedlerAufgabeErmitteln is
+package body KISiedlerAufgabeErmitteln is
 
    procedure SiedlerAufgabeErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -51,8 +51,8 @@ package body SiedlerAufgabeErmitteln is
          end loop WichtigkeitZweiSchleife;
       end loop WichtigkeitEinsSchleife;
       
-      SiedlerAufgabeFestlegen.SiedlerAufgabeFestlegen (GewählteAufgabeExtern    => GewählteAufgabe,
-                                                       EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      KISiedlerAufgabeFestlegen.SiedlerAufgabeFestlegen (GewählteAufgabeExtern    => GewählteAufgabe,
+                                                         EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end SiedlerAufgabeErmitteln;
    
@@ -211,4 +211,4 @@ package body SiedlerAufgabeErmitteln is
       
    end NichtsTun;
 
-end SiedlerAufgabeErmitteln;
+end KISiedlerAufgabeErmitteln;

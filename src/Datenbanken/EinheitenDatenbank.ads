@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with GlobaleVariablen, GlobaleRecords, GlobaleDatentypen, DatenbankRecords;
 use GlobaleDatentypen, GlobaleRecords;
 
+with Karten;
+
 package EinheitenDatenbank is
 
    LeererWertEinheitListe : constant DatenbankRecords.EinheitenListeRecord := ('@', -- EinheitenGrafik
@@ -357,13 +359,18 @@ package EinheitenDatenbank is
    procedure HeilungBewegungspunkteNeueRundeErmitteln;
    
    procedure EinheitErzeugen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.EinheitenID)
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
+          and
+            KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure EinheitEntfernen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, Anzeige, StadtBauen;
+with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, Anzeige, StadtBauen, StadtEinheitenBauen;
 
 package body Wachstum is
 
@@ -244,7 +244,7 @@ package body Wachstum is
       elsif
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt
       in
-        1_001 .. 9_999
+        1_001 .. 9_999 -- Gebäude
       then
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleRessourcen
            := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleRessourcen
@@ -257,8 +257,16 @@ package body Wachstum is
             GebaeudeDatenbank.GebäudeProduktionBeenden (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                          IDExtern               => GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
                                                            StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - GlobaleKonstanten.GebäudeAufschlag));
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Zeug,
-                                                  TextZeileExtern => 29);
+            
+            if
+              StadtRasseNummerExtern.Rasse /= 1
+            then   
+               null;
+               
+            else
+               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Zeug,
+                                                     TextZeileExtern => 29);
+            end if;
             
          else
             null;
@@ -267,7 +275,7 @@ package body Wachstum is
       elsif
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt
       in
-        10_001 .. 99_999
+        10_001 .. 99_999 -- Einheiten
       then
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleRessourcen
            := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleRessourcen
@@ -277,19 +285,7 @@ package body Wachstum is
            >= EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
                                                  StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - GlobaleKonstanten.EinheitAufschlag)).PreisRessourcen
          then
-            EinheitenDatenbank.EinheitErzeugen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                IDExtern               => GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
-                                                  StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - GlobaleKonstanten.EinheitAufschlag));
-            if
-              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - GlobaleKonstanten.EinheitAufschlag > 0
-            then
-               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
-                                                     TextZeileExtern => 11);
-               
-            else
-               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Zeug,
-                                                     TextZeileExtern => 29);
-            end if;
+            StadtEinheitenBauen.EinheitFertiggestellt (StadtRasseNummerExtern => StadtRasseNummerExtern);            
 
          else
             null;

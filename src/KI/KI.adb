@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with KIDatentypen;
 use KIDatentypen;
 
-with EinheitenDatenbank, KISiedler, KINahkampfLandEinheit, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit, KINahkampfUnterirdisch,
+with EinheitenDatenbank, KISiedler, KINahkampfBoden, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit, KINahkampfUnterirdisch,
      KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, EinheitSuchen, KIStadt;
 
 package body KI is
@@ -91,7 +91,7 @@ package body KI is
             null;
             
          when 3 =>
-            KINahkampfLandEinheit.KINahkampfLandEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KINahkampfBoden.KINahkampfBoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 4 =>
             KIFernkampfLandEinheit.KIFernkampfLandEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

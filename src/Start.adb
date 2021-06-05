@@ -23,8 +23,8 @@ is begin
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                         TextDateiExtern        => GlobaleDatentypen.Start,
                                         ÜberschriftZeileExtern => 0,
-                                        ErsteZeileExtern       => 7,
-                                        LetzteZeileExtern      => 7,
+                                        ErsteZeileExtern       => 8,
+                                        LetzteZeileExtern      => 8,
                                         AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
                                         AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                         AbstandEndeExtern      => GlobaleDatentypen.Keiner);

@@ -1,13 +1,13 @@
 pragma SPARK_Mode (On);
 
-with KIDatentypen, KIKonstanten;
+with KIKonstanten, KIDatentypen;
 use KIDatentypen;
 
-with KIBewegungDurchfuehren, KISiedlerAufgabeErmitteln, KISiedlerAufgabeDurchfuehren;
+with KIBewegungDurchfuehren, KINahkampfBodenAufgabeErmitteln, KINahkampfBodenAufgabeDurchfuehren;
 
-package body KISiedler is
+package body KINahkampfBoden is
 
-   procedure KISiedler
+   procedure KINahkampfBoden
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -35,7 +35,7 @@ package body KISiedler is
            and
              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt = KIDatentypen.Keine_Aufgabe
          then
-            KISiedlerAufgabeErmitteln.SiedlerAufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KINahkampfBodenAufgabeErmitteln.NahkampfBodenAufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          else
             null;
@@ -59,7 +59,7 @@ package body KISiedler is
            and
              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten = KIKonstanten.NullKoordinate
          then
-            KISiedlerAufgabeDurchfuehren.SiedlerAufgabeDurchfuehren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KINahkampfBodenAufgabeDurchfuehren.NahkampfBodenAufgabeDurchfuehren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          else
             return;
@@ -67,6 +67,6 @@ package body KISiedler is
          
       end loop AktivitätSchleife;
       
-   end KISiedler;
+   end KINahkampfBoden;
 
-end KISiedler;
+end KINahkampfBoden;

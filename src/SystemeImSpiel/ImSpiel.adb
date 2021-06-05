@@ -5,7 +5,7 @@ use Ada.Calendar;
 
 with GlobaleVariablen, GlobaleKonstanten;
 
-with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, KI, Ladezeiten, Speichern, Laden, KIZuruecksetzen, StadtProduktion;
+with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, KI, Ladezeiten, Speichern, Laden, StadtProduktion;
 
 package body ImSpiel is
 
@@ -58,8 +58,11 @@ package body ImSpiel is
                         null;
                      end if;
                   
-                  when others =>
+                  when 2 =>
                      KI.KI (RasseExtern => RasseSchleifenwert);
+                     
+                  when others =>
+                     null;
                end case;
 
             else
@@ -153,7 +156,16 @@ package body ImSpiel is
       InDerStadtBauen.BauzeitAlle;
       StadtProduktion.StadtProduktionPrüfen ((0, 0));
       ForschungsDatenbank.ForschungFortschritt;
-      GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
+      
+      case
+        GlobaleVariablen.RundenAnzahl
+      is
+         when Positive'Last =>
+            null;
+            
+         when others =>
+            GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
+      end case;
 
       case
         GlobaleVariablen.AnzahlAutosave
@@ -165,7 +177,6 @@ package body ImSpiel is
             Speichern.AutoSpeichern;
       end case;
       
-      KIZuruecksetzen.KIZurücksetzenAmRundenende;
       Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (2, 1) := Clock;
       Ladezeiten.BerechnungenNachZugendeAllerSpieler (WelcheZeitExtern => 1);
       

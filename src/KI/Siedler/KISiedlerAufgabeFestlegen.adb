@@ -6,7 +6,7 @@ with EinheitenDatenbank;
 
 with StadtBauen, KIPruefungen;
 
-package body SiedlerAufgabeFestlegen is
+package body KISiedlerAufgabeFestlegen is
 
    procedure SiedlerAufgabeFestlegen
      (GewählteAufgabeExtern : in Natural;
@@ -131,4 +131,4 @@ package body SiedlerAufgabeFestlegen is
       
    end Verbessern;
 
-end SiedlerAufgabeFestlegen;
+end KISiedlerAufgabeFestlegen;

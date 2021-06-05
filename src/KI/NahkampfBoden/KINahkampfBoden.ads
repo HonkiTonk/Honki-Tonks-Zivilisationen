@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 
 with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
-use GlobaleDatentypen;
+use GlobaleDatentypen, GlobaleRecords;
 
-package KINahkampfLandEinheit is
+package KINahkampfBoden is
 
-   procedure KINahkampfLandEinheit
+   procedure KINahkampfBoden
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
@@ -13,4 +13,4 @@ package KINahkampfLandEinheit is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
-end KINahkampfLandEinheit;
+end KINahkampfBoden;
