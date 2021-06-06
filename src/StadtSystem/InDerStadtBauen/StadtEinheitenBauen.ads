@@ -15,7 +15,11 @@ package StadtEinheitenBauen is
    
 private
    
+   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+   
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   
+   BereitsVonEinheitBelegt : GlobaleRecords.RassePlatznummerRecord;
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 

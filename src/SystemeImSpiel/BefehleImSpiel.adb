@@ -249,6 +249,12 @@ package body BefehleImSpiel is
          when 38 => -- Kleine Cheattaste
             Cheat.Menü (RasseExtern => RasseExtern);
             
+         when 39 => -- Meldungen von Städte
+            null;
+            
+         when 40 => -- Meldungen von Einheiten
+            null;
+            
          when others =>
             null;
       end case;

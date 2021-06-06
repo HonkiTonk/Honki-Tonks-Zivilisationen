@@ -9,6 +9,7 @@ use GlobaleDatentypen;
 package Eingabe is
 
    type TastenbelegungArray is array (1 .. 2, 1 .. 100) of Wide_Wide_Character;
+   -- Nur hier editieren und dann nach unten zur konstanten Version kopieren, verhindert Verwirrung und nicht funktionieren beim Testen von Änderungen
    Tastenbelegung : TastenbelegungArray := (1 => (1 => 'w', -- Cursor/Einheitenbewegung
                                                   2 => 'a',
                                                   3 => 's',
@@ -71,7 +72,7 @@ package Eingabe is
                                                   9 => NUL,
                                                   10 => NUL, -- Cursor/Einheitenbewegung
 
-                                                  11 => '5', -- Auswählen
+                                                  11 => LF, -- Auswählen
                                                   12 => NUL, -- Menü aufrufen und Dinge verlassen
 
                                                   13 => NUL, -- Stadt bauen
@@ -221,7 +222,7 @@ private
                                                                    9 => NUL,
                                                                    10 => NUL, -- Cursor/Einheitenbewegung
 
-                                                                   11 => '5', -- Auswählen
+                                                                   11 => LF, -- Auswählen
                                                                    12 => NUL, -- Menü aufrufen und Dinge verlassen
 
                                                                    13 => NUL, -- Stadt bauen
