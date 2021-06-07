@@ -5,7 +5,9 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten;
 
-with GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, Sichtbarkeit, Anzeige, KartenPruefungen, StadtSuchen, Karten, StadtInformationen;
+with GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank;
+  
+with Sichtbarkeit, Anzeige, KartenPruefungen, StadtSuchen, Karten, StadtInformationen;
 
 package body KarteStadt is
 

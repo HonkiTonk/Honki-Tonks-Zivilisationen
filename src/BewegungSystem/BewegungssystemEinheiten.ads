@@ -30,26 +30,15 @@ package BewegungssystemEinheiten is
    
 private
 
-   EinheitBewegtNichtEingeladen : Boolean;
-
    Bewegung : GlobaleDatentypen.Bewegung_Enum;
    Blockiert : GlobaleDatentypen.Bewegung_Enum;
-
-   FeldPassierbar : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
-   RückgabeWert : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
-   Gegner : GlobaleDatentypen.LoopRangeMinusEinsZuEins;
-
       
    TransporterNummer : GlobaleDatentypen.MaximaleEinheiten;
    EinheitAusladen : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
    FreierPlatzNummer : Positive;
    
-   Richtung : Natural;
-   
    BonusBeiBewegung : Integer;
-   Stadtnummer : Integer;
-   StraßeFlussVorhanden : Integer;
    
    BewegungspunkteModifikator : Float;
 
@@ -58,8 +47,6 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    GegnerWert : GlobaleRecords.RassePlatznummerRecord;
-   GegnerEinheitWert : GlobaleRecords.RassePlatznummerRecord;
-   GegnerStadtWert : GlobaleRecords.RassePlatznummerRecord;
 
    procedure TransporterBeladen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;

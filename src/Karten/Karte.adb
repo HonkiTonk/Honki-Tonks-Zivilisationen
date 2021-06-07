@@ -5,7 +5,9 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten;
 
-with KarteStadt, KartenDatenbank, Karten, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank, Sichtbarkeit, KartenPruefungen, EinheitSuchen, StadtSuchen, Anzeige, Cheat;
+with KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank, ForschungsDatenbank;
+
+with KarteStadt, Karten, Sichtbarkeit, KartenPruefungen, EinheitSuchen, StadtSuchen, Anzeige, Cheat;
 
 package body Karte is
 
@@ -439,7 +441,7 @@ package body Karte is
                            null;
                                  
                         when True =>
-                           Put_Line (Item => "Aktuelle Rasse: " & RasseUndPlatznummer.Rasse'Wide_Wide_Image);
+                           Cheat.KarteStadtInfos (StadtRasseNummerExtern => RasseUndPlatznummer);
                      end case;
                      
                   else
@@ -447,7 +449,7 @@ package body Karte is
                   end if;
             end case;
                   
-            -- Allgemeine Karteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist
+            -- Allgemeine Karteninformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist
             if
               Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Hügel = True
@@ -706,7 +708,7 @@ package body Karte is
       New_Line;
       case
         GlobaleVariablen.FeindlicheInformationenSehen
-      is -- Für Cheat
+      is
          when False =>
             null;
                                  

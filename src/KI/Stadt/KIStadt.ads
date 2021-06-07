@@ -13,4 +13,11 @@ package KIStadt is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 2);
 
+private
+
+   SiedlerVorhanden : Natural;
+   VerteidigerVorhanden : Natural;
+   StädteMitGleichemBauprojekt : Natural;
+   AnzahlStädte : GlobaleDatentypen.MaximaleStädteMitNullWert;
+
 end KIStadt;

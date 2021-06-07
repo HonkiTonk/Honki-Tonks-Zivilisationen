@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen, KIDatentypen;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen, GlobaleRecords;
 
 with Karten;
@@ -10,15 +10,6 @@ package KIBewegungBerechnen is
    function BewegungPlanen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
-
-   procedure NeuesZielErmittelnGefahr
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      RichtungExtern : in KIDatentypen.Richtung_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)

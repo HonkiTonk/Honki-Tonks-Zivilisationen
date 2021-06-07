@@ -34,8 +34,8 @@ package body KISiedlerAufgabeFestlegen is
          when 6 => -- Sich befestigen
             Befestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 7 => -- Sich verbessern
-            Verbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when 7 => -- Einheit verbessern
+            EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when others => -- Nichts tun
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
@@ -123,12 +123,12 @@ package body KISiedlerAufgabeFestlegen is
    
    
    
-   procedure Verbessern
+   procedure EinheitVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Verbessern;
       
-   end Verbessern;
+   end EinheitVerbessern;
 
 end KISiedlerAufgabeFestlegen;

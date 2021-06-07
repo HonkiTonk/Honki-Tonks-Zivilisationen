@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleRecords, GlobaleDatentypen, DatenbankRecords;
+with GlobaleVariablen, GlobaleRecords, GlobaleDatentypen;
 use GlobaleDatentypen, GlobaleRecords;
+
+with DatenbankRecords;
 
 with Karten;
 
@@ -398,9 +400,6 @@ private
    AktuelleAuswahl : GlobaleDatentypen.EinheitenIDMitNullWert;
    Ende : GlobaleDatentypen.EinheitenIDMitNullWert;
    AktuellePosition : GlobaleDatentypen.EinheitenIDMitNullWert;
-   
-   Befehl : Natural;
-   Wahl : Integer;
 
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with KIDatentypen, KIKonstanten;
+with KIDatentypen;
 
 with StadtBauen, KINullwerteSetzen, Verbesserungen, KarteneigenschaftVereinfachung, Karten;
 
@@ -14,19 +14,11 @@ package body KISiedlerAufgabeDurchfuehren is
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt
       is
          when KIDatentypen.Stadt_Bauen =>
-            if 
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten
-              = GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition
-              or
-                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten = KIKonstanten.NullKoordinate
-            then
-               StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-               KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                         WelchenWertNullSetzten   => 0);
+            StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                      WelchenWertNullSetzten   => 0);
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
             
-            else
-               null;
-            end if;
             
          when KIDatentypen.Verbesserung_Anlegen =>
             WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

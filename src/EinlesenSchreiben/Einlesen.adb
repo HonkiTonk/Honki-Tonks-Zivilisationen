@@ -5,10 +5,7 @@ use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar;
 
 with Ladezeiten, Schreiben, Auswahl, Eingabe;
 
-package body Einlesen with
-Refined_State => (EinlesenState => (Erfolgreich, LeereZeilenAbzieher, SchleifenAbzug, Wert, ZwischenSpeicher, WelcheTexteEinlesenNeu, DateiNeuText, WelcheWerteEinlesenNeu, DateiNeuWelcheWerteEinlesen,
-                                    DateiNeuWelcheTexteEinlesen, DateiNeuWerte, Suche, Verzeichnis, TastenbelegungLaden))
-is
+package body Einlesen is
 
    function Einlesen
      return Boolean

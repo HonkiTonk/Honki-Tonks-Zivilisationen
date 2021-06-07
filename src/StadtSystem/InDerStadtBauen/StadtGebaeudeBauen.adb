@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
+with KIDatentypen;
+
 with GebaeudeDatenbank;
 
 with Anzeige;
@@ -19,7 +21,7 @@ package body StadtGebaeudeBauen is
       if
         StadtRasseNummerExtern.Rasse /= 1
       then   
-         null;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIAktuelleBeschäftigung := KIDatentypen.Keine_Aufgabe;
                
       else
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Zeug,

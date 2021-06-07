@@ -2,9 +2,11 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
+with KIDatentypen;
+
 with EinheitenDatenbank;
 
-with Anzeige, Eingabe, Karte, KartenPruefungen, Karten, StadtWerteFestlegen, EinheitSuchen, KartenDatenbank;
+with Anzeige, Eingabe, Karte, KartenPruefungen, Karten, EinheitSuchen, KartenDatenbank;
 
 package body StadtEinheitenBauen is
 
@@ -83,8 +85,7 @@ package body StadtEinheitenBauen is
                if
                  Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
                in
-                 GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Rasse) * StadtWerteFestlegen.RassenMulitplikationWert .. GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Rasse)
-                 * StadtWerteFestlegen.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleVariablen.StadtGebaut'Last (2))
+                 GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 2)
                then
                   BereitsVonEinheitBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert);
                   if
@@ -147,7 +148,7 @@ package body StadtEinheitenBauen is
                                                   TextZeileExtern => 29);
          
          when others =>
-            null;
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIAktuelleBeschäftigung := KIDatentypen.Keine_Aufgabe;
       end case;
       
    end EinheitFertiggestellt;

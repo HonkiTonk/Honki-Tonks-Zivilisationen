@@ -42,12 +42,11 @@ package body Diplomatie is
       
       case
         Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasseExtern   => EinheitRasseNummerExtern.Rasse,
-                                                                VerteidigendeRasseExtern => GegnerExtern.Rasse)
+                                                VerteidigendeRasseExtern => GegnerExtern.Rasse)
       is
          when GlobaleDatentypen.Neutral | GlobaleDatentypen.Offene_Grenzen =>
-            Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 11);
             if
-              Wahl = -3
+              Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = -3
             then
                Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                      VerteidigendeRasseExtern => GegnerExtern.Rasse);

@@ -5,7 +5,7 @@ use GlobaleDatentypen;
 
 package StadtWerteFestlegen is
 
-   RassenMulitplikationWert : constant GlobaleDatentypen.BelegterGrund := 1_000;
+   
 
    procedure BewirtschaftbareFelderBelegen
      (ZuwachsOderSchwundExtern : in Boolean;

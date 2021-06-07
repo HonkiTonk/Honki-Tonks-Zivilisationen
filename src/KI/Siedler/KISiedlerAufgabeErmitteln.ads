@@ -17,7 +17,6 @@ private
    
    GewählteAufgabe : Natural;
    VorhandeneStädte : Natural;
-   VorhandeneSiedler : Natural;
    
    EinheitID : GlobaleDatentypen.EinheitenID;
    

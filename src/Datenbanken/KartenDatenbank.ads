@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, DatenbankRecords, GlobaleKonstanten;
+with GlobaleDatentypen, GlobaleKonstanten;
 use GlobaleDatentypen;
+
+with DatenbankRecords;
 
 package KartenDatenbank is
    

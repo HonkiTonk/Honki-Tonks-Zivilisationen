@@ -17,6 +17,8 @@ private
 
    GewählteAufgabe : Natural;
 
+
+   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    EinheitID : GlobaleDatentypen.EinheitenID;
 
    type WichtigkeitArray is array (0 .. 9) of Natural;

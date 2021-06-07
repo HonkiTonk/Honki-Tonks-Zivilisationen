@@ -60,7 +60,7 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
    
-   procedure Verbessern
+   procedure EinheitVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>

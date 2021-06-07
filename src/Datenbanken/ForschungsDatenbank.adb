@@ -199,20 +199,22 @@ package body ForschungsDatenbank is
                          ForschungNummerExtern => GlobaleDatentypen.ForschungID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer));
          end if;
          
-         Befehl := Eingabe.Tastenwert;
-         
          case
-           Befehl
+           Eingabe.Tastenwert
          is               
             when 1 => 
-               if AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First then
+               if
+                 AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
+               then
                   AktuelleAuswahl := Ende;
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
             when 3 =>
-               if AktuelleAuswahl = Ende then
+               if
+                 AktuelleAuswahl = Ende
+               then
                   AktuelleAuswahl := Anzeige.AllgemeineAnzeigeText'First;
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;
@@ -348,15 +350,12 @@ package body ForschungsDatenbank is
       
          Benötigt (RasseExtern           => RasseExtern,
                     ForschungNummerExtern => AktuelleAuswahl);
-         New_Line;
-      
+         New_Line;      
          Ermöglicht (RasseExtern           => RasseExtern,
                       ForschungNummerExtern => AktuelleAuswahl);
          
-         Befehl := Eingabe.Tastenwert;
-         
          case
-           Befehl
+           Eingabe.Tastenwert
          is
             when 4 => 
                if

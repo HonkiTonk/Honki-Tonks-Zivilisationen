@@ -3,9 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
-package BewegungssystemCursor with
-Abstract_State => (BewegungssystemCursorState)
-is
+package BewegungssystemCursor is
 
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
@@ -23,13 +21,13 @@ is
 
 private
 
-   Position : GlobaleRecords.AchsenKartenfeldPositivRecord with Part_Of => BewegungssystemCursorState;
+   Position : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord with Part_Of => BewegungssystemCursorState;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
-   Änderung : GlobaleRecords.AchsenKartenfeldRecord with Part_Of => BewegungssystemCursorState;
+   Änderung : GlobaleRecords.AchsenKartenfeldRecord;
 
-   Wert : Integer with Part_Of => BewegungssystemCursorState;
+   KoordinatenPunkt : Integer;
    
    procedure BewegungCursorBerechnen
      (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;

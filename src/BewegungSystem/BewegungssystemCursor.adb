@@ -4,9 +4,7 @@ with GlobaleKonstanten;
 
 with Karten, Eingabe, KartenPruefungen;
 
-package body BewegungssystemCursor with
-Refined_State => (BewegungssystemCursorState => (Position, KartenWert, Änderung, Wert))
-is
+package body BewegungssystemCursor is
 
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
@@ -71,49 +69,49 @@ is
      (RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
       
-      Wert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
-                                 ZeileExtern         => 40,
-                                 ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (1)),
-                                 ZahlenMaximumExtern => Integer (Karten.Weltkarte'Last (1)));
+      KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
+                                             ZeileExtern         => 40,
+                                             ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (1)),
+                                             ZahlenMaximumExtern => Integer (Karten.Weltkarte'Last (1)));
       
       case
-        Wert
+        KoordinatenPunkt
       is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
             return;
          
          when others =>
-            Position.EAchse := GlobaleDatentypen.EbeneVorhanden (Wert);
+            Position.EAchse := GlobaleDatentypen.EbeneVorhanden (KoordinatenPunkt);
       end case;
       
-      Wert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
-                                 ZeileExtern         => 30,
-                                 ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (2)),
-                                 ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
+      KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
+                                             ZeileExtern         => 30,
+                                             ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (2)),
+                                             ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
       
       case
-        Wert
+        KoordinatenPunkt
       is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
             return;
          
          when others =>
-            Position.YAchse := GlobaleDatentypen.Kartenfeld (Wert);
+            Position.YAchse := GlobaleDatentypen.Kartenfeld (KoordinatenPunkt);
       end case;
 
-      Wert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
-                                 ZeileExtern         => 31,
-                                 ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (3)),
-                                 ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+      KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
+                                             ZeileExtern         => 31,
+                                             ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (3)),
+                                             ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
 
       case
-        Wert
+        KoordinatenPunkt
       is
          when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
             return;
          
          when others =>
-            Position.XAchse := GlobaleDatentypen.Kartenfeld (Wert);
+            Position.XAchse := GlobaleDatentypen.Kartenfeld (KoordinatenPunkt);
       end case;
       
       GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := Position;
@@ -128,7 +126,7 @@ is
    is begin
       
       if
-        ÄnderungExtern.EAchse = 1
+        ÄnderungExtern.EAchse = 1 -- Kann nicht nach KartenPruefungen.KartenPositionBestimmen verschoben werden, da darüber auch Einheiten geprüft werden
         and
           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Weltkarte'Last (1)
       then

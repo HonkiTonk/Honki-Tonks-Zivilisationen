@@ -47,6 +47,4 @@ private
 
    Gewonnen : Boolean;
 
-   Wahl : Integer;
-
 end Diplomatie;

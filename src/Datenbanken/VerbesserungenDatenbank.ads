@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, DatenbankRecords;
+with GlobaleDatentypen;
 use GlobaleDatentypen;
+
+with DatenbankRecords;
 
 package VerbesserungenDatenbank is
 

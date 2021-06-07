@@ -1,10 +1,7 @@
 pragma SPARK_Mode (On);
 
-with KIDatentypen;
-use KIDatentypen;
-
 with EinheitenDatenbank, KISiedler, KINahkampfBoden, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit, KINahkampfUnterirdisch,
-     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, EinheitSuchen, KIStadt;
+     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, KIStadt;
 
 package body KI is
 
@@ -13,7 +10,9 @@ package body KI is
    is begin
       
       EinheitenDurchgehen (RasseExtern => RasseExtern);
-      StädteDurchgehen (RasseExtern => RasseExtern);      
+      StädteDurchgehen (RasseExtern => RasseExtern);
+      Forschung (RasseExtern => RasseExtern);
+      Diplomatie (RasseExtern => RasseExtern);
       
    end KI;
    
@@ -52,29 +51,39 @@ package body KI is
             
          if
            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).ID > 0
-           and
-             GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).KIAktuelleBeschäftigung /= KIDatentypen.Keine_Aufgabe
          then
-            AktivitätStadtAbbrechen (StadtRasseNummerExtern => (RasseExtern, StadtNummerEinsSchleifenwert));
-
-         elsif
-           GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).ID = 0
-           or
-             GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).KIAktuelleBeschäftigung /= KIDatentypen.Keine_Aufgabe
-         then
-            null;
-               
+            KIStadt.KIStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummerEinsSchleifenwert));
+            
          else
-            AktivitätStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummerEinsSchleifenwert));
+            null;
          end if;
 
       end loop StadtSchleife;
       
    end StädteDurchgehen;
+   
+   
+   
+   procedure Forschung
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
+      
+      null;
+      
+   end Forschung;
+   
+   
+   
+   procedure Diplomatie
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
+      
+      null;
+      
+   end Diplomatie;
       
    
 
-   -- Von hier aus dann die einzelnen Tätigkeiten aufrufen
    procedure AKtivitätEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
@@ -122,50 +131,5 @@ package body KI is
       end case;
       
    end AKtivitätEinheit;
-
-
-
-   -- Aufrufen um den Abbruch der aktuellen Tätigkeit zu prüfen
-   procedure AKtivitätEinheitAbbrechen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-      
-      null;
-      
-   end AKtivitätEinheitAbbrechen;
-   
-   
-               
-   procedure AktivitätStadt
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-            
-      SiedlerVorhanden := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern      => StadtRasseNummerExtern.Rasse,
-                                                                       EinheitTypExtern => 1);
-      
-      if
-        SiedlerVorhanden < 1
-      then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIAktuelleBeschäftigung := KIDatentypen.Einheit_Bauen;
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt := 10_001;
-         
-      else
-         null;
-      end if;
-      
-      KIStadt.KIStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      
-   end AktivitätStadt;
-
-
-
-   -- Aufrufen um den Abbruch der aktuellen Tätigkeit zu prüfen
-   procedure AktivitätStadtAbbrechen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-            
-      null;
-            
-   end AktivitätStadtAbbrechen;
 
 end KI;

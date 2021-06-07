@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleDatentypen, DatenbankRecords, GlobaleRecords;
+with GlobaleVariablen, GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
+
+with DatenbankRecords;
 
 package GebaeudeDatenbank is
 

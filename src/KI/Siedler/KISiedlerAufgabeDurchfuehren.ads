@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
 with GlobaleVariablen, GlobaleRecords, GlobaleDatentypen;
-use GlobaleDatentypen, GlobaleRecords;
+use GlobaleDatentypen;
 
 package KISiedlerAufgabeDurchfuehren is
 

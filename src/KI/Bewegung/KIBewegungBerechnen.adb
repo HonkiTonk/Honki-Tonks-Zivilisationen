@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 
-with KIKonstanten;
+with KIKonstanten, KIDatentypen;
 
-with KartenPruefungen, BewegungBlockiert, KIPruefungen, BewegungPassierbarkeitPruefen, KINullwerteSetzen;
+with KartenPruefungen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen;
 
 package body KIBewegungBerechnen is
    
@@ -376,28 +376,5 @@ package body KIBewegungBerechnen is
       end loop EAchseSchleife;
       
    end VorhandenenPlanVereinfachenPrüfen;
-   
-
-
-   procedure NeuesZielErmittelnGefahr
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      RichtungExtern : in KIDatentypen.Richtung_Enum)
-   is begin
-      
-      ZielKoordinaten := KIPruefungen.NähesteEigeneStadtSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 RichtungExtern         => RichtungExtern);
-
-      case
-        ZielKoordinaten.YAchse
-      is            
-      when 0 =>
-         ZielKoordinaten := KIPruefungen.NähesteEigeneEinheitSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                      RichtungExtern         => RichtungExtern);
-            
-      when others =>
-         return;
-      end case;            
-
-   end NeuesZielErmittelnGefahr;
 
 end KIBewegungBerechnen;

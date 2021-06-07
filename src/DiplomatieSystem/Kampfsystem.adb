@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank, Karten, ZufallGeneratorenKampf, StadtSuchen;
+with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank;
+  
+with Karten, ZufallGeneratorenKampf, StadtSuchen;
 
 package body Kampfsystem is
 
@@ -35,12 +37,10 @@ package body Kampfsystem is
                VerteidigungBonusDurchStadt := 1.25;
             end if;
       end case;
-
-      Ergebnis := Kampf (VerteidigerRasseNummerExtern => VerteidigerRasseNummerExtern,
-                         AngreiferRasseNummerExtern   => AngreiferRasseNummerExtern,
-                         VerteidigerBonusExtern       => VerteidigungBonusDurchStadt);
       
-      return Ergebnis;
+      return Kampf (VerteidigerRasseNummerExtern => VerteidigerRasseNummerExtern,
+                    AngreiferRasseNummerExtern   => AngreiferRasseNummerExtern,
+                    VerteidigerBonusExtern       => VerteidigungBonusDurchStadt);
       
    end KampfsystemNahkampf;
 
@@ -61,11 +61,11 @@ package body Kampfsystem is
         Float (EinheitenDatenbank.EinheitenListe (VerteidigerRasseNummerExtern.Rasse,
                GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).ID).Verteidigung)
         + 0.1 * Float (KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
+                       GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
+                       GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Grund).Verteidigungsbonus)
         + 0.1 * Float (VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                 GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
+                       GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
+                       GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet).Verteidigungsbonus);
 
       if
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).AchsenPosition.EAchse,

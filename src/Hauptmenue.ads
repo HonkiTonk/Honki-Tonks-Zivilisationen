@@ -1,14 +1,12 @@
 pragma SPARK_Mode (On);
 
-package Hauptmenue with
-Abstract_State => (HauptmenüAbstraktion)
-is
+package Hauptmenue is
 
    procedure Hauptmenü;
    
 private
   
-   RückgabeKampagne : Integer with Part_Of => HauptmenüAbstraktion;         
-   RückgabeOptionen : Integer with Part_Of => HauptmenüAbstraktion;
+   RückgabeKampagne : Integer;         
+   RückgabeOptionen : Integer;
 
 end Hauptmenue;

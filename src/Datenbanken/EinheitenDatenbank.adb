@@ -112,7 +112,6 @@ package body EinheitenDatenbank is
    
 
 
-   -- Kann Einheiten nur in Städten erzeugen
    procedure EinheitErzeugen
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -123,7 +122,6 @@ package body EinheitenDatenbank is
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition := KoordinatenExtern;
       LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-            
    end EinheitErzeugen;
 
 
@@ -175,9 +173,8 @@ package body EinheitenDatenbank is
       return Boolean
    is begin
       
-      Wahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 7);
       case
-        Wahl
+        Auswahl.AuswahlJaNein (FrageZeileExtern => 7)
       is
          when GlobaleKonstanten.JaKonstante =>
             return True;
@@ -231,23 +228,24 @@ package body EinheitenDatenbank is
 
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fragen,
                                                TextZeileExtern => 27);
-
          Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => GlobaleDatentypen.KartenverbesserungEinheitenID (AktuelleAuswahl));
-         
-         Befehl := Eingabe.Tastenwert;
-         
+                  
          case
-           Befehl
+           Eingabe.Tastenwert
          is               
             when 1 => 
-               if AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First then
+               if
+                 AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
+               then
                   AktuelleAuswahl := Ende;
                else
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
             when 3 =>
-               if AktuelleAuswahl = Ende then
+               if
+                 AktuelleAuswahl = Ende
+               then
                   AktuelleAuswahl := Anzeige.AllgemeineAnzeigeText'First;
                else
                   AktuelleAuswahl := AktuelleAuswahl + 1;

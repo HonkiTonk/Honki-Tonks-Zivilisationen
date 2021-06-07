@@ -24,6 +24,14 @@ package Cheat is
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+   
+   procedure KarteStadtInfos
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0
+          and
+            StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
 private
 

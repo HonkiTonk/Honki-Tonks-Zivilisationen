@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with Karte, EinheitenDatenbank, Diplomatie, Sichtbarkeit, VerbesserungenDatenbank, BewegungBlockiert, EinheitSuchen, KartenPruefungen, Eingabe, BewegungPassierbarkeitPruefen;
+with EinheitenDatenbank, VerbesserungenDatenbank;
+
+with Karte, Diplomatie, Sichtbarkeit, BewegungBlockiert, EinheitSuchen, KartenPruefungen, Eingabe, BewegungPassierbarkeitPruefen;
 
 package body BewegungssystemEinheiten is
 
@@ -8,15 +10,11 @@ package body BewegungssystemEinheiten is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
 
-      Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
-
       BewegenSchleife:
       loop
-      
-         Richtung := Eingabe.Tastenwert;
               
          case
-           Richtung
+           Eingabe.Tastenwert
          is
             when 1 =>
                Änderung := (0, -1, 0);
@@ -116,7 +114,7 @@ package body BewegungssystemEinheiten is
          end if;
 
          if
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte = 0.00
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte <= 0.00
          then
             return;
             
@@ -174,12 +172,10 @@ package body BewegungssystemEinheiten is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
    is begin
-      
-      StraßeFlussVorhanden := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       NeuePositionExtern       => NeuePositionExtern);
 
       case
-        StraßeFlussVorhanden
+        StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                NeuePositionExtern       => NeuePositionExtern)
       is
          when 1 | 2 =>
             BewegungspunkteModifikator := 0.50;
@@ -215,6 +211,7 @@ package body BewegungssystemEinheiten is
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte < 0.00
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte := 0.00;
+         -- Hier nicht return, da Bewegung erfolgreich und jetzt noch die Rechnungen durchlaufen
                   
       else
          null;

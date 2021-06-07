@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, DatenbankRecords, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
+
+with DatenbankRecords;
 
 package ForschungsDatenbank is
 
@@ -249,8 +251,6 @@ private
 
    AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
    Ende : GlobaleDatentypen.ForschungID;
-
-   Befehl : Natural;
 
    procedure Ermöglicht
      (RasseExtern : in GlobaleDatentypen.Rassen;

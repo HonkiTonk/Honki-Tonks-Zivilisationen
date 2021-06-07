@@ -22,8 +22,6 @@ package Kampfsystem is
 
 private
 
-   Ergebnis : Boolean;
-
    StadtVorhanden : GlobaleDatentypen.MaximaleStädteMitNullWert;
 
    VerteidigungBonusDurchStadt : Float;

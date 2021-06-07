@@ -5,7 +5,7 @@ use KIDatentypen;
 
 with EinheitenDatenbank;
 
-with StadtSuchen, EinheitSuchen, DatenbankVereinfachung, KISiedlerAufgabeFestlegen, KIPruefungen;
+with StadtSuchen, DatenbankVereinfachung, KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt;
 
 package body KISiedlerAufgabeErmitteln is
 
@@ -64,17 +64,16 @@ package body KISiedlerAufgabeErmitteln is
    is begin
       
       VorhandeneStädte := StadtSuchen.AnzahlStädteErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
-      VorhandeneSiedler := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern      => EinheitRasseNummerExtern.Rasse,
-                                                                        EinheitTypExtern => 1);
       
       if
         VorhandeneStädte = 0
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
-         return 10;
+         return 11;
          
       elsif
-        VorhandeneSiedler >= VorhandeneStädte * 2 - VorhandeneSiedler
+        GlobaleVariablen.RundenAnzahl > VorhandeneStädte * 10 + KIAufgabenVerteilt.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                      AufgabeExtern            => KIDatentypen.Stadt_Bauen)
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
          return 5;
@@ -83,17 +82,7 @@ package body KISiedlerAufgabeErmitteln is
          null;
       end if;
       
-      case
-        StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-      is
-         when 0 =>
-            return 2;
-            
-         when others =>
-            null;
-      end case;
-      
-      return 0;
+      return 2;
       
    end NeueStadtBauenGehen;
 

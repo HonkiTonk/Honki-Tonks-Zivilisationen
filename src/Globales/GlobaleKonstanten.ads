@@ -3,7 +3,12 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, GlobaleRecords, KIDatentypen, DatenbankRecords;
+with GlobaleDatentypen, GlobaleRecords;
+use GlobaleDatentypen;
+
+with KIDatentypen;
+
+with DatenbankRecords;
 
 package GlobaleKonstanten is
 
@@ -50,6 +55,62 @@ package GlobaleKonstanten is
 
    GebäudeAufschlag : constant Positive := 1_000;
    EinheitAufschlag : constant Positive := 10_000;
+
+   RassenMulitplikationWert : constant GlobaleDatentypen.BelegterGrund := 1_000;
+   type FeldBelegungArray is array (GlobaleDatentypen.Rassen'Range, 1 .. 2) of GlobaleDatentypen.BelegterGrund;
+   FeldBelegung : constant FeldBelegungArray := (1 => (1 => GlobaleDatentypen.BelegterGrund (1) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (1) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 2 => (1 => GlobaleDatentypen.BelegterGrund (2) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (2) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 3 => (1 => GlobaleDatentypen.BelegterGrund (3) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (3) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 4 => (1 => GlobaleDatentypen.BelegterGrund (4) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (4) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 5 => (1 => GlobaleDatentypen.BelegterGrund (5) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (5) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 6 => (1 => GlobaleDatentypen.BelegterGrund (6) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (6) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 7 => (1 => GlobaleDatentypen.BelegterGrund (7) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (7) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 8 => (1 => GlobaleDatentypen.BelegterGrund (8) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (8) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 9 => (1 => GlobaleDatentypen.BelegterGrund (9) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (9) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 10 => (1 => GlobaleDatentypen.BelegterGrund (10) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (10) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 11 => (1 => GlobaleDatentypen.BelegterGrund (11) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (11) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 12 => (1 => GlobaleDatentypen.BelegterGrund (12) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (12) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 13 => (1 => GlobaleDatentypen.BelegterGrund (13) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (13) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 14 => (1 => GlobaleDatentypen.BelegterGrund (14) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (14) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 15 => (1 => GlobaleDatentypen.BelegterGrund (15) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (15) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 16 => (1 => GlobaleDatentypen.BelegterGrund (16) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (16) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 17 => (1 => GlobaleDatentypen.BelegterGrund (17) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (17) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+
+                                                 18 => (1 => GlobaleDatentypen.BelegterGrund (18) * RassenMulitplikationWert,
+                                                       2 => GlobaleDatentypen.BelegterGrund (18) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)));
    -- Für Einheiten/Städte
 
 

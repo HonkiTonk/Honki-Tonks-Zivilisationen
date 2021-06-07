@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen;
 
-with EinheitenDatenbank, Anzeige, FelderwerteFestlegen, KartenPruefungen, KarteneigenschaftVereinfachung;
+with EinheitenDatenbank;
+  
+with Anzeige, FelderwerteFestlegen, KartenPruefungen, KarteneigenschaftVereinfachung;
 
 package body Verbesserungen is
 

@@ -5,9 +5,7 @@ use GlobaleDatentypen;
 
 with Karten;
 
-package BewegungPassierbarkeitPruefen
-with Abstract_State => (BewegungPassierbarkeitPruefenState)
-is
+package BewegungPassierbarkeitPruefen is
 
    function FeldFürDieseEinheitPassierbarNeu
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; 
@@ -39,14 +37,14 @@ is
 
 private
    
-   PassierbarkeitNummer : GlobaleDatentypen.PassierbarkeitType with Part_Of => BewegungPassierbarkeitPruefenState;
+   PassierbarkeitNummer : GlobaleDatentypen.PassierbarkeitType;
 
-   BewegungMöglich : GlobaleDatentypen.Bewegung_Enum with Part_Of => BewegungPassierbarkeitPruefenState;
+   BewegungMöglich : GlobaleDatentypen.Bewegung_Enum;
    
-   StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert with Part_Of => BewegungPassierbarkeitPruefenState;
-   TransporterNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert with Part_Of => BewegungPassierbarkeitPruefenState;
+   StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   TransporterNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
-   Transportplatz : Natural with Part_Of => BewegungPassierbarkeitPruefenState;
+   Transportplatz : Natural;
 
    function Boden
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;

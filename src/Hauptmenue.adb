@@ -4,9 +4,7 @@ with GlobaleDatentypen, GlobaleKonstanten;
 
 with Auswahl, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden, Wuerdigung;
 
-package body Hauptmenue with
-Refined_State => (HauptmenüAbstraktion => (RückgabeKampagne, RückgabeOptionen))
-is
+package body Hauptmenue is
 
    procedure Hauptmenü
    is begin

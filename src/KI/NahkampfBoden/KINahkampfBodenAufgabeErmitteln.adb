@@ -1,8 +1,10 @@
 pragma SPARK_Mode (On);
 
+with KIDatentypen;
+
 with EinheitenDatenbank;
 
-with KINahkampfBodenAufgabeFestlegen, DatenbankVereinfachung;
+with KINahkampfBodenAufgabeFestlegen, DatenbankVereinfachung, EinheitSuchen, KIAufgabenVerteilt;
 
 package body KINahkampfBodenAufgabeErmitteln is
 
@@ -62,6 +64,37 @@ package body KINahkampfBodenAufgabeErmitteln is
       return Natural
    is begin
       
+      EinheitNummer := 1;
+      
+      StadtSchleife:
+      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+         
+         if
+           GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID > 0
+         then
+            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                             KoordinatenExtern => GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).AchsenPosition);
+            
+         else
+            null;
+         end if;
+         
+         if
+           EinheitNummer = 0
+           and
+             KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen,
+                                                    RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                    ZielKoordinatenExtern => GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).AchsenPosition)
+               = False
+         then
+            return 10;
+               
+         else
+            null;
+         end if;
+         
+      end loop StadtSchleife;
+      
       return 0;
                                     
    end StadtBewachen;
@@ -70,7 +103,7 @@ package body KINahkampfBodenAufgabeErmitteln is
                                     
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+   return Natural
    is begin
       
       return 0;
@@ -81,7 +114,7 @@ package body KINahkampfBodenAufgabeErmitteln is
                                     
    function Fliehen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+   return Natural
    is begin
       
       return 0;
@@ -92,7 +125,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function SichHeilen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+   return Natural
    is begin
       
       EinheitID := DatenbankVereinfachung.EinheitenIDVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -130,7 +163,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function SichBefestigen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+   return Natural
    is begin
       
       return 0;
@@ -141,7 +174,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function SichVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+   return Natural
    is begin
       
       return 0;
@@ -152,7 +185,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function StadtUmgebungZerstören
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+   return Natural
    is begin
       
       return 0;
@@ -163,7 +196,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function Angreifen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+   return Natural
    is begin
       
       return 0;
@@ -174,10 +207,10 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function Erkunden
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+   return Natural
    is begin
       
-      return 0;
+      return 2;
       
    end Erkunden;
    
@@ -185,7 +218,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function NichtsTun
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+   return Natural
    is begin
       
       return 1;

@@ -3,8 +3,9 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleDatentypen, Intro;
--- with Programmanalyse;
+with GlobaleDatentypen;
+
+with Intro; -- Programmanalyse;
 
 with Einlesen, Anzeige, Hauptmenue;
 

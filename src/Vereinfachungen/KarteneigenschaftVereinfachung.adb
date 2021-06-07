@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with Karten, StadtWerteFestlegen;
+with GlobaleKonstanten;
+
+with Karten;
 
 package body KarteneigenschaftVereinfachung is
 
@@ -104,8 +106,7 @@ package body KarteneigenschaftVereinfachung is
       if
         BelegterStadtGrund
       in
-        GlobaleDatentypen.BelegterGrund (EinheitRasseNummerExtern.Rasse) * StadtWerteFestlegen.RassenMulitplikationWert .. GlobaleDatentypen.BelegterGrund (EinheitRasseNummerExtern.Rasse)
-        * StadtWerteFestlegen.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleVariablen.StadtGebaut'Last (2))
+        GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 2)
       then      
          return True;
          

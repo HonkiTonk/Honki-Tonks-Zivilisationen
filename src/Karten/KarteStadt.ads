@@ -39,8 +39,6 @@ private
    Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
    Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
 
-   Wert : Integer;
-
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    RasseUndPlatznummer : GlobaleRecords.RassePlatznummerRecord;

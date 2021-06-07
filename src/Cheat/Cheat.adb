@@ -5,7 +5,9 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleKonstanten, KIDatentypen;
 
-with Karte, Karten, EinheitenDatenbank, Anzeige, Eingabe, EinheitSuchen, VerbesserungenDatenbank;
+with EinheitenDatenbank, VerbesserungenDatenbank;
+
+with Karte, Karten, Anzeige, Eingabe, EinheitSuchen;
 
 package body Cheat is
 
@@ -144,15 +146,14 @@ package body Cheat is
               AktuelleStadt
             is
                when GlobaleVariablen.StadtGebaut'Last (2) =>
-                  case
-                    AktuelleRasseStadt
-                  is
-                     when GlobaleDatentypen.Rassen'Last =>
-                        AktuelleRasseStadt := GlobaleDatentypen.Rassen'First;
+                  if
+                    AktuelleRasseStadt = GlobaleDatentypen.Rassen'Last
+                  then
+                     AktuelleRasseStadt := GlobaleDatentypen.Rassen'First;
                     
-                     when others =>
-                        AktuelleRasseStadt := AktuelleRasseStadt + 1;
-                  end case;
+                  else
+                     AktuelleRasseStadt := AktuelleRasseStadt + 1;
+                  end if;
                   AktuelleStadt := AktuelleStadt + 1;
                      
                when others =>
@@ -206,7 +207,9 @@ package body Cheat is
                                                                          ZahlenMinimumExtern => 1,
                                                                          ZahlenMaximumExtern => 42));
 
-      case KartenGrundID is
+      case
+        KartenGrundID
+      is
          when 1 .. 9 | 31 .. 32 | 35 .. 42 =>
             Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
                               GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
@@ -456,5 +459,16 @@ package body Cheat is
                 GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet'Wide_Wide_Image);
       
    end KarteInfosFeld;
+   
+   
+   
+   procedure KarteStadtInfos
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      Put_Line (Item => "Aktuelle Rasse: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);
+      Put_Line (Item => "KIAufgabe: " & GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIAktuelleBeschäftigung'Wide_Wide_Image);
+      
+   end KarteStadtInfos;
 
 end Cheat;

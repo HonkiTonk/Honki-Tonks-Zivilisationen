@@ -227,10 +227,8 @@ package body Eingabe is
       
       Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Zeug,
                                             TextZeileExtern => 32);
-
-      Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
       
-      return Name;
+      return To_Unbounded_Wide_Wide_String (Source => Get_Line);
       
    end StadtName;
 

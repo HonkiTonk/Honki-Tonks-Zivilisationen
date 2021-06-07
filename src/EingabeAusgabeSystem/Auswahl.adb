@@ -197,14 +197,12 @@ package body Auswahl is
      (FrageZeileExtern : in Positive)
       return Integer
    is begin
-
-      JaNein := Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
-                         TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
-                         FrageZeileExtern  => FrageZeileExtern,
-                         ErsteZeileExtern  => GlobaleKonstanten.JaAnzeigeKonstante,
-                         LetzteZeileExtern => GlobaleKonstanten.NeinAnzeigeKonstante);
       
-      return JaNein;
+      return Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
+                      TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
+                      FrageZeileExtern  => FrageZeileExtern,
+                      ErsteZeileExtern  => GlobaleKonstanten.JaAnzeigeKonstante,
+                      LetzteZeileExtern => GlobaleKonstanten.NeinAnzeigeKonstante);
       
    end AuswahlJaNein;
 
