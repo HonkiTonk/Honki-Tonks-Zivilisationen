@@ -1,10 +1,12 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with KIDatentypen;
 
 with EinheitenDatenbank;
 
-with KINahkampfBodenAufgabeFestlegen, DatenbankVereinfachung, EinheitSuchen, KIAufgabenVerteilt;
+with KINahkampfBodenAufgabeFestlegen, DatenbankVereinfachung, EinheitSuchen, KIAufgabenVerteilt, StadtSuchen;
 
 package body KINahkampfBodenAufgabeErmitteln is
 
@@ -80,7 +82,7 @@ package body KINahkampfBodenAufgabeErmitteln is
          end if;
          
          if
-           EinheitNummer = 0
+           EinheitNummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
            and
              KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen,
                                                     RasseExtern           => EinheitRasseNummerExtern.Rasse,
@@ -103,10 +105,18 @@ package body KINahkampfBodenAufgabeErmitteln is
                                     
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   return Natural
+      return Natural
    is begin
       
-      return 0;
+      if
+        8 + StadtSuchen.AnzahlStädteErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse) > EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern      => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                              EinheitTypExtern => 3)
+      then
+         return 2;
+         
+      else        
+         return 0;
+      end if;
                                     
    end EinheitAuflösen;
                                     
@@ -114,7 +124,7 @@ package body KINahkampfBodenAufgabeErmitteln is
                                     
    function Fliehen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   return Natural
+      return Natural
    is begin
       
       return 0;
@@ -125,7 +135,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function SichHeilen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   return Natural
+      return Natural
    is begin
       
       EinheitID := DatenbankVereinfachung.EinheitenIDVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -163,7 +173,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function SichBefestigen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   return Natural
+      return Natural
    is begin
       
       return 0;
@@ -174,7 +184,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function SichVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   return Natural
+      return Natural
    is begin
       
       return 0;
@@ -185,7 +195,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function StadtUmgebungZerstören
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   return Natural
+      return Natural
    is begin
       
       return 0;
@@ -196,7 +206,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function Angreifen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   return Natural
+      return Natural
    is begin
       
       return 0;
@@ -207,7 +217,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function Erkunden
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   return Natural
+      return Natural
    is begin
       
       return 2;
@@ -218,7 +228,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function NichtsTun
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   return Natural
+      return Natural
    is begin
       
       return 1;

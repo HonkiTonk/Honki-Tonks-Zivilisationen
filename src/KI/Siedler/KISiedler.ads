@@ -13,4 +13,8 @@ package KISiedler is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
+private
+
+   NotAus : Positive;
+
 end KISiedler;

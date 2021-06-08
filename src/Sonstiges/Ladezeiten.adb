@@ -5,21 +5,21 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleDatentypen;
 
-with Anzeige;
+with Anzeige, Eingabe;
 
 package body Ladezeiten is
 
    procedure LadezeitenSpielweltErstellen
-     (WelcheZeitExtern : in Natural)
+     (WelcheZeitExtern : in Positive)
    is begin
 
-      Gesamtzeit := 0.00;
+      GesamtzeitSpielweltErstellen := 0.00;
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                      TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
                                      ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => WelcheZeitExtern + 1,
-                                     LetzteZeileExtern      => WelcheZeitExtern + 1,
+                                     ErsteZeileExtern       => WelcheZeitExtern,
+                                     LetzteZeileExtern      => WelcheZeitExtern,
                                      AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
@@ -27,33 +27,21 @@ package body Ladezeiten is
       case
         WelcheZeitExtern
       is
-         when 0 =>
+         when 1 =>
             ZeitAuswahlSchleife:
-            for VerschiedeneZeitenSchleifenwert in LadezeitenSpielweltErstellenZeit'Range (2) loop
-               ZeitUnterschiedSchleife:
-               for ZeitAnfangEndeSchleifenwert in LadezeitenSpielweltErstellenZeit'Range (1) loop
+            for VerschiedeneZeitenSchleifenwert in 2 .. SpielweltErstellenZeit'Last (1) loop                  
+               
+               GesamtzeitSpielweltErstellen := GesamtzeitSpielweltErstellen + Float (SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, 2) - SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, 1));
                   
-                  case
-                    ZeitAnfangEndeSchleifenwert
-                  is
-                     when 2 =>
-                        Gesamtzeit:= Gesamtzeit + Float (LadezeitenSpielweltErstellenZeit (ZeitAnfangEndeSchleifenwert, VerschiedeneZeitenSchleifenwert)
-                                                         - LadezeitenSpielweltErstellenZeit (ZeitAnfangEndeSchleifenwert - 1, VerschiedeneZeitenSchleifenwert));
-
-                     when 1 =>
-                        null;
-                  end case;
-                  
-               end loop ZeitUnterschiedSchleife;
             end loop ZeitAuswahlSchleife;
-            Ada.Float_Text_IO.Put (Item => Gesamtzeit,
+            Ada.Float_Text_IO.Put (Item => GesamtzeitSpielweltErstellen,
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
-            Get_Immediate (Item => Warten);
+            Eingabe.WartenEingabe;
             
          when others =>
-            Ada.Float_Text_IO.Put (Item => Float (LadezeitenSpielweltErstellenZeit (2, WelcheZeitExtern) - LadezeitenSpielweltErstellenZeit (1, WelcheZeitExtern)),
+            Ada.Float_Text_IO.Put (Item => Float (SpielweltErstellenZeit (WelcheZeitExtern, 2) - SpielweltErstellenZeit (WelcheZeitExtern, 1)),
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
@@ -61,147 +49,71 @@ package body Ladezeiten is
       end case;
                   
    end LadezeitenSpielweltErstellen;
-
-
-
-   procedure Speichern
+   
+   
+   
+   procedure AnzeigeEinzelneZeit
      (WelcheZeitExtern : in Positive)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                      TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
                                      ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => WelcheZeitExtern + AufschlagSpeichern,
-                                     LetzteZeileExtern      => WelcheZeitExtern + AufschlagSpeichern,
+                                     ErsteZeileExtern       => Aufschlag (WelcheZeitExtern),
+                                     LetzteZeileExtern      => Aufschlag (WelcheZeitExtern),
                                      AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-
-      case
-        WelcheZeitExtern
-      is
-         when others =>
-            Ada.Float_Text_IO.Put (Item => Float (Speicherzeiten (2, WelcheZeitExtern) - Speicherzeiten (1, WelcheZeitExtern)),
-                                   Fore => 1,
-                                   Aft  => 6,
-                                   Exp  => 0);
-            Get_Immediate (Item => Warten);
-      end case;
       
-   end Speichern;
+      Ada.Float_Text_IO.Put (Item => Float (EinzelneZeiten (WelcheZeitExtern, 2) - EinzelneZeiten (WelcheZeitExtern, 1)),
+                             Fore => 1,
+                             Aft  => 6,
+                             Exp  => 0);
+      Eingabe.WartenEingabe;
+      
+   end AnzeigeEinzelneZeit;
    
    
    
-   procedure Laden
+   procedure AnzeigeKIZeit
      (WelcheZeitExtern : in Positive)
    is begin
+
+      GesamtzeitKI := 0.00;
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                      TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
                                      ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => WelcheZeitExtern + AufschlagLaden,
-                                     LetzteZeileExtern      => WelcheZeitExtern + AufschlagLaden,
+                                     ErsteZeileExtern       => WelcheZeitExtern + KIAufschlag,
+                                     LetzteZeileExtern      => WelcheZeitExtern + KIAufschlag,
                                      AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-
+      
       case
         WelcheZeitExtern
       is
-         when others =>
-            Ada.Float_Text_IO.Put (Item => Float (LadenLadezeiten (2, WelcheZeitExtern) - LadenLadezeiten (1, WelcheZeitExtern)),
+         when 19 =>
+            ZeitAuswahlSchleife:
+            for VerschiedeneZeitenSchleifenwert in KIZeiten'First (1) .. KIZeiten'Last (1) - 1 loop                  
+               
+               GesamtzeitKI := GesamtzeitKI + Float (KIZeiten (VerschiedeneZeitenSchleifenwert, 2) - KIZeiten (VerschiedeneZeitenSchleifenwert, 1));
+                  
+            end loop ZeitAuswahlSchleife;
+            Ada.Float_Text_IO.Put (Item => GesamtzeitKI,
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
-            Get_Immediate (Item => Warten);
-      end case;
-      
-   end Laden;
-   
-   
-   
-   procedure SpielStart
-     (WelcheZeitExtern : in Positive)
-   is begin
-      
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                     TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => WelcheZeitExtern + AufschlagSpielstart,
-                                     LetzteZeileExtern      => WelcheZeitExtern + AufschlagSpielstart,
-                                     AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-
-      case
-        WelcheZeitExtern
-      is
-         when others =>
-            Ada.Float_Text_IO.Put (Item => Float (SpielStartzeiten (2, WelcheZeitExtern) - SpielStartzeiten (1, WelcheZeitExtern))
-                                   + Float (SpielStartzeiten (2, WelcheZeitExtern + 1) - SpielStartzeiten (1, WelcheZeitExtern + 1)),
-                                   Fore => 1,
-                                   Aft  => 6,
-                                   Exp  => 0);
-            Get_Immediate (Item => Warten);
-      end case;
+            New_Line;
             
-   end SpielStart;
-
-
-
-   procedure BerechnungenNachZugendeAllerSpieler
-     (WelcheZeitExtern : in Positive)
-   is begin
-      
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                     TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => WelcheZeitExtern + AufschlagZwischenDenRunden,
-                                     LetzteZeileExtern      => WelcheZeitExtern + AufschlagZwischenDenRunden,
-                                     AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-
-      case
-        WelcheZeitExtern
-      is
          when others =>
-            Ada.Float_Text_IO.Put (Item => Float (BerechnungenNachZugendeAllerSpielerZeiten (2, WelcheZeitExtern) - BerechnungenNachZugendeAllerSpielerZeiten (1, WelcheZeitExtern)),
+            Ada.Float_Text_IO.Put (Item => Float (KIZeiten (WelcheZeitExtern, 2) - KIZeiten (WelcheZeitExtern, 1)),
                                    Fore => 1,
                                    Aft  => 6,
                                    Exp  => 0);
-            Get_Immediate (Item => Warten);
-      end case;
-            
-      
-   end BerechnungenNachZugendeAllerSpieler;
-
-
-
-   procedure KIZeit
-     (WelcheZeitExtern : in Positive)
-   is begin
-      
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                     TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
-                                     ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => WelcheZeitExtern + AufschlagKIRechenzeit,
-                                     LetzteZeileExtern      => WelcheZeitExtern + AufschlagKIRechenzeit,
-                                     AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-
-      case
-        WelcheZeitExtern
-      is
-         when others =>
-            Ada.Float_Text_IO.Put (Item => Float (KIZeiten (2, WelcheZeitExtern) - KIZeiten (1, WelcheZeitExtern)),
-                                   Fore => 1,
-                                   Aft  => 6,
-                                   Exp  => 0);
-            Get_Immediate (Item => Warten);
+            New_Line;
       end case;
       
-   end KIZeit;
+   end AnzeigeKIZeit;
 
 end Ladezeiten;

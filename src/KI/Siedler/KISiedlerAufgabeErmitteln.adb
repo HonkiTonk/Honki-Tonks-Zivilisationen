@@ -72,8 +72,8 @@ package body KISiedlerAufgabeErmitteln is
          return 11;
          
       elsif
-        GlobaleVariablen.RundenAnzahl > VorhandeneStädte * 10 + KIAufgabenVerteilt.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                      AufgabeExtern            => KIDatentypen.Stadt_Bauen)
+        GlobaleVariablen.RundenAnzahl > (Positive (VorhandeneStädte) + KIAufgabenVerteilt.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                             AufgabeExtern            => KIDatentypen.Stadt_Bauen)) * 10
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
          return 5;

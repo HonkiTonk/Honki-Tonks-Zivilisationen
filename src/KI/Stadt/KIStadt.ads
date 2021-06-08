@@ -15,9 +15,10 @@ package KIStadt is
 
 private
 
-   SiedlerVorhanden : Natural;
-   VerteidigerVorhanden : Natural;
-   StädteMitGleichemBauprojekt : Natural;
    AnzahlStädte : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   SiedlerVorhanden : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   VerteidigerVorhanden : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+
+   StädteMitGleichemBauprojekt : Natural;
 
 end KIStadt;

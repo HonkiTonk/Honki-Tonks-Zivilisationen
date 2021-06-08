@@ -5,7 +5,7 @@ use KIDatentypen;
 
 with GebaeudeDatenbank;
 
-with EinheitSuchen, KIStadtLaufendeBauprojekte;
+with EinheitSuchen, KIStadtLaufendeBauprojekte, StadtSuchen;
 
 package body KIStadt is
 
@@ -20,22 +20,8 @@ package body KIStadt is
          
       else
          StädteMitGleichemBauprojekt := 0;
-         AnzahlStädte := 0;
-      end if;      
-      
-      StadtAnzahlSchleife:
-      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
-            
-         if
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ID = 0
-         then
-            null;
-            
-         else
-            AnzahlStädte := AnzahlStädte + 1;
-         end if;
-         
-      end loop StadtAnzahlSchleife;
+         AnzahlStädte := StadtSuchen.AnzahlStädteErmitteln (RasseExtern => StadtRasseNummerExtern.Rasse);
+      end if;
       
       SiedlerVorhanden := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern      => StadtRasseNummerExtern.Rasse,
                                                                        EinheitTypExtern => 1);
@@ -46,8 +32,8 @@ package body KIStadt is
          null;
          
       elsif
-        SiedlerVorhanden + KIStadtLaufendeBauprojekte.StadtLaufendeBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                BauprojektExtern       => 10_001)
+        SiedlerVorhanden + GlobaleDatentypen.MaximaleStädteMitNullWert (KIStadtLaufendeBauprojekte.StadtLaufendeBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                                                                              BauprojektExtern       => 10_001))
         >= 2
       then
          null;
@@ -62,14 +48,14 @@ package body KIStadt is
                                                                            EinheitTypExtern => 3);
       
       if
-        VerteidigerVorhanden >= Natural (AnzahlStädte)
+        VerteidigerVorhanden >= AnzahlStädte
       then
          null;
          
       elsif
-        VerteidigerVorhanden + KIStadtLaufendeBauprojekte.StadtLaufendeBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                    BauprojektExtern       => 10_002)
-        >= Natural (AnzahlStädte)
+        VerteidigerVorhanden + GlobaleDatentypen.MaximaleStädteMitNullWert (KIStadtLaufendeBauprojekte.StadtLaufendeBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                                                                                  BauprojektExtern       => 10_002))
+        >= AnzahlStädte
       then
          null;
          
@@ -85,7 +71,9 @@ package body KIStadt is
          if
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = False
            and
-             GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen) = True
+             (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen = 0
+              or else
+              GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen) = True)
          then
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIAktuelleBeschäftigung := KIDatentypen.Gebäude_Bauen;
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt := 1_000 + Positive (GebäudeSchleifenwert);
@@ -97,8 +85,15 @@ package body KIStadt is
          
       end loop GebäudeSchleife;
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIAktuelleBeschäftigung := KIDatentypen.Einheit_Bauen;
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt := 10_002;
+      if
+        VerteidigerVorhanden <= 10
+      then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIAktuelleBeschäftigung := KIDatentypen.Einheit_Bauen;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt := 10_002;
+         
+      else
+         null;
+      end if;
       
    end KIStadt;
 

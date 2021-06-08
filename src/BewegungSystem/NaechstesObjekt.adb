@@ -34,17 +34,15 @@ package body NaechstesObjekt is
          else
             exit EinheitSuchenSchleife;
          end if;
-
-         SchleifenBegrenzung := SchleifenBegrenzung + 1;
-         case
-           SchleifenBegrenzung
-         is
-            when GlobaleDatentypen.MaximaleEinheiten'Last =>
-               return;
-               
-            when others =>
-               null;
-         end case;
+         
+         if
+           SchleifenBegrenzung < GlobaleDatentypen.MaximaleEinheiten'Last
+         then            
+            SchleifenBegrenzung := SchleifenBegrenzung + 1;
+            
+         else
+            return;
+         end if;
 
       end loop EinheitSuchenSchleife;
       
@@ -81,17 +79,15 @@ package body NaechstesObjekt is
          else
             exit StadtSuchenSchleife;
          end if;
-
-         SchleifenBegrenzung := SchleifenBegrenzung + 1;
-         case
-           SchleifenBegrenzung
-         is
-            when GlobaleDatentypen.MaximaleStädte'Last =>
-               return;
-               
-            when others =>
-               null;
-         end case;
+         
+         if
+           SchleifenBegrenzung < GlobaleDatentypen.MaximaleStädte'Last
+         then
+            SchleifenBegrenzung := SchleifenBegrenzung + 1;
+            
+         else
+            return;
+         end if;
 
       end loop StadtSuchenSchleife;
       

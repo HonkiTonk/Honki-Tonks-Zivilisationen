@@ -11,8 +11,20 @@ package body KINahkampfBoden is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
+      NotAus := 1;
+      
       AktivitätSchleife:
       loop
+         
+         case
+           NotAus
+         is
+            when 8 =>
+               return;
+               
+            when others =>
+               null;
+         end case;
          
          if
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID = 0
@@ -60,6 +72,15 @@ package body KINahkampfBoden is
             null;
             
          elsif
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten = KIKonstanten.NullKoordinate
+           and
+             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt = KIDatentypen.Stadt_Bewachen
+           and
+             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung = GlobaleDatentypen.Verschanzen
+         then
+            return;
+            
+         elsif
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte > 0.00
            and
              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID > 0
@@ -71,10 +92,12 @@ package body KINahkampfBoden is
              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten = KIKonstanten.NullKoordinate
          then
             KINahkampfBodenAufgabeDurchfuehren.NahkampfBodenAufgabeDurchfuehren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-         
+            
          else
             return;
          end if;
+         
+         NotAus := NotAus + 1;
          
       end loop AktivitätSchleife;
       

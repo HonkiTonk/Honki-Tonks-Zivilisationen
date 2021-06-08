@@ -49,7 +49,7 @@ package StadtSuchen is
    
    function AnzahlStädteErmitteln
      (RasseExtern : in GlobaleDatentypen.Rassen)
-      return Natural
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
@@ -59,7 +59,7 @@ package StadtSuchen is
 
 private
    
-   AnzahlStädte : Natural;
+   AnzahlStädte : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
    StadtName : Unbounded_Wide_Wide_String;
    

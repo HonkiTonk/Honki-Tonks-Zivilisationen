@@ -181,7 +181,7 @@ package body EinheitSuchen is
    function MengeEinesEinheitenTypsSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen;
       EinheitTypExtern : in GlobaleDatentypen.EinheitenTyp)
-      return Natural
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       AnzahlEinheitTyp := 0;
@@ -213,7 +213,7 @@ package body EinheitSuchen is
    
    function AnzahlEinheitenSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen)
-      return Natural
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
       AnzahlEinheiten := 0;

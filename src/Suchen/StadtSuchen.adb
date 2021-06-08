@@ -101,7 +101,7 @@ package body StadtSuchen is
    
    function AnzahlStädteErmitteln
      (RasseExtern : in GlobaleDatentypen.Rassen)
-      return Natural
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
       
       AnzahlStädte := 0;

@@ -37,6 +37,9 @@ package body KINahkampfBodenAufgabeDurchfuehren is
          when KIDatentypen.Angreifen =>
             null;
             
+         when KIDatentypen.Erkunden =>
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
+            
          when others =>
             null;
       end case;

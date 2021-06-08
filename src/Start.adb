@@ -5,9 +5,9 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleDatentypen;
 
-with Intro; -- Programmanalyse;
+-- with Programmanalyse;
 
-with Einlesen, Anzeige, Hauptmenue;
+with Einlesen, Anzeige, Hauptmenue, Intro;
 
 procedure Start
 is begin

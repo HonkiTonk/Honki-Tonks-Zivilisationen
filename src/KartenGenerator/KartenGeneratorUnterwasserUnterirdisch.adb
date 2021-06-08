@@ -13,7 +13,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
    procedure UnterwasserUnterirdisch
    is begin
       
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 8) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (9, 1) := Clock;
          
       YAchseUnterwasserSchleife:
       for YAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
@@ -62,7 +62,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
          end loop XAchseUnterwasserSchleife;
       end loop YAchseUnterwasserSchleife;
          
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 8) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (9, 2) := Clock;
       
    end UnterwasserUnterirdisch;
 

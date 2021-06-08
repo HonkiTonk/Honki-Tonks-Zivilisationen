@@ -228,7 +228,7 @@ package body BefehleImSpiel is
                null;
                
             else
-               AbreißenAuswahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 7);
+               AbreißenAuswahl := Auswahl.AuswahlJaNein (FrageZeileExtern => 30);
                case
                  AbreißenAuswahl
                is

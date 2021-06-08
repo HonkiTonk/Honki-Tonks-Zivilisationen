@@ -83,21 +83,21 @@ package EinheitSuchen is
    function MengeEinesEinheitenTypsSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen;
       EinheitTypExtern : in GlobaleDatentypen.EinheitenTyp)
-      return Natural
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
    
    function AnzahlEinheitenSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen)
-      return Natural
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
 private
    
-   AnzahlEinheitTyp : Natural;
-   AnzahlEinheiten : Natural;
+   AnzahlEinheitTyp : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   AnzahlEinheiten : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
 end EinheitSuchen;

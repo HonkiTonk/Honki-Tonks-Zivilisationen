@@ -17,7 +17,7 @@ package body KartenGenerator is
       Karten.GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2, 10); -- Inseln, Kontinente, Pangäa
       -- GrößeLandart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
 
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 1) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (2, 1) := Clock;
       case
         Karten.Kartenart
       is
@@ -27,39 +27,39 @@ package body KartenGenerator is
          when others =>
             KartenGeneratorStandard.StandardKarte;
       end case;
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 1) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 1);
+      Ladezeiten.SpielweltErstellenZeit (2, 2) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 2);
             
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 2) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (3, 1) := Clock;
       KartenGeneratorKueste.GenerierungKüstenSeeGewässer;
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 2) := Clock;   
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 2);   
+      Ladezeiten.SpielweltErstellenZeit (3, 2) := Clock;   
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 3);   
       
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 3) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (4, 1) := Clock;
       KartenGeneratorLandschaft.GenerierungLandschaft;
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 3) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 3);
-      
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 4) := Clock;
-      KartenGeneratorFluss.GenerierungFlüsse;
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 4) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (4, 2) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 4);
       
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 5) := Clock;
-      KartenGeneratorRessourcen.GenerierungRessourcen;
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 5) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (5, 1) := Clock;
+      KartenGeneratorFluss.GenerierungFlüsse;
+      Ladezeiten.SpielweltErstellenZeit (5, 2) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 5);
       
-      AndereEbenen;
+      Ladezeiten.SpielweltErstellenZeit (6, 1) := Clock;
+      KartenGeneratorRessourcen.GenerierungRessourcen;
+      Ladezeiten.SpielweltErstellenZeit (6, 2) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 6);
+      
+      AndereEbenen;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 7);
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 8);
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 9);
-
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (1, 10) := Clock;
-      KartenfelderBewerten.KartenfelderBewerten;
-      Ladezeiten.LadezeitenSpielweltErstellenZeit (2, 10) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 10);
+
+      Ladezeiten.SpielweltErstellenZeit (11, 1) := Clock;
+      KartenfelderBewerten.KartenfelderBewerten;
+      Ladezeiten.SpielweltErstellenZeit (11, 2) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 11);
       
    end KartenGenerator;
 

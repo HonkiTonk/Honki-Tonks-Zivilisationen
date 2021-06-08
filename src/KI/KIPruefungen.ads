@@ -50,8 +50,9 @@ private
    
    EinheitAufFeld : GlobaleRecords.RassePlatznummerRecord;
    
-   KartenWertEins : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWertZwei : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   StadtVerbesserungUmgebungKoordinaten : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   StadtBauenUmgebungKoordinaten : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    function KartenfeldUmgebungPrüfen     
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;

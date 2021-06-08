@@ -53,7 +53,7 @@ package body Speichern is
             end if;
       end case;
 
-      Ladezeiten.Speicherzeiten (1, 1) := Clock;
+      Ladezeiten.EinzelneZeiten (3, 1) := Clock;
       
       Create (File => DateiSpeichernNeu,
               Mode => Out_File,
@@ -224,8 +224,8 @@ package body Speichern is
       
       Close (File => DateiSpeichernNeu);
          
-      Ladezeiten.Speicherzeiten (2, 1) := Clock;
-      Ladezeiten.Speichern (WelcheZeitExtern => 1);
+      Ladezeiten.EinzelneZeiten (3, 2) := Clock;
+      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => 3);
    
    end SpeichernNeu;
    

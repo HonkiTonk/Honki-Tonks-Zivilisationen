@@ -1,31 +1,26 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
-package InDerStadt is
+package EinwohnerZuweisenEntfernen is
 
-   procedure InDerStadt
+   procedure EinwohnerZuweisenEntfernen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1);
-
+   
 private
-
-
+   
    NutzbarerBereich : GlobaleDatentypen.Kartenfeld;
    RelativeCursorPositionY : GlobaleDatentypen.Kartenfeld;
    RelativeCursorPositionX : GlobaleDatentypen.Kartenfeld;
-
-   Befehl : Natural;
-   Überhang : Integer;
-   Wahl : Integer;
-
+   
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-
+   
    procedure EinwohnerZuweisen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
@@ -34,4 +29,4 @@ private
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1);
 
-end InDerStadt;
+end EinwohnerZuweisenEntfernen;

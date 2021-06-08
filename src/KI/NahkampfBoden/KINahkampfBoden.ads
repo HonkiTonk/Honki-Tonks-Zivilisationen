@@ -13,4 +13,8 @@ package KINahkampfBoden is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 
+private
+
+   NotAus : Positive;
+
 end KINahkampfBoden;

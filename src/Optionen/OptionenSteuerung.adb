@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleDatentypen, GlobaleKonstanten;
 
-with Eingabe, Auswahl, Anzeige, Schreiben;
+with Eingabe, Auswahl, Anzeige, SchreibenTastatur;
 
 package body OptionenSteuerung is
 
@@ -29,11 +29,11 @@ package body OptionenSteuerung is
                return AuswahlWert;
                
             when GlobaleKonstanten.SpeichernKonstante =>
-               Schreiben.TastenbelegungSchreiben;
+               SchreibenTastatur.TastenbelegungSchreiben;
                
             when GlobaleKonstanten.WiederherstellenKonstante =>
                Eingabe.StandardTastenbelegungWiederherstellen;
-               Schreiben.TastenbelegungSchreiben;
+               SchreibenTastatur.TastenbelegungSchreiben;
                      
             when others =>
                Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,

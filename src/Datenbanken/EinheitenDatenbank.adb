@@ -5,10 +5,10 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wi
 
 with GlobaleKonstanten;
 
-with Auswahl, Anzeige, Eingabe;
+with Auswahl, Anzeige, Eingabe, Sichtbarkeit;
 
 package body EinheitenDatenbank is
-
+   
    procedure Beschreibung
      (IDExtern : in GlobaleDatentypen.EinheitenID)
    is begin
@@ -121,6 +121,7 @@ package body EinheitenDatenbank is
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID := IDExtern;
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition := KoordinatenExtern;
       LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
    end EinheitErzeugen;
 
@@ -174,7 +175,7 @@ package body EinheitenDatenbank is
    is begin
       
       case
-        Auswahl.AuswahlJaNein (FrageZeileExtern => 7)
+        Auswahl.AuswahlJaNein (FrageZeileExtern => WelcheAuswahlExtern)
       is
          when GlobaleKonstanten.JaKonstante =>
             return True;

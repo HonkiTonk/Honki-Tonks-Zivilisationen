@@ -59,7 +59,9 @@ package body ImSpiel is
                      end if;
                   
                   when 2 =>
+                     Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 1) := Clock;
                      KI.KI (RasseExtern => RasseSchleifenwert);
+                     Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 2) := Clock;
                      
                   when others =>
                      null;
@@ -149,7 +151,7 @@ package body ImSpiel is
    procedure BerechnungenNachZugendeAllerSpieler
    is begin
             
-      Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (1, 1) := Clock;
+      Ladezeiten.EinzelneZeiten (2, 1) := Clock;
       EinheitenDatenbank.HeilungBewegungspunkteNeueRundeErmitteln;
       Verbesserungen.VerbesserungFertiggestellt;
       Wachstum.Wachstum;
@@ -175,10 +177,27 @@ package body ImSpiel is
 
          when others =>
             Speichern.AutoSpeichern;
-      end case;
+      end case;      
       
-      Ladezeiten.BerechnungenNachZugendeAllerSpielerZeiten (2, 1) := Clock;
-      Ladezeiten.BerechnungenNachZugendeAllerSpieler (WelcheZeitExtern => 1);
+      Ladezeiten.EinzelneZeiten (2, 2) := Clock;
+      
+      RassenSchleife:
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop
+         
+         if
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 2
+         then            
+            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => Positive (RasseSchleifenwert));
+            
+         else
+            Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 1) := Clock;
+            Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 2) := Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 1);
+         end if;
+         
+      end loop RassenSchleife;      
+      
+      Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => 19);
+      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => 2);      
       
    end BerechnungenNachZugendeAllerSpieler;
 

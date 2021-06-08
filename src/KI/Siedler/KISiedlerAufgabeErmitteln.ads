@@ -16,7 +16,7 @@ package KISiedlerAufgabeErmitteln is
 private
    
    GewählteAufgabe : Natural;
-   VorhandeneStädte : Natural;
+   VorhandeneStädte : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
    EinheitID : GlobaleDatentypen.EinheitenID;
    
