@@ -7,12 +7,14 @@ with GlobaleDatentypen;
 
 -- with Programmanalyse;
 
-with Einlesen, Anzeige, Hauptmenue, Intro;
+with Einlesen, Anzeige, Hauptmenue, Intro, SchreibenVerzeichnisse;
 
 procedure Start
 is begin
 
    -- Programmanalyse.Auswahl;
+
+   SchreibenVerzeichnisse.SchreibenVerzeichnisse;
 
    case
      Einlesen.Einlesen

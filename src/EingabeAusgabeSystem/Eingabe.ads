@@ -8,7 +8,7 @@ use GlobaleDatentypen;
 
 package Eingabe is
 
-   type TastenbelegungArray is array (1 .. 2, 1 .. 100) of Wide_Wide_Character;
+   type TastenbelegungArray is array (1 .. 2, 1 .. 38) of Wide_Wide_Character;
    -- Nur hier editieren und dann nach unten zur konstanten Version kopieren, verhindert Verwirrung und nicht funktionieren beim Testen von Änderungen
    Tastenbelegung : TastenbelegungArray := (1 => (1 => 'w', -- Cursor/Einheitenbewegung
                                                   2 => 'a',
@@ -57,9 +57,7 @@ package Eingabe is
                                                   36 => 'y', -- Stadt mit Namen suchen
 
                                                   37 => 'r', -- Runde beenden
-                                                  38 => 'c', -- Cheatmenü aufrufen
-
-                                                  others => NUL),
+                                                  38 => 'c'), -- Cheatmenü aufrufen
 
                                             2 => (1 => '8', -- Cursor/Einheitenbewegung
                                                   2 => '4',
@@ -108,9 +106,7 @@ package Eingabe is
                                                   36 => NUL, -- Stadt mit Namen suchen
 
                                                   37 => NUL, -- Runde beenden
-                                                  38 => NUL, -- Cheatmenü aufrufen
-
-                                                  others => NUL));
+                                                  38 => NUL)); -- Cheatmenü aufrufen
 
    procedure WartenEingabe;
 

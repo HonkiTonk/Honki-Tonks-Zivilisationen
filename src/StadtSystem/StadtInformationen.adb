@@ -3,21 +3,26 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Integer_Text_IO;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
+with KartenDatenbank, VerbesserungenDatenbank;
+
 with Anzeige;
 
 package body StadtInformationen is
 
    procedure StadtArtBesitzer
      (RasseExtern : in GlobaleDatentypen.Rassen;
-      RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       case
-        GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).ID
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ID
       is
+         when 0 =>
+            return; -- Hier später noch eine Fehlermeldung/Exception einbauen?
+            
          when 1 =>
             if
-              RasseExtern = RasseUndPlatznummerExtern.Rasse
+              RasseExtern = StadtRasseNummerExtern.Rasse
             then
                Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                               TextDateiExtern        => GlobaleDatentypen.Zeug,
@@ -39,9 +44,9 @@ package body StadtInformationen is
                                               AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
             end if;
                   
-         when others =>
+         when 2 =>
             if
-              RasseExtern = RasseUndPlatznummerExtern.Rasse
+              RasseExtern = StadtRasseNummerExtern.Rasse
             then
                Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                               TextDateiExtern        => GlobaleDatentypen.Zeug,
@@ -69,17 +74,17 @@ package body StadtInformationen is
    
    
    procedure StadtName
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).Name));
+      Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Name));
       
    end StadtName;
    
    
    
    procedure Einwohner
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -90,7 +95,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).Einwohner),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner),
                                Width => 1);
       
    end Einwohner;
@@ -98,7 +103,7 @@ package body StadtInformationen is
    
    
    procedure AktuelleNahrungsmittel
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -109,7 +114,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).AktuelleNahrungsmittel),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsmittel),
                                Width => 1);
       
    end AktuelleNahrungsmittel;
@@ -117,7 +122,7 @@ package body StadtInformationen is
    
    
    procedure AktuelleNahrungsproduktion
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -128,7 +133,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).AktuelleNahrungsproduktion),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsproduktion),
                                Width => 1);
       
    end AktuelleNahrungsproduktion;
@@ -136,7 +141,7 @@ package body StadtInformationen is
    
    
    procedure AktuelleProduktionrate
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -147,7 +152,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).AktuelleProduktionrate),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate),
                                Width => 1);
       
    end AktuelleProduktionrate;
@@ -155,7 +160,7 @@ package body StadtInformationen is
    
    
    procedure AktuelleGeldgewinnung
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -166,7 +171,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).AktuelleGeldgewinnung),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleGeldgewinnung),
                                Width => 1);
       
    end AktuelleGeldgewinnung;
@@ -174,7 +179,7 @@ package body StadtInformationen is
    
    
    procedure AktuelleForschungsrate
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -185,7 +190,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).AktuelleForschungsrate),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleForschungsrate),
                                Width => 1);
       
    end AktuelleForschungsrate;
@@ -193,7 +198,7 @@ package body StadtInformationen is
    
    
    procedure Korruption
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -204,7 +209,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).Korruption),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption),
                                Width => 1);
       
    end Korruption;
@@ -212,7 +217,7 @@ package body StadtInformationen is
    
    
    procedure EinwohnerOhneArbeit
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -223,8 +228,8 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).Einwohner
-                               - GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).ArbeitendeEinwohner),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner
+                               - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ArbeitendeEinwohner),
                                Width => 1);
       
    end EinwohnerOhneArbeit;
@@ -232,7 +237,7 @@ package body StadtInformationen is
    
    
    procedure AktuellesBauprojekt
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -244,7 +249,7 @@ package body StadtInformationen is
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
       case
-        GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).AktuellesBauprojekt
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt
       is
          when 0 => -- Nichts                     
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -260,8 +265,8 @@ package body StadtInformationen is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                            TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Gebäude_Kurz,
                                            ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).AktuellesBauprojekt - 1_000,
-                                           LetzteZeileExtern      => GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).AktuellesBauprojekt - 1_000,
+                                           ErsteZeileExtern       => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - 1_000,
+                                           LetzteZeileExtern      => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - 1_000,
                                            AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                            AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                            AbstandEndeExtern      => GlobaleDatentypen.Keiner);
@@ -270,8 +275,8 @@ package body StadtInformationen is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                            TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Einheiten_Kurz,
                                            ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).AktuellesBauprojekt - 10_000,
-                                           LetzteZeileExtern      => GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).AktuellesBauprojekt - 10_000,
+                                           ErsteZeileExtern       => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - 10_000,
+                                           LetzteZeileExtern      => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - 10_000,
                                            AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                            AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                            AbstandEndeExtern      => GlobaleDatentypen.Keiner);
@@ -285,10 +290,283 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (RasseUndPlatznummerExtern.Rasse, RasseUndPlatznummerExtern.Platznummer).VerbleibendeBauzeit),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).VerbleibendeBauzeit),
                                Width => 1);
       New_Line;
       
    end AktuellesBauprojekt;
+   
+   
+   
+   procedure EinzelnesFeldNahrungsgewinnung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      Nahrungsgewinnung := 0;
+      Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund).Nahrungsgewinnung;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource > 0
+      then
+         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource);
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource).Nahrungsgewinnung;
+         
+      else
+         null;
+      end if;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet > 0
+      then
+         VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet);
+         Nahrungsgewinnung
+           := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Nahrungsbonus;
+         
+      else
+         null;
+      end if;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße > 0
+      then
+         VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße);
+         Nahrungsgewinnung
+           := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Nahrungsbonus;
+         
+      else
+         null;
+      end if;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss > 0
+      then
+         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss);
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss).Nahrungsgewinnung;
+         
+      else
+         null;
+      end if;
+      New_Line;
+         
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 20,
+                                     LetzteZeileExtern      => 20,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (Nahrungsgewinnung),
+                               Width => 1);
+      
+   end EinzelnesFeldNahrungsgewinnung;
+   
+   
+   
+   procedure EinzelnesFeldRessourcengewinnung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      Ressourcengewinnung := 0;
+      Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund).Ressourcengewinnung;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource > 0
+      then
+         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource).Ressourcengewinnung;
+         
+      else
+         null;
+      end if;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet > 0
+      then
+         Ressourcengewinnung
+           := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Ressourcenbonus;
+         
+      else
+         null;
+      end if;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße > 0
+      then
+         Ressourcengewinnung
+           := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Ressourcenbonus;
+         
+      else
+         null;
+      end if;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss > 0
+      then
+         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss).Ressourcengewinnung;
+         
+      else
+         null;
+      end if;
+         
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 21,
+                                     LetzteZeileExtern      => 21,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (Ressourcengewinnung),
+                               Width => 1);
+      New_Line;
+      
+   end EinzelnesFeldRessourcengewinnung;
+   
+   
+   
+   procedure EinzelnesFeldGeldgewinnung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      Geldgewinnung := 0;      
+      Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund).Geldgewinnung;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource > 0
+      then
+         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource).Geldgewinnung;
+         
+      else
+         null;
+      end if;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet > 0
+      then
+         Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Geldbonus;
+         
+      else
+         null;
+      end if;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße > 0
+      then
+         Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Geldbonus;
+         
+      else
+         null;
+      end if;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss > 0
+      then
+         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss).Geldgewinnung;
+         
+      else
+         null;
+      end if;
+         
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 22,
+                                     LetzteZeileExtern      => 22,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (Geldgewinnung),
+                               Width => 1);
+      
+   end EinzelnesFeldGeldgewinnung;
+   
+   
+   
+   procedure EinzelnesFeldWissensgewinnung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      Wissensgewinnung := 0;
+      Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund).Wissensgewinnung;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource > 0
+      then
+         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource).Wissensgewinnung;
+         
+      else
+         null;
+      end if;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet > 0
+      then
+         Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Wissensbonus;
+         
+      else
+         null;
+      end if;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße > 0
+      then
+         Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Wissensbonus;
+         
+      else
+         null;
+      end if;
+      
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss > 0
+      then
+         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss).Wissensgewinnung;
+         
+      else
+         null;
+      end if;
+         
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 23,
+                                     LetzteZeileExtern      => 23,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (Wissensgewinnung),
+                               Width => 1);
+      New_Line;
+      
+   end EinzelnesFeldWissensgewinnung;
+   
+   
+   
+   procedure StadtfeldBewirtschaftet
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      CursorYAchseabstraktionExtern, CursorXAchseabstraktionExtern : in GlobaleDatentypen.Kartenfeld)
+   is begin
+      
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+                                     TextDateiExtern        => GlobaleDatentypen.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 42,
+                                     LetzteZeileExtern      => 42,
+                                     AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
+                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+      
+      case
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (CursorYAchseabstraktionExtern, CursorXAchseabstraktionExtern)
+      is
+         when True =>
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Menü_Auswahl,
+                                                  TextZeileExtern => 7);
+               
+         when False =>
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Menü_Auswahl,
+                                                  TextZeileExtern => 8);
+      end case;
+      
+   end StadtfeldBewirtschaftet;
 
 end StadtInformationen;

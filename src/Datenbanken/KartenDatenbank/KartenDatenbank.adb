@@ -3,6 +3,15 @@ pragma SPARK_Mode (On);
 with Anzeige;
 
 package body KartenDatenbank is
+   
+   procedure StandardKartenDatenbankWiederherstellen
+   is begin
+      
+      KartenListe := KartenListeStandard;
+      
+   end StandardKartenDatenbankWiederherstellen;
+   
+   
 
    procedure Beschreibung
      (IDExtern : in GlobaleDatentypen.KartenGrund)

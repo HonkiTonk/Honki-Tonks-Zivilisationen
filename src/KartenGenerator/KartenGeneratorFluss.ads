@@ -11,11 +11,13 @@ package KartenGeneratorFluss is
 
 private
 
-   WahrscheinlichkeitFluss : constant Float := 0.85;
+   WahrscheinlichkeitFluss : constant Float := 0.75;
 
    Flusswert : Positive;
 
    BeliebigerFlusswert : Float;
+   
+   StandardFluß : constant GlobaleDatentypen.KartenGrund := 43;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    

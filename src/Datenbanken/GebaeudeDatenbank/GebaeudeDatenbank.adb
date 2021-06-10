@@ -3,6 +3,15 @@ pragma SPARK_Mode (On);
 with Anzeige;
 
 package body GebaeudeDatenbank is
+   
+   procedure StandardGebaeudeDatenbankWiederherstellen
+   is begin
+      
+      GebäudeListe := GebäudeListeStandard;
+      
+   end StandardGebaeudeDatenbankWiederherstellen;
+   
+   
 
    procedure Beschreibung
      (IDExtern : in GebäudeID)

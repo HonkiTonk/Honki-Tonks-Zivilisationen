@@ -6,6 +6,15 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_
 with Anzeige, Eingabe;
 
 package body ForschungsDatenbank is
+   
+   procedure StandardForschungsDatenbankWiederherstellen
+   is begin
+      
+      ForschungListe := ForschungListeStandard;
+      
+   end StandardForschungsDatenbankWiederherstellen;
+   
+   
 
    procedure Beschreibung
      (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert;
@@ -303,8 +312,10 @@ package body ForschungsDatenbank is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Zeug,
                                            TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
                                            ÜberschriftZeileExtern => 44,
-                                           ErsteZeileExtern       => Positive (ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert)) + RassenAufschlagForschung (RasseExtern),
-                                           LetzteZeileExtern      => Positive (ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert)) + RassenAufschlagForschung (RasseExtern),
+                                           ErsteZeileExtern       => Positive (ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert))
+                                           + RassenAufschlagForschung (RasseExtern),
+                                           LetzteZeileExtern      => Positive (ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert))
+                                           + RassenAufschlagForschung (RasseExtern),
                                            AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                            AbstandMitteExtern     => GlobaleDatentypen.Großer_Abstand,
                                            AbstandEndeExtern      => GlobaleDatentypen.Keiner);

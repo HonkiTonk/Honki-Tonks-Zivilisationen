@@ -21,7 +21,6 @@ package KarteStadt is
 
 private
 
-   FeldBelegt : Boolean;
    InformationenStadtAufrufen : Boolean;
    
    Stadtumgebungsgröße : GlobaleDatentypen.Stadtfeld;
@@ -34,14 +33,9 @@ private
    CursorYAchseabstraktion : GlobaleDatentypen.Kartenfeld;
    CursorXAchseabstraktion : GlobaleDatentypen.Kartenfeld;
 
-   Nahrungsgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
-   RasseUndPlatznummer : GlobaleRecords.RassePlatznummerRecord;
+   StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord;
    
    procedure InformationenStadt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

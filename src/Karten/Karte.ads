@@ -16,20 +16,12 @@ private
    StehtDrauf : Boolean;
 
    -- MöglicheAngriffsfelder : constant Wide_Wide_Character := '■'; -- Später für Fernkampfeinheiten wieder einbauen?
-   Verteidigungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
-   Nahrungsgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
 
-   EinheitNummer : GlobaleDatentypen.MaximaleEinheiten;
-
-   SichtweiteFestlegen : Integer;
-   BewegungsfeldFestlegen : Integer;
+   SichtweiteFestlegen : Positive;
+   BewegungsfeldFestlegen : Positive;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
-   RasseUndPlatznummer : GlobaleRecords.RassePlatznummerRecord;
 
    type SichtweitenArray is array (1 .. 3) of GlobaleRecords.AchsenKartenfeldPositivRecord;
 
@@ -42,10 +34,13 @@ private
                                                  2 => (0, 5, 19),
                                                  3 => (0, 5, 34));
 
-   procedure Information
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+   procedure CursorPositionAltFestlegen
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      BewegungsfeldFestlegenExtern : in Positive)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1
+          and
+         BewegungsfeldFestlegenExtern <= Bewegungsfeld'Last);
 
 end Karte;

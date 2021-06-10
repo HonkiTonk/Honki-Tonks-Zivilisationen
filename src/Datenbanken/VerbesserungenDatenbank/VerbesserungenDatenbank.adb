@@ -3,6 +3,15 @@ pragma SPARK_Mode (On);
 with Anzeige;
 
 package body VerbesserungenDatenbank is
+   
+   procedure StandardVerbesserungenDatenbankWiederherstellen
+   is begin
+      
+      VerbesserungListe := VerbesserungListeStandard;
+      
+   end StandardVerbesserungenDatenbankWiederherstellen;
+   
+   
 
    procedure Beschreibung
      (IDExtern : in GlobaleDatentypen.KartenVerbesserung)

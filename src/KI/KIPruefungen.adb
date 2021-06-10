@@ -148,7 +148,8 @@ package body KIPruefungen is
             XAchseKartenfeldSuchenSchleife:
             for XAchseSchleifenwert in -XAchseKoordinatePrüfen .. XAchseKoordinatePrüfen loop
                
-               StadtBauenUmgebungKoordinaten := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+               StadtBauenUmgebungKoordinaten := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                                                          EinheitRasseNummerExtern.Platznummer).AchsenPosition,
                                                                                           ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                           ZusatzYAbstandExtern => 0);
             

@@ -3,97 +3,147 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 use GlobaleDatentypen;
 
+with Karten;
+
 package StadtInformationen is
 
    procedure StadtArtBesitzer
      (RasseExtern : in GlobaleDatentypen.Rassen;
-      RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseUndPlatznummerExtern.Rasse) > 0
+         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0
           and
-            RasseUndPlatznummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+            GlobaleVariablen.RassenImSpiel (RasseExtern) > 0
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+            StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2));
 
    procedure StadtName
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (RasseUndPlatznummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
           and
-            RasseUndPlatznummerExtern.Platznummer > 0);
+            StadtRasseNummerExtern.Platznummer > 0);
 
    procedure Einwohner
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (RasseUndPlatznummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
           and
-            RasseUndPlatznummerExtern.Platznummer > 0);
+            StadtRasseNummerExtern.Platznummer > 0);
 
    procedure AktuelleNahrungsmittel
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (RasseUndPlatznummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
           and
-            RasseUndPlatznummerExtern.Platznummer > 0);
+            StadtRasseNummerExtern.Platznummer > 0);
 
    procedure AktuelleNahrungsproduktion
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (RasseUndPlatznummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
           and
-            RasseUndPlatznummerExtern.Platznummer > 0);
+            StadtRasseNummerExtern.Platznummer > 0);
 
    procedure AktuelleProduktionrate
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (RasseUndPlatznummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
           and
-            RasseUndPlatznummerExtern.Platznummer > 0);
+            StadtRasseNummerExtern.Platznummer > 0);
 
    procedure AktuelleGeldgewinnung
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (RasseUndPlatznummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
           and
-            RasseUndPlatznummerExtern.Platznummer > 0);
+            StadtRasseNummerExtern.Platznummer > 0);
 
    procedure AktuelleForschungsrate
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (RasseUndPlatznummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
           and
-            RasseUndPlatznummerExtern.Platznummer > 0);
+            StadtRasseNummerExtern.Platznummer > 0);
 
    procedure Korruption
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (RasseUndPlatznummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
           and
-            RasseUndPlatznummerExtern.Platznummer > 0);
+            StadtRasseNummerExtern.Platznummer > 0);
 
    procedure EinwohnerOhneArbeit
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (RasseUndPlatznummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
           and
-            RasseUndPlatznummerExtern.Platznummer > 0);
+            StadtRasseNummerExtern.Platznummer > 0);
 
    procedure AktuellesBauprojekt
-     (RasseUndPlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (RasseUndPlatznummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
           and
-            RasseUndPlatznummerExtern.Platznummer > 0);
+            StadtRasseNummerExtern.Platznummer > 0);
+
+   procedure EinzelnesFeldNahrungsgewinnung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+
+   procedure EinzelnesFeldRessourcengewinnung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+
+   procedure EinzelnesFeldGeldgewinnung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+
+   procedure EinzelnesFeldWissensgewinnung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+
+   procedure StadtfeldBewirtschaftet
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      CursorYAchseabstraktionExtern, CursorXAchseabstraktionExtern : in GlobaleDatentypen.Kartenfeld)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+          and
+            StadtRasseNummerExtern.Platznummer > 0);
+
+private
+
+   Nahrungsgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+   Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+   Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+   Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
 
 end StadtInformationen;

@@ -752,6 +752,9 @@ package body Verbesserungen is
                   when 19 =>
                      Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
                      
+                  when 24 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 16;
+                     
                   when others =>
                      null;
                end case;
@@ -788,6 +791,9 @@ package body Verbesserungen is
 
                   when 19 =>
                      Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
+                     
+                  when 24 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 17;
                      
                   when others =>
                      null;
@@ -826,6 +832,9 @@ package body Verbesserungen is
                   when 18 =>
                      Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
                      
+                  when 24 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 19;
+                     
                   when others =>
                      null;
                end case;
@@ -862,6 +871,9 @@ package body Verbesserungen is
 
                   when 19 =>
                      Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
+                     
+                  when 24 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 18;
                      
                   when others =>
                      null;
@@ -918,7 +930,7 @@ package body Verbesserungen is
             Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 7;
          
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 6;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 24;
       end case;
       
    end StraßeBerechnung;

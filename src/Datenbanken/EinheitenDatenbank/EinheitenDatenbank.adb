@@ -9,6 +9,15 @@ with Auswahl, Anzeige, Eingabe, Sichtbarkeit;
 
 package body EinheitenDatenbank is
    
+   procedure StandardEinheitenDatenbankWiederherstellen
+   is begin
+      
+      EinheitenListe := EinheitenListeStandard;
+      
+   end StandardEinheitenDatenbankWiederherstellen;
+   
+   
+   
    procedure Beschreibung
      (IDExtern : in GlobaleDatentypen.EinheitenID)
    is begin

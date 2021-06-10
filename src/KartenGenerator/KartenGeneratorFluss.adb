@@ -25,7 +25,7 @@ package body KartenGeneratorFluss is
             elsif
               BeliebigerFlusswert >= WahrscheinlichkeitFluss
             then
-               Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Fluss := 15;
+               Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Fluss := StandardFluß;
                
             else
                YAchseZweiSchleife:
@@ -50,9 +50,9 @@ package body KartenGeneratorFluss is
                      if
                        Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= 0
                        and
-                         BeliebigerFlusswert >= WahrscheinlichkeitFluss / 2.50
+                         BeliebigerFlusswert >= WahrscheinlichkeitFluss / 1.25
                      then                        
-                        Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Fluss := 15;
+                        Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Fluss := StandardFluß;
 
                      else
                         null;
@@ -137,6 +137,9 @@ package body KartenGeneratorFluss is
                   when 28 =>
                      Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
                      
+                  when 43 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 25;
+                     
                   when others =>
                      null;
                end case;
@@ -173,6 +176,9 @@ package body KartenGeneratorFluss is
 
                   when 28 =>
                      Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
+                     
+                  when 43 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 26;
                      
                   when others =>
                      null;
@@ -211,6 +217,9 @@ package body KartenGeneratorFluss is
                   when 27 =>
                      Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
                      
+                  when 43 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 28;
+                     
                   when others =>
                      null;
                end case;
@@ -247,6 +256,9 @@ package body KartenGeneratorFluss is
 
                   when 28 =>
                      Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
+                     
+                  when 43 =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 27;
                      
                   when others =>
                      null;
@@ -303,7 +315,7 @@ package body KartenGeneratorFluss is
             Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 16;
          
          when others =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 15;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 43;
       end case;
       
    end FlussBerechnung;
