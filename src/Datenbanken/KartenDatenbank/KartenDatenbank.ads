@@ -59,12 +59,6 @@ package KartenDatenbank is
                                       ('▪',    1,    1, 0, 1, 0, 1)); -- 43 Fluß einzeln
    
    procedure StandardKartenDatenbankWiederherstellen;
-                                                                       
-   procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.KartenGrund)
-     with
-       Pre =>
-         (IDExtern > 0);
    
 private
    

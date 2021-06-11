@@ -7,7 +7,7 @@ with GlobaleKonstanten;
 
 with KIDatentypen;
 
-with Anzeige, StadtWerteFestlegen, ForschungsDatenbank, EinheitenDatenbank, Eingabe, Karten, KartenPruefungen, StadtProduktion;
+with Anzeige, StadtWerteFestlegen, Eingabe, Karten, KartenPruefungen, StadtProduktion, ForschungAllgemein, EinheitenAllgemein;
 
 package body StadtBauen is
 
@@ -90,9 +90,9 @@ package body StadtBauen is
       
       StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
       StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
-      ForschungsDatenbank.ForschungZeit (RasseExtern => EinheitRasseNummerExtern.Rasse); 
+      ForschungAllgemein.ForschungZeit (RasseExtern => EinheitRasseNummerExtern.Rasse); 
             
-      EinheitenDatenbank.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)

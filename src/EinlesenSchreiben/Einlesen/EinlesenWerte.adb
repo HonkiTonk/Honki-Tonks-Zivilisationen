@@ -33,7 +33,7 @@ package body EinlesenWerte is
             return;
       end case;
       
-      Open (File => EinheitenDatenbankEinlesen,
+      Open (File => DatenbankEinlesen,
             Mode => In_File,
             Name => "Daten/EinheitenDatenbank");
       
@@ -42,13 +42,13 @@ package body EinlesenWerte is
          EinheitSchleife:
          for EinheitSchleifenwert in EinheitenDatenbank.EinheitenListeArray'Range (2) loop
             
-            DatenbankRecords.EinheitenListeRecord'Read (Stream (File => EinheitenDatenbankEinlesen),
+            DatenbankRecords.EinheitenListeRecord'Read (Stream (File => DatenbankEinlesen),
                                                         EinheitenDatenbank.EinheitenListe (RasseSchleifenwert, EinheitSchleifenwert));
             
          end loop EinheitSchleife;
       end loop RassenSchleife;
       
-      Close (File => EinheitenDatenbankEinlesen);
+      Close (File => DatenbankEinlesen);
       
    end EinlesenEinheitenDatenbank;
    
@@ -67,7 +67,7 @@ package body EinlesenWerte is
             return;
       end case;
       
-      Open (File => ForschungsDatenbankEinlesen,
+      Open (File => DatenbankEinlesen,
             Mode => In_File,
             Name => "Daten/ForschungsDatenbank");
       
@@ -76,13 +76,13 @@ package body EinlesenWerte is
          TechnologieSchleife:
          for TechnologieSchleifenwert in ForschungsDatenbank.ForschungListeArray'Range (2) loop
             
-            DatenbankRecords.ForschungListeRecord'Read (Stream (File => ForschungsDatenbankEinlesen),
+            DatenbankRecords.ForschungListeRecord'Read (Stream (File => DatenbankEinlesen),
                                                         ForschungsDatenbank.ForschungListe (RasseSchleifenwert, TechnologieSchleifenwert));
             
          end loop TechnologieSchleife;
       end loop RassenSchleife;
       
-      Close (File => ForschungsDatenbankEinlesen);
+      Close (File => DatenbankEinlesen);
       
    end EinlesenForschungsDatenbank;
    
@@ -101,7 +101,7 @@ package body EinlesenWerte is
             return;
       end case;
       
-      Open (File => GebäudeDatenbankEinlesen,
+      Open (File => DatenbankEinlesen,
             Mode => In_File,
             Name => "Daten/GebaeudeDatenbank");
       
@@ -110,13 +110,13 @@ package body EinlesenWerte is
          GebäudeSchleife:
          for GebäudeSchleifenwert in GebaeudeDatenbank.GebäudeListeArray'Range (2) loop
             
-            DatenbankRecords.GebäudeListeRecord'Read (Stream (File => GebäudeDatenbankEinlesen),
+            DatenbankRecords.GebäudeListeRecord'Read (Stream (File => DatenbankEinlesen),
                                                        GebaeudeDatenbank.GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert));
             
          end loop GebäudeSchleife;
       end loop RassenSchleife;
       
-      Close (File => GebäudeDatenbankEinlesen);
+      Close (File => DatenbankEinlesen);
       
    end EinlesenGebäudeDatenbank;
    
@@ -135,19 +135,19 @@ package body EinlesenWerte is
             return;
       end case;
       
-      Open (File => KartenDatenbankEinlesen,
+      Open (File => DatenbankEinlesen,
             Mode => In_File,
             Name => "Daten/KartenDatenbank");
       
       KartenGrundSchleife:
       for KartenGrundSchleifenwert in KartenDatenbank.KartenListeArray'Range loop
             
-         DatenbankRecords.KartenListeRecord'Read (Stream (File => KartenDatenbankEinlesen),
+         DatenbankRecords.KartenListeRecord'Read (Stream (File => DatenbankEinlesen),
                                                   KartenDatenbank.KartenListe (KartenGrundSchleifenwert));
             
       end loop KartenGrundSchleife;
       
-      Close (File => KartenDatenbankEinlesen);
+      Close (File => DatenbankEinlesen);
       
    end EinlesenKartenDatenbank;
    
@@ -166,19 +166,19 @@ package body EinlesenWerte is
             return;
       end case;
       
-      Open (File => VerbesserungenDatenbankEinlesen,
+      Open (File => DatenbankEinlesen,
             Mode => In_File,
             Name => "Daten/VerbesserungenDatenbank");
       
       VerbesserungenSchleife:
       for VerbesserungenSchleifenwert in VerbesserungenDatenbank.VerbesserungListeArray'Range loop
             
-         DatenbankRecords.VerbesserungListeRecord'Read (Stream (File => VerbesserungenDatenbankEinlesen),
+         DatenbankRecords.VerbesserungListeRecord'Read (Stream (File => DatenbankEinlesen),
                                                         VerbesserungenDatenbank.VerbesserungListe (VerbesserungenSchleifenwert));
             
       end loop VerbesserungenSchleife;
       
-      Close (File => VerbesserungenDatenbankEinlesen);
+      Close (File => DatenbankEinlesen);
       
    end EinlesenVerbesserungenDatenbank;
 

@@ -1,13 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen;
 use GlobaleDatentypen;
 
 with DatenbankRecords;
 
 package ForschungsDatenbank is
 
-   -- Hier noch hinschreiben welcher Wert was ist!
    LeererWertForschungListe : constant DatenbankRecords.ForschungListeRecord := (0, (others => 0)); -- PreisForschung, AnforderungForschung
 
    type ForschungListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.ForschungID'Range) of DatenbankRecords.ForschungListeRecord;
@@ -218,62 +217,7 @@ package ForschungsDatenbank is
                                                                 17 => 0,
                                                                 18 => 0);
 
-   procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in GlobaleDatentypen.Rassen)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
-
-   procedure Forschung
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
-
-   procedure ForschungsBaum
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
-
-   procedure ForschungFortschritt;
-
-   procedure ForschungZeit
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
-
 private
-
-   AnforderungenErfüllt : Boolean;
-
-   WasErforschtWerdenSoll : GlobaleDatentypen.ForschungIDMitNullWert;
-
-   AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
-   Ende : GlobaleDatentypen.ForschungID;
-
-   procedure Ermöglicht
-     (RasseExtern : in GlobaleDatentypen.Rassen;
-      ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
-
-   procedure Benötigt
-     (RasseExtern : in GlobaleDatentypen.Rassen;
-      ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
-
-   function AuswahlForschungNeu
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-      return GlobaleDatentypen.ForschungIDMitNullWert
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
    ForschungListeStandard : constant ForschungListeArray := (1 => (1 => (100, (others => 0)), -- Einfache Landwirtschaft
                                                                    2 => (100, (others => 0)), -- Straßen

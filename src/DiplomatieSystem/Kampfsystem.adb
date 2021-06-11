@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank;
   
-with Karten, ZufallGeneratorenKampf, StadtSuchen;
+with Karten, ZufallGeneratorenKampf, StadtSuchen, EinheitenAllgemein;
 
 package body Kampfsystem is
 
@@ -97,7 +97,7 @@ package body Kampfsystem is
          if
            GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).AktuelleLebenspunkte <= 0
          then
-            EinheitenDatenbank.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerRasseNummerExtern);
+            EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerRasseNummerExtern);
             return True;
             
          else
@@ -111,7 +111,7 @@ package body Kampfsystem is
          if
            GlobaleVariablen.EinheitenGebaut (AngreiferRasseNummerExtern.Rasse, AngreiferRasseNummerExtern.Platznummer).AktuelleLebenspunkte <= 0
          then
-            EinheitenDatenbank.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferRasseNummerExtern);
+            EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferRasseNummerExtern);
             return False;
 
          else

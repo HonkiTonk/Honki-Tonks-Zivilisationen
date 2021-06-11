@@ -4,9 +4,9 @@ with GlobaleKonstanten;
 
 with KIDatentypen;
 
-with EinheitenDatenbank;
+with EinheitenDatenbank, KartenDatenbank;
 
-with Anzeige, Eingabe, Karte, KartenPruefungen, Karten, EinheitSuchen, KartenDatenbank;
+with Anzeige, Eingabe, Karte, KartenPruefungen, Karten, EinheitSuchen, EinheitenAllgemein;
 
 package body StadtEinheitenBauen is
 
@@ -128,7 +128,7 @@ package body StadtEinheitenBauen is
       if
         BereitsVonEinheitBelegt.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
       then
-         EinheitenDatenbank.EinheitErzeugen (KoordinatenExtern            => KartenWert,
+         EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern            => KartenWert,
                                              EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummer),
                                              IDExtern                     => GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
                                                StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - GlobaleKonstanten.EinheitAufschlag));

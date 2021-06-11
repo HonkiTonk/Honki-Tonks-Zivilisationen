@@ -25,18 +25,6 @@ private
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
 
-   procedure Forschung
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
-
-   procedure Diplomatie
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
-
    procedure AKtivitätEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen;
 use GlobaleDatentypen;
 
 with DatenbankRecords;
@@ -13,10 +13,11 @@ package GebaeudeDatenbank is
                                                                                False); -- Anderes
 
    type GebäudeListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.GebäudeID'Range) of DatenbankRecords.GebäudeListeRecord;
-   GebäudeListe : GebäudeListeArray := (1 => (('A',    100, 100, 0, 0,    0, 0, 0, 0, 0,    False), -- 1
-                                                ('B',    100, 100, 0, 0,    0, 0, 0, 0, 0,    False), -- 2
-                                                ('C',    150, 50, 2, 0,    0, 0, 0, 0, 0,    False), -- 3
-                                                ('D',    1000, 100, 1, 1,    0, 0, 0, 0, 0,    False), -- 4
+   GebäudeListe : GebäudeListeArray := (1 => (('A',    100, 100, 0, 0,    0, 0, 0, 0, 0,    False), -- Holzhäuser
+                                                ('B',    100, 100, 0, 0,    0, 0, 0, 0, 0,    False), -- Rathaus
+                                                ('C',    150, 50, 1, 0,    0, 0, 0, 0, 0,    False), -- Nahrungslager
+                                                ('D',    1000, 100, 5, 1,    2, 0, 0, 0, 0,    False), -- Schmiede
+                                                
                                                 ('E',    1000, 100, 1, 1,    0, 0, 0, 0, 0,    False), -- 5
                                                 ('F',    1000, 100, 1, 1,    0, 0, 0, 0, 0,    False), -- 6
                                                 ('G',    1000, 100, 1, 1,    0, 0, 0, 0, 0,    False), -- 7
@@ -268,17 +269,6 @@ package GebaeudeDatenbank is
                                                                 16 => 0,
                                                                 17 => 0,
                                                                 18 => 0);
-
-   procedure Beschreibung
-     (IDExtern : in GebäudeID);
-   procedure GebäudeProduktionBeenden
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      IDExtern : in GebäudeID)
-     with
-       Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
-          and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
    
 private
    

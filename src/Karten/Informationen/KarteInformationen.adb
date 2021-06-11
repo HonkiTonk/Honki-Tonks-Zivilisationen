@@ -5,9 +5,9 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleKonstanten;
 
-with ForschungsDatenbank, KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank;
+with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank;
 
-with Anzeige, Cheat, Karten, EinheitSuchen, StadtSuchen, KarteStadt;
+with Anzeige, Cheat, Karten, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein;
 
 package body KarteInformationen is
 
@@ -153,8 +153,8 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      ForschungsDatenbank.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt,
-                                        RasseExtern => RasseExtern);
+      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt,
+                                       RasseExtern => RasseExtern);
       
    end InformationenForschungsprojekt;
      
@@ -236,7 +236,7 @@ package body KarteInformationen is
          when others =>
             EinheitNummer := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert;
       end case;
-      EinheitenDatenbank.Beschreibung (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID);
+      EinheitenAllgemein.Beschreibung (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID);
       New_Line;
                   
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -303,7 +303,7 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                         AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-         EinheitenDatenbank.Beschäftigung (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung);
+         EinheitenAllgemein.Beschäftigung (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung);
 
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                         TextDateiExtern        => GlobaleDatentypen.Zeug,
@@ -436,7 +436,7 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                         AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                         AbstandEndeExtern      => GlobaleDatentypen.Keiner);
-         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund);
 
          Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
@@ -459,7 +459,7 @@ package body KarteInformationen is
         Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Hügel = True
       then
-         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund);
 
          Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
@@ -479,7 +479,7 @@ package body KarteInformationen is
                                                                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund).Wissensgewinnung;
                
       else         
-         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund);
 
          Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
@@ -503,7 +503,7 @@ package body KarteInformationen is
         Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource > 0
       then
-         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource);
 
          Verteidigungsbonus
@@ -530,7 +530,7 @@ package body KarteInformationen is
         Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet > 0
       then
-         VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+         VerbesserungenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet);
 
          Verteidigungsbonus
@@ -561,7 +561,7 @@ package body KarteInformationen is
         Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße > 0
       then
-         VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+         VerbesserungenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße);
 
          Verteidigungsbonus
@@ -592,7 +592,7 @@ package body KarteInformationen is
         Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss > 0
       then
-         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
+         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
                                        GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss);
 
          Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,

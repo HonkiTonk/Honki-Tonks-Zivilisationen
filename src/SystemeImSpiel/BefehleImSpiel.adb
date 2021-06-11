@@ -2,8 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with ForschungsDatenbank, InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, EinheitenDatenbank, NaechstesObjekt, Verbesserungen,
-     Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, FeldInformationen;
+with EinheitenDatenbank;
+
+with InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, NaechstesObjekt, Verbesserungen, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen,
+     Eingabe, FeldInformationen, ForschungAllgemein, EinheitenAllgemein;
 
 package body BefehleImSpiel is
 
@@ -67,10 +69,10 @@ package body BefehleImSpiel is
                   if
                     GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert /= 0
                   then
-                     EinheitTransportNummer := EinheitenDatenbank.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert));
+                     EinheitTransportNummer := EinheitenAllgemein.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert));
 
                   else
-                     EinheitTransportNummer := EinheitenDatenbank.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
+                     EinheitTransportNummer := EinheitenAllgemein.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                   end if;
                   
                   case
@@ -124,14 +126,14 @@ package body BefehleImSpiel is
             if
               GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt = 0
             then
-               ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
+               ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
                      
             else
                case
                  Auswahl.AuswahlJaNein (FrageZeileExtern => 17)
                is
                   when GlobaleKonstanten.JaKonstante =>
-                     ForschungsDatenbank.Forschung (RasseExtern => RasseExtern);
+                     ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
                      
                   when others =>
                      null;
@@ -139,7 +141,7 @@ package body BefehleImSpiel is
             end if;
             
          when 15 => -- Anzeige des Forschungsbaums
-            ForschungsDatenbank.ForschungsBaum (RasseExtern => RasseExtern);
+            ForschungAllgemein.ForschungsBaum (RasseExtern => RasseExtern);
             
          when 16 => -- Nächste Stadt
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
@@ -285,7 +287,7 @@ package body BefehleImSpiel is
               GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).AktuelleBeschäftigung /= GlobaleDatentypen.Keine
             then
                case
-                 EinheitenDatenbank.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7)
+                 EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7)
                is
                   when True =>
                      GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).AktuelleBeschäftigung := GlobaleDatentypen.Keine;

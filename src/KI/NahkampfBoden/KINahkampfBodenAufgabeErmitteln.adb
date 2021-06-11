@@ -110,7 +110,8 @@ package body KINahkampfBodenAufgabeErmitteln is
       
       if
         8 + StadtSuchen.AnzahlStädteErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse) > EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern      => EinheitRasseNummerExtern.Rasse,
-                                                                                                                                              EinheitTypExtern => 3)
+                                                                                                                                              EinheitTypExtern => 3,
+                                                                                                                                              GesuchteMenge    => 0)
       then
          return 2;
          

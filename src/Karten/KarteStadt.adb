@@ -5,9 +5,9 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten;
 
-with GebaeudeDatenbank, KartenDatenbank;
+with GebaeudeDatenbank;
   
-with Sichtbarkeit, KartenPruefungen, StadtSuchen, Karten, StadtInformationen, Anzeige;
+with Sichtbarkeit, KartenPruefungen, StadtSuchen, Karten, StadtInformationen, Anzeige, GebaeudeAllgemein, KartenAllgemein;
 
 package body KarteStadt is
 
@@ -117,7 +117,7 @@ package body KarteStadt is
                Put (Item => " ");
 
             elsif
-              YAchseSchleifenwert <= 2
+              YAchseSchleifenwert = 1
               and
                 XAchseSchleifenwert < 13
             then
@@ -125,8 +125,25 @@ package body KarteStadt is
                  GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert)) = True
                then
                   Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (XAchseSchleifenwert)).GebäudeGrafik);
-                  
-               elsif
+
+               else
+                  Sichtbarkeit.Farben (EinheitExtern      => 0,
+                                       VerbesserungExtern => 0,
+                                       RessourceExtern    => 0,
+                                       GrundExtern        => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition.EAchse,
+                                         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition.YAchse,
+                                         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition.XAchse).Grund,
+                                       CursorExtern       => False,
+                                       EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
+                                       RasseExtern        => 0);
+               end if;
+               
+            elsif
+              YAchseSchleifenwert = 2
+              and
+                XAchseSchleifenwert < 13
+            then
+               if
                  GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 12) = True
                then
                   Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 12).GebäudeGrafik);
@@ -158,11 +175,11 @@ package body KarteStadt is
             case
               XAchseSchleifenwert
             is
-               when Karten.Stadtkarte'Last (2) =>
-                  New_Line;
+            when Karten.Stadtkarte'Last (2) =>
+               New_Line;
                   
-               when others =>
-                  null;
+            when others =>
+               null;
             end case;
             
          end loop XAchseSchleife;
@@ -173,15 +190,15 @@ package body KarteStadt is
       case
         InformationenStadtAufrufen
       is
-         when True =>
-            InformationenStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      when True =>
+         InformationenStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-         when False =>
-            null;
+      when False =>
+         null;
       end case;
 
       if
-        GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.YAchse <= 2
+        GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.YAchse = 1
         and
           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse < 13
       then
@@ -189,13 +206,22 @@ package body KarteStadt is
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
            (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse)) = True
          then
-            GebaeudeDatenbank.Beschreibung (IDExtern => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse));
+            GebaeudeAllgemein.Beschreibung (IDExtern => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse));
             
-         elsif
+         else
+            null;
+         end if;
+         
+      elsif
+        GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.YAchse = 2
+        and
+          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse < 13
+      then            
+         if
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
            (GlobaleDatentypen.GebäudeID(GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse) + 12) = True
          then
-            GebaeudeDatenbank.Beschreibung (IDExtern => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse) + 12);
+            GebaeudeAllgemein.Beschreibung (IDExtern => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse) + 12);
             
          else
             null;
@@ -366,15 +392,15 @@ package body KarteStadt is
                                         AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                         AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                         AbstandEndeExtern      => GlobaleDatentypen.Keiner);
-         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
+         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
          
       elsif
         Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Hügel = True
       then
-         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
+         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
                
       else         
-         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
+         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
       end if;
       
       StadtInformationen.EinzelnesFeldNahrungsgewinnung (KoordinatenExtern => KartenWert);

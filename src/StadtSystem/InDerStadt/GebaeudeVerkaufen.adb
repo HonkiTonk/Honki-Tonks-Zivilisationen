@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with GebaeudeDatenbank;
 
+with StadtProduktion;
+
 package body GebaeudeVerkaufen is
 
    procedure GebäudeVerkaufen
@@ -37,6 +39,7 @@ package body GebaeudeVerkaufen is
                end if;
                GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
                  (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse)) := False;
+               StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern);
          end case;
             
       elsif
@@ -67,6 +70,7 @@ package body GebaeudeVerkaufen is
                end if;
                GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
                  (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse) + 12) := False;
+               StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern);
          end case;
                   
       else

@@ -68,8 +68,8 @@ package EinheitSuchen is
          (GlobaleVariablen.RassenImSpiel (EinheitRassePlatznummer.Rasse) > 0
           and
             EinheitRassePlatznummer.Platznummer > 0),
-     Post =>
-       (EinheitAufTransporterSuchen'Result <= GlobaleRecords.TransporterArray'Last);
+         Post =>
+           (EinheitAufTransporterSuchen'Result <= GlobaleRecords.TransporterArray'Last);
 
    function IstEinheitAufTransporter
      (EinheitRassePlatznummer : in GlobaleRecords.RassePlatznummerRecord)
@@ -82,14 +82,16 @@ package EinheitSuchen is
    
    function MengeEinesEinheitenTypsSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen;
-      EinheitTypExtern : in GlobaleDatentypen.EinheitenTyp)
+      EinheitTypExtern : in GlobaleDatentypen.EinheitenTyp;
+      GesuchteMenge : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
    
    function AnzahlEinheitenSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      GesuchteMenge : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>

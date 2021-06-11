@@ -180,7 +180,8 @@ package body EinheitSuchen is
    
    function MengeEinesEinheitenTypsSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen;
-      EinheitTypExtern : in GlobaleDatentypen.EinheitenTyp)
+      EinheitTypExtern : in GlobaleDatentypen.EinheitenTyp;
+      GesuchteMenge : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
@@ -203,6 +204,17 @@ package body EinheitSuchen is
             null;
          end if;
          
+         if
+           GesuchteMenge > 0
+           and
+             AnzahlEinheitTyp >= GesuchteMenge
+         then
+            return AnzahlEinheitTyp;
+            
+         else
+            null;
+         end if;
+         
       end loop EinheitSchleife;
       
       return AnzahlEinheitTyp;
@@ -212,7 +224,8 @@ package body EinheitSuchen is
    
    
    function AnzahlEinheitenSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      GesuchteMenge : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
@@ -225,6 +238,17 @@ package body EinheitSuchen is
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitenSchleifenwert).ID /= 0
          then
             AnzahlEinheiten := AnzahlEinheiten + 1;
+            
+         else
+            null;
+         end if;
+         
+         if
+           GesuchteMenge > 0
+           and
+             AnzahlEinheiten >= GesuchteMenge
+         then
+            return AnzahlEinheiten;
             
          else
             null;

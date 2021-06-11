@@ -5,7 +5,7 @@ use Ada.Calendar;
 
 with GlobaleVariablen, GlobaleKonstanten;
 
-with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, EinheitenDatenbank, Verbesserungen, ForschungsDatenbank, KI, Ladezeiten, Speichern, Laden, StadtProduktion;
+with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, Verbesserungen, ForschungAllgemein, KI, Ladezeiten, Speichern, Laden, StadtProduktion, EinheitenAllgemein;
 
 package body ImSpiel is
 
@@ -152,12 +152,12 @@ package body ImSpiel is
    is begin
             
       Ladezeiten.EinzelneZeiten (2, 1) := Clock;
-      EinheitenDatenbank.HeilungBewegungspunkteNeueRundeErmitteln;
+      EinheitenAllgemein.HeilungBewegungspunkteNeueRundeErmitteln;
       Verbesserungen.VerbesserungFertiggestellt;
       Wachstum.Wachstum;
       InDerStadtBauen.BauzeitAlle;
       StadtProduktion.StadtProduktionPrüfen ((0, 0));
-      ForschungsDatenbank.ForschungFortschritt;
+      ForschungAllgemein.ForschungFortschritt;
       
       case
         GlobaleVariablen.RundenAnzahl
@@ -179,8 +179,6 @@ package body ImSpiel is
             Speichern.AutoSpeichern;
       end case;      
       
-      Ladezeiten.EinzelneZeiten (2, 2) := Clock;
-      
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop
          
@@ -195,6 +193,7 @@ package body ImSpiel is
          end if;
          
       end loop RassenSchleife;      
+      Ladezeiten.EinzelneZeiten (2, 2) := Clock;
       
       Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => 19);
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => 2);      

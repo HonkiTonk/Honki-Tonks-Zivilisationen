@@ -45,12 +45,6 @@ package VerbesserungenDatenbank is
                                                   ('▫',    1,    0, 0, 0, 0, 0)); -- 24 Straße einzeln
    
    procedure StandardVerbesserungenDatenbankWiederherstellen;
-
-   procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.KartenVerbesserung)
-     with
-       Pre =>
-         (IDExtern > 0);
    
 private
    

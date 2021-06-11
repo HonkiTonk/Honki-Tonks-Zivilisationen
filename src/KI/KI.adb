@@ -1,7 +1,9 @@
 pragma SPARK_Mode (On);
 
-with EinheitenDatenbank, KISiedler, KINahkampfBoden, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit, KINahkampfUnterirdisch,
-     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, KIStadt;
+with EinheitenDatenbank;
+
+with KISiedler, KINahkampfBoden, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit, KINahkampfUnterirdisch,
+     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, KIStadt, KIForschung, KIDiplomatie;
 
 package body KI is
 
@@ -11,8 +13,8 @@ package body KI is
       
       EinheitenDurchgehen (RasseExtern => RasseExtern);
       StädteDurchgehen (RasseExtern => RasseExtern);
-      Forschung (RasseExtern => RasseExtern);
-      Diplomatie (RasseExtern => RasseExtern);
+      KIForschung.Forschung (RasseExtern => RasseExtern);
+      KIDiplomatie.Diplomatie (RasseExtern => RasseExtern);
       
    end KI;
    
@@ -62,26 +64,6 @@ package body KI is
       
    end StädteDurchgehen;
    
-   
-   
-   procedure Forschung
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-   is begin
-      
-      null;
-      
-   end Forschung;
-   
-   
-   
-   procedure Diplomatie
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-   is begin
-      
-      null;
-      
-   end Diplomatie;
-      
    
 
    procedure AKtivitätEinheit

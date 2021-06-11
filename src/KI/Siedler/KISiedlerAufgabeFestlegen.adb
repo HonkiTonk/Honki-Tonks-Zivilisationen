@@ -2,9 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen, KIKonstanten;
 
-with EinheitenDatenbank;
-
-with StadtBauen, KIPruefungen;
+with StadtBauen, KIPruefungen, EinheitenAllgemein;
 
 package body KISiedlerAufgabeFestlegen is
 
@@ -23,7 +21,7 @@ package body KISiedlerAufgabeFestlegen is
             StadtUmgebungVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 3 => -- Einheit auflösen
-            EinheitenDatenbank.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 4 => -- Fliehen
             Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

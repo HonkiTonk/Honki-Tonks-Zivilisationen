@@ -2,9 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen, KIKonstanten;
 
-with EinheitenDatenbank;
-
-with EinheitSuchen, KartenPruefungen, Karten, BewegungPassierbarkeitPruefen;
+with EinheitSuchen, KartenPruefungen, Karten, BewegungPassierbarkeitPruefen, EinheitenAllgemein;
 
 package body KINahkampfBodenAufgabeFestlegen is
 
@@ -23,7 +21,7 @@ package body KINahkampfBodenAufgabeFestlegen is
             StadtUmgebungZerstören (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 3 => -- Einheit auflösen
-            EinheitenDatenbank.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 4 => -- Fliehen
             Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

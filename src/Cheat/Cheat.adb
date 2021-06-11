@@ -7,7 +7,7 @@ with GlobaleKonstanten, KIDatentypen;
 
 with EinheitenDatenbank, VerbesserungenDatenbank;
 
-with Karte, Karten, Anzeige, Eingabe, EinheitSuchen;
+with Karte, Karten, Anzeige, Eingabe, EinheitSuchen, ForschungAllgemein, EinheitenAllgemein;
 
 package body Cheat is
 
@@ -303,7 +303,7 @@ package body Cheat is
             end loop EinheitenSchleife;
             
          when others =>
-            EinheitenDatenbank.EinheitEntfernen (EinheitRasseNummerExtern => EinheitPosition);
+            EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitPosition);
             GelöschtEinheitenSchleife:
             for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 
@@ -435,6 +435,9 @@ package body Cheat is
       Put_Line (Item => "KIAufgabe: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt'Wide_Wide_Image);
       Put_Line (Item => "AufgabeEins: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung'Wide_Wide_Image);
       Put_Line (Item => "AufgabeZwei: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger'Wide_Wide_Image);
+      Put_Line (Item => "Aktuelles Forschungsprojekt: ");
+      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).AktuellesForschungsprojekt,
+                                        RasseExtern => EinheitRasseNummerExtern.Rasse);
       
    end KarteInfosEinheiten;
    
@@ -468,6 +471,9 @@ package body Cheat is
       
       Put_Line (Item => "Aktuelle Rasse: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);
       Put_Line (Item => "KIAufgabe: " & GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIAktuelleBeschäftigung'Wide_Wide_Image);
+      Put_Line (Item => "Aktuelles Forschungsprojekt: ");
+      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).AktuellesForschungsprojekt,
+                                        RasseExtern => StadtRasseNummerExtern.Rasse);
       
    end KarteStadtInfos;
 

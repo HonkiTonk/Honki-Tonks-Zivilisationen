@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with Wachstum, KartenPruefungen, Karten, VerbesserungenDatenbank, KartenDatenbank;
+with VerbesserungenDatenbank, KartenDatenbank, GebaeudeDatenbank;
+
+with Wachstum, KartenPruefungen, Karten;
 
 package body StadtProduktion is
 
@@ -47,7 +49,7 @@ package body StadtProduktion is
    
 
 
-   procedure StadtProduktionPrüfenBerechnung
+   procedure StadtProduktionPrüfenBerechnung -- Hier auch nach Rasse unterscheiden?
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -159,6 +161,18 @@ package body StadtProduktion is
    procedure WeitereProduktionrateÄnderungen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
+      
+      if
+        StadtRasseNummerExtern.Rasse = 1
+        and
+          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (4) = True
+      then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate :=
+           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate + GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, 4).ProduktionBonus;
+
+      else
+         null;
+      end if;
       
       case
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption

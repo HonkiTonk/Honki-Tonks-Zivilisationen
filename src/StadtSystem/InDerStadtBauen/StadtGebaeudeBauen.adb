@@ -4,9 +4,7 @@ with GlobaleKonstanten;
 
 with KIDatentypen;
 
-with GebaeudeDatenbank;
-
-with Anzeige;
+with Anzeige, GebaeudeAllgemein;
 
 package body StadtGebaeudeBauen is
 
@@ -14,7 +12,7 @@ package body StadtGebaeudeBauen is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      GebaeudeDatenbank.GebäudeProduktionBeenden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+      GebaeudeAllgemein.GebäudeProduktionBeenden (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                    IDExtern               => GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
                                                      StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - GlobaleKonstanten.GebäudeAufschlag));
             

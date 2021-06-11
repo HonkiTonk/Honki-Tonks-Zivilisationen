@@ -80,7 +80,6 @@ package body KartenGeneratorFluss is
 
 
 
-   -- Hier scheint noch etwas nicht zu stimmen, nochmal drüber schauen oder gleich was besseres zusammenbasteln.
    procedure FlussBerechnung
      (YKoordinateExtern, XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv)
    is begin

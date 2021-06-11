@@ -19,10 +19,6 @@ package EinlesenWerte is
    
 private
    
-   EinheitenDatenbankEinlesen : File_Type;
-   ForschungsDatenbankEinlesen : File_Type;
-   GebäudeDatenbankEinlesen : File_Type;
-   KartenDatenbankEinlesen : File_Type;
-   VerbesserungenDatenbankEinlesen : File_Type;
+   DatenbankEinlesen : File_Type;
 
 end EinlesenWerte;

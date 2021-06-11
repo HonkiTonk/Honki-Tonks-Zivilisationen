@@ -26,7 +26,7 @@ package body Hauptmenue is
                  RückgabeKampagne = GlobaleKonstanten.HauptmenüKonstante
                then
                   AllesAufAnfangSetzen.AllesAufAnfangSetzen;
-                  
+
                elsif
                  RückgabeKampagne = GlobaleKonstanten.SpielBeendenKonstante
                then
@@ -83,7 +83,7 @@ package body Hauptmenue is
          end case;
 
       end loop HauptmenüSchleife;
-      
+
    end Hauptmenü;
 
 end Hauptmenue;

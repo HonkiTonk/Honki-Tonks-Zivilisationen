@@ -321,7 +321,7 @@ package body Sichtbarkeit is
          when 4 =>
             Put (Item => CSI & "38;2;0;0;0m");
             
-         when 5 .. 19 =>
+         when 5 .. 19 | 24 =>
             Put (Item => CSI & "38;2;0;0;0m");
 
          when 20 =>
@@ -352,7 +352,7 @@ package body Sichtbarkeit is
          when 13 =>
             Put (Item => CSI & "38;2;0;0;0m");
             
-         when 14 .. 28 =>
+         when 14 .. 28 | 43 =>
             Put (Item => CSI & "38;2;0;0;205m");
 
          when 29 => 
@@ -431,7 +431,7 @@ package body Sichtbarkeit is
       is
          when 1 | 4 | 5 | 31 | 37 | 42 =>
             if
-              RessourceExtern in 14 .. 28
+              RessourceExtern in 14 .. 28 | 43
             then
                Put (Item => CSI & "38;2;0;0;205m");
                
@@ -441,7 +441,7 @@ package body Sichtbarkeit is
                   
          when others =>
             if
-              RessourceExtern in 14 .. 28
+              RessourceExtern in 14 .. 28 | 43
             then
                Put (Item => CSI & "38;2;135;206;250m");
                

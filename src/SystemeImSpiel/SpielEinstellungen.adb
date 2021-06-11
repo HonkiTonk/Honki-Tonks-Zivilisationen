@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 
 with GlobaleKonstanten;
 
-with ImSpiel, KartenGenerator, Eingabe, Auswahl, EinheitenDatenbank, Anzeige, ZufallGeneratorenKarten, Ladezeiten, KartenPruefungen, EinheitSuchen, ZufallGeneratorenSpieleinstellungen;
+with ImSpiel, KartenGenerator, Eingabe, Auswahl, Anzeige, ZufallGeneratorenKarten, Ladezeiten, KartenPruefungen, EinheitSuchen, ZufallGeneratorenSpieleinstellungen, EinheitenAllgemein;
 
 package body SpielEinstellungen is
 
@@ -530,13 +530,13 @@ package body SpielEinstellungen is
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.EAchse := Koordinaten (1).EAchse;
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.YAchse := Koordinaten (1).YAchse;
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.XAchse := Koordinaten (1).XAchse;
-      EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (RasseExtern, 1));
+      EinheitenAllgemein.LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (RasseExtern, 1));
 
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).ID := 2;
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).AchsenPosition.EAchse := Koordinaten (2).EAchse;
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).AchsenPosition.YAchse := Koordinaten (2).YAchse;
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).AchsenPosition.XAchse := Koordinaten (2).XAchse;
-      EinheitenDatenbank.LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (RasseExtern, 2));
+      EinheitenAllgemein.LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (RasseExtern, 2));
       
       GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition;
       GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition;

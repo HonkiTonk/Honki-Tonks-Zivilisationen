@@ -24,7 +24,7 @@ package GlobaleDatentypen is
    -- Für Rassen
 
 
-   
+
    -- Für Karte
    type Kartenfeld is range -1_000 .. 1_000;
    subtype KartenfeldPositivMitNullwert is Kartenfeld range 0 .. Kartenfeld'Last;
@@ -78,13 +78,13 @@ package GlobaleDatentypen is
    -- Forschungsenum sinnvoll?
    subtype ForschungIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 25;
    subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
-   
+
    type AnforderungForschungArray is array (1 .. 4) of ForschungIDMitNullWert;
    type ErforschtArray is array (ForschungID'Range) of Boolean;
    -- Für Forschung
 
 
-   
+
    -- Für Stadt
    subtype MaximaleStädteMitNullWert is MaximaleEinheitenMitNullWert range 0 .. 100;
    subtype MaximaleStädte is MaximaleStädteMitNullWert range 1 .. 100;

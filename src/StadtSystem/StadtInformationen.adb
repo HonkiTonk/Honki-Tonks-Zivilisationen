@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 with KartenDatenbank, VerbesserungenDatenbank;
 
-with Anzeige;
+with Anzeige, VerbesserungenAllgemein, KartenAllgemein;
 
 package body StadtInformationen is
 
@@ -308,7 +308,7 @@ package body StadtInformationen is
       if
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource > 0
       then
-         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource);
+         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource);
          Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource).Nahrungsgewinnung;
          
       else
@@ -318,7 +318,7 @@ package body StadtInformationen is
       if
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet > 0
       then
-         VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet);
+         VerbesserungenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet);
          Nahrungsgewinnung
            := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Nahrungsbonus;
          
@@ -329,7 +329,7 @@ package body StadtInformationen is
       if
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße > 0
       then
-         VerbesserungenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße);
+         VerbesserungenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße);
          Nahrungsgewinnung
            := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Nahrungsbonus;
          
@@ -340,7 +340,7 @@ package body StadtInformationen is
       if
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss > 0
       then
-         KartenDatenbank.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss);
+         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss);
          Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss).Nahrungsgewinnung;
          
       else
