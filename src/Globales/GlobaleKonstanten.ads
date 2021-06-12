@@ -160,6 +160,11 @@ package GlobaleKonstanten is
    LeererWertWeltkarte : constant GlobaleRecords.KartenRecord := (0, False, (others => False), -- Kartengrund, Ist da ein Hügel?, Welche Rasse kann was sehen
                                                                   0, 0, 0, 0, -- Welcher Fluss, Welche Straße, Welche Verbesserung, Welche Ressource
                                                                   0, 0); -- Durch welche Stadt welcher Rasse belegter Grund, Felderbewertung
-   -- Für die Leerwerte
+                                                                         -- Für die Leerwerte
+
+
+   -- Für die grafische Anzeige
+   NichtSichtbar : constant Wide_Wide_Character := ' ';
+   -- Für die grafische Anzeige
 
 end GlobaleKonstanten;

@@ -1,15 +1,78 @@
 pragma SPARK_Mode (On);
 
-with Kampfsystem, Auswahl;
+with GlobaleKonstanten;
+
+with Kampfsystem, Auswahl, KIDiplomatie;
 
 package body Diplomatie is
 
    procedure DiplomatieAuswählen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
       
       null;
       
    end DiplomatieAuswählen;
+   
+   
+   
+   procedure Erstkontakt
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
+      
+      case
+        DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
+                                     FremdeRasseExtern => FremdeRasseExtern)
+      is
+         when GlobaleDatentypen.Kein_Kontakt =>
+            GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern) := GlobaleDatentypen.Neutral;   
+               
+         when others =>
+            return;
+      end case;
+      
+      if
+        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1
+        and
+          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = 1
+      then
+         ErstkontaktMenschMensch (EigeneRasseExtern => EigeneRasseExtern,
+                                  FremdeRasseExtern => FremdeRasseExtern);
+      
+      elsif
+        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1
+        or
+          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = 1
+      then
+         ErstkontaktMenschKI (EigeneRasseExtern => EigeneRasseExtern,
+                              FremdeRasseExtern => FremdeRasseExtern);
+         
+      else
+         KIDiplomatie.DiplomatieKIKI (EigeneRasseExtern   => EigeneRasseExtern,
+                                      FremdeRasseKIExtern => FremdeRasseExtern);
+      end if;
+      
+   end Erstkontakt;
+   
+   
+   
+   procedure ErstkontaktMenschMensch
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
+      
+      null;
+      
+   end ErstkontaktMenschMensch;
+   
+   
+   
+   procedure ErstkontaktMenschKI
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
+   is begin
+      
+      null;
+      
+   end ErstkontaktMenschKI;
 
 
 
@@ -25,11 +88,11 @@ package body Diplomatie is
 
 
    function DiplomatischenStatusPrüfen
-     (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen)
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
       return GlobaleDatentypen.StatusUntereinander
    is begin
       
-      return GlobaleVariablen.Diplomatie (AngreifendeRasseExtern, VerteidigendeRasseExtern);
+      return GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern);
       
    end DiplomatischenStatusPrüfen;
 
@@ -41,12 +104,12 @@ package body Diplomatie is
    is begin
       
       case
-        Diplomatie.DiplomatischenStatusPrüfen (AngreifendeRasseExtern   => EinheitRasseNummerExtern.Rasse,
-                                                VerteidigendeRasseExtern => GegnerExtern.Rasse)
+        Diplomatie.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                FremdeRasseExtern => GegnerExtern.Rasse)
       is
          when GlobaleDatentypen.Neutral | GlobaleDatentypen.Offene_Grenzen =>
             if
-              Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = -3
+              Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = GlobaleKonstanten.JaKonstante
             then
                Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                      VerteidigendeRasseExtern => GegnerExtern.Rasse);

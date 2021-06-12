@@ -211,7 +211,7 @@ package body BewegungssystemEinheiten is
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte < 0.00
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte := 0.00;
-         -- Hier nicht return, da Bewegung erfolgreich und jetzt noch die Rechnungen durchlaufen
+         -- Hier nicht return, da Bewegung zwar erfolgreich aber jetzt noch die Rechnungen durchlaufen müssen.
                   
       else
          null;
@@ -279,6 +279,28 @@ package body BewegungssystemEinheiten is
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition := NeuePositionExtern;
       Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      KontaktSchleife:
+      for FremdeSichtbarkeitSchleifenwert in GlobaleDatentypen.RassenImSpielArray'Range loop
+         
+         if
+           FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
+           or
+             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = 0
+         then
+            null;
+            
+         elsif
+           Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Sichtbar (FremdeSichtbarkeitSchleifenwert) = True
+         then
+            Diplomatie.Erstkontakt (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                    FremdeRasseExtern => FremdeSichtbarkeitSchleifenwert);
+            
+         else
+            null;
+         end if;
+         
+      end loop KontaktSchleife;
       
    end BewegungEinheitenBerechnung;
 

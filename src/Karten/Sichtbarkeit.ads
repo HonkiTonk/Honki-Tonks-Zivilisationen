@@ -29,38 +29,25 @@ package Sichtbarkeit is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
-   procedure Sichtbarkeit
-     (InDerStadtExtern : in Boolean;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen)
-     with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
-
-   procedure Farben
-     (EinheitExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
-      VerbesserungExtern : in GlobaleDatentypen.KartenVerbesserung;
-      RessourceExtern, GrundExtern : in GlobaleDatentypen.KartenGrund;
-      CursorExtern : in Boolean;
-      EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.RassenMitNullwert)
-     with
-       Pre =>
-         ((if EigeneRasseExtern > 0 then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1)
-          and
-            (if RasseExtern > 0 then GlobaleVariablen.RassenImSpiel (RasseExtern) > 0));
-
 private
-
-   NichtSichtbar : constant Wide_Wide_Character := ' ';
 
    SichtweiteObjekt : GlobaleDatentypen.Sichtweite := 2;
 
    Wert : Integer;
 
+   FremdeEinheitStadt : GlobaleRecords.RassePlatznummerRecord;
+
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+
+   procedure SichtbarkeitSetzen
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
 end Sichtbarkeit;

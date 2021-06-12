@@ -204,7 +204,7 @@ package body BefehleImSpiel is
             FeldInformationen.Aufteilung (RasseExtern => RasseExtern);
 
          when 32 => -- Diplomatie
-            Diplomatie.DiplomatieAuswählen;
+            Diplomatie.DiplomatieAuswählen (RasseExtern => RasseExtern);
 
          when 33 => -- GeheZu Cursor
             BewegungssystemCursor.GeheZuCursor (RasseExtern => RasseExtern);

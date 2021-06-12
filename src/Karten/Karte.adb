@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with Karten, Sichtbarkeit, KartenPruefungen, KarteInformationen;
+with Karten, KartenPruefungen, KarteInformationen, GrafischeAnzeige;
 
 package body Karte is
 
@@ -70,9 +70,9 @@ package body Karte is
                   exit XAchseSchleife;
                   
                when others =>
-                  Sichtbarkeit.Sichtbarkeit (InDerStadtExtern  => False,
-                                             KoordinatenExtern => KartenWert,
-                                             RasseExtern       => RasseExtern);
+                  GrafischeAnzeige.Sichtbarkeit (InDerStadtExtern  => False,
+                                                 KoordinatenExtern => KartenWert,
+                                                 RasseExtern       => RasseExtern);
             end case;
             
             if

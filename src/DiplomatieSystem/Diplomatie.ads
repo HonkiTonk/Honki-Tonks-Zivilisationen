@@ -5,7 +5,21 @@ use GlobaleDatentypen;
 
 package Diplomatie is
 
-   procedure DiplomatieAuswählen;
+   procedure DiplomatieAuswählen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+
+   procedure Erstkontakt
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (EigeneRasseExtern /= FremdeRasseExtern
+          and
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) > 0
+          and
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) > 0);
 
    procedure KriegDurchDirektenAngriff
      (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen)
@@ -18,15 +32,15 @@ package Diplomatie is
             GlobaleVariablen.RassenImSpiel (VerteidigendeRasseExtern) > 0);
 
    function DiplomatischenStatusPrüfen
-     (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen)
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
       return GlobaleDatentypen.StatusUntereinander
      with
        Pre =>
-         (AngreifendeRasseExtern /= VerteidigendeRasseExtern
+         (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (AngreifendeRasseExtern) > 0
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) > 0
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigendeRasseExtern) > 0);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) > 0);
 
    procedure GegnerAngreifenOderNicht
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -46,5 +60,25 @@ package Diplomatie is
 private
 
    Gewonnen : Boolean;
+
+   procedure ErstkontaktMenschMensch
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (EigeneRasseExtern /= FremdeRasseExtern
+          and
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1
+          and
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = 1);
+
+   procedure ErstkontaktMenschKI
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (EigeneRasseExtern /= FremdeRasseExtern
+          and
+            (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1
+             or
+               GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = 1));
 
 end Diplomatie;
