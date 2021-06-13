@@ -9,8 +9,8 @@ package body KartenGeneratorLandschaft is
    procedure GenerierungLandschaft
    is begin
 
-      Karten.GeneratorKarte := (others => (others => (0)));
-      Karten.GeneratorGrund := (others => (others => (False)));
+      Karten.GeneratorKarte := (others => (others => 0));
+      Karten.GeneratorGrund := (others => (others => False));
 
       YAbstandEisschichtEinsSchleife:
       for YAchseEinsSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.WeltkarteArray'First (2) + 3 loop
@@ -79,7 +79,8 @@ package body KartenGeneratorLandschaft is
 
                elsif
                  BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 7)
-                 and Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
+                 and
+                   Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
                then
                   GenerierungLandschaftFelder (GrundExtern  => 7,
                                                YAchseExtern => YAchseDreiSchleifenwert,
@@ -138,15 +139,7 @@ package body KartenGeneratorLandschaft is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 1);
 
-            case
-              KartenWert.YAchse
-            is
-               when 0 =>
-                  exit XAchseEinsSchleife;
-                  
-               when others =>
-                  null;
-            end case;
+            exit XAchseEinsSchleife when KartenWert.YAchse = 0;
             
             if
               Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund < 3
@@ -160,7 +153,7 @@ package body KartenGeneratorLandschaft is
               and
                 XÄnderungSchleifenwert = 0
             then
-               Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
+               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
                Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
                      
             else
@@ -185,7 +178,7 @@ package body KartenGeneratorLandschaft is
                      null;
                            
                   else
-                     Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
                      Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
                   end if;
                         
@@ -221,15 +214,7 @@ package body KartenGeneratorLandschaft is
                                                                           ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
                                                                           ZusatzYAbstandExtern => 1);
 
-                  case
-                    KartenWert.YAchse
-                  is
-                     when 0 =>
-                        exit XAchseZweiSchleife;
-                  
-                     when others =>
-                        null;
-                  end case;
+                  exit XAchseZweiSchleife when KartenWert.YAchse = 0;
                   
                   if
                     Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) /= 0
@@ -265,15 +250,7 @@ package body KartenGeneratorLandschaft is
                                                                           ÄnderungExtern       => (0, YÄnderungHügelSchleifenwert, XÄnderungHügelSchleifenwert),
                                                                           ZusatzYAbstandExtern => 1);
 
-            case
-              KartenWertHügel.YAchse
-            is
-               when 0 =>
-                  exit XAchseHügelSchleife;
-                  
-               when others =>
-                  null;
-            end case;
+            exit XAchseHügelSchleife when KartenWertHügel.YAchse = 0;
             
             if
               YÄnderungHügelSchleifenwert = 0

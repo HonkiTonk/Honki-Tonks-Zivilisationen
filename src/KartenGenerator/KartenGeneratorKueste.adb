@@ -27,19 +27,11 @@ package body KartenGeneratorKueste is
                         KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                 ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                 ZusatzYAbstandExtern => 0);
-
-                        case
-                          KartenWert.YAchse
-                        is
-                           when 0 =>
-                              exit ZweiteYAchseSchleife;
-                                
-                           when others =>
-                              null;
-                        end case;
+                        
+                        exit ZweiteXAchseSchleife when KartenWert.YAchse = 0;
                         
                         case
-                          Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.XAchse).Grund
+                          Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
                         is
                            when 3 =>
                               Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund := 31;
