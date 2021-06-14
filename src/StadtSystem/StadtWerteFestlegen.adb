@@ -42,13 +42,7 @@ package body StadtWerteFestlegen is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
             
-            case KartenWert.YAchse is
-               when 0 =>
-                  exit XAchseSchleife;
-                  
-               when others =>
-                  null;
-            end case;
+            exit XAchseSchleife when KartenWert.YAchse = 0;
             
             if
               (YÄnderungSchleifenwert < -GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).StadtUmgebungGröße
@@ -117,15 +111,8 @@ package body StadtWerteFestlegen is
                      KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition,
                                                                              ÄnderungExtern       => (0, YPositionSchleifenwert, XPositionSchleifenwert),
                                                                              ZusatzYAbstandExtern => 0);
-                     case
-                       KartenWert.YAchse
-                     is
-                        when 0 =>
-                           exit XAchseSchleife;
-                              
-                        when others =>
-                           null;
-                     end case;
+
+                     exit XAchseSchleife when KartenWert.YAchse = 0;
 
                      if
                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
@@ -182,13 +169,7 @@ package body StadtWerteFestlegen is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
             
-            case KartenWert.YAchse is
-               when 0 =>
-                  exit XAchseSchleife;
-                  
-               when others =>
-                  null;
-            end case;
+            exit XAchseSchleife when KartenWert.YAchse = 0;
             
             if
               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund

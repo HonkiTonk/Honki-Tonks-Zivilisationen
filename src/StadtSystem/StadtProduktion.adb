@@ -72,15 +72,7 @@ package body StadtProduktion is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
-            case
-              KartenWert.YAchse
-            is
-               when 0 =>
-                  exit XAchseSchleife;                                 
-                                 
-               when others =>
-                  null;
-            end case;
+            exit XAchseSchleife when KartenWert.YAchse = 0; 
             
             case
               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YÄnderungSchleifenwert, XÄnderungSchleifenwert)

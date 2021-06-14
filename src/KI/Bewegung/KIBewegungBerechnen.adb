@@ -345,15 +345,7 @@ package body KIBewegungBerechnen is
                                                                                     ÄnderungExtern       => (GlobaleDatentypen.Ebene (EÄnderungSchleifenwert), YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                                     ZusatzYAbstandExtern => 0);
                      
-               case
-                 KartenWertVereinfachung.YAchse
-               is
-                  when 0 =>
-                     exit XAchseSchleife;
-                              
-                  when others =>
-                     null;
-               end case;
+               exit XAchseSchleife when KartenWertVereinfachung.YAchse = 0;
                         
                if
                  KartenWertVereinfachung = GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ÜberNächsterZugExtern)

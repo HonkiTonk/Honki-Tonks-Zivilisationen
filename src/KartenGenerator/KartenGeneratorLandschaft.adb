@@ -142,9 +142,9 @@ package body KartenGeneratorLandschaft is
             exit XAchseEinsSchleife when KartenWert.YAchse = 0;
             
             if
-              Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund < 3
+              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund < 3
               or
-                Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = 31
+                Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = 31
             then
                null;
                      
@@ -187,16 +187,22 @@ package body KartenGeneratorLandschaft is
                end if;
             end if;
 
-            case
-              GrundExtern
-            is
-               when 6 | 7 => -- Hügel - Gebirge
-                  null;
-                  
-               when others =>
-                  GenerierungLandschaftHügel (YAchseExtern => KartenWert.YAchse,
-                                               XAchseExtern => KartenWert.XAchse);
-            end case;
+            if
+              GrundExtern in 6 .. 7 -- Hügel - Gebirge
+            then
+               null;
+               
+            elsif
+              Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund < 3
+              or
+                Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = 31
+            then
+               null;
+               
+            else
+               GenerierungLandschaftHügel (YAchseExtern => KartenWert.YAchse,
+                                            XAchseExtern => KartenWert.XAchse);
+            end if;
             
          end loop XAchseEinsSchleife;
       end loop YAchseEinsSchleife;      
@@ -220,11 +226,11 @@ package body KartenGeneratorLandschaft is
                     Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) /= 0
                   then
                      null;
-                                     
+                    
                   else
                      Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := GlobaleDatentypen.Kartenfeld (GrundExtern);
                   end if;
-            
+                  
                end loop XAchseZweiSchleife;
             end loop YAchseZweiSchleife;
             

@@ -140,18 +140,12 @@ package body KartenGeneratorStandard is
                                                                     ÄnderungExtern       => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
                                                                     ZusatzYAbstandExtern => 1);
 
-            case
-              KartenWert.YAchse
-            is
-               when 0 =>
-                  exit XAchseEinsSchleife;
-                  
-               when others =>
-                  BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
-                  GenerierungLandmasseÜberhang (YAchseExtern  => KartenWert.YAchse,
-                                                 XAchseExtern  => KartenWert.XAchse,
-                                                 GezogenExtern => BeliebigerLandwert);
-            end case;
+            exit XAchseEinsSchleife when KartenWert.YAchse = 0;
+            
+            BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
+            GenerierungLandmasseÜberhang (YAchseExtern  => KartenWert.YAchse,
+                                           XAchseExtern  => KartenWert.XAchse,
+                                           GezogenExtern => BeliebigerLandwert);
             
          end loop XAchseEinsSchleife;
       end loop YAchseEinsSchleife;
@@ -165,15 +159,7 @@ package body KartenGeneratorStandard is
                                                                     ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
                                                                     ZusatzYAbstandExtern => 1);
             
-            case
-              KartenWert.YAchse
-            is
-               when 0 =>
-                  exit XAchseZweiSchleife;
-                  
-               when others =>
-                  null;
-            end case;
+            exit XAchseZweiSchleife when KartenWert.YAchse = 0;
             
             case
               Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse)

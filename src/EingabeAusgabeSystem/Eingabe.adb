@@ -22,14 +22,12 @@ package body Eingabe is
 
       ZahlenAußenSchleife:
       loop         
-         
-         SchleifeVerlassen := ZahlSchleife (TextDateiExtern     => TextDateiExtern,
-                                            ZeileExtern         => ZeileExtern,
-                                            ZahlenMinimumExtern => ZahlenMinimumExtern,
-                                            ZahlenMaximumExtern => ZahlenMaximumExtern);
-         
+                  
          case
-           SchleifeVerlassen
+           ZahlSchleife (TextDateiExtern     => TextDateiExtern,
+                         ZeileExtern         => ZeileExtern,
+                         ZahlenMinimumExtern => ZahlenMinimumExtern,
+                         ZahlenMaximumExtern => ZahlenMaximumExtern)
          is
             when 2 =>
                exit ZahlenAußenSchleife;
@@ -60,7 +58,7 @@ package body Eingabe is
 
    function ZahlSchleife
      (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
-      ZeileExtern : in Positive; 
+      ZeileExtern : in Positive;
       ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
       return GlobaleDatentypen.LoopRangeMinusZweiZuZwei
    is begin
@@ -114,12 +112,12 @@ package body Eingabe is
                                                Width => 1,
                                                Base  => 10);
          end if;
-            
+         
+         -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
          Get_Immediate (Item => Zahlen);
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
-         IstZahl := GanzeZahlPrüfung (ZeichenExtern => Zahlen);
          case
-           IstZahl
+           GanzeZahlPrüfung (ZeichenExtern => Zahlen)
          is
             when 1 =>
                ZahlenNachLinksVerschiebenSchleife:
@@ -135,14 +133,15 @@ package body Eingabe is
                then
                   null;
                   
-               else -- Einfach auf ZahlenMaximumExtern setzen
-                  ZahlenNachRechtsVerschiebenSchleife:
-                  for ZahlZweiSchleifenwert in reverse ZahlenString'First + 1 .. ZahlenString'Last loop
-                  
-                     ZahlenString (ZahlZweiSchleifenwert) := ZahlenString (ZahlZweiSchleifenwert - 1);
-
-                  end loop ZahlenNachRechtsVerschiebenSchleife;
-                  ZahlenString (1) := '0';
+               else
+                  if
+                    ZahlenMaximumExtern >= 100_000_000
+                  then
+                     ZahlenString := ZahlenMaximumExtern'Wide_Wide_Image;
+                       
+                  else
+                     MinimumMaximumSetzen (ZahlenMinimumMaximumExtern => ZahlenMaximumExtern);
+                  end if;
                end if;
 
             when -1 =>
@@ -161,8 +160,17 @@ package body Eingabe is
                then
                   return 2;
                      
-               else -- Einfach auf ZahlenMinimumExtern setzen
-                  null;
+               else
+                  if
+                    ZahlenMinimumExtern <= -100_000_000
+                  then
+                     ZahlenMinimumPlusmacher := -ZahlenMinimumExtern;
+                     ZahlenString := ZahlenMinimumPlusmacher'Wide_Wide_Image;
+                     WelchesVorzeichen := False;
+                     
+                  else
+                     MinimumMaximumSetzen (ZahlenMinimumMaximumExtern => -ZahlenMinimumExtern);
+                  end if;
                end if;
 
             when -2 =>
@@ -218,6 +226,32 @@ package body Eingabe is
       end case;
       
    end GanzeZahlPrüfung;
+   
+   
+   
+   procedure MinimumMaximumSetzen
+     (ZahlenMinimumMaximumExtern : in Integer)
+   is begin
+      
+      MaximumMinimum := To_Unbounded_Wide_Wide_String (Source => ZahlenMinimumMaximumExtern'Wide_Wide_Image);
+      MaximumMinimumAktuelleStelle := To_Wide_Wide_String (Source => MaximumMinimum)'Length;
+      
+      MaximumSchleife:      
+      for MaximumSchleifenwert in reverse ZahlenString'Range loop
+         
+         if
+           MaximumSchleifenwert > ZahlenString'Length - To_Wide_Wide_String (Source => MaximumMinimum)'Length + 1
+         then
+            ZahlenString (MaximumSchleifenwert) := To_Wide_Wide_String (Source => MaximumMinimum) (MaximumMinimumAktuelleStelle);
+            MaximumMinimumAktuelleStelle := MaximumMinimumAktuelleStelle - 1;
+            
+         else
+            ZahlenString (MaximumSchleifenwert) := '0';
+         end if;
+         
+      end loop MaximumSchleife;
+      
+   end MinimumMaximumSetzen;
 
    
 

@@ -2,13 +2,15 @@ pragma SPARK_Mode (On);
 
 with EinheitenDatenbank, VerbesserungenDatenbank;
 
-with Karte, Diplomatie, Sichtbarkeit, BewegungBlockiert, EinheitSuchen, KartenPruefungen, Eingabe, BewegungPassierbarkeitPruefen;
+with Karte, Diplomatie, Sichtbarkeit, BewegungBlockiert, EinheitSuchen, KartenPruefungen, Eingabe, BewegungPassierbarkeitPruefen, BewegungLadenEntladen;
 
 package body BewegungssystemEinheiten is
 
    procedure BewegungEinheitenRichtung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
+      
+      Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
 
       BewegenSchleife:
       loop
@@ -69,8 +71,8 @@ package body BewegungssystemEinheiten is
            Bewegung
          is
             when GlobaleDatentypen.Beladen_Bewegung_Möglich =>
-               TransporterBeladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                   ÄnderungExtern           => Änderung);
+               BewegungLadenEntladen.TransporterBeladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                         ÄnderungExtern           => Änderung);
                return;
                
             when others =>
@@ -125,46 +127,6 @@ package body BewegungssystemEinheiten is
       end loop BewegenSchleife;
       
    end BewegungEinheitenRichtung;
-
-
-
-   procedure TransporterBeladen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-   is begin
-
-      KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
-                                                              ÄnderungExtern       => ÄnderungExtern,
-                                                              ZusatzYAbstandExtern => 0);
-      
-      TransporterNummer := EinheitSuchen.KoordinatenTransporterMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                               KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-      
-      TransporterSchleife:
-      for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
-        
-         case
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransporterNummer).Transportiert (FreierPlatzSchleifenwert)
-         is
-            when 0 =>
-               FreierPlatzNummer := FreierPlatzSchleifenwert;
-               exit TransporterSchleife;
-               
-            when others =>
-               null;
-         end case;
-         
-      end loop TransporterSchleife;
-      
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransporterNummer).Transportiert (FreierPlatzNummer) := EinheitRasseNummerExtern.Platznummer;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte := 0.00;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition
-        := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransporterNummer).AchsenPosition;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert := TransporterNummer;
-      
-      GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).AchsenPosition := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition;
-      
-   end TransporterBeladen;
 
    
 
@@ -224,21 +186,8 @@ package body BewegungssystemEinheiten is
             null;
             
          when others =>
-            TransporterEinsSchleife:
-            for TransporterPlatzEinsSchleifenwert in GlobaleRecords.TransporterArray'Range loop
-               
-               case
-                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzEinsSchleifenwert)
-               is
-                  when 0 =>
-                     null;
-                     
-                  when others =>
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert
-                                                       (TransporterPlatzEinsSchleifenwert)).AchsenPosition := NeuePositionExtern;
-               end case;
-               
-            end loop TransporterEinsSchleife;
+            BewegungLadenEntladen.TransporterladungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                NeuePositionExtern       => NeuePositionExtern);
       end case;
 
       case
@@ -248,23 +197,9 @@ package body BewegungssystemEinheiten is
             null;
             
          when others =>
-            EinheitAusladen := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert;
+            BewegungLadenEntladen.EinheitAusTransporterEntfernen (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                                                                  AuszuladendeEinheitExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert);
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert := 0;
-
-            TransporterZweiSchleife:
-            for TransporterPlatzZweiSchleifenwert in GlobaleRecords.TransporterArray'Range loop
-
-               if
-                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitAusladen).Transportiert (TransporterPlatzZweiSchleifenwert) = EinheitRasseNummerExtern.Platznummer
-               then
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitAusladen).Transportiert (TransporterPlatzZweiSchleifenwert) := 0;
-                  exit TransporterZweiSchleife;
-                     
-               else
-                  null;
-               end if;
-               
-            end loop TransporterZweiSchleife;
       end case;
       
       case

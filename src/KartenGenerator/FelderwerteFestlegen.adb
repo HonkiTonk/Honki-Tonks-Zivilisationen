@@ -20,16 +20,10 @@ package body FelderwerteFestlegen is
                                                                                                          ÄnderungExtern       => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
                                                                                                          ZusatzYAbstandExtern => 0);
 
-                  case
-                    KartenWertEins (KoordinatenExtern.EAchse).YAchse
-                  is
-                     when 0 =>
-                        exit XAchseÄnderungSchleife;
-                        
-                     when others =>
-                        Karten.Weltkarte (KartenWertEins (KoordinatenExtern.EAchse).EAchse, KartenWertEins (KoordinatenExtern.EAchse).YAchse, KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := 0;
-                        KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWertEins (KoordinatenExtern.EAchse));
-                  end case;
+                  exit XAchseÄnderungSchleife when KartenWertEins (KoordinatenExtern.EAchse).YAchse = 0;
+                  
+                  Karten.Weltkarte (KartenWertEins (KoordinatenExtern.EAchse).EAchse, KartenWertEins (KoordinatenExtern.EAchse).YAchse, KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := 0;
+                  KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWertEins (KoordinatenExtern.EAchse));
                                                             
                end loop XAchseÄnderungSchleife;
             end loop YAchseÄnderungSchleife;
@@ -39,7 +33,7 @@ package body FelderwerteFestlegen is
       end case;
       
    end KartenfelderBewerten;
-      
+   
 
 
    procedure KartenfelderBewertenKleineSchleife
@@ -55,15 +49,7 @@ package body FelderwerteFestlegen is
                                                                                                    ÄnderungExtern       => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert),
                                                                                                    ZusatzYAbstandExtern => 0);
             
-            case
-              KartenWertZwei (KoordinatenExtern.EAchse).YAchse
-            is
-               when 0 =>
-                  exit BewertungXÄnderungSchleife;
-                  
-               when others =>
-                  null;
-            end case;
+            exit BewertungXÄnderungSchleife when KartenWertZwei (KoordinatenExtern.EAchse).YAchse = 0;
 
             if
               BewertungYÄnderungSchleifenwert = 2

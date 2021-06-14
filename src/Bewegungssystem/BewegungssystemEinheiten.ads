@@ -47,10 +47,6 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    GegnerWert : GlobaleRecords.RassePlatznummerRecord;
-
-   procedure TransporterBeladen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord);
    
    function StraßeUndFlussPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;

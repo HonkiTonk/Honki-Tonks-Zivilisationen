@@ -13,7 +13,7 @@ package body BefehleImSpiel is
      (RasseExtern : in GlobaleDatentypen.Rassen)
       return Integer
    is begin 
-            
+      
       Befehl := Eingabe.Tastenwert;
 
       case

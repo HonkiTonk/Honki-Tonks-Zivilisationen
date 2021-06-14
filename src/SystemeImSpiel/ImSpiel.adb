@@ -99,6 +99,7 @@ package body ImSpiel is
          
          Karte.AnzeigeKarte (RasseExtern => RasseExtern);
          AktuellerBefehlSpieler := BefehleImSpiel.Befehle (RasseExtern => RasseExtern);
+         
          case
            AktuellerBefehlSpieler
          is

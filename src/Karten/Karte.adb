@@ -63,17 +63,11 @@ package body Karte is
                                                                     ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
             
-            case
-              KartenWert.YAchse
-            is
-               when 0 =>
-                  exit XAchseSchleife;
-                  
-               when others =>
-                  GrafischeAnzeige.Sichtbarkeit (InDerStadtExtern  => False,
-                                                 KoordinatenExtern => KartenWert,
-                                                 RasseExtern       => RasseExtern);
-            end case;
+            exit XAchseSchleife when KartenWert.YAchse = 0;
+            
+            GrafischeAnzeige.Sichtbarkeit (InDerStadtExtern  => False,
+                                           KoordinatenExtern => KartenWert,
+                                           RasseExtern       => RasseExtern);
             
             if
               XAchseSchleifenwert = Sichtweiten (SichtweiteFestlegen).XAchse

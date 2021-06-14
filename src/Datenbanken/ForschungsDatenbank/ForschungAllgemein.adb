@@ -423,7 +423,7 @@ package body ForschungAllgemein is
                   ForschungZeit (RasseExtern => RasseSchleifenwert);
             
                else
-                  null;
+                  ForschungZeit (RasseExtern => RasseSchleifenwert);
                end if;
                
             when others =>

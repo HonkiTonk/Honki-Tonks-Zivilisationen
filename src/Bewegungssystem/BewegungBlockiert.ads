@@ -5,9 +5,7 @@ use GlobaleDatentypen;
 
 with Karten;
 
-package BewegungBlockiert with
-Abstract_State => (BewegungBlockiertState)
-is
+package BewegungBlockiert is
 
    function BlockiertStadtEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -36,7 +34,7 @@ is
 
 private
 
-   StadtWert : GlobaleRecords.RassePlatznummerRecord with Part_Of => BewegungBlockiertState;
-   EinheitWert : GlobaleRecords.RassePlatznummerRecord with Part_Of => BewegungBlockiertState;
+   StadtWert : GlobaleRecords.RassePlatznummerRecord;
+   EinheitWert : GlobaleRecords.RassePlatznummerRecord;
 
 end BewegungBlockiert;

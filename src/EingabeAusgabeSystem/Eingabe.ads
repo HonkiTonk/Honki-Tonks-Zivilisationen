@@ -124,8 +124,8 @@ package Eingabe is
             ZahlenMinimumExtern < ZahlenMaximumExtern
           and
             ZahlenMinimumExtern >= -999_999_999),
-     Post =>
-       (GanzeZahl'Result in -1_000_000_000 .. 999_999_999);
+         Post =>
+           (GanzeZahl'Result in -1_000_000_000 .. 999_999_999);
 
    function StadtName
      return Unbounded_Wide_Wide_String;
@@ -147,14 +147,16 @@ private
    Zahlen : Wide_Wide_Character;
    Taste : Wide_Wide_Character;
 
-   SchleifeVerlassen : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
    IstZahl : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
 
+   MaximumMinimumAktuelleStelle : Positive;
+   ZahlenMinimumPlusmacher : Positive;
    Wert : Integer;
 
    ZahlenString : Wide_Wide_String (1 .. 9);
 
    Name : Unbounded_Wide_Wide_String;
+   MaximumMinimum : Unbounded_Wide_Wide_String;
 
    TastenbelegungStandard : constant TastenbelegungArray := (1 => (1 => 'w', -- Cursor/Einheitenbewegung
                                                                    2 => 'a',
@@ -203,9 +205,7 @@ private
                                                                    36 => 'y', -- Stadt mit Namen suchen
 
                                                                    37 => 'r', -- Runde beenden
-                                                                   38 => 'c', -- Cheatmenü aufrufen
-
-                                                                   others => NUL),
+                                                                   38 => 'c'), -- Cheatmenü aufrufen
 
                                                              2 => (1 => '8', -- Cursor/Einheitenbewegung
                                                                    2 => '4',
@@ -254,9 +254,7 @@ private
                                                                    36 => NUL, -- Stadt mit Namen suchen
 
                                                                    37 => NUL, -- Runde beenden
-                                                                   38 => NUL, -- Cheatmenü aufrufen
-
-                                                                   others => NUL));
+                                                                   38 => NUL)); -- Cheatmenü aufrufen
 
    function GanzeZahlPrüfung
      (ZeichenExtern : in Wide_Wide_Character)
@@ -274,5 +272,11 @@ private
             ZahlenMinimumExtern < ZahlenMaximumExtern
           and
             ZahlenMinimumExtern >= -999_999_999);
+
+   procedure MinimumMaximumSetzen
+     (ZahlenMinimumMaximumExtern : in Integer)
+     with
+       Pre =>
+         (ZahlenMinimumMaximumExtern in -99_999_999 .. 99_999_999);
 
 end Eingabe;
