@@ -37,15 +37,7 @@ package body KartenGeneratorFluss is
                                                                              ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                              ZusatzYAbstandExtern => 0);
                      
-                     case
-                       KartenWert.YAchse
-                     is
-                        when 0 =>
-                           exit XAchseZweiSchleife;
-                           
-                        when others =>
-                           null;
-                     end case;
+                     exit XAchseZweiSchleife when KartenWert.YAchse = 0;
                      
                      if
                        Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= 0
@@ -94,15 +86,7 @@ package body KartenGeneratorFluss is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
-            case
-              KartenWert.YAchse
-            is
-               when 0 =>
-                  exit XAchseSchleife;
-
-               when others =>
-                  null;
-            end case;
+            exit XAchseSchleife when KartenWert.YAchse = 0;
             
             if
               XÄnderungSchleifenwert = -1

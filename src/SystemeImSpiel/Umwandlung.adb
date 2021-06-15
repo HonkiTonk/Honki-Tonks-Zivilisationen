@@ -7,9 +7,9 @@ package body Umwandlung is
       return GlobaleRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      return(GlobaleDatentypen.EbeneVorhanden (KoordinatenExtern.EAchse),
-                                 GlobaleDatentypen.KartenfeldPositiv (KoordinatenExtern.YAchse),
-                                 GlobaleDatentypen.KartenfeldPositiv (KoordinatenExtern.XAchse));
+      return (GlobaleDatentypen.EbeneVorhanden (KoordinatenExtern.EAchse),
+              GlobaleDatentypen.KartenfeldPositiv (KoordinatenExtern.YAchse),
+              GlobaleDatentypen.KartenfeldPositiv (KoordinatenExtern.XAchse));
       
    end KartenfeldNachKartenfeldPositiv;
 

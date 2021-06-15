@@ -42,13 +42,31 @@ package BewegungLadenEntladen is
           and
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
+   procedure TransporterStadtEntladen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
+          and
+            NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
 private
+   
+   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
    
    TransporterNummer : GlobaleDatentypen.MaximaleEinheiten;
    EinheitAusladen : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
    FreierPlatzNummer : Positive;
+   WelcherPlatz : Positive;
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
+   TransportplatzEntladen : GlobaleRecords.TransporterArray;
 
 end BewegungLadenEntladen;

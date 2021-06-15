@@ -47,15 +47,7 @@ package body KIGefahr is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
-            case
-              KartenWert.Erfolgreich
-            is
-               when False =>
-                  exit XAchseSchleife;
-                  
-               when True =>
-                  null;
-            end case;
+            exit XAchseSchleife when KartenWert.YAchse = 0;
             
             if
               YÄnderungSchleifenwert = 0
@@ -130,15 +122,7 @@ package body KIGefahr is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
-            case 
-              KartenWert.Erfolgreich
-            is
-               when False =>
-                  exit XAchseSchleife;
-                  
-               when True =>
-                  null;
-            end case;
+            exit XAchseSchleife when KartenWert.YAchse = 0;
             
             if
               YÄnderungSchleifenwert = 0
@@ -200,15 +184,7 @@ package body KIGefahr is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
-            case
-              KartenWert.Erfolgreich
-            is
-               when False =>
-                  exit XAchseSchleife;
-                  
-               when True =>
-                  null;
-            end case;
+            exit XAchseSchleife when KartenWert.YAchse = 0;
             
             if
               YÄnderungSchleifenwert = 0

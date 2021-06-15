@@ -12,21 +12,14 @@ package body KartenGeneratorRessourcen is
 
       NochVerteilbareRessourcen := Karten.Kartengrößen (Karten.Kartengröße).Ressourcenmenge;
 
+      RessourcenSchleife:
       while NochVerteilbareRessourcen /= 0 loop      
          YAchseSchleife:
          for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand loop
             XAchseSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
-            
-               case
-                 NochVerteilbareRessourcen
-               is
-                  when 0 =>
-                     return;
-                  
-                  when others =>
-                     null;
-               end case;
+            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop            
+               
+               exit RessourcenSchleife when NochVerteilbareRessourcen = 0;
 
                BeliebigerRessourcenwert := ZufallGeneratorenKarten.ZufälligerWert;
                if
@@ -91,7 +84,7 @@ package body KartenGeneratorRessourcen is
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
-      end loop;
+      end loop RessourcenSchleife;
       
    end GenerierungRessourcen;
 

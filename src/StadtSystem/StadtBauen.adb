@@ -155,15 +155,7 @@ package body StadtBauen is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
             
-            case
-              KartenWert.YAchse
-            is
-               when 0 =>
-                  exit XAchseSchleife;
-                  
-               when others =>
-                  null;
-            end case;
+            exit XAchseSchleife when KartenWert.YAchse = 0;
             
             case
               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
@@ -224,15 +216,7 @@ package body StadtBauen is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
                         
-            case
-              KartenWert.YAchse
-            is
-               when 0 =>
-                  exit XAchsenSchleife;
-                        
-               when others =>
-                  null;
-            end case;
+            exit XAchsenSchleife when KartenWert.YAchse = 0;
                   
             case
               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund

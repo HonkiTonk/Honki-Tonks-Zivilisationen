@@ -57,7 +57,7 @@ package body StadtEinheitenBauen is
          null;
       end if;
       
-      BereitsVonEinheitBelegt := (0, 1);
+      BereitsVonEinheitBelegt := 1;
       Umgebung := 1;
       
       BereichSchleife:
@@ -71,25 +71,17 @@ package body StadtEinheitenBauen is
                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                        ZusatzYAbstandExtern => 0);
             
-               case
-                 KartenWert.YAchse
-               is
-                  when 0 =>
-                     exit XAchseSchleife;
-                  
-                  when others =>
-                     null;
-               end case;
+               exit XAchseSchleife when KartenWert.YAchse = 0;
             
-               -- Kann Einheiten auch über Meere hinweg erzeugen und so Schiffahrt "umgehen"
+               -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
                if
                  Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
                in
                  GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 2)
                then
-                  BereitsVonEinheitBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert);
+                  BereitsVonEinheitBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer;
                   if
-                    BereitsVonEinheitBelegt.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+                    BereitsVonEinheitBelegt = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
                     and
                       (EinheitenDatenbank.EinheitenListe
                          (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID
@@ -101,7 +93,7 @@ package body StadtEinheitenBauen is
                             XÄnderungSchleifenwert = 0))
                   then
                      exit BereichSchleife;
-                  
+                     
                   else
                      null;
                   end if;
@@ -126,7 +118,7 @@ package body StadtEinheitenBauen is
       end loop BereichSchleife;
       
       if
-        BereitsVonEinheitBelegt.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+        BereitsVonEinheitBelegt = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
       then
          EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern            => KartenWert,
                                              EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummer),

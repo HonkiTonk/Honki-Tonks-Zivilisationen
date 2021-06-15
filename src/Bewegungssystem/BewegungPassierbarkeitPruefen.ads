@@ -41,10 +41,19 @@ private
 
    BewegungMöglich : GlobaleDatentypen.Bewegung_Enum;
    
+   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+   
    StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
    TransporterNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
+   WelcherPlatz : Positive;
+   FreieFelder : Natural;
    Transportplatz : Natural;
+   BenötigteFelder : Natural;
+   
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;   
+   
+   TransportplatzEntladen : GlobaleRecords.TransporterArray;
 
    function Boden
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;

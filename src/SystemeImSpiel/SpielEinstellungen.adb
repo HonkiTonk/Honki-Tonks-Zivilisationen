@@ -398,15 +398,9 @@ package body SpielEinstellungen is
                                                       XPositionExtern   => GezogeneWerte.XAchse,
                                                       RasseExtern       => RasseSchleifenwert);
 
-                  case
-                    PrüfungEinheit
-                  is
-                     when True =>
-                        exit StartwerteFestlegenSchleife;
-                        
-                     when False =>
-                        SicherheitsTestWert := SicherheitsTestWert + 1;
-                  end case;
+                  exit StartwerteFestlegenSchleife when PrüfungEinheit = True;
+                  
+                  SicherheitsTestWert := SicherheitsTestWert + 1;
 
                   case
                     SicherheitsTestWert
@@ -466,15 +460,8 @@ package body SpielEinstellungen is
                   KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionExtern, XPositionExtern),
                                                                           ÄnderungExtern       => (0, YÄnderung, XÄnderung),
                                                                           ZusatzYAbstandExtern => 0);
-                  case
-                    KartenWert.YAchse
-                  is
-                     when 0 =>
-                        exit XAchseSchleife;
-                  
-                     when others =>
-                        null;
-                  end case;
+
+                  exit XAchseSchleife when KartenWert.YAchse = 0;
                   
                   if
                     YÄnderung /= 0

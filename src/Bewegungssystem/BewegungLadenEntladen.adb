@@ -1,8 +1,10 @@
 pragma SPARK_Mode (On);
 
-with KartenPruefungen;
+with GlobaleKonstanten;
 
-with EinheitSuchen;
+with EinheitenDatenbank, KartenDatenbank;
+
+with EinheitSuchen, KartenPruefungen;
 
 package body BewegungLadenEntladen is
 
@@ -71,7 +73,7 @@ package body BewegungLadenEntladen is
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, AuszuladendeEinheitExtern).Transportiert (TransporterPlatzZweiSchleifenwert) = EinheitRasseNummerExtern.Platznummer
          then
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, AuszuladendeEinheitExtern).Transportiert (TransporterPlatzZweiSchleifenwert) := 0;
-            -- Hier nicht den wird Transportiert auf 0 setzen, da das zu Problemen bei Vershiebungen von Transporter zu Transporter führen kann.
+            -- Hier nicht den wird Transportiert auf 0 setzen, da das zu Problemen bei Verschiebungen von Transporter zu Transporter führen kann.
             exit TransporterLeerenSchleife;
                      
          else
@@ -106,5 +108,106 @@ package body BewegungLadenEntladen is
       end loop TransporterEinsSchleife;
       
    end TransporterladungVerschieben;
+   
+   
+   
+   procedure TransporterStadtEntladen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      TransportplatzEntladen := (others => 0);
+      WelcherPlatz := 1;
+      BelegterPlatzSchleife:
+      for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+                        
+         case
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)
+         is
+            when 0 =>
+               null;
+                              
+            when others =>
+               TransportplatzEntladen (WelcherPlatz) := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert);
+               WelcherPlatz := WelcherPlatz + 1;
+         end case;
+                
+      end loop BelegterPlatzSchleife;
+
+      case
+        TransportplatzEntladen (1)
+      is
+         when 0 =>
+            return;
+                          
+         when others =>
+            null;
+      end case;
+      
+      Umgebung := 1;         
+      WelcherPlatz := 1;
+      
+      BereichSchleife:
+      loop
+         YAchseSchleife:
+         for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop -- Es gibt Fälle in denen er über Felder loopt über die er schon geloopt hat, später bessere Lösung bauen
+            XAchseSchleife:
+            for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
+            
+               KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
+                                                                       ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                       ZusatzYAbstandExtern => 0);
+            
+               exit XAchseSchleife when KartenWert.YAchse = 0;
+            
+               -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
+               if
+                 YÄnderungSchleifenwert = 0
+                 and
+                   XÄnderungSchleifenwert = 0
+               then
+                  null;
+                     
+               elsif
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
+               in
+                 GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 2)
+               then
+                  if
+                    GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
+                    and
+                      EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).ID).Passierbarkeit
+                    (KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit) = True
+                  then
+                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).AchsenPosition := KartenWert;
+                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).WirdTransportiert := 0;
+                     WelcherPlatz := WelcherPlatz + 1;
+                        
+                     if
+                       WelcherPlatz > TransportplatzEntladen'Last
+                     then
+                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert := (others => 0);
+                        return;
+                              
+                     else
+                        null;
+                     end if;
+                     
+                  else
+                     null;
+                  end if;
+                     
+               else
+                  null;
+               end if;
+            
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+            
+         Umgebung := Umgebung + 1;
+                     
+      end loop BereichSchleife;     
+      
+   end TransporterStadtEntladen;
 
 end BewegungLadenEntladen;

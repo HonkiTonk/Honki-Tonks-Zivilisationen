@@ -68,16 +68,10 @@ package body Sichtbarkeit is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
-            case
-              KartenWert.YAchse
-            is
-               when 0 =>
-                  exit XÄnderungEinheitenSchleife;
-                     
-               when others =>
-                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                      KoordinatenExtern => KartenWert);
-            end case;
+            exit XÄnderungEinheitenSchleife when KartenWert.YAchse = 0;
+            
+            SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                KoordinatenExtern => KartenWert);
             
          end loop XÄnderungEinheitenSchleife;
       end loop YÄnderungEinheitenSchleife;
@@ -108,17 +102,11 @@ package body Sichtbarkeit is
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
                
-            case
-              KartenWert.YAchse
-            is
-               when 0 =>
-                  exit XÄnderungStadtSchleife;
-                     
-               when others =>
-                  SichtbarkeitSetzen (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                      KoordinatenExtern => KartenWert);
-            end case;
+            exit XÄnderungStadtSchleife when KartenWert.YAchse = 0;
             
+            SichtbarkeitSetzen (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                KoordinatenExtern => KartenWert);
+                        
          end loop XÄnderungStadtSchleife;
       end loop YÄnderungStadtSchleife;
       

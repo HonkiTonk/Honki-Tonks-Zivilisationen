@@ -88,9 +88,4 @@ package KarteneigenschaftVereinfachung is
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
-private
-
-   BelegterStadtGrund : GlobaleDatentypen.BelegterGrund;
-
-
 end KarteneigenschaftVereinfachung;

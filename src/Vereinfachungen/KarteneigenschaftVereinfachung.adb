@@ -101,10 +101,8 @@ package body KarteneigenschaftVereinfachung is
       return Boolean
    is begin
       
-      BelegterStadtGrund := KartenBelegterGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
       if
-        BelegterStadtGrund
+        KartenBelegterGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       in
         GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 2)
       then      

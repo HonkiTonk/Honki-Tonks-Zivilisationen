@@ -19,7 +19,7 @@ private
    
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
-   BereitsVonEinheitBelegt : GlobaleRecords.RassePlatznummerRecord;
+   BereitsVonEinheitBelegt : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 

@@ -62,15 +62,7 @@ package body KIPruefungen is
                                                            ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                            ZusatzYAbstandExtern => 0);
             
-            case
-              StadtVerbesserungUmgebungKoordinaten.YAchse
-            is
-               when 0 =>
-                  exit XAchseSchleife;
-                  
-               when others =>
-                  null;
-            end case;
+            exit XAchseSchleife when StadtVerbesserungUmgebungKoordinaten.YAchse = 0;
             
             EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => StadtVerbesserungUmgebungKoordinaten);
             
@@ -153,15 +145,7 @@ package body KIPruefungen is
                                                                                           ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert),
                                                                                           ZusatzYAbstandExtern => 0);
             
-               case
-                 StadtBauenUmgebungKoordinaten.YAchse
-               is
-                  when 0 =>
-                     exit XAchseKartenfeldSuchenSchleife;
-                  
-                  when others =>
-                     null;
-               end case;
+               exit XAchseKartenfeldSuchenSchleife when StadtBauenUmgebungKoordinaten.YAchse = 0;
                            
                if
                  YAchseKoordinatenSchonGeprüft >= abs YAchseSchleifenwert
@@ -296,15 +280,7 @@ package body KIPruefungen is
                                                                     ÄnderungExtern       => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
             
-            case
-              KartenWert.YAchse
-            is
-               when 0 =>
-                  exit XAchseUmgebungSchleife;
-                  
-               when others =>
-                  null;
-            end case;
+            exit XAchseUmgebungSchleife when KartenWert.YAchse = 0;
                
             if
               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund > 0

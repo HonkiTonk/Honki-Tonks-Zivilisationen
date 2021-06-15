@@ -39,15 +39,9 @@ package body KIForschung is
                   ForschungMöglichSchleife:
                   for AnforderungenSchleifenwert in GlobaleDatentypen.AnforderungForschungArray'Range loop
                      
-                     case
-                       ForschungsDatenbank.ForschungListe (RasseExtern, TechnologieSchleifenwert).AnforderungForschung (AnforderungenSchleifenwert)
-                     is
-                        when 0 =>
-                           exit ForschungMöglichSchleife;
-                           
-                        when others =>
-                           AnforderungVorhanden := AnforderungVorhanden + 1;
-                     end case;
+                     exit ForschungMöglichSchleife when ForschungsDatenbank.ForschungListe (RasseExtern, TechnologieSchleifenwert).AnforderungForschung (AnforderungenSchleifenwert) = 0;
+                     
+                     AnforderungVorhanden := AnforderungVorhanden + 1;
                      
                      if
                        GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ForschungsDatenbank.ForschungListe (RasseExtern, TechnologieSchleifenwert).AnforderungForschung (AnforderungenSchleifenwert)) = True
