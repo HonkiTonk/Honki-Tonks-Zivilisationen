@@ -10,6 +10,20 @@ package body KIBewegungBerechnen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
+            
+      case
+        TransporterNötig (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      is
+         when False =>
+            null;
+            
+         when True =>            
+            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                      WelchenWertNullSetzten   => 0);
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Keine;
+            return False;
+      end case;
       
       PlanungErfolgreich := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
                                             AktuelleKoordinatenExtern  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
@@ -368,5 +382,16 @@ package body KIBewegungBerechnen is
       end loop EAchseSchleife;
       
    end VorhandenenPlanVereinfachenPrüfen;
+   
+   
+   
+   function TransporterNötig
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
+      return False;
+      
+   end TransporterNötig;
 
 end KIBewegungBerechnen;

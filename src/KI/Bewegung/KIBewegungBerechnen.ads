@@ -22,10 +22,17 @@ private
    
    BewertungPosition : Positive;
    
+   YAchseKoordinatePrüfen : GlobaleDatentypen.KartenfeldPositiv;
+   XAchseKoordinatePrüfen : GlobaleDatentypen.KartenfeldPositiv;
+   YAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositivMitNullwert;
+   XAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositivMitNullwert;
+   NurWasser : GlobaleDatentypen.KartenfeldPositivMitNullwert;
+   
    ZielKoordinaten : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    KartenWertVereinfachung : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWertTransporter : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    type FeldBewertungArray is array (GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range, GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range) of Natural;
    FeldBewertung : FeldBewertungArray;
@@ -105,6 +112,15 @@ private
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+   
+   function TransporterNötig
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
 

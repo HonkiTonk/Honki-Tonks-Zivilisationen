@@ -176,7 +176,7 @@ package body BewegungLadenEntladen is
                   if
                     GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
                     and
-                      EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).ID).Passierbarkeit
+                      EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).ID).Passierbarkeit
                     (KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit) = True
                   then
                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).AchsenPosition := KartenWert;
@@ -185,6 +185,8 @@ package body BewegungLadenEntladen is
                         
                      if
                        WelcherPlatz > TransportplatzEntladen'Last
+                       or else
+                         TransportplatzEntladen (WelcherPlatz) = 0
                      then
                         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert := (others => 0);
                         return;
@@ -204,7 +206,14 @@ package body BewegungLadenEntladen is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
             
-         Umgebung := Umgebung + 1;
+         if
+           Umgebung = 3
+         then
+            null;
+            
+         else
+            Umgebung := Umgebung + 1;
+         end if;
                      
       end loop BereichSchleife;     
       

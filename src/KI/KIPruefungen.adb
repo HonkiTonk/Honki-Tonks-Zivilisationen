@@ -128,8 +128,8 @@ package body KIPruefungen is
             return KIKonstanten.NullKoordinate;
       end case;
       
-      YAchseKoordinatePrüfen := 2;
-      XAchseKoordinatePrüfen := 2;
+      YAchseKoordinatePrüfen := 1;
+      XAchseKoordinatePrüfen := 1;
       YAchseKoordinatenSchonGeprüft := YAchseKoordinatePrüfen - 1;
       XAchseKoordinatenSchonGeprüft := XAchseKoordinatePrüfen - 1;
       

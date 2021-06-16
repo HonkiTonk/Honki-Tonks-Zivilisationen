@@ -43,8 +43,8 @@ private
    AbstandKleiner : GlobaleDatentypen.KartenfeldPositiv;
    YAchseKoordinatePrüfen : GlobaleDatentypen.KartenfeldPositiv;
    XAchseKoordinatePrüfen : GlobaleDatentypen.KartenfeldPositiv;
-   YAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositiv;
-   XAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositiv;
+   YAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositivMitNullwert;
+   XAchseKoordinatenSchonGeprüft : GlobaleDatentypen.KartenfeldPositivMitNullwert;
    
    VerbesserungAnlegen : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
