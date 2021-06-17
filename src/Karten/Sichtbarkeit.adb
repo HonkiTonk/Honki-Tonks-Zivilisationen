@@ -65,8 +65,7 @@ package body Sichtbarkeit is
          for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
                
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
-                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                    ZusatzYAbstandExtern => 0);
+                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
 
             exit XÄnderungEinheitenSchleife when KartenWert.YAchse = 0;
             
@@ -85,7 +84,7 @@ package body Sichtbarkeit is
    is begin
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Einwohner < 10
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) < 10
       then
          SichtweiteObjekt := 2;
             
@@ -99,8 +98,7 @@ package body Sichtbarkeit is
          for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
 
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition,
-                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                    ZusatzYAbstandExtern => 0);
+                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                
             exit XÄnderungStadtSchleife when KartenWert.YAchse = 0;
             

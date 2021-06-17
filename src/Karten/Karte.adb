@@ -60,8 +60,7 @@ package body Karte is
          for XAchseSchleifenwert in -Sichtweiten (SichtweiteFestlegen).XAchse .. Sichtweiten (SichtweiteFestlegen).XAchse loop
             
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt,
-                                                                    ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                    ZusatzYAbstandExtern => 0);
+                                                                    ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             exit XAchseSchleife when KartenWert.YAchse = 0;
             

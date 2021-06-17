@@ -141,9 +141,9 @@ package StadtInformationen is
 
 private
 
-   Nahrungsgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+   Nahrungsgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   Ressourcengewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   Geldgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   Wissensgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
 
 end StadtInformationen;

@@ -457,9 +457,9 @@ package body SpielEinstellungen is
                XAchseSchleife:
                for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-                  KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionExtern, XPositionExtern),
-                                                                          ÄnderungExtern       => (0, YÄnderung, XÄnderung),
-                                                                          ZusatzYAbstandExtern => 0);
+                  KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YPositionExtern, XPositionExtern),
+                                                                                         ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                                         ZusatzYAbstandExtern => 0);
 
                   exit XAchseSchleife when KartenWert.YAchse = 0;
                   

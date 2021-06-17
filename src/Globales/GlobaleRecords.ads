@@ -94,13 +94,15 @@ package GlobaleRecords is
 
 
    type GebäudeVorhandenArray is array (GlobaleDatentypen.GebäudeID'Range) of Boolean;
+   type EinwohnerArbeiterArray is array (1 .. 2) of GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   type StadtMeldungenArray is array (1 .. 3) of GlobaleDatentypen.StadtMeldung;
 
    type StadtGebautRecord is record
       
       ID : GlobaleDatentypen.StadtID;
       AchsenPosition : AchsenKartenfeldPositivRecord;
       AmWasser : Boolean;
-      Einwohner : GlobaleDatentypen.GrundwerteNRGWVA;
+      EinwohnerArbeiter : EinwohnerArbeiterArray;
       
       AktuelleNahrungsmittel : GlobaleDatentypen.GesamtproduktionStadt;
       AktuelleNahrungsproduktion : GlobaleDatentypen.GesamtproduktionStadt;
@@ -112,16 +114,15 @@ package GlobaleRecords is
       AktuellesBauprojekt : Natural;
       VerbleibendeBauzeit : GlobaleDatentypen.KostenLager;
 
-      Korruption : GlobaleDatentypen.GesamtproduktionStadt;      
-      -- Eine Liste anlegen welche Nummer welches Gebäude ist.
+      Korruption : GlobaleDatentypen.GesamtproduktionStadt;
       GebäudeVorhanden : GebäudeVorhandenArray;
       Name : Unbounded_Wide_Wide_String;
 
       UmgebungBewirtschaftung : GlobaleDatentypen.UmgebungBewirtschaftungArray;
-      ArbeitendeEinwohner : GlobaleDatentypen.GrundwerteNRGWVA;
-      StadtUmgebungGröße : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+      UmgebungGröße : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
       
-      -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Gebäude bauen), -10 = Die KI hat irgendwas gemacht und es soll nicht geändert werden, < 0 = KI Einheit die irgendetwas erledigt hat
+      Meldungen : StadtMeldungenArray;
+      
       KIAktuelleBeschäftigung : KIDatentypen.Stadt_Aufgabe_Enum;
       
    end record;

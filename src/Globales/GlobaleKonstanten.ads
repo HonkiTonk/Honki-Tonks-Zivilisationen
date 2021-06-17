@@ -142,12 +142,20 @@ package GlobaleKonstanten is
                                                                          (0, 0, 0), KIDatentypen.Keine_Aufgabe, (others => (0, 0, 0)), -- Zielkoordinaten der KI, Beschäftigung der KI, Bewegungsplan der KI
                                                                          (others => 0), 0); -- Platznummer der transportierten Einheiten, Platznummer der transportierenden Einheit
 
-   LeererWertStadt : constant GlobaleRecords.StadtGebautRecord := (0, (0, 0, 0), False, 0, -- ID, AchsenPosition,Am Wasser, Einwohner
-                                                                   0, 0, 0, 0, -- Aktuelle Nahrungsmittel, Aktuelle Nahrungsproduktion, Aktuelle Ressourcen, Aktuelle Produktionrate
-                                                                   0, 0, 0, 0, -- Aktuelle Geldgewinnung, Aktuelle Forschungsrate, Aktuelles Bauprojekt, Verbleibende Bauzeit
-                                                                   0, (others => False), To_Unbounded_Wide_Wide_String (Source => ""), -- Korruption, Gebäude Vorhanden, Stadtname
-                                                                   (others => (others => False)), 0, 1, -- UmgebungBewirtschaftung, Arbeitende Einwohner, StadtUmgebungGröße
-                                                                   KIDatentypen.Keine_Aufgabe); -- 19. Wert = KI aktuelle Beschäftigung
+   LeererWertStadt : constant GlobaleRecords.StadtGebautRecord := (0, (0, 0, 0), False, (0 , 0),
+                                                                   -- ID, AchsenPosition, Am Wasser, (Einwohner, Arbeiter)
+                                                                   0, 0, 0, 0,
+                                                                   -- Aktuelle Nahrungsmittel, Aktuelle Nahrungsproduktion, Aktuelle Ressourcen, Aktuelle Produktionrate
+                                                                   0, 0, 0, 0,
+                                                                   -- Aktuelle Geldgewinnung, Aktuelle Forschungsrate, Aktuelles Bauprojekt, Verbleibende Bauzeit
+                                                                   0, (others => False), To_Unbounded_Wide_Wide_String (Source => ""),
+                                                                   -- Korruption, Gebäude Vorhanden, Stadtname
+                                                                   (others => (others => False)), 1,
+                                                                   -- UmgebungBewirtschaftung, UmgebungGröße
+                                                                   (others => GlobaleDatentypen.Keine),
+                                                                   -- Aktuelle Meldungen
+                                                                   KIDatentypen.Keine_Aufgabe);
+   -- KI aktuelle Beschäftigung
 
    LeererWertWichtigesZeug : constant GlobaleRecords.WichtigesRecord := (0, 0, -- Aktuelle Geldmenge, GeldZugewinn Pro Runde
                                                                          0, 0, 10_000, 0, -- Forschungsrate, Aktuelle Forschungsmenge, Verbleibende Forschungszeit, Forschungsprojekt

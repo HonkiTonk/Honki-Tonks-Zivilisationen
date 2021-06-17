@@ -253,8 +253,7 @@ package body BewegungPassierbarkeitPruefen is
                for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
             
                   KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
-                                                                          ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                          ZusatzYAbstandExtern => 0);
+                                                                          ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
                   exit XAchseSchleife when KartenWert.YAchse = 0;
             

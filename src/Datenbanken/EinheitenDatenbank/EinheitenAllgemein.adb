@@ -7,7 +7,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank;
 
-with Auswahl, Anzeige, Eingabe, Sichtbarkeit;
+with Auswahl, Anzeige, Eingabe, Sichtbarkeit, ZugriffEinheitenDatenbank;
 
 package body EinheitenAllgemein is
 

@@ -15,11 +15,11 @@ private
    
    EinheitNummer : GlobaleDatentypen.MaximaleEinheiten;
    
-   Verteidigungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
-   Nahrungsgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-   Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
+   Verteidigungsbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   Nahrungsgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   Ressourcengewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   Geldgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   Wissensgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
    
    EinheitRasseNummer : GlobaleRecords.RassePlatznummerRecord;
    StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord;

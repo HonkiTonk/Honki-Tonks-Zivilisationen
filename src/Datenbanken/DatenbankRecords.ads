@@ -6,25 +6,29 @@ package DatenbankRecords is
 
    -- EinheitenDatenbank
    type PassierbarkeitArray is array (GlobaleDatentypen.PassierbarkeitType'Range) of Boolean;
+   type PreisArray is array (1 .. 2) of GlobaleDatentypen.KostenLager;
+   type KampfwerteArray is array (1 .. 3) of GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
 
    type EinheitenListeRecord is record
       
       EinheitenGrafik : Wide_Wide_Character;
       
-      EinheitTyp : GlobaleDatentypen.EinheitenTyp; -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
+      -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
+      EinheitTyp : GlobaleDatentypen.EinheitenTyp;
       PreisGeld : GlobaleDatentypen.KostenLager;
       PreisRessourcen : GlobaleDatentypen.KostenLager;
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
 
-      Passierbarkeit : PassierbarkeitArray; -- 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
+      -- 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
+      Passierbarkeit : PassierbarkeitArray;
       MaximaleLebenspunkte : Integer;
       MaximaleBewegungspunkte : Float;
 
       Beförderungsgrenze : Positive;
       MaximalerRang : Natural;
-      Reichweite : GlobaleDatentypen.GrundwerteNRGWVA;
-      Angriff : GlobaleDatentypen.GrundwerteNRGWVA;
-      Verteidigung : GlobaleDatentypen.GrundwerteNRGWVA;
+      Reichweite : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      Angriff : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      Verteidigung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
 
       KannTransportieren : Natural;
       KannTransportiertWerden : Natural;
@@ -45,6 +49,8 @@ package DatenbankRecords is
    -- ForschungsDatenbank
 
 
+   
+   type WertNahrungRessourcenGeldWissenVerteidigungArray is array (1 .. 5) of GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
 
    -- GebaeudeDatenbank
    type GebäudeListeRecord is record
@@ -56,11 +62,11 @@ package DatenbankRecords is
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
       PermanenteKosten : GlobaleDatentypen.KostenLager;
       
-      ProduktionBonus : GlobaleDatentypen.GrundwerteNRGWVA;
-      GeldBonus : GlobaleDatentypen.GrundwerteNRGWVA;
-      WissenBonus : GlobaleDatentypen.GrundwerteNRGWVA;
-      VerteidigungBonus : GlobaleDatentypen.GrundwerteNRGWVA;
-      NahrungBonus : GlobaleDatentypen.GrundwerteNRGWVA;
+      ProduktionBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      GeldBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      WissenBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      VerteidigungBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      NahrungBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
       Anderes : Boolean;
 
    end record;
@@ -75,11 +81,11 @@ package DatenbankRecords is
       
       Passierbarkeit : GlobaleDatentypen.PassierbarkeitType;
 
-      Nahrungsgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-      Ressourcengewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-      Geldgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-      Wissensgewinnung : GlobaleDatentypen.GrundwerteNRGWVA;
-      Verteidigungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
+      Nahrungsgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      Ressourcengewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      Geldgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      Wissensgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      Verteidigungsbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
       
    end record;
    -- KartenDatenbank
@@ -93,11 +99,11 @@ package DatenbankRecords is
       
       Passierbarkeit : GlobaleDatentypen.PassierbarkeitType;
 
-      Nahrungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
-      Ressourcenbonus : GlobaleDatentypen.GrundwerteNRGWVA;
-      Geldbonus : GlobaleDatentypen.GrundwerteNRGWVA;
-      Wissensbonus : GlobaleDatentypen.GrundwerteNRGWVA;
-      Verteidigungsbonus : GlobaleDatentypen.GrundwerteNRGWVA;
+      Nahrungsbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      Ressourcenbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      Geldbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      Wissensbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      Verteidigungsbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
       
    end record;
    -- verbesserungenDatenbank

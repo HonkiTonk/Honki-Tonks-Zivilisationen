@@ -8,19 +8,41 @@ use Karten;
 
 package KartenPruefungen is
 
-   function KartenPositionBestimmen
+   function KartenPositionBestimmenKartengenerator
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
-      ZusatzYAbstandExtern : in GlobaleDatentypen.Kartenfeld)
+      ZusatzYAbstandExtern : in GlobaleDatentypen.KartenfeldPositivMitNullwert)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
+         Post =>
+           ((if
+                      KartenPositionBestimmenKartengenerator'Result.YAchse = 0
+                        then
+                          KartenPositionBestimmenKartengenerator'Result.XAchse = 0)
+            and
+              (if
+                         KartenPositionBestimmenKartengenerator'Result.XAchse = 0
+                           then
+                             KartenPositionBestimmenKartengenerator'Result.YAchse = 0)
+            and
+              KartenPositionBestimmenKartengenerator'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            and
+              KartenPositionBestimmenKartengenerator'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+   function KartenPositionBestimmen
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            ZusatzYAbstandExtern >= 0),
-         Post => -- Kann noch besser geschrieben werden
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
+         Post =>
            ((if
                       KartenPositionBestimmen'Result.YAchse = 0
                         then
@@ -46,7 +68,12 @@ package KartenPruefungen is
 
 private
    
-   ÜberhangXAchse : Integer;
-   ÜberhangYAchse : Integer;
+   type PositionAchsenArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleDatentypen.KartenfeldPositiv;
+   type ÜberhangArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of Integer;
+   
+   PositionYAchse : PositionAchsenArray;
+   PositionXAchse : PositionAchsenArray;
+   
+   ÜberhangXAchse : ÜberhangArray;
 
 end KartenPruefungen;

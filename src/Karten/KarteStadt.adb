@@ -17,7 +17,7 @@ package body KarteStadt is
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
-      Stadtumgebungsgröße := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).StadtUmgebungGröße;
+      Stadtumgebungsgröße := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
 
       YAchsenabstraktion := -Stadtumgebungsgröße;
       InformationenStadtAufrufen := False;
@@ -297,8 +297,7 @@ package body KarteStadt is
                CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse - 17;
 
                KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition,
-                                                                       ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
-                                                                       ZusatzYAbstandExtern => 0);
+                                                                       ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion));
 
                case
                  KartenWert.YAchse
@@ -333,8 +332,7 @@ package body KarteStadt is
 
          else
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition,
-                                                                    ÄnderungExtern       => (0, YAchsenabstraktion, UmgebungSchleifenwert),
-                                                                    ZusatzYAbstandExtern => 0);
+                                                                    ÄnderungExtern       => (0, YAchsenabstraktion, UmgebungSchleifenwert));
 
             case
               KartenWert.YAchse
@@ -366,8 +364,7 @@ package body KarteStadt is
       CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionStadt.XAchse - 17;
 
       KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition,
-                                                              ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
-                                                              ZusatzYAbstandExtern => 0);
+                                                              ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion));
 
       case
         KartenWert.YAchse

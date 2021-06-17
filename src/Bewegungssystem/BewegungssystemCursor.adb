@@ -152,8 +152,7 @@ package body BewegungssystemCursor is
       end if;
       
       KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition,
-                                                              ÄnderungExtern       => ÄnderungExtern,
-                                                              ZusatzYAbstandExtern => 0);
+                                                              ÄnderungExtern       => ÄnderungExtern);
       
       case
         KartenWert.YAchse

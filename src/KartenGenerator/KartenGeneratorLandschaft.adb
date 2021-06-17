@@ -135,9 +135,9 @@ package body KartenGeneratorLandschaft is
          XAchseEinsSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeNullZuEins'Range loop            
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => (0, YAchseExtern, XAchseExtern),
-                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                    ZusatzYAbstandExtern => 1);
+            KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YAchseExtern, XAchseExtern),
+                                                                                   ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                   ZusatzYAbstandExtern => 1);
 
             exit XAchseEinsSchleife when KartenWert.YAchse = 0;
             
@@ -216,9 +216,9 @@ package body KartenGeneratorLandschaft is
                XAchseZweiSchleife:
                for XÄnderungZweiSchleifenwert in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
             
-                  KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => (0, YAchseExtern, XAchseExtern),
-                                                                          ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
-                                                                          ZusatzYAbstandExtern => 1);
+                  KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YAchseExtern, XAchseExtern),
+                                                                                         ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
+                                                                                         ZusatzYAbstandExtern => 1);
 
                   exit XAchseZweiSchleife when KartenWert.YAchse = 0;
                   
@@ -252,9 +252,9 @@ package body KartenGeneratorLandschaft is
          XAchseHügelSchleife:
          for XÄnderungHügelSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop            
             
-            KartenWertHügel := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => (0, YAchseExtern, XAchseExtern),
-                                                                          ÄnderungExtern       => (0, YÄnderungHügelSchleifenwert, XÄnderungHügelSchleifenwert),
-                                                                          ZusatzYAbstandExtern => 1);
+            KartenWertHügel := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YAchseExtern, XAchseExtern),
+                                                                                         ÄnderungExtern       => (0, YÄnderungHügelSchleifenwert, XÄnderungHügelSchleifenwert),
+                                                                                         ZusatzYAbstandExtern => 1);
 
             exit XAchseHügelSchleife when KartenWertHügel.YAchse = 0;
             

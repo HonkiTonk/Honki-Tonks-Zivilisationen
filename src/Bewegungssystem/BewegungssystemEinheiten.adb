@@ -55,8 +55,7 @@ package body BewegungssystemEinheiten is
          end case;
 
          KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
-                                                                 ÄnderungExtern       => Änderung,
-                                                                 ZusatzYAbstandExtern => 0);
+                                                                 ÄnderungExtern       => Änderung);
          
          case
            KartenWert.YAchse
