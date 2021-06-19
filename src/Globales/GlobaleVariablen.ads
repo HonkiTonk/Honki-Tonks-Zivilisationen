@@ -9,13 +9,15 @@ package GlobaleVariablen is
 
    -- Schreiben/Ausgabe
    -- Die einzelnen Textarrays hier rein oder in eine eigene Datei?
+   -- Alle Zeilen'Range muss immer so groß sein wie die Zeilananzahl in den Textdateien, sonst liest er das nicht richtig ein!
+   type EinstellungenEinlesenArray is array (1 .. 2) of Unbounded_Wide_Wide_String;
+   EinstellungenEingelesen : EinstellungenEinlesenArray := (others => (To_Unbounded_Wide_Wide_String (Source => "|")));
+   
    type SprachenEinlesenArray is array (1 .. 100) of Unbounded_Wide_Wide_String;
    SprachenEinlesen : SprachenEinlesenArray;
 
    type TexteEinlesenNeuArray is array (1 .. GlobaleDatentypen.TextDateien'Last, 1 .. 93) of Unbounded_Wide_Wide_String;
    TexteEinlesenNeu : TexteEinlesenNeuArray := (others => (others => (To_Unbounded_Wide_Wide_String (Source => "|"))));
-   
-   GewählteSprache : Unbounded_Wide_Wide_String;
    -- Schreiben/Ausgabe
    
    

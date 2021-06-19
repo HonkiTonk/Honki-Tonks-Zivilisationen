@@ -10,7 +10,7 @@ package body EinlesenText is
    is begin
       
       case
-        Exists (Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0")
+        Exists (Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.EinstellungenEingelesen (1))) & "/0")
       is
          when True =>
             null;
@@ -21,7 +21,7 @@ package body EinlesenText is
 
       Open (File => DateiNeuWelcheTexteEinlesen,
             Mode => In_File,
-            Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.GewählteSprache)) & "/0");
+            Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.EinstellungenEingelesen (1))) & "/0");
       
       EinlesenSchleife:
       for WelcheDateienSchleifenwert in WelcheTexteEinlesenNeuArray'Range loop

@@ -1,14 +1,16 @@
 pragma SPARK_Mode (On);
 
-with Ada.Streams.Stream_IO;
-use Ada.Streams.Stream_IO;
+with Ada.Wide_Wide_Text_IO;
+use Ada.Wide_Wide_Text_IO;
 
 package SchreibenEinstellungen is
 
    procedure SchreibenEinstellungen;
 
+   procedure SchreibenSprache;
+
 private
 
-   EinstellungenDatei : File_Type;
+   DateiEinstellungenSchreiben : File_Type;
 
 end SchreibenEinstellungen;
