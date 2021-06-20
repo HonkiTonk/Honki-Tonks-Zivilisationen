@@ -269,25 +269,20 @@ package body BewegungPassierbarkeitPruefen is
                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
                   in
                     GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 2)
+                    and
+                      GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
+                    and
+                      EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).ID).Passierbarkeit
+                    (KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit) = True
                   then
-                     if
-                       GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
-                       and
-                         EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).ID).Passierbarkeit
-                       (KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit) = True
-                     then
-                        FreieFelder := FreieFelder + 1;
-                        WelcherPlatz := WelcherPlatz + 1;
+                     FreieFelder := FreieFelder + 1;
+                     WelcherPlatz := WelcherPlatz + 1;
                         
-                        if
-                          BenötigteFelder = FreieFelder
-                        then
-                           return GlobaleDatentypen.Transporter_Stadt_Möglich;
+                     if
+                       BenötigteFelder = FreieFelder
+                     then
+                        return GlobaleDatentypen.Transporter_Stadt_Möglich;
                               
-                        else
-                           null;
-                        end if;
-                     
                      else
                         null;
                      end if;

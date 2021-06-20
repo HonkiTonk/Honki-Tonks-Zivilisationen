@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-with Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Text_IO;
-use Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded, Ada.Wide_Wide_Text_IO;
+with Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
+use Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleVariablen;
 
@@ -15,28 +15,23 @@ package body Einlesen is
       
       Ladezeiten.EinzelneZeiten (1, 1) := Clock;
       EinlesenEinstellungen.EinlesenEinstellungen;
-      Put_Line ("3");
       
       if
-        GlobaleVariablen.EinstellungenEingelesen (1) = "/"
+        GlobaleVariablen.NutzerEinstellungen.Sprache = "|"
       then
          Erfolgreich := EinlesenSprache.EinlesenSprache;
-         Put_Line ("1");
          case
            Erfolgreich
          is
             when True =>
-               Put_Line ("2");
-               GlobaleVariablen.EinstellungenEingelesen (1) := Auswahl.AuswahlSprache;
-               SchreibenEinstellungen.SchreibenSprache;
+               GlobaleVariablen.NutzerEinstellungen.Sprache := Auswahl.AuswahlSprache;
+               SchreibenEinstellungen.SchreibenEinstellungen;
             
             when False =>
-               Put_Line ("4");
                return Erfolgreich;
          end case;
          
       else
-         Put_Line ("5");
          null;
       end if;
       
@@ -49,9 +44,8 @@ package body Einlesen is
             null;
 
          when False =>
-            Put_Line ("6");
             return Erfolgreich;
-      end case;      
+      end case;
       
       EinlesenWerte.EinlesenAlleDatenbanken;
       EinlesenTastatur.EinlesenTastaturbelegung;

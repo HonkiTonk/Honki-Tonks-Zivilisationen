@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 
-with Ada.Directories, Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Directories, Ada.Strings.Wide_Wide_Unbounded;
+with Ada.Directories;
+use Ada.Directories;
 
-with GlobaleVariablen;
+with GlobaleVariablen, GlobaleRecords;
 
 with SchreibenEinstellungen;
 
@@ -13,45 +13,20 @@ package body EinlesenEinstellungen is
    is begin
       
       case
-        Exists (Name => "Einstellungen/" & "Einstellungen")
+        Exists (Name => "Einstellungen/Einstellungen")
       is
          when True =>
-            null;
+            Open (File => DateiEinstellungenEinlesen,
+                  Mode => In_File,
+                  Name => "Einstellungen/Einstellungen");
 
          when False =>
             SchreibenEinstellungen.SchreibenEinstellungen;
-      end case;      
-      
-      LeereZeilenAbzieher := 0;
-      
-      Open (File => DateiEinstellungenEinlesen,
-            Mode => In_File,
-            Name => "Einstellungen/" & "Einstellungen");
-      
-      EinlesenSchleife:
-      for WelcheZeileSchleifenwert in GlobaleVariablen.EinstellungenEinlesenArray'Range loop
-
-         if
-           End_Of_File (File => DateiEinstellungenEinlesen) = True
-         then
-            exit EinlesenSchleife;
-               
-         else
-            Set_Line (File => DateiEinstellungenEinlesen,
-                      To   => Ada.Wide_Wide_Text_IO.Count (WelcheZeileSchleifenwert));         
-            GlobaleVariablen.EinstellungenEingelesen (WelcheZeileSchleifenwert - LeereZeilenAbzieher) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiEinstellungenEinlesen));
-            
-            if
-              To_Wide_Wide_String (Source => GlobaleVariablen.EinstellungenEingelesen (WelcheZeileSchleifenwert - LeereZeilenAbzieher)) (1) /= '|'
-            then
-               null;                 
-                  
-            else
-               LeereZeilenAbzieher := LeereZeilenAbzieher + 1;
-            end if;
-         end if;
-
-      end loop EinlesenSchleife;
+            return;
+      end case;
+         
+      GlobaleRecords.NutzerEinstellungenRecord'Read (Stream (File => DateiEinstellungenEinlesen),
+                                                     GlobaleVariablen.NutzerEinstellungen);
 
       Close (File => DateiEinstellungenEinlesen);
       

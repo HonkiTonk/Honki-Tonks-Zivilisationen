@@ -10,18 +10,16 @@ package body EinlesenText is
    is begin
       
       case
-        Exists (Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.EinstellungenEingelesen (1))) & "/0")
+        Exists (Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.NutzerEinstellungen.Sprache)) & "/0")
       is
          when True =>
-            null;
+            Open (File => DateiNeuWelcheTexteEinlesen,
+                  Mode => In_File,
+                  Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.NutzerEinstellungen.Sprache)) & "/0");
 
          when False =>
             return False;
       end case;
-
-      Open (File => DateiNeuWelcheTexteEinlesen,
-            Mode => In_File,
-            Name => "Sprachen/" & Encode (Item => To_Wide_Wide_String (Source => GlobaleVariablen.EinstellungenEingelesen (1))) & "/0");
       
       EinlesenSchleife:
       for WelcheDateienSchleifenwert in WelcheTexteEinlesenNeuArray'Range loop
@@ -48,18 +46,15 @@ package body EinlesenText is
            Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheTexteEinlesenNeu (DateiSchleifenwert)))))
          is
             when True =>
-               null;
+               Open (File => DateiNeuText,
+                     Mode => In_File,
+                     Name => Encode (Item => (To_Wide_Wide_String (WelcheTexteEinlesenNeu (DateiSchleifenwert)))));
+               LeereZeilenAbzieher := 0;
 
             when False =>
                return False;
          end case;
-
-         LeereZeilenAbzieher := 0;
          
-         Open (File => DateiNeuText,
-               Mode => In_File,
-               Name => Encode (Item => (To_Wide_Wide_String (WelcheTexteEinlesenNeu (DateiSchleifenwert)))));
-      
          ZeilenSchleife:
          for ZeileSchleifenwert in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
             if

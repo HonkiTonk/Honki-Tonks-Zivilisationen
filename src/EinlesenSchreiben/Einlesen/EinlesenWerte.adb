@@ -27,15 +27,13 @@ package body EinlesenWerte is
         Exists (Name => "Daten/EinheitenDatenbank")
       is
          when True =>
-            null;
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => "Daten/EinheitenDatenbank");
 
          when False =>
             return;
       end case;
-      
-      Open (File => DatenbankEinlesen,
-            Mode => In_File,
-            Name => "Daten/EinheitenDatenbank");
       
       RassenSchleife:
       for RasseSchleifenwert in EinheitenDatenbank.EinheitenListeArray'Range (1) loop
@@ -61,15 +59,13 @@ package body EinlesenWerte is
         Exists (Name => "Daten/ForschungsDatenbank")
       is
          when True =>
-            null;
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => "Daten/ForschungsDatenbank");
 
          when False =>
             return;
       end case;
-      
-      Open (File => DatenbankEinlesen,
-            Mode => In_File,
-            Name => "Daten/ForschungsDatenbank");
       
       RassenSchleife:
       for RasseSchleifenwert in ForschungsDatenbank.ForschungListeArray'Range (1) loop
@@ -95,15 +91,13 @@ package body EinlesenWerte is
         Exists (Name => "Daten/GebaeudeDatenbank")
       is
          when True =>
-            null;
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => "Daten/GebaeudeDatenbank");
 
          when False =>
             return;
       end case;
-      
-      Open (File => DatenbankEinlesen,
-            Mode => In_File,
-            Name => "Daten/GebaeudeDatenbank");
       
       RassenSchleife:
       for RasseSchleifenwert in GebaeudeDatenbank.GebäudeListeArray'Range (1) loop
@@ -129,15 +123,13 @@ package body EinlesenWerte is
         Exists (Name => "Daten/KartenDatenbank")
       is
          when True =>
-            null;
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => "Daten/KartenDatenbank");
 
          when False =>
             return;
       end case;
-      
-      Open (File => DatenbankEinlesen,
-            Mode => In_File,
-            Name => "Daten/KartenDatenbank");
       
       KartenGrundSchleife:
       for KartenGrundSchleifenwert in KartenDatenbank.KartenListeArray'Range loop
@@ -160,15 +152,13 @@ package body EinlesenWerte is
         Exists (Name => "Daten/VerbesserungenDatenbank")
       is
          when True =>
-            null;
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => "Daten/VerbesserungenDatenbank");
 
          when False =>
             return;
       end case;
-      
-      Open (File => DatenbankEinlesen,
-            Mode => In_File,
-            Name => "Daten/VerbesserungenDatenbank");
       
       VerbesserungenSchleife:
       for VerbesserungenSchleifenwert in VerbesserungenDatenbank.VerbesserungListeArray'Range loop

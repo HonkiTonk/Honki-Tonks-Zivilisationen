@@ -9,9 +9,12 @@ package GlobaleVariablen is
 
    -- Schreiben/Ausgabe
    -- Die einzelnen Textarrays hier rein oder in eine eigene Datei?
-   -- Alle Zeilen'Range muss immer so groß sein wie die Zeilananzahl in den Textdateien, sonst liest er das nicht richtig ein!
-   type EinstellungenEinlesenArray is array (1 .. 2) of Unbounded_Wide_Wide_String;
-   EinstellungenEingelesen : EinstellungenEinlesenArray := (others => (To_Unbounded_Wide_Wide_String (Source => "|")));
+   type NutzerEinstellungenArray is array (1 .. 3) of Unbounded_Wide_Wide_String;
+   NutzerEinstellungen : GlobaleRecords.NutzerEinstellungenRecord := (To_Unbounded_Wide_Wide_String (Source => "|"), -- Sprache
+                                                                      10, -- Anzahl Autosaves
+                                                                      10); -- Rundenanzahl bis Autosave
+                                                                                                                  
+                                                                                                                 
    
    type SprachenEinlesenArray is array (1 .. 100) of Unbounded_Wide_Wide_String;
    SprachenEinlesen : SprachenEinlesenArray;
@@ -31,8 +34,6 @@ package GlobaleVariablen is
 
    -- Zeug
    RundenAnzahl : Positive := 1;
-   RundenBisAutosave : Positive := 10;
-   AnzahlAutosave : Natural := 10;
 
    RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => 0); -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
    RasseAmZugNachLaden : GlobaleDatentypen.RassenMitNullwert := 0;

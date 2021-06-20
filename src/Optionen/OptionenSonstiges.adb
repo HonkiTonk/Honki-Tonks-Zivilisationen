@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleDatentypen, GlobaleVariablen, GlobaleKonstanten;
 
-with Auswahl, Eingabe;
+with Auswahl, Eingabe, SchreibenEinstellungen, EinlesenSprache, EinlesenText;
 
 package body OptionenSonstiges is
 
@@ -32,7 +32,7 @@ package body OptionenSonstiges is
                in
                  0 .. 999_999_999
                then
-                  GlobaleVariablen.AnzahlAutosave := AuswahlWert;
+                  GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave := AuswahlWert;
                         
                else
                   null;
@@ -41,26 +41,35 @@ package body OptionenSonstiges is
             when 2 =>
                AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Menü_Auswahl,
                                                  ZeileExtern         => GlobaleKonstanten.OptionenSonstigesErsteZeile + 1,
-                                                 ZahlenMinimumExtern=> 0,
+                                                 ZahlenMinimumExtern=> 1,
                                                  ZahlenMaximumExtern => 999_999_999);
 
                if
-                 AuswahlWert = 0
-               then
-                  GlobaleVariablen.RundenBisAutosave := 1;
-                     
-               elsif
                  AuswahlWert
                in
                  1 .. 999_999_999
                then
-                  GlobaleVariablen.RundenBisAutosave := AuswahlWert;
+                  GlobaleVariablen.NutzerEinstellungen.RundenBisAutosave := AuswahlWert;
                      
                else
                   null;
                end if;
                
+            when 3 =>
+               Erfolgreich := EinlesenSprache.EinlesenSprache;
+               
+               if
+                 Erfolgreich = True
+               then
+                  GlobaleVariablen.NutzerEinstellungen.Sprache := Auswahl.AuswahlSprache;
+                  Erfolgreich := EinlesenText.EinlesenTextNeu; -- Kann hier noch Müll einlesen und Absturz erzeugen
+                  
+               else
+                  null;
+               end if;
+               
             when GlobaleKonstanten.ZurückKonstante | GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+               SchreibenEinstellungen.SchreibenEinstellungen;
                return AuswahlWert;
                
             when others =>

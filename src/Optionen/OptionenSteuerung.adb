@@ -19,8 +19,8 @@ package body OptionenSteuerung is
          AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
                                          TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
                                          FrageZeileExtern  => 28,
-                                         ErsteZeileExtern  => 21,
-                                         LetzteZeileExtern => 63);
+                                         ErsteZeileExtern  => 22,
+                                         LetzteZeileExtern => 64);
          
          case
            AuswahlWert

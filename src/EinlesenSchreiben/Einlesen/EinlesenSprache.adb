@@ -30,15 +30,16 @@ package body EinlesenSprache is
                   
          else
             VerzeichnisInnenSchleife:
-            for Sprache in GlobaleVariablen.SprachenEinlesenArray'Range loop -- Alphabetisch in ein Stringarray einlesen und dann entsprechend weitersuchen lassen
+            for SpracheSchleifenwert in GlobaleVariablen.SprachenEinlesenArray'Range loop -- Alphabetisch in ein Stringarray einlesen und dann entsprechend weitersuchen lassen
             
                if
-                 GlobaleVariablen.SprachenEinlesen (Sprache) /= "|"
+                 GlobaleVariablen.SprachenEinlesen (SpracheSchleifenwert) /= "|"
                then
                   null;
             
                else        
-                  GlobaleVariablen.SprachenEinlesen (Sprache) := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
+                  GlobaleVariablen.SprachenEinlesen (SpracheSchleifenwert)
+                    := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
                   exit VerzeichnisInnenSchleife;
                end if;            
          

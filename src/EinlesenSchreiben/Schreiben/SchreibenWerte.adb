@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with Ada.Directories;
+use Ada.Directories;
+
 with EinheitenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, DatenbankRecords;
 
 package body SchreibenWerte is
@@ -20,13 +23,19 @@ package body SchreibenWerte is
    procedure SchreibenEinheitenDatenbank
    is begin
       
-      Create (File => EinheitenDatenbankSpeichern,
-              Mode => Out_File,
-              Name => "Daten/EinheitenDatenbank");
-      
-      Open (File => EinheitenDatenbankSpeichern,
-            Mode => In_File,
-            Name => "Daten/EinheitenDatenbank");
+      case
+        Exists (Name => "Einstellungen/EinheitenDatenbank")
+      is
+         when True =>
+            Open (File => EinheitenDatenbankSpeichern,
+                  Mode => Out_File,
+                  Name => "Daten/EinheitenDatenbank");
+            
+         when False =>
+            Create (File => EinheitenDatenbankSpeichern,
+                    Mode => Out_File,
+                    Name => "Daten/EinheitenDatenbank");
+      end case;
       
       RassenSchleife:
       for RasseSchleifenwert in EinheitenDatenbank.EinheitenListeArray'Range (1) loop
@@ -47,14 +56,19 @@ package body SchreibenWerte is
    
    procedure SchreibenForschungsDatenbank
    is begin
-      
-      Create (File => ForschungsDatenbankSpeichern,
-              Mode => Out_File,
-              Name => "Daten/ForschungsDatenbank");
-      
-      Open (File => ForschungsDatenbankSpeichern,
-            Mode => In_File,
-            Name => "Daten/ForschungsDatenbank");
+      case
+        Exists (Name => "Einstellungen/ForschungsDatenbank")
+      is
+         when True =>
+            Open (File => ForschungsDatenbankSpeichern,
+                  Mode => Out_File,
+                  Name => "Daten/ForschungsDatenbank");
+            
+         when False =>
+            Create (File => ForschungsDatenbankSpeichern,
+                    Mode => Out_File,
+                    Name => "Daten/ForschungsDatenbank");
+      end case;      
       
       RassenSchleife:
       for RasseSchleifenwert in ForschungsDatenbank.ForschungListeArray'Range (1) loop
@@ -76,13 +90,19 @@ package body SchreibenWerte is
    procedure SchreibenGebäudeDatenbank
    is begin
       
-      Create (File => GebäudeDatenbankSpeichern,
-              Mode => Out_File,
-              Name => "Daten/GebaeudeDatenbank");
-      
-      Open (File => GebäudeDatenbankSpeichern,
-            Mode => In_File,
-            Name => "Daten/GebaeudeDatenbank");
+      case
+        Exists (Name => "Einstellungen/GebaeudeDatenbank")
+      is
+         when True =>
+            Open (File => GebäudeDatenbankSpeichern,
+                  Mode => Out_File,
+                  Name => "Daten/GebaeudeDatenbank");
+            
+         when False =>
+            Create (File => GebäudeDatenbankSpeichern,
+                    Mode => Out_File,
+                    Name => "Daten/GebaeudeDatenbank");
+      end case;
       
       RassenSchleife:
       for RasseSchleifenwert in GebaeudeDatenbank.GebäudeListeArray'Range (1) loop
@@ -104,13 +124,19 @@ package body SchreibenWerte is
    procedure SchreibenKartenDatenbank
    is begin
       
-      Create (File => KartenDatenbankSpeichern,
-              Mode => Out_File,
-              Name => "Daten/KartenDatenbank");
-      
-      Open (File => KartenDatenbankSpeichern,
-            Mode => In_File,
-            Name => "Daten/KartenDatenbank");
+      case
+        Exists (Name => "Einstellungen/KartenDatenbank")
+      is
+         when True =>
+            Open (File => KartenDatenbankSpeichern,
+                  Mode => Out_File,
+                  Name => "Daten/KartenDatenbank");
+            
+         when False =>
+            Create (File => KartenDatenbankSpeichern,
+                    Mode => Out_File,
+                    Name => "Daten/KartenDatenbank");
+      end case;
       
       KartenGrundSchleife:
       for KartenGrundSchleifenwert in KartenDatenbank.KartenListeArray'Range loop
@@ -129,13 +155,19 @@ package body SchreibenWerte is
    procedure SchreibenVerbesserungenDatenbank
    is begin
       
-      Create (File => VerbesserungenDatenbankSpeichern,
-              Mode => Out_File,
-              Name => "Daten/VerbesserungenDatenbank");
-      
-      Open (File => VerbesserungenDatenbankSpeichern,
-            Mode => In_File,
-            Name => "Daten/VerbesserungenDatenbank");
+      case
+        Exists (Name => "Einstellungen/VerbesserungenDatenbank")
+      is
+         when True =>
+            Open (File => VerbesserungenDatenbankSpeichern,
+                  Mode => Out_File,
+                  Name => "Daten/VerbesserungenDatenbank");
+            
+         when False =>
+            Create (File => VerbesserungenDatenbankSpeichern,
+                    Mode => Out_File,
+                    Name => "Daten/VerbesserungenDatenbank");
+      end case;
       
       VerbesserungenSchleife:
       for VerbesserungenSchleifenwert in VerbesserungenDatenbank.VerbesserungListeArray'Range loop

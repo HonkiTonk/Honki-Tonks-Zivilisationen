@@ -39,12 +39,12 @@ package body Speichern is
          when True =>                        
             SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
             if
-              GlobaleVariablen.AnzahlAutosave = 1
+              GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 1
             then
                null;
 
             elsif
-              AutospeichernWert <= GlobaleVariablen.AnzahlAutosave - 1
+              AutospeichernWert <= GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave - 1
             then
                AutospeichernWert := AutospeichernWert + 1;
                   
@@ -62,12 +62,6 @@ package body Speichern is
       -- Versionsnummer speichern
       Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu), 
                               Informationen.Versionsnummer);
-
-      -- Rundenanzahl und Rundenanzahl bis zum Autospeichern speichern
-      Positive'Write (Stream (File => DateiSpeichernNeu),
-                      GlobaleVariablen.RundenAnzahl);
-      Natural'Write (Stream (File => DateiSpeichernNeu), -- Das hier später in eine Config schieben
-                     GlobaleVariablen.RundenBisAutosave);
 
       -- Spieler am Zug speichern
       GlobaleDatentypen.RassenMitNullwert'Write (Stream (File => DateiSpeichernNeu),
@@ -235,7 +229,7 @@ package body Speichern is
    is begin
       
       case
-        GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.RundenBisAutosave
+        GlobaleVariablen.RundenAnzahl mod GlobaleVariablen.NutzerEinstellungen.RundenBisAutosave
       is
          when 0 =>
             SpeichernNeu (AutospeichernExtern => True);

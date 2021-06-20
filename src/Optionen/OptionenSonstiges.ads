@@ -7,6 +7,8 @@ package OptionenSonstiges is
 
 private
    
+   Erfolgreich : Boolean;
+   
    AuswahlWert : Integer;
 
 end OptionenSonstiges;

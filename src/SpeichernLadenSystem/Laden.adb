@@ -55,8 +55,6 @@ package body Laden is
       -- Rundenanzahl und Rundenanzahl bis zum Autospeichern speichern
       Positive'Read (Stream (File => DateiLadenNeu),
                      GlobaleVariablen.RundenAnzahl);
-      Natural'Read (Stream (File => DateiLadenNeu), -- Das hier später in eine Config schieben
-                    GlobaleVariablen.RundenBisAutosave);
 
       -- Spieler am Zug laden
       GlobaleDatentypen.RassenMitNullwert'Read (Stream (File => DateiLadenNeu),

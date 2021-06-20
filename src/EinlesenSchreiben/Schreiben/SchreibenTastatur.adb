@@ -1,5 +1,8 @@
 pragma SPARK_Mode (On);
 
+with Ada.Directories;
+use Ada.Directories;
+
 with Eingabe;
 
 package body SchreibenTastatur is
@@ -7,13 +10,19 @@ package body SchreibenTastatur is
    procedure TastenbelegungSchreiben
    is begin
       
-      Create (File => TastenbelegungSpeichern,
-              Mode => Out_File,
-              Name => "Einstellungen/Tastenbelegung");
-      
-      Open (File => TastenbelegungSpeichern,
-            Mode => In_File,
-            Name => "Einstellungen/Tastenbelegung");
+      case
+        Exists (Name => "Einstellungen/Tastenbelegung")
+      is
+         when True =>   
+            Open (File => TastenbelegungSpeichern,
+                  Mode => Out_File,
+                  Name => "Einstellungen/Tastenbelegung");
+            
+         when False =>
+            Create (File => TastenbelegungSpeichern,
+                    Mode => Out_File,
+                    Name => "Einstellungen/Tastenbelegung");
+      end case;
       
       BelegungFeldSchleife:
       for BelegungFeldSchleifenwert in Eingabe.TastenbelegungArray'Range (1) loop

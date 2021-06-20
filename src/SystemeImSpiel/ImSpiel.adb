@@ -170,15 +170,14 @@ package body ImSpiel is
             GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
       end case;
 
-      case
-        GlobaleVariablen.AnzahlAutosave
-      is
-         when 0 =>
-            null;
+      if
+        GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 0
+      then
+         null;
 
-         when others =>
-            Speichern.AutoSpeichern;
-      end case;      
+      else
+         Speichern.AutoSpeichern;
+      end if;      
       
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop

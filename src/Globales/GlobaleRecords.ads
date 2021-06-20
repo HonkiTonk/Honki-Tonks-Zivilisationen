@@ -160,5 +160,15 @@ package GlobaleRecords is
       Felderwertung : GlobaleDatentypen.GesamtproduktionStadt;
 
    end record;
+   
+   
+   
+   type NutzerEinstellungenRecord is record
+      
+      Sprache : Unbounded_Wide_Wide_String;
+      AnzahlAutosave : Natural;
+      RundenBisAutosave : Positive;
+      
+   end record;
 
 end GlobaleRecords;
