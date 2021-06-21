@@ -149,7 +149,7 @@ package body SpielEinstellungen is
                                               FrageZeileExtern  => 2,
                                               ErsteZeileExtern  => 14,
                                               LetzteZeileExtern=> 22);
-                  
+         
          case
            KartenartAuswahl
          is
@@ -342,7 +342,7 @@ package body SpielEinstellungen is
                                              LetzteZeileExtern      => RassenAuswahl,
                                              AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                              AbstandEndeExtern      => GlobaleDatentypen.Keiner);
-               Get_Immediate (Taste);
+               Eingabe.WartenEingabe;
                JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 6);
                
                if
@@ -405,7 +405,7 @@ package body SpielEinstellungen is
                   case
                     SicherheitsTestWert
                   is
-                     when 10_000 =>
+                     when 100 =>
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
                                                               TextZeileExtern => 16);
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Rassen_Beschreibung_Kurz,
@@ -435,6 +435,7 @@ package body SpielEinstellungen is
       return Boolean
    is begin
       
+      -- Das hier ändern, siehe dazu auch function KartenGrund
       PrüfungGrund := KartenPruefungen.KartenGrund (KoordinatenExtern => (0, YPositionExtern, XPositionExtern));
 
       case

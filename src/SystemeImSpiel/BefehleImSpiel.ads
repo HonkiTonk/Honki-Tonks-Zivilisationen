@@ -16,7 +16,6 @@ package BefehleImSpiel is
 
 private
 
-   Wahl : Boolean;
    Transportiert : Boolean;
    
    Befehl : Natural;
@@ -27,17 +26,51 @@ private
    
    WelcherBefehl : Positive;
    StadtOderEinheit : Integer;
-   WahlForschung : Integer;
-   MenüAufruf : Integer;
    AbreißenAuswahl : Integer;
    
    StadtSuchenNachNamen : GlobaleRecords.RassePlatznummerRecord;
+   
+   procedure AuswahlEinheitStadt
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
 
    procedure EinheitOderStadt
      (RasseExtern : in GlobaleDatentypen.Rassen;
       AuswahlExtern : in Integer;
       StadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+   
+   procedure BaueStadt
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+   
+   procedure Technologie
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+   
+   procedure EinheitBefehle
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+   
+   procedure StadtUmbenennen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+   
+   procedure StadtAbreißen
+     (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);

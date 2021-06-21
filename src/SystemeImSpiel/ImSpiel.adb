@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with GlobaleVariablen, GlobaleKonstanten;
+with GlobaleKonstanten;
 
 with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, Verbesserungen, ForschungAllgemein, KI, Ladezeiten, Speichern, Laden, StadtProduktion, EinheitenAllgemein;
 
@@ -24,15 +24,6 @@ package body ImSpiel is
                 RasseSchleifenwert = GlobaleVariablen.RasseAmZugNachLaden
             then
                GlobaleVariablen.RasseAmZugNachLaden := 0;
-               case
-                 GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
-               is -- Einmal muss am Anfang die Sichtbarkeit geprüft werden, sonst crasht das Spiel
-                  when 0 =>
-                     null;
-                  
-                  when others =>
-                     Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
-               end case;
             
                case
                  GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -41,6 +32,7 @@ package body ImSpiel is
                      null;
                      
                   when 1 =>
+                     Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
                      RückgabeWert := MenschlicherSpieler (RasseExtern => RasseSchleifenwert);
                      if
                        RückgabeWert = GlobaleKonstanten.SpielBeendenKonstante
@@ -59,6 +51,7 @@ package body ImSpiel is
                      end if;
                   
                   when 2 =>
+                     Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
                      Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 1) := Clock;
                      KI.KI (RasseExtern => RasseSchleifenwert);
                      Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 2) := Clock;

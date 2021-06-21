@@ -62,10 +62,17 @@ package body Speichern is
       -- Versionsnummer speichern
       Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu), 
                               Informationen.Versionsnummer);
+      -- Versionsnummer speichern
+      
+      -- Rundenanzahl speichern
+      Positive'Write (Stream (File => DateiSpeichernNeu),
+                      GlobaleVariablen.RundenAnzahl);
+      -- Rundenanzahl speichern
 
       -- Spieler am Zug speichern
       GlobaleDatentypen.RassenMitNullwert'Write (Stream (File => DateiSpeichernNeu),
                                                  GlobaleVariablen.RasseAmZugNachLaden);
+      -- Spieler am Zug speichern
 
       -- Schleife zum Speichern der Karte
       Positive'Write (Stream (File => DateiSpeichernNeu),

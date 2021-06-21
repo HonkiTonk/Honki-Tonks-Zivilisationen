@@ -18,11 +18,6 @@ private
    PrüfungEinheit : Boolean;
    PrüfungGrund : Boolean;
 
-   Taste : Wide_Wide_Character;
-
-   YPosition : GlobaleDatentypen.Kartenfeld;
-   XPosition : GlobaleDatentypen.Kartenfeld;
-
    SpielerAnzahl : Positive; -- 1 .. 18
    HauptAuswahl : Integer;
    KartengrößeAuswahl : Integer;
@@ -33,8 +28,6 @@ private
    RassenAuswahl : Integer;
    JaOderNein : Integer;
    SchwierigkeitAuswahl : Integer;
-   Rasse : Integer;
-   RassenAusgewählt : Integer;
    SicherheitsTestWert : Integer;
    BenutzerdefinierteGröße : Integer;
    Spieler : Natural;
@@ -98,9 +91,9 @@ private
       return Boolean
      with
        Pre =>
-         ((if Karten.Kartengröße /= 10 then YPosition <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße)
+         ((if Karten.Kartengröße /= 10 then YPositionExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße)
           and
-            (if Karten.Kartengröße /= 10 then XPosition <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße)
+            (if Karten.Kartengröße /= 10 then XPositionExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße)
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 

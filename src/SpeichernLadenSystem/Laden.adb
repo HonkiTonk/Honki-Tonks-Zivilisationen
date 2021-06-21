@@ -31,8 +31,10 @@ package body Laden is
             Mode => In_File,
             Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)));
 
+      -- Versionsnummer laden
       Wide_Wide_String'Read (Stream (File => DateiLadenNeu),
                              VersionsnummerPrüfung);
+      -- Versionsnummer laden
 
       if
         VersionsnummerPrüfung = Informationen.Versionsnummer
@@ -52,13 +54,15 @@ package body Laden is
          end case;
       end if;
 
-      -- Rundenanzahl und Rundenanzahl bis zum Autospeichern speichern
+      -- Rundenanzahl laden
       Positive'Read (Stream (File => DateiLadenNeu),
                      GlobaleVariablen.RundenAnzahl);
+      -- Rundenanzahl laden
 
       -- Spieler am Zug laden
       GlobaleDatentypen.RassenMitNullwert'Read (Stream (File => DateiLadenNeu),
                                                 GlobaleVariablen.RasseAmZugNachLaden);
+      -- Spieler am Zug laden
 
       -- Schleife zum Laden der Karte
       Positive'Read (Stream (File => DateiLadenNeu),

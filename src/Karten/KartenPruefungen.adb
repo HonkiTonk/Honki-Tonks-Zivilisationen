@@ -146,7 +146,7 @@ package body KartenPruefungen is
    
    
    
-   -- Sinnvoller benennen und weitere Prüfung für nur Wasser und so weiter einbauen
+   -- Entfernen und entweder durch irgendwas im Bewegungssystem ersetzen oder über Zugriff auf die EinheitenDatenbank die Passierbarkeit prüfen
    function KartenGrund
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return Boolean

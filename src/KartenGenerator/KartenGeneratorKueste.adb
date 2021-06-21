@@ -1,9 +1,8 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleDatentypen;
-use GlobaleDatentypen;
+with GlobaleKonstanten;
 
-with Karten, KartenPruefungen;
+with KartenPruefungen;
 
 package body KartenGeneratorKueste is
 
@@ -19,30 +18,8 @@ package body KartenGeneratorKueste is
               Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund
             is
                when 2 =>
-                  ZweiteYAchseSchleife:
-                  for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-                     ZweiteXAchseSchleife:
-                     for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-                     
-                        KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                               ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                               ZusatzYAbstandExtern => 0);
-                        
-                        exit ZweiteXAchseSchleife when KartenWert.YAchse = 0;
-                        
-                        case
-                          Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
-                        is
-                           when 3 =>
-                              Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund := 31;
-                              exit ZweiteYAchseSchleife;
-
-                           when others =>
-                              null;
-                        end case;
-                        
-                     end loop ZweiteXAchseSchleife;
-                  end loop ZweiteYAchseSchleife;
+                  GewässerFestlegen (YAchseSchleifenwertExtern => YAchseSchleifenwert,
+                                      XAchseSchleifenwertExtern => XAchseSchleifenwert);
                   
                when others =>
                   null;
@@ -52,5 +29,38 @@ package body KartenGeneratorKueste is
       end loop YAchseSchleife;
       
    end GenerierungKüstenSeeGewässer;
+   
+   
+   
+   procedure GewässerFestlegen
+     (YAchseSchleifenwertExtern, XAchseSchleifenwertExtern : in GlobaleDatentypen.KartenfeldPositiv)
+   is begin
+      
+      ZweiteYAchseSchleife:
+      for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         ZweiteXAchseSchleife:
+         for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+                     
+            KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YAchseSchleifenwertExtern, XAchseSchleifenwertExtern),
+                                                                                   ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                   ZusatzYAbstandExtern => 0);
+                        
+            exit ZweiteXAchseSchleife when KartenWert.YAchse = 0;
+                        
+            case
+              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
+            is
+               when 3 =>
+                  Karten.Weltkarte (0, YAchseSchleifenwertExtern, XAchseSchleifenwertExtern).Grund := 31;
+                  exit ZweiteYAchseSchleife;
+
+               when others =>
+                  null;
+            end case;
+                        
+         end loop ZweiteXAchseSchleife;
+      end loop ZweiteYAchseSchleife;
+      
+   end GewässerFestlegen;
 
 end KartenGeneratorKueste;

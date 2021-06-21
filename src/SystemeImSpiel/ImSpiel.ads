@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package ImSpiel is
@@ -23,7 +23,9 @@ private
      (RasseExtern : in GlobaleDatentypen.Rassen)
       return Integer
      with
-       Post =>
-         (MenschlicherSpieler'Result in -1_000 .. 5);
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1),
+         Post =>
+           (MenschlicherSpieler'Result in -1_000 .. 5);
 
 end ImSpiel;
