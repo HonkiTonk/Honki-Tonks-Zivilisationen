@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
   
-with KartenPruefungen, KarteneigenschaftVereinfachung, EinheitSuchen, StadtSuchen, Diplomatie;
+with KartenPruefungen, ZugriffKarten, EinheitSuchen, StadtSuchen, Diplomatie;
 
 package body Sichtbarkeit is
 
@@ -47,7 +47,7 @@ package body Sichtbarkeit is
    is begin
       
       case
-        KarteneigenschaftVereinfachung.KartenGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        ZugriffKarten.KartenGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when 7 =>
             SichtweiteObjekt := 3;

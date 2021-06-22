@@ -14,7 +14,7 @@ package body BewegungPassierbarkeitPruefen is
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.Bewegung_Enum
    is begin
-
+      
       case
         EinfachePassierbarkeitPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                        NeuePositionExtern       => NeuePositionExtern)
@@ -82,7 +82,8 @@ package body BewegungPassierbarkeitPruefen is
             null;
          
          else
-            null; -- Nicht für eine Passierbarkeit nutzen, da sonst bei einer Änderung immer alles im else angepasst werden muss!
+            -- Nicht für eine Passierbarkeit nutzen, da sonst bei einer Änderung immer alles im else angepasst werden muss!
+            null;
          end if;
 
          case
@@ -238,74 +239,89 @@ package body BewegungPassierbarkeitPruefen is
                return GlobaleDatentypen.Transporter_Stadt_Möglich;
                           
             when others =>
-               null;
+               return EntladbarkeitTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                           NeuePositionExtern       => NeuePositionExtern);
          end case;
-         
-         FreieFelder := 0;
-         Umgebung := 1;         
-         WelcherPlatz := 1;
-      
-         BereichSchleife:
-         loop
-            YAchseSchleife:
-            for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop -- Es gibt Fälle in denen er über Felder loopt über die er schon geloopt hat, später bessere Lösung bauen
-               XAchseSchleife:
-               for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
-            
-                  KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
-                                                                          ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-            
-                  exit XAchseSchleife when KartenWert.YAchse = 0;
-            
-                  -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
-                  if
-                    YÄnderungSchleifenwert = 0
-                    and
-                      XÄnderungSchleifenwert = 0
-                  then
-                     null;
-                     
-                  elsif
-                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
-                  in
-                    GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 2)
-                    and
-                      GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
-                    and
-                      EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).ID).Passierbarkeit
-                    (KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit) = True
-                  then
-                     FreieFelder := FreieFelder + 1;
-                     WelcherPlatz := WelcherPlatz + 1;
-                        
-                     if
-                       BenötigteFelder = FreieFelder
-                     then
-                        return GlobaleDatentypen.Transporter_Stadt_Möglich;
-                              
-                     else
-                        null;
-                     end if;
-                     
-                  else
-                     null;
-                  end if;
-            
-               end loop XAchseSchleife;
-            end loop YAchseSchleife;
-            
-            exit BereichSchleife when Umgebung = 3;
-            
-            Umgebung := Umgebung + 1;
-                     
-         end loop BereichSchleife;         
-         
-         return GlobaleDatentypen.Keine_Bewegung_Möglich;
 
       else
          return GlobaleDatentypen.Normale_Bewegung_Möglich;
       end if;
 
    end Wasser;
+   
+   
+   
+   function EntladbarkeitTesten
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleDatentypen.Bewegung_Enum
+   is begin
+      
+      FreieFelder := 0;
+      Umgebung := 1;
+      BereitsGetestet := Umgebung - 1;
+      WelcherPlatz := 1;
+      
+      BereichSchleife:
+      loop
+         YAchseSchleife:
+         for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop
+            XAchseSchleife:
+            for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
+            
+               KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
+                                                                       ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+            
+               exit XAchseSchleife when KartenWert.YAchse = 0;
+               
+               -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
+               if
+                 (YÄnderungSchleifenwert = 0
+                  and
+                    XÄnderungSchleifenwert = 0)
+                 or
+                   BereitsGetestet >= abs (YÄnderungSchleifenwert)
+               then
+                  null;
+                     
+               elsif
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
+               in
+                 GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 2)
+                 and
+                   GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
+                 and
+                   EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).ID).Passierbarkeit
+                 (KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit) = True
+               then
+                  FreieFelder := FreieFelder + 1;
+                  WelcherPlatz := WelcherPlatz + 1;
+                        
+                  if
+                    BenötigteFelder = FreieFelder
+                  then
+                     return GlobaleDatentypen.Transporter_Stadt_Möglich;
+                              
+                  else
+                     null;
+                  end if;
+                     
+               else
+                  null;
+               end if;
+            
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+            
+         exit BereichSchleife when Umgebung = 3;
+            
+         Umgebung := Umgebung + 1;
+         BereitsGetestet := Umgebung - 1;
+                     
+      end loop BereichSchleife;
+         
+      return GlobaleDatentypen.Keine_Bewegung_Möglich;
+      
+   end EntladbarkeitTesten;
 
 end BewegungPassierbarkeitPruefen;

@@ -31,4 +31,8 @@ package GrafischeAnzeige is
           and
             (if RasseExtern > 0 then GlobaleVariablen.RassenImSpiel (RasseExtern) > 0));
 
+private
+
+   EinheitStadtRasseNummer : GlobaleRecords.RassePlatznummerRecord;
+
 end GrafischeAnzeige;

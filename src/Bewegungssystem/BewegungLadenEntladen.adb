@@ -143,13 +143,14 @@ package body BewegungLadenEntladen is
             null;
       end case;
       
-      Umgebung := 1;         
+      Umgebung := 1;
+      BereitsGetestet := Umgebung - 1;   
       WelcherPlatz := 1;
       
       BereichSchleife:
       loop
          YAchseSchleife:
-         for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop -- Es gibt Fälle in denen er über Felder loopt über die er schon geloopt hat, später bessere Lösung bauen
+         for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop
             XAchseSchleife:
             for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
             
@@ -160,9 +161,11 @@ package body BewegungLadenEntladen is
             
                -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
                if
-                 YÄnderungSchleifenwert = 0
-                 and
-                   XÄnderungSchleifenwert = 0
+                 (YÄnderungSchleifenwert = 0
+                  and
+                    XÄnderungSchleifenwert = 0)
+                 or
+                   BereitsGetestet >= abs (YÄnderungSchleifenwert)
                then
                   null;
                      
@@ -170,29 +173,24 @@ package body BewegungLadenEntladen is
                  Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
                in
                  GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 2)
-               then -- Funkltioniert nicht mehr nach Zusammenfassung, herausfinden warum.
-                  if
-                    GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
-                    and
-                      EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).ID).Passierbarkeit
-                    (KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit) = True
-                  then
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).AchsenPosition := KartenWert;
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).WirdTransportiert := 0;
-                     WelcherPlatz := WelcherPlatz + 1;
+                 and
+                   GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
+                 and
+                   EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).ID).Passierbarkeit
+                 (KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit) = True
+               then
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).AchsenPosition := KartenWert;
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).WirdTransportiert := 0;
+                  WelcherPlatz := WelcherPlatz + 1;
                         
-                     if
-                       WelcherPlatz > TransportplatzEntladen'Last
-                       or else
-                         TransportplatzEntladen (WelcherPlatz) = 0
-                     then
-                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert := (others => 0);
-                        return;
+                  if
+                    WelcherPlatz > TransportplatzEntladen'Last
+                    or else
+                      TransportplatzEntladen (WelcherPlatz) = 0
+                  then
+                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert := (others => 0);
+                     return;
                               
-                     else
-                        null;
-                     end if;
-                     
                   else
                      null;
                   end if;
@@ -204,14 +202,10 @@ package body BewegungLadenEntladen is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
             
-         if
-           Umgebung = 3
-         then
-            null;
-            
-         else
-            Umgebung := Umgebung + 1;
-         end if;
+         exit BereichSchleife when Umgebung = 3;
+         
+         Umgebung := Umgebung + 1;
+         BereitsGetestet := Umgebung - 1;
                      
       end loop BereichSchleife;     
       

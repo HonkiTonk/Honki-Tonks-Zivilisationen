@@ -9,7 +9,6 @@ package KartenDatenbank is
    
    type KartenListeArray is array (GlobaleDatentypen.KartenGrund'Range) of DatenbankRecords.KartenListeRecord;
    KartenListe : KartenListeArray := (GlobaleKonstanten.LeererWertKartenListe, -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-                                      -- Sollte mit Einlesen und Textausgabe funktionieren, wenn nicht auf letzte Position verschieben.
                                       (' ',    1,    0, 0, 0, 1, 0), -- 1 Eis █
                                       (' ',    2,    1, 0, 1, 1, 0), -- 2 Wasser ░
                                       (' ',    1,    2, 1, 1, 0, 0), -- 3 Ebene ▒
@@ -63,7 +62,6 @@ package KartenDatenbank is
 private
    
    KartenListeStandard : constant KartenListeArray := (GlobaleKonstanten.LeererWertKartenListe, -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-                                                       -- Sollte mit Einlesen und Textausgabe funktionieren, wenn nicht auf letzte Position verschieben.
                                                        (' ',    1,    0, 0, 0, 1, 0), -- 1 Eis █
                                                        (' ',    2,    1, 0, 1, 1, 0), -- 2 Wasser ░
                                                        (' ',    1,    2, 1, 1, 0, 0), -- 3 Ebene ▒

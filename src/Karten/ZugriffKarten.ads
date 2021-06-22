@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
-package KarteneigenschaftVereinfachung is
+package ZugriffKarten is
 
    function KartenGrundVereinfachung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -88,4 +88,4 @@ package KarteneigenschaftVereinfachung is
           and
             EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
 
-end KarteneigenschaftVereinfachung;
+end ZugriffKarten;

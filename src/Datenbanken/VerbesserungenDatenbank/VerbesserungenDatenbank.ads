@@ -9,11 +9,9 @@ package VerbesserungenDatenbank is
 
    LeererWertVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (' ', -- VerbesserungGrafik
                                                                                        1, -- Passierbarkeit
-                                                                                       0, 0, 0, 0, 0); -- Nahrungsbonus, Ressourcenbonus, Geldbonus, Wissensbonus,
-   -- 7. Wert = Verteidigungsbonus
-      
-   -- 1 = Cursor kann passieren, 2 = Wassereinheiten können passieren, 4 = Landeinheiten können passieren, 8 = Lufteinheiten können passieren
-   -- Addieren für genaue Passierbarkeit
+                                                                                       0, 0, 0, 0, 0); -- Nahrungsbonus, Ressourcenbonus, Geldbonus, Wissensbonus, Verteidigungsbonus
+                                     
+   -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres                                                                  
    type VerbesserungListeArray is array (GlobaleDatentypen.KartenVerbesserung'Range) of DatenbankRecords.VerbesserungListeRecord;
    VerbesserungListe : VerbesserungListeArray := (LeererWertVerbesserungListe, -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
                                                   ('♣',    1,    0, 0, 0, 0, 3), -- 1 Eigene Hauptstadt

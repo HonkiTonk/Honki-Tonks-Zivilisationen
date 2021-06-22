@@ -17,9 +17,17 @@ private
 
    BeliebigerFlusswert : Float;
    
-   StandardFluß : constant GlobaleDatentypen.KartenGrund := 43;
+   StandardFluss : constant GlobaleDatentypen.KartenGrund := 43;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
+   procedure FlussUmgebungTesten
+     (YKoordinateExtern, XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     with
+       Pre =>
+         (YKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    procedure FlussBerechnung
      (YKoordinateExtern, XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv)

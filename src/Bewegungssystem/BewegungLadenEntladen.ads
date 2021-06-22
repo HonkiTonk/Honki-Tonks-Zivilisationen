@@ -57,6 +57,7 @@ package BewegungLadenEntladen is
    
 private
    
+   BereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
    Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
    
    TransporterNummer : GlobaleDatentypen.MaximaleEinheiten;

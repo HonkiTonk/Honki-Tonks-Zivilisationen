@@ -7,6 +7,8 @@ with GlobaleKonstanten;
 
 with KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank;
 
+with EinheitSuchen, StadtSuchen;
+
 package body GrafischeAnzeige is
 
    procedure Sichtbarkeit
@@ -42,66 +44,55 @@ package body GrafischeAnzeige is
          else
             null;
          end if;
-                  
-         RassenEinheitenSchleife:
-         for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
-            EinheitenSchleife:
-            for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+         
+         EinheitStadtRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+         
+         if
+           EinheitStadtRasseNummer.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+         then
+            null;
             
-               if
-                 GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0
-               then
-                  null;
-               
-               elsif
-                 GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
-                 and
-                   GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).WirdTransportiert = 0
-               then
-                  Farben (EinheitExtern            => GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID,
-                          VerbesserungExtern       => 0,
-                          RessourceExtern          => 0,
-                          GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
-                          CursorExtern             => False,
-                          EigeneRasseExtern        => RasseExtern,
-                          RasseExtern              => RasseSchleifenwert);
-                  return;
-               
-               else
-                  null;
-               end if;
+         elsif
+           GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).WirdTransportiert /= 0
+         then
+            Farben (EinheitExtern            => GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse,
+                    GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).WirdTransportiert).ID,
+                    VerbesserungExtern       => 0,
+                    RessourceExtern          => 0,
+                    GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
+                    CursorExtern             => False,
+                    EigeneRasseExtern        => RasseExtern,
+                    RasseExtern              => EinheitStadtRasseNummer.Rasse);
+            return;
             
-            end loop EinheitenSchleife;
-         end loop RassenEinheitenSchleife;
-
-         RassenStädteSchleife:
-         for RasseSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (1) loop
-            StädteSchleife:
-            for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+         else
+            Farben (EinheitExtern            => GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).ID,
+                    VerbesserungExtern       => 0,
+                    RessourceExtern          => 0,
+                    GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
+                    CursorExtern             => False,
+                    EigeneRasseExtern        => RasseExtern,
+                    RasseExtern              => EinheitStadtRasseNummer.Rasse);
+            return;
+         end if;
+         
+         EinheitStadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+         
+         if
+           EinheitStadtRasseNummer.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+         then
+            null;
             
-               if
-                 GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID = 0
-               then
-                  null;
-
-               elsif
-                 GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).AchsenPosition = KoordinatenExtern
-               then
-                  Farben (EinheitExtern            => 0,
-                          VerbesserungExtern       => GlobaleDatentypen.KartenVerbesserung (GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID),
-                          RessourceExtern          => 0,
-                          GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
-                          CursorExtern             => False,
-                          EigeneRasseExtern        => RasseExtern,
-                          RasseExtern              => RasseSchleifenwert);
-                  return;
-               
-               else
-                  null;
-               end if;
-               
-            end loop StädteSchleife;
-         end loop RassenStädteSchleife;
+         else
+            Farben (EinheitExtern            => 0,
+                    VerbesserungExtern       => GlobaleDatentypen.KartenVerbesserung (GlobaleVariablen.StadtGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).ID),
+                    RessourceExtern          => 0,
+                    GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
+                    CursorExtern             => False,
+                    EigeneRasseExtern        => RasseExtern,
+                    RasseExtern              => EinheitStadtRasseNummer.Rasse);
+            return;
+         end if;
 
          if
            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet /= 0
@@ -341,35 +332,21 @@ package body GrafischeAnzeige is
          Put (Item => EinheitenDatenbank.EinheitenListe (EigeneRasseExtern, EinheitExtern).EinheitenGrafik & CSI & "0m");
         
       elsif
-        VerbesserungExtern /= 0
-      then         
-         if
-           VerbesserungExtern = 1
-           and
-             RasseExtern = EigeneRasseExtern
-         then            
-            Put (Item => VerbesserungenDatenbank.VerbesserungListe (1).VerbesserungGrafik & CSI & "0m");
+        VerbesserungExtern in 1 .. 2
+        and
+          RasseExtern = EigeneRasseExtern
+      then            
+         Put (Item => VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).VerbesserungGrafik & CSI & "0m");
             
-         elsif
-           VerbesserungExtern = 2
-           and
-             RasseExtern = EigeneRasseExtern
-         then            
-            Put (Item => VerbesserungenDatenbank.VerbesserungListe (2).VerbesserungGrafik & CSI & "0m");
+      elsif
+        VerbesserungExtern in 1 .. 2
+      then
+         Put (Item => VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern + 2).VerbesserungGrafik & CSI & "0m");
             
-         elsif
-           VerbesserungExtern = 1
-         then
-            Put (Item => VerbesserungenDatenbank.VerbesserungListe (3).VerbesserungGrafik & CSI & "0m");
-            
-         elsif
-           VerbesserungExtern = 2
-         then
-            Put (Item => VerbesserungenDatenbank.VerbesserungListe (4).VerbesserungGrafik & CSI & "0m");
-            
-         else
-            Put (Item => VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).VerbesserungGrafik & CSI & "0m");
-         end if;
+      elsif
+        VerbesserungExtern > 4
+      then
+         Put (Item => VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).VerbesserungGrafik & CSI & "0m");
 
       elsif
         RessourceExtern /= 0

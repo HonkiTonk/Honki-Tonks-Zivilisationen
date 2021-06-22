@@ -335,8 +335,6 @@ package body KIBewegungBerechnen is
          end loop ÜberNächsterZugSchleife;
       end loop ErsterZugSchleife;
       
-      null; -- Hier dann unnötige Zwischenzüge entfernen lassen
-      
    end VorhandenenPlanVereinfachen;
    
    

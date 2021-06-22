@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen;
 
-with StadtBauen, KINullwerteSetzen, Verbesserungen, KarteneigenschaftVereinfachung, Karten;
+with StadtBauen, KINullwerteSetzen, Verbesserungen, ZugriffKarten, Karten;
 
 package body KISiedlerAufgabeDurchfuehren is
 
@@ -55,7 +55,7 @@ package body KISiedlerAufgabeDurchfuehren is
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet
       is
          when 0 =>         
-            Grund := KarteneigenschaftVereinfachung.KartenGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Grund := ZugriffKarten.KartenGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
             if
               Grund in 6 .. 7
@@ -64,7 +64,7 @@ package body KISiedlerAufgabeDurchfuehren is
                 or
                   Grund = 33
                   or
-                    KarteneigenschaftVereinfachung.KartenHügelVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+                    ZugriffKarten.KartenHügelVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
             then
                Verbesserungen.Verbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                             BefehlExtern             => GlobaleDatentypen.Mine_Bauen);

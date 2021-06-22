@@ -15,43 +15,22 @@ package body KartenGeneratorFluss is
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop            
 
             BeliebigerFlusswert := ZufallGeneratorenKarten.ZufälligerWert;
+            
             if
               Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund < 3
               or
                 Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund = 31
             then
                null;
-                           
+               
             elsif
               BeliebigerFlusswert >= WahrscheinlichkeitFluss
             then
-               Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Fluss := StandardFluß;
+               Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Fluss := StandardFluss;
                
             else
-               YAchseZweiSchleife:
-               for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-                  XAchseZweiSchleife:
-                  for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-                  
-                     KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                            ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                            ZusatzYAbstandExtern => 0);
-                     
-                     exit XAchseZweiSchleife when KartenWert.YAchse = 0;
-                     
-                     if
-                       Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= 0
-                       and
-                         BeliebigerFlusswert >= WahrscheinlichkeitFluss / 1.25
-                     then                        
-                        Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Fluss := StandardFluß;
-
-                     else
-                        null;
-                     end if;
-                     
-                  end loop XAchseZweiSchleife;
-               end loop YAchseZweiSchleife;
+               FlussUmgebungTesten (YKoordinateExtern => YAchseSchleifenwert,
+                                    XKoordinateExtern => XAchseSchleifenwert);
             end if;
 
             case
@@ -69,6 +48,39 @@ package body KartenGeneratorFluss is
       end loop YAchseEinsSchleife;
       
    end GenerierungFlüsse;
+   
+   
+   
+   procedure FlussUmgebungTesten
+     (YKoordinateExtern, XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv)
+   is begin
+      
+      YAchseZweiSchleife:
+      for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         XAchseZweiSchleife:
+         for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+                  
+            KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YKoordinateExtern, XKoordinateExtern),
+                                                                                   ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                   ZusatzYAbstandExtern => 0);
+                     
+            exit XAchseZweiSchleife when KartenWert.YAchse = 0;
+                     
+            if
+              Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= 0
+              and
+                BeliebigerFlusswert >= WahrscheinlichkeitFluss / 1.25
+            then                        
+               Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := StandardFluss;
+
+            else
+               null;
+            end if;
+                     
+         end loop XAchseZweiSchleife;
+      end loop YAchseZweiSchleife;
+      
+   end FlussUmgebungTesten;
 
 
 
@@ -76,7 +88,8 @@ package body KartenGeneratorFluss is
      (YKoordinateExtern, XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv)
    is begin
                     
-      Flusswert := 10_000;   
+      Flusswert := 10_000;
+      
       YAchseSchleife:
       for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
          XAchseSchleife:

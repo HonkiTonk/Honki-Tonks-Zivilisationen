@@ -42,7 +42,8 @@ package body ForschungAllgemein is
 
 
 
-   procedure Forschung -- Hier noch mehr Optionen einbauen, z. B. Informationen über bereits erforschte Technologien
+   -- Hier noch mehr Optionen einbauen, z. B. Informationen über bereits erforschte Technologien
+   procedure Forschung
      (RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
       

@@ -5,7 +5,7 @@ use KIDatentypen;
 
 with EinheitenDatenbank;
 
-with StadtSuchen, DatenbankVereinfachung, KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt;
+with StadtSuchen, KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt, ZugriffGlobaleVariablen;
 
 package body KISiedlerAufgabeErmitteln is
 
@@ -136,7 +136,7 @@ package body KISiedlerAufgabeErmitteln is
       return Natural
    is begin
       
-      EinheitID := DatenbankVereinfachung.EinheitenIDVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitID := ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleLebenspunkte

@@ -82,12 +82,11 @@ package body BewegungssystemCursor is
          
          when others =>
             Position.EAchse := GlobaleDatentypen.EbeneVorhanden (KoordinatenPunkt);
+            KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
+                                                   ZeileExtern         => 30,
+                                                   ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (2)),
+                                                   ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
       end case;
-      
-      KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
-                                             ZeileExtern         => 30,
-                                             ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (2)),
-                                             ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
       
       case
         KoordinatenPunkt
@@ -97,12 +96,11 @@ package body BewegungssystemCursor is
          
          when others =>
             Position.YAchse := GlobaleDatentypen.Kartenfeld (KoordinatenPunkt);
+            KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
+                                                   ZeileExtern         => 31,
+                                                   ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (3)),
+                                                   ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
       end case;
-
-      KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
-                                             ZeileExtern         => 31,
-                                             ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (3)),
-                                             ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
 
       case
         KoordinatenPunkt
@@ -112,9 +110,8 @@ package body BewegungssystemCursor is
          
          when others =>
             Position.XAchse := GlobaleDatentypen.Kartenfeld (KoordinatenPunkt);
+            GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := Position;
       end case;
-      
-      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := Position;
       
    end GeheZuCursor;
    
@@ -125,8 +122,9 @@ package body BewegungssystemCursor is
       RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
       
+      -- Kann nicht nach KartenPruefungen.KartenPositionBestimmen verschoben werden, da darüber auch Einheiten geprüft werden
       if
-        ÄnderungExtern.EAchse = 1 -- Kann nicht nach KartenPruefungen.KartenPositionBestimmen verschoben werden, da darüber auch Einheiten geprüft werden
+        ÄnderungExtern.EAchse = 1
         and
           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse = Karten.Weltkarte'Last (1)
       then

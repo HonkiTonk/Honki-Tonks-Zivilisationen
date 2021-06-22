@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with Karten;
 
-package body KarteneigenschaftVereinfachung is
+package body ZugriffKarten is
 
    function KartenGrundVereinfachung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -127,4 +127,4 @@ package body KarteneigenschaftVereinfachung is
       
    end KartenFelderbewertungVereinfachung;
 
-end KarteneigenschaftVereinfachung;
+end ZugriffKarten;

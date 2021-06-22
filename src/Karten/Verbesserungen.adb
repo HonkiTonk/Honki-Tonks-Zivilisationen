@@ -4,7 +4,7 @@ with KIDatentypen;
 
 with EinheitenDatenbank;
   
-with Anzeige, FelderwerteFestlegen, KartenPruefungen, KarteneigenschaftVereinfachung, EinheitenAllgemein;
+with Anzeige, FelderwerteFestlegen, KartenPruefungen, ZugriffKarten, EinheitenAllgemein;
 
 package body Verbesserungen is
 
@@ -54,7 +54,7 @@ package body Verbesserungen is
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 0;
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 0;
 
-      Grund := KarteneigenschaftVereinfachung.KartenGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Grund := ZugriffKarten.KartenGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
         BefehlExtern = GlobaleDatentypen.Straße_Bauen

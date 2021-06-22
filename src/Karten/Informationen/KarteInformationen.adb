@@ -236,7 +236,7 @@ package body KarteInformationen is
          when others =>
             EinheitNummer := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert;
       end case;
-      EinheitenAllgemein.Beschreibung (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID);
+      EinheitenAllgemein.Beschreibung (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID);
       New_Line;
                   
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -247,11 +247,11 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleLebenspunkte,
+      Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).AktuelleLebenspunkte,
                                Width => 1);
       Put (Item => " / ");
       Ada.Integer_Text_IO.Put (Item  => EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte,
+                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).MaximaleLebenspunkte,
                                Width => 1);
             
       -- "Volle" Einheiteninformationen, nur sichtbar wenn eigene Einheit oder wenn Cheat aktiviert ist
@@ -268,13 +268,13 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                         AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-         Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte,
+         Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).AktuelleBewegungspunkte,
                                 Fore => 1,
                                 Aft  => 2,
                                 Exp  => 0);
          Put (Item => " / ");
          Ada.Float_Text_IO.Put (Item => EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                EinheitRasseNummerExtern.Platznummer).ID).MaximaleBewegungspunkte,
+                                EinheitNummer).ID).MaximaleBewegungspunkte,
                                 Fore => 1,
                                 Aft  => 2,
                                 Exp  => 0);
@@ -287,11 +287,11 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                         AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleErfahrungspunkte,
+         Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).AktuelleErfahrungspunkte,
                                   Width => 1);
          Put (Item => " / ");
          Ada.Integer_Text_IO.Put (Item  => EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                  EinheitRasseNummerExtern.Platznummer).ID).Beförderungsgrenze,
+                                  EinheitNummer).ID).Beförderungsgrenze,
                                   Width => 1);
          New_Line;
                               
@@ -303,7 +303,7 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                         AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-         EinheitenAllgemein.Beschäftigung (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung);
+         EinheitenAllgemein.Beschäftigung (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).AktuelleBeschäftigung);
 
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                         TextDateiExtern        => GlobaleDatentypen.Zeug,
@@ -313,7 +313,7 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                         AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit,
+         Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).AktuelleBeschäftigungszeit,
                                   Width => 1);
          New_Line;
 
@@ -326,7 +326,7 @@ package body KarteInformationen is
                                         AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                         AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
          Ada.Integer_Text_IO.Put (Item  => Integer (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Angriff),
+                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).Angriff),
                                   Width => 1);
 
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -338,7 +338,7 @@ package body KarteInformationen is
                                         AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                         AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
          Ada.Integer_Text_IO.Put (Item  => Integer (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Verteidigung),
+                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).Verteidigung),
                                   Width => 1);
                      
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -349,11 +349,11 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                         AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuellerRang,
+         Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).AktuellerRang,
                                   Width => 1);
          Put (Item => " / ");
          Ada.Integer_Text_IO.Put (Item  => EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximalerRang,
+                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).MaximalerRang,
                                   Width => 1);
          New_Line;
                               
@@ -367,9 +367,9 @@ package body KarteInformationen is
       is
          when False =>
             null;
-                                 
+            
          when True =>
-            Cheat.KarteInfosEinheiten (EinheitRasseNummerExtern => EinheitRasseNummerExtern);                     
+            Cheat.KarteInfosEinheiten (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer));                     
       end case;
       
    end InformationenEinheiten;

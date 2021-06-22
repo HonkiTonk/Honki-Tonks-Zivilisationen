@@ -41,6 +41,7 @@ private
 
    BewegungMöglich : GlobaleDatentypen.Bewegung_Enum;
    
+   BereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
    Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
    
    StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
@@ -81,6 +82,20 @@ private
           and
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) >0);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
+   
+   function EntladbarkeitTesten
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleDatentypen.Bewegung_Enum
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
 
 end BewegungPassierbarkeitPruefen;
