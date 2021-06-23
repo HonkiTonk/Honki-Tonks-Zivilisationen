@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_
 
 with ForschungsDatenbank;
 
-with Anzeige, Eingabe, KIForschung;
+with Anzeige, Eingabe, KIForschung, ZugriffForschungsDatenbank;
 
 package body ForschungAllgemein is
 

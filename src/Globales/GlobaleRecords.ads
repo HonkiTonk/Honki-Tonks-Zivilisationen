@@ -16,6 +16,7 @@ package GlobaleRecords is
    
    
    
+   -- Der Record ist tagged weil in der KIBewegungBerechnen noch die Bewertung hinzugefügt wird, später mal nach KIRecords verschieben
    type AchsenKartenfeldPositivRecord is tagged record
       
       EAchse : GlobaleDatentypen.EbeneVorhanden;

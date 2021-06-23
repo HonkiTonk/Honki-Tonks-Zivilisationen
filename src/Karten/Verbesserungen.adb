@@ -8,7 +8,6 @@ with Anzeige, FelderwerteFestlegen, KartenPruefungen, ZugriffKarten, EinheitenAl
 
 package body Verbesserungen is
 
-   -- 0 = Sie hat nichts zu tun, > 0 = Sie hat eine festgelegte Aufgabe (z. B. Straße bauen)
    procedure Verbesserung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       BefehlExtern : in GlobaleDatentypen.Befehle_Enum)
@@ -134,8 +133,19 @@ package body Verbesserungen is
         EinheitRasseNummerExtern.Rasse in 1 .. 1
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
+        and
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
       then
          VerbesserungFehler (WelcherFehlerExtern => 18);
+         return;
+         
+      elsif
+        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        and
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
+        and
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+      then
          return;
       
       elsif
@@ -162,7 +172,14 @@ package body Verbesserungen is
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 6;
                
          when others =>
-            VerbesserungFehler (WelcherFehlerExtern => 1);
+            if
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+            then
+               VerbesserungFehler (WelcherFehlerExtern => 1);
+               
+            else
+               null;
+            end if;
       end case;
       
    end VerbesserungStraße;
@@ -178,8 +195,19 @@ package body Verbesserungen is
         EinheitRasseNummerExtern.Rasse in 1 .. 1
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
+        and
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
       then
          VerbesserungFehler (WelcherFehlerExtern => 18);
+         return;
+         
+      elsif
+        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        and
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
+        and
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+      then
          return;
       
       elsif
@@ -231,7 +259,14 @@ package body Verbesserungen is
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 3;
                
          when others =>
-            VerbesserungFehler (WelcherFehlerExtern => 1);
+            if
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+            then
+               VerbesserungFehler (WelcherFehlerExtern => 1);
+               
+            else
+               null;
+            end if;
       end case;
       
    end VerbesserungMine;
@@ -247,8 +282,19 @@ package body Verbesserungen is
         EinheitRasseNummerExtern.Rasse in 1 .. 1
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (1) = False
+        and
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
       then
          VerbesserungFehler (WelcherFehlerExtern => 18);
+         return;
+         
+      elsif
+        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        and
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (1) = False
+        and
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+      then
          return;
       
       elsif
@@ -308,7 +354,14 @@ package body Verbesserungen is
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 3;
                
          when others =>
-            VerbesserungFehler (WelcherFehlerExtern => 1);
+            if
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+            then
+               VerbesserungFehler (WelcherFehlerExtern => 1);
+               
+            else
+               null;
+            end if;
       end case;
       
    end VerbesserungFarm;
@@ -324,8 +377,19 @@ package body Verbesserungen is
         EinheitRasseNummerExtern.Rasse in 1 .. 1
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
+        and
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
       then
          VerbesserungFehler (WelcherFehlerExtern => 18);
+         return;
+         
+      elsif
+        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        and
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
+        and
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+      then
          return;
       
       elsif
@@ -371,7 +435,14 @@ package body Verbesserungen is
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 5;
                
          when others =>
-            VerbesserungFehler (WelcherFehlerExtern => 1);
+            if
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+            then
+               VerbesserungFehler (WelcherFehlerExtern => 1);
+               
+            else
+               null;
+            end if;
       end case;
       
    end VerbesserungFestung;
@@ -392,15 +463,23 @@ package body Verbesserungen is
                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet = 21
       then
-         case
-           EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8)
-         is
-            when True =>
-               null;
-                     
-            when False =>
-               return;
-         end case;
+         if
+           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+           and then
+             EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8) = True
+         then
+            null;
+            
+         elsif
+           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+           and then
+             EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8) = False
+         then
+            return;
+            
+         else
+            null;
+         end if;
 
       else
          null;
@@ -420,7 +499,14 @@ package body Verbesserungen is
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeitNachfolger := 3;
                
          when others =>
-            VerbesserungFehler (WelcherFehlerExtern => 1);
+            if
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+            then
+               VerbesserungFehler (WelcherFehlerExtern => 1);
+               
+            else
+               null;
+            end if;
       end case;
       
    end VerbesserungWald;
@@ -436,8 +522,19 @@ package body Verbesserungen is
         EinheitRasseNummerExtern.Rasse in 1 .. 1
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
+        and
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
       then
          VerbesserungFehler (WelcherFehlerExtern => 18);
+         return;
+         
+      elsif
+        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        and
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
+        and
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+      then
          return;
       
       else
@@ -452,7 +549,14 @@ package body Verbesserungen is
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungszeit := 3;
               
          when others =>
-            VerbesserungFehler (WelcherFehlerExtern => 2);
+            if
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+            then
+               VerbesserungFehler (WelcherFehlerExtern => 2);
+               
+            else
+               null;
+            end if;
       end case;
       
    end VerbesserungRoden;
@@ -466,9 +570,17 @@ package body Verbesserungen is
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleLebenspunkte
         = EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte
+        and
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
       then
          VerbesserungFehler (WelcherFehlerExtern => 5);
-               
+         
+      elsif
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleLebenspunkte
+        = EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte
+      then
+         null;
+         
       else
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung := GlobaleDatentypen.Heilen;
       end if;
@@ -502,15 +614,23 @@ package body Verbesserungen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      case
-        EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 9)
-      is
-         when True =>
-            EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-                     
-         when False =>
-            null;
-      end case;
+      if
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+        and then
+          EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 9) = True
+      then
+         EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+      elsif
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+        and then
+          EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 9) = False
+      then
+         null;
+         
+      else
+         EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end if;
       
    end VerbesserungAuflösen;
    
@@ -520,21 +640,33 @@ package body Verbesserungen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      case
-        EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 12)
-      is
-         when True =>
-            Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 0;
-            Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungStraße := 0;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte := 0.0;
+      if
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+        and then
+          EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 12) = True
+      then
+         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 0;
+         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungStraße := 0;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte := 0.0;
+         
+      elsif
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+      then
+         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungGebiet := 0;
+         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).VerbesserungStraße := 0;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBewegungspunkte := 0.0;
                      
-         when False =>
-            null;
-      end case;
+      else
+         null;
+      end if;
       
    end VerbesserungPlündern;
    
@@ -555,7 +687,7 @@ package body Verbesserungen is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop
          EinheitenSchleife:
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebaut'Range (2) loop
          

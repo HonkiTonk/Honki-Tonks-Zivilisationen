@@ -21,7 +21,7 @@ package DatenbankRecords is
 
       -- 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
       Passierbarkeit : PassierbarkeitArray;
-      MaximaleLebenspunkte : Integer;
+      MaximaleLebenspunkte : Positive;
       MaximaleBewegungspunkte : Float;
 
       Beförderungsgrenze : Positive;

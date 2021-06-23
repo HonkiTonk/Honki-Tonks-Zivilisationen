@@ -282,8 +282,8 @@ package body InDerStadtBauen is
                                           LetzteZeileExtern      => 14,
                                           AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-            Ada.Integer_Text_IO.Put (Item  => Positive (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
-                                     - GlobaleKonstanten.EinheitAufschlag)).MaximaleLebenspunkte),
+            Ada.Integer_Text_IO.Put (Item  => EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
+                                     - GlobaleKonstanten.EinheitAufschlag)).MaximaleLebenspunkte,
                                      Width => 1);
             
             Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
