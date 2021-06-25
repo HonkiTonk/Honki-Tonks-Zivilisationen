@@ -25,9 +25,9 @@ package body NaechstesObjekt is
          if
            GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).ID = 0
            or
-             (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AktuelleBewegungspunkte <= 0.00 and BewegungspunkteExtern = Hat_Bewegungspunkte)
+             (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).Bewegungspunkte <= 0.00 and BewegungspunkteExtern = Hat_Bewegungspunkte)
            or
-             (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AktuelleBewegungspunkte > 0.00 and BewegungspunkteExtern = Keine_Bewegungspunkte)
+             (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).Bewegungspunkte > 0.00 and BewegungspunkteExtern = Keine_Bewegungspunkte)
          then
             null;
          
@@ -46,7 +46,7 @@ package body NaechstesObjekt is
 
       end loop EinheitSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).AchsenPosition;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).Position;
       
    end NächsteEinheit;
    
@@ -91,7 +91,7 @@ package body NaechstesObjekt is
 
       end loop StadtSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt (RasseExtern)).AchsenPosition;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt (RasseExtern)).Position;
       
    end NächsteStadt;
 

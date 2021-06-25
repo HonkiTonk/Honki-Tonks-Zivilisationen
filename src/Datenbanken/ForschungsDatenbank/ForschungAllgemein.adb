@@ -59,8 +59,8 @@ package body ForschungAllgemein is
                return;
                
             when GlobaleDatentypen.ForschungID'Range =>
-               GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsmenge := 0;
-               GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt := WasErforschtWerdenSoll;
+               GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := 0;
+               GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := WasErforschtWerdenSoll;
                ForschungZeit (RasseExtern => RasseExtern);
                return;
          end case;
@@ -76,16 +76,16 @@ package body ForschungAllgemein is
    is begin
       
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt = 0
+        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt = 0
         or
-          GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsrate = 0
+          GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate = 0
       then
          null;
 
       else
          GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit
-           := (ForschungsDatenbank.ForschungListe (RasseExtern, GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt).PreisForschung
-               - GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsmenge) / GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsrate;
+           := (ForschungsDatenbank.ForschungListe (RasseExtern, GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt).PreisForschung
+               - GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge) / GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
          return;
       end if;      
       
@@ -410,17 +410,17 @@ package body ForschungAllgemein is
                
             when 1 =>
                if
-                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt = 0
+                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = 0
                then
                   null;
          
                elsif
-                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuelleForschungsmenge
-                 >= ForschungsDatenbank.ForschungListe (RasseSchleifenwert, GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt).PreisForschung
+                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsmenge
+                 >= ForschungsDatenbank.ForschungListe (RasseSchleifenwert, GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt).PreisForschung
                then
-                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Erforscht (GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt) := True;
-                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt := AuswahlForschungNeu (RasseExtern => RasseSchleifenwert);
-                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuelleForschungsmenge := 0;
+                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Erforscht (GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt) := True;
+                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt := AuswahlForschungNeu (RasseExtern => RasseSchleifenwert);
+                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsmenge := 0;
                   ForschungZeit (RasseExtern => RasseSchleifenwert);
             
                else
@@ -429,16 +429,16 @@ package body ForschungAllgemein is
                
             when others =>
                if
-                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt = 0
+                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = 0
                then
                   KIForschung.Forschung (RasseExtern => RasseSchleifenwert);
          
                elsif
-                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuelleForschungsmenge
-                 >= ForschungsDatenbank.ForschungListe (RasseSchleifenwert, GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt).PreisForschung
+                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsmenge
+                 >= ForschungsDatenbank.ForschungListe (RasseSchleifenwert, GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt).PreisForschung
                then
-                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Erforscht (GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt) := True;
-                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).AktuellesForschungsprojekt := 0;
+                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Erforscht (GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt) := True;
+                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt := 0;
                   KIForschung.Forschung (RasseExtern => RasseSchleifenwert);
             
                else

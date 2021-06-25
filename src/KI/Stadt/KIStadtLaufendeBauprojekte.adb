@@ -21,7 +21,7 @@ package body KIStadtLaufendeBauprojekte is
             null;
                
          elsif
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt = BauprojektExtern
+           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt = BauprojektExtern
          then
             GleichesBauprojekt := GleichesBauprojekt + 1;
                

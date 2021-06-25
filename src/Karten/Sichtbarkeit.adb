@@ -64,7 +64,7 @@ package body Sichtbarkeit is
          XÄnderungEinheitenSchleife:
          for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
                
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
 
             exit XÄnderungEinheitenSchleife when KartenWert.YAchse = 0;
@@ -97,7 +97,7 @@ package body Sichtbarkeit is
          XÄnderungStadtSchleife:
          for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
 
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition,
+            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                
             exit XÄnderungStadtSchleife when KartenWert.YAchse = 0;

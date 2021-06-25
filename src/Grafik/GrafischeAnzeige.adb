@@ -28,7 +28,7 @@ package body GrafischeAnzeige is
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern) = True
       then
          if
-           KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition
+           KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
            and
              InDerStadtExtern = False
          then
@@ -150,7 +150,7 @@ package body GrafischeAnzeige is
          
       else
          if
-           KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition
+           KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
          then         
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => 0,

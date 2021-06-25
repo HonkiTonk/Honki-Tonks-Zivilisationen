@@ -127,9 +127,9 @@ package body BefehleImSpiel is
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
 
       if
         EinheitNummer /= 0
@@ -211,8 +211,8 @@ package body BefehleImSpiel is
         AuswahlExtern
       is
          when GlobaleKonstanten.JaKonstante =>
-            GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.YAchse := 1;
-            GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionStadt.XAchse := 1;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.YAchse := 1;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt.XAchse := 1;
             InDerStadt.InDerStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummerExtern));
             return;
             
@@ -221,14 +221,14 @@ package body BefehleImSpiel is
       end case;
       
       if
-        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).AktuelleBeschäftigung /= GlobaleDatentypen.Keine
+        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Beschäftigung /= GlobaleDatentypen.Keine
         and then
           EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then
-         GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).AktuelleBeschäftigung := GlobaleDatentypen.Keine;
+         GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Beschäftigung := GlobaleDatentypen.Keine;
                   
       elsif
-        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).AktuelleBewegungspunkte = 0.00
+        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Bewegungspunkte = 0.00
       then
          null;
                      
@@ -245,7 +245,7 @@ package body BefehleImSpiel is
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
       case
         EinheitNummer
       is
@@ -259,7 +259,7 @@ package body BefehleImSpiel is
       if 
         EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = 1
         and
-          GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte > 0.00
+          GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte > 0.00
       then
          StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                      
@@ -276,7 +276,7 @@ package body BefehleImSpiel is
    is begin
       
       case
-        GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt
+        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt
       is
          when 0 =>
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);
@@ -309,7 +309,7 @@ package body BefehleImSpiel is
       WelcherBefehl := Befehl - GlobaleKonstanten.EinheitBefehlAbzug;
                
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
       if
         EinheitNummer = 0
       then
@@ -336,7 +336,7 @@ package body BefehleImSpiel is
                                                TextZeileExtern => 3);
                      
       elsif
-        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).AktuelleBewegungspunkte = 0.00
+        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte = 0.00
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
                                                TextZeileExtern => 8);
@@ -355,7 +355,7 @@ package body BefehleImSpiel is
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
       if
         StadtNummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
       then
@@ -374,7 +374,7 @@ package body BefehleImSpiel is
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
       case
         StadtNummer
       is

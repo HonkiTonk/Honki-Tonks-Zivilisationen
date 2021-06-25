@@ -55,9 +55,9 @@ package GlobaleRecords is
    type CursorRecord is record
       
       CursorGrafik : Wide_Wide_Character;
-      AchsenPosition : AchsenKartenfeldPositivRecord;
-      AchsenPositionAlt : AchsenKartenfeldPositivRecord;
-      AchsenPositionStadt : AchsenStadtfeldRecord;
+      Position : AchsenKartenfeldPositivRecord;
+      PositionAlt : AchsenKartenfeldPositivRecord;
+      PositionStadt : AchsenStadtfeldRecord;
       
    end record;
 
@@ -69,19 +69,18 @@ package GlobaleRecords is
    type EinheitenGebautRecord is record
       
       ID : GlobaleDatentypen.EinheitenIDMitNullWert;
-      AchsenPosition : AchsenKartenfeldPositivRecord;
+      Position : AchsenKartenfeldPositivRecord;
       
-      AktuelleLebenspunkte : Integer;
-      AktuelleBewegungspunkte : Float;
-      AktuelleErfahrungspunkte : Natural;
-      AktuellerRang : Natural;
+      Lebenspunkte : Natural;
+      Bewegungspunkte : Float;
+      Erfahrungspunkte : Natural;
+      Rang : Natural;
       
-      -- Befehle_Enum siehe GlobaleDatentypen
-      AktuelleBeschäftigung : GlobaleDatentypen.Befehle_Enum;
-      AktuelleBeschäftigungNachfolger : GlobaleDatentypen.Befehle_Enum;
+      Beschäftigung : GlobaleDatentypen.Befehle_Enum;
+      BeschäftigungNachfolger : GlobaleDatentypen.Befehle_Enum;
       
-      AktuelleBeschäftigungszeit : Natural;
-      AktuelleBeschäftigungszeitNachfolger : Natural;
+      Beschäftigungszeit : Natural;
+      BeschäftigungszeitNachfolger : Natural;
 
       KIZielKoordinaten : AchsenKartenfeldPositivRecord;
       KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
@@ -101,19 +100,19 @@ package GlobaleRecords is
    type StadtGebautRecord is record
       
       ID : GlobaleDatentypen.StadtID;
-      AchsenPosition : AchsenKartenfeldPositivRecord;
+      Position : AchsenKartenfeldPositivRecord;
       AmWasser : Boolean;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       
-      AktuelleNahrungsmittel : GlobaleDatentypen.GesamtproduktionStadt;
-      AktuelleNahrungsproduktion : GlobaleDatentypen.GesamtproduktionStadt;
-      AktuelleRessourcen : GlobaleDatentypen.KostenLager;
-      AktuelleProduktionrate : GlobaleDatentypen.GesamtproduktionStadt;
+      Nahrungsmittel : GlobaleDatentypen.GesamtproduktionStadt;
+      Nahrungsproduktion : GlobaleDatentypen.GesamtproduktionStadt;
+      Ressourcen : GlobaleDatentypen.KostenLager;
+      Produktionrate : GlobaleDatentypen.GesamtproduktionStadt;
 
-      AktuelleGeldgewinnung : GlobaleDatentypen.GesamtproduktionStadt;
-      AktuelleForschungsrate : GlobaleDatentypen.GesamtproduktionStadt;
-      AktuellesBauprojekt : Natural;
-      VerbleibendeBauzeit : GlobaleDatentypen.KostenLager;
+      Geldgewinnung : GlobaleDatentypen.GesamtproduktionStadt;
+      Forschungsrate : GlobaleDatentypen.GesamtproduktionStadt;
+      Bauprojekt : Natural;
+      Bauzeit : GlobaleDatentypen.KostenLager;
 
       Korruption : GlobaleDatentypen.GesamtproduktionStadt;
       GebäudeVorhanden : GebäudeVorhandenArray;
@@ -124,7 +123,7 @@ package GlobaleRecords is
       
       Meldungen : StadtMeldungenArray;
       
-      KIAktuelleBeschäftigung : KIDatentypen.Stadt_Aufgabe_Enum;
+      KIBeschäftigung : KIDatentypen.Stadt_Aufgabe_Enum;
       
    end record;
 
@@ -132,13 +131,13 @@ package GlobaleRecords is
 
    type WichtigesRecord is record
       
-      AktuelleGeldmenge : Integer;
+      Geldmenge : Integer;
       GeldZugewinnProRunde : GlobaleDatentypen.KostenLager;
 
-      AktuelleForschungsrate : GlobaleDatentypen.KostenLager;
-      AktuelleForschungsmenge : GlobaleDatentypen.KostenLager;
+      GesamteForschungsrate : GlobaleDatentypen.KostenLager;
+      Forschungsmenge : GlobaleDatentypen.KostenLager;
       VerbleibendeForschungszeit : GlobaleDatentypen.KostenLager;
-      AktuellesForschungsprojekt : GlobaleDatentypen.ForschungIDMitNullWert;
+      Forschungsprojekt : GlobaleDatentypen.ForschungIDMitNullWert;
 
       Erforscht : GlobaleDatentypen.ErforschtArray;
       

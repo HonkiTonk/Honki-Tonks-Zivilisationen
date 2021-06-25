@@ -58,7 +58,7 @@ package body KIPruefungen is
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
             StadtVerbesserungUmgebungKoordinaten
-              := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition,
+              := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
                                                            ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             exit XAchseSchleife when StadtVerbesserungUmgebungKoordinaten.YAchse = 0;
@@ -114,7 +114,7 @@ package body KIPruefungen is
    is begin
       
       FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                                   KoordinatenExtern          => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+                                                   KoordinatenExtern          => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                                    MindestBewertungFeldExtern => MindestBewertungFeldExtern);
       
       case
@@ -139,8 +139,8 @@ package body KIPruefungen is
             XAchseKartenfeldSuchenSchleife:
             for XAchseSchleifenwert in -XAchseKoordinatePrüfen .. XAchseKoordinatePrüfen loop
                
-               StadtBauenUmgebungKoordinaten := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                                                          EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+               StadtBauenUmgebungKoordinaten := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, 
+                                                                                          EinheitRasseNummerExtern.Platznummer).Position,
                                                                                           ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
                exit XAchseKartenfeldSuchenSchleife when StadtBauenUmgebungKoordinaten.YAchse = 0;

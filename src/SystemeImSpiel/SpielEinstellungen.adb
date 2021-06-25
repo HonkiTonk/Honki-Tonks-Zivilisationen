@@ -515,19 +515,19 @@ package body SpielEinstellungen is
    is begin
 
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID := 1;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.EAchse := Koordinaten (1).EAchse;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.YAchse := Koordinaten (1).YAchse;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition.XAchse := Koordinaten (1).XAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).Position.EAchse := Koordinaten (1).EAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).Position.YAchse := Koordinaten (1).YAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).Position.XAchse := Koordinaten (1).XAchse;
       EinheitenAllgemein.LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (RasseExtern, 1));
 
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).ID := 2;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).AchsenPosition.EAchse := Koordinaten (2).EAchse;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).AchsenPosition.YAchse := Koordinaten (2).YAchse;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).AchsenPosition.XAchse := Koordinaten (2).XAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).Position.EAchse := Koordinaten (2).EAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).Position.YAchse := Koordinaten (2).YAchse;
+      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).Position.XAchse := Koordinaten (2).XAchse;
       EinheitenAllgemein.LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (RasseExtern, 2));
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition;
-      GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPositionAlt := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).AchsenPosition;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).Position;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).Position;
       
    end StartpunktFestlegen;
 

@@ -114,7 +114,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsmittel),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel),
                                Width => 1);
       
    end AktuelleNahrungsmittel;
@@ -133,7 +133,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleNahrungsproduktion),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion),
                                Width => 1);
       
    end AktuelleNahrungsproduktion;
@@ -152,7 +152,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleProduktionrate),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate),
                                Width => 1);
       
    end AktuelleProduktionrate;
@@ -171,7 +171,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleGeldgewinnung),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung),
                                Width => 1);
       
    end AktuelleGeldgewinnung;
@@ -190,7 +190,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleForschungsrate),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate),
                                Width => 1);
       
    end AktuelleForschungsrate;
@@ -249,7 +249,7 @@ package body StadtInformationen is
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
       case
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt
       is
          when 0 => -- Nichts                     
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -265,8 +265,8 @@ package body StadtInformationen is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                            TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Gebäude_Kurz,
                                            ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - 1_000,
-                                           LetzteZeileExtern      => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - 1_000,
+                                           ErsteZeileExtern       => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - 1_000,
+                                           LetzteZeileExtern      => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - 1_000,
                                            AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                            AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                            AbstandEndeExtern      => GlobaleDatentypen.Keiner);
@@ -275,8 +275,8 @@ package body StadtInformationen is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                            TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Einheiten_Kurz,
                                            ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - 10_000,
-                                           LetzteZeileExtern      => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - 10_000,
+                                           ErsteZeileExtern       => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - 10_000,
+                                           LetzteZeileExtern      => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - 10_000,
                                            AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                            AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                            AbstandEndeExtern      => GlobaleDatentypen.Keiner);
@@ -290,7 +290,7 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                      AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).VerbleibendeBauzeit),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit),
                                Width => 1);
       New_Line;
       

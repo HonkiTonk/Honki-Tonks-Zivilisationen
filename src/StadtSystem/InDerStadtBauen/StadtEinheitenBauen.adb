@@ -42,8 +42,8 @@ package body StadtEinheitenBauen is
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
                                                TextZeileExtern => 19);
-         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition;
-         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPositionAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).AchsenPosition;
+         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position;
+         GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position;
          Karte.AnzeigeKarte (RasseExtern => StadtRasseNummerExtern.Rasse);         
          Eingabe.WartenEingabe;
          return;
@@ -67,7 +67,7 @@ package body StadtEinheitenBauen is
             XAchseSchleife:
             for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
             
-               KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AchsenPosition,
+               KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
                exit XAchseSchleife when KartenWert.YAchse = 0;
@@ -84,7 +84,7 @@ package body StadtEinheitenBauen is
                     and
                       (EinheitenDatenbank.EinheitenListe
                          (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID
-                            (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt
+                            (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt
                              - GlobaleKonstanten.EinheitAufschlag)).Passierbarkeit (KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit) = True
                        or
                          (YÄnderungSchleifenwert = 0
@@ -122,10 +122,10 @@ package body StadtEinheitenBauen is
          EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern            => KartenWert,
                                              EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummer),
                                              IDExtern                     => GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
-                                               StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt - GlobaleKonstanten.EinheitAufschlag));
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).VerbleibendeBauzeit := 0;
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuelleRessourcen := 0;
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt := 0;
+                                               StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag));
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := 0;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := 0;
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := 0;
          
       else
          null;
@@ -139,7 +139,7 @@ package body StadtEinheitenBauen is
                                                   TextZeileExtern => 29);
          
          when others =>
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIAktuelleBeschäftigung := KIDatentypen.Keine_Aufgabe;
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := KIDatentypen.Keine_Aufgabe;
       end case;
       
    end EinheitFertiggestellt;

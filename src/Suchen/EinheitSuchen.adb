@@ -14,7 +14,7 @@ package body EinheitSuchen is
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).Position = KoordinatenExtern
          then
             return EinheitNummerSchleifenwert;
             
@@ -40,7 +40,7 @@ package body EinheitSuchen is
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).Position = KoordinatenExtern
            and then
              EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID).KannTransportieren /= 0
          then
@@ -74,7 +74,7 @@ package body EinheitSuchen is
                exit EinheitSchleife;
                
             elsif
-              GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
+              GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).Position = KoordinatenExtern
             then
                return (RasseSchleifenwert, EinheitNummerSchleifenwert);
                
@@ -110,7 +110,7 @@ package body EinheitSuchen is
                exit EinheitSchleife;
                
             elsif
-              GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).AchsenPosition = KoordinatenExtern
+              GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).Position = KoordinatenExtern
             then
                return (RasseSchleifenwert, EinheitNummerSchleifenwert);
                

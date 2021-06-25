@@ -11,7 +11,7 @@ package body KIForschung is
    is begin
       
       case
-        GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt
+        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt
       is
          when 0 =>      
             ForschungSchleife:
@@ -27,8 +27,8 @@ package body KIForschung is
                  and
                    ForschungsDatenbank.ForschungListe (RasseExtern, TechnologieSchleifenwert).AnforderungForschung (1) = 0
                then
-                  GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt := TechnologieSchleifenwert;
-                  GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsmenge := 0;
+                  GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := TechnologieSchleifenwert;
+                  GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := 0;
                   ForschungAllgemein.ForschungZeit (RasseExtern => RasseExtern);
                   return;
                   
@@ -57,8 +57,8 @@ package body KIForschung is
                   if
                     AnforderungVorhanden - AnforderungErfüllt = 0
                   then
-                     GlobaleVariablen.Wichtiges (RasseExtern).AktuellesForschungsprojekt := TechnologieSchleifenwert;
-                     GlobaleVariablen.Wichtiges (RasseExtern).AktuelleForschungsmenge := 0;
+                     GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := TechnologieSchleifenwert;
+                     GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := 0;
                      ForschungAllgemein.ForschungZeit (RasseExtern => RasseExtern);
                      return;
                      

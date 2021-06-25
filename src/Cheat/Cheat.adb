@@ -89,8 +89,8 @@ package body Cheat is
             AktuelleEinheit := 1;
             
          else
-            GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasseEinheit, AktuelleEinheit).AchsenPosition.YAchse;
-            GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasseEinheit, AktuelleEinheit).AchsenPosition.XAchse;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasseEinheit, AktuelleEinheit).Position.YAchse;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasseEinheit, AktuelleEinheit).Position.XAchse;
             case
               AktuelleEinheit
             is
@@ -140,8 +140,8 @@ package body Cheat is
             AktuelleStadt := 1;
             
          else
-            GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse := GlobaleVariablen.StadtGebaut (AktuelleRasseStadt, AktuelleStadt).AchsenPosition.YAchse;
-            GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse := GlobaleVariablen.StadtGebaut (AktuelleRasseStadt, AktuelleStadt).AchsenPosition.XAchse;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse := GlobaleVariablen.StadtGebaut (AktuelleRasseStadt, AktuelleStadt).Position.YAchse;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse := GlobaleVariablen.StadtGebaut (AktuelleRasseStadt, AktuelleStadt).Position.XAchse;
             case
               AktuelleStadt
             is
@@ -211,19 +211,19 @@ package body Cheat is
         KartenGrundID
       is
          when 1 .. 9 | 31 .. 32 | 35 .. 42 =>
-            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund := KartenGrundID;
+            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund := KartenGrundID;
 
          when 10 .. 13 | 29 .. 30 | 33 =>
-            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Ressource := KartenGrundID;
+            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Ressource := KartenGrundID;
 
          when 14 .. 28 =>
-            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Fluss := KartenGrundID;
+            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Fluss := KartenGrundID;
             
          when others =>
             null;
@@ -267,7 +267,7 @@ package body Cheat is
             null;
       end case;
 
-      EinheitPosition := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition);
+      EinheitPosition := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
       
       case
         EinheitPosition.Platznummer
@@ -280,18 +280,18 @@ package body Cheat is
                  GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID
                is
                   when 0 =>
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBeschäftigung := GlobaleDatentypen.Keine;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBeschäftigungNachfolger := GlobaleDatentypen.Keine;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Beschäftigung := GlobaleDatentypen.Keine;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).BeschäftigungNachfolger := GlobaleDatentypen.Keine;
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID := GlobaleDatentypen.EinheitenID (EinheitID);
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AchsenPosition := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleLebenspunkte
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Position := GlobaleVariablen.CursorImSpiel (RasseExtern).Position;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Lebenspunkte
                        := EinheitenDatenbank.EinheitenListe (GlobaleDatentypen.Rassen (RasseNummer), GlobaleDatentypen.EinheitenID (EinheitID)).MaximaleLebenspunkte;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBewegungspunkte
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Bewegungspunkte
                        := EinheitenDatenbank.EinheitenListe (GlobaleDatentypen.Rassen (RasseNummer), GlobaleDatentypen.EinheitenID (EinheitID)).MaximaleBewegungspunkte;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleErfahrungspunkte := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuellerRang := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBeschäftigungszeit := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBeschäftigungszeitNachfolger := 0;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Erfahrungspunkte := 0;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Rang := 0;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Beschäftigungszeit := 0;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).BeschäftigungszeitNachfolger := 0;
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).KIZielKoordinaten := (0, 1, 1);
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
                      return;
@@ -311,18 +311,18 @@ package body Cheat is
                  GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID
                is
                   when 0 =>
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBeschäftigung := GlobaleDatentypen.Keine;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBeschäftigungNachfolger := GlobaleDatentypen.Keine;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Beschäftigung := GlobaleDatentypen.Keine;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).BeschäftigungNachfolger := GlobaleDatentypen.Keine;
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID := GlobaleDatentypen.EinheitenID (EinheitID);
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AchsenPosition := GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleLebenspunkte
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Position := GlobaleVariablen.CursorImSpiel (RasseExtern).Position;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Lebenspunkte
                        := EinheitenDatenbank.EinheitenListe (GlobaleDatentypen.Rassen (RasseNummer), GlobaleDatentypen.EinheitenID (EinheitID)).MaximaleLebenspunkte;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBewegungspunkte
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Bewegungspunkte
                        := EinheitenDatenbank.EinheitenListe (GlobaleDatentypen.Rassen (RasseNummer), GlobaleDatentypen.EinheitenID (EinheitID)).MaximaleBewegungspunkte;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleErfahrungspunkte := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuellerRang := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBeschäftigungszeit := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).AktuelleBeschäftigungszeitNachfolger := 0;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Erfahrungspunkte := 0;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Rang := 0;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Beschäftigungszeit := 0;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).BeschäftigungszeitNachfolger := 0;
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).KIZielKoordinaten := (0, 1, 1);
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
                      return;
@@ -342,7 +342,7 @@ package body Cheat is
      (RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
       
-      GlobaleVariablen.Wichtiges (RasseExtern).AktuelleGeldmenge := Integer'Last;
+      GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge := Integer'Last;
       
    end Geld;
    
@@ -371,14 +371,14 @@ package body Cheat is
         VerbesserungID
       is
          when 5 .. 19 =>
-            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße := VerbesserungID;
+            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße := VerbesserungID;
 
          when 20 .. 22 =>
-            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet := VerbesserungID;
+            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet := VerbesserungID;
             
          when others =>
             null;
@@ -433,10 +433,10 @@ package body Cheat is
                 & "Ziel XAchse: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse'Wide_Wide_Image);
                      
       Put_Line (Item => "KIAufgabe: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt'Wide_Wide_Image);
-      Put_Line (Item => "AufgabeEins: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigung'Wide_Wide_Image);
-      Put_Line (Item => "AufgabeZwei: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AktuelleBeschäftigungNachfolger'Wide_Wide_Image);
+      Put_Line (Item => "AufgabeEins: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung'Wide_Wide_Image);
+      Put_Line (Item => "AufgabeZwei: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt: ");
-      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).AktuellesForschungsprojekt,
+      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Forschungsprojekt,
                                         RasseExtern => EinheitRasseNummerExtern.Rasse);
       
    end KarteInfosEinheiten;
@@ -447,19 +447,19 @@ package body Cheat is
      (RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
       
-      Put (Item => "Aktuelle EPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse'Wide_Wide_Image);
-      Put (Item => "    Aktuelle YPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse'Wide_Wide_Image);
-      Put_Line (Item => "    Aktuelle XPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse'Wide_Wide_Image);
-      Put (Item => "Kartenfeldbewertung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Felderwertung'Wide_Wide_Image);
-      Put_Line (Item => "    Aktuelle GrundID: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).Grund'Wide_Wide_Image);
-      Put_Line (Item => "Aktuelle Stadtbelegung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).DurchStadtBelegterGrund'Wide_Wide_Image);
-      Put (Item => "Straße: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-           GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungStraße'Wide_Wide_Image);
-      Put_Line (Item => "    Feldverbesserung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.YAchse,
-                GlobaleVariablen.CursorImSpiel (RasseExtern).AchsenPosition.XAchse).VerbesserungGebiet'Wide_Wide_Image);
+      Put (Item => "Aktuelle EPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse'Wide_Wide_Image);
+      Put (Item => "    Aktuelle YPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse'Wide_Wide_Image);
+      Put_Line (Item => "    Aktuelle XPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse'Wide_Wide_Image);
+      Put (Item => "Kartenfeldbewertung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Felderwertung'Wide_Wide_Image);
+      Put_Line (Item => "    Aktuelle GrundID: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+                GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund'Wide_Wide_Image);
+      Put_Line (Item => "Aktuelle Stadtbelegung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+                GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).DurchStadtBelegterGrund'Wide_Wide_Image);
+      Put (Item => "Straße: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße'Wide_Wide_Image);
+      Put_Line (Item => "    Feldverbesserung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+                GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet'Wide_Wide_Image);
       
    end KarteInfosFeld;
    
@@ -470,9 +470,9 @@ package body Cheat is
    is begin
       
       Put_Line (Item => "Aktuelle Rasse: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);
-      Put_Line (Item => "KIAufgabe: " & GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIAktuelleBeschäftigung'Wide_Wide_Image);
+      Put_Line (Item => "KIAufgabe: " & GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt: ");
-      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).AktuellesForschungsprojekt,
+      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Forschungsprojekt,
                                         RasseExtern => StadtRasseNummerExtern.Rasse);
       
    end KarteStadtInfos;

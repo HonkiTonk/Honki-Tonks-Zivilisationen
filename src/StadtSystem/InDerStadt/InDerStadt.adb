@@ -35,7 +35,7 @@ package body InDerStadt is
                
             when 13 => -- Gebäude/Einheit bauen
                if
-                 GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AktuellesBauprojekt = 0
+                 GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt = 0
                then
                   InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                      
