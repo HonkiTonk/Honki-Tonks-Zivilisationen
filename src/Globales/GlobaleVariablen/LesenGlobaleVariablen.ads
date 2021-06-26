@@ -10,9 +10,9 @@ with KIDatentypen;
 
 with Karten;
 
-package ZugriffGlobaleVariablen is
+package LesenGlobaleVariablen is
 
-   -- Einheitenzugriff
+   -- Einheitenwerte lesen
    function EinheitenID
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.EinheitenID
@@ -31,9 +31,9 @@ package ZugriffGlobaleVariablen is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0),
          Post =>
-           (EinheitenPosition'Result.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           (EinheitenPosition'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
-              EinheitenPosition'Result.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+              EinheitenPosition'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function EinheitenLebenspunkte
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -133,11 +133,11 @@ package ZugriffGlobaleVariablen is
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
-   -- Einheitenzugriff
+   -- Einheitenwerte lesen
 
 
 
-   -- Stadtzugriff
+   -- Stadtwerte lesen
    function StadtID
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.StadtID
@@ -156,9 +156,9 @@ package ZugriffGlobaleVariablen is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0),
          Post =>
-           (StadtPosition'Result.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           (StadtPosition'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
-              StadtPosition'Result.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+              StadtPosition'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function StadtAmWasser
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -276,6 +276,105 @@ package ZugriffGlobaleVariablen is
          (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
-   -- Stadtzugriff
+   -- Stadtwerte lesen
 
-end ZugriffGlobaleVariablen;
+
+
+   -- Cursorwerte lesen
+   function CursorGrafik
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return Wide_Wide_Character
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+
+   function CursorPosition
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0),
+         Post =>
+           (CursorPosition'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            and
+              CursorPosition'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+
+   function CursorPositionAlt
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0),
+         Post =>
+           (CursorPositionAlt'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            and
+              CursorPositionAlt'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+
+   function CursorPositionStadt
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleRecords.AchsenStadtfeldRecord
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+   -- Cursorwerte lesen
+
+
+
+   -- Wichtiges lesen
+   function WichtigesGeldmenge
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return Integer
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+
+   function WichtigesGeldgewinnRunde
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.KostenLager
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+
+   function WichtigesGesamteForschungsrate
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.KostenLager
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+
+   function WichtigesForschungsmenge
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.KostenLager
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+
+   function WichtigesVerbleibendeForschungszeit
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.KostenLager
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+
+   function WichtigesForschungsprojekt
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.ForschungIDMitNullWert
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+   -- Wichtiges lesen
+
+
+
+   -- Diplomatie lesen
+   function Diplomatie
+     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.StatusUntereinander
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseEinsExtern) > 0
+          and
+            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) > 0);
+   -- Diplomatie lesen
+
+end LesenGlobaleVariablen;

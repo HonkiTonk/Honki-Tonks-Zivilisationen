@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with ForschungsDatenbank;
 
-with ZugriffGlobaleVariablen;
+with LesenGlobaleVariablen;
 
 package body ZugriffForschungsDatenbank is
 

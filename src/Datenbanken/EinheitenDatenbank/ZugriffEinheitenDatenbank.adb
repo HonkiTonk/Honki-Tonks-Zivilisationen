@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with EinheitenDatenbank;
 
-with ZugriffGlobaleVariablen;
+with LesenGlobaleVariablen;
 
 package body ZugriffEinheitenDatenbank is
    
@@ -13,7 +13,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).EinheitenGrafik;
       
    end GrafikOhneID;
@@ -26,7 +26,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).EinheitTyp;
       
    end TypOhneID;
@@ -39,7 +39,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).PreisGeld;
       
    end PreisGeldOhneID;
@@ -52,7 +52,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).PreisRessourcen;
       
    end PreisRessourcenOhneID;
@@ -65,7 +65,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).Anforderungen;
       
    end AnforderungenOhneID;
@@ -78,7 +78,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).MaximaleLebenspunkte;
       
    end MaximaleLebenspunkteOhneID;
@@ -91,7 +91,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).MaximaleBewegungspunkte;
       
    end MaximaleBewegungspunkteOhneID;
@@ -104,7 +104,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).Beförderungsgrenze;
       
    end BeförderungsgrenzeOhneID;
@@ -117,7 +117,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).MaximalerRang;
       
    end MaximalerRangOhneID;
@@ -130,7 +130,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).Reichweite;
       
    end ReichweiteOhneID;
@@ -143,7 +143,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).Angriff;
       
    end AngriffOhneID;
@@ -156,7 +156,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).Verteidigung;
       
    end VerteidigungOhneID;
@@ -169,7 +169,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).KannTransportieren;
       
    end KannTransportierenOhneID;
@@ -182,7 +182,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).KannTransportiertWerden;
       
    end KannTransportiertWerdenOhneID;
@@ -195,7 +195,7 @@ package body ZugriffEinheitenDatenbank is
    is begin
       
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                ZugriffGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+                                                LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
                                                ).Transportkapazität;
       
    end TransportkapazitätOhneID;

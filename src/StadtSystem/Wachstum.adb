@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, StadtBauen, StadtEinheitenBauen, StadtGebaeudeBauen;
+with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, StadtBauen, StadtEinheitenBauen, StadtGebaeudeBauen, LesenGlobaleVariablen, EintragenGlobaleVariablen;
 
 package body Wachstum is
 
@@ -10,7 +10,7 @@ package body Wachstum is
    is begin
       
       RassenEinsSchleife:
-      for RasseEinsSchleifenwert in GlobaleDatentypen.Rassen loop
+      for RasseEinsSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (1) loop
          StadtSchleife:
          for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
@@ -18,7 +18,8 @@ package body Wachstum is
               StadtNummerSchleifenwert
             is
                when 1 =>
-                  GlobaleVariablen.Wichtiges (RasseEinsSchleifenwert).GesamteForschungsrate := 0;
+                  EintragenGlobaleVariablen.WichtigesGesamteForschungsrate (RasseExtern                 => RasseEinsSchleifenwert,
+                                                                            GesamteForschungsrateExtern => 0);
                   GlobaleVariablen.Wichtiges (RasseEinsSchleifenwert).GeldZugewinnProRunde := 0;
                   
                when others =>
@@ -26,7 +27,7 @@ package body Wachstum is
             end case;
             
             case
-              GlobaleVariablen.StadtGebaut (RasseEinsSchleifenwert, StadtNummerSchleifenwert).ID
+              LesenGlobaleVariablen.StadtID (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert))
             is
                when 0 =>
                   null;
@@ -34,7 +35,8 @@ package body Wachstum is
                when others =>
                   WachstumEinwohner (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert));
             end case;
-
+            
+            -- Wird auch dann ausgeführt wenn die ID = 0 ist, mal auslagern
             if
               GlobaleVariablen.Wichtiges (RasseEinsSchleifenwert).GesamteForschungsrate
               + GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (RasseEinsSchleifenwert, StadtNummerSchleifenwert).Forschungsrate)

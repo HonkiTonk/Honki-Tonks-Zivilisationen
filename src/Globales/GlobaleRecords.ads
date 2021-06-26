@@ -3,7 +3,9 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleDatentypen, KIDatentypen;
+with GlobaleDatentypen;
+  
+with KIDatentypen;
 
 package GlobaleRecords is
    

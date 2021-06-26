@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 
-package body ZugriffGlobaleVariablen is
+package body LesenGlobaleVariablen is
 
-   -- Einheitenzugriff
+   -- Einheitenwerte lesen
    function EinheitenID
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.EinheitenID
@@ -143,11 +143,11 @@ package body ZugriffGlobaleVariablen is
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert;
       
    end EinheitenWirdTransportiert;
-   -- Einheitenzugriff
+   -- Einheitenwerte lesen
    
    
    
-   -- Stadtzugriff
+   -- Stadtwerte lesen
    function StadtID
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.StadtID
@@ -156,6 +156,8 @@ package body ZugriffGlobaleVariablen is
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ID;
       
    end StadtID;
+   
+   
    
    function StadtPosition
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -166,6 +168,8 @@ package body ZugriffGlobaleVariablen is
       
    end StadtPosition;
    
+   
+   
    function StadtAmWasser
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
@@ -174,6 +178,8 @@ package body ZugriffGlobaleVariablen is
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AmWasser;
       
    end StadtAmWasser;
+   
+   
    
    function StadtNahrungsmittel
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -184,6 +190,8 @@ package body ZugriffGlobaleVariablen is
       
    end StadtNahrungsmittel;
    
+   
+   
    function StadtNahrungsproduktion
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
@@ -192,6 +200,8 @@ package body ZugriffGlobaleVariablen is
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion;
       
    end StadtNahrungsproduktion;
+   
+   
    
    function StadtRessourcen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -202,6 +212,8 @@ package body ZugriffGlobaleVariablen is
       
    end StadtRessourcen;
    
+   
+   
    function StadtProduktionrate
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
@@ -210,6 +222,8 @@ package body ZugriffGlobaleVariablen is
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate;
       
    end StadtProduktionrate;
+   
+   
    
    function StadtGeldgewinnung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -220,6 +234,8 @@ package body ZugriffGlobaleVariablen is
       
    end StadtGeldgewinnung;
    
+   
+   
    function StadtForschungsrate
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
@@ -228,6 +244,8 @@ package body ZugriffGlobaleVariablen is
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate;
       
    end StadtForschungsrate;
+   
+   
    
    function StadtBauprojekt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -238,6 +256,8 @@ package body ZugriffGlobaleVariablen is
       
    end StadtBauprojekt;
    
+   
+   
    function StadtBauzeit
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.KostenLager
@@ -246,6 +266,8 @@ package body ZugriffGlobaleVariablen is
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit;
       
    end StadtBauzeit;
+   
+   
    
    function StadtKorruption
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -256,6 +278,8 @@ package body ZugriffGlobaleVariablen is
       
    end StadtKorruption;
    
+   
+   
    function StadtName
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Unbounded_Wide_Wide_String
@@ -264,6 +288,8 @@ package body ZugriffGlobaleVariablen is
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Name;
       
    end StadtName;
+   
+   
    
    function StadtUmgebungGröße
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -274,6 +300,8 @@ package body ZugriffGlobaleVariablen is
       
    end StadtUmgebungGröße;
    
+   
+   
    function StadtKIAktuelleBeschäftigung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return KIDatentypen.Stadt_Aufgabe_Enum
@@ -282,6 +310,133 @@ package body ZugriffGlobaleVariablen is
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung;
       
    end StadtKIAktuelleBeschäftigung;
-   -- Stadtzugriff
+   -- Stadtwerte lesen
+   
+   
+   
+   -- Cursorwerte lesen
+   function CursorGrafik
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return Wide_Wide_Character
+   is begin
+      
+      return GlobaleVariablen.CursorImSpiel (RasseExtern).CursorGrafik;
+        
+   end CursorGrafik;
+   
+   
+   
+   function CursorPosition
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+   is begin
+      
+      return GlobaleVariablen.CursorImSpiel (RasseExtern).Position;
+        
+   end CursorPosition;
+   
+   
+   
+   function CursorPositionAlt
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+   is begin
+      
+      return GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt;
+        
+   end CursorPositionAlt;
+   
+   
+   
+   function CursorPositionStadt
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleRecords.AchsenStadtfeldRecord
+   is begin
+      
+      return GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt;
+        
+   end CursorPositionStadt;
+   -- Cursorwerte lesen
+   
+   
+   
+   -- Wichtiges lesen
+   function WichtigesGeldmenge
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return Integer
+   is begin
+      
+      return GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge;
+      
+   end WichtigesGeldmenge;
+   
+   
+   
+   function WichtigesGeldgewinnRunde
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.KostenLager
+   is begin
+      
+      return GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde;
+      
+   end WichtigesGeldgewinnRunde;
+   
+   
+   
+   function WichtigesGesamteForschungsrate
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.KostenLager
+   is begin
+      
+      return GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
+      
+   end WichtigesGesamteForschungsrate;
+   
+   
+   
+   function WichtigesForschungsmenge
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.KostenLager
+   is begin
+      
+      return GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge;
+      
+   end WichtigesForschungsmenge;
+   
+   
+   
+   function WichtigesVerbleibendeForschungszeit
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.KostenLager
+   is begin
+      
+      return GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit;
+      
+   end WichtigesVerbleibendeForschungszeit;
+   
+   
+   
+   function WichtigesForschungsprojekt
+     (RasseExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.ForschungIDMitNullWert
+   is begin
+      
+      return GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt;
+      
+   end WichtigesForschungsprojekt;
+   -- Wichtiges lesen
+   
+   
+   
+   -- Diplomatie lesen
+   function Diplomatie
+     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen)
+      return GlobaleDatentypen.StatusUntereinander
+   is begin
+      
+      return GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern);
+      
+   end Diplomatie;
+   -- Diplomatie lesen
 
-end ZugriffGlobaleVariablen;
+end LesenGlobaleVariablen;

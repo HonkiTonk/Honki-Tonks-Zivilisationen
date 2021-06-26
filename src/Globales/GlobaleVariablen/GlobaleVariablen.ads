@@ -35,9 +35,11 @@ package GlobaleVariablen is
    -- Zeug
    RundenAnzahl : Positive := 1;
 
-   RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => 0); -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+   -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+   RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => 0);
    RasseAmZugNachLaden : GlobaleDatentypen.RassenMitNullwert := 0;
 
+   -- Hier über LoopMinusDreiBisDrei nachdenken
    Schwierigkeitsgrad : Positive;
    -- Zeug
    
