@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, StadtBauen, StadtEinheitenBauen, StadtGebaeudeBauen, LesenGlobaleVariablen, EintragenGlobaleVariablen;
+with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, StadtBauen, StadtEinheitenBauen, StadtGebaeudeBauen, LesenGlobaleVariablen, EintragenGlobaleVariablen, ZugriffGebaeudeDatenbank;
 
 package body Wachstum is
 

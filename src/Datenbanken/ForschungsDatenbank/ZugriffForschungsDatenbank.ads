@@ -15,7 +15,22 @@ package ZugriffForschungsDatenbank is
    -- Ohne ID
    
    -- Mit ID
-   
+   function PreisMitID
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      IDExtern : in GlobaleDatentypen.ForschungID)
+      return GlobaleDatentypen.KostenLager
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+     
+   function AnforderungMitID
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      IDExtern : in GlobaleDatentypen.ForschungID;
+      ArrayPositionExtern : in Positive)
+      return ForschungIDMitNullWert
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
    -- Mit ID
 
 end ZugriffForschungsDatenbank;

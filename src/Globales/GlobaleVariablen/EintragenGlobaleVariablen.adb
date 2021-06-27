@@ -135,6 +135,30 @@ package body EintragenGlobaleVariablen is
    
    
    
+   procedure EinheitenKIBewegungPlan
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      KIBewegungPlanExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      ArrayPositionExtern : in Positive)
+   is begin
+      
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ArrayPositionExtern) := KIBewegungPlanExtern;
+      
+   end EinheitenKIBewegungPlan;
+   
+   
+   
+   procedure EinheitenTransportiert
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      TransportiertExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      ArrayPositionExtern : in Positive)
+   is begin
+      
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (ArrayPositionExtern) := TransportiertExtern;
+      
+   end EinheitenTransportiert;
+   
+   
+   
    procedure EinheitenWirdTransportiert
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       WirdTransportiertExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
@@ -178,6 +202,18 @@ package body EintragenGlobaleVariablen is
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AmWasser := AmWasserExtern;
       
    end StadtAmWasser;
+   
+   
+   
+   procedure StadtEinwohnerArbeiter
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EinwohnerArbeiterExtern : in GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      ArrayPositionExtern : in Positive)
+   is begin
+      
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (ArrayPositionExtern) := EinwohnerArbeiterExtern;
+      
+   end StadtEinwohnerArbeiter;
    
    
    
@@ -280,6 +316,18 @@ package body EintragenGlobaleVariablen is
    
    
    
+   procedure StadtGebäudeVorhanden
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GebäudeVorhandenExtern : in Boolean;
+      ArrayPositionExtern : in GlobaleDatentypen.GebäudeID)
+   is begin
+      
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (ArrayPositionExtern) := GebäudeVorhandenExtern;
+      
+   end StadtGebäudeVorhanden;
+   
+   
+   
    procedure StadtName
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NameExtern : in Unbounded_Wide_Wide_String)
@@ -291,6 +339,18 @@ package body EintragenGlobaleVariablen is
    
    
    
+   procedure StadtUmgebungBewirtschaftung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      UmgebungBewirtschaftungExtern : in Boolean;
+      YPositionExtern, XPositionExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+   is begin
+      
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YPositionExtern, XPositionExtern) := UmgebungBewirtschaftungExtern;
+      
+   end StadtUmgebungBewirtschaftung;
+   
+   
+   
    procedure StadtUmgebungGröße
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       UmgebungGrößeExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
@@ -299,6 +359,18 @@ package body EintragenGlobaleVariablen is
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := UmgebungGrößeExtern;
       
    end StadtUmgebungGröße;
+   
+   
+   
+   procedure StadtMeldungen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      MeldungenExtern : in GlobaleDatentypen.StadtMeldung;
+      ArrayPositionExtern : in Positive)
+   is begin
+      
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Meldungen (ArrayPositionExtern) := MeldungenExtern;
+      
+   end StadtMeldungen;
    
    
    
@@ -424,6 +496,18 @@ package body EintragenGlobaleVariablen is
       GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := ForschungsprojektExtern;
       
    end WichtigesForschungsprojekt;
+   
+   
+   
+   procedure WichtigesErforscht
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      ErforschtExtern : in Boolean;
+      ArrayPositionExtern : in ForschungID)
+   is begin
+      
+      GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ArrayPositionExtern) := ErforschtExtern;
+      
+   end WichtigesErforscht;
    -- Wichtiges eintragen
    
    

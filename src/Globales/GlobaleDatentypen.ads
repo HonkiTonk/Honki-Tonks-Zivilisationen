@@ -91,7 +91,6 @@ package GlobaleDatentypen is
 
    type KostenLager is range -10_000 .. 10_000;
    subtype GesamtproduktionStadt is KostenLager range -500 .. 500;
-   -- Nahrung, Ressourcen, Geld, Wissenschaft, Verteidigung, Angriff
    subtype WerteNahrungMaterialGeldWissenVerteidigungAngriff is GesamtproduktionStadt range -100 .. 100;
    subtype StadtID is KartenVerbesserung range 0 .. 2;
 

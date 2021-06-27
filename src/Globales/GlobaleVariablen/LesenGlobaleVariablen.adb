@@ -135,6 +135,30 @@ package body LesenGlobaleVariablen is
    
    
    
+   function EinheitenKIBewegungPlan
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      ArrayPositionExtern : in Positive)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+   is begin
+      
+      return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ArrayPositionExtern);
+      
+   end EinheitenKIBewegungPlan;
+   
+   
+   
+   function EinheitenTransportiert
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      ArrayPositionExtern : in Positive)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+   is begin
+      
+      return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (ArrayPositionExtern);
+      
+   end EinheitenTransportiert;
+   
+   
+   
    function EinheitenWirdTransportiert
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
@@ -178,6 +202,18 @@ package body LesenGlobaleVariablen is
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AmWasser;
       
    end StadtAmWasser;
+   
+   
+   
+   function StadtEinwohnerArbeiter
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      ArrayPositionExtern : in Positive)
+      return GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff
+   is begin
+      
+      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (ArrayPositionExtern);
+      
+   end StadtEinwohnerArbeiter;
    
    
    
@@ -280,6 +316,18 @@ package body LesenGlobaleVariablen is
    
    
    
+   function StadtGebäudeVorhanden
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+     ArrayPositionExtern : in GlobaleDatentypen.GebäudeID)
+      return Boolean
+   is begin
+      
+      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (ArrayPositionExtern);
+      
+   end StadtGebäudeVorhanden;
+   
+   
+   
    function StadtName
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Unbounded_Wide_Wide_String
@@ -291,6 +339,18 @@ package body LesenGlobaleVariablen is
    
    
    
+   function StadtUmgebungBewirtschaftung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      YPositionExtern, XPositionExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+      return Boolean
+   is begin
+      
+      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YPositionExtern, XPositionExtern);
+      
+   end StadtUmgebungBewirtschaftung;
+   
+   
+   
    function StadtUmgebungGröße
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.LoopRangeMinusDreiZuDrei
@@ -299,6 +359,18 @@ package body LesenGlobaleVariablen is
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
       
    end StadtUmgebungGröße;
+   
+   
+   
+   function StadtMeldungen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      ArrayPositionExtern : in Positive)
+      return GlobaleDatentypen.StadtMeldung
+   is begin
+      
+      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Meldungen (ArrayPositionExtern);
+      
+   end StadtMeldungen;
    
    
    
@@ -424,6 +496,18 @@ package body LesenGlobaleVariablen is
       return GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt;
       
    end WichtigesForschungsprojekt;
+   
+   
+   
+   function WichtigesErforscht
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      ArrayPositionExtern : in ForschungID)
+      return Boolean
+   is begin
+      
+      return GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ArrayPositionExtern);
+      
+   end WichtigesErforscht;
    -- Wichtiges lesen
    
    

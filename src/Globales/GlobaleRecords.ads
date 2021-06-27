@@ -65,8 +65,8 @@ package GlobaleRecords is
 
 
 
-   type TransporterArray is array (1 .. 5) of GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    type KIBewegungPlanArray is array (1 .. 15) of GlobaleRecords.AchsenKartenfeldPositivRecord;
+   type TransporterArray is array (1 .. 5) of GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
    type EinheitenGebautRecord is record
       
@@ -95,8 +95,8 @@ package GlobaleRecords is
 
 
 
-   type GebäudeVorhandenArray is array (GlobaleDatentypen.GebäudeID'Range) of Boolean;
    type EinwohnerArbeiterArray is array (1 .. 2) of GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   type GebäudeVorhandenArray is array (GlobaleDatentypen.GebäudeID'Range) of Boolean;
    type StadtMeldungenArray is array (1 .. 3) of GlobaleDatentypen.StadtMeldung;
 
    type StadtGebautRecord is record

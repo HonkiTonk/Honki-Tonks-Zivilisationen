@@ -114,11 +114,39 @@ package LesenGlobaleVariablen is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0),
+         Post =>
+           (EinheitenKIZielKoordinaten'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            and
+              EinheitenKIZielKoordinaten'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function EinheitenKIBeschäftigt
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return KIDatentypen.Einheit_Aufgabe_Enum
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
+
+   function EinheitenKIBewegungPlan
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      ArrayPositionExtern : in Positive)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0),
+         Post =>
+           (EinheitenKIBewegungPlan'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            and
+              EinheitenKIBewegungPlan'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+
+   function EinheitenTransportiert
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      ArrayPositionExtern : in Positive)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
@@ -163,6 +191,16 @@ package LesenGlobaleVariablen is
    function StadtAmWasser
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+
+   function StadtEinwohnerArbeiter
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      ArrayPositionExtern : in Positive)
+      return GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
@@ -250,6 +288,16 @@ package LesenGlobaleVariablen is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
+   function StadtGebäudeVorhanden
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      ArrayPositionExtern : in GlobaleDatentypen.GebäudeID)
+      return Boolean
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+
    function StadtName
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Unbounded_Wide_Wide_String
@@ -259,9 +307,29 @@ package LesenGlobaleVariablen is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
 
+   function StadtUmgebungBewirtschaftung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      YPositionExtern, XPositionExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+      return Boolean
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+
    function StadtUmgebungGröße
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.LoopRangeMinusDreiZuDrei
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+
+   function StadtMeldungen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      ArrayPositionExtern : in Positive)
+      return GlobaleDatentypen.StadtMeldung
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
@@ -359,6 +427,14 @@ package LesenGlobaleVariablen is
    function WichtigesForschungsprojekt
      (RasseExtern : in GlobaleDatentypen.Rassen)
       return GlobaleDatentypen.ForschungIDMitNullWert
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+
+   function WichtigesErforscht
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      ArrayPositionExtern : in ForschungID)
+      return Boolean
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);

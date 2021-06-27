@@ -128,6 +128,30 @@ package EintragenGlobaleVariablen is
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
+   
+   procedure EinheitenKIBewegungPlan
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      KIBewegungPlanExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      ArrayPositionExtern : in Positive)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
+          and
+            KIBewegungPlanExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KIBewegungPlanExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+   procedure EinheitenTransportiert
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      TransportiertExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      ArrayPositionExtern : in Positive)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
      
    procedure EinheitenWirdTransportiert
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -167,6 +191,16 @@ package EintragenGlobaleVariablen is
    procedure StadtAmWasser
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       AmWasserExtern : in Boolean)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+   
+   procedure StadtEinwohnerArbeiter
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EinwohnerArbeiterExtern : in GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      ArrayPositionExtern : in Positive)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
@@ -253,6 +287,16 @@ package EintragenGlobaleVariablen is
          (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+   
+   procedure StadtGebäudeVorhanden
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GebäudeVorhandenExtern : in Boolean;
+      ArrayPositionExtern : in GlobaleDatentypen.GebäudeID)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
      
    procedure StadtName
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -262,10 +306,30 @@ package EintragenGlobaleVariablen is
          (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+   
+   procedure StadtUmgebungBewirtschaftung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      UmgebungBewirtschaftungExtern : in Boolean;
+      YPositionExtern, XPositionExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
      
    procedure StadtUmgebungGröße
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       UmgebungGrößeExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+   
+   procedure StadtMeldungen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      MeldungenExtern : in GlobaleDatentypen.StadtMeldung;
+      ArrayPositionExtern : in Positive)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
@@ -363,6 +427,14 @@ package EintragenGlobaleVariablen is
    procedure WichtigesForschungsprojekt
      (RasseExtern : in GlobaleDatentypen.Rassen;
       ForschungsprojektExtern : in GlobaleDatentypen.ForschungIDMitNullWert)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+   
+   procedure WichtigesErforscht
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      ErforschtExtern : in Boolean;
+      ArrayPositionExtern : in ForschungID)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
