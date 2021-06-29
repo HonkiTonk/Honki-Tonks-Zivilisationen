@@ -67,6 +67,8 @@ package DatenbankRecords is
       WissenBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
       VerteidigungBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
       NahrungBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      
+      -- Rauswerfen? Durch was besseres ersetzen?
       Anderes : Boolean;
 
    end record;
@@ -77,7 +79,7 @@ package DatenbankRecords is
    -- KartenDatenbank
    type KartenListeRecord is record
 
-      KartenGrafik : Wide_Wide_Character := ' ';
+      KartenGrafik : Wide_Wide_Character;
       
       Passierbarkeit : GlobaleDatentypen.PassierbarkeitType;
 

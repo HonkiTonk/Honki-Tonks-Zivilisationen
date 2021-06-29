@@ -17,7 +17,7 @@ package body BewegungLadenEntladen is
                                                               ÄnderungExtern       => ÄnderungExtern);
       
       TransporterNummer := EinheitSuchen.KoordinatenTransporterMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                               KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+                                                                               KoordinatenExtern => KartenWert);
       
       EinheitAusladen := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert;
                                           
@@ -66,12 +66,12 @@ package body BewegungLadenEntladen is
    is begin
       
       TransporterLeerenSchleife:
-      for TransporterPlatzZweiSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+      for TransporterLeerenSchleifenwert in GlobaleRecords.TransporterArray'Range loop
 
          if
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, AuszuladendeEinheitExtern).Transportiert (TransporterPlatzZweiSchleifenwert) = EinheitRasseNummerExtern.Platznummer
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, AuszuladendeEinheitExtern).Transportiert (TransporterLeerenSchleifenwert) = EinheitRasseNummerExtern.Platznummer
          then
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, AuszuladendeEinheitExtern).Transportiert (TransporterPlatzZweiSchleifenwert) := 0;
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, AuszuladendeEinheitExtern).Transportiert (TransporterLeerenSchleifenwert) := 0;
             -- Hier nicht den wird Transportiert auf 0 setzen, da das zu Problemen bei Verschiebungen von Transporter zu Transporter führen kann.
             exit TransporterLeerenSchleife;
                      
@@ -90,21 +90,21 @@ package body BewegungLadenEntladen is
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      TransporterEinsSchleife:
-      for TransporterPlatzEinsSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+      TransporterUmladenSchleife:
+      for TransporterUmladenSchleifenwert in GlobaleRecords.TransporterArray'Range loop
                
          case
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzEinsSchleifenwert)
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterUmladenSchleifenwert)
          is
             when 0 =>
                null;
                      
             when others =>
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert
-                                                 (TransporterPlatzEinsSchleifenwert)).Position := NeuePositionExtern;
+                                                 (TransporterUmladenSchleifenwert)).Position := NeuePositionExtern;
          end case;
                
-      end loop TransporterEinsSchleife;
+      end loop TransporterUmladenSchleife;
       
    end TransporterladungVerschieben;
    

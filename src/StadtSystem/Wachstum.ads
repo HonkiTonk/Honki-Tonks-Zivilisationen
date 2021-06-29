@@ -15,6 +15,14 @@ package Wachstum is
 
 private
    
+   procedure WachstumStadtExistiert
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+   
    procedure WachstumEinwohner
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with

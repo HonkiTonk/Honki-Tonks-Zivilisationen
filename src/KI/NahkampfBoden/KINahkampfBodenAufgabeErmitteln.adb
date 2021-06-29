@@ -6,7 +6,7 @@ with KIDatentypen;
 
 with EinheitenDatenbank;
 
-with KINahkampfBodenAufgabeFestlegen, LesenGlobaleVariablen, EinheitSuchen, KIAufgabenVerteilt, StadtSuchen;
+with KINahkampfBodenAufgabeFestlegen, EinheitSuchen, KIAufgabenVerteilt, StadtSuchen;
 
 package body KINahkampfBodenAufgabeErmitteln is
 
@@ -139,7 +139,7 @@ package body KINahkampfBodenAufgabeErmitteln is
       return Natural
    is begin
       
-      EinheitID := LesenGlobaleVariablen.EinheitenID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitID := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID;
       
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte

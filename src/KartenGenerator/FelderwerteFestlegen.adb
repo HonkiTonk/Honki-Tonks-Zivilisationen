@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with KartenDatenbank, VerbesserungenDatenbank, KartenPruefungen;
+with KartenDatenbank, VerbesserungenDatenbank;
+  
+with KartenPruefungen;
 
 package body FelderwerteFestlegen is
 

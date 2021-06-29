@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen;
 
-with StadtBauen, KINullwerteSetzen, Verbesserungen, ZugriffKarten, Karten;
+with StadtBauen, KINullwerteSetzen, Verbesserungen, Karten;
 
 package body KISiedlerAufgabeDurchfuehren is
 
@@ -55,7 +55,9 @@ package body KISiedlerAufgabeDurchfuehren is
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet
       is
          when 0 =>         
-            Grund := ZugriffKarten.KartenGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            Grund := Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
+                                       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
+                                       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund;
       
             if
               Grund in 6 .. 7
@@ -64,7 +66,9 @@ package body KISiedlerAufgabeDurchfuehren is
                 or
                   Grund = 33
                   or
-                    ZugriffKarten.KartenHügelVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+                    Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
+                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
+                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Hügel = True
             then
                Verbesserungen.Verbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                             BefehlExtern             => GlobaleDatentypen.Mine_Bauen);

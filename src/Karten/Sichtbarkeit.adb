@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
   
-with KartenPruefungen, ZugriffKarten, EinheitSuchen, StadtSuchen, Diplomatie;
+with KartenPruefungen, EinheitSuchen, StadtSuchen, Diplomatie;
 
 package body Sichtbarkeit is
 
@@ -47,7 +47,9 @@ package body Sichtbarkeit is
    is begin
       
       case
-        ZugriffKarten.KartenGrundVereinfachung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund
       is
          when 7 =>
             SichtweiteObjekt := 3;
