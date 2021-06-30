@@ -19,7 +19,7 @@ package DatenbankRecords is
       PreisRessourcen : GlobaleDatentypen.KostenLager;
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
 
-      -- 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
+      -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch (Erde), 7 = Planeteninneres (Gestein), 8 = Lava
       Passierbarkeit : PassierbarkeitArray;
       MaximaleLebenspunkte : Positive;
       MaximaleBewegungspunkte : Float;
@@ -81,7 +81,8 @@ package DatenbankRecords is
 
       KartenGrafik : Wide_Wide_Character;
       
-      Passierbarkeit : GlobaleDatentypen.PassierbarkeitType;
+      -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch (Erde), 7 = Planeteninneres (Gestein), 8 = Lava
+      Passierbarkeit : PassierbarkeitArray;
 
       Nahrungsgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
       Ressourcengewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
@@ -99,7 +100,8 @@ package DatenbankRecords is
 
       VerbesserungGrafik : Wide_Wide_Character;
       
-      Passierbarkeit : GlobaleDatentypen.PassierbarkeitType;
+      -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch (Erde), 7 = Planeteninneres (Gestein), 8 = Lava
+      Passierbarkeit : PassierbarkeitArray;
 
       Nahrungsbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
       Ressourcenbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;

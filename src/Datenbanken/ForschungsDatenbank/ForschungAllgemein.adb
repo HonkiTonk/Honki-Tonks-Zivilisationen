@@ -80,16 +80,14 @@ package body ForschungAllgemein is
         or
           GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate = 0
       then
-         null;
+         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := 10_000;
 
       else
          GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit
            := (ForschungsDatenbank.ForschungListe (RasseExtern, GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt).PreisForschung
                - GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge) / GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
          return;
-      end if;      
-      
-      GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := 10_000;
+      end if;
       
    end ForschungZeit;
 

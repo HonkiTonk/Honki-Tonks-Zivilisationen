@@ -1,78 +1,182 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleKonstanten;
 use GlobaleDatentypen;
 
 with DatenbankRecords;
 
 package VerbesserungenDatenbank is
-
-   LeererWertVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (' ', -- VerbesserungGrafik
-                                                                                       1, -- Passierbarkeit
-                                                                                       0, 0, 0, 0, 0); -- Nahrungsbonus, Ressourcenbonus, Geldbonus, Wissensbonus, Verteidigungsbonus
                                      
-   -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres                                                                  
+   -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch (Erde), 7 = Planeteninneres (Gestein), 8 = Lava
+   
+   -- VerbesserungGrafik, Passierbarkeit
+   -- Nahrungsbonus, Ressourcenbonus, Geldbonus, Wissensbonus, Verteidigungsbonus
+   
    type VerbesserungListeArray is array (GlobaleDatentypen.KartenVerbesserung'Range) of DatenbankRecords.VerbesserungListeRecord;
-   VerbesserungListe : VerbesserungListeArray := (LeererWertVerbesserungListe, -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-                                                  ('♣',    1,    0, 0, 0, 0, 3), -- 1 Eigene Hauptstadt
-                                                  ('♠',    1,    0, 0, 0, 0, 2), -- 2 Eigene Stadt
-                                                  ('⌂',    1,    0, 0, 0, 0, 3), -- 3 Andere Hauptstadt
-                                                  ('¤',    1,    0, 0, 0, 0, 2), -- 4 Andere Stadt
-                                                  ('╬',    1,    0, 0, 1, 0, 0), -- 5 Straßenkreuzung
-                                                  ('═',    1,    0, 0, 1, 0, 0), -- 6 Straße waagrecht
-                                                  ('║',    1,    0, 0, 1, 0, 0), -- 7 Straße senkrecht
-                                                  ('╔',    1,    0, 0, 1, 0, 0), -- 8 Straßenkurve
-                                                  ('╗',    1,    0, 0, 1, 0, 0), -- 9 Straßenkurve
-
-                                                  ('╚',    1,    0, 0, 1, 0, 0), -- 10 Straßenkurve
-                                                  ('╝',    1,    0, 0, 1, 0, 0), -- 11 Straßenkurve
-                                                  ('╩',    1,    0, 0, 1, 0, 0), -- 12 Straßenkreuzung
-                                                  ('╦',    1,    0, 0, 1, 0, 0), -- 13 Straßenkreuzung
-
-                                                  ('╠',    1,    0, 0, 1, 0, 0), -- 14 Straßenkreuzung
-                                               
-                                                  ('╣',    1,    0, 0, 1, 0, 0), -- 15 Straßenkreuzung
-                                                  ('╞',    1,    0, 0, 1, 0, 0), -- 16 Straßenendstück links
-                                                  ('╡',    1,    0, 0, 1, 0, 0), -- 17 Straßenendstück rechts
-                                                  ('╨',    1,    0, 0, 1, 0, 0), -- 18 Straßenendstück unten
-                                                  ('╥',    1,    0, 0, 1, 0, 0), -- 19 Straßenendstück oben
-                                                  ('F',    1,    2, 0, 1, 0, 1), -- 20 Farm
-                                                  ('M',    1,    0, 2, 1, 0, 1), -- 21 Mine
-                                                  ('B',    1,    0, 0, 0, 0, 2), -- 22 Festung
-                                                  ('S',    3,    0, 0, 0, 0, 0), -- 23 Sperre
-                                                  ('▫',    1,    0, 0, 0, 0, 0)); -- 24 Straße einzeln
+   VerbesserungListe : VerbesserungListeArray := (
+                                                  -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
+                                                  0 => GlobaleKonstanten.LeererWertVerbesserungListe,
+                                                  
+                                                  -- Eigene Hauptstadt
+                                                  1 => ('♣', (1 => True, others => False),
+                                                        0, 0, 0, 0, 3),
+                                                  -- Eigene Stadt
+                                                  2 => ('♠', (1 => True, others => False),   
+                                                        0, 0, 0, 0, 2),
+                                                  -- Andere Hauptstadt
+                                                  3 => ('⌂', (1 => True, others => False),
+                                                        0, 0, 0, 0, 3),
+                                                  -- Andere Stadt
+                                                  4 => ('¤', (1 => True, others => False),
+                                                        0, 0, 0, 0, 2),
+                                                  
+                                                  -- Straßenkreuzung
+                                                  5 => ('╬', (1 => True, others => False),
+                                                        0, 0, 1, 0, 0),
+                                                  -- Straße waagrecht
+                                                  6 => ('═', (1 => True, others => False),
+                                                        0, 0, 1, 0, 0),
+                                                  -- Straße senkrecht
+                                                  7 => ('║', (1 => True, others => False),
+                                                        0, 0, 1, 0, 0),
+                                                  -- Straßenkurve
+                                                  8 => ('╔', (1 => True, others => False),
+                                                        0, 0, 1, 0, 0),
+                                                  -- Straßenkurve
+                                                  9 => ('╗', (1 => True, others => False),
+                                                        0, 0, 1, 0, 0),
+                                                  -- Straßenkurve
+                                                  10 => ('╚', (1 => True, others => False),
+                                                         0, 0, 1, 0, 0),
+                                                  -- Straßenkurve
+                                                  11 => ('╝', (1 => True, others => False),
+                                                         0, 0, 1, 0, 0),
+                                                  -- Straßenkreuzung
+                                                  12 => ('╩', (1 => True, others => False),
+                                                         0, 0, 1, 0, 0),
+                                                  -- Straßenkreuzung
+                                                  13 =>('╦', (1 => True, others => False),
+                                                        0, 0, 1, 0, 0),
+                                                  -- Straßenkreuzung
+                                                  14 => ('╠', (1 => True, others => False),
+                                                         0, 0, 1, 0, 0),
+                                                  -- Straßenkreuzung
+                                                  15 => ('╣', (1 => True, others => False),
+                                                         0, 0, 1, 0, 0),
+                                                  -- Straßenendstück links
+                                                  16 => ('╞', (1 => True, others => False),
+                                                         0, 0, 1, 0, 0),
+                                                  -- Straßenendstück rechts
+                                                  17 => ('╡', (1 => True, others => False),
+                                                         0, 0, 1, 0, 0),
+                                                  -- Straßenendstück unten
+                                                  18 => ('╨', (1 => True, others => False),
+                                                         0, 0, 1, 0, 0),
+                                                  -- Straßenendstück oben
+                                                  19 => ('╥', (1 => True, others => False),
+                                                         0, 0, 1, 0, 0),
+                                                  
+                                                  -- Farm
+                                                  20 => ('F', (1 => True, others => False),
+                                                         2, 0, 1, 0, 1),
+                                                  -- Mine
+                                                  21 => ('M', (1 => True, others => False),
+                                                         0, 2, 1, 0, 1),
+                                                  -- Festung
+                                                  22 => ('B', (1 => True, others => False),
+                                                         0, 0, 0, 0, 2),
+                                                  -- Sperre
+                                                  23 => ('S', (3 => True, others => False),
+                                                         0, 0, 0, 0, 0),
+                                                  
+                                                  -- Straße einzeln
+                                                  24 => ('▫', (1 => True, others => False),
+                                                         0, 0, 0, 0, 0)
+                                                 );
    
    procedure StandardVerbesserungenDatenbankWiederherstellen;
    
 private
    
-   VerbesserungListeStandard : constant VerbesserungListeArray := (LeererWertVerbesserungListe, -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-                                                                   ('♣',    1,    0, 0, 0, 0, 3), -- 1 Eigene Hauptstadt
-                                                                   ('♠',    1,    0, 0, 0, 0, 2), -- 2 Eigene Stadt
-                                                                   ('⌂',    1,    0, 0, 0, 0, 3), -- 3 Andere Hauptstadt
-                                                                   ('¤',    1,    0, 0, 0, 0, 2), -- 4 Andere Stadt
-                                                                   ('╬',    1,    0, 0, 1, 0, 0), -- 5 Straßenkreuzung
-                                                                   ('═',    1,    0, 0, 1, 0, 0), -- 6 Straße waagrecht
-                                                                   ('║',    1,    0, 0, 1, 0, 0), -- 7 Straße senkrecht
-                                                                   ('╔',    1,    0, 0, 1, 0, 0), -- 8 Straßenkurve
-                                                                   ('╗',    1,    0, 0, 1, 0, 0), -- 9 Straßenkurve
-
-                                                                   ('╚',    1,    0, 0, 1, 0, 0), -- 10 Straßenkurve
-                                                                   ('╝',    1,    0, 0, 1, 0, 0), -- 11 Straßenkurve
-                                                                   ('╩',    1,    0, 0, 1, 0, 0), -- 12 Straßenkreuzung
-                                                                   ('╦',    1,    0, 0, 1, 0, 0), -- 13 Straßenkreuzung
-
-                                                                   ('╠',    1,    0, 0, 1, 0, 0), -- 14 Straßenkreuzung
-                                               
-                                                                   ('╣',    1,    0, 0, 1, 0, 0), -- 15 Straßenkreuzung
-                                                                   ('╞',    1,    0, 0, 1, 0, 0), -- 16 Straßenendstück links
-                                                                   ('╡',    1,    0, 0, 1, 0, 0), -- 17 Straßenendstück rechts
-                                                                   ('╨',    1,    0, 0, 1, 0, 0), -- 18 Straßenendstück unten
-                                                                   ('╥',    1,    0, 0, 1, 0, 0), -- 19 Straßenendstück oben
-                                                                   ('F',    1,    2, 0, 1, 0, 1), -- 20 Farm
-                                                                   ('M',    1,    0, 2, 1, 0, 1), -- 21 Mine
-                                                                   ('B',    1,    0, 0, 0, 0, 2), -- 22 Festung
-                                                                   ('S',    3,    0, 0, 0, 0, 0), -- 23 Sperre
-                                                                   ('▫',    1,    0, 0, 0, 0, 0)); -- 24 Straße einzeln
+   VerbesserungListeStandard : constant VerbesserungListeArray := (
+                                                                   -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
+                                                                   0 => GlobaleKonstanten.LeererWertVerbesserungListe,
+                                                  
+                                                                   -- Eigene Hauptstadt
+                                                                   1 => ('♣', (1 => True, others => False),
+                                                                         0, 0, 0, 0, 3),
+                                                                   -- Eigene Stadt
+                                                                   2 => ('♠', (1 => True, others => False),   
+                                                                         0, 0, 0, 0, 2),
+                                                                   -- Andere Hauptstadt
+                                                                   3 => ('⌂', (1 => True, others => False),
+                                                                         0, 0, 0, 0, 3),
+                                                                   -- Andere Stadt
+                                                                   4 => ('¤', (1 => True, others => False),
+                                                                         0, 0, 0, 0, 2),
+                                                  
+                                                                   -- Straßenkreuzung
+                                                                   5 => ('╬', (1 => True, others => False),
+                                                                         0, 0, 1, 0, 0),
+                                                                   -- Straße waagrecht
+                                                                   6 => ('═', (1 => True, others => False),
+                                                                         0, 0, 1, 0, 0),
+                                                                   -- Straße senkrecht
+                                                                   7 => ('║', (1 => True, others => False),
+                                                                         0, 0, 1, 0, 0),
+                                                                   -- Straßenkurve
+                                                                   8 => ('╔', (1 => True, others => False),
+                                                                         0, 0, 1, 0, 0),
+                                                                   -- Straßenkurve
+                                                                   9 => ('╗', (1 => True, others => False),
+                                                                         0, 0, 1, 0, 0),
+                                                                   -- Straßenkurve
+                                                                   10 => ('╚', (1 => True, others => False),
+                                                                          0, 0, 1, 0, 0),
+                                                                   -- Straßenkurve
+                                                                   11 => ('╝', (1 => True, others => False),
+                                                                          0, 0, 1, 0, 0),
+                                                                   -- Straßenkreuzung
+                                                                   12 => ('╩', (1 => True, others => False),
+                                                                          0, 0, 1, 0, 0),
+                                                                   -- Straßenkreuzung
+                                                                   13 =>('╦', (1 => True, others => False),
+                                                                         0, 0, 1, 0, 0),
+                                                                   -- Straßenkreuzung
+                                                                   14 => ('╠', (1 => True, others => False),
+                                                                          0, 0, 1, 0, 0),
+                                                                   -- Straßenkreuzung
+                                                                   15 => ('╣', (1 => True, others => False),
+                                                                          0, 0, 1, 0, 0),
+                                                                   -- Straßenendstück links
+                                                                   16 => ('╞', (1 => True, others => False),
+                                                                          0, 0, 1, 0, 0),
+                                                                   -- Straßenendstück rechts
+                                                                   17 => ('╡', (1 => True, others => False),
+                                                                          0, 0, 1, 0, 0),
+                                                                   -- Straßenendstück unten
+                                                                   18 => ('╨', (1 => True, others => False),
+                                                                          0, 0, 1, 0, 0),
+                                                                   -- Straßenendstück oben
+                                                                   19 => ('╥', (1 => True, others => False),
+                                                                          0, 0, 1, 0, 0),
+                                                  
+                                                                   -- Farm
+                                                                   20 => ('F', (1 => True, others => False),
+                                                                          2, 0, 1, 0, 1),
+                                                                   -- Mine
+                                                                   21 => ('M', (1 => True, others => False),
+                                                                          0, 2, 1, 0, 1),
+                                                                   -- Festung
+                                                                   22 => ('B', (1 => True, others => False),
+                                                                          0, 0, 0, 0, 2),
+                                                                   -- Sperre
+                                                                   23 => ('S', (3 => True, others => False),
+                                                                          0, 0, 0, 0, 0),
+                                                  
+                                                                   -- Straße einzeln
+                                                                   24 => ('▫', (1 => True, others => False),
+                                                                          0, 0, 0, 0, 0)
+                                                                  );
    
 end VerbesserungenDatenbank;

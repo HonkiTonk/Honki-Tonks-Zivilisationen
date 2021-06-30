@@ -86,31 +86,31 @@ package GlobaleKonstanten is
                                                        2 => GlobaleDatentypen.BelegterGrund (9) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
                                                  10 => (1 => GlobaleDatentypen.BelegterGrund (10) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (10) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                        2 => GlobaleDatentypen.BelegterGrund (10) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
                                                  11 => (1 => GlobaleDatentypen.BelegterGrund (11) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (11) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                        2 => GlobaleDatentypen.BelegterGrund (11) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
                                                  12 => (1 => GlobaleDatentypen.BelegterGrund (12) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (12) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                        2 => GlobaleDatentypen.BelegterGrund (12) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
                                                  13 => (1 => GlobaleDatentypen.BelegterGrund (13) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (13) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                        2 => GlobaleDatentypen.BelegterGrund (13) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
                                                  14 => (1 => GlobaleDatentypen.BelegterGrund (14) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (14) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                        2 => GlobaleDatentypen.BelegterGrund (14) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
                                                  15 => (1 => GlobaleDatentypen.BelegterGrund (15) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (15) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                        2 => GlobaleDatentypen.BelegterGrund (15) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
                                                  16 => (1 => GlobaleDatentypen.BelegterGrund (16) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (16) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                        2 => GlobaleDatentypen.BelegterGrund (16) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
                                                  17 => (1 => GlobaleDatentypen.BelegterGrund (17) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (17) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                        2 => GlobaleDatentypen.BelegterGrund (17) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
                                                  18 => (1 => GlobaleDatentypen.BelegterGrund (18) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (18) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)));
+                                                        2 => GlobaleDatentypen.BelegterGrund (18) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)));
    -- Für Einheiten/Städte
 
 
@@ -130,46 +130,106 @@ package GlobaleKonstanten is
 
 
    -- Für die Leerwerte
-   LeererWertCursor : constant GlobaleRecords.CursorRecord := ('©',       -- CursorGrafik
-                                                               (0, 0, 0), -- AchsenPosition
-                                                               (0, 0, 0), -- AchsenPositionAlt
-                                                               (1, 1));   -- AchsenPositionStadt
+   LeererWertCursor : constant GlobaleRecords.CursorRecord := (
+                                                               -- CursorGrafik
+                                                               '©',
+                                                               -- AchsenPosition
+                                                               (0, 0, 0),
+                                                               -- AchsenPositionAlt
+                                                               (0, 0, 0),
+                                                               -- AchsenPositionStadt
+                                                               (1, 1)
+                                                              );
 
-   LeererWertEinheit : constant GlobaleRecords.EinheitenGebautRecord := (0, (0, 0, 0), -- ID, AchsenPosition
-                                                                         0, 0.00, 0, 0, -- Aktuelle Lebenspunkte, Aktuelle Bewegungspunkte, Aktuelle Erfahrungspunkte, Aktueller Rang
-                                                                         GlobaleDatentypen.Keine, GlobaleDatentypen.Keine, -- Aktuelle Beschäftigung, Zweite Beschäftigung
-                                                                         0, 0, -- Aktuelle Beschäftigungszeit, Zweite AktuelleBeschäftigungszeit
-                                                                         (0, 0, 0), KIDatentypen.Keine_Aufgabe, (others => (0, 0, 0)), -- Zielkoordinaten der KI, Beschäftigung der KI, Bewegungsplan der KI
-                                                                         (others => 0), 0); -- Platznummer der transportierten Einheiten, Platznummer der transportierenden Einheit
+   LeererWertEinheit : constant GlobaleRecords.EinheitenGebautRecord := (
+                                                                         -- ID, AchsenPosition
+                                                                         0, (0, 0, 0),
+                                                                         -- Aktuelle Lebenspunkte, Aktuelle Bewegungspunkte, Aktuelle Erfahrungspunkte, Aktueller Rang
+                                                                         0, 0.00, 0, 0,
+                                                                         -- Aktuelle Beschäftigung, Zweite Beschäftigung
+                                                                         GlobaleDatentypen.Keine, GlobaleDatentypen.Keine,
+                                                                         -- Aktuelle Beschäftigungszeit, Zweite AktuelleBeschäftigungszeit
+                                                                         0, 0,
+                                                                         -- Zielkoordinaten der KI, Beschäftigung der KI, Bewegungsplan der KI
+                                                                         (0, 0, 0), KIDatentypen.Keine_Aufgabe, (others => (0, 0, 0)),
+                                                                         -- Platznummer der transportierten Einheiten, Platznummer der transportierenden Einheit
+                                                                         (others => 0), 0
+                                                                        );
 
-   LeererWertStadt : constant GlobaleRecords.StadtGebautRecord := (0, (0, 0, 0), False, (0 , 0),
+   LeererWertStadt : constant GlobaleRecords.StadtGebautRecord := (
                                                                    -- ID, AchsenPosition, Am Wasser, (Einwohner, Arbeiter)
-                                                                   0, 0, 0, 0,
+                                                                   0, (0, 0, 0), False, (0 , 0),
                                                                    -- Aktuelle Nahrungsmittel, Aktuelle Nahrungsproduktion, Aktuelle Ressourcen, Aktuelle Produktionrate
                                                                    0, 0, 0, 0,
                                                                    -- Aktuelle Geldgewinnung, Aktuelle Forschungsrate, Aktuelles Bauprojekt, Verbleibende Bauzeit
-                                                                   0, (others => False), To_Unbounded_Wide_Wide_String (Source => ""),
+                                                                   0, 0, 0, 0,
                                                                    -- Korruption, Gebäude Vorhanden, Stadtname
-                                                                   (others => (others => False)), 1,
+                                                                   0, (others => False), To_Unbounded_Wide_Wide_String (Source => ""),
                                                                    -- UmgebungBewirtschaftung, UmgebungGröße
-                                                                   (others => GlobaleDatentypen.Keine),
+                                                                   (others => (others => False)), 1,
                                                                    -- Aktuelle Meldungen
-                                                                   KIDatentypen.Keine_Aufgabe);
-   -- KI aktuelle Beschäftigung
+                                                                   (others => GlobaleDatentypen.Keine),
+                                                                   -- KI aktuelle Beschäftigung
+                                                                   KIDatentypen.Keine_Aufgabe
+                                                                  );
 
-   LeererWertWichtigesZeug : constant GlobaleRecords.WichtigesRecord := (0, 0, -- Aktuelle Geldmenge, GeldZugewinn Pro Runde
-                                                                         0, 0, 10_000, 0, -- Forschungsrate, Aktuelle Forschungsmenge, Verbleibende Forschungszeit, Forschungsprojekt
-                                                                         (others => False)); -- Erforscht
+   LeererWertWichtigesZeug : constant GlobaleRecords.WichtigesRecord := (
+                                                                         -- Aktuelle Geldmenge, GeldZugewinn Pro Runde
+                                                                         0, 0,
+                                                                         -- Forschungsrate, Aktuelle Forschungsmenge, Verbleibende Forschungszeit, Forschungsprojekt
+                                                                         0, 0, 10_000, 0,
+                                                                         -- Erforscht
+                                                                         (others => False)
+                                                                        );
 
-   LeererWertKartenListe : constant DatenbankRecords.KartenListeRecord := (' ', -- KartenGrafik
-                                                                           1, -- Passierbarkeit
-                                                                           0, 0, 0, 0, 0); -- Nahrungsgewinnung, Ressourcengewinnung, Geldgewinnung, Wissensgewinnung, Verteidigungsbonus
+   LeererWertKartenListe : constant DatenbankRecords.KartenListeRecord := (
+                                                                           -- KartenGrafik, Passierbarkeit
+                                                                           ' ', (others => False),
+                                                                           -- Nahrungsgewinnung, Ressourcengewinnung, Geldgewinnung, Wissensgewinnung, Verteidigungsbonus
+                                                                           0, 0, 0, 0, 0
+                                                                          );
 
-   LeererWertWeltkarte : constant GlobaleRecords.KartenRecord := (0, False, (others => False), -- Kartengrund, Ist da ein Hügel?, Welche Rasse kann was sehen
-                                                                  0, 0, 0, 0, -- Welcher Fluss, Welche Straße, Welche Verbesserung, Welche Ressource
-                                                                  0, 0); -- Durch welche Stadt welcher Rasse belegter Grund, Felderbewertung
-                                                                         -- Für die Leerwerte
+   LeererWertWeltkarte : constant GlobaleRecords.KartenRecord := (
+                                                                  -- Kartengrund, Ist da ein Hügel?, Welche Rasse kann was sehen
+                                                                  0, False, (others => False),
+                                                                  -- Welcher Fluss, Welche Straße, Welche Verbesserung, Welche Ressource
+                                                                  0, 0, 0, 0,
+                                                                  -- Durch welche Stadt welcher Rasse belegter Grund, Felderbewertung
+                                                                  0, 0
+                                                                 );
 
+   LeererWertVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
+                                                                                       -- VerbesserungGrafik, Passierbarkeit
+                                                                                       ' ', (others => False),
+                                                                                       -- Nahrungsbonus, Ressourcenbonus, Geldbonus, Wissensbonus, Verteidigungsbonus
+                                                                                       0, 0, 0, 0, 0
+                                                                                      );
+
+   LeererWertEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (
+                                                                               -- EinheitenGrafik
+                                                                               '@',
+                                                                               -- EinheitTyp, PreisGeld, PreisRessourcen, Anforderungen
+                                                                               1, 0, 0, 0,
+                                                                               -- Passierbarkeit, MaximaleLebenspunkte, MaximaleBewegungspunkte
+                                                                               (others => False), 1, 0.00,
+                                                                               -- Beförderungsgrenze, MaximalerRang, Reichweite, Angriff, Verteidigung
+                                                                               1, 1, 0, 0, 1,
+                                                                               -- Kann Dinge transportieren, Kann transportiert werden, Transportkapazität
+                                                                               0, 0, 0
+                                                                              );
+
+   LeererWertForschungListe : constant DatenbankRecords.ForschungListeRecord := (
+                                                                                 -- PreisForschung, AnforderungForschung
+                                                                                 0, (others => 0)
+                                                                                );
+
+   LeererWertGebäudeListe : constant DatenbankRecords.GebäudeListeRecord := (
+                                                                               -- GebäudeGrafik, PreisGeld, PreisRessourcen, Anforderungen, PermanenteKosten
+                                                                               ' ', 0, 0, 0, 0,
+                                                                               -- ProduktionBonus, GeldBonus, WissenBonus, VerteidigungBonus, NahrungBonus, Anderes
+                                                                               0, 0, 0, 0, 0, False
+                                                                              );
+   -- Für die Leerwerte
 
    -- Für die grafische Anzeige
    NichtSichtbar : constant Wide_Wide_Character := ' ';

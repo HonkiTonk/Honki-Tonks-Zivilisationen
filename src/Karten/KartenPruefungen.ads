@@ -43,7 +43,7 @@ package KartenPruefungen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
          Post =>
-           ((if
+           ((if -- Hier kommt der Fehler, mal nachprüfen
                       KartenPositionBestimmen'Result.YAchse = 0
                         then
                           KartenPositionBestimmen'Result.XAchse = 0)

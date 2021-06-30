@@ -83,6 +83,8 @@ package body KISiedlerAufgabeDurchfuehren is
                Verbesserungen.Verbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                             BefehlExtern             => GlobaleDatentypen.Farm_Bauen);
             end if;
+            
+            return;
       
          when others =>
             null;

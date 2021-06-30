@@ -1,199 +1,502 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleKonstanten;
 use GlobaleDatentypen;
 
 with DatenbankRecords;
 
 package ForschungsDatenbank is
 
-   LeererWertForschungListe : constant DatenbankRecords.ForschungListeRecord := (0, (others => 0)); -- PreisForschung, AnforderungForschung
+   -- PreisForschung, AnforderungForschung
 
    type ForschungListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.ForschungID'Range) of DatenbankRecords.ForschungListeRecord;
-   ForschungListe : ForschungListeArray := (1 => (1 => (100, (others => 0)), -- Einfache Landwirtschaft
-                                                  2 => (100, (others => 0)), -- Straßen
-                                                  3 => (100, (others => 0)), -- Mineralienkunde
-                                                  4 => (100, (others => 0)), -- Schrift
-                                                  5 => (100, (others => 0)), -- Primitive Werkzeuge
+   ForschungListe : ForschungListeArray := (
+                                            1 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                                  6 => (250, (2, 0, 0, 0)), -- Rad
-                                                  7 => (250, (4, 0, 0, 0)), -- Mathematik
-                                                  8 => (250, (3, 5, 0, 0)), -- Metallverarbeitung
-                                                  9 => (250, (5, 0, 0, 0)), -- Steinbearbeitung
-                                                  10 => (250, (5, 7, 0, 0)), -- Frühe Konstruktionen
-                                                  11 => (250, (0, 0, 0, 0)), -- Ägyptisches Nilschiff
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                  others => LeererWertForschungListe),
+                                            2 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                            2 => (1 => (100, (others => 0)), --
-                                                  2 => (100, (others => 0)), --
-                                                  3 => (100, (others => 0)), --
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                  4 => (250, (1, 2, 0, 0)), --
-                                                  5 => (250, (2, 3, 0, 0)), --
-                                                  6 => (250, (4, 0, 0, 0)), --
+                                            3 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                                  others => LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            3 => (1 => (100, (others => 0)), --
-                                                  2 => (100, (others => 0)), --
-                                                  3 => (100, (others => 0)), --
+                                            4 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                                  4 => (250, (1, 2, 0, 0)), --
-                                                  5 => (250, (2, 3, 0, 0)), --
-                                                  6 => (250, (4, 0, 0, 0)), --
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                  others => LeererWertForschungListe),
+                                            5 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                            4 => (1 => (100, (others => 0)), --
-                                                  2 => (100, (others => 0)), --
-                                                  3 => (100, (others => 0)), --
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                  4 => (250, (1, 2, 0, 0)), --
-                                                  5 => (250, (2, 3, 0, 0)), --
-                                                  6 => (250, (4, 0, 0, 0)), --
+                                            6 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                                  others => LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            5 => (1 => (100, (others => 0)), --
-                                                  2 => (100, (others => 0)), --
-                                                  3 => (100, (others => 0)), --
+                                            7 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                                  4 => (250, (1, 2, 0, 0)), --
-                                                  5 => (250, (2, 3, 0, 0)), --
-                                                  6 => (250, (4, 0, 0, 0)), --
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                  others => LeererWertForschungListe),
+                                            8 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                            6 => (1 => (100, (others => 0)), --
-                                                  2 => (100, (others => 0)), --
-                                                  3 => (100, (others => 0)), --
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                  4 => (250, (1, 2, 0, 0)), --
-                                                  5 => (250, (2, 3, 0, 0)), --
-                                                  6 => (250, (4, 0, 0, 0)), --
+                                            9 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                                  others => LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            7 => (1 => (100, (others => 0)), --
-                                                  2 => (100, (others => 0)), --
-                                                  3 => (100, (others => 0)), --
+                                            10 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                                  4 => (250, (1, 2, 0, 0)), --
-                                                  5 => (250, (2, 3, 0, 0)), --
-                                                  6 => (250, (4, 0, 0, 0)), --
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                  others => LeererWertForschungListe),
+                                            11 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                            8 => (1 => (100, (others => 0)), --
-                                                  2 => (100, (others => 0)), --
-                                                  3 => (100, (others => 0)), --
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                  4 => (250, (1, 2, 0, 0)), --
-                                                  5 => (250, (2, 3, 0, 0)), --
-                                                  6 => (250, (4, 0, 0, 0)), --
+                                            12 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                                  others => LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            9 => (1 => (100, (others => 0)), --
-                                                  2 => (100, (others => 0)), --
-                                                  3 => (100, (others => 0)), --
+                                            13 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                                  4 => (250, (1, 2, 0, 0)), --
-                                                  5 => (250, (2, 3, 0, 0)), --
-                                                  6 => (250, (4, 0, 0, 0)), --
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                  others => LeererWertForschungListe),
+                                            14 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                            10 => (1 => (100, (others => 0)), --
-                                                   2 => (100, (others => 0)), --
-                                                   3 => (100, (others => 0)), --
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                   4 => (250, (1, 2, 0, 0)), --
-                                                   5 => (250, (2, 3, 0, 0)), --
-                                                   6 => (250, (4, 0, 0, 0)), --
+                                            15 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                                   others => LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            11 => (1 => (100, (others => 0)), --
-                                                   2 => (100, (others => 0)), --
-                                                   3 => (100, (others => 0)), --
+                                            16 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                                   4 => (250, (1, 2, 0, 0)), --
-                                                   5 => (250, (2, 3, 0, 0)), --
-                                                   6 => (250, (4, 0, 0, 0)), --
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                   others => LeererWertForschungListe),
+                                            17 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                            12 => (1 => (100, (others => 0)), --
-                                                   2 => (100, (others => 0)), --
-                                                   3 => (100, (others => 0)), --
+                                               others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                   4 => (250, (1, 2, 0, 0)), --
-                                                   5 => (250, (2, 3, 0, 0)), --
-                                                   6 => (250, (4, 0, 0, 0)), --
+                                            18 =>
+                                              (
+                                               -- Einfache Landwirtschaft
+                                               1 => (100, (others => 0)),
+                                               -- Straßen
+                                               2 => (100, (others => 0)),
+                                               -- Mineralienkunde
+                                               3 => (100, (others => 0)),
+                                               -- Schrift
+                                               4 => (100, (others => 0)),
+                                               -- Primitive Werkzeuge
+                                               5 => (100, (others => 0)),
+                                               -- Rad
+                                               6 => (250, (2, 0, 0, 0)),
+                                               -- Mathematik
+                                               7 => (250, (4, 0, 0, 0)),
+                                               -- Metallverarbeitung
+                                               8 => (250, (3, 5, 0, 0)),
+                                               -- Steinbearbeitung
+                                               9 => (250, (5, 0, 0, 0)),
+                                               -- Frühe Konstruktionen
+                                               10 => (250, (5, 7, 0, 0)),
+                                               -- Ägyptisches Nilschiff
+                                               11 => (250, (0, 0, 0, 0)),
 
-                                                   others => LeererWertForschungListe),
-
-                                            13 => (1 => (100, (others => 0)), --
-                                                   2 => (100, (others => 0)), --
-                                                   3 => (100, (others => 0)), --
-
-                                                   4 => (250, (1, 2, 0, 0)), --
-                                                   5 => (250, (2, 3, 0, 0)), --
-                                                   6 => (250, (4, 0, 0, 0)), --
-
-                                                   others => LeererWertForschungListe),
-
-                                            14 => (1 => (100, (others => 0)), --
-                                                   2 => (100, (others => 0)), --
-                                                   3 => (100, (others => 0)), --
-
-                                                   4 => (250, (1, 2, 0, 0)), --
-                                                   5 => (250, (2, 3, 0, 0)), --
-                                                   6 => (250, (4, 0, 0, 0)), --
-
-                                                   others => LeererWertForschungListe),
-
-                                            15 => (1 => (100, (others => 0)), --
-                                                   2 => (100, (others => 0)), --
-                                                   3 => (100, (others => 0)), --
-
-                                                   4 => (250, (1, 2, 0, 0)), --
-                                                   5 => (250, (2, 3, 0, 0)), --
-                                                   6 => (250, (4, 0, 0, 0)), --
-
-                                                   others => LeererWertForschungListe),
-
-                                            16 => (1 => (100, (others => 0)), --
-                                                   2 => (100, (others => 0)), --
-                                                   3 => (100, (others => 0)), --
-
-                                                   4 => (250, (1, 2, 0, 0)), --
-                                                   5 => (250, (2, 3, 0, 0)), --
-                                                   6 => (250, (4, 0, 0, 0)), --
-
-                                                   others => LeererWertForschungListe),
-
-                                            17 => (1 => (100, (others => 0)), --
-                                                   2 => (100, (others => 0)), --
-                                                   3 => (100, (others => 0)), --
-
-                                                   4 => (250, (1, 2, 0, 0)), --
-                                                   5 => (250, (2, 3, 0, 0)), --
-                                                   6 => (250, (4, 0, 0, 0)), --
-
-                                                   others => LeererWertForschungListe),
-
-                                            18 => (1 => (100, (others => 0)), --
-                                                   2 => (100, (others => 0)), --
-                                                   3 => (100, (others => 0)), --
-
-                                                   4 => (250, (1, 2, 0, 0)), --
-                                                   5 => (250, (2, 3, 0, 0)), --
-                                                   6 => (250, (4, 0, 0, 0)), --
-
-                                                   others => LeererWertForschungListe));
+                                               others => GlobaleKonstanten.LeererWertForschungListe)
+                                           );
 
    procedure StandardForschungsDatenbankWiederherstellen;
 
@@ -219,189 +522,492 @@ package ForschungsDatenbank is
 
 private
 
-   ForschungListeStandard : constant ForschungListeArray := (1 => (1 => (100, (others => 0)), -- Einfache Landwirtschaft
-                                                                   2 => (100, (others => 0)), -- Straßen
-                                                                   3 => (100, (others => 0)), -- Mineralienkunde
-                                                                   4 => (100, (others => 0)), -- Schrift
-                                                                   5 => (100, (others => 0)), -- Primitive Werkzeuge
+   ForschungListeStandard : constant ForschungListeArray := (
+                                                             1 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                                   6 => (250, (2, 0, 0, 0)), -- Rad
-                                                                   7 => (250, (4, 0, 0, 0)), -- Mathematik
-                                                                   8 => (250, (3, 5, 0, 0)), -- Metallverarbeitung
-                                                                   9 => (250, (5, 0, 0, 0)), -- Steinbearbeitung
-                                                                   10 => (250, (5, 7, 0, 0)), -- Frühe Konstruktionen
-                                                                   11 => (250, (0, 0, 0, 0)), -- Ägyptisches Nilschiff
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                                   others => LeererWertForschungListe),
+                                                             2 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                             2 => (1 => (100, (others => 0)), --
-                                                                   2 => (100, (others => 0)), --
-                                                                   3 => (100, (others => 0)), --
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                                   4 => (250, (1, 2, 0, 0)), --
-                                                                   5 => (250, (2, 3, 0, 0)), --
-                                                                   6 => (250, (4, 0, 0, 0)), --
+                                                             3 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                                   others => LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             3 => (1 => (100, (others => 0)), --
-                                                                   2 => (100, (others => 0)), --
-                                                                   3 => (100, (others => 0)), --
+                                                             4 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                                   4 => (250, (1, 2, 0, 0)), --
-                                                                   5 => (250, (2, 3, 0, 0)), --
-                                                                   6 => (250, (4, 0, 0, 0)), --
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                                   others => LeererWertForschungListe),
+                                                             5 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                             4 => (1 => (100, (others => 0)), --
-                                                                   2 => (100, (others => 0)), --
-                                                                   3 => (100, (others => 0)), --
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                                   4 => (250, (1, 2, 0, 0)), --
-                                                                   5 => (250, (2, 3, 0, 0)), --
-                                                                   6 => (250, (4, 0, 0, 0)), --
+                                                             6 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                                   others => LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             5 => (1 => (100, (others => 0)), --
-                                                                   2 => (100, (others => 0)), --
-                                                                   3 => (100, (others => 0)), --
+                                                             7 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                                   4 => (250, (1, 2, 0, 0)), --
-                                                                   5 => (250, (2, 3, 0, 0)), --
-                                                                   6 => (250, (4, 0, 0, 0)), --
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                                   others => LeererWertForschungListe),
+                                                             8 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                             6 => (1 => (100, (others => 0)), --
-                                                                   2 => (100, (others => 0)), --
-                                                                   3 => (100, (others => 0)), --
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                                   4 => (250, (1, 2, 0, 0)), --
-                                                                   5 => (250, (2, 3, 0, 0)), --
-                                                                   6 => (250, (4, 0, 0, 0)), --
+                                                             9 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                                   others => LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             7 => (1 => (100, (others => 0)), --
-                                                                   2 => (100, (others => 0)), --
-                                                                   3 => (100, (others => 0)), --
+                                                             10 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                                   4 => (250, (1, 2, 0, 0)), --
-                                                                   5 => (250, (2, 3, 0, 0)), --
-                                                                   6 => (250, (4, 0, 0, 0)), --
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                                   others => LeererWertForschungListe),
+                                                             11 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                             8 => (1 => (100, (others => 0)), --
-                                                                   2 => (100, (others => 0)), --
-                                                                   3 => (100, (others => 0)), --
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                                   4 => (250, (1, 2, 0, 0)), --
-                                                                   5 => (250, (2, 3, 0, 0)), --
-                                                                   6 => (250, (4, 0, 0, 0)), --
+                                                             12 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                                   others => LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             9 => (1 => (100, (others => 0)), --
-                                                                   2 => (100, (others => 0)), --
-                                                                   3 => (100, (others => 0)), --
+                                                             13 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                                   4 => (250, (1, 2, 0, 0)), --
-                                                                   5 => (250, (2, 3, 0, 0)), --
-                                                                   6 => (250, (4, 0, 0, 0)), --
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                                   others => LeererWertForschungListe),
+                                                             14 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                             10 => (1 => (100, (others => 0)), --
-                                                                    2 => (100, (others => 0)), --
-                                                                    3 => (100, (others => 0)), --
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                                    4 => (250, (1, 2, 0, 0)), --
-                                                                    5 => (250, (2, 3, 0, 0)), --
-                                                                    6 => (250, (4, 0, 0, 0)), --
+                                                             15 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                                    others => LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             11 => (1 => (100, (others => 0)), --
-                                                                    2 => (100, (others => 0)), --
-                                                                    3 => (100, (others => 0)), --
+                                                             16 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                                    4 => (250, (1, 2, 0, 0)), --
-                                                                    5 => (250, (2, 3, 0, 0)), --
-                                                                    6 => (250, (4, 0, 0, 0)), --
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                                    others => LeererWertForschungListe),
+                                                             17 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                             12 => (1 => (100, (others => 0)), --
-                                                                    2 => (100, (others => 0)), --
-                                                                    3 => (100, (others => 0)), --
+                                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                                    4 => (250, (1, 2, 0, 0)), --
-                                                                    5 => (250, (2, 3, 0, 0)), --
-                                                                    6 => (250, (4, 0, 0, 0)), --
+                                                             18 =>
+                                                               (
+                                                                -- Einfache Landwirtschaft
+                                                                1 => (100, (others => 0)),
+                                                                -- Straßen
+                                                                2 => (100, (others => 0)),
+                                                                -- Mineralienkunde
+                                                                3 => (100, (others => 0)),
+                                                                -- Schrift
+                                                                4 => (100, (others => 0)),
+                                                                -- Primitive Werkzeuge
+                                                                5 => (100, (others => 0)),
+                                                                -- Rad
+                                                                6 => (250, (2, 0, 0, 0)),
+                                                                -- Mathematik
+                                                                7 => (250, (4, 0, 0, 0)),
+                                                                -- Metallverarbeitung
+                                                                8 => (250, (3, 5, 0, 0)),
+                                                                -- Steinbearbeitung
+                                                                9 => (250, (5, 0, 0, 0)),
+                                                                -- Frühe Konstruktionen
+                                                                10 => (250, (5, 7, 0, 0)),
+                                                                -- Ägyptisches Nilschiff
+                                                                11 => (250, (0, 0, 0, 0)),
 
-                                                                    others => LeererWertForschungListe),
-
-                                                             13 => (1 => (100, (others => 0)), --
-                                                                    2 => (100, (others => 0)), --
-                                                                    3 => (100, (others => 0)), --
-
-                                                                    4 => (250, (1, 2, 0, 0)), --
-                                                                    5 => (250, (2, 3, 0, 0)), --
-                                                                    6 => (250, (4, 0, 0, 0)), --
-
-                                                                    others => LeererWertForschungListe),
-
-                                                             14 => (1 => (100, (others => 0)), --
-                                                                    2 => (100, (others => 0)), --
-                                                                    3 => (100, (others => 0)), --
-
-                                                                    4 => (250, (1, 2, 0, 0)), --
-                                                                    5 => (250, (2, 3, 0, 0)), --
-                                                                    6 => (250, (4, 0, 0, 0)), --
-
-                                                                    others => LeererWertForschungListe),
-
-                                                             15 => (1 => (100, (others => 0)), --
-                                                                    2 => (100, (others => 0)), --
-                                                                    3 => (100, (others => 0)), --
-
-                                                                    4 => (250, (1, 2, 0, 0)), --
-                                                                    5 => (250, (2, 3, 0, 0)), --
-                                                                    6 => (250, (4, 0, 0, 0)), --
-
-                                                                    others => LeererWertForschungListe),
-
-                                                             16 => (1 => (100, (others => 0)), --
-                                                                    2 => (100, (others => 0)), --
-                                                                    3 => (100, (others => 0)), --
-
-                                                                    4 => (250, (1, 2, 0, 0)), --
-                                                                    5 => (250, (2, 3, 0, 0)), --
-                                                                    6 => (250, (4, 0, 0, 0)), --
-
-                                                                    others => LeererWertForschungListe),
-
-                                                             17 => (1 => (100, (others => 0)), --
-                                                                    2 => (100, (others => 0)), --
-                                                                    3 => (100, (others => 0)), --
-
-                                                                    4 => (250, (1, 2, 0, 0)), --
-                                                                    5 => (250, (2, 3, 0, 0)), --
-                                                                    6 => (250, (4, 0, 0, 0)), --
-
-                                                                    others => LeererWertForschungListe),
-
-                                                             18 => (1 => (100, (others => 0)), --
-                                                                    2 => (100, (others => 0)), --
-                                                                    3 => (100, (others => 0)), --
-
-                                                                    4 => (250, (1, 2, 0, 0)), --
-                                                                    5 => (250, (2, 3, 0, 0)), --
-                                                                    6 => (250, (4, 0, 0, 0)), --
-
-                                                                    others => LeererWertForschungListe));
+                                                                others => GlobaleKonstanten.LeererWertForschungListe)
+                                                            );
 
 end ForschungsDatenbank;
