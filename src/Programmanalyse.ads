@@ -22,7 +22,5 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    procedure DatentypGröße;
-   
-   procedure KartenfelderBewertenTesten;
 
 end Programmanalyse;

@@ -5,8 +5,6 @@ use GlobaleDatentypen;
 
 package StadtWerteFestlegen is
 
-   
-
    procedure BewirtschaftbareFelderBelegen
      (ZuwachsOderSchwundExtern : in Boolean;
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

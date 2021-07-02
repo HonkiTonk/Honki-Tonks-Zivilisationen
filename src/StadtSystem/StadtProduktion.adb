@@ -11,7 +11,8 @@ package body StadtProduktion is
    is begin
       
       case StadtRasseNummerExtern.Rasse is
-         when 0 => -- Überprüfung für alle Rassen bei Runde beenden.
+         -- Überprüfung für alle Rassen bei Runde beenden.
+         when 0 =>
             RassenSchleife:
             for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
                StadtSchleife:
@@ -32,7 +33,8 @@ package body StadtProduktion is
                end loop StadtSchleife;
             end loop RassenSchleife;
          
-         when others => -- Überprüfung beim Bauen einer Stadt
+            -- Überprüfung beim Bauen einer Stadt
+         when others =>
             StadtProduktionPrüfenBerechnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
             Wachstum.WachstumBeiStadtGründung (RasseExtern => StadtRasseNummerExtern.Rasse);
       end case;
@@ -41,7 +43,7 @@ package body StadtProduktion is
    
 
 
-   procedure StadtProduktionPrüfenBerechnung -- Hier auch nach Rasse unterscheiden?
+   procedure StadtProduktionPrüfenBerechnung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -182,7 +184,7 @@ package body StadtProduktion is
 
       if
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate < 0
-        -- Warum sollte die Produktionsrate nicht auch negativ sein können?
+      -- Warum sollte die Produktionsrate nicht auch negativ sein können?
       then
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate := 0;
          

@@ -18,7 +18,7 @@ private
    PrüfungEinheit : Boolean;
    PrüfungGrund : Boolean;
 
-   SpielerAnzahl : Positive; -- 1 .. 18
+   SpielerAnzahl : Positive;
    HauptAuswahl : Integer;
    KartengrößeAuswahl : Integer;
    KartenartAuswahl : Integer;

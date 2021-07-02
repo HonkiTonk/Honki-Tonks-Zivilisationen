@@ -18,7 +18,7 @@ package body StadtInformationen is
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ID
       is
          when 0 =>
-            return; -- Hier später noch eine Fehlermeldung/Exception einbauen?
+            return;
             
          when 1 =>
             if
@@ -251,7 +251,8 @@ package body StadtInformationen is
       case
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt
       is
-         when 0 => -- Nichts                     
+         -- Nichts
+         when 0 =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                            TextDateiExtern        => GlobaleDatentypen.Zeug,
                                            ÜberschriftZeileExtern => 0,
@@ -261,7 +262,8 @@ package body StadtInformationen is
                                            AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                            AbstandEndeExtern      => GlobaleDatentypen.Keiner);
             
-         when 1 .. 9_999 => -- Gebäude
+            -- Gebäude
+         when 1 .. 9_999 =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                            TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Gebäude_Kurz,
                                            ÜberschriftZeileExtern => 0,
@@ -271,7 +273,8 @@ package body StadtInformationen is
                                            AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                            AbstandEndeExtern      => GlobaleDatentypen.Keiner);
 
-         when others => -- Einheiten
+            -- Einheiten
+         when others =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                            TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Einheiten_Kurz,
                                            ÜberschriftZeileExtern => 0,

@@ -63,7 +63,8 @@ package body Eingabe is
       return GlobaleDatentypen.LoopRangeMinusZweiZuZwei
    is begin
 
-      ZahlenSchleife: -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
+      -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
+      ZahlenSchleife:
       loop
 
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
@@ -281,7 +282,8 @@ package body Eingabe is
         To_Wide_Wide_String (Source => Name)'Length
       is
          when 0 =>
-            return To_Unbounded_Wide_Wide_String (Source => "Kein Name"); -- Später noch durch eine Prüfung ersetzen ob das ein nicht leerer Name ist.
+            -- Später noch durch eine Prüfung ersetzen ob das ein nicht leerer Name ist.
+            return To_Unbounded_Wide_Wide_String (Source => "Kein Name");
               
          when others =>
             return Name;
@@ -306,22 +308,26 @@ package body Eingabe is
          then
             Get_Immediate (Item => Taste);
             if
-              Taste = 'A' -- Pfeiltaste hoch
+              -- Pfeiltaste hoch
+              Taste = 'A'
             then
                return 'w';
                
             elsif
-              Taste = 'B' -- Pfeiltaste runter
+              -- Pfeiltaste runter
+              Taste = 'B'
             then
                return 's';
 
             elsif
-              Taste = 'C' -- Pfeiltaste rechts
+              -- Pfeiltaste rechts
+              Taste = 'C'
             then
                return 'd';
                  
             elsif
-              Taste = 'D' -- Pfeiltaste links
+              -- Pfeiltaste links
+              Taste = 'D'
             then
                return 'a';
                  
@@ -355,7 +361,7 @@ package body Eingabe is
    
    
    
-   function Tastenwert -- Überall einbauen/direkt nutzen
+   function Tastenwert
      return Natural
    is begin
       

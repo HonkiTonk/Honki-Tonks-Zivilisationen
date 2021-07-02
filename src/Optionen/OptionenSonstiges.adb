@@ -62,7 +62,8 @@ package body OptionenSonstiges is
                  Erfolgreich = True
                then
                   GlobaleVariablen.NutzerEinstellungen.Sprache := Auswahl.AuswahlSprache;
-                  Erfolgreich := EinlesenText.EinlesenTextNeu; -- Kann hier noch Müll einlesen und Absturz erzeugen
+                  -- Kann hier noch Müll einlesen und Absturz erzeugen
+                  Erfolgreich := EinlesenText.EinlesenTextNeu;
                   
                else
                   null;

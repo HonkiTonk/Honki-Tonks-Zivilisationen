@@ -33,7 +33,8 @@ is begin
                                         AbstandEndeExtern      => GlobaleDatentypen.Keiner);
 
       when False =>
-         Put_Line (Item => "Benötigte Dateien nicht gefunden (Start.EinlesenErgebnis => False)!"); -- Nicht über Anzeige regeln, da die benötigten Dateien ja gar nicht eingelesen wurden!
+         -- Nicht über Anzeige regeln, da die benötigten Dateien ja gar nicht eingelesen wurden!
+         Put_Line (Item => "Benötigte Dateien nicht gefunden (Start.EinlesenErgebnis => False)!");
    end case;
 
 end Start;

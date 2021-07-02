@@ -19,7 +19,8 @@ package body Hauptmenue is
                             ErsteZeileExtern  => 2,
                             LetzteZeileExtern => 7)
          is
-            when GlobaleKonstanten.StartNormalKonstante => -- Start
+            -- Start
+            when GlobaleKonstanten.StartNormalKonstante =>
                RückgabeKampagne := SpielEinstellungen.SpielEinstellungen;
 
                if
@@ -36,7 +37,8 @@ package body Hauptmenue is
                   null;
                end if;
 
-            when GlobaleKonstanten.LadenKonstante => -- Laden
+               -- Laden
+            when GlobaleKonstanten.LadenKonstante =>
                if
                  Laden.LadenNeu = True
                then
@@ -58,7 +60,8 @@ package body Hauptmenue is
                   null;
                end if;
 
-            when GlobaleKonstanten.OptionenKonstante => -- Optionen
+               -- Optionen
+            when GlobaleKonstanten.OptionenKonstante =>
                RückgabeOptionen := Optionen.Optionen;
                if
                  RückgabeOptionen = GlobaleKonstanten.SpielBeendenKonstante
@@ -69,13 +72,16 @@ package body Hauptmenue is
                   null;
                end if;
 
-            when GlobaleKonstanten.InformationenKonstante => -- Informationen
+               -- Informationen
+            when GlobaleKonstanten.InformationenKonstante =>
                Informationen.Informationen;
 
-            when GlobaleKonstanten.WürdigungenKonstante => -- Wuerdigung
+               -- Wuerdigung
+            when GlobaleKonstanten.WürdigungenKonstante =>
                Wuerdigung.Wuerdigung;
 
-            when GlobaleKonstanten.SpielBeendenKonstante => -- Beenden
+               -- Beenden
+            when GlobaleKonstanten.SpielBeendenKonstante =>
                exit HauptmenüSchleife;
 
             when others =>

@@ -73,7 +73,8 @@ package body BefehleImSpiel is
             -- 26 = Heilen, 27 = Verschanzen, 28 = Runde aussetzen, 29 = Einheit auflösen, 30 = Plündern                          
             EinheitBefehle (RasseExtern => RasseExtern);
             
-         when 31 => -- Informationen für Einheiten, Verbesserungen, usw.
+             -- Informationen für Einheiten, Verbesserungen, usw.
+         when 31 =>
             FeldInformationen.Aufteilung (RasseExtern => RasseExtern);
 
          when 32 =>

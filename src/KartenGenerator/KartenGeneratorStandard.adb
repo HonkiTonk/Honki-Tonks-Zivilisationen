@@ -64,7 +64,8 @@ package body KartenGeneratorStandard is
 
       case
         Karten.GeneratorKarte (YAchseExtern, XAchseExtern)
-      is -- Die Werte werden eingetragen, wenn Landmassen erzeugt werden
+      is
+         -- Die Werte werden eingetragen, wenn Landmassen erzeugt werden
          when 1 .. 2 =>
             null;
 
@@ -150,7 +151,8 @@ package body KartenGeneratorStandard is
          end loop XAchseEinsSchleife;
       end loop YAchseEinsSchleife;
       
-      YAchseZweiSchleife: -- Funktioniert nicht mit Kontinenten bei kleinen Karten weil der Abstandswert zu groß ist! An Kartengrößen angepasste Werte anlegen, wie bei der Kartenanzeige.
+      -- Funktioniert nicht mit Kontinenten bei kleinen Karten weil der Abstandswert zu groß ist! An Kartengrößen angepasste Werte anlegen, wie bei der Kartenanzeige.
+      YAchseZweiSchleife:
       for YÄnderungZweiSchleifenwert in -FelderVonLandartZuLandart (Karten.Kartenart) .. FelderVonLandartZuLandart (Karten.Kartenart) loop
          XAchseZweiSchleife:
          for XÄnderungZweiSchleifenwert in -FelderVonLandartZuLandart (Karten.Kartenart) .. FelderVonLandartZuLandart (Karten.Kartenart) loop

@@ -206,10 +206,8 @@ package GlobaleKonstanten is
                                                                                       );
 
    LeererWertEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (
-                                                                               -- EinheitenGrafik
-                                                                               '@',
-                                                                               -- EinheitTyp, PreisGeld, PreisRessourcen, Anforderungen
-                                                                               1, 0, 0, 0,
+                                                                               -- EinheitenGrafik, EinheitTyp, PreisGeld, PreisRessourcen, Anforderungen
+                                                                               '@', 1, 0, 0, 0,
                                                                                -- Passierbarkeit, MaximaleLebenspunkte, MaximaleBewegungspunkte
                                                                                (others => False), 1, 0.00,
                                                                                -- Beförderungsgrenze, MaximalerRang, Reichweite, Angriff, Verteidigung

@@ -6,12 +6,13 @@ use Ada.Calendar;
 package Ladezeiten is
 
    type LadezeitenArray is array (Positive range <>, Positive range <>) of Time;
-   SpielweltErstellenZeit : LadezeitenArray (1 .. 12, 1 .. 2); -- (1 .. 2, 0 .. 11);
+   SpielweltErstellenZeit : LadezeitenArray (1 .. 12, 1 .. 2);
    
-   EinzelneZeiten : LadezeitenArray (1 .. 4, 1 .. 2); -- 1. Startzeit
-                                                      -- 2. Zeit zwischen den Runden
-                                                      -- 3. Zeit zum Speichern
-                                                      -- 4. Zeit zum Laden
+   -- 1. Startzeit
+   -- 2. Zeit zwischen den Runden
+   -- 3. Zeit zum Speichern
+   -- 4. Zeit zum Laden
+   EinzelneZeiten : LadezeitenArray (1 .. 4, 1 .. 2);
                                                       
    KIZeiten : LadezeitenArray (1 .. 19, 1 .. 2);
 

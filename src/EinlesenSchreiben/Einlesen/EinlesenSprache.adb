@@ -29,8 +29,9 @@ package body EinlesenSprache is
             null;
                   
          else
+            -- Alphabetisch in ein Stringarray einlesen und dann entsprechend weitersuchen lassen
             VerzeichnisInnenSchleife:
-            for SpracheSchleifenwert in GlobaleVariablen.SprachenEinlesenArray'Range loop -- Alphabetisch in ein Stringarray einlesen und dann entsprechend weitersuchen lassen
+            for SpracheSchleifenwert in GlobaleVariablen.SprachenEinlesenArray'Range loop
             
                if
                  GlobaleVariablen.SprachenEinlesen (SpracheSchleifenwert) /= "|"

@@ -14,34 +14,44 @@ package body KINahkampfBodenAufgabeFestlegen is
       case
         GewählteAufgabeExtern
       is
-         when 1 => -- Stadt bewachen
+         -- Stadt bewachen
+         when 1 =>
             StadtBewachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 2 => -- Stadtumgebung zerstören
+            -- Stadtumgebung zerstören
+         when 2 =>
             StadtUmgebungZerstören (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 3 => -- Einheit auflösen
+            -- Einheit auflösen
+         when 3 =>
             EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 4 => -- Fliehen
+            -- Fliehen
+         when 4 =>
             Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 5 => -- Sich heilen
+            -- Sich heilen
+         when 5 =>
             Heilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 6 => -- Sich befestigen
+            -- Sich befestigen
+         when 6 =>
             Befestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 7 => -- Einheit verbessern
+            -- Einheit verbessern
+         when 7 =>
             EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 8 => -- Angreifen
+            -- Angreifen
+         when 8 =>
             Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
               
-         when 9 => -- Erkunden
+            -- Erkunden
+         when 9 =>
             Erkunden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when others => -- Nichts tun
+            -- Nichts tun
+         when others =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Keine;
       end case;
@@ -178,15 +188,7 @@ package body KINahkampfBodenAufgabeFestlegen is
                   KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                                                           ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
-                  case
-                    KartenWert.YAchse
-                  is
-                     when 0 =>
-                        exit XAchseSchleife;
-                  
-                     when others =>
-                        null;
-                  end case;
+                  exit XAchseSchleife when KartenWert.YAchse = 0;
                   
                   if
                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Sichtbar (EinheitRasseNummerExtern.Rasse) = False

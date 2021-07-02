@@ -14,28 +14,36 @@ package body KISiedlerAufgabeFestlegen is
       case
         GewählteAufgabeExtern
       is
-         when 1 => -- Stadt bauen
+         -- Stadt bauen
+         when 1 =>
             StadtBauenPrüfung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 2 => -- Stadtumgebung verbessern
+            -- Stadtumgebung verbessern
+         when 2 =>
             StadtUmgebungVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 3 => -- Einheit auflösen
+            -- Einheit auflösen
+         when 3 =>
             EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 4 => -- Fliehen
+            -- Fliehen
+         when 4 =>
             Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 5 => -- Sich heilen
+            -- Sich heilen
+         when 5 =>
             Heilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 6 => -- Sich befestigen
+            -- Sich befestigen
+         when 6 =>
             Befestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 7 => -- Einheit verbessern
+            -- Einheit verbessern
+         when 7 =>
             EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when others => -- Nichts tun
+            -- Nichts tun
+         when others =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Keine;
       end case;
@@ -48,7 +56,8 @@ package body KISiedlerAufgabeFestlegen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      if -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln
+      -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln
+      if
         EinheitRasseNummerExtern.Rasse in 1 .. 5
       then
          MindestBewertungKartenfeld := 90;

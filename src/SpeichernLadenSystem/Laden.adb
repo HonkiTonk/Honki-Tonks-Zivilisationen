@@ -18,7 +18,8 @@ package body Laden is
 
       case
         Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)))
-      is -- Anzeige der vorhandenen Spielstände einbauen
+      is
+         -- Anzeige der vorhandenen Spielstände einbauen
          when True =>
             null;
 
@@ -49,7 +50,8 @@ package body Laden is
                null;
                      
             when others =>
-               Close (File => DateiLadenNeu); -- Hier noch eine Fehlermeldung einbauen
+               -- Hier noch eine Fehlermeldung einbauen
+               Close (File => DateiLadenNeu);
                return False;
          end case;
       end if;

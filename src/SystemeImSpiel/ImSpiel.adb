@@ -27,7 +27,8 @@ package body ImSpiel is
             
                case
                  GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
-               is -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+               is
+                  -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
                   when 0 =>
                      null;
                      
@@ -99,11 +100,13 @@ package body ImSpiel is
             when GlobaleKonstanten.StartNormalKonstante =>
                null;
 
-            when GlobaleKonstanten.SpeichernKonstante => -- Speichern
+               -- Speichern
+            when GlobaleKonstanten.SpeichernKonstante =>
                GlobaleVariablen.RasseAmZugNachLaden := RasseExtern;
                Speichern.SpeichernNeu (AutospeichernExtern => False);
                
-            when GlobaleKonstanten.LadenKonstante => -- Laden
+               -- Laden
+            when GlobaleKonstanten.LadenKonstante =>
                if
                  Laden.LadenNeu = True
                then
@@ -113,7 +116,8 @@ package body ImSpiel is
                   null;
                end if;
                
-            when GlobaleKonstanten.OptionenKonstante => -- Optionen
+               -- Optionen
+            when GlobaleKonstanten.OptionenKonstante =>
                RückgabeOptionen := Optionen.Optionen;
                if
                  RückgabeOptionen = GlobaleKonstanten.SpielBeendenKonstante
@@ -126,10 +130,12 @@ package body ImSpiel is
                   null;
                end if;
                
-            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante => -- Spiel beenden oder Hauptmenü
+               -- Spiel beenden oder Hauptmenü
+            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return AktuellerBefehlSpieler;
 
-            when -1_000 => -- Runde beenden
+               -- Runde beenden
+            when -1_000 =>
                return GlobaleKonstanten.StartNormalKonstante;      
                   
             when others =>

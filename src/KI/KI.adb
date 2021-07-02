@@ -78,7 +78,8 @@ package body KI is
          when 1 =>
             KISiedler.KISiedler (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 2 => -- Bauarbeiter kommt vielleicht später
+            -- Bauarbeiter kommt vielleicht später
+         when 2 =>
             null;
             
          when 3 =>

@@ -188,7 +188,8 @@ package body KartenGeneratorLandschaft is
             end if;
 
             if
-              GrundExtern in 6 .. 7 -- Hügel - Gebirge
+              -- Hügel - Gebirge
+              GrundExtern in 6 .. 7
             then
                null;
                
@@ -210,7 +211,8 @@ package body KartenGeneratorLandschaft is
       case
         GrundExtern
       is
-         when 4 | 5 => -- Tundra - Wüste
+         -- Tundra - Wüste
+         when 4 | 5 =>
             YAchseZweiSchleife:
             for YÄnderungZweiSchleifenwert in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
                XAchseZweiSchleife:

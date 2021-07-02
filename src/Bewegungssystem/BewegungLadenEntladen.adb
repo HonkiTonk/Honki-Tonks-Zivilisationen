@@ -2,9 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitenDatenbank, KartenDatenbank;
-
-with EinheitSuchen, KartenPruefungen;
+with EinheitSuchen, KartenPruefungen, BewegungPassierbarkeitPruefen;
 
 package body BewegungLadenEntladen is
 
@@ -176,8 +174,8 @@ package body BewegungLadenEntladen is
                  and
                    GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
                  and
-                   EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).ID).Passierbarkeit
-                 (KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit) = True
+                   BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)),
+                                                                                      NeuePositionExtern       => KartenWert) = True
                then
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).Position := KartenWert;
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).WirdTransportiert := 0;

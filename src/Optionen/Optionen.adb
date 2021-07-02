@@ -26,16 +26,20 @@ package body Optionen is
             when GlobaleKonstanten.ZurückKonstante | GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return AuswahlWert;
                
-            when 1 => -- Grafik
+                -- Grafik
+            when 1 =>
                OptionenGrafik.OptionenGrafik;
                
-            when 2 => -- Sound
+                -- Sound
+            when 2 =>
                OptionenSound.OptionenSound;
                
-            when 3 => -- Steuerung
+                -- Steuerung
+            when 3 =>
                RückgabeWert := OptionenSteuerung.SteuerungBelegen;
                
-            when 4 => -- Sonstiges
+                -- Sonstiges
+            when 4 =>
                RückgabeWert := OptionenSonstiges.Sonstiges;               
             when others =>
                null;

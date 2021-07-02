@@ -21,7 +21,7 @@ package BewegungPassierbarkeitPruefen is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
    
-   function EinfachePassierbarkeitPrüfen
+   function EinfachePassierbarkeitPrüfenNummer
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return Boolean
@@ -34,8 +34,23 @@ package BewegungPassierbarkeitPruefen is
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
+   
+   function EinfachePassierbarkeitPrüfenID
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      IDExtern : in GlobaleDatentypen.EinheitenID;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+     with
+       Pre =>
+         (NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
 
 private
+   
+   Passierbar : Boolean;
    
    PassierbarkeitNummer : GlobaleDatentypen.PassierbarkeitType;
 
@@ -48,7 +63,7 @@ private
    TransporterNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
    WelcherPlatz : Positive;
-   FreieFelder : Natural;
+   BelegteFelder : Natural;
    Transportplatz : Natural;
    BenötigteFelder : Natural;
    

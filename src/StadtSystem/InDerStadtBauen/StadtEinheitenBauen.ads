@@ -15,6 +15,7 @@ package StadtEinheitenBauen is
    
 private
    
+   BereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
    Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
    
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;

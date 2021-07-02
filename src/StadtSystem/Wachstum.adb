@@ -285,7 +285,8 @@ package body Wachstum is
       elsif
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt
       in
-        1_001 .. 9_999 -- Gebäude
+        -- Gebäude
+        1_001 .. 9_999
       then         
          if
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen
@@ -302,7 +303,8 @@ package body Wachstum is
       elsif
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt
       in
-        10_001 .. 99_999 -- Einheiten
+        -- Einheiten
+        10_001 .. 99_999
       then
          if
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen

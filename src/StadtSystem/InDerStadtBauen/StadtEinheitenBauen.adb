@@ -4,9 +4,7 @@ with GlobaleKonstanten;
 
 with KIDatentypen;
 
-with EinheitenDatenbank, KartenDatenbank;
-
-with Anzeige, Eingabe, Karte, KartenPruefungen, Karten, EinheitSuchen, EinheitenAllgemein;
+with Anzeige, Eingabe, Karte, KartenPruefungen, Karten, EinheitSuchen, EinheitenAllgemein, BewegungPassierbarkeitPruefen;
 
 package body StadtEinheitenBauen is
 
@@ -32,7 +30,6 @@ package body StadtEinheitenBauen is
       end loop EinheitenSchleife;
       
       -- Das hier so ändern dass die Städte gespeichert werden und am Anfang der Spielerrunde erst die Meldungen kommen, dann auch nutzbar für die KI
-      -- GlobaleRecord StadtGebaut um einen Meldewert erweitern
       -- Per Taste abrufbar machen
       -- Auch bei Wachstum direkt berücksichtigen
       if
@@ -59,11 +56,12 @@ package body StadtEinheitenBauen is
       
       BereitsVonEinheitBelegt := 1;
       Umgebung := 1;
+      BereitsGetestet := Umgebung - 1;
       
       BereichSchleife:
       loop
          YAchseSchleife:
-         for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop -- Es gibt Fälle in denen er über Felder loopt über die er schon geloopt hat, später bessere Lösung bauen
+         for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop
             XAchseSchleife:
             for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
             
@@ -74,6 +72,13 @@ package body StadtEinheitenBauen is
             
                -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
                if
+                 BereitsGetestet >= abs (YÄnderungSchleifenwert)
+                 and
+                   BereitsGetestet > 0
+               then
+                  exit XAchseSchleife;
+                  
+               elsif
                  Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
                in
                  GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 2)
@@ -82,10 +87,11 @@ package body StadtEinheitenBauen is
                   if
                     BereitsVonEinheitBelegt = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
                     and
-                      (EinheitenDatenbank.EinheitenListe
-                         (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID
-                            (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt
-                             - GlobaleKonstanten.EinheitAufschlag)).Passierbarkeit (KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit) = True
+                      (BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenID (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                      IDExtern           => GlobaleDatentypen.EinheitenID
+                                                                                        (GlobaleVariablen.StadtGebaut
+                                                                                           (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag),
+                                                                                      NeuePositionExtern => KartenWert) = True
                        or
                          (YÄnderungSchleifenwert = 0
                           and
@@ -104,15 +110,10 @@ package body StadtEinheitenBauen is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
          
-         case
-           Umgebung
-         is
-            when 3 =>
-               exit BereichSchleife;
-               
-            when others =>
-               Umgebung := Umgebung + 1;
-         end case;
+         exit BereichSchleife when Umgebung = 3;
+            
+         Umgebung := Umgebung + 1;
+         BereitsGetestet := Umgebung - 1;
          
       end loop BereichSchleife;
       

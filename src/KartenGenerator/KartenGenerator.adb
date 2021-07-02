@@ -14,8 +14,9 @@ package body KartenGenerator is
    procedure KartenGenerator
    is begin
       
-      Karten.GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2, 10); -- Inseln, Kontinente, Pangäa
+      -- Inseln, Kontinente, Pangäa
       -- GrößeLandart bekommt hier erst Werte, da sonst die Werte für Pangäa nicht bekannt wären.
+      Karten.GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2, 10);
 
       Ladezeiten.SpielweltErstellenZeit (2, 1) := Clock;
       case

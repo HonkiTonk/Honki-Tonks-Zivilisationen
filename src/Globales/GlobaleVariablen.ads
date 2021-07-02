@@ -10,9 +10,14 @@ package GlobaleVariablen is
    -- Schreiben/Ausgabe
    -- Die einzelnen Textarrays hier rein oder in eine eigene Datei?
    type NutzerEinstellungenArray is array (1 .. 3) of Unbounded_Wide_Wide_String;
-   NutzerEinstellungen : GlobaleRecords.NutzerEinstellungenRecord := (To_Unbounded_Wide_Wide_String (Source => "|"), -- Sprache
-                                                                      10, -- Anzahl Autosaves
-                                                                      10); -- Rundenanzahl bis Autosave
+   NutzerEinstellungen : GlobaleRecords.NutzerEinstellungenRecord := (
+                                                                      -- Sprache
+                                                                      To_Unbounded_Wide_Wide_String (Source => "|"),
+                                                                      -- Anzahl Autosaves
+                                                                      10,
+                                                                      -- Rundenanzahl bis Autosave
+                                                                      10
+                                                                     );
                                                                                                                   
                                                                                                                  
    

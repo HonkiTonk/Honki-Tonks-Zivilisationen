@@ -65,8 +65,10 @@ package body StadtBauen is
       Stadtart := HauptstadtPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer) := 
-      -- ID, AchsenPosition, Am Wasser, Einwohner
-        (Stadtart, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position, False, (1, 1),
+      
+        (
+         -- ID, AchsenPosition, Am Wasser, Einwohner
+         Stadtart, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position, False, (1, 1),
            -- Aktuelle Nahrungsmittel, Aktuelle Nahrungsproduktion, Aktuelle Ressourcen, Aktuelle Produktionrate
          0, 0, 0, 0,
          -- Aktuelle Geldgewinnung, Aktuelle Forschungsrate, Aktuelles Bauprojekt, Verbleibende Bauzeit
@@ -78,7 +80,8 @@ package body StadtBauen is
          -- Aktuelle Meldungen
          (others => GlobaleDatentypen.Keine),
            -- KI aktuelle Beschäftigung
-         KIDatentypen.Keine_Aufgabe);
+         KIDatentypen.Keine_Aufgabe
+        );
       
       case
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse

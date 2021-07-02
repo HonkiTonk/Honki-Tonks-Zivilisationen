@@ -2,13 +2,12 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitenDatenbank, KartenDatenbank;
+with EinheitenDatenbank, KartenDatenbank, VerbesserungenDatenbank;
 
 with EinheitSuchen, StadtSuchen, KartenPruefungen;
 
 package body BewegungPassierbarkeitPruefen is
    
-   -- 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch, 7 = Planeteninneres
    function FeldFürDieseEinheitPassierbarNeu
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
@@ -16,8 +15,8 @@ package body BewegungPassierbarkeitPruefen is
    is begin
       
       case
-        EinfachePassierbarkeitPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                       NeuePositionExtern       => NeuePositionExtern)
+        EinfachePassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                             NeuePositionExtern       => NeuePositionExtern)
       is
          when True =>
             return GlobaleDatentypen.Normale_Bewegung_Möglich;
@@ -28,6 +27,7 @@ package body BewegungPassierbarkeitPruefen is
       
       BewegungMöglich := GlobaleDatentypen.Leer;
       
+      -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch (Erde), 7 = Planeteninneres (Gestein), 8 = Lava
       PassierbarSchleife:
       for PassierbarkeitSchleifenwert in GlobaleDatentypen.PassierbarkeitType'Range loop
          if
@@ -81,6 +81,13 @@ package body BewegungPassierbarkeitPruefen is
          then
             null;
          
+         elsif
+           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (8) = True
+           and
+             PassierbarkeitSchleifenwert = 8
+         then
+            null;
+         
          else
             -- Nicht für eine Passierbarkeit nutzen, da sonst bei einer Änderung immer alles im else angepasst werden muss!
             null;
@@ -104,18 +111,135 @@ package body BewegungPassierbarkeitPruefen is
    
    
    
-   function EinfachePassierbarkeitPrüfen
+   function EinfachePassierbarkeitPrüfenNummer
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
+            
+      PassierbarkeitSchleife:
+      for PassierbarkeitSchleifenwert in GlobaleDatentypen.PassierbarkeitType'Range loop
+         
+         if
+           EinheitenDatenbank.EinheitenListe
+             (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitSchleifenwert) = True
+         then
+            Passierbar := True;
+            
+         else
+            Passierbar := False;
+         end if;         
+         
+         case
+           Passierbar
+         is
+            when False =>
+               null;
+               
+            when True =>               
+               -- Erste Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
+               if
+                 Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet > 0
+                 and
+                   VerbesserungenDatenbank.VerbesserungListe
+                     (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet).Passierbarkeit (PassierbarkeitSchleifenwert) = False
+               then
+                  null;
+                  
+               elsif
+                 (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße > 0
+                  and
+                    VerbesserungenDatenbank.VerbesserungListe
+                      (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße).Passierbarkeit (PassierbarkeitSchleifenwert) = True)
+                 or
+                   (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet > 0
+                    and
+                      VerbesserungenDatenbank.VerbesserungListe
+                        (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet).Passierbarkeit (PassierbarkeitSchleifenwert) = True)
+               then
+                  return True;
+         
+               elsif
+                 KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund).Passierbarkeit (PassierbarkeitSchleifenwert) = True
+               then
+                  return True;
+            
+               else
+                  null;
+               end if;
+         end case;
+         
+      end loop PassierbarkeitSchleife;
       
-      PassierbarkeitNummer := KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund).Passierbarkeit;
+      return False;
       
-      return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitNummer);
+   end EinfachePassierbarkeitPrüfenNummer;
+   
+   
+   
+   function EinfachePassierbarkeitPrüfenID
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      IDExtern : in GlobaleDatentypen.EinheitenID;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+   is begin
+            
+      PassierbarkeitSchleife:
+      for PassierbarkeitSchleifenwert in GlobaleDatentypen.PassierbarkeitType'Range loop
+         
+         if
+           EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Passierbarkeit (PassierbarkeitSchleifenwert) = True
+         then
+            Passierbar := True;
+            
+         else
+            Passierbar := False;
+         end if;         
+         
+         case
+           Passierbar
+         is
+            when False =>
+               null;
+               
+            when True =>               
+               -- Erste Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
+               if
+                 Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet > 0
+                 and
+                   VerbesserungenDatenbank.VerbesserungListe
+                     (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet).Passierbarkeit (PassierbarkeitSchleifenwert) = False
+               then
+                  null;
+                  
+               elsif
+                 (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße > 0
+                  and
+                    VerbesserungenDatenbank.VerbesserungListe
+                      (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße).Passierbarkeit (PassierbarkeitSchleifenwert) = True)
+                 or
+                   (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet > 0
+                    and
+                      VerbesserungenDatenbank.VerbesserungListe
+                        (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet).Passierbarkeit (PassierbarkeitSchleifenwert) = True)
+               then
+                  return True;
+         
+               elsif
+                 KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund).Passierbarkeit (PassierbarkeitSchleifenwert) = True
+               then
+                  return True;
+            
+               else
+                  null;
+               end if;
+         end case;
+         
+      end loop PassierbarkeitSchleife;
       
-   end EinfachePassierbarkeitPrüfen;
+      return False;
+      
+   end EinfachePassierbarkeitPrüfenID;
 
 
    function Boden
@@ -257,7 +381,7 @@ package body BewegungPassierbarkeitPruefen is
       return GlobaleDatentypen.Bewegung_Enum
    is begin
       
-      FreieFelder := 0;
+      BelegteFelder := 0;
       Umgebung := 1;
       BereitsGetestet := Umgebung - 1;
       WelcherPlatz := 1;
@@ -291,14 +415,14 @@ package body BewegungPassierbarkeitPruefen is
                  and
                    GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
                  and
-                   EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).ID).Passierbarkeit
-                 (KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Passierbarkeit) = True
+                   EinfachePassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)),
+                                                        NeuePositionExtern       => KartenWert) = True
                then
-                  FreieFelder := FreieFelder + 1;
+                  BelegteFelder := BelegteFelder + 1;
                   WelcherPlatz := WelcherPlatz + 1;
                         
                   if
-                    BenötigteFelder = FreieFelder
+                    BenötigteFelder = BelegteFelder
                   then
                      return GlobaleDatentypen.Transporter_Stadt_Möglich;
                               

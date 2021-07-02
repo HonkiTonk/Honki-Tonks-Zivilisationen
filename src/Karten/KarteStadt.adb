@@ -422,7 +422,8 @@ package body KarteStadt is
         StadtRasseNummer.Platznummer
       is
          when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-            return; -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat. Kann entfernt werden?
+            -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat. Kann entfernt werden?
+            return;
       
          when others =>
             null;

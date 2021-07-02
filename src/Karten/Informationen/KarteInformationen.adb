@@ -41,8 +41,9 @@ package body KarteInformationen is
               EinheitRasseNummer.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
             then
                null;
-                 
-            else -- Allgemeine Einheiteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Einheit befindet
+                
+               -- Allgemeine Einheiteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Einheit befindet
+            else
                InformationenEinheiten (RasseExtern              => RasseExtern,
                                        EinheitRasseNummerExtern => EinheitRasseNummer);
             end if;
@@ -55,7 +56,8 @@ package body KarteInformationen is
                when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
                   null;
                      
-               when others => -- Stadtinformationsaufruf
+                  -- Stadtinformationsaufruf
+               when others =>
                   InformationenStadt (RasseExtern            => RasseExtern,
                                       StadtRasseNummerExtern => StadtRasseNummer);
             end case;

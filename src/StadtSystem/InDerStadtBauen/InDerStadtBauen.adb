@@ -27,7 +27,8 @@ package body InDerStadtBauen is
             when 0 =>
                return;
 
-            when 1_001 .. 99_999 => -- Gebäude - 1_000, Einheiten - 10_000
+               -- Gebäude - 1_000, Einheiten - 10_000
+            when 1_001 .. 99_999 =>
                GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := WasGebautWerdenSoll;
                GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := 0;
                BauzeitEinzeln (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -154,7 +155,7 @@ package body InDerStadtBauen is
       end loop GebäudeSchleife;
 
       EinheitenSchleife:
-      for EinheitSchleifenwert in GlobaleDatentypen.EinheitenID loop
+      for EinheitSchleifenwert in GlobaleDatentypen.EinheitenID'Range loop
          
          if
            To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
@@ -162,6 +163,7 @@ package body InDerStadtBauen is
          then
             exit EinheitenSchleife;
 
+            -- Suchenfunktion für bestimmte/ohne bestimmte Passierbarkeit bauen
          elsif
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AmWasser = False
            and

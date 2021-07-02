@@ -122,60 +122,71 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when 11 =>                  
+            when 11 =>  
+               -- Hauptmenü
                if
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 1)
-               then -- Hauptmenü
+               then
                   return GlobaleKonstanten.HauptmenüKonstante;
                   
+                  -- Spiel beenden
                elsif
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 2)
-               then -- Spiel beenden
+               then
                   return GlobaleKonstanten.SpielBeendenKonstante;
                   
+                  -- Zurück
                elsif
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 3)
-               then -- Zurück
+               then
                   return GlobaleKonstanten.ZurückKonstante;
                   
+                  -- Ja
                elsif
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 4)
-               then -- Ja
+               then
                   return GlobaleKonstanten.JaKonstante;
                   
+                  -- Nein
                elsif
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 5)
-               then -- Nein
+               then
                   return GlobaleKonstanten.NeinKonstante;
 
+                  -- Speichern
                elsif
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 6)
-               then -- Speichern
+               then
                   return GlobaleKonstanten.SpeichernKonstante;
 
+                  -- Laden
                elsif
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 7)
-               then -- Laden
+               then
                   return GlobaleKonstanten.LadenKonstante;
 
+                  -- Optionen
                elsif
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 8)
-               then -- Optionen
+               then
                   return GlobaleKonstanten.OptionenKonstante;
 
+                  -- Informationen
                elsif
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 9)
-               then -- Informationen
+               then
                   return GlobaleKonstanten.InformationenKonstante;
 
+                  -- Wiederherstellen
                elsif
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 10)
-               then -- Wiederherstellen
+               then
                   return GlobaleKonstanten.WiederherstellenKonstante;
 
+                  -- Würdigungen
                elsif
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 11)
-               then -- Würdigungen
+               then
                   return GlobaleKonstanten.WürdigungenKonstante;
                      
                else

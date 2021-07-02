@@ -318,10 +318,11 @@ package body SpielEinstellungen is
 
 
    
-   function RasseWählen -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+   function RasseWählen
      return Integer
    is begin
 
+       -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
       RasseSchleife:
       loop
          

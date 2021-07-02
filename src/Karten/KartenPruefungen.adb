@@ -8,9 +8,10 @@ package body KartenPruefungen is
    function KartenPositionBestimmenKartengenerator
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
+      -- Der ZusatzYAbstandExtern ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
       ZusatzYAbstandExtern : in GlobaleDatentypen.KartenfeldPositivMitNullwert)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
-   is begin -- Der ZusatzYAbstandExtern ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
+   is begin
       
       if
         KoordinatenExtern.EAchse + ÄnderungExtern.EAchse < Karten.WeltkarteArray'First (1)

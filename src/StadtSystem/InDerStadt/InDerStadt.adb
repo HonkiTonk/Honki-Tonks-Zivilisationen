@@ -25,21 +25,25 @@ package body InDerStadt is
          case
            Befehl
          is
-            when 1 .. 8 => -- Cursor in der Stadt bewegen
+            -- Cursor in der Stadt bewegen
+            when 1 .. 8 =>
                BewegungssystemCursor.BewegungCursorRichtung (KarteExtern    => False,
                                                              RichtungExtern => Befehl,
                                                              RasseExtern    => StadtRasseNummerExtern.Rasse);
 
-            when 11 => -- Einwohner von Feld entfernen/zuweisen
+               -- Einwohner von Feld entfernen/zuweisen
+            when 11 =>
                EinwohnerZuweisenEntfernen.EinwohnerZuweisenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);                  
                
-            when 13 => -- Gebäude/Einheit bauen
+               -- Gebäude/Einheit bauen
+            when 13 =>
                if
                  GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt = 0
                then
                   InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                      
-               else -- Diese Auswahl nach InDerStadtBauen verschieben
+                  -- Diese Auswahl nach InDerStadtBauen verschieben
+               else
                   case
                     Auswahl.AuswahlJaNein (FrageZeileExtern => 14)
                   is
@@ -51,13 +55,16 @@ package body InDerStadt is
                   end case;
                end if;
                
-            when 29 => -- Gebäude verkaufen
+               -- Gebäude verkaufen
+            when 29 =>
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-            when 34 => -- Stadt umbenennen
+               -- Stadt umbenennen
+            when 34 =>
                GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Name := Eingabe.StadtName;
 
-            when 12 => -- Stadt verlassen
+               -- Stadt verlassen
+            when 12 =>
                return;
                
             when others =>

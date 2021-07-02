@@ -18,9 +18,11 @@ package GlobaleDatentypen is
 
 
    -- Für Rassen
-   type RassenMitNullwert is range 0 .. 18; -- Unbelegt, Rasse 1 bis 18
+    -- Unbelegt, Rasse 1 bis 18
+   type RassenMitNullwert is range 0 .. 18;
    subtype Rassen is RassenMitNullwert range 1 .. 18;
-   type RassenImSpielArray is array (Rassen'Range) of RassenMitNullwert; -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+    -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+   type RassenImSpielArray is array (Rassen'Range) of RassenMitNullwert;
    -- Für Rassen
 
 
@@ -37,9 +39,11 @@ package GlobaleDatentypen is
    subtype LoopRangeNullZuEins is Kartenfeld range 0 .. 1;
 
    type KartenGrund is range 0 .. 43;
-   type KartenverbesserungEinheitenID is range 0 .. 78; -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
+    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
+   type KartenverbesserungEinheitenID is range 0 .. 78;
    subtype KartenVerbesserung is KartenverbesserungEinheitenID range 0 .. 24;
-   type Ebene is range -3 .. 2; -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
+    -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
+   type Ebene is range -3 .. 2;
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    type BelegterGrund is range 0 .. Rassen'Last * 1_000 + 100;
 
@@ -62,7 +66,8 @@ package GlobaleDatentypen is
    type PassierbarkeitType is range 1 .. 8;
 
    type EinheitenTyp is range 1 .. 12;
-   subtype UnbewaffneterTyp is EinheitenTyp range 1 .. 2; -- Für später merken, jetzt aber noch nicht einbauen/nutzen, da sonst ständig Zeug verschoben werden muss
+    -- Für später merken, jetzt aber noch nicht einbauen/nutzen, da sonst ständig Zeug verschoben werden muss
+   subtype UnbewaffneterTyp is EinheitenTyp range 1 .. 2;
    subtype NahkämpferTyp is EinheitenTyp range 3 .. 4;
    subtype FernkampfTyp is EinheitenTyp range 5 .. 6;
    -- Für Einheiten

@@ -16,16 +16,19 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    type WahrscheinlichkeitenFürLandArray is array (1 .. 4, 1 .. 7) of Float;
-   WahrscheinlichkeitenFürLand : constant WahrscheinlichkeitenFürLandArray := (1 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
+   WahrscheinlichkeitenFürLand : constant WahrscheinlichkeitenFürLandArray := (
                                                                                  -- 1 = Landwert nahe Eissschild, 2 = Landwert nahe Eissschild mit Landflächenentstehung, 3 = Landwert,
                                                                                  -- 4 = Landwert mit Landflächenentstehung, 5 = Landwert, 6 = Landwert bei Landflächenentstehung, 7 = Landwert ohne Landflächenentstehung
+                                                                                 1 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
                                                                                  2 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
                                                                                  3 => (0.92, 0.98, 0.75, 0.80, 0.98, 0.15, 0.70),
-                                                                                 4 => (0.50, 0.00, 0.50, 0.00, 0.50, 0.00, 0.50));
+                                                                                 4 => (0.50, 0.00, 0.50, 0.00, 0.50, 0.00, 0.50)
+                                                                                );
 
-   type FelderVonLandartZuLandartArray is array (1 .. 4) of GlobaleDatentypen.KartenfeldPositiv;
-   FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 30, 1, 1); -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
+   -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
    -- Sollte so aber ganz gut sein, da bei halbem Loop zu wenig Wasser ist, aber eventuell Werte ein wenig verringern.
+   type FelderVonLandartZuLandartArray is array (1 .. 4) of GlobaleDatentypen.KartenfeldPositiv;
+   FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 30, 1, 1);
    
    procedure GenerierungKartenart
      (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)

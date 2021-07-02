@@ -30,31 +30,40 @@ package body Cheat is
          case
            Eingabe.TastenEingabe
          is
-            when 'n' => -- Nächste Einheit (unabhängig von der Rasse)
+            -- Nächste Einheit (unabhängig von der Rasse)
+            when 'n' =>
                BeliebigeNächsteEinheit (RasseExtern => RasseExtern);
 
-            when 'i' => -- Volle Informationen (unabhängig von der Rasse)
+               -- Volle Informationen (unabhängig von der Rasse)
+            when 'i' =>
                Informationen;
 
-            when 's' => -- Sichtbarkeit der ganzen Karte
+               -- Sichtbarkeit der ganzen Karte
+            when 's' =>
                Sichtbarkeit (RasseExtern => RasseExtern);
 
-            when 'e' => -- Einheit erzeugen
+               -- Einheit erzeugen
+            when 'e' =>
                EinheitFestlegen (RasseExtern => RasseExtern);
 
-            when 'g' => -- Geld auf 1.000.000 setzen
+               -- Geld auf 1.000.000 setzen
+            when 'g' =>
                Geld (RasseExtern => RasseExtern);
 
-            when 't' => -- Technologie auf erforscht setzen
+               -- Technologie auf erforscht setzen
+            when 't' =>
                Technologie (RasseExtern => RasseExtern);
 
-            when 'v' => -- Verbesserung auf dem Cursorfeld erzeugen
+               -- Verbesserung auf dem Cursorfeld erzeugen
+            when 'v' =>
                VerbesserungFestlegen  (RasseExtern => RasseExtern);
                
-            when 'b' => -- Kartengrund auf dem Cursorfeld festlegen
+               -- Kartengrund auf dem Cursorfeld festlegen
+            when 'b' =>
                GrundFestlegen (RasseExtern => RasseExtern);
 
-            when 'a' => -- Festlegen ob und von wem die Rasse belegt ist
+               -- Festlegen ob und von wem die Rasse belegt ist
+            when 'a' =>
                RassenverteilungÄndern;
                
             when others =>
@@ -437,7 +446,7 @@ package body Cheat is
       Put_Line (Item => "AufgabeZwei: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt: ");
       ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Forschungsprojekt,
-                                        RasseExtern => EinheitRasseNummerExtern.Rasse);
+                                       RasseExtern => EinheitRasseNummerExtern.Rasse);
       
    end KarteInfosEinheiten;
    
@@ -473,7 +482,7 @@ package body Cheat is
       Put_Line (Item => "KIAufgabe: " & GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt: ");
       ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Forschungsprojekt,
-                                        RasseExtern => StadtRasseNummerExtern.Rasse);
+                                       RasseExtern => StadtRasseNummerExtern.Rasse);
       
    end KarteStadtInfos;
 
