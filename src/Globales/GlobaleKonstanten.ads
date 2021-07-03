@@ -144,11 +144,11 @@ package GlobaleKonstanten is
    LeererWertEinheit : constant GlobaleRecords.EinheitenGebautRecord := (
                                                                          -- ID, AchsenPosition
                                                                          0, (0, 0, 0),
-                                                                         -- Aktuelle Lebenspunkte, Aktuelle Bewegungspunkte, Aktuelle Erfahrungspunkte, Aktueller Rang
+                                                                         -- Lebenspunkte, Bewegungspunkte, Erfahrungspunkte, Rang
                                                                          0, 0.00, 0, 0,
-                                                                         -- Aktuelle Beschäftigung, Zweite Beschäftigung
+                                                                         -- Beschäftigung, Zweite Beschäftigung
                                                                          GlobaleDatentypen.Keine, GlobaleDatentypen.Keine,
-                                                                         -- Aktuelle Beschäftigungszeit, Zweite AktuelleBeschäftigungszeit
+                                                                         -- Beschäftigungszeit, Zweite Beschäftigungszeit
                                                                          0, 0,
                                                                          -- Zielkoordinaten der KI, Beschäftigung der KI, Bewegungsplan der KI
                                                                          (0, 0, 0), KIDatentypen.Keine_Aufgabe, (others => (0, 0, 0)),

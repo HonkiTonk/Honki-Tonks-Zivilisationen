@@ -91,7 +91,7 @@ package Eingabe is
 
                                             2 =>
                                               (
-                                                -- Cursor/Einheitenbewegung
+                                               -- Cursor/Einheitenbewegung
                                                1 => '8',
                                                2 => '4',
                                                3 => '2',
@@ -103,7 +103,7 @@ package Eingabe is
                                                9 => NUL,
                                                10 => NUL,
 
-                                                -- Auswählen
+                                               -- Auswählen
                                                11 => LF,
                                                -- Menü aufrufen und Dinge verlassen
                                                12 => NUL,
@@ -196,7 +196,7 @@ package Eingabe is
      return Wide_Wide_Character;
 
    function Tastenwert
-     return Natural;
+     return GlobaleDatentypen.Tastenbelegung_Enum;
 
 private
 

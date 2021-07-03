@@ -70,6 +70,12 @@ private
    WasGebautWerdenSoll : Natural;
    Befehl : Natural;
 
+   procedure AnzeigeEinheiten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+
+   procedure AnzeigeGebäude
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+
    function BauobjektAuswählen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Natural

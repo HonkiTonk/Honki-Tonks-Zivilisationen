@@ -41,7 +41,7 @@ package body Auswahl is
          case
            Eingabe.Tastenwert
          is
-            when 1 => 
+            when GlobaleDatentypen.Hoch => 
                if
                  AktuelleAuswahl = GlobaleVariablen.SprachenEinlesenArray'First
                then
@@ -51,7 +51,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when 3 =>
+            when GlobaleDatentypen.Runter =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -61,7 +61,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when 11 =>    
+            when GlobaleDatentypen.Auswählen =>    
                Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                return GlobaleVariablen.SprachenEinlesen (AktuelleAuswahl);
                      
@@ -102,7 +102,7 @@ package body Auswahl is
          case
            Eingabe.Tastenwert
          is
-            when 1 => 
+            when GlobaleDatentypen.Hoch => 
                if
                  AktuelleAuswahl = Anfang
                then
@@ -112,7 +112,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when 3 =>
+            when GlobaleDatentypen.Runter =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -122,7 +122,7 @@ package body Auswahl is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when 11 =>  
+            when GlobaleDatentypen.Auswählen =>  
                -- Hauptmenü
                if
                  GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), AktuelleAuswahl) = GlobaleVariablen.TexteEinlesenNeu (2, 1)

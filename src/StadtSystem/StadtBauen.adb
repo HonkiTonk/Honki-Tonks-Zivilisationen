@@ -64,22 +64,22 @@ package body StadtBauen is
       
       Stadtart := HauptstadtPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
-      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer) := 
+      -- ID, AchsenPosition, Am Wasser, (Einwohner, Arbeiter)
+      -- Aktuelle Nahrungsmittel, Aktuelle Nahrungsproduktion, Aktuelle Ressourcen, Aktuelle Produktionrate
+      -- Aktuelle Geldgewinnung, Aktuelle Forschungsrate, Aktuelles Bauprojekt, Verbleibende Bauzeit
+      -- Korruption, Gebäude Vorhanden, Stadtname
+      -- UmgebungBewirtschaftung, UmgebungGröße
+      -- Aktuelle Meldungen
+      -- KI aktuelle Beschäftigung
       
+      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer) :=       
         (
-         -- ID, AchsenPosition, Am Wasser, Einwohner
          Stadtart, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position, False, (1, 1),
-           -- Aktuelle Nahrungsmittel, Aktuelle Nahrungsproduktion, Aktuelle Ressourcen, Aktuelle Produktionrate
          0, 0, 0, 0,
-         -- Aktuelle Geldgewinnung, Aktuelle Forschungsrate, Aktuelles Bauprojekt, Verbleibende Bauzeit
          0, 0, 0, 0,
-         -- Korruption, Gebäude Vorhanden, Stadtname
          0, (others => False), To_Unbounded_Wide_Wide_String (Source => "KIStadtname"),
-           -- UmgebungBewirtschaftung, UmgebungGröße
          (0 => (0 => True, others => False), others => (others => False)), 1,
-         -- Aktuelle Meldungen
          (others => GlobaleDatentypen.Keine),
-           -- KI aktuelle Beschäftigung
          KIDatentypen.Keine_Aufgabe
         );
       

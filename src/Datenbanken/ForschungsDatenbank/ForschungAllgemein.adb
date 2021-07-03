@@ -203,7 +203,7 @@ package body ForschungAllgemein is
          case
            Eingabe.Tastenwert
          is               
-            when 1 => 
+            when GlobaleDatentypen.Hoch => 
                if
                  AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then
@@ -212,7 +212,7 @@ package body ForschungAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when 3 =>
+            when GlobaleDatentypen.Runter =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -221,10 +221,10 @@ package body ForschungAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                
-            when 11 =>
+            when GlobaleDatentypen.Auswählen =>
                return GlobaleDatentypen.ForschungIDMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
-            when 12 =>
+            when GlobaleDatentypen.Menü_Zurück =>
                return 0;
                      
             when others =>
@@ -360,7 +360,7 @@ package body ForschungAllgemein is
          case
            Eingabe.Tastenwert
          is
-            when 4 => 
+            when GlobaleDatentypen.Rechts => 
                if
                  AktuelleAuswahl = GlobaleDatentypen.ForschungID'Last
                then
@@ -370,7 +370,7 @@ package body ForschungAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
 
-            when 2 =>
+            when GlobaleDatentypen.Links =>
                if
                  AktuelleAuswahl = GlobaleDatentypen.ForschungID'First
                then
@@ -380,7 +380,7 @@ package body ForschungAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;               
                               
-            when 12 =>    
+            when GlobaleDatentypen.Menü_Zurück =>    
                Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
                return;
                      

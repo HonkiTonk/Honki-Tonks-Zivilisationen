@@ -18,7 +18,7 @@ private
 
    Transportiert : Boolean;
    
-   Befehl : Natural;
+   Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
 
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    EinheitTransportNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;

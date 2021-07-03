@@ -17,11 +17,19 @@ package GlobaleDatentypen is
 
 
 
+   -- Für Tastenbelegung
+   type Tastenbelegung_Enum is (Nicht_Vorhanden, Hoch, Links, Runter, Rechts, Links_Oben, Rechts_Oben, Links_Unten, Rechts_Unten, Ebene_Hoch, Ebene_Runter, Auswählen, Menü_Zurück, Bauen, Forschung, Tech_Baum,
+                                Nächste_Stadt, Einheit_Mit_Bewegungspunkte, Alle_Einheiten, Einheiten_Ohne_Bewegungspunkte, Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen,
+                                Heilen, Verschanzen, Runde_Aussetzen, Einheit_Auflösen, Plündern, Infos, Diplomatie, GeheZu, Stadt_Umbenennen, Stadt_Abreißen, Stadt_Suchen, Runde_Beenden, Cheat);
+   -- Für Tastenbelegung
+
+
+
    -- Für Rassen
-    -- Unbelegt, Rasse 1 bis 18
+   -- Unbelegt, Rasse 1 bis 18
    type RassenMitNullwert is range 0 .. 18;
    subtype Rassen is RassenMitNullwert range 1 .. 18;
-    -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+   -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
    type RassenImSpielArray is array (Rassen'Range) of RassenMitNullwert;
    -- Für Rassen
 
@@ -39,10 +47,10 @@ package GlobaleDatentypen is
    subtype LoopRangeNullZuEins is Kartenfeld range 0 .. 1;
 
    type KartenGrund is range 0 .. 43;
-    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
+   -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
    type KartenverbesserungEinheitenID is range 0 .. 78;
    subtype KartenVerbesserung is KartenverbesserungEinheitenID range 0 .. 24;
-    -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
+   -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    type Ebene is range -3 .. 2;
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    type BelegterGrund is range 0 .. Rassen'Last * 1_000 + 100;
@@ -66,7 +74,7 @@ package GlobaleDatentypen is
    type PassierbarkeitType is range 1 .. 8;
 
    type EinheitenTyp is range 1 .. 12;
-    -- Für später merken, jetzt aber noch nicht einbauen/nutzen, da sonst ständig Zeug verschoben werden muss
+   -- Für später merken, jetzt aber noch nicht einbauen/nutzen, da sonst ständig Zeug verschoben werden muss
    subtype UnbewaffneterTyp is EinheitenTyp range 1 .. 2;
    subtype NahkämpferTyp is EinheitenTyp range 3 .. 4;
    subtype FernkampfTyp is EinheitenTyp range 5 .. 6;

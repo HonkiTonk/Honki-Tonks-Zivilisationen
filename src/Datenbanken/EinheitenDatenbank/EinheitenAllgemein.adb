@@ -7,6 +7,8 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank;
 
+with KIDatentypen;
+
 with Auswahl, Anzeige, Eingabe, Sichtbarkeit;
 
 package body EinheitenAllgemein is
@@ -134,9 +136,24 @@ package body EinheitenAllgemein is
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.EinheitenID)
    is begin
+      
+      -- ID, AchsenPosition
+      -- Lebenspunkte, Bewegungspunkte, Erfahrungspunkte, Rang
+      -- Beschäftigung, Zweite Beschäftigung
+      -- Beschäftigungszeit, Zweite Beschäftigungszeit
+      -- Zielkoordinaten der KI, Beschäftigung der KI, Bewegungsplan der KI
+      -- Platznummer der transportierten Einheiten, Platznummer der transportierenden Einheit
             
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID := IDExtern;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := KoordinatenExtern;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) :=
+        (
+         IDExtern, KoordinatenExtern,
+         0, 0.00, 0, 0,
+         GlobaleDatentypen.Keine, GlobaleDatentypen.Keine,
+         0, 0,
+         (0, 0, 0), KIDatentypen.Keine_Aufgabe, (others => (0, 0, 0)),
+         (others => 0), 0
+        );
+      
       LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
@@ -251,7 +268,7 @@ package body EinheitenAllgemein is
          case
            Eingabe.Tastenwert
          is               
-            when 1 => 
+            when GlobaleDatentypen.Hoch => 
                if
                  AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then
@@ -260,7 +277,7 @@ package body EinheitenAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when 3 =>
+            when GlobaleDatentypen.Runter =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -269,10 +286,10 @@ package body EinheitenAllgemein is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when 11 =>
+            when GlobaleDatentypen.Auswählen =>
                return GlobaleDatentypen.MaximaleEinheitenMitNullWert (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer);
 
-            when 12 =>
+            when GlobaleDatentypen.Menü_Zurück =>
                return 0;
                      
             when others =>

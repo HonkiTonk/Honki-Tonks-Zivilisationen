@@ -362,7 +362,7 @@ package body Eingabe is
    
    
    function Tastenwert
-     return Natural
+     return GlobaleDatentypen.Tastenbelegung_Enum
    is begin
       
       Taste := TastenEingabe;
@@ -375,7 +375,7 @@ package body Eingabe is
             if
               Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
             then
-               return BelegungPositionSchleifenwert;
+               return GlobaleDatentypen.Tastenbelegung_Enum'Val (BelegungPositionSchleifenwert);
                
             else
                null;
@@ -384,7 +384,7 @@ package body Eingabe is
          end loop BelegungPositionSchleife;
       end loop BelegungFeldSchleife;
       
-      return 0;
+      return GlobaleDatentypen.Nicht_Vorhanden;
       
    end Tastenwert;
    
