@@ -78,8 +78,8 @@ package GlobaleRecords is
       Erfahrungspunkte : Natural;
       Rang : Natural;
       
-      Beschäftigung : GlobaleDatentypen.Befehle_Enum;
-      BeschäftigungNachfolger : GlobaleDatentypen.Befehle_Enum;
+      Beschäftigung : GlobaleDatentypen.Tastenbelegung_Enum;
+      BeschäftigungNachfolger : GlobaleDatentypen.Tastenbelegung_Enum;
       
       Beschäftigungszeit : Natural;
       BeschäftigungszeitNachfolger : Natural;

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleDatentypen, GlobaleKonstanten;
+with GlobaleKonstanten;
 
 with Eingabe, Auswahl, Anzeige, SchreibenTastatur;
 
@@ -45,7 +45,9 @@ package body OptionenSteuerung is
                                               AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                               AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
                
-               Put_Line (Eingabe.Tastenbelegung (1, AuswahlWert) & "    " & Eingabe.Tastenbelegung (2, AuswahlWert));
+               NeueAuswahl := GlobaleDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
+               
+               Put_Line (Eingabe.Tastenbelegung (1, NeueAuswahl) & "    " & Eingabe.Tastenbelegung (2, NeueAuswahl));
                
                Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                               TextDateiExtern        => GlobaleDatentypen.Fragen,
@@ -66,7 +68,7 @@ package body OptionenSteuerung is
                      if
                        Eingabe.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = NeueTaste
                        and
-                         BelegungPositionSchleifenwert /= AuswahlWert
+                         BelegungPositionSchleifenwert /= NeueAuswahl
                      then
                         Eingabe.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) := NUL;
                         exit BelegungFeldSchleife;
@@ -79,26 +81,28 @@ package body OptionenSteuerung is
                end loop BelegungFeldSchleife;
          end case;
          
+         NeueAuswahl := GlobaleDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
+         
          if
-           Eingabe.Tastenbelegung (1, AuswahlWert) = NeueTaste
+           Eingabe.Tastenbelegung (1, NeueAuswahl) = NeueTaste
            or
-             Eingabe.Tastenbelegung (2, AuswahlWert) = NeueTaste
+             Eingabe.Tastenbelegung (2, NeueAuswahl) = NeueTaste
          then
             null;
             
          elsif
-           Eingabe.Tastenbelegung (1, AuswahlWert) = NUL
+           Eingabe.Tastenbelegung (1, NeueAuswahl) = NUL
          then
-            Eingabe.Tastenbelegung (1, AuswahlWert) := NeueTaste;
+            Eingabe.Tastenbelegung (1, NeueAuswahl) := NeueTaste;
             
          elsif
-           Eingabe.Tastenbelegung (2, AuswahlWert) = NUL
+           Eingabe.Tastenbelegung (2, NeueAuswahl) = NUL
          then
-            Eingabe.Tastenbelegung (2, AuswahlWert) := NeueTaste;
+            Eingabe.Tastenbelegung (2, NeueAuswahl) := NeueTaste;
             
          else
-            Eingabe.Tastenbelegung (2, AuswahlWert) := Eingabe.Tastenbelegung (1, AuswahlWert);
-            Eingabe.Tastenbelegung (1, AuswahlWert) := NeueTaste;
+            Eingabe.Tastenbelegung (2, NeueAuswahl) := Eingabe.Tastenbelegung (1, NeueAuswahl);
+            Eingabe.Tastenbelegung (1, NeueAuswahl) := NeueTaste;
          end if;
          
       end loop BelegungSchleife;

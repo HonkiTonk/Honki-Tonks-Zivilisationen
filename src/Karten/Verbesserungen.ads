@@ -9,7 +9,7 @@ package Verbesserungen is
 
    procedure Verbesserung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      BefehlExtern : in GlobaleDatentypen.Befehle_Enum)
+      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
@@ -34,7 +34,7 @@ private
    
    procedure VerbesserungFestgelegt
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      BefehlExtern : in Befehle_Enum)
+      BefehlExtern : in Tastenbelegung_Befehle_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)

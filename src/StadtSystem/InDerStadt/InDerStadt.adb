@@ -25,18 +25,16 @@ package body InDerStadt is
          case
            Befehl
          is
-            -- Cursor in der Stadt bewegen
-            when 1 .. 8 =>
+            when GlobaleDatentypen.Tastenbelegung_Bewegung_Stadt_Enum'Range =>
                BewegungssystemCursor.BewegungCursorRichtung (KarteExtern    => False,
                                                              RichtungExtern => Befehl,
                                                              RasseExtern    => StadtRasseNummerExtern.Rasse);
 
                -- Einwohner von Feld entfernen/zuweisen
-            when 11 =>
+            when GlobaleDatentypen.Auswählen =>
                EinwohnerZuweisenEntfernen.EinwohnerZuweisenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);                  
                
-               -- Gebäude/Einheit bauen
-            when 13 =>
+            when GlobaleDatentypen.Bauen =>
                if
                  GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt = 0
                then
@@ -56,15 +54,14 @@ package body InDerStadt is
                end if;
                
                -- Gebäude verkaufen
-            when 29 =>
+            when GlobaleDatentypen.Einheit_Auflösen =>
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-               -- Stadt umbenennen
-            when 34 =>
+            when GlobaleDatentypen.Stadt_Umbenennen =>
                GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Name := Eingabe.StadtName;
 
                -- Stadt verlassen
-            when 12 =>
+            when GlobaleDatentypen.Menü_Zurück =>
                return;
                
             when others =>

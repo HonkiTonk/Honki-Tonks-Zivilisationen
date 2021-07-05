@@ -43,7 +43,7 @@ package EinheitenAllgemein is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
    
    procedure Beschäftigung
-     (ArbeitExtern : in GlobaleDatentypen.Befehle_Enum);
+     (ArbeitExtern : in GlobaleDatentypen.Tastenbelegung_Enum);
 
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen
      (WelcheAuswahlExtern : in Natural)

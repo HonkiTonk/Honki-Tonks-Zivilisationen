@@ -8,163 +8,105 @@ use GlobaleDatentypen;
 
 package Eingabe is
 
-   type TastenbelegungArray is array (1 .. 2, 1 .. 38) of Wide_Wide_Character;
+   type TastenbelegungArray is array (1 .. 2, GlobaleDatentypen.Tastenbelegung_Verwendet_Enum'Range) of Wide_Wide_Character;
 
    -- Auf Enum umschreiben?
    Tastenbelegung : TastenbelegungArray := (
                                             1 =>
                                               (
-                                               -- Cursor/Einheitenbewegung
-                                               1 => 'w',
-                                               2 => 'a',
-                                               3 => 's',
-                                               4 => 'd',
-                                               5 => NUL,
-                                               6 => NUL,
-                                               7 => NUL,
-                                               8 => NUL,
-                                               9 => '+',
-                                               10 => '-',
+                                               Hoch => 'w',
+                                               Links => 'a',
+                                               Runter => 's',
+                                               Rechts => 'd',
+                                               Links_Oben => NUL,
+                                               Rechts_Oben => NUL,
+                                               Links_Unten => NUL,
+                                               Rechts_Unten => NUL,
+                                               Ebene_Hoch => '+',
+                                               Ebene_Runter => '-',
 
-                                               -- Auswählen
-                                               11 => 'e',
-                                               -- Menü aufrufen und Dinge verlassen
-                                               12 => 'q',
-                                               -- Zeug bauen
-                                               13 => 'b',
-                                               -- Forschung
-                                               14 => 't',
-                                               -- Forschungsbaum
-                                               15 => 'x',
+                                               Auswählen => 'e',
+                                               Menü_Zurück => 'q',
+                                               Bauen => 'b',
+                                               Forschung => 't',
+                                               Tech_Baum => 'x',
 
-                                               -- Nächste Stadt
-                                               16 => '/',
-                                               -- Einheiten mit Bewegungspunkten
-                                               17 => '.',
-                                               -- Alle Einheiten
-                                               18 => '*',
-                                               -- Einheiten ohne Bewegungspunkte
-                                               19 => ',',
+                                               Nächste_Stadt => '/',
+                                               Einheit_Mit_Bewegungspunkte => '.',
+                                               Alle_Einheiten => '*',
+                                               Einheiten_Ohne_Bewegungspunkte => ',',
 
-                                               -- Straße bauen
-                                               20 => 'l',
-                                               -- Mine bauen
-                                               21 => 'm',
-                                               -- Farm bauen
-                                               22 => 'f',
-                                               -- Festung bauen
-                                               23 => 'u',
-                                               -- Wald aufforsten
-                                               24 => 'z',
-                                               -- Roden-Trockenlegen
-                                               25 => 'p',
-                                               -- Heilen
-                                               26 => 'h',
-                                               -- Verschanzen
-                                               27 => 'v',
-                                               -- Runde aussetzen
-                                               28 => Space,
-                                               -- Einheit auflösen
-                                               29 => DEL,
-                                               -- Plündern
-                                               30 => 'j',
-                                               -- Informationen für Einheiten, Verbesserungen, usw.
-                                               31 => 'i',
+                                               Straße_Bauen => 'l',
+                                               Mine_Bauen => 'm',
+                                               Farm_Bauen => 'f',
+                                               Festung_Bauen => 'u',
+                                               Wald_Aufforsten => 'z',
+                                               Roden_Trockenlegen => 'p',
+                                               Heilen => 'h',
+                                               Verschanzen => 'v',
+                                               Runde_Aussetzen => Space,
+                                               Einheit_Auflösen => DEL,
+                                               Plündern => 'j',
+                                               Infos => 'i',
 
-                                               -- Diplomatie
-                                               32 => '#',
+                                               Diplomatie => '#',
 
-                                               -- GeheZu Cursor
-                                               33 => 'g',
+                                               GeheZu => 'g',
 
-                                               -- Stadt umbenennen
-                                               34 => 'n',
-                                               -- Stadt abreißen
-                                               35 => 'k',
-                                               -- Stadt mit Namen suchen
-                                               36 => 'y',
+                                               Stadt_Umbenennen => 'n',
+                                               Stadt_Abreißen => 'k',
+                                               Stadt_Suchen => 'y',
 
-                                               -- Runde beenden
-                                               37 => 'r',
-                                               -- Cheatmenü aufrufen
-                                               38 => 'c'),
+                                               Runde_Beenden => 'r',
+                                               Cheatmenü => 'c'),
 
                                             2 =>
                                               (
-                                               -- Cursor/Einheitenbewegung
-                                               1 => '8',
-                                               2 => '4',
-                                               3 => '2',
-                                               4 => '6',
-                                               5 => '7',
-                                               6 => '9',
-                                               7 => '1',
-                                               8 => '3',
-                                               9 => NUL,
-                                               10 => NUL,
+                                               Hoch => '8',
+                                               Links => '4',
+                                               Runter => '2',
+                                               Rechts => '6',
+                                               Links_Oben => '7',
+                                               Rechts_Oben => '9',
+                                               Links_Unten => '1',
+                                               Rechts_Unten => '3',
+                                               Ebene_Hoch => NUL,
+                                               Ebene_Runter => NUL,
 
-                                               -- Auswählen
-                                               11 => LF,
-                                               -- Menü aufrufen und Dinge verlassen
-                                               12 => NUL,
-                                               -- Zeug bauen
-                                               13 => NUL,
-                                               -- Forschung
-                                               14 => NUL,
-                                               -- Forschungsbaum
-                                               15 => NUL,
+                                               Auswählen => LF,
+                                               Menü_Zurück => NUL,
+                                               Bauen => NUL,
+                                               Forschung => NUL,
+                                               Tech_Baum => NUL,
 
-                                               -- Nächste Stadt
-                                               16 => NUL,
-                                               -- Einheiten mit Bewegungspunkten
-                                               17 => NUL,
-                                               -- Alle Einheiten
-                                               18 => NUL,
-                                               -- Einheiten ohne Bewegungspunkte
-                                               19 => NUL,
+                                               Nächste_Stadt => NUL,
+                                               Einheit_Mit_Bewegungspunkte => NUL,
+                                               Alle_Einheiten => NUL,
+                                               Einheiten_Ohne_Bewegungspunkte => NUL,
 
-                                               -- Straße bauen
-                                               20 => NUL,
-                                               -- Mine bauen
-                                               21 => NUL,
-                                               -- Farm bauen
-                                               22 => NUL,
-                                               -- Festung bauen
-                                               23 => NUL,
-                                               -- Wald aufforsten
-                                               24 => NUL,
-                                               -- Roden-Trockenlegen
-                                               25 => NUL,
-                                               -- Heilen
-                                               26 => NUL,
-                                               -- Verschanzen
-                                               27 => NUL,
-                                               -- Runde aussetzen
-                                               28 => NUL,
-                                               -- Einheit auflösen
-                                               29 => NUL,
-                                               -- Plündern
-                                               30 => NUL,
-                                               -- Informationen für Einheiten, Verbesserungen, usw.
-                                               31 => NUL,
+                                               Straße_Bauen => NUL,
+                                               Mine_Bauen => NUL,
+                                               Farm_Bauen => NUL,
+                                               Festung_Bauen => NUL,
+                                               Wald_Aufforsten => NUL,
+                                               Roden_Trockenlegen => NUL,
+                                               Heilen => NUL,
+                                               Verschanzen => NUL,
+                                               Runde_Aussetzen => NUL,
+                                               Einheit_Auflösen => NUL,
+                                               Plündern => NUL,
+                                               Infos => NUL,
 
-                                               -- Diplomatie
-                                               32 => NUL,
+                                               Diplomatie => NUL,
 
-                                               -- GeheZu Cursor
-                                               33 => NUL,
+                                               GeheZu => NUL,
 
-                                               -- Stadt umbenennen
-                                               34 => NUL,
-                                               -- Stadt abreißen
-                                               35 => NUL,
-                                               -- Stadt mit Namen suchen
-                                               36 => NUL,
+                                               Stadt_Umbenennen => NUL,
+                                               Stadt_Abreißen => NUL,
+                                               Stadt_Suchen => NUL,
 
-                                               -- Runde beenden
-                                               37 => NUL,
-                                               -- Cheatmenü aufrufen
-                                               38 => NUL)
+                                               Runde_Beenden => NUL,
+                                               Cheatmenü => NUL)
                                            );
 
    procedure WartenEingabe;
@@ -220,157 +162,99 @@ private
    TastenbelegungStandard : constant TastenbelegungArray := (
                                                              1 =>
                                                                (
-                                                                -- Cursor/Einheitenbewegung
-                                                                1 => 'w',
-                                                                2 => 'a',
-                                                                3 => 's',
-                                                                4 => 'd',
-                                                                5 => NUL,
-                                                                6 => NUL,
-                                                                7 => NUL,
-                                                                8 => NUL,
-                                                                9 => '+',
-                                                                10 => '-',
+                                                                Hoch => 'w',
+                                                                Links => 'a',
+                                                                Runter => 's',
+                                                                Rechts => 'd',
+                                                                Links_Oben => NUL,
+                                                                Rechts_Oben => NUL,
+                                                                Links_Unten => NUL,
+                                                                Rechts_Unten => NUL,
+                                                                Ebene_Hoch => '+',
+                                                                Ebene_Runter => '-',
 
-                                                                -- Auswählen
-                                                                11 => 'e',
-                                                                -- Menü aufrufen und Dinge verlassen
-                                                                12 => 'q',
-                                                                -- Zeug bauen
-                                                                13 => 'b',
-                                                                -- Forschung
-                                                                14 => 't',
-                                                                -- Forschungsbaum
-                                                                15 => 'x',
+                                                                Auswählen => 'e',
+                                                                Menü_Zurück => 'q',
+                                                                Bauen => 'b',
+                                                                Forschung => 't',
+                                                                Tech_Baum => 'x',
 
-                                                                -- Nächste Stadt
-                                                                16 => '/',
-                                                                -- Einheiten mit Bewegungspunkten
-                                                                17 => '.',
-                                                                -- Alle Einheiten
-                                                                18 => '*',
-                                                                -- Einheiten ohne Bewegungspunkte
-                                                                19 => ',',
+                                                                Nächste_Stadt => '/',
+                                                                Einheit_Mit_Bewegungspunkte => '.',
+                                                                Alle_Einheiten => '*',
+                                                                Einheiten_Ohne_Bewegungspunkte => ',',
 
-                                                                -- Straße bauen
-                                                                20 => 'l',
-                                                                -- Mine bauen
-                                                                21 => 'm',
-                                                                -- Farm bauen
-                                                                22 => 'f',
-                                                                -- Festung bauen
-                                                                23 => 'u',
-                                                                -- Wald aufforsten
-                                                                24 => 'z',
-                                                                -- Roden-Trockenlegen
-                                                                25 => 'p',
-                                                                -- Heilen
-                                                                26 => 'h',
-                                                                -- Verschanzen
-                                                                27 => 'v',
-                                                                -- Runde aussetzen
-                                                                28 => Space,
-                                                                -- Einheit auflösen
-                                                                29 => DEL,
-                                                                -- Plündern
-                                                                30 => 'j',
-                                                                -- Informationen für Einheiten, Verbesserungen, usw.
-                                                                31 => 'i',
+                                                                Straße_Bauen => 'l',
+                                                                Mine_Bauen => 'm',
+                                                                Farm_Bauen => 'f',
+                                                                Festung_Bauen => 'u',
+                                                                Wald_Aufforsten => 'z',
+                                                                Roden_Trockenlegen => 'p',
+                                                                Heilen => 'h',
+                                                                Verschanzen => 'v',
+                                                                Runde_Aussetzen => Space,
+                                                                Einheit_Auflösen => DEL,
+                                                                Plündern => 'j',
+                                                                Infos => 'i',
 
-                                                                -- Diplomatie
-                                                                32 => '#',
+                                                                Diplomatie => '#',
 
-                                                                -- GeheZu Cursor
-                                                                33 => 'g',
+                                                                GeheZu => 'g',
 
-                                                                -- Stadt umbenennen
-                                                                34 => 'n',
-                                                                -- Stadt abreißen
-                                                                35 => 'k',
-                                                                -- Stadt mit Namen suchen
-                                                                36 => 'y',
+                                                                Stadt_Umbenennen => 'n',
+                                                                Stadt_Abreißen => 'k',
+                                                                Stadt_Suchen => 'y',
 
-                                                                -- Runde beenden
-                                                                37 => 'r',
-                                                                -- Cheatmenü aufrufen
-                                                                38 => 'c'),
+                                                                Runde_Beenden => 'r',
+                                                                Cheatmenü => 'c'),
 
                                                              2 =>
                                                                (
-                                                                -- Cursor/Einheitenbewegung
-                                                                1 => '8',
-                                                                2 => '4',
-                                                                3 => '2',
-                                                                4 => '6',
-                                                                5 => '7',
-                                                                6 => '9',
-                                                                7 => '1',
-                                                                8 => '3',
-                                                                9 => NUL,
-                                                                10 => NUL,
+                                                                Hoch => '8',
+                                                                Links => '4',
+                                                                Runter => '2',
+                                                                Rechts => '6',
+                                                                Links_Oben => '7',
+                                                                Rechts_Oben => '9',
+                                                                Links_Unten => '1',
+                                                                Rechts_Unten => '3',
+                                                                Ebene_Hoch => NUL,
+                                                                Ebene_Runter => NUL,
 
-                                                                -- Auswählen
-                                                                11 => LF,
-                                                                -- Menü aufrufen und Dinge verlassen
-                                                                12 => NUL,
-                                                                -- Zeug bauen
-                                                                13 => NUL,
-                                                                -- Forschung
-                                                                14 => NUL,
-                                                                -- Forschungsbaum
-                                                                15 => NUL,
+                                                                Auswählen => LF,
+                                                                Menü_Zurück => NUL,
+                                                                Bauen => NUL,
+                                                                Forschung => NUL,
+                                                                Tech_Baum => NUL,
 
-                                                                -- Nächste Stadt
-                                                                16 => NUL,
-                                                                -- Einheiten mit Bewegungspunkten
-                                                                17 => NUL,
-                                                                -- Alle Einheiten
-                                                                18 => NUL,
-                                                                -- Einheiten ohne Bewegungspunkte
-                                                                19 => NUL,
+                                                                Nächste_Stadt => NUL,
+                                                                Einheit_Mit_Bewegungspunkte => NUL,
+                                                                Alle_Einheiten => NUL,
+                                                                Einheiten_Ohne_Bewegungspunkte => NUL,
 
-                                                                -- Straße bauen
-                                                                20 => NUL,
-                                                                -- Mine bauen
-                                                                21 => NUL,
-                                                                -- Farm bauen
-                                                                22 => NUL,
-                                                                -- Festung bauen
-                                                                23 => NUL,
-                                                                -- Wald aufforsten
-                                                                24 => NUL,
-                                                                -- Roden-Trockenlegen
-                                                                25 => NUL,
-                                                                -- Heilen
-                                                                26 => NUL,
-                                                                -- Verschanzen
-                                                                27 => NUL,
-                                                                -- Runde aussetzen
-                                                                28 => NUL,
-                                                                -- Einheit auflösen
-                                                                29 => NUL,
-                                                                -- Plündern
-                                                                30 => NUL,
-                                                                -- Informationen für Einheiten, Verbesserungen, usw.
-                                                                31 => NUL,
+                                                                Straße_Bauen => NUL,
+                                                                Mine_Bauen => NUL,
+                                                                Farm_Bauen => NUL,
+                                                                Festung_Bauen => NUL,
+                                                                Wald_Aufforsten => NUL,
+                                                                Roden_Trockenlegen => NUL,
+                                                                Heilen => NUL,
+                                                                Verschanzen => NUL,
+                                                                Runde_Aussetzen => NUL,
+                                                                Einheit_Auflösen => NUL,
+                                                                Plündern => NUL,
+                                                                Infos => NUL,
 
-                                                                -- Diplomatie
-                                                                32 => NUL,
+                                                                Diplomatie => NUL,
 
-                                                                -- GeheZu Cursor
-                                                                33 => NUL,
+                                                                GeheZu => NUL,
 
-                                                                -- Stadt umbenennen
-                                                                34 => NUL,
-                                                                -- Stadt abreißen
-                                                                35 => NUL,
-                                                                -- Stadt mit Namen suchen
-                                                                36 => NUL,
+                                                                Stadt_Umbenennen => NUL,
+                                                                Stadt_Abreißen => NUL,
+                                                                Stadt_Suchen => NUL,
 
-                                                                -- Runde beenden
-                                                                37 => NUL,
-                                                                -- Cheatmenü aufrufen
-                                                                38 => NUL)
+                                                                Runde_Beenden => NUL,
+                                                                Cheatmenü => NUL)
                                                             );
 
    function GanzeZahlPrüfung

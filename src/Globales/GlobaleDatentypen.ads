@@ -18,9 +18,21 @@ package GlobaleDatentypen is
 
 
    -- Für Tastenbelegung
-   type Tastenbelegung_Enum is (Nicht_Vorhanden, Hoch, Links, Runter, Rechts, Links_Oben, Rechts_Oben, Links_Unten, Rechts_Unten, Ebene_Hoch, Ebene_Runter, Auswählen, Menü_Zurück, Bauen, Forschung, Tech_Baum,
-                                Nächste_Stadt, Einheit_Mit_Bewegungspunkte, Alle_Einheiten, Einheiten_Ohne_Bewegungspunkte, Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen,
-                                Heilen, Verschanzen, Runde_Aussetzen, Einheit_Auflösen, Plündern, Infos, Diplomatie, GeheZu, Stadt_Umbenennen, Stadt_Abreißen, Stadt_Suchen, Runde_Beenden, Cheat);
+   type Tastenbelegung_Enum is (Nicht_Vorhanden, Hoch, Links, Runter, Rechts, Links_Oben, Rechts_Oben, Links_Unten, Rechts_Unten, Ebene_Hoch, Ebene_Runter,
+                                Auswählen, Menü_Zurück, Bauen, Forschung, Tech_Baum, Nächste_Stadt, Einheit_Mit_Bewegungspunkte, Alle_Einheiten, Einheiten_Ohne_Bewegungspunkte, Straße_Bauen,
+                                Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Einheit_Auflösen, Plündern,
+                                Infos, Diplomatie, GeheZu, Stadt_Umbenennen, Stadt_Abreißen, Stadt_Suchen, Runde_Beenden, Cheatmenü);
+
+   for Tastenbelegung_Enum use (Nicht_Vorhanden => 0, Hoch => 1, Links => 2, Runter => 3, Rechts => 4, Links_Oben => 5, Rechts_Oben => 6, Links_Unten => 7, Rechts_Unten => 8, Ebene_Hoch => 9, Ebene_Runter => 10,
+                                Auswählen => 11, Menü_Zurück => 12, Bauen => 13, Forschung => 14, Tech_Baum => 15, Nächste_Stadt => 16, Einheit_Mit_Bewegungspunkte => 17, Alle_Einheiten => 18,
+                                Einheiten_Ohne_Bewegungspunkte => 19, Straße_Bauen => 20, Mine_Bauen => 21, Farm_Bauen => 22, Festung_Bauen => 23, Wald_Aufforsten => 24, Roden_Trockenlegen => 25, Heilen => 26,
+                                Verschanzen => 27, Runde_Aussetzen => 28, Einheit_Auflösen => 29, Plündern => 30, Infos => 31, Diplomatie => 32, GeheZu => 33, Stadt_Umbenennen => 34, Stadt_Abreißen => 35,
+                                Stadt_Suchen => 36, Runde_Beenden => 37, Cheatmenü => 38);
+
+   subtype Tastenbelegung_Verwendet_Enum is Tastenbelegung_Enum range Hoch .. Cheatmenü;
+   subtype Tastenbelegung_Bewegung_Enum is Tastenbelegung_Verwendet_Enum range Hoch .. Ebene_Runter;
+   subtype Tastenbelegung_Bewegung_Stadt_Enum is Tastenbelegung_Verwendet_Enum range Hoch .. Rechts_Unten;
+   subtype Tastenbelegung_Befehle_Enum is Tastenbelegung_Verwendet_Enum range Straße_Bauen .. Plündern;
    -- Für Tastenbelegung
 
 
@@ -62,7 +74,7 @@ package GlobaleDatentypen is
 
    -- Für Einheiten
    type Bewegung_Enum is (Leer, Keine_Bewegung_Möglich, Normale_Bewegung_Möglich, Beladen_Bewegung_Möglich, Entladen_Bewegung_Möglich, Gegner_Blockiert, Transporter_Stadt_Möglich);
-   type Befehle_Enum is (Keine, Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Einheit_Auflösen, Plündern);
+   -- type Befehle_Enum is (Keine, Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Einheit_Auflösen, Plündern);
 
    type MaximaleEinheitenMitNullWert is range 0 .. 1_000;
    subtype MaximaleEinheiten is MaximaleEinheitenMitNullWert range 1 .. MaximaleEinheitenMitNullWert'Last;

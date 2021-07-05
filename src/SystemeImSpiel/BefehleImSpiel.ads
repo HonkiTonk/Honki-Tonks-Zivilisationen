@@ -24,7 +24,6 @@ private
    EinheitTransportNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
-   WelcherBefehl : Positive;
    StadtOderEinheit : Integer;
    AbreißenAuswahl : Integer;
    
@@ -58,7 +57,8 @@ private
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
    
    procedure EinheitBefehle
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);

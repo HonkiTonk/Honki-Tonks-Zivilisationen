@@ -249,7 +249,7 @@ package body InDerStadtBauen is
          case
            Eingabe.Tastenwert
          is               
-            when 1 => 
+            when GlobaleDatentypen.Hoch => 
                if
                  AktuelleAuswahl = Anzeige.AllgemeineAnzeigeText'First
                then
@@ -259,7 +259,7 @@ package body InDerStadtBauen is
                   AktuelleAuswahl := AktuelleAuswahl - 1;
                end if;
 
-            when 3 =>
+            when GlobaleDatentypen.Runter =>
                if
                  AktuelleAuswahl = Ende
                then
@@ -269,10 +269,10 @@ package body InDerStadtBauen is
                   AktuelleAuswahl := AktuelleAuswahl + 1;
                end if;
                               
-            when 11 =>
+            when GlobaleDatentypen.Auswählen =>
                return Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer;
 
-            when 12 =>
+            when GlobaleDatentypen.Menü_Zurück =>
                return 0;
                      
             when others =>

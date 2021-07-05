@@ -15,6 +15,6 @@ package InDerStadt is
 
 private
 
-   Befehl : Natural;
+   Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
 
 end InDerStadt;

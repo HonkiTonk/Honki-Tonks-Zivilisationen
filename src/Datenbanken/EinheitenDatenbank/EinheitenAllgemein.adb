@@ -76,7 +76,7 @@ package body EinheitenAllgemein is
    is begin
       
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung = GlobaleDatentypen.Keine
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung = GlobaleDatentypen.Nicht_Vorhanden
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte
            := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleBewegungspunkte;
@@ -93,7 +93,7 @@ package body EinheitenAllgemein is
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
            := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte;
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Keine;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 0;
                   
       elsif
@@ -148,7 +148,7 @@ package body EinheitenAllgemein is
         (
          IDExtern, KoordinatenExtern,
          0, 0.00, 0, 0,
-         GlobaleDatentypen.Keine, GlobaleDatentypen.Keine,
+         GlobaleDatentypen.Nicht_Vorhanden, GlobaleDatentypen.Nicht_Vorhanden,
          0, 0,
          (0, 0, 0), KIDatentypen.Keine_Aufgabe, (others => (0, 0, 0)),
          (others => 0), 0
@@ -172,13 +172,13 @@ package body EinheitenAllgemein is
    
 
    procedure Beschäftigung
-     (ArbeitExtern : in GlobaleDatentypen.Befehle_Enum)
+     (ArbeitExtern : in GlobaleDatentypen.Tastenbelegung_Enum)
    is begin
       
       case
         ArbeitExtern
       is
-         when GlobaleDatentypen.Keine =>
+         when GlobaleDatentypen.Nicht_Vorhanden =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                            TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Beschäftigung_Kurz,
                                            ÜberschriftZeileExtern => 0,
@@ -192,8 +192,9 @@ package body EinheitenAllgemein is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
                                            TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Beschäftigung_Kurz,
                                            ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => GlobaleDatentypen.Befehle_Enum'Pos (ArbeitExtern),
-                                           LetzteZeileExtern      => GlobaleDatentypen.Befehle_Enum'Pos (ArbeitExtern),
+                                           -- Der Abzug wird für die Textanzeige benötigt
+                                           ErsteZeileExtern       => GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - GlobaleKonstanten.EinheitBefehlAbzug,
+                                           LetzteZeileExtern      => GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - GlobaleKonstanten.EinheitBefehlAbzug,
                                            AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
                                            AbstandMitteExtern     => GlobaleDatentypen.Keiner,
                                            AbstandEndeExtern      => GlobaleDatentypen.Keiner);

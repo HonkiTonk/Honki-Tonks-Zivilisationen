@@ -16,38 +16,38 @@ package body BewegungssystemEinheiten is
 
       BewegenSchleife:
       loop
-              
+         
          case
            Eingabe.Tastenwert
          is
-            when 1 =>
+            when GlobaleDatentypen.Hoch =>
                Änderung := (0, -1, 0);
             
-            when 2 =>
+            when GlobaleDatentypen.Links =>
                Änderung := (0, 0, -1);
             
-            when 3 =>
+            when GlobaleDatentypen.Runter =>
                Änderung := (0, 1, 0);
             
-            when 4  =>
+            when GlobaleDatentypen.Rechts  =>
                Änderung := (0, 0, 1);
             
-            when 5 =>
+            when GlobaleDatentypen.Links_Oben =>
                Änderung := (0, -1, -1);
             
-            when 6 =>
+            when GlobaleDatentypen.Rechts_Oben =>
                Änderung := (0, -1, 1);
             
-            when 7 =>
+            when GlobaleDatentypen.Links_Unten =>
                Änderung := (0, 1, -1);
 
-            when 8 =>
+            when GlobaleDatentypen.Rechts_Unten =>
                Änderung := (0, 1, 1);
-
-            when 9 =>
+            
+            when GlobaleDatentypen.Ebene_Hoch =>
                Änderung := (1, 0, 0);
-               
-            when 10 =>
+            
+            when GlobaleDatentypen.Ebene_Runter =>
                Änderung := (-1, 0, 0);
             
             when others =>

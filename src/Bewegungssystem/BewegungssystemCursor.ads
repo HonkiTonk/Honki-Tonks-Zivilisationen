@@ -7,7 +7,7 @@ package BewegungssystemCursor is
 
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
-      RichtungExtern : in Positive;
+      RichtungExtern : in GlobaleDatentypen.Tastenbelegung_Bewegung_Enum;
       RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>

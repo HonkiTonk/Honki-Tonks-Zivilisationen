@@ -375,7 +375,7 @@ package body Eingabe is
             if
               Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = Taste
             then
-               return GlobaleDatentypen.Tastenbelegung_Enum'Val (BelegungPositionSchleifenwert);
+               return BelegungPositionSchleifenwert;
                
             else
                null;

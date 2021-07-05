@@ -289,8 +289,8 @@ package body Cheat is
                  GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID
                is
                   when 0 =>
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Beschäftigung := GlobaleDatentypen.Keine;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).BeschäftigungNachfolger := GlobaleDatentypen.Keine;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).BeschäftigungNachfolger := GlobaleDatentypen.Nicht_Vorhanden;
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID := GlobaleDatentypen.EinheitenID (EinheitID);
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Position := GlobaleVariablen.CursorImSpiel (RasseExtern).Position;
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Lebenspunkte
@@ -320,8 +320,8 @@ package body Cheat is
                  GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID
                is
                   when 0 =>
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Beschäftigung := GlobaleDatentypen.Keine;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).BeschäftigungNachfolger := GlobaleDatentypen.Keine;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
+                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).BeschäftigungNachfolger := GlobaleDatentypen.Nicht_Vorhanden;
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID := GlobaleDatentypen.EinheitenID (EinheitID);
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Position := GlobaleVariablen.CursorImSpiel (RasseExtern).Position;
                      GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Lebenspunkte

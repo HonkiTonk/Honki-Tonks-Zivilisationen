@@ -19,101 +19,82 @@ package body BefehleImSpiel is
       case
         Befehl
       is
-         when 1 .. 10 =>
-            -- Cursor bewegen
+         when GlobaleDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
             BewegungssystemCursor.BewegungCursorRichtung (KarteExtern       => True,
                                                           RichtungExtern    => Befehl,
                                                           RasseExtern       => RasseExtern);
             
-         when 11 =>
-            -- Auswählen
+         when GlobaleDatentypen.Auswählen =>
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
-         when 12 =>
-            -- Menüaufruf
+         when GlobaleDatentypen.Menü_Zurück =>
             return Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Leer,
                                     TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
                                     FrageZeileExtern  => 0,
                                     ErsteZeileExtern  => 1,
                                     LetzteZeileExtern => 6);
 
-         when 13 =>
-            -- Baue Stadt
+         when GlobaleDatentypen.Bauen =>
             BaueStadt (RasseExtern => RasseExtern);
            
-         when 14 =>
-            -- Technologie/Forschung
+         when GlobaleDatentypen.Forschung =>
             Technologie (RasseExtern => RasseExtern);
             
-         when 15 =>
-            -- Anzeige des Forschungsbaums
+         when GlobaleDatentypen.Tech_Baum =>
             ForschungAllgemein.ForschungsBaum (RasseExtern => RasseExtern);
             
-         when 16 =>
-            -- Nächste Stadt
+         when GlobaleDatentypen.Nächste_Stadt =>
             NaechstesObjekt.NächsteStadt (RasseExtern => RasseExtern);
             
-         when 17 =>
-            -- Einheiten mit Bewegungspunkten
+         when GlobaleDatentypen.Einheit_Mit_Bewegungspunkte =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Hat_Bewegungspunkte);
             
-         when 18 =>
-            -- Alle Einheiten
+         when GlobaleDatentypen.Alle_Einheiten =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Egal_Bewegeungspunkte);
             
-         when 19 =>
-            -- Einheiten ohne Bewegungspunkte
+         when GlobaleDatentypen.Einheiten_Ohne_Bewegungspunkte =>
             NaechstesObjekt.NächsteEinheit (RasseExtern           => RasseExtern,
                                              BewegungspunkteExtern => NaechstesObjekt.Keine_Bewegungspunkte);
             
-         when 20 .. 30 =>
-            -- 20 = Straße bauen, 21 = Mine bauen, 22 = Farm bauen, 23 = Festung bauen, 24 = Wald aufforsten, 25 = /Roden-Trockenlegen,
-            -- 26 = Heilen, 27 = Verschanzen, 28 = Runde aussetzen, 29 = Einheit auflösen, 30 = Plündern                          
-            EinheitBefehle (RasseExtern => RasseExtern);
+         when GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Range =>                     
+            EinheitBefehle (RasseExtern  => RasseExtern,
+                            BefehlExtern => Befehl);
             
-             -- Informationen für Einheiten, Verbesserungen, usw.
-         when 31 =>
+         when GlobaleDatentypen.Infos =>
             FeldInformationen.Aufteilung (RasseExtern => RasseExtern);
 
-         when 32 =>
-            -- Diplomatie
+         when GlobaleDatentypen.Diplomatie =>
             Diplomatie.DiplomatieAuswählen (RasseExtern => RasseExtern);
 
-         when 33 =>
-            -- GeheZu Cursor
+         when GlobaleDatentypen.GeheZu =>
             BewegungssystemCursor.GeheZuCursor (RasseExtern => RasseExtern);
 
-         when 34 =>
-            -- Stadt umbenennen
+         when GlobaleDatentypen.Stadt_Umbenennen =>
             StadtUmbenennen (RasseExtern => RasseExtern);
             
-         when 35 =>
-            -- Stadt abreißen
+         when GlobaleDatentypen.Stadt_Abreißen =>
             StadtAbreißen (RasseExtern => RasseExtern);
             
-         when 36 =>
-            -- Stadt mit Namen suchen
+         when GlobaleDatentypen.Stadt_Suchen =>
             StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
             
-         when 37 =>
-            -- Runde beenden
+         when GlobaleDatentypen.Runde_Beenden =>
             return -1_000;
             
-         when 38 =>
-            -- Kleine Cheattaste
+         when GlobaleDatentypen.Cheatmenü =>
             Cheat.Menü (RasseExtern => RasseExtern);
             
-         when 39 =>
+            -- when 39 =>
             -- Meldungen von Städte
-            null;
+            -- null;
             
-         when 40 =>
+            -- when 40 =>
             -- Meldungen von Einheiten
-            null;
-            
-         when others =>
+            -- null;
+         
+         when GlobaleDatentypen.Nicht_Vorhanden =>
             null;
       end case;
 
@@ -222,11 +203,11 @@ package body BefehleImSpiel is
       end case;
       
       if
-        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Beschäftigung /= GlobaleDatentypen.Keine
+        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Beschäftigung /= GlobaleDatentypen.Nicht_Vorhanden
         and then
           EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then
-         GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Beschäftigung := GlobaleDatentypen.Keine;
+         GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
                   
       elsif
         GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Bewegungspunkte = 0.00
@@ -302,13 +283,10 @@ package body BefehleImSpiel is
    
    
    procedure EinheitBefehle
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
    is begin
-      
-      -- 20 = Straße bauen, 21 = Mine bauen, 22 = Farm bauen, 23 = Festung bauen, 24 = Wald aufforsten, 25 = /Roden-Trockenlegen,
-      -- 26 = Heilen, 27 = Verschanzen, 28 = Runde aussetzen, 29 = Einheit auflösen, 30 = Plündern
-      WelcherBefehl := Befehl - GlobaleKonstanten.EinheitBefehlAbzug;
-               
+                     
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                        KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
       if
@@ -323,7 +301,17 @@ package body BefehleImSpiel is
       if
         GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID /= 1
         and
-          WelcherBefehl <= 6
+          (BefehlExtern = GlobaleDatentypen.Straße_Bauen
+           or
+             BefehlExtern = GlobaleDatentypen.Mine_Bauen
+           or
+             BefehlExtern = GlobaleDatentypen.Farm_Bauen
+           or
+             BefehlExtern = GlobaleDatentypen.Festung_Bauen
+           or
+             BefehlExtern = GlobaleDatentypen.Wald_Aufforsten
+           or
+             BefehlExtern = GlobaleDatentypen.Roden_Trockenlegen)
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
                                                TextZeileExtern => 3);
@@ -331,7 +319,7 @@ package body BefehleImSpiel is
       elsif
         GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 1
         and
-          WelcherBefehl = 11
+          BefehlExtern = GlobaleDatentypen.Plündern
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
                                                TextZeileExtern => 3);
@@ -344,7 +332,7 @@ package body BefehleImSpiel is
                      
       else
          Verbesserungen.Verbesserung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
-                                      BefehlExtern             => GlobaleDatentypen.Befehle_Enum'Val (WelcherBefehl));
+                                      BefehlExtern             => BefehlExtern);
       end if;
       
    end EinheitBefehle;

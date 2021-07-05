@@ -49,6 +49,7 @@ package GlobaleKonstanten is
 
 
    -- Für Einheiten/Städte
+   -- Wird für die Textanzeige benötigt
    EinheitBefehlAbzug : constant Positive := 19;
 
    RückgabeEinheitStadtNummerFalsch : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := 0;
@@ -147,7 +148,7 @@ package GlobaleKonstanten is
                                                                          -- Lebenspunkte, Bewegungspunkte, Erfahrungspunkte, Rang
                                                                          0, 0.00, 0, 0,
                                                                          -- Beschäftigung, Zweite Beschäftigung
-                                                                         GlobaleDatentypen.Keine, GlobaleDatentypen.Keine,
+                                                                         GlobaleDatentypen.Nicht_Vorhanden, GlobaleDatentypen.Nicht_Vorhanden,
                                                                          -- Beschäftigungszeit, Zweite Beschäftigungszeit
                                                                          0, 0,
                                                                          -- Zielkoordinaten der KI, Beschäftigung der KI, Bewegungsplan der KI
