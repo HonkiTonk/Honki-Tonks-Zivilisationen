@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleTexte;
 
 -- with Programmanalyse;
 
@@ -24,7 +24,7 @@ is begin
          Hauptmenue.Hauptmenü;
 
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                        TextDateiExtern        => GlobaleDatentypen.Start,
+                                        TextDateiExtern        => GlobaleTexte.Start,
                                         ÜberschriftZeileExtern => 0,
                                         ErsteZeileExtern       => 8,
                                         LetzteZeileExtern      => 8,
@@ -34,7 +34,7 @@ is begin
 
       when False =>
          -- Nicht über Anzeige regeln, da die benötigten Dateien ja gar nicht eingelesen wurden!
-         Put_Line (Item => "Benötigte Dateien nicht gefunden (Start.EinlesenErgebnis => False)!");
+         Put_Line (Item => "Benötigte Dateien nicht gefunden!");
    end case;
 
 end Start;

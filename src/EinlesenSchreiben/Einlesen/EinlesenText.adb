@@ -4,8 +4,56 @@ with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories;
 
 package body EinlesenText is
-
-   function EinlesenTextNeu
+   
+   function EinlesenText
+     return Boolean
+   is begin
+      
+      case
+        TexteRassen
+      is
+         when False =>
+            return False;
+            
+         when True =>
+            null;
+      end case;
+      
+      case
+        TexteAllesAndere
+      is
+         when False =>
+            return False;
+            
+         when True =>
+            null;
+      end case;
+      
+      case
+        TexteOptionen
+      is
+         when False =>
+            return False;
+            
+         when True =>
+            null;
+      end case;
+      
+      case
+        TexteSpieleinstellungen
+      is
+         when False =>
+            return False;
+            
+         when True =>
+            return True;
+      end case;
+      
+   end EinlesenText;
+   
+   
+   
+   function TexteRassen
      return Boolean
    is begin
       
@@ -84,7 +132,37 @@ package body EinlesenText is
       end loop DateiSchleife;
 
       return True;
-         
-   end EinlesenTextNeu;
+      
+   end TexteRassen;
+   
+   
+   
+   function TexteAllesAndere
+     return Boolean
+   is begin
+      
+      return True;
+      
+   end TexteAllesAndere;
+     
+     
+   
+   function TexteOptionen
+     return Boolean
+   is begin
+      
+      return True;
+      
+   end TexteOptionen;
+     
+     
+   
+   function TexteSpieleinstellungen
+     return Boolean
+   is begin
+      
+      return True;
+      
+   end TexteSpieleinstellungen;
 
 end EinlesenText;

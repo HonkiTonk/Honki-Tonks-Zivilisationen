@@ -18,14 +18,6 @@ package GlobaleVariablen is
                                                                       -- Rundenanzahl bis Autosave
                                                                       10
                                                                      );
-                                                                                                                  
-                                                                                                                 
-   
-   type SprachenEinlesenArray is array (1 .. 100) of Unbounded_Wide_Wide_String;
-   SprachenEinlesen : SprachenEinlesenArray;
-
-   type TexteEinlesenNeuArray is array (1 .. GlobaleDatentypen.TextDateien'Last, 1 .. 93) of Unbounded_Wide_Wide_String;
-   TexteEinlesenNeu : TexteEinlesenNeuArray := (others => (others => (To_Unbounded_Wide_Wide_String (Source => "|"))));
    -- Schreiben/Ausgabe
    
    

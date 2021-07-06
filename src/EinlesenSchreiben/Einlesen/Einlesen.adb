@@ -19,32 +19,29 @@ package body Einlesen is
       if
         GlobaleVariablen.NutzerEinstellungen.Sprache = "|"
       then
-         Erfolgreich := EinlesenSprache.EinlesenSprache;
          case
-           Erfolgreich
+           EinlesenSprache.EinlesenSprache
          is
             when True =>
                GlobaleVariablen.NutzerEinstellungen.Sprache := Auswahl.AuswahlSprache;
                SchreibenEinstellungen.SchreibenEinstellungen;
             
             when False =>
-               return Erfolgreich;
+               return False;
          end case;
          
       else
          null;
       end if;
       
-      Erfolgreich := EinlesenText.EinlesenTextNeu;
-
       case
-        Erfolgreich
+        EinlesenText.EinlesenText
       is
          when True =>
             null;
 
          when False =>
-            return Erfolgreich;
+            return False;
       end case;
       
       EinlesenWerte.EinlesenAlleDatenbanken;
