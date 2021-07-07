@@ -218,7 +218,7 @@ package body KINahkampfBodenAufgabeFestlegen is
             
          else
             null;
-         end if;     
+         end if;
          
          if
            KartenYReichweite < Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
