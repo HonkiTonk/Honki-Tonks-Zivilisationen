@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen, KIKonstanten;
 
-with StadtBauen, KIPruefungen, EinheitenAllgemein;
+with StadtBauen, KIPruefungen, EinheitenAllgemein, KIMindestBewertungKartenfeldErmitteln;
 
 package body KISiedlerAufgabeFestlegen is
 
@@ -57,14 +57,7 @@ package body KISiedlerAufgabeFestlegen is
    is begin
       
       -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln
-      if
-        EinheitRasseNummerExtern.Rasse in 1 .. 5
-      then
-         MindestBewertungKartenfeld := 90;
-            
-      else
-         MindestBewertungKartenfeld := 90;
-      end if;
+      MindestBewertungKartenfeld := KIMindestBewertungKartenfeldErmitteln.MindestBewertungKartenfeldStadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       NeueStadtPosition := KIPruefungen.UmgebungStadtBauenPrüfen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
                                                                    MindestBewertungFeldExtern => MindestBewertungKartenfeld);

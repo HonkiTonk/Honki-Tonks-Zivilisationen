@@ -3,7 +3,9 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleKonstanten, KIDatentypen;
+with GlobaleKonstanten, GlobaleTexte;
+     
+with KIDatentypen;
 
 with EinheitenDatenbank, VerbesserungenDatenbank;
 
@@ -18,14 +20,14 @@ package body Cheat is
       MenüSchleife:
       loop
 
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Cheat_Menü,
-                                        TextDateiExtern        => GlobaleDatentypen.Cheat_Menü,
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Cheat_Menü,
+                                        TextDateiExtern        => GlobaleTexte.Cheat_Menü,
                                         ÜberschriftZeileExtern => 1,
                                         ErsteZeileExtern       => 2,
                                         LetzteZeileExtern      => 11,
-                                        AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                        AbstandMitteExtern     => GlobaleDatentypen.Neue_Zeile,
-                                        AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
+                                        AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                        AbstandMitteExtern     => GlobaleTexte.Neue_Zeile,
+                                        AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
          case
            Eingabe.TastenEingabe
@@ -211,7 +213,7 @@ package body Cheat is
      (RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
       
-      KartenGrundID := GlobaleDatentypen.KartenGrund (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
+      KartenGrundID := GlobaleDatentypen.KartenGrund (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Cheat_Menü,
                                                                          ZeileExtern         => 12,
                                                                          ZahlenMinimumExtern => 1,
                                                                          ZahlenMaximumExtern => 42));
@@ -246,7 +248,7 @@ package body Cheat is
      (RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
 
-      RasseNummer := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
+      RasseNummer := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Cheat_Menü,
                                         ZeileExtern         => 13,
                                         ZahlenMinimumExtern => Integer (GlobaleDatentypen.Rassen'First),
                                         ZahlenMaximumExtern => Integer (GlobaleDatentypen.Rassen'Last));
@@ -261,7 +263,7 @@ package body Cheat is
             null;
       end case;
 
-      EinheitID := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
+      EinheitID := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Cheat_Menü,
                                       ZeileExtern         => 14,
                                       ZahlenMinimumExtern => Integer (EinheitenDatenbank.EinheitenListe'First (2)),
                                       ZahlenMaximumExtern => Integer (EinheitenDatenbank.EinheitenListe'Last (2)));
@@ -371,7 +373,7 @@ package body Cheat is
      (RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
       
-      VerbesserungID := GlobaleDatentypen.KartenVerbesserung (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
+      VerbesserungID := GlobaleDatentypen.KartenVerbesserung (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Cheat_Menü,
                                                                                  ZeileExtern         => 15,
                                                                                  ZahlenMinimumExtern => 5,
                                                                                  ZahlenMaximumExtern => Integer (VerbesserungenDatenbank.VerbesserungListe'Last)));
@@ -410,7 +412,7 @@ package body Cheat is
                null;
                
             when others =>
-               GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Cheat_Menü,
+               GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Cheat_Menü,
                                                                                                                    ZeileExtern         => 16,
                                                                                                                    ZahlenMinimumExtern => 1,
                                                                                                                    ZahlenMaximumExtern => 2));

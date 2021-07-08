@@ -68,8 +68,6 @@ package body Sichtbarkeit is
                
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-
-            exit XÄnderungEinheitenSchleife when KartenWert.YAchse = 0;
             
             SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                 KoordinatenExtern => KartenWert);
@@ -101,8 +99,6 @@ package body Sichtbarkeit is
 
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-               
-            exit XÄnderungStadtSchleife when KartenWert.YAchse = 0;
             
             SichtbarkeitSetzen (RasseExtern       => StadtRasseNummerExtern.Rasse,
                                 KoordinatenExtern => KartenWert);

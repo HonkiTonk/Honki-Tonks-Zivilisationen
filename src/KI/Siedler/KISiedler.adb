@@ -3,13 +3,26 @@ pragma SPARK_Mode (On);
 with KIDatentypen, KIKonstanten;
 use KIDatentypen;
 
-with KIBewegungDurchfuehren, KISiedlerAufgabeErmitteln, KISiedlerAufgabeDurchfuehren;
+with KIBewegungDurchfuehren, KISiedlerAufgabeErmitteln, KISiedlerAufgabeDurchfuehren, KIGefahrErmitteln;
 
 package body KISiedler is
 
    procedure KISiedler
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
+      
+      if
+        KIGefahrErmitteln.KIGefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+      then
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger := GlobaleDatentypen.Nicht_Vorhanden;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 0;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger := 0;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Flucht;
+         
+      else
+         null;
+      end if;
       
       NotAus := 1;
       

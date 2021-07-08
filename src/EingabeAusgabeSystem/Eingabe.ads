@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleTexte;
 use GlobaleDatentypen;
 
 package Eingabe is
@@ -114,7 +114,7 @@ package Eingabe is
    procedure StandardTastenbelegungWiederherstellen;
 
    function GanzeZahl
-     (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ZeileExtern : in Positive;
       ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
       return Integer
@@ -262,7 +262,7 @@ private
       return GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
 
    function ZahlSchleife
-     (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ZeileExtern : in Positive;
       ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
       return GlobaleDatentypen.LoopRangeMinusZweiZuZwei

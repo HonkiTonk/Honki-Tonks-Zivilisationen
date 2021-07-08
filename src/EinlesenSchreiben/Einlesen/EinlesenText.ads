@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen;
+with GlobaleTexte;
 
 package EinlesenText is
    
@@ -14,7 +14,7 @@ private
    
    LeereZeilenAbzieher : Natural;
    
-   type WelcheTexteEinlesenNeuArray is array (GlobaleVariablen.TexteEinlesenNeuArray'Range (1)) of Unbounded_Wide_Wide_String;
+   type WelcheTexteEinlesenNeuArray is array (GlobaleTexte.TexteEinlesenNeuArray'Range (1)) of Unbounded_Wide_Wide_String;
    WelcheTexteEinlesenNeu : WelcheTexteEinlesenNeuArray;
 
    DateiNeuWelcheTexteEinlesen : File_Type;

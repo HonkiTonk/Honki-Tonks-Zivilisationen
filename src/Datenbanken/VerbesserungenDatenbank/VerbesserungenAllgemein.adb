@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleTexte;
+
 with Anzeige;
 
 package body VerbesserungenAllgemein is
@@ -15,7 +17,7 @@ package body VerbesserungenAllgemein is
             null;
             
          when others =>
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Beschreibungen_Verbesserungen_Kurz,
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Beschreibungen_Verbesserungen_Kurz,
                                                   TextZeileExtern => Positive (IDExtern));
       end case;
       

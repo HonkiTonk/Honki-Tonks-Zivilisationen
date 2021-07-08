@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories;
 
+with GlobaleVariablen;
+
 package body EinlesenText is
 
    function EinlesenTextNeu
@@ -40,7 +42,7 @@ package body EinlesenText is
       Close (File => DateiNeuWelcheTexteEinlesen);
       
       DateiSchleife:
-      for DateiSchleifenwert in 1 .. GlobaleVariablen.TexteEinlesenNeuArray'Last (1) loop
+      for DateiSchleifenwert in 1 .. GlobaleTexte.TexteEinlesenNeuArray'Last (1) loop
 
          case
            Exists (Encode (Item => (To_Wide_Wide_String (Source => WelcheTexteEinlesenNeu (DateiSchleifenwert)))))
@@ -56,7 +58,7 @@ package body EinlesenText is
          end case;
          
          ZeilenSchleife:
-         for ZeileSchleifenwert in GlobaleVariablen.TexteEinlesenNeuArray'Range (2) loop
+         for ZeileSchleifenwert in GlobaleTexte.TexteEinlesenNeuArray'Range (2) loop
             if
               End_Of_File (File => DateiNeuText) = True
             then
@@ -65,10 +67,10 @@ package body EinlesenText is
             else
                Set_Line (File => DateiNeuText,
                          To   => Ada.Wide_Wide_Text_IO.Count (ZeileSchleifenwert));         
-               GlobaleVariablen.TexteEinlesenNeu (DateiSchleifenwert, ZeileSchleifenwert - LeereZeilenAbzieher) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuText));
+               GlobaleTexte.TexteEinlesenNeu (DateiSchleifenwert, ZeileSchleifenwert - LeereZeilenAbzieher) := To_Unbounded_Wide_Wide_String (Source => Get_Line (File => DateiNeuText));
 
                if
-                 To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (DateiSchleifenwert, ZeileSchleifenwert - LeereZeilenAbzieher)) (1) /= '|'
+                 To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (DateiSchleifenwert, ZeileSchleifenwert - LeereZeilenAbzieher)) (1) /= '|'
                then
                   null;                 
                   

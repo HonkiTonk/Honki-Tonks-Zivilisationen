@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleTexte;
+
 with Anzeige;
 
 package body KartenAllgemein is
@@ -15,14 +17,14 @@ package body KartenAllgemein is
             null;
             
          when others =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Kartenfelder_Kurz,
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
                                            ÜberschriftZeileExtern => 0,
                                            ErsteZeileExtern       => Positive (IDExtern),
                                            LetzteZeileExtern      => Positive (IDExtern),
-                                           AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                           AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+                                           AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                           AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                           AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       end case;
       
    end Beschreibung;

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, GlobaleTexte;
 
 with Eingabe, Auswahl, Anzeige, SchreibenTastatur;
 
@@ -16,8 +16,8 @@ package body OptionenSteuerung is
       BelegungSchleife:
       loop
          
-         AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
-                                         TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
+         AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
+                                         TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
                                          FrageZeileExtern  => 28,
                                          ErsteZeileExtern  => 22,
                                          LetzteZeileExtern => 64);
@@ -36,27 +36,27 @@ package body OptionenSteuerung is
                SchreibenTastatur.TastenbelegungSchreiben;
                      
             when others =>
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Zeug,
+               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                              TextDateiExtern        => GlobaleTexte.Zeug,
                                               ÜberschriftZeileExtern => 0,
                                               ErsteZeileExtern       => 46,
                                               LetzteZeileExtern      => 46,
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
+                                              AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                              AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                              AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
                
                NeueAuswahl := GlobaleDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
                
                Put_Line (Eingabe.Tastenbelegung (1, NeueAuswahl) & "    " & Eingabe.Tastenbelegung (2, NeueAuswahl));
                
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Fragen,
+               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                              TextDateiExtern        => GlobaleTexte.Fragen,
                                               ÜberschriftZeileExtern => 0,
                                               ErsteZeileExtern       => 29,
                                               LetzteZeileExtern      => 29,
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
+                                              AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                              AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                              AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
                
                NeueTaste := Eingabe.TastenEingabe;
                

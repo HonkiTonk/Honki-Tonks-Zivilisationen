@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleKonstanten;
+with GlobaleKonstanten, GlobaleTexte;
 
 with OptionenSteuerung, Auswahl, OptionenSound, OptionenGrafik, OptionenSonstiges;
 
@@ -14,8 +14,8 @@ package body Optionen is
       OptionenSchleife:
       loop
 
-         AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Leer,
-                                         TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
+         AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Leer,
+                                         TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
                                          FrageZeileExtern  => 0,
                                          ErsteZeileExtern  => GlobaleKonstanten.OptionenErsteZeileKonstante,
                                          LetzteZeileExtern => GlobaleKonstanten.OptionenLetzteZeileKonstante);

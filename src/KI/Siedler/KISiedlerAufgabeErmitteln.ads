@@ -20,8 +20,6 @@ private
    
    EinheitID : GlobaleDatentypen.EinheitenID;
    
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   
    type WichtigkeitArray is array (0 .. 7) of Natural;
    Wichtigkeit : WichtigkeitArray;
 

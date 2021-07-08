@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleDatentypen;
+with GlobaleTexte;
 
 -- with Programmanalyse;
 
@@ -23,14 +23,14 @@ is begin
          Intro.Intro;
          Hauptmenue.Hauptmenü;
 
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                        TextDateiExtern        => GlobaleDatentypen.Start,
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                        TextDateiExtern        => GlobaleTexte.Start,
                                         ÜberschriftZeileExtern => 0,
                                         ErsteZeileExtern       => 8,
                                         LetzteZeileExtern      => 8,
-                                        AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
-                                        AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                        AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+                                        AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandEndeExtern      => GlobaleTexte.Keiner);
 
       when False =>
          -- Nicht über Anzeige regeln, da die benötigten Dateien ja gar nicht eingelesen wurden!

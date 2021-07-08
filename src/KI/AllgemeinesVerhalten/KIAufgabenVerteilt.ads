@@ -33,6 +33,18 @@ package KIAufgabenVerteilt is
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
    
+   function EinheitZiel
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      ZielKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+     with
+       Pre =>
+         (ZielKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            ZielKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
+   
 private
      
    GleicheAufgabe : Natural;

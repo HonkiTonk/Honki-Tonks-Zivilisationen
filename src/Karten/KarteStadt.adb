@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, GlobaleTexte;
 
 with GebaeudeDatenbank;
   
@@ -298,28 +298,14 @@ package body KarteStadt is
 
                KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
                                                                        ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion));
-
-               case
-                 KartenWert.YAchse
-               is
-                  when 0 =>
-                     GrafischeAnzeige.Farben (EinheitExtern      => 0,
-                                              VerbesserungExtern => 0,
-                                              RessourceExtern    => 0,
-                                              GrundExtern        => 0,
-                                              CursorExtern       => True,
-                                              EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                                              RasseExtern        => 0);
-                           
-                  when others =>
-                     GrafischeAnzeige.Farben (EinheitExtern      => 0,
-                                              VerbesserungExtern => 0,
-                                              RessourceExtern    => 0,
-                                              GrundExtern        => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund,
-                                              CursorExtern       => True,
-                                              EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                                              RasseExtern        => 0);
-               end case;                        
+               GrafischeAnzeige.Farben (EinheitExtern      => 0,
+                                        VerbesserungExtern => 0,
+                                        RessourceExtern    => 0,
+                                        GrundExtern        => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund,
+                                        CursorExtern       => True,
+                                        EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
+                                        RasseExtern        => 0);
+               
                InformationenStadtAufrufen := True;
             end if;
                            
@@ -333,18 +319,10 @@ package body KarteStadt is
          else
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
                                                                     ÄnderungExtern       => (0, YAchsenabstraktion, UmgebungSchleifenwert));
-
-            case
-              KartenWert.YAchse
-            is
-               when 0 =>
-                  Put (Item => " ");
-
-               when others =>
-                  GrafischeAnzeige.Sichtbarkeit (InDerStadtExtern  => True,
-                                                 KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse),
-                                                 RasseExtern       => StadtRasseNummerExtern.Rasse);
-            end case;
+            
+            GrafischeAnzeige.Sichtbarkeit (InDerStadtExtern  => True,
+                                           KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse),
+                                           RasseExtern       => StadtRasseNummerExtern.Rasse);            
          end if;
 
       end loop UmgebungsSchleife;
@@ -365,30 +343,20 @@ package body KarteStadt is
 
       KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
                                                               ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion));
-
-      case
-        KartenWert.YAchse
-      is
-         when 0 =>
-            return;
-         
-         when others =>
-            null;
-      end case;
       
       if
         Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Hügel = True
         and
           Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= 6
       then
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                        TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Kartenfelder_Kurz,
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                        TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
                                         ÜberschriftZeileExtern => 0,
                                         ErsteZeileExtern       => 34,
                                         LetzteZeileExtern      => 34,
-                                        AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                        AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                        AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+                                        AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandEndeExtern      => GlobaleTexte.Keiner);
          KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
          
       elsif

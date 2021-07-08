@@ -3,54 +3,52 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleVariablen;
-
 with Eingabe;
 
 package body Anzeige is
 
    procedure AnzeigeOhneAuswahlNeu
-     (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+     (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ÜberschriftZeileExtern : in Natural;
       ErsteZeileExtern, LetzteZeileExtern : in Positive;
-      AbstandAnfangExtern, AbstandMitteExtern, AbstandEndeExtern : in GlobaleDatentypen.Welcher_Abstand_Enum)
+      AbstandAnfangExtern, AbstandMitteExtern, AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
    is begin
         
       case
         ÜberschriftDateiExtern
       is
-         when GlobaleDatentypen.Leer =>
+         when GlobaleTexte.Leer =>
             null;
             
          when others =>
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (ÜberschriftDateiExtern), ÜberschriftZeileExtern)));
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (ÜberschriftDateiExtern), ÜberschriftZeileExtern)));
       end case;
 
       case
         AbstandAnfangExtern
       is
-         when GlobaleDatentypen.Keiner =>
+         when GlobaleTexte.Keiner =>
             null;
 
-         when GlobaleDatentypen.Kleiner_Abstand =>
+         when GlobaleTexte.Kleiner_Abstand =>
             Put (Item => " ");
             
-         when GlobaleDatentypen.Großer_Abstand =>
+         when GlobaleTexte.Großer_Abstand =>
             Put (Item => "    ");
             
-         when GlobaleDatentypen.Neue_Zeile =>
+         when GlobaleTexte.Neue_Zeile =>
             New_Line;
       end case;
 
       TextAnzeigeSchleife:
       for TextZeileSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
          
-         Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), TextZeileSchleifenwert)));
+         Put (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), TextZeileSchleifenwert)));
                   
          if
            ErsteZeileExtern = LetzteZeileExtern
            or
-             AbstandMitteExtern = GlobaleDatentypen.Keiner
+             AbstandMitteExtern = GlobaleTexte.Keiner
          then
             null;
             
@@ -60,16 +58,16 @@ package body Anzeige is
             case
               AbstandMitteExtern
             is
-               when GlobaleDatentypen.Keiner =>
+               when GlobaleTexte.Keiner =>
                   null;
                   
-               when GlobaleDatentypen.Kleiner_Abstand =>
+               when GlobaleTexte.Kleiner_Abstand =>
                   Put (Item => " ");
             
-               when GlobaleDatentypen.Großer_Abstand =>
+               when GlobaleTexte.Großer_Abstand =>
                   Put (Item => "    ");
             
-               when GlobaleDatentypen.Neue_Zeile =>
+               when GlobaleTexte.Neue_Zeile =>
                   New_Line;
             end case;
 
@@ -82,16 +80,16 @@ package body Anzeige is
       case
         AbstandEndeExtern
       is
-         when GlobaleDatentypen.Keiner =>
+         when GlobaleTexte.Keiner =>
             null;
 
-         when GlobaleDatentypen.Kleiner_Abstand =>
+         when GlobaleTexte.Kleiner_Abstand =>
             Put (Item => " ");
             
-         when GlobaleDatentypen.Großer_Abstand =>
+         when GlobaleTexte.Großer_Abstand =>
             Put (Item => "    ");
             
-         when GlobaleDatentypen.Neue_Zeile =>
+         when GlobaleTexte.Neue_Zeile =>
             New_Line;
       end case;
       
@@ -100,23 +98,23 @@ package body Anzeige is
 
 
    procedure EinzeiligeAnzeigeOhneAuswahl
-     (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       TextZeileExtern : in Positive)
    is begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                      TextDateiExtern        => TextDateiExtern,
                                      ÜberschriftZeileExtern => 0,
                                      ErsteZeileExtern       => TextZeileExtern,
                                      LetzteZeileExtern      => TextZeileExtern,
-                                     AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                     AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
+                                     AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
       case
         TextDateiExtern
       is
-         when GlobaleDatentypen.Fehlermeldungen =>
+         when GlobaleTexte.Fehlermeldungen =>
             Eingabe.WartenEingabe;
             
          when others =>
@@ -128,7 +126,7 @@ package body Anzeige is
 
 
    procedure AnzeigeMitAuswahlNeu
-     (FrageDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+     (FrageDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       FrageZeileExtern, ErsteZeileExtern, LetzteZeileExtern, AktuelleAuswahlExtern : in Natural)
    is begin
         
@@ -138,9 +136,9 @@ package body Anzeige is
       for ZeilenSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
          
          if
-           To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), ZeilenSchleifenwert))'Length > LängsterText
+           To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeilenSchleifenwert))'Length > LängsterText
          then
-            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), ZeilenSchleifenwert))'Length;
+            LängsterText := To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeilenSchleifenwert))'Length;
             
          else
             null;
@@ -151,11 +149,11 @@ package body Anzeige is
       case
         FrageDateiExtern
       is
-         when GlobaleDatentypen.Leer =>
+         when GlobaleTexte.Leer =>
             null;
 
          when others =>
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (FrageDateiExtern), FrageZeileExtern)));
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (FrageDateiExtern), FrageZeileExtern)));
       end case;
       
       AnzeigeSchleife:
@@ -177,10 +175,10 @@ package body Anzeige is
                   Put (Item => "═");
                   Put_Line (Item => "╗");
                   Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert)));
+                  Put (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert)));
 
                   LeererPlatzSchleife:
-                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert))'Length loop
+                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert))'Length loop
                         
                      Put (" ");
                         
@@ -211,7 +209,7 @@ package body Anzeige is
             end loop RahmenTeilZweiSchleife;
          
          else
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert)));
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ZeileSchleifenwert)));
          end if;
          
       end loop AnzeigeSchleife;
@@ -323,9 +321,9 @@ package body Anzeige is
       for ZeilenSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
          
          if
-           To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (ZeilenSchleifenwert))'Length > LängsterText
+           To_Wide_Wide_String (Source => GlobaleTexte.SprachenEinlesen (ZeilenSchleifenwert))'Length > LängsterText
          then
-            LängsterText := To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (ZeilenSchleifenwert))'Length;
+            LängsterText := To_Wide_Wide_String (Source => GlobaleTexte.SprachenEinlesen (ZeilenSchleifenwert))'Length;
             
          else
             null;
@@ -354,10 +352,10 @@ package body Anzeige is
                   Put (Item => "═");
                   Put_Line (Item => "╗");
                   Put (Item => "║");
-                  Put (Item => To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (ZeileSchleifenwert)));
+                  Put (Item => To_Wide_Wide_String (Source => GlobaleTexte.SprachenEinlesen (ZeileSchleifenwert)));
 
                   LeererPlatzSchleife:
-                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (ZeileSchleifenwert))'Length loop
+                  for LeererPlatz in 1 .. LängsterText - To_Wide_Wide_String (Source => GlobaleTexte.SprachenEinlesen (ZeileSchleifenwert))'Length loop
                         
                      Put (" ");
                         
@@ -388,7 +386,7 @@ package body Anzeige is
             end loop RahmenTeilZweiSchleife;
          
          else
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.SprachenEinlesen (ZeileSchleifenwert)));
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleTexte.SprachenEinlesen (ZeileSchleifenwert)));
          end if;
          
       end loop AnzeigeSchleife;
@@ -398,41 +396,41 @@ package body Anzeige is
    
 
    procedure AnzeigeLangerTextNeu
-     (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+     (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ÜberschriftZeileExtern : in Natural;
       ErsteZeileExtern, LetzteZeileExtern : in Positive;
-      AbstandAnfangExtern, AbstandEndeExtern : in GlobaleDatentypen.Welcher_Abstand_Enum)
+      AbstandAnfangExtern, AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
    is begin
       
       case
         ÜberschriftDateiExtern
       is
-         when GlobaleDatentypen.Leer =>
+         when GlobaleTexte.Leer =>
             null;
             
          when others =>
-            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (ÜberschriftDateiExtern), ÜberschriftZeileExtern)));
+            Put_Line (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (ÜberschriftDateiExtern), ÜberschriftZeileExtern)));
       end case;
 
       case
         AbstandAnfangExtern
       is
-         when GlobaleDatentypen.Keiner =>
+         when GlobaleTexte.Keiner =>
             null;
 
-         when GlobaleDatentypen.Kleiner_Abstand =>
+         when GlobaleTexte.Kleiner_Abstand =>
             Put (Item => " ");
             
-         when GlobaleDatentypen.Großer_Abstand =>
+         when GlobaleTexte.Großer_Abstand =>
             Put (Item => "    ");
             
-         when GlobaleDatentypen.Neue_Zeile =>
+         when GlobaleTexte.Neue_Zeile =>
             New_Line;
       end case;
 
       ZeichengrenzenMultiplikator := 1;
 
-      TextNeu := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (TextDateiExtern), ErsteZeileExtern);
+      TextNeu := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (TextDateiExtern), ErsteZeileExtern);
       
       AnzeigeSchleife:
       for ZeichenSchleifenwert in To_Wide_Wide_String (Source => TextNeu)'Range loop
@@ -464,16 +462,16 @@ package body Anzeige is
       case
         AbstandEndeExtern
       is
-         when GlobaleDatentypen.Keiner =>
+         when GlobaleTexte.Keiner =>
             null;
 
-         when GlobaleDatentypen.Kleiner_Abstand =>
+         when GlobaleTexte.Kleiner_Abstand =>
             Put (Item => " ");
             
-         when GlobaleDatentypen.Großer_Abstand =>
+         when GlobaleTexte.Großer_Abstand =>
             Put (Item => "    ");
             
-         when GlobaleDatentypen.Neue_Zeile =>
+         when GlobaleTexte.Neue_Zeile =>
             New_Line;
       end case;
       

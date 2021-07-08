@@ -93,10 +93,8 @@ package body KISiedlerAufgabeErmitteln is
       return Natural
    is begin
       
-      KartenWert := KIPruefungen.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
       case
-        KartenWert.YAchse
+        KIPruefungen.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern).YAchse
       is
          when 0 =>
             return 0;

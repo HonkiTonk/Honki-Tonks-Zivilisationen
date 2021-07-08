@@ -276,8 +276,6 @@ package body KIPruefungen is
             
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
                                                                     ÄnderungExtern       => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert));
-            
-            exit XAchseUmgebungSchleife when KartenWert.YAchse = 0;
                
             if
               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund > 0

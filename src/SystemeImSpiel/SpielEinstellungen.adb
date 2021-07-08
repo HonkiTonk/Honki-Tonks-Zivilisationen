@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, GlobaleTexte;
 
 with ImSpiel, KartenGenerator, Eingabe, Auswahl, Anzeige, ZufallGeneratorenKarten, Ladezeiten, KartenPruefungen, EinheitSuchen, ZufallGeneratorenSpieleinstellungen, EinheitenAllgemein;
 
@@ -73,8 +73,8 @@ package body SpielEinstellungen is
       KartengrößeSchleife:
       loop
          
-         KartengrößeAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
-                                                  TextDateiExtern   => GlobaleDatentypen.Spiel_Einstellungen,
+         KartengrößeAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
+                                                  TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                                   FrageZeileExtern  => 1,
                                                   ErsteZeileExtern  => 1,
                                                   LetzteZeileExtern => 13);
@@ -88,7 +88,7 @@ package body SpielEinstellungen is
 
             when 10 =>
                Karten.Kartengröße := KartengrößeAuswahl;
-               BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Fragen,
+               BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                                ZeileExtern         => 19,
                                                                ZahlenMinimumExtern => 20,
                                                                ZahlenMaximumExtern => 1_000);
@@ -102,7 +102,7 @@ package body SpielEinstellungen is
                end if;
                
                Karten.Kartengrößen (KartengrößeAuswahl).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-               BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Fragen,
+               BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                                ZeileExtern         => 25,
                                                                ZahlenMinimumExtern => 20,
                                                                ZahlenMaximumExtern => 1_000);
@@ -144,8 +144,8 @@ package body SpielEinstellungen is
       KartenartSchleife:
       loop
 
-         KartenartAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
-                                              TextDateiExtern   => GlobaleDatentypen.Spiel_Einstellungen,
+         KartenartAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
+                                              TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                               FrageZeileExtern  => 2,
                                               ErsteZeileExtern  => 14,
                                               LetzteZeileExtern=> 22);
@@ -186,8 +186,8 @@ package body SpielEinstellungen is
       KartentemperaturSchleife:
       loop
 
-         KartentemperaturAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
-                                                     TextDateiExtern   => GlobaleDatentypen.Spiel_Einstellungen,
+         KartentemperaturAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
+                                                     TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                                      FrageZeileExtern  => 3,
                                                      ErsteZeileExtern  => 23,
                                                      LetzteZeileExtern => 31);
@@ -228,8 +228,8 @@ package body SpielEinstellungen is
       SpieleranzahlSchleife:
       loop
 
-         SpieleranzahlAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
-                                                  TextDateiExtern   => GlobaleDatentypen.Spiel_Einstellungen,
+         SpieleranzahlAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
+                                                  TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                                   FrageZeileExtern  => 4,
                                                   ErsteZeileExtern  => 32,
                                                   LetzteZeileExtern => 53);
@@ -326,8 +326,8 @@ package body SpielEinstellungen is
       RasseSchleife:
       loop
          
-         RassenAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
-                                           TextDateiExtern   => GlobaleDatentypen.Spiel_Einstellungen,
+         RassenAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
+                                           TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                            FrageZeileExtern  => 5,
                                            ErsteZeileExtern  => 54,
                                            LetzteZeileExtern => 75);
@@ -336,13 +336,13 @@ package body SpielEinstellungen is
            RassenAuswahl
          is
             when 1 .. 18 =>
-               Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Spiel_Einstellungen,
-                                             TextDateiExtern        => GlobaleDatentypen.Rassen_Beschreibung_Lang,
+               Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Spiel_Einstellungen,
+                                             TextDateiExtern        => GlobaleTexte.Rassen_Beschreibung_Lang,
                                              ÜberschriftZeileExtern => RassenAuswahl + 53,
                                              ErsteZeileExtern       => RassenAuswahl,
                                              LetzteZeileExtern      => RassenAuswahl,
-                                             AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                             AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+                                             AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                             AbstandEndeExtern      => GlobaleTexte.Keiner);
                Eingabe.WartenEingabe;
                JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 6);
                
@@ -407,11 +407,11 @@ package body SpielEinstellungen is
                     SicherheitsTestWert
                   is
                      when 100 =>
-                        Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                        Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 16);
-                        Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Rassen_Beschreibung_Kurz,
+                        Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Rassen_Beschreibung_Kurz,
                                                               TextZeileExtern => Positive (RasseSchleifenwert));
-                        Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+                        Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 17);
                         GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := 0;
                         exit StartwerteFestlegenSchleife;
@@ -541,8 +541,8 @@ package body SpielEinstellungen is
       SpieleranzahlSchleife:
       loop
 
-         SchwierigkeitAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Fragen,
-                                                  TextDateiExtern   => GlobaleDatentypen.Spiel_Einstellungen,
+         SchwierigkeitAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
+                                                  TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                                   FrageZeileExtern  => 26,
                                                   ErsteZeileExtern  => 76,
                                                   LetzteZeileExtern => 82);

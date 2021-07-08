@@ -20,8 +20,6 @@ package body FelderwerteFestlegen is
 
                   KartenWertEins (KoordinatenExtern.EAchse) := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
                                                                                                          ÄnderungExtern       => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert));
-
-                  exit XAchseÄnderungSchleife when KartenWertEins (KoordinatenExtern.EAchse).YAchse = 0;
                   
                   Karten.Weltkarte (KartenWertEins (KoordinatenExtern.EAchse).EAchse, KartenWertEins (KoordinatenExtern.EAchse).YAchse, KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := 0;
                   KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWertEins (KoordinatenExtern.EAchse));
@@ -49,35 +47,27 @@ package body FelderwerteFestlegen is
             KartenWertZwei (KoordinatenExtern.EAchse) := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
                                                                                                    ÄnderungExtern       => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert));
             
-            exit BewertungXÄnderungSchleife when KartenWertZwei (KoordinatenExtern.EAchse).YAchse = 0;
-
             if
-              BewertungYÄnderungSchleifenwert = 2
+            abs (BewertungYÄnderungSchleifenwert) = 3
               or
-                BewertungYÄnderungSchleifenwert = -2
-                or
-                  BewertungXÄnderungSchleifenwert = 2
-                  or
-                    BewertungXÄnderungSchleifenwert = -2
+            abs (BewertungXÄnderungSchleifenwert) = 3
+            then
+               BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
+                                YAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).YAchse,
+                                XAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).XAchse,
+                                TeilerExtern              => 3);
+
+            elsif
+            abs (BewertungYÄnderungSchleifenwert) = 2
+              or
+            abs (BewertungXÄnderungSchleifenwert) = 2
             then
                BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
                                 YAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).YAchse,
                                 XAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).XAchse,
                                 TeilerExtern              => 2);
 
-            elsif
-              BewertungYÄnderungSchleifenwert = 3
-              or
-                BewertungYÄnderungSchleifenwert = -3
-                or
-                  BewertungXÄnderungSchleifenwert = 3
-                  or
-                    BewertungXÄnderungSchleifenwert = -3
-            then
-               BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
-                                YAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).YAchse,
-                                XAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).XAchse,
-                                TeilerExtern              => 3);
+               
 
             else
                BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
@@ -155,6 +145,22 @@ package body FelderwerteFestlegen is
                  + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungGebiet).Wissensbonus
                  + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungGebiet).Verteidigungsbonus)
               / GesamtproduktionStadt (TeilerExtern);
+      end case;
+      
+      case
+        Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Ressource
+      is
+         when 0 =>
+            null;
+            
+         when others =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
+              := Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
+              + (KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Ressource).Nahrungsgewinnung
+                 + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Ressource).Ressourcengewinnung
+                 + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Ressource).Geldgewinnung
+                 + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Ressource).Wissensgewinnung
+                 + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Ressource).Verteidigungsbonus) / GesamtproduktionStadt (TeilerExtern);
       end case;
       
    end BewertungSelbst;

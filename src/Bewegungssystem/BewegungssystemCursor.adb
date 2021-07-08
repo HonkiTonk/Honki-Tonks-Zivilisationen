@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, GlobaleTexte;
 
 with Karten, Eingabe, KartenPruefungen;
 
@@ -66,7 +66,7 @@ package body BewegungssystemCursor is
      (RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
       
-      KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
+      KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
                                              ZeileExtern         => 40,
                                              ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (1)),
                                              ZahlenMaximumExtern => Integer (Karten.Weltkarte'Last (1)));
@@ -79,7 +79,7 @@ package body BewegungssystemCursor is
          
          when others =>
             Position.EAchse := GlobaleDatentypen.EbeneVorhanden (KoordinatenPunkt);
-            KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
+            KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
                                                    ZeileExtern         => 30,
                                                    ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (2)),
                                                    ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
@@ -93,7 +93,7 @@ package body BewegungssystemCursor is
          
          when others =>
             Position.YAchse := GlobaleDatentypen.Kartenfeld (KoordinatenPunkt);
-            KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Zeug,
+            KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
                                                    ZeileExtern         => 31,
                                                    ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (3)),
                                                    ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
@@ -149,15 +149,7 @@ package body BewegungssystemCursor is
       KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
                                                               ÄnderungExtern       => ÄnderungExtern);
       
-      case
-        KartenWert.YAchse
-      is
-         when 0 =>
-            return;
-              
-         when others =>
-            GlobaleVariablen.CursorImSpiel (RasseExtern).Position := KartenWert;
-      end case;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := KartenWert;
       
    end BewegungCursorBerechnen;
 

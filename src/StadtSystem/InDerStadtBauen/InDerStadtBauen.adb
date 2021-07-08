@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9, Ada.Integer_Text_IO;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, GlobaleTexte;
 
 with GebaeudeDatenbank, EinheitenDatenbank, DatenbankRecords;
 use DatenbankRecords;
@@ -123,7 +123,7 @@ package body InDerStadtBauen is
       for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
          
          if
-           To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Gebäude_Kurz),
+           To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz),
                                 Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse))) = "|"
          then
             exit GebäudeSchleife;
@@ -143,14 +143,14 @@ package body InDerStadtBauen is
 
             else
                Anzeige.AllgemeineAnzeigeText (Ende).Text
-                 := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
+                 := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
                Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
                Ende := Ende + 1;
             end if;
             
          else
             Anzeige.AllgemeineAnzeigeText (Ende).Text
-              := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
+              := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
             Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
             Ende := Ende + 1;
          end if;
@@ -161,7 +161,7 @@ package body InDerStadtBauen is
       for EinheitSchleifenwert in GlobaleDatentypen.EinheitenID'Range loop
          
          if
-           To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
+           To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
                                 Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse))) = "|"
          then
             exit EinheitenSchleife;
@@ -187,14 +187,15 @@ package body InDerStadtBauen is
                
             else
                Anzeige.AllgemeineAnzeigeText (Ende).Text
-                 := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
+                 := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
+                                                   Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
                Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
                Ende := Ende + 1;
             end if;
             
          else
             Anzeige.AllgemeineAnzeigeText (Ende).Text
-              := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
+              := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
             Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
             Ende := Ende + 1;
          end if;
@@ -206,7 +207,7 @@ package body InDerStadtBauen is
         and
           Ende > 1
       then
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
 
       elsif
         Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
@@ -217,7 +218,7 @@ package body InDerStadtBauen is
          
       else
          Ende := Ende + 1;
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
       end if;
 
       AktuelleAuswahl := 1;
@@ -227,7 +228,7 @@ package body InDerStadtBauen is
 
          Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
 
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fragen,
+         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
                                                TextZeileExtern => 13);
 
          Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => AktuelleAuswahl);
@@ -289,65 +290,65 @@ package body InDerStadtBauen is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                    TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Einheiten_Lang,
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                    TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Lang,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer - GlobaleKonstanten.EinheitAufschlag,
                                     LetzteZeileExtern      => Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer - GlobaleKonstanten.EinheitAufschlag,
-                                    AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
-                                    AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                    AbstandEndeExtern      => GlobaleTexte.Keiner);
             
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                    TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 48,
                                     LetzteZeileExtern      => 48,
-                                    AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
-                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                    AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Positive (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                - GlobaleKonstanten.EinheitAufschlag)).PreisRessourcen),
                                Width => 1);
             
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                    TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 24,
                                     LetzteZeileExtern      => 24,
-                                    AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
-                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                    AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Positive (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                - GlobaleKonstanten.EinheitAufschlag)).Angriff),
                                Width => 1);
             
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                    TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 25,
                                     LetzteZeileExtern      => 25,
-                                    AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
-                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                    AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Positive (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                - GlobaleKonstanten.EinheitAufschlag)).Verteidigung),
                                Width => 1);
             
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                    TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 14,
                                     LetzteZeileExtern      => 14,
-                                    AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
-                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                    AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                - GlobaleKonstanten.EinheitAufschlag)).MaximaleLebenspunkte,
                                Width => 1);
             
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                    TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 15,
                                     LetzteZeileExtern      => 15,
-                                    AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
-                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                    AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Positive (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                - GlobaleKonstanten.EinheitAufschlag)).MaximaleBewegungspunkte),
                                Width => 1);
@@ -360,32 +361,32 @@ package body InDerStadtBauen is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                    TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Gebäude_Lang,
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                    TextDateiExtern        => GlobaleTexte.Beschreibungen_Gebäude_Lang,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer - GlobaleKonstanten.GebäudeAufschlag,
                                     LetzteZeileExtern      => Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer - GlobaleKonstanten.GebäudeAufschlag,
-                                    AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
-                                    AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                    AbstandEndeExtern      => GlobaleTexte.Keiner);
             
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                    TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 48,
                                     LetzteZeileExtern      => 48,
-                                    AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
-                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                    AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Positive (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                - GlobaleKonstanten.GebäudeAufschlag)).PreisRessourcen),
                                Width => 1);
             
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                    TextDateiExtern        => GlobaleDatentypen.Zeug,
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                    TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 49,
                                     LetzteZeileExtern      => 49,
-                                    AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
-                                    AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+                                    AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                    AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Natural (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                - GlobaleKonstanten.GebäudeAufschlag)).NahrungBonus),
                                Width => 1);
@@ -398,13 +399,13 @@ package body InDerStadtBauen is
         GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                          - GlobaleKonstanten.GebäudeAufschlag)).PermanenteKosten > 0
       then
-         Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                       TextDateiExtern        => GlobaleDatentypen.Zeug,
+         Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                       TextDateiExtern        => GlobaleTexte.Zeug,
                                        ÜberschriftZeileExtern => 0,
                                        ErsteZeileExtern       => 50,
                                        LetzteZeileExtern      => 50,
-                                       AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
-                                       AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+                                       AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                       AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
          Ada.Integer_Text_IO.Put (Item  => Positive (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                   - GlobaleKonstanten.GebäudeAufschlag)).PermanenteKosten),
                                   Width => 1);

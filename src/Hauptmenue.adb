@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleKonstanten;
+with GlobaleKonstanten, GlobaleTexte;
 
 with Auswahl, Optionen, SpielEinstellungen, AllesAufAnfangSetzen, Informationen, ImSpiel, Laden, Wuerdigung;
 
@@ -13,8 +13,8 @@ package body Hauptmenue is
       loop
 
          case
-           Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Start,
-                            TextDateiExtern   => GlobaleDatentypen.Start,
+           Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Start,
+                            TextDateiExtern   => GlobaleTexte.Start,
                             FrageZeileExtern  => 1,
                             ErsteZeileExtern  => 2,
                             LetzteZeileExtern => 7)

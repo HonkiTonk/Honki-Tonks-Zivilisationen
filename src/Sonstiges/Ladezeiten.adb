@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Float_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleDatentypen;
+with GlobaleTexte;
 
 with Anzeige, Eingabe;
 
@@ -15,14 +15,14 @@ package body Ladezeiten is
 
       GesamtzeitSpielweltErstellen := 0.00;
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                     TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                     TextDateiExtern        => GlobaleTexte.Ladezeiten,
                                      ÜberschriftZeileExtern => 0,
                                      ErsteZeileExtern       => WelcheZeitExtern,
                                      LetzteZeileExtern      => WelcheZeitExtern,
-                                     AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+                                     AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
       case
         WelcheZeitExtern
@@ -56,14 +56,14 @@ package body Ladezeiten is
      (WelcheZeitExtern : in Positive)
    is begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                     TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                     TextDateiExtern        => GlobaleTexte.Ladezeiten,
                                      ÜberschriftZeileExtern => 0,
                                      ErsteZeileExtern       => Aufschlag (WelcheZeitExtern),
                                      LetzteZeileExtern      => Aufschlag (WelcheZeitExtern),
-                                     AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+                                     AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
       Ada.Float_Text_IO.Put (Item => Float (EinzelneZeiten (WelcheZeitExtern, 2) - EinzelneZeiten (WelcheZeitExtern, 1)),
                              Fore => 1,
@@ -81,14 +81,14 @@ package body Ladezeiten is
 
       GesamtzeitKI := 0.00;
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                     TextDateiExtern        => GlobaleDatentypen.Ladezeiten,
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                     TextDateiExtern        => GlobaleTexte.Ladezeiten,
                                      ÜberschriftZeileExtern => 0,
                                      ErsteZeileExtern       => WelcheZeitExtern + KIAufschlag,
                                      LetzteZeileExtern      => WelcheZeitExtern + KIAufschlag,
-                                     AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                     AbstandEndeExtern      => GlobaleDatentypen.Kleiner_Abstand);
+                                     AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
       case
         WelcheZeitExtern

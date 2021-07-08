@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, GlobaleTexte;
 
 with EinheitenDatenbank;
 
@@ -28,8 +28,8 @@ package body BefehleImSpiel is
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
                  
          when GlobaleDatentypen.Menü_Zurück =>
-            return Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Leer,
-                                    TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
+            return Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Leer,
+                                    TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
                                     FrageZeileExtern  => 0,
                                     ErsteZeileExtern  => 1,
                                     LetzteZeileExtern => 6);
@@ -313,7 +313,7 @@ package body BefehleImSpiel is
            or
              BefehlExtern = GlobaleDatentypen.Roden_Trockenlegen)
       then
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 3);
 
       elsif
@@ -321,13 +321,13 @@ package body BefehleImSpiel is
         and
           BefehlExtern = GlobaleDatentypen.Plündern
       then
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 3);
                      
       elsif
         GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte = 0.00
       then
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 8);
                      
       else

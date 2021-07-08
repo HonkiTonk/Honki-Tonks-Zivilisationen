@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleTexte;
+
 with KIDatentypen;
 
 with EinheitenDatenbank;
@@ -677,7 +679,7 @@ package body Verbesserungen is
      (WelcherFehlerExtern : in Positive)
    is begin
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                             TextZeileExtern => WelcherFehlerExtern);
       
    end VerbesserungFehler;
@@ -841,8 +843,6 @@ package body Verbesserungen is
 
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-
-            exit XAchseSchleife when KartenWert.YAchse = 0;
 
             if
               XÄnderungSchleifenwert = -1

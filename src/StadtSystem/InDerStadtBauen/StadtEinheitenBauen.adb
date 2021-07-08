@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, GlobaleTexte;
 
 with KIDatentypen;
 
@@ -37,7 +37,7 @@ package body StadtEinheitenBauen is
         and
           GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1
       then
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fehlermeldungen,
+         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 19);
          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position;
          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionAlt := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position;
@@ -67,8 +67,6 @@ package body StadtEinheitenBauen is
             
                KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-            
-               exit XAchseSchleife when KartenWert.YAchse = 0;
             
                -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
                if
@@ -136,7 +134,7 @@ package body StadtEinheitenBauen is
         GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)
       is
          when 1 =>
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Zeug,
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
                                                   TextZeileExtern => 29);
          
          when others =>

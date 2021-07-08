@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleKonstanten;
+with GlobaleVariablen, GlobaleKonstanten, GlobaleTexte;
 
 with Auswahl, Eingabe, SchreibenEinstellungen, EinlesenSprache, EinlesenText;
 
@@ -13,8 +13,8 @@ package body OptionenSonstiges is
       SonstigesSchleife:
       loop
 
-         AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleDatentypen.Leer,
-                                         TextDateiExtern   => GlobaleDatentypen.Menü_Auswahl,
+         AuswahlWert := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Leer,
+                                         TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
                                          FrageZeileExtern  => 0,
                                          ErsteZeileExtern  => GlobaleKonstanten.OptionenSonstigesErsteZeile,
                                          LetzteZeileExtern => GlobaleKonstanten.OptionenSonstigesLetzteZeile);
@@ -23,7 +23,7 @@ package body OptionenSonstiges is
            AuswahlWert
          is
             when 1 =>
-               AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Menü_Auswahl,
+               AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
                                                  ZeileExtern         => GlobaleKonstanten.OptionenSonstigesErsteZeile,
                                                  ZahlenMinimumExtern => 0,
                                                  ZahlenMaximumExtern => 999_999_999);
@@ -39,7 +39,7 @@ package body OptionenSonstiges is
                end if;                  
                
             when 2 =>
-               AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleDatentypen.Menü_Auswahl,
+               AuswahlWert := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Menü_Auswahl,
                                                  ZeileExtern         => GlobaleKonstanten.OptionenSonstigesErsteZeile + 1,
                                                  ZahlenMinimumExtern=> 1,
                                                  ZahlenMaximumExtern => 999_999_999);

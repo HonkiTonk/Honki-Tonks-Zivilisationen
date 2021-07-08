@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, GlobaleTexte;
 
 with EinheitenDatenbank;
 
@@ -17,14 +17,14 @@ package body EinheitenAllgemein is
      (IDExtern : in GlobaleDatentypen.EinheitenID)
    is begin
       
-      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                     TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Einheiten_Kurz,
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                     TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
                                      ÜberschriftZeileExtern => 0,
                                      ErsteZeileExtern       => Positive (IDExtern),
                                      LetzteZeileExtern      => Positive (IDExtern),
-                                     AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                     AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                     AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+                                     AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandEndeExtern      => GlobaleTexte.Keiner);
       
    end Beschreibung;
 
@@ -179,25 +179,25 @@ package body EinheitenAllgemein is
         ArbeitExtern
       is
          when GlobaleDatentypen.Nicht_Vorhanden =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Beschäftigung_Kurz,
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Beschäftigung_Kurz,
                                            ÜberschriftZeileExtern => 0,
                                            ErsteZeileExtern       => 9,
                                            LetzteZeileExtern      => 9,
-                                           AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+                                           AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                           AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                           AbstandEndeExtern      => GlobaleTexte.Keiner);
             
          when others =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Beschäftigung_Kurz,
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Beschäftigung_Kurz,
                                            ÜberschriftZeileExtern => 0,
                                            -- Der Abzug wird für die Textanzeige benötigt
                                            ErsteZeileExtern       => GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - GlobaleKonstanten.EinheitBefehlAbzug,
                                            LetzteZeileExtern      => GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - GlobaleKonstanten.EinheitBefehlAbzug,
-                                           AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+                                           AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                           AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                           AbstandEndeExtern      => GlobaleTexte.Keiner);
       end case;
       
    end Beschäftigung;
@@ -229,7 +229,7 @@ package body EinheitenAllgemein is
    is begin
 
       Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
-      Anzeige.AllgemeineAnzeigeText (1) := (GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
+      Anzeige.AllgemeineAnzeigeText (1) := (GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
                                             Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID)), Positive (EinheitRasseNummerExtern.Platznummer));
       AktuellePosition := 2;
       Ende := 1;
@@ -244,7 +244,7 @@ package body EinheitenAllgemein is
             
          else
             Anzeige.AllgemeineAnzeigeText (AktuellePosition)
-              := (GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Einheiten_Kurz),
+              := (GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
                   Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert)).ID)),
                   Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert)));
@@ -262,7 +262,7 @@ package body EinheitenAllgemein is
          
          Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
 
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fragen,
+         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
                                                TextZeileExtern => 27);
          Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => GlobaleDatentypen.KartenverbesserungEinheitenID (AktuelleAuswahl));
                   

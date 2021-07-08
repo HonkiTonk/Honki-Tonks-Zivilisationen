@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen, KIKonstanten;
 
-with EinheitSuchen, KartenPruefungen, Karten, BewegungPassierbarkeitPruefen, EinheitenAllgemein;
+with EinheitSuchen, KartenPruefungen, Karten, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt;
 
 package body KINahkampfBodenAufgabeFestlegen is
 
@@ -164,11 +164,11 @@ package body KINahkampfBodenAufgabeFestlegen is
             
       KartenYReichweite := 1;
       KartenXReichweite := 1;
-      KartenYGeprüft := 0;
-      KartenXGeprüft := 0; 
+      KartenYGeprüft := KartenYReichweite - 1;
+      KartenXGeprüft := KartenXReichweite - 1;
       
       UnbekanntesFeldSuchenSchleife:
-      for FeldSuchenSchleifenwert in 1 .. 15 loop
+      loop
          YAchseSchleife:
          for YÄnderungSchleifenwert in -KartenYReichweite .. KartenYReichweite loop
             XAchseSchleife:
@@ -187,8 +187,6 @@ package body KINahkampfBodenAufgabeFestlegen is
                else               
                   KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                                                           ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-            
-                  exit XAchseSchleife when KartenWert.YAchse = 0;
                   
                   if
                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Sichtbar (EinheitRasseNummerExtern.Rasse) = False
@@ -196,6 +194,9 @@ package body KINahkampfBodenAufgabeFestlegen is
                       BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                        NeuePositionExtern       => KartenWert)
                     = GlobaleDatentypen.Normale_Bewegung_Möglich
+                    and
+                      KIAufgabenVerteilt.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                      ZielKoordinatenExtern => KartenWert) = False
                   then
                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Erkunden;
                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KartenWert;
@@ -209,36 +210,12 @@ package body KINahkampfBodenAufgabeFestlegen is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
          
-         if
-           KartenYReichweite >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-           and
-             KartenXReichweite >= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-         then
-            exit UnbekanntesFeldSuchenSchleife;
-            
-         else
-            null;
-         end if;
+         exit UnbekanntesFeldSuchenSchleife when KartenYReichweite > 15;
          
-         if
-           KartenYReichweite < Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-         then            
-            KartenYGeprüft := KartenYReichweite;
-            KartenYReichweite := KartenYReichweite + 1;
-            
-         else
-            null;
-         end if;
-         
-         if
-           KartenXReichweite < Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-         then            
-            KartenXGeprüft := KartenXReichweite;
-            KartenXReichweite := KartenXReichweite + 1;
-            
-         else
-            null;
-         end if;        
+         KartenYGeprüft := KartenYReichweite;
+         KartenXGeprüft := KartenXReichweite;         
+         KartenYReichweite := KartenYReichweite + 1;
+         KartenXReichweite := KartenXReichweite + 1;
          
       end loop UnbekanntesFeldSuchenSchleife;
       

@@ -395,8 +395,6 @@ package body BewegungPassierbarkeitPruefen is
             
                KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-            
-               exit XAchseSchleife when KartenWert.YAchse = 0;
                
                -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
                if

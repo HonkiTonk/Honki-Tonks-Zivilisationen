@@ -6,13 +6,6 @@ package GlobaleDatentypen is
    type TextDateien is range 0 .. 27;
    type TextZeilen is range 0 .. 93;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;
-
-   type Welche_Datei_Enum is (Leer, Start, Feste_Abfragen, Spiel_Einstellungen, Rassen_Beschreibung_Lang, Menü_Auswahl, Beschreibungen_Kartenfelder_Kurz, Beschreibungen_Kartenfelder_Lang, Fehlermeldungen, Zeug,
-                              Fragen, Ladezeiten, Beschreibungen_Einheiten_Kurz, Beschreibungen_Einheiten_Lang, Beschreibungen_Verbesserungen_Kurz, Beschreibungen_Verbesserungen_Lang, Beschreibungen_Gebäude_Kurz,
-                              Beschreibungen_Gebäude_Lang, Beschreibungen_Forschung_Kurz, Beschreibungen_Forschung_Lang, Beschreibungen_Beschäftigung_Kurz, Beschreibungen_Beschäftigung_Lang, Städtenamen_KI, Cheat_Menü,
-                              Rassen_Beschreibung_Kurz, Beschreibung_Forschung_Ermöglicht, Allgemeine_Informationen, Würdigungen);
-
-   type Welcher_Abstand_Enum is (Keiner, Kleiner_Abstand, Großer_Abstand, Neue_Zeile);
    -- Für Anzeige
 
 
@@ -63,7 +56,7 @@ package GlobaleDatentypen is
    type KartenverbesserungEinheitenID is range 0 .. 78;
    subtype KartenVerbesserung is KartenverbesserungEinheitenID range 0 .. 24;
    -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
-   type Ebene is range -3 .. 2;
+   subtype Ebene is LoopRangeMinusDreiZuDrei range -3 .. 2;
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    type BelegterGrund is range 0 .. Rassen'Last * 1_000 + 100;
 

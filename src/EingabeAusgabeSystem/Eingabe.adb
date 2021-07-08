@@ -11,7 +11,7 @@ package body Eingabe is
 
    -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
    function GanzeZahl
-     (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ZeileExtern : in Positive;
       ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
       return Integer
@@ -57,7 +57,7 @@ package body Eingabe is
 
 
    function ZahlSchleife
-     (TextDateiExtern : in GlobaleDatentypen.Welche_Datei_Enum;
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ZeileExtern : in Positive;
       ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
       return GlobaleDatentypen.LoopRangeMinusZweiZuZwei
@@ -67,14 +67,14 @@ package body Eingabe is
       ZahlenSchleife:
       loop
 
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                         TextDateiExtern        => TextDateiExtern,
                                         ÜberschriftZeileExtern => 0,
                                         ErsteZeileExtern       => ZeileExtern,
                                         LetzteZeileExtern      => ZeileExtern,
-                                        AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                        AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                        AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
+                                        AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
          if
            ZahlenMinimumExtern > 0
@@ -260,7 +260,7 @@ package body Eingabe is
      return Unbounded_Wide_Wide_String
    is begin
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Zeug,
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
                                             TextZeileExtern => 32);
       
       return To_Unbounded_Wide_Wide_String (Source => Get_Line);
@@ -273,7 +273,7 @@ package body Eingabe is
      return Unbounded_Wide_Wide_String
    is begin            
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fragen,
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
                                             TextZeileExtern => 22);
 
       Name := To_Unbounded_Wide_Wide_String (Source => Get_Line);
@@ -353,7 +353,7 @@ package body Eingabe is
    is begin
       
       New_Line;
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Zeug,
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
                                             TextZeileExtern => 47);
       Get_Immediate (Taste);
       

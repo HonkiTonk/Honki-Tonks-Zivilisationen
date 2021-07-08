@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleTexte;
+
 with Anzeige;
 
 package body GebaeudeAllgemein is
@@ -8,7 +10,7 @@ package body GebaeudeAllgemein is
      (IDExtern : in GebäudeID)
    is begin
       
-      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Beschreibungen_Gebäude_Kurz,
+      Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Beschreibungen_Gebäude_Kurz,
                                             TextZeileExtern => Positive (IDExtern));
 
       -- Hier wichtige Werte einfügen

@@ -62,8 +62,6 @@ package body Karte is
             KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
                                                                     ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
-            exit XAchseSchleife when KartenWert.YAchse = 0;
-            
             GrafischeAnzeige.Sichtbarkeit (InDerStadtExtern  => False,
                                            KoordinatenExtern => KartenWert,
                                            RasseExtern       => RasseExtern);

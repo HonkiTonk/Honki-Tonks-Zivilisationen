@@ -63,5 +63,31 @@ package body KIAufgabenVerteilt is
       return False;
       
    end EinheitAufgabeZiel;
+   
+   
+   
+   function EinheitZiel
+     (RasseExtern : in GlobaleDatentypen.Rassen;
+      ZielKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+   is begin
+      
+      EinheitSchleife:
+      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+         
+         if
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).KIZielKoordinaten = ZielKoordinatenExtern
+         then
+            return True;
+            
+         else
+            null;
+         end if;
+         
+      end loop EinheitSchleife;
+      
+      return False;
+      
+   end EinheitZiel;
 
 end KIAufgabenVerteilt;

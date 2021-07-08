@@ -50,14 +50,14 @@ package body KIStadt is
                                                                            GesuchteMenge    => AnzahlStädte);
       
       if
-        VerteidigerVorhanden >= AnzahlStädte
+        VerteidigerVorhanden >= AnzahlStädte * 10
       then
          null;
          
       elsif
         VerteidigerVorhanden + GlobaleDatentypen.MaximaleStädteMitNullWert (KIStadtLaufendeBauprojekte.StadtLaufendeBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                                                                                   BauprojektExtern       => 10_002))
-        >= AnzahlStädte
+        >= AnzahlStädte * 10
       then
          null;
          

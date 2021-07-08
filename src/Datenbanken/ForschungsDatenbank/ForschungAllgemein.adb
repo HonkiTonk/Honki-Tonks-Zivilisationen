@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
+with GlobaleTexte;
+
 with ForschungsDatenbank;
 
 with Anzeige, Eingabe, KIForschung;
@@ -18,24 +20,24 @@ package body ForschungAllgemein is
         IDExtern
       is
          when 0 =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                           TextDateiExtern        => GlobaleDatentypen.Zeug,
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                           TextDateiExtern        => GlobaleTexte.Zeug,
                                            ÜberschriftZeileExtern => 0,
                                            ErsteZeileExtern       => 28,
                                            LetzteZeileExtern      => 28,
-                                           AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+                                           AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                           AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                           AbstandEndeExtern      => GlobaleTexte.Keiner);
             
          when others =>
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
                                            ÜberschriftZeileExtern => 0,
                                            ErsteZeileExtern       => Positive (IDExtern) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
                                            LetzteZeileExtern      => Positive (IDExtern) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
-                                           AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                           AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+                                           AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                           AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                           AbstandEndeExtern      => GlobaleTexte.Keiner);
       end case;
       
    end Beschreibung;
@@ -105,7 +107,7 @@ package body ForschungAllgemein is
       for ForschungenSchleifenwert in GlobaleDatentypen.ForschungID loop
          
          if
-           To_Wide_Wide_String (Source => GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Forschung_Kurz),
+           To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
                                 Positive (ForschungenSchleifenwert) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern))) = "|"
          then
             exit ForschungSchleife;
@@ -139,8 +141,8 @@ package body ForschungAllgemein is
               AnforderungenErfüllt
             is
                when True =>
-                  Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Beschreibungen_Forschung_Kurz),
-                                                                                                  Positive (ForschungenSchleifenwert) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern));
+                  Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
+                                                                                              Positive (ForschungenSchleifenwert) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern));
                   Anzeige.AllgemeineAnzeigeText (Ende).Nummer := Positive (ForschungenSchleifenwert);
                   Ende := Ende + 1;
                   
@@ -156,7 +158,7 @@ package body ForschungAllgemein is
         and
           Ende > 1
       then
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
 
       elsif
         Anzeige.AllgemeineAnzeigeText (Ende).Nummer = 0
@@ -167,7 +169,7 @@ package body ForschungAllgemein is
          
       else
          Ende := Ende + 1;
-         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleVariablen.TexteEinlesenNeu (GlobaleDatentypen.Welche_Datei_Enum'Pos (Feste_Abfragen), 3);
+         Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Feste_Abfragen), 3);
       end if;
 
       AktuelleAuswahl := 1;
@@ -177,7 +179,7 @@ package body ForschungAllgemein is
 
          Put (Item => CSI & "2J" & CSI & "3J"  & CSI & "H");
 
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleDatentypen.Fragen,
+         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fragen,
                                                TextZeileExtern => 16);
 
          Anzeige.AllgemeineAnzeige (AktuelleAuswahlExtern => AktuelleAuswahl);
@@ -188,13 +190,13 @@ package body ForschungAllgemein is
             null;
                   
          else
-            Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                          TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Lang,
+            Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                          TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Lang,
                                           ÜberschriftZeileExtern => 0,
                                           ErsteZeileExtern       => Positive (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer),
                                           LetzteZeileExtern      => Positive (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer),
-                                          AbstandAnfangExtern    => GlobaleDatentypen.Neue_Zeile,
-                                          AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
+                                          AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
+                                          AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
             Ermöglicht (RasseExtern           => RasseExtern,
                          ForschungNummerExtern => GlobaleDatentypen.ForschungID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer));
@@ -242,13 +244,13 @@ package body ForschungAllgemein is
       ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
    is begin
       
-      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Zeug,
-                                    TextDateiExtern        => GlobaleDatentypen.Beschreibung_Forschung_Ermöglicht,
+      Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
+                                    TextDateiExtern        => GlobaleTexte.Beschreibung_Forschung_Ermöglicht,
                                     ÜberschriftZeileExtern => 43,
                                     ErsteZeileExtern       => Positive (ForschungNummerExtern) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
                                     LetzteZeileExtern      => Positive (ForschungNummerExtern) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
-                                    AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                    AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);
+                                    AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                    AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
       
       TechnologienSchleife:
       for TechnologieSchleifenwert in GlobaleDatentypen.ForschungID'Range loop         
@@ -263,14 +265,14 @@ package body ForschungAllgemein is
             elsif
               ForschungsDatenbank.ForschungListe (RasseExtern, TechnologieSchleifenwert).AnforderungForschung (NeueForschungSchleifenwert) = ForschungNummerExtern
             then
-               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                              TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
+               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                              TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
                                               ÜberschriftZeileExtern => 0,
                                               ErsteZeileExtern       => Positive (TechnologieSchleifenwert) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
                                               LetzteZeileExtern      => Positive (TechnologieSchleifenwert) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
-                                              AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                              AbstandMitteExtern     => GlobaleDatentypen.Großer_Abstand,
-                                              AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+                                              AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                              AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
+                                              AbstandEndeExtern      => GlobaleTexte.Keiner);
                exit ErmöglichtSchleife;
                
             else              
@@ -301,16 +303,16 @@ package body ForschungAllgemein is
             exit BenötigtSchleife;
                
          else              
-            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Zeug,
-                                           TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
+            Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
+                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
                                            ÜberschriftZeileExtern => 44,
                                            ErsteZeileExtern       => Positive (ForschungsDatenbank.ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert))
                                            + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
                                            LetzteZeileExtern      => Positive (ForschungsDatenbank.ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert))
                                            + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
-                                           AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandMitteExtern     => GlobaleDatentypen.Großer_Abstand,
-                                           AbstandEndeExtern      => GlobaleDatentypen.Keiner);
+                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                           AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
+                                           AbstandEndeExtern      => GlobaleTexte.Keiner);
          end if;
          
       end loop BenötigtSchleife;
@@ -332,23 +334,23 @@ package body ForschungAllgemein is
          
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Zeug,
-                                        TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Kurz,
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
+                                        TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
                                         ÜberschriftZeileExtern => 45,
                                         ErsteZeileExtern       => Positive (AktuelleAuswahl) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
                                         LetzteZeileExtern      => Positive (AktuelleAuswahl) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
-                                        AbstandAnfangExtern    => GlobaleDatentypen.Großer_Abstand,
-                                        AbstandMitteExtern     => GlobaleDatentypen.Keiner,
-                                        AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);         
+                                        AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
          New_Line;
          
-         Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleDatentypen.Leer,
-                                       TextDateiExtern        => GlobaleDatentypen.Beschreibungen_Forschung_Lang,
+         Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                       TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Lang,
                                        ÜberschriftZeileExtern => 0,
                                        ErsteZeileExtern       => Positive (AktuelleAuswahl) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
                                        LetzteZeileExtern      => Positive (AktuelleAuswahl) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
-                                       AbstandAnfangExtern    => GlobaleDatentypen.Keiner,
-                                       AbstandEndeExtern      => GlobaleDatentypen.Neue_Zeile);         
+                                       AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                       AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
          New_Line;
       
          Benötigt (RasseExtern           => RasseExtern,

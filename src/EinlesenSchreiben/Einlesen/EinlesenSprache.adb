@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with Ada.Characters.Conversions;
 
-with GlobaleVariablen;
+with GlobaleTexte;
 
 package body EinlesenSprache is
 
@@ -10,7 +10,7 @@ package body EinlesenSprache is
      return Boolean
    is begin
 
-      GlobaleVariablen.SprachenEinlesen := (others => (To_Unbounded_Wide_Wide_String (Source => "|")));
+      GlobaleTexte.SprachenEinlesen := (others => (To_Unbounded_Wide_Wide_String (Source => "|")));
       
       Start_Search (Search    => Suche,
                     Directory => "Sprachen",
@@ -31,15 +31,15 @@ package body EinlesenSprache is
          else
             -- Alphabetisch in ein Stringarray einlesen und dann entsprechend weitersuchen lassen
             VerzeichnisInnenSchleife:
-            for SpracheSchleifenwert in GlobaleVariablen.SprachenEinlesenArray'Range loop
+            for SpracheSchleifenwert in GlobaleTexte.SprachenEinlesenArray'Range loop
             
                if
-                 GlobaleVariablen.SprachenEinlesen (SpracheSchleifenwert) /= "|"
+                 GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert) /= "|"
                then
                   null;
             
                else        
-                  GlobaleVariablen.SprachenEinlesen (SpracheSchleifenwert)
+                  GlobaleTexte.SprachenEinlesen (SpracheSchleifenwert)
                     := To_Unbounded_Wide_Wide_String (Source => Ada.Characters.Conversions.To_Wide_Wide_String (Item => Simple_Name (Directory_Entry => Verzeichnis)));
                   exit VerzeichnisInnenSchleife;
                end if;            
@@ -50,7 +50,7 @@ package body EinlesenSprache is
       end loop VerzeichnisAußenSchleife;
       
       if
-        GlobaleVariablen.SprachenEinlesen (1) = "|"
+        GlobaleTexte.SprachenEinlesen (1) = "|"
       then
          return False;
          
@@ -67,10 +67,10 @@ package body EinlesenSprache is
    is begin
       
       SortierSchleife:
-      for PositionSchleifenwert in GlobaleVariablen.SprachenEinlesenArray'First + 1 .. GlobaleVariablen.SprachenEinlesenArray'Last loop
+      for PositionSchleifenwert in GlobaleTexte.SprachenEinlesenArray'First + 1 .. GlobaleTexte.SprachenEinlesenArray'Last loop
          
          if
-           GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert) = "|"
+           GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) = "|"
          then
             return;
             
@@ -80,9 +80,9 @@ package body EinlesenSprache is
             loop
                
                if
-                 PositionSchleifenwert - SchleifenAbzug > GlobaleVariablen.SprachenEinlesenArray'First
+                 PositionSchleifenwert - SchleifenAbzug > GlobaleTexte.SprachenEinlesenArray'First
                  and then
-                   GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert) < GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)                   
+                   GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) < GlobaleTexte.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug - 1)                   
                then
                   SchleifenAbzug := SchleifenAbzug + 1;
                   
@@ -99,9 +99,9 @@ package body EinlesenSprache is
                   VerschiebungSchleife:
                   while SchleifenAbzug > 0 loop
                      
-                     ZwischenSpeicher := GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert);
-                     GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert) := GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug);
-                     GlobaleVariablen.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug) := ZwischenSpeicher;
+                     ZwischenSpeicher := GlobaleTexte.SprachenEinlesen (PositionSchleifenwert);
+                     GlobaleTexte.SprachenEinlesen (PositionSchleifenwert) := GlobaleTexte.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug);
+                     GlobaleTexte.SprachenEinlesen (PositionSchleifenwert - SchleifenAbzug) := ZwischenSpeicher;
                      SchleifenAbzug := SchleifenAbzug - 1;
                      
                   end loop VerschiebungSchleife;
