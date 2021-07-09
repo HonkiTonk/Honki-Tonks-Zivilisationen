@@ -68,12 +68,43 @@ package KartenPruefungen is
 
 private
    
-   type PositionAchsenArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleDatentypen.KartenfeldPositiv;
+   type PositionArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleRecords.AchsenKartenfeldPositivRecord;
+   type ÄnderungArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleRecords.AchsenKartenfeldRecord;
+   type PositionFeldArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleDatentypen.Kartenfeld;
    type ÜberhangArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of Integer;
+      
+   PolXAchse : PositionFeldArray;
+   PositionAchse : PositionArray;
    
-   PositionYAchse : PositionAchsenArray;
-   PositionXAchse : PositionAchsenArray;
-   
+   ÜberhangYAchse : ÜberhangArray;
    ÜberhangXAchse : ÜberhangArray;
+   
+   function KartenPositionBestimmenYAchse
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
+         Post =>
+           (KartenPositionBestimmenYAchse'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            and
+              KartenPositionBestimmenYAchse'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+     
+   function KartenPositionBestimmenXAchse
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
+         Post =>
+           (KartenPositionBestimmenXAchse'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            and
+              KartenPositionBestimmenXAchse'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 end KartenPruefungen;
