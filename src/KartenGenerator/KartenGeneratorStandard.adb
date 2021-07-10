@@ -137,9 +137,9 @@ package body KartenGeneratorStandard is
          XAchseEinsSchleife:
          for XÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart) / 2 .. Karten.GrößeLandart (Karten.Kartenart) / 2 loop
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
-                                                                                   ÄnderungExtern       => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
-                                                                                   ZusatzYAbstandExtern => 1);
+            KartenWert := KartenPruefungen.KartenPositionBestimmenAufteilung (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
+                                                                              ÄnderungExtern       => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
+                                                                              ZusatzYAbstandExtern => 1);
 
             exit XAchseEinsSchleife when KartenWert.YAchse = 0;
             
@@ -157,9 +157,9 @@ package body KartenGeneratorStandard is
          XAchseZweiSchleife:
          for XÄnderungZweiSchleifenwert in -FelderVonLandartZuLandart (Karten.Kartenart) .. FelderVonLandartZuLandart (Karten.Kartenart) loop
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
-                                                                                   ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
-                                                                                   ZusatzYAbstandExtern => 1);
+            KartenWert := KartenPruefungen.KartenPositionBestimmenAufteilung (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
+                                                                              ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
+                                                                              ZusatzYAbstandExtern => 1);
             
             exit XAchseZweiSchleife when KartenWert.YAchse = 0;
             

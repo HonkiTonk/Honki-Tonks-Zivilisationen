@@ -76,8 +76,8 @@ package body Speichern is
       -- Spieler am Zug speichern
 
       -- Schleife zum Speichern der Karte
-      Positive'Write (Stream (File => DateiSpeichernNeu),
-                      Karten.Kartengröße);
+      GlobaleDatentypen.KartengrößeDatentyp'Write (Stream (File => DateiSpeichernNeu),
+                                                     Karten.Kartengröße);
 
       EAchseSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop

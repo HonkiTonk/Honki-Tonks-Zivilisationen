@@ -67,8 +67,8 @@ package body Laden is
       -- Spieler am Zug laden
 
       -- Schleife zum Laden der Karte
-      Positive'Read (Stream (File => DateiLadenNeu),
-                     Karten.Kartengröße);
+      GlobaleDatentypen.KartengrößeDatentyp'Read (Stream (File => DateiLadenNeu),
+                                                    Karten.Kartengröße);
 
       EAchseSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop

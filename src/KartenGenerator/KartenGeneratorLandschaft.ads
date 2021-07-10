@@ -20,7 +20,7 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    KartenWertHügel : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
-   type KartengrundWahrscheinlichkeitenArray is array (1 .. 5, 4 .. 10) of Float;
+   type KartengrundWahrscheinlichkeitenArray is array (GlobaleDatentypen.KartentemperaturDatentyp'Range, 4 .. 10) of Float;
    KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray := (
                                                                                        -- 1. Dimension: 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
                                                                                        -- 2. Dimension: 4 = Tundra, 5 = Wüste, 6 = Hügel, 7 = Gebirge, 8 = Wald, 9 = Dschungel, 10 = Sumpf

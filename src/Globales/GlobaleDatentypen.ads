@@ -4,7 +4,7 @@ package GlobaleDatentypen is
 
    -- Für Anzeige
    type TextDateien is range 0 .. 27;
-   type TextZeilen is range 0 .. 93;
+   type TextZeilen is range 0 .. 100;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;
    -- Für Anzeige
 
@@ -50,13 +50,18 @@ package GlobaleDatentypen is
    subtype LoopRangeMinusZweiZuZwei is Kartenfeld range -2 .. 2;
    subtype LoopRangeMinusDreiZuDrei is Kartenfeld range -3 .. 3;
    subtype LoopRangeNullZuEins is Kartenfeld range 0 .. 1;
+   -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
+   subtype Ebene is LoopRangeMinusDreiZuDrei range -3 .. 2;
+   -- Kartenwerte
+   subtype KartengrößeDatentyp is KartenfeldPositiv range 1 .. 10;
+   subtype KartenartDatentyp is KartenfeldPositiv range 1 .. 5;
+   subtype KartentemperaturDatentyp is KartenfeldPositiv range 1 .. 5;
+   subtype KartenformDatentyp is KartenfeldPositiv range 1 .. 5;
 
    type KartenGrund is range 0 .. 43;
    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
    type KartenverbesserungEinheitenID is range 0 .. 78;
    subtype KartenVerbesserung is KartenverbesserungEinheitenID range 0 .. 24;
-   -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
-   subtype Ebene is LoopRangeMinusDreiZuDrei range -3 .. 2;
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    type BelegterGrund is range 0 .. Rassen'Last * 1_000 + 100;
 

@@ -26,20 +26,23 @@ package body SpielEinstellungen is
 
             when 2 =>
                HauptAuswahl := KartenartWählen;
+               
+            when 3 =>
+               HauptAuswahl := KartenformWählen;
 
-            when 3 =>            
+            when 4 =>            
                HauptAuswahl := KartentemperaturWählen;
                
-            when 4 =>
+            when 5 =>
                HauptAuswahl := SpieleranzahlWählen;
 
-            when 5 =>
+            when 6 =>
                HauptAuswahl := MenschlicheSpieleranzahl;
 
-            when 6 =>
+            when 7 =>
                HauptAuswahl := SchwierigkeitsgradFestlegen;
                
-            when 7 =>
+            when 8 =>
                exit AuswahlSchleife;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
@@ -83,11 +86,11 @@ package body SpielEinstellungen is
            KartengrößeAuswahl
          is
             when 1 .. 9 =>
-               Karten.Kartengröße := KartengrößeAuswahl;
+               Karten.Kartengröße := GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl);
                return 2;
 
             when 10 =>
-               Karten.Kartengröße := KartengrößeAuswahl;
+               Karten.Kartengröße := GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl);
                BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                                ZeileExtern         => 19,
                                                                ZahlenMinimumExtern => 20,
@@ -101,7 +104,7 @@ package body SpielEinstellungen is
                   null;
                end if;
                
-               Karten.Kartengrößen (KartengrößeAuswahl).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+               Karten.Kartengrößen (GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl)).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
                BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                                ZeileExtern         => 25,
                                                                ZahlenMinimumExtern => 20,
@@ -113,13 +116,15 @@ package body SpielEinstellungen is
                   return 1;
                            
                else
-                  Karten.Kartengrößen (KartengrößeAuswahl).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-                  Karten.Kartengrößen (KartengrößeAuswahl).Ressourcenmenge := Integer (Karten.Kartengrößen (KartengrößeAuswahl).YAchsenGröße) * Integer (Karten.Kartengrößen (KartengrößeAuswahl).XAchsenGröße) / 32;
+                  Karten.Kartengrößen (GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl)).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+                  Karten.Kartengrößen (GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl)).Ressourcenmenge
+                    := Integer (Karten.Kartengrößen (GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl)).YAchsenGröße)
+                    * Integer (Karten.Kartengrößen (GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl)).XAchsenGröße) / 32;
                   return 2;
                end if;
                
             when 11 =>               
-               Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 1);
+               Karten.Kartengröße := GlobaleDatentypen.KartengrößeDatentyp (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 1));
                return 2;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
@@ -144,28 +149,28 @@ package body SpielEinstellungen is
       KartenartSchleife:
       loop
 
-         KartenartAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
+         KartenformAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
                                               TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                               FrageZeileExtern  => 2,
                                               ErsteZeileExtern  => 14,
                                               LetzteZeileExtern=> 22);
          
          case
-           KartenartAuswahl
+           KartenformAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartenart := KartenartAuswahl;
+               Karten.Kartenart := GlobaleDatentypen.KartenartDatentyp (KartenformAuswahl);
                return 3;
                
             when 6 =>               
-               Karten.Kartenart := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2);
+               Karten.Kartenart := GlobaleDatentypen.KartenartDatentyp (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
                return 3;
                
             when -2 =>
                return 1;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-               return KartenartAuswahl;
+               return KartenformAuswahl;
                
             when others =>
                null;
@@ -176,6 +181,49 @@ package body SpielEinstellungen is
       end loop KartenartSchleife;
       
    end KartenartWählen;
+   
+   
+   
+   -- 1 = X-Zylinder, 2 = Y-Zylinder, 3 = Torus, 4 = Kugel, 5 = Viereck
+   function KartenformWählen
+     return Integer
+   is begin
+      
+      KartenformSchleife:
+      loop
+
+         KartenartAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
+                                              TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
+                                              FrageZeileExtern  => 31,
+                                              ErsteZeileExtern  => 83,
+                                              LetzteZeileExtern=> 91);
+         
+         case
+           KartenartAuswahl
+         is
+            when 1 .. 5 =>
+               Karten.Kartenart := GlobaleDatentypen.KartenartDatentyp (KartenartAuswahl);
+               return 4;
+               
+            when 6 =>               
+               Karten.Kartenart := GlobaleDatentypen.KartenartDatentyp (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
+               return 4;
+               
+            when -2 =>
+               return 2;
+
+            when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+               return KartenartAuswahl;
+               
+            when others =>
+               null;
+         end case;
+
+         Put (Item => CSI & "2J" & CSI & "H");                  
+
+      end loop KartenformSchleife;
+      
+   end KartenformWählen;
 
 
 
@@ -196,15 +244,15 @@ package body SpielEinstellungen is
            KartentemperaturAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartentemperatur := KartentemperaturAuswahl;
-               return 4;
+               Karten.Kartentemperatur := GlobaleDatentypen.KartentemperaturDatentyp (KartentemperaturAuswahl);
+               return 5;
                
             when 6 =>               
-               Karten.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 3);
-               return 4;
+               Karten.Kartentemperatur := GlobaleDatentypen.KartentemperaturDatentyp (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 3));
+               return 5;
                
             when -2 =>
-               return 2;
+               return 3;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return KartentemperaturAuswahl;
@@ -239,14 +287,14 @@ package body SpielEinstellungen is
          is
             when 1 .. 18 =>
                SpielerAnzahl := SpieleranzahlAuswahl;
-               return 5;
+               return 6;
 
             when 19 =>               
                SpielerAnzahl := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 4);
-               return 5;
+               return 6;
                
             when -2 =>
-               return 3;
+               return 4;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return SpieleranzahlAuswahl;
@@ -278,7 +326,7 @@ package body SpielEinstellungen is
            SpielerartAuswahl
          is                  
             when -2 =>
-               return 4;
+               return 5;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return SpielerartAuswahl;
@@ -312,7 +360,7 @@ package body SpielEinstellungen is
          
       end loop SpielerSchleife;
 
-      return 6;
+      return 7;
 
    end MenschlicheSpieleranzahl;
 
@@ -459,9 +507,9 @@ package body SpielEinstellungen is
                XAchseSchleife:
                for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-                  KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YPositionExtern, XPositionExtern),
-                                                                                         ÄnderungExtern       => (0, YÄnderung, XÄnderung),
-                                                                                         ZusatzYAbstandExtern => 0);
+                  KartenWert := KartenPruefungen.KartenPositionBestimmenAufteilung (KoordinatenExtern    => (0, YPositionExtern, XPositionExtern),
+                                                                                    ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                                    ZusatzYAbstandExtern => 0);
 
                   exit XAchseSchleife when KartenWert.YAchse = 0;
                   
@@ -477,7 +525,7 @@ package body SpielEinstellungen is
                      is
                         when False =>
                            PlatzBelegt := (1, 1);
-            
+                           
                         when True =>
                            PlatzBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
                      end case;                    
@@ -552,14 +600,14 @@ package body SpielEinstellungen is
          is
             when 1 .. 3 =>
                GlobaleVariablen.Schwierigkeitsgrad := SchwierigkeitAuswahl;
-               return 7;
+               return 8;
 
             when 4 =>
                GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 6);
-               return 7;
+               return 8;
                
             when -2 =>
-               return 5;
+               return 6;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return SchwierigkeitAuswahl;

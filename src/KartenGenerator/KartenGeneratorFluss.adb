@@ -60,9 +60,9 @@ package body KartenGeneratorFluss is
          XAchseZweiSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                   
-            KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YKoordinateExtern, XKoordinateExtern),
-                                                                                   ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                   ZusatzYAbstandExtern => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmenAufteilung (KoordinatenExtern    => (0, YKoordinateExtern, XKoordinateExtern),
+                                                                              ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                              ZusatzYAbstandExtern => 0);
                      
             exit XAchseZweiSchleife when KartenWert.YAchse = 0;
                      
@@ -95,9 +95,9 @@ package body KartenGeneratorFluss is
          XAchseSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-            KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YKoordinateExtern, XKoordinateExtern),
-                                                                                   ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                   ZusatzYAbstandExtern => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmenAufteilung (KoordinatenExtern    => (0, YKoordinateExtern, XKoordinateExtern),
+                                                                              ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                              ZusatzYAbstandExtern => 0);
 
             exit XAchseSchleife when KartenWert.YAchse = 0;
             

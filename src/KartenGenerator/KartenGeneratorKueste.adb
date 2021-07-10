@@ -41,9 +41,9 @@ package body KartenGeneratorKueste is
          ZweiteXAchseSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                      
-            KartenWert := KartenPruefungen.KartenPositionBestimmenKartengenerator (KoordinatenExtern    => (0, YAchseSchleifenwertExtern, XAchseSchleifenwertExtern),
-                                                                                   ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                   ZusatzYAbstandExtern => 0);
+            KartenWert := KartenPruefungen.KartenPositionBestimmenAufteilung (KoordinatenExtern    => (0, YAchseSchleifenwertExtern, XAchseSchleifenwertExtern),
+                                                                              ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                              ZusatzYAbstandExtern => 0);
                         
             exit ZweiteXAchseSchleife when KartenWert.YAchse = 0;
                         

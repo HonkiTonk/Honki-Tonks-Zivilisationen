@@ -22,6 +22,7 @@ private
    HauptAuswahl : Integer;
    KartengrößeAuswahl : Integer;
    KartenartAuswahl : Integer;
+   KartenformAuswahl : Integer;
    KartentemperaturAuswahl : Integer;
    SpieleranzahlAuswahl : Integer;
    SpielerartAuswahl : Integer;
@@ -60,6 +61,12 @@ private
      with
        Post =>
          (KartenartWählen'Result >= -2);
+
+   function KartenformWählen
+     return Integer
+     with
+       Post =>
+         (KartenformWählen'Result >= -2);
 
    function KartentemperaturWählen
      return Integer
