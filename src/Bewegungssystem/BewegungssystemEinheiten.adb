@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank, VerbesserungenDatenbank;
 
-with Karte, Diplomatie, Sichtbarkeit, BewegungBlockiert, EinheitSuchen, KartenPruefungen, Eingabe, BewegungPassierbarkeitPruefen, BewegungLadenEntladen, StadtSuchen;
+with Karte, Diplomatie, Sichtbarkeit, BewegungBlockiert, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungLadenEntladen, StadtSuchen;
 
 package body BewegungssystemEinheiten is
 
@@ -53,9 +53,10 @@ package body BewegungssystemEinheiten is
             when others =>
                return;
          end case;
-
-         KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                                 ÄnderungExtern       => Änderung);
+         
+         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                                                     ÄnderungExtern       => Änderung,
+                                                                     ZusatzYAbstandExtern => 0);
          
          case
            KartenWert.YAchse

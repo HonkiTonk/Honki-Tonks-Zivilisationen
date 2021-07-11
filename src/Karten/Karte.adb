@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with Karten, KartenPruefungen, KarteInformationen, GrafischeAnzeige;
+with Karten, KartePositionPruefen, KarteInformationen, GrafischeAnzeige;
 
 package body Karte is
 
@@ -59,14 +59,32 @@ package body Karte is
          XAchseSchleife:
          for XAchseSchleifenwert in -Sichtweiten (SichtweiteFestlegen).XAchse .. Sichtweiten (SichtweiteFestlegen).XAchse loop
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                    ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
+                                                                        ÄnderungExtern      => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 0);
             
-            GrafischeAnzeige.Sichtbarkeit (InDerStadtExtern  => False,
-                                           KoordinatenExtern => KartenWert,
-                                           RasseExtern       => RasseExtern);
+            case
+              KartenWert.XAchse
+            is
+               when 0 =>
+                  null;
+                  
+               when others =>
+                  GrafischeAnzeige.Sichtbarkeit (InDerStadtExtern  => False,
+                                                 KoordinatenExtern => KartenWert,
+                                                 RasseExtern       => RasseExtern);
+            end case;
             
             if
+              XAchseSchleifenwert = Sichtweiten (SichtweiteFestlegen).XAchse
+              and
+                KartenWert.XAchse > 0
+                and
+                  Karten.Kartenform = 1
+            then
+               New_Line;
+               
+            elsif
               XAchseSchleifenwert = Sichtweiten (SichtweiteFestlegen).XAchse
             then
                New_Line;
@@ -76,9 +94,11 @@ package body Karte is
             end if;
             
          end loop XAchseSchleife;
-      end loop YAchseSchleife;    
-         
-      KarteInformationen.KarteInformation (RasseExtern => RasseExtern);
+      end loop YAchseSchleife;
+      
+      New_Line;
+      
+        KarteInformationen.KarteInformation (RasseExtern => RasseExtern);
 
    end AnzeigeKarte;
    

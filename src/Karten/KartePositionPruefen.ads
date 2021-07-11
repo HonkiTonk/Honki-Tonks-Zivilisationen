@@ -6,9 +6,9 @@ use GlobaleDatentypen;
 with Karten;
 use Karten;
 
-package KartenPruefungen is
+package KartePositionPruefen is
    
-   function KartenPositionBestimmenAufteilung
+   function KartenPositionBestimmen
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
       ZusatzYAbstandExtern : in GlobaleDatentypen.KartenfeldPositivMitNullwert)
@@ -20,18 +20,18 @@ package KartenPruefungen is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
          Post =>
            ((if
-                      KartenPositionBestimmenAufteilung'Result.YAchse = 0
+                      KartenPositionBestimmen'Result.YAchse = 0
                         then
-                          KartenPositionBestimmenAufteilung'Result.XAchse = 0)
+                          KartenPositionBestimmen'Result.XAchse = 0)
             and
               (if
-                         KartenPositionBestimmenAufteilung'Result.XAchse = 0
+                         KartenPositionBestimmen'Result.XAchse = 0
                            then
-                             KartenPositionBestimmenAufteilung'Result.YAchse = 0)
+                             KartenPositionBestimmen'Result.YAchse = 0)
             and
-              KartenPositionBestimmenAufteilung'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+              KartenPositionBestimmen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
-              KartenPositionBestimmenAufteilung'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+              KartenPositionBestimmen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function KartenPositionXZylinder
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -61,9 +61,7 @@ package KartenPruefungen is
    
    function KartenPositionYZylinder
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
-      -- Der ZusatzYAbstandExtern ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
-      ZusatzYAbstandExtern : in GlobaleDatentypen.KartenfeldPositivMitNullwert)
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
@@ -163,7 +161,7 @@ package KartenPruefungen is
             and
               KartenPositionViereck'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
-   function KartenPositionBestimmen
+   function KartenPositionBestimmena
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
@@ -173,28 +171,19 @@ package KartenPruefungen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
          Post =>
-           ((if -- Hier kommt der Fehler, mal nachprüfen
-                      KartenPositionBestimmen'Result.YAchse = 0
+           ((if
+                      KartenPositionBestimmena'Result.YAchse = 0
                         then
-                          KartenPositionBestimmen'Result.XAchse = 0)
+                          KartenPositionBestimmena'Result.XAchse = 0)
             and
               (if
-                         KartenPositionBestimmen'Result.XAchse = 0
+                         KartenPositionBestimmena'Result.XAchse = 0
                            then
-                             KartenPositionBestimmen'Result.YAchse = 0)
+                             KartenPositionBestimmena'Result.YAchse = 0)
             and
-              KartenPositionBestimmen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+              KartenPositionBestimmena'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
-              KartenPositionBestimmen'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
-   
-   function KartenGrund
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Boolean
-     with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+              KartenPositionBestimmena'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 private
    
@@ -237,4 +226,4 @@ private
             and
               KartenPositionBestimmenXAchse'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
-end KartenPruefungen;
+end KartePositionPruefen;

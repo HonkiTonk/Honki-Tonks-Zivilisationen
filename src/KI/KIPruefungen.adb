@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIKonstanten, KIDatentypen;
 
-with KartenPruefungen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt;
+with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt;
 
 package body KIPruefungen is
    
@@ -58,10 +58,11 @@ package body KIPruefungen is
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
             StadtVerbesserungUmgebungKoordinaten
-              := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                           ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+              := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                               ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                               ZusatzYAbstandExtern => 0);
             
-            exit XAchseSchleife when StadtVerbesserungUmgebungKoordinaten.YAchse = 0;
+            exit XAchseSchleife when StadtVerbesserungUmgebungKoordinaten.XAchse = 0;
             
             EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => StadtVerbesserungUmgebungKoordinaten);
             
@@ -139,11 +140,12 @@ package body KIPruefungen is
             XAchseKartenfeldSuchenSchleife:
             for XAchseSchleifenwert in -XAchseKoordinatePrüfen .. XAchseKoordinatePrüfen loop
                
-               StadtBauenUmgebungKoordinaten := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, 
-                                                                                          EinheitRasseNummerExtern.Platznummer).Position,
-                                                                                          ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+               StadtBauenUmgebungKoordinaten := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, 
+                                                                                              EinheitRasseNummerExtern.Platznummer).Position,
+                                                                                              ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                                              ZusatzYAbstandExtern => 0);
             
-               exit XAchseKartenfeldSuchenSchleife when StadtBauenUmgebungKoordinaten.YAchse = 0;
+               exit XAchseKartenfeldSuchenSchleife when StadtBauenUmgebungKoordinaten.XAchse = 0;
                            
                if
                  YAchseKoordinatenSchonGeprüft >= abs YAchseSchleifenwert
@@ -274,8 +276,11 @@ package body KIPruefungen is
          XAchseUmgebungSchleife:
          for XAchseUmgebungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                                    ÄnderungExtern       => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert));
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
+                                                                        ÄnderungExtern       => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 0);
+            
+            exit XAchseUmgebungSchleife when KartenWert.XAchse = 0;
                
             if
               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund > 0

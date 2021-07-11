@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIKonstanten, KIDatentypen;
 
-with KartenPruefungen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen;
+with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen;
 
 package body KIBewegungBerechnen is
    
@@ -161,9 +161,20 @@ package body KIBewegungBerechnen is
       else
          null;
       end if;
+            
+      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
+                                                                  ÄnderungExtern       => (0, YÄnderungExtern, XÄnderungExtern),
+                                                                  ZusatzYAbstandExtern => 0);
       
-      KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                              ÄnderungExtern       => (0, YÄnderungExtern, XÄnderungExtern));
+      case
+        KartenWert.XAchse
+      is
+         when 0 =>
+            return 0;
+
+         when others =>
+            null;
+      end case;
       
       case
         FeldBereitsBetreten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -340,12 +351,13 @@ package body KIBewegungBerechnen is
          for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             XAchseSchleife:
             for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-                  
-               KartenWertVereinfachung := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                                                    EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ErsterZugExtern),
-                                                                                    ÄnderungExtern       => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+               
+               KartenWertVereinfachung := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                                                        EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ErsterZugExtern),
+                                                                                        ÄnderungExtern       => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                                        ZusatzYAbstandExtern => 0);
                      
-               exit YAchseSchleife when KartenWertVereinfachung.YAchse = 0;
+               exit XAchseSchleife when KartenWertVereinfachung.XAchse = 0;
                         
                if
                  KartenWertVereinfachung = GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ÜberNächsterZugExtern)

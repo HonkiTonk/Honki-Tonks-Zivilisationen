@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with VerbesserungenDatenbank, KartenDatenbank, GebaeudeDatenbank;
 
-with Wachstum, KartenPruefungen, Karten;
+with Wachstum, KartePositionPruefen, Karten;
 
 package body StadtProduktion is
 
@@ -61,9 +61,12 @@ package body StadtProduktion is
       for YÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
          XAchseSchleife:
          for XÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
-
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+            
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                                        ÄnderungExtern      => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 0);
+            
+            exit XAchseSchleife when KartenWert.XAchse = 0;
             
             case
               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YÄnderungSchleifenwert, XÄnderungSchleifenwert)

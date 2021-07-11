@@ -122,11 +122,11 @@ package GlobaleKonstanten is
 
 
 
-   -- Für den KartenPruefungen.KartenPositionBestimmen Rückgabewert
+   -- Für den KartePositionPruefen.KartenPositionBestimmen Rückgabewert
    RückgabeKartenPositionFalsch : constant GlobaleRecords.AchsenKartenfeldPositivRecord := (GlobaleDatentypen.EbeneVorhanden'First,
                                                                                              GlobaleDatentypen.KartenfeldPositivMitNullwert'First,
                                                                                              GlobaleDatentypen.KartenfeldPositivMitNullwert'First);
-   -- Für den KartenPruefungen.KartenPositionBestimmen Rückgabewert
+   -- Für den KartePositionPruefen.KartenPositionBestimmen Rückgabewert
 
 
 

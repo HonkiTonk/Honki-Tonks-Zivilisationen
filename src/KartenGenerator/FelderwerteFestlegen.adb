@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KartenDatenbank, VerbesserungenDatenbank;
   
-with KartenPruefungen;
+with KartePositionPruefen;
 
 package body FelderwerteFestlegen is
 
@@ -17,9 +17,12 @@ package body FelderwerteFestlegen is
             for YAchseÄnderungSchleifenwert in LoopRangeMinusDreiZuDrei'Range loop
                XAchseÄnderungSchleife:
                for XAchseÄnderungSchleifenwert in LoopRangeMinusDreiZuDrei'Range loop
+                  
+                  KartenWertEins (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
+                                                                                                             ÄnderungExtern       => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert),
+                                                                                                             ZusatzYAbstandExtern => 0);
 
-                  KartenWertEins (KoordinatenExtern.EAchse) := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                                                                         ÄnderungExtern       => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert));
+                  exit XAchseÄnderungSchleife when KartenWertEins (KoordinatenExtern.EAchse).XAchse = 0;
                   
                   Karten.Weltkarte (KartenWertEins (KoordinatenExtern.EAchse).EAchse, KartenWertEins (KoordinatenExtern.EAchse).YAchse, KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := 0;
                   KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWertEins (KoordinatenExtern.EAchse));
@@ -43,9 +46,12 @@ package body FelderwerteFestlegen is
       for BewertungYÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
          BewertungXÄnderungSchleife:
          for BewertungXÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
-                     
-            KartenWertZwei (KoordinatenExtern.EAchse) := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                                                                   ÄnderungExtern       => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert));
+            
+            KartenWertZwei (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
+                                                                                                       ÄnderungExtern       => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert),
+                                                                                                       ZusatzYAbstandExtern => 0);
+
+            exit BewertungXÄnderungSchleife when KartenWertZwei (KoordinatenExtern.EAchse).XAchse = 0;
             
             if
             abs (BewertungYÄnderungSchleifenwert) = 3

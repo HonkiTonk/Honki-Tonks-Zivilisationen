@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with Karten, Eingabe, KartenPruefungen;
+with Karten, Eingabe, KartePositionPruefen;
 
 package body BewegungssystemCursor is
 
@@ -119,7 +119,7 @@ package body BewegungssystemCursor is
       RasseExtern : in GlobaleDatentypen.Rassen)
    is begin
       
-      -- Kann nicht nach KartenPruefungen.KartenPositionBestimmen verschoben werden, da darüber auch Einheiten geprüft werden
+      -- Kann nicht nach KartePositionPruefen.KartenPositionBestimmen verschoben werden, da darüber auch Einheiten geprüft werden
       if
         ÄnderungExtern.EAchse = 1
         and
@@ -145,11 +145,20 @@ package body BewegungssystemCursor is
       else
          null;
       end if;
+            
+      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                                  ÄnderungExtern       => ÄnderungExtern,
+                                                                  ZusatzYAbstandExtern => 0);
       
-      KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                              ÄnderungExtern       => ÄnderungExtern);
-      
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := KartenWert;
+      case
+        KartenWert.XAchse
+      is
+         when 0 =>
+            return;
+
+         when others =>
+            GlobaleVariablen.CursorImSpiel (RasseExtern).Position := KartenWert;
+      end case;
       
    end BewegungCursorBerechnen;
 

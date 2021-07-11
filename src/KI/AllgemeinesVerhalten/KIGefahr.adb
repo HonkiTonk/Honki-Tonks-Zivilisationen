@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIVariablen;
 
-with EinheitenDatenbank, KIPruefungen, KartenPruefungen, EinheitSuchen;
+with EinheitenDatenbank, KIPruefungen, KartePositionPruefen, EinheitSuchen;
 
 package body KIGefahr is
 
@@ -43,7 +43,7 @@ package body KIGefahr is
          XAchseSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
@@ -118,7 +118,7 @@ package body KIGefahr is
          XAchseSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 
@@ -180,7 +180,7 @@ package body KIGefahr is
          XAchseSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
                                                                     ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
                                                                     ZusatzYAbstandExtern => 0);
 

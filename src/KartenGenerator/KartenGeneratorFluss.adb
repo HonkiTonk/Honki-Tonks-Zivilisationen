@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartenPruefungen, ZufallGeneratorenKarten;
+with KartePositionPruefen, ZufallGeneratorenKarten;
 
 package body KartenGeneratorFluss is
 
@@ -60,11 +60,11 @@ package body KartenGeneratorFluss is
          XAchseZweiSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                   
-            KartenWert := KartenPruefungen.KartenPositionBestimmenAufteilung (KoordinatenExtern    => (0, YKoordinateExtern, XKoordinateExtern),
-                                                                              ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                              ZusatzYAbstandExtern => 0);
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YKoordinateExtern, XKoordinateExtern),
+                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 0);
                      
-            exit XAchseZweiSchleife when KartenWert.YAchse = 0;
+            exit XAchseZweiSchleife when KartenWert.XAchse = 0;
                      
             if
               Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= 0
@@ -95,11 +95,11 @@ package body KartenGeneratorFluss is
          XAchseSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-            KartenWert := KartenPruefungen.KartenPositionBestimmenAufteilung (KoordinatenExtern    => (0, YKoordinateExtern, XKoordinateExtern),
-                                                                              ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                              ZusatzYAbstandExtern => 0);
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YKoordinateExtern, XKoordinateExtern),
+                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 0);
 
-            exit XAchseSchleife when KartenWert.YAchse = 0;
+            exit XAchseSchleife when KartenWert.XAchse = 0;
             
             if
               XÄnderungSchleifenwert = -1

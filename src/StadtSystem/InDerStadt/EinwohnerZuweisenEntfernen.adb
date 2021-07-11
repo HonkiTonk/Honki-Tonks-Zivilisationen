@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with Karten, KartenPruefungen;
+with Karten, KartePositionPruefen;
 
 package body EinwohnerZuweisenEntfernen is
 
@@ -57,9 +57,10 @@ package body EinwohnerZuweisenEntfernen is
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2)
            := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) - 1;
                         
-      else
-         KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                 ÄnderungExtern       => (0, RelativeCursorPositionY, RelativeCursorPositionX));
+      else         
+         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                                     ÄnderungExtern       => (0, RelativeCursorPositionY, RelativeCursorPositionX),
+                                                                     ZusatzYAbstandExtern => 0);
          
          if
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2)
@@ -68,7 +69,7 @@ package body EinwohnerZuweisenEntfernen is
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (RelativeCursorPositionY, RelativeCursorPositionX) := True;
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2)
               := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) + 1;
-                           
+            
          else
             null;
          end if;

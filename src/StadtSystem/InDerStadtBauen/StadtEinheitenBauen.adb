@@ -4,7 +4,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with KIDatentypen;
 
-with Anzeige, Eingabe, Karte, KartenPruefungen, Karten, EinheitSuchen, EinheitenAllgemein, BewegungPassierbarkeitPruefen;
+with Anzeige, Eingabe, Karte, KartePositionPruefen, Karten, EinheitSuchen, EinheitenAllgemein, BewegungPassierbarkeitPruefen;
 
 package body StadtEinheitenBauen is
 
@@ -64,9 +64,12 @@ package body StadtEinheitenBauen is
          for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop
             XAchseSchleife:
             for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
-            
-               KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                       ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+               
+               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                                           ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                           ZusatzYAbstandExtern => 0);
+               
+               exit XAchseSchleife when KartenWert.XAchse = 0;
             
                -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
                if

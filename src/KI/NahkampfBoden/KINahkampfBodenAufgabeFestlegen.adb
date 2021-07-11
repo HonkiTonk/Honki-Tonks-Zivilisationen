@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen, KIKonstanten;
 
-with EinheitSuchen, KartenPruefungen, Karten, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt;
+with EinheitSuchen, KartePositionPruefen, Karten, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt;
 
 package body KINahkampfBodenAufgabeFestlegen is
 
@@ -184,9 +184,12 @@ package body KINahkampfBodenAufgabeFestlegen is
                then
                   null;
                   
-               else               
-                  KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                                          ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+               else
+                  KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                                                              ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                              ZusatzYAbstandExtern => 0);
+                     
+                  exit XAchseSchleife when KartenWert.XAchse = 0;
                   
                   if
                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Sichtbar (EinheitRasseNummerExtern.Rasse) = False

@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with ImSpiel, KartenGenerator, Eingabe, Auswahl, Anzeige, ZufallGeneratorenKarten, Ladezeiten, KartenPruefungen, EinheitSuchen, ZufallGeneratorenSpieleinstellungen, EinheitenAllgemein;
+with ImSpiel, KartenGenerator, Eingabe, Auswahl, Anzeige, ZufallGeneratorenKarten, Ladezeiten, KartePositionPruefen, EinheitSuchen, ZufallGeneratorenSpieleinstellungen, EinheitenAllgemein;
 
 package body SpielEinstellungen is
 
@@ -142,6 +142,7 @@ package body SpielEinstellungen is
 
 
 
+   -- 1 = Inseln, 2 = Kontinente, 3 = Pangäa, 4 = Nur Land, 5 = Chaos
    function KartenartWählen
      return Integer
    is begin
@@ -176,7 +177,7 @@ package body SpielEinstellungen is
                null;
          end case;
 
-         Put (Item => CSI & "2J" & CSI & "H");                  
+         Put (Item => CSI & "2J" & CSI & "H");
 
       end loop KartenartSchleife;
       
@@ -196,17 +197,17 @@ package body SpielEinstellungen is
                                               TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                               FrageZeileExtern  => 31,
                                               ErsteZeileExtern  => 83,
-                                              LetzteZeileExtern=> 91);
+                                              LetzteZeileExtern=> 90);
          
          case
            KartenartAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartenart := GlobaleDatentypen.KartenartDatentyp (KartenartAuswahl);
+               Karten.Kartenform := GlobaleDatentypen.KartenartDatentyp (KartenartAuswahl);
                return 4;
                
             when 6 =>               
-               Karten.Kartenart := GlobaleDatentypen.KartenartDatentyp (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
+               Karten.Kartenform := GlobaleDatentypen.KartenartDatentyp (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
                return 4;
                
             when -2 =>
@@ -227,6 +228,7 @@ package body SpielEinstellungen is
 
 
 
+   -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
    function KartentemperaturWählen
      return Integer
    is begin
@@ -484,8 +486,15 @@ package body SpielEinstellungen is
       return Boolean
    is begin
       
-      -- Das hier ändern, siehe dazu auch function KartenGrund
-      PrüfungGrund := KartenPruefungen.KartenGrund (KoordinatenExtern => (0, YPositionExtern, XPositionExtern));
+      case
+        Karten.Weltkarte (0, YPositionExtern, XPositionExtern).Grund
+      is
+         when 1 .. 2 | 29 .. 31 | 36 =>
+            PrüfungGrund := False;
+            
+         when others =>
+            PrüfungGrund := True;
+      end case;
 
       case
         PrüfungGrund
@@ -507,18 +516,26 @@ package body SpielEinstellungen is
                XAchseSchleife:
                for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-                  KartenWert := KartenPruefungen.KartenPositionBestimmenAufteilung (KoordinatenExtern    => (0, YPositionExtern, XPositionExtern),
-                                                                                    ÄnderungExtern       => (0, YÄnderung, XÄnderung),
-                                                                                    ZusatzYAbstandExtern => 0);
-
-                  exit XAchseSchleife when KartenWert.YAchse = 0;
+                  KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionExtern, XPositionExtern),
+                                                                              ÄnderungExtern       => (0, YÄnderung, XÄnderung),
+                                                                              ZusatzYAbstandExtern => 0);
+            
+                  exit XAchseSchleife when KartenWert.XAchse = 0;
                   
                   if
                     YÄnderung /= 0
                     or
                       XÄnderung /= 0
                   then
-                     PrüfungGrund := KartenPruefungen.KartenGrund (KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+                     case
+                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
+                     is
+                        when 1 .. 2 | 29 .. 31 | 36 =>
+                           PrüfungGrund := False;
+            
+                        when others =>
+                           PrüfungGrund := True;
+                     end case;
 
                      case
                        PrüfungGrund

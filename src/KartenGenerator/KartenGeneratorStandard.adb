@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with ZufallGeneratorenKarten, KartenPruefungen;
+with ZufallGeneratorenKarten, KartePositionPruefen;
 
 package body KartenGeneratorStandard is
 
@@ -137,11 +137,11 @@ package body KartenGeneratorStandard is
          XAchseEinsSchleife:
          for XÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart) / 2 .. Karten.GrößeLandart (Karten.Kartenart) / 2 loop
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmenAufteilung (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
-                                                                              ÄnderungExtern       => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
-                                                                              ZusatzYAbstandExtern => 1);
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
+                                                                        ÄnderungExtern       => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 1);
 
-            exit XAchseEinsSchleife when KartenWert.YAchse = 0;
+            exit XAchseEinsSchleife when KartenWert.XAchse = 0;
             
             BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
             GenerierungLandmasseÜberhang (YAchseExtern  => KartenWert.YAchse,
@@ -157,18 +157,18 @@ package body KartenGeneratorStandard is
          XAchseZweiSchleife:
          for XÄnderungZweiSchleifenwert in -FelderVonLandartZuLandart (Karten.Kartenart) .. FelderVonLandartZuLandart (Karten.Kartenart) loop
             
-            KartenWert := KartenPruefungen.KartenPositionBestimmenAufteilung (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
-                                                                              ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
-                                                                              ZusatzYAbstandExtern => 1);
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
+                                                                        ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 1);
             
-            exit XAchseZweiSchleife when KartenWert.YAchse = 0;
+            exit XAchseZweiSchleife when KartenWert.XAchse = 0;
             
             case
               Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse)
             is
                when 1 .. 2 =>
                   null;
-                        
+                  
                when others =>
                   Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := 3;                           
             end case;

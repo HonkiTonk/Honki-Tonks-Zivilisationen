@@ -1,6 +1,6 @@
 package Notizen is
 
-   -- Wenn man das in die KartenPruefungen einbaut erhält man einen Torus, später als alternatives Planetenmodell einbauen?
+   -- Wenn man das in die KartePositionPruefen einbaut erhält man einen Torus, später als alternatives Planetenmodell einbauen?
    function KartenPositionBestimmenYAchse
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
@@ -54,6 +54,6 @@ package Notizen is
       end if;
       
    end KartenPositionBestimmenYAchse;
-   -- Wenn man das in die KartenPruefungen einbaut erhält man einen Torus, später als alternatives Planetenmodell einbauen?
+   -- Wenn man das in die KartePositionPruefen einbaut erhält man einen Torus, später als alternatives Planetenmodell einbauen?
 
 end Notizen;

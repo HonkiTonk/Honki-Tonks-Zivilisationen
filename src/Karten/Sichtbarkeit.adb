@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
   
-with KartenPruefungen, EinheitSuchen, StadtSuchen, Diplomatie;
+with KartePositionPruefen, EinheitSuchen, StadtSuchen, Diplomatie;
 
 package body Sichtbarkeit is
 
@@ -65,9 +65,12 @@ package body Sichtbarkeit is
       for YÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop            
          XÄnderungEinheitenSchleife:
          for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
-               
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+            
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                                                        ÄnderungExtern      => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 0);
+            
+            exit XÄnderungEinheitenSchleife when KartenWert.XAchse = 0;
             
             SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                 KoordinatenExtern => KartenWert);
@@ -96,9 +99,12 @@ package body Sichtbarkeit is
       for YÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop            
          XÄnderungStadtSchleife:
          for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
-
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+            
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                                        ÄnderungExtern      => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 0);
+            
+            exit XÄnderungStadtSchleife when KartenWert.XAchse = 0;
             
             SichtbarkeitSetzen (RasseExtern       => StadtRasseNummerExtern.Rasse,
                                 KoordinatenExtern => KartenWert);

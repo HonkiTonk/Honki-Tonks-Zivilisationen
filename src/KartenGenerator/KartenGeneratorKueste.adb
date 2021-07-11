@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartenPruefungen;
+with KartePositionPruefen;
 
 package body KartenGeneratorKueste is
 
@@ -41,11 +41,11 @@ package body KartenGeneratorKueste is
          ZweiteXAchseSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                      
-            KartenWert := KartenPruefungen.KartenPositionBestimmenAufteilung (KoordinatenExtern    => (0, YAchseSchleifenwertExtern, XAchseSchleifenwertExtern),
-                                                                              ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                              ZusatzYAbstandExtern => 0);
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YAchseSchleifenwertExtern, XAchseSchleifenwertExtern),
+                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 0);
                         
-            exit ZweiteXAchseSchleife when KartenWert.YAchse = 0;
+            exit ZweiteXAchseSchleife when KartenWert.XAchse = 0;
                         
             case
               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund

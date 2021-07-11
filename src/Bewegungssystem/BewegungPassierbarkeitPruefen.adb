@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank, KartenDatenbank, VerbesserungenDatenbank;
 
-with EinheitSuchen, StadtSuchen, KartenPruefungen;
+with EinheitSuchen, StadtSuchen, KartePositionPruefen;
 
 package body BewegungPassierbarkeitPruefen is
    
@@ -392,9 +392,12 @@ package body BewegungPassierbarkeitPruefen is
          for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop
             XAchseSchleife:
             for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
-            
-               KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
-                                                                       ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+               
+               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
+                                                                           ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                           ZusatzYAbstandExtern => 0);
+               
+               exit XAchseSchleife when KartenWert.XAchse = 0;
                
                -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
                if

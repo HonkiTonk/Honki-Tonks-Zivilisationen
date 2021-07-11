@@ -4,7 +4,7 @@ package GlobaleDatentypen is
 
    -- Für Anzeige
    type TextDateien is range 0 .. 27;
-   type TextZeilen is range 0 .. 100;
+   type TextZeilen is range 0 .. 103;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;
    -- Für Anzeige
 

@@ -6,7 +6,7 @@ with KIDatentypen;
 
 with EinheitenDatenbank;
   
-with Anzeige, FelderwerteFestlegen, KartenPruefungen, EinheitenAllgemein;
+with Anzeige, FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein;
 
 package body Verbesserungen is
 
@@ -840,9 +840,12 @@ package body Verbesserungen is
       for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
          XAchseSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-
-            KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+            
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
+                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 0);
+            
+            exit XAchseSchleife when KartenWert.XAchse = 0;
 
             if
               XÄnderungSchleifenwert = -1

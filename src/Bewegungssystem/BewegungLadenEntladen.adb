@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitSuchen, KartenPruefungen, BewegungPassierbarkeitPruefen;
+with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen;
 
 package body BewegungLadenEntladen is
 
@@ -10,9 +10,10 @@ package body BewegungLadenEntladen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
    is begin
-
-      KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                              ÄnderungExtern       => ÄnderungExtern);
+      
+      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                                                  ÄnderungExtern       => ÄnderungExtern,
+                                                                  ZusatzYAbstandExtern => 0);
       
       TransporterNummer := EinheitSuchen.KoordinatenTransporterMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                                KoordinatenExtern => KartenWert);
@@ -151,9 +152,12 @@ package body BewegungLadenEntladen is
          for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop
             XAchseSchleife:
             for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
-            
-               KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
-                                                                       ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                           
+               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
+                                                                           ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                           ZusatzYAbstandExtern => 0);
+               
+               exit XAchseSchleife when KartenWert.XAchse = 0;
             
                -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
                if

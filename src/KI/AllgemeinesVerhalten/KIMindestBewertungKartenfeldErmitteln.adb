@@ -2,9 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartenPruefungen;
-
-with StadtSuchen;
+with KartePositionPruefen, StadtSuchen;
 
 package body KIMindestBewertungKartenfeldErmitteln is
 
@@ -28,11 +26,12 @@ package body KIMindestBewertungKartenfeldErmitteln is
          for YAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             XAchseSchleife:
             for XAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
-               
-               KartenWert := KartenPruefungen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                                       ÄnderungExtern   => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
-               
-               exit YAchseSchleife when KartenWert.YAchse = 0;
+                              
+               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                                                           ÄnderungExtern       => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                                                           ZusatzYAbstandExtern => 0);
+                     
+               exit XAchseSchleife when KartenWert.XAchse = 0;
                
                case
                  StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
