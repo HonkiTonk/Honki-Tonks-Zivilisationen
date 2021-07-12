@@ -61,8 +61,7 @@ package body KartenGeneratorFluss is
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                   
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YKoordinateExtern, XKoordinateExtern),
-                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                        ZusatzYAbstandExtern => 0);
+                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                      
             exit XAchseZweiSchleife when KartenWert.XAchse = 0;
                      
@@ -96,8 +95,7 @@ package body KartenGeneratorFluss is
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YKoordinateExtern, XKoordinateExtern),
-                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                        ZusatzYAbstandExtern => 0);
+                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
 
             exit XAchseSchleife when KartenWert.XAchse = 0;
             

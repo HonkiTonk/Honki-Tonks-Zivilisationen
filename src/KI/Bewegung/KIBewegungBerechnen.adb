@@ -163,8 +163,7 @@ package body KIBewegungBerechnen is
       end if;
             
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                                  ÄnderungExtern       => (0, YÄnderungExtern, XÄnderungExtern),
-                                                                  ZusatzYAbstandExtern => 0);
+                                                                  ÄnderungExtern       => (0, YÄnderungExtern, XÄnderungExtern));
       
       case
         KartenWert.XAchse
@@ -354,8 +353,7 @@ package body KIBewegungBerechnen is
                
                KartenWertVereinfachung := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
                                                                                         EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ErsterZugExtern),
-                                                                                        ÄnderungExtern       => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                                        ZusatzYAbstandExtern => 0);
+                                                                                        ÄnderungExtern       => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                      
                exit XAchseSchleife when KartenWertVereinfachung.XAchse = 0;
                         

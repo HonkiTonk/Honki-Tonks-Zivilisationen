@@ -59,8 +59,7 @@ package body EinwohnerZuweisenEntfernen is
                         
       else         
          KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                     ÄnderungExtern       => (0, RelativeCursorPositionY, RelativeCursorPositionX),
-                                                                     ZusatzYAbstandExtern => 0);
+                                                                     ÄnderungExtern       => (0, RelativeCursorPositionY, RelativeCursorPositionX));
          
          if
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2)

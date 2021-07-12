@@ -40,8 +40,7 @@ package body StadtWerteFestlegen is
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                        ZusatzYAbstandExtern => 0);
+                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             exit XAchseSchleife when KartenWert.XAchse = 0;
             
@@ -110,8 +109,7 @@ package body StadtWerteFestlegen is
                   
                   else                     
                      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                                 ÄnderungExtern       => (0, YPositionSchleifenwert, XPositionSchleifenwert),
-                                                                                 ZusatzYAbstandExtern => 0);
+                                                                                 ÄnderungExtern       => (0, YPositionSchleifenwert, XPositionSchleifenwert));
                      
                      exit XAchseSchleife when KartenWert.XAchse = 0;
 
@@ -168,8 +166,7 @@ package body StadtWerteFestlegen is
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
                         
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                        ZusatzYAbstandExtern => 0);
+                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                      
             exit XAchseSchleife when KartenWert.XAchse = 0;
             

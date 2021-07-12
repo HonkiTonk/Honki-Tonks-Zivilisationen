@@ -60,8 +60,7 @@ package body Karte is
          for XAchseSchleifenwert in -Sichtweiten (SichtweiteFestlegen).XAchse .. Sichtweiten (SichtweiteFestlegen).XAchse loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                        ÄnderungExtern      => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                        ZusatzYAbstandExtern => 0);
+                                                                        ÄnderungExtern      => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             case
               KartenWert.XAchse
@@ -77,18 +76,27 @@ package body Karte is
             
             if
               XAchseSchleifenwert = Sichtweiten (SichtweiteFestlegen).XAchse
-              and
-                KartenWert.XAchse > 0
-                and
-                  Karten.Kartenform = 1
             then
-               New_Line;
-               
-            elsif
-              XAchseSchleifenwert = Sichtweiten (SichtweiteFestlegen).XAchse
-            then
-               New_Line;
+               if
+                 (Karten.Kartenform = GlobaleDatentypen.X_Zylinder
+                 or
+                    Karten.Kartenform = GlobaleDatentypen.Torus) -- KartenPositionPruefen anpassen und dann schauen ob das hier noch funktioniert
+                 and
+                   KartenWert.XAchse > 0
+               then
+                  New_Line;
                   
+               elsif
+                 Karten.Kartenform = GlobaleDatentypen.Y_Zylinder
+                 or
+                   Karten.Kartenform = GlobaleDatentypen.Viereck
+               then
+                  New_Line;
+               
+               else
+                  null;
+               end if;              
+                 
             else
                null;
             end if;
@@ -98,7 +106,7 @@ package body Karte is
       
       New_Line;
       
-        KarteInformationen.KarteInformation (RasseExtern => RasseExtern);
+      KarteInformationen.KarteInformation (RasseExtern => RasseExtern);
 
    end AnzeigeKarte;
    

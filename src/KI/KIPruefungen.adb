@@ -59,8 +59,7 @@ package body KIPruefungen is
             
             StadtVerbesserungUmgebungKoordinaten
               := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                               ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                               ZusatzYAbstandExtern => 0);
+                                                               ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             exit XAchseSchleife when StadtVerbesserungUmgebungKoordinaten.XAchse = 0;
             
@@ -142,8 +141,7 @@ package body KIPruefungen is
                
                StadtBauenUmgebungKoordinaten := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, 
                                                                                               EinheitRasseNummerExtern.Platznummer).Position,
-                                                                                              ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert),
-                                                                                              ZusatzYAbstandExtern => 0);
+                                                                                              ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
                exit XAchseKartenfeldSuchenSchleife when StadtBauenUmgebungKoordinaten.XAchse = 0;
                            
@@ -277,8 +275,7 @@ package body KIPruefungen is
          for XAchseUmgebungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                                        ÄnderungExtern       => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert),
-                                                                        ZusatzYAbstandExtern => 0);
+                                                                        ÄnderungExtern       => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert));
             
             exit XAchseUmgebungSchleife when KartenWert.XAchse = 0;
                

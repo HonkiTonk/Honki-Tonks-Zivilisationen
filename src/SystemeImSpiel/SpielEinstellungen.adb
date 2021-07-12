@@ -150,17 +150,17 @@ package body SpielEinstellungen is
       KartenartSchleife:
       loop
 
-         KartenformAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
+         KartenartAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
                                               TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                               FrageZeileExtern  => 2,
                                               ErsteZeileExtern  => 14,
                                               LetzteZeileExtern=> 22);
          
          case
-           KartenformAuswahl
+           KartenartAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartenart := GlobaleDatentypen.KartenartDatentyp (KartenformAuswahl);
+               Karten.Kartenart := GlobaleDatentypen.KartenartDatentyp (KartenartAuswahl);
                return 3;
                
             when 6 =>               
@@ -171,7 +171,7 @@ package body SpielEinstellungen is
                return 1;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-               return KartenformAuswahl;
+               return KartenartAuswahl;
                
             when others =>
                null;
@@ -193,28 +193,28 @@ package body SpielEinstellungen is
       KartenformSchleife:
       loop
 
-         KartenartAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
+         KartenformAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
                                               TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                               FrageZeileExtern  => 31,
                                               ErsteZeileExtern  => 83,
                                               LetzteZeileExtern=> 90);
          
          case
-           KartenartAuswahl
+           KartenformAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartenform := GlobaleDatentypen.KartenartDatentyp (KartenartAuswahl);
+               Karten.Kartenform := GlobaleDatentypen.KartenformDatentyp'Val (KartenformAuswahl);
                return 4;
                
             when 6 =>               
-               Karten.Kartenform := GlobaleDatentypen.KartenartDatentyp (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
+               Karten.Kartenform := GlobaleDatentypen.KartenformDatentyp'Val (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
                return 4;
                
             when -2 =>
                return 2;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
-               return KartenartAuswahl;
+               return KartenformAuswahl;
                
             when others =>
                null;
@@ -517,8 +517,7 @@ package body SpielEinstellungen is
                for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
                   KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionExtern, XPositionExtern),
-                                                                              ÄnderungExtern       => (0, YÄnderung, XÄnderung),
-                                                                              ZusatzYAbstandExtern => 0);
+                                                                              ÄnderungExtern       => (0, YÄnderung, XÄnderung));
             
                   exit XAchseSchleife when KartenWert.XAchse = 0;
                   

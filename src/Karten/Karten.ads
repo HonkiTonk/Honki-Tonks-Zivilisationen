@@ -34,7 +34,7 @@ package Karten is
    -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
    Kartentemperatur : GlobaleDatentypen.KartentemperaturDatentyp := 1;
    -- 1 = X-Zylinder, 2 = Y-Zylinder, 3 = Torus, 4 = Kugel, 5 = Viereck
-   Kartenform : GlobaleDatentypen.KartenformDatentyp := 1;
+   Kartenform : GlobaleDatentypen.KartenformDatentyp := GlobaleDatentypen.X_Zylinder;
 
    type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of GlobaleDatentypen.Kartenfeld;
    GeneratorKarte : GeneratorKarteArray;

@@ -52,11 +52,16 @@ package GlobaleDatentypen is
    subtype LoopRangeNullZuEins is Kartenfeld range 0 .. 1;
    -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    subtype Ebene is LoopRangeMinusDreiZuDrei range -3 .. 2;
+
    -- Kartenwerte
    subtype KartengrößeDatentyp is KartenfeldPositiv range 1 .. 10;
+
    subtype KartenartDatentyp is KartenfeldPositiv range 1 .. 5;
+
    subtype KartentemperaturDatentyp is KartenfeldPositiv range 1 .. 5;
-   subtype KartenformDatentyp is KartenfeldPositiv range 1 .. 5;
+
+   type KartenformDatentyp is (Leer, X_Zylinder, Y_Zylinder, Torus, Kugel, Viereck);
+   for KartenformDatentyp use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5);
 
    type KartenGrund is range 0 .. 43;
    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste

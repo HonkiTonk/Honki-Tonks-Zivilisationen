@@ -12,8 +12,7 @@ package body BewegungLadenEntladen is
    is begin
       
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                                  ÄnderungExtern       => ÄnderungExtern,
-                                                                  ZusatzYAbstandExtern => 0);
+                                                                  ÄnderungExtern       => ÄnderungExtern);
       
       TransporterNummer := EinheitSuchen.KoordinatenTransporterMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                                KoordinatenExtern => KartenWert);
@@ -154,8 +153,7 @@ package body BewegungLadenEntladen is
             for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
                            
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
-                                                                           ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                           ZusatzYAbstandExtern => 0);
+                                                                           ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                
                exit XAchseSchleife when KartenWert.XAchse = 0;
             

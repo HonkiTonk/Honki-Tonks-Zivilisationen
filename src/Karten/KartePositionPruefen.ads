@@ -10,8 +10,7 @@ package KartePositionPruefen is
    
    function KartenPositionBestimmen
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
-      ZusatzYAbstandExtern : in GlobaleDatentypen.KartenfeldPositivMitNullwert)
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
@@ -35,9 +34,7 @@ package KartePositionPruefen is
    
    function KartenPositionXZylinder
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
-      -- Der ZusatzYAbstandExtern ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
-      ZusatzYAbstandExtern : in GlobaleDatentypen.KartenfeldPositivMitNullwert)
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
@@ -85,9 +82,7 @@ package KartePositionPruefen is
    
    function KartenPositionTorus
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
-      -- Der ZusatzYAbstandExtern ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
-      ZusatzYAbstandExtern : in GlobaleDatentypen.KartenfeldPositivMitNullwert)
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
@@ -111,9 +106,7 @@ package KartePositionPruefen is
    
    function KartenPositionKugel
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
-      -- Der ZusatzYAbstandExtern ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
-      ZusatzYAbstandExtern : in GlobaleDatentypen.KartenfeldPositivMitNullwert)
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
@@ -137,9 +130,7 @@ package KartePositionPruefen is
    
    function KartenPositionViereck
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
-      -- Der ZusatzYAbstandExtern ist für <=, also z. B. 1 für <= Karten.KartenArray'First (2) oder 4 für <= Karten.KartenArray'First (2) + 3
-      ZusatzYAbstandExtern : in GlobaleDatentypen.KartenfeldPositivMitNullwert)
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
@@ -188,7 +179,6 @@ package KartePositionPruefen is
 private
    
    type PositionArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleRecords.AchsenKartenfeldPositivRecord;
-   type ÄnderungArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleRecords.AchsenKartenfeldRecord;
    type PositionFeldArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleDatentypen.Kartenfeld;
    type ÜberhangArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of Integer;
       
@@ -197,6 +187,60 @@ private
    
    ÜberhangYAchse : ÜberhangArray;
    ÜberhangXAchse : ÜberhangArray;
+   
+   
+   type ÄnderungArray is array (GlobaleDatentypen.EbeneVorhanden'Range) of GlobaleDatentypen.Kartenfeld;
+   
+   EAchse : ÄnderungArray;
+   YAchse : ÄnderungArray;
+   XAchse : ÄnderungArray;
+   
+   function PositionBestimmenEAchseFest
+     (EAchseExtern : in GlobaleDatentypen.EbeneVorhanden;
+      ÄnderungEAchseExtern : in GlobaleDatentypen.EbeneVorhanden)
+      return GlobaleDatentypen.Ebene;
+   
+   function PositionBestimmenYAchseFest
+     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      ÄnderungYAchseExtern : in GlobaleDatentypen.Kartenfeld)
+      return GlobaleDatentypen.KartenfeldPositivMitNullwert
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße),
+         Post =>
+           (PositionBestimmenYAchseFest'Result <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße);
+   
+   function PositionBestimmenXAchseFest
+     (XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      ÄnderungXAchseExtern : in GlobaleDatentypen.Kartenfeld)
+      return GlobaleDatentypen.KartenfeldPositivMitNullwert
+     with
+       Pre =>
+         (XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
+         Post =>
+           (PositionBestimmenXAchseFest'Result <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+
+   function PositionBestimmenXWechsel
+     (XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      ÄnderungXAchseExtern : in GlobaleDatentypen.Kartenfeld;
+      ArrayPositionExtern : in GlobaleDatentypen.EbeneVorhanden)
+      return GlobaleDatentypen.KartenfeldPositiv
+     with
+       Pre =>
+         (XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
+         Post =>
+           (PositionBestimmenXWechsel'Result <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+
+   function PositionBestimmenYWechsel
+     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      ÄnderungYAchseExtern : in GlobaleDatentypen.Kartenfeld;
+      ArrayPositionExtern : in GlobaleDatentypen.EbeneVorhanden)
+      return GlobaleDatentypen.KartenfeldPositiv
+     with
+       Pre =>
+         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße),
+         Post =>
+           (PositionBestimmenYWechsel'Result <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße);
    
    function KartenPositionBestimmenYAchse
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -208,7 +252,17 @@ private
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
          Post =>
-           (KartenPositionBestimmenYAchse'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           ((if
+                      KartenPositionBestimmenYAchse'Result.YAchse = 0
+                        then
+                          KartenPositionBestimmenYAchse'Result.XAchse = 0)
+            and
+              (if
+                         KartenPositionBestimmenYAchse'Result.XAchse = 0
+                           then
+                             KartenPositionBestimmenYAchse'Result.YAchse = 0)
+            and
+              KartenPositionBestimmenYAchse'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
               KartenPositionBestimmenYAchse'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
      
@@ -222,7 +276,17 @@ private
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
          Post =>
-           (KartenPositionBestimmenXAchse'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           ((if
+                      KartenPositionBestimmenXAchse'Result.YAchse = 0
+                        then
+                          KartenPositionBestimmenXAchse'Result.XAchse = 0)
+            and
+              (if
+                         KartenPositionBestimmenXAchse'Result.XAchse = 0
+                           then
+                             KartenPositionBestimmenXAchse'Result.YAchse = 0)
+            and
+              KartenPositionBestimmenXAchse'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
               KartenPositionBestimmenXAchse'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 

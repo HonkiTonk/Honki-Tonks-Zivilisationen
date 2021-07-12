@@ -297,8 +297,7 @@ package body KarteStadt is
                CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse - 17;
                
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
-                                                                           ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
-                                                                           ZusatzYAbstandExtern => 0);
+                                                                           ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion));
                case
                  KartenWert.XAchse
                is
@@ -332,8 +331,7 @@ package body KarteStadt is
 
          else            
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
-                                                                        ÄnderungExtern       => (0, YAchsenabstraktion, UmgebungSchleifenwert),
-                                                                        ZusatzYAbstandExtern => 0);
+                                                                        ÄnderungExtern       => (0, YAchsenabstraktion, UmgebungSchleifenwert));
             
             case
               KartenWert.XAchse
@@ -365,8 +363,7 @@ package body KarteStadt is
       CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse - 17;
       
       KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
-                                                                  ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion),
-                                                                  ZusatzYAbstandExtern => 0);
+                                                                  ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion));
       
       case
         KartenWert.XAchse

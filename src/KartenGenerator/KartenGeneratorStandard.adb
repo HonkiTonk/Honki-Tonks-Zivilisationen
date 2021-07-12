@@ -137,9 +137,9 @@ package body KartenGeneratorStandard is
          XAchseEinsSchleife:
          for XÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart) / 2 .. Karten.GrößeLandart (Karten.Kartenart) / 2 loop
             
+            -- Zusatzabstand war hier 1
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
-                                                                        ÄnderungExtern       => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert),
-                                                                        ZusatzYAbstandExtern => 1);
+                                                                        ÄnderungExtern       => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert));
 
             exit XAchseEinsSchleife when KartenWert.XAchse = 0;
             
@@ -157,9 +157,9 @@ package body KartenGeneratorStandard is
          XAchseZweiSchleife:
          for XÄnderungZweiSchleifenwert in -FelderVonLandartZuLandart (Karten.Kartenart) .. FelderVonLandartZuLandart (Karten.Kartenart) loop
             
+            -- Zusatzabstand war hier 1
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
-                                                                        ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert),
-                                                                        ZusatzYAbstandExtern => 1);
+                                                                        ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert));
             
             exit XAchseZweiSchleife when KartenWert.XAchse = 0;
             

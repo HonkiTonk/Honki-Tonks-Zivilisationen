@@ -186,8 +186,7 @@ package body KINahkampfBodenAufgabeFestlegen is
                   
                else
                   KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                                              ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                              ZusatzYAbstandExtern => 0);
+                                                                              ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                      
                   exit XAchseSchleife when KartenWert.XAchse = 0;
                   
