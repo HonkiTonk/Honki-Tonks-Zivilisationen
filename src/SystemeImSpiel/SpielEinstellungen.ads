@@ -17,6 +17,7 @@ private
 
    PrüfungEinheit : Boolean;
    PrüfungGrund : Boolean;
+   RassenVorhanden : Boolean;
 
    SpielerAnzahl : Positive;
    HauptAuswahl : Integer;

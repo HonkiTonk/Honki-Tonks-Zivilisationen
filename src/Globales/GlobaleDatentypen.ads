@@ -4,7 +4,7 @@ package GlobaleDatentypen is
 
    -- Für Anzeige
    type TextDateien is range 0 .. 27;
-   type TextZeilen is range 0 .. 103;
+   type TextZeilen is range 0 .. 104;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;
    -- Für Anzeige
 
@@ -55,13 +55,20 @@ package GlobaleDatentypen is
 
    -- Kartenwerte
    subtype KartengrößeDatentyp is KartenfeldPositiv range 1 .. 10;
+   -- type KartengrößeDatentyp is (Leer, Karte_20_20, Karte_40_40, Karte_80_80, Karte_120_80, Karte_120_160, Karte_160_160, Karte_240_240, Karte_320_320, Karte_1000_1000, Karte_Nutzer);
+   -- for KartengrößeDatentyp use (Leer => 0, Karte_20_20 => 1, Karte_40_40 => 2, Karte_80_80 => 3, Karte_120_80 => 4, Karte_120_160 => 5, Karte_160_160 => 6, Karte_240_240 => 7, Karte_320_320 => 8,
+   -- Karte_1000_1000 => 9, Karte_Nutzer => 10);
 
    subtype KartenartDatentyp is KartenfeldPositiv range 1 .. 5;
+   -- type KartenartDatentyp is (Leer, Inseln, Kontinente, Pangäa, Nur_Land, Chaos);
+   -- for KartenartDatentyp use (Leer => 0, Inseln => 1, Kontinente => 2, Pangäa => 3, Nur_Land => 4, Chaos => 5);
 
    subtype KartentemperaturDatentyp is KartenfeldPositiv range 1 .. 5;
+   -- type KartentemperaturDatentyp is (Leer, Kalt, Gemäßigt, Heiß, Eiszeit, Wüste);
+   -- for KartentemperaturDatentyp use (Leer => 0, Kalt => 1, Gemäßigt => 2, Heiß => 3, Eiszeit => 4, Wüste => 5);
 
-   type KartenformDatentyp is (Leer, X_Zylinder, Y_Zylinder, Torus, Kugel, Viereck);
-   for KartenformDatentyp use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5);
+   type KartenformDatentyp is (Leer, X_Zylinder, Y_Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht);
+   for KartenformDatentyp use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5, Kugel_Gedreht => 6);
 
    type KartenGrund is range 0 .. 43;
    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste

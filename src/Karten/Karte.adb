@@ -80,7 +80,9 @@ package body Karte is
                if
                  (Karten.Kartenform = GlobaleDatentypen.X_Zylinder
                  or
-                    Karten.Kartenform = GlobaleDatentypen.Torus) -- KartenPositionPruefen anpassen und dann schauen ob das hier noch funktioniert
+                    Karten.Kartenform = GlobaleDatentypen.Torus
+                  or
+                 Karten.Kartenform = GlobaleDatentypen.Kugel) -- KartenPositionPruefen anpassen und dann schauen ob das hier noch funktioniert
                  and
                    KartenWert.XAchse > 0
                then

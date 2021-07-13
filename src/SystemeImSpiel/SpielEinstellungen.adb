@@ -58,6 +58,39 @@ package body SpielEinstellungen is
       
       Ladezeiten.SpielweltErstellenZeit (12, 1) := Clock;
       StartwerteErmitteln;
+      RassenVorhanden := False;
+      
+      SicherheitsSchleife:
+      for RassenSchleifenwert in GlobaleDatentypen.Rassen'Range loop
+         
+         case
+           GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
+         is
+            when 0 =>
+               null;
+               
+            when 1 .. 2 =>
+               RassenVorhanden := True;
+               exit SicherheitsSchleife;
+               
+            when others =>
+               Put_Line ("Unmöglicher Wert! SpielEinstellungen.SpielEinstellungen SicherheitsSchleife when others");
+               return GlobaleKonstanten.SpielBeendenKonstante;
+         end case;
+         
+      end loop SicherheitsSchleife;
+      
+      case
+        RassenVorhanden
+      is
+         when True =>
+            null;
+            
+         when False =>
+            Put_Line ("SpielEinstellungen.SpielEinstellungen es wurden keine Rassen platziert!");
+            return GlobaleKonstanten.SpielBeendenKonstante;
+      end case;               
+         
       Ladezeiten.SpielweltErstellenZeit (12, 2) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 12);
 
@@ -194,19 +227,19 @@ package body SpielEinstellungen is
       loop
 
          KartenformAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Fragen,
-                                              TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
-                                              FrageZeileExtern  => 31,
-                                              ErsteZeileExtern  => 83,
-                                              LetzteZeileExtern=> 90);
+                                               TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
+                                               FrageZeileExtern  => 31,
+                                               ErsteZeileExtern  => 83,
+                                               LetzteZeileExtern=> 91);
          
          case
            KartenformAuswahl
          is
-            when 1 .. 5 =>
+            when 1 .. 6 =>
                Karten.Kartenform := GlobaleDatentypen.KartenformDatentyp'Val (KartenformAuswahl);
                return 4;
                
-            when 6 =>               
+            when 7 =>               
                Karten.Kartenform := GlobaleDatentypen.KartenformDatentyp'Val (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
                return 4;
                
@@ -372,7 +405,7 @@ package body SpielEinstellungen is
      return Integer
    is begin
 
-       -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+      -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
       RasseSchleife:
       loop
          
