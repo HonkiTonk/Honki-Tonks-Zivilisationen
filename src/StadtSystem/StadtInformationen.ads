@@ -12,9 +12,9 @@ package StadtInformationen is
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0
+         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) > 0
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
           and
             StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2));
 

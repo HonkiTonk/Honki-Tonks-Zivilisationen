@@ -10,7 +10,7 @@ package BefehleImSpiel is
       return Integer
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1),
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch),
          Post =>
            (Befehle'Result in -1_000 .. 5);
 
@@ -33,7 +33,7 @@ private
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
 
    procedure EinheitOderStadt
      (RasseExtern : in GlobaleDatentypen.Rassen;
@@ -42,37 +42,37 @@ private
       EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
    
    procedure BaueStadt
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
    
    procedure Technologie
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
    
    procedure EinheitBefehle
      (RasseExtern : in GlobaleDatentypen.Rassen;
       BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
    
    procedure StadtUmbenennen
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
    
    procedure StadtAbreißen
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
    
 end BefehleImSpiel;

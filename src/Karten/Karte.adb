@@ -14,27 +14,27 @@ package body Karte is
       case
         Karten.Kartengröße
       is
-         when 1 =>
+         when GlobaleDatentypen.Karte_20_20 =>
             SichtweiteFestlegen := 1;
             BewegungsfeldFestlegen := 1;
             
-         when 2 =>
+         when GlobaleDatentypen.Karte_40_40 =>
             SichtweiteFestlegen := 2;
             BewegungsfeldFestlegen := 2;
 
-         when Karten.KartengrößenArray'Last =>
+         when GlobaleDatentypen.Karte_Nutzer =>
             if
-              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (1).YAchsenGröße
+              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (GlobaleDatentypen.Karte_20_20).YAchsenGröße
               or
-                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (1).XAchsenGröße
+                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (GlobaleDatentypen.Karte_20_20).XAchsenGröße
             then
                SichtweiteFestlegen := 1;
                BewegungsfeldFestlegen := 1;
                
             elsif
-              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (2).YAchsenGröße
+              Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße <= Karten.Kartengrößen (GlobaleDatentypen.Karte_40_40).YAchsenGröße
               or
-                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (2).XAchsenGröße
+                Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße <= Karten.Kartengrößen (GlobaleDatentypen.Karte_40_40).XAchsenGröße
             then
                SichtweiteFestlegen := 2;
                BewegungsfeldFestlegen := 2;
@@ -79,10 +79,12 @@ package body Karte is
             then
                if
                  (Karten.Kartenform = GlobaleDatentypen.X_Zylinder
-                 or
+                  or
                     Karten.Kartenform = GlobaleDatentypen.Torus
                   or
-                 Karten.Kartenform = GlobaleDatentypen.Kugel) -- KartenPositionPruefen anpassen und dann schauen ob das hier noch funktioniert
+                    Karten.Kartenform = GlobaleDatentypen.Kugel
+                  or
+                    Karten.Kartenform = GlobaleDatentypen.Kugel_Gedreht) -- Hier noch die Anzeige korrekt einbauen für die neue Version von KartePositionPruefen
                  and
                    KartenWert.XAchse > 0
                then
@@ -127,16 +129,48 @@ package body Karte is
       else
          GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse;
       end if;
-
+      
       if
-        GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse + Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse
-        or
-          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse - Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse
+        GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse + Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
       then
-         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse;
+         if
+           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse - Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse
+           and
+             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse + Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse
+           - Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         then
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse;         
+            
+         else
+            null;
+         end if;
+         
+      elsif
+        GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse - Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse < Karten.WeltkarteArray'First (2)
+      then
+         if
+           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse + Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse
+           and
+             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse - Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse
+           + Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         then
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse;         
+            
+         else
+            null;
+         end if;
          
       else
-         null;
+         if
+           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse > GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse + Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse
+           or
+             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse < GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse - Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse
+         then
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse;
+            
+         else
+            null;
+         end if;
       end if;
             
       if

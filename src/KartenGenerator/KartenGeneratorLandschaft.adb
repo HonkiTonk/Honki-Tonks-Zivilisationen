@@ -135,74 +135,78 @@ package body KartenGeneratorLandschaft is
          XAchseEinsSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeNullZuEins'Range loop            
             
-            -- Zusatzabstand war hier 1
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YAchseExtern, XAchseExtern),
                                                                         ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
 
-            exit XAchseEinsSchleife when KartenWert.XAchse = 0;
-            
             if
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund < 3
-              or
-                Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = 31
+              KartenWert.XAchse = 0
             then
                null;
-                     
-            elsif
-              YÄnderungSchleifenwert = 0
-              and
-                XÄnderungSchleifenwert = 0
-            then
-               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
-               Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
-                     
-            else
-               BeliebigerLandschaftFeldwert := ZufallGeneratorenKarten.ZufälligerWert;
+               
+            else            
                if
-                 BeliebigerLandschaftFeldwert > 0.50
-                 and
-                   Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) = False
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund < 3
+                 or
+                   Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = 31
                then
-                  if
-                    GrundExtern = 4
-                    and
-                      Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 5
-                  then
-                     null;
-                           
-                  elsif
-                    GrundExtern = 5
-                    and
-                      Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 4
-                  then
-                     null;
-                           
-                  else
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
-                     Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
-                  end if;
-                        
+                  null;
+                     
+               elsif
+                 YÄnderungSchleifenwert = 0
+                 and
+                   XÄnderungSchleifenwert = 0
+               then
+                  Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
+                  Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
+                     
                else
-                  Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;                       
+                  BeliebigerLandschaftFeldwert := ZufallGeneratorenKarten.ZufälligerWert;
+                  if
+                    BeliebigerLandschaftFeldwert > 0.50
+                    and
+                      Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) = False
+                  then
+                     if
+                       GrundExtern = 4
+                       and
+                         Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 5
+                     then
+                        null;
+                           
+                     elsif
+                       GrundExtern = 5
+                       and
+                         Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = 4
+                     then
+                        null;
+                           
+                     else
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
+                        Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
+                     end if;
+                        
+                  else
+                     Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;                       
+                  end if;
                end if;
-            end if;
 
-            if
-              -- Hügel - Gebirge
-              GrundExtern in 6 .. 7
-            then
-               null;
+               if
+                 -- Hügel - Gebirge
+                 GrundExtern in 6 .. 7
+               then
+                  null;
                
-            elsif
-              Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund < 3
-              or
-                Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = 31
-            then
-               null;
+               elsif
+                 Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund < 3
+                 or
+                   Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = 31
+               then
+                  null;
                
-            else
-               GenerierungLandschaftHügel (YAchseExtern => KartenWert.YAchse,
-                                            XAchseExtern => KartenWert.XAchse);
+               else
+                  GenerierungLandschaftHügel (YAchseExtern => KartenWert.YAchse,
+                                               XAchseExtern => KartenWert.XAchse);
+               end if;
             end if;
             
          end loop XAchseEinsSchleife;
@@ -218,19 +222,23 @@ package body KartenGeneratorLandschaft is
                XAchseZweiSchleife:
                for XÄnderungZweiSchleifenwert in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
             
-                  -- Zusatzabstand war hier 1
                   KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YAchseExtern, XAchseExtern),
                                                                               ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert));
 
-                  exit XAchseZweiSchleife when KartenWert.XAchse = 0;
-                  
                   if
-                    Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) /= 0
+                    KartenWert.XAchse = 0
                   then
                      null;
+                     
+                  else                  
+                     if
+                       Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) /= 0
+                     then
+                        null;
                     
-                  else
-                     Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := GlobaleDatentypen.Kartenfeld (GrundExtern);
+                     else
+                        Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := GlobaleDatentypen.Kartenfeld (GrundExtern);
+                     end if;
                   end if;
                   
                end loop XAchseZweiSchleife;
@@ -254,31 +262,35 @@ package body KartenGeneratorLandschaft is
          XAchseHügelSchleife:
          for XÄnderungHügelSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop            
             
-            -- Zusatzabstand war hier 1
             KartenWertHügel := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern     => (0, YAchseExtern, XAchseExtern),
                                                                               ÄnderungExtern       => (0, YÄnderungHügelSchleifenwert, XÄnderungHügelSchleifenwert));
 
-            exit XAchseHügelSchleife when KartenWertHügel.XAchse = 0;
-            
             if
-              YÄnderungHügelSchleifenwert = 0
-              and
-                XÄnderungHügelSchleifenwert = 0
+              KartenWertHügel.XAchse = 0
             then
                null;
+               
+            else            
+               if
+                 YÄnderungHügelSchleifenwert = 0
+                 and
+                   XÄnderungHügelSchleifenwert = 0
+               then
+                  null;
                                  
-            elsif
-              Karten.Weltkarte (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund = 6
-              or
-                Karten.Weltkarte (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund = 7
-              or
-                Karten.Weltkarte (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Hügel = True
-            then
-               HügelGebirgeUmgebung := HügelGebirgeUmgebung + 1;
+               elsif
+                 Karten.Weltkarte (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund = 6
+                 or
+                   Karten.Weltkarte (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund = 7
+                 or
+                   Karten.Weltkarte (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Hügel = True
+               then
+                  HügelGebirgeUmgebung := HügelGebirgeUmgebung + 1;
                                  
-            else
-               null;
-            end if;  
+               else
+                  null;
+               end if;  
+            end if;
             
          end loop XAchseHügelSchleife;
       end loop YAchseHügelSchleife;

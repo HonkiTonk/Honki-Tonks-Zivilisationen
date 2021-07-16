@@ -9,7 +9,7 @@ package Diplomatie is
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure Erstkontakt
      (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
@@ -17,9 +17,9 @@ package Diplomatie is
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) > 0
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= GlobaleDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) > 0);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure KriegDurchDirektenAngriff
      (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen)
@@ -27,9 +27,9 @@ package Diplomatie is
        Pre =>
          (AngreifendeRasseExtern /= VerteidigendeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (AngreifendeRasseExtern) > 0
+            GlobaleVariablen.RassenImSpiel (AngreifendeRasseExtern) /= GlobaleDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigendeRasseExtern) > 0);
+            GlobaleVariablen.RassenImSpiel (VerteidigendeRasseExtern) /= GlobaleDatentypen.Leer);
 
    function DiplomatischenStatusPrüfen
      (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
@@ -38,9 +38,9 @@ package Diplomatie is
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) > 0
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= GlobaleDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) > 0);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure GegnerAngreifenOderNicht
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -53,9 +53,9 @@ package Diplomatie is
           and
             GegnerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (GegnerExtern.Rasse) > 0);
+            GlobaleVariablen.RassenImSpiel (GegnerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 private
 
@@ -67,9 +67,9 @@ private
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = 1);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch);
 
    procedure ErstkontaktMenschKI
      (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
@@ -77,8 +77,8 @@ private
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
           and
-            (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1
+            (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
              or
-               GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = 1));
+               GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch));
 
 end Diplomatie;

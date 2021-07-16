@@ -9,22 +9,22 @@ package KIDiplomatie is
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_KI);
 
    procedure DiplomatieKIMensch
      (RasseMenschExtern, RasseKIExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseMenschExtern) = 1
+         (GlobaleVariablen.RassenImSpiel (RasseMenschExtern) = GlobaleDatentypen.Spieler_Mensch
           and
-            GlobaleVariablen.RassenImSpiel (RasseKIExtern) = 2);
+            GlobaleVariablen.RassenImSpiel (RasseKIExtern) = GlobaleDatentypen.Spieler_KI);
 
    procedure DiplomatieKIKI
      (EigeneRasseExtern, FremdeRasseKIExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 2
+         (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_KI
           and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseKIExtern) = 2);
+            GlobaleVariablen.RassenImSpiel (FremdeRasseKIExtern) = GlobaleDatentypen.Spieler_KI);
 
 end KIDiplomatie;

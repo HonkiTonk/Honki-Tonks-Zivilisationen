@@ -11,7 +11,7 @@ package Wachstum is
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
 private
    
@@ -21,7 +21,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure WachstumEinwohner
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -29,7 +29,7 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure WachstumProduktion
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -37,6 +37,6 @@ private
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 end Wachstum;

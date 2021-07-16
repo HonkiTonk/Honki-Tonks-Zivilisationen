@@ -18,7 +18,7 @@ package body StadtProduktion is
                StadtSchleife:
                for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
                   
-                  exit StadtSchleife when GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0;
+                  exit StadtSchleife when GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer;
                
                   case
                     GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID

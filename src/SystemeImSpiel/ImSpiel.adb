@@ -28,11 +28,10 @@ package body ImSpiel is
                case
                  GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
                is
-                  -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
-                  when 0 =>
+                  when GlobaleDatentypen.Leer =>
                      null;
                      
-                  when 1 =>
+                  when GlobaleDatentypen.Spieler_Mensch =>
                      Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
                      RückgabeWert := MenschlicherSpieler (RasseExtern => RasseSchleifenwert);
                      if
@@ -51,14 +50,11 @@ package body ImSpiel is
                         null;
                      end if;
                   
-                  when 2 =>
+                  when GlobaleDatentypen.Spieler_KI =>
                      Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
                      Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 1) := Clock;
                      KI.KI (RasseExtern => RasseSchleifenwert);
                      Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 2) := Clock;
-                     
-                  when others =>
-                     null;
                end case;
 
             else
@@ -182,7 +178,7 @@ package body ImSpiel is
       for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop
          
          if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 2
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Spieler_KI
          then            
             Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => Positive (RasseSchleifenwert));
             

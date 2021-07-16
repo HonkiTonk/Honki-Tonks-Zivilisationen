@@ -212,7 +212,7 @@ package body BewegungssystemEinheiten is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when 2 =>
+         when GlobaleDatentypen.Spieler_KI =>
             null;
             
          when others =>            
@@ -228,7 +228,7 @@ package body BewegungssystemEinheiten is
          if
            FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
            or
-             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = 0
+             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = GlobaleDatentypen.Leer
          then
             null;
             

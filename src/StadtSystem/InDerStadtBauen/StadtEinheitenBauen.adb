@@ -35,7 +35,7 @@ package body StadtEinheitenBauen is
       if
         EinheitNummer = 0
         and
-          GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 1
+          GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 19);
@@ -135,7 +135,7 @@ package body StadtEinheitenBauen is
       case
         GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)
       is
-         when 1 =>
+         when GlobaleDatentypen.Spieler_Mensch =>
             Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
                                                   TextZeileExtern => 29);
          

@@ -9,7 +9,7 @@ package body AllesAufAnfangSetzen is
    procedure AllesAufAnfangSetzen
    is begin
       
-      GlobaleVariablen.RassenImSpiel := (others => 0);
+      GlobaleVariablen.RassenImSpiel := (others => GlobaleDatentypen.Leer);
       GlobaleVariablen.EinheitenGebaut := (others => (others => GlobaleKonstanten.LeererWertEinheit));
       GlobaleVariablen.StadtGebaut := (others => (others => GlobaleKonstanten.LeererWertStadt));
       GlobaleVariablen.Wichtiges := (others => GlobaleKonstanten.LeererWertWichtigesZeug);

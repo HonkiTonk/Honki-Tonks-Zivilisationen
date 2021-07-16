@@ -9,7 +9,7 @@ package KI is
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_KI);
 
 private
 
@@ -17,13 +17,13 @@ private
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_KI);
 
    procedure StädteDurchgehen
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 2);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_KI);
 
    procedure AKtivitätEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -31,6 +31,6 @@ private
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
 end KI;

@@ -91,7 +91,7 @@ package body InDerStadtBauen is
          for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
 
             if
-              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
             then
                exit StadtSchleife;
                      

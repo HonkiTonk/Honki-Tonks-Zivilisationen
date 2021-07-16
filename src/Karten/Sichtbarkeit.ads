@@ -11,7 +11,7 @@ package Sichtbarkeit is
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure SichtbarkeitsprüfungFürEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -19,7 +19,7 @@ package Sichtbarkeit is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure SichtbarkeitsprüfungFürStadt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -27,7 +27,7 @@ package Sichtbarkeit is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 private
 
@@ -48,6 +48,6 @@ private
           and
             KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
 end Sichtbarkeit;

@@ -33,7 +33,7 @@ package GlobaleVariablen is
    RundenAnzahl : Positive := 1;
 
    -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
-   RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => 0);
+   RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => GlobaleDatentypen.Leer);
    RasseAmZugNachLaden : GlobaleDatentypen.RassenMitNullwert := 0;
 
    -- Hier über LoopMinusDreiBisDrei nachdenken

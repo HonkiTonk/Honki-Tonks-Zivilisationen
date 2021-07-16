@@ -405,10 +405,10 @@ package body ForschungAllgemein is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
                
-            when 1 =>
+            when GlobaleDatentypen.Spieler_Mensch =>
                if
                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = 0
                then
@@ -427,7 +427,7 @@ package body ForschungAllgemein is
                   ForschungZeit (RasseExtern => RasseSchleifenwert);
                end if;
                
-            when others =>
+            when GlobaleDatentypen.Spieler_KI =>
                if
                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = 0
                then

@@ -9,7 +9,7 @@ package Karte is
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
 
 private
 
@@ -41,7 +41,7 @@ private
       BewegungsfeldFestlegenExtern : in Positive)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch
           and
             BewegungsfeldFestlegenExtern <= Bewegungsfeld'Last);
 

@@ -12,9 +12,9 @@ package Kampfsystem is
        Pre =>
          (AngreiferRasseNummerExtern.Rasse /= VerteidigerRasseNummerExtern.Rasse
           and
-            GlobaleVariablen.RassenImSpiel (AngreiferRasseNummerExtern.Rasse) > 0
+            GlobaleVariablen.RassenImSpiel (AngreiferRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigerRasseNummerExtern.Rasse) > 0
+            GlobaleVariablen.RassenImSpiel (VerteidigerRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
             VerteidigerRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
@@ -39,7 +39,7 @@ private
        Pre =>
          (VerteidigerRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigerRasseNummerExtern.Rasse) > 0);
+            GlobaleVariablen.RassenImSpiel (VerteidigerRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    function Kampf
      (VerteidigerRasseNummerExtern, AngreiferRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -49,9 +49,9 @@ private
        Pre =>
          (AngreiferRasseNummerExtern.Rasse /= VerteidigerRasseNummerExtern.Rasse
           and
-            GlobaleVariablen.RassenImSpiel (AngreiferRasseNummerExtern.Rasse) > 0
+            GlobaleVariablen.RassenImSpiel (AngreiferRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (VerteidigerRasseNummerExtern.Rasse) > 0
+            GlobaleVariablen.RassenImSpiel (VerteidigerRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
             VerteidigerRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and

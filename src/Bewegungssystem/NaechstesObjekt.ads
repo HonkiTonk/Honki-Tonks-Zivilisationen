@@ -12,13 +12,13 @@ package NaechstesObjekt is
       BewegungspunkteExtern : in Bewegungspunkte)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
 
    procedure NächsteStadt
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
    
 private
 

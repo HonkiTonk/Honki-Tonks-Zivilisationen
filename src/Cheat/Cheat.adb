@@ -408,14 +408,14 @@ package body Cheat is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
                
             when others =>
-               GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := GlobaleDatentypen.Rassen (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Cheat_Menü,
-                                                                                                                   ZeileExtern         => 16,
-                                                                                                                   ZahlenMinimumExtern => 1,
-                                                                                                                   ZahlenMaximumExtern => 2));
+               GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := GlobaleDatentypen.Spieler_Enum'Val (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Cheat_Menü,
+                                                                                                                         ZeileExtern         => 16,
+                                                                                                                         ZahlenMinimumExtern => 1,
+                                                                                                                         ZahlenMaximumExtern => 2));
          end case;
          
       end loop RassenverteilungÄndernSchleife;

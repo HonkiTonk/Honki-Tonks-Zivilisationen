@@ -53,7 +53,7 @@ package body EinheitenAllgemein is
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
             if
-              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
             then
                exit EinheitenSchleife;
 

@@ -76,8 +76,8 @@ package body Speichern is
       -- Spieler am Zug speichern
 
       -- Schleife zum Speichern der Karte
-      GlobaleDatentypen.KartengrößeDatentyp'Write (Stream (File => DateiSpeichernNeu),
-                                                     Karten.Kartengröße);
+      GlobaleDatentypen.Kartengröße_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
+                                                            Karten.Kartengröße);
 
       EAchseSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
@@ -110,7 +110,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
                
             when others =>
@@ -135,7 +135,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
 
             when others =>
@@ -160,7 +160,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
                
             when others =>
@@ -180,7 +180,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
 
             when others =>               
@@ -190,7 +190,7 @@ package body Speichern is
                   case
                     GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
                   is
-                     when 0 =>
+                     when GlobaleDatentypen.Leer =>
                         null;
                      
                      when others =>
@@ -213,7 +213,7 @@ package body Speichern is
          case
            GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
                
             when others =>

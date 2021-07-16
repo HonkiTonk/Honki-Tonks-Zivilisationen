@@ -41,7 +41,7 @@ package body StadtSuchen is
          for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
             if
-              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
             then
                exit StadtSchleife;
             
@@ -77,7 +77,7 @@ package body StadtSuchen is
             if
               RasseExtern = RasseSchleifenwert
               or
-                GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+                GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
             then
                exit StadtSchleife;
             
@@ -138,7 +138,7 @@ package body StadtSuchen is
          for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
             if
-              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
             then
                exit StadtSchleife;
                

@@ -24,7 +24,7 @@ private
       return Integer
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1),
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch),
          Post =>
            (MenschlicherSpieler'Result in -1_000 .. 5);
 

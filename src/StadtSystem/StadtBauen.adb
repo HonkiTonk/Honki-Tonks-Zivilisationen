@@ -21,7 +21,7 @@ package body StadtBauen is
          null;
          
       elsif
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
          return;
          
@@ -40,7 +40,7 @@ package body StadtBauen is
              GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= 0
          then
             if
-              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
             then
                return;
                
@@ -102,7 +102,7 @@ package body StadtBauen is
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
-         when 2 =>
+         when GlobaleDatentypen.Spieler_KI =>
             StadtNameSchleife:
             for StadtNameSchleifenwert in KIStadtNameArray'Range (2) loop
                

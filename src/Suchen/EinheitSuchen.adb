@@ -69,7 +69,7 @@ package body EinheitSuchen is
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
             if
-              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
             then
                exit EinheitSchleife;
                
@@ -105,7 +105,7 @@ package body EinheitSuchen is
             if
               RasseExtern = RasseSchleifenwert
               or
-                GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+                GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
             then
                exit EinheitSchleife;
                
@@ -256,7 +256,7 @@ package body EinheitSuchen is
          
       end loop EinheitenSchleife;
       
-      return 0;
+      return GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch;
       
    end AnzahlEinheitenSuchen;     
 

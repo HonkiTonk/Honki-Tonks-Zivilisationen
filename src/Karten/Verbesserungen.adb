@@ -22,7 +22,7 @@ package body Verbesserungen is
                                  BefehlExtern             => BefehlExtern);
          
       elsif
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
          VerbesserungFestgelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                  BefehlExtern             => BefehlExtern);
@@ -137,7 +137,7 @@ package body Verbesserungen is
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
          VerbesserungFehler (WelcherFehlerExtern => 18);
          return;
@@ -147,7 +147,7 @@ package body Verbesserungen is
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
          return;
       
@@ -176,7 +176,7 @@ package body Verbesserungen is
                
          when others =>
             if
-              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
             then
                VerbesserungFehler (WelcherFehlerExtern => 1);
                
@@ -199,7 +199,7 @@ package body Verbesserungen is
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
          VerbesserungFehler (WelcherFehlerExtern => 18);
          return;
@@ -209,7 +209,7 @@ package body Verbesserungen is
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
          return;
       
@@ -263,7 +263,7 @@ package body Verbesserungen is
                
          when others =>
             if
-              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
             then
                VerbesserungFehler (WelcherFehlerExtern => 1);
                
@@ -286,7 +286,7 @@ package body Verbesserungen is
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (1) = False
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
          VerbesserungFehler (WelcherFehlerExtern => 18);
          return;
@@ -296,7 +296,7 @@ package body Verbesserungen is
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (1) = False
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
          return;
       
@@ -358,7 +358,7 @@ package body Verbesserungen is
                
          when others =>
             if
-              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
             then
                VerbesserungFehler (WelcherFehlerExtern => 1);
                
@@ -381,7 +381,7 @@ package body Verbesserungen is
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
          VerbesserungFehler (WelcherFehlerExtern => 18);
          return;
@@ -391,7 +391,7 @@ package body Verbesserungen is
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
          return;
       
@@ -439,7 +439,7 @@ package body Verbesserungen is
                
          when others =>
             if
-              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
             then
                VerbesserungFehler (WelcherFehlerExtern => 1);
                
@@ -467,14 +467,14 @@ package body Verbesserungen is
                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = 21
       then
          if
-           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
            and then
              EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8) = True
          then
             null;
             
          elsif
-           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
            and then
              EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8) = False
          then
@@ -503,7 +503,7 @@ package body Verbesserungen is
                
          when others =>
             if
-              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
             then
                VerbesserungFehler (WelcherFehlerExtern => 1);
                
@@ -526,7 +526,7 @@ package body Verbesserungen is
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
          VerbesserungFehler (WelcherFehlerExtern => 18);
          return;
@@ -536,7 +536,7 @@ package body Verbesserungen is
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
          return;
       
@@ -553,7 +553,7 @@ package body Verbesserungen is
               
          when others =>
             if
-              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
             then
                VerbesserungFehler (WelcherFehlerExtern => 2);
                
@@ -574,7 +574,7 @@ package body Verbesserungen is
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
         = EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte
         and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
          VerbesserungFehler (WelcherFehlerExtern => 5);
          
@@ -618,14 +618,14 @@ package body Verbesserungen is
    is begin
       
       if
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
         and then
           EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 9) = True
       then
          EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
       elsif
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
         and then
           EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 9) = False
       then
@@ -644,7 +644,7 @@ package body Verbesserungen is
    is begin
       
       if
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 1
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
         and then
           EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 12) = True
       then
@@ -657,7 +657,7 @@ package body Verbesserungen is
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.0;
          
       elsif
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = 2
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
          Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
@@ -695,7 +695,7 @@ package body Verbesserungen is
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebaut'Range (2) loop
          
             if
-              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = 0
+              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
             then
                exit EinheitenSchleife;
                
@@ -844,170 +844,175 @@ package body Verbesserungen is
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
                                                                         ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
-            exit XAchseSchleife when KartenWert.XAchse = 0;
-
             if
-              XÄnderungSchleifenwert = -1
-              and
-                YÄnderungSchleifenwert = 0
+              KartenWert.XAchse = 0
             then
-               case
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
-               is
-                  when 0 =>
-                     Straßenwert := Straßenwert - 1_000;
-
-                  when 7 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
-                     
-                  when 9 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
-
-                  when 11 =>                     
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
-
-                  when 15 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
-
-                  when 17 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
-
-                  when 18 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
-
-                  when 19 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
-                     
-                  when 24 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 16;
-                     
-                  when others =>
-                     null;
-               end case;
-               Straßenwert := Straßenwert + 1_000;
-               
-            elsif
-              XÄnderungSchleifenwert = 1
-              and
-                YÄnderungSchleifenwert = 0
-            then
-               case
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
-               is
-                  when 0 =>
-                     Straßenwert := Straßenwert - 100;
-
-                  when 7 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
-                     
-                  when 8 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
-
-                  when 10 =>                     
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
-
-                  when 14 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
-
-                  when 16 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
-
-                  when 18 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
-
-                  when 19 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
-                     
-                  when 24 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 17;
-                     
-                  when others =>
-                     null;
-               end case;
-               Straßenwert := Straßenwert + 100;
-               
-            elsif
-              YÄnderungSchleifenwert = -1
-              and
-                XÄnderungSchleifenwert = 0
-            then
-               case
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
-               is
-                  when 0 =>
-                     Straßenwert := Straßenwert - 10;
-                     
-                  when 6 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
-                     
-                  when 10 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
-
-                  when 11 =>                     
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
-
-                  when 12 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
-
-                  when 16 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
-
-                  when 17 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
-
-                  when 18 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
-                     
-                  when 24 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 19;
-                     
-                  when others =>
-                     null;
-               end case;
-               Straßenwert := Straßenwert + 10;
-               
-            elsif
-              YÄnderungSchleifenwert = 1
-              and
-                XÄnderungSchleifenwert = 0
-            then
-               case
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
-               is
-                  when 0 =>
-                     Straßenwert := Straßenwert - 1;
-                     
-                  when 6 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
-                     
-                  when 8 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
-
-                  when 9 =>                     
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
-
-                  when 13 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
-
-                  when 16 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
-
-                  when 17 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
-
-                  when 19 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
-                     
-                  when 24 =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 18;
-                     
-                  when others =>
-                     null;
-               end case;
-               Straßenwert := Straßenwert + 1;
+               null;
                
             else
-               null;
+               if
+                 XÄnderungSchleifenwert = -1
+                 and
+                   YÄnderungSchleifenwert = 0
+               then
+                  case
+                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
+                  is
+                     when 0 =>
+                        Straßenwert := Straßenwert - 1_000;
+
+                     when 7 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
+                     
+                     when 9 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
+
+                     when 11 =>                     
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
+
+                     when 15 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
+
+                     when 17 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
+
+                     when 18 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
+
+                     when 19 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
+                     
+                     when 24 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 16;
+                     
+                     when others =>
+                        null;
+                  end case;
+                  Straßenwert := Straßenwert + 1_000;
+               
+               elsif
+                 XÄnderungSchleifenwert = 1
+                 and
+                   YÄnderungSchleifenwert = 0
+               then
+                  case
+                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
+                  is
+                     when 0 =>
+                        Straßenwert := Straßenwert - 100;
+
+                     when 7 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
+                     
+                     when 8 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
+
+                     when 10 =>                     
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
+
+                     when 14 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
+
+                     when 16 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
+
+                     when 18 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
+
+                     when 19 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
+                     
+                     when 24 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 17;
+                     
+                     when others =>
+                        null;
+                  end case;
+                  Straßenwert := Straßenwert + 100;
+               
+               elsif
+                 YÄnderungSchleifenwert = -1
+                 and
+                   XÄnderungSchleifenwert = 0
+               then
+                  case
+                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
+                  is
+                     when 0 =>
+                        Straßenwert := Straßenwert - 10;
+                     
+                     when 6 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
+                     
+                     when 10 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
+
+                     when 11 =>                     
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
+
+                     when 12 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
+
+                     when 16 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
+
+                     when 17 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
+
+                     when 18 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
+                     
+                     when 24 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 19;
+                     
+                     when others =>
+                        null;
+                  end case;
+                  Straßenwert := Straßenwert + 10;
+               
+               elsif
+                 YÄnderungSchleifenwert = 1
+                 and
+                   XÄnderungSchleifenwert = 0
+               then
+                  case
+                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
+                  is
+                     when 0 =>
+                        Straßenwert := Straßenwert - 1;
+                     
+                     when 6 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
+                     
+                     when 8 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
+
+                     when 9 =>                     
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
+
+                     when 13 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
+
+                     when 16 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
+
+                     when 17 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
+
+                     when 19 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
+                     
+                     when 24 =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 18;
+                     
+                     when others =>
+                        null;
+                  end case;
+                  Straßenwert := Straßenwert + 1;
+               
+               else
+                  null;
+               end if;
             end if;
             
          end loop XAchseSchleife;

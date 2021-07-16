@@ -19,22 +19,33 @@ package Karten is
 
    end record;
 
-   type KartengrößenArray is array (GlobaleDatentypen.KartengrößeDatentyp'Range) of KartengrößenRecord;
-   Kartengrößen : KartengrößenArray := ((20, 20, 12), (40, 40, 50), (80, 80, 200), (120, 80, 300), (120, 160, 600), (160, 160, 800), (240, 240, 1_800), (320, 320, 3200), (1_000, 1_000, 31_250), (1, 1, 1));
+   type KartengrößenArray is array (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Range) of KartengrößenRecord;
+   Kartengrößen : KartengrößenArray := (
+                                            GlobaleDatentypen.Karte_20_20 => (20, 20, 12),
+                                            GlobaleDatentypen.Karte_40_40 => (40, 40, 50),
+                                            GlobaleDatentypen.Karte_80_80 => (80, 80, 200),
+                                            GlobaleDatentypen.Karte_120_80 => (120, 80, 300),
+                                            GlobaleDatentypen.Karte_120_160 => (120, 160, 600),
+                                            GlobaleDatentypen.Karte_160_160 => (160, 160, 800),
+                                            GlobaleDatentypen.Karte_240_240 => (240, 240, 1_800),
+                                            GlobaleDatentypen.Karte_320_320 => (320, 320, 3200),
+                                            GlobaleDatentypen.Karte_1000_1000 => (1_000, 1_000, 31_250),
+                                            GlobaleDatentypen.Karte_Nutzer => (1, 1, 1)
+                                           );
 
-   Kartengröße : GlobaleDatentypen.KartengrößeDatentyp;
+   Kartengröße : GlobaleDatentypen.Kartengröße_Verwendet_Enum;
 
    -- Inseln, Kontinente, Pangäa
    -- GrößeLandart bekommt erst innerhalb der Kartengenerierung Werte, da sonst die Werte für Pangäa nicht bekannt wären.
-   type GrößeLandartArray is array (GlobaleDatentypen.KartenartDatentyp'First .. 4) of GlobaleDatentypen.KartenfeldPositiv;
+   type GrößeLandartArray is array (GlobaleDatentypen.Kartenart_Verwendet_Enum'Range) of GlobaleDatentypen.KartenfeldPositiv;
    GrößeLandart : GrößeLandartArray;
 
-   -- 1 = Inseln, 2 = Kontinente, 3 = Pangäa, 4 = Nur Land, 5 = Chaos
-   Kartenart : GlobaleDatentypen.KartenartDatentyp := 1;
-   -- 1 = Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, 5 = Wüste
-   Kartentemperatur : GlobaleDatentypen.KartentemperaturDatentyp := 1;
-   -- 1 = X-Zylinder, 2 = Y-Zylinder, 3 = Torus, 4 = Kugel, 5 = Viereck
-   Kartenform : GlobaleDatentypen.KartenformDatentyp := GlobaleDatentypen.X_Zylinder;
+   -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
+   Kartenart : GlobaleDatentypen.Kartenart_Verwendet_Enum := GlobaleDatentypen.Inseln;
+   -- Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, Wüste
+   Kartentemperatur : GlobaleDatentypen.Kartentemperatur_Verwendet_Enum := GlobaleDatentypen.Kalt;
+   -- X-Zylinder, Y-Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht
+   Kartenform : GlobaleDatentypen.Kartenform_Verwendet_Enum := GlobaleDatentypen.X_Zylinder;
 
    type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of GlobaleDatentypen.Kartenfeld;
    GeneratorKarte : GeneratorKarteArray;

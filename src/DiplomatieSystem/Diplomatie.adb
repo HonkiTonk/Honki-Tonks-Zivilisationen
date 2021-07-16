@@ -32,17 +32,17 @@ package body Diplomatie is
       end case;
       
       if
-        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1
+        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
         and
-          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = 1
+          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch
       then
          ErstkontaktMenschMensch (EigeneRasseExtern => EigeneRasseExtern,
                                   FremdeRasseExtern => FremdeRasseExtern);
       
       elsif
-        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1
+        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
         or
-          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = 1
+          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch
       then
          ErstkontaktMenschKI (EigeneRasseExtern => EigeneRasseExtern,
                               FremdeRasseExtern => FremdeRasseExtern);

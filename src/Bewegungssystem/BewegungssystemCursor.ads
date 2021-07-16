@@ -11,13 +11,13 @@ package BewegungssystemCursor is
       RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
      
    procedure GeheZuCursor
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
 
 private
 
@@ -40,7 +40,7 @@ private
           or
             ÄnderungExtern.XAchse /= 0)
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure BewegungCursorBerechnenStadt
      (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
@@ -53,6 +53,6 @@ private
           or
             ÄnderungExtern.XAchse /= 0)
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) > 0);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
 end BewegungssystemCursor;

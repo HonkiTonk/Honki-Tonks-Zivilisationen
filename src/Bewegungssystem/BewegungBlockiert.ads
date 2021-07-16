@@ -19,7 +19,7 @@ package BewegungBlockiert is
           and
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0),
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer),
          Post =>
            (BlockiertStadtEinheit'Result = GlobaleDatentypen.Gegner_Blockiert
             or

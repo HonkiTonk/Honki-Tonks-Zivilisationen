@@ -17,7 +17,7 @@ package GrafischeAnzeige is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) = 1);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
 
    procedure Farben
      (EinheitExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
@@ -27,9 +27,9 @@ package GrafischeAnzeige is
       EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.RassenMitNullwert)
      with
        Pre =>
-         ((if EigeneRasseExtern > 0 then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = 1)
+         ((if EigeneRasseExtern > 0 then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch)
           and
-            (if RasseExtern > 0 then GlobaleVariablen.RassenImSpiel (RasseExtern) > 0));
+            (if RasseExtern > 0 then GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer));
 
 private
 

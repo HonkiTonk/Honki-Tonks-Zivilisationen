@@ -13,7 +13,7 @@ package KIStadtLaufendeBauprojekte is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = 2
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
           and
             BauprojektExtern <= 99_999);
    

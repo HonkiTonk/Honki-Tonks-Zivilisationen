@@ -67,8 +67,8 @@ package body Laden is
       -- Spieler am Zug laden
 
       -- Schleife zum Laden der Karte
-      GlobaleDatentypen.KartengrößeDatentyp'Read (Stream (File => DateiLadenNeu),
-                                                    Karten.Kartengröße);
+      GlobaleDatentypen.Kartengröße_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
+                                                           Karten.Kartengröße);
 
       EAchseSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
@@ -101,7 +101,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseEinheitenSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
                
             when others =>
@@ -126,7 +126,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
                
             when others =>
@@ -151,7 +151,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseWichtigesSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
                
             when others =>
@@ -171,7 +171,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseDiplomatieEinsSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
 
             when others =>               
@@ -181,7 +181,7 @@ package body Laden is
                   case
                     GlobaleVariablen.RassenImSpiel (RasseDiplomatieZweiSchleifenwert)
                   is
-                     when 0 =>
+                     when GlobaleDatentypen.Leer =>
                         null;
                      
                      when others =>
@@ -204,7 +204,7 @@ package body Laden is
          case
            GlobaleVariablen.RassenImSpiel (RasseCursorSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
                
             when others =>

@@ -66,16 +66,12 @@ package body SpielEinstellungen is
          case
            GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
                
-            when 1 .. 2 =>
+            when GlobaleDatentypen.Spieler_Mensch | GlobaleDatentypen.Spieler_KI =>
                RassenVorhanden := True;
                exit SicherheitsSchleife;
-               
-            when others =>
-               Put_Line ("Unmöglicher Wert! SpielEinstellungen.SpielEinstellungen SicherheitsSchleife when others");
-               return GlobaleKonstanten.SpielBeendenKonstante;
          end case;
          
       end loop SicherheitsSchleife;
@@ -119,11 +115,11 @@ package body SpielEinstellungen is
            KartengrößeAuswahl
          is
             when 1 .. 9 =>
-               Karten.Kartengröße := GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl);
+               Karten.Kartengröße := GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl);
                return 2;
 
             when 10 =>
-               Karten.Kartengröße := GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl);
+               Karten.Kartengröße := GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl);
                BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                                ZeileExtern         => 19,
                                                                ZahlenMinimumExtern => 20,
@@ -137,7 +133,7 @@ package body SpielEinstellungen is
                   null;
                end if;
                
-               Karten.Kartengrößen (GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl)).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+               Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).YAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
                BenutzerdefinierteGröße := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Fragen,
                                                                ZeileExtern         => 25,
                                                                ZahlenMinimumExtern => 20,
@@ -149,15 +145,15 @@ package body SpielEinstellungen is
                   return 1;
                            
                else
-                  Karten.Kartengrößen (GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl)).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-                  Karten.Kartengrößen (GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl)).Ressourcenmenge
-                    := Integer (Karten.Kartengrößen (GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl)).YAchsenGröße)
-                    * Integer (Karten.Kartengrößen (GlobaleDatentypen.KartengrößeDatentyp (KartengrößeAuswahl)).XAchsenGröße) / 32;
+                  Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
+                  Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).Ressourcenmenge
+                    := Integer (Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).YAchsenGröße)
+                    * Integer (Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).XAchsenGröße) / 32;
                   return 2;
                end if;
                
             when 11 =>               
-               Karten.Kartengröße := GlobaleDatentypen.KartengrößeDatentyp (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 1));
+               Karten.Kartengröße := GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 1));
                return 2;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
@@ -193,11 +189,11 @@ package body SpielEinstellungen is
            KartenartAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartenart := GlobaleDatentypen.KartenartDatentyp (KartenartAuswahl);
+               Karten.Kartenart := GlobaleDatentypen.Kartenart_Verwendet_Enum'Val (KartenartAuswahl);
                return 3;
                
             when 6 =>               
-               Karten.Kartenart := GlobaleDatentypen.KartenartDatentyp (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
+               Karten.Kartenart := GlobaleDatentypen.Kartenart_Verwendet_Enum'Val (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
                return 3;
                
             when -2 =>
@@ -236,11 +232,11 @@ package body SpielEinstellungen is
            KartenformAuswahl
          is
             when 1 .. 6 =>
-               Karten.Kartenform := GlobaleDatentypen.KartenformDatentyp'Val (KartenformAuswahl);
+               Karten.Kartenform := GlobaleDatentypen.Kartenform_Verwendet_Enum'Val (KartenformAuswahl);
                return 4;
                
             when 7 =>               
-               Karten.Kartenform := GlobaleDatentypen.KartenformDatentyp'Val (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
+               Karten.Kartenform := GlobaleDatentypen.Kartenform_Verwendet_Enum'Val (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
                return 4;
                
             when -2 =>
@@ -279,11 +275,11 @@ package body SpielEinstellungen is
            KartentemperaturAuswahl
          is
             when 1 .. 5 =>
-               Karten.Kartentemperatur := GlobaleDatentypen.KartentemperaturDatentyp (KartentemperaturAuswahl);
+               Karten.Kartentemperatur := GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Val (KartentemperaturAuswahl);
                return 5;
                
             when 6 =>               
-               Karten.Kartentemperatur := GlobaleDatentypen.KartentemperaturDatentyp (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 3));
+               Karten.Kartentemperatur := GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Val (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 3));
                return 5;
                
             when -2 =>
@@ -350,7 +346,7 @@ package body SpielEinstellungen is
      return Integer
    is begin
       
-      GlobaleVariablen.RassenImSpiel := (others => 0);
+      GlobaleVariablen.RassenImSpiel := (others => GlobaleDatentypen.Leer);
       Spieler := 0;
 
       SpielerSchleife:
@@ -373,17 +369,17 @@ package body SpielEinstellungen is
          case
            GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen (SpielerartAuswahl))
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 21);
          
                if
                  JaOderNein = GlobaleKonstanten.JaKonstante
                then
-                  GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := 1;
+                  GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := GlobaleDatentypen.Spieler_Mensch;
                   Spieler := Spieler + 1;
                      
                else
-                  GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := 2;
+                  GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := GlobaleDatentypen.Spieler_KI;
                   Spieler := Spieler + 1;
                end if;
                
@@ -466,7 +462,7 @@ package body SpielEinstellungen is
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
                
             when others =>
@@ -496,7 +492,7 @@ package body SpielEinstellungen is
                                                               TextZeileExtern => Positive (RasseSchleifenwert));
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 17);
-                        GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := 0;
+                        GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := GlobaleDatentypen.Leer;
                         exit StartwerteFestlegenSchleife;
                         
                      when others =>
@@ -542,7 +538,7 @@ package body SpielEinstellungen is
       case
         PositionWert.Platznummer
       is
-         when 0 =>
+         when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
             Koordinaten (1) := (0, YPositionExtern, XPositionExtern);
             YAchseSchleife:
             for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
@@ -552,47 +548,52 @@ package body SpielEinstellungen is
                   KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionExtern, XPositionExtern),
                                                                               ÄnderungExtern       => (0, YÄnderung, XÄnderung));
             
-                  exit XAchseSchleife when KartenWert.XAchse = 0;
-                  
                   if
-                    YÄnderung /= 0
-                    or
-                      XÄnderung /= 0
+                    KartenWert.XAchse = 0
                   then
-                     case
-                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
-                     is
-                        when 1 .. 2 | 29 .. 31 | 36 =>
-                           PrüfungGrund := False;
-            
-                        when others =>
-                           PrüfungGrund := True;
-                     end case;
-
-                     case
-                       PrüfungGrund
-                     is
-                        when False =>
-                           PlatzBelegt := (1, 1);
-                           
-                        when True =>
-                           PlatzBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-                     end case;                    
-                           
-                     case
-                       PlatzBelegt.Platznummer
-                     is
-                        when 0 =>
-                           Koordinaten (2) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
-                           StartpunktFestlegen (RasseExtern => RasseExtern);
-                           return True;
-                                 
-                        when others =>
-                           null;
-                     end case;
-                                             
-                  else
                      null;
+                     
+                  else                  
+                     if
+                       YÄnderung /= 0
+                       or
+                         XÄnderung /= 0
+                     then
+                        case
+                          Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
+                        is
+                           when 1 .. 2 | 29 .. 31 | 36 =>
+                              PrüfungGrund := False;
+            
+                           when others =>
+                              PrüfungGrund := True;
+                        end case;
+
+                        case
+                          PrüfungGrund
+                        is
+                           when False =>
+                              PlatzBelegt := (1, 1);
+                           
+                           when True =>
+                              PlatzBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+                        end case;
+                           
+                        case
+                          PlatzBelegt.Platznummer
+                        is
+                           when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
+                              Koordinaten (2) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
+                              StartpunktFestlegen (RasseExtern => RasseExtern);
+                              return True;
+                                 
+                           when others =>
+                              null;
+                        end case;
+                                             
+                     else
+                        null;
+                     end if;
                   end if;
 
                end loop XAchseSchleife;

@@ -25,7 +25,7 @@ package body KartenGeneratorStandard is
                if
                  Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund = 0
                  and
-                   Karten.Kartenart = 4
+                   Karten.Kartenart = GlobaleDatentypen.Nur_Land
                then
                   Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund := 3;
 
@@ -39,7 +39,7 @@ package body KartenGeneratorStandard is
                end if;
             
                case Karten.Kartenart is
-                  when 3 =>
+                  when GlobaleDatentypen.Pangäa =>
                      GenerierungPangäa (YAchseExtern => YAchseSchleifenwert,
                                          XAchseExtern => XAchseSchleifenwert);
                   
@@ -137,16 +137,24 @@ package body KartenGeneratorStandard is
          XAchseEinsSchleife:
          for XÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart) / 2 .. Karten.GrößeLandart (Karten.Kartenart) / 2 loop
             
-            -- Zusatzabstand war hier 1
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
                                                                         ÄnderungExtern       => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert));
 
-            exit XAchseEinsSchleife when KartenWert.XAchse = 0;
-            
-            BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
-            GenerierungLandmasseÜberhang (YAchseExtern  => KartenWert.YAchse,
-                                           XAchseExtern  => KartenWert.XAchse,
-                                           GezogenExtern => BeliebigerLandwert);
+            if
+              KartenWert.YAchse <= Karten.WeltkarteArray'First (2)
+              or
+                KartenWert.YAchse >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+              or
+                KartenWert.XAchse = 0
+            then
+               null;
+               
+            else            
+               BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
+               GenerierungLandmasseÜberhang (YAchseExtern  => KartenWert.YAchse,
+                                              XAchseExtern  => KartenWert.XAchse,
+                                              GezogenExtern => BeliebigerLandwert);
+            end if;
             
          end loop XAchseEinsSchleife;
       end loop YAchseEinsSchleife;
@@ -157,21 +165,25 @@ package body KartenGeneratorStandard is
          XAchseZweiSchleife:
          for XÄnderungZweiSchleifenwert in -FelderVonLandartZuLandart (Karten.Kartenart) .. FelderVonLandartZuLandart (Karten.Kartenart) loop
             
-            -- Zusatzabstand war hier 1
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
                                                                         ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert));
             
-            exit XAchseZweiSchleife when KartenWert.XAchse = 0;
-            
-            case
-              Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse)
-            is
-               when 1 .. 2 =>
-                  null;
+            if
+              KartenWert.XAchse = 0
+            then
+               null;
+               
+            else            
+               case
+                 Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse)
+               is
+                  when 1 .. 2 =>
+                     null;
                   
-               when others =>
-                  Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := 3;                           
-            end case;
+                  when others =>
+                     Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := 3;                           
+               end case;
+            end if;
             
          end loop XAchseZweiSchleife; 
       end loop YAchseZweiSchleife; 

@@ -34,8 +34,14 @@ package GlobaleDatentypen is
    -- Unbelegt, Rasse 1 bis 18
    type RassenMitNullwert is range 0 .. 18;
    subtype Rassen is RassenMitNullwert range 1 .. 18;
+   -- type Rassen_Enum is (Leer, Rasse_1, Rasse_2, Rasse_3, Rasse_4, Rasse_5, Rasse_6, Rasse_7, Rasse_8, Rasse_9, Rasse_10, Rasse_11, Rasse_12, Rasse_13, Rasse_14, Rasse_15, Rasse_16, Rasse_17, Rasse_18);
+   -- for Rassen_Enum use (Leer => 0, Rasse_1 => 1, Rasse_2 => 2, Rasse_3 => 3, Rasse_4 => 4, Rasse_5 => 5, Rasse_6 => 6, Rasse_7 => 7, Rasse_8 => 8, Rasse_9 => 9, Rasse_10 => 10, Rasse_11 => 11, Rasse_12 => 12,
+   -- Rasse_13 => 13, Rasse_14 => 14, Rasse_15 => 15, Rasse_16 => 16, Rasse_17 => 17, Rasse_18 => 18);
+   -- subtype Rassen_Verwendet_Enum is Rassen_Enum range Rasse_1 .. Rasse_18;
    -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
-   type RassenImSpielArray is array (Rassen'Range) of RassenMitNullwert;
+   type Spieler_Enum is (Leer, Spieler_Mensch, Spieler_KI);
+   for Spieler_Enum use (Leer => 0, Spieler_Mensch => 1, Spieler_KI => 2);
+   type RassenImSpielArray is array (Rassen'Range) of Spieler_Enum;
    -- Für Rassen
 
 
@@ -54,21 +60,22 @@ package GlobaleDatentypen is
    subtype Ebene is LoopRangeMinusDreiZuDrei range -3 .. 2;
 
    -- Kartenwerte
-   subtype KartengrößeDatentyp is KartenfeldPositiv range 1 .. 10;
-   -- type KartengrößeDatentyp is (Leer, Karte_20_20, Karte_40_40, Karte_80_80, Karte_120_80, Karte_120_160, Karte_160_160, Karte_240_240, Karte_320_320, Karte_1000_1000, Karte_Nutzer);
-   -- for KartengrößeDatentyp use (Leer => 0, Karte_20_20 => 1, Karte_40_40 => 2, Karte_80_80 => 3, Karte_120_80 => 4, Karte_120_160 => 5, Karte_160_160 => 6, Karte_240_240 => 7, Karte_320_320 => 8,
-   -- Karte_1000_1000 => 9, Karte_Nutzer => 10);
+   type Kartengröße_Enum is (Leer, Karte_20_20, Karte_40_40, Karte_80_80, Karte_120_80, Karte_120_160, Karte_160_160, Karte_240_240, Karte_320_320, Karte_1000_1000, Karte_Nutzer);
+   for Kartengröße_Enum use (Leer => 0, Karte_20_20 => 1, Karte_40_40 => 2, Karte_80_80 => 3, Karte_120_80 => 4, Karte_120_160 => 5, Karte_160_160 => 6, Karte_240_240 => 7, Karte_320_320 => 8,
+                               Karte_1000_1000 => 9, Karte_Nutzer => 10);
+   subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range Karte_20_20 .. Karte_Nutzer;
 
-   subtype KartenartDatentyp is KartenfeldPositiv range 1 .. 5;
-   -- type KartenartDatentyp is (Leer, Inseln, Kontinente, Pangäa, Nur_Land, Chaos);
-   -- for KartenartDatentyp use (Leer => 0, Inseln => 1, Kontinente => 2, Pangäa => 3, Nur_Land => 4, Chaos => 5);
+   type Kartenart_Enum is (Leer, Inseln, Kontinente, Pangäa, Nur_Land, Chaos);
+   for Kartenart_Enum use (Leer => 0, Inseln => 1, Kontinente => 2, Pangäa => 3, Nur_Land => 4, Chaos => 5);
+   subtype Kartenart_Verwendet_Enum is Kartenart_Enum range Inseln .. Chaos;
 
-   subtype KartentemperaturDatentyp is KartenfeldPositiv range 1 .. 5;
-   -- type KartentemperaturDatentyp is (Leer, Kalt, Gemäßigt, Heiß, Eiszeit, Wüste);
-   -- for KartentemperaturDatentyp use (Leer => 0, Kalt => 1, Gemäßigt => 2, Heiß => 3, Eiszeit => 4, Wüste => 5);
+   type Kartentemperatur_Enum is (Leer, Kalt, Gemäßigt, Heiß, Eiszeit, Wüste);
+   for Kartentemperatur_Enum use (Leer => 0, Kalt => 1, Gemäßigt => 2, Heiß => 3, Eiszeit => 4, Wüste => 5);
+   subtype Kartentemperatur_Verwendet_Enum is Kartentemperatur_Enum range Kalt .. Wüste;
 
-   type KartenformDatentyp is (Leer, X_Zylinder, Y_Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht);
-   for KartenformDatentyp use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5, Kugel_Gedreht => 6);
+   type Kartenform_Enum is (Leer, X_Zylinder, Y_Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht);
+   for Kartenform_Enum use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5, Kugel_Gedreht => 6);
+   subtype Kartenform_Verwendet_Enum is Kartenform_Enum range X_Zylinder .. Kugel_Gedreht;
 
    type KartenGrund is range 0 .. 43;
    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
