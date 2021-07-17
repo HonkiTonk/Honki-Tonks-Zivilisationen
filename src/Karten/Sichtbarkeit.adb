@@ -69,10 +69,16 @@ package body Sichtbarkeit is
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                                                         ÄnderungExtern      => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
-            exit XÄnderungEinheitenSchleife when KartenWert.XAchse = 0;
-            
-            SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                KoordinatenExtern => KartenWert);
+            case
+              KartenWert.YAchse
+            is
+               when 0 =>
+                  null;
+                  
+               when others =>            
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenWert);
+            end case;
             
          end loop XÄnderungEinheitenSchleife;
       end loop YÄnderungEinheitenSchleife;
@@ -102,10 +108,16 @@ package body Sichtbarkeit is
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
                                                                         ÄnderungExtern      => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
-            exit XÄnderungStadtSchleife when KartenWert.XAchse = 0;
-            
-            SichtbarkeitSetzen (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                KoordinatenExtern => KartenWert);
+            case
+              KartenWert.YAchse
+            is
+               when 0 =>
+                  null;
+                  
+               when others =>            
+                  SichtbarkeitSetzen (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenWert);
+            end case;
                         
          end loop XÄnderungStadtSchleife;
       end loop YÄnderungStadtSchleife;

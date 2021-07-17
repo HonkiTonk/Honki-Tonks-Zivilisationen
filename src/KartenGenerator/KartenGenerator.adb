@@ -104,7 +104,7 @@ package body KartenGenerator is
         Karten.Kartenart
       is
          when GlobaleDatentypen.Inseln | GlobaleDatentypen.Kontinente | GlobaleDatentypen.Nur_Land | GlobaleDatentypen.Chaos =>
-            Karten.GrößeLandart := (6, 15, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2, 10, 1);
+            Karten.GrößeLandart := (6, 15, 1, 1, 1);
             return;
             
          when GlobaleDatentypen.Pangäa =>
@@ -114,7 +114,7 @@ package body KartenGenerator is
       -- Festlegen der GrößeLandart für Pangäa kann zu Problemen führen, wenn die YAchse sehr klein ist.
       GrößePangäa := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2;
       
-      Karten.GrößeLandart := (6, 15, GrößePangäa, 10, 1);
+      Karten.GrößeLandart := (1, 1, GrößePangäa, 1, 1);
       
    end GrößeLandartFestlegen;
 

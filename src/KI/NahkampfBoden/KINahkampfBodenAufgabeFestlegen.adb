@@ -188,25 +188,31 @@ package body KINahkampfBodenAufgabeFestlegen is
                   KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                                                               ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                      
-                  exit XAchseSchleife when KartenWert.XAchse = 0;
-                  
-                  if
-                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Sichtbar (EinheitRasseNummerExtern.Rasse) = False
-                    and
-                      BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                       NeuePositionExtern       => KartenWert)
-                    = GlobaleDatentypen.Normale_Bewegung_Möglich
-                    and
-                      KIAufgabenVerteilt.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
-                                                      ZielKoordinatenExtern => KartenWert) = False
-                  then
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Erkunden;
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KartenWert;
-                     return;
+                  case
+                    KartenWert.XAchse
+                  is
+                     when 0 =>
+                        null;
+                        
+                     when others =>                  
+                        if
+                          Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Sichtbar (EinheitRasseNummerExtern.Rasse) = False
+                          and
+                            BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                             NeuePositionExtern       => KartenWert)
+                          = GlobaleDatentypen.Normale_Bewegung_Möglich
+                          and
+                            KIAufgabenVerteilt.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                            ZielKoordinatenExtern => KartenWert) = False
+                        then
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Erkunden;
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KartenWert;
+                           return;
                      
-                  else
-                     null;
-                  end if;
+                        else
+                           null;
+                        end if;
+                  end case;
                end if;
             
             end loop XAchseSchleife;

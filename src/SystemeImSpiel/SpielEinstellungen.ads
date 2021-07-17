@@ -19,7 +19,12 @@ private
    PrüfungGrund : Boolean;
    RassenVorhanden : Boolean;
 
+   SicherheitsTestWert : GlobaleDatentypen.KartenfeldPositivMitNullwert;
+
    SpielerAnzahl : Positive;
+
+   Spieler : Natural;
+
    HauptAuswahl : Integer;
    KartengrößeAuswahl : Integer;
    KartenartAuswahl : Integer;
@@ -30,9 +35,7 @@ private
    RassenAuswahl : Integer;
    JaOderNein : Integer;
    SchwierigkeitAuswahl : Integer;
-   SicherheitsTestWert : Integer;
    BenutzerdefinierteGröße : Integer;
-   Spieler : Natural;
    Zufallswahl : Integer;
 
    PositionWert : GlobaleRecords.RassePlatznummerRecord;

@@ -159,18 +159,23 @@ package body StadtBauen is
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                                                         ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
-            exit XAchseSchleife when KartenWert.XAchse = 0;
-            
             case
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
+              KartenWert.XAchse
             is
                when 0 =>
                   null;
-                        
+                  
                when others =>
-                  return False;
+                  if
+                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund = 0
+                  then
+                     null;
+                     
+                  else
+                     return False;
+                  end if;
             end case;
-                        
+            
          end loop XAchseSchleife;
       end loop YAchseSchleife;
 
@@ -219,17 +224,23 @@ package body StadtBauen is
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                                                         ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
-            exit XAchsenSchleife when KartenWert.XAchse = 0;
-                  
             case
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
+              KartenWert.XAchse
             is
-               when 2 | 29 .. 31 =>
-                  GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).AmWasser := True;
-                  exit YAchsenSchleife;
-                        
-               when others =>
+               when 0 =>
                   null;
+                  
+               when others =>                  
+                  case
+                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
+                  is
+                     when 2 | 29 .. 31 =>
+                        GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).AmWasser := True;
+                        exit YAchsenSchleife;
+                        
+                     when others =>
+                        null;
+                  end case;
             end case;
                   
          end loop XAchsenSchleife;

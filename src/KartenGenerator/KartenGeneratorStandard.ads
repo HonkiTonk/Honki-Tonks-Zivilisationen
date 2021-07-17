@@ -92,8 +92,7 @@ private
             XPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure GenerierungLandmasseÜberhang
-     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      GezogenExtern : in Float)
+     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
      with
        Pre =>
          (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -107,5 +106,7 @@ private
          (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+   procedure GenerierungNurLand;
 
 end KartenGeneratorStandard;

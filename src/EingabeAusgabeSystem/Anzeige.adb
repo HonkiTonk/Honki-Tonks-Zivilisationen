@@ -111,15 +111,16 @@ package body Anzeige is
                                      AbstandMitteExtern     => GlobaleTexte.Keiner,
                                      AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
-      case
-        TextDateiExtern
-      is
-         when GlobaleTexte.Fehlermeldungen =>
-            Eingabe.WartenEingabe;
+      if
+        TextDateiExtern = GlobaleTexte.Fehlermeldungen
+        and
+          TextZeileExtern /= 16
+      then
+         Eingabe.WartenEingabe;
             
-         when others =>
-            null;
-      end case;
+      else
+         null;
+      end if;
       
    end EinzeiligeAnzeigeOhneAuswahl;
 

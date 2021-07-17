@@ -68,44 +68,50 @@ package body StadtEinheitenBauen is
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
                                                                            ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                
-               exit XAchseSchleife when KartenWert.XAchse = 0;
-            
-               -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
-               if
-                 BereitsGetestet >= abs (YÄnderungSchleifenwert)
-                 and
-                   BereitsGetestet > 0
-               then
-                  exit XAchseSchleife;
-                  
-               elsif
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
-               in
-                 GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 2)
-               then
-                  BereitsVonEinheitBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer;
-                  if
-                    BereitsVonEinheitBelegt = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
-                    and
-                      (BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenID (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                      IDExtern           => GlobaleDatentypen.EinheitenID
-                                                                                        (GlobaleVariablen.StadtGebaut
-                                                                                           (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag),
-                                                                                      NeuePositionExtern => KartenWert) = True
-                       or
-                         (YÄnderungSchleifenwert = 0
-                          and
-                            XÄnderungSchleifenwert = 0))
-                  then
-                     exit BereichSchleife;
-                     
-                  else
+               case
+                 KartenWert.XAchse
+               is
+                  when 0 =>
                      null;
-                  end if;
+                  
+                  when others =>            
+                     -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
+                     if
+                       BereitsGetestet >= abs (YÄnderungSchleifenwert)
+                       and
+                         BereitsGetestet > 0
+                     then
+                        exit XAchseSchleife;
+                  
+                     elsif
+                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
+                     in
+                       GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 2)
+                     then
+                        BereitsVonEinheitBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer;
+                        if
+                          BereitsVonEinheitBelegt = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+                          and
+                            (BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenID (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                            IDExtern           => GlobaleDatentypen.EinheitenID
+                                                                                              (GlobaleVariablen.StadtGebaut
+                                                                                                 (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag),
+                                                                                            NeuePositionExtern => KartenWert) = True
+                             or
+                               (YÄnderungSchleifenwert = 0
+                                and
+                                  XÄnderungSchleifenwert = 0))
+                        then
+                           exit BereichSchleife;
+                     
+                        else
+                           null;
+                        end if;
                
-               else
-                  null;
-               end if;
+                     else
+                        null;
+                     end if;
+               end case;
             
             end loop XAchseSchleife;
          end loop YAchseSchleife;

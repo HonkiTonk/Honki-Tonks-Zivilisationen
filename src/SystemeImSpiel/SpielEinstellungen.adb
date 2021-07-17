@@ -485,7 +485,7 @@ package body SpielEinstellungen is
                   case
                     SicherheitsTestWert
                   is
-                     when 100 =>
+                     when GlobaleDatentypen.KartenfeldPositivMitNullwert'Last =>
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 16);
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Rassen_Beschreibung_Kurz,

@@ -9,7 +9,7 @@ package body KIGefahr is
    -- Aufteilen nach Unbewaffnet, Fernkämpfer und Nahkämpfer?
    function KIGefahr
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) 
-     return Boolean
+      return Boolean
    is begin
       
       KIVariablen.FeindlicheEinheiten := (others => (others => (others => (others => 0))));
@@ -44,51 +44,57 @@ package body KIGefahr is
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
-                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                    ZusatzYAbstandExtern => 0);
+                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 0);
 
-            exit XAchseSchleife when KartenWert.YAchse = 0;
-            
-            if
-              YÄnderungSchleifenwert = 0
-              and
-                XÄnderungSchleifenwert = 0
-            then
-               null;
-                     
-            else
-               EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                                    KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-
-               case
-                 EinheitRassePlatznummer.Rasse
-               is
-                  when GlobaleDatentypen.RassenMitNullwert'First =>
+            case
+              KartenWert.YAchse
+            is
+               when 0 =>
+                  null;
+                  
+               when others =>
+                  if
+                    YÄnderungSchleifenwert = 0
+                    and
+                      XÄnderungSchleifenwert = 0
+                  then
                      null;
-                           
-                  when others =>
-                     if
-                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Krieg
-                     then
-                        KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YÄnderungSchleifenwert, XÄnderungSchleifenwert)
-                          := GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).ID;
-                        BestehtGefahr := True;
+                     
+                  else
+                     EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                                          KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
-                     elsif
-                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Neutral
-                       and
-                         KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1
-                     then
-                        KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YÄnderungSchleifenwert, XÄnderungSchleifenwert)
-                          := GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).ID;
-                        BestehtGefahr := True;
+                     case
+                       EinheitRassePlatznummer.Rasse
+                     is
+                        when GlobaleDatentypen.RassenMitNullwert'First =>
+                           null;
+                           
+                        when others =>
+                           if
+                             GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Krieg
+                           then
+                              KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YÄnderungSchleifenwert, XÄnderungSchleifenwert)
+                                := GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).ID;
+                              BestehtGefahr := True;
+
+                           elsif
+                             GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Neutral
+                             and
+                               KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                       EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1
+                           then
+                              KIVariablen.FeindlicheEinheiten (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer, YÄnderungSchleifenwert, XÄnderungSchleifenwert)
+                                := GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).ID;
+                              BestehtGefahr := True;
                               
-                     else
-                        null;
-                     end if;
-               end case;
-            end if;
+                           else
+                              null;
+                           end if;
+                     end case;
+                  end if;
+            end case;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -119,47 +125,53 @@ package body KIGefahr is
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
-                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                    ZusatzYAbstandExtern => 0);
+                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 0);
 
-            exit XAchseSchleife when KartenWert.YAchse = 0;
-            
-            if
-              YÄnderungSchleifenwert = 0
-              and
-                XÄnderungSchleifenwert = 0
-            then
-               null;
-                     
-            else
-               EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                                    KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-
-               case
-                 EinheitRassePlatznummer.Rasse
-               is
-                  when GlobaleDatentypen.RassenMitNullwert'First =>
+            case
+              KartenWert.YAchse
+            is
+               when 0 =>
+                  null;
+                  
+               when others =>
+                  if
+                    YÄnderungSchleifenwert = 0
+                    and
+                      XÄnderungSchleifenwert = 0
+                  then
                      null;
-                           
-                  when others =>
-                     if
-                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Krieg
-                     then
-                        return True;
+                     
+                  else
+                     EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                                          KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
-                     elsif
-                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Neutral
-                       and
-                         KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1
-                     then
-                        return True;
+                     case
+                       EinheitRassePlatznummer.Rasse
+                     is
+                        when GlobaleDatentypen.RassenMitNullwert'First =>
+                           null;
+                           
+                        when others =>
+                           if
+                             GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Krieg
+                           then
+                              return True;
+
+                           elsif
+                             GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Neutral
+                             and
+                               KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                       EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1
+                           then
+                              return True;
                               
-                     else
-                        null;
-                     end if;
-               end case;
-            end if;
+                           else
+                              null;
+                           end if;
+                     end case;
+                  end if;
+            end case;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -181,47 +193,53 @@ package body KIGefahr is
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition,
-                                                                    ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
-                                                                    ZusatzYAbstandExtern => 0);
+                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert),
+                                                                        ZusatzYAbstandExtern => 0);
 
-            exit XAchseSchleife when KartenWert.YAchse = 0;
-            
-            if
-              YÄnderungSchleifenwert = 0
-              and
-                XÄnderungSchleifenwert = 0
-            then
-               null;
-                     
-            else
-               EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                                    KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-
-               case
-                 EinheitRassePlatznummer.Rasse
-               is
-                  when GlobaleDatentypen.RassenMitNullwert'First =>
+            case
+              KartenWert.YAchse
+            is
+               when 0 =>
+                  null;
+                  
+               when others =>            
+                  if
+                    YÄnderungSchleifenwert = 0
+                    and
+                      XÄnderungSchleifenwert = 0
+                  then
                      null;
-                           
-                  when others =>
-                     if
-                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Krieg
-                     then
-                        return True;
+                     
+                  else
+                     EinheitRassePlatznummer := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                                          KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
 
-                     elsif
-                       GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Neutral
-                       and
-                         KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1
-                     then
-                        return True;
+                     case
+                       EinheitRassePlatznummer.Rasse
+                     is
+                        when GlobaleDatentypen.RassenMitNullwert'First =>
+                           null;
+                           
+                        when others =>
+                           if
+                             GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Krieg
+                           then
+                              return True;
+
+                           elsif
+                             GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitRassePlatznummer.Rasse) = GlobaleDatentypen.Neutral
+                             and
+                               KIPruefungen.EinheitenAbstandBerechnen (EinheitEinsRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                       EinheitZweiRasseNummerExtern => EinheitRassePlatznummer) <= 1
+                           then
+                              return True;
                               
-                     else
-                        null;
-                     end if;
-               end case;
-            end if;
+                           else
+                              null;
+                           end if;
+                     end case;
+                  end if;
+            end case;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;

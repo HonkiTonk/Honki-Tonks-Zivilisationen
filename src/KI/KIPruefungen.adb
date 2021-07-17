@@ -61,42 +61,48 @@ package body KIPruefungen is
               := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
                                                                ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
-            exit XAchseSchleife when StadtVerbesserungUmgebungKoordinaten.XAchse = 0;
-            
-            EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => StadtVerbesserungUmgebungKoordinaten);
-            
-            if
-              BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                                                               NeuePositionExtern       => StadtVerbesserungUmgebungKoordinaten)
-              = GlobaleDatentypen.Normale_Bewegung_Möglich
-              and
-                (Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse, StadtVerbesserungUmgebungKoordinaten.YAchse, StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungGebiet = 0
-                 or
-                   Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse, StadtVerbesserungUmgebungKoordinaten.YAchse, StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungStraße = 0)
-                and
-                  (EinheitAufFeld.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
-                   or
-                     EinheitAufFeld.Platznummer = EinheitNummerExtern)
-              and
-                Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse, StadtVerbesserungUmgebungKoordinaten.YAchse, StadtVerbesserungUmgebungKoordinaten.XAchse).DurchStadtBelegterGrund
-            in
-              GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 2)
-            then               
-               case
-                 KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen,
-                                                        RasseExtern           => StadtRasseNummerExtern.Rasse,
-                                                        ZielKoordinatenExtern => StadtVerbesserungUmgebungKoordinaten)
-               is
-                  when False =>
-                     return StadtVerbesserungUmgebungKoordinaten;
+            case
+              StadtVerbesserungUmgebungKoordinaten.XAchse
+            is
+               when 0 =>
+                  null;
                   
-                  when True =>
-                     null;
-               end case;
+               when others =>
+                  EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => StadtVerbesserungUmgebungKoordinaten);
+            
+                  if
+                    BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
+                                                                                     NeuePositionExtern       => StadtVerbesserungUmgebungKoordinaten)
+                    = GlobaleDatentypen.Normale_Bewegung_Möglich
+                    and
+                      (Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse, StadtVerbesserungUmgebungKoordinaten.YAchse, StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungGebiet = 0
+                       or
+                         Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse, StadtVerbesserungUmgebungKoordinaten.YAchse, StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungStraße = 0)
+                      and
+                        (EinheitAufFeld.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+                         or
+                           EinheitAufFeld.Platznummer = EinheitNummerExtern)
+                    and
+                      Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse, StadtVerbesserungUmgebungKoordinaten.YAchse, StadtVerbesserungUmgebungKoordinaten.XAchse).DurchStadtBelegterGrund
+                  in
+                    GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 2)
+                  then               
+                     case
+                       KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen,
+                                                              RasseExtern           => StadtRasseNummerExtern.Rasse,
+                                                              ZielKoordinatenExtern => StadtVerbesserungUmgebungKoordinaten)
+                     is
+                        when False =>
+                           return StadtVerbesserungUmgebungKoordinaten;
+                  
+                        when True =>
+                           null;
+                     end case;
                
-            else
-               null;
-            end if;
+                  else
+                     null;
+                  end if;
+            end case;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -143,39 +149,45 @@ package body KIPruefungen is
                                                                                               EinheitRasseNummerExtern.Platznummer).Position,
                                                                                               ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
-               exit XAchseKartenfeldSuchenSchleife when StadtBauenUmgebungKoordinaten.XAchse = 0;
-                           
-               if
-                 YAchseKoordinatenSchonGeprüft >= abs YAchseSchleifenwert
-                 and
-                   XAchseKoordinatenSchonGeprüft >= abs XAchseSchleifenwert
-               then
-                  FeldGutUndFrei := False;
-               
-               else
-                  FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                                               KoordinatenExtern          => StadtBauenUmgebungKoordinaten,
-                                                               MindestBewertungFeldExtern => MindestBewertungFeldExtern);
-               end if;
-               
                case
-                 FeldGutUndFrei
+                 StadtBauenUmgebungKoordinaten.XAchse
                is
-                  when False =>
+                  when 0 =>
                      null;
                      
-                  when True =>
+                  when others =>                           
                      if
-                       KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen,
-                                                              RasseExtern           => EinheitRasseNummerExtern.Rasse,
-                                                              ZielKoordinatenExtern => StadtBauenUmgebungKoordinaten)
-                       = False
+                       YAchseKoordinatenSchonGeprüft >= abs YAchseSchleifenwert
+                       and
+                         XAchseKoordinatenSchonGeprüft >= abs XAchseSchleifenwert
                      then
-                        return StadtBauenUmgebungKoordinaten;
-                  
+                        FeldGutUndFrei := False;
+               
                      else
-                        null;
+                        FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
+                                                                     KoordinatenExtern          => StadtBauenUmgebungKoordinaten,
+                                                                     MindestBewertungFeldExtern => MindestBewertungFeldExtern);
                      end if;
+               
+                     case
+                       FeldGutUndFrei
+                     is
+                        when False =>
+                           null;
+                     
+                        when True =>
+                           if
+                             KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen,
+                                                                    RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                                    ZielKoordinatenExtern => StadtBauenUmgebungKoordinaten)
+                             = False
+                           then
+                              return StadtBauenUmgebungKoordinaten;
+                  
+                           else
+                              null;
+                           end if;
+                     end case;
                end case;
             
             end loop XAchseKartenfeldSuchenSchleife;

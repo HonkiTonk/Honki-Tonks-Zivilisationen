@@ -112,7 +112,7 @@ package body KartePositionPruefen is
       case
         XAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.KartenfeldPositivMitNullwert =>
+         when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
             return GlobaleKonstanten.RückgabeKartenPositionFalsch;
 
          when others =>
@@ -234,7 +234,7 @@ package body KartePositionPruefen is
       case
         XAchse (KoordinatenExtern.EAchse)
       is
-         when GlobaleDatentypen.KartenfeldPositivMitNullwert =>
+         when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
             return GlobaleKonstanten.RückgabeKartenPositionFalsch;
 
          when others =>
@@ -356,9 +356,9 @@ package body KartePositionPruefen is
       then
          ÜberhangXAchse (ArrayPositionExtern) := Integer (XAchseExtern + ÄnderungXAchseExtern + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
          XAchseKleinerSchleife:
-         while ÜberhangXAchse (ArrayPositionExtern) < Integer (Karten.WeltkarteArray'First (3)) loop
+         while ÜberhangXAchse (ArrayPositionExtern) < Positive (Karten.WeltkarteArray'First (3)) loop
             
-            ÜberhangXAchse (ArrayPositionExtern) := ÜberhangXAchse (ArrayPositionExtern) + Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            ÜberhangXAchse (ArrayPositionExtern) := ÜberhangXAchse (ArrayPositionExtern) + Positive (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
          end loop XAchseKleinerSchleife;
          return GlobaleDatentypen.Kartenfeld (ÜberhangXAchse (ArrayPositionExtern));
@@ -395,9 +395,9 @@ package body KartePositionPruefen is
       then
          ÜberhangYAchse (ArrayPositionExtern) := Integer (YAchseExtern + ÄnderungYAchseExtern + Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße);
          YAchseKleinerSchleife:
-         while ÜberhangYAchse (ArrayPositionExtern) < Integer (Karten.WeltkarteArray'First (2)) loop
+         while ÜberhangYAchse (ArrayPositionExtern) < Positive (Karten.WeltkarteArray'First (2)) loop
             
-            ÜberhangYAchse (ArrayPositionExtern) := ÜberhangYAchse (ArrayPositionExtern) + Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße);
+            ÜberhangYAchse (ArrayPositionExtern) := ÜberhangYAchse (ArrayPositionExtern) + Positive (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße);
 
          end loop YAchseKleinerSchleife;
          return GlobaleDatentypen.Kartenfeld (ÜberhangYAchse (ArrayPositionExtern));
@@ -460,8 +460,17 @@ package body KartePositionPruefen is
          else
             PolXAchse (KoordinatenExtern.EAchse) := KoordinatenExtern.XAchse + KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
          end if;
-
-         return (0, abs (KoordinatenExtern.YAchse - ÄnderungExtern.YAchse), PolXAchse (KoordinatenExtern.EAchse));
+         
+         if
+           KoordinatenExtern.YAchse = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           and
+             ÄnderungExtern.YAchse = 1
+         then
+            return (0, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße, PolXAchse (KoordinatenExtern.EAchse));
+            
+         else
+            return (0, abs (KoordinatenExtern.YAchse - ÄnderungExtern.YAchse), PolXAchse (KoordinatenExtern.EAchse));
+         end if;
                
       else
          null;
@@ -518,8 +527,17 @@ package body KartePositionPruefen is
          else
             PolYAchse (KoordinatenExtern.EAchse) := KoordinatenExtern.YAchse + KartenfeldPositiv (0.50 * Float (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
          end if;
-
-         return (0, PolYAchse (KoordinatenExtern.EAchse), abs (KoordinatenExtern.XAchse - ÄnderungExtern.XAchse));
+         
+         if
+           KoordinatenExtern.XAchse = Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+           and
+             ÄnderungExtern.XAchse = 1
+         then
+            return (0, PolYAchse (KoordinatenExtern.EAchse), Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            
+         else
+            return (0, PolYAchse (KoordinatenExtern.EAchse), abs (KoordinatenExtern.XAchse - ÄnderungExtern.XAchse));
+         end if;
                
       else
          null;
