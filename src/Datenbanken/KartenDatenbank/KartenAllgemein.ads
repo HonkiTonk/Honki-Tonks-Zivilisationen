@@ -6,9 +6,9 @@ use GlobaleDatentypen;
 package KartenAllgemein is
 
    procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.KartenGrund)
+     (KartenGrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
      with
        Pre =>
-         (IDExtern > 0);
+         (KartenGrundExtern /= GlobaleDatentypen.Leer);
 
 end KartenAllgemein;

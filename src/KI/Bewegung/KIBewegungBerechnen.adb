@@ -355,29 +355,26 @@ package body KIBewegungBerechnen is
                                                                                         EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ErsterZugExtern),
                                                                                         ÄnderungExtern       => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                      
-               case
-                 KartenWertVereinfachung.XAchse
-               is
-                  when 0 =>
-                     null;
-                     
-                  when others =>                        
-                     if
-                       KartenWertVereinfachung = GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ÜberNächsterZugExtern)
-                     then
-                        BewegungPlanVerschiebenSchleife:
-                        for PositionSchleifenwert in ErsterZugExtern .. GlobaleRecords.KIBewegungPlanArray'Last - 1 loop
+               if
+                 KartenWertVereinfachung.XAchse = 0
+               then
+                  null;
+              
+               elsif
+                 KartenWertVereinfachung = GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ÜberNächsterZugExtern)
+               then
+                  BewegungPlanVerschiebenSchleife:
+                  for PositionSchleifenwert in ErsterZugExtern .. GlobaleRecords.KIBewegungPlanArray'Last - 1 loop
                
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PositionSchleifenwert + 1)
-                             := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ÜberNächsterZugExtern);
+                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PositionSchleifenwert + 1)
+                       := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ÜberNächsterZugExtern);
                
-                        end loop BewegungPlanVerschiebenSchleife;
-                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (GlobaleRecords.KIBewegungPlanArray'Last) := KIKonstanten.NullKoordinate;
+                  end loop BewegungPlanVerschiebenSchleife;
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (GlobaleRecords.KIBewegungPlanArray'Last) := KIKonstanten.NullKoordinate;
                            
-                     else
-                        null;
-                     end if;
-               end case;
+               else
+                  null;
+               end if;
                   
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -389,7 +386,7 @@ package body KIBewegungBerechnen is
    
    function TransporterNötig
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
+   return Boolean
    is begin
       
       return False;

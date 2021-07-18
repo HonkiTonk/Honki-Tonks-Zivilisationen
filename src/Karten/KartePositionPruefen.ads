@@ -19,14 +19,19 @@ package KartePositionPruefen is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
          Post =>
            ((if
-                      KartenPositionBestimmen'Result.YAchse = 0
+                      KartenPositionBestimmen'Result.YAchse = GlobaleDatentypen.KartenfeldPositivMitNullwert'First
                         then
-                          KartenPositionBestimmen'Result.XAchse = 0)
+              (KartenPositionBestimmen'Result.XAchse = GlobaleDatentypen.KartenfeldPositivMitNullwert'First
+               and
+                 KartenPositionBestimmen'Result.EAchse = GlobaleDatentypen.EbeneVorhanden'First)
+           )
             and
               (if
-                         KartenPositionBestimmen'Result.XAchse = 0
+                         KartenPositionBestimmen'Result.XAchse = GlobaleDatentypen.KartenfeldPositivMitNullwert'First
                            then
-                             KartenPositionBestimmen'Result.YAchse = 0)
+                 (KartenPositionBestimmen'Result.YAchse = GlobaleDatentypen.KartenfeldPositivMitNullwert'First
+                  and
+                    KartenPositionBestimmen'Result.EAchse = GlobaleDatentypen.EbeneVorhanden'First))
             and
               KartenPositionBestimmen'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
@@ -61,21 +66,7 @@ private
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-         Post =>
-           ((if
-                      KartenPositionXZylinder'Result.YAchse = 0
-                        then
-                          KartenPositionXZylinder'Result.XAchse = 0)
-            and
-              (if
-                         KartenPositionXZylinder'Result.XAchse = 0
-                           then
-                             KartenPositionXZylinder'Result.YAchse = 0)
-            and
-              KartenPositionXZylinder'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-            and
-              KartenPositionXZylinder'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function KartenPositionYZylinder
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -85,21 +76,7 @@ private
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-         Post =>
-           ((if
-                      KartenPositionYZylinder'Result.YAchse = 0
-                        then
-                          KartenPositionYZylinder'Result.XAchse = 0)
-            and
-              (if
-                         KartenPositionYZylinder'Result.XAchse = 0
-                           then
-                             KartenPositionYZylinder'Result.YAchse = 0)
-            and
-              KartenPositionYZylinder'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-            and
-              KartenPositionYZylinder'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function KartenPositionTorus
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -109,21 +86,7 @@ private
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-         Post =>
-           ((if
-                      KartenPositionTorus'Result.YAchse = 0
-                        then
-                          KartenPositionTorus'Result.XAchse = 0)
-            and
-              (if
-                         KartenPositionTorus'Result.XAchse = 0
-                           then
-                             KartenPositionTorus'Result.YAchse = 0)
-            and
-              KartenPositionTorus'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-            and
-              KartenPositionTorus'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function KartenPositionKugel
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -133,21 +96,7 @@ private
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-         Post =>
-           ((if
-                      KartenPositionKugel'Result.YAchse = 0
-                        then
-                          KartenPositionKugel'Result.XAchse = 0)
-            and
-              (if
-                         KartenPositionKugel'Result.XAchse = 0
-                           then
-                             KartenPositionKugel'Result.YAchse = 0)
-            and
-              KartenPositionKugel'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-            and
-              KartenPositionKugel'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function KartenPositionViereck
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -157,21 +106,7 @@ private
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-         Post =>
-           ((if
-                      KartenPositionViereck'Result.YAchse = 0
-                        then
-                          KartenPositionViereck'Result.XAchse = 0)
-            and
-              (if
-                         KartenPositionViereck'Result.XAchse = 0
-                           then
-                             KartenPositionViereck'Result.YAchse = 0)
-            and
-              KartenPositionViereck'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-            and
-              KartenPositionViereck'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function KartenPositionKugelGedreht
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -181,21 +116,7 @@ private
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-         Post =>
-           ((if
-                      KartenPositionKugelGedreht'Result.YAchse = 0
-                        then
-                          KartenPositionKugelGedreht'Result.XAchse = 0)
-            and
-              (if
-                         KartenPositionKugelGedreht'Result.XAchse = 0
-                           then
-                             KartenPositionKugelGedreht'Result.YAchse = 0)
-            and
-              KartenPositionKugelGedreht'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-            and
-              KartenPositionKugelGedreht'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function PositionBestimmenEAchseFest
      (EAchseExtern : in GlobaleDatentypen.EbeneVorhanden;

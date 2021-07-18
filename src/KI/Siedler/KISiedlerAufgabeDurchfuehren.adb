@@ -60,21 +60,25 @@ package body KISiedlerAufgabeDurchfuehren is
                                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund;
       
             if
-              Grund in 6 .. 7
+              Grund = GlobaleDatentypen.Hügel 
               or
-                Grund in 10 .. 11
+                Grund = GlobaleDatentypen.Gebirge
                 or
-                  Grund = 33
+                  Grund = GlobaleDatentypen.Kohle
                   or
-                    Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Hügel = True
+                    Grund = GlobaleDatentypen.Eisen
+                    or
+                      Grund = GlobaleDatentypen.Gold
+                      or
+                        Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
+                                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
+                                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Hügel = True
             then
                Verbesserungen.Verbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                             BefehlExtern             => GlobaleDatentypen.Mine_Bauen);
          
             elsif
-              Grund = 1
+              Grund = GlobaleDatentypen.Eis
             then
                Verbesserungen.Verbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                             BefehlExtern             => GlobaleDatentypen.Festung_Bauen);

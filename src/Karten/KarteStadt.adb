@@ -83,8 +83,8 @@ package body KarteStadt is
                then
                   GrafischeAnzeige.Farben (EinheitExtern      => 0,
                                            VerbesserungExtern => 0,
-                                           RessourceExtern    => 0,
-                                           GrundExtern        => 0,
+                                           RessourceExtern    => GlobaleDatentypen.Leer,
+                                           GrundExtern        => GlobaleDatentypen.Leer,
                                            CursorExtern       => True,
                                            EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
                                            RasseExtern        => 0);
@@ -92,7 +92,7 @@ package body KarteStadt is
                else
                   GrafischeAnzeige.Farben (EinheitExtern      => 0,
                                            VerbesserungExtern => 0,
-                                           RessourceExtern    => 0,
+                                           RessourceExtern    => GlobaleDatentypen.Leer,
                                            GrundExtern        => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.EAchse,
                                              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.YAchse,
                                              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.XAchse).Grund,
@@ -129,7 +129,7 @@ package body KarteStadt is
                else
                   GrafischeAnzeige.Farben (EinheitExtern      => 0,
                                            VerbesserungExtern => 0,
-                                           RessourceExtern    => 0,
+                                           RessourceExtern    => GlobaleDatentypen.Leer,
                                            GrundExtern        => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.EAchse,
                                              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.YAchse,
                                              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.XAchse).Grund,
@@ -151,7 +151,7 @@ package body KarteStadt is
                else
                   GrafischeAnzeige.Farben (EinheitExtern      => 0,
                                            VerbesserungExtern => 0,
-                                           RessourceExtern    => 0,
+                                           RessourceExtern    => GlobaleDatentypen.Leer,
                                            GrundExtern        => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.EAchse,
                                              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.YAchse,
                                              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.XAchse).Grund,
@@ -163,7 +163,7 @@ package body KarteStadt is
             else
                GrafischeAnzeige.Farben (EinheitExtern      => 0,
                                         VerbesserungExtern => 0,
-                                        RessourceExtern    => 0,
+                                        RessourceExtern    => GlobaleDatentypen.Leer,
                                         GrundExtern        => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.EAchse,
                                           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.YAchse,
                                           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.XAchse).Grund,
@@ -251,8 +251,8 @@ package body KarteStadt is
          then
             GrafischeAnzeige.Farben (EinheitExtern      => 0,
                                      VerbesserungExtern => 0,
-                                     RessourceExtern    => 0,
-                                     GrundExtern        => 0,
+                                     RessourceExtern    => GlobaleDatentypen.Leer,
+                                     GrundExtern        => GlobaleDatentypen.Leer,
                                      CursorExtern       => True,
                                      EigeneRasseExtern  => RasseExtern,
                                      RasseExtern        => 0);
@@ -286,8 +286,8 @@ package body KarteStadt is
             then
                GrafischeAnzeige.Farben (EinheitExtern      => 0,
                                         VerbesserungExtern => 0,
-                                        RessourceExtern    => 0,
-                                        GrundExtern        => 0,
+                                        RessourceExtern    => GlobaleDatentypen.Leer,
+                                        GrundExtern        => GlobaleDatentypen.Leer,
                                         CursorExtern       => True,
                                         EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
                                         RasseExtern        => 0);
@@ -304,8 +304,8 @@ package body KarteStadt is
                   when 0 =>
                      GrafischeAnzeige.Farben (EinheitExtern      => 0,
                                               VerbesserungExtern => 0,
-                                              RessourceExtern    => 0,
-                                              GrundExtern        => 0,
+                                              RessourceExtern    => GlobaleDatentypen.Leer,
+                                              GrundExtern        => GlobaleDatentypen.Leer,
                                               CursorExtern       => True,
                                               EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
                                               RasseExtern        => 0);
@@ -313,7 +313,7 @@ package body KarteStadt is
                   when others =>
                      GrafischeAnzeige.Farben (EinheitExtern      => 0,
                                               VerbesserungExtern => 0,
-                                              RessourceExtern    => 0,
+                                              RessourceExtern    => GlobaleDatentypen.Leer,
                                               GrundExtern        => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund,
                                               CursorExtern       => True,
                                               EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
@@ -378,7 +378,7 @@ package body KarteStadt is
       if
         Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Hügel = True
         and
-          Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= 6
+          Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= GlobaleDatentypen.Hügel
       then
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                         TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
@@ -388,15 +388,15 @@ package body KarteStadt is
                                         AbstandAnfangExtern    => GlobaleTexte.Keiner,
                                         AbstandMitteExtern     => GlobaleTexte.Keiner,
                                         AbstandEndeExtern      => GlobaleTexte.Keiner);
-         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
+         KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
          
       elsif
         Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Hügel = True
       then
-         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
+         KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
                
       else         
-         KartenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
+         KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
       end if;
       
       StadtInformationen.EinzelnesFeldNahrungsgewinnung (KoordinatenExtern => KartenWert);

@@ -15,7 +15,7 @@ package KISiedlerAufgabeDurchfuehren is
 
 private
 
-   Grund : GlobaleDatentypen.KartenGrund;
+   Grund : GlobaleDatentypen.Karten_Grund_Enum;
 
    procedure WelcheVerbesserungAnlegen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

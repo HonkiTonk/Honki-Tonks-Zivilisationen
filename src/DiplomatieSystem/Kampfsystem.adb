@@ -74,9 +74,9 @@ package body Kampfsystem is
         and
           Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).Position.EAchse,
                             GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).Position.YAchse,
-                            GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).Position.XAchse).Grund /= 6
+                            GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).Position.XAchse).Grund /= GlobaleDatentypen.Hügel
       then
-         VerteidigerStärkeVerteidigung := VerteidigerStärkeVerteidigung + 0.1 * Float (KartenDatenbank.KartenListe (6).Verteidigungsbonus);
+         VerteidigerStärkeVerteidigung := VerteidigerStärkeVerteidigung + 0.1 * Float (KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel).Verteidigungsbonus);
 
       else
          null;

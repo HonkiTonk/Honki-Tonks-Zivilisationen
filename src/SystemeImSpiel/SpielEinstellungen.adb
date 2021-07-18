@@ -511,14 +511,14 @@ package body SpielEinstellungen is
 
    function UmgebungPrüfen
      (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      RasseExtern : in GlobaleDatentypen.Rassen) 
+      RasseExtern : in GlobaleDatentypen.Rassen)
       return Boolean
    is begin
       
       case
         Karten.Weltkarte (0, YPositionExtern, XPositionExtern).Grund
       is
-         when 1 .. 2 | 29 .. 31 | 36 =>
+         when GlobaleDatentypen.Karten_Grund_Felder_Ungünstig_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Wasser'Range =>
             PrüfungGrund := False;
             
          when others =>
@@ -553,47 +553,45 @@ package body SpielEinstellungen is
                   then
                      null;
                      
-                  else                  
-                     if
-                       YÄnderung /= 0
-                       or
-                         XÄnderung /= 0
-                     then
-                        case
-                          Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
-                        is
-                           when 1 .. 2 | 29 .. 31 | 36 =>
-                              PrüfungGrund := False;
+                  elsif
+                    YÄnderung /= 0
+                    or
+                      XÄnderung /= 0
+                  then
+                     case
+                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
+                     is
+                        when GlobaleDatentypen.Karten_Grund_Felder_Ungünstig_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Wasser'Range =>
+                           PrüfungGrund := False;
             
-                           when others =>
-                              PrüfungGrund := True;
-                        end case;
+                        when others =>
+                           PrüfungGrund := True;
+                     end case;
 
-                        case
-                          PrüfungGrund
-                        is
-                           when False =>
-                              PlatzBelegt := (1, 1);
+                     case
+                       PrüfungGrund
+                     is
+                        when False =>
+                           PlatzBelegt := (1, 1);
                            
-                           when True =>
-                              PlatzBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-                        end case;
+                        when True =>
+                           PlatzBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert);
+                     end case;
                            
-                        case
-                          PlatzBelegt.Platznummer
-                        is
-                           when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-                              Koordinaten (2) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
-                              StartpunktFestlegen (RasseExtern => RasseExtern);
-                              return True;
+                     case
+                       PlatzBelegt.Platznummer
+                     is
+                        when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
+                           Koordinaten (2) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
+                           StartpunktFestlegen (RasseExtern => RasseExtern);
+                           return True;
                                  
-                           when others =>
-                              null;
-                        end case;
+                        when others =>
+                           null;
+                     end case;
                                              
-                     else
-                        null;
-                     end if;
+                  else
+                     null;
                   end if;
 
                end loop XAchseSchleife;

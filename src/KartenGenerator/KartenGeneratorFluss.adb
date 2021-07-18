@@ -17,9 +17,7 @@ package body KartenGeneratorFluss is
             BeliebigerFlusswert := ZufallGeneratorenKarten.ZufälligerWert;
             
             if
-              Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund < 3
-              or
-                Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund = 31
+              Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund in GlobaleDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum
             then
                null;
                
@@ -36,7 +34,7 @@ package body KartenGeneratorFluss is
             case
               Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Fluss
             is
-               when 0 =>
+               when GlobaleDatentypen.Leer =>
                   null;
                   
                when others =>
@@ -70,7 +68,7 @@ package body KartenGeneratorFluss is
                
             else                     
                if
-                 Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= 0
+                 Karten.Weltkarte (0, KartenWert.YAchse, KartenWert.YAchse).Fluss /= GlobaleDatentypen.Leer
                  and
                    BeliebigerFlusswert >= WahrscheinlichkeitFluss / 1.25
                then                        
@@ -116,32 +114,32 @@ package body KartenGeneratorFluss is
                   case
                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss
                   is
-                     when 0 =>
+                     when GlobaleDatentypen.Leer =>
                         Flusswert := Flusswert - 1_000;
 
-                     when 16 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
+                     when GlobaleDatentypen.Fluss_Senkrecht =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Rechts;
                      
-                     when 18 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
+                     when GlobaleDatentypen.Flusskurve_Unten_Links =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Unten;
 
-                     when 20 =>                     
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
+                     when GlobaleDatentypen.Flusskurve_Oben_Links =>                     
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Oben;
 
-                     when 24 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
+                     when GlobaleDatentypen.Flusskreuzung_Drei_Links =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Vier;
 
-                     when 26 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 15;
+                     when GlobaleDatentypen.Flussendstück_Rechts =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Fluss_Waagrecht;
 
-                     when 27 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 19;
+                     when GlobaleDatentypen.Flussendstück_Unten =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskurve_Oben_Rechts;
 
-                     when 28 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
+                     when GlobaleDatentypen.Flussendstück_Oben =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskurve_Unten_Rechts;
                      
-                     when 43 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 25;
+                     when GlobaleDatentypen.Fluss_Einzeln =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flussendstück_Links;
                      
                      when others =>
                         null;
@@ -156,32 +154,32 @@ package body KartenGeneratorFluss is
                   case
                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss
                   is
-                     when 0 =>
+                     when GlobaleDatentypen.Leer =>
                         Flusswert := Flusswert - 100;
 
-                     when 16 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
+                     when GlobaleDatentypen.Fluss_Senkrecht =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Links;
                      
-                     when 17 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
+                     when GlobaleDatentypen.Flusskurve_Unten_Rechts =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Unten;
 
-                     when 19 =>                     
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
+                     when GlobaleDatentypen.Flusskurve_Oben_Rechts =>                     
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Oben;
 
-                     when 23 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
+                     when GlobaleDatentypen.Flusskreuzung_Drei_Rechts =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Vier;
 
-                     when 25 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 15;
+                     when GlobaleDatentypen.Flussendstück_Links =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Fluss_Waagrecht;
 
-                     when 27 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 20;
+                     when GlobaleDatentypen.Flussendstück_Unten =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskurve_Oben_Links;
 
-                     when 28 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
+                     when GlobaleDatentypen.Flussendstück_Oben =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskurve_Unten_Links;
                      
-                     when 43 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 26;
+                     when GlobaleDatentypen.Fluss_Einzeln =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flussendstück_Rechts;
                      
                      when others =>
                         null;
@@ -196,32 +194,32 @@ package body KartenGeneratorFluss is
                   case
                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss
                   is
-                     when 0 =>
+                     when GlobaleDatentypen.Leer =>
                         Flusswert := Flusswert - 10;
                      
-                     when 15 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 22;
+                     when GlobaleDatentypen.Fluss_Waagrecht =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Unten;
                      
-                     when 19 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
+                     when GlobaleDatentypen.Flusskurve_Oben_Rechts =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Rechts;
 
-                     when 20 =>                     
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
+                     when GlobaleDatentypen.Flusskurve_Oben_Links =>                     
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Links;
 
-                     when 21 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
+                     when GlobaleDatentypen.Flusskreuzung_Drei_Oben =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Vier;
 
-                     when 25 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 17;
+                     when GlobaleDatentypen.Flussendstück_Links =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskurve_Unten_Rechts;
 
-                     when 26 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 18;
+                     when GlobaleDatentypen.Flussendstück_Rechts =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskurve_Unten_Links;
 
-                     when 27 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
+                     when GlobaleDatentypen.Flussendstück_Unten =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Fluss_Senkrecht;
                      
-                     when 43 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 28;
+                     when GlobaleDatentypen.Fluss_Einzeln =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flussendstück_Oben;
                      
                      when others =>
                         null;
@@ -236,32 +234,32 @@ package body KartenGeneratorFluss is
                   case
                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss
                   is
-                     when 0 =>
+                     when GlobaleDatentypen.Leer =>
                         Flusswert := Flusswert - 1;
                      
-                     when 15 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 21;
+                     when GlobaleDatentypen.Fluss_Waagrecht =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Oben;
                      
-                     when 17 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 23;
+                     when GlobaleDatentypen.Flusskurve_Unten_Rechts =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Rechts;
 
-                     when 18 =>                     
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 24;
+                     when GlobaleDatentypen.Flusskurve_Unten_Links =>                     
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Links;
 
-                     when 22 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 14;
+                     when GlobaleDatentypen.Flusskreuzung_Drei_Unten =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskreuzung_Vier;
 
-                     when 25 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 19;
+                     when GlobaleDatentypen.Flussendstück_Links =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskurve_Oben_Rechts;
 
-                     when 26 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 20;
+                     when GlobaleDatentypen.Flussendstück_Rechts =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flusskurve_Oben_Links;
 
-                     when 28 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 16;
+                     when GlobaleDatentypen.Flussendstück_Oben =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Fluss_Senkrecht;
                      
-                     when 43 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := 27;
+                     when GlobaleDatentypen.Fluss_Einzeln =>
+                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Fluss := GlobaleDatentypen.Flussendstück_Unten;
                      
                      when others =>
                         null;
@@ -280,46 +278,46 @@ package body KartenGeneratorFluss is
         Flusswert
       is
          when 11_000 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 26;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flussendstück_Rechts;
 
          when 10_100 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 25;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flussendstück_Links;
 
          when 10_010 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 27;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flussendstück_Unten;
 
          when 10_001 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 28;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flussendstück_Oben;
 
          when 11_010 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 20;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskurve_Oben_Links;
 
          when 11_001 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 18;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskurve_Unten_Links;
 
          when 11_110 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 21;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Oben;
 
          when 11_101 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 22;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Unten;
 
          when 11_111 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 14;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskreuzung_Vier;
 
          when 10_110 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 19;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskurve_Oben_Rechts;
 
          when 10_101 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 17;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskurve_Unten_Rechts;
 
          when 10_111 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 23;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Rechts;
 
          when 10_011 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 16;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Fluss_Senkrecht;
          
          when others =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := 43;
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Fluss_Einzeln;
       end case;
       
    end FlussBerechnung;

@@ -26,56 +26,56 @@ package body KartenGeneratorRessourcen is
                if
                  BeliebigerRessourcenwert >= 0.98
                  and
-                   (Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund = 2
+                   (Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund = GlobaleDatentypen.Wasser
                     or
-                      Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund = 31)
+                      Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund = GlobaleDatentypen.Küstengewässer)
                then
                   if
-                    Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund = 2
+                    Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund = GlobaleDatentypen.Wasser
                     and
                       BeliebigerRessourcenwert > 0.99
                   then
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := 30;
+                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Wal;
                      NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;
                            
                   else
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := 29;
+                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Fisch;
                      NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;
                   end if;
                         
                elsif
                  BeliebigerRessourcenwert <= 0.05
                  and
-                   Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund /= 2
+                   Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund /= GlobaleDatentypen.Wasser
                  and
-                   Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund /= 31
+                   Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund /= GlobaleDatentypen.Küstengewässer
                then
                   if
                     BeliebigerRessourcenwert < 0.01
                   then
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := 11;
+                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Eisen;
                      NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                      
 
                   elsif
                     BeliebigerRessourcenwert < 0.02
                   then
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := 12;
+                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Öl;
                      NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                      
 
                   elsif
                     BeliebigerRessourcenwert < 0.03
                   then
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := 13;
+                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Hochwertiger_Boden;
                      NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                      
 
                   elsif
                     BeliebigerRessourcenwert < 0.04
                   then
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := 33;
+                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Gold;
                      NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                           
                            
                   else
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := 10;
+                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Kohle;
                      NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;
                   end if;
                         

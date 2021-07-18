@@ -14,60 +14,62 @@ private
    BeliebigerLandwert : Float;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
+   type Land_Erzeugung_Enum is (Leer, Land_Eisschild, Landmasse_Eisschild, Land_Normal, Landmasse_Normal, Land_Sonstiges, Land_Fläche_Frei, Land_Fläche_Belegt);
+   for Land_Erzeugung_Enum use (Leer => 0, Land_Eisschild => 1, Landmasse_Eisschild => 2, Land_Normal => 3, Landmasse_Normal => 4, Land_Sonstiges => 5, Land_Fläche_Frei => 6, Land_Fläche_Belegt => 7);
+   subtype Land_Erzeugung_Verwendet_Enum is Land_Erzeugung_Enum range Land_Eisschild .. Land_Fläche_Belegt;
 
-   type WahrscheinlichkeitenFürLandArray is array (GlobaleDatentypen.Kartenart_Verwendet_Enum'Range, 1 .. 7) of Float;
+   type WahrscheinlichkeitenFürLandArray is array (GlobaleDatentypen.Kartenart_Verwendet_Enum'Range, Land_Erzeugung_Verwendet_Enum'Range) of Float;
    WahrscheinlichkeitenFürLand : constant WahrscheinlichkeitenFürLandArray := (
-                                                                                 -- 1 = Landwert nahe Eissschild, 2 = Landwert nahe Eissschild mit Landflächenentstehung, 3 = Landwert,
-                                                                                 -- 4 = Landwert mit Landflächenentstehung, 5 = Landwert, 6 = Landwert bei Landflächenentstehung, 7 = Landwert ohne Landflächenentstehung
                                                                                  GlobaleDatentypen.Inseln =>
                                                                                    (
-                                                                                    1 => 0.92,
-                                                                                    2 => 0.98,
-                                                                                    3 => 0.75,
-                                                                                    4 => 0.80,
-                                                                                    5 => 0.98,
-                                                                                    6 => 0.15,
-                                                                                    7 => 0.70),
+                                                                                    Land_Eisschild => 0.92,
+                                                                                    Landmasse_Eisschild => 0.98,
+                                                                                    Land_Normal => 0.75,
+                                                                                    Landmasse_Normal => 0.80,
+                                                                                    Land_Sonstiges => 0.98,
+                                                                                    Land_Fläche_Frei => 0.15,
+                                                                                    Land_Fläche_Belegt => 0.70),
                                                                                  
                                                                                  GlobaleDatentypen.Kontinente =>
                                                                                    (
-                                                                                    1 => 0.92,
-                                                                                    2 => 0.98,
-                                                                                    3 => 0.75,
-                                                                                    4 => 0.80,
-                                                                                    5 => 0.98,
-                                                                                    6 => 0.15,
-                                                                                    7 => 0.70),
+                                                                                    Land_Eisschild => 0.92,
+                                                                                    Landmasse_Eisschild => 0.98,
+                                                                                    Land_Normal => 0.75,
+                                                                                    Landmasse_Normal => 0.80,
+                                                                                    Land_Sonstiges => 0.98,
+                                                                                    Land_Fläche_Frei => 0.15,
+                                                                                    Land_Fläche_Belegt => 0.70),
                                                                                  
                                                                                  GlobaleDatentypen.Pangäa =>
                                                                                    (
-                                                                                    1 => 0.92,
-                                                                                    2 => 0.98,
-                                                                                    3 => 0.75,
-                                                                                    4 => 0.80,
-                                                                                    5 => 0.98,
-                                                                                    6 => 0.15,
-                                                                                    7 => 0.70),
+                                                                                    Land_Eisschild => 0.92,
+                                                                                    Landmasse_Eisschild => 0.98,
+                                                                                    Land_Normal => 0.75,
+                                                                                    Landmasse_Normal => 0.80,
+                                                                                    Land_Sonstiges => 0.98,
+                                                                                    Land_Fläche_Frei => 0.15,
+                                                                                    Land_Fläche_Belegt => 0.70),
                                                                                  
                                                                                  GlobaleDatentypen.Nur_Land =>
                                                                                    (
-                                                                                    1 => 0.50,
-                                                                                    2 => 0.00,
-                                                                                    3 => 0.50,
-                                                                                    4 => 0.00,
-                                                                                    5 => 0.50,
-                                                                                    6 => 0.00,
-                                                                                    7 => 0.50),
+                                                                                    Land_Eisschild => 0.50,
+                                                                                    Landmasse_Eisschild => 0.00,
+                                                                                    Land_Normal => 0.50,
+                                                                                    Landmasse_Normal => 0.00,
+                                                                                    Land_Sonstiges => 0.50,
+                                                                                    Land_Fläche_Frei => 0.00,
+                                                                                    Land_Fläche_Belegt => 0.50),
                                                                                  
                                                                                  GlobaleDatentypen.Chaos =>
                                                                                    (
-                                                                                    1 => 0.00,
-                                                                                    2 => 0.00, 
-                                                                                    3 => 0.00,
-                                                                                    4 => 0.00,
-                                                                                    5 => 0.00,
-                                                                                    6 => 0.00,
-                                                                                    7 => 0.00)
+                                                                                    Land_Eisschild => 0.00,
+                                                                                    Landmasse_Eisschild => 0.00, 
+                                                                                    Land_Normal => 0.00,
+                                                                                    Landmasse_Normal => 0.00,
+                                                                                    Land_Sonstiges => 0.00,
+                                                                                    Land_Fläche_Frei => 0.00,
+                                                                                    Land_Fläche_Belegt => 0.00)
                                                                                 );
 
    -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
@@ -91,7 +93,7 @@ private
           and
             XPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
-   procedure GenerierungLandmasseÜberhang
+   procedure GenerierungLandmasseFläche
      (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
      with
        Pre =>

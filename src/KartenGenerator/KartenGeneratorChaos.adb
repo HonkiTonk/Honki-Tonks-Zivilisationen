@@ -16,17 +16,8 @@ package body KartenGeneratorChaos is
          for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseSchleife:
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
-                        
-               if
-                 YAchseSchleifenwert = Karten.Weltkarte'First (2)
-                 or
-                   YAchseSchleifenwert = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-               then
-                  Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Grund := 1;
                
-               else
-                  Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Grund := ZufallGeneratorenKarten.Chaoskarte;
-               end if;
+               Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Grund := ZufallGeneratorenKarten.Chaoskarte;
             
             end loop XAchseSchleife;
          end loop YAchseSchleife;

@@ -75,11 +75,11 @@ private
                                                                                       );
    
    procedure GenerierungLandschaftFelder
-     (GrundExtern : in GlobaleDatentypen.KartenGrund;
+     (GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
      with
        Pre =>
-         (GrundExtern > 0
+         (GrundExtern /= GlobaleDatentypen.Leer
           and
             YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and

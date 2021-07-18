@@ -22,7 +22,7 @@ package GrafischeAnzeige is
    procedure Farben
      (EinheitExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
       VerbesserungExtern : in GlobaleDatentypen.KartenVerbesserung;
-      RessourceExtern, GrundExtern : in GlobaleDatentypen.KartenGrund;
+      RessourceExtern, GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       CursorExtern : in Boolean;
       EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.RassenMitNullwert)
      with

@@ -117,7 +117,8 @@ package GlobaleKonstanten is
 
 
    -- Für die Kartengenerierung
-   Eisrand : constant GlobaleDatentypen.KartenfeldPositiv := 1;
+   Eisrand : constant GlobaleDatentypen.LoopRangeMinusEinsZuEins := 1;
+   Eisschild : constant GlobaleDatentypen.LoopRangeMinusDreiZuDrei := 3;
    -- Für die Kartengenerierung
 
 
@@ -192,9 +193,9 @@ package GlobaleKonstanten is
 
    LeererWertWeltkarte : constant GlobaleRecords.KartenRecord := (
                                                                   -- Kartengrund, Ist da ein Hügel?, Welche Rasse kann was sehen
-                                                                  0, False, (others => False),
+                                                                  GlobaleDatentypen.Leer, False, (others => False),
                                                                   -- Welcher Fluss, Welche Straße, Welche Verbesserung, Welche Ressource
-                                                                  0, 0, 0, 0,
+                                                                  GlobaleDatentypen.Leer, 0, 0, GlobaleDatentypen.Leer,
                                                                   -- Durch welche Stadt welcher Rasse belegter Grund, Felderbewertung
                                                                   0, 0
                                                                  );

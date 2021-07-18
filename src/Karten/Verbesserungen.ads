@@ -20,7 +20,7 @@ package Verbesserungen is
    
 private
    
-   Grund : GlobaleDatentypen.KartenGrund;
+   Grund : GlobaleDatentypen.Karten_Grund_Enum;
 
    Straßenwert : Integer;
 
@@ -43,7 +43,7 @@ private
 
    procedure VerbesserungStraße
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.KartenGrund)
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
@@ -52,7 +52,7 @@ private
    
    procedure VerbesserungMine
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.KartenGrund)
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
@@ -61,7 +61,7 @@ private
 
    procedure VerbesserungFarm
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.KartenGrund)
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
@@ -70,7 +70,7 @@ private
    
    procedure VerbesserungFestung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.KartenGrund)
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
@@ -79,7 +79,7 @@ private
    
    procedure VerbesserungWald
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.KartenGrund)
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
@@ -88,7 +88,7 @@ private
    
    procedure VerbesserungRoden
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.KartenGrund)
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)

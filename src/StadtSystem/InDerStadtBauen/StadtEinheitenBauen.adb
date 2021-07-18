@@ -68,50 +68,47 @@ package body StadtEinheitenBauen is
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
                                                                            ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                
-               case
-                 KartenWert.XAchse
-               is
-                  when 0 =>
-                     null;
+               if
+                 KartenWert.XAchse = 0
+               then
+                  null;     
                   
-                  when others =>            
-                     -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
-                     if
-                       BereitsGetestet >= abs (YÄnderungSchleifenwert)
-                       and
-                         BereitsGetestet > 0
-                     then
-                        exit XAchseSchleife;
+                  -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
+               elsif
+                 BereitsGetestet >= abs (YÄnderungSchleifenwert)
+                 and
+                   BereitsGetestet > 0
+               then
+                  exit XAchseSchleife;
                   
-                     elsif
-                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
-                     in
-                       GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 2)
-                     then
-                        BereitsVonEinheitBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer;
-                        if
-                          BereitsVonEinheitBelegt = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+               elsif
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
+               in
+                 GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 2)
+               then
+                  BereitsVonEinheitBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer;
+                  if
+                    BereitsVonEinheitBelegt = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+                    and
+                      (BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenID (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                      IDExtern           => GlobaleDatentypen.EinheitenID
+                                                                                        (GlobaleVariablen.StadtGebaut
+                                                                                           (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag),
+                                                                                      NeuePositionExtern => KartenWert) = True
+                       or
+                         (YÄnderungSchleifenwert = 0
                           and
-                            (BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenID (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                            IDExtern           => GlobaleDatentypen.EinheitenID
-                                                                                              (GlobaleVariablen.StadtGebaut
-                                                                                                 (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag),
-                                                                                            NeuePositionExtern => KartenWert) = True
-                             or
-                               (YÄnderungSchleifenwert = 0
-                                and
-                                  XÄnderungSchleifenwert = 0))
-                        then
-                           exit BereichSchleife;
+                            XÄnderungSchleifenwert = 0))
+                  then
+                     exit BereichSchleife;
                      
-                        else
-                           null;
-                        end if;
+                  else
+                     null;
+                  end if;
                
-                     else
-                        null;
-                     end if;
-               end case;
+               else
+                  null;
+               end if;
             
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -141,12 +138,12 @@ package body StadtEinheitenBauen is
       case
         GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)
       is
-         when GlobaleDatentypen.Spieler_Mensch =>
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
-                                                  TextZeileExtern => 29);
+      when GlobaleDatentypen.Spieler_Mensch =>
+         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
+                                               TextZeileExtern => 29);
          
-         when others =>
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := KIDatentypen.Keine_Aufgabe;
+      when others =>
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := KIDatentypen.Keine_Aufgabe;
       end case;
       
    end EinheitFertiggestellt;

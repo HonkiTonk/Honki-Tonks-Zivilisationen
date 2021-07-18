@@ -6,7 +6,6 @@ E = Einheit erzeugen
 G = Geld auf Maximum setzen
 T = Technologie auf erforscht setzen
 V = Verbesserung auf dem Cursorfeld erzeugen
-B = Kartengrund auf dem Cursorfeld festlegen
 A = Festlegen ob und von wem die Rasse belegt ist
 M = Nächste Stadt (unabhängig von der Rasse)
 Kartengrund ID eingeben:

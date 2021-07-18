@@ -176,43 +176,37 @@ package body KINahkampfBodenAufgabeFestlegen is
             
                if
                  KartenYGeprüft >= abs (YÄnderungSchleifenwert)
-               then
-                  null;
-                  
-               elsif
-                 KartenXGeprüft >= abs (XÄnderungSchleifenwert)
+                 or
+                   KartenXGeprüft >= abs (XÄnderungSchleifenwert)
                then
                   null;
                   
                else
                   KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                                                               ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-                     
-                  case
-                    KartenWert.XAchse
-                  is
-                     when 0 =>
-                        null;
+                  
+                  if
+                    KartenWert.XAchse = 0
+                  then
+                     null;
                         
-                     when others =>                  
-                        if
-                          Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Sichtbar (EinheitRasseNummerExtern.Rasse) = False
-                          and
-                            BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                             NeuePositionExtern       => KartenWert)
-                          = GlobaleDatentypen.Normale_Bewegung_Möglich
-                          and
-                            KIAufgabenVerteilt.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
-                                                            ZielKoordinatenExtern => KartenWert) = False
-                        then
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Erkunden;
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KartenWert;
-                           return;
+                  elsif
+                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Sichtbar (EinheitRasseNummerExtern.Rasse) = False
+                    and
+                      BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                       NeuePositionExtern       => KartenWert)
+                    = GlobaleDatentypen.Normale_Bewegung_Möglich
+                    and
+                      KIAufgabenVerteilt.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                      ZielKoordinatenExtern => KartenWert) = False
+                  then
+                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Erkunden;
+                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KartenWert;
+                     return;
                      
-                        else
-                           null;
-                        end if;
-                  end case;
+                  else
+                     null;
+                  end if;
                end if;
             
             end loop XAchseSchleife;

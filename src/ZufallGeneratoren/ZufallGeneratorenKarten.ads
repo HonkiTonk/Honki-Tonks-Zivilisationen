@@ -22,10 +22,7 @@ package ZufallGeneratorenKarten is
      return Float;
      
    function Chaoskarte
-     return GlobaleDatentypen.KartenGrund
-     with
-       Post =>
-         (Chaoskarte'Result >= 1);
+     return GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum;
 
 private
 
@@ -69,12 +66,7 @@ private
 
 
    -- Generator für Chaoskarte
-   KartenGrundGewählt : GlobaleDatentypen.KartenGrund;
-
-   subtype ChaoskarteWert is GlobaleDatentypen.KartenGrund range 1 .. GlobaleDatentypen.KartenGrund'Last;
-
-   package WerteWählenChaoskarte is new Ada.Numerics.Discrete_Random (ChaoskarteWert);
-   
+   package WerteWählenChaoskarte is new Ada.Numerics.Discrete_Random (Karten_Grund_Alle_Felder_Enum);   
    GrundGewählt : WerteWählenChaoskarte.Generator;
    -- Generator für Chaoskarte
 

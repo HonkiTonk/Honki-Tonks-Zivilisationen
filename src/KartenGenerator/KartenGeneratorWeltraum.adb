@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
+with GlobaleDatentypen;
+
 with Ladezeiten, Karten;
 
 package body KartenGeneratorWeltraum is
@@ -17,7 +19,7 @@ package body KartenGeneratorWeltraum is
          XAchseWeltraumSchleife:
          for XAchseWeltraumSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
 
-            Karten.Weltkarte (2, YAchseWeltraumSchleifenwert, XAchseWeltraumSchleifenwert).Grund := 38;
+            Karten.Weltkarte (2, YAchseWeltraumSchleifenwert, XAchseWeltraumSchleifenwert).Grund := GlobaleDatentypen.Weltraum;
                
          end loop XAchseWeltraumSchleife;
       end loop YAchseWeltraumSchleife;

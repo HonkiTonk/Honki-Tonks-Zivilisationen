@@ -17,7 +17,7 @@ private
 
    BeliebigerFlusswert : Float;
    
-   StandardFluss : constant GlobaleDatentypen.KartenGrund := 43;
+   StandardFluss : constant GlobaleDatentypen.Karten_Grund_Fluss_Enum := GlobaleDatentypen.Fluss_Einzeln;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    

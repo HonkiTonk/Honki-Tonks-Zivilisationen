@@ -234,7 +234,7 @@ package body StadtBauen is
                   case
                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
                   is
-                     when 2 | 29 .. 31 =>
+                     when GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range =>
                         GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).AmWasser := True;
                         exit YAchsenSchleife;
                         

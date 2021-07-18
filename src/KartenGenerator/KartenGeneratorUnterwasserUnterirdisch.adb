@@ -23,26 +23,26 @@ package body KartenGeneratorUnterwasserUnterirdisch is
             case
               Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund
             is
-               when 1 =>
+               when GlobaleDatentypen.Eis =>
                   Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund;
                      
-               when 2 =>
-                  Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := 41;
+               when GlobaleDatentypen.Wasser =>
+                  Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Unter_Wasser;
                      
-               when 31 =>
-                  Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := 42;
+               when GlobaleDatentypen.Küstengewässer =>
+                  Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Unter_Küstengewässer;
                      
-               when 7 =>
-                  Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := 40;
+               when GlobaleDatentypen.Gebirge =>
+                  Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Gestein;
                      
                when others =>
-                  Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := 35;
+                  Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Erde;
             end case;
 
             case
               Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Ressource
             is
-               when 10 .. 13 | 29 .. 30 | 33 =>
+               when GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range =>
                   Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Ressource := Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Ressource;
                        
                when others =>
@@ -52,7 +52,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
             case
               Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Fluss
             is
-               when 0 =>
+               when GlobaleDatentypen.Leer =>
                   null;
                      
                when others =>

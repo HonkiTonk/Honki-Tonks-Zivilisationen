@@ -396,49 +396,43 @@ package body BewegungPassierbarkeitPruefen is
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
                                                                            ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                
-               case
-                 KartenWert.YAchse
-               is
-                  when 0 =>
-                     null;
-                  
-                  when others =>               
-                     -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
-                     if
-                       (YÄnderungSchleifenwert = 0
-                        and
-                          XÄnderungSchleifenwert = 0)
-                       or
-                         BereitsGetestet >= abs (YÄnderungSchleifenwert)
-                     then
-                        null;
+               -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
+               if
+                 KartenWert.YAchse = 0              
+                 or
+                   (YÄnderungSchleifenwert = 0
+                    and
+                      XÄnderungSchleifenwert = 0)
+                 or
+                   BereitsGetestet >= abs (YÄnderungSchleifenwert)
+               then
+                  null;
                      
-                     elsif
-                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
-                     in
-                       GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 2)
-                       and
-                         GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
-                       and
-                         EinfachePassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)),
-                                                              NeuePositionExtern       => KartenWert) = True
-                     then
-                        BelegteFelder := BelegteFelder + 1;
-                        WelcherPlatz := WelcherPlatz + 1;
+               elsif
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
+               in
+                 GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 2)
+                 and
+                   GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
+                 and
+                   EinfachePassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)),
+                                                        NeuePositionExtern       => KartenWert) = True
+               then
+                  BelegteFelder := BelegteFelder + 1;
+                  WelcherPlatz := WelcherPlatz + 1;
                         
-                        if
-                          BenötigteFelder = BelegteFelder
-                        then
-                           return GlobaleDatentypen.Transporter_Stadt_Möglich;
+                  if
+                    BenötigteFelder = BelegteFelder
+                  then
+                     return GlobaleDatentypen.Transporter_Stadt_Möglich;
                               
-                        else
-                           null;
-                        end if;
+                  else
+                     null;
+                  end if;
                      
-                     else
-                        null;
-                     end if;
-               end case;
+               else
+                  null;
+               end if;
             
             end loop XAchseSchleife;
          end loop YAchseSchleife;

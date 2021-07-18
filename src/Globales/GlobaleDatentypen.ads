@@ -31,14 +31,13 @@ package GlobaleDatentypen is
 
 
    -- Für Rassen
-   -- Unbelegt, Rasse 1 bis 18
    type RassenMitNullwert is range 0 .. 18;
    subtype Rassen is RassenMitNullwert range 1 .. 18;
    -- type Rassen_Enum is (Leer, Rasse_1, Rasse_2, Rasse_3, Rasse_4, Rasse_5, Rasse_6, Rasse_7, Rasse_8, Rasse_9, Rasse_10, Rasse_11, Rasse_12, Rasse_13, Rasse_14, Rasse_15, Rasse_16, Rasse_17, Rasse_18);
    -- for Rassen_Enum use (Leer => 0, Rasse_1 => 1, Rasse_2 => 2, Rasse_3 => 3, Rasse_4 => 4, Rasse_5 => 5, Rasse_6 => 6, Rasse_7 => 7, Rasse_8 => 8, Rasse_9 => 9, Rasse_10 => 10, Rasse_11 => 11, Rasse_12 => 12,
    -- Rasse_13 => 13, Rasse_14 => 14, Rasse_15 => 15, Rasse_16 => 16, Rasse_17 => 17, Rasse_18 => 18);
    -- subtype Rassen_Verwendet_Enum is Rassen_Enum range Rasse_1 .. Rasse_18;
-   -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+
    type Spieler_Enum is (Leer, Spieler_Mensch, Spieler_KI);
    for Spieler_Enum use (Leer => 0, Spieler_Mensch => 1, Spieler_KI => 2);
    type RassenImSpielArray is array (Rassen'Range) of Spieler_Enum;
@@ -77,7 +76,27 @@ package GlobaleDatentypen is
    for Kartenform_Enum use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5, Kugel_Gedreht => 6);
    subtype Kartenform_Verwendet_Enum is Kartenform_Enum range X_Zylinder .. Kugel_Gedreht;
 
-   type KartenGrund is range 0 .. 43;
+   type Karten_Grund_Enum is (Leer,
+                              -- Feld
+                              Wasser, Küstengewässer, Unter_Wasser, Unter_Küstengewässer,
+                              Eis, Lava, Flachland, Tundra, Wüste, Hügel, Gebirge, Wald, Dschungel, Sumpf, Hügel_Mit, Wolken, Weltraum, Erde, Gestein,
+                              -- Ressource
+                              Fisch, Wal,
+                              Kohle, Eisen, Öl, Hochwertiger_Boden, Gold,
+                              -- Fluss
+                              Flusskreuzung_Vier, Fluss_Waagrecht, Fluss_Senkrecht, Flusskurve_Unten_Rechts, Flusskurve_Unten_Links, Flusskurve_Oben_Rechts, Flusskurve_Oben_Links, Flusskreuzung_Drei_Oben,
+                              Flusskreuzung_Drei_Unten, Flusskreuzung_Drei_Rechts, Flusskreuzung_Drei_Links, Flussendstück_Links, Flussendstück_Rechts, Flussendstück_Unten, Flussendstück_Oben, Fluss_Einzeln);
+   subtype Karten_Grund_Alle_Felder_Enum is Karten_Grund_Enum range Wasser .. Gestein;
+   subtype Karten_Grund_Felder_Ungünstig_Enum is Karten_Grund_Alle_Felder_Enum range Wasser .. Lava;
+   subtype Karten_Grund_Wasser_Mit_Eis_Enum is Karten_Grund_Felder_Ungünstig_Enum range Wasser .. Eis;
+   subtype Karten_Grund_Wasser_Enum is Karten_Grund_Wasser_Mit_Eis_Enum range Wasser .. Unter_Küstengewässer;
+   subtype Karten_Grund_Land_Enum is Karten_Grund_Alle_Felder_Enum range Eis .. Gestein;
+   subtype Karten_Grund_Land_Ohne_Eis_Enum is Karten_Grund_Land_Enum range Flachland .. Gestein;
+   subtype Karten_Grund_Ressourcen_Enum is Karten_Grund_Enum range Fisch .. Gold;
+   subtype Karten_Grund_Ressourcen_Wasser is Karten_Grund_Ressourcen_Enum range Fisch .. Wal;
+   subtype Karten_Grund_Ressourcen_Land is Karten_Grund_Ressourcen_Enum range Kohle .. Gold;
+   subtype Karten_Grund_Fluss_Enum is Karten_Grund_Enum range Flusskreuzung_Vier .. Fluss_Einzeln;
+
    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
    type KartenverbesserungEinheitenID is range 0 .. 78;
    subtype KartenVerbesserung is KartenverbesserungEinheitenID range 0 .. 24;

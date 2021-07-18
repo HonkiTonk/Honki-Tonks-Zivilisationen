@@ -51,10 +51,10 @@ package body Sichtbarkeit is
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund
       is
-         when 7 =>
+         when GlobaleDatentypen.Gebirge =>
             SichtweiteObjekt := 3;
 
-         when 9 =>
+         when GlobaleDatentypen.Dschungel =>
             SichtweiteObjekt := 1;
                
          when others =>

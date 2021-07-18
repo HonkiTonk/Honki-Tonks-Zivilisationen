@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
+with GlobaleDatentypen;
+
 with Ladezeiten, Karten;
 
 package body KartenGeneratorHimmel is
@@ -17,7 +19,7 @@ package body KartenGeneratorHimmel is
          XAchseHimmelSchleife:
          for XAchseHimmelSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
-            Karten.Weltkarte (1, YAchseHimmelSchleifenwert, XAchseHimmelSchleifenwert).Grund := 37;
+            Karten.Weltkarte (1, YAchseHimmelSchleifenwert, XAchseHimmelSchleifenwert).Grund := GlobaleDatentypen.Wolken;
                
          end loop XAchseHimmelSchleife;
       end loop YAchseHimmelSchleife;

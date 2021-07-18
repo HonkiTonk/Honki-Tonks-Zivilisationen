@@ -17,7 +17,7 @@ package body KartenGeneratorKueste is
             case
               Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund
             is
-               when 2 =>
+               when GlobaleDatentypen.Wasser =>
                   GewässerFestlegen (YAchseSchleifenwertExtern => YAchseSchleifenwert,
                                       XAchseSchleifenwertExtern => XAchseSchleifenwert);
                   
@@ -46,19 +46,13 @@ package body KartenGeneratorKueste is
                         
             if
               KartenWert.XAchse = 0
+              or
+                Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= GlobaleDatentypen.Flachland
             then
                null;
                
-            else                        
-               case
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
-               is
-                  when 3 =>
-                     Karten.Weltkarte (0, YAchseSchleifenwertExtern, XAchseSchleifenwertExtern).Grund := 31;
-
-                  when others =>
-                     null;
-               end case;
+            else
+               Karten.Weltkarte (0, YAchseSchleifenwertExtern, XAchseSchleifenwertExtern).Grund := GlobaleDatentypen.Küstengewässer;
             end if;
                         
          end loop ZweiteXAchseSchleife;

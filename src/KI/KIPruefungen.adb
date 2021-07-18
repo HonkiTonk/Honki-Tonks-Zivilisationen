@@ -149,45 +149,40 @@ package body KIPruefungen is
                                                                                               EinheitRasseNummerExtern.Platznummer).Position,
                                                                                               ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
+                                         
+               if
+                 (YAchseKoordinatenSchonGeprüft >= abs YAchseSchleifenwert
+                  and
+                    XAchseKoordinatenSchonGeprüft >= abs XAchseSchleifenwert)
+                 or
+                   StadtBauenUmgebungKoordinaten.XAchse = 0 
+               then
+                  FeldGutUndFrei := False;
+               
+               else
+                  FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
+                                                               KoordinatenExtern          => StadtBauenUmgebungKoordinaten,
+                                                               MindestBewertungFeldExtern => MindestBewertungFeldExtern);
+               end if;
+               
                case
-                 StadtBauenUmgebungKoordinaten.XAchse
+                 FeldGutUndFrei
                is
-                  when 0 =>
+                  when False =>
                      null;
                      
-                  when others =>                           
+                  when True =>
                      if
-                       YAchseKoordinatenSchonGeprüft >= abs YAchseSchleifenwert
-                       and
-                         XAchseKoordinatenSchonGeprüft >= abs XAchseSchleifenwert
+                       KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen,
+                                                              RasseExtern           => EinheitRasseNummerExtern.Rasse,
+                                                              ZielKoordinatenExtern => StadtBauenUmgebungKoordinaten)
+                       = False
                      then
-                        FeldGutUndFrei := False;
-               
-                     else
-                        FeldGutUndFrei := KartenfeldUmgebungPrüfen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                                                     KoordinatenExtern          => StadtBauenUmgebungKoordinaten,
-                                                                     MindestBewertungFeldExtern => MindestBewertungFeldExtern);
-                     end if;
-               
-                     case
-                       FeldGutUndFrei
-                     is
-                        when False =>
-                           null;
-                     
-                        when True =>
-                           if
-                             KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bauen,
-                                                                    RasseExtern           => EinheitRasseNummerExtern.Rasse,
-                                                                    ZielKoordinatenExtern => StadtBauenUmgebungKoordinaten)
-                             = False
-                           then
-                              return StadtBauenUmgebungKoordinaten;
+                        return StadtBauenUmgebungKoordinaten;
                   
-                           else
-                              null;
-                           end if;
-                     end case;
+                     else
+                        null;
+                     end if;
                end case;
             
             end loop XAchseKartenfeldSuchenSchleife;
@@ -274,7 +269,7 @@ package body KIPruefungen is
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund
       is
-         when 1 .. 2 | 31 =>
+         when GlobaleDatentypen.Eis | GlobaleDatentypen.Wasser | GlobaleDatentypen.Küstengewässer =>
             return False;
          
          when others =>
@@ -289,9 +284,12 @@ package body KIPruefungen is
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
                                                                         ÄnderungExtern       => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert));
             
-            exit XAchseUmgebungSchleife when KartenWert.XAchse = 0;
-               
             if
+              KartenWert.XAchse = 0
+            then
+               null;
+               
+            elsif
               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund > 0
             then
                return False;

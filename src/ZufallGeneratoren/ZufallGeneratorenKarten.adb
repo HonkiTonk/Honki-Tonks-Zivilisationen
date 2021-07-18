@@ -84,27 +84,11 @@ package body ZufallGeneratorenKarten is
 
 
    function Chaoskarte
-     return GlobaleDatentypen.KartenGrund
+     return GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum
    is begin
       
       WerteWählenChaoskarte.Reset (GrundGewählt);
-      
-      ChaosSchleife:
-      loop
-         
-         KartenGrundGewählt := WerteWählenChaoskarte.Random (GrundGewählt);
-      
-         case
-           KartenGrundGewählt
-         is
-            when 1 .. 9 | 31 .. 32 | 35 .. 42 =>
-               return KartenGrundGewählt;
-            
-            when others =>
-               null;
-         end case;
-         
-      end loop ChaosSchleife;
+      return WerteWählenChaoskarte.Random (GrundGewählt);
       
    end Chaoskarte;
 

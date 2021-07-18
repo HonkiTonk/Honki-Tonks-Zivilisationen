@@ -129,7 +129,7 @@ package body Verbesserungen is
 
    procedure VerbesserungStraße
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.KartenGrund)
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
    is begin
       
       if
@@ -166,11 +166,12 @@ package body Verbesserungen is
       case
         GrundExtern
       is
-         when 1 | 3 .. 6 | 8 | 10 .. 28 =>
+         when GlobaleDatentypen.Eis | GlobaleDatentypen.Flachland | GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste | GlobaleDatentypen.Hügel | GlobaleDatentypen.Wald
+            | GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Straße_Bauen;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 3;
 
-         when 7 | 9 | 32 =>
+         when GlobaleDatentypen.Gebirge | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Straße_Bauen;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 6;
                
@@ -191,7 +192,7 @@ package body Verbesserungen is
    
    procedure VerbesserungMine
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.KartenGrund)
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
    is begin
       
       if
@@ -247,15 +248,16 @@ package body Verbesserungen is
       case
         GrundExtern
       is
-         when 1 | 3 .. 6 | 10 .. 28 =>
+         when GlobaleDatentypen.Eis | GlobaleDatentypen.Flachland | GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste | GlobaleDatentypen.Hügel
+            | GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Mine_Bauen;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 3;
 
-         when 7 =>
+         when GlobaleDatentypen.Gebirge =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Mine_Bauen;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 5;
 
-         when 8 | 9 | 32 =>
+         when GlobaleDatentypen.Wald | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
             VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                GrundExtern              => GrundExtern);
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger := GlobaleDatentypen.Mine_Bauen;
@@ -278,7 +280,7 @@ package body Verbesserungen is
    
    procedure VerbesserungFarm
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.KartenGrund)
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
    is begin
 
       if
@@ -311,7 +313,7 @@ package body Verbesserungen is
       elsif
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund = 1
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund = GlobaleDatentypen.Eis
       then
          VerbesserungFehler (WelcherFehlerExtern => 1);
          return;
@@ -342,15 +344,16 @@ package body Verbesserungen is
       case
         GrundExtern
       is
-         when 3 .. 6 | 10 .. 28 =>
+         when GlobaleDatentypen.Flachland | GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste | GlobaleDatentypen.Hügel
+            | GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Farm_Bauen;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 3;
 
-         when 7 =>
+         when GlobaleDatentypen.Gebirge =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Farm_Bauen;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 5;
 
-         when 8 .. 9 | 32 =>
+         when GlobaleDatentypen.Wald | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
             VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                GrundExtern              => GrundExtern);
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger := GlobaleDatentypen.Farm_Bauen;
@@ -373,7 +376,7 @@ package body Verbesserungen is
    
    procedure VerbesserungFestung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.KartenGrund)
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
    is begin
       
       if
@@ -429,11 +432,12 @@ package body Verbesserungen is
       case
         GrundExtern
       is
-         when 1 | 3 .. 6 | 8 .. 28 | 32 =>
+         when GlobaleDatentypen.Eis | GlobaleDatentypen.Flachland | GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste | GlobaleDatentypen.Hügel | GlobaleDatentypen.Wald | GlobaleDatentypen.Dschungel
+            | GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Festung_Bauen;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 3;
 
-         when 7 =>
+         when GlobaleDatentypen.Gebirge =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Festung_Bauen;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 5;
                
@@ -454,7 +458,7 @@ package body Verbesserungen is
    
    procedure VerbesserungWald
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.KartenGrund)
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
    is begin
       
       if
@@ -491,11 +495,11 @@ package body Verbesserungen is
       case
         GrundExtern
       is
-         when 3 | 6 | 10 .. 28 =>
+         when GlobaleDatentypen.Flachland | GlobaleDatentypen.Hügel | GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Wald_Aufforsten;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 3;
 
-         when 9 | 32 =>
+         when GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
             VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                GrundExtern              => GrundExtern);
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger := GlobaleDatentypen.Wald_Aufforsten;
@@ -518,7 +522,7 @@ package body Verbesserungen is
    
    procedure VerbesserungRoden
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.KartenGrund)
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
    is begin
       
       if
@@ -547,7 +551,7 @@ package body Verbesserungen is
       case
         GrundExtern
       is
-         when 8 | 9 | 32 =>
+         when GlobaleDatentypen.Wald | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Roden_Trockenlegen;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 3;
               
@@ -789,7 +793,7 @@ package body Verbesserungen is
          when GlobaleDatentypen.Wald_Aufforsten =>
             Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund := 8;
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund := GlobaleDatentypen.Wald;
             if
               Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
@@ -811,12 +815,12 @@ package body Verbesserungen is
             then
                Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund := 6;
+                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund := GlobaleDatentypen.Hügel;
                   
             else
                Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund := 3;
+                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund := GlobaleDatentypen.Flachland;
             end if;
             
          when others =>

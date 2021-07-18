@@ -153,7 +153,7 @@ package body BewegungssystemEinheiten is
       case
         Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund
       is
-         when  1 | 7 | 9 | 32 =>
+         when  GlobaleDatentypen.Eis | GlobaleDatentypen.Gebirge | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
             if
               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte < 1.00
             then
@@ -272,12 +272,12 @@ package body BewegungssystemEinheiten is
                   
             when others =>
                null;
-         end case;               
+         end case;
 
          case
            Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Fluss
          is
-            when 0 =>
+            when GlobaleDatentypen.Leer =>
                null;
 
             when others =>

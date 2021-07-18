@@ -38,7 +38,6 @@ private
    AktuelleRasseEinheit : GlobaleDatentypen.Rassen := 1;
    AktuelleRasseStadt : GlobaleDatentypen.Rassen := 1;
 
-   KartenGrundID : GlobaleDatentypen.KartenGrund;
    RasseNummer : Integer;
    
    AktuelleEinheit : GlobaleDatentypen.MaximaleEinheiten := 1;
@@ -63,12 +62,6 @@ private
    procedure Informationen;
    
    procedure Sichtbarkeit
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
-
-   procedure GrundFestlegen
      (RasseExtern : in GlobaleDatentypen.Rassen)
      with
        Pre =>

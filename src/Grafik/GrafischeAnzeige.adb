@@ -34,7 +34,7 @@ package body GrafischeAnzeige is
          then
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => 0,
-                    RessourceExtern          => 0,
+                    RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
                     CursorExtern             => True,
                     EigeneRasseExtern        => RasseExtern,
@@ -58,7 +58,7 @@ package body GrafischeAnzeige is
             Farben (EinheitExtern            => GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse,
                     GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).WirdTransportiert).ID,
                     VerbesserungExtern       => 0,
-                    RessourceExtern          => 0,
+                    RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
                     CursorExtern             => False,
                     EigeneRasseExtern        => RasseExtern,
@@ -68,7 +68,7 @@ package body GrafischeAnzeige is
          else
             Farben (EinheitExtern            => GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).ID,
                     VerbesserungExtern       => 0,
-                    RessourceExtern          => 0,
+                    RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
                     CursorExtern             => False,
                     EigeneRasseExtern        => RasseExtern,
@@ -86,7 +86,7 @@ package body GrafischeAnzeige is
          else
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => GlobaleDatentypen.KartenVerbesserung (GlobaleVariablen.StadtGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).ID),
-                    RessourceExtern          => 0,
+                    RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
                     CursorExtern             => False,
                     EigeneRasseExtern        => RasseExtern,
@@ -99,7 +99,7 @@ package body GrafischeAnzeige is
          then            
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet,
-                    RessourceExtern          => 0,
+                    RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
                     CursorExtern             => False,
                     EigeneRasseExtern        => RasseExtern,
@@ -110,14 +110,14 @@ package body GrafischeAnzeige is
          then
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße,
-                    RessourceExtern          => 0,
+                    RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
                     CursorExtern             => False,
                     EigeneRasseExtern        => RasseExtern,
                     RasseExtern              => 0);
             
          elsif
-           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource /= 0
+           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource /= GlobaleDatentypen.Leer
          then
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => 0,
@@ -128,7 +128,7 @@ package body GrafischeAnzeige is
                     RasseExtern              => 0);
             
          elsif
-           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss /= 0
+           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss /= GlobaleDatentypen.Leer
          then
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => 0,
@@ -141,7 +141,7 @@ package body GrafischeAnzeige is
          else
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => 0,
-                    RessourceExtern          => 0,
+                    RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
                     CursorExtern             => False,
                     EigeneRasseExtern        => RasseExtern,
@@ -154,8 +154,8 @@ package body GrafischeAnzeige is
          then         
             Farben (EinheitExtern            => 0,
                     VerbesserungExtern       => 0,
-                    RessourceExtern          => 0,
-                    GrundExtern              => 0,
+                    RessourceExtern          => GlobaleDatentypen.Leer,
+                    GrundExtern              => GlobaleDatentypen.Leer,
                     CursorExtern             => True,
                     EigeneRasseExtern        => RasseExtern,
                     RasseExtern              => 0);
@@ -172,7 +172,7 @@ package body GrafischeAnzeige is
    procedure Farben
      (EinheitExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
       VerbesserungExtern : in GlobaleDatentypen.KartenVerbesserung;
-      RessourceExtern, GrundExtern : in GlobaleDatentypen.KartenGrund;
+      RessourceExtern, GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       CursorExtern : in Boolean;
       EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.RassenMitNullwert)
    is begin
@@ -211,29 +211,14 @@ package body GrafischeAnzeige is
       case
         RessourceExtern
       is
-         when 10 =>
-            Put (Item => CSI & "38;2;0;0;0m");
-
-         when 11 =>
-            Put (Item => CSI & "38;2;0;0;0m");
-
-         when 12 =>
-            Put (Item => CSI & "38;2;0;0;0m");
-
-         when 13 =>
+         when GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             Put (Item => CSI & "38;2;0;0;0m");
             
-         when 14 .. 28 | 43 =>
+         when GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range =>
             Put (Item => CSI & "38;2;0;0;205m");
 
-         when 29 => 
+         when GlobaleDatentypen.Karten_Grund_Ressourcen_Wasser => 
             Put (Item => CSI & "38;2;255;255;255m");
-
-         when 30 =>
-            Put (Item => CSI & "38;2;255;255;255m");
-
-         when 33 =>
-            Put (Item => CSI & "38;2;0;0;0m");
             
          when others =>
             null;
@@ -242,55 +227,52 @@ package body GrafischeAnzeige is
       case
         GrundExtern
       is
-         when 1 =>
+         when GlobaleDatentypen.Eis =>
             Put (Item => CSI & "48;2;255;245;238m");
             
-         when 2 | 41 =>
+         when GlobaleDatentypen.Wasser | GlobaleDatentypen.Unter_Wasser =>
             Put (Item => CSI & "48;2;0;0;205m");
             
-         when 3 =>
+         when GlobaleDatentypen.Flachland =>
             Put (Item => CSI & "48;2;100;160;60m");
             
-         when 4 =>
+         when GlobaleDatentypen.Tundra =>
             Put (Item => CSI & "48;2;205;200;177m");
             
-         when 5 =>
+         when GlobaleDatentypen.Wüste =>
             Put (Item => CSI & "48;2;238;238;0m");
             
-         when 6 =>
+         when GlobaleDatentypen.Hügel =>
             Put (Item => CSI & "48;2;205;133;63m");
             
-         when 7 =>
+         when GlobaleDatentypen.Gebirge =>
             Put (Item => CSI & "48;2;120;120;120m");
             
-         when 8 =>
+         when GlobaleDatentypen.Wald =>
             Put (Item => CSI & "48;2;30;130;30m");
             
-         when 9 =>
+         when GlobaleDatentypen.Dschungel =>
             Put (Item => CSI & "48;2;0;70;0m");
             
-         when 31 | 42 =>
+         when GlobaleDatentypen.Küstengewässer | GlobaleDatentypen.Unter_Küstengewässer =>
             Put (Item => CSI & "48;2;135;206;250m");
             
-         when 32 =>
+         when GlobaleDatentypen.Sumpf =>
             Put (Item => CSI & "48;2;0;40;0m");
 
-         when 35 =>
+         when GlobaleDatentypen.Erde =>
             Put (Item => CSI & "48;2;139;69;19m");
             
-         when 36 =>
+         when GlobaleDatentypen.Lava =>
             Put (Item => CSI & "48;2;250;39;39m");
             
-         when 37 =>
+         when GlobaleDatentypen.Wolken =>
             Put (Item => CSI & "48;2;236;236;236m");
             
-         when 38 =>
+         when GlobaleDatentypen.Weltraum =>
             Put (Item => CSI & "48;2;127;127;127m");
             
-         when 39 =>
-            Put (Item => CSI & "48;2;97;56;11m");
-            
-         when 40 =>
+         when GlobaleDatentypen.Gestein =>
             Put (Item => CSI & "48;2;87;87;87m");            
             
          when others =>
@@ -300,9 +282,9 @@ package body GrafischeAnzeige is
       case
         GrundExtern
       is
-         when 1 | 4 | 5 | 31 | 37 | 42 =>
+         when GlobaleDatentypen.Eis | GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste | GlobaleDatentypen.Küstengewässer | GlobaleDatentypen.Wolken | GlobaleDatentypen.Unter_Küstengewässer =>
             if
-              RessourceExtern in 14 .. 28 | 43
+              RessourceExtern in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
             then
                Put (Item => CSI & "38;2;0;0;205m");
                
@@ -312,7 +294,7 @@ package body GrafischeAnzeige is
                   
          when others =>
             if
-              RessourceExtern in 14 .. 28 | 43
+              RessourceExtern in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
             then
                Put (Item => CSI & "38;2;135;206;250m");
                
@@ -349,7 +331,7 @@ package body GrafischeAnzeige is
          Put (Item => VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).VerbesserungGrafik & CSI & "0m");
 
       elsif
-        RessourceExtern /= 0
+        RessourceExtern /= GlobaleDatentypen.Leer
       then
          Put (Item => KartenDatenbank.KartenListe (RessourceExtern).KartenGrafik & CSI & "0m");
             

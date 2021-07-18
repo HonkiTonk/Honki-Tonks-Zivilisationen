@@ -149,14 +149,14 @@ package GlobaleRecords is
    
    type KartenRecord is record
 
-      Grund : GlobaleDatentypen.KartenGrund;
+      Grund : GlobaleDatentypen.Karten_Grund_Enum;
       Hügel : Boolean;
       Sichtbar : GlobaleDatentypen.SichtbarkeitArray;
       
-      Fluss : GlobaleDatentypen.KartenGrund;
+      Fluss : GlobaleDatentypen.Karten_Grund_Enum;
       VerbesserungStraße : GlobaleDatentypen.KartenVerbesserung;
       VerbesserungGebiet : GlobaleDatentypen.KartenVerbesserung;
-      Ressource : GlobaleDatentypen.KartenGrund;
+      Ressource : GlobaleDatentypen.Karten_Grund_Enum;
       
       DurchStadtBelegterGrund : GlobaleDatentypen.BelegterGrund;
       Felderwertung : GlobaleDatentypen.GesamtproduktionStadt;

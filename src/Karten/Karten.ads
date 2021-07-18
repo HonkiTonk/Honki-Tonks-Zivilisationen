@@ -42,12 +42,12 @@ package Karten is
 
    -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
    Kartenart : GlobaleDatentypen.Kartenart_Verwendet_Enum := GlobaleDatentypen.Inseln;
-   -- Kalt, 2 = Gemäßigt, 3 = Heiß, 4 = Eiszeit, Wüste
+   -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
    Kartentemperatur : GlobaleDatentypen.Kartentemperatur_Verwendet_Enum := GlobaleDatentypen.Kalt;
    -- X-Zylinder, Y-Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht
    Kartenform : GlobaleDatentypen.Kartenform_Verwendet_Enum := GlobaleDatentypen.X_Zylinder;
 
-   type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of GlobaleDatentypen.Kartenfeld;
+   type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of GlobaleDatentypen.Karten_Grund_Enum;
    GeneratorKarte : GeneratorKarteArray;
 
    type GeneratorGrundArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of Boolean;

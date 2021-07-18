@@ -59,10 +59,6 @@ package body Cheat is
                -- Verbesserung auf dem Cursorfeld erzeugen
             when 'v' =>
                VerbesserungFestlegen  (RasseExtern => RasseExtern);
-               
-               -- Kartengrund auf dem Cursorfeld festlegen
-            when 'b' =>
-               GrundFestlegen (RasseExtern => RasseExtern);
 
                -- Festlegen ob und von wem die Rasse belegt ist
             when 'a' =>
@@ -206,41 +202,6 @@ package body Cheat is
       end loop EbeneSchleife;
       
    end Sichtbarkeit;
-
-
-
-   procedure GrundFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-   is begin
-      
-      KartenGrundID := GlobaleDatentypen.KartenGrund (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Cheat_Menü,
-                                                                         ZeileExtern         => 12,
-                                                                         ZahlenMinimumExtern => 1,
-                                                                         ZahlenMaximumExtern => 42));
-
-      case
-        KartenGrundID
-      is
-         when 1 .. 9 | 31 .. 32 | 35 .. 42 =>
-            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund := KartenGrundID;
-
-         when 10 .. 13 | 29 .. 30 | 33 =>
-            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Ressource := KartenGrundID;
-
-         when 14 .. 28 =>
-            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Fluss := KartenGrundID;
-            
-         when others =>
-            null;
-      end case;
-      
-   end GrundFestlegen;
    
    
    
