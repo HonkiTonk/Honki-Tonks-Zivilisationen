@@ -12,17 +12,17 @@ with Anzeige, VerbesserungenAllgemein, KartenAllgemein;
 package body StadtInformationen is
 
    procedure StadtArtBesitzer
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       case
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ID
       is
-         when 0 =>
+         when GlobaleDatentypen.Leer =>
             return;
             
-         when 1 =>
+         when GlobaleDatentypen.Eigene_Hauptstadt =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then
@@ -46,7 +46,7 @@ package body StadtInformationen is
                                               AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
             end if;
                   
-         when 2 =>
+         when GlobaleDatentypen.Eigene_Stadt =>
             if
               RasseExtern = StadtRasseNummerExtern.Rasse
             then
@@ -321,9 +321,9 @@ package body StadtInformationen is
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet > 0
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
       then
-         VerbesserungenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet);
+         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet);
          Nahrungsgewinnung
            := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Nahrungsbonus;
          
@@ -332,9 +332,9 @@ package body StadtInformationen is
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße > 0
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
       then
-         VerbesserungenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße);
+         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße);
          Nahrungsgewinnung
            := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Nahrungsbonus;
          
@@ -385,7 +385,7 @@ package body StadtInformationen is
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet > 0
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
       then
          Ressourcengewinnung
            := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Ressourcenbonus;
@@ -395,7 +395,7 @@ package body StadtInformationen is
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße > 0
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
       then
          Ressourcengewinnung
            := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Ressourcenbonus;
@@ -446,7 +446,7 @@ package body StadtInformationen is
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet > 0
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
       then
          Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Geldbonus;
          
@@ -455,7 +455,7 @@ package body StadtInformationen is
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße > 0
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
       then
          Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Geldbonus;
          
@@ -504,7 +504,7 @@ package body StadtInformationen is
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet > 0
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
       then
          Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Wissensbonus;
          
@@ -513,7 +513,7 @@ package body StadtInformationen is
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße > 0
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
       then
          Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Wissensbonus;
          

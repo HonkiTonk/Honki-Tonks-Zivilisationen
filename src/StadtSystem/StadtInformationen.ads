@@ -8,7 +8,7 @@ with Karten;
 package StadtInformationen is
 
    procedure StadtArtBesitzer
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>

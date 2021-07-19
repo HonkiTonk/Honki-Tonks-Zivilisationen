@@ -11,9 +11,9 @@ package GebaeudeDatenbank is
    -- ProduktionBonus, GeldBonus, WissenBonus, VerteidigungBonus, NahrungBonus
    -- Anderes
 
-   type GebäudeListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.GebäudeID'Range) of DatenbankRecords.GebäudeListeRecord;
+   type GebäudeListeArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.GebäudeID'Range) of DatenbankRecords.GebäudeListeRecord;
    GebäudeListe : GebäudeListeArray := (
-                                          1 =>
+                                          GlobaleDatentypen.Rasse_1 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -48,7 +48,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          2 =>
+                                          GlobaleDatentypen.Rasse_2 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -83,7 +83,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          3 =>
+                                          GlobaleDatentypen.Rasse_3 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -118,7 +118,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          4 =>
+                                          GlobaleDatentypen.Rasse_4 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -153,7 +153,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          5 =>
+                                          GlobaleDatentypen.Rasse_5 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -188,7 +188,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          6 =>
+                                          GlobaleDatentypen.Rasse_6 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -223,7 +223,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          7 =>
+                                          GlobaleDatentypen.Rasse_7 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -258,7 +258,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          8 =>
+                                          GlobaleDatentypen.Rasse_8 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -293,7 +293,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          9 =>
+                                          GlobaleDatentypen.Rasse_9 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -328,7 +328,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          10 =>
+                                          GlobaleDatentypen.Rasse_10 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -363,7 +363,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          11 =>
+                                          GlobaleDatentypen.Rasse_11 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -398,7 +398,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          12 =>
+                                          GlobaleDatentypen.Rasse_12 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -433,7 +433,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          13 =>
+                                          GlobaleDatentypen.Rasse_13 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -468,7 +468,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          14 =>
+                                          GlobaleDatentypen.Rasse_14 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -503,7 +503,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          15 =>
+                                          GlobaleDatentypen.Rasse_15 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -538,7 +538,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          16 =>
+                                          GlobaleDatentypen.Rasse_16 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -573,7 +573,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          17 =>
+                                          GlobaleDatentypen.Rasse_17 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -608,7 +608,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                          18 =>
+                                          GlobaleDatentypen.Rasse_18 =>
                                             (
                                              -- Holzhäuser
                                              1 => ('A', 100, 100, 0, 0,
@@ -645,31 +645,11 @@ package GebaeudeDatenbank is
                                          );
    
    procedure StandardGebaeudeDatenbankWiederherstellen;
-
-   type RassenAufschlagArray is array (GlobaleDatentypen.Rassen'Range) of Natural;
-   RassenAufschlagForschung : constant RassenAufschlagArray := (1 => 0,
-                                                                2 => 0,
-                                                                3 => 0,
-                                                                4 => 0,
-                                                                5 => 0,
-                                                                6 => 0,
-                                                                7 => 0,
-                                                                8 => 0,
-                                                                9 => 0,
-                                                                10 => 0,
-                                                                11 => 0,
-                                                                12 => 0,
-                                                                13 => 0,
-                                                                14 => 0,
-                                                                15 => 0,
-                                                                16 => 0,
-                                                                17 => 0,
-                                                                18 => 0);
    
 private
    
    GebäudeListeStandard : constant GebäudeListeArray := (
-                                                           1 =>
+                                                           GlobaleDatentypen.Rasse_1 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -704,7 +684,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           2 =>
+                                                           GlobaleDatentypen.Rasse_2 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -739,7 +719,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           3 =>
+                                                           GlobaleDatentypen.Rasse_3 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -774,7 +754,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           4 =>
+                                                           GlobaleDatentypen.Rasse_4 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -809,7 +789,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           5 =>
+                                                           GlobaleDatentypen.Rasse_5 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -844,7 +824,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           6 =>
+                                                           GlobaleDatentypen.Rasse_6 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -879,7 +859,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           7 =>
+                                                           GlobaleDatentypen.Rasse_7 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -914,7 +894,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           8 =>
+                                                           GlobaleDatentypen.Rasse_8 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -949,7 +929,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           9 =>
+                                                           GlobaleDatentypen.Rasse_9 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -984,7 +964,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           10 =>
+                                                           GlobaleDatentypen.Rasse_10 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -1019,7 +999,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           11 =>
+                                                           GlobaleDatentypen.Rasse_11 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -1054,7 +1034,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           12 =>
+                                                           GlobaleDatentypen.Rasse_12 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -1089,7 +1069,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           13 =>
+                                                           GlobaleDatentypen.Rasse_13 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -1124,7 +1104,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           14 =>
+                                                           GlobaleDatentypen.Rasse_14 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -1159,7 +1139,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           15 =>
+                                                           GlobaleDatentypen.Rasse_15 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -1194,7 +1174,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           16 =>
+                                                           GlobaleDatentypen.Rasse_16 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -1229,7 +1209,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           17 =>
+                                                           GlobaleDatentypen.Rasse_17 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,
@@ -1264,7 +1244,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeererWertGebäudeListe),
                                                    
-                                                           18 =>
+                                                           GlobaleDatentypen.Rasse_18 =>
                                                              (
                                                               -- Holzhäuser
                                                               1 => ('A', 100, 100, 0, 0,

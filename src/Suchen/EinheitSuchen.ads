@@ -8,7 +8,7 @@ with Karten, EinheitenDatenbank;
 package EinheitSuchen is
 
    function KoordinatenEinheitMitRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
@@ -20,7 +20,7 @@ package EinheitSuchen is
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    function KoordinatenTransporterMitRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
@@ -43,10 +43,10 @@ package EinheitSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
          Post =>
-           ((if KoordinatenEinheitOhneRasseSuchen'Result.Rasse > 0 then GlobaleVariablen.RassenImSpiel (KoordinatenEinheitOhneRasseSuchen'Result.Rasse) /= GlobaleDatentypen.Leer));
+           ((if KoordinatenEinheitOhneRasseSuchen'Result.Rasse /= GlobaleDatentypen.Leer then GlobaleVariablen.RassenImSpiel (KoordinatenEinheitOhneRasseSuchen'Result.Rasse) /= GlobaleDatentypen.Leer));
 
    function KoordinatenEinheitOhneSpezielleRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleRecords.RassePlatznummerRecord
      with
@@ -57,7 +57,7 @@ package EinheitSuchen is
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer),
          Post =>
-           ((if KoordinatenEinheitOhneSpezielleRasseSuchen'Result.Rasse > 0 then GlobaleVariablen.RassenImSpiel (KoordinatenEinheitOhneSpezielleRasseSuchen'Result.Rasse) /= GlobaleDatentypen.Leer));
+           ((if KoordinatenEinheitOhneSpezielleRasseSuchen'Result.Rasse /= GlobaleDatentypen.Leer then GlobaleVariablen.RassenImSpiel (KoordinatenEinheitOhneSpezielleRasseSuchen'Result.Rasse) /= GlobaleDatentypen.Leer));
 
    function EinheitAufTransporterSuchen
      (EinheitRassePlatznummer : in GlobaleRecords.RassePlatznummerRecord;
@@ -81,7 +81,7 @@ package EinheitSuchen is
             EinheitRassePlatznummer.Platznummer > 0);
    
    function MengeEinesEinheitenTypsSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       EinheitTypExtern : in GlobaleDatentypen.EinheitenTyp;
       GesuchteMenge : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
@@ -90,7 +90,7 @@ package EinheitSuchen is
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    function AnzahlEinheitenSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       GesuchteMenge : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with

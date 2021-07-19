@@ -10,7 +10,7 @@ package GrafischeAnzeige is
    procedure Sichtbarkeit
      (InDerStadtExtern : in Boolean;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen)
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -21,15 +21,15 @@ package GrafischeAnzeige is
 
    procedure Farben
      (EinheitExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
-      VerbesserungExtern : in GlobaleDatentypen.KartenVerbesserung;
+      VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum;
       RessourceExtern, GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       CursorExtern : in Boolean;
-      EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.RassenMitNullwert)
+      EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.Rassen_Enum)
      with
        Pre =>
-         ((if EigeneRasseExtern > 0 then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch)
+         ((if EigeneRasseExtern /= GlobaleDatentypen.Leer then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch)
           and
-            (if RasseExtern > 0 then GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer));
+            (if RasseExtern /= GlobaleDatentypen.Leer then GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer));
 
 private
 

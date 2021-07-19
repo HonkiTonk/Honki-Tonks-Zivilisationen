@@ -8,7 +8,7 @@ with Karten;
 package Sichtbarkeit is
 
    procedure SichtbarkeitsprüfungFürRasse
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
@@ -31,7 +31,9 @@ package Sichtbarkeit is
 
 private
 
-   SichtweiteObjekt : GlobaleDatentypen.Sichtweite := 2;
+   SichtweiteObjekt : GlobaleDatentypen.Sichtweite;
+
+   AktuellerGrund : GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum;
 
    Wert : Integer;
 
@@ -40,7 +42,7 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    procedure SichtbarkeitSetzen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>

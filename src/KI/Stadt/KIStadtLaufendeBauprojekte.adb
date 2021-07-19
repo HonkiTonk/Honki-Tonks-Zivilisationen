@@ -16,7 +16,7 @@ package body KIStadtLaufendeBauprojekte is
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Platznummer
            or
-             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID = 0
+             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID = GlobaleDatentypen.Leer
          then
             null;
                

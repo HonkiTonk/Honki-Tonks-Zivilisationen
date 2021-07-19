@@ -31,16 +31,14 @@ package GlobaleDatentypen is
 
 
    -- Für Rassen
-   type RassenMitNullwert is range 0 .. 18;
-   subtype Rassen is RassenMitNullwert range 1 .. 18;
-   -- type Rassen_Enum is (Leer, Rasse_1, Rasse_2, Rasse_3, Rasse_4, Rasse_5, Rasse_6, Rasse_7, Rasse_8, Rasse_9, Rasse_10, Rasse_11, Rasse_12, Rasse_13, Rasse_14, Rasse_15, Rasse_16, Rasse_17, Rasse_18);
-   -- for Rassen_Enum use (Leer => 0, Rasse_1 => 1, Rasse_2 => 2, Rasse_3 => 3, Rasse_4 => 4, Rasse_5 => 5, Rasse_6 => 6, Rasse_7 => 7, Rasse_8 => 8, Rasse_9 => 9, Rasse_10 => 10, Rasse_11 => 11, Rasse_12 => 12,
-   -- Rasse_13 => 13, Rasse_14 => 14, Rasse_15 => 15, Rasse_16 => 16, Rasse_17 => 17, Rasse_18 => 18);
-   -- subtype Rassen_Verwendet_Enum is Rassen_Enum range Rasse_1 .. Rasse_18;
+   type Rassen_Enum is (Leer, Rasse_1, Rasse_2, Rasse_3, Rasse_4, Rasse_5, Rasse_6, Rasse_7, Rasse_8, Rasse_9, Rasse_10, Rasse_11, Rasse_12, Rasse_13, Rasse_14, Rasse_15, Rasse_16, Rasse_17, Rasse_18);
+   for Rassen_Enum use (Leer => 0, Rasse_1 => 1, Rasse_2 => 2, Rasse_3 => 3, Rasse_4 => 4, Rasse_5 => 5, Rasse_6 => 6, Rasse_7 => 7, Rasse_8 => 8, Rasse_9 => 9, Rasse_10 => 10, Rasse_11 => 11, Rasse_12 => 12,
+                        Rasse_13 => 13, Rasse_14 => 14, Rasse_15 => 15, Rasse_16 => 16, Rasse_17 => 17, Rasse_18 => 18);
+   subtype Rassen_Verwendet_Enum is Rassen_Enum range Rasse_1 .. Rasse_18;
 
    type Spieler_Enum is (Leer, Spieler_Mensch, Spieler_KI);
    for Spieler_Enum use (Leer => 0, Spieler_Mensch => 1, Spieler_KI => 2);
-   type RassenImSpielArray is array (Rassen'Range) of Spieler_Enum;
+   type RassenImSpielArray is array (Rassen_Verwendet_Enum'Range) of Spieler_Enum;
    -- Für Rassen
 
 
@@ -99,11 +97,31 @@ package GlobaleDatentypen is
 
    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
    type KartenverbesserungEinheitenID is range 0 .. 78;
-   subtype KartenVerbesserung is KartenverbesserungEinheitenID range 0 .. 24;
-   subtype EbeneVorhanden is Ebene range -2 .. 2;
-   type BelegterGrund is range 0 .. Rassen'Last * 1_000 + 100;
 
-   type SichtbarkeitArray is array (GlobaleDatentypen.Rassen'Range) of Boolean;
+   type Karten_Verbesserung_Enum is (Leer,
+                                     -- Städte
+                                     Eigene_Hauptstadt, Eigene_Stadt,
+                                     Fremde_Hauptstadt, Fremde_Stadt,
+                                     -- Gebilde
+                                     Farm, Mine,
+                                     Festung, Sperre,
+                                     -- Straßen
+                                     Straßenkreuzung_Vier, Straße_Waagrecht, Straße_Senkrecht, Straßenkurve_Unten_Rechts, Straßenkurve_Unten_Links, Straßenkurve_Oben_Rechts, Straßenkurve_Oben_Links,
+                                     Straßenkreuzung_Drei_Oben, Straßenkreuzung_Drei_Unten, Straßenkreuzung_Drei_Rechts, Straßenkreuzung_Drei_Links, Straßenendstück_Links, Straßenendstück_Rechts,
+                                     Straßenendstück_Unten, Straßenendstück_Oben, Straße_Einzeln);
+   subtype Karten_Verbesserung_Stadt_ID_Enum is Karten_Verbesserung_Enum range Leer .. Eigene_Stadt;
+   subtype Karten_Verbesserung_Städte_Enum is Karten_Verbesserung_Enum range Eigene_Hauptstadt .. Fremde_Stadt;
+   subtype Karten_Verbesserung_Eigene_Städte_Enum is Karten_Verbesserung_Städte_Enum range Eigene_Hauptstadt .. Eigene_Stadt;
+   subtype Karten_Verbesserung_Fremde_Städte_Enum is Karten_Verbesserung_Städte_Enum range Fremde_Hauptstadt .. Fremde_Stadt;
+   subtype Karten_Verbesserung_Gebilde_Enum is Karten_Verbesserung_Enum range Farm .. Sperre;
+   subtype Karten_Verbesserung_Gebilde_Friedlich_Enum is Karten_Verbesserung_Gebilde_Enum range Farm .. Mine;
+   subtype Karten_Verbesserung_Gebilde_Kampf_Enum is Karten_Verbesserung_Gebilde_Enum range Festung .. Sperre;
+   subtype Karten_Verbesserung_Straße_Enum is Karten_Verbesserung_Enum range Straßenkreuzung_Vier .. Straße_Einzeln;
+
+   subtype EbeneVorhanden is Ebene range -2 .. 2;
+   type BelegterGrund is range 0 .. 18 * 1_000 + 100;
+
+   type SichtbarkeitArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
    -- Für Karte
 
 
@@ -118,8 +136,10 @@ package GlobaleDatentypen is
    subtype EinheitenIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 50;
    subtype EinheitenID is EinheitenIDMitNullWert range 1 .. EinheitenIDMitNullWert'Last;
 
-   -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch (Erde), 7 = Planeteninneres (Gestein), 8 = Lava
-   type PassierbarkeitType is range 1 .. 8;
+   -- Passierbarkeit
+   type Passierbarkeit_Enum is (Leer, Boden, Wasser, Luft, Weltraum, Unterwasser, Unteridrisch, Planeteninneres, Lava);
+   for Passierbarkeit_Enum use (Leer => 0, Boden => 1, Wasser => 2, Luft => 3, Weltraum => 4, Unterwasser => 5, Unteridrisch => 6, Planeteninneres => 7, Lava => 8);
+   subtype Passierbarkeit_Vorhanden_Enum is Passierbarkeit_Enum range Boden .. Lava;
 
    type EinheitenTyp is range 1 .. 12;
    -- Für später merken, jetzt aber noch nicht einbauen/nutzen, da sonst ständig Zeug verschoben werden muss
@@ -154,17 +174,26 @@ package GlobaleDatentypen is
    type KostenLager is range -10_000 .. 10_000;
    subtype GesamtproduktionStadt is KostenLager range -500 .. 500;
    subtype WerteNahrungMaterialGeldWissenVerteidigungAngriff is GesamtproduktionStadt range -100 .. 100;
-   subtype StadtID is KartenVerbesserung range 0 .. 2;
 
    type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
 
-   type StadtMeldung is (Keine, Produktion_Abgeschlossen, Einwohner_Wachstum, Einwohner_Reduktion, Einheit_Unplatzierbar, Stadt_Angegriffen);
+   type Stadt_Meldung_Enum is (Keine, Produktion_Abgeschlossen, Einwohner_Wachstum, Einwohner_Reduktion, Einheit_Unplatzierbar, Stadt_Angegriffen);
    -- Für Stadt
 
 
 
    -- Für Diplomatie
-   type StatusUntereinander is (Kein_Kontakt, Krieg, Neutral, Offene_Grenzen, Nichtangriffspakt, Defensivbündnis, Offensivbündnis);
+   type Status_Untereinander_Enum is (Kein_Kontakt,
+                                      -- Neutral
+                                      Neutral,
+                                      -- Friedlich
+                                      Offene_Grenzen, Nichtangriffspakt, Defensivbündnis, Offensivbündnis,
+                                      -- Aggressiv
+                                      Krieg);
+   subtype Status_Untereinander_Neutral_Enum is Status_Untereinander_Enum range Neutral .. Neutral;
+   subtype Status_Untereinander_Friedlich_Enum is Status_Untereinander_Enum range Offene_Grenzen .. Offensivbündnis;
+   subtype Status_Untereinander_Aggressiv_Enum is Status_Untereinander_Enum range Krieg .. Krieg;
+
    -- Für Diplomatie
 
 end GlobaleDatentypen;

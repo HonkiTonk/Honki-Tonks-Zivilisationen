@@ -12,9 +12,9 @@ package body StadtProduktion is
       
       case StadtRasseNummerExtern.Rasse is
          -- Überprüfung für alle Rassen bei Runde beenden.
-         when 0 =>
+         when GlobaleDatentypen.Leer =>
             RassenSchleife:
-            for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+            for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
                StadtSchleife:
                for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
                   
@@ -23,7 +23,7 @@ package body StadtProduktion is
                   case
                     GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID
                   is
-                     when 0 =>
+                     when GlobaleDatentypen.Leer =>
                         null;
                   
                      when others =>
@@ -154,7 +154,7 @@ package body StadtProduktion is
    is begin
       
       if
-        StadtRasseNummerExtern.Rasse = 1
+        StadtRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_1
         and
           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (4) = True
       then

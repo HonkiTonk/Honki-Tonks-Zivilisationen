@@ -36,7 +36,7 @@ package BewegungPassierbarkeitPruefen is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    function EinfachePassierbarkeitPrüfenID
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.EinheitenID;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return Boolean
@@ -51,8 +51,6 @@ package BewegungPassierbarkeitPruefen is
 private
    
    Passierbar : Boolean;
-   
-   PassierbarkeitNummer : GlobaleDatentypen.PassierbarkeitType;
 
    BewegungMöglich : GlobaleDatentypen.Bewegung_Enum;
    

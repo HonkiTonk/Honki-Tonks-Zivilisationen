@@ -16,14 +16,14 @@ package body ImSpiel is
       SpielSchleife:
       loop         
          RassenSchleife:
-         for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop
+         for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
             
             if
-              GlobaleVariablen.RasseAmZugNachLaden = 0
+              GlobaleVariablen.RasseAmZugNachLaden = GlobaleDatentypen.Leer
               or
                 RasseSchleifenwert = GlobaleVariablen.RasseAmZugNachLaden
             then
-               GlobaleVariablen.RasseAmZugNachLaden := 0;
+               GlobaleVariablen.RasseAmZugNachLaden := GlobaleDatentypen.Leer;
             
                case
                  GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -52,9 +52,9 @@ package body ImSpiel is
                   
                   when GlobaleDatentypen.Spieler_KI =>
                      Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
-                     Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 1) := Clock;
+                     Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), 1) := Clock;
                      KI.KI (RasseExtern => RasseSchleifenwert);
-                     Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 2) := Clock;
+                     Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), 2) := Clock;
                end case;
 
             else
@@ -66,7 +66,7 @@ package body ImSpiel is
          case
            GlobaleVariablen.RasseAmZugNachLaden
          is
-            when 0 =>   
+            when GlobaleDatentypen.Leer =>   
                BerechnungenNachZugendeAllerSpieler;
                
             when others =>
@@ -80,7 +80,7 @@ package body ImSpiel is
 
 
    function MenschlicherSpieler
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
       
@@ -152,7 +152,7 @@ package body ImSpiel is
       Verbesserungen.VerbesserungFertiggestellt;
       Wachstum.Wachstum;
       InDerStadtBauen.BauzeitAlle;
-      StadtProduktion.StadtProduktionPrüfen ((0, 0));
+      StadtProduktion.StadtProduktionPrüfen ((GlobaleDatentypen.Leer, 0));
       ForschungAllgemein.ForschungFortschritt;
       
       case
@@ -175,16 +175,16 @@ package body ImSpiel is
       end if;      
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Spieler_KI
          then            
-            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => Positive (RasseSchleifenwert));
+            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert));
             
          else
-            Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 1) := Clock;
-            Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 2) := Ladezeiten.KIZeiten (Positive (RasseSchleifenwert), 1);
+            Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), 1) := Clock;
+            Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), 2) := Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), 1);
          end if;
          
       end loop RassenSchleife;      

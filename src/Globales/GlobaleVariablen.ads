@@ -23,7 +23,7 @@ package GlobaleVariablen is
    
 
    -- Cursor
-   type CursorImSpielArray is array (GlobaleDatentypen.Rassen'Range) of GlobaleRecords.CursorRecord;
+   type CursorImSpielArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleRecords.CursorRecord;
    CursorImSpiel : CursorImSpielArray := (others => GlobaleKonstanten.LeererWertCursor);
    -- Cursor
    
@@ -32,9 +32,9 @@ package GlobaleVariablen is
    -- Zeug
    RundenAnzahl : Positive := 1;
 
-   -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
+   -- Nicht belegt, Menschlicher Spieler, KI
    RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => GlobaleDatentypen.Leer);
-   RasseAmZugNachLaden : GlobaleDatentypen.RassenMitNullwert := 0;
+   RasseAmZugNachLaden : GlobaleDatentypen.Rassen_Enum := GlobaleDatentypen.Leer;
 
    -- Hier über LoopMinusDreiBisDrei nachdenken
    Schwierigkeitsgrad : Positive;
@@ -43,24 +43,24 @@ package GlobaleVariablen is
 
    
    -- Einheiten
-   type EinheitenGebautArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.MaximaleEinheiten'Range) of GlobaleRecords.EinheitenGebautRecord;
+   type EinheitenGebautArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.MaximaleEinheiten'Range) of GlobaleRecords.EinheitenGebautRecord;
    EinheitenGebaut : EinheitenGebautArray := (others => (others => GlobaleKonstanten.LeererWertEinheit));
    -- Einheiten
    
    
 
    -- Städte
-   type StadtGebautArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.MaximaleStädte'Range) of GlobaleRecords.StadtGebautRecord;
+   type StadtGebautArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.MaximaleStädte'Range) of GlobaleRecords.StadtGebautRecord;
    StadtGebaut : StadtGebautArray := (others => (others => GlobaleKonstanten.LeererWertStadt));
    -- Städte
    
    
 
    -- Wichtiges Zeug
-   type WichtigesArray is array (GlobaleDatentypen.Rassen'Range) of GlobaleRecords.WichtigesRecord;
+   type WichtigesArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleRecords.WichtigesRecord;
    Wichtiges : WichtigesArray := (others => GlobaleKonstanten.LeererWertWichtigesZeug);
    
-   type DiplomatieArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.Rassen'Range) of GlobaleDatentypen.StatusUntereinander;
+   type DiplomatieArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.Status_Untereinander_Enum;
    Diplomatie : DiplomatieArray := (others => (others => GlobaleDatentypen.Kein_Kontakt));
    -- Wichtiges Zeug
    

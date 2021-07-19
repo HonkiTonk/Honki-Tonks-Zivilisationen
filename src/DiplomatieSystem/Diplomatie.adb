@@ -7,7 +7,7 @@ with Kampfsystem, Auswahl, KIDiplomatie;
 package body Diplomatie is
 
    procedure DiplomatieAuswählen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;
@@ -17,7 +17,7 @@ package body Diplomatie is
    
    
    procedure Erstkontakt
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -57,7 +57,7 @@ package body Diplomatie is
    
    
    procedure ErstkontaktMenschMensch
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;
@@ -67,7 +67,7 @@ package body Diplomatie is
    
    
    procedure ErstkontaktMenschKI
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       null;
@@ -77,7 +77,7 @@ package body Diplomatie is
 
 
    procedure KriegDurchDirektenAngriff
-     (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen)
+     (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       GlobaleVariablen.Diplomatie (AngreifendeRasseExtern, VerteidigendeRasseExtern) := GlobaleDatentypen.Krieg;
@@ -88,8 +88,8 @@ package body Diplomatie is
 
 
    function DiplomatischenStatusPrüfen
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
-      return GlobaleDatentypen.StatusUntereinander
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.Status_Untereinander_Enum
    is begin
       
       return GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern);

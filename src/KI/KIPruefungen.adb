@@ -19,7 +19,7 @@ package body KIPruefungen is
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
          
          if
-           GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID > 0
+           GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= GlobaleDatentypen.Leer
          then
             VerbesserungAnlegen := StadtUmgebungUnverbessert (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert),
                                                               EinheitNummerExtern    => EinheitRasseNummerExtern.Platznummer);
@@ -75,9 +75,13 @@ package body KIPruefungen is
                                                                                      NeuePositionExtern       => StadtVerbesserungUmgebungKoordinaten)
                     = GlobaleDatentypen.Normale_Bewegung_Möglich
                     and
-                      (Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse, StadtVerbesserungUmgebungKoordinaten.YAchse, StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungGebiet = 0
+                      (Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse,
+                                         StadtVerbesserungUmgebungKoordinaten.YAchse,
+                                         StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungGebiet = GlobaleDatentypen.Leer
                        or
-                         Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse, StadtVerbesserungUmgebungKoordinaten.YAchse, StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungStraße = 0)
+                         Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse,
+                                           StadtVerbesserungUmgebungKoordinaten.YAchse,
+                                           StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungStraße = GlobaleDatentypen.Leer)
                       and
                         (EinheitAufFeld.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
                          or

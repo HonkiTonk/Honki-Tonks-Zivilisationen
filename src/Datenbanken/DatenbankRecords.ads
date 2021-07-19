@@ -5,7 +5,7 @@ with GlobaleDatentypen;
 package DatenbankRecords is
 
    -- EinheitenDatenbank
-   type PassierbarkeitArray is array (GlobaleDatentypen.PassierbarkeitType'Range) of Boolean;
+   type PassierbarkeitArray is array (GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum'Range) of Boolean;
    type PreisArray is array (1 .. 2) of GlobaleDatentypen.KostenLager;
    type KampfwerteArray is array (1 .. 3) of GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
 
@@ -19,7 +19,7 @@ package DatenbankRecords is
       PreisRessourcen : GlobaleDatentypen.KostenLager;
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
 
-      -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch (Erde), 7 = Planeteninneres (Gestein), 8 = Lava
+      -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
       Passierbarkeit : PassierbarkeitArray;
       MaximaleLebenspunkte : Positive;
       MaximaleBewegungspunkte : Float;
@@ -81,7 +81,7 @@ package DatenbankRecords is
 
       KartenGrafik : Wide_Wide_Character;
       
-      -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch (Erde), 7 = Planeteninneres (Gestein), 8 = Lava
+      -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
       Passierbarkeit : PassierbarkeitArray;
 
       Nahrungsgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
@@ -100,7 +100,7 @@ package DatenbankRecords is
 
       VerbesserungGrafik : Wide_Wide_Character;
       
-      -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch (Erde), 7 = Planeteninneres (Gestein), 8 = Lava
+      -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
       Passierbarkeit : PassierbarkeitArray;
 
       Nahrungsbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;

@@ -3,18 +3,14 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO;
 use Ada.Wide_Wide_Text_IO;
 
-with GlobaleKonstanten, GlobaleTexte;
-     
-with KIDatentypen;
+with GlobaleTexte;
 
-with EinheitenDatenbank, VerbesserungenDatenbank;
-
-with Karte, Karten, Anzeige, Eingabe, EinheitSuchen, ForschungAllgemein, EinheitenAllgemein;
+with Karte, Karten, Anzeige, Eingabe, ForschungAllgemein;
 
 package body Cheat is
 
    procedure Menü
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       MenüSchleife:
@@ -24,7 +20,7 @@ package body Cheat is
                                         TextDateiExtern        => GlobaleTexte.Cheat_Menü,
                                         ÜberschriftZeileExtern => 1,
                                         ErsteZeileExtern       => 2,
-                                        LetzteZeileExtern      => 11,
+                                        LetzteZeileExtern      => 3,
                                         AbstandAnfangExtern    => GlobaleTexte.Keiner,
                                         AbstandMitteExtern     => GlobaleTexte.Neue_Zeile,
                                         AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
@@ -32,10 +28,6 @@ package body Cheat is
          case
            Eingabe.TastenEingabe
          is
-            -- Nächste Einheit (unabhängig von der Rasse)
-            when 'n' =>
-               BeliebigeNächsteEinheit (RasseExtern => RasseExtern);
-
                -- Volle Informationen (unabhängig von der Rasse)
             when 'i' =>
                Informationen;
@@ -43,26 +35,6 @@ package body Cheat is
                -- Sichtbarkeit der ganzen Karte
             when 's' =>
                Sichtbarkeit (RasseExtern => RasseExtern);
-
-               -- Einheit erzeugen
-            when 'e' =>
-               EinheitFestlegen (RasseExtern => RasseExtern);
-
-               -- Geld auf 1.000.000 setzen
-            when 'g' =>
-               Geld (RasseExtern => RasseExtern);
-
-               -- Technologie auf erforscht setzen
-            when 't' =>
-               Technologie (RasseExtern => RasseExtern);
-
-               -- Verbesserung auf dem Cursorfeld erzeugen
-            when 'v' =>
-               VerbesserungFestlegen  (RasseExtern => RasseExtern);
-
-               -- Festlegen ob und von wem die Rasse belegt ist
-            when 'a' =>
-               RassenverteilungÄndern;
                
             when others =>
                return;
@@ -72,106 +44,6 @@ package body Cheat is
       end loop MenüSchleife;
       
    end Menü;
-
-
-   procedure BeliebigeNächsteEinheit
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-   is begin
-      
-      EinheitenSchleife:
-      loop         
-         
-         if
-           GlobaleVariablen.EinheitenGebaut (AktuelleRasseEinheit, AktuelleEinheit).ID = 0
-         then
-            case
-              AktuelleRasseEinheit
-            is
-               when GlobaleDatentypen.Rassen'Last =>
-                  AktuelleRasseEinheit := GlobaleDatentypen.Rassen'First;
-                    
-               when others =>
-                  AktuelleRasseEinheit := AktuelleRasseEinheit + 1;
-            end case;
-            AktuelleEinheit := 1;
-            
-         else
-            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasseEinheit, AktuelleEinheit).Position.YAchse;
-            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse := GlobaleVariablen.EinheitenGebaut (AktuelleRasseEinheit, AktuelleEinheit).Position.XAchse;
-            case
-              AktuelleEinheit
-            is
-               when GlobaleVariablen.EinheitenGebaut'Last (2) =>
-                  case
-                    AktuelleRasseEinheit
-                  is
-                     when GlobaleDatentypen.Rassen'Last =>
-                        AktuelleRasseEinheit := GlobaleDatentypen.Rassen'First;
-                    
-                     when others =>
-                        AktuelleRasseEinheit := AktuelleRasseEinheit + 1;
-                  end case;
-                  AktuelleEinheit := AktuelleEinheit + 1;
-                     
-               when others =>
-                  AktuelleEinheit := AktuelleEinheit + 1;
-            end case;
-            return;
-         end if;
-         
-      end loop EinheitenSchleife;
-      
-   end BeliebigeNächsteEinheit;
-
-
-
-   procedure BeliebigeNächsteStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-   is begin
-      
-      StädteSchleife:
-      loop         
-         
-         if
-           GlobaleVariablen.StadtGebaut (AktuelleRasseStadt, AktuelleStadt).ID = 0
-         then
-            case
-              AktuelleRasseStadt
-            is
-               when GlobaleDatentypen.Rassen'Last =>
-                  AktuelleRasseStadt := GlobaleDatentypen.Rassen'First;
-                    
-               when others =>
-                  AktuelleRasseStadt := AktuelleRasseStadt + 1;
-            end case;
-            AktuelleStadt := 1;
-            
-         else
-            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse := GlobaleVariablen.StadtGebaut (AktuelleRasseStadt, AktuelleStadt).Position.YAchse;
-            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse := GlobaleVariablen.StadtGebaut (AktuelleRasseStadt, AktuelleStadt).Position.XAchse;
-            case
-              AktuelleStadt
-            is
-               when GlobaleVariablen.StadtGebaut'Last (2) =>
-                  if
-                    AktuelleRasseStadt = GlobaleDatentypen.Rassen'Last
-                  then
-                     AktuelleRasseStadt := GlobaleDatentypen.Rassen'First;
-                    
-                  else
-                     AktuelleRasseStadt := AktuelleRasseStadt + 1;
-                  end if;
-                  AktuelleStadt := AktuelleStadt + 1;
-                     
-               when others =>
-                  AktuelleStadt := AktuelleStadt + 1;
-            end case;
-            return;
-         end if;
-         
-      end loop StädteSchleife;
-      
-   end BeliebigeNächsteStadt;
 
 
 
@@ -185,7 +57,7 @@ package body Cheat is
 
 
    procedure Sichtbarkeit
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EbeneSchleife:
@@ -202,186 +74,6 @@ package body Cheat is
       end loop EbeneSchleife;
       
    end Sichtbarkeit;
-   
-   
-   
-   procedure EinheitFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-   is begin
-
-      RasseNummer := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Cheat_Menü,
-                                        ZeileExtern         => 13,
-                                        ZahlenMinimumExtern => Integer (GlobaleDatentypen.Rassen'First),
-                                        ZahlenMaximumExtern => Integer (GlobaleDatentypen.Rassen'Last));
-
-      case
-        RasseNummer
-      is
-         when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
-            return;
-            
-         when others =>
-            null;
-      end case;
-
-      EinheitID := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Cheat_Menü,
-                                      ZeileExtern         => 14,
-                                      ZahlenMinimumExtern => Integer (EinheitenDatenbank.EinheitenListe'First (2)),
-                                      ZahlenMaximumExtern => Integer (EinheitenDatenbank.EinheitenListe'Last (2)));
-
-      case
-        EinheitID
-      is
-         when GlobaleKonstanten.GanzeZahlAbbruchKonstante =>
-            return;
-            
-         when others =>
-            null;
-      end case;
-
-      EinheitPosition := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
-      
-      case
-        EinheitPosition.Platznummer
-      is
-         when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-            EinheitenSchleife:
-            for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
-
-               case
-                 GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID
-               is
-                  when 0 =>
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).BeschäftigungNachfolger := GlobaleDatentypen.Nicht_Vorhanden;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID := GlobaleDatentypen.EinheitenID (EinheitID);
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Position := GlobaleVariablen.CursorImSpiel (RasseExtern).Position;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Lebenspunkte
-                       := EinheitenDatenbank.EinheitenListe (GlobaleDatentypen.Rassen (RasseNummer), GlobaleDatentypen.EinheitenID (EinheitID)).MaximaleLebenspunkte;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Bewegungspunkte
-                       := EinheitenDatenbank.EinheitenListe (GlobaleDatentypen.Rassen (RasseNummer), GlobaleDatentypen.EinheitenID (EinheitID)).MaximaleBewegungspunkte;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Erfahrungspunkte := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Rang := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Beschäftigungszeit := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).BeschäftigungszeitNachfolger := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).KIZielKoordinaten := (0, 1, 1);
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
-                     return;
-                     
-                  when others =>
-                     null;
-               end case;
-               
-            end loop EinheitenSchleife;
-            
-         when others =>
-            EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitPosition);
-            GelöschtEinheitenSchleife:
-            for EinheitNummer in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
-
-               case
-                 GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID
-               is
-                  when 0 =>
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).BeschäftigungNachfolger := GlobaleDatentypen.Nicht_Vorhanden;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).ID := GlobaleDatentypen.EinheitenID (EinheitID);
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Position := GlobaleVariablen.CursorImSpiel (RasseExtern).Position;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Lebenspunkte
-                       := EinheitenDatenbank.EinheitenListe (GlobaleDatentypen.Rassen (RasseNummer), GlobaleDatentypen.EinheitenID (EinheitID)).MaximaleLebenspunkte;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Bewegungspunkte
-                       := EinheitenDatenbank.EinheitenListe (GlobaleDatentypen.Rassen (RasseNummer), GlobaleDatentypen.EinheitenID (EinheitID)).MaximaleBewegungspunkte;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Erfahrungspunkte := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Rang := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).Beschäftigungszeit := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).BeschäftigungszeitNachfolger := 0;
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).KIZielKoordinaten := (0, 1, 1);
-                     GlobaleVariablen.EinheitenGebaut (GlobaleDatentypen.Rassen (RasseNummer), EinheitNummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
-                     return;
-                     
-                  when others =>
-                     null;
-               end case;
-
-            end loop GelöschtEinheitenSchleife;
-      end case;
-      
-   end EinheitFestlegen;
-   
-   
-   
-   procedure Geld
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-   is begin
-      
-      GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge := Integer'Last;
-      
-   end Geld;
-   
-   
-
-   procedure Technologie
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-   is begin
-      
-      null;
-      
-   end Technologie;
-   
-   
-   
-   procedure VerbesserungFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-   is begin
-      
-      VerbesserungID := GlobaleDatentypen.KartenVerbesserung (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Cheat_Menü,
-                                                                                 ZeileExtern         => 15,
-                                                                                 ZahlenMinimumExtern => 5,
-                                                                                 ZahlenMaximumExtern => Integer (VerbesserungenDatenbank.VerbesserungListe'Last)));
-
-      case
-        VerbesserungID
-      is
-         when 5 .. 19 =>
-            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße := VerbesserungID;
-
-         when 20 .. 22 =>
-            Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet := VerbesserungID;
-            
-         when others =>
-            null;
-      end case;
-      
-   end VerbesserungFestlegen;
-
-
-
-   procedure RassenverteilungÄndern
-   is begin
-      
-      RassenverteilungÄndernSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop
-         
-         case
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
-         is
-            when GlobaleDatentypen.Leer =>
-               null;
-               
-            when others =>
-               GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := GlobaleDatentypen.Spieler_Enum'Val (Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Cheat_Menü,
-                                                                                                                         ZeileExtern         => 16,
-                                                                                                                         ZahlenMinimumExtern => 1,
-                                                                                                                         ZahlenMaximumExtern => 2));
-         end case;
-         
-      end loop RassenverteilungÄndernSchleife;
-      
-   end RassenverteilungÄndern;
    
    
    
@@ -416,7 +108,7 @@ package body Cheat is
    
    
    procedure KarteInfosFeld
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Put (Item => "Aktuelle EPosition: " & GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse'Wide_Wide_Image);

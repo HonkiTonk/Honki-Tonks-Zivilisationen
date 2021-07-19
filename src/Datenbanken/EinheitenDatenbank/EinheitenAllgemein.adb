@@ -48,7 +48,7 @@ package body EinheitenAllgemein is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          EinheitenSchleife:
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
@@ -300,5 +300,16 @@ package body EinheitenAllgemein is
       end loop EinheitAuswählenSchleife;
       
    end EinheitTransporterAuswählen;
+   
+   
+   
+   function EinheitenTypErmitteln
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.EinheitenTyp
+   is begin
+     
+      return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).EinheitTyp;
+   
+   end EinheitenTypErmitteln;
 
 end EinheitenAllgemein;

@@ -58,60 +58,98 @@ package GlobaleKonstanten is
    EinheitAufschlag : constant Positive := 10_000;
 
    RassenMulitplikationWert : constant GlobaleDatentypen.BelegterGrund := 1_000;
-   type FeldBelegungArray is array (GlobaleDatentypen.Rassen'Range, 1 .. 2) of GlobaleDatentypen.BelegterGrund;
-   FeldBelegung : constant FeldBelegungArray := (1 => (1 => GlobaleDatentypen.BelegterGrund (1) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (1) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+   type FeldBelegungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, 1 .. 2) of GlobaleDatentypen.BelegterGrund;
+   FeldBelegung : constant FeldBelegungArray := (
+                                                 GlobaleDatentypen.Rasse_1 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (1) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (1) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 2 => (1 => GlobaleDatentypen.BelegterGrund (2) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (2) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_2 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (2) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (2) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 3 => (1 => GlobaleDatentypen.BelegterGrund (3) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (3) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_3 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (3) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (3) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 4 => (1 => GlobaleDatentypen.BelegterGrund (4) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (4) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_4 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (4) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (4) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 5 => (1 => GlobaleDatentypen.BelegterGrund (5) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (5) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_5 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (5) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (5) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 6 => (1 => GlobaleDatentypen.BelegterGrund (6) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (6) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_6 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (6) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (6) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 7 => (1 => GlobaleDatentypen.BelegterGrund (7) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (7) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_7 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (7) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (7) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 8 => (1 => GlobaleDatentypen.BelegterGrund (8) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (8) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_8 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (8) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (8) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 9 => (1 => GlobaleDatentypen.BelegterGrund (9) * RassenMulitplikationWert,
-                                                       2 => GlobaleDatentypen.BelegterGrund (9) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_9 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (9) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (9) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 10 => (1 => GlobaleDatentypen.BelegterGrund (10) * RassenMulitplikationWert,
-                                                        2 => GlobaleDatentypen.BelegterGrund (10) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_10 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (10) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (10) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 11 => (1 => GlobaleDatentypen.BelegterGrund (11) * RassenMulitplikationWert,
-                                                        2 => GlobaleDatentypen.BelegterGrund (11) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_11 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (11) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (11) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 12 => (1 => GlobaleDatentypen.BelegterGrund (12) * RassenMulitplikationWert,
-                                                        2 => GlobaleDatentypen.BelegterGrund (12) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_12 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (12) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (12) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 13 => (1 => GlobaleDatentypen.BelegterGrund (13) * RassenMulitplikationWert,
-                                                        2 => GlobaleDatentypen.BelegterGrund (13) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_13 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (13) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (13) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 14 => (1 => GlobaleDatentypen.BelegterGrund (14) * RassenMulitplikationWert,
-                                                        2 => GlobaleDatentypen.BelegterGrund (14) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_14 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (14) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (14) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 15 => (1 => GlobaleDatentypen.BelegterGrund (15) * RassenMulitplikationWert,
-                                                        2 => GlobaleDatentypen.BelegterGrund (15) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_15 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (15) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (15) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 16 => (1 => GlobaleDatentypen.BelegterGrund (16) * RassenMulitplikationWert,
-                                                        2 => GlobaleDatentypen.BelegterGrund (16) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_16 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (16) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (16) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 17 => (1 => GlobaleDatentypen.BelegterGrund (17) * RassenMulitplikationWert,
-                                                        2 => GlobaleDatentypen.BelegterGrund (17) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
+                                                 GlobaleDatentypen.Rasse_17 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (17) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (17) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)),
 
-                                                 18 => (1 => GlobaleDatentypen.BelegterGrund (18) * RassenMulitplikationWert,
-                                                        2 => GlobaleDatentypen.BelegterGrund (18) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last)));
+                                                 GlobaleDatentypen.Rasse_18 =>
+                                                   (
+                                                    1 => GlobaleDatentypen.BelegterGrund (18) * RassenMulitplikationWert,
+                                                    2 => GlobaleDatentypen.BelegterGrund (18) * RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.MaximaleStädte'Last))
+                                                );
    -- Für Einheiten/Städte
 
 
@@ -160,7 +198,7 @@ package GlobaleKonstanten is
 
    LeererWertStadt : constant GlobaleRecords.StadtGebautRecord := (
                                                                    -- ID, AchsenPosition, Am Wasser, (Einwohner, Arbeiter)
-                                                                   0, (0, 0, 0), False, (0 , 0),
+                                                                   GlobaleDatentypen.Leer, (0, 0, 0), False, (0 , 0),
                                                                    -- Aktuelle Nahrungsmittel, Aktuelle Nahrungsproduktion, Aktuelle Ressourcen, Aktuelle Produktionrate
                                                                    0, 0, 0, 0,
                                                                    -- Aktuelle Geldgewinnung, Aktuelle Forschungsrate, Aktuelles Bauprojekt, Verbleibende Bauzeit
@@ -185,8 +223,10 @@ package GlobaleKonstanten is
                                                                         );
 
    LeererWertKartenListe : constant DatenbankRecords.KartenListeRecord := (
-                                                                           -- KartenGrafik, Passierbarkeit
-                                                                           ' ', (others => False),
+                                                                           -- KartenGrafik
+                                                                           ' ',
+                                                                           -- Passierbarkeit
+                                                                           (others => False),
                                                                            -- Nahrungsgewinnung, Ressourcengewinnung, Geldgewinnung, Wissensgewinnung, Verteidigungsbonus
                                                                            0, 0, 0, 0, 0
                                                                           );
@@ -195,14 +235,16 @@ package GlobaleKonstanten is
                                                                   -- Kartengrund, Ist da ein Hügel?, Welche Rasse kann was sehen
                                                                   GlobaleDatentypen.Leer, False, (others => False),
                                                                   -- Welcher Fluss, Welche Straße, Welche Verbesserung, Welche Ressource
-                                                                  GlobaleDatentypen.Leer, 0, 0, GlobaleDatentypen.Leer,
+                                                                  GlobaleDatentypen.Leer, GlobaleDatentypen.Leer, GlobaleDatentypen.Leer, GlobaleDatentypen.Leer,
                                                                   -- Durch welche Stadt welcher Rasse belegter Grund, Felderbewertung
                                                                   0, 0
                                                                  );
 
    LeererWertVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
-                                                                                       -- VerbesserungGrafik, Passierbarkeit
-                                                                                       ' ', (others => False),
+                                                                                       -- VerbesserungGrafik
+                                                                                       ' ',
+                                                                                       -- Passierbarkeit
+                                                                                       (others => False),
                                                                                        -- Nahrungsbonus, Ressourcenbonus, Geldbonus, Wissensbonus, Verteidigungsbonus
                                                                                        0, 0, 0, 0, 0
                                                                                       );
@@ -210,8 +252,10 @@ package GlobaleKonstanten is
    LeererWertEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (
                                                                                -- EinheitenGrafik, EinheitTyp, PreisGeld, PreisRessourcen, Anforderungen
                                                                                '@', 1, 0, 0, 0,
-                                                                               -- Passierbarkeit, MaximaleLebenspunkte, MaximaleBewegungspunkte
-                                                                               (others => False), 1, 0.00,
+                                                                               -- Passierbarkeit
+                                                                               (others => False),
+                                                                               -- MaximaleLebenspunkte, MaximaleBewegungspunkte
+                                                                               1, 0.00,
                                                                                -- Beförderungsgrenze, MaximalerRang, Reichweite, Angriff, Verteidigung
                                                                                1, 1, 0, 0, 1,
                                                                                -- Kann Dinge transportieren, Kann transportiert werden, Transportkapazität

@@ -277,32 +277,32 @@ package body KartenGeneratorFluss is
       case
         Flusswert
       is
-         when 11_000 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flussendstück_Rechts;
-
-         when 10_100 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flussendstück_Links;
-
-         when 10_010 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flussendstück_Unten;
-
-         when 10_001 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flussendstück_Oben;
-
-         when 11_010 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskurve_Oben_Links;
-
-         when 11_001 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskurve_Unten_Links;
+         when 11_111 =>
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskreuzung_Vier;
 
          when 11_110 =>
             Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Oben;
 
          when 11_101 =>
             Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Unten;
+            
+         when 11_100 =>
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Fluss_Waagrecht;
+            
+         when 11_011 =>
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Links;
 
-         when 11_111 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskreuzung_Vier;
+         when 11_010 =>
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskurve_Oben_Links;
+
+         when 11_001 =>
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskurve_Unten_Links;
+            
+         when 11_000 =>
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flussendstück_Rechts;
+
+         when 10_111 =>
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Rechts;
 
          when 10_110 =>
             Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskurve_Oben_Rechts;
@@ -310,11 +310,17 @@ package body KartenGeneratorFluss is
          when 10_101 =>
             Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskurve_Unten_Rechts;
 
-         when 10_111 =>
-            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flusskreuzung_Drei_Rechts;
+         when 10_100 =>
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flussendstück_Links;
+
+         when 10_010 =>
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flussendstück_Unten;
 
          when 10_011 =>
             Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Fluss_Senkrecht;
+
+         when 10_001 =>
+            Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Flussendstück_Oben;
          
          when others =>
             Karten.Weltkarte (0, YKoordinateExtern, XKoordinateExtern).Fluss := GlobaleDatentypen.Fluss_Einzeln;

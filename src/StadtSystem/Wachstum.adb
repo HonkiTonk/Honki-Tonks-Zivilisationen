@@ -28,7 +28,7 @@ package body Wachstum is
             case
               GlobaleVariablen.StadtGebaut (RasseEinsSchleifenwert, StadtNummerSchleifenwert).ID
             is
-               when 0 =>
+               when GlobaleDatentypen.Leer =>
                   null;
                
                when others =>
@@ -123,7 +123,7 @@ package body Wachstum is
 
 
    procedure WachstumBeiStadtGründung
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtSchleife:
@@ -191,7 +191,7 @@ package body Wachstum is
         and
           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (3) = True
         and
-          StadtRasseNummerExtern.Rasse = 1
+          StadtRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_1
       then
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel
            := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel / 2;

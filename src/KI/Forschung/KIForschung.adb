@@ -7,7 +7,7 @@ with ForschungAllgemein;
 package body KIForschung is
 
    procedure Forschung
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case

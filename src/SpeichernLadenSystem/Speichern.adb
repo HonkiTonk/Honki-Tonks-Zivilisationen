@@ -65,19 +65,42 @@ package body Speichern is
                               Informationen.Versionsnummer);
       -- Versionsnummer speichern
       
+      
+      
       -- Rundenanzahl speichern
       Positive'Write (Stream (File => DateiSpeichernNeu),
                       GlobaleVariablen.RundenAnzahl);
       -- Rundenanzahl speichern
+      
+      
 
       -- Spieler am Zug speichern
-      GlobaleDatentypen.RassenMitNullwert'Write (Stream (File => DateiSpeichernNeu),
-                                                 GlobaleVariablen.RasseAmZugNachLaden);
+      GlobaleDatentypen.Rassen_Enum'Write (Stream (File => DateiSpeichernNeu),
+                                           GlobaleVariablen.RasseAmZugNachLaden);
       -- Spieler am Zug speichern
+      
+      
 
       -- Schleife zum Speichern der Karte
+      GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
+                                                               Karten.Kartentemperatur);
+      
+      GlobaleDatentypen.Kartenform_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
+                                                         Karten.Kartenform);
+      
       GlobaleDatentypen.Kartengröße_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
                                                             Karten.Kartengröße);
+      
+      case
+        Karten.Kartengröße
+      is
+         when GlobaleDatentypen.Karte_Nutzer =>
+            Karten.KartengrößenRecord'Write (Stream (File => DateiSpeichernNeu),
+                                               Karten.Kartengrößen (GlobaleDatentypen.Karte_Nutzer));
+            
+         when others =>
+            null;
+      end case;
 
       EAchseSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
@@ -194,8 +217,8 @@ package body Speichern is
                         null;
                      
                      when others =>
-                        GlobaleDatentypen.StatusUntereinander'Write (Stream (File => DateiSpeichernNeu),
-                                                                     GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
+                        GlobaleDatentypen.Status_Untereinander_Enum'Write (Stream (File => DateiSpeichernNeu),
+                                                                           GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
                   end case;
 
                end loop DiplomatieSchleifeInnen;

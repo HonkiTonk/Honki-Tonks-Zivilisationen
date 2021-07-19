@@ -6,9 +6,9 @@ use GlobaleDatentypen;
 package VerbesserungenAllgemein is
 
    procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.KartenVerbesserung)
+     (KartenVerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum)
      with
        Pre =>
-         (IDExtern > 0);
+         (KartenVerbesserungExtern /= GlobaleDatentypen.Leer);
 
 end VerbesserungenAllgemein;

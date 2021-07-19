@@ -12,7 +12,7 @@ with Anzeige, Cheat, Karten, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAl
 package body KarteInformationen is
 
    procedure KarteInformation
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
 
       Verteidigungsbonus := 0;
@@ -104,7 +104,7 @@ package body KarteInformationen is
      
    
    procedure InformationenGeldmenge
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -123,7 +123,7 @@ package body KarteInformationen is
      
      
    procedure InformationenGeldGewinn
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -144,7 +144,7 @@ package body KarteInformationen is
      
      
    procedure InformationenForschungsprojekt
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -164,7 +164,7 @@ package body KarteInformationen is
      
      
    procedure InformationenForschungszeit
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -185,7 +185,7 @@ package body KarteInformationen is
      
      
    procedure InformationenForschungsmenge
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -205,7 +205,7 @@ package body KarteInformationen is
      
      
    procedure InformationenForschungsrate
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -225,7 +225,7 @@ package body KarteInformationen is
    
    
    procedure InformationenEinheiten
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -379,7 +379,7 @@ package body KarteInformationen is
       
    
    procedure InformationenStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -394,8 +394,8 @@ package body KarteInformationen is
            or
              GlobaleVariablen.FeindlicheInformationenSehen = True
          then                              
-            Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungListe (KartenVerbesserung (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
-                                                                                                  StadtRasseNummerExtern.Platznummer).ID)).Verteidigungsbonus;
+            Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungListe (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
+                                                                                                  StadtRasseNummerExtern.Platznummer).ID).Verteidigungsbonus;
 
          else
             null;
@@ -420,7 +420,7 @@ package body KarteInformationen is
    
    
    procedure InformationenAllgemein
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -530,9 +530,9 @@ package body KarteInformationen is
       
       if
         Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet > 0
+                          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
       then
-         VerbesserungenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
                                                GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet);
 
          Verteidigungsbonus
@@ -561,9 +561,9 @@ package body KarteInformationen is
       
       if
         Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße > 0
+                          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
       then
-         VerbesserungenAllgemein.Beschreibung (IDExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
                                                GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße);
 
          Verteidigungsbonus

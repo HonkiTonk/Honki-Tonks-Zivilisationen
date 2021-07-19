@@ -14,7 +14,7 @@ package KarteStadt is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch);
 
    procedure Beschreibung
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
@@ -47,7 +47,7 @@ private
 
    procedure SchleifeFenster
      (YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld;
-      RasseExtern : in GlobaleDatentypen.Rassen)
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);

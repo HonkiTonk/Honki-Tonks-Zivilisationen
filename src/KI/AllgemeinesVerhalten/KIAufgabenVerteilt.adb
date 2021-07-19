@@ -39,7 +39,7 @@ package body KIAufgabenVerteilt is
    
    function EinheitAufgabeZiel
      (AufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
-      RasseExtern : in GlobaleDatentypen.Rassen;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       ZielKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
@@ -67,7 +67,7 @@ package body KIAufgabenVerteilt is
    
    
    function EinheitZiel
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       ZielKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin

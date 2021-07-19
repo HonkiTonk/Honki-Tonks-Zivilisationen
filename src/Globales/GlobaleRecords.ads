@@ -18,7 +18,7 @@ package GlobaleRecords is
    
    
    
-   -- Der Record ist tagged weil in der KIBewegungBerechnen noch die Bewertung hinzugefügt wird, später mal nach KIRecords verschieben
+   -- Der Record ist tagged weil in der KIBewegungBerechnen noch die Bewertung hinzugefügt wird
    type AchsenKartenfeldPositivRecord is tagged record
       
       EAchse : GlobaleDatentypen.EbeneVorhanden;
@@ -41,7 +41,7 @@ package GlobaleRecords is
 
    type RassePlatznummerRecord is tagged record
       
-      Rasse : GlobaleDatentypen.RassenMitNullwert;
+      Rasse : GlobaleDatentypen.Rassen_Enum;
       Platznummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       
    end record;
@@ -97,11 +97,11 @@ package GlobaleRecords is
 
    type EinwohnerArbeiterArray is array (1 .. 2) of GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
    type GebäudeVorhandenArray is array (GlobaleDatentypen.GebäudeID'Range) of Boolean;
-   type StadtMeldungenArray is array (1 .. 3) of GlobaleDatentypen.StadtMeldung;
+   type StadtMeldungenArray is array (1 .. 3) of GlobaleDatentypen.Stadt_Meldung_Enum;
 
    type StadtGebautRecord is record
       
-      ID : GlobaleDatentypen.StadtID;
+      ID : GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
       Position : AchsenKartenfeldPositivRecord;
       AmWasser : Boolean;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
@@ -154,8 +154,8 @@ package GlobaleRecords is
       Sichtbar : GlobaleDatentypen.SichtbarkeitArray;
       
       Fluss : GlobaleDatentypen.Karten_Grund_Enum;
-      VerbesserungStraße : GlobaleDatentypen.KartenVerbesserung;
-      VerbesserungGebiet : GlobaleDatentypen.KartenVerbesserung;
+      VerbesserungStraße : GlobaleDatentypen.Karten_Verbesserung_Enum;
+      VerbesserungGebiet : GlobaleDatentypen.Karten_Verbesserung_Enum;
       Ressource : GlobaleDatentypen.Karten_Grund_Enum;
       
       DurchStadtBelegterGrund : GlobaleDatentypen.BelegterGrund;

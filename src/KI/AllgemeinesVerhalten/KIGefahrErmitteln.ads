@@ -5,13 +5,21 @@ use GlobaleDatentypen;
 
 package KIGefahrErmitteln is
 
-   function KIGefahrErmitteln
+   procedure KIGefahrErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+
+private
+
+   EigeneEinheiten : Natural;
+   FeindlicheEinheiten : Natural;
+
+   EinheitUnzugeordnet : GlobaleRecords.RassePlatznummerRecord;
+
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
 end KIGefahrErmitteln;

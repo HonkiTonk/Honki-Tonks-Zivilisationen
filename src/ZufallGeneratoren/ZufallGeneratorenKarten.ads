@@ -66,7 +66,7 @@ private
 
 
    -- Generator für Chaoskarte
-   package WerteWählenChaoskarte is new Ada.Numerics.Discrete_Random (Karten_Grund_Alle_Felder_Enum);   
+   package WerteWählenChaoskarte is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum);   
    GrundGewählt : WerteWählenChaoskarte.Generator;
    -- Generator für Chaoskarte
 

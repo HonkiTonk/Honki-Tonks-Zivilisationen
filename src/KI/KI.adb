@@ -8,7 +8,7 @@ with KISiedler, KINahkampfBoden, KIFernkampfLandEinheit, KINahkampfSeeEinheit, K
 package body KI is
 
    procedure KI
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitenDurchgehen (RasseExtern => RasseExtern);
@@ -21,7 +21,7 @@ package body KI is
    
    
    procedure EinheitenDurchgehen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitenSchleife:
@@ -45,14 +45,14 @@ package body KI is
    
    
    procedure StädteDurchgehen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtSchleife:
       for StadtNummerEinsSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
          if
-           GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).ID > 0
+           GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).ID /= GlobaleDatentypen.Leer
          then
             KIStadt.KIStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummerEinsSchleifenwert));
             

@@ -60,15 +60,36 @@ package body Laden is
       Positive'Read (Stream (File => DateiLadenNeu),
                      GlobaleVariablen.RundenAnzahl);
       -- Rundenanzahl laden
+      
+      
 
       -- Spieler am Zug laden
-      GlobaleDatentypen.RassenMitNullwert'Read (Stream (File => DateiLadenNeu),
-                                                GlobaleVariablen.RasseAmZugNachLaden);
+      GlobaleDatentypen.Rassen_Enum'Read (Stream (File => DateiLadenNeu),
+                                          GlobaleVariablen.RasseAmZugNachLaden);
       -- Spieler am Zug laden
+      
+      
 
-      -- Schleife zum Laden der Karte
+      -- Schleife zum Laden der Karte      
+      GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
+                                                              Karten.Kartentemperatur);
+      
+      GlobaleDatentypen.Kartenform_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
+                                                        Karten.Kartenform);
+      
       GlobaleDatentypen.Kartengröße_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),
                                                            Karten.Kartengröße);
+      
+      case
+        Karten.Kartengröße
+      is
+         when GlobaleDatentypen.Karte_Nutzer =>
+            Karten.KartengrößenRecord'Read (Stream (File => DateiLadenNeu),
+                                              Karten.Kartengrößen (GlobaleDatentypen.Karte_Nutzer));
+            
+         when others =>
+            null;
+      end case;
 
       EAchseSchleife:
       for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
@@ -185,8 +206,8 @@ package body Laden is
                         null;
                      
                      when others =>
-                        GlobaleDatentypen.StatusUntereinander'Read (Stream (File => DateiLadenNeu),
-                                                                    GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
+                        GlobaleDatentypen.Status_Untereinander_Enum'Read (Stream (File => DateiLadenNeu),
+                                                                          GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
                   end case;
 
                end loop DiplomatieSchleifeInnen;

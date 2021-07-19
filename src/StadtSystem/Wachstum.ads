@@ -8,7 +8,7 @@ package Wachstum is
    procedure Wachstum;
    
    procedure WachstumBeiStadtGründung
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);

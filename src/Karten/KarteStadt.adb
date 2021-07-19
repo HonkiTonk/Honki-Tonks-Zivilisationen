@@ -82,23 +82,23 @@ package body KarteStadt is
                       XAchseSchleifenwert >= Karten.Stadtkarte'Last (2) - 7)
                then
                   GrafischeAnzeige.Farben (EinheitExtern      => 0,
-                                           VerbesserungExtern => 0,
+                                           VerbesserungExtern => GlobaleDatentypen.Leer,
                                            RessourceExtern    => GlobaleDatentypen.Leer,
                                            GrundExtern        => GlobaleDatentypen.Leer,
                                            CursorExtern       => True,
                                            EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                                           RasseExtern        => 0);
+                                           RasseExtern        => GlobaleDatentypen.Leer);
 
                else
                   GrafischeAnzeige.Farben (EinheitExtern      => 0,
-                                           VerbesserungExtern => 0,
+                                           VerbesserungExtern => GlobaleDatentypen.Leer,
                                            RessourceExtern    => GlobaleDatentypen.Leer,
                                            GrundExtern        => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.EAchse,
                                              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.YAchse,
                                              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.XAchse).Grund,
                                            CursorExtern       => True,
                                            EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                                           RasseExtern        => 0);
+                                           RasseExtern        => GlobaleDatentypen.Leer);
 
                end if;
 
@@ -128,14 +128,14 @@ package body KarteStadt is
 
                else
                   GrafischeAnzeige.Farben (EinheitExtern      => 0,
-                                           VerbesserungExtern => 0,
+                                           VerbesserungExtern => GlobaleDatentypen.Leer,
                                            RessourceExtern    => GlobaleDatentypen.Leer,
                                            GrundExtern        => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.EAchse,
                                              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.YAchse,
                                              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.XAchse).Grund,
                                            CursorExtern       => False,
                                            EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                                           RasseExtern        => 0);
+                                           RasseExtern        => GlobaleDatentypen.Leer);
                end if;
                
             elsif
@@ -150,26 +150,26 @@ package body KarteStadt is
 
                else
                   GrafischeAnzeige.Farben (EinheitExtern      => 0,
-                                           VerbesserungExtern => 0,
+                                           VerbesserungExtern => GlobaleDatentypen.Leer,
                                            RessourceExtern    => GlobaleDatentypen.Leer,
                                            GrundExtern        => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.EAchse,
                                              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.YAchse,
                                              GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.XAchse).Grund,
                                            CursorExtern       => False,
                                            EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                                           RasseExtern        => 0);
+                                           RasseExtern        => GlobaleDatentypen.Leer);
                end if;
 
             else
                GrafischeAnzeige.Farben (EinheitExtern      => 0,
-                                        VerbesserungExtern => 0,
+                                        VerbesserungExtern => GlobaleDatentypen.Leer,
                                         RessourceExtern    => GlobaleDatentypen.Leer,
                                         GrundExtern        => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.EAchse,
                                           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.YAchse,
                                           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.XAchse).Grund,
                                         CursorExtern       => False,
                                         EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                                        RasseExtern        => 0);
+                                        RasseExtern        => GlobaleDatentypen.Leer);
             end if;
 
             case
@@ -239,7 +239,7 @@ package body KarteStadt is
 
    procedure SchleifeFenster
      (YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld;
-      RasseExtern : in GlobaleDatentypen.Rassen)
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Hier muss nur von 0 .. 6 geloopt werden, da aber Stadtfeld nur von 1 .. 20 geht, wird eins weiter geloopt und im if eins abgezogen
@@ -250,12 +250,12 @@ package body KarteStadt is
            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt = (YAchseExtern, XAchseExtern + UmgebungSchleifenwert - 1)
          then
             GrafischeAnzeige.Farben (EinheitExtern      => 0,
-                                     VerbesserungExtern => 0,
+                                     VerbesserungExtern => GlobaleDatentypen.Leer,
                                      RessourceExtern    => GlobaleDatentypen.Leer,
                                      GrundExtern        => GlobaleDatentypen.Leer,
                                      CursorExtern       => True,
                                      EigeneRasseExtern  => RasseExtern,
-                                     RasseExtern        => 0);
+                                     RasseExtern        => GlobaleDatentypen.Leer);
 
          else
             Put (Item => GlobaleKonstanten.NichtSichtbar);
@@ -285,12 +285,12 @@ package body KarteStadt is
               UmgebungSchleifenwert < -Stadtumgebungsgröße or UmgebungSchleifenwert > Stadtumgebungsgröße
             then
                GrafischeAnzeige.Farben (EinheitExtern      => 0,
-                                        VerbesserungExtern => 0,
+                                        VerbesserungExtern => GlobaleDatentypen.Leer,
                                         RessourceExtern    => GlobaleDatentypen.Leer,
                                         GrundExtern        => GlobaleDatentypen.Leer,
                                         CursorExtern       => True,
                                         EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                                        RasseExtern        => 0);
+                                        RasseExtern        => GlobaleDatentypen.Leer);
 
             else
                CursorYAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse - 4;
@@ -303,21 +303,21 @@ package body KarteStadt is
                is
                   when 0 =>
                      GrafischeAnzeige.Farben (EinheitExtern      => 0,
-                                              VerbesserungExtern => 0,
+                                              VerbesserungExtern => GlobaleDatentypen.Leer,
                                               RessourceExtern    => GlobaleDatentypen.Leer,
                                               GrundExtern        => GlobaleDatentypen.Leer,
                                               CursorExtern       => True,
                                               EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                                              RasseExtern        => 0);
+                                              RasseExtern        => GlobaleDatentypen.Leer);
 
                   when others =>
                      GrafischeAnzeige.Farben (EinheitExtern      => 0,
-                                              VerbesserungExtern => 0,
+                                              VerbesserungExtern => GlobaleDatentypen.Leer,
                                               RessourceExtern    => GlobaleDatentypen.Leer,
                                               GrundExtern        => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund,
                                               CursorExtern       => True,
                                               EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
-                                              RasseExtern        => 0);
+                                              RasseExtern        => GlobaleDatentypen.Leer);
                end case;
                InformationenStadtAufrufen := True;
             end if;
@@ -412,7 +412,7 @@ package body KarteStadt is
    
 
    procedure Beschreibung
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
 
       StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);

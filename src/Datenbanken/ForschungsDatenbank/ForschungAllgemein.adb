@@ -13,7 +13,7 @@ package body ForschungAllgemein is
 
    procedure Beschreibung
      (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in GlobaleDatentypen.Rassen)
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -33,8 +33,8 @@ package body ForschungAllgemein is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
                                            ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => Positive (IDExtern) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
-                                           LetzteZeileExtern      => Positive (IDExtern) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
+                                           ErsteZeileExtern       => Positive (IDExtern),
+                                           LetzteZeileExtern      => Positive (IDExtern),
                                            AbstandAnfangExtern    => GlobaleTexte.Keiner,
                                            AbstandMitteExtern     => GlobaleTexte.Keiner,
                                            AbstandEndeExtern      => GlobaleTexte.Keiner);
@@ -46,7 +46,7 @@ package body ForschungAllgemein is
 
    -- Hier noch mehr Optionen einbauen, z. B. Informationen über bereits erforschte Technologien
    procedure Forschung
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       ForschungSchleife:
@@ -74,7 +74,7 @@ package body ForschungAllgemein is
 
 
    procedure ForschungZeit
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -96,7 +96,7 @@ package body ForschungAllgemein is
 
 
    function AuswahlForschungNeu
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ForschungIDMitNullWert
    is begin
       
@@ -108,7 +108,7 @@ package body ForschungAllgemein is
          
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
-                                Positive (ForschungenSchleifenwert) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern))) = "|"
+                                Positive (ForschungenSchleifenwert))) = "|"
          then
             exit ForschungSchleife;
 
@@ -142,7 +142,7 @@ package body ForschungAllgemein is
             is
                when True =>
                   Anzeige.AllgemeineAnzeigeText (Ende).Text := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
-                                                                                              Positive (ForschungenSchleifenwert) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern));
+                                                                                              Positive (ForschungenSchleifenwert));
                   Anzeige.AllgemeineAnzeigeText (Ende).Nummer := Positive (ForschungenSchleifenwert);
                   Ende := Ende + 1;
                   
@@ -240,15 +240,15 @@ package body ForschungAllgemein is
    
    
    procedure Ermöglicht
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
    is begin
       
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                                     TextDateiExtern        => GlobaleTexte.Beschreibung_Forschung_Ermöglicht,
                                     ÜberschriftZeileExtern => 43,
-                                    ErsteZeileExtern       => Positive (ForschungNummerExtern) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
-                                    LetzteZeileExtern      => Positive (ForschungNummerExtern) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
+                                    ErsteZeileExtern       => Positive (ForschungNummerExtern),
+                                    LetzteZeileExtern      => Positive (ForschungNummerExtern),
                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
       
@@ -268,8 +268,8 @@ package body ForschungAllgemein is
                Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                               TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
                                               ÜberschriftZeileExtern => 0,
-                                              ErsteZeileExtern       => Positive (TechnologieSchleifenwert) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
-                                              LetzteZeileExtern      => Positive (TechnologieSchleifenwert) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
+                                              ErsteZeileExtern       => Positive (TechnologieSchleifenwert),
+                                              LetzteZeileExtern      => Positive (TechnologieSchleifenwert),
                                               AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                               AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
                                               AbstandEndeExtern      => GlobaleTexte.Keiner);
@@ -290,7 +290,7 @@ package body ForschungAllgemein is
    
    -- Funktioniert noch nicht ganz richtig, weil durch die Schleife die Überschrift immer wieder ausgegeben wird!
    procedure Benötigt
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
    is begin
           
@@ -306,10 +306,8 @@ package body ForschungAllgemein is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
                                            ÜberschriftZeileExtern => 44,
-                                           ErsteZeileExtern       => Positive (ForschungsDatenbank.ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert))
-                                           + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
-                                           LetzteZeileExtern      => Positive (ForschungsDatenbank.ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert))
-                                           + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
+                                           ErsteZeileExtern       => Positive (ForschungsDatenbank.ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert)),
+                                           LetzteZeileExtern      => Positive (ForschungsDatenbank.ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert)),
                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                            AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
                                            AbstandEndeExtern      => GlobaleTexte.Keiner);
@@ -324,7 +322,7 @@ package body ForschungAllgemein is
    
    
    procedure ForschungsBaum
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       AktuelleAuswahl := 1;
@@ -337,8 +335,8 @@ package body ForschungAllgemein is
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                                         TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
                                         ÜberschriftZeileExtern => 45,
-                                        ErsteZeileExtern       => Positive (AktuelleAuswahl) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
-                                        LetzteZeileExtern      => Positive (AktuelleAuswahl) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
+                                        ErsteZeileExtern       => Positive (AktuelleAuswahl),
+                                        LetzteZeileExtern      => Positive (AktuelleAuswahl),
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleTexte.Keiner,
                                         AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
@@ -347,8 +345,8 @@ package body ForschungAllgemein is
          Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                        TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Lang,
                                        ÜberschriftZeileExtern => 0,
-                                       ErsteZeileExtern       => Positive (AktuelleAuswahl) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
-                                       LetzteZeileExtern      => Positive (AktuelleAuswahl) + ForschungsDatenbank.RassenAufschlagForschung (RasseExtern),
+                                       ErsteZeileExtern       => Positive (AktuelleAuswahl),
+                                       LetzteZeileExtern      => Positive (AktuelleAuswahl),
                                        AbstandAnfangExtern    => GlobaleTexte.Keiner,
                                        AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
          New_Line;
@@ -400,7 +398,7 @@ package body ForschungAllgemein is
    is begin
       
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)

@@ -6,7 +6,7 @@ use GlobaleDatentypen, GlobaleRecords;
 package Karte is
 
    procedure AnzeigeKarte
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
@@ -37,7 +37,7 @@ private
                                                  3 => (0, 5, 34));
 
    procedure CursorPositionAltFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
      with
        Pre =>

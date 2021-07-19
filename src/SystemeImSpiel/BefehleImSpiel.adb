@@ -10,7 +10,7 @@ with InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, Naech
 package body BefehleImSpiel is
 
    function Befehle
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin 
       
@@ -105,7 +105,7 @@ package body BefehleImSpiel is
    
    
    procedure AuswahlEinheitStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -183,7 +183,7 @@ package body BefehleImSpiel is
 
 
    procedure EinheitOderStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       AuswahlExtern : in Integer;
       StadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
       EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
@@ -223,7 +223,7 @@ package body BefehleImSpiel is
    
    
    procedure BaueStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -254,7 +254,7 @@ package body BefehleImSpiel is
    
    
    procedure Technologie
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -283,7 +283,7 @@ package body BefehleImSpiel is
    
    
    procedure EinheitBefehle
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
    is begin
                      
@@ -340,7 +340,7 @@ package body BefehleImSpiel is
    
    
    procedure StadtUmbenennen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
@@ -359,7 +359,7 @@ package body BefehleImSpiel is
    
    
    procedure StadtAbreißen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,

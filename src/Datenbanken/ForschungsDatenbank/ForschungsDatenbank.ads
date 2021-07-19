@@ -9,9 +9,9 @@ package ForschungsDatenbank is
 
    -- PreisForschung, AnforderungForschung
 
-   type ForschungListeArray is array (GlobaleDatentypen.Rassen'Range, GlobaleDatentypen.ForschungID'Range) of DatenbankRecords.ForschungListeRecord;
+   type ForschungListeArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.ForschungID'Range) of DatenbankRecords.ForschungListeRecord;
    ForschungListe : ForschungListeArray := (
-                                            1 =>
+                                            GlobaleDatentypen.Rasse_1 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -38,7 +38,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            2 =>
+                                            GlobaleDatentypen.Rasse_2 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -65,7 +65,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            3 =>
+                                            GlobaleDatentypen.Rasse_3 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -92,7 +92,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            4 =>
+                                            GlobaleDatentypen.Rasse_4 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -119,7 +119,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            5 =>
+                                            GlobaleDatentypen.Rasse_5 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -146,7 +146,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            6 =>
+                                            GlobaleDatentypen.Rasse_6 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -173,7 +173,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            7 =>
+                                            GlobaleDatentypen.Rasse_7 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -200,7 +200,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            8 =>
+                                            GlobaleDatentypen.Rasse_8 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -227,7 +227,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            9 =>
+                                            GlobaleDatentypen.Rasse_9 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -254,7 +254,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            10 =>
+                                            GlobaleDatentypen.Rasse_10 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -281,7 +281,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            11 =>
+                                            GlobaleDatentypen.Rasse_11 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -308,7 +308,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            12 =>
+                                            GlobaleDatentypen.Rasse_12 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -335,7 +335,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            13 =>
+                                            GlobaleDatentypen.Rasse_13 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -362,7 +362,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            14 =>
+                                            GlobaleDatentypen.Rasse_14 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -389,7 +389,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            15 =>
+                                            GlobaleDatentypen.Rasse_15 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -416,7 +416,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            16 =>
+                                            GlobaleDatentypen.Rasse_16 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -443,7 +443,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            17 =>
+                                            GlobaleDatentypen.Rasse_17 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -470,7 +470,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                            18 =>
+                                            GlobaleDatentypen.Rasse_18 =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 => (100, (others => 0)),
@@ -500,30 +500,10 @@ package ForschungsDatenbank is
 
    procedure StandardForschungsDatenbankWiederherstellen;
 
-   type RassenAufschlagArray is array (GlobaleDatentypen.Rassen'Range) of Natural;
-   RassenAufschlagForschung : constant RassenAufschlagArray := (1 => 0,
-                                                                2 => 0,
-                                                                3 => 0,
-                                                                4 => 0,
-                                                                5 => 0,
-                                                                6 => 0,
-                                                                7 => 0,
-                                                                8 => 0,
-                                                                9 => 0,
-                                                                10 => 0,
-                                                                11 => 0,
-                                                                12 => 0,
-                                                                13 => 0,
-                                                                14 => 0,
-                                                                15 => 0,
-                                                                16 => 0,
-                                                                17 => 0,
-                                                                18 => 0);
-
 private
 
    ForschungListeStandard : constant ForschungListeArray := (
-                                                             1 =>
+                                                             GlobaleDatentypen.Rasse_1 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -550,7 +530,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             2 =>
+                                                             GlobaleDatentypen.Rasse_2 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -577,7 +557,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             3 =>
+                                                             GlobaleDatentypen.Rasse_3 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -604,7 +584,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             4 =>
+                                                             GlobaleDatentypen.Rasse_4 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -631,7 +611,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             5 =>
+                                                             GlobaleDatentypen.Rasse_5 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -658,7 +638,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             6 =>
+                                                             GlobaleDatentypen.Rasse_6 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -685,7 +665,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             7 =>
+                                                             GlobaleDatentypen.Rasse_7 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -712,7 +692,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             8 =>
+                                                             GlobaleDatentypen.Rasse_8 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -739,7 +719,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             9 =>
+                                                             GlobaleDatentypen.Rasse_9 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -766,7 +746,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             10 =>
+                                                             GlobaleDatentypen.Rasse_10 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -793,7 +773,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             11 =>
+                                                             GlobaleDatentypen.Rasse_11 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -820,7 +800,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             12 =>
+                                                             GlobaleDatentypen.Rasse_12 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -847,7 +827,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             13 =>
+                                                             GlobaleDatentypen.Rasse_13 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -874,7 +854,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             14 =>
+                                                             GlobaleDatentypen.Rasse_14 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -901,7 +881,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             15 =>
+                                                             GlobaleDatentypen.Rasse_15 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -928,7 +908,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             16 =>
+                                                             GlobaleDatentypen.Rasse_16 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -955,7 +935,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             17 =>
+                                                             GlobaleDatentypen.Rasse_17 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),
@@ -982,7 +962,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeererWertForschungListe),
 
-                                                             18 =>
+                                                             GlobaleDatentypen.Rasse_18 =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 => (100, (others => 0)),

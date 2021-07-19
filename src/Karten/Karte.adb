@@ -8,7 +8,7 @@ with Karten, KartePositionPruefen, KarteInformationen, GrafischeAnzeige;
 package body Karte is
 
    procedure AnzeigeKarte
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -117,7 +117,7 @@ package body Karte is
    
    
    procedure CursorPositionAltFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
    is begin
       

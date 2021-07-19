@@ -20,7 +20,7 @@ private
    procedure BerechnungenNachZugendeAllerSpieler;
 
    function MenschlicherSpieler
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Integer
      with
        Pre =>

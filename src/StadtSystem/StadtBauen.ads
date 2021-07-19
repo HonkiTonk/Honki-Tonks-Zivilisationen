@@ -43,13 +43,13 @@ package StadtBauen is
 
 private
 
-   Stadtart : GlobaleDatentypen.StadtID;
+   Stadtart : GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
 
    StadtNummer : GlobaleDatentypen.MaximaleStädte;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
-   type KIStadtNameArray is array (GlobaleDatentypen.Rassen'Range, 1 .. GlobaleVariablen.StadtGebautArray'Last (2) * 2) of Natural;
+   type KIStadtNameArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, 1 .. GlobaleVariablen.StadtGebautArray'Last (2) * 2) of Natural;
    KIStadtName : KIStadtNameArray := (others => (others => 0));
 
    procedure AmWasser
@@ -63,12 +63,12 @@ private
 
 
    function HauptstadtPrüfen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-      return GlobaleDatentypen.StadtID
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer),
        Post =>
-         (HauptstadtPrüfen'Result > 0);
+         (HauptstadtPrüfen'Result /= GlobaleDatentypen.Leer);
 
 end StadtBauen;

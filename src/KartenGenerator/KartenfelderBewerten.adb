@@ -10,10 +10,10 @@ package body KartenfelderBewerten is
    procedure KartenfelderBewerten
    is
 
-      task UnterwasserUnterirdisch;
-      task PlanetenInneres;
+      task UnterwasserUnterirdischBewerten;
+      task PlanetenInneresBewerten;
       
-      task body UnterwasserUnterirdisch
+      task body UnterwasserUnterirdischBewerten
       is begin
          
          YAchseUnterwasserSchleife:
@@ -27,11 +27,11 @@ package body KartenfelderBewerten is
             end loop XAchseUnterwasserSchleife;
          end loop YAchseUnterwasserSchleife;
          
-      end UnterwasserUnterirdisch;
+      end UnterwasserUnterirdischBewerten;
       
       
       
-      task body PlanetenInneres
+      task body PlanetenInneresBewerten
       is begin
          
          YAchseInneresSchleife:
@@ -45,7 +45,7 @@ package body KartenfelderBewerten is
             end loop XAchseInneresSchleife;
          end loop YAchseInneresSchleife;
          
-      end PlanetenInneres;
+      end PlanetenInneresBewerten;
       
    begin
       

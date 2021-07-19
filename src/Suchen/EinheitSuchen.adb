@@ -5,7 +5,7 @@ with GlobaleKonstanten;
 package body EinheitSuchen is
 
    function KoordinatenEinheitMitRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
@@ -31,7 +31,7 @@ package body EinheitSuchen is
 
 
    function KoordinatenTransporterMitRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
@@ -64,7 +64,7 @@ package body EinheitSuchen is
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          EinheitSchleife:
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
@@ -85,20 +85,20 @@ package body EinheitSuchen is
          end loop EinheitSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.RassenMitNullwert'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
       
    end KoordinatenEinheitOhneRasseSuchen;
 
 
 
    function KoordinatenEinheitOhneSpezielleRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleRecords.RassePlatznummerRecord
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          EinheitSchleife:
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
 
@@ -121,7 +121,7 @@ package body EinheitSuchen is
          end loop EinheitSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.RassenMitNullwert'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
       
    end KoordinatenEinheitOhneSpezielleRasseSuchen;
 
@@ -179,7 +179,7 @@ package body EinheitSuchen is
    
    
    function MengeEinesEinheitenTypsSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       EinheitTypExtern : in GlobaleDatentypen.EinheitenTyp;
       GesuchteMenge : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
@@ -224,7 +224,7 @@ package body EinheitSuchen is
    
    
    function AnzahlEinheitenSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       GesuchteMenge : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin

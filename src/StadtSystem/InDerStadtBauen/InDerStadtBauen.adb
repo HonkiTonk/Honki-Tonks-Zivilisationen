@@ -5,8 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with GebaeudeDatenbank, EinheitenDatenbank, DatenbankRecords;
-use DatenbankRecords;
+with GebaeudeDatenbank, EinheitenDatenbank;
      
 with Anzeige, Eingabe;
 
@@ -86,7 +85,7 @@ package body InDerStadtBauen is
    is begin
          
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          StadtSchleife:
          for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
 
@@ -96,7 +95,7 @@ package body InDerStadtBauen is
                exit StadtSchleife;
                      
             elsif
-              GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummer).ID = 0
+              GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummer).ID = GlobaleDatentypen.Leer
             then
                null;
                         
@@ -124,7 +123,7 @@ package body InDerStadtBauen is
          
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz),
-                                Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse))) = "|"
+                                Positive (GebäudeSchleifenwert))) = "|"
          then
             exit GebäudeSchleife;
 
@@ -143,14 +142,14 @@ package body InDerStadtBauen is
 
             else
                Anzeige.AllgemeineAnzeigeText (Ende).Text
-                 := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
+                 := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert));
                Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
                Ende := Ende + 1;
             end if;
             
          else
             Anzeige.AllgemeineAnzeigeText (Ende).Text
-              := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert) + RassenAufschlagGebäude (StadtRasseNummerExtern.Rasse));
+              := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert));
             Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
             Ende := Ende + 1;
          end if;
@@ -162,18 +161,28 @@ package body InDerStadtBauen is
          
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
-                                Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse))) = "|"
+                                Positive (EinheitSchleifenwert))) = "|"
          then
             exit EinheitenSchleife;
 
          elsif
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AmWasser = False
            and
-             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (2) = True
+             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Wasser) = True
            and
-             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (1) = False
+             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Boden) = False
            and
-             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (3 .. 8) = (False, False, False, False, False, False)
+             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Luft) = False
+           and
+             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Weltraum) = False
+           and
+             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Unteridrisch) = False
+           and
+             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Lava) = False
+           and
+             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Planeteninneres) = False
+           and
+             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Unterwasser) = False
          then
             null;
 
@@ -188,14 +197,14 @@ package body InDerStadtBauen is
             else
                Anzeige.AllgemeineAnzeigeText (Ende).Text
                  := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
-                                                   Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
+                                                   Positive (EinheitSchleifenwert));
                Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
                Ende := Ende + 1;
             end if;
             
          else
             Anzeige.AllgemeineAnzeigeText (Ende).Text
-              := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert) + RassenAufschlagEinheiten (StadtRasseNummerExtern.Rasse));
+              := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert));
             Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
             Ende := Ende + 1;
          end if;

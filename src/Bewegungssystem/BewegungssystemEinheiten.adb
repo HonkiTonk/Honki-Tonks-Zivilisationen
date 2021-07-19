@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitenDatenbank, VerbesserungenDatenbank;
+with EinheitenDatenbank;
 
 with Karte, Diplomatie, Sichtbarkeit, BewegungBlockiert, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungLadenEntladen, StadtSuchen;
 
@@ -255,20 +255,19 @@ package body BewegungssystemEinheiten is
    is begin
 
       if
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (1) = True
+        EinheitenDatenbank.EinheitenListe
+          (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Boden) = True
         and
-          EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (3) = False
+          EinheitenDatenbank.EinheitenListe
+            (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Luft) = False
       then
          BonusBeiBewegung := 0;
 
          case
            Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße
          is
-            when 5 .. 19 =>
+            when GlobaleDatentypen.Karten_Verbesserung_Straße_Enum'Range =>
                BonusBeiBewegung := BonusBeiBewegung + 1;
-
-            when 20 .. VerbesserungenDatenbank.VerbesserungListe'Last =>
-               BonusBeiBewegung := BonusBeiBewegung + 10;
                   
             when others =>
                null;

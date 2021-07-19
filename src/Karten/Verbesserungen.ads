@@ -22,7 +22,7 @@ private
    
    Grund : GlobaleDatentypen.Karten_Grund_Enum;
 
-   Straßenwert : Integer;
+   Straßenwert : Positive;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 

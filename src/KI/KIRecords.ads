@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
-package KIRecords is
+with GlobaleRecords;
 
-   
+package KIRecords is
 
 end KIRecords;

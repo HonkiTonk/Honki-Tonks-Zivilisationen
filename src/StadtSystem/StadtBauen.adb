@@ -37,7 +37,7 @@ package body StadtBauen is
          if
            StadtNummerSchleifenwert = GlobaleVariablen.StadtGebautArray'Last (2)
            and
-             GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= 0
+             GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= GlobaleDatentypen.Leer
          then
             if
               GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
@@ -51,7 +51,7 @@ package body StadtBauen is
             end if;
 
          elsif
-           GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= 0
+           GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= GlobaleDatentypen.Leer
          then
             null;
             
@@ -186,19 +186,18 @@ package body StadtBauen is
 
 
    function HauptstadtPrüfen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
-      return GlobaleDatentypen.StadtID
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       
-      -- Wenn die Hauptstadt existiert gibt es eine Zwei zurück, sonst eine Eins.
       HauptsstadtSchleife:
       for HauptstadtSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
          
          case
            GlobaleVariablen.StadtGebaut (RasseExtern, HauptstadtSchleifenwert).ID
          is
-            when 1 =>
-               return 2;
+            when GlobaleDatentypen.Eigene_Hauptstadt =>
+               return GlobaleDatentypen.Eigene_Stadt;
                
             when others =>
                null;
@@ -206,7 +205,7 @@ package body StadtBauen is
          
       end loop HauptsstadtSchleife;
       
-      return 1;
+      return GlobaleDatentypen.Eigene_Hauptstadt;
       
    end HauptstadtPrüfen;
    
@@ -224,24 +223,22 @@ package body StadtBauen is
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                                                         ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
-            case
-              KartenWert.XAchse
-            is
-               when 0 =>
-                  null;
-                  
-               when others =>                  
-                  case
-                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
-                  is
-                     when GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range =>
-                        GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).AmWasser := True;
-                        exit YAchsenSchleife;
-                        
-                     when others =>
-                        null;
-                  end case;
-            end case;
+            if
+              KartenWert.XAchse = 0
+            then
+               null;
+               
+            elsif
+              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
+            in
+              GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range
+            then
+               GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).AmWasser := True;
+               exit YAchsenSchleife;
+               
+            else
+               null;
+            end if;
                   
          end loop XAchsenSchleife;
       end loop YAchsenSchleife;
@@ -261,7 +258,8 @@ package body StadtBauen is
            Karten.Weltkarte (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.EAchse,
                              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.YAchse,
                              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.XAchse).DurchStadtBelegterGrund
-             = GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Rasse) * GlobaleKonstanten.RassenMulitplikationWert + GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer)
+             = GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse)) * GlobaleKonstanten.RassenMulitplikationWert
+           + GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer)
          then
             Karten.Weltkarte (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.EAchse,
                               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.YAchse,

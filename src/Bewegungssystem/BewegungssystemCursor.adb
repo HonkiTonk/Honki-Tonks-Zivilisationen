@@ -9,7 +9,7 @@ package body BewegungssystemCursor is
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
       RichtungExtern : in GlobaleDatentypen.Tastenbelegung_Bewegung_Enum;
-      RasseExtern : in GlobaleDatentypen.Rassen)
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       case
@@ -63,7 +63,7 @@ package body BewegungssystemCursor is
 
 
    procedure GeheZuCursor
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
@@ -116,7 +116,7 @@ package body BewegungssystemCursor is
 
    procedure BewegungCursorBerechnen
      (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen)
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       -- Kann nicht nach KartePositionPruefen.KartenPositionBestimmen verschoben werden, da darüber auch Einheiten geprüft werden
@@ -165,7 +165,7 @@ package body BewegungssystemCursor is
 
    procedure BewegungCursorBerechnenStadt
      (ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen)
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
 
       if

@@ -24,7 +24,7 @@ package body ZufallGeneratorenSpieleinstellungen is
 
          when 4 .. 5 => -- Spieleranzahl oder Rasse wählen
             ZufälligeSpieleranzahlRasseWählen.Reset (ZufälligeSpieleranzahlRasseGewählt);
-            return ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt);
+            return GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt));
 
          when 6 => -- Schwierigkeitsgrad wählen
             ZufälligenSchwierigkeitsgradWählen.Reset (ZufälligerSchwierigkeitsgradGewählt);

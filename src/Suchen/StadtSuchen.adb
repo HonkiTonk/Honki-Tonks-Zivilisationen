@@ -5,7 +5,7 @@ with GlobaleKonstanten, Eingabe;
 package body StadtSuchen is
 
    function KoordinatenStadtMitRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
@@ -36,7 +36,7 @@ package body StadtSuchen is
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          StadtSchleife:
          for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
@@ -57,20 +57,20 @@ package body StadtSuchen is
          end loop StadtSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.RassenMitNullwert'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
       
    end KoordinatenStadtOhneRasseSuchen;
    
    
    
    function KoordinatenStadtOhneSpezielleRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleRecords.RassePlatznummerRecord
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          StadtSchleife:
          for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
 
@@ -93,14 +93,14 @@ package body StadtSuchen is
          end loop StadtSchleife;
       end loop RasseSchleife;
    
-      return (GlobaleDatentypen.RassenMitNullwert'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
       
    end KoordinatenStadtOhneSpezielleRasseSuchen;
    
    
    
    function AnzahlStädteErmitteln
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
       
@@ -110,7 +110,7 @@ package body StadtSuchen is
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
          
          if
-           GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID /= 0
+           GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID /= GlobaleDatentypen.Leer
          then
             AnzahlStädte := AnzahlStädte + 1;
             
@@ -133,7 +133,7 @@ package body StadtSuchen is
       StadtName := Eingabe.StadtName;
       
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          StadtSchleife:
          for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
             
@@ -145,7 +145,7 @@ package body StadtSuchen is
             elsif
               GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).Name = StadtName
               and
-                GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID > 0
+                GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID /= GlobaleDatentypen.Leer
             then
                return (RasseSchleifenwert, StadtNummerSchleifenwert);
                
@@ -156,7 +156,7 @@ package body StadtSuchen is
          end loop StadtSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.RassenMitNullwert'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
       
    end StadtNachNamenSuchen;
 

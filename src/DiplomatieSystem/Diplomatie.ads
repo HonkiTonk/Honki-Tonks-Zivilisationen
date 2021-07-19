@@ -6,13 +6,13 @@ use GlobaleDatentypen;
 package Diplomatie is
 
    procedure DiplomatieAuswählen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure Erstkontakt
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
@@ -22,7 +22,7 @@ package Diplomatie is
             GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure KriegDurchDirektenAngriff
-     (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen)
+     (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (AngreifendeRasseExtern /= VerteidigendeRasseExtern
@@ -32,8 +32,8 @@ package Diplomatie is
             GlobaleVariablen.RassenImSpiel (VerteidigendeRasseExtern) /= GlobaleDatentypen.Leer);
 
    function DiplomatischenStatusPrüfen
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
-      return GlobaleDatentypen.StatusUntereinander
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.Status_Untereinander_Enum
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
@@ -62,7 +62,7 @@ private
    Gewonnen : Boolean;
 
    procedure ErstkontaktMenschMensch
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
@@ -72,7 +72,7 @@ private
             GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch);
 
    procedure ErstkontaktMenschKI
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen)
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern

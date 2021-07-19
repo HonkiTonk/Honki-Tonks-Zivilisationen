@@ -15,7 +15,7 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.Wichtiges := (others => GlobaleKonstanten.LeererWertWichtigesZeug);
       GlobaleVariablen.Diplomatie := (others => (others => GlobaleDatentypen.Kein_Kontakt));
       GlobaleVariablen.RundenAnzahl := 1;
-      GlobaleVariablen.RasseAmZugNachLaden := 0;
+      GlobaleVariablen.RasseAmZugNachLaden := GlobaleDatentypen.Leer;
       GlobaleVariablen.CursorImSpiel := (others => GlobaleKonstanten.LeererWertCursor);
 
       Karten.Weltkarte := (others => (others => (others => GlobaleKonstanten.LeererWertWeltkarte)));

@@ -11,7 +11,7 @@ with Karten;
 package StadtSuchen is
    
    function KoordinatenStadtMitRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
      with
@@ -31,10 +31,10 @@ package StadtSuchen is
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
          Post =>
-           ((if KoordinatenStadtOhneRasseSuchen'Result.Rasse > 0 then GlobaleVariablen.RassenImSpiel (KoordinatenStadtOhneRasseSuchen'Result.Rasse) /= GlobaleDatentypen.Leer));
+           ((if KoordinatenStadtOhneRasseSuchen'Result.Rasse /= GlobaleDatentypen.Leer then GlobaleVariablen.RassenImSpiel (KoordinatenStadtOhneRasseSuchen'Result.Rasse) /= GlobaleDatentypen.Leer));
 
    function KoordinatenStadtOhneSpezielleRasseSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleRecords.RassePlatznummerRecord
      with
@@ -45,10 +45,10 @@ package StadtSuchen is
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer),
          Post =>
-           ((if KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse > 0 then GlobaleVariablen.RassenImSpiel (KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse) /= GlobaleDatentypen.Leer));
+           ((if KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse /= GlobaleDatentypen.Leer then GlobaleVariablen.RassenImSpiel (KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse) /= GlobaleDatentypen.Leer));
    
    function AnzahlStädteErmitteln
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
@@ -63,7 +63,7 @@ private
    
    StadtName : Unbounded_Wide_Wide_String;
    
-   type AktuelleStadtArray is array (GlobaleDatentypen.Rassen) of GlobaleDatentypen.MaximaleStädteMitNullWert;
+   type AktuelleStadtArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.MaximaleStädteMitNullWert;
    AktuelleStadt : AktuelleStadtArray := (others => 0);
 
 end StadtSuchen;

@@ -11,14 +11,15 @@ package body KIMindestBewertungKartenfeldErmitteln is
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
-      if
-        EinheitRasseNummerExtern.Rasse <= 5
-      then
-         MindestBewertungKartenfeld := 90;
+      case
+        EinheitRasseNummerExtern.Rasse
+      is
+         when GlobaleDatentypen.Rasse_1 =>
+            MindestBewertungKartenfeld := 90;
             
-      else
-         MindestBewertungKartenfeld := 90;
-      end if;
+         when others =>
+            MindestBewertungKartenfeld := 90;
+      end case;
       
       EAchseSchleife:
       for EAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop

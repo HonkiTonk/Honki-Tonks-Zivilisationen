@@ -133,7 +133,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
         and
@@ -143,7 +143,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
         and
@@ -154,7 +154,9 @@ package body Verbesserungen is
       elsif
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungStraße in 5 .. 19
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungStraße
+      in
+        GlobaleDatentypen.Karten_Verbesserung_Straße_Enum'Range
       then
          VerbesserungFehler (WelcherFehlerExtern => 4);
          return;
@@ -196,7 +198,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
         and
@@ -206,7 +208,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
         and
@@ -217,7 +219,7 @@ package body Verbesserungen is
       elsif
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = 21
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = GlobaleDatentypen.Mine
       then
          VerbesserungFehler (WelcherFehlerExtern => 4);
          return;
@@ -225,11 +227,11 @@ package body Verbesserungen is
       elsif
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = 20
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = GlobaleDatentypen.Farm
         or
           Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = 22
+                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = GlobaleDatentypen.Festung
       then
          case
            EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8)
@@ -284,7 +286,7 @@ package body Verbesserungen is
    is begin
 
       if
-        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (1) = False
         and
@@ -294,7 +296,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (1) = False
         and
@@ -305,7 +307,7 @@ package body Verbesserungen is
       elsif
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = 20
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = GlobaleDatentypen.Farm
       then
          VerbesserungFehler (WelcherFehlerExtern => 4);
          return;
@@ -321,11 +323,11 @@ package body Verbesserungen is
       elsif
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = 21
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = GlobaleDatentypen.Mine
         or
           Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = 22
+                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = GlobaleDatentypen.Festung
       then
          case
            EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8)
@@ -380,7 +382,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
@@ -390,7 +392,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
@@ -401,7 +403,7 @@ package body Verbesserungen is
       elsif
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = 22
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = GlobaleDatentypen.Festung
       then
          VerbesserungFehler (WelcherFehlerExtern => 4);
          return;
@@ -409,11 +411,11 @@ package body Verbesserungen is
       elsif
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = 20
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = GlobaleDatentypen.Farm
         or
           Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = 21
+                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = GlobaleDatentypen.Mine
       then
          case
            EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (WelcheAuswahlExtern => 8)
@@ -464,11 +466,11 @@ package body Verbesserungen is
       if
         Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = 20
+                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = GlobaleDatentypen.Farm
         or
           Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = 21
+                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet = GlobaleDatentypen.Mine
       then
          if
            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
@@ -526,7 +528,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
@@ -536,7 +538,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse in 1 .. 1
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
@@ -654,10 +656,10 @@ package body Verbesserungen is
       then
          Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := 0;
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := GlobaleDatentypen.Leer;
          Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungStraße := 0;
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungStraße := GlobaleDatentypen.Leer;
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.0;
          
       elsif
@@ -665,10 +667,10 @@ package body Verbesserungen is
       then
          Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := 0;
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := GlobaleDatentypen.Leer;
          Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungStraße := 0;
+                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungStraße := GlobaleDatentypen.Leer;
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.0;
                      
       else
@@ -694,7 +696,7 @@ package body Verbesserungen is
    is begin
       
       RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen'Range loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          EinheitenSchleife:
          for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebaut'Range (2) loop
          
@@ -778,17 +780,17 @@ package body Verbesserungen is
          when GlobaleDatentypen.Mine_Bauen =>
             Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := 21;
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := GlobaleDatentypen.Mine;
             
          when GlobaleDatentypen.Farm_Bauen =>
             Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := 20;
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := GlobaleDatentypen.Farm;
             
          when GlobaleDatentypen.Festung_Bauen =>
             Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := 22;
+                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := GlobaleDatentypen.Festung;
               
          when GlobaleDatentypen.Wald_Aufforsten =>
             Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
@@ -797,11 +799,13 @@ package body Verbesserungen is
             if
               Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet in 20 .. 21
+                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet
+            in
+              GlobaleDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range
             then
                Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := 0;
+                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := GlobaleDatentypen.Leer;
                   
             else
                null;
@@ -853,219 +857,223 @@ package body Verbesserungen is
             then
                null;
                
+            elsif
+              XÄnderungSchleifenwert = -1
+              and
+                YÄnderungSchleifenwert = 0
+            then
+               case
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
+               is
+                  when GlobaleDatentypen.Leer =>
+                     Straßenwert := Straßenwert - 1_000;
+
+                  when GlobaleDatentypen.Straße_Senkrecht =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Rechts;
+                     
+                  when GlobaleDatentypen.Straßenkurve_Unten_Links =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Unten;
+
+                  when GlobaleDatentypen.Straßenkurve_Oben_Links =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Oben;
+
+                  when GlobaleDatentypen.Straßenkreuzung_Drei_Links =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Vier;
+
+                  when GlobaleDatentypen.Straßenendstück_Rechts =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straße_Waagrecht;
+
+                  when GlobaleDatentypen.Straßenendstück_Unten =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkurve_Oben_Rechts;
+
+                  when GlobaleDatentypen.Straßenendstück_Oben =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkurve_Unten_Rechts;
+                     
+                  when GlobaleDatentypen.Straße_Einzeln =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenendstück_Links;
+                     
+                  when others =>
+                     null;
+               end case;
+               Straßenwert := Straßenwert + 1_000;
+               
+            elsif
+              XÄnderungSchleifenwert = 1
+              and
+                YÄnderungSchleifenwert = 0
+            then
+               case
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
+               is
+                  when GlobaleDatentypen.Leer =>
+                     Straßenwert := Straßenwert - 100;
+
+                  when GlobaleDatentypen.Straße_Senkrecht =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Links;
+                     
+                  when GlobaleDatentypen.Straßenkurve_Unten_Rechts =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Unten;
+
+                  when GlobaleDatentypen.Straßenkurve_Oben_Rechts =>                     
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Oben;
+
+                  when GlobaleDatentypen.Straßenkreuzung_Drei_Rechts =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Vier;
+
+                  when GlobaleDatentypen.Straßenendstück_Links =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straße_Waagrecht;
+
+                  when GlobaleDatentypen.Straßenendstück_Unten =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkurve_Oben_Links;
+
+                  when GlobaleDatentypen.Straßenendstück_Oben =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkurve_Unten_Links;
+                     
+                  when GlobaleDatentypen.Straße_Einzeln =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenendstück_Rechts;
+                     
+                  when others =>
+                     null;
+               end case;
+               Straßenwert := Straßenwert + 100;
+               
+            elsif
+              YÄnderungSchleifenwert = -1
+              and
+                XÄnderungSchleifenwert = 0
+            then
+               case
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
+               is
+                  when GlobaleDatentypen.Leer =>
+                     Straßenwert := Straßenwert - 10;
+                     
+                  when GlobaleDatentypen.Straße_Waagrecht =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Unten;
+                     
+                  when GlobaleDatentypen.Straßenkurve_Oben_Rechts =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Rechts;
+
+                  when GlobaleDatentypen.Straßenkurve_Oben_Links =>                     
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Links;
+
+                  when GlobaleDatentypen.Straßenkreuzung_Drei_Oben =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Vier;
+
+                  when GlobaleDatentypen.Straßenendstück_Links =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkurve_Unten_Rechts;
+
+                  when GlobaleDatentypen.Straßenendstück_Rechts =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkurve_Unten_Links;
+
+                  when GlobaleDatentypen.Straßenendstück_Unten =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straße_Senkrecht;
+                     
+                  when GlobaleDatentypen.Straße_Einzeln =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenendstück_Oben;
+                     
+                  when others =>
+                     null;
+               end case;
+               Straßenwert := Straßenwert + 10;
+               
+            elsif
+              YÄnderungSchleifenwert = 1
+              and
+                XÄnderungSchleifenwert = 0
+            then
+               case
+                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
+               is
+                  when GlobaleDatentypen.Leer =>
+                     Straßenwert := Straßenwert - 1;
+                     
+                  when GlobaleDatentypen.Straße_Waagrecht =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Oben;
+                     
+                  when GlobaleDatentypen.Straßenkurve_Unten_Rechts =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Rechts;
+
+                  when GlobaleDatentypen.Straßenkurve_Unten_Links =>                     
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Links;
+
+                  when GlobaleDatentypen.Straßenkreuzung_Drei_Unten =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Vier;
+
+                  when GlobaleDatentypen.Straßenendstück_Links =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkurve_Oben_Rechts;
+
+                  when GlobaleDatentypen.Straßenendstück_Rechts =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkurve_Oben_Links;
+
+                  when GlobaleDatentypen.Straßenendstück_Oben =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straße_Senkrecht;
+                     
+                  when GlobaleDatentypen.Straße_Einzeln =>
+                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenendstück_Unten;
+                     
+                  when others =>
+                     null;
+               end case;
+               Straßenwert := Straßenwert + 1;
+               
             else
-               if
-                 XÄnderungSchleifenwert = -1
-                 and
-                   YÄnderungSchleifenwert = 0
-               then
-                  case
-                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
-                  is
-                     when 0 =>
-                        Straßenwert := Straßenwert - 1_000;
-
-                     when 7 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
-                     
-                     when 9 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
-
-                     when 11 =>                     
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
-
-                     when 15 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
-
-                     when 17 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
-
-                     when 18 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
-
-                     when 19 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
-                     
-                     when 24 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 16;
-                     
-                     when others =>
-                        null;
-                  end case;
-                  Straßenwert := Straßenwert + 1_000;
-               
-               elsif
-                 XÄnderungSchleifenwert = 1
-                 and
-                   YÄnderungSchleifenwert = 0
-               then
-                  case
-                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
-                  is
-                     when 0 =>
-                        Straßenwert := Straßenwert - 100;
-
-                     when 7 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
-                     
-                     when 8 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
-
-                     when 10 =>                     
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
-
-                     when 14 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
-
-                     when 16 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 6;
-
-                     when 18 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
-
-                     when 19 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
-                     
-                     when 24 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 17;
-                     
-                     when others =>
-                        null;
-                  end case;
-                  Straßenwert := Straßenwert + 100;
-               
-               elsif
-                 YÄnderungSchleifenwert = -1
-                 and
-                   XÄnderungSchleifenwert = 0
-               then
-                  case
-                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
-                  is
-                     when 0 =>
-                        Straßenwert := Straßenwert - 10;
-                     
-                     when 6 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 13;
-                     
-                     when 10 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
-
-                     when 11 =>                     
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
-
-                     when 12 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
-
-                     when 16 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 8;
-
-                     when 17 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 9;
-
-                     when 18 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
-                     
-                     when 24 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 19;
-                     
-                     when others =>
-                        null;
-                  end case;
-                  Straßenwert := Straßenwert + 10;
-               
-               elsif
-                 YÄnderungSchleifenwert = 1
-                 and
-                   XÄnderungSchleifenwert = 0
-               then
-                  case
-                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße
-                  is
-                     when 0 =>
-                        Straßenwert := Straßenwert - 1;
-                     
-                     when 6 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 12;
-                     
-                     when 8 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 14;
-
-                     when 9 =>                     
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 15;
-
-                     when 13 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 5;
-
-                     when 16 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 10;
-
-                     when 17 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 11;
-
-                     when 19 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 7;
-                     
-                     when 24 =>
-                        Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße := 18;
-                     
-                     when others =>
-                        null;
-                  end case;
-                  Straßenwert := Straßenwert + 1;
-               
-               else
-                  null;
-               end if;
+               null;
             end if;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
-
+      
       case
         Straßenwert
       is
-         when 11_000 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 17;
-
-         when 10_100 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 16;
-
-         when 10_010 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 18;
-
-         when 10_001 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 19;
-
-         when 11_010 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 11;
-
-         when 11_001 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 9;
+         when 11_111 =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Vier;
 
          when 11_110 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 12;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Oben;
 
          when 11_101 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 13;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Unten;
+            
+         when 11_100 =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straße_Waagrecht;
+            
+         when 11_011 =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Links;
 
-         when 11_111 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 5;
+         when 11_010 =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkurve_Oben_Links;
 
-         when 10_110 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 10;
-
-         when 10_101 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 8;
+         when 11_001 =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkurve_Unten_Links;
+            
+         when 11_000 =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenendstück_Rechts;
 
          when 10_111 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 14;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkreuzung_Drei_Rechts;
+
+         when 10_110 =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkurve_Oben_Rechts;
+
+         when 10_101 =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenkurve_Unten_Rechts;
+
+         when 10_100 =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenendstück_Links;
 
          when 10_011 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 7;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straße_Senkrecht;
+
+         when 10_010 =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenendstück_Unten;
+
+         when 10_001 =>
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straßenendstück_Oben;
          
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := 24;
+            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße := GlobaleDatentypen.Straße_Einzeln;
       end case;
       
    end StraßeBerechnung;

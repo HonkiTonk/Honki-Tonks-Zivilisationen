@@ -61,7 +61,7 @@ package body SpielEinstellungen is
       RassenVorhanden := False;
       
       SicherheitsSchleife:
-      for RassenSchleifenwert in GlobaleDatentypen.Rassen'Range loop
+      for RassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
@@ -367,7 +367,7 @@ package body SpielEinstellungen is
          end case;
          
          case
-           GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen (SpielerartAuswahl))
+           GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (SpielerartAuswahl))
          is
             when GlobaleDatentypen.Leer =>
                JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 21);
@@ -375,11 +375,11 @@ package body SpielEinstellungen is
                if
                  JaOderNein = GlobaleKonstanten.JaKonstante
                then
-                  GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := GlobaleDatentypen.Spieler_Mensch;
+                  GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (SpielerartAuswahl)) := GlobaleDatentypen.Spieler_Mensch;
                   Spieler := Spieler + 1;
                      
                else
-                  GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.RassenMitNullwert (SpielerartAuswahl)) := GlobaleDatentypen.Spieler_KI;
+                  GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (SpielerartAuswahl)) := GlobaleDatentypen.Spieler_KI;
                   Spieler := Spieler + 1;
                end if;
                
@@ -457,7 +457,7 @@ package body SpielEinstellungen is
    is begin
       
       SpieleranzahlWerteFestlegen:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
         
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -489,7 +489,7 @@ package body SpielEinstellungen is
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 16);
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Rassen_Beschreibung_Kurz,
-                                                              TextZeileExtern => Positive (RasseSchleifenwert));
+                                                              TextZeileExtern => GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert));
                         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                               TextZeileExtern => 17);
                         GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) := GlobaleDatentypen.Leer;
@@ -511,7 +511,7 @@ package body SpielEinstellungen is
 
    function UmgebungPrüfen
      (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      RasseExtern : in GlobaleDatentypen.Rassen)
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
@@ -572,7 +572,7 @@ package body SpielEinstellungen is
                        PrüfungGrund
                      is
                         when False =>
-                           PlatzBelegt := (1, 1);
+                           PlatzBelegt := (GlobaleDatentypen.Rasse_1, 1);
                            
                         when True =>
                            PlatzBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert);
@@ -608,7 +608,7 @@ package body SpielEinstellungen is
 
 
    procedure StartpunktFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
 
       GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID := 1;

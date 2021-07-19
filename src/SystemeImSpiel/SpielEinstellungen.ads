@@ -49,7 +49,7 @@ private
    procedure StartwerteErmitteln;
 
    procedure StartpunktFestlegen
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
@@ -98,7 +98,7 @@ private
 
    function UmgebungPrüfen
      (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
-      RasseExtern : in GlobaleDatentypen.Rassen)
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>

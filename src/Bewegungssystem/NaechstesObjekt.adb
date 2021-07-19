@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 package body NaechstesObjekt is  
 
    procedure NächsteEinheit
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       BewegungspunkteExtern : in Bewegungspunkte)
    is begin
       
@@ -53,7 +53,7 @@ package body NaechstesObjekt is
    
    
    procedure NächsteStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
 
       SchleifenBegrenzung := 0;
@@ -72,7 +72,7 @@ package body NaechstesObjekt is
          end case;
                
          if
-           GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt (RasseExtern)).ID = 0
+           GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt (RasseExtern)).ID = GlobaleDatentypen.Leer
          then
             null;
          

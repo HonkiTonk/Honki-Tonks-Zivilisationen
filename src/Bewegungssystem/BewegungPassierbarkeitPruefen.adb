@@ -27,64 +27,72 @@ package body BewegungPassierbarkeitPruefen is
       
       BewegungMöglich := GlobaleDatentypen.Leer;
       
-      -- Passierbarkeit: 1 = Boden, 2 = Wasser, 3 = Luft, 4 = Weltraum, 5 = Unterwasser, 6 = Unterirdisch (Erde), 7 = Planeteninneres (Gestein), 8 = Lava
+      -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
       PassierbarSchleife:
-      for PassierbarkeitSchleifenwert in GlobaleDatentypen.PassierbarkeitType'Range loop
+      for PassierbarkeitSchleifenwert in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum'Range loop
          if
-           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (1) = True
+           EinheitenDatenbank.EinheitenListe
+             (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitSchleifenwert) = True
            and
-             PassierbarkeitSchleifenwert = 1
+             PassierbarkeitSchleifenwert = GlobaleDatentypen.Boden
          then
             BewegungMöglich := Boden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                        NeuePositionExtern       => NeuePositionExtern);
 
          elsif
-           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (2) = True
+           EinheitenDatenbank.EinheitenListe
+             (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitSchleifenwert) = True
            and
-             PassierbarkeitSchleifenwert = 2
+             PassierbarkeitSchleifenwert = GlobaleDatentypen.Wasser
          then
             BewegungMöglich := Wasser (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                         NeuePositionExtern       => NeuePositionExtern);
          
          elsif
-           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (3) = True
+           EinheitenDatenbank.EinheitenListe
+             (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitSchleifenwert) = True
            and
-             PassierbarkeitSchleifenwert = 3
+             PassierbarkeitSchleifenwert = GlobaleDatentypen.Luft
          then
             null;
          
          elsif
-           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (4) = True
+           EinheitenDatenbank.EinheitenListe
+             (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitSchleifenwert) = True
            and
-             PassierbarkeitSchleifenwert = 4
+             PassierbarkeitSchleifenwert = GlobaleDatentypen.Weltraum
          then
             null;
          
          elsif
-           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (5) = True
+           EinheitenDatenbank.EinheitenListe
+             (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitSchleifenwert) = True
            and
-             PassierbarkeitSchleifenwert = 5
+             PassierbarkeitSchleifenwert = GlobaleDatentypen.Unterwasser
          then
             null;
          
          elsif
-           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (6) = True
+           EinheitenDatenbank.EinheitenListe
+             (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitSchleifenwert) = True
            and
-             PassierbarkeitSchleifenwert = 6
+             PassierbarkeitSchleifenwert = GlobaleDatentypen.Unteridrisch
          then
             null;
          
          elsif
-           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (7) = True
+           EinheitenDatenbank.EinheitenListe
+             (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitSchleifenwert) = True
            and
-             PassierbarkeitSchleifenwert = 7
+             PassierbarkeitSchleifenwert = GlobaleDatentypen.Planeteninneres
          then
             null;
          
          elsif
-           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (8) = True
+           EinheitenDatenbank.EinheitenListe
+             (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (PassierbarkeitSchleifenwert) = True
            and
-             PassierbarkeitSchleifenwert = 8
+             PassierbarkeitSchleifenwert = GlobaleDatentypen.Lava
          then
             null;
          
@@ -118,7 +126,7 @@ package body BewegungPassierbarkeitPruefen is
    is begin
             
       PassierbarkeitSchleife:
-      for PassierbarkeitSchleifenwert in GlobaleDatentypen.PassierbarkeitType'Range loop
+      for PassierbarkeitSchleifenwert in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum'Range loop
          
          if
            EinheitenDatenbank.EinheitenListe
@@ -139,7 +147,7 @@ package body BewegungPassierbarkeitPruefen is
             when True =>               
                -- Erste Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
                if
-                 Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet > 0
+                 Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
                  and
                    VerbesserungenDatenbank.VerbesserungListe
                      (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet).Passierbarkeit (PassierbarkeitSchleifenwert) = False
@@ -147,12 +155,12 @@ package body BewegungPassierbarkeitPruefen is
                   null;
                   
                elsif
-                 (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße > 0
+                 (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
                   and
                     VerbesserungenDatenbank.VerbesserungListe
                       (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße).Passierbarkeit (PassierbarkeitSchleifenwert) = True)
                  or
-                   (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet > 0
+                   (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
                     and
                       VerbesserungenDatenbank.VerbesserungListe
                         (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet).Passierbarkeit (PassierbarkeitSchleifenwert) = True)
@@ -178,14 +186,14 @@ package body BewegungPassierbarkeitPruefen is
    
    
    function EinfachePassierbarkeitPrüfenID
-     (RasseExtern : in GlobaleDatentypen.Rassen;
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.EinheitenID;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
             
       PassierbarkeitSchleife:
-      for PassierbarkeitSchleifenwert in GlobaleDatentypen.PassierbarkeitType'Range loop
+      for PassierbarkeitSchleifenwert in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum'Range loop
          
          if
            EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Passierbarkeit (PassierbarkeitSchleifenwert) = True
@@ -205,7 +213,7 @@ package body BewegungPassierbarkeitPruefen is
             when True =>               
                -- Erste Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
                if
-                 Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet > 0
+                 Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
                  and
                    VerbesserungenDatenbank.VerbesserungListe
                      (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet).Passierbarkeit (PassierbarkeitSchleifenwert) = False
@@ -213,12 +221,12 @@ package body BewegungPassierbarkeitPruefen is
                   null;
                   
                elsif
-                 (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße > 0
+                 (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
                   and
                     VerbesserungenDatenbank.VerbesserungListe
                       (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße).Passierbarkeit (PassierbarkeitSchleifenwert) = True)
                  or
-                   (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet > 0
+                   (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
                     and
                       VerbesserungenDatenbank.VerbesserungListe
                         (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet).Passierbarkeit (PassierbarkeitSchleifenwert) = True)
