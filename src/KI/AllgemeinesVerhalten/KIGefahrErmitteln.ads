@@ -15,9 +15,6 @@ package KIGefahrErmitteln is
 
 private
 
-   EigeneEinheiten : Natural;
-   FeindlicheEinheiten : Natural;
-
    EinheitUnzugeordnet : GlobaleRecords.RassePlatznummerRecord;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;

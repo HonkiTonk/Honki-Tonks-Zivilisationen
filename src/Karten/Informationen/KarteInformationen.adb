@@ -433,8 +433,8 @@ package body KarteInformationen is
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                         TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
                                         ÜberschriftZeileExtern => 0,
-                                        ErsteZeileExtern       => 34,
-                                        LetzteZeileExtern      => 34,
+                                        ErsteZeileExtern       => GlobaleDatentypen.Karten_Grund_Enum'Pos (GlobaleDatentypen.Hügel_Mit),
+                                        LetzteZeileExtern      => GlobaleDatentypen.Karten_Grund_Enum'Pos (GlobaleDatentypen.Hügel_Mit),
                                         AbstandAnfangExtern    => GlobaleTexte.Keiner,
                                         AbstandMitteExtern     => GlobaleTexte.Keiner,
                                         AbstandEndeExtern      => GlobaleTexte.Keiner);

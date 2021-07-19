@@ -142,7 +142,7 @@ package body BewegungLadenEntladen is
       end case;
       
       Umgebung := 1;
-      BereitsGetestet := Umgebung - 1;   
+      BereitsGetestet := Umgebung - 1;
       WelcherPlatz := 1;
       
       BereichSchleife:

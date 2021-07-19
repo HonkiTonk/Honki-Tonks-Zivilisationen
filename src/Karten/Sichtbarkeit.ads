@@ -21,6 +21,14 @@ package Sichtbarkeit is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
+   procedure SichtbarkeitsprüfungFürEinheitNeu
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+
    procedure SichtbarkeitsprüfungFürStadt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
@@ -32,6 +40,8 @@ package Sichtbarkeit is
 private
 
    SichtweiteObjekt : GlobaleDatentypen.Sichtweite;
+   BereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
+   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
 
    AktuellerGrund : GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum;
 
@@ -40,6 +50,15 @@ private
    FremdeEinheitStadt : GlobaleRecords.RassePlatznummerRecord;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+
+   type SichtbarkeitRecord is new GlobaleRecords.AchsenKartenfeldPositivRecord with record
+
+      Bewertung : Integer;
+
+   end record;
+
+   type SichtbarkeitUmgebungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of SichtbarkeitRecord;
+   SichtbarkeitUmgebung : SichtbarkeitUmgebungArray;
 
    procedure SichtbarkeitSetzen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
