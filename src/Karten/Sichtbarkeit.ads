@@ -39,6 +39,8 @@ package Sichtbarkeit is
 
 private
 
+   SichtbarkeitTesten : Boolean;
+
    SichtweiteObjekt : GlobaleDatentypen.Sichtweite;
    BereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
    Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
@@ -50,15 +52,16 @@ private
    FremdeEinheitStadt : GlobaleRecords.RassePlatznummerRecord;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWertZwei : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KoordinatenEinheit : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
-   type SichtbarkeitRecord is new GlobaleRecords.AchsenKartenfeldPositivRecord with record
-
-      Bewertung : Integer;
-
-   end record;
-
-   type SichtbarkeitUmgebungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of SichtbarkeitRecord;
-   SichtbarkeitUmgebung : SichtbarkeitUmgebungArray;
+   procedure SichtbarkeitsprüfungOhneBlockade
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure SichtbarkeitSetzen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
@@ -70,5 +73,16 @@ private
             KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+
+   function SichtbarkeitBlockadeTesten
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      YÄnderungExtern, XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
+      SichtweiteExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+      return Boolean
+     with
+       Pre =>
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 end Sichtbarkeit;
