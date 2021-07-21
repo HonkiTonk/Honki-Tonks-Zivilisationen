@@ -48,7 +48,8 @@ package GlobaleDatentypen is
    subtype KartenfeldPositivMitNullwert is Kartenfeld range 0 .. Kartenfeld'Last;
    subtype KartenfeldPositiv is Kartenfeld range 1 .. KartenfeldPositivMitNullwert'Last;
    subtype Stadtfeld is KartenfeldPositiv range 1 .. 20;
-   subtype Sichtweite is Stadtfeld range 1 .. 10;
+   subtype SichtweiteMitNullwert is KartenfeldPositivMitNullwert range 0 .. 10;
+   subtype Sichtweite is SichtweiteMitNullwert range 1 .. 10;
    subtype LoopRangeMinusEinsZuEins is Kartenfeld range -1 .. 1;
    subtype LoopRangeMinusZweiZuZwei is Kartenfeld range -2 .. 2;
    subtype LoopRangeMinusDreiZuDrei is Kartenfeld range -3 .. 3;
@@ -94,6 +95,7 @@ package GlobaleDatentypen is
    subtype Karten_Grund_Ressourcen_Wasser is Karten_Grund_Ressourcen_Enum range Fisch .. Wal;
    subtype Karten_Grund_Ressourcen_Land is Karten_Grund_Ressourcen_Enum range Kohle .. Gold;
    subtype Karten_Grund_Fluss_Enum is Karten_Grund_Enum range Flusskreuzung_Vier .. Fluss_Einzeln;
+   subtype Landschaft_Wahrscheinlichkeit_Enum is Karten_Grund_Land_Ohne_Eis_Enum range GlobaleDatentypen.Tundra .. GlobaleDatentypen.Sumpf;
 
    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
    type KartenverbesserungEinheitenID is range 0 .. 78;

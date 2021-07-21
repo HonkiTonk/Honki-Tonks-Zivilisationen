@@ -21,14 +21,6 @@ package Sichtbarkeit is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
-   procedure SichtbarkeitsprüfungFürEinheitNeu
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-
    procedure SichtbarkeitsprüfungFürStadt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
@@ -52,11 +44,13 @@ private
    FremdeEinheitStadt : GlobaleRecords.RassePlatznummerRecord;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWertZwei : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenQuadrantWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenBlockadeWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    KoordinatenEinheit : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    procedure SichtbarkeitsprüfungOhneBlockade
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      SichtweiteExtern : in GlobaleDatentypen.Sichtweite)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
@@ -73,6 +67,26 @@ private
             KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+
+   procedure QuadrantEins
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
+
+   procedure QuadrantZwei
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
+
+   procedure QuadrantDrei
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
+
+   procedure QuadrantVier
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
 
    function SichtbarkeitBlockadeTesten
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;

@@ -19,6 +19,6 @@ package KIGefahrReaktion is
 
 private
 
-
+   ZielStadt : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
 end KIGefahrReaktion;

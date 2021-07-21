@@ -55,7 +55,8 @@ package body Sichtbarkeit is
           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
                                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Weltraum) = True
       then
-         SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                            SichtweiteExtern         => 3);
          return;
          
       else
@@ -63,296 +64,598 @@ package body Sichtbarkeit is
       end if;
       
       KoordinatenEinheit := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position;
+      AktuellerGrund := Karten.Weltkarte (KoordinatenEinheit.EAchse, KoordinatenEinheit.YAchse, KoordinatenEinheit.XAchse).Grund;
       
-      case
-        Karten.Weltkarte (KoordinatenEinheit.EAchse, KoordinatenEinheit.YAchse, KoordinatenEinheit.XAchse).Grund
-      is
-         when GlobaleDatentypen.Gebirge =>
-            SichtweiteObjekt := 3;
+      if
+        AktuellerGrund = GlobaleDatentypen.Gebirge
+        or
+          AktuellerGrund = GlobaleDatentypen.Hügel
+          or
+            Karten.Weltkarte (KoordinatenEinheit.EAchse, KoordinatenEinheit.YAchse, KoordinatenEinheit.XAchse).Hügel = True
+      then
+         SichtweiteObjekt := 3;
 
-         when GlobaleDatentypen.Dschungel =>
-            SichtweiteObjekt := 1;
+      elsif
+        AktuellerGrund = GlobaleDatentypen.Dschungel
+        or
+          AktuellerGrund = GlobaleDatentypen.Sumpf
+          or
+            AktuellerGrund = GlobaleDatentypen.Wald
+      then
+         SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                            SichtweiteExtern         => 1);
+         return;
                
-         when others =>
-            SichtweiteObjekt := 2;
-      end case;
+      else
+         SichtweiteObjekt := 2;
+      end if;
 
-      YQuadrantEinsSchleife:
-      for YQuadrantEinsSchleifenwert in 0 .. SichtweiteObjekt loop
-         XQuadrantEinsSchleife:
-         for XQuadrantEinsSchleifenwert in 0 .. SichtweiteObjekt loop
-        
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenEinheit,
-                                                                        ÄnderungExtern    => (0, -YQuadrantEinsSchleifenwert, XQuadrantEinsSchleifenwert));
+      YQuadrantSchleife:
+      for YQuadrantSchleifenwert in 0 .. SichtweiteObjekt loop
+         XQuadrantSchleife:
+         for XQuadrantSchleifenwert in 0 .. SichtweiteObjekt loop
             
+            QuadrantEins (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                          SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
+                          SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
+                          SichtweiteMaximalExtern   => SichtweiteObjekt);
+            
+            case
+              YQuadrantSchleifenwert
+            is
+               when 0 =>
+                  null;
+                  
+               when others =>
+                  QuadrantZwei (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                                SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
+                                SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
+                                SichtweiteMaximalExtern   => SichtweiteObjekt);
+            end case;
+      
+            case
+              XQuadrantSchleifenwert
+            is
+               when 0 =>
+                  null;
+                  
+               when others =>
+                  QuadrantDrei (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                                SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
+                                SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
+                                SichtweiteMaximalExtern   => SichtweiteObjekt);
+            end case;
+      
             if
-              KartenWert.XAchse = 0
+              YQuadrantSchleifenwert = 0
+              and
+                XQuadrantSchleifenwert = 0
             then
                null;
                
-            elsif
-              YQuadrantEinsSchleifenwert <= 1
-              and
-                XQuadrantEinsSchleifenwert <= 1
-            then
-               SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                   KoordinatenExtern => KartenWert);
-               
-            elsif
-              YQuadrantEinsSchleifenwert in 2 .. 3
-              and
-                XQuadrantEinsSchleifenwert <= 1
-            then
-               YÄnderungSchleife:
-               for YÄnderungSchleifenwert in 2 .. YQuadrantEinsSchleifenwert loop
-                  XÄnderungSchleife:
-                  for XÄnderungSchleifenwert in 0 .. XQuadrantEinsSchleifenwert loop
-                    
-                     SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenWert,
-                                                                       YÄnderungExtern   => YÄnderungSchleifenwert - 1,
-                                                                       XÄnderungExtern   => -XÄnderungSchleifenwert,
-                                                                       SichtweiteExtern  => SichtweiteObjekt);
-                     
-                     if
-                       SichtbarkeitTesten = False
-                     then
-                        exit YÄnderungSchleife;
-                        
-                     elsif
-                       YÄnderungSchleifenwert = YQuadrantEinsSchleifenwert
-                       and
-                         XÄnderungSchleifenwert = XQuadrantEinsSchleifenwert
-                     then
-                        SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                            KoordinatenExtern => KartenWert);
-                        
-                     else
-                        null;
-                     end if;
-                     
-                  end loop XÄnderungSchleife;
-               end loop YÄnderungSchleife;
-               
-            elsif
-              YQuadrantEinsSchleifenwert <= 1
-              and
-                XQuadrantEinsSchleifenwert in 2 .. 3
-            then
-               YÄnderungSchleife22:
-               for YÄnderungSchleifenwert in 0 .. YQuadrantEinsSchleifenwert loop
-                  XÄnderungSchleife22:
-                  for XÄnderungSchleifenwert in 2 .. XQuadrantEinsSchleifenwert loop
-               
-                     SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenWert,
-                                                                       YÄnderungExtern   => YÄnderungSchleifenwert,
-                                                                       XÄnderungExtern   => -(XÄnderungSchleifenwert - 1),
-                                                                       SichtweiteExtern  => SichtweiteObjekt);
-                  
-                     if
-                       SichtbarkeitTesten = False
-                     then
-                        exit YÄnderungSchleife22;
-                        
-                     elsif
-                       YÄnderungSchleifenwert = YQuadrantEinsSchleifenwert
-                       and
-                         XÄnderungSchleifenwert = XQuadrantEinsSchleifenwert
-                     then
-                        SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                            KoordinatenExtern => KartenWert);
-                        
-                     else
-                        null;
-                     end if;
-                     
-                  end loop XÄnderungSchleife22;
-               end loop YÄnderungSchleife22;
-               
             else
-               YÄnderungSchleife7:
-               for YÄnderungSchleifenwert in 2 .. YQuadrantEinsSchleifenwert loop
-                  XÄnderungSchleife7:
-                  for XÄnderungSchleifenwert in 2 .. XQuadrantEinsSchleifenwert loop
-                     
-                     SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenWert,
-                                                                       YÄnderungExtern   => YÄnderungSchleifenwert - 1,
-                                                                       XÄnderungExtern   => -(XÄnderungSchleifenwert - 1),
-                                                                       SichtweiteExtern  => SichtweiteObjekt);
-                  
-                     if
-                       SichtbarkeitTesten = False
-                     then
-                        exit YÄnderungSchleife7;
-                        
-                     elsif
-                       YÄnderungSchleifenwert = YQuadrantEinsSchleifenwert
-                       and
-                         XÄnderungSchleifenwert = XQuadrantEinsSchleifenwert
-                     then
-                        SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                            KoordinatenExtern => KartenWert);
-                        
-                     else
-                        null;
-                     end if;
-                     
-                  end loop XÄnderungSchleife7;
-               end loop YÄnderungSchleife7;
-            end if;            
+               QuadrantVier (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                             SichtweiteYRichtungExtern => YQuadrantSchleifenwert,
+                             SichtweiteXRichtungExtern => XQuadrantSchleifenwert,
+                             SichtweiteMaximalExtern   => SichtweiteObjekt);
+            end if;
             
-         end loop XQuadrantEinsSchleife;
-      end loop YQuadrantEinsSchleife;
+         end loop XQuadrantSchleife;
+      end loop YQuadrantSchleife;
       
    end SichtbarkeitsprüfungFürEinheit;
    
    
    
-   procedure SichtbarkeitsprüfungFürEinheitNeu
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   procedure QuadrantEins
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
    is begin
-      
-      KoordinatenEinheit := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position;
-      
-      case
-        Karten.Weltkarte (KoordinatenEinheit.EAchse, KoordinatenEinheit.YAchse, KoordinatenEinheit.XAchse).Grund
-      is
-         when GlobaleDatentypen.Gebirge =>
-            SichtweiteObjekt := 3;
-
-         when GlobaleDatentypen.Dschungel =>
-            SichtweiteObjekt := 1;
-               
-         when others =>
-            SichtweiteObjekt := 2;
-      end case;
-
-      YQuadrantEinsSchleife:
-      for YQuadrantEinsSchleifenwert in 0 .. SichtweiteObjekt loop
-         XQuadrantEinsSchleife:
-         for XQuadrantEinsSchleifenwert in 0 .. SichtweiteObjekt loop
-        
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenEinheit,
-                                                                        ÄnderungExtern    => (0, -YQuadrantEinsSchleifenwert, XQuadrantEinsSchleifenwert));
+              
+      KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenEinheit,
+                                                                          ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern));
             
-            if
-              KartenWert.XAchse = 0
-            then
-               null;
+      if
+        KartenQuadrantWert.XAchse = 0
+      then
+         null;
                
-            elsif
-              YQuadrantEinsSchleifenwert <= 1
-              and
-                XQuadrantEinsSchleifenwert <= 1
-            then
-               SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                   KoordinatenExtern => KartenWert);
+      elsif
+        SichtweiteYRichtungExtern <= 1
+        and
+          SichtweiteXRichtungExtern <= 1
+      then
+         SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                             KoordinatenExtern => KartenQuadrantWert);
                
-            elsif
-              YQuadrantEinsSchleifenwert in 2 .. 3
-              and
-                XQuadrantEinsSchleifenwert <= 1
-            then
-               YÄnderungSchleife:
-               for YÄnderungSchleifenwert in 2 .. YQuadrantEinsSchleifenwert loop
-                  XÄnderungSchleife:
-                  for XÄnderungSchleifenwert in 0 .. XQuadrantEinsSchleifenwert loop
+      elsif
+        SichtweiteYRichtungExtern in 2 .. 3
+        and
+          SichtweiteXRichtungExtern <= 1
+      then
+         YÄnderungSchleife:
+         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+            XÄnderungSchleife:
+            for XÄnderungSchleifenwert in 0 .. SichtweiteXRichtungExtern loop
                     
-                     SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenWert,
-                                                                       YÄnderungExtern   => YÄnderungSchleifenwert - 1,
-                                                                       XÄnderungExtern   => -XÄnderungSchleifenwert,
-                                                                       SichtweiteExtern  => SichtweiteObjekt);
+               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                                                 YÄnderungExtern   => YÄnderungSchleifenwert - 1,
+                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert,
+                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
                      
-                     if
-                       SichtbarkeitTesten = False
-                     then
-                        exit YÄnderungSchleife;
+               if
+                 SichtbarkeitTesten = False
+               then
+                  exit YÄnderungSchleife;
                         
-                     elsif
-                       YÄnderungSchleifenwert = YQuadrantEinsSchleifenwert
-                       and
-                         XÄnderungSchleifenwert = XQuadrantEinsSchleifenwert
-                     then
-                        SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                            KoordinatenExtern => KartenWert);
+               elsif
+                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 and
+                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+               then
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenQuadrantWert);
                         
-                     else
-                        null;
-                     end if;
+               else
+                  null;
+               end if;
                      
-                  end loop XÄnderungSchleife;
-               end loop YÄnderungSchleife;
+            end loop XÄnderungSchleife;
+         end loop YÄnderungSchleife;
                
-            elsif
-              YQuadrantEinsSchleifenwert <= 1
-              and
-                XQuadrantEinsSchleifenwert in 2 .. 3
-            then
-               YÄnderungSchleife22:
-               for YÄnderungSchleifenwert in 0 .. YQuadrantEinsSchleifenwert loop
-                  XÄnderungSchleife22:
-                  for XÄnderungSchleifenwert in 2 .. XQuadrantEinsSchleifenwert loop
+      elsif
+        SichtweiteYRichtungExtern <= 1
+        and
+          SichtweiteXRichtungExtern in 2 .. 3
+      then
+         YÄnderungSchleife22:
+         for YÄnderungSchleifenwert in 0 .. SichtweiteYRichtungExtern loop
+            XÄnderungSchleife22:
+            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
                
-                     SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenWert,
-                                                                       YÄnderungExtern   => YÄnderungSchleifenwert,
-                                                                       XÄnderungExtern   => -(XÄnderungSchleifenwert - 1),
-                                                                       SichtweiteExtern  => SichtweiteObjekt);
+               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                                                 YÄnderungExtern   => YÄnderungSchleifenwert,
+                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
+                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
                   
-                     if
-                       SichtbarkeitTesten = False
-                     then
-                        exit YÄnderungSchleife22;
+               if
+                 SichtbarkeitTesten = False
+               then
+                  exit YÄnderungSchleife22;
                         
-                     elsif
-                       YÄnderungSchleifenwert = YQuadrantEinsSchleifenwert
-                       and
-                         XÄnderungSchleifenwert = XQuadrantEinsSchleifenwert
-                     then
-                        SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                            KoordinatenExtern => KartenWert);
+               elsif
+                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 and
+                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+               then
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenQuadrantWert);
                         
-                     else
-                        null;
-                     end if;
+               else
+                  null;
+               end if;
                      
-                  end loop XÄnderungSchleife22;
-               end loop YÄnderungSchleife22;
+            end loop XÄnderungSchleife22;
+         end loop YÄnderungSchleife22;
                
-            else
-               YÄnderungSchleife7:
-               for YÄnderungSchleifenwert in 2 .. YQuadrantEinsSchleifenwert loop
-                  XÄnderungSchleife7:
-                  for XÄnderungSchleifenwert in 2 .. XQuadrantEinsSchleifenwert loop
+      else
+         YÄnderungSchleife333:
+         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+            XÄnderungSchleife333:
+            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
                      
-                     SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenWert,
-                                                                       YÄnderungExtern   => YÄnderungSchleifenwert - 1,
-                                                                       XÄnderungExtern   => -(XÄnderungSchleifenwert - 1),
-                                                                       SichtweiteExtern  => SichtweiteObjekt);
+               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                                                 YÄnderungExtern   => YÄnderungSchleifenwert - 1,
+                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
+                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
                   
-                     if
-                       SichtbarkeitTesten = False
-                     then
-                        exit YÄnderungSchleife7;
+               if
+                 SichtbarkeitTesten = False
+               then
+                  exit YÄnderungSchleife333;
                         
-                     elsif
-                       YÄnderungSchleifenwert = YQuadrantEinsSchleifenwert
-                       and
-                         XÄnderungSchleifenwert = XQuadrantEinsSchleifenwert
-                     then
-                        SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                            KoordinatenExtern => KartenWert);
+               elsif
+                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 and
+                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+               then
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenQuadrantWert);
                         
-                     else
-                        null;
-                     end if;
+               else
+                  null;
+               end if;
                      
-                  end loop XÄnderungSchleife7;
-               end loop YÄnderungSchleife7;
-            end if;            
-            
-         end loop XQuadrantEinsSchleife;
-      end loop YQuadrantEinsSchleife;
+            end loop XÄnderungSchleife333;
+         end loop YÄnderungSchleife333;
+      end if;
       
-   end SichtbarkeitsprüfungFürEinheitNeu;
+   end QuadrantEins;
+   
+   
+   
+   procedure QuadrantZwei
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
+   is begin
+                    
+      KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenEinheit,
+                                                                          ÄnderungExtern    => (0, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern));
+            
+      if
+        KartenQuadrantWert.XAchse = 0
+      then
+         null;
+               
+      elsif
+        SichtweiteYRichtungExtern <= 1
+        and
+          SichtweiteXRichtungExtern <= 1
+      then
+         SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                             KoordinatenExtern => KartenQuadrantWert);
+               
+      elsif
+        SichtweiteYRichtungExtern in 2 .. 3
+        and
+          SichtweiteXRichtungExtern <= 1
+      then
+         YÄnderungSchleife:
+         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+            XÄnderungSchleife:
+            for XÄnderungSchleifenwert in 0 .. SichtweiteXRichtungExtern loop
+                    
+               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
+                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert,
+                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
+                     
+               if
+                 SichtbarkeitTesten = False
+               then
+                  exit YÄnderungSchleife;
+                        
+               elsif
+                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 and
+                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+               then
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenQuadrantWert);
+                        
+               else
+                  null;
+               end if;
+                     
+            end loop XÄnderungSchleife;
+         end loop YÄnderungSchleife;
+               
+      elsif
+        SichtweiteYRichtungExtern <= 1
+        and
+          SichtweiteXRichtungExtern in 2 .. 3
+      then
+         YÄnderungSchleife22:
+         for YÄnderungSchleifenwert in 0 .. SichtweiteYRichtungExtern loop
+            XÄnderungSchleife22:
+            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+               
+               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert,
+                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
+                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
+                  
+               if
+                 SichtbarkeitTesten = False
+               then
+                  exit YÄnderungSchleife22;
+                        
+               elsif
+                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 and
+                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+               then
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenQuadrantWert);
+                        
+               else
+                  null;
+               end if;
+                     
+            end loop XÄnderungSchleife22;
+         end loop YÄnderungSchleife22;
+               
+      else
+         YÄnderungSchleife333:
+         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+            XÄnderungSchleife333:
+            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+                     
+               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
+                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
+                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
+                  
+               if
+                 SichtbarkeitTesten = False
+               then
+                  exit YÄnderungSchleife333;
+                        
+               elsif
+                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 and
+                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+               then
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenQuadrantWert);
+                        
+               else
+                  null;
+               end if;
+                     
+            end loop XÄnderungSchleife333;
+         end loop YÄnderungSchleife333;
+      end if;            
+                  
+   end QuadrantZwei;
+   
+   
+   
+   procedure QuadrantDrei
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
+   is begin
+                    
+      KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenEinheit,
+                                                                          ÄnderungExtern    => (0, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern));
+            
+      if
+        KartenQuadrantWert.XAchse = 0
+      then
+         null;
+               
+      elsif
+        SichtweiteYRichtungExtern <= 1
+        and
+          SichtweiteXRichtungExtern <= 1
+      then
+         SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                             KoordinatenExtern => KartenQuadrantWert);
+               
+      elsif
+        SichtweiteYRichtungExtern in 2 .. 3
+        and
+          SichtweiteXRichtungExtern <= 1
+      then
+         YÄnderungSchleife:
+         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+            XÄnderungSchleife:
+            for XÄnderungSchleifenwert in 0 .. SichtweiteXRichtungExtern loop
+                    
+               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
+                                                                 XÄnderungExtern   => XÄnderungSchleifenwert,
+                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
+                     
+               if
+                 SichtbarkeitTesten = False
+               then
+                  exit YÄnderungSchleife;
+                        
+               elsif
+                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 and
+                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+               then
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenQuadrantWert);
+                        
+               else
+                  null;
+               end if;
+                     
+            end loop XÄnderungSchleife;
+         end loop YÄnderungSchleife;
+               
+      elsif
+        SichtweiteYRichtungExtern <= 1
+        and
+          SichtweiteXRichtungExtern in 2 .. 3
+      then
+         YÄnderungSchleife22:
+         for YÄnderungSchleifenwert in 0 .. SichtweiteYRichtungExtern loop
+            XÄnderungSchleife22:
+            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+               
+               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert,
+                                                                 XÄnderungExtern   => XÄnderungSchleifenwert - 1,
+                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
+                  
+               if
+                 SichtbarkeitTesten = False
+               then
+                  exit YÄnderungSchleife22;
+                        
+               elsif
+                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 and
+                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+               then
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenQuadrantWert);
+                        
+               else
+                  null;
+               end if;
+                     
+            end loop XÄnderungSchleife22;
+         end loop YÄnderungSchleife22;
+               
+      else
+         YÄnderungSchleife333:
+         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+            XÄnderungSchleife333:
+            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+                     
+               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
+                                                                 XÄnderungExtern   => XÄnderungSchleifenwert - 1,
+                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
+                  
+               if
+                 SichtbarkeitTesten = False
+               then
+                  exit YÄnderungSchleife333;
+                        
+               elsif
+                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 and
+                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+               then
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenQuadrantWert);
+                        
+               else
+                  null;
+               end if;
+                     
+            end loop XÄnderungSchleife333;
+         end loop YÄnderungSchleife333;
+      end if;            
+                  
+   end QuadrantDrei;
+   
+   
+   
+   procedure QuadrantVier
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
+   is begin
+                    
+      KartenQuadrantWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenEinheit,
+                                                                          ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern));
+            
+      if
+        KartenQuadrantWert.XAchse = 0
+      then
+         null;
+               
+      elsif
+        SichtweiteYRichtungExtern <= 1
+        and
+          SichtweiteXRichtungExtern <= 1
+      then
+         SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                             KoordinatenExtern => KartenQuadrantWert);
+               
+      elsif
+        SichtweiteYRichtungExtern in 2 .. 3
+        and
+          SichtweiteXRichtungExtern <= 1
+      then
+         YÄnderungSchleife:
+         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+            XÄnderungSchleife:
+            for XÄnderungSchleifenwert in 0 .. SichtweiteXRichtungExtern loop
+                    
+               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                                                 YÄnderungExtern   => YÄnderungSchleifenwert - 1,
+                                                                 XÄnderungExtern   => XÄnderungSchleifenwert,
+                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
+                     
+               if
+                 SichtbarkeitTesten = False
+               then
+                  exit YÄnderungSchleife;
+                        
+               elsif
+                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 and
+                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+               then
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenQuadrantWert);
+                        
+               else
+                  null;
+               end if;
+                     
+            end loop XÄnderungSchleife;
+         end loop YÄnderungSchleife;
+               
+      elsif
+        SichtweiteYRichtungExtern <= 1
+        and
+          SichtweiteXRichtungExtern in 2 .. 3
+      then
+         YÄnderungSchleife22:
+         for YÄnderungSchleifenwert in 0 .. SichtweiteYRichtungExtern loop
+            XÄnderungSchleife22:
+            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+               
+               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                                                 YÄnderungExtern   => YÄnderungSchleifenwert,
+                                                                 XÄnderungExtern   => XÄnderungSchleifenwert - 1,
+                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
+                  
+               if
+                 SichtbarkeitTesten = False
+               then
+                  exit YÄnderungSchleife22;
+                        
+               elsif
+                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 and
+                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+               then
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenQuadrantWert);
+                        
+               else
+                  null;
+               end if;
+                     
+            end loop XÄnderungSchleife22;
+         end loop YÄnderungSchleife22;
+               
+      else
+         YÄnderungSchleife333:
+         for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
+            XÄnderungSchleife333:
+            for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
+                     
+               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                                                 YÄnderungExtern   => YÄnderungSchleifenwert - 1,
+                                                                 XÄnderungExtern   => XÄnderungSchleifenwert - 1,
+                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
+                  
+               if
+                 SichtbarkeitTesten = False
+               then
+                  exit YÄnderungSchleife333;
+                        
+               elsif
+                 YÄnderungSchleifenwert = SichtweiteYRichtungExtern
+                 and
+                   XÄnderungSchleifenwert = SichtweiteXRichtungExtern
+               then
+                  SichtbarkeitSetzen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                      KoordinatenExtern => KartenQuadrantWert);
+                        
+               else
+                  null;
+               end if;
+                     
+            end loop XÄnderungSchleife333;
+         end loop YÄnderungSchleife333;
+      end if;            
+                  
+   end QuadrantVier;
    
    
    
@@ -363,19 +666,27 @@ package body Sichtbarkeit is
       return Boolean
    is begin
       
-      KartenWertZwei := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                      ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern));
+      KartenBlockadeWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
+                                                                          ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern));
       if
-        KartenWertZwei.XAchse = 0
+        KartenBlockadeWert.XAchse = 0
       then
          null;
          
       elsif
-        Karten.Weltkarte (KartenWertZwei.EAchse, KartenWertZwei.YAchse, KartenWertZwei.XAchse).Grund = GlobaleDatentypen.Gebirge
+        Karten.Weltkarte (KartenBlockadeWert.EAchse, KartenBlockadeWert.YAchse, KartenBlockadeWert.XAchse).Grund = GlobaleDatentypen.Gebirge
         or
-          (Karten.Weltkarte (KartenWertZwei.EAchse, KartenWertZwei.YAchse, KartenWertZwei.XAchse).Grund = GlobaleDatentypen.Dschungel
+          Karten.Weltkarte (KartenBlockadeWert.EAchse, KartenBlockadeWert.YAchse, KartenBlockadeWert.XAchse).Grund = GlobaleDatentypen.Hügel
+        or
+          Karten.Weltkarte (KartenBlockadeWert.EAchse, KartenBlockadeWert.YAchse, KartenBlockadeWert.XAchse).Hügel = True
+        or
+          (SichtweiteExtern /= 3
            and
-             SichtweiteExtern /= 3)
+             (Karten.Weltkarte (KartenBlockadeWert.EAchse, KartenBlockadeWert.YAchse, KartenBlockadeWert.XAchse).Grund = GlobaleDatentypen.Dschungel
+              or
+                Karten.Weltkarte (KartenBlockadeWert.EAchse, KartenBlockadeWert.YAchse, KartenBlockadeWert.XAchse).Grund = GlobaleDatentypen.Sumpf
+              or
+                Karten.Weltkarte (KartenBlockadeWert.EAchse, KartenBlockadeWert.YAchse, KartenBlockadeWert.XAchse).Grund = GlobaleDatentypen.Wald))
       then
          return False;
          
@@ -390,15 +701,14 @@ package body Sichtbarkeit is
    
    
    procedure SichtbarkeitsprüfungOhneBlockade
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      SichtweiteExtern : in GlobaleDatentypen.Sichtweite)
    is begin
          
-      SichtweiteObjekt := 3;
-
       YÄnderungEinheitenSchleife:
-      for YÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop            
+      for YÄnderungSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop            
          XÄnderungEinheitenSchleife:
-         for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
+         for XÄnderungSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));

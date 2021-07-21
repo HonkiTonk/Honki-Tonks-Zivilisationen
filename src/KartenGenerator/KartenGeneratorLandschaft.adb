@@ -45,7 +45,7 @@ package body KartenGeneratorLandschaft is
             else
                BeliebigerLandschaftwert := ZufallGeneratorenKarten.ZufälligerWert;
                if
-                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 4)
+                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Tundra)
                  and
                    Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
                  and
@@ -56,7 +56,7 @@ package body KartenGeneratorLandschaft is
                                                XAchseExtern => XAchseDreiSchleifenwert);
 
                elsif
-                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 5)
+                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Wüste)
                  and
                    Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
                  and
@@ -67,7 +67,7 @@ package body KartenGeneratorLandschaft is
                                                XAchseExtern => XAchseDreiSchleifenwert);
 
                elsif
-                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 6)
+                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Hügel)
                  and
                    Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
                then
@@ -76,7 +76,7 @@ package body KartenGeneratorLandschaft is
                                                XAchseExtern => XAchseDreiSchleifenwert);
 
                elsif
-                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 7)
+                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Gebirge)
                  and
                    Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
                then
@@ -85,7 +85,7 @@ package body KartenGeneratorLandschaft is
                                                XAchseExtern => XAchseDreiSchleifenwert);
 
                elsif
-                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 8)
+                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Wald)
                  and
                    Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
                then
@@ -94,7 +94,7 @@ package body KartenGeneratorLandschaft is
                                                XAchseExtern => XAchseDreiSchleifenwert);
 
                elsif
-                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 9)
+                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Dschungel)
                  and
                    Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
                then
@@ -103,7 +103,7 @@ package body KartenGeneratorLandschaft is
                                                XAchseExtern => XAchseDreiSchleifenwert);
 
                elsif
-                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, 10)
+                 BeliebigerLandschaftwert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Sumpf)
                  and
                    Karten.GeneratorGrund (YAchseDreiSchleifenwert, XAchseDreiSchleifenwert) = False
                then
@@ -191,7 +191,7 @@ package body KartenGeneratorLandschaft is
                null;
                
             elsif
-              Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund in GlobaleDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
+              Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund in GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range
             then
                null;
                
@@ -292,7 +292,14 @@ package body KartenGeneratorLandschaft is
             if
               BeliebigerHügelwert >= 0.85
             then
-               Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Hügel := True;
+               if
+                 Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = GlobaleDatentypen.Flachland
+               then
+                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := GlobaleDatentypen.Hügel;
+                    
+               else
+                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Hügel := True;
+               end if;
                      
             else
                null;
@@ -302,7 +309,14 @@ package body KartenGeneratorLandschaft is
             if
               BeliebigerHügelwert >= 0.66
             then
-               Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Hügel := True;
+               if
+                 Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = GlobaleDatentypen.Flachland
+               then
+                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := GlobaleDatentypen.Hügel;
+                    
+               else
+                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Hügel := True;
+               end if;
                      
             else
                null;
@@ -312,7 +326,14 @@ package body KartenGeneratorLandschaft is
             if
               BeliebigerHügelwert >= 0.33
             then
-               Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Hügel := True;
+               if
+                 Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = GlobaleDatentypen.Flachland
+               then
+                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := GlobaleDatentypen.Hügel;
+                    
+               else
+                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Hügel := True;
+               end if;
                      
             else
                null;
@@ -322,7 +343,14 @@ package body KartenGeneratorLandschaft is
             if
               BeliebigerHügelwert >= 0.95
             then
-               Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Hügel := True;
+               if
+                 Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = GlobaleDatentypen.Flachland
+               then
+                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := GlobaleDatentypen.Hügel;
+                    
+               else
+                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Hügel := True;
+               end if;
                      
             else
                null;

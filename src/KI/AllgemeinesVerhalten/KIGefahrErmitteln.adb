@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen, EinheitSuchen, Karten, KIGefahrReaktion;
+with KartePositionPruefen, EinheitSuchen, Karten, KIGefahrReaktion, StadtSuchen;
 
 package body KIGefahrErmitteln is
    
@@ -36,6 +36,15 @@ package body KIGefahrErmitteln is
                then
                   null;
                      
+               elsif
+                 GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitUnzugeordnet.Rasse) in GlobaleDatentypen.Status_Untereinander_Aggressiv_Enum
+                 and
+                   StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                               KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
+                     /= GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+               then
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.00;
+                  
                elsif
                  GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitUnzugeordnet.Rasse) in GlobaleDatentypen.Status_Untereinander_Aggressiv_Enum
                then
