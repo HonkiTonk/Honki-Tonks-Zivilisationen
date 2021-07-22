@@ -4,7 +4,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with KIDatentypen;
 
-with Anzeige, Eingabe, Karte, KartePositionPruefen, Karten, EinheitSuchen, EinheitenAllgemein, BewegungPassierbarkeitPruefen;
+with Anzeige, Eingabe, Karte, EinheitSuchen, EinheitenAllgemein, UmgebungErreichbarTesten, KartePositionPruefen;
 
 package body StadtEinheitenBauen is
 
@@ -53,97 +53,65 @@ package body StadtEinheitenBauen is
       else
          null;
       end if;
-      
-      BereitsVonEinheitBelegt := 1;
-      Umgebung := 1;
-      BereitsGetestet := Umgebung - 1;
-      
-      BereichSchleife:
-      loop
-         YAchseSchleife:
-         for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop
-            XAchseSchleife:
-            for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
-               
-               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                           ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-               
-               if
-                 KartenWert.XAchse = 0
-               then
-                  null;     
-                  
-                  -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
-               elsif
-                 BereitsGetestet >= abs (YÄnderungSchleifenwert)
-                 and
-                   BereitsGetestet > 0
-               then
-                  exit XAchseSchleife;
-                  
-               elsif
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
-               in
-                 GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 2)
-               then
-                  BereitsVonEinheitBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer;
-                  if
-                    BereitsVonEinheitBelegt = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
-                    and
-                      (BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenID (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                      IDExtern           => GlobaleDatentypen.EinheitenID
-                                                                                        (GlobaleVariablen.StadtGebaut
-                                                                                           (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag),
-                                                                                      NeuePositionExtern => KartenWert) = True
-                       or
-                         (YÄnderungSchleifenwert = 0
-                          and
-                            XÄnderungSchleifenwert = 0))
-                  then
-                     exit BereichSchleife;
-                     
-                  else
-                     null;
-                  end if;
-               
-               else
-                  null;
-               end if;
             
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-         
-         exit BereichSchleife when Umgebung = 3;
-            
-         Umgebung := Umgebung + 1;
-         BereitsGetestet := Umgebung - 1;
-         
-      end loop BereichSchleife;
-      
       if
-        BereitsVonEinheitBelegt = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position).Platznummer
+          = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
       then
-         EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern            => KartenWert,
-                                             EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummer),
-                                             IDExtern                     => GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
-                                               StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag));
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := 0;
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := 0;
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := 0;
+         KartenWert := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position;
          
       else
-         null;
+         Element := 1;
+         UmgebungErreichbarTesten.MöglicheFelder := (others => GlobaleKonstanten.RückgabeKartenPositionFalsch);
+         for A in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+            for B in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
+               
+               if
+               abs (A) <= GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
+                 and
+               abs (B) <= GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
+               then
+                  KartenWertNeu := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                                                 ÄnderungExtern   => (0, A, B));
+                  UmgebungErreichbarTesten.MöglicheFelder (Element) := KartenWertNeu;
+                    
+               else
+                  UmgebungErreichbarTesten.MöglicheFelder (Element) := GlobaleKonstanten.RückgabeKartenPositionFalsch;
+               end if;
+               Element := Element + 1;
+               
+            end loop;
+         end loop;
+         KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                                          RasseExtern               => StadtRasseNummerExtern.Rasse,
+                                                                          IDExtern                  => GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut
+                                                                            (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag));
       end if;
-      
+        
       case
-        GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse)
+        KartenWert.XAchse
       is
-      when GlobaleDatentypen.Spieler_Mensch =>
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
-                                               TextZeileExtern => 29);
+         when 0 =>
+            null;
+            
+         when others =>
+            EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern            => KartenWert,
+                                                EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummer),
+                                                IDExtern                     => GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
+                                                  StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag));
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := 0;
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := 0;
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := 0;
+            
+            if
+              GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
+            then
+               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
+                                                     TextZeileExtern => 29);
          
-      when others =>
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := KIDatentypen.Keine_Aufgabe;
+            else
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := KIDatentypen.Keine_Aufgabe;
+            end if;
       end case;
       
    end EinheitFertiggestellt;

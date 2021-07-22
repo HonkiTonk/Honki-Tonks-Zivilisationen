@@ -56,7 +56,7 @@ package body SpielEinstellungen is
 
       KartenGenerator.KartenGenerator;
       
-      Ladezeiten.SpielweltErstellenZeit (12, 1) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (12, GlobaleDatentypen.Anfangswert) := Clock;
       StartwerteErmitteln;
       RassenVorhanden := False;
       
@@ -87,7 +87,7 @@ package body SpielEinstellungen is
             return GlobaleKonstanten.SpielBeendenKonstante;
       end case;               
          
-      Ladezeiten.SpielweltErstellenZeit (12, 2) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (12, GlobaleDatentypen.Endwert) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 12);
 
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 1);

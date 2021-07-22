@@ -2,6 +2,12 @@ pragma SPARK_Mode (On);
 
 package GlobaleDatentypen is
 
+   -- Sonstiges
+   type Anfang_Ende_Enum is (Leer, Anfangswert, Endwert);
+   for Anfang_Ende_Enum use (Leer => 0, Anfangswert => 1, Endwert => 2);
+   subtype Anfang_Ende_Verwendet is Anfang_Ende_Enum range Anfangswert .. Endwert;
+   -- Sonstiges
+
    -- Für Anzeige
    type TextDateien is range 0 .. 27;
    type TextZeilen is range 0 .. 104;
@@ -11,21 +17,23 @@ package GlobaleDatentypen is
 
 
    -- Für Tastenbelegung
-   type Tastenbelegung_Enum is (Nicht_Vorhanden, Hoch, Links, Runter, Rechts, Links_Oben, Rechts_Oben, Links_Unten, Rechts_Unten, Ebene_Hoch, Ebene_Runter,
-                                Auswählen, Menü_Zurück, Bauen, Forschung, Tech_Baum, Nächste_Stadt, Einheit_Mit_Bewegungspunkte, Alle_Einheiten, Einheiten_Ohne_Bewegungspunkte, Straße_Bauen,
-                                Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Einheit_Auflösen, Plündern,
-                                Infos, Diplomatie, GeheZu, Stadt_Umbenennen, Stadt_Abreißen, Stadt_Suchen, Runde_Beenden, Cheatmenü);
-
-   for Tastenbelegung_Enum use (Nicht_Vorhanden => 0, Hoch => 1, Links => 2, Runter => 3, Rechts => 4, Links_Oben => 5, Rechts_Oben => 6, Links_Unten => 7, Rechts_Unten => 8, Ebene_Hoch => 9, Ebene_Runter => 10,
-                                Auswählen => 11, Menü_Zurück => 12, Bauen => 13, Forschung => 14, Tech_Baum => 15, Nächste_Stadt => 16, Einheit_Mit_Bewegungspunkte => 17, Alle_Einheiten => 18,
-                                Einheiten_Ohne_Bewegungspunkte => 19, Straße_Bauen => 20, Mine_Bauen => 21, Farm_Bauen => 22, Festung_Bauen => 23, Wald_Aufforsten => 24, Roden_Trockenlegen => 25, Heilen => 26,
-                                Verschanzen => 27, Runde_Aussetzen => 28, Einheit_Auflösen => 29, Plündern => 30, Infos => 31, Diplomatie => 32, GeheZu => 33, Stadt_Umbenennen => 34, Stadt_Abreißen => 35,
-                                Stadt_Suchen => 36, Runde_Beenden => 37, Cheatmenü => 38);
+   type Tastenbelegung_Enum is (Nicht_Vorhanden,
+                                -- Bewegung
+                                Hoch, Links, Runter, Rechts, Links_Oben, Rechts_Oben, Links_Unten, Rechts_Unten, Ebene_Hoch, Ebene_Runter,
+                                Auswählen, Menü_Zurück,
+                                Bauen, Forschung, Tech_Baum,
+                                Nächste_Stadt, Einheit_Mit_Bewegungspunkte, Alle_Einheiten, Einheiten_Ohne_Bewegungspunkte,
+                                -- Einheitenbefehle
+                                Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Plündern, Einheit_Auflösen, Einheit_Verbessern,
+                                Infos, Diplomatie, GeheZu,
+                                Stadt_Umbenennen, Stadt_Abreißen, Stadt_Suchen,
+                                Runde_Beenden, Cheatmenü);
 
    subtype Tastenbelegung_Verwendet_Enum is Tastenbelegung_Enum range Hoch .. Cheatmenü;
    subtype Tastenbelegung_Bewegung_Enum is Tastenbelegung_Verwendet_Enum range Hoch .. Ebene_Runter;
    subtype Tastenbelegung_Bewegung_Stadt_Enum is Tastenbelegung_Verwendet_Enum range Hoch .. Rechts_Unten;
-   subtype Tastenbelegung_Befehle_Enum is Tastenbelegung_Verwendet_Enum range Straße_Bauen .. Plündern;
+   subtype Tastenbelegung_Befehle_Enum is Tastenbelegung_Verwendet_Enum range Straße_Bauen .. Einheit_Verbessern;
+   subtype Tastenbelegung_Verbesserung_Befehle_Enum is Tastenbelegung_Befehle_Enum range Straße_Bauen .. Roden_Trockenlegen;
    -- Für Tastenbelegung
 
 
@@ -139,9 +147,15 @@ package GlobaleDatentypen is
    subtype EinheitenID is EinheitenIDMitNullWert range 1 .. EinheitenIDMitNullWert'Last;
 
    -- Passierbarkeit
-   type Passierbarkeit_Enum is (Leer, Boden, Wasser, Luft, Weltraum, Unterwasser, Unteridrisch, Planeteninneres, Lava);
-   for Passierbarkeit_Enum use (Leer => 0, Boden => 1, Wasser => 2, Luft => 3, Weltraum => 4, Unterwasser => 5, Unteridrisch => 6, Planeteninneres => 7, Lava => 8);
+   type Passierbarkeit_Enum is (Leer,
+                                Boden,
+                                Wasser, Unterwasser,
+                                Luft, Weltraum,
+                                Unteridrisch, Planeteninneres,
+                                Lava);
    subtype Passierbarkeit_Vorhanden_Enum is Passierbarkeit_Enum range Boden .. Lava;
+   subtype Passierbarkeit_Fliegen_Enum is Passierbarkeit_Vorhanden_Enum range Luft .. Weltraum;
+
 
    type EinheitenTyp is range 1 .. 12;
    -- Für später merken, jetzt aber noch nicht einbauen/nutzen, da sonst ständig Zeug verschoben werden muss
@@ -159,7 +173,6 @@ package GlobaleDatentypen is
 
 
    -- Für Forschung
-   -- Forschungsenum sinnvoll?
    subtype ForschungIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 25;
    subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
 
@@ -195,7 +208,6 @@ package GlobaleDatentypen is
    subtype Status_Untereinander_Neutral_Enum is Status_Untereinander_Enum range Neutral .. Neutral;
    subtype Status_Untereinander_Friedlich_Enum is Status_Untereinander_Enum range Offene_Grenzen .. Offensivbündnis;
    subtype Status_Untereinander_Aggressiv_Enum is Status_Untereinander_Enum range Krieg .. Krieg;
-
    -- Für Diplomatie
 
 end GlobaleDatentypen;

@@ -12,7 +12,7 @@ package body KartenGeneratorWeltraum is
    procedure Weltraum
    is begin
       
-      Ladezeiten.SpielweltErstellenZeit (8, 1) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (8, GlobaleDatentypen.Anfangswert) := Clock;
 
       YAchseWeltraumSchleife:
       for YAchseWeltraumSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
@@ -24,7 +24,7 @@ package body KartenGeneratorWeltraum is
          end loop XAchseWeltraumSchleife;
       end loop YAchseWeltraumSchleife;
 
-      Ladezeiten.SpielweltErstellenZeit (8, 2) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (8, GlobaleDatentypen.Endwert) := Clock;
       
    end Weltraum;
 

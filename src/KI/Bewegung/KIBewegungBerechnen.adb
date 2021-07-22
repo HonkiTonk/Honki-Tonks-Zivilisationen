@@ -17,7 +17,7 @@ package body KIBewegungBerechnen is
          when False =>
             null;
             
-         when True =>            
+         when True =>
             KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                       WelchenWertNullSetzten   => 0);
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
@@ -25,6 +25,8 @@ package body KIBewegungBerechnen is
             return False;
       end case;
       
+      KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                WelchenWertNullSetzten   => -1);
       PlanungErfolgreich := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
                                             AktuelleKoordinatenExtern  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                             AktuellePlanpositionExtern => 1);
@@ -386,7 +388,7 @@ package body KIBewegungBerechnen is
    
    function TransporterNötig
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   return Boolean
+      return Boolean
    is begin
       
       return False;

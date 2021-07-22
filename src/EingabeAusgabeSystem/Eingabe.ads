@@ -47,6 +47,7 @@ package Eingabe is
                                                Runde_Aussetzen => Space,
                                                Einheit_Auflösen => DEL,
                                                Plündern => 'j',
+                                               Einheit_Verbessern => '<',
                                                Infos => 'i',
 
                                                Diplomatie => '#',
@@ -95,6 +96,7 @@ package Eingabe is
                                                Runde_Aussetzen => NUL,
                                                Einheit_Auflösen => NUL,
                                                Plündern => NUL,
+                                               Einheit_Verbessern => NUL,
                                                Infos => NUL,
 
                                                Diplomatie => NUL,
@@ -195,6 +197,7 @@ private
                                                                 Runde_Aussetzen => Space,
                                                                 Einheit_Auflösen => DEL,
                                                                 Plündern => 'j',
+                                                                Einheit_Verbessern => '-',
                                                                 Infos => 'i',
 
                                                                 Diplomatie => '#',
@@ -243,6 +246,7 @@ private
                                                                 Runde_Aussetzen => NUL,
                                                                 Einheit_Auflösen => NUL,
                                                                 Plündern => NUL,
+                                                                Einheit_Verbessern => NUL,
                                                                 Infos => NUL,
 
                                                                 Diplomatie => NUL,

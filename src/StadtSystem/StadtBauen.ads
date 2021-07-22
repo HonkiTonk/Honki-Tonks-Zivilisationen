@@ -21,17 +21,6 @@ package StadtBauen is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
-
-
-   function StadtBauenPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-
    function ErweitertesStadtBauenPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean

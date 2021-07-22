@@ -134,6 +134,14 @@ private
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   procedure VerbesserungEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure VerbesserungAngelegt
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

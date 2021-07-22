@@ -15,6 +15,8 @@ package Wachstum is
 
 private
    
+   EinwohnerÄnderung : Boolean;
+   
    procedure WachstumStadtExistiert
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with

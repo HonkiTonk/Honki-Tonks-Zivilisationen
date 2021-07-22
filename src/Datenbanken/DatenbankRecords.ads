@@ -19,10 +19,12 @@ package DatenbankRecords is
       PreisRessourcen : GlobaleDatentypen.KostenLager;
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
 
-      -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
+      -- Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
       Passierbarkeit : PassierbarkeitArray;
+      
       MaximaleLebenspunkte : Positive;
       MaximaleBewegungspunkte : Float;
+      WirdVerbessertZu : GlobaleDatentypen.EinheitenIDMitNullWert;
 
       Beförderungsgrenze : Positive;
       MaximalerRang : Natural;
@@ -44,6 +46,7 @@ package DatenbankRecords is
 
       PreisForschung : GlobaleDatentypen.KostenLager;
       AnforderungForschung : GlobaleDatentypen.AnforderungForschungArray;
+      
 
    end record;
    -- ForschungsDatenbank

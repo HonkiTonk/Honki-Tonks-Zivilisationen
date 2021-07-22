@@ -89,7 +89,7 @@ package body KIPruefungen is
                     and
                       Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse, StadtVerbesserungUmgebungKoordinaten.YAchse, StadtVerbesserungUmgebungKoordinaten.XAchse).DurchStadtBelegterGrund
                   in
-                    GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, 2)
+                    GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Anfangswert) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Endwert)
                   then               
                      case
                        KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen,

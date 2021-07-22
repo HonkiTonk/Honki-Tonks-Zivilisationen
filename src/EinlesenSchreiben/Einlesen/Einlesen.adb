@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 use Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
-with GlobaleVariablen;
+with GlobaleVariablen, GlobaleDatentypen;
 
 with Ladezeiten, Auswahl, EinlesenSprache, EinlesenText, EinlesenTastatur, EinlesenWerte, EinlesenEinstellungen, SchreibenEinstellungen;
 
@@ -13,7 +13,7 @@ package body Einlesen is
      return Boolean
    is begin
       
-      Ladezeiten.EinzelneZeiten (1, 1) := Clock;
+      Ladezeiten.EinzelneZeiten (1, GlobaleDatentypen.Anfangswert) := Clock;
       EinlesenEinstellungen.EinlesenEinstellungen;
       
       if
@@ -49,7 +49,7 @@ package body Einlesen is
       
       EinlesenWerte.EinlesenAlleDatenbanken;
       EinlesenTastatur.EinlesenTastaturbelegung;
-      Ladezeiten.EinzelneZeiten (1, 2) := Clock;
+      Ladezeiten.EinzelneZeiten (1, GlobaleDatentypen.Endwert) := Clock;
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => 1);
       return Erfolgreich;
       

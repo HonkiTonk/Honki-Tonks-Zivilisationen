@@ -7,7 +7,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with KIDatentypen;
 
-with Anzeige, StadtWerteFestlegen, Eingabe, Karten, KartePositionPruefen, StadtProduktion, ForschungAllgemein, EinheitenAllgemein, Sichtbarkeit;
+with Anzeige, StadtWerteFestlegen, Eingabe, Karten, KartePositionPruefen, StadtProduktion, ForschungAllgemein, EinheitenAllgemein, Sichtbarkeit, FeldTesten;
 
 package body StadtBauen is
 
@@ -16,7 +16,7 @@ package body StadtBauen is
    is begin     
         
       if
-        StadtBauenPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+        FeldTesten.BelegterGrundLeerTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
       then
          null;
          
@@ -127,26 +127,6 @@ package body StadtBauen is
 
 
 
-   function StadtBauenPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
-   is begin
-      
-      if
-        Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).DurchStadtBelegterGrund = 0
-      then
-         return True;
-         
-      else
-         return False;
-      end if;
-      
-   end StadtBauenPrüfen;
-
-
-
    function ErweitertesStadtBauenPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
@@ -157,25 +137,22 @@ package body StadtBauen is
          XAchseSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
-            case
-              KartenWert.XAchse
-            is
-               when 0 =>
-                  null;
-                  
-               when others =>
-                  if
-                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund = 0
-                  then
-                     null;
-                     
-                  else
-                     return False;
-                  end if;
-            end case;
+            if
+              KartenWert.XAchse = 0
+            then
+               null;
+               
+            elsif
+              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund = 0
+            then
+               null;
+               
+            else
+               return False;
+            end if;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;

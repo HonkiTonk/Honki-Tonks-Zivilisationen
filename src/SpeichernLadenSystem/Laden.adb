@@ -26,7 +26,7 @@ package body Laden is
          when False =>
             return False;
       end case;
-      Ladezeiten.EinzelneZeiten (4, 1) := Clock;
+      Ladezeiten.EinzelneZeiten (4, GlobaleDatentypen.Anfangswert) := Clock;
 
       Open (File => DateiLadenNeu,
             Mode => In_File,
@@ -238,7 +238,7 @@ package body Laden is
 
       Close (File => DateiLadenNeu);
 
-      Ladezeiten.EinzelneZeiten (4, 2) := Clock;
+      Ladezeiten.EinzelneZeiten (4, GlobaleDatentypen.Endwert) := Clock;
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => 4);
 
       return True;

@@ -419,7 +419,7 @@ package body BewegungPassierbarkeitPruefen is
                elsif
                  Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
                in
-                 GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 1) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, 2)
+                 GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Anfangswert) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Endwert)
                  and
                    GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
                  and

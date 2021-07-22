@@ -13,6 +13,8 @@ package body ImSpiel is
      return Integer
    is begin
       
+      SichtbarkeitsprüfungNotwendig := True;
+      
       SpielSchleife:
       loop         
          RassenSchleife:
@@ -32,7 +34,15 @@ package body ImSpiel is
                      null;
                      
                   when GlobaleDatentypen.Spieler_Mensch =>
-                     Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
+                     if
+                       SichtbarkeitsprüfungNotwendig = True
+                     then
+                        Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
+                        
+                     else
+                        null;
+                     end if;
+                     
                      RückgabeWert := MenschlicherSpieler (RasseExtern => RasseSchleifenwert);
                      if
                        RückgabeWert = GlobaleKonstanten.SpielBeendenKonstante
@@ -51,10 +61,17 @@ package body ImSpiel is
                      end if;
                   
                   when GlobaleDatentypen.Spieler_KI =>
-                     Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
-                     Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), 1) := Clock;
+                     if
+                       SichtbarkeitsprüfungNotwendig = True
+                     then
+                        Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
+                        
+                     else
+                        null;
+                     end if;
+                     Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), GlobaleDatentypen.Anfangswert) := Clock;
                      KI.KI (RasseExtern => RasseSchleifenwert);
-                     Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), 2) := Clock;
+                     Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), GlobaleDatentypen.Endwert) := Clock;
                end case;
 
             else
@@ -72,6 +89,8 @@ package body ImSpiel is
             when others =>
                null;
          end case;
+         
+         SichtbarkeitsprüfungNotwendig := False;
             
       end loop SpielSchleife;
             
@@ -147,7 +166,7 @@ package body ImSpiel is
    procedure BerechnungenNachZugendeAllerSpieler
    is begin
             
-      Ladezeiten.EinzelneZeiten (2, 1) := Clock;
+      Ladezeiten.EinzelneZeiten (2, GlobaleDatentypen.Anfangswert) := Clock;
       EinheitenAllgemein.HeilungBewegungspunkteNeueRundeErmitteln;
       Verbesserungen.VerbesserungFertiggestellt;
       Wachstum.Wachstum;
@@ -183,12 +202,13 @@ package body ImSpiel is
             Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert));
             
          else
-            Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), 1) := Clock;
-            Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), 2) := Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), 1);
+            Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), GlobaleDatentypen.Anfangswert) := Clock;
+            Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), GlobaleDatentypen.Endwert)
+              := Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), GlobaleDatentypen.Anfangswert);
          end if;
          
       end loop RassenSchleife;      
-      Ladezeiten.EinzelneZeiten (2, 2) := Clock;
+      Ladezeiten.EinzelneZeiten (2, GlobaleDatentypen.Endwert) := Clock;
       
       Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => 19);
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => 2);      

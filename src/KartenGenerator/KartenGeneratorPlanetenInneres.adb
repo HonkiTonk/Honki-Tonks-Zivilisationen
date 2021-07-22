@@ -13,7 +13,7 @@ package body KartenGeneratorPlanetenInneres is
    procedure PlanetenInneres
    is begin
       
-      Ladezeiten.SpielweltErstellenZeit (10, 1) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (10, GlobaleDatentypen.Anfangswert) := Clock;
          
       YAchseInneresSchleife:
       for YAchseInneresSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
@@ -25,7 +25,7 @@ package body KartenGeneratorPlanetenInneres is
          end loop XAchseInneresSchleife;
       end loop YAchseInneresSchleife;
          
-      Ladezeiten.SpielweltErstellenZeit (10, 2) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (10, GlobaleDatentypen.Endwert) := Clock;
       
    end PlanetenInneres;
 

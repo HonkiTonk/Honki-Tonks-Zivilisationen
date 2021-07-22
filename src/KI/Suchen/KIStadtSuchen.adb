@@ -1,10 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleKonstanten;
+with GlobaleKonstanten;
+
+with EinheitSuchen;
 
 package body KIStadtSuchen is
 
-   function KINähesteStadtSuchen
+   function NähesteStadtSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
@@ -54,6 +56,41 @@ package body KIStadtSuchen is
             return GlobaleVariablen.StadtGebaut (RasseExtern, AktuellGefundeneStadt).Position;
       end case;
       
-   end KINähesteStadtSuchen;
+   end NähesteStadtSuchen;
+   
+   
+   
+   function UnbewachteStadtSuchen
+     (FeindlicheRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+   is begin
+      
+      StadtSchleife:
+      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+         
+         case
+           GlobaleVariablen.StadtGebaut (FeindlicheRasseExtern, StadtNummerSchleifenwert).ID
+         is
+            when GlobaleDatentypen.Leer =>
+               null;
+               
+            when others =>
+               if
+                 EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
+                                                                 KoordinatenExtern => GlobaleVariablen.StadtGebaut (FeindlicheRasseExtern, StadtNummerSchleifenwert).Position)
+                   = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+               then
+                  return GlobaleVariablen.StadtGebaut (FeindlicheRasseExtern, StadtNummerSchleifenwert).Position;
+                  
+               else
+                  null;
+               end if;
+         end case;
+         
+      end loop StadtSchleife;
+      
+      return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+      
+   end UnbewachteStadtSuchen;
 
 end KIStadtSuchen;

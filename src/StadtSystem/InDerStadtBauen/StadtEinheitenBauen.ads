@@ -14,14 +14,12 @@ package StadtEinheitenBauen is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
 private
-   
-   BereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
-   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
-   
+    
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-   
-   BereitsVonEinheitBelegt : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-   
+      
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWertNeu : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
+   Element : Positive;
 
 end StadtEinheitenBauen;

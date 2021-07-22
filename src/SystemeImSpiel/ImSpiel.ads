@@ -13,6 +13,8 @@ package ImSpiel is
 
 private
 
+   SichtbarkeitsprüfungNotwendig : Boolean;
+
    AktuellerBefehlSpieler : Integer;
    RückgabeWert : Integer;
    RückgabeOptionen : Integer;

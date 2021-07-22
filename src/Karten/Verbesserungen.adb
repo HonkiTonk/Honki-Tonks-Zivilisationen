@@ -6,7 +6,7 @@ with KIDatentypen;
 
 with EinheitenDatenbank;
   
-with Anzeige, FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein;
+with Anzeige, FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, FeldTesten;
 
 package body Verbesserungen is
 
@@ -58,70 +58,51 @@ package body Verbesserungen is
                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund;
       
-      if
-        BefehlExtern = GlobaleDatentypen.Straße_Bauen
-      then
-         VerbesserungStraße (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      case
+        BefehlExtern
+      is
+         when GlobaleDatentypen.Straße_Bauen =>
+            VerbesserungStraße (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                 GrundExtern              => Grund);
+         
+         when GlobaleDatentypen.Mine_Bauen =>
+            VerbesserungMine (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                               GrundExtern              => Grund);
          
-      elsif
-        BefehlExtern = GlobaleDatentypen.Mine_Bauen
-      then
-         VerbesserungMine (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                           GrundExtern              => Grund);
-         
-      elsif
-        BefehlExtern = GlobaleDatentypen.Farm_Bauen
-      then
-         VerbesserungFarm (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                           GrundExtern              => Grund);
-         
-      elsif
-        BefehlExtern = GlobaleDatentypen.Festung_Bauen
-      then
-         VerbesserungFestung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+         when GlobaleDatentypen.Farm_Bauen =>
+            VerbesserungFarm (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                               GrundExtern              => Grund);
          
-      elsif
-        BefehlExtern = GlobaleDatentypen.Wald_Aufforsten
-      then
-         VerbesserungWald (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                           GrundExtern              => Grund);
+         when GlobaleDatentypen.Festung_Bauen =>
+            VerbesserungFestung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                 GrundExtern              => Grund);
          
-      elsif
-        BefehlExtern = GlobaleDatentypen.Roden_Trockenlegen
-      then
-         VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                            GrundExtern              => Grund);
+         when GlobaleDatentypen.Wald_Aufforsten =>
+            VerbesserungWald (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                              GrundExtern              => Grund);
          
-      elsif
-        BefehlExtern = GlobaleDatentypen.Heilen
-      then
-         VerbesserungHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when GlobaleDatentypen.Roden_Trockenlegen =>
+            VerbesserungRoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                               GrundExtern              => Grund);
          
-      elsif
-        BefehlExtern = GlobaleDatentypen.Verschanzen
-      then
-         VerbesserungVerschanzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when GlobaleDatentypen.Heilen =>
+            VerbesserungHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-      elsif
-        BefehlExtern = GlobaleDatentypen.Runde_Aussetzen
-      then
-         VerbesserungAussetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when GlobaleDatentypen.Verschanzen =>
+            VerbesserungVerschanzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-      elsif
-        BefehlExtern = GlobaleDatentypen.Einheit_Auflösen
-      then
-         VerbesserungAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when GlobaleDatentypen.Runde_Aussetzen =>
+            VerbesserungAussetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-      elsif
-        BefehlExtern = GlobaleDatentypen.Plündern
-      then
-         VerbesserungPlündern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when GlobaleDatentypen.Einheit_Auflösen =>
+            VerbesserungAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
-      else
-         null;
-      end if;
+         when GlobaleDatentypen.Plündern =>
+            VerbesserungPlündern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+         when GlobaleDatentypen.Einheit_Verbessern =>
+            VerbesserungEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end case;
       
    end VerbesserungFestgelegt;
 
@@ -678,6 +659,33 @@ package body Verbesserungen is
       end if;
       
    end VerbesserungPlündern;
+   
+   
+   
+   procedure VerbesserungEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      if
+        (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).WirdVerbessertZu /= 0
+         and
+           FeldTesten.BelegterGrundTesten (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                           KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = True)
+        and then
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht
+        (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
+         EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).WirdVerbessertZu).Anforderungen)
+        = True
+      then
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.00;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID
+           := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).WirdVerbessertZu;
+         
+      else
+         null;
+      end if;
+      
+   end VerbesserungEinheit;
    
 
 

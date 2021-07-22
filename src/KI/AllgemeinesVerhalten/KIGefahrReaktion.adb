@@ -8,8 +8,8 @@ package body KIGefahrReaktion is
      (EinheitRasseNummerExtern, FeindlicheEinheit : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      ZielStadt := KIStadtSuchen.KINähesteStadtSuchen (RasseExtern             => EinheitRasseNummerExtern.Rasse,
-                                                        AnfangKoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position);
+      ZielStadt := KIStadtSuchen.NähesteStadtSuchen (RasseExtern             => EinheitRasseNummerExtern.Rasse,
+                                                      AnfangKoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position);
       
       case
         ZielStadt.XAchse

@@ -199,6 +199,7 @@ package body Wachstum is
            := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) + 1;
          StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => True,
                                                             StadtRasseNummerExtern   => StadtRasseNummerExtern);
+         EinwohnerÄnderung := True;
          
       elsif
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel
@@ -209,6 +210,7 @@ package body Wachstum is
            := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) + 1;
          StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => True,
                                                             StadtRasseNummerExtern   => StadtRasseNummerExtern);
+         EinwohnerÄnderung := True;
 
       elsif
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel < 0
@@ -225,25 +227,31 @@ package body Wachstum is
                return;
                
             when others =>
-               null;
+               StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => False,
+                                                                  StadtRasseNummerExtern   => StadtRasseNummerExtern);
+               EinwohnerÄnderung := True;
          end case;
-         
-         StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => False,
-                                                            StadtRasseNummerExtern   => StadtRasseNummerExtern);
-         
+                  
       else
          null;
       end if;
 
-      case
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
-      is
-         when 9 | 10 | 19 | 20 =>
-            StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      if
+        EinwohnerÄnderung = True
+        and
+          (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
+           in
+             9 .. 10
+           or
+             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
+           in 19 .. 20)
+      then
+         StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         EinwohnerÄnderung := False;
             
-         when others =>
-            return;
-      end case;
+      else
+         null;
+      end if;
       
    end WachstumEinwohner;
    
