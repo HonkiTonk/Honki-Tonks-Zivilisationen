@@ -46,7 +46,7 @@ package body KartenGeneratorKueste is
                         
             if
               KartenWert.XAchse = 0
-              or
+              or else
                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= GlobaleDatentypen.Flachland
             then
                null;

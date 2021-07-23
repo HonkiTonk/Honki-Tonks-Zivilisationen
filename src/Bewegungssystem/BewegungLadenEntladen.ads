@@ -57,17 +57,14 @@ package BewegungLadenEntladen is
    
 private
    
-   BereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
-   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
    
    TransporterNummer : GlobaleDatentypen.MaximaleEinheiten;
    EinheitAusladen : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
    FreierPlatzNummer : Positive;
    WelcherPlatz : Positive;
+   BenötigteFelder : Positive;
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   
-   TransportplatzEntladen : GlobaleRecords.TransporterArray;
 
 end BewegungLadenEntladen;

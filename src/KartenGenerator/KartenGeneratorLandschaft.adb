@@ -138,7 +138,7 @@ package body KartenGeneratorLandschaft is
 
             if
               KartenWert.XAchse = 0
-              or
+              or else
                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund in GlobaleDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
             then
                null;

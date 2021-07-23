@@ -19,6 +19,7 @@ package KIBewegungBerechnen is
 private
    
    PlanungErfolgreich : Boolean;
+   PlanungErfolgreichRekursiv : Boolean;
    
    BewertungPosition : Positive;
    

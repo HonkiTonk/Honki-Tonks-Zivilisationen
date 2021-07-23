@@ -110,7 +110,7 @@ package body KIBewegungBerechnen is
            Bewertung (DurchlaufSchleifenwert).Bewertung
          is
             when 0 =>
-               PlanungErfolgreich := False;
+               PlanungErfolgreichRekursiv := False;
                
             when 11 =>
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (AktuellePlanpositionExtern)
@@ -121,15 +121,15 @@ package body KIBewegungBerechnen is
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (AktuellePlanpositionExtern)
                  := (Bewertung (DurchlaufSchleifenwert).EAchse, Bewertung (DurchlaufSchleifenwert).YAchse, Bewertung (DurchlaufSchleifenwert).XAchse);
                
-               PlanungErfolgreich := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                                     AktuelleKoordinatenExtern  => (Bewertung (DurchlaufSchleifenwert).EAchse,
-                                                                                    Bewertung (DurchlaufSchleifenwert).YAchse,
-                                                                                    Bewertung (DurchlaufSchleifenwert).XAchse),
-                                                     AktuellePlanpositionExtern => AktuellePlanpositionExtern + 1);
+               PlanungErfolgreichRekursiv := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
+                                                             AktuelleKoordinatenExtern  => (Bewertung (DurchlaufSchleifenwert).EAchse,
+                                                                                            Bewertung (DurchlaufSchleifenwert).YAchse,
+                                                                                            Bewertung (DurchlaufSchleifenwert).XAchse),
+                                                             AktuellePlanpositionExtern => AktuellePlanpositionExtern + 1);
          end case;
          
          case
-           PlanungErfolgreich
+           PlanungErfolgreichRekursiv
          is
             when True =>
                return True;

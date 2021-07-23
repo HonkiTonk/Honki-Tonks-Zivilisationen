@@ -4,7 +4,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with KIDatentypen;
 
-with Anzeige, Eingabe, Karte, EinheitSuchen, EinheitenAllgemein, UmgebungErreichbarTesten, KartePositionPruefen;
+with Anzeige, Eingabe, Karte, EinheitSuchen, EinheitenAllgemein, UmgebungErreichbarTesten;
 
 package body StadtEinheitenBauen is
 
@@ -61,31 +61,11 @@ package body StadtEinheitenBauen is
          KartenWert := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position;
          
       else
-         Element := 1;
-         UmgebungErreichbarTesten.MöglicheFelder := (others => GlobaleKonstanten.RückgabeKartenPositionFalsch);
-         for A in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
-            for B in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
-               
-               if
-               abs (A) <= GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
-                 and
-               abs (B) <= GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
-               then
-                  KartenWertNeu := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                                 ÄnderungExtern   => (0, A, B));
-                  UmgebungErreichbarTesten.MöglicheFelder (Element) := KartenWertNeu;
-                    
-               else
-                  UmgebungErreichbarTesten.MöglicheFelder (Element) := GlobaleKonstanten.RückgabeKartenPositionFalsch;
-               end if;
-               Element := Element + 1;
-               
-            end loop;
-         end loop;
          KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
                                                                           RasseExtern               => StadtRasseNummerExtern.Rasse,
                                                                           IDExtern                  => GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut
-                                                                            (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag));
+                                                                            (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag),
+                                                                          NotwendigeFelderExtern    => 1);
       end if;
         
       case

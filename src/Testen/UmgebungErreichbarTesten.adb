@@ -5,107 +5,83 @@ with GlobaleKonstanten;
 with KartePositionPruefen, BewegungPassierbarkeitPruefen, FeldTesten, EinheitSuchen;
 
 package body UmgebungErreichbarTesten is
-
-   -- Später noch abfragen für die Technologie einbauen, wenn Schiffahrt möglich dann auch das Platzieren von Einheiten, sonst nicht
-   -- Ist das sinnvooll? Eventuell braucht man dann ständig Transporter um Einheiten von einer einzelnen Insel abzuholen
+   
    function UmgebungErreichbarTesten
      (AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
+      IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
+      NotwendigeFelderExtern : in Positive)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
    is begin
       
-      YAchseÄnderungSchleife:
-      for YAchseÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-         XAchseÄnderungSchleife:
-         for XAchseÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-                        
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => AktuelleKoordinatenExtern,
-                                                                        ÄnderungExtern   => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert));
-            
-            if
-              KartenWert.XAchse = 0
-            then
-               null;
+      GefundeneFelder := 1;
+      Umgebung := 1;
+      YAchseBereitsGetestet := Umgebung - 1;
+      XAchseBereitsGetestet := Umgebung - 1;
+      
+      BereichSchleife:
+      loop
+         YAchseSchleife:
+         for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop
+            XAchseSchleife:
+            for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
+                           
+               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => AktuelleKoordinatenExtern,
+                                                                           ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                
-            else
-               Schleife:
-               for A in MöglicheFelderArray'Range loop                  
-                  
-                  if
-                    KartenWert = MöglicheFelder (A)
-                    and
-                      KartenWert /= GlobaleKonstanten.RückgabeKartenPositionFalsch
-                  then
-                     Möglich := True;
-                     exit Schleife;
-
-                  else
-                     Möglich := False;
-                  end if;
-               end loop Schleife;
-
                if
-                 Möglich = False
+                 KartenWert.YAchse = 0            
+                 or
+                   (YÄnderungSchleifenwert = 0
+                    and
+                      XÄnderungSchleifenwert = 0)
+                 or
+                   (YAchseBereitsGetestet >= abs (YÄnderungSchleifenwert)
+                    and
+                      XAchseBereitsGetestet >= abs (XÄnderungSchleifenwert))
                then
                   null;
-
-               else               
-                  if
-                    FeldTesten.BelegterGrundTesten (RasseExtern       => RasseExtern,
-                                                    KoordinatenExtern => KartenWert) = False
-                  then
-                     null;
-               
-                  elsif
-                    BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
-                                                                                   IDExtern           => IDExtern,
-                                                                                   NeuePositionExtern => KartenWert) = False
-                  then
-                     null;
-               
-                  elsif
-                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer /= GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
-                  then
-                     null;
-               
-                  else
-                     return KartenWert;
-                  end if;
-            
-                  if
-                    FeldTesten.BelegterGrundTesten (RasseExtern       => RasseExtern,
-                                                    KoordinatenExtern => KartenWert) = False
-                  then
-                     null;
-               
-                  elsif
-                    BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
-                                                                                   IDExtern           => IDExtern,
-                                                                                   NeuePositionExtern => KartenWert) = False
-                  then
-                     null;
-               
-                  else               
-                     KartenWertNeu := UmgebungErreichbarTesten (AktuelleKoordinatenExtern => KartenWert,
-                                                                RasseExtern               => RasseExtern,
-                                                                IDExtern                  => IDExtern);
-               
-                     case
-                       KartenWertNeu.XAchse
-                     is
-                        when 0 =>
-                           null;
-                        
-                        when others =>
-                           return KartenWertNeu;
-                     end case;
-                  end if;
+                     
+               elsif
+                 FeldTesten.BelegterGrundTesten (RasseExtern       => RasseExtern,
+                                                 KoordinatenExtern => KartenWert) = True
+                 and
+                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+                 and
+                   BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
+                                                                                  IDExtern           => IDExtern,
+                                                                                  NeuePositionExtern => KartenWert) = True
+                 and
+                   GefundeneFelder < NotwendigeFelderExtern
+               then
+                  GefundeneFelder := GefundeneFelder + 1;
+                  
+               elsif
+                 FeldTesten.BelegterGrundTesten (RasseExtern       => RasseExtern,
+                                                 KoordinatenExtern => KartenWert) = True
+                 and
+                   EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+                 and
+                   BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
+                                                                                  IDExtern           => IDExtern,
+                                                                                  NeuePositionExtern => KartenWert) = True
+               then
+                  return KartenWert;
+                              
+               else
+                  null;
                end if;
-            end if;
             
-         end loop XAchseÄnderungSchleife;
-      end loop YAchseÄnderungSchleife;
+            end loop XAchseSchleife;
+         end loop YAchseSchleife;
+            
+         exit BereichSchleife when Umgebung = 3;
+         
+         Umgebung := Umgebung + 1;
+         YAchseBereitsGetestet := Umgebung - 1;
+         XAchseBereitsGetestet := Umgebung - 1;
+                     
+      end loop BereichSchleife;
       
       return GlobaleKonstanten.RückgabeKartenPositionFalsch;
       

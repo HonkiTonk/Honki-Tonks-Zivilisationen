@@ -1,10 +1,13 @@
 pragma SPARK_Mode (On);
 
+with Ada.Wide_Wide_Text_IO;
+use Ada.Wide_Wide_Text_IO;
+
 with GlobaleKonstanten;
 
 with EinheitenDatenbank, KartenDatenbank, VerbesserungenDatenbank;
 
-with EinheitSuchen, StadtSuchen, KartePositionPruefen;
+with EinheitSuchen, StadtSuchen, UmgebungErreichbarTesten;
 
 package body BewegungPassierbarkeitPruefen is
    
@@ -344,9 +347,9 @@ package body BewegungPassierbarkeitPruefen is
       if
         EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportieren /= 0
       then
-         TransportplatzEntladen := (others => 0);
-         BenötigteFelder := 0;
-         WelcherPlatz := 1;
+         BenötigteFelder := 1;
+         EntladungMöglich := True;
+         
          BelegterPlatzSchleife:
          for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
                         
@@ -357,22 +360,34 @@ package body BewegungPassierbarkeitPruefen is
                   null;
                               
                when others =>
-                  TransportplatzEntladen (WelcherPlatz) := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert);
-                  WelcherPlatz := WelcherPlatz + 1;
-                  BenötigteFelder := BenötigteFelder + 1;
+                  KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeuePositionExtern,
+                                                                                   RasseExtern               => EinheitRasseNummerExtern.Rasse,
+                                                                                   IDExtern                  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                                                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                                                       EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).ID,
+                                                                                   NotwendigeFelderExtern    => BenötigteFelder);
+                  
+                  if
+                    KartenWert.XAchse = 0
+                  then
+                     EntladungMöglich := False;
+                     exit BelegterPlatzSchleife;
+                     
+                  else
+                     BenötigteFelder := BenötigteFelder + 1;
+                  end if;
             end case;
                 
          end loop BelegterPlatzSchleife;
-
+         
          case
-           TransportplatzEntladen (1)
+           EntladungMöglich
          is
-            when 0 =>
+            when True =>
                return GlobaleDatentypen.Transporter_Stadt_Möglich;
                           
-            when others =>
-               return EntladbarkeitTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                           NeuePositionExtern       => NeuePositionExtern);
+            when False =>
+               return GlobaleDatentypen.Keine_Bewegung_Möglich;
          end case;
 
       else
@@ -380,80 +395,5 @@ package body BewegungPassierbarkeitPruefen is
       end if;
 
    end Wasser;
-   
-   
-   
-   function EntladbarkeitTesten
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Bewegung_Enum
-   is begin
-      
-      BelegteFelder := 0;
-      Umgebung := 1;
-      BereitsGetestet := Umgebung - 1;
-      WelcherPlatz := 1;
-      
-      BereichSchleife:
-      loop
-         YAchseSchleife:
-         for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop
-            XAchseSchleife:
-            for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
-               
-               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
-                                                                           ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-               
-               -- Kann Einheiten auch über Meere hinweg platzieren und so Schiffahrt "umgehen"
-               if
-                 KartenWert.YAchse = 0              
-                 or
-                   (YÄnderungSchleifenwert = 0
-                    and
-                      XÄnderungSchleifenwert = 0)
-                 or
-                   BereitsGetestet >= abs (YÄnderungSchleifenwert)
-               then
-                  null;
-                     
-               elsif
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
-               in
-                 GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Anfangswert) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Endwert)
-                 and
-                   GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
-                 and
-                   EinfachePassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)),
-                                                        NeuePositionExtern       => KartenWert) = True
-               then
-                  BelegteFelder := BelegteFelder + 1;
-                  WelcherPlatz := WelcherPlatz + 1;
-                        
-                  if
-                    BenötigteFelder = BelegteFelder
-                  then
-                     return GlobaleDatentypen.Transporter_Stadt_Möglich;
-                              
-                  else
-                     null;
-                  end if;
-                     
-               else
-                  null;
-               end if;
-            
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-            
-         exit BereichSchleife when Umgebung = 3;
-            
-         Umgebung := Umgebung + 1;
-         BereitsGetestet := Umgebung - 1;
-                     
-      end loop BereichSchleife;
-         
-      return GlobaleDatentypen.Keine_Bewegung_Möglich;
-      
-   end EntladbarkeitTesten;
 
 end BewegungPassierbarkeitPruefen;

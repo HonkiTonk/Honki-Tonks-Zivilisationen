@@ -7,13 +7,12 @@ with Karten;
 
 package UmgebungErreichbarTesten is
    
-   type MöglicheFelderArray is array (1 .. 80) of GlobaleRecords.AchsenKartenfeldPositivRecord;
-   MöglicheFelder : MöglicheFelderArray;
 
    function UmgebungErreichbarTesten
      (AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
+      IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
+      NotwendigeFelderExtern : in Positive)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
        Pre =>
@@ -27,9 +26,12 @@ package UmgebungErreichbarTesten is
    
 private
    
-   Möglich : Boolean;
+   YAchseBereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
+   XAchseBereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
+   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+   
+   GefundeneFelder : Positive;
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWertNeu : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
 end UmgebungErreichbarTesten;

@@ -17,9 +17,6 @@ private
     
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWertNeu : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   
-   Element : Positive;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;   
 
 end StadtEinheitenBauen;

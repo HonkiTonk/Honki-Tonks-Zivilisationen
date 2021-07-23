@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
-
-with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen;
+with EinheitSuchen, KartePositionPruefen, UmgebungErreichbarTesten;
 
 package body BewegungLadenEntladen is
 
@@ -113,8 +111,8 @@ package body BewegungLadenEntladen is
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      TransportplatzEntladen := (others => 0);
-      WelcherPlatz := 1;
+      BenötigteFelder := 1;
+      
       BelegterPlatzSchleife:
       for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
                         
@@ -125,86 +123,32 @@ package body BewegungLadenEntladen is
                null;
                               
             when others =>
-               TransportplatzEntladen (WelcherPlatz) := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert);
-               WelcherPlatz := WelcherPlatz + 1;
+               KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeuePositionExtern,
+                                                                                RasseExtern               => EinheitRasseNummerExtern.Rasse,
+                                                                                IDExtern                  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                                                    EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).ID,
+                                                                                NotwendigeFelderExtern    => BenötigteFelder);
+                  
+               if
+                 KartenWert.XAchse = 0
+               then
+                  null;
+                     
+               else
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                      EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).Position := KartenWert;
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                      EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).WirdTransportiert := 0;
+                  BenötigteFelder := BenötigteFelder + 1;
+               end if;
          end case;
                 
       end loop BelegterPlatzSchleife;
-
-      case
-        TransportplatzEntladen (1)
-      is
-         when 0 =>
-            return;
-                          
-         when others =>
-            null;
-      end case;
       
-      Umgebung := 1;
-      BereitsGetestet := Umgebung - 1;
-      WelcherPlatz := 1;
-      
-      BereichSchleife:
-      loop
-         YAchseSchleife:
-         for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop
-            XAchseSchleife:
-            for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
-                           
-               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => NeuePositionExtern,
-                                                                           ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-               
-               if
-                 KartenWert.YAchse = 0
-                 or
-                   (YÄnderungSchleifenwert = 0
-                    and
-                      XÄnderungSchleifenwert = 0)
-                 or
-                   BereitsGetestet >= abs (YÄnderungSchleifenwert)
-               then
-                  null;
-                     
-               elsif
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
-               in
-                 GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Anfangswert) .. GlobaleKonstanten.FeldBelegung (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Endwert)
-                 and
-                   GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch = EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
-                 and
-                   BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)),
-                                                                                      NeuePositionExtern       => KartenWert) = True
-               then
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).Position := KartenWert;
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransportplatzEntladen (WelcherPlatz)).WirdTransportiert := 0;
-                  WelcherPlatz := WelcherPlatz + 1;
-                        
-                  if
-                    WelcherPlatz > TransportplatzEntladen'Last
-                    or else
-                      TransportplatzEntladen (WelcherPlatz) = 0
-                  then
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert := (others => 0);
-                     return;
-                              
-                  else
-                     null;
-                  end if;
-                     
-               else
-                  null;
-               end if;
-            
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-            
-         exit BereichSchleife when Umgebung = 3;
-         
-         Umgebung := Umgebung + 1;
-         BereitsGetestet := Umgebung - 1;
-                     
-      end loop BereichSchleife;     
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert := (others => 0);
       
    end TransporterStadtEntladen;
 
