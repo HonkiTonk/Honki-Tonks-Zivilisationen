@@ -62,8 +62,6 @@ private
    EinheitAusladen : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
    FreierPlatzNummer : Positive;
-   WelcherPlatz : Positive;
-   BenötigteFelder : Positive;
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 

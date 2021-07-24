@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank;
 
-with Karte, Diplomatie, Sichtbarkeit, BewegungBlockiert, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungLadenEntladen, StadtSuchen;
+with Karte, Diplomatie, Sichtbarkeit, BewegungBlockiert, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungLadenEntladen, StadtSuchen, KennenLernen;
 
 package body BewegungssystemEinheiten is
 
@@ -235,7 +235,7 @@ package body BewegungssystemEinheiten is
          elsif
            Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Sichtbar (FremdeSichtbarkeitSchleifenwert) = True
          then
-            Diplomatie.Erstkontakt (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+            KennenLernen.Erstkontakt (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                     FremdeRasseExtern => FremdeSichtbarkeitSchleifenwert);
             
          else

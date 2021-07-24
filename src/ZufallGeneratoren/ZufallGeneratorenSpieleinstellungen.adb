@@ -1,39 +1,80 @@
 pragma SPARK_Mode (Off);
 
 package body ZufallGeneratorenSpieleinstellungen is
-
-   function Spieleinstellungen
-     (WelcheEinstellungExtern : in Positive)
-      return Positive
+   
+   function ZufälligeKartengröße
+     return GlobaleDatentypen.Kartengröße_Verwendet_Enum
    is begin
       
-      case
-        WelcheEinstellungExtern
-      is
-         when 1 => -- Kartengröße wählen
-            ZufälligeKartengrößeWählen.Reset (ZufälligeKartenGrößeGewählt);
-            return ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt); 
-
-         when 2 => -- Kartenart wählen
-            ZufälligeKartenartWählen.Reset (ZufälligeKartenartGewählt);
-            return ZufälligeKartenartWählen.Random (ZufälligeKartenartGewählt);
-
-         when 3 => -- Kartentemperatur wählen
-            ZufälligeKartentemperaturWählen.Reset (ZufälligeKartentemperaturGewählt);
-            return ZufälligeKartentemperaturWählen.Random (ZufälligeKartentemperaturGewählt);
-
-         when 4 .. 5 => -- Spieleranzahl oder Rasse wählen
-            ZufälligeSpieleranzahlRasseWählen.Reset (ZufälligeSpieleranzahlRasseGewählt);
-            return GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt));
-
-         when 6 => -- Schwierigkeitsgrad wählen
-            ZufälligenSchwierigkeitsgradWählen.Reset (ZufälligerSchwierigkeitsgradGewählt);
-            return ZufälligenSchwierigkeitsgradWählen.Random (ZufälligerSchwierigkeitsgradGewählt);
-              
-         when others =>
-            return 1;
-      end case;
+      ZufälligeKartengrößeWählen.Reset (ZufälligeKartenGrößeGewählt);
+      return ZufälligeKartengrößeWählen.Random (ZufälligeKartengrößeGewählt); 
+        
+   end ZufälligeKartengröße;
+   
+   
+   
+   function ZufälligeKartenart
+     return GlobaleDatentypen.Kartenart_Verwendet_Enum
+   is begin
       
-   end Spieleinstellungen;
+      ZufälligeKartenartWählen.Reset (ZufälligeKartenartGewählt);
+      return ZufälligeKartenartWählen.Random (ZufälligeKartenartGewählt);
+      
+   end ZufälligeKartenart;
+   
+   
+   
+   function ZufälligeKartenform
+     return GlobaleDatentypen.Kartenform_Verwendet_Enum
+   is begin
+      
+      ZufälligeKartenformWählen.Reset (ZufälligeKartenformGewählt);
+      return ZufälligeKartenformWählen.Random (ZufälligeKartenformGewählt);
+      
+   end ZufälligeKartenform;
+
+   
+   
+   function ZufälligeKartentemperatur
+     return GlobaleDatentypen.Kartentemperatur_Verwendet_Enum
+   is begin
+      
+      ZufälligeKartentemperaturWählen.Reset (ZufälligeKartentemperaturGewählt);
+      return ZufälligeKartentemperaturWählen.Random (ZufälligeKartentemperaturGewählt);
+      
+   end ZufälligeKartentemperatur;
+   
+   
+   
+   function ZufälligeSpieleranzahl
+     return Positive
+   is begin
+      
+      ZufälligeSpieleranzahlRasseWählen.Reset (ZufälligeSpieleranzahlRasseGewählt);
+      return GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt));
+      
+   end ZufälligeSpieleranzahl;
+   
+   
+   
+   function ZufälligeRasse
+     return GlobaleDatentypen.Rassen_Verwendet_Enum
+   is begin
+      
+      ZufälligeSpieleranzahlRasseWählen.Reset (ZufälligeSpieleranzahlRasseGewählt);
+      return ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt);
+      
+   end ZufälligeRasse;
+   
+   
+   
+   function ZufälligerSchwiewrigkeitsgrad
+     return GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum
+   is begin
+      
+      ZufälligenSchwierigkeitsgradWählen.Reset (ZufälligerSchwierigkeitsgradGewählt);
+      return ZufälligenSchwierigkeitsgradWählen.Random (ZufälligerSchwierigkeitsgradGewählt);
+      
+   end ZufälligerSchwiewrigkeitsgrad;            
 
 end ZufallGeneratorenSpieleinstellungen;

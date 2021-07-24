@@ -68,7 +68,7 @@ package body BewegungLadenEntladen is
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, AuszuladendeEinheitExtern).Transportiert (TransporterLeerenSchleifenwert) = EinheitRasseNummerExtern.Platznummer
          then
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, AuszuladendeEinheitExtern).Transportiert (TransporterLeerenSchleifenwert) := 0;
-            -- Hier nicht den wird Transportiert auf 0 setzen, da das zu Problemen bei Verschiebungen von Transporter zu Transporter führen kann.
+            -- Hier nicht WirdTransportiert auf 0 setzen, da das zu Problemen bei Verschiebungen von Transporter zu Transporter führen kann.
             exit TransporterLeerenSchleife;
                      
          else
@@ -110,12 +110,10 @@ package body BewegungLadenEntladen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
    is begin
-      
-      BenötigteFelder := 1;
-      
+            
       BelegterPlatzSchleife:
       for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
-                        
+         
          case
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)
          is
@@ -123,29 +121,20 @@ package body BewegungLadenEntladen is
                null;
                               
             when others =>
-               KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeuePositionExtern,
-                                                                                RasseExtern               => EinheitRasseNummerExtern.Rasse,
-                                                                                IDExtern                  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                                                    EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).ID,
-                                                                                NotwendigeFelderExtern    => BenötigteFelder);
-                  
-               if
-                 KartenWert.XAchse = 0
-               then
-                  null;
-                     
-               else
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                      EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).Position := KartenWert;
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                      EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).WirdTransportiert := 0;
-                  BenötigteFelder := BenötigteFelder + 1;
-               end if;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                   EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).Position
+                 := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeuePositionExtern,
+                                                                       RasseExtern               => EinheitRasseNummerExtern.Rasse,
+                                                                       IDExtern                  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                                         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                                           EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).ID,
+                                                                       NotwendigeFelderExtern    => 1);
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                   EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).WirdTransportiert := 0;
          end case;
-                
+      
       end loop BelegterPlatzSchleife;
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert := (others => 0);

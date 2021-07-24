@@ -1,29 +1,45 @@
 pragma SPARK_Mode (On);
 
-with Karten;
+with Diplomatie, KIDiplomatie;
 
 package body KennenLernen is
 
-   procedure KennenLernen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord) 
+   procedure Erstkontakt
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      RassenSchleife:
-      for RassenSchleifenwert in GlobaleDatentypen.Rassen loop
-         
-         if
-           Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.EAchse,
-                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.YAchse,
-                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).AchsenPosition.XAchse).Sichtbar (RassenSchleifenwert) = True
-         then
-            null;
-            
-         else
-            null;
-         end if;
-         
-      end loop RassenSchleife;
+      case
+        Diplomatie.DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
+                                                FremdeRasseExtern => FremdeRasseExtern)
+      is
+         when GlobaleDatentypen.Kein_Kontakt =>
+            GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern) := GlobaleDatentypen.Neutral;   
+               
+         when others =>
+            return;
+      end case;
       
-   end KennenLernen;
+      if
+        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
+        and
+          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch
+      then
+         Diplomatie.ErstkontaktMenschMensch (EigeneRasseExtern => EigeneRasseExtern,
+                                             FremdeRasseExtern => FremdeRasseExtern);
+      
+      elsif
+        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
+        or
+          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch
+      then
+         Diplomatie.ErstkontaktMenschKI (EigeneRasseExtern => EigeneRasseExtern,
+                                         FremdeRasseExtern => FremdeRasseExtern);
+         
+      else
+         KIDiplomatie.DiplomatieKIKI (EigeneRasseExtern   => EigeneRasseExtern,
+                                      FremdeRasseKIExtern => FremdeRasseExtern);
+      end if;
+      
+   end Erstkontakt;
 
 end KennenLernen;

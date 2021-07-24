@@ -111,8 +111,20 @@ package body KartenGenerator is
             null;
       end case;
       
-      -- Festlegen der GrößeLandart für Pangäa kann zu Problemen führen, wenn die YAchse sehr klein ist.
-      GrößePangäa := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2;
+      -- Das hier und den KartenGenerator für Pangäa überarbeiten
+      if
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße < Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2
+      then
+         GrößePangäa := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2;
+
+      elsif
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße < Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2
+      then
+         GrößePangäa := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2;
+
+      else
+         GrößePangäa := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3 + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3;
+      end if;
       
       Karten.GrößeLandart := (1, 1, GrößePangäa, 1, 1);
       

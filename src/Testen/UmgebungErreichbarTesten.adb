@@ -75,7 +75,7 @@ package body UmgebungErreichbarTesten is
             end loop XAchseSchleife;
          end loop YAchseSchleife;
             
-         exit BereichSchleife when Umgebung = 3;
+         exit BereichSchleife when Umgebung = GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Last;
          
          Umgebung := Umgebung + 1;
          YAchseBereitsGetestet := Umgebung - 1;

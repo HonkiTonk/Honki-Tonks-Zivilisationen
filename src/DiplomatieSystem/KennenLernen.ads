@@ -1,16 +1,18 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleRecords, GlobaleDatentypen;
+with GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
 package KennenLernen is
 
-   procedure KennenLernen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)      
+   procedure Erstkontakt
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
-         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) > 0
+         (EigeneRasseExtern /= FremdeRasseExtern
           and
-            EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2));
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= GlobaleDatentypen.Leer
+          and
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
 
 end KennenLernen;

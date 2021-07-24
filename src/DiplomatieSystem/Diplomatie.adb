@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Kampfsystem, Auswahl, KIDiplomatie;
+with Kampfsystem, Auswahl;
 
 package body Diplomatie is
 
@@ -13,46 +13,6 @@ package body Diplomatie is
       null;
       
    end DiplomatieAuswählen;
-   
-   
-   
-   procedure Erstkontakt
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      case
-        DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
-                                     FremdeRasseExtern => FremdeRasseExtern)
-      is
-         when GlobaleDatentypen.Kein_Kontakt =>
-            GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern) := GlobaleDatentypen.Neutral;   
-               
-         when others =>
-            return;
-      end case;
-      
-      if
-        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
-        and
-          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch
-      then
-         ErstkontaktMenschMensch (EigeneRasseExtern => EigeneRasseExtern,
-                                  FremdeRasseExtern => FremdeRasseExtern);
-      
-      elsif
-        GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
-        or
-          GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch
-      then
-         ErstkontaktMenschKI (EigeneRasseExtern => EigeneRasseExtern,
-                              FremdeRasseExtern => FremdeRasseExtern);
-         
-      else
-         KIDiplomatie.DiplomatieKIKI (EigeneRasseExtern   => EigeneRasseExtern,
-                                      FremdeRasseKIExtern => FremdeRasseExtern);
-      end if;
-      
-   end Erstkontakt;
    
    
    

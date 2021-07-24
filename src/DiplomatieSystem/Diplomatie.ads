@@ -11,16 +11,6 @@ package Diplomatie is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
-   procedure Erstkontakt
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (EigeneRasseExtern /= FremdeRasseExtern
-          and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= GlobaleDatentypen.Leer
-          and
-            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
-
    procedure KriegDurchDirektenAngriff
      (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
@@ -57,10 +47,6 @@ package Diplomatie is
           and
             GlobaleVariablen.RassenImSpiel (GegnerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
-private
-
-   Gewonnen : Boolean;
-
    procedure ErstkontaktMenschMensch
      (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
@@ -80,5 +66,9 @@ private
             (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
              or
                GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch));
+
+private
+
+   Gewonnen : Boolean;
 
 end Diplomatie;

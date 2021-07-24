@@ -153,7 +153,7 @@ package body SpielEinstellungen is
                end if;
                
             when 11 =>               
-               Karten.Kartengröße := GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 1));
+               Karten.Kartengröße := ZufallGeneratorenSpieleinstellungen.ZufälligeKartengröße;
                return 2;
 
             when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
@@ -193,7 +193,7 @@ package body SpielEinstellungen is
                return 3;
                
             when 6 =>               
-               Karten.Kartenart := GlobaleDatentypen.Kartenart_Verwendet_Enum'Val (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
+               Karten.Kartenart := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenart;
                return 3;
                
             when -2 =>
@@ -236,7 +236,7 @@ package body SpielEinstellungen is
                return 4;
                
             when 7 =>               
-               Karten.Kartenform := GlobaleDatentypen.Kartenform_Verwendet_Enum'Val (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 2));
+               Karten.Kartenform := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenform;
                return 4;
                
             when -2 =>
@@ -279,7 +279,7 @@ package body SpielEinstellungen is
                return 5;
                
             when 6 =>               
-               Karten.Kartentemperatur := GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Val (ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 3));
+               Karten.Kartentemperatur := ZufallGeneratorenSpieleinstellungen.ZufälligeKartentemperatur;
                return 5;
                
             when -2 =>
@@ -321,7 +321,7 @@ package body SpielEinstellungen is
                return 6;
 
             when 19 =>               
-               SpielerAnzahl := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 4);
+               SpielerAnzahl := ZufallGeneratorenSpieleinstellungen.ZufälligeSpieleranzahl;
                return 6;
                
             when -2 =>
@@ -435,7 +435,7 @@ package body SpielEinstellungen is
                end if;
 
             when 19 =>               
-               Zufallswahl := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 5);
+               Zufallswahl := GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (ZufallGeneratorenSpieleinstellungen.ZufälligeRasse);
                return Zufallswahl;
 
             when -2 .. 0 =>
@@ -647,11 +647,11 @@ package body SpielEinstellungen is
            SchwierigkeitAuswahl
          is
             when 1 .. 3 =>
-               GlobaleVariablen.Schwierigkeitsgrad := SchwierigkeitAuswahl;
+               GlobaleVariablen.Schwierigkeitsgrad := GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Val (SchwierigkeitAuswahl);
                return 8;
 
             when 4 =>
-               GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenSpieleinstellungen.Spieleinstellungen (WelcheEinstellungExtern => 6);
+               GlobaleVariablen.Schwierigkeitsgrad := ZufallGeneratorenSpieleinstellungen.ZufälligerSchwiewrigkeitsgrad;
                return 8;
                
             when -2 =>

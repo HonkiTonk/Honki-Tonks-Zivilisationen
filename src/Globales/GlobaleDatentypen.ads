@@ -6,10 +6,13 @@ package GlobaleDatentypen is
    type Anfang_Ende_Enum is (Leer, Anfangswert, Endwert);
    for Anfang_Ende_Enum use (Leer => 0, Anfangswert => 1, Endwert => 2);
    subtype Anfang_Ende_Verwendet is Anfang_Ende_Enum range Anfangswert .. Endwert;
+
+   type Schwierigkeitsgrad_Enum is (Leer, Einfach, Mittel, Schwer);
+   subtype Schwierigkeitsgrad_Verwendet_Enum is Schwierigkeitsgrad_Enum range Einfach .. Schwer;
    -- Sonstiges
 
    -- Für Anzeige
-   type TextDateien is range 0 .. 27;
+   type TextDateien is range 0 .. 28;
    type TextZeilen is range 0 .. 104;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;
    -- Für Anzeige
@@ -70,6 +73,7 @@ package GlobaleDatentypen is
    for Kartengröße_Enum use (Leer => 0, Karte_20_20 => 1, Karte_40_40 => 2, Karte_80_80 => 3, Karte_120_80 => 4, Karte_120_160 => 5, Karte_160_160 => 6, Karte_240_240 => 7, Karte_320_320 => 8,
                                Karte_1000_1000 => 9, Karte_Nutzer => 10);
    subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range Karte_20_20 .. Karte_Nutzer;
+   subtype Kartengröße_Zufall_Enum is Kartengröße_Verwendet_Enum range Karte_20_20 .. Karte_1000_1000;
 
    type Kartenart_Enum is (Leer, Inseln, Kontinente, Pangäa, Nur_Land, Chaos);
    for Kartenart_Enum use (Leer => 0, Inseln => 1, Kontinente => 2, Pangäa => 3, Nur_Land => 4, Chaos => 5);

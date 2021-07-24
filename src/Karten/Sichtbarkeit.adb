@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with EinheitenDatenbank;
   
-with KartePositionPruefen, EinheitSuchen, StadtSuchen, Diplomatie;
+with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen;
 
 package body Sichtbarkeit is
 
@@ -795,7 +795,7 @@ package body Sichtbarkeit is
             null;
             
          when others =>
-            Diplomatie.Erstkontakt (EigeneRasseExtern => RasseExtern,
+            KennenLernen.Erstkontakt (EigeneRasseExtern => RasseExtern,
                                     FremdeRasseExtern => FremdeEinheitStadt.Rasse);
             return;
       end case;
@@ -810,7 +810,7 @@ package body Sichtbarkeit is
             null;
             
          when others =>
-            Diplomatie.Erstkontakt (EigeneRasseExtern => RasseExtern,
+            KennenLernen.Erstkontakt (EigeneRasseExtern => RasseExtern,
                                     FremdeRasseExtern => FremdeEinheitStadt.Rasse);
       end case;
       

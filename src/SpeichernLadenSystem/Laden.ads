@@ -19,4 +19,6 @@ private
 
    DateiLadenNeu : File_Type;
 
+   procedure LeerwerteSetzen;
+
 end Laden;

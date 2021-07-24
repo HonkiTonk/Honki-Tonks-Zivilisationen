@@ -80,6 +80,13 @@ package body Speichern is
       -- Spieler am Zug speichern
       
       
+      
+      -- Schwierigkeitsgrad speichern
+      GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
+                                                                 GlobaleVariablen.Schwierigkeitsgrad);
+      -- Schwierigkeitsgrad speichern
+      
+      
 
       -- Schleife zum Speichern der Karte
       GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),
@@ -102,19 +109,41 @@ package body Speichern is
             null;
       end case;
 
-      EAchseSchleife:
-      for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
-         YAchseSchleife:
+      EAchseBisBodenSchleife:
+      for EAchseSchleifenwert in Karten.WeltkarteArray'First (1) .. 0 loop
+         YAchseBisBodenSchleife:
          for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
-            XAchseSchleife:
+            XAchseBisBodenSchleife:
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
 
                GlobaleRecords.KartenRecord'Write (Stream (File => DateiSpeichernNeu),
                                                   Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop EAchseSchleife;
+            end loop XAchseBisBodenSchleife;
+         end loop YAchseBisBodenSchleife;
+      end loop EAchseBisBodenSchleife;
+      
+      EAchseBisWeltraumSchleife:
+      for EAchseSchleifenwert in 1 .. Karten.WeltkarteArray'Last (1) loop
+         YAchseBisWeltraumSchleife:
+         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+            XAchseBisWeltraumSchleife:
+            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+
+               GlobaleDatentypen.SichtbarkeitArray'Write (Stream (File => DateiSpeichernNeu),
+                                                          Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Sichtbar);
+               GlobaleDatentypen.Karten_Verbesserung_Enum'Write (Stream (File => DateiSpeichernNeu),
+                                                                 Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).VerbesserungStraße);
+               GlobaleDatentypen.Karten_Verbesserung_Enum'Write (Stream (File => DateiSpeichernNeu),
+                                                                 Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).VerbesserungGebiet);
+               GlobaleDatentypen.BelegterGrund'Write (Stream (File => DateiSpeichernNeu),
+                                                      Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).DurchStadtBelegterGrund);
+               GlobaleDatentypen.GesamtproduktionStadt'Write (Stream (File => DateiSpeichernNeu),
+                                                              Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Felderwertung);
+               
+            end loop XAchseBisWeltraumSchleife;
+         end loop YAchseBisWeltraumSchleife;
+      end loop EAchseBisWeltraumSchleife;
       -- Schleife zum Speichern der Karte
 
 

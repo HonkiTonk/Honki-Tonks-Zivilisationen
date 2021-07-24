@@ -37,7 +37,7 @@ package GlobaleVariablen is
    RasseAmZugNachLaden : GlobaleDatentypen.Rassen_Enum := GlobaleDatentypen.Leer;
 
    -- Hier über LoopMinusDreiBisDrei nachdenken
-   Schwierigkeitsgrad : Positive;
+   Schwierigkeitsgrad : GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
    -- Zeug
    
 

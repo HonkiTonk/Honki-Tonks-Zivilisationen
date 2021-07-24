@@ -6,29 +6,40 @@ with GlobaleDatentypen;
 
 package ZufallGeneratorenSpieleinstellungen is
 
-   function Spieleinstellungen
-     (WelcheEinstellungExtern : in Positive)
-      return Positive
-     with
-       Pre =>
-         (WelcheEinstellungExtern <= 6);
+   function ZufälligeKartengröße
+     return GlobaleDatentypen.Kartengröße_Verwendet_Enum;
+   
+   function ZufälligeKartenart
+     return GlobaleDatentypen.Kartenart_Verwendet_Enum;
+   
+   function ZufälligeKartenform
+     return GlobaleDatentypen.Kartenform_Verwendet_Enum;
+   
+   function ZufälligeKartentemperatur
+     return GlobaleDatentypen.Kartentemperatur_Verwendet_Enum;
+   
+   function ZufälligeSpieleranzahl
+     return Positive;
+     
+   function ZufälligeRasse
+     return GlobaleDatentypen.Rassen_Verwendet_Enum;
+   
+   function ZufälligerSchwiewrigkeitsgrad
+     return GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
 
 private
    
    -- Generatoren für zufällige Spieleinstellungen
-   subtype ZufälligeKartengröße is Positive range 1 .. 9;
-   subtype ZufälligeKartenart is Positive range 1 .. 5;
-   subtype ZufälligeKartentemperatur is Positive range 1 .. 5;
-   subtype ZufälligerSchwierigkeitsgrad is Positive range 1 .. 3;
-
-   package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (ZufälligeKartengröße);
-   package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (ZufälligeKartenart);
-   package ZufälligeKartentemperaturWählen is new Ada.Numerics.Discrete_Random (ZufälligeKartentemperatur);   
+   package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Kartengröße_Zufall_Enum);
+   package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Kartenart_Verwendet_Enum);
+   package ZufälligeKartenformWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Kartenform_Verwendet_Enum);
+   package ZufälligeKartentemperaturWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Kartentemperatur_Verwendet_Enum);
    package ZufälligeSpieleranzahlRasseWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Rassen_Verwendet_Enum);
-   package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (ZufälligerSchwierigkeitsgrad);
+   package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum);
 
    ZufälligeKartengrößeGewählt : ZufälligeKartengrößeWählen.Generator;
    ZufälligeKartenartGewählt : ZufälligeKartenartWählen.Generator;
+   ZufälligeKartenformGewählt : ZufälligeKartenformWählen.Generator;
    ZufälligeKartentemperaturGewählt : ZufälligeKartentemperaturWählen.Generator;
    ZufälligeSpieleranzahlRasseGewählt : ZufälligeSpieleranzahlRasseWählen.Generator;
    ZufälligerSchwierigkeitsgradGewählt : ZufälligenSchwierigkeitsgradWählen.Generator;
