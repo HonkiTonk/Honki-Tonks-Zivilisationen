@@ -71,9 +71,9 @@ package body KIPruefungen is
                   EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => StadtVerbesserungUmgebungKoordinaten);
             
                   if
-                    BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                                                                     NeuePositionExtern       => StadtVerbesserungUmgebungKoordinaten)
-                    = GlobaleDatentypen.Normale_Bewegung_Möglich
+                    BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
+                                                                               NeuePositionExtern       => StadtVerbesserungUmgebungKoordinaten)
+                    = True
                     and
                       (Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse,
                                          StadtVerbesserungUmgebungKoordinaten.YAchse,

@@ -82,7 +82,7 @@ package EinheitSuchen is
    
    function MengeEinesEinheitenTypsSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      EinheitTypExtern : in GlobaleDatentypen.EinheitenTyp;
+      EinheitTypExtern : in GlobaleDatentypen.Einheit_Art_Verwendet_Enum;
       GesuchteMenge : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with

@@ -82,6 +82,7 @@ package GlobaleRecords is
       KIBewegungPlan : KIBewegungPlanArray;
       
       Transportiert : TransporterArray;
+      -- AktuellGeladen : Natural;
       WirdTransportiert : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       
    end record;

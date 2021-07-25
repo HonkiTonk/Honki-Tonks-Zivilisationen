@@ -239,7 +239,7 @@ package body BefehleImSpiel is
       end case;
       
       if 
-        EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = 1
+        EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = GlobaleDatentypen.Unbewaffnet
         and
           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte > 0.00
       then

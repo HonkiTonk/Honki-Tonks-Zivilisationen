@@ -283,7 +283,7 @@ package body GrafischeAnzeige is
       end case;
       
       if
-        CursorExtern = True
+        CursorExtern
       then
          Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (EigeneRasseExtern).CursorGrafik & CSI & "0m");
          

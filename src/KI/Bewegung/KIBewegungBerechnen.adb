@@ -189,10 +189,10 @@ package body KIBewegungBerechnen is
       end case;
                   
       case
-        BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+        BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                          NeuePositionExtern       => KartenWert)
       is
-         when GlobaleDatentypen.Normale_Bewegung_Möglich =>                  
+         when True =>                  
             null;
                         
          when others =>

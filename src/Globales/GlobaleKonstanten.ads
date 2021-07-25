@@ -251,7 +251,7 @@ package GlobaleKonstanten is
 
    LeererWertEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (
                                                                                -- EinheitenGrafik, EinheitTyp, PreisGeld, PreisRessourcen, Anforderungen
-                                                                               '@', 1, 0, 0, 0,
+                                                                               '@', GlobaleDatentypen.Leer, 0, 0, 0,
                                                                                -- Passierbarkeit
                                                                                (others => False),
                                                                                -- MaximaleLebenspunkte, MaximaleBewegungspunkte, WirdVerbesserZu

@@ -12,7 +12,7 @@ package GlobaleDatentypen is
    -- Sonstiges
 
    -- Für Anzeige
-   type TextDateien is range 0 .. 28;
+   type TextDateien is range 0 .. 29;
    type TextZeilen is range 0 .. 104;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;
    -- Für Anzeige
@@ -160,12 +160,8 @@ package GlobaleDatentypen is
    subtype Passierbarkeit_Vorhanden_Enum is Passierbarkeit_Enum range Boden .. Lava;
    subtype Passierbarkeit_Fliegen_Enum is Passierbarkeit_Vorhanden_Enum range Luft .. Weltraum;
 
-
-   type EinheitenTyp is range 1 .. 12;
-   -- Für später merken, jetzt aber noch nicht einbauen/nutzen, da sonst ständig Zeug verschoben werden muss
-   subtype UnbewaffneterTyp is EinheitenTyp range 1 .. 2;
-   subtype NahkämpferTyp is EinheitenTyp range 3 .. 4;
-   subtype FernkampfTyp is EinheitenTyp range 5 .. 6;
+   type Einheit_Art_Enum is (Leer, Unbewaffnet, Nahkämpfer, Fernkämpfer, Beides, Sonstiges);
+   subtype Einheit_Art_Verwendet_Enum is Einheit_Art_Enum range Unbewaffnet .. Sonstiges;
    -- Für Einheiten
 
 

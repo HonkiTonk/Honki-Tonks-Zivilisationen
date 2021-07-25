@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIKonstanten;
 
-with BewegungssystemEinheiten, BewegungBlockiert, KIBewegungBerechnen, KINullwerteSetzen;
+with BewegungBlockiert, KIBewegungBerechnen, KINullwerteSetzen, BewegungBerechnen;
 
 package body KIBewegungDurchfuehren is
    
@@ -58,8 +58,8 @@ package body KIBewegungDurchfuehren is
                                                  NeuePositionExtern       => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (1))
       is
          when GlobaleDatentypen.Normale_Bewegung_Möglich =>      
-            BewegungssystemEinheiten.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                  NeuePositionExtern       => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (1));
+            BewegungBerechnen.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                           NeuePositionExtern       => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (1));
             BewegungPlanVerschiebenSchleife:
             for PositionSchleifenwert in GlobaleRecords.KIBewegungPlanArray'First + 1 .. GlobaleRecords.KIBewegungPlanArray'Last loop
                

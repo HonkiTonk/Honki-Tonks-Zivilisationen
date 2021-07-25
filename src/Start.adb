@@ -7,7 +7,7 @@ with GlobaleTexte;
 
 -- with Programmanalyse;
 
-with Einlesen, Anzeige, Hauptmenue, Intro, SchreibenVerzeichnisse;
+with Einlesen, Anzeige, Hauptmenue, Intro, SchreibenVerzeichnisse, AllesAufStandardSetzen;
 
 procedure Start
 is begin
@@ -33,6 +33,7 @@ is begin
                                         AbstandEndeExtern      => GlobaleTexte.Keiner);
 
       when False =>
+         AllesAufStandardSetzen.AllesAufStandardSetzen;
          -- Nicht über Anzeige regeln, da die benötigten Dateien ja gar nicht eingelesen wurden!
          Put_Line (Item => "Benötigte Dateien nicht gefunden (Start.EinlesenErgebnis => False)!");
    end case;

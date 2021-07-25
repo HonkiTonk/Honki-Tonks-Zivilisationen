@@ -237,7 +237,7 @@ package body Wachstum is
       end if;
 
       if
-        EinwohnerÄnderung = True
+        EinwohnerÄnderung
         and
           (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
            in

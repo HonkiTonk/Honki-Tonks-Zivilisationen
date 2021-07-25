@@ -95,7 +95,7 @@ package body Eingabe is
             
          else
             if
-              WelchesVorzeichen = True
+              WelchesVorzeichen
             then
                null;
 

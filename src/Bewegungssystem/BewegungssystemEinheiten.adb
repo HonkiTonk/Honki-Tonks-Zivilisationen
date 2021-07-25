@@ -2,9 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitenDatenbank;
-
-with Karte, Diplomatie, Sichtbarkeit, BewegungBlockiert, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungLadenEntladen, StadtSuchen, KennenLernen;
+with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, Diplomatie, BewegungLadenEntladen;
 
 package body BewegungssystemEinheiten is
 
@@ -61,234 +59,129 @@ package body BewegungssystemEinheiten is
            KartenWert.YAchse
          is               
             when 0 =>
-               Bewegung := GlobaleDatentypen.Leer;
+               AktuellerStatus := Bewegbar;
+               
                
             when others =>
-               Bewegung := BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                            NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+               AktuellerStatus := BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                   NeuePositionExtern       => KartenWert);
          end case;
-
+         
          case
-           Bewegung
+           AktuellerStatus
          is
-            when GlobaleDatentypen.Beladen_Bewegung_Möglich =>
-               BewegungLadenEntladen.TransporterBeladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                         ÄnderungExtern           => Änderung);
-               return;
+            when Bewegbar =>
+               null;
                
-            when others =>
-               Blockiert := BewegungBlockiert.BlockiertStadtEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                     NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
+            when Zurück =>
+               return;
          end case;
 
-         if
-           (Bewegung = GlobaleDatentypen.Normale_Bewegung_Möglich
-            or
-              Bewegung = GlobaleDatentypen.Transporter_Stadt_Möglich)
-           and
-             Blockiert = GlobaleDatentypen.Normale_Bewegung_Möglich
-         then
-            BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                         NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-               
-         elsif
-           (Bewegung = GlobaleDatentypen.Normale_Bewegung_Möglich
-            or
-              Bewegung = GlobaleDatentypen.Transporter_Stadt_Möglich)
-           and
-             Blockiert = GlobaleDatentypen.Gegner_Blockiert
-         then
-            GegnerWert := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                                    KoordinatenExtern => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-            Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 GegnerExtern             => GegnerWert);
-            if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte = 0
-            then
-               return;
-               
-            else
-               BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                            NeuePositionExtern       => (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse));
-            end if;
-              
-         else
-            null;
-         end if;
-
-         if
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte <= 0.00
-         then
-            return;
-            
-         else
-            Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
-         end if;
+         Karte.AnzeigeKarte (RasseExtern => EinheitRasseNummerExtern.Rasse);
          
       end loop BewegenSchleife;
       
    end BewegungEinheitenRichtung;
-
    
-
-   procedure BewegungEinheitenBerechnung
+   
+   
+   function BewegungPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Bewegung_Noch_Möglich_Enum
    is begin
-
-      case
-        StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                NeuePositionExtern       => NeuePositionExtern)
-      is
-         when 1 | 2 =>
-            BewegungspunkteModifikator := 0.50;
-            
-         when 10 | 11 =>
-            BewegungspunkteModifikator := 1.00;
-
-         when others =>
-            BewegungspunkteModifikator := 0.00;
-      end case;
-
-      case
-        Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund
-      is
-         when GlobaleDatentypen.Eis | GlobaleDatentypen.Gebirge | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
-            if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte < 1.00
-            then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.00;
-               return;
-               
-            else                     
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte
-                 := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte - 2.00 + BewegungspunkteModifikator;
-            end if;
-               
-         when others =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte
-              := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte - 1.00 + BewegungspunkteModifikator;
-      end case;
-
+      
+      FeldPassierbar := BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                   NeuePositionExtern       => NeuePositionExtern);
+      
+      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
+      
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte < 0.00
+        FeldPassierbar = False
+        and
+          EinheitAufFeld.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.00;
-         -- Hier nicht return, da Bewegung zwar erfolgreich aber jetzt noch die Rechnungen durchlaufen müssen.
-                  
-      else
-         null;
-      end if;
-
-      if
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportieren = 0
-      then
-         null;
+         return Bewegbar;
          
       elsif
-        StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                    KoordinatenExtern => NeuePositionExtern) = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
-      then
-         BewegungLadenEntladen.TransporterladungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                             NeuePositionExtern       => NeuePositionExtern);
-
-      else
-         BewegungLadenEntladen.TransporterStadtEntladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                         NeuePositionExtern       => NeuePositionExtern);
-      end if;
-
-      case
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert
-      is
-         when 0 =>
-            null;
-            
-         when others =>
-            BewegungLadenEntladen.EinheitAusTransporterEntfernen (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
-                                                                  AuszuladendeEinheitExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert);
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert := 0;
-      end case;
-      
-      case
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
-      is
-         when GlobaleDatentypen.Spieler_KI =>
-            null;
-            
-         when others =>            
-            GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position := NeuePositionExtern;
-      end case;      
-      
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := NeuePositionExtern;
-      Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
-      KontaktSchleife:
-      for FremdeSichtbarkeitSchleifenwert in GlobaleDatentypen.RassenImSpielArray'Range loop
-         
-         if
-           FremdeSichtbarkeitSchleifenwert = EinheitRasseNummerExtern.Rasse
-           or
-             GlobaleVariablen.RassenImSpiel (FremdeSichtbarkeitSchleifenwert) = GlobaleDatentypen.Leer
-         then
-            null;
-            
-         elsif
-           Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Sichtbar (FremdeSichtbarkeitSchleifenwert) = True
-         then
-            KennenLernen.Erstkontakt (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                    FremdeRasseExtern => FremdeSichtbarkeitSchleifenwert);
-            
-         else
-            null;
-         end if;
-         
-      end loop KontaktSchleife;
-      
-   end BewegungEinheitenBerechnung;
-
-
-
-   function StraßeUndFlussPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Integer
-   is begin
-
-      if
-        EinheitenDatenbank.EinheitenListe
-          (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Boden) = True
+        FeldPassierbar = False
         and
-          EinheitenDatenbank.EinheitenListe
-            (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Luft) = False
+          EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
+          and
+            EinheitenAllgemein.KennTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
+                                                        TransporterExtern => EinheitAufFeld) = False
       then
-         BonusBeiBewegung := 0;
-
-         case
-           Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße
-         is
-            when GlobaleDatentypen.Karten_Verbesserung_Straße_Enum'Range =>
-               BonusBeiBewegung := BonusBeiBewegung + 1;
-                  
-            when others =>
-               null;
-         end case;
-
-         case
-           Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Fluss
-         is
-            when GlobaleDatentypen.Leer =>
-               null;
-
-            when others =>
-               BonusBeiBewegung := BonusBeiBewegung + 1;
-         end case;
-            
-         return BonusBeiBewegung;
-
+         return Bewegbar;
+         
+      elsif
+        FeldPassierbar = False
+        and
+          EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
+          and
+            EinheitenAllgemein.KennTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
+                                                        TransporterExtern => EinheitAufFeld) = True
+      then
+         ZwischenWert := EigeneEinheitAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                               EigeneEinheitExtern      => EinheitAufFeld,
+                                               NeuePositionExtern       => NeuePositionExtern);
+         
+      elsif
+        FeldPassierbar = False
+        and
+          EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
+          and
+            EinheitAufFeld.Rasse /= GlobaleDatentypen.Leer
+      then
+         ZwischenWert := FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                         FremdeEinheitExtern      => EinheitAufFeld,
+                                         NeuePositionExtern       => NeuePositionExtern);
+         
       else
-         return 0;
+         null;
       end if;
       
-   end StraßeUndFlussPrüfen;
+      if
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte <= 0.00
+        or
+          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte = 0
+      then
+         return Zurück;
+            
+      else      
+         return Bewegbar;
+      end if;
+      
+   end BewegungPrüfen;
+   
+   
+   
+   
+   function FremderAufFeld
+     (EinheitRasseNummerExtern, FremdeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+   is begin
+      
+      Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                           GegnerExtern             => FremdeEinheitExtern);
+      
+      return False;
+      
+   end FremderAufFeld;
+   
+   
+   
+   function EigeneEinheitAufFeld
+     (EinheitRasseNummerExtern, EigeneEinheitExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+   is begin
+      
+      BewegungLadenEntladen.TransporterBeladen (LadungExtern      => EinheitRasseNummerExtern,
+                                                TransporterExtern => EigeneEinheitExtern);
+      
+      return False;
+      
+   end EigeneEinheitAufFeld;
 
 end BewegungssystemEinheiten;

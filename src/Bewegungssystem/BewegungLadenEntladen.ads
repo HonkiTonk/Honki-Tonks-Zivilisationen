@@ -8,17 +8,16 @@ with Karten;
 package BewegungLadenEntladen is
 
    procedure TransporterBeladen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
+     (LadungExtern, TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (LadungExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+            GlobaleVariablen.RassenImSpiel (LadungExtern.Rasse) /= GlobaleDatentypen.Leer
           and
-            ÄnderungExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            ÄnderungExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure EinheitAusTransporterEntfernen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;

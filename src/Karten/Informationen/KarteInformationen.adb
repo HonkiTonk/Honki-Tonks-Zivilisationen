@@ -260,7 +260,7 @@ package body KarteInformationen is
       if
         RasseExtern = EinheitRasseNummerExtern.Rasse
         or
-          GlobaleVariablen.FeindlicheInformationenSehen = True 
+          GlobaleVariablen.FeindlicheInformationenSehen
       then
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                         TextDateiExtern        => GlobaleTexte.Zeug,
@@ -392,7 +392,7 @@ package body KarteInformationen is
          if
            StadtRasseNummerExtern.Rasse = RasseExtern
            or
-             GlobaleVariablen.FeindlicheInformationenSehen = True
+             GlobaleVariablen.FeindlicheInformationenSehen
          then                              
             Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungListe (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
                                                                                                   StadtRasseNummerExtern.Platznummer).ID).Verteidigungsbonus;

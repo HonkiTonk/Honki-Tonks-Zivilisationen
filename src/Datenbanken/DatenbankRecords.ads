@@ -14,7 +14,7 @@ package DatenbankRecords is
       EinheitenGrafik : Wide_Wide_Character;
       
       -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
-      EinheitTyp : GlobaleDatentypen.EinheitenTyp;
+      EinheitTyp : GlobaleDatentypen.Einheit_Art_Enum;
       PreisGeld : GlobaleDatentypen.KostenLager;
       PreisRessourcen : GlobaleDatentypen.KostenLager;
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;

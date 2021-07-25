@@ -14,52 +14,39 @@ package BewegungssystemEinheiten is
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch);
-
-   procedure BewegungEinheitenBerechnung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
 private
-
-   Bewegung : GlobaleDatentypen.Bewegung_Enum;
-   Blockiert : GlobaleDatentypen.Bewegung_Enum;
-      
-   TransporterNummer : GlobaleDatentypen.MaximaleEinheiten;
-   EinheitAusladen : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
-   FreierPlatzNummer : Positive;
+   FeldPassierbar : Boolean;
+   ZwischenWert : Boolean;
    
-   BonusBeiBewegung : Integer;
+   EinheitAufFeld : GlobaleRecords.RassePlatznummerRecord;
    
-   BewegungspunkteModifikator : Float;
-
    Änderung : GlobaleRecords.AchsenKartenfeldRecord;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-
-   GegnerWert : GlobaleRecords.RassePlatznummerRecord;
    
-   function StraßeUndFlussPrüfen
+   type Bewegung_Noch_Möglich_Enum is (Zurück, Bewegbar);
+   AktuellerStatus : Bewegung_Noch_Möglich_Enum;
+   
+   function BewegungPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Integer
+      return Bewegung_Noch_Möglich_Enum
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+   function FremderAufFeld
+     (EinheitRasseNummerExtern, FremdeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean;
+     
+   function EigeneEinheitAufFeld
+     (EinheitRasseNummerExtern, EigeneEinheitExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean;
 
 end BewegungssystemEinheiten;

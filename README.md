@@ -1,7 +1,7 @@
 # Civ-Klon
 Mein Rundenstrategiespiel (Civilization-Klon), geschrieben in Ada/SPARK.
 
-Version: 0.00.7870
+Version: 0.00.7890
 
 Wird nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren. Außerdem werden diverse Control Sequence Introducer Befehle verwendet, welche nicht in jeder Konsole korrekt funktionieren. Ausgelegt auf eine Konsolengröße von 110x35, bei anderen Abmessungen kann es zu zusätzlichen merkwürdigen Textformatierungen kommen. Deutsch ist aktuell die einzig vorhandene Sprache.
 

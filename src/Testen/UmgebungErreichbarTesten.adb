@@ -48,9 +48,9 @@ package body UmgebungErreichbarTesten is
                  and
                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
                  and
-                   BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
-                                                                                  IDExtern           => IDExtern,
-                                                                                  NeuePositionExtern => KartenWert) = True
+                   BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
+                                                                          IDExtern           => IDExtern,
+                                                                          NeuePositionExtern => KartenWert) = True
                  and
                    GefundeneFelder < NotwendigeFelderExtern
                then
@@ -62,9 +62,9 @@ package body UmgebungErreichbarTesten is
                  and
                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
                  and
-                   BewegungPassierbarkeitPruefen.EinfachePassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
-                                                                                  IDExtern           => IDExtern,
-                                                                                  NeuePositionExtern => KartenWert) = True
+                   BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
+                                                                          IDExtern           => IDExtern,
+                                                                          NeuePositionExtern => KartenWert) = True
                then
                   return KartenWert;
                               

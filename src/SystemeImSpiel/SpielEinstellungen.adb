@@ -478,7 +478,7 @@ package body SpielEinstellungen is
                                                       XPositionExtern   => GezogeneWerte.XAchse,
                                                       RasseExtern       => RasseSchleifenwert);
 
-                  exit StartwerteFestlegenSchleife when PrüfungEinheit = True;
+                  exit StartwerteFestlegenSchleife when PrüfungEinheit;
                   
                   SicherheitsTestWert := SicherheitsTestWert + 1;
 

@@ -1,27 +1,18 @@
 pragma SPARK_Mode (On);
 
-with EinheitSuchen, KartePositionPruefen, UmgebungErreichbarTesten;
+with UmgebungErreichbarTesten;
 
 package body BewegungLadenEntladen is
 
    procedure TransporterBeladen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
+     (LadungExtern, TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
-      
-      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                                  ÄnderungExtern       => ÄnderungExtern);
-      
-      TransporterNummer := EinheitSuchen.KoordinatenTransporterMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                               KoordinatenExtern => KartenWert);
-      
-      EinheitAusladen := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert;
                                           
       TransporterSchleife:
       for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
         
          case
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransporterNummer).Transportiert (FreierPlatzSchleifenwert)
+           GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (FreierPlatzSchleifenwert)
          is
             when 0 =>
                FreierPlatzNummer := FreierPlatzSchleifenwert;
@@ -33,12 +24,13 @@ package body BewegungLadenEntladen is
          
       end loop TransporterSchleife;
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransporterNummer).Transportiert (FreierPlatzNummer) := EinheitRasseNummerExtern.Platznummer;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.00;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position
-        := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransporterNummer).Position;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert := TransporterNummer;
+      GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (FreierPlatzNummer) := LadungExtern.Platznummer;
+      GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).Bewegungspunkte := 0.00;
+      GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).Position
+        := GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Position;
+      GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).WirdTransportiert := TransporterExtern.Platznummer;
       
+      -- Hier korrigieren!!!
       case
         EinheitAusladen
       is
@@ -46,11 +38,11 @@ package body BewegungLadenEntladen is
             null;
             
          when others =>
-            EinheitAusTransporterEntfernen (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
-                                            AuszuladendeEinheitExtern => EinheitAusladen);
+            EinheitAusTransporterEntfernen (EinheitRasseNummerExtern  => TransporterExtern,
+                                            AuszuladendeEinheitExtern => LadungExtern.Platznummer);
       end case;
       
-      GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position;
+      GlobaleVariablen.CursorImSpiel (LadungExtern.Rasse).Position := GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).Position;
       
    end TransporterBeladen;
    

@@ -59,7 +59,7 @@ package body OptionenSonstiges is
                Erfolgreich := EinlesenSprache.EinlesenSprache;
                
                if
-                 Erfolgreich = True
+                 Erfolgreich
                then
                   GlobaleVariablen.NutzerEinstellungen.Sprache := Auswahl.AuswahlSprache;
                   -- Kann hier noch Müll einlesen und Absturz erzeugen

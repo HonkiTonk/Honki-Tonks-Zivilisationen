@@ -60,12 +60,25 @@ package EinheitenAllgemein is
    
    function EinheitenTypErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.EinheitenTyp
+      return GlobaleDatentypen.Einheit_Art_Verwendet_Enum
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function KennTransportiertWerden
+     (LadungExtern, TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+     with
+       Pre =>
+         (LadungExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (LadungExtern.Rasse) /= GlobaleDatentypen.Leer
+          and
+            TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 private
    

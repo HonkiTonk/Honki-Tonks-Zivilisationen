@@ -2,8 +2,7 @@ pragma SPARK_Mode (On);
 
 with EinheitenDatenbank;
 
-with KISiedler, KINahkampfBoden, KIFernkampfLandEinheit, KINahkampfSeeEinheit, KIFernkampfSeeEinheit, KINahkampfLuftEinheit, KIFernkampfLuftEinheit, KINahkampfUnterirdisch,
-     KIFernkampfUnterirdisch, KINahkampfOrbital, KIFernkampfOrbital, KIStadt, KIForschung, KIDiplomatie;
+with KISiedler, KINahkampfBoden, KIStadt, KIForschung, KIDiplomatie;
 
 package body KI is
 
@@ -70,47 +69,26 @@ package body KI is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft, 9 = NahkampfUnterirdisch, 10 = FernkampfUnterirdisch,
-      -- 11 = NahkampfOrbital, 12 = FernkampfOrbital
       case
         EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).EinheitTyp
       is
-         when 1 =>
+         when GlobaleDatentypen.Unbewaffnet =>
             KISiedler.KISiedler (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-            -- Bauarbeiter kommt vielleicht später
-         when 2 =>
-            null;
-            
-         when 3 =>
+         when GlobaleDatentypen.Nahkämpfer =>
             KINahkampfBoden.KINahkampfBoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when 4 =>
-            KIFernkampfLandEinheit.KIFernkampfLandEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when GlobaleDatentypen.Fernkämpfer =>
+            null;
             
-         when 5 =>
-            KINahkampfSeeEinheit.KINahkampfSeeEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when GlobaleDatentypen.Beides =>
+            null;
             
-         when 6 =>
-            KIFernkampfSeeEinheit.KIFernkampfSeeEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when GlobaleDatentypen.Sonstiges =>
+            null;
             
-         when 7 =>
-            KINahkampfLuftEinheit.KINahkampfLuftEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when 8 =>
-            KIFernkampfLuftEinheit.KIFernkampfLuftEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when 9 =>
-            KINahkampfUnterirdisch.KINahkampfUnterirdisch (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-
-         when 10 =>
-            KIFernkampfUnterirdisch.KIFernkampfUnterirdisch (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when 11 =>
-            KINahkampfOrbital.KINahkampfOrbital (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-
-         when 12 =>
-            KIFernkampfOrbital.KIFernkampfOrbital (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         when GlobaleDatentypen.Leer =>
+            null;
       end case;
       
    end AKtivitätEinheit;

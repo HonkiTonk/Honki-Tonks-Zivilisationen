@@ -35,7 +35,7 @@ package body ImSpiel is
                      
                   when GlobaleDatentypen.Spieler_Mensch =>
                      if
-                       SichtbarkeitsprüfungNotwendig = True
+                       SichtbarkeitsprüfungNotwendig
                      then
                         Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
                         
@@ -62,7 +62,7 @@ package body ImSpiel is
                   
                   when GlobaleDatentypen.Spieler_KI =>
                      if
-                       SichtbarkeitsprüfungNotwendig = True
+                       SichtbarkeitsprüfungNotwendig
                      then
                         Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
                         

@@ -24,7 +24,7 @@ package body KIStadt is
       end if;
       
       SiedlerVorhanden := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern      => StadtRasseNummerExtern.Rasse,
-                                                                       EinheitTypExtern => 1,
+                                                                       EinheitTypExtern => GlobaleDatentypen.Unbewaffnet,
                                                                        GesuchteMenge    => 2);
       
       if
@@ -46,7 +46,7 @@ package body KIStadt is
       end if;      
       
       VerteidigerVorhanden := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern      => StadtRasseNummerExtern.Rasse,
-                                                                           EinheitTypExtern => 3,
+                                                                           EinheitTypExtern => GlobaleDatentypen.Nahkämpfer,
                                                                            GesuchteMenge    => AnzahlStädte);
       
       if

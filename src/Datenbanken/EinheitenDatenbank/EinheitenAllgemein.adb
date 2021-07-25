@@ -305,11 +305,30 @@ package body EinheitenAllgemein is
    
    function EinheitenTypErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.EinheitenTyp
+      return GlobaleDatentypen.Einheit_Art_Verwendet_Enum
    is begin
      
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).EinheitTyp;
    
    end EinheitenTypErmitteln;
+   
+   
+   
+   function KennTransportiertWerden
+     (LadungExtern, TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
+      if
+        EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).KannTransportieren
+          < EinheitenDatenbank.EinheitenListe (LadungExtern.Rasse, GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).ID).KannTransportiertWerden
+      then
+         return False;
+         
+      else
+         return True;
+      end if;
+      
+   end KennTransportiertWerden;
 
 end EinheitenAllgemein;

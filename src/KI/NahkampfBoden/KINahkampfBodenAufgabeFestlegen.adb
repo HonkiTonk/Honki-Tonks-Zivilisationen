@@ -193,9 +193,9 @@ package body KINahkampfBodenAufgabeFestlegen is
                   elsif
                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Sichtbar (EinheitRasseNummerExtern.Rasse) = False
                     and
-                      BewegungPassierbarkeitPruefen.FeldFürDieseEinheitPassierbarNeu (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                       NeuePositionExtern       => KartenWert)
-                    = GlobaleDatentypen.Normale_Bewegung_Möglich
+                      BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                 NeuePositionExtern       => KartenWert)
+                    = True
                     and
                       KIAufgabenVerteilt.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
                                                       ZielKoordinatenExtern => KartenWert) = False

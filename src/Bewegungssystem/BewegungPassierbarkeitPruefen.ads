@@ -6,22 +6,8 @@ use GlobaleDatentypen;
 with Karten;
 
 package BewegungPassierbarkeitPruefen is
-
-   function FeldFürDieseEinheitPassierbarNeu
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord; 
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Bewegung_Enum
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
-   function EinfachePassierbarkeitPrüfenNummer
+   function PassierbarkeitPrüfenNummer
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return Boolean
@@ -35,7 +21,7 @@ package BewegungPassierbarkeitPruefen is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
-   function EinfachePassierbarkeitPrüfenID
+   function PassierbarkeitPrüfenID
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.EinheitenID;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)

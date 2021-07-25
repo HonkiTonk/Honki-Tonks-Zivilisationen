@@ -438,7 +438,7 @@ package body KarteStadt is
       if
         StadtRasseNummer.Rasse = RasseExtern
         or
-          GlobaleVariablen.FeindlicheInformationenSehen = True
+          GlobaleVariablen.FeindlicheInformationenSehen
       then
          
          StadtInformationen.AktuelleNahrungsmittel (StadtRasseNummerExtern => StadtRasseNummer);
