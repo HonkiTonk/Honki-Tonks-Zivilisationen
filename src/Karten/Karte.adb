@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
+with GlobaleKonstanten;
+
 with Karten, KartePositionPruefen, KarteInformationen, GrafischeAnzeige;
 
 package body Karte is
@@ -65,7 +67,7 @@ package body Karte is
             case
               KartenWert.XAchse
             is
-               when 0 =>
+               when GlobaleKonstanten.LeerYXKartenWert =>
                   null;
                   
                when others =>
@@ -84,9 +86,9 @@ package body Karte is
                   or
                     Karten.Kartenform = GlobaleDatentypen.Kugel
                   or
-                    Karten.Kartenform = GlobaleDatentypen.Kugel_Gedreht) -- Hier noch die Anzeige korrekt einbauen für die neue Version von KartePositionPruefen
+                    Karten.Kartenform = GlobaleDatentypen.Kugel_Gedreht)
                  and
-                   KartenWert.XAchse > 0
+                   KartenWert.XAchse > GlobaleKonstanten.LeerYXKartenWert
                then
                   New_Line;
                   

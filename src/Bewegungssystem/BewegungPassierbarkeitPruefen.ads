@@ -34,49 +34,34 @@ package BewegungPassierbarkeitPruefen is
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
+   function InStadtEntladbar
+     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+     with
+       Pre =>
+         (TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
+
 private
    
    Passierbar : Boolean;
-   EntladungMöglich : Boolean;
 
    BewegungMöglich : GlobaleDatentypen.Bewegung_Enum;
    
    StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
    TransporterNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   Transportplatz : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
    BenötigteFelder : Positive;
-   Transportplatz : Natural;
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;   
    
    TransportplatzEntladen : GlobaleRecords.TransporterArray;
-
-   function Boden
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Bewegung_Enum
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-
-   function Wasser
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Bewegung_Enum
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 end BewegungPassierbarkeitPruefen;

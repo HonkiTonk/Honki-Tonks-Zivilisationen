@@ -34,13 +34,13 @@ package body KIMindestBewertungKartenfeldErmitteln is
                case
                  KartenWert.XAchse
                is
-                  when 0 =>
+                  when GlobaleKonstanten.LeerYXKartenWert =>
                      null;
                      
                   when others =>               
                      if
                        StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                             KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+                                                                             KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
                      then
                         null;
                         

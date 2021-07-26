@@ -32,9 +32,10 @@ package Diplomatie is
           and
             GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
 
-   procedure GegnerAngreifenOderNicht
+   function GegnerAngreifen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       GegnerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
      with
        Pre =>
          (EinheitRasseNummerExtern.Rasse /= GegnerExtern.Rasse
@@ -69,6 +70,6 @@ package Diplomatie is
 
 private
 
-   Gewonnen : Boolean;
+
 
 end Diplomatie;

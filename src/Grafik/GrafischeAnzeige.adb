@@ -48,12 +48,12 @@ package body GrafischeAnzeige is
          EinheitStadtRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
          if
-           EinheitStadtRasseNummer.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+           EinheitStadtRasseNummer.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
          then
             null;
             
          elsif
-           GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).WirdTransportiert /= 0
+           GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).WirdTransportiert /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             Farben (EinheitExtern            => GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse,
                     GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).WirdTransportiert).ID,
@@ -79,7 +79,7 @@ package body GrafischeAnzeige is
          EinheitStadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
          
          if
-           EinheitStadtRasseNummer.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+           EinheitStadtRasseNummer.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
          then
             null;
             

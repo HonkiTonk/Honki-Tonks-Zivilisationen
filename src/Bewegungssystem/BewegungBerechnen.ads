@@ -22,14 +22,21 @@ package BewegungBerechnen is
    
 private
    
-   BonusBeiBewegung : Integer;
+   PlatzZumEntladen : Boolean;
+      
+   type Bewegungsbonuse_Enum is (Leer, Straße_Fluss, Schiene);
    
-   BewegungspunkteModifikator : Float;
+   Welchen_Bonus : Bewegungsbonuse_Enum;
+   
+   type BewegungsmodifikatorArray is array (Bewegungsbonuse_Enum'Range) of Float;
+   Bewegungsmodifikator : constant BewegungsmodifikatorArray := (Leer => 0.00,
+                                                                 Straße_Fluss => 0.50,
+                                                                 Schiene => 1.00);
    
    function StraßeUndFlussPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Integer
+      return Bewegungsbonuse_Enum
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)

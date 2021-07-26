@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
+with EinheitenAllgemein;
+
 package body EinheitSuchen is
 
    function KoordinatenEinheitMitRasseSuchen
@@ -24,7 +26,7 @@ package body EinheitSuchen is
          
       end loop EinheitSchleife;
       
-      return GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch;
+      return GlobaleKonstanten.LeerEinheitStadtNummer;
       
    end KoordinatenEinheitMitRasseSuchen;
 
@@ -42,7 +44,7 @@ package body EinheitSuchen is
          if
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).Position = KoordinatenExtern
            and then
-             EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID).KannTransportieren /= 0
+             EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID).KannTransportieren /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             return EinheitNummerSchleifenwert;
             
@@ -52,12 +54,13 @@ package body EinheitSuchen is
          
       end loop EinheitSchleife;
       
-      return GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch;
+      return GlobaleKonstanten.LeerEinheitStadtNummer;
       
    end KoordinatenTransporterMitRasseSuchen;
 
 
 
+   -- Zu beachten, wenn die Einheit sich in einem Transporter befindet, dann wird immer die Nummer des Transporters zurückgegeben.
    function KoordinatenEinheitOhneRasseSuchen
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleRecords.RassePlatznummerRecord
@@ -76,7 +79,14 @@ package body EinheitSuchen is
             elsif
               GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).Position = KoordinatenExtern
             then
-               return (RasseSchleifenwert, EinheitNummerSchleifenwert);
+               if
+                 GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).WirdTransportiert = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+               then
+                  return (RasseSchleifenwert, EinheitNummerSchleifenwert);
+                  
+               else
+                  return (RasseSchleifenwert, GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).WirdTransportiert);
+               end if;
                
             else
                null;
@@ -85,7 +95,7 @@ package body EinheitSuchen is
          end loop EinheitSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.LeerEinheitStadtNummer);
       
    end KoordinatenEinheitOhneRasseSuchen;
 
@@ -121,23 +131,23 @@ package body EinheitSuchen is
          end loop EinheitSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.LeerEinheitStadtNummer);
       
    end KoordinatenEinheitOhneSpezielleRasseSuchen;
 
 
 
    function EinheitAufTransporterSuchen
-     (EinheitRassePlatznummer : in GlobaleRecords.RassePlatznummerRecord;
-      EinheitNummer : in GlobaleDatentypen.MaximaleEinheiten)
-      return Natural
+     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+      LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
 
       TransporterSchleife:
-      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => TransporterExtern) loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).Transportiert (TransporterPlatzSchleifenwert) = EinheitNummer
+           GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert) = LadungExtern
          then
             return TransporterPlatzSchleifenwert;
             
@@ -147,22 +157,23 @@ package body EinheitSuchen is
          
       end loop TransporterSchleife;
       
-      return Natural (GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      return GlobaleKonstanten.LeerEinheitStadtNummer;
       
    end EinheitAufTransporterSuchen;
 
 
 
-   function IstEinheitAufTransporter
-     (EinheitRassePlatznummer : in GlobaleRecords.RassePlatznummerRecord)
+   function HatTransporterLadung
+     (EinheitRassePlatznummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
       TransporterSchleife:
-      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => EinheitRassePlatznummerExtern) loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummer.Rasse, EinheitRassePlatznummer.Platznummer).Transportiert (TransporterPlatzSchleifenwert) /= 0
+           GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummerExtern.Rasse, EinheitRassePlatznummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert)
+           /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             return True;
             
@@ -174,14 +185,14 @@ package body EinheitSuchen is
       
       return False;
       
-   end IstEinheitAufTransporter;
+   end HatTransporterLadung;
    
    
    
    function MengeEinesEinheitenTypsSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       EinheitTypExtern : in GlobaleDatentypen.Einheit_Art_Verwendet_Enum;
-      GesuchteMenge : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
+      GesuchteMengeExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
@@ -191,7 +202,7 @@ package body EinheitSuchen is
       for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert).ID = 0
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID
          then
             null;
          
@@ -205,9 +216,9 @@ package body EinheitSuchen is
          end if;
          
          if
-           GesuchteMenge > 0
+           GesuchteMengeExtern > 0
            and
-             AnzahlEinheitTyp >= GesuchteMenge
+             AnzahlEinheitTyp >= GesuchteMengeExtern
          then
             return AnzahlEinheitTyp;
             
@@ -225,7 +236,7 @@ package body EinheitSuchen is
    
    function AnzahlEinheitenSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      GesuchteMenge : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
+      GesuchteMengeExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
@@ -235,7 +246,7 @@ package body EinheitSuchen is
       for EinheitenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitenSchleifenwert).ID /= 0
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitenSchleifenwert).ID /= GlobaleKonstanten.LeerEinheit.ID
          then
             AnzahlEinheiten := AnzahlEinheiten + 1;
             
@@ -244,9 +255,9 @@ package body EinheitSuchen is
          end if;
          
          if
-           GesuchteMenge > 0
+           GesuchteMengeExtern > 0
            and
-             AnzahlEinheiten >= GesuchteMenge
+             AnzahlEinheiten >= GesuchteMengeExtern
          then
             return AnzahlEinheiten;
             
@@ -256,7 +267,7 @@ package body EinheitSuchen is
          
       end loop EinheitenSchleife;
       
-      return GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch;
+      return GlobaleKonstanten.LeerEinheitStadtNummer;
       
    end AnzahlEinheitenSuchen;     
 

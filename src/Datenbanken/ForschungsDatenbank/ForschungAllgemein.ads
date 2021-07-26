@@ -6,11 +6,7 @@ use GlobaleDatentypen;
 package ForschungAllgemein is
 
    procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert);
 
    procedure Forschung
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)

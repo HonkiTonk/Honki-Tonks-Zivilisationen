@@ -6,16 +6,12 @@ use GlobaleDatentypen;
 package KIGefahrReaktion is
 
    procedure KIGefahrReaktion
-     (EinheitRasseNummerExtern, FeindlicheEinheit : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
-          and
-            FeindlicheEinheit.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (FeindlicheEinheit.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
 private
 

@@ -1,9 +1,11 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with KIDatentypen, KIKonstanten;
 use KIDatentypen;
 
-with KIBewegungDurchfuehren, KISiedlerAufgabeErmitteln, KISiedlerAufgabeDurchfuehren, KIGefahrErmitteln;
+with KIBewegungDurchfuehren, KISiedlerAufgabeErmitteln, KISiedlerAufgabeDurchfuehren; -- , KIGefahrErmitteln;
 
 package body KISiedler is
 
@@ -11,17 +13,17 @@ package body KISiedler is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      KIGefahrErmitteln.KIGefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      -- KIGefahrErmitteln.KIGefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       NotAus := 1;
       
       AktivitätSchleife:
-      loop
+      while NotAus /= GlobaleDatentypen.Sichtweite'Last loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID = 0
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID = GlobaleKonstanten.LeerEinheit.ID
            or
-             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte <= 0.00
+             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte <= GlobaleKonstanten.LeerEinheit.Bewegungspunkte
          then
             return;
             
@@ -46,16 +48,16 @@ package body KISiedler is
          end if;
       
          if
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte > 0.00
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte > GlobaleKonstanten.LeerEinheit.Bewegungspunkte
            and
              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten /= KIKonstanten.NullKoordinate
          then
             null;
             
          elsif
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte > 0.00
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte > GlobaleKonstanten.LeerEinheit.Bewegungspunkte
            and
-             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID > 0
+             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID > GlobaleKonstanten.LeerEinheit.ID
            and
              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten = KIKonstanten.NullKoordinate
            and
@@ -68,9 +70,7 @@ package body KISiedler is
          else
             return;
          end if;
-         
-         exit AktivitätSchleife when NotAus = 8;
-         
+                  
          NotAus := NotAus + 1;
          
       end loop AktivitätSchleife;

@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with KIKonstanten, KIDatentypen;
 
 with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen;
@@ -12,7 +14,7 @@ package body KIBewegungBerechnen is
    is begin
             
       case
-        TransporterNötig (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        TransporterNötig
       is
          when False =>
             null;
@@ -25,8 +27,6 @@ package body KIBewegungBerechnen is
             return False;
       end case;
       
-      KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                WelchenWertNullSetzten   => -1);
       PlanungErfolgreich := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
                                             AktuelleKoordinatenExtern  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
                                             AktuellePlanpositionExtern => 1);
@@ -170,7 +170,7 @@ package body KIBewegungBerechnen is
       case
         KartenWert.XAchse
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerYXKartenWert =>
             return 0;
 
          when others =>
@@ -358,7 +358,7 @@ package body KIBewegungBerechnen is
                                                                                         ÄnderungExtern       => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                      
                if
-                 KartenWertVereinfachung.XAchse = 0
+                 KartenWertVereinfachung.XAchse = GlobaleKonstanten.LeerYXKartenWert
                then
                   null;
               
@@ -387,7 +387,6 @@ package body KIBewegungBerechnen is
    
    
    function TransporterNötig
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       

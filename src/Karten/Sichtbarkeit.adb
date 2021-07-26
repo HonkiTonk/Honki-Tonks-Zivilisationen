@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with EinheitenDatenbank;
   
 with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen;
@@ -157,7 +159,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, SichtweiteXRichtungExtern));
             
       if
-        KartenQuadrantWert.XAchse = 0
+        KartenQuadrantWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
       then
          null;
                
@@ -285,7 +287,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, SichtweiteYRichtungExtern, SichtweiteXRichtungExtern));
             
       if
-        KartenQuadrantWert.XAchse = 0
+        KartenQuadrantWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
       then
          null;
                
@@ -413,7 +415,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern));
             
       if
-        KartenQuadrantWert.XAchse = 0
+        KartenQuadrantWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
       then
          null;
                
@@ -541,7 +543,7 @@ package body Sichtbarkeit is
                                                                           ÄnderungExtern    => (0, -SichtweiteYRichtungExtern, -SichtweiteXRichtungExtern));
             
       if
-        KartenQuadrantWert.XAchse = 0
+        KartenQuadrantWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
       then
          null;
                
@@ -669,7 +671,7 @@ package body Sichtbarkeit is
       KartenBlockadeWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
                                                                           ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern));
       if
-        KartenBlockadeWert.XAchse = 0
+        KartenBlockadeWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
       then
          null;
          
@@ -714,9 +716,9 @@ package body Sichtbarkeit is
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             case
-              KartenWert.YAchse
+              KartenWert.XAchse
             is
-               when 0 =>
+               when GlobaleKonstanten.LeerYXKartenWert =>
                   null;
                   
                when others =>            
@@ -753,9 +755,9 @@ package body Sichtbarkeit is
                                                                         ÄnderungExtern      => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             case
-              KartenWert.YAchse
+              KartenWert.XAchse
             is
-               when 0 =>
+               when GlobaleKonstanten.LeerYXKartenWert =>
                   null;
                   
                when others =>            

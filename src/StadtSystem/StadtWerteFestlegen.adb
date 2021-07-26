@@ -43,7 +43,7 @@ package body StadtWerteFestlegen is
                                                                         ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             if
-              KartenWert.XAchse = 0
+              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -117,7 +117,7 @@ package body StadtWerteFestlegen is
                                                                                  ÄnderungExtern       => (0, YPositionSchleifenwert, XPositionSchleifenwert));
                      
                      if
-                       KartenWert.XAchse = 0
+                       KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
                      then
                         null;
                   
@@ -186,7 +186,7 @@ package body StadtWerteFestlegen is
                                                                         ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             if
-              KartenWert.XAchse = 0
+              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
             then
                null;
                

@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with EinheitenDatenbank;
 
 with KISiedler, KINahkampfBoden, KIStadt, KIForschung, KIDiplomatie;
@@ -27,9 +29,9 @@ package body KI is
       for EinheitNummerEinsSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).ID = 0
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID
            or
-             GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).Bewegungspunkte <= 0.00
+             GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).Bewegungspunkte <= GlobaleKonstanten.LeerEinheit.Bewegungspunkte
          then
             null;
             

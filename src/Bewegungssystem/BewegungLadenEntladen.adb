@@ -1,20 +1,25 @@
 pragma SPARK_Mode (On);
 
-with UmgebungErreichbarTesten;
+with GlobaleKonstanten;
+
+with UmgebungErreichbarTesten, EinheitenAllgemein;
 
 package body BewegungLadenEntladen is
 
    procedure TransporterBeladen
-     (LadungExtern, TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+      LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
    is begin
+      
+      FreierPlatzNummer := GlobaleKonstanten.LeerTransportiertWirdTransportiert;
                                           
       TransporterSchleife:
-      for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+      for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => TransporterExtern) loop
         
          case
            GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (FreierPlatzSchleifenwert)
          is
-            when 0 =>
+            when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
                FreierPlatzNummer := FreierPlatzSchleifenwert;
                exit TransporterSchleife;
                
@@ -22,45 +27,49 @@ package body BewegungLadenEntladen is
                null;
          end case;
          
-      end loop TransporterSchleife;
+      end loop TransporterSchleife;      
       
-      GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (FreierPlatzNummer) := LadungExtern.Platznummer;
-      GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).Bewegungspunkte := 0.00;
-      GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).Position
-        := GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Position;
-      GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).WirdTransportiert := TransporterExtern.Platznummer;
-      
-      -- Hier korrigieren!!!
       case
-        EinheitAusladen
+        FreierPlatzNummer
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
             null;
             
          when others =>
-            EinheitAusTransporterEntfernen (EinheitRasseNummerExtern  => TransporterExtern,
-                                            AuszuladendeEinheitExtern => LadungExtern.Platznummer);
+            if
+              GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, LadungExtern).WirdTransportiert /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+            then
+               EinheitAusTransporterEntfernen (TransporterExtern => (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, LadungExtern).WirdTransportiert),
+                                               LadungExtern      => LadungExtern);
+         
+            else
+               null;
+            end if;
+            GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (FreierPlatzNummer) := LadungExtern;
+            GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, LadungExtern).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
+            GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, LadungExtern).Position
+              := GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Position;
+            GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, LadungExtern).WirdTransportiert := TransporterExtern.Platznummer;
+            GlobaleVariablen.CursorImSpiel (TransporterExtern.Rasse).Position := GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, LadungExtern).Position;
       end case;
-      
-      GlobaleVariablen.CursorImSpiel (LadungExtern.Rasse).Position := GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).Position;
       
    end TransporterBeladen;
    
    
    
    procedure EinheitAusTransporterEntfernen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AuszuladendeEinheitExtern : in GlobaleDatentypen.MaximaleEinheiten)
+     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+      LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
    is begin
       
       TransporterLeerenSchleife:
-      for TransporterLeerenSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+      for TransporterLeerenSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => TransporterExtern) loop
 
          if
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, AuszuladendeEinheitExtern).Transportiert (TransporterLeerenSchleifenwert) = EinheitRasseNummerExtern.Platznummer
+           GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (TransporterLeerenSchleifenwert) = LadungExtern
          then
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, AuszuladendeEinheitExtern).Transportiert (TransporterLeerenSchleifenwert) := 0;
-            -- Hier nicht WirdTransportiert auf 0 setzen, da das zu Problemen bei Verschiebungen von Transporter zu Transporter führen kann.
+            GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (TransporterLeerenSchleifenwert) := GlobaleKonstanten.LeerTransportiertWirdTransportiert;
+            GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, LadungExtern).WirdTransportiert := GlobaleKonstanten.LeerTransportiertWirdTransportiert;
             exit TransporterLeerenSchleife;
                      
          else
@@ -79,16 +88,16 @@ package body BewegungLadenEntladen is
    is begin
       
       TransporterUmladenSchleife:
-      for TransporterUmladenSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+      for TransporterUmladenSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => EinheitRasseNummerExtern) loop
                
          case
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterUmladenSchleifenwert)
          is
-            when 0 =>
+            when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
                null;
                      
             when others =>
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert
                                                  (TransporterUmladenSchleifenwert)).Position := NeuePositionExtern;
          end case;
                
@@ -104,12 +113,12 @@ package body BewegungLadenEntladen is
    is begin
             
       BelegterPlatzSchleife:
-      for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+      for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => EinheitRasseNummerExtern) loop
          
          case
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)
          is
-            when 0 =>
+            when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
                null;
                               
             when others =>
@@ -124,12 +133,12 @@ package body BewegungLadenEntladen is
                                                                        NotwendigeFelderExtern    => 1);
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
                                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                   EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).WirdTransportiert := 0;
+                                                   EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).WirdTransportiert := GlobaleKonstanten.LeerTransportiertWirdTransportiert;
          end case;
       
       end loop BelegterPlatzSchleife;
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert := (others => 0);
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert := (others => GlobaleKonstanten.LeerTransportiertWirdTransportiert);
       
    end TransporterStadtEntladen;
 

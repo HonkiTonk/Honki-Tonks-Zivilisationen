@@ -46,7 +46,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_2 =>
                                             (
@@ -81,7 +81,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_3 =>
                                             (
@@ -116,7 +116,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_4 =>
                                             (
@@ -151,7 +151,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_5 =>
                                             (
@@ -186,7 +186,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_6 =>
                                             (
@@ -221,7 +221,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_7 =>
                                             (
@@ -256,7 +256,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_8 =>
                                             (
@@ -291,7 +291,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_9 =>
                                             (
@@ -326,7 +326,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_10 =>
                                             (
@@ -361,7 +361,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_11 =>
                                             (
@@ -396,7 +396,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_12 =>
                                             (
@@ -431,7 +431,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_13 =>
                                             (
@@ -466,7 +466,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_14 =>
                                             (
@@ -501,7 +501,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_15 =>
                                             (
@@ -536,7 +536,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_16 =>
                                             (
@@ -571,7 +571,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_17 =>
                                             (
@@ -606,7 +606,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                             others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                           GlobaleDatentypen.Rasse_18 =>
                                             (
@@ -641,7 +641,7 @@ package GebaeudeDatenbank is
                                              10 => ('J', 1000, 100, 1, 1,
                                                     0, 0, 0, 0, 0, False),
                                                               
-                                             others => GlobaleKonstanten.LeererWertGebäudeListe)
+                                             others => GlobaleKonstanten.LeerGebäudeListe)
                                          );
    
    procedure StandardGebaeudeDatenbankWiederherstellen;
@@ -682,7 +682,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_2 =>
                                                              (
@@ -717,7 +717,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_3 =>
                                                              (
@@ -752,7 +752,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_4 =>
                                                              (
@@ -787,7 +787,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_5 =>
                                                              (
@@ -822,7 +822,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_6 =>
                                                              (
@@ -857,7 +857,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_7 =>
                                                              (
@@ -892,7 +892,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_8 =>
                                                              (
@@ -927,7 +927,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_9 =>
                                                              (
@@ -962,7 +962,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_10 =>
                                                              (
@@ -997,7 +997,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_11 =>
                                                              (
@@ -1032,7 +1032,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_12 =>
                                                              (
@@ -1067,7 +1067,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_13 =>
                                                              (
@@ -1102,7 +1102,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_14 =>
                                                              (
@@ -1137,7 +1137,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_15 =>
                                                              (
@@ -1172,7 +1172,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_16 =>
                                                              (
@@ -1207,7 +1207,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_17 =>
                                                              (
@@ -1242,7 +1242,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe),
+                                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
                                                            GlobaleDatentypen.Rasse_18 =>
                                                              (
@@ -1277,7 +1277,7 @@ private
                                                               10 => ('J', 1000, 100, 1, 1,
                                                                      0, 0, 0, 0, 0, False),
                                                               
-                                                              others => GlobaleKonstanten.LeererWertGebäudeListe)
+                                                              others => GlobaleKonstanten.LeerGebäudeListe)
                                                           );
 
 end GebaeudeDatenbank;

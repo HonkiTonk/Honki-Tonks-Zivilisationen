@@ -399,7 +399,7 @@ package body Anzeige is
    procedure AnzeigeLangerTextNeu
      (ÜberschriftDateiExtern, TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ÜberschriftZeileExtern : in Natural;
-      ErsteZeileExtern, LetzteZeileExtern : in Positive;
+      ErsteZeileExtern : in Positive;
       AbstandAnfangExtern, AbstandEndeExtern : in GlobaleTexte.Welcher_Abstand_Enum)
    is begin
       

@@ -137,7 +137,7 @@ package body KartenGeneratorLandschaft is
                                                                         ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
 
             if
-              KartenWert.XAchse = 0
+              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
               or else
                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund in GlobaleDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
             then
@@ -216,7 +216,7 @@ package body KartenGeneratorLandschaft is
                                                                               ÄnderungExtern       => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert));
 
                   if
-                    KartenWert.XAchse = 0
+                    KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
                   then
                      null;
                      
@@ -254,7 +254,7 @@ package body KartenGeneratorLandschaft is
                                                                               ÄnderungExtern       => (0, YÄnderungHügelSchleifenwert, XÄnderungHügelSchleifenwert));
 
             if
-              KartenWertHügel.XAchse = 0
+              KartenWertHügel.XAchse = GlobaleKonstanten.LeerYXKartenWert
             then
                null;
                

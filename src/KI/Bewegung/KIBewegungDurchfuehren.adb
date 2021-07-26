@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with KIKonstanten;
 
 with BewegungBlockiert, KIBewegungBerechnen, KINullwerteSetzen, BewegungBerechnen;
@@ -22,7 +24,7 @@ package body KIBewegungDurchfuehren is
             return;
             
          elsif
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte <= 0.00
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte <= GlobaleKonstanten.LeerEinheit.Bewegungspunkte
          then
             return;
             

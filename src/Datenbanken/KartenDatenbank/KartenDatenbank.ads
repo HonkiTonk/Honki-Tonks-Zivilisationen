@@ -16,7 +16,7 @@ package KartenDatenbank is
    type KartenListeArray is array (GlobaleDatentypen.Karten_Grund_Enum'Range) of DatenbankRecords.KartenListeRecord;
    KartenListe : KartenListeArray := (
                                       -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-                                      GlobaleDatentypen.Leer => GlobaleKonstanten.LeererWertKartenListe,
+                                      GlobaleDatentypen.Leer => GlobaleKonstanten.LeerKartenListe,
                                       
                                       -- Feld
                                       GlobaleDatentypen.Eis =>
@@ -206,7 +206,7 @@ private
    
    KartenListeStandard : constant KartenListeArray := (
                                                        -- Nullwert für Ressourcen, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-                                                       GlobaleDatentypen.Leer => GlobaleKonstanten.LeererWertKartenListe,
+                                                       GlobaleDatentypen.Leer => GlobaleKonstanten.LeerKartenListe,
                                       
                                                        -- Feld
                                                        GlobaleDatentypen.Eis =>

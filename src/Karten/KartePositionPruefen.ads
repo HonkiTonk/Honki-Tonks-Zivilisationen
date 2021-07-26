@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen;
+with GlobaleRecords, GlobaleDatentypen, GlobaleKonstanten;
 use GlobaleDatentypen;
 
 with Karten;
@@ -19,17 +19,17 @@ package KartePositionPruefen is
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
          Post =>
            ((if
-                      KartenPositionBestimmen'Result.YAchse = GlobaleDatentypen.KartenfeldPositivMitNullwert'First
+                      KartenPositionBestimmen'Result.YAchse = GlobaleKonstanten.LeerYXKartenWert
                         then
-              (KartenPositionBestimmen'Result.XAchse = GlobaleDatentypen.KartenfeldPositivMitNullwert'First
+              (KartenPositionBestimmen'Result.XAchse = GlobaleKonstanten.LeerYXKartenWert
                and
                  KartenPositionBestimmen'Result.EAchse = GlobaleDatentypen.EbeneVorhanden'First)
            )
             and
               (if
-                         KartenPositionBestimmen'Result.XAchse = GlobaleDatentypen.KartenfeldPositivMitNullwert'First
+                         KartenPositionBestimmen'Result.XAchse = GlobaleKonstanten.LeerYXKartenWert
                            then
-                 (KartenPositionBestimmen'Result.YAchse = GlobaleDatentypen.KartenfeldPositivMitNullwert'First
+                 (KartenPositionBestimmen'Result.YAchse = GlobaleKonstanten.LeerYXKartenWert
                   and
                     KartenPositionBestimmen'Result.EAchse = GlobaleDatentypen.EbeneVorhanden'First))
             and

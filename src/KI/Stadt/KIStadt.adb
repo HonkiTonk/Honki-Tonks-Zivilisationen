@@ -16,16 +16,24 @@ package body KIStadt is
       if
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung /= KIDatentypen.Keine_Aufgabe
       then
-         return;
+         case
+           GefahrStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)
+         is
+            when False =>
+               return;
+               
+            when True =>
+               null;
+         end case;
          
       else
          StädteMitGleichemBauprojekt := 0;
          AnzahlStädte := StadtSuchen.AnzahlStädteErmitteln (RasseExtern => StadtRasseNummerExtern.Rasse);
       end if;
       
-      SiedlerVorhanden := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern      => StadtRasseNummerExtern.Rasse,
-                                                                       EinheitTypExtern => GlobaleDatentypen.Unbewaffnet,
-                                                                       GesuchteMenge    => 2);
+      SiedlerVorhanden := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern         => StadtRasseNummerExtern.Rasse,
+                                                                       EinheitTypExtern    => GlobaleDatentypen.Unbewaffnet,
+                                                                       GesuchteMengeExtern => 2);
       
       if
         SiedlerVorhanden >= 2
@@ -33,8 +41,8 @@ package body KIStadt is
          null;
          
       elsif
-        SiedlerVorhanden + GlobaleDatentypen.MaximaleStädteMitNullWert (KIStadtLaufendeBauprojekte.StadtLaufendeBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                                                              BauprojektExtern       => 10_001))
+        SiedlerVorhanden + KIStadtLaufendeBauprojekte.StadtLaufendeBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                                BauprojektExtern       => 10_001)
         >= 2
       then
          null;
@@ -45,9 +53,9 @@ package body KIStadt is
          return;
       end if;      
       
-      VerteidigerVorhanden := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern      => StadtRasseNummerExtern.Rasse,
-                                                                           EinheitTypExtern => GlobaleDatentypen.Nahkämpfer,
-                                                                           GesuchteMenge    => AnzahlStädte);
+      VerteidigerVorhanden := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern         => StadtRasseNummerExtern.Rasse,
+                                                                           EinheitTypExtern    => GlobaleDatentypen.Nahkämpfer,
+                                                                           GesuchteMengeExtern => AnzahlStädte);
       
       if
         VerteidigerVorhanden >= AnzahlStädte * 10
@@ -55,8 +63,8 @@ package body KIStadt is
          null;
          
       elsif
-        VerteidigerVorhanden + GlobaleDatentypen.MaximaleStädteMitNullWert (KIStadtLaufendeBauprojekte.StadtLaufendeBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                                                                  BauprojektExtern       => 10_002))
+        VerteidigerVorhanden + KIStadtLaufendeBauprojekte.StadtLaufendeBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                                    BauprojektExtern       => 10_002)
         >= AnzahlStädte * 10
       then
          null;
@@ -98,5 +106,25 @@ package body KIStadt is
       end if;
       
    end KIStadt;
+   
+   
+   
+   function GefahrStadt
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
+      if
+        StadtRasseNummerExtern.Platznummer = 0
+      then
+         null;
+         
+      else
+         null;
+      end if;
+      
+      return False;
+        
+   end GefahrStadt;
 
 end KIStadt;

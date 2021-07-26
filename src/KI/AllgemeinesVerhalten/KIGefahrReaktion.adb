@@ -1,11 +1,13 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with KIStadtSuchen;
 
 package body KIGefahrReaktion is
 
    procedure KIGefahrReaktion
-     (EinheitRasseNummerExtern, FeindlicheEinheit : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       ZielStadt := KIStadtSuchen.NähesteStadtSuchen (RasseExtern             => EinheitRasseNummerExtern.Rasse,
@@ -14,7 +16,7 @@ package body KIGefahrReaktion is
       case
         ZielStadt.XAchse
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerYXKartenWert =>
             null;
             
          when others =>

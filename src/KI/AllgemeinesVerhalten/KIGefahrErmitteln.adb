@@ -19,7 +19,7 @@ package body KIGefahrErmitteln is
                                                                         ÄnderungExtern   => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                
             if
-              KartenWert.XAchse = 0
+              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
             then
                null;
                   
@@ -32,7 +32,7 @@ package body KIGefahrErmitteln is
                EinheitUnzugeordnet := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert);
                   
                if
-                 EinheitUnzugeordnet.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+                 EinheitUnzugeordnet.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
                then
                   null;
                      
@@ -41,15 +41,14 @@ package body KIGefahrErmitteln is
                  and
                    StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
-                     /= GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+                     /= GlobaleKonstanten.LeerEinheitStadtNummer
                then
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.00;
+                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
                   
                elsif
                  GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitUnzugeordnet.Rasse) in GlobaleDatentypen.Status_Untereinander_Aggressiv_Enum
                then
-                  KIGefahrReaktion.KIGefahrReaktion (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                     FeindlicheEinheit        => EinheitUnzugeordnet);
+                  KIGefahrReaktion.KIGefahrReaktion (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                   return;
                   
                else

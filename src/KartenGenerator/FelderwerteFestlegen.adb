@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with KartenDatenbank, VerbesserungenDatenbank;
   
 with KartePositionPruefen;
@@ -24,7 +26,7 @@ package body FelderwerteFestlegen is
                   case
                     KartenWertEins (KoordinatenExtern.EAchse).XAchse
                   is
-                     when 0 =>
+                     when GlobaleKonstanten.LeerYXKartenWert =>
                         null;
                      
                      when others =>                  
@@ -56,7 +58,7 @@ package body FelderwerteFestlegen is
                                                                                                        ÄnderungExtern       => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert));
 
             if
-              KartenWertZwei (KoordinatenExtern.EAchse).XAchse = 0
+              KartenWertZwei (KoordinatenExtern.EAchse).XAchse = GlobaleKonstanten.LeerYXKartenWert
             then
                null;
             

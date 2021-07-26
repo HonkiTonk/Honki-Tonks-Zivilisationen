@@ -19,7 +19,7 @@ package body Kampfsystem is
       case
         StadtVorhanden
       is
-         when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
+         when GlobaleKonstanten.LeerEinheitStadtNummer =>
             VerteidigungBonusDurchStadt := 1.00;
             
          when others =>
@@ -95,7 +95,7 @@ package body Kampfsystem is
                           VerteidigerStärkeVerteidigungExtern => VerteidigerStärkeVerteidigung);
 
          if
-           GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).Lebenspunkte = 0
+           GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).Lebenspunkte = GlobaleKonstanten.LeerEinheit.Lebenspunkte
          then
             EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerRasseNummerExtern);
             return True;
@@ -109,7 +109,7 @@ package body Kampfsystem is
                           VerteidigerStärkeVerteidigungExtern => AngreiferStärkeVerteidigung);
          
          if
-           GlobaleVariablen.EinheitenGebaut (AngreiferRasseNummerExtern.Rasse, AngreiferRasseNummerExtern.Platznummer).Lebenspunkte = 0
+           GlobaleVariablen.EinheitenGebaut (AngreiferRasseNummerExtern.Rasse, AngreiferRasseNummerExtern.Platznummer).Lebenspunkte = GlobaleKonstanten.LeerEinheit.Lebenspunkte
          then
             EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferRasseNummerExtern);
             return False;

@@ -152,7 +152,7 @@ package body BewegungssystemCursor is
       case
         KartenWert.XAchse
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerYXKartenWert =>
             return;
 
          when others =>

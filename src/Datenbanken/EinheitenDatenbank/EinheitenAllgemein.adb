@@ -57,7 +57,7 @@ package body EinheitenAllgemein is
             then
                exit EinheitenSchleife;
 
-            elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = 0 then
+            elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID then
                null;
                   
             else
@@ -82,7 +82,7 @@ package body EinheitenAllgemein is
            := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleBewegungspunkte;
 
       else
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.00;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
       end if;
 
       if
@@ -94,7 +94,7 @@ package body EinheitenAllgemein is
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
            := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte;
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 0;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := GlobaleKonstanten.LeerEinheit.Beschäftigungszeit;
                   
       elsif
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung = GlobaleDatentypen.Heilen
@@ -165,7 +165,7 @@ package body EinheitenAllgemein is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
 
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeererWertEinheit;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerEinheit;
       
    end EinheitEntfernen;
    
@@ -235,10 +235,10 @@ package body EinheitenAllgemein is
       Ende := 1;
 
       TransporterSchleife:
-      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. GlobaleRecords.TransporterArray'Last loop
+      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. MaximaleTransporterKapazität (TransporterExtern => EinheitRasseNummerExtern) loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert) = 0
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             null;
             
@@ -314,21 +314,71 @@ package body EinheitenAllgemein is
    
    
    
-   function KennTransportiertWerden
+   function KannTransportiertWerden
      (LadungExtern, TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
       if
-        EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).KannTransportieren
-          < EinheitenDatenbank.EinheitenListe (LadungExtern.Rasse, GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).ID).KannTransportiertWerden
+        EinheitenDatenbank.EinheitenListe (LadungExtern.Rasse, GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).ID).KannTransportiertWerden
+          = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+        or
+          EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).KannTransportieren
+            < EinheitenDatenbank.EinheitenListe (LadungExtern.Rasse, GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).ID).KannTransportiertWerden
       then
          return False;
          
       else
-         return True;
+         null;
       end if;
       
-   end KennTransportiertWerden;
+      PlatzFreiSchleife:
+      for PlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. MaximaleTransporterKapazität (TransporterExtern => TransporterExtern) loop
+         
+         if
+           GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (PlatzSchleifenwert) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+         then
+            return True;
+            
+         else
+            null;
+         end if;
+         
+      end loop PlatzFreiSchleife;
+      
+      return False;
+      
+   end KannTransportiertWerden;
+   
+   
+   
+   
+   function IDTransporterAusLadung
+     (LadungExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.EinheitenIDMitNullWert
+   is begin
+      
+      case
+        GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).WirdTransportiert
+      is
+         when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
+            return GlobaleKonstanten.LeerEinheit.ID;
+            
+         when others =>
+            return GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).WirdTransportiert).ID;
+      end case;
+      
+   end IDTransporterAusLadung;
+   
+   
+   
+   function MaximaleTransporterKapazität
+     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+   is begin
+      
+      return EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).Transportkapazität;
+      
+   end MaximaleTransporterKapazität;
 
 end EinheitenAllgemein;

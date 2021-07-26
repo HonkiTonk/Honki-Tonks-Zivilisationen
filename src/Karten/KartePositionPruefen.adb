@@ -1,7 +1,5 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
-
 package body KartePositionPruefen is
    
    function KartenPositionBestimmen
@@ -57,7 +55,7 @@ package body KartePositionPruefen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+            return GlobaleKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -70,7 +68,7 @@ package body KartePositionPruefen is
         YAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
-            return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+            return GlobaleKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -100,7 +98,7 @@ package body KartePositionPruefen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+            return GlobaleKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -113,7 +111,7 @@ package body KartePositionPruefen is
         XAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
-            return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+            return GlobaleKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -142,7 +140,7 @@ package body KartePositionPruefen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+            return GlobaleKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -175,7 +173,7 @@ package body KartePositionPruefen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+            return GlobaleKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -209,7 +207,7 @@ package body KartePositionPruefen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+            return GlobaleKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -222,7 +220,7 @@ package body KartePositionPruefen is
         YAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
-            return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+            return GlobaleKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -235,7 +233,7 @@ package body KartePositionPruefen is
         XAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.KartenfeldPositivMitNullwert'First =>
-            return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+            return GlobaleKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -260,7 +258,7 @@ package body KartePositionPruefen is
         EAchse (KoordinatenExtern.EAchse)
       is
          when GlobaleDatentypen.Ebene'First =>
-            return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+            return GlobaleKonstanten.LeerKartenPosition;
 
          when others =>
             null;
@@ -441,7 +439,7 @@ package body KartePositionPruefen is
          end if;
 
          if
-           KoordinatenExtern.YAchse + ÄnderungExtern.YAchse = 0
+           KoordinatenExtern.YAchse + ÄnderungExtern.YAchse = GlobaleKonstanten.LeerYXKartenWert
          then
             return (0, 1, PolXAchse (KoordinatenExtern.EAchse));
 
@@ -477,7 +475,7 @@ package body KartePositionPruefen is
       end if;
 
       if
-        KoordinatenExtern.YAchse + ÄnderungExtern.YAchse = 0
+        KoordinatenExtern.YAchse + ÄnderungExtern.YAchse = GlobaleKonstanten.LeerYXKartenWert
       then
          return (0, 1, KoordinatenExtern.XAchse);
 
@@ -508,7 +506,7 @@ package body KartePositionPruefen is
          end if;
 
          if
-           KoordinatenExtern.XAchse + ÄnderungExtern.XAchse = 0
+           KoordinatenExtern.XAchse + ÄnderungExtern.XAchse = GlobaleKonstanten.LeerYXKartenWert
          then
             return (0, PolYAchse (KoordinatenExtern.EAchse), 1);
 
@@ -544,7 +542,7 @@ package body KartePositionPruefen is
       end if;
 
       if
-        KoordinatenExtern.XAchse + ÄnderungExtern.XAchse = 0
+        KoordinatenExtern.XAchse + ÄnderungExtern.XAchse = GlobaleKonstanten.LeerYXKartenWert
       then
          return (0, KoordinatenExtern.YAchse, 1);
 

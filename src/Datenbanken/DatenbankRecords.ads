@@ -32,9 +32,9 @@ package DatenbankRecords is
       Angriff : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
       Verteidigung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
 
-      KannTransportieren : Natural;
-      KannTransportiertWerden : Natural;
-      Transportkapazität : Natural;
+      KannTransportieren : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      KannTransportiertWerden : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      Transportkapazität : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       
    end record;
    -- EinheitenDatenbank

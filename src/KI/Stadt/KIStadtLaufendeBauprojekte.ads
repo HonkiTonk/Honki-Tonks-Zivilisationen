@@ -8,7 +8,7 @@ package KIStadtLaufendeBauprojekte is
    function StadtLaufendeBauprojekte
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       BauprojektExtern : in Natural)
-      return Natural
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
@@ -19,6 +19,6 @@ package KIStadtLaufendeBauprojekte is
    
 private
    
-   GleichesBauprojekt : Natural;
+   GleichesBauprojekt : GlobaleDatentypen.MaximaleStädteMitNullWert;
 
 end KIStadtLaufendeBauprojekte;

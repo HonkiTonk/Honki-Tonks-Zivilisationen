@@ -104,20 +104,7 @@ package body StadtBauen is
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
       is
          when GlobaleDatentypen.Spieler_KI =>
-            StadtNameSchleife:
-            for StadtNameSchleifenwert in KIStadtNameArray'Range (2) loop
-               
-               if
-                 KIStadtName (EinheitRasseNummerExtern.Rasse, StadtNameSchleifenwert) = 0
-               then
-                  KIStadtName (EinheitRasseNummerExtern.Rasse, StadtNameSchleifenwert) := 1;
-                  -- Hier dann aus Datei eingelesene Stadtnamen reinbauen
-                  
-               else
-                  null;
-               end if;
-               
-            end loop StadtNameSchleife;
+            StandardStadtNamen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
                   
          when others =>
             GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).Name := Eingabe.StadtName;
@@ -141,7 +128,7 @@ package body StadtBauen is
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             if
-              KartenWert.XAchse = 0
+              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -202,7 +189,7 @@ package body StadtBauen is
                                                                         ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             if
-              KartenWert.XAchse = 0
+              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
             then
                null;
                
@@ -249,8 +236,28 @@ package body StadtBauen is
          
       end loop StadtUmgebungFreigebenSchleife;
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeererWertStadt;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerStadt;
       
    end StadtEntfernen;
+   
+   
+   
+   procedure StandardStadtNamen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Name := GlobaleTexte.TexteEinlesenNeu (22, WelcherName);
+      
+      case
+        WelcherName
+      is
+         when 3 =>
+            WelcherName := 1;
+            
+         when others =>
+            WelcherName := WelcherName + 1;
+      end case;
+      
+   end StandardStadtNamen;
 
 end StadtBauen;

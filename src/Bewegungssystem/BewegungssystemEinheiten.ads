@@ -18,7 +18,8 @@ package BewegungssystemEinheiten is
 private
    
    FeldPassierbar : Boolean;
-   ZwischenWert : Boolean;
+   BewegungDurchführen : Boolean;
+   Gewonnen : Boolean;
    
    EinheitAufFeld : GlobaleRecords.RassePlatznummerRecord;
    
@@ -28,6 +29,11 @@ private
    
    type Bewegung_Noch_Möglich_Enum is (Zurück, Bewegbar);
    AktuellerStatus : Bewegung_Noch_Möglich_Enum;
+     
+   procedure EigeneEinheitAufFeld
+     (BewegendeEinheitExtern, FeldBelegendeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
+   
    
    function BewegungPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -40,13 +46,7 @@ private
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function FremderAufFeld
-     (EinheitRasseNummerExtern, FremdeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Boolean;
-     
-   function EigeneEinheitAufFeld
-     (EinheitRasseNummerExtern, EigeneEinheitExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (EinheitRasseNummerExtern, FremdeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean;
 
 end BewegungssystemEinheiten;

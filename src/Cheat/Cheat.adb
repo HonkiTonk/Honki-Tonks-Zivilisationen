@@ -100,8 +100,7 @@ package body Cheat is
       Put_Line (Item => "AufgabeEins: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung'Wide_Wide_Image);
       Put_Line (Item => "AufgabeZwei: " & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt: ");
-      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Forschungsprojekt,
-                                       RasseExtern => EinheitRasseNummerExtern.Rasse);
+      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Forschungsprojekt);
       
    end KarteInfosEinheiten;
    
@@ -136,8 +135,7 @@ package body Cheat is
       Put_Line (Item => "Aktuelle Rasse: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);
       Put_Line (Item => "KIAufgabe: " & GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt: ");
-      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Forschungsprojekt,
-                                       RasseExtern => StadtRasseNummerExtern.Rasse);
+      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Forschungsprojekt);
       
    end KarteStadtInfos;
 

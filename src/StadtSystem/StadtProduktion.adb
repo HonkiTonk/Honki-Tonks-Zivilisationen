@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with VerbesserungenDatenbank, KartenDatenbank, GebaeudeDatenbank;
 
 with Wachstum, KartePositionPruefen, Karten;
@@ -68,7 +70,7 @@ package body StadtProduktion is
             case
               KartenWert.XAchse
             is
-               when 0 =>
+               when GlobaleKonstanten.LeerYXKartenWert =>
                   null;
                   
                when others =>            

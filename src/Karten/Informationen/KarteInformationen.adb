@@ -38,7 +38,7 @@ package body KarteInformationen is
             EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
             
             if
-              EinheitRasseNummer.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+              EinheitRasseNummer.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
             then
                null;
                 
@@ -53,7 +53,7 @@ package body KarteInformationen is
             case
               StadtRasseNummer.Platznummer
             is
-               when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
+               when GlobaleKonstanten.LeerEinheitStadtNummer =>
                   null;
                      
                   -- Stadtinformationsaufruf
@@ -155,8 +155,7 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Keiner,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt,
-                                       RasseExtern => RasseExtern);
+      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt);
       
    end InformationenForschungsprojekt;
      

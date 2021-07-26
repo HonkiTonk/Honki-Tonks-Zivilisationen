@@ -1,8 +1,10 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with KIDatentypen, KIKonstanten;
 
-with EinheitSuchen, KartePositionPruefen, Karten, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt;
+with EinheitSuchen, KartePositionPruefen, Karten, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt, KIAufgabenFestlegenAllgemein;
 
 package body KINahkampfBodenAufgabeFestlegen is
 
@@ -32,7 +34,7 @@ package body KINahkampfBodenAufgabeFestlegen is
             
             -- Sich heilen
          when 5 =>
-            Heilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KIAufgabenFestlegenAllgemein.Heilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
             -- Sich befestigen
          when 6 =>
@@ -40,7 +42,7 @@ package body KINahkampfBodenAufgabeFestlegen is
             
             -- Einheit verbessern
          when 7 =>
-            EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KIAufgabenFestlegenAllgemein.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
             -- Angreifen
          when 8 =>
@@ -115,17 +117,7 @@ package body KINahkampfBodenAufgabeFestlegen is
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Flucht;
       
    end Fliehen;
-     
-   
-   
-   procedure Heilen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-      
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Heilen;
-      
-   end Heilen;
-   
+        
    
    
    procedure Befestigen
@@ -135,16 +127,6 @@ package body KINahkampfBodenAufgabeFestlegen is
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Festsetzen;
       
    end Befestigen;
-   
-   
-   
-   procedure EinheitVerbessern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-      
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Verbessern;
-      
-   end EinheitVerbessern;
    
    
    
@@ -186,7 +168,7 @@ package body KINahkampfBodenAufgabeFestlegen is
                                                                               ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                   
                   if
-                    KartenWert.XAchse = 0
+                    KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
                   then
                      null;
                         

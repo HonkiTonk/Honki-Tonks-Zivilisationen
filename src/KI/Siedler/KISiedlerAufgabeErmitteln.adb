@@ -3,9 +3,7 @@ pragma SPARK_Mode (On);
 with KIDatentypen;
 use KIDatentypen;
 
-with EinheitenDatenbank;
-
-with StadtSuchen, KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt;
+with StadtSuchen, KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt, KIAufgabenErmittelnAllgemein;
 
 package body KISiedlerAufgabeErmitteln is
 
@@ -15,14 +13,14 @@ package body KISiedlerAufgabeErmitteln is
       
       GewählteAufgabe := 0;
       
-      Wichtigkeit (0) := NichtsTun (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Wichtigkeit (0) := KIAufgabenErmittelnAllgemein.NichtsTun;
       Wichtigkeit (1) := NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (2) := StadtUmgebungVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Wichtigkeit (3) := EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Wichtigkeit (4) := Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Wichtigkeit (5) := SichHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Wichtigkeit (6) := SichBefestigen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Wichtigkeit (7) := SichVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Wichtigkeit (3) := EinheitAuflösen;
+      Wichtigkeit (4) := Fliehen;
+      Wichtigkeit (5) := KIAufgabenErmittelnAllgemein.SichHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      Wichtigkeit (6) := SichBefestigen;
+      Wichtigkeit (7) := KIAufgabenErmittelnAllgemein.SichVerbessern;
       
       WichtigkeitEinsSchleife:
       for WichtigkeitEinsSchleifenwert in WichtigkeitArray'Range loop
@@ -108,8 +106,7 @@ package body KISiedlerAufgabeErmitteln is
                                     
                                     
    function EinheitAuflösen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+     return Natural
    is begin
       
       return 0;
@@ -119,8 +116,7 @@ package body KISiedlerAufgabeErmitteln is
                                     
                                     
    function Fliehen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+     return Natural
    is begin
       
       return 0;
@@ -129,73 +125,12 @@ package body KISiedlerAufgabeErmitteln is
    
    
    
-   function SichHeilen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
-   is begin
-      
-      EinheitID := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID;
-      
-      if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
-        = EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitID).MaximaleLebenspunkte
-      then
-         return 0;
-         
-      elsif
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
-        > EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitID).MaximaleLebenspunkte / 3 * 2
-      then
-         return 3;
-         
-      elsif
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
-        > EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitID).MaximaleLebenspunkte / 2
-      then
-         return 5;
-         
-      elsif
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte = 1
-      then
-         return 10;
-         
-      else
-         return 8;
-      end if;
-      
-   end SichHeilen;
-   
-   
-   
    function SichBefestigen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+     return Natural
    is begin
       
       return 0;
       
    end SichBefestigen;
-   
-   
-   
-   function SichVerbessern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
-   is begin
-      
-      return 0;
-      
-   end SichVerbessern;
-   
-   
-   
-   function NichtsTun
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
-   is begin
-      
-      return 1;
-      
-   end NichtsTun;
 
 end KISiedlerAufgabeErmitteln;

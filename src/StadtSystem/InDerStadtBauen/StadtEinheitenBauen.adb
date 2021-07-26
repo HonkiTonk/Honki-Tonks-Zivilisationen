@@ -18,7 +18,7 @@ package body StadtEinheitenBauen is
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
             
          if
-           GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert).ID = 0
+           GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID
          then
             EinheitNummer := EinheitNummerSchleifenwert;
             exit EinheitenSchleife;
@@ -56,7 +56,7 @@ package body StadtEinheitenBauen is
             
       if
         EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position).Platznummer
-          = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+          = GlobaleKonstanten.LeerEinheitStadtNummer
       then
          KartenWert := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position;
          
@@ -71,7 +71,7 @@ package body StadtEinheitenBauen is
       case
         KartenWert.XAchse
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerYXKartenWert =>
             null;
             
          when others =>

@@ -29,9 +29,9 @@ package body KIPruefungen is
          end if;
          
          case
-           VerbesserungAnlegen.YAchse
+           VerbesserungAnlegen.XAchse
          is
-            when 0 =>
+            when GlobaleKonstanten.LeerYXKartenWert =>
                null;
                
             when others =>
@@ -64,7 +64,7 @@ package body KIPruefungen is
             case
               StadtVerbesserungUmgebungKoordinaten.XAchse
             is
-               when 0 =>
+               when GlobaleKonstanten.LeerYXKartenWert =>
                   null;
                   
                when others =>
@@ -83,7 +83,7 @@ package body KIPruefungen is
                                            StadtVerbesserungUmgebungKoordinaten.YAchse,
                                            StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungStraße = GlobaleDatentypen.Leer)
                       and
-                        (EinheitAufFeld.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+                        (EinheitAufFeld.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
                          or
                            EinheitAufFeld.Platznummer = EinheitNummerExtern)
                     and
@@ -159,7 +159,7 @@ package body KIPruefungen is
                   and
                     XAchseKoordinatenSchonGeprüft >= abs XAchseSchleifenwert)
                  or
-                   StadtBauenUmgebungKoordinaten.XAchse = 0 
+                   StadtBauenUmgebungKoordinaten.XAchse = GlobaleKonstanten.LeerYXKartenWert
                then
                   FeldGutUndFrei := False;
                
@@ -225,7 +225,7 @@ package body KIPruefungen is
          
       end loop KartenfeldSuchenSchleife;
       
-      return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+      return GlobaleKonstanten.LeerKartenPosition;
       
    end UmgebungStadtBauenPrüfen;
    
@@ -241,7 +241,7 @@ package body KIPruefungen is
       EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
       
       if
-        EinheitAufFeld.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+        EinheitAufFeld.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
         or
           EinheitAufFeld = EinheitRasseNummerExtern
       then
@@ -289,7 +289,7 @@ package body KIPruefungen is
                                                                         ÄnderungExtern       => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert));
             
             if
-              KartenWert.XAchse = 0
+              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
             then
                null;
                

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Kampfsystem, Auswahl;
+with Auswahl;
 
 package body Diplomatie is
 
@@ -58,9 +58,10 @@ package body Diplomatie is
 
 
 
-   procedure GegnerAngreifenOderNicht
+   function GegnerAngreifen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       GegnerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     return Boolean
    is begin
       
       case
@@ -73,21 +74,19 @@ package body Diplomatie is
             then
                Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasseExtern => EinheitRasseNummerExtern.Rasse,
                                                      VerteidigendeRasseExtern => GegnerExtern.Rasse);
+               return True;
                   
             else
-               return;
+               return False;
             end if;
                   
          when GlobaleDatentypen.Krieg =>
-            null;
+            return True;
 
          when others =>
-            return;
+            return False;
       end case;
       
-      Gewonnen := Kampfsystem.KampfsystemNahkampf (AngreiferRasseNummerExtern   => EinheitRasseNummerExtern,
-                                                   VerteidigerRasseNummerExtern => GegnerExtern);
-      
-   end GegnerAngreifenOderNicht;
+   end GegnerAngreifen;
 
 end Diplomatie;

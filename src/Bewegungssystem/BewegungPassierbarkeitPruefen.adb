@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank, KartenDatenbank, VerbesserungenDatenbank;
 
-with EinheitSuchen, StadtSuchen, UmgebungErreichbarTesten;
+with StadtSuchen, UmgebungErreichbarTesten;
 
 package body BewegungPassierbarkeitPruefen is
    
@@ -45,7 +45,15 @@ package body BewegungPassierbarkeitPruefen is
            Passierbar
          is
             when False =>
-               null;
+               if
+                 StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                             KoordinatenExtern => NeuePositionExtern) = GlobaleKonstanten.LeerEinheitStadtNummer
+               then
+                  null;
+                  
+               else
+                  return True;
+               end if;
                
             when True =>               
                -- Erste Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
@@ -87,147 +95,47 @@ package body BewegungPassierbarkeitPruefen is
    end PassierbarkeitPrüfenID;
 
 
-   function Boden
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+
+   function InStadtEntladbar
+     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Bewegung_Enum
+      return Boolean
    is begin
       
-      TransporterNummer := EinheitSuchen.KoordinatenTransporterMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                               KoordinatenExtern => NeuePositionExtern);
-
-      case
-        TransporterNummer
-      is
-         when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-            return GlobaleDatentypen.Keine_Bewegung_Möglich;
-               
-         when others =>
-            null;
-      end case;
-
-      if
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportiertWerden > 0
-        and
-          EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportiertWerden 
-            <= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransporterNummer).ID).KannTransportieren
-      then
-         Transportplatz := 0;
-         FreierPlatzSchleife:
-         for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
+      BenötigteFelder := 1;
+         
+      BelegterPlatzSchleife:
+      for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First
+        .. EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).Transportkapazität loop
                         
-            case
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, TransporterNummer).Transportiert (FreierPlatzSchleifenwert)
-            is
-               when 0 =>
-                  Transportplatz := FreierPlatzSchleifenwert;
-                  exit FreierPlatzSchleife;
-                              
-               when others =>
-                  null;
-            end case;
-                        
-         end loop FreierPlatzSchleife;
-
          case
-           Transportplatz
+           GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)
          is
-            when 0 =>
-               return GlobaleDatentypen.Keine_Bewegung_Möglich;
-                           
+            when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
+               null;
+                              
             when others =>
-               return Beladen_Bewegung_Möglich;
-         end case;
-
-      else
-         return GlobaleDatentypen.Keine_Bewegung_Möglich;
-      end if;
-      
-   end Boden;
-
-
-
-   function Wasser
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return
-     GlobaleDatentypen.Bewegung_Enum
-   is begin
-      
-      StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                 KoordinatenExtern => NeuePositionExtern);
-         
-      case
-        StadtNummer
-      is
-         when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-            return GlobaleDatentypen.Keine_Bewegung_Möglich;
+               KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeuePositionExtern,
+                                                                                RasseExtern               => TransporterExtern.Rasse,
+                                                                                IDExtern                  => GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse,
+                                                                                  GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse,
+                                                                                    TransporterExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).ID,
+                                                                                NotwendigeFelderExtern    => BenötigteFelder);
                
-         when others =>
-            null;
-      end case;
-      
-      case
-        EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                        KoordinatenExtern => NeuePositionExtern)
-      is
-         when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
-            null;
-            
-         when others =>
-            return GlobaleDatentypen.Keine_Bewegung_Möglich;
-      end case;
-
-      if
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportieren /= 0
-      then
-         BenötigteFelder := 1;
-         EntladungMöglich := True;
-         
-         BelegterPlatzSchleife:
-         for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'Range loop
-                        
-            case
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)
-            is
-               when 0 =>
-                  null;
-                              
-               when others =>
-                  KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeuePositionExtern,
-                                                                                   RasseExtern               => EinheitRasseNummerExtern.Rasse,
-                                                                                   IDExtern                  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                                                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                                                       EinheitRasseNummerExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).ID,
-                                                                                   NotwendigeFelderExtern    => BenötigteFelder);
-                  
-                  if
-                    KartenWert.XAchse = 0
-                  then
-                     EntladungMöglich := False;
-                     exit BelegterPlatzSchleife;
+               if
+                 KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+               then
+                  return False;
                      
-                  else
-                     BenötigteFelder := BenötigteFelder + 1;
-                  end if;
-            end case;
-                
-         end loop BelegterPlatzSchleife;
-         
-         case
-           EntladungMöglich
-         is
-            when True =>
-               return GlobaleDatentypen.Transporter_Stadt_Möglich;
-                          
-            when False =>
-               return GlobaleDatentypen.Keine_Bewegung_Möglich;
+               else
+                  BenötigteFelder := BenötigteFelder + 1;
+               end if;
          end case;
+                
+      end loop BelegterPlatzSchleife;
+         
+      return True;
 
-      else
-         return GlobaleDatentypen.Normale_Bewegung_Möglich;
-      end if;
-
-   end Wasser;
+   end InStadtEntladbar;
 
 end BewegungPassierbarkeitPruefen;

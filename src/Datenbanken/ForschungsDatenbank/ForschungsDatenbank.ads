@@ -36,7 +36,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_2 =>
                                               (
@@ -63,7 +63,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_3 =>
                                               (
@@ -90,7 +90,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_4 =>
                                               (
@@ -117,7 +117,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_5 =>
                                               (
@@ -144,7 +144,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_6 =>
                                               (
@@ -171,7 +171,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_7 =>
                                               (
@@ -198,7 +198,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_8 =>
                                               (
@@ -225,7 +225,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_9 =>
                                               (
@@ -252,7 +252,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_10 =>
                                               (
@@ -279,7 +279,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_11 =>
                                               (
@@ -306,7 +306,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_12 =>
                                               (
@@ -333,7 +333,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_13 =>
                                               (
@@ -360,7 +360,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_14 =>
                                               (
@@ -387,7 +387,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_15 =>
                                               (
@@ -414,7 +414,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_16 =>
                                               (
@@ -441,7 +441,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_17 =>
                                               (
@@ -468,7 +468,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe),
+                                               others => GlobaleKonstanten.LeerForschungListe),
 
                                             GlobaleDatentypen.Rasse_18 =>
                                               (
@@ -495,7 +495,7 @@ package ForschungsDatenbank is
                                                -- Ägyptisches Nilschiff
                                                11 => (250, (0, 0, 0, 0)),
 
-                                               others => GlobaleKonstanten.LeererWertForschungListe)
+                                               others => GlobaleKonstanten.LeerForschungListe)
                                            );
 
    procedure StandardForschungsDatenbankWiederherstellen;
@@ -528,7 +528,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_2 =>
                                                                (
@@ -555,7 +555,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_3 =>
                                                                (
@@ -582,7 +582,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_4 =>
                                                                (
@@ -609,7 +609,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_5 =>
                                                                (
@@ -636,7 +636,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_6 =>
                                                                (
@@ -663,7 +663,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_7 =>
                                                                (
@@ -690,7 +690,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_8 =>
                                                                (
@@ -717,7 +717,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_9 =>
                                                                (
@@ -744,7 +744,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_10 =>
                                                                (
@@ -771,7 +771,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_11 =>
                                                                (
@@ -798,7 +798,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_12 =>
                                                                (
@@ -825,7 +825,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_13 =>
                                                                (
@@ -852,7 +852,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_14 =>
                                                                (
@@ -879,7 +879,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_15 =>
                                                                (
@@ -906,7 +906,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_16 =>
                                                                (
@@ -933,7 +933,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_17 =>
                                                                (
@@ -960,7 +960,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe),
+                                                                others => GlobaleKonstanten.LeerForschungListe),
 
                                                              GlobaleDatentypen.Rasse_18 =>
                                                                (
@@ -987,7 +987,7 @@ private
                                                                 -- Ägyptisches Nilschiff
                                                                 11 => (250, (0, 0, 0, 0)),
 
-                                                                others => GlobaleKonstanten.LeererWertForschungListe)
+                                                                others => GlobaleKonstanten.LeerForschungListe)
                                                             );
 
 end ForschungsDatenbank;

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, Diplomatie, BewegungLadenEntladen;
+with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, Diplomatie, BewegungLadenEntladen, Kampfsystem;
 
 package body BewegungssystemEinheiten is
 
@@ -56,11 +56,10 @@ package body BewegungssystemEinheiten is
                                                                      ÄnderungExtern       => Änderung);
          
          case
-           KartenWert.YAchse
+           KartenWert.XAchse
          is               
-            when 0 =>
-               AktuellerStatus := Bewegbar;
-               
+            when GlobaleKonstanten.LeerYXKartenWert =>
+               AktuellerStatus := Bewegbar;               
                
             when others =>
                AktuellerStatus := BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -95,55 +94,68 @@ package body BewegungssystemEinheiten is
                                                                                    NeuePositionExtern       => NeuePositionExtern);
       
       EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
+      BewegungDurchführen := False;
       
       if
         FeldPassierbar = False
         and
-          EinheitAufFeld.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+          EinheitAufFeld.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
          return Bewegbar;
          
       elsif
-        FeldPassierbar = False
-        and
-          EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
-          and
-            EinheitenAllgemein.KennTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
-                                                        TransporterExtern => EinheitAufFeld) = False
+        EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
+        and then
+          EinheitenAllgemein.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
+                                                      TransporterExtern => EinheitAufFeld) = False
       then
          return Bewegbar;
          
       elsif
-        FeldPassierbar = False
-        and
-          EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
-          and
-            EinheitenAllgemein.KennTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
-                                                        TransporterExtern => EinheitAufFeld) = True
+        EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
+        and then
+          EinheitenAllgemein.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
+                                                      TransporterExtern => EinheitAufFeld) = True
       then
-         ZwischenWert := EigeneEinheitAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               EigeneEinheitExtern      => EinheitAufFeld,
-                                               NeuePositionExtern       => NeuePositionExtern);
+         EigeneEinheitAufFeld (BewegendeEinheitExtern     => EinheitRasseNummerExtern,
+                               FeldBelegendeEinheitExtern => EinheitAufFeld);
          
       elsif
-        FeldPassierbar = False
+        EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
         and
-          EinheitAufFeld.Rasse /= EinheitRasseNummerExtern.Rasse
-          and
-            EinheitAufFeld.Rasse /= GlobaleDatentypen.Leer
+          EinheitAufFeld.Rasse /= GlobaleDatentypen.Leer
       then
-         ZwischenWert := FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                         FremdeEinheitExtern      => EinheitAufFeld,
-                                         NeuePositionExtern       => NeuePositionExtern);
+         if
+           FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                           FremdeEinheitExtern      => EinheitAufFeld) = True
+           and
+             FeldPassierbar
+         then
+            BewegungDurchführen := True;
+            
+         else
+            null;
+         end if;
          
       else
-         null;
+         BewegungDurchführen := True;
       end if;
       
+      case
+        BewegungDurchführen
+      is
+         when True =>
+            BewegungBerechnen.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                           NeuePositionExtern       => NeuePositionExtern);
+            
+         when False =>
+            null;
+      end case;
+      
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte <= 0.00
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte <= GlobaleKonstanten.LeerEinheit.Bewegungspunkte
         or
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte = 0
+          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte = GlobaleKonstanten.LeerEinheit.Lebenspunkte
       then
          return Zurück;
             
@@ -155,15 +167,29 @@ package body BewegungssystemEinheiten is
    
    
    
-   
    function FremderAufFeld
-     (EinheitRasseNummerExtern, FremdeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (EinheitRasseNummerExtern, FremdeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
-      
-      Diplomatie.GegnerAngreifenOderNicht (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                           GegnerExtern             => FremdeEinheitExtern);
+            
+      case
+        Diplomatie.GegnerAngreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                    GegnerExtern             => FremdeEinheitExtern)
+      is
+         when True =>
+            if
+              Kampfsystem.KampfsystemNahkampf (AngreiferRasseNummerExtern   => EinheitRasseNummerExtern,
+                                               VerteidigerRasseNummerExtern => FremdeEinheitExtern) = True
+            then
+               return True;
+               
+            else
+               null;
+            end if;
+            
+         when False =>
+            null;
+      end case;
       
       return False;
       
@@ -171,16 +197,13 @@ package body BewegungssystemEinheiten is
    
    
    
-   function EigeneEinheitAufFeld
-     (EinheitRasseNummerExtern, EigeneEinheitExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Boolean
+   -- Hier vielleicht später mehr einbauen? Beispielsweise Plätzetauschen?
+   procedure EigeneEinheitAufFeld
+     (BewegendeEinheitExtern, FeldBelegendeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      BewegungLadenEntladen.TransporterBeladen (LadungExtern      => EinheitRasseNummerExtern,
-                                                TransporterExtern => EigeneEinheitExtern);
-      
-      return False;
+      BewegungLadenEntladen.TransporterBeladen (TransporterExtern => FeldBelegendeEinheitExtern,
+                                                LadungExtern      => BewegendeEinheitExtern.Platznummer);
       
    end EigeneEinheitAufFeld;
 

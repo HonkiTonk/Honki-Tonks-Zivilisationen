@@ -301,7 +301,7 @@ package body KarteStadt is
                case
                  KartenWert.XAchse
                is
-                  when 0 =>
+                  when GlobaleKonstanten.LeerYXKartenWert =>
                      GrafischeAnzeige.Farben (EinheitExtern      => 0,
                                               VerbesserungExtern => GlobaleDatentypen.Leer,
                                               RessourceExtern    => GlobaleDatentypen.Leer,
@@ -336,7 +336,7 @@ package body KarteStadt is
             case
               KartenWert.XAchse
             is
-               when 0 =>
+               when GlobaleKonstanten.LeerYXKartenWert =>
                   Put (Item => " ");
 
                when others =>
@@ -368,7 +368,7 @@ package body KarteStadt is
       case
         KartenWert.XAchse
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerYXKartenWert =>
             return;
 
          when others =>
@@ -420,7 +420,7 @@ package body KarteStadt is
       case
         StadtRasseNummer.Platznummer
       is
-         when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
+         when GlobaleKonstanten.LeerEinheitStadtNummer =>
             -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat. Kann entfernt werden?
             return;
       

@@ -16,7 +16,7 @@ is
       if
         StadtWert.Rasse = EinheitRasseNummerExtern.Rasse
         or
-          StadtWert.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+          StadtWert.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
          null;
          
@@ -32,7 +32,7 @@ is
          return GlobaleDatentypen.Keine_Bewegung_Möglich;
 
       elsif
-        EinheitWert.Platznummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+        EinheitWert.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
          return GlobaleDatentypen.Normale_Bewegung_Möglich;
          

@@ -24,7 +24,7 @@ package GlobaleVariablen is
 
    -- Cursor
    type CursorImSpielArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleRecords.CursorRecord;
-   CursorImSpiel : CursorImSpielArray := (others => GlobaleKonstanten.LeererWertCursor);
+   CursorImSpiel : CursorImSpielArray := (others => GlobaleKonstanten.LeerCursor);
    -- Cursor
    
    
@@ -44,21 +44,21 @@ package GlobaleVariablen is
    
    -- Einheiten
    type EinheitenGebautArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.MaximaleEinheiten'Range) of GlobaleRecords.EinheitenGebautRecord;
-   EinheitenGebaut : EinheitenGebautArray := (others => (others => GlobaleKonstanten.LeererWertEinheit));
+   EinheitenGebaut : EinheitenGebautArray := (others => (others => GlobaleKonstanten.LeerEinheit));
    -- Einheiten
    
    
 
    -- Städte
    type StadtGebautArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.MaximaleStädte'Range) of GlobaleRecords.StadtGebautRecord;
-   StadtGebaut : StadtGebautArray := (others => (others => GlobaleKonstanten.LeererWertStadt));
+   StadtGebaut : StadtGebautArray := (others => (others => GlobaleKonstanten.LeerStadt));
    -- Städte
    
    
 
    -- Wichtiges Zeug
    type WichtigesArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleRecords.WichtigesRecord;
-   Wichtiges : WichtigesArray := (others => GlobaleKonstanten.LeererWertWichtigesZeug);
+   Wichtiges : WichtigesArray := (others => GlobaleKonstanten.LeerWichtigesZeug);
    
    type DiplomatieArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.Status_Untereinander_Enum;
    Diplomatie : DiplomatieArray := (others => (others => GlobaleDatentypen.Kein_Kontakt));

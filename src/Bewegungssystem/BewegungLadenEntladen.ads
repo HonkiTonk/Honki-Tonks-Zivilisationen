@@ -8,25 +8,22 @@ with Karten;
 package BewegungLadenEntladen is
 
    procedure TransporterBeladen
-     (LadungExtern, TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+      LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
      with
        Pre =>
-         (LadungExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (LadungExtern.Rasse) /= GlobaleDatentypen.Leer
-          and
-            TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
             GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure EinheitAusTransporterEntfernen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AuszuladendeEinheitExtern : in GlobaleDatentypen.MaximaleEinheiten)
+     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
+      LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure TransporterladungVerschieben
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -54,13 +51,12 @@ package BewegungLadenEntladen is
           and
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
-private
-   
+private   
    
    TransporterNummer : GlobaleDatentypen.MaximaleEinheiten;
    EinheitAusladen : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
-   FreierPlatzNummer : Positive;
+   FreierPlatzNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 

@@ -45,11 +45,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -61,7 +61,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -93,9 +93,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_2 =>
                                               (
@@ -124,11 +124,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -140,7 +140,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -172,9 +172,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_3 =>
                                               (
@@ -203,11 +203,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -219,7 +219,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -251,9 +251,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_4 =>
                                               (
@@ -282,11 +282,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -298,7 +298,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -330,9 +330,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_5 =>
                                               (
@@ -361,11 +361,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -377,7 +377,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -409,9 +409,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_6 =>
                                               (
@@ -440,11 +440,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -456,7 +456,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -488,9 +488,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_7 =>
                                               (
@@ -519,11 +519,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -535,7 +535,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -567,9 +567,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_8 =>
                                               (
@@ -598,11 +598,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -614,7 +614,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -646,9 +646,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_9 =>
                                               (
@@ -677,11 +677,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -693,7 +693,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -725,9 +725,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_10 =>
                                               (
@@ -756,11 +756,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -772,7 +772,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -804,9 +804,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_11 =>
                                               (
@@ -835,11 +835,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -851,7 +851,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -883,9 +883,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_12 =>
                                               (
@@ -914,11 +914,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -930,7 +930,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -962,9 +962,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_13 =>
                                               (
@@ -993,11 +993,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -1009,7 +1009,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1041,9 +1041,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_14 =>
                                               (
@@ -1072,11 +1072,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -1088,7 +1088,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1120,9 +1120,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_15 =>
                                               (
@@ -1151,11 +1151,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -1167,7 +1167,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1199,9 +1199,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_16 =>
                                               (
@@ -1230,11 +1230,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -1246,7 +1246,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1278,9 +1278,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
          
                                             GlobaleDatentypen.Rasse_17 =>
                                               (
@@ -1309,11 +1309,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -1325,7 +1325,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1357,9 +1357,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe),
+                                               others => GlobaleKonstanten.LeerEinheitListe),
                                                
                                             GlobaleDatentypen.Rasse_18 =>
                                               (
@@ -1388,11 +1388,11 @@ package EinheitenDatenbank is
                                                      30, 3, 3, 8, 1,
                                                      0, 2, 0),
                                                -- Ägyptisches Nilschiff
-                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                               5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
                                                      2, 3.00, 0,
                                                      30, 3, 1, 1, 1,
-                                                     2, 0, 0),
+                                                     2, 0, 2),
                                                -- Kanonenschiff
                                                6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                      (GlobaleDatentypen.Wasser => True, others => False),
@@ -1404,7 +1404,7 @@ package EinheitenDatenbank is
                                                      (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                      1000, 100.00, 0,
                                                      30, 3, 1, 10, 10,
-                                                     0, 0, 0),
+                                                     0, 0, 5),
                                                -- Jäger
                                                8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                      (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1436,9 +1436,9 @@ package EinheitenDatenbank is
                                                       (others => True),
                                                       100, 100.00, 0,
                                                       1, 1, 1, 1, 1,
-                                                      10, 0, 0),
+                                                      10, 0, 10),
                                                                
-                                               others => GlobaleKonstanten.LeererWertEinheitListe)
+                                               others => GlobaleKonstanten.LeerEinheitListe)
                                            );
    
    -- 1. EinheitTyp = Siedler, 2. EinheitenTyp = Bauarbeiter, 3. EinheitenTyp = Platzhalter für Anderes !!!Später einbauen/nutzen!!!
@@ -1476,11 +1476,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -1492,7 +1492,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1524,9 +1524,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_2 =>
                                                                (
@@ -1555,11 +1555,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -1571,7 +1571,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1603,9 +1603,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_3 =>
                                                                (
@@ -1634,11 +1634,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -1650,7 +1650,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1682,9 +1682,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_4 =>
                                                                (
@@ -1713,11 +1713,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -1729,7 +1729,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1761,9 +1761,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_5 =>
                                                                (
@@ -1792,11 +1792,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -1808,7 +1808,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1840,9 +1840,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_6 =>
                                                                (
@@ -1871,11 +1871,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -1887,7 +1887,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1919,9 +1919,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_7 =>
                                                                (
@@ -1950,11 +1950,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -1966,7 +1966,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -1998,9 +1998,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_8 =>
                                                                (
@@ -2029,11 +2029,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -2045,7 +2045,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -2077,9 +2077,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_9 =>
                                                                (
@@ -2108,11 +2108,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -2124,7 +2124,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -2156,9 +2156,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_10 =>
                                                                (
@@ -2187,11 +2187,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -2203,7 +2203,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -2235,9 +2235,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_11 =>
                                                                (
@@ -2266,11 +2266,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -2282,7 +2282,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -2314,9 +2314,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_12 =>
                                                                (
@@ -2345,11 +2345,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -2361,7 +2361,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -2393,9 +2393,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_13 =>
                                                                (
@@ -2424,11 +2424,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -2440,7 +2440,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -2472,9 +2472,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_14 =>
                                                                (
@@ -2503,11 +2503,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -2519,7 +2519,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -2551,9 +2551,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_15 =>
                                                                (
@@ -2582,11 +2582,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -2598,7 +2598,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -2630,9 +2630,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_16 =>
                                                                (
@@ -2661,11 +2661,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -2677,7 +2677,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -2709,9 +2709,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
          
                                                              GlobaleDatentypen.Rasse_17 =>
                                                                (
@@ -2740,11 +2740,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -2756,7 +2756,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -2788,9 +2788,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe),
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
                                                
                                                              GlobaleDatentypen.Rasse_18 =>
                                                                (
@@ -2819,11 +2819,11 @@ private
                                                                       30, 3, 3, 8, 1,
                                                                       0, 2, 0),
                                                                 -- Ägyptisches Nilschiff
-                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 11,
+                                                                5 => ('S', GlobaleDatentypen.Nahkämpfer, 20, 10, 0,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
                                                                       2, 3.00, 0,
                                                                       30, 3, 1, 1, 1,
-                                                                      2, 0, 0),
+                                                                      2, 0, 2),
                                                                 -- Kanonenschiff
                                                                 6 => ('S', GlobaleDatentypen.Fernkämpfer, 20, 10, 20,
                                                                       (GlobaleDatentypen.Wasser => True, others => False),
@@ -2835,7 +2835,7 @@ private
                                                                       (GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Unterwasser => True, others => False),
                                                                       1000, 100.00, 0,
                                                                       30, 3, 1, 10, 10,
-                                                                      0, 0, 0),
+                                                                      0, 0, 5),
                                                                 -- Jäger
                                                                 8 => ('F', GlobaleDatentypen.Nahkämpfer, 100, 10, 20,
                                                                       (GlobaleDatentypen.Boden => True, GlobaleDatentypen.Wasser => True, GlobaleDatentypen.Luft => True, others => False),
@@ -2867,9 +2867,9 @@ private
                                                                        (others => True),
                                                                        100, 100.00, 0,
                                                                        1, 1, 1, 1, 1,
-                                                                       10, 0, 0),
+                                                                       10, 0, 10),
                                                                
-                                                                others => GlobaleKonstanten.LeererWertEinheitListe)
+                                                                others => GlobaleKonstanten.LeerEinheitListe)
                                                             );
 
 end EinheitenDatenbank;

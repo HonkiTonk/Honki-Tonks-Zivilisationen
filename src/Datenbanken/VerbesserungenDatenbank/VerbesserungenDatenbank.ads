@@ -16,7 +16,7 @@ package VerbesserungenDatenbank is
    type VerbesserungListeArray is array (GlobaleDatentypen.Karten_Verbesserung_Enum'Range) of DatenbankRecords.VerbesserungListeRecord;
    VerbesserungListe : VerbesserungListeArray := (
                                                   -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-                                                  GlobaleDatentypen.Leer => GlobaleKonstanten.LeererWertVerbesserungListe,
+                                                  GlobaleDatentypen.Leer => GlobaleKonstanten.LeerVerbesserungListe,
                                                   
                                                   -- Städte
                                                   GlobaleDatentypen.Eigene_Hauptstadt =>
@@ -133,7 +133,7 @@ private
    
    VerbesserungListeStandard : constant VerbesserungListeArray := (
                                                                    -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
-                                                                   GlobaleDatentypen.Leer => GlobaleKonstanten.LeererWertVerbesserungListe,
+                                                                   GlobaleDatentypen.Leer => GlobaleKonstanten.LeerVerbesserungListe,
                                                   
                                                                    -- Städte
                                                                    GlobaleDatentypen.Eigene_Hauptstadt =>

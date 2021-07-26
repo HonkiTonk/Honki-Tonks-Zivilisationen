@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 package body KIAufgabenVerteilt is
 
    function AufgabenVerteilt
@@ -16,7 +18,7 @@ package body KIAufgabenVerteilt is
          if
            EinheitNummerSchleifenwert = EinheitRasseNummerExtern.Platznummer
            or
-             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummerSchleifenwert).ID = 0
+             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummerSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID
          then
             null;
                

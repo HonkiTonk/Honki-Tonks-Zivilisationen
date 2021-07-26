@@ -136,9 +136,9 @@ package body BefehleImSpiel is
       elsif
         EinheitNummer /= 0
       then
-         Transportiert := EinheitSuchen.IstEinheitAufTransporter (EinheitRassePlatznummer => (RasseExtern, EinheitNummer));
+         Transportiert := EinheitSuchen.HatTransporterLadung (EinheitRassePlatznummerExtern => (RasseExtern, EinheitNummer));
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert = 0
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert = GlobaleKonstanten.LeerTransportiertWirdTransportiert
            and
              Transportiert = False
          then
@@ -153,7 +153,7 @@ package body BefehleImSpiel is
          end if;
          
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert /= 0
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             EinheitTransportNummer := EinheitenAllgemein.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert));
 
@@ -210,7 +210,7 @@ package body BefehleImSpiel is
          GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
                   
       elsif
-        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Bewegungspunkte = 0.00
+        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Bewegungspunkte = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
       then
          null;
                      
@@ -241,7 +241,7 @@ package body BefehleImSpiel is
       if 
         EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = GlobaleDatentypen.Unbewaffnet
         and
-          GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte > 0.00
+          GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte > GlobaleKonstanten.LeerEinheit.Bewegungspunkte
       then
          StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                      
@@ -315,7 +315,7 @@ package body BefehleImSpiel is
                                                TextZeileExtern => 3);
                      
       elsif
-        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte = 0.00
+        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 8);
@@ -336,7 +336,7 @@ package body BefehleImSpiel is
       StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                  KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
       if
-        StadtNummer = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+        StadtNummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
          null;
                   
@@ -357,7 +357,7 @@ package body BefehleImSpiel is
       case
         StadtNummer
       is
-         when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
+         when GlobaleKonstanten.LeerEinheitStadtNummer =>
             return;
             
          when others =>
@@ -369,7 +369,7 @@ package body BefehleImSpiel is
         AbreißenAuswahl
       is
          when GlobaleKonstanten.JaKonstante =>
-            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer) := GlobaleKonstanten.LeererWertStadt;
+            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer) := GlobaleKonstanten.LeerStadt;
             
          when others =>
             null;

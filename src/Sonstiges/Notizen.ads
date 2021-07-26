@@ -1,6 +1,6 @@
 package Notizen is
 
-   -- Wenn man das in die KartePositionPruefen einbaut erhält man einen Torus, später als alternatives Planetenmodell einbauen?
+   -- Wenn man das in die KartePositionPruefen einbaut erhält man einen Tugel, später als alternatives Planetenmodell einbauen?
    function KartenPositionBestimmenYAchse
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)

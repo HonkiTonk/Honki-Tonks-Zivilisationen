@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank;
 
-with StadtSuchen, Sichtbarkeit, KennenLernen, BewegungLadenEntladen;
+with Sichtbarkeit, KennenLernen, BewegungLadenEntladen, StadtSuchen, BewegungPassierbarkeitPruefen;
 
 package body BewegungBerechnen is
 
@@ -13,19 +13,38 @@ package body BewegungBerechnen is
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
    is begin
 
-      case
-        StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                NeuePositionExtern       => NeuePositionExtern)
-      is
-         when 1 | 2 =>
-            BewegungspunkteModifikator := 0.50;
-            
-         when 10 | 11 =>
-            BewegungspunkteModifikator := 1.00;
+      -- Immer berücksichtigen dass in BewegungssystemEinheiten.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
+      if
+        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportieren
+          = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+      then
+         null;
+         
+      elsif
+        StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                    KoordinatenExtern => NeuePositionExtern) = GlobaleKonstanten.LeerEinheitStadtNummer
+      then
+         BewegungLadenEntladen.TransporterladungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                             NeuePositionExtern       => NeuePositionExtern);
 
-         when others =>
-            BewegungspunkteModifikator := 0.00;
-      end case;
+      else
+         PlatzZumEntladen := BewegungPassierbarkeitPruefen.InStadtEntladbar (TransporterExtern  => EinheitRasseNummerExtern,
+                                                                             NeuePositionExtern => NeuePositionExtern);
+         
+         case
+           PlatzZumEntladen
+         is
+            when False =>
+               return;
+               
+            when True =>
+               BewegungLadenEntladen.TransporterStadtEntladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                               NeuePositionExtern       => NeuePositionExtern);
+         end case;
+      end if;
+
+        Welchen_Bonus := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                        NeuePositionExtern       => NeuePositionExtern);
 
       case
         Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund
@@ -34,56 +53,39 @@ package body BewegungBerechnen is
             if
               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte < 1.00
             then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.00;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
                return;
                
             else                     
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte
-                 := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte - 2.00 + BewegungspunkteModifikator;
+                 := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte - 2.00 + Bewegungsmodifikator (Welchen_Bonus);
             end if;
                
          when others =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte
-              := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte - 1.00 + BewegungspunkteModifikator;
+              := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte - 1.00 + Bewegungsmodifikator (Welchen_Bonus);
       end case;
 
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte < 0.00
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte < GlobaleKonstanten.LeerEinheit.Bewegungspunkte
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.00;
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
          -- Hier nicht return, da Bewegung zwar erfolgreich aber jetzt noch die Rechnungen durchlaufen müssen.
                   
       else
          null;
       end if;
 
-      if
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportieren = 0
-      then
-         null;
-         
-      elsif
-        StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                    KoordinatenExtern => NeuePositionExtern) = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
-      then
-         BewegungLadenEntladen.TransporterladungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                             NeuePositionExtern       => NeuePositionExtern);
-
-      else
-         BewegungLadenEntladen.TransporterStadtEntladen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                         NeuePositionExtern       => NeuePositionExtern);
-      end if;
-
       case
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
             null;
             
          when others =>
-            BewegungLadenEntladen.EinheitAusTransporterEntfernen (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
-                                                                  AuszuladendeEinheitExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert);
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert := 0;
+            BewegungLadenEntladen.EinheitAusTransporterEntfernen (TransporterExtern => (EinheitRasseNummerExtern.Rasse,
+                                                                                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert),
+                                                                  LadungExtern      => EinheitRasseNummerExtern.Platznummer);
       end case;
       
       case
@@ -99,6 +101,7 @@ package body BewegungBerechnen is
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := NeuePositionExtern;
       Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
+      -- Funktioniert doch gar nicht richtig, oder?
       KontaktSchleife:
       for FremdeSichtbarkeitSchleifenwert in GlobaleDatentypen.RassenImSpielArray'Range loop
          
@@ -128,7 +131,7 @@ package body BewegungBerechnen is
    function StraßeUndFlussPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Integer
+      return Bewegungsbonuse_Enum
    is begin
 
       if
@@ -137,14 +140,15 @@ package body BewegungBerechnen is
         and
           EinheitenDatenbank.EinheitenListe
             (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Luft) = False
+        and
+          EinheitenDatenbank.EinheitenListe
+            (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Weltraum) = False
       then
-         BonusBeiBewegung := 0;
-
          case
            Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße
          is
             when GlobaleDatentypen.Karten_Verbesserung_Straße_Enum'Range =>
-               BonusBeiBewegung := BonusBeiBewegung + 1;
+               return Straße_Fluss;
                   
             when others =>
                null;
@@ -157,14 +161,14 @@ package body BewegungBerechnen is
                null;
 
             when others =>
-               BonusBeiBewegung := BonusBeiBewegung + 1;
+               return Straße_Fluss;
          end case;
-            
-         return BonusBeiBewegung;
 
       else
-         return 0;
-      end if;
+         null;
+      end if;      
+      
+      return Leer;
       
    end StraßeUndFlussPrüfen;
 

@@ -67,7 +67,7 @@ package EinheitenAllgemein is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
-   function KennTransportiertWerden
+   function KannTransportiertWerden
      (LadungExtern, TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
      with
@@ -77,6 +77,24 @@ package EinheitenAllgemein is
             GlobaleVariablen.RassenImSpiel (LadungExtern.Rasse) /= GlobaleDatentypen.Leer
           and
             TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function IDTransporterAusLadung
+     (LadungExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.EinheitenIDMitNullWert
+     with
+       Pre =>
+         (LadungExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (LadungExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function MaximaleTransporterKapazität
+     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+     with
+       Pre =>
+         (TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
             GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
 

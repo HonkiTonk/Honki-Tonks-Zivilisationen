@@ -15,6 +15,6 @@ package KISiedler is
 
 private
 
-   NotAus : Positive;
+   NotAus : GlobaleDatentypen.Sichtweite;
 
 end KISiedler;

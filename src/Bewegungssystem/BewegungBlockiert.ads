@@ -27,10 +27,10 @@ package BewegungBlockiert is
             or
               BlockiertStadtEinheit'Result = GlobaleDatentypen.Normale_Bewegung_Möglich),
      Global =>
-       (Input => (GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch)),
+       (Input => (GlobaleKonstanten.LeerEinheitStadtNummer)),
        Depends =>
          (BlockiertStadtEinheit'Result => (EinheitRasseNummerExtern, NeuePositionExtern),
-          null => (GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch));
+          null => (GlobaleKonstanten.LeerEinheitStadtNummer));
 
 private
 

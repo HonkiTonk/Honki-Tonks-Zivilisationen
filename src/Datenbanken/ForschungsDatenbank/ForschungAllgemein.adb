@@ -12,8 +12,7 @@ with Anzeige, Eingabe, KIForschung;
 package body ForschungAllgemein is
 
    procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert)
    is begin
       
       case
@@ -194,7 +193,6 @@ package body ForschungAllgemein is
                                           TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Lang,
                                           ÜberschriftZeileExtern => 0,
                                           ErsteZeileExtern       => Positive (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer),
-                                          LetzteZeileExtern      => Positive (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer),
                                           AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
                                           AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
@@ -248,7 +246,6 @@ package body ForschungAllgemein is
                                     TextDateiExtern        => GlobaleTexte.Beschreibung_Forschung_Ermöglicht,
                                     ÜberschriftZeileExtern => 43,
                                     ErsteZeileExtern       => Positive (ForschungNummerExtern),
-                                    LetzteZeileExtern      => Positive (ForschungNummerExtern),
                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
       
@@ -346,7 +343,6 @@ package body ForschungAllgemein is
                                        TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Lang,
                                        ÜberschriftZeileExtern => 0,
                                        ErsteZeileExtern       => Positive (AktuelleAuswahl),
-                                       LetzteZeileExtern      => Positive (AktuelleAuswahl),
                                        AbstandAnfangExtern    => GlobaleTexte.Keiner,
                                        AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
          New_Line;

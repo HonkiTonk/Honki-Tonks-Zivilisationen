@@ -24,7 +24,7 @@ package body StadtSuchen is
          
       end loop StadtSchleife;
       
-      return GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch;
+      return GlobaleKonstanten.LeerEinheitStadtNummer;
       
    end KoordinatenStadtMitRasseSuchen;
 
@@ -57,7 +57,7 @@ package body StadtSuchen is
          end loop StadtSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.LeerEinheitStadtNummer);
       
    end KoordinatenStadtOhneRasseSuchen;
    
@@ -93,7 +93,7 @@ package body StadtSuchen is
          end loop StadtSchleife;
       end loop RasseSchleife;
    
-      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.LeerEinheitStadtNummer);
       
    end KoordinatenStadtOhneSpezielleRasseSuchen;
    
@@ -156,7 +156,7 @@ package body StadtSuchen is
          end loop StadtSchleife;
       end loop RasseSchleife;
       
-      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch);
+      return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.LeerEinheitStadtNummer);
       
    end StadtNachNamenSuchen;
 

@@ -35,6 +35,7 @@ private
    Stadtart : GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
 
    StadtNummer : GlobaleDatentypen.MaximaleStädte;
+   WelcherName : Positive := 1;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
@@ -49,6 +50,14 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
+   procedure StandardStadtNamen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+
 
 
    function HauptstadtPrüfen
@@ -57,7 +66,7 @@ private
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer),
-       Post =>
-         (HauptstadtPrüfen'Result /= GlobaleDatentypen.Leer);
+         Post =>
+           (HauptstadtPrüfen'Result /= GlobaleDatentypen.Leer);
 
 end StadtBauen;

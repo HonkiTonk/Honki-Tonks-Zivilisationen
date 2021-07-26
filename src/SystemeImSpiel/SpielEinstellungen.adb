@@ -214,7 +214,7 @@ package body SpielEinstellungen is
    
    
    
-   -- 1 = X-Zylinder, 2 = Y-Zylinder, 3 = Torus, 4 = Kugel, 5 = Viereck
+   -- 1 = X-Zylinder, 2 = Y-Zylinder, 3 = Torus, 4 = Kugel, 5 = Viereck, 6 = Kugel gedreht
    function KartenformWählen
      return Integer
    is begin
@@ -419,7 +419,6 @@ package body SpielEinstellungen is
                                              TextDateiExtern        => GlobaleTexte.Rassen_Beschreibung_Lang,
                                              ÜberschriftZeileExtern => RassenAuswahl + 53,
                                              ErsteZeileExtern       => RassenAuswahl,
-                                             LetzteZeileExtern      => RassenAuswahl,
                                              AbstandAnfangExtern    => GlobaleTexte.Keiner,
                                              AbstandEndeExtern      => GlobaleTexte.Keiner);
                Eingabe.WartenEingabe;
@@ -538,7 +537,7 @@ package body SpielEinstellungen is
       case
         PositionWert.Platznummer
       is
-         when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
+         when GlobaleKonstanten.LeerEinheitStadtNummer =>
             Koordinaten (1) := (0, YPositionExtern, XPositionExtern);
             YAchseSchleife:
             for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
@@ -549,7 +548,7 @@ package body SpielEinstellungen is
                                                                               ÄnderungExtern       => (0, YÄnderung, XÄnderung));
             
                   if
-                    KartenWert.XAchse = 0
+                    KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
                   then
                      null;
                      
@@ -581,7 +580,7 @@ package body SpielEinstellungen is
                      case
                        PlatzBelegt.Platznummer
                      is
-                        when GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch =>
+                        when GlobaleKonstanten.LeerEinheitStadtNummer =>
                            Koordinaten (2) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
                            StartpunktFestlegen (RasseExtern => RasseExtern);
                            return True;

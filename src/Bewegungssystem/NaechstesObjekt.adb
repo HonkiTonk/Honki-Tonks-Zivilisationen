@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 package body NaechstesObjekt is  
 
    procedure NächsteEinheit
@@ -23,11 +25,11 @@ package body NaechstesObjekt is
          end case;
                
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).ID = 0
+           GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).ID = GlobaleKonstanten.LeerEinheit.ID
            or
-             (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).Bewegungspunkte <= 0.00 and BewegungspunkteExtern = Hat_Bewegungspunkte)
+             (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).Bewegungspunkte <= GlobaleKonstanten.LeerEinheit.Bewegungspunkte and BewegungspunkteExtern = Hat_Bewegungspunkte)
            or
-             (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).Bewegungspunkte > 0.00 and BewegungspunkteExtern = Keine_Bewegungspunkte)
+             (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).Bewegungspunkte > GlobaleKonstanten.LeerEinheit.Bewegungspunkte and BewegungspunkteExtern = Keine_Bewegungspunkte)
          then
             null;
          

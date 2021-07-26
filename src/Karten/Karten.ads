@@ -6,7 +6,7 @@ use GlobaleDatentypen;
 package Karten is
 
    type WeltkarteArray is array (GlobaleDatentypen.EbeneVorhanden'Range, GlobaleDatentypen.KartenfeldPositiv'Range, GlobaleDatentypen.KartenfeldPositiv'Range) of GlobaleRecords.KartenRecord;
-   Weltkarte : WeltkarteArray := (others => (others => (others => GlobaleKonstanten.LeererWertWeltkarte)));
+   Weltkarte : WeltkarteArray := (others => (others => (others => GlobaleKonstanten.LeerWeltkarte)));
 
    type StadtkarteArray is array (GlobaleDatentypen.Stadtfeld'Range, GlobaleDatentypen.Stadtfeld'Range) of Integer;
    Stadtkarte : StadtkarteArray := (others => (others => (0)));

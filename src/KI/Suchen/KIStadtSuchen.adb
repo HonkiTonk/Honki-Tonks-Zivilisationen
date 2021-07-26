@@ -50,7 +50,7 @@ package body KIStadtSuchen is
         AktuellGefundeneStadt
       is
          when 0 =>      
-            return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+            return GlobaleKonstanten.LeerKartenPosition;
             
          when others =>
             return GlobaleVariablen.StadtGebaut (RasseExtern, AktuellGefundeneStadt).Position;
@@ -78,7 +78,7 @@ package body KIStadtSuchen is
                if
                  EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
                                                                  KoordinatenExtern => GlobaleVariablen.StadtGebaut (FeindlicheRasseExtern, StadtNummerSchleifenwert).Position)
-                   = GlobaleKonstanten.RückgabeEinheitStadtNummerFalsch
+                   = GlobaleKonstanten.LeerEinheitStadtNummer
                then
                   return GlobaleVariablen.StadtGebaut (FeindlicheRasseExtern, StadtNummerSchleifenwert).Position;
                   
@@ -89,7 +89,7 @@ package body KIStadtSuchen is
          
       end loop StadtSchleife;
       
-      return GlobaleKonstanten.RückgabeKartenPositionFalsch;
+      return GlobaleKonstanten.LeerKartenPosition;
       
    end UnbewachteStadtSuchen;
 

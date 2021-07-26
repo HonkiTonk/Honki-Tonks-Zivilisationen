@@ -5,7 +5,7 @@ package body KIStadtLaufendeBauprojekte is
    function StadtLaufendeBauprojekte
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       BauprojektExtern : in Natural)
-      return Natural
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
    is begin
       
       GleichesBauprojekt := 0;
