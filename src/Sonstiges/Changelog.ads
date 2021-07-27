@@ -20,7 +20,7 @@ package Changelog is
    -- Fehler behoben der dazu führte dass über das TransportArray hinausgeloopt wurde.
    -- Es ist jetzt nicht mehr möglich Kartenfelder ohne Verbesserungen zu plündern.
    -- Fehler behoben der dazu führte dass die Stadtbelegung nicht korrekt entfernt wurde, wenn eine Stadt aufhört zu existieren.
-   -- Es ist jetzt möglich Städte zu zerstören.
+   -- Es ist jetzt möglich feindliche Städte zu zerstören.
    -- Einfache Siegbedingungen eingebaut.
    -- Benachrichtung eingebaut wenn man am Ende einer Runde eine Siegbedingung erfüllt.
    -- Es wird jetzt gespeichert/geladen ob bereits Gewonnen wurde.
@@ -28,11 +28,11 @@ package Changelog is
    -- Hülle für die Bewertung einzelner Spieler für die KI angelegt.
    -- Fehlermeldung eingebaut wenn man zweimal die gleiche Rasse belegen will.
    -- Zufällige Rassenauswahl wählt jetzt keine bereits belegte Rasse mehr aus.
-   -- Tugel eingebaut, was auch immer das für eine Form sein soll, funktioniert auch nicht so richtig.
+   -- Tugel eingebaut, was auch immer das für eine Form sein soll, funktioniert auch sehr komisch/nicht richtig.
    -- Es wird jetzt die Ladung eigener Schiffe angezeigt.
    -- Das Berechnen einiger Werte aus GlobaleVeriablen.Wichtiges in eine eigene Datei ausgelagert.
    -- Unnötigen Code gelöscht.
-   -- Kommentar, Contracts und Kleinigkeiten korrigiert/angepasst/vereinfacht.
+   -- Kommentare, Contracts und Kleinigkeiten korrigiert/angepasst/vereinfacht.
    
    
 
