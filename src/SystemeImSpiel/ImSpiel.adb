@@ -5,7 +5,7 @@ use Ada.Calendar;
 
 with GlobaleKonstanten;
 
-with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, Verbesserungen, ForschungAllgemein, KI, Ladezeiten, Speichern, Laden, StadtProduktion, EinheitenAllgemein;
+with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, Verbesserungen, ForschungAllgemein, KI, Ladezeiten, Speichern, Laden, StadtProduktion, EinheitenAllgemein, SiegBedingungen;
 
 package body ImSpiel is
 
@@ -207,7 +207,9 @@ package body ImSpiel is
               := Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), GlobaleDatentypen.Anfangswert);
          end if;
          
-      end loop RassenSchleife;      
+      end loop RassenSchleife;
+      
+      SiegBedingungen.SiegBedingungen;
       Ladezeiten.EinzelneZeiten (2, GlobaleDatentypen.Endwert) := Clock;
       
       Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => 19);

@@ -41,8 +41,8 @@ package body OptionenSteuerung is
                                               ÜberschriftZeileExtern => 0,
                                               ErsteZeileExtern       => 46,
                                               LetzteZeileExtern      => 46,
-                                              AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                              AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                              AbstandMitteExtern     => GlobaleTexte.Leer,
                                               AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
                
                NeueAuswahl := GlobaleDatentypen.Tastenbelegung_Enum'Val (AuswahlWert);
@@ -54,8 +54,8 @@ package body OptionenSteuerung is
                                               ÜberschriftZeileExtern => 0,
                                               ErsteZeileExtern       => 29,
                                               LetzteZeileExtern      => 29,
-                                              AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                              AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                              AbstandMitteExtern     => GlobaleTexte.Leer,
                                               AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
                
                NeueTaste := Eingabe.TastenEingabe;

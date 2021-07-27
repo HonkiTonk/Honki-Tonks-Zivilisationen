@@ -87,6 +87,13 @@ package body Speichern is
       -- Schwierigkeitsgrad speichern
       
       
+      
+      -- Gewonnen laden
+      Boolean'Write (Stream (File => DateiSpeichernNeu),
+                     GlobaleVariablen.Gewonnen);
+      -- Gewonnen laden
+      
+      
 
       -- Schleife zum Speichern der Karte
       GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Write (Stream (File => DateiSpeichernNeu),

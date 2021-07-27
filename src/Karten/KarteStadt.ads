@@ -28,6 +28,7 @@ private
    KonstanterWertSieben : constant GlobaleDatentypen.Sichtweite := 7;
 
    YAchsenabstraktion : GlobaleDatentypen.Kartenfeld;
+   Aufschlag : GlobaleDatentypen.KartenfeldPositivMitNullwert;
    CursorKonstant : constant GlobaleDatentypen.Sichtweite := 3;
    Cursor : GlobaleDatentypen.Kartenfeld;
    CursorYAchseabstraktion : GlobaleDatentypen.Kartenfeld;

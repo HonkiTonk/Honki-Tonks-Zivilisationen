@@ -24,9 +24,9 @@ package body ForschungAllgemein is
                                            ÜberschriftZeileExtern => 0,
                                            ErsteZeileExtern       => 28,
                                            LetzteZeileExtern      => 28,
-                                           AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                           AbstandMitteExtern     => GlobaleTexte.Keiner,
-                                           AbstandEndeExtern      => GlobaleTexte.Keiner);
+                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+                                           AbstandEndeExtern      => GlobaleTexte.Leer);
             
          when others =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -34,9 +34,9 @@ package body ForschungAllgemein is
                                            ÜberschriftZeileExtern => 0,
                                            ErsteZeileExtern       => Positive (IDExtern),
                                            LetzteZeileExtern      => Positive (IDExtern),
-                                           AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                           AbstandMitteExtern     => GlobaleTexte.Keiner,
-                                           AbstandEndeExtern      => GlobaleTexte.Keiner);
+                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+                                           AbstandEndeExtern      => GlobaleTexte.Leer);
       end case;
       
    end Beschreibung;
@@ -269,7 +269,7 @@ package body ForschungAllgemein is
                                               LetzteZeileExtern      => Positive (TechnologieSchleifenwert),
                                               AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                               AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
-                                              AbstandEndeExtern      => GlobaleTexte.Keiner);
+                                              AbstandEndeExtern      => GlobaleTexte.Leer);
                exit ErmöglichtSchleife;
                
             else              
@@ -307,7 +307,7 @@ package body ForschungAllgemein is
                                            LetzteZeileExtern      => Positive (ForschungsDatenbank.ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert)),
                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                            AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
-                                           AbstandEndeExtern      => GlobaleTexte.Keiner);
+                                           AbstandEndeExtern      => GlobaleTexte.Leer);
          end if;
          
       end loop BenötigtSchleife;
@@ -335,7 +335,7 @@ package body ForschungAllgemein is
                                         ErsteZeileExtern       => Positive (AktuelleAuswahl),
                                         LetzteZeileExtern      => Positive (AktuelleAuswahl),
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
          New_Line;
          
@@ -343,7 +343,7 @@ package body ForschungAllgemein is
                                        TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Lang,
                                        ÜberschriftZeileExtern => 0,
                                        ErsteZeileExtern       => Positive (AktuelleAuswahl),
-                                       AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                       AbstandAnfangExtern    => GlobaleTexte.Leer,
                                        AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);         
          New_Line;
       

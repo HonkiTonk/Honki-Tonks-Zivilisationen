@@ -5,7 +5,7 @@ with GlobaleKonstanten, GlobaleTexte;
 with EinheitenDatenbank;
 
 with InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, NaechstesObjekt, Verbesserungen, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen,
-     Eingabe, FeldInformationen, ForschungAllgemein, EinheitenAllgemein;
+     Eingabe, FeldInformationen, ForschungAllgemein, EinheitenAllgemein, StadtEntfernen;
 
 package body BefehleImSpiel is
 
@@ -239,7 +239,7 @@ package body BefehleImSpiel is
       end case;
       
       if 
-        EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitTyp = GlobaleDatentypen.Unbewaffnet
+        EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitArt = GlobaleDatentypen.Arbeiter
         and
           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte > GlobaleKonstanten.LeerEinheit.Bewegungspunkte
       then
@@ -299,7 +299,7 @@ package body BefehleImSpiel is
       end if;
 
       if
-        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID /= 1
+        EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitArt /= GlobaleDatentypen.Arbeiter
         and
           BefehlExtern in Tastenbelegung_Verbesserung_Befehle_Enum'Range
       then
@@ -307,7 +307,7 @@ package body BefehleImSpiel is
                                                TextZeileExtern => 3);
 
       elsif
-        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID = 1
+        EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitArt = GlobaleDatentypen.Arbeiter
         and
           BefehlExtern = GlobaleDatentypen.Plündern
       then
@@ -369,7 +369,7 @@ package body BefehleImSpiel is
         AbreißenAuswahl
       is
          when GlobaleKonstanten.JaKonstante =>
-            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer) := GlobaleKonstanten.LeerStadt;
+            StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => (RasseExtern, StadtNummer));
             
          when others =>
             null;

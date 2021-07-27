@@ -66,17 +66,18 @@ package GlobaleRecords is
       
       ID : GlobaleDatentypen.EinheitenIDMitNullWert;
       Position : AchsenKartenfeldPositivRecord;
+      Heimatstadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
       
-      Lebenspunkte : Natural;
+      Lebenspunkte : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       Bewegungspunkte : Float;
-      Erfahrungspunkte : Natural;
-      Rang : Natural;
+      Erfahrungspunkte : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      Rang : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       
       Beschäftigung : GlobaleDatentypen.Tastenbelegung_Enum;
       BeschäftigungNachfolger : GlobaleDatentypen.Tastenbelegung_Enum;
       
-      Beschäftigungszeit : Natural;
-      BeschäftigungszeitNachfolger : Natural;
+      Beschäftigungszeit : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      BeschäftigungszeitNachfolger : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
       KIZielKoordinaten : AchsenKartenfeldPositivRecord;
       KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
@@ -89,7 +90,7 @@ package GlobaleRecords is
 
 
 
-   type EinwohnerArbeiterArray is array (1 .. 2) of GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   type EinwohnerArbeiterArray is array (1 .. 2) of GlobaleDatentypen.ProduktionFeld;
    type GebäudeVorhandenArray is array (GlobaleDatentypen.GebäudeID'Range) of Boolean;
    type StadtMeldungenArray is array (1 .. 3) of GlobaleDatentypen.Stadt_Meldung_Enum;
 

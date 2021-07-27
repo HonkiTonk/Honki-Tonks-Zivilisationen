@@ -29,8 +29,8 @@ is begin
                                         ErsteZeileExtern       => 8,
                                         LetzteZeileExtern      => 8,
                                         AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
-                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
-                                        AbstandEndeExtern      => GlobaleTexte.Keiner);
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
+                                        AbstandEndeExtern      => GlobaleTexte.Leer);
 
       when False =>
          AllesAufStandardSetzen.AllesAufStandardSetzen;

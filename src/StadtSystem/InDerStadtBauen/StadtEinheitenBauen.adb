@@ -75,10 +75,11 @@ package body StadtEinheitenBauen is
             null;
             
          when others =>
-            EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern            => KartenWert,
-                                                EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummer),
-                                                IDExtern                     => GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
-                                                  StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag));
+            EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => KartenWert,
+                                                EinheitNummerExtern    => EinheitNummer,
+                                                IDExtern               => GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
+                                                  StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.EinheitAufschlag),
+                                                StadtRasseNummerExtern => StadtRasseNummerExtern);
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := 0;
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := 0;
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := 0;

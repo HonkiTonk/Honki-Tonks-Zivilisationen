@@ -93,8 +93,8 @@ package body KarteInformationen is
                                      ÜberschriftZeileExtern => 0,
                                      ErsteZeileExtern       => 33,
                                      LetzteZeileExtern      => 33,
-                                     AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.RundenAnzahl,
                                Width => 1);
@@ -113,7 +113,7 @@ package body KarteInformationen is
                                      ErsteZeileExtern       => 34,
                                      LetzteZeileExtern      => 34,
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge,
                                Width => 1);
@@ -132,7 +132,7 @@ package body KarteInformationen is
                                      ErsteZeileExtern       => 35,
                                      LetzteZeileExtern      => 35,
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde),
                                Width => 1);
@@ -153,7 +153,7 @@ package body KarteInformationen is
                                      ErsteZeileExtern       => 38,
                                      LetzteZeileExtern      => 38,
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt);
       
@@ -172,7 +172,7 @@ package body KarteInformationen is
                                      ErsteZeileExtern       => 36,
                                      LetzteZeileExtern      => 36,
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit),
                                Width => 1);
@@ -193,7 +193,7 @@ package body KarteInformationen is
                                      ErsteZeileExtern       => 39,
                                      LetzteZeileExtern      => 39,
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge),
                                Width => 1);
@@ -213,7 +213,7 @@ package body KarteInformationen is
                                      ErsteZeileExtern       => 37,
                                      LetzteZeileExtern      => 37,
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate),
                                Width => 1);
@@ -231,7 +231,7 @@ package body KarteInformationen is
       case
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
             EinheitNummer := EinheitRasseNummerExtern.Platznummer;
                         
          when others =>
@@ -246,13 +246,13 @@ package body KarteInformationen is
                                      ErsteZeileExtern       => 14,
                                      LetzteZeileExtern      => 14,
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Lebenspunkte,
+      Ada.Integer_Text_IO.Put (Item  => Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Lebenspunkte),
                                Width => 1);
       Put (Item => " / ");
-      Ada.Integer_Text_IO.Put (Item  => EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).MaximaleLebenspunkte,
+      Ada.Integer_Text_IO.Put (Item  => Positive (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
+                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).MaximaleLebenspunkte),
                                Width => 1);
             
       -- "Volle" Einheiteninformationen, nur sichtbar wenn eigene Einheit oder wenn Cheat aktiviert ist
@@ -267,7 +267,7 @@ package body KarteInformationen is
                                         ErsteZeileExtern       => 15,
                                         LetzteZeileExtern      => 15,
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
          Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Bewegungspunkte,
                                 Fore => 1,
@@ -286,13 +286,13 @@ package body KarteInformationen is
                                         ErsteZeileExtern       => 16,
                                         LetzteZeileExtern      => 16,
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Erfahrungspunkte,
+         Ada.Integer_Text_IO.Put (Item  => Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Erfahrungspunkte),
                                   Width => 1);
          Put (Item => " / ");
-         Ada.Integer_Text_IO.Put (Item  => EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                  EinheitNummer).ID).Beförderungsgrenze,
+         Ada.Integer_Text_IO.Put (Item  => Natural (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                  EinheitNummer).ID).Beförderungsgrenze),
                                   Width => 1);
          New_Line;
                               
@@ -302,7 +302,7 @@ package body KarteInformationen is
                                         ErsteZeileExtern       => 17,
                                         LetzteZeileExtern      => 17,
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
          EinheitenAllgemein.Beschäftigung (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Beschäftigung);
 
@@ -312,9 +312,9 @@ package body KarteInformationen is
                                         ErsteZeileExtern       => 18,
                                         LetzteZeileExtern      => 18,
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Beschäftigungszeit,
+         Ada.Integer_Text_IO.Put (Item  => Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Beschäftigungszeit),
                                   Width => 1);
          New_Line;
 
@@ -324,7 +324,7 @@ package body KarteInformationen is
                                         ErsteZeileExtern       => 24,
                                         LetzteZeileExtern      => 24,
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
          Ada.Integer_Text_IO.Put (Item  => Integer (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).Angriff),
@@ -336,7 +336,7 @@ package body KarteInformationen is
                                         ErsteZeileExtern       => 25,
                                         LetzteZeileExtern      => 25,
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
          Ada.Integer_Text_IO.Put (Item  => Integer (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).Verteidigung),
@@ -348,14 +348,66 @@ package body KarteInformationen is
                                         ErsteZeileExtern       => 26,
                                         LetzteZeileExtern      => 26,
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Rang,
+         Ada.Integer_Text_IO.Put (Item  => Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Rang),
                                   Width => 1);
          Put (Item => " / ");
-         Ada.Integer_Text_IO.Put (Item  => EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).MaximalerRang,
+         Ada.Integer_Text_IO.Put (Item  => Natural (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
+                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).MaximalerRang),
                                   Width => 1);
+         
+         case
+           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).KannTransportieren
+         is
+            when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
+               null;
+               
+            when others =>
+               ErsteAnzeige := True;
+               
+               LadungSchleife:
+               for LadungSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => EinheitRasseNummerExtern) loop
+                        
+                  if
+                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+                    and
+                      ErsteAnzeige
+                  then
+                     New_Line;
+                     ErsteAnzeige := False;
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
+                                                    TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
+                                                    ÜberschriftZeileExtern => 52,
+                                                    ErsteZeileExtern       => Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert)).ID),
+                                                    LetzteZeileExtern      => Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert)).ID),
+                                                    AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                                    AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                    AbstandEndeExtern      => GlobaleTexte.Großer_Abstand);
+                     
+                  elsif
+                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+                  then
+                     Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                                    TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
+                                                    ÜberschriftZeileExtern => 0,
+                                                    ErsteZeileExtern       => Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert)).ID),
+                                                    LetzteZeileExtern      => Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert)).ID),
+                                                    AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                                    AbstandMitteExtern     => GlobaleTexte.Leer,
+                                                    AbstandEndeExtern      => GlobaleTexte.Großer_Abstand);
+                     
+                  else
+                     null;
+                  end if;
+            
+               end loop LadungSchleife;
+         end case;         
+         
          New_Line;
                               
       else
@@ -434,9 +486,9 @@ package body KarteInformationen is
                                         ÜberschriftZeileExtern => 0,
                                         ErsteZeileExtern       => GlobaleDatentypen.Karten_Grund_Enum'Pos (GlobaleDatentypen.Hügel_Mit),
                                         LetzteZeileExtern      => GlobaleDatentypen.Karten_Grund_Enum'Pos (GlobaleDatentypen.Hügel_Mit),
-                                        AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
-                                        AbstandEndeExtern      => GlobaleTexte.Keiner);
+                                        AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
+                                        AbstandEndeExtern      => GlobaleTexte.Leer);
          KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
                                        GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund);
 
@@ -623,7 +675,7 @@ package body KarteInformationen is
                                      ErsteZeileExtern       => 19,
                                      LetzteZeileExtern      => 19,
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (Verteidigungsbonus),
                                Width => 1);
@@ -634,7 +686,7 @@ package body KarteInformationen is
                                      ErsteZeileExtern       => 20,
                                      LetzteZeileExtern      => 20,
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (Nahrungsgewinnung),
                                Width => 1);
@@ -646,7 +698,7 @@ package body KarteInformationen is
                                      ErsteZeileExtern       => 21,
                                      LetzteZeileExtern      => 21,
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (Ressourcengewinnung),
                                Width => 1);
@@ -657,7 +709,7 @@ package body KarteInformationen is
                                      ErsteZeileExtern       => 22,
                                      LetzteZeileExtern      => 22,
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (Geldgewinnung),
                                Width => 1);
@@ -668,7 +720,7 @@ package body KarteInformationen is
                                      ErsteZeileExtern       => 23,
                                      LetzteZeileExtern      => 23,
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (Wissensgewinnung),
                                Width => 1);

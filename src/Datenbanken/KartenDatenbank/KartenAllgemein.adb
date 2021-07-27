@@ -22,8 +22,8 @@ package body KartenAllgemein is
                                            ÜberschriftZeileExtern => 0,
                                            ErsteZeileExtern       => GlobaleDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern),
                                            LetzteZeileExtern      => GlobaleDatentypen.Karten_Grund_Enum'Pos (KartenGrundExtern),
-                                           AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                           AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                           AbstandMitteExtern     => GlobaleTexte.Leer,
                                            AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       end case;
       

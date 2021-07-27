@@ -98,7 +98,20 @@ package body Verbesserungen is
             VerbesserungAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          when GlobaleDatentypen.Plündern =>
-            VerbesserungPlündern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            if
+              Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
+                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
+                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
+              or
+                Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
+                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
+                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
+            then
+               VerbesserungPlündern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               
+            else
+               null;
+            end if;
          
          when GlobaleDatentypen.Einheit_Verbessern =>
             VerbesserungEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

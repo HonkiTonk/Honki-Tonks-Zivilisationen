@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, StadtBauen, StadtEinheitenBauen, StadtGebaeudeBauen;
+with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, StadtEinheitenBauen, StadtGebaeudeBauen, StadtEntfernen, WichtigesSetzen;
 
 package body Wachstum is
 
@@ -13,6 +13,8 @@ package body Wachstum is
       for RasseEinsSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (1) loop
          StadtSchleife:
          for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+            
+            exit StadtSchleife when GlobaleVariablen.RassenImSpiel (RasseEinsSchleifenwert) = GlobaleDatentypen.Leer;
             
             case
               StadtNummerSchleifenwert
@@ -40,34 +42,19 @@ package body Wachstum is
       end loop RassenEinsSchleife;
 
       RassenZweiSchleife:
-      for RasseZweiSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (1) loop
+      for RasseZweiSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).Geldmenge + Integer (GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GeldZugewinnProRunde)
-           > Integer'Last
+           GlobaleVariablen.RassenImSpiel (RasseZweiSchleifenwert) = GlobaleDatentypen.Leer
          then
-            GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).Geldmenge := Integer'Last;
-            
-         elsif
-           GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).Geldmenge + Integer (GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GeldZugewinnProRunde)
-           < Integer'First
-         then
-            GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).Geldmenge := Integer'First;
+            null;
             
          else
-            GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).Geldmenge
-              := GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).Geldmenge + Integer (GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GeldZugewinnProRunde);
-         end if;
+            WichtigesSetzen.GeldFestlegen (RasseExtern        => RasseZweiSchleifenwert,
+                                           GeldZugewinnExtern => Integer (GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GeldZugewinnProRunde));
          
-         if
-           GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).Forschungsmenge + GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GesamteForschungsrate
-           > GlobaleDatentypen.KostenLager'Last
-         then
-            GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).Forschungsmenge := GlobaleDatentypen.KostenLager'Last;
-            
-         else
-            GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).Forschungsmenge
-              := GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).Forschungsmenge + GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GesamteForschungsrate;
+            WichtigesSetzen.ForschungsmengeFestlegen (RasseExtern             => RasseZweiSchleifenwert,
+                                                      ForschungZugewinnExtern => GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GesamteForschungsrate);
          end if;
          
       end loop RassenZweiSchleife;
@@ -223,7 +210,7 @@ package body Wachstum is
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
          is
             when 0 =>
-               StadtBauen.StadtEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+               StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                return;
                
             when others =>
@@ -277,18 +264,9 @@ package body Wachstum is
       if
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt = 0
       then
-         if
-           GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Geldmenge + Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate / 5)
-           > Integer'Last
-         then
-            GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Geldmenge := Integer'Last;
-            
-         else
-            GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Geldmenge
-              := GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Geldmenge
-              + Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate / 5);
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := 0;
-         end if;
+         WichtigesSetzen.GeldFestlegen (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                        GeldZugewinnExtern => Integer (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate / 5));
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := 0;
                   
       elsif
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt

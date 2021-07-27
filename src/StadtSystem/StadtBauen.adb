@@ -72,14 +72,13 @@ package body StadtBauen is
       -- Aktuelle Meldungen
       -- KI aktuelle Beschäftigung
       
-      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer) :=       
-        (
-         Stadtart, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position, False, (1, 1),
+      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer) :=
+        (Stadtart, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position, False, (1, 1),
          0, 0, 0, 0,
          0, 0, 0, 0,
          0, (others => False), To_Unbounded_Wide_Wide_String (Source => "KIStadtname"),
          (0 => (0 => True, others => False), others => (others => False)), 1,
-         (others => GlobaleDatentypen.Keine),
+         (others => GlobaleDatentypen.Leer),
          KIDatentypen.Keine_Aufgabe
         );
       
@@ -209,36 +208,6 @@ package body StadtBauen is
       end loop YAchsenSchleife;
       
    end AmWasser;
-
-
-
-   procedure StadtEntfernen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-      
-      StadtUmgebungFreigebenSchleife:
-      for StadtUmgebungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
-         
-         if
-           Karten.Weltkarte (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.EAchse,
-                             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.YAchse,
-                             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.XAchse).DurchStadtBelegterGrund
-             = GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse)) * GlobaleKonstanten.RassenMulitplikationWert
-           + GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer)
-         then
-            Karten.Weltkarte (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.EAchse,
-                              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.YAchse,
-                              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.XAchse).DurchStadtBelegterGrund := 0;
-            
-         else
-            null;
-         end if;
-         
-      end loop StadtUmgebungFreigebenSchleife;
-      
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerStadt;
-      
-   end StadtEntfernen;
    
    
    

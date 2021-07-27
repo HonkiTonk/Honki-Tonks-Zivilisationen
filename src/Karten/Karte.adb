@@ -61,8 +61,8 @@ package body Karte is
          XAchseSchleife:
          for XAchseSchleifenwert in -Sichtweiten (SichtweiteFestlegen).XAchse .. Sichtweiten (SichtweiteFestlegen).XAchse loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
-                                                                        ÄnderungExtern      => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt,
+                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             case
               KartenWert.XAchse
@@ -86,7 +86,9 @@ package body Karte is
                   or
                     Karten.Kartenform = GlobaleDatentypen.Kugel
                   or
-                    Karten.Kartenform = GlobaleDatentypen.Kugel_Gedreht)
+                    Karten.Kartenform = GlobaleDatentypen.Kugel_Gedreht
+                  or
+                    Karten.Kartenform = GlobaleDatentypen.Tugel)
                  and
                    KartenWert.XAchse > GlobaleKonstanten.LeerYXKartenWert
                then

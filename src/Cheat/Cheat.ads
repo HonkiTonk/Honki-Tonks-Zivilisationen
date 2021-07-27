@@ -32,6 +32,8 @@ package Cheat is
          (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
             StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
+   
+   GewonnenDurchCheat : Boolean := False;
 
 private
 

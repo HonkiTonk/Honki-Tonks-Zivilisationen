@@ -4,4 +4,10 @@ package SiegBedingungen is
 
    procedure SiegBedingungen;
 
+private
+
+   VorhandeneRassen : Natural;
+
+   procedure SiegBedingungenPrüfen;
+
 end SiegBedingungen;

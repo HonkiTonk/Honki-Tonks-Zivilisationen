@@ -72,10 +72,13 @@ package body KI is
    is begin
       
       case
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).EinheitTyp
+        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).EinheitArt
       is
-         when GlobaleDatentypen.Unbewaffnet =>
+         when GlobaleDatentypen.Arbeiter =>
             KISiedler.KISiedler (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         when GlobaleDatentypen.Unbewaffnet =>
+            null;
             
          when GlobaleDatentypen.Nahkämpfer =>
             KINahkampfBoden.KINahkampfBoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

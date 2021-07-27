@@ -37,7 +37,8 @@ package GlobaleVariablen is
    RasseAmZugNachLaden : GlobaleDatentypen.Rassen_Enum := GlobaleDatentypen.Leer;
 
    -- Hier über LoopMinusDreiBisDrei nachdenken
-   Schwierigkeitsgrad : GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum;
+   Schwierigkeitsgrad : GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum;   
+   Gewonnen : Boolean := False;
    -- Zeug
    
 
@@ -61,7 +62,7 @@ package GlobaleVariablen is
    Wichtiges : WichtigesArray := (others => GlobaleKonstanten.LeerWichtigesZeug);
    
    type DiplomatieArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.Status_Untereinander_Enum;
-   Diplomatie : DiplomatieArray := (others => (others => GlobaleDatentypen.Kein_Kontakt));
+   Diplomatie : DiplomatieArray := (others => (others => GlobaleDatentypen.Leer));
    -- Wichtiges Zeug
    
    

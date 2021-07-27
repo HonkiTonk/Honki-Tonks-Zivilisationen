@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GebaeudeDatenbank;
 
-with StadtProduktion;
+with StadtProduktion, WichtigesSetzen;
 
 package body GebaeudeVerkaufen is
 
@@ -11,71 +11,42 @@ package body GebaeudeVerkaufen is
    is begin
       
       if
-        GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 1
+        (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 1
+         or
+           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 2)
         and
           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse < 13
       then
-         case
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
-           (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse))
-         is
-            when False =>
-               null;
-                        
-            when others =>
-               if
-                 GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Geldmenge
-                 + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse,
-                            GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse)).PreisGeld / 2) 
-                 > Integer'Last
-               then
-                  GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Geldmenge := Integer'Last;
-                  
-               else
-                  GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Geldmenge
-                    := GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Geldmenge
-                    + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse,
-                               GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse)).PreisGeld / 2);
-               end if;
-               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
-                 (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse)) := False;
-               StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         end case;
-            
-      elsif
-        GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 2
-        and
-          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse < 13
-      then
-         case
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
-           (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + 12)
-         is
-            when False =>
-               null;
-                        
-            when others =>
-               if
-                 GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Geldmenge
-                 + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse,
-                            GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + 12).PreisGeld / 2)
-                 > Integer'Last
-               then
-                  GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Geldmenge := Integer'Last;
-               
-               else
-                  GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Geldmenge := GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Geldmenge
-                    + Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse,
-                               GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + 12).PreisGeld / 2);
-               end if;
-               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
-                 (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + 12) := False;
-               StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         end case;
-                  
+         Aufschlag := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse;
+         
       else
-         null;
+         Aufschlag := 0;
       end if;
+        
+      case
+        Aufschlag
+      is
+         when 0 =>
+            null;
+            
+         when others =>
+            Aufschlag := Aufschlag - 1;
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
+              (GlobaleDatentypen.GebäudeID ((GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + Aufschlag * 12)) = False
+            then
+               null;
+                        
+            else
+               WichtigesSetzen.GeldFestlegen (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                              GeldZugewinnExtern => Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse,
+                                                GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse)).PreisGeld / 2));
+               
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
+                 (GlobaleDatentypen.GebäudeID ((GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + Aufschlag * 12)) := False;
+               StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            end if;
+      end case;
       
    end GebäudeVerkaufen;
 

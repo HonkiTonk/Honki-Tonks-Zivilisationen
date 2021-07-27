@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with KIDatentypen;
 use KIDatentypen;
 
-with StadtSuchen, KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt, KIAufgabenErmittelnAllgemein;
+with StadtSuchen, KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt, KIAufgabenErmittelnAllgemein, RassenAllgemein;
 
 package body KISiedlerAufgabeErmitteln is
 
@@ -80,7 +80,14 @@ package body KISiedlerAufgabeErmitteln is
          null;
       end if;
       
-      return 2;
+      if
+        RassenAllgemein.RassenExpansion (EinheitRasseNummerExtern.Rasse) > 10
+      then
+         return 3;
+         
+      else
+         return 2;
+      end if;
       
    end NeueStadtBauenGehen;
 

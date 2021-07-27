@@ -47,6 +47,7 @@ private
    PolXAchse : PositionFeldArray;
    
    ZwischenPositionAchse : PositionArray;
+   ZwischenPositionTugelAchse : PositionArray;
    
    ÜberhangYAchse : ÜberhangArray;
    ÜberhangXAchse : ÜberhangArray;
@@ -58,66 +59,46 @@ private
    YAchse : ÄnderungArray;
    XAchse : ÄnderungArray;   
    
+   -- Kartenformen
    function KartenPositionXZylinder
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
-     with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+      return GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    function KartenPositionYZylinder
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
-     with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+      return GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    function KartenPositionTorus
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
-     with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+      return GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    function KartenPositionKugel
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
-     with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+      return GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    function KartenPositionViereck
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
-     with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+      return GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    function KartenPositionKugelGedreht
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
-     with
-       Pre =>
-         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+      return GlobaleRecords.AchsenKartenfeldPositivRecord;
    
+   function KartenPositionTugel
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord;
+   -- Kartenformen
+   
+   
+   
+   -- Berechnungen
    function PositionBestimmenEAchseFest
      (EAchseExtern : in GlobaleDatentypen.EbeneVorhanden;
       ÄnderungEAchseExtern : in GlobaleDatentypen.EbeneVorhanden)
@@ -200,5 +181,6 @@ private
               PositionBestimmen_X_Y_Wechsel'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
               PositionBestimmen_X_Y_Wechsel'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   -- Berechnungen
 
 end KartePositionPruefen;

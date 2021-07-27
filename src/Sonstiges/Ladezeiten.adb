@@ -20,8 +20,8 @@ package body Ladezeiten is
                                      ÜberschriftZeileExtern => 0,
                                      ErsteZeileExtern       => WelcheZeitExtern,
                                      LetzteZeileExtern      => WelcheZeitExtern,
-                                     AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
       case
@@ -62,8 +62,8 @@ package body Ladezeiten is
                                      ÜberschriftZeileExtern => 0,
                                      ErsteZeileExtern       => Aufschlag (WelcheZeitExtern),
                                      LetzteZeileExtern      => Aufschlag (WelcheZeitExtern),
-                                     AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
       Ada.Float_Text_IO.Put (Item => Float (EinzelneZeiten (WelcheZeitExtern, GlobaleDatentypen.Endwert) - EinzelneZeiten (WelcheZeitExtern, GlobaleDatentypen.Anfangswert)),
@@ -87,8 +87,8 @@ package body Ladezeiten is
                                      ÜberschriftZeileExtern => 0,
                                      ErsteZeileExtern       => WelcheZeitExtern + KIAufschlag,
                                      LetzteZeileExtern      => WelcheZeitExtern + KIAufschlag,
-                                     AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       
       case

@@ -214,7 +214,7 @@ package body SpielEinstellungen is
    
    
    
-   -- 1 = X-Zylinder, 2 = Y-Zylinder, 3 = Torus, 4 = Kugel, 5 = Viereck, 6 = Kugel gedreht
+   -- 1 = X-Zylinder, 2 = Y-Zylinder, 3 = Torus, 4 = Kugel, 5 = Viereck, 6 = Kugel gedreht, 7 = Tugel
    function KartenformWählen
      return Integer
    is begin
@@ -226,16 +226,16 @@ package body SpielEinstellungen is
                                                TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                                FrageZeileExtern  => 31,
                                                ErsteZeileExtern  => 83,
-                                               LetzteZeileExtern=> 91);
+                                               LetzteZeileExtern=> 92);
          
          case
            KartenformAuswahl
          is
-            when 1 .. 6 =>
+            when 1 .. 7 =>
                Karten.Kartenform := GlobaleDatentypen.Kartenform_Verwendet_Enum'Val (KartenformAuswahl);
                return 4;
                
-            when 7 =>               
+            when 8 =>               
                Karten.Kartenform := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenform;
                return 4;
                
@@ -401,7 +401,6 @@ package body SpielEinstellungen is
      return Integer
    is begin
 
-      -- 0 = Nicht belegt, 1 = Menschlicher Spieler, 2 = KI
       RasseSchleife:
       loop
          
@@ -415,22 +414,42 @@ package body SpielEinstellungen is
            RassenAuswahl
          is
             when 1 .. 18 =>
-               Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Spiel_Einstellungen,
-                                             TextDateiExtern        => GlobaleTexte.Rassen_Beschreibung_Lang,
-                                             ÜberschriftZeileExtern => RassenAuswahl + 53,
-                                             ErsteZeileExtern       => RassenAuswahl,
-                                             AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                             AbstandEndeExtern      => GlobaleTexte.Keiner);
-               Eingabe.WartenEingabe;
-               JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 6);
-               
                if
-                 JaOderNein = GlobaleKonstanten.JaKonstante
+                 GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (RassenAuswahl)) = GlobaleDatentypen.Leer
                then
-                  return RassenAuswahl;
+                  Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Spiel_Einstellungen,
+                                                TextDateiExtern        => GlobaleTexte.Rassen_Beschreibung_Lang,
+                                                ÜberschriftZeileExtern => RassenAuswahl + 53,
+                                                ErsteZeileExtern       => RassenAuswahl,
+                                                AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                                AbstandEndeExtern      => GlobaleTexte.Leer);
+                  Eingabe.WartenEingabe;
+                  JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 6);
+               
+                  case
+                    JaOderNein
+                  is
+                     when GlobaleKonstanten.JaKonstante =>
+                        return RassenAuswahl;
                      
+                     when others =>
+                        null;
+                  end case;
+                  
                else
-                  null;
+                  JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 32);
+               
+                  case
+                    JaOderNein
+                  is
+                     when GlobaleKonstanten.JaKonstante =>
+                        GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (RassenAuswahl)) := GlobaleDatentypen.Leer;
+                        Spieler := Spieler - 1;
+                        return RassenAuswahl;
+                     
+                     when others =>
+                        null;
+                  end case;
                end if;
 
             when 19 =>               

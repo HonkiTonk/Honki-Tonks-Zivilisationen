@@ -29,6 +29,8 @@ package ZufallGeneratorenSpieleinstellungen is
 
 private
    
+   RasseGewählt : GlobaleDatentypen.Rassen_Verwendet_Enum;
+   
    -- Generatoren für zufällige Spieleinstellungen
    package ZufälligeKartengrößeWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Kartengröße_Zufall_Enum);
    package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Kartenart_Verwendet_Enum);

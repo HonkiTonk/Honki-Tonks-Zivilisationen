@@ -22,6 +22,7 @@ private
    Gewonnen : Boolean;
    
    EinheitAufFeld : GlobaleRecords.RassePlatznummerRecord;
+   StadtAufFeld : GlobaleRecords.RassePlatznummerRecord;
    
    Änderung : GlobaleRecords.AchsenKartenfeldRecord;
 
@@ -47,6 +48,11 @@ private
    
    function FremderAufFeld
      (EinheitRasseNummerExtern, FremdeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean;
+   
+   function FremdeStadtAufFeld
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      FremdeStadtExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean;
 
 end BewegungssystemEinheiten;

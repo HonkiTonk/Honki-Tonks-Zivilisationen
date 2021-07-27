@@ -6,31 +6,32 @@ package DatenbankRecords is
 
    -- EinheitenDatenbank
    type PassierbarkeitArray is array (GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum'Range) of Boolean;
-   type PreisArray is array (1 .. 2) of GlobaleDatentypen.KostenLager;
-   type KampfwerteArray is array (1 .. 3) of GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   type PermanenteKostenArray is array (GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of GlobaleDatentypen.MaximaleStädteMitNullWert;
 
    type EinheitenListeRecord is record
       
       EinheitenGrafik : Wide_Wide_Character;
       
-      -- 1 = Siedler, 2 = Bauarbeiter, 3 = NahkampfLand, 4 = FernkampfLand, 5 = NahkampfSee, 6 = FernkampfSee, 7 = NahkampfLuft, 8 = FernkampfLuft
-      EinheitTyp : GlobaleDatentypen.Einheit_Art_Enum;
+      -- Leer, Unbewaffnet, Nahkämpfer, Fernkämpfer, Beides, Sonstiges
+      EinheitArt : GlobaleDatentypen.Einheit_Art_Enum;
       PreisGeld : GlobaleDatentypen.KostenLager;
       PreisRessourcen : GlobaleDatentypen.KostenLager;
+      PermanenteKosten : PermanenteKostenArray;
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
 
       -- Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
       Passierbarkeit : PassierbarkeitArray;
       
-      MaximaleLebenspunkte : Positive;
+      MaximaleLebenspunkte : GlobaleDatentypen.MaximaleEinheiten;
       MaximaleBewegungspunkte : Float;
       WirdVerbessertZu : GlobaleDatentypen.EinheitenIDMitNullWert;
 
-      Beförderungsgrenze : Positive;
-      MaximalerRang : Natural;
-      Reichweite : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      Angriff : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      Verteidigung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      -- In BenötigteErfahrungspunkte umbenennen?
+      Beförderungsgrenze : GlobaleDatentypen.MaximaleStädte;
+      MaximalerRang : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      Reichweite : GlobaleDatentypen.ProduktionFeld;
+      Angriff : GlobaleDatentypen.ProduktionFeld;
+      Verteidigung : GlobaleDatentypen.ProduktionFeld;
 
       KannTransportieren : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       KannTransportiertWerden : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
@@ -53,7 +54,7 @@ package DatenbankRecords is
 
 
    
-   type WertNahrungRessourcenGeldWissenVerteidigungArray is array (1 .. 5) of GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   type WertNahrungRessourcenGeldWissenVerteidigungArray is array (1 .. 5) of GlobaleDatentypen.ProduktionFeld;
 
    -- GebaeudeDatenbank
    type GebäudeListeRecord is record
@@ -62,17 +63,18 @@ package DatenbankRecords is
       
       PreisGeld : GlobaleDatentypen.KostenLager;      
       PreisRessourcen : GlobaleDatentypen.KostenLager;
+      PermanenteKosten : PermanenteKostenArray;
+      
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
-      PermanenteKosten : GlobaleDatentypen.KostenLager;
       
-      ProduktionBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      GeldBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      WissenBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      VerteidigungBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      NahrungBonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      ProduktionBonus : GlobaleDatentypen.ProduktionFeld;
+      GeldBonus : GlobaleDatentypen.ProduktionFeld;
+      WissenBonus : GlobaleDatentypen.ProduktionFeld;
+      VerteidigungBonus : GlobaleDatentypen.ProduktionFeld;
+      NahrungBonus : GlobaleDatentypen.ProduktionFeld;
       
-      -- Rauswerfen? Durch was besseres ersetzen?
-      Anderes : Boolean;
+      -- Auch in ein Array umschreiben wie die permanenten Kosten?
+      GebäudeSpezielleEigenschaft : GlobaleDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 
    end record;
    -- GebaeudeDatenbank
@@ -87,11 +89,11 @@ package DatenbankRecords is
       -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
       Passierbarkeit : PassierbarkeitArray;
 
-      Nahrungsgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      Ressourcengewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      Geldgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      Wissensgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      Verteidigungsbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      Nahrungsgewinnung : GlobaleDatentypen.ProduktionFeld;
+      Ressourcengewinnung : GlobaleDatentypen.ProduktionFeld;
+      Geldgewinnung : GlobaleDatentypen.ProduktionFeld;
+      Wissensgewinnung : GlobaleDatentypen.ProduktionFeld;
+      Verteidigungsbonus : GlobaleDatentypen.ProduktionFeld;
       
    end record;
    -- KartenDatenbank
@@ -106,13 +108,31 @@ package DatenbankRecords is
       -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
       Passierbarkeit : PassierbarkeitArray;
 
-      Nahrungsbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      Ressourcenbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      Geldbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      Wissensbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-      Verteidigungsbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+      Nahrungsbonus : GlobaleDatentypen.ProduktionFeld;
+      Ressourcenbonus : GlobaleDatentypen.ProduktionFeld;
+      Geldbonus : GlobaleDatentypen.ProduktionFeld;
+      Wissensbonus : GlobaleDatentypen.ProduktionFeld;
+      Verteidigungsbonus : GlobaleDatentypen.ProduktionFeld;
       
    end record;
    -- verbesserungenDatenbank
+   
+   
+   
+   -- RassenDatenbank
+   type RassenListeRecord is record
+      
+      Aggressivität : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      Expansion : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      Wissenschaft : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      Produktion : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      Wirtschaft : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      Bewirtschaftung : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      
+      GültigeStaatsformen : GlobaleDatentypen.StaatsformenArray;
+      -- Besondere Eigenschaften hinzufügen, als Enum? oder was Anderes?
+      
+   end record;
+   -- RassenDatenbank
    
 end DatenbankRecords;

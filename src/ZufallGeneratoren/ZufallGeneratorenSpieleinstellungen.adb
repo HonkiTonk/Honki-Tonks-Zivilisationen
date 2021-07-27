@@ -1,5 +1,7 @@
 pragma SPARK_Mode (Off);
 
+with GlobaleVariablen;
+
 package body ZufallGeneratorenSpieleinstellungen is
    
    function ZufälligeKartengröße
@@ -62,7 +64,23 @@ package body ZufallGeneratorenSpieleinstellungen is
    is begin
       
       ZufälligeSpieleranzahlRasseWählen.Reset (ZufälligeSpieleranzahlRasseGewählt);
-      return ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt);
+      
+      RasseWählenSchleife:
+      loop
+         
+         RasseGewählt := ZufälligeSpieleranzahlRasseWählen.Random (ZufälligeSpieleranzahlRasseGewählt);
+      
+         case
+           GlobaleVariablen.RassenImSpiel (RasseGewählt)
+         is
+            when GlobaleDatentypen.Leer =>
+               return RasseGewählt;
+            
+            when others =>
+               null;
+         end case;
+         
+      end loop RasseWählenSchleife;
       
    end ZufälligeRasse;
    

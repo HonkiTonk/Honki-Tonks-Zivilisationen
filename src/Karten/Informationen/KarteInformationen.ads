@@ -13,13 +13,15 @@ package KarteInformationen is
    
 private
    
+   ErsteAnzeige : Boolean;
+   
    EinheitNummer : GlobaleDatentypen.MaximaleEinheiten;
    
-   Verteidigungsbonus : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-   Nahrungsgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-   Ressourcengewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-   Geldgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
-   Wissensgewinnung : GlobaleDatentypen.WerteNahrungMaterialGeldWissenVerteidigungAngriff;
+   Verteidigungsbonus : GlobaleDatentypen.ProduktionFeld;
+   Nahrungsgewinnung : GlobaleDatentypen.ProduktionFeld;
+   Ressourcengewinnung : GlobaleDatentypen.ProduktionFeld;
+   Geldgewinnung : GlobaleDatentypen.ProduktionFeld;
+   Wissensgewinnung : GlobaleDatentypen.ProduktionFeld;
    
    EinheitRasseNummer : GlobaleRecords.RassePlatznummerRecord;
    StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord;

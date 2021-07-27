@@ -21,16 +21,16 @@ package Karten is
 
    type KartengrößenArray is array (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Range) of KartengrößenRecord;
    Kartengrößen : KartengrößenArray := (
-                                            GlobaleDatentypen.Karte_20_20 => (20, 20, 12),
-                                            GlobaleDatentypen.Karte_40_40 => (40, 40, 50),
-                                            GlobaleDatentypen.Karte_80_80 => (80, 80, 200),
-                                            GlobaleDatentypen.Karte_120_80 => (120, 80, 300),
-                                            GlobaleDatentypen.Karte_120_160 => (120, 160, 600),
-                                            GlobaleDatentypen.Karte_160_160 => (160, 160, 800),
-                                            GlobaleDatentypen.Karte_240_240 => (240, 240, 1_800),
-                                            GlobaleDatentypen.Karte_320_320 => (320, 320, 3200),
+                                            GlobaleDatentypen.Karte_20_20     => (20, 20, 12),
+                                            GlobaleDatentypen.Karte_40_40     => (40, 40, 50),
+                                            GlobaleDatentypen.Karte_80_80     => (80, 80, 200),
+                                            GlobaleDatentypen.Karte_120_80    => (120, 80, 300),
+                                            GlobaleDatentypen.Karte_120_160   => (120, 160, 600),
+                                            GlobaleDatentypen.Karte_160_160   => (160, 160, 800),
+                                            GlobaleDatentypen.Karte_240_240   => (240, 240, 1_800),
+                                            GlobaleDatentypen.Karte_320_320   => (320, 320, 3200),
                                             GlobaleDatentypen.Karte_1000_1000 => (1_000, 1_000, 31_250),
-                                            GlobaleDatentypen.Karte_Nutzer => (1, 1, 1)
+                                            GlobaleDatentypen.Karte_Nutzer    => (1, 1, 1)
                                            );
 
    Kartengröße : GlobaleDatentypen.Kartengröße_Verwendet_Enum;

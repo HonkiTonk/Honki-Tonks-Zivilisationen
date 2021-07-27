@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package Diplomatie is
@@ -33,20 +33,15 @@ package Diplomatie is
             GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
 
    function GegnerAngreifen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GegnerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EigeneRasseExtern, GegnerischeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>
-         (EinheitRasseNummerExtern.Rasse /= GegnerExtern.Rasse
+         (EigeneRasseExtern /= GegnerischeRasseExtern
           and
-            EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= GlobaleDatentypen.Leer
           and
-            GegnerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
-          and
-            GlobaleVariablen.RassenImSpiel (GegnerExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (GegnerischeRasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure ErstkontaktMenschMensch
      (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)

@@ -22,13 +22,14 @@ package EinheitenAllgemein is
    
    procedure EinheitErzeugen
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
+      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten;
+      IDExtern : in GlobaleDatentypen.EinheitenID;
+      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+            StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
           and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
@@ -44,6 +45,20 @@ package EinheitenAllgemein is
    
    procedure Beschäftigung
      (ArbeitExtern : in GlobaleDatentypen.Tastenbelegung_Enum);
+   
+   procedure Beförderung
+     (EinheitRasseNummerExtern, BesiegteEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+          and
+            BesiegteEinheitExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (BesiegteEinheitExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   
 
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen
      (WelcheAuswahlExtern : in Natural)
@@ -97,15 +112,26 @@ package EinheitenAllgemein is
          (TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
             GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function EinheitenIDErmitteln
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.EinheitenID
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 private
    
-   Heilungsrate : constant Positive := 10;
+   Heilungsrate : constant GlobaleDatentypen.MaximaleStädte := 10;
+   
+   ErhalteneErfahrungspunkte : GlobaleDatentypen.MaximaleStädte;
    
    AktuelleAuswahl : GlobaleDatentypen.EinheitenIDMitNullWert;
    Ende : GlobaleDatentypen.EinheitenIDMitNullWert;
    AktuellePosition : GlobaleDatentypen.EinheitenIDMitNullWert;
-
+   
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
    Position : GlobaleRecords.AchsenKartenfeldPositivRecord;

@@ -207,7 +207,7 @@ package body EinheitSuchen is
             null;
          
          elsif
-           EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert).ID).EinheitTyp = EinheitTypExtern
+           EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert).ID).EinheitArt = EinheitTypExtern
          then
             AnzahlEinheitTyp := AnzahlEinheitTyp + 1;
             

@@ -97,6 +97,8 @@ package body Kampfsystem is
          if
            GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).Lebenspunkte = GlobaleKonstanten.LeerEinheit.Lebenspunkte
          then
+            EinheitenAllgemein.Beförderung (EinheitRasseNummerExtern => AngreiferRasseNummerExtern,
+                                             BesiegteEinheitExtern    => VerteidigerRasseNummerExtern);
             EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerRasseNummerExtern);
             return True;
             
@@ -111,6 +113,8 @@ package body Kampfsystem is
          if
            GlobaleVariablen.EinheitenGebaut (AngreiferRasseNummerExtern.Rasse, AngreiferRasseNummerExtern.Platznummer).Lebenspunkte = GlobaleKonstanten.LeerEinheit.Lebenspunkte
          then
+            EinheitenAllgemein.Beförderung (EinheitRasseNummerExtern => VerteidigerRasseNummerExtern,
+                                             BesiegteEinheitExtern    => AngreiferRasseNummerExtern);
             EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferRasseNummerExtern);
             return False;
 

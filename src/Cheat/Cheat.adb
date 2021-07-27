@@ -21,7 +21,7 @@ package body Cheat is
                                         ÜberschriftZeileExtern => 1,
                                         ErsteZeileExtern       => 2,
                                         LetzteZeileExtern      => 3,
-                                        AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                        AbstandAnfangExtern    => GlobaleTexte.Leer,
                                         AbstandMitteExtern     => GlobaleTexte.Neue_Zeile,
                                         AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
@@ -35,6 +35,12 @@ package body Cheat is
                -- Sichtbarkeit der ganzen Karte
             when 's' =>
                Sichtbarkeit (RasseExtern => RasseExtern);
+               
+            when 'g' =>
+               GewonnenDurchCheat := not GewonnenDurchCheat;
+               
+            when 'm' =>
+               GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge := Integer'Last;
                
             when others =>
                return;

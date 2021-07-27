@@ -12,36 +12,40 @@ package body KartePositionPruefen is
         Karten.Kartenform
       is
          when GlobaleDatentypen.X_Zylinder =>
-            return KartenPositionXZylinder (KoordinatenExtern    => KoordinatenExtern,
-                                            ÄnderungExtern       => ÄnderungExtern);
+            return KartenPositionXZylinder (KoordinatenExtern => KoordinatenExtern,
+                                            ÄnderungExtern    => ÄnderungExtern);
             
          when GlobaleDatentypen.Y_Zylinder =>
-            return KartenPositionYZylinder (KoordinatenExtern    => KoordinatenExtern,
-                                            ÄnderungExtern       => ÄnderungExtern);
+            return KartenPositionYZylinder (KoordinatenExtern => KoordinatenExtern,
+                                            ÄnderungExtern    => ÄnderungExtern);
             
          when GlobaleDatentypen.Torus =>
-            return KartenPositionTorus (KoordinatenExtern    => KoordinatenExtern,
-                                        ÄnderungExtern       => ÄnderungExtern);
+            return KartenPositionTorus (KoordinatenExtern => KoordinatenExtern,
+                                        ÄnderungExtern    => ÄnderungExtern);
             
          when GlobaleDatentypen.Kugel =>
-            return KartenPositionKugel (KoordinatenExtern    => KoordinatenExtern,
-                                        ÄnderungExtern       => ÄnderungExtern);
+            return KartenPositionKugel (KoordinatenExtern => KoordinatenExtern,
+                                        ÄnderungExtern    => ÄnderungExtern);
             
          when GlobaleDatentypen.Viereck =>
-            return KartenPositionViereck (KoordinatenExtern    => KoordinatenExtern,
-                                          ÄnderungExtern       => ÄnderungExtern);
+            return KartenPositionViereck (KoordinatenExtern => KoordinatenExtern,
+                                          ÄnderungExtern    => ÄnderungExtern);
 
          when GlobaleDatentypen.Kugel_Gedreht =>
-            return KartenPositionKugelGedreht (KoordinatenExtern    => KoordinatenExtern,
-                                               ÄnderungExtern       => ÄnderungExtern);
+            return KartenPositionKugelGedreht (KoordinatenExtern => KoordinatenExtern,
+                                               ÄnderungExtern    => ÄnderungExtern);
             
-            -- Tugel einfügen, ist halb Torus und halb Kugel
+            -- Hier soll er die Sachen aus Kugel und Torus zusammen machen
+         when GlobaleDatentypen.Tugel =>
+            return KartenPositionTugel (KoordinatenExtern => KoordinatenExtern,
+                                        ÄnderungExtern    => ÄnderungExtern);
       end case;
       
    end KartenPositionBestimmen;
    
    
    
+   -- Kartenformen
    function KartenPositionXZylinder
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
@@ -279,6 +283,47 @@ package body KartePositionPruefen is
    
    
    
+   function KartenPositionTugel
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+   is begin
+      
+      EAchse (KoordinatenExtern.EAchse) := PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                        ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
+      
+      case
+        EAchse (KoordinatenExtern.EAchse)
+      is
+         when GlobaleDatentypen.Ebene'First =>
+            return GlobaleKonstanten.LeerKartenPosition;
+
+         when others =>
+            null;
+      end case;
+            
+      ZwischenPositionAchse (KoordinatenExtern.EAchse) := PositionBestimmen_Y_X_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                         ÄnderungExtern    => ÄnderungExtern);
+      
+      ZwischenPositionTugelAchse (KoordinatenExtern.EAchse) := PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                              ÄnderungExtern    => ÄnderungExtern);
+      
+      YAchse (KoordinatenExtern.EAchse) := PositionBestimmenYWechsel (YAchseExtern         => ZwischenPositionTugelAchse (KoordinatenExtern.EAchse).YAchse,
+                                                                      ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
+                                                                      ArrayPositionExtern  => KoordinatenExtern.EAchse);
+            
+      XAchse (KoordinatenExtern.EAchse) := PositionBestimmenXWechsel (XAchseExtern         => ZwischenPositionAchse (KoordinatenExtern.EAchse).XAchse,
+                                                                      ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
+                                                                      ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      
+      return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
+      
+   end KartenPositionTugel;
+   -- Kartenformen
+   
+   
+   
+   -- Berechnungen
    function PositionBestimmenEAchseFest
      (EAchseExtern : in GlobaleDatentypen.EbeneVorhanden;
       ÄnderungEAchseExtern : in GlobaleDatentypen.EbeneVorhanden)
@@ -551,5 +596,6 @@ package body KartePositionPruefen is
       end if;
       
    end PositionBestimmen_X_Y_Wechsel;
+   -- Berechnungen
    
 end KartePositionPruefen;

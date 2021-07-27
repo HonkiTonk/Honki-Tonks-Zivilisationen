@@ -196,40 +196,38 @@ package body KarteStadt is
          when False =>
             null;
       end case;
-
+      
       if
-        GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 1
-        and
-          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse < 13
+        (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 1
+         or
+           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 2)
+         and
+           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse < 13
       then
-         if
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
-           (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse)) = True
-         then
-            GebaeudeAllgemein.Beschreibung (IDExtern => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse));
-            
-         else
-            null;
-         end if;
+         Aufschlag := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse;
          
-      elsif
-        GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 2
-        and
-          GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse < 13
-      then            
-         if
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
-           (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + 12) = True
-         then
-            GebaeudeAllgemein.Beschreibung (IDExtern => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + 12);
-            
-         else
-            null;
-         end if; 
-        
       else
-         null;
+         Aufschlag := 0;
       end if;
+      
+      case
+        Aufschlag
+      is
+         when 0 =>
+            null;
+            
+         when others =>
+            Aufschlag := Aufschlag - 1;
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
+              (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12)) = True
+            then
+               GebaeudeAllgemein.Beschreibung (IDExtern => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12));
+            
+            else
+               null;
+            end if;
+      end case;
 
       New_Line;
       
@@ -385,9 +383,9 @@ package body KarteStadt is
                                         ÜberschriftZeileExtern => 0,
                                         ErsteZeileExtern       => 34,
                                         LetzteZeileExtern      => 34,
-                                        AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
-                                        AbstandEndeExtern      => GlobaleTexte.Keiner);
+                                        AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
+                                        AbstandEndeExtern      => GlobaleTexte.Leer);
          KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
          
       elsif

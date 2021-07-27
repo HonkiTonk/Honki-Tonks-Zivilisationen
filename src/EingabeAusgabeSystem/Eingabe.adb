@@ -72,8 +72,8 @@ package body Eingabe is
                                         ÜberschriftZeileExtern => 0,
                                         ErsteZeileExtern       => ZeileExtern,
                                         LetzteZeileExtern      => ZeileExtern,
-                                        AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                        AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                        AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
          if

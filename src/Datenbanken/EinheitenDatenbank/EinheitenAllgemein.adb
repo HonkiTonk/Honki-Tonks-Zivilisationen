@@ -7,8 +7,6 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with EinheitenDatenbank;
 
-with KIDatentypen;
-
 with Auswahl, Anzeige, Eingabe, Sichtbarkeit;
 
 package body EinheitenAllgemein is
@@ -22,9 +20,9 @@ package body EinheitenAllgemein is
                                      ÜberschriftZeileExtern => 0,
                                      ErsteZeileExtern       => Positive (IDExtern),
                                      LetzteZeileExtern      => Positive (IDExtern),
-                                     AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
-                                     AbstandEndeExtern      => GlobaleTexte.Keiner);
+                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
+                                     AbstandEndeExtern      => GlobaleTexte.Leer);
       
    end Beschreibung;
 
@@ -133,29 +131,18 @@ package body EinheitenAllgemein is
 
    procedure EinheitErzeugen
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
+      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten;
+      IDExtern : in GlobaleDatentypen.EinheitenID;
+      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
-      
-      -- ID, AchsenPosition
-      -- Lebenspunkte, Bewegungspunkte, Erfahrungspunkte, Rang
-      -- Beschäftigung, Zweite Beschäftigung
-      -- Beschäftigungszeit, Zweite Beschäftigungszeit
-      -- Zielkoordinaten der KI, Beschäftigung der KI, Bewegungsplan der KI
-      -- Platznummer der transportierten Einheiten, Platznummer der transportierenden Einheit
             
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) :=
-        (
-         IDExtern, KoordinatenExtern,
-         0, 0.00, 0, 0,
-         GlobaleDatentypen.Nicht_Vorhanden, GlobaleDatentypen.Nicht_Vorhanden,
-         0, 0,
-         (0, 0, 0), KIDatentypen.Keine_Aufgabe, (others => (0, 0, 0)),
-         (others => 0), 0
-        );
+      GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerExtern) := GlobaleKonstanten.LeerEinheit;
+      GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerExtern).ID := IDExtern;
+      GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerExtern).Position := KoordinatenExtern;
+      GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerExtern).Heimatstadt := StadtRasseNummerExtern.Platznummer;
       
-      LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
+      Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
       
    end EinheitErzeugen;
 
@@ -184,9 +171,9 @@ package body EinheitenAllgemein is
                                            ÜberschriftZeileExtern => 0,
                                            ErsteZeileExtern       => 9,
                                            LetzteZeileExtern      => 9,
-                                           AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                           AbstandMitteExtern     => GlobaleTexte.Keiner,
-                                           AbstandEndeExtern      => GlobaleTexte.Keiner);
+                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+                                           AbstandEndeExtern      => GlobaleTexte.Leer);
             
          when others =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -195,9 +182,9 @@ package body EinheitenAllgemein is
                                            -- Der Abzug wird für die Textanzeige benötigt
                                            ErsteZeileExtern       => GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - GlobaleKonstanten.EinheitBefehlAbzug,
                                            LetzteZeileExtern      => GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Pos (ArbeitExtern) - GlobaleKonstanten.EinheitBefehlAbzug,
-                                           AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                           AbstandMitteExtern     => GlobaleTexte.Keiner,
-                                           AbstandEndeExtern      => GlobaleTexte.Keiner);
+                                           AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                           AbstandMitteExtern     => GlobaleTexte.Leer,
+                                           AbstandEndeExtern      => GlobaleTexte.Leer);
       end case;
       
    end Beschäftigung;
@@ -308,7 +295,7 @@ package body EinheitenAllgemein is
       return GlobaleDatentypen.Einheit_Art_Verwendet_Enum
    is begin
      
-      return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).EinheitTyp;
+      return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).EinheitArt;
    
    end EinheitenTypErmitteln;
    
@@ -377,8 +364,82 @@ package body EinheitenAllgemein is
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).Transportkapazität;
+      if
+        EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).Transportkapazität
+          <= GlobaleRecords.TransporterArray'Last
+      then
+         return EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).Transportkapazität;
+         
+      else
+         return GlobaleRecords.TransporterArray'Last;
+      end if;
       
    end MaximaleTransporterKapazität;
+   
+   
+   
+   procedure Beförderung
+     (EinheitRasseNummerExtern, BesiegteEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      ErhalteneErfahrungspunkte := EinheitenDatenbank.EinheitenListe (BesiegteEinheitExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => BesiegteEinheitExtern)).Beförderungsgrenze / 5;
+      
+      if
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte + ErhalteneErfahrungspunkte > GlobaleDatentypen.MaximaleStädte'Last
+      then
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte := GlobaleDatentypen.MaximaleStädte'Last;
+         
+      else
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
+           := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte + ErhalteneErfahrungspunkte;
+      end if;
+      
+      BeförderungSchleife:
+      while GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
+        >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze loop
+         
+         if
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
+           >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze
+           and
+             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
+           < EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang
+         then
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
+              := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
+              - EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze;            
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
+              := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang + 1;
+         
+         elsif
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
+           >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze
+           and
+             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
+           >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang
+         then
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
+              := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze;
+            exit BeförderungSchleife;
+         
+         else
+            null;
+         end if;
+         
+      end loop BeförderungSchleife;
+      
+   end Beförderung;
+      
+      
+      
+      
+   function EinheitenIDErmitteln
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.EinheitenID
+   is begin
+         
+      return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID;
+         
+   end EinheitenIDErmitteln;
 
 end EinheitenAllgemein;

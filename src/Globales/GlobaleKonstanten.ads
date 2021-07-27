@@ -163,9 +163,9 @@ package GlobaleKonstanten is
 
 
    -- Für den KartePositionPruefen.KartenPositionBestimmen Rückgabewert
-   LeerKartenPosition : constant GlobaleRecords.AchsenKartenfeldPositivRecord := (GlobaleDatentypen.EbeneVorhanden'First,
-                                                                                  GlobaleDatentypen.KartenfeldPositivMitNullwert'First,
-                                                                                  GlobaleDatentypen.KartenfeldPositivMitNullwert'First);
+   LeerKartenPosition : constant GlobaleRecords.AchsenKartenfeldPositivRecord := (EAchse => GlobaleDatentypen.EbeneVorhanden'First,
+                                                                                  YAchse => GlobaleDatentypen.KartenfeldPositivMitNullwert'First,
+                                                                                  XAchse => GlobaleDatentypen.KartenfeldPositivMitNullwert'First);
 
    LeerYXKartenWert : constant GlobaleDatentypen.KartenfeldPositivMitNullwert := GlobaleDatentypen.KartenfeldPositivMitNullwert'First;
    -- Für den KartePositionPruefen.KartenPositionBestimmen Rückgabewert
@@ -174,108 +174,148 @@ package GlobaleKonstanten is
 
    -- Für die Leerwerte
    LeerCursor : constant GlobaleRecords.CursorRecord := (
-                                                         -- CursorGrafik
-                                                         '©',
-                                                         -- AchsenPosition
-                                                         (0, 0, 0),
-                                                         -- AchsenPositionAlt
-                                                         (0, 0, 0),
-                                                         -- AchsenPositionStadt
-                                                         (1, 1)
+                                                         CursorGrafik  => '©',
+                                                         Position      => (0, 0, 0),
+                                                         PositionAlt   => (0, 0, 0),
+                                                         PositionStadt => (1, 1)
                                                         );
 
    LeerEinheit : constant GlobaleRecords.EinheitenGebautRecord := (
-                                                                   -- ID, AchsenPosition
-                                                                   0, (0, 0, 0),
-                                                                   -- Lebenspunkte, Bewegungspunkte, Erfahrungspunkte, Rang
-                                                                   0, 0.00, 0, 0,
-                                                                   -- Beschäftigung, Zweite Beschäftigung
-                                                                   GlobaleDatentypen.Nicht_Vorhanden, GlobaleDatentypen.Nicht_Vorhanden,
-                                                                   -- Beschäftigungszeit, Zweite Beschäftigungszeit
-                                                                   0, 0,
-                                                                   -- Zielkoordinaten der KI, Beschäftigung der KI, Bewegungsplan der KI
-                                                                   (0, 0, 0), KIDatentypen.Keine_Aufgabe, (others => (0, 0, 0)),
-                                                                   -- Platznummer der transportierten Einheiten, Platznummer der transportierenden Einheit
-                                                                   (others => 0), 0
+                                                                   ID                           => 0,
+                                                                   Position                     => (0, 0, 0),
+                                                                   Heimatstadt                  => 0,
+                                                                   Lebenspunkte                 => 0,
+                                                                   Bewegungspunkte              => 0.00,
+                                                                   Erfahrungspunkte             => 0,
+                                                                   Rang                         => 0,
+                                                                   Beschäftigung                => GlobaleDatentypen.Nicht_Vorhanden,
+                                                                   BeschäftigungNachfolger      => GlobaleDatentypen.Nicht_Vorhanden,
+                                                                   Beschäftigungszeit           => 0,
+                                                                   BeschäftigungszeitNachfolger => 0,
+                                                                   KIZielKoordinaten            => (0, 0, 0),
+                                                                   KIBeschäftigt                => KIDatentypen.Keine_Aufgabe,
+                                                                   KIBewegungPlan               => (others => (0, 0, 0)),
+                                                                   Transportiert                => (others => 0),
+                                                                   WirdTransportiert            => 0
                                                                   );
 
    LeerStadt : constant GlobaleRecords.StadtGebautRecord := (
-                                                             -- ID, AchsenPosition, Am Wasser, (Einwohner, Arbeiter)
-                                                             GlobaleDatentypen.Leer, (0, 0, 0), False, (0 , 0),
-                                                             -- Aktuelle Nahrungsmittel, Aktuelle Nahrungsproduktion, Aktuelle Ressourcen, Aktuelle Produktionrate
-                                                             0, 0, 0, 0,
-                                                             -- Aktuelle Geldgewinnung, Aktuelle Forschungsrate, Aktuelles Bauprojekt, Verbleibende Bauzeit
-                                                             0, 0, 0, 0,
-                                                             -- Korruption, Gebäude Vorhanden, Stadtname
-                                                             0, (others => False), To_Unbounded_Wide_Wide_String (Source => ""),
-                                                             -- UmgebungBewirtschaftung, UmgebungGröße
-                                                             (others => (others => False)), 1,
-                                                             -- Aktuelle Meldungen
-                                                             (others => GlobaleDatentypen.Keine),
-                                                             -- KI aktuelle Beschäftigung
-                                                             KIDatentypen.Keine_Aufgabe
+                                                             ID                      => GlobaleDatentypen.Leer,
+                                                             Position                => (0, 0, 0),
+                                                             AmWasser                => False,
+                                                             EinwohnerArbeiter       => (0 , 0),
+                                                             Nahrungsmittel          => 0,
+                                                             Nahrungsproduktion      => 0,
+                                                             Ressourcen              => 0,
+                                                             Produktionrate          => 0,
+                                                             Geldgewinnung           => 0,
+                                                             Forschungsrate          => 0,
+                                                             Bauprojekt              => 0,
+                                                             Bauzeit                 => 0,
+                                                             Korruption              => 0,
+                                                             GebäudeVorhanden        => (others => False),
+                                                             Name                    => To_Unbounded_Wide_Wide_String (Source => ""),
+                                                             UmgebungBewirtschaftung => (others => (others => False)),
+                                                             UmgebungGröße           => 1,
+                                                             Meldungen               => (others => GlobaleDatentypen.Leer),
+                                                             KIBeschäftigung         => KIDatentypen.Keine_Aufgabe
                                                             );
 
    LeerWichtigesZeug : constant GlobaleRecords.WichtigesRecord := (
-                                                                   -- Aktuelle Geldmenge, GeldZugewinn Pro Runde
-                                                                   0, 0,
-                                                                   -- Forschungsrate, Aktuelle Forschungsmenge, Verbleibende Forschungszeit, Forschungsprojekt
-                                                                   0, 0, 10_000, 0,
-                                                                   -- Erforscht
-                                                                   (others => False)
+                                                                   Geldmenge                  => 0,
+                                                                   GeldZugewinnProRunde       => 0,
+                                                                   GesamteForschungsrate      => 0,
+                                                                   Forschungsmenge            => 0,
+                                                                   VerbleibendeForschungszeit => 10_000,
+                                                                   Forschungsprojekt          => 0,
+                                                                   Erforscht                  => (others => False)
                                                                   );
 
    LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
-                                                                     -- KartenGrafik
-                                                                     ' ',
-                                                                     -- Passierbarkeit
-                                                                     (others => False),
-                                                                     -- Nahrungsgewinnung, Ressourcengewinnung, Geldgewinnung, Wissensgewinnung, Verteidigungsbonus
-                                                                     0, 0, 0, 0, 0
+                                                                     KartenGrafik        => ' ',
+                                                                     Passierbarkeit      => (others => False),
+                                                                     Nahrungsgewinnung   => 0,
+                                                                     Ressourcengewinnung => 0,
+                                                                     Geldgewinnung       => 0,
+                                                                     Wissensgewinnung    => 0,
+                                                                     Verteidigungsbonus  => 0
                                                                     );
 
    LeerWeltkarte : constant GlobaleRecords.KartenRecord := (
-                                                            -- Kartengrund, Ist da ein Hügel?, Welche Rasse kann was sehen
-                                                            GlobaleDatentypen.Leer, False, (others => False),
-                                                            -- Welcher Fluss, Welche Straße, Welche Verbesserung, Welche Ressource
-                                                            GlobaleDatentypen.Leer, GlobaleDatentypen.Leer, GlobaleDatentypen.Leer, GlobaleDatentypen.Leer,
-                                                            -- Durch welche Stadt welcher Rasse belegter Grund, Felderbewertung
-                                                            0, 0
+                                                            Grund                   => GlobaleDatentypen.Leer,
+                                                            Hügel                   => False,
+                                                            Sichtbar                => (others => False),
+                                                            Fluss                   => GlobaleDatentypen.Leer,
+                                                            VerbesserungStraße      => GlobaleDatentypen.Leer,
+                                                            VerbesserungGebiet      => GlobaleDatentypen.Leer,
+                                                            Ressource               => GlobaleDatentypen.Leer,
+                                                            DurchStadtBelegterGrund => 0,
+                                                            Felderwertung           => 0
                                                            );
 
    LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
-                                                                                 -- VerbesserungGrafik
-                                                                                 ' ',
-                                                                                 -- Passierbarkeit
-                                                                                 (others => False),
-                                                                                 -- Nahrungsbonus, Ressourcenbonus, Geldbonus, Wissensbonus, Verteidigungsbonus
-                                                                                 0, 0, 0, 0, 0
+                                                                                 VerbesserungGrafik => ' ',
+                                                                                 Passierbarkeit     => (others => False),
+                                                                                 Nahrungsbonus      => 0,
+                                                                                 Ressourcenbonus    => 0,
+                                                                                 Geldbonus          => 0,
+                                                                                 Wissensbonus       => 0,
+                                                                                 Verteidigungsbonus => 0
                                                                                 );
 
    LeerEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (
-                                                                         -- EinheitenGrafik, EinheitTyp, PreisGeld, PreisRessourcen, Anforderungen
-                                                                         '@', GlobaleDatentypen.Leer, 0, 0, 0,
-                                                                         -- Passierbarkeit
-                                                                         (others => False),
-                                                                         -- MaximaleLebenspunkte, MaximaleBewegungspunkte, WirdVerbesserZu
-                                                                         1, 0.00, 0,
-                                                                         -- Beförderungsgrenze, MaximalerRang, Reichweite, Angriff, Verteidigung
-                                                                         1, 1, 0, 0, 1,
-                                                                         -- Kann Dinge transportieren, Kann transportiert werden, Transportkapazität
-                                                                         0, 0, 0
+                                                                         EinheitenGrafik            => '@',
+                                                                         EinheitArt                 => GlobaleDatentypen.Leer,
+                                                                         PreisGeld                  => 0,
+                                                                         PreisRessourcen            => 0,
+                                                                         PermanenteKosten           => (others => 0),
+                                                                         Anforderungen              => 0,
+                                                                         Passierbarkeit             => (others => False),
+                                                                         MaximaleLebenspunkte       => 1,
+                                                                         MaximaleBewegungspunkte    => 0.00,
+                                                                         WirdVerbessertZu           => 0,
+                                                                         Beförderungsgrenze         => 1,
+                                                                         MaximalerRang              => 1,
+                                                                         Reichweite                 => 0,
+                                                                         Angriff                    => 0,
+                                                                         Verteidigung               => 1,
+                                                                         KannTransportieren         => 0,
+                                                                         KannTransportiertWerden    => 0,
+                                                                         Transportkapazität         => 0
                                                                         );
 
    LeerForschungListe : constant DatenbankRecords.ForschungListeRecord := (
-                                                                           -- PreisForschung, AnforderungForschung
-                                                                           0, (others => 0)
+                                                                           PreisForschung       => 0,
+                                                                           AnforderungForschung => (others => 0)
                                                                           );
 
    LeerGebäudeListe : constant DatenbankRecords.GebäudeListeRecord := (
-                                                                         -- GebäudeGrafik, PreisGeld, PreisRessourcen, Anforderungen, PermanenteKosten
-                                                                         ' ', 0, 0, 0, 0,
-                                                                         -- ProduktionBonus, GeldBonus, WissenBonus, VerteidigungBonus, NahrungBonus, Anderes
-                                                                         0, 0, 0, 0, 0, False
+                                                                         GebäudeGrafik               => ' ',
+                                                                         PreisGeld                   => 0,
+                                                                         PreisRessourcen             => 0,
+                                                                         PermanenteKosten            => (others => 0),
+                                                                         Anforderungen               => 0,
+                                                                         ProduktionBonus             => 0,
+                                                                         GeldBonus                   => 0,
+                                                                         WissenBonus                 => 0,
+                                                                         VerteidigungBonus           => 0,
+                                                                         NahrungBonus                => 0,
+                                                                         GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer
                                                                         );
+
+   LeerRassenList : constant DatenbankRecords.RassenListeRecord := (
+                                                                    Aggressivität       => 0,
+                                                                    Expansion           => 0,
+                                                                    Wissenschaft        => 0,
+                                                                    Produktion          => 0,
+                                                                    Wirtschaft          => 0,
+                                                                    Bewirtschaftung     => 0,
+                                                                    GültigeStaatsformen => (GlobaleDatentypen.Anarchie,
+                                                                                             GlobaleDatentypen.Anarchie,
+                                                                                             GlobaleDatentypen.Anarchie,
+                                                                                             GlobaleDatentypen.Anarchie,
+                                                                                             GlobaleDatentypen.Anarchie)
+                                                                   );
    -- Für die Leerwerte
 
    -- Für die grafische Anzeige

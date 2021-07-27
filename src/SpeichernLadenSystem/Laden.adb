@@ -76,6 +76,13 @@ package body Laden is
       -- Schwierigkeitsgrad laden
       
       
+      
+      -- Gewonnen laden
+      Boolean'Read (Stream (File => DateiLadenNeu),
+                    GlobaleVariablen.Gewonnen);
+      -- Gewonnen laden
+      
+      
 
       -- Schleife zum Laden der Karte      
       GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Read (Stream (File => DateiLadenNeu),

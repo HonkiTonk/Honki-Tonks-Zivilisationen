@@ -59,21 +59,20 @@ package body Diplomatie is
 
 
    function GegnerAngreifen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GegnerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     return Boolean
+     (EigeneRasseExtern, GegnerischeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Boolean
    is begin
       
       case
-        Diplomatie.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                FremdeRasseExtern => GegnerExtern.Rasse)
+        Diplomatie.DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
+                                                FremdeRasseExtern => GegnerischeRasseExtern)
       is
          when GlobaleDatentypen.Neutral | GlobaleDatentypen.Offene_Grenzen =>
             if
               Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = GlobaleKonstanten.JaKonstante
             then
-               Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                     VerteidigendeRasseExtern => GegnerExtern.Rasse);
+               Diplomatie.KriegDurchDirektenAngriff (AngreifendeRasseExtern => EigeneRasseExtern,
+                                                     VerteidigendeRasseExtern => GegnerischeRasseExtern);
                return True;
                   
             else

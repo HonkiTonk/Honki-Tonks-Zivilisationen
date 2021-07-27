@@ -17,7 +17,7 @@ package body Wuerdigung is
                                      ÜberschriftZeileExtern => 0,
                                      ErsteZeileExtern       => 1,
                                      LetzteZeileExtern      => 1,
-                                     AbstandAnfangExtern    => GlobaleTexte.Keiner,
+                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
                                      AbstandMitteExtern     => GlobaleTexte.Neue_Zeile,
                                      AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
       New_Line;

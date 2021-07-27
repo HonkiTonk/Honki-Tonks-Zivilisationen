@@ -8,12 +8,12 @@ package GlobaleDatentypen is
    subtype Anfang_Ende_Verwendet is Anfang_Ende_Enum range Anfangswert .. Endwert;
 
    type Schwierigkeitsgrad_Enum is (Leer, Einfach, Mittel, Schwer);
-   subtype Schwierigkeitsgrad_Verwendet_Enum is Schwierigkeitsgrad_Enum range Einfach .. Schwer;
+   subtype Schwierigkeitsgrad_Verwendet_Enum is Schwierigkeitsgrad_Enum range Einfach .. Schwierigkeitsgrad_Enum'Last;
    -- Sonstiges
 
    -- Für Anzeige
-   type TextDateien is range 0 .. 29;
-   type TextZeilen is range 0 .. 104;
+   type TextDateien is range 0 .. 30;
+   type TextZeilen is range 0 .. 105;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;
    -- Für Anzeige
 
@@ -32,7 +32,7 @@ package GlobaleDatentypen is
                                 Stadt_Umbenennen, Stadt_Abreißen, Stadt_Suchen,
                                 Runde_Beenden, Cheatmenü);
 
-   subtype Tastenbelegung_Verwendet_Enum is Tastenbelegung_Enum range Hoch .. Cheatmenü;
+   subtype Tastenbelegung_Verwendet_Enum is Tastenbelegung_Enum range Hoch .. Tastenbelegung_Enum'Last;
    subtype Tastenbelegung_Bewegung_Enum is Tastenbelegung_Verwendet_Enum range Hoch .. Ebene_Runter;
    subtype Tastenbelegung_Bewegung_Stadt_Enum is Tastenbelegung_Verwendet_Enum range Hoch .. Rechts_Unten;
    subtype Tastenbelegung_Befehle_Enum is Tastenbelegung_Verwendet_Enum range Straße_Bauen .. Einheit_Verbessern;
@@ -45,11 +45,16 @@ package GlobaleDatentypen is
    type Rassen_Enum is (Leer, Rasse_1, Rasse_2, Rasse_3, Rasse_4, Rasse_5, Rasse_6, Rasse_7, Rasse_8, Rasse_9, Rasse_10, Rasse_11, Rasse_12, Rasse_13, Rasse_14, Rasse_15, Rasse_16, Rasse_17, Rasse_18);
    for Rassen_Enum use (Leer => 0, Rasse_1 => 1, Rasse_2 => 2, Rasse_3 => 3, Rasse_4 => 4, Rasse_5 => 5, Rasse_6 => 6, Rasse_7 => 7, Rasse_8 => 8, Rasse_9 => 9, Rasse_10 => 10, Rasse_11 => 11, Rasse_12 => 12,
                         Rasse_13 => 13, Rasse_14 => 14, Rasse_15 => 15, Rasse_16 => 16, Rasse_17 => 17, Rasse_18 => 18);
-   subtype Rassen_Verwendet_Enum is Rassen_Enum range Rasse_1 .. Rasse_18;
+   subtype Rassen_Verwendet_Enum is Rassen_Enum range Rasse_1 .. Rassen_Enum'Last;
 
    type Spieler_Enum is (Leer, Spieler_Mensch, Spieler_KI);
    for Spieler_Enum use (Leer => 0, Spieler_Mensch => 1, Spieler_KI => 2);
    type RassenImSpielArray is array (Rassen_Verwendet_Enum'Range) of Spieler_Enum;
+
+   type Staatsform_Enum is (Anarchie,
+                            Demokratie);
+
+   type StaatsformenArray is array (1 .. 5) of Staatsform_Enum;
    -- Für Rassen
 
 
@@ -72,20 +77,20 @@ package GlobaleDatentypen is
    type Kartengröße_Enum is (Leer, Karte_20_20, Karte_40_40, Karte_80_80, Karte_120_80, Karte_120_160, Karte_160_160, Karte_240_240, Karte_320_320, Karte_1000_1000, Karte_Nutzer);
    for Kartengröße_Enum use (Leer => 0, Karte_20_20 => 1, Karte_40_40 => 2, Karte_80_80 => 3, Karte_120_80 => 4, Karte_120_160 => 5, Karte_160_160 => 6, Karte_240_240 => 7, Karte_320_320 => 8,
                                Karte_1000_1000 => 9, Karte_Nutzer => 10);
-   subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range Karte_20_20 .. Karte_Nutzer;
+   subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range Karte_20_20 .. Kartengröße_Enum'Last;
    subtype Kartengröße_Zufall_Enum is Kartengröße_Verwendet_Enum range Karte_20_20 .. Karte_1000_1000;
 
    type Kartenart_Enum is (Leer, Inseln, Kontinente, Pangäa, Nur_Land, Chaos);
    for Kartenart_Enum use (Leer => 0, Inseln => 1, Kontinente => 2, Pangäa => 3, Nur_Land => 4, Chaos => 5);
-   subtype Kartenart_Verwendet_Enum is Kartenart_Enum range Inseln .. Chaos;
+   subtype Kartenart_Verwendet_Enum is Kartenart_Enum range Inseln .. Kartenart_Enum'Last;
 
    type Kartentemperatur_Enum is (Leer, Kalt, Gemäßigt, Heiß, Eiszeit, Wüste);
    for Kartentemperatur_Enum use (Leer => 0, Kalt => 1, Gemäßigt => 2, Heiß => 3, Eiszeit => 4, Wüste => 5);
-   subtype Kartentemperatur_Verwendet_Enum is Kartentemperatur_Enum range Kalt .. Wüste;
+   subtype Kartentemperatur_Verwendet_Enum is Kartentemperatur_Enum range Kalt .. Kartentemperatur_Enum'Last;
 
-   type Kartenform_Enum is (Leer, X_Zylinder, Y_Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht);
-   for Kartenform_Enum use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5, Kugel_Gedreht => 6);
-   subtype Kartenform_Verwendet_Enum is Kartenform_Enum range X_Zylinder .. Kugel_Gedreht;
+   type Kartenform_Enum is (Leer, X_Zylinder, Y_Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht, Tugel);
+   for Kartenform_Enum use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5, Kugel_Gedreht => 6, Tugel => 7);
+   subtype Kartenform_Verwendet_Enum is Kartenform_Enum range X_Zylinder .. Kartenform_Enum'Last;
 
    type Karten_Grund_Enum is (Leer,
                               -- Feld
@@ -136,6 +141,9 @@ package GlobaleDatentypen is
    type BelegterGrund is range 0 .. 18 * 1_000 + 100;
 
    type SichtbarkeitArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of Boolean;
+
+   type Besondere_Ressourcen_Enum is (Leer, Kohle);
+   subtype Besondere_Ressourcen_Verwendet_Enum is Besondere_Ressourcen_Enum range Kohle .. Besondere_Ressourcen_Enum'Last;
    -- Für Karte
 
 
@@ -157,17 +165,23 @@ package GlobaleDatentypen is
                                 Luft, Weltraum,
                                 Unteridrisch, Planeteninneres,
                                 Lava);
-   subtype Passierbarkeit_Vorhanden_Enum is Passierbarkeit_Enum range Boden .. Lava;
+   subtype Passierbarkeit_Vorhanden_Enum is Passierbarkeit_Enum range Boden .. Passierbarkeit_Enum'Last;
    subtype Passierbarkeit_Fliegen_Enum is Passierbarkeit_Vorhanden_Enum range Luft .. Weltraum;
 
-   type Einheit_Art_Enum is (Leer, Unbewaffnet, Nahkämpfer, Fernkämpfer, Beides, Sonstiges);
-   subtype Einheit_Art_Verwendet_Enum is Einheit_Art_Enum range Unbewaffnet .. Sonstiges;
+   type Einheit_Art_Enum is (Leer, Arbeiter, Unbewaffnet, Nahkämpfer, Fernkämpfer, Beides, Sonstiges);
+   subtype Einheit_Art_Verwendet_Enum is Einheit_Art_Enum range Unbewaffnet .. Einheit_Art_Enum'Last;
+
+   type Permanente_Kosten_Enum is (Leer, Nahrung, Geld, Ressourcen, Hier_Spezielle_Ressourcen_Einbauen);
+   subtype Permanente_Kosten_Verwendet_Enum is Permanente_Kosten_Enum range Nahrung .. Permanente_Kosten_Enum'Last;
    -- Für Einheiten
 
 
 
    -- Für Gebäude
    subtype GebäudeID is KartenverbesserungEinheitenID range 1 .. 25;
+
+   type Gebäude_Spezielle_Eigenschaften_Enum is (Leer, Eigenschaft);
+   subtype Gebäude_Spezielle_Eigenschaften_Verwendet_Enum is Gebäude_Spezielle_Eigenschaften_Enum range Eigenschaft .. Gebäude_Spezielle_Eigenschaften_Enum'Last;
    -- Für Gebäude
 
 
@@ -188,17 +202,17 @@ package GlobaleDatentypen is
 
    type KostenLager is range -10_000 .. 10_000;
    subtype GesamtproduktionStadt is KostenLager range -500 .. 500;
-   subtype WerteNahrungMaterialGeldWissenVerteidigungAngriff is GesamtproduktionStadt range -100 .. 100;
+   subtype ProduktionFeld is GesamtproduktionStadt range -100 .. 100;
 
    type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
 
-   type Stadt_Meldung_Enum is (Keine, Produktion_Abgeschlossen, Einwohner_Wachstum, Einwohner_Reduktion, Einheit_Unplatzierbar, Stadt_Angegriffen);
+   type Stadt_Meldung_Enum is (Leer, Produktion_Abgeschlossen, Einwohner_Wachstum, Einwohner_Reduktion, Einheit_Unplatzierbar, Stadt_Angegriffen);
    -- Für Stadt
 
 
 
    -- Für Diplomatie
-   type Status_Untereinander_Enum is (Kein_Kontakt,
+   type Status_Untereinander_Enum is (Leer,
                                       -- Neutral
                                       Neutral,
                                       -- Friedlich

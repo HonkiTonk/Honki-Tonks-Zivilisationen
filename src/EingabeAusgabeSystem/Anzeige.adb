@@ -27,7 +27,7 @@ package body Anzeige is
       case
         AbstandAnfangExtern
       is
-         when GlobaleTexte.Keiner =>
+         when GlobaleTexte.Leer =>
             null;
 
          when GlobaleTexte.Kleiner_Abstand =>
@@ -48,7 +48,7 @@ package body Anzeige is
          if
            ErsteZeileExtern = LetzteZeileExtern
            or
-             AbstandMitteExtern = GlobaleTexte.Keiner
+             AbstandMitteExtern = GlobaleTexte.Leer
          then
             null;
             
@@ -58,7 +58,7 @@ package body Anzeige is
             case
               AbstandMitteExtern
             is
-               when GlobaleTexte.Keiner =>
+               when GlobaleTexte.Leer =>
                   null;
                   
                when GlobaleTexte.Kleiner_Abstand =>
@@ -80,7 +80,7 @@ package body Anzeige is
       case
         AbstandEndeExtern
       is
-         when GlobaleTexte.Keiner =>
+         when GlobaleTexte.Leer =>
             null;
 
          when GlobaleTexte.Kleiner_Abstand =>
@@ -107,8 +107,8 @@ package body Anzeige is
                                      ÜberschriftZeileExtern => 0,
                                      ErsteZeileExtern       => TextZeileExtern,
                                      LetzteZeileExtern      => TextZeileExtern,
-                                     AbstandAnfangExtern    => GlobaleTexte.Keiner,
-                                     AbstandMitteExtern     => GlobaleTexte.Keiner,
+                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
 
       if
@@ -416,7 +416,7 @@ package body Anzeige is
       case
         AbstandAnfangExtern
       is
-         when GlobaleTexte.Keiner =>
+         when GlobaleTexte.Leer =>
             null;
 
          when GlobaleTexte.Kleiner_Abstand =>
@@ -463,7 +463,7 @@ package body Anzeige is
       case
         AbstandEndeExtern
       is
-         when GlobaleTexte.Keiner =>
+         when GlobaleTexte.Leer =>
             null;
 
          when GlobaleTexte.Kleiner_Abstand =>
