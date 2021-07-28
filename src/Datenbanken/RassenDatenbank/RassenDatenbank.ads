@@ -8,7 +8,7 @@ package RassenDatenbank is
 
    type RassenListeArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of DatenbankRecords.RassenListeRecord;
    RassenListe : RassenListeArray := (
-                                      GlobaleDatentypen.Rasse_1 =>
+                                      GlobaleDatentypen.Menschen =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -21,7 +21,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_2 =>
+                                      GlobaleDatentypen.Maschinen =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -34,7 +34,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_3 =>
+                                      GlobaleDatentypen.Biber =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -47,7 +47,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_4 =>
+                                      GlobaleDatentypen.Wölfe =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -60,7 +60,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_5 =>
+                                      GlobaleDatentypen.Fischotter =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -73,7 +73,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_6 =>
+                                      GlobaleDatentypen.Marderhund =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -86,7 +86,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_7 =>
+                                      GlobaleDatentypen.Wildschwein =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -99,7 +99,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_8 =>
+                                      GlobaleDatentypen.Waschbär =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -112,7 +112,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_9 =>
+                                      GlobaleDatentypen.Maulwurf =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -125,7 +125,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_10 =>
+                                      GlobaleDatentypen.Ziesel =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -138,7 +138,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_11 =>
+                                      GlobaleDatentypen.Spinnen =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -151,7 +151,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_12 =>
+                                      GlobaleDatentypen.Steinbock =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -164,7 +164,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_13 =>
+                                      GlobaleDatentypen.Greifvögel =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -177,7 +177,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_14 =>
+                                      GlobaleDatentypen.Fische =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -190,7 +190,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_15 =>
+                                      GlobaleDatentypen.Schlangen =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -203,7 +203,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_16 =>
+                                      GlobaleDatentypen.Salamander =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -216,7 +216,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_17 =>
+                                      GlobaleDatentypen.Pflanzen =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -229,7 +229,7 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie,
                                                                   GlobaleDatentypen.Anarchie)),
                                       
-                                      GlobaleDatentypen.Rasse_18 =>
+                                      GlobaleDatentypen.Igel =>
                                         (Aggressivität       => 0,
                                          Expansion           => 0,
                                          Wissenschaft        => 0,
@@ -243,12 +243,25 @@ package RassenDatenbank is
                                                                   GlobaleDatentypen.Anarchie))
                                      );
    
-   procedure StandardRassenDatenbankWiederherstellen;
+   procedure StandardRassenDatenbankLaden;
    
 private
    
    RassenListeStandard : constant RassenListeArray := (
-                                                       GlobaleDatentypen.Rasse_1 =>
+                                                       GlobaleDatentypen.Menschen =>
+                                                         (Aggressivität       => 0,
+                                                          Expansion           => 0,
+                                                          Wissenschaft        => 0,
+                                                          Produktion          => 0,
+                                                          Wirtschaft          => 0,
+                                                          Bewirtschaftung     => 0,
+                                                          GültigeStaatsformen => (GlobaleDatentypen.Anarchie,
+                                                                                   GlobaleDatentypen.Demokratie,
+                                                                                   GlobaleDatentypen.Anarchie,
+                                                                                   GlobaleDatentypen.Anarchie,
+                                                                                   GlobaleDatentypen.Anarchie)),
+                                      
+                                                       GlobaleDatentypen.Maschinen =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -261,7 +274,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_2 =>
+                                                       GlobaleDatentypen.Biber =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -274,7 +287,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_3 =>
+                                                       GlobaleDatentypen.Wölfe =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -287,7 +300,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_4 =>
+                                                       GlobaleDatentypen.Fischotter =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -300,7 +313,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_5 =>
+                                                       GlobaleDatentypen.Marderhund =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -313,7 +326,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_6 =>
+                                                       GlobaleDatentypen.Wildschwein =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -326,7 +339,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_7 =>
+                                                       GlobaleDatentypen.Waschbär =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -339,7 +352,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_8 =>
+                                                       GlobaleDatentypen.Maulwurf =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -352,7 +365,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_9 =>
+                                                       GlobaleDatentypen.Ziesel =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -365,7 +378,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_10 =>
+                                                       GlobaleDatentypen.Spinnen =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -378,7 +391,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_11 =>
+                                                       GlobaleDatentypen.Steinbock =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -391,7 +404,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_12 =>
+                                                       GlobaleDatentypen.Greifvögel =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -404,7 +417,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_13 =>
+                                                       GlobaleDatentypen.Fische =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -417,7 +430,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_14 =>
+                                                       GlobaleDatentypen.Schlangen =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -430,7 +443,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_15 =>
+                                                       GlobaleDatentypen.Salamander =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -443,7 +456,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_16 =>
+                                                       GlobaleDatentypen.Pflanzen =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,
@@ -456,20 +469,7 @@ private
                                                                                    GlobaleDatentypen.Anarchie,
                                                                                    GlobaleDatentypen.Anarchie)),
                                       
-                                                       GlobaleDatentypen.Rasse_17 =>
-                                                         (Aggressivität       => 0,
-                                                          Expansion           => 0,
-                                                          Wissenschaft        => 0,
-                                                          Produktion          => 0,
-                                                          Wirtschaft          => 0,
-                                                          Bewirtschaftung     => 0,
-                                                          GültigeStaatsformen => (GlobaleDatentypen.Anarchie,
-                                                                                   GlobaleDatentypen.Anarchie,
-                                                                                   GlobaleDatentypen.Anarchie,
-                                                                                   GlobaleDatentypen.Anarchie,
-                                                                                   GlobaleDatentypen.Anarchie)),
-                                      
-                                                       GlobaleDatentypen.Rasse_18 =>
+                                                       GlobaleDatentypen.Igel =>
                                                          (Aggressivität       => 0,
                                                           Expansion           => 0,
                                                           Wissenschaft        => 0,

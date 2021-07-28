@@ -127,7 +127,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
         and
@@ -137,7 +137,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
         and
@@ -192,7 +192,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
         and
@@ -202,7 +202,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
         and
@@ -280,7 +280,7 @@ package body Verbesserungen is
    is begin
 
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (1) = False
         and
@@ -290,7 +290,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (1) = False
         and
@@ -376,7 +376,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
@@ -386,7 +386,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
@@ -522,7 +522,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
@@ -532,7 +532,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_10
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and

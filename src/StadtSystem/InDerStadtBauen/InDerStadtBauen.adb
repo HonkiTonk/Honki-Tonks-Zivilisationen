@@ -7,15 +7,31 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with GebaeudeDatenbank, EinheitenDatenbank, DatenbankRecords;
      
-with Anzeige, Eingabe;
+with Anzeige, Eingabe, Auswahl;
 
 package body InDerStadtBauen is
 
    procedure Bauen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
-
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := 0;
+      
+      case
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt
+      is
+         when 0 =>
+            null;
+            
+         when others =>            
+            if
+              Auswahl.AuswahlJaNein (FrageZeileExtern => 14) = GlobaleKonstanten.JaKonstante
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := 0;
+               
+            else
+               return;
+            end if;
+      end case;
+      
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := 0;
       
       BauSchleife:
@@ -60,6 +76,7 @@ package body InDerStadtBauen is
       then
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := 0;
             
+         -- Gebäude
       elsif
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt < 10_000
       then
@@ -69,6 +86,7 @@ package body InDerStadtBauen is
                - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen)
              / GlobaleDatentypen.KostenLager (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate);
                
+         -- Einheiten
       else
          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit
            := (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse,

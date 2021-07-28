@@ -6,7 +6,7 @@ package DatenbankRecords is
 
    -- EinheitenDatenbank
    type PassierbarkeitArray is array (GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum'Range) of Boolean;
-   type PermanenteKostenArray is array (GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of GlobaleDatentypen.MaximaleStädteMitNullWert;
+   type PermanenteKostenArray is array (GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of GlobaleDatentypen.GesamtproduktionStadt;
 
    type EinheitenListeRecord is record
       

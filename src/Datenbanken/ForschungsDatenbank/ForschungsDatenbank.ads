@@ -9,7 +9,7 @@ package ForschungsDatenbank is
 
    type ForschungListeArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.ForschungID'Range) of DatenbankRecords.ForschungListeRecord;
    ForschungListe : ForschungListeArray := (
-                                            GlobaleDatentypen.Rasse_1 =>
+                                            GlobaleDatentypen.Menschen =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -68,7 +68,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_2 =>
+                                            GlobaleDatentypen.Maschinen =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -127,7 +127,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_3 =>
+                                            GlobaleDatentypen.Biber =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -186,7 +186,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_4 =>
+                                            GlobaleDatentypen.Wölfe =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -245,7 +245,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_5 =>
+                                            GlobaleDatentypen.Fischotter =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -304,7 +304,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_6 =>
+                                            GlobaleDatentypen.Marderhund =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -363,7 +363,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_7 =>
+                                            GlobaleDatentypen.Wildschwein =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -422,7 +422,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_8 =>
+                                            GlobaleDatentypen.Waschbär =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -481,7 +481,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_9 =>
+                                            GlobaleDatentypen.Maulwurf =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -540,7 +540,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_10 =>
+                                            GlobaleDatentypen.Ziesel =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -599,7 +599,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_11 =>
+                                            GlobaleDatentypen.Spinnen =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -658,7 +658,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_12 =>
+                                            GlobaleDatentypen.Steinbock =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -717,7 +717,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_13 =>
+                                            GlobaleDatentypen.Greifvögel =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -776,7 +776,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_14 =>
+                                            GlobaleDatentypen.Fische =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -835,7 +835,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_15 =>
+                                            GlobaleDatentypen.Schlangen =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -894,7 +894,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_16 =>
+                                            GlobaleDatentypen.Salamander =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -953,7 +953,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_17 =>
+                                            GlobaleDatentypen.Pflanzen =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -1012,7 +1012,7 @@ package ForschungsDatenbank is
 
                                                others => GlobaleKonstanten.LeerForschungListe),
 
-                                            GlobaleDatentypen.Rasse_18 =>
+                                            GlobaleDatentypen.Igel =>
                                               (
                                                -- Einfache Landwirtschaft
                                                1 =>
@@ -1072,12 +1072,12 @@ package ForschungsDatenbank is
                                                others => GlobaleKonstanten.LeerForschungListe)
                                            );
 
-   procedure StandardForschungsDatenbankWiederherstellen;
+   procedure StandardForschungsDatenbankLaden;
 
 private
 
    ForschungListeStandard : constant ForschungListeArray := (
-                                                             GlobaleDatentypen.Rasse_1 =>
+                                                             GlobaleDatentypen.Menschen =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1136,7 +1136,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_2 =>
+                                                             GlobaleDatentypen.Maschinen =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1195,7 +1195,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_3 =>
+                                                             GlobaleDatentypen.Biber =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1254,7 +1254,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_4 =>
+                                                             GlobaleDatentypen.Wölfe =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1313,7 +1313,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_5 =>
+                                                             GlobaleDatentypen.Fischotter =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1372,7 +1372,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_6 =>
+                                                             GlobaleDatentypen.Marderhund =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1431,7 +1431,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_7 =>
+                                                             GlobaleDatentypen.Wildschwein =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1490,7 +1490,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_8 =>
+                                                             GlobaleDatentypen.Waschbär =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1549,7 +1549,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_9 =>
+                                                             GlobaleDatentypen.Maulwurf =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1608,7 +1608,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_10 =>
+                                                             GlobaleDatentypen.Ziesel =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1667,7 +1667,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_11 =>
+                                                             GlobaleDatentypen.Spinnen =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1726,7 +1726,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_12 =>
+                                                             GlobaleDatentypen.Steinbock =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1785,7 +1785,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_13 =>
+                                                             GlobaleDatentypen.Greifvögel =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1844,7 +1844,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_14 =>
+                                                             GlobaleDatentypen.Fische =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1903,7 +1903,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_15 =>
+                                                             GlobaleDatentypen.Schlangen =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -1962,7 +1962,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_16 =>
+                                                             GlobaleDatentypen.Salamander =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -2021,7 +2021,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_17 =>
+                                                             GlobaleDatentypen.Pflanzen =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>
@@ -2080,7 +2080,7 @@ private
 
                                                                 others => GlobaleKonstanten.LeerForschungListe),
 
-                                                             GlobaleDatentypen.Rasse_18 =>
+                                                             GlobaleDatentypen.Igel =>
                                                                (
                                                                 -- Einfache Landwirtschaft
                                                                 1 =>

@@ -11,7 +11,7 @@ package EinheitenDatenbank is
    
    type EinheitenListeArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.EinheitenID'Range) of DatenbankRecords.EinheitenListeRecord;
    EinheitenListe : EinheitenListeArray := (
-                                            GlobaleDatentypen.Rasse_1 =>
+                                            GlobaleDatentypen.Menschen =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -290,7 +290,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_2 =>
+                                            GlobaleDatentypen.Maschinen =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -569,7 +569,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_3 =>
+                                            GlobaleDatentypen.Biber =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -848,7 +848,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_4 =>
+                                            GlobaleDatentypen.Wölfe =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -1127,7 +1127,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_5 =>
+                                            GlobaleDatentypen.Fischotter =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -1406,7 +1406,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_6 =>
+                                            GlobaleDatentypen.Marderhund =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -1685,7 +1685,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_7 =>
+                                            GlobaleDatentypen.Wildschwein =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -1964,7 +1964,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_8 =>
+                                            GlobaleDatentypen.Waschbär =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -2243,7 +2243,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_9 =>
+                                            GlobaleDatentypen.Maulwurf =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -2522,7 +2522,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_10 =>
+                                            GlobaleDatentypen.Ziesel =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -2801,7 +2801,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_11 =>
+                                            GlobaleDatentypen.Spinnen =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -3080,7 +3080,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_12 =>
+                                            GlobaleDatentypen.Steinbock =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -3359,7 +3359,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_13 =>
+                                            GlobaleDatentypen.Greifvögel =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -3638,7 +3638,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_14 =>
+                                            GlobaleDatentypen.Fische =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -3917,7 +3917,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_15 =>
+                                            GlobaleDatentypen.Schlangen =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -4196,7 +4196,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_16 =>
+                                            GlobaleDatentypen.Salamander =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -4475,7 +4475,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
          
-                                            GlobaleDatentypen.Rasse_17 =>
+                                            GlobaleDatentypen.Pflanzen =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -4754,7 +4754,7 @@ package EinheitenDatenbank is
                                                                
                                                others => GlobaleKonstanten.LeerEinheitListe),
                                                
-                                            GlobaleDatentypen.Rasse_18 =>
+                                            GlobaleDatentypen.Igel =>
                                               (
                                                -- Siedler
                                                1 =>
@@ -5036,12 +5036,849 @@ package EinheitenDatenbank is
    
    -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch, Planeteninneres
    
-   procedure StandardEinheitenDatenbankWiederherstellen;
+   procedure StandardEinheitenDatenbankLaden;
 
 private
                                             
    EinheitenListeStandard : constant EinheitenListeArray := (
-                                                             GlobaleDatentypen.Rasse_1 =>
+                                                             GlobaleDatentypen.Menschen =>
+                                                               (
+                                                                -- Siedler
+                                                                1 =>
+                                                                  (EinheitenGrafik         => 'S',
+                                                                   EinheitArt              => GlobaleDatentypen.Arbeiter,
+                                                                   PreisGeld               => 10,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
+                                                                                               others                  => False),
+                                                                   MaximaleLebenspunkte    => 3,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 1,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 1,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Steinbeilkämpfer
+                                                                2 =>
+                                                                  (EinheitenGrafik         => 'C',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 25,
+                                                                   PreisRessourcen         => 20,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
+                                                                                               others                  => False),
+                                                                   MaximaleLebenspunkte    => 5,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 3,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 1,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Bogenschütze
+                                                                3 =>
+                                                                  (EinheitenGrafik         => 'B',
+                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
+                                                                   PreisGeld               => 25,
+                                                                   PreisRessourcen         => 20,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 5,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
+                                                                                               others                  => False),
+                                                                   MaximaleLebenspunkte    => 5,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 4,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 3,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 1,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Kanone
+                                                                4 =>
+                                                                  (EinheitenGrafik         => 'K',
+                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
+                                                                   PreisGeld               => 50,
+                                                                   PreisRessourcen         => 5,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 8,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
+                                                                                               others                  => False),
+                                                                   MaximaleLebenspunkte    => 3,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 3,
+                                                                   Angriff                 => 8,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 2,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Ägyptisches Nilschiff
+                                                                5 =>
+                                                                  (EinheitenGrafik         => 'S',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser => True,
+                                                                                               others                   => False),
+                                                                   MaximaleLebenspunkte    => 2,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 1,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 2,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 2),
+                                               
+                                                                -- Kanonenschiff
+                                                                6 =>
+                                                                  (EinheitenGrafik         => 'S',
+                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser => True,
+                                                                                               others                   => False),
+                                                                   MaximaleLebenspunkte    => 3,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 8,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 2,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- UBoot
+                                                                7 =>
+                                                                  (EinheitenGrafik         => 'U',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser      => True,
+                                                                                               GlobaleDatentypen.Unterwasser => True,
+                                                                                               others                        => False),
+                                                                   MaximaleLebenspunkte    => 1000,
+                                                                   MaximaleBewegungspunkte => 100.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 10,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 5),
+                                               
+                                                                -- Jäger
+                                                                8 =>
+                                                                  (EinheitenGrafik         => 'J',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 100,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden  => True,
+                                                                                               GlobaleDatentypen.Wasser => True,
+                                                                                               GlobaleDatentypen.Luft   => True,
+                                                                                               others                   => False),
+                                                                   MaximaleLebenspunkte    => 8,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 1,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Bomber
+                                                                9 =>
+                                                                  (EinheitenGrafik         => 'B',
+                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
+                                                                   PreisGeld               => 100,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden  => True,
+                                                                                               GlobaleDatentypen.Wasser => True,
+                                                                                               GlobaleDatentypen.Luft   => True,
+                                                                                               others                   => False),
+                                                                   MaximaleLebenspunkte    => 8,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 2,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Rakete
+                                                                10 =>
+                                                                  (EinheitenGrafik         => 'R',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden    => True,
+                                                                                               GlobaleDatentypen.Wasser   => True,
+                                                                                               GlobaleDatentypen.Luft     => True,
+                                                                                               GlobaleDatentypen.Weltraum => True,
+                                                                                               others                     => False),
+                                                                   MaximaleLebenspunkte    => 1000,
+                                                                   MaximaleBewegungspunkte => 100.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 10,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Unterwasserrakete
+                                                                11 =>
+                                                                  (EinheitenGrafik         => 'R',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden       => True,
+                                                                                               GlobaleDatentypen.Wasser      => True,
+                                                                                               GlobaleDatentypen.Luft        => True,
+                                                                                               GlobaleDatentypen.Weltraum    => True,
+                                                                                               GlobaleDatentypen.Unterwasser => True,
+                                                                                               others                        => False),
+                                                                   MaximaleLebenspunkte    => 1000,
+                                                                   MaximaleBewegungspunkte => 100.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 10,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Alleskönner
+                                                                12 =>
+                                                                  (EinheitenGrafik         => 'A',
+                                                                   EinheitArt              => GlobaleDatentypen.Beides,
+                                                                   PreisGeld               => 1,
+                                                                   PreisRessourcen         => 1,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (others => True),
+                                                                   MaximaleLebenspunkte    => 100,
+                                                                   MaximaleBewegungspunkte => 100.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 1,
+                                                                   MaximalerRang           => 1,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 1,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 10,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => GlobaleRecords.TransporterArray'Last),
+                                                               
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
+         
+                                                             GlobaleDatentypen.Maschinen =>
+                                                               (
+                                                                -- Siedler
+                                                                1 =>
+                                                                  (EinheitenGrafik         => 'S',
+                                                                   EinheitArt              => GlobaleDatentypen.Arbeiter,
+                                                                   PreisGeld               => 10,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
+                                                                                               others                  => False),
+                                                                   MaximaleLebenspunkte    => 3,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 1,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 1,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Steinbeilkämpfer
+                                                                2 =>
+                                                                  (EinheitenGrafik         => 'C',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 25,
+                                                                   PreisRessourcen         => 20,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
+                                                                                               others                  => False),
+                                                                   MaximaleLebenspunkte    => 5,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 3,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 1,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Bogenschütze
+                                                                3 =>
+                                                                  (EinheitenGrafik         => 'B',
+                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
+                                                                   PreisGeld               => 25,
+                                                                   PreisRessourcen         => 20,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 5,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
+                                                                                               others                  => False),
+                                                                   MaximaleLebenspunkte    => 5,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 4,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 3,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 1,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Kanone
+                                                                4 =>
+                                                                  (EinheitenGrafik         => 'K',
+                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
+                                                                   PreisGeld               => 50,
+                                                                   PreisRessourcen         => 5,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 8,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
+                                                                                               others                  => False),
+                                                                   MaximaleLebenspunkte    => 3,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 3,
+                                                                   Angriff                 => 8,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 2,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Ägyptisches Nilschiff
+                                                                5 =>
+                                                                  (EinheitenGrafik         => 'S',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser => True,
+                                                                                               others                   => False),
+                                                                   MaximaleLebenspunkte    => 2,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 1,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 2,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 2),
+                                               
+                                                                -- Kanonenschiff
+                                                                6 =>
+                                                                  (EinheitenGrafik         => 'S',
+                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser => True,
+                                                                                               others                   => False),
+                                                                   MaximaleLebenspunkte    => 3,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 8,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 2,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- UBoot
+                                                                7 =>
+                                                                  (EinheitenGrafik         => 'U',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser      => True,
+                                                                                               GlobaleDatentypen.Unterwasser => True,
+                                                                                               others                        => False),
+                                                                   MaximaleLebenspunkte    => 1000,
+                                                                   MaximaleBewegungspunkte => 100.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 10,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 5),
+                                               
+                                                                -- Jäger
+                                                                8 =>
+                                                                  (EinheitenGrafik         => 'J',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 100,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden  => True,
+                                                                                               GlobaleDatentypen.Wasser => True,
+                                                                                               GlobaleDatentypen.Luft   => True,
+                                                                                               others                   => False),
+                                                                   MaximaleLebenspunkte    => 8,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 1,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Bomber
+                                                                9 =>
+                                                                  (EinheitenGrafik         => 'B',
+                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
+                                                                   PreisGeld               => 100,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden  => True,
+                                                                                               GlobaleDatentypen.Wasser => True,
+                                                                                               GlobaleDatentypen.Luft   => True,
+                                                                                               others                   => False),
+                                                                   MaximaleLebenspunkte    => 8,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 2,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Rakete
+                                                                10 =>
+                                                                  (EinheitenGrafik         => 'R',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden    => True,
+                                                                                               GlobaleDatentypen.Wasser   => True,
+                                                                                               GlobaleDatentypen.Luft     => True,
+                                                                                               GlobaleDatentypen.Weltraum => True,
+                                                                                               others                     => False),
+                                                                   MaximaleLebenspunkte    => 1000,
+                                                                   MaximaleBewegungspunkte => 100.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 10,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Unterwasserrakete
+                                                                11 =>
+                                                                  (EinheitenGrafik         => 'R',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden       => True,
+                                                                                               GlobaleDatentypen.Wasser      => True,
+                                                                                               GlobaleDatentypen.Luft        => True,
+                                                                                               GlobaleDatentypen.Weltraum    => True,
+                                                                                               GlobaleDatentypen.Unterwasser => True,
+                                                                                               others                        => False),
+                                                                   MaximaleLebenspunkte    => 1000,
+                                                                   MaximaleBewegungspunkte => 100.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 10,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Alleskönner
+                                                                12 =>
+                                                                  (EinheitenGrafik         => 'A',
+                                                                   EinheitArt              => GlobaleDatentypen.Beides,
+                                                                   PreisGeld               => 1,
+                                                                   PreisRessourcen         => 1,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (others => True),
+                                                                   MaximaleLebenspunkte    => 100,
+                                                                   MaximaleBewegungspunkte => 100.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 1,
+                                                                   MaximalerRang           => 1,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 1,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 10,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 10),
+                                                               
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
+         
+                                                             GlobaleDatentypen.Biber =>
+                                                               (
+                                                                -- Siedler
+                                                                1 =>
+                                                                  (EinheitenGrafik         => 'S',
+                                                                   EinheitArt              => GlobaleDatentypen.Arbeiter,
+                                                                   PreisGeld               => 10,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
+                                                                                               others                  => False),
+                                                                   MaximaleLebenspunkte    => 3,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 1,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 1,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Steinbeilkämpfer
+                                                                2 =>
+                                                                  (EinheitenGrafik         => 'A',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 25,
+                                                                   PreisRessourcen         => 20,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
+                                                                                               others                  => False),
+                                                                   MaximaleLebenspunkte    => 5,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 3,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 1,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Bogenschütze
+                                                                3 =>
+                                                                  (EinheitenGrafik         => 'B',
+                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
+                                                                   PreisGeld               => 25,
+                                                                   PreisRessourcen         => 20,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 5,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
+                                                                                               others                  => False),
+                                                                   MaximaleLebenspunkte    => 5,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 4,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 3,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 1,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Kanone
+                                                                4 =>
+                                                                  (EinheitenGrafik         => 'K',
+                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
+                                                                   PreisGeld               => 50,
+                                                                   PreisRessourcen         => 5,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 8,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
+                                                                                               others                  => False),
+                                                                   MaximaleLebenspunkte    => 3,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 3,
+                                                                   Angriff                 => 8,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 2,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Ägyptisches Nilschiff
+                                                                5 =>
+                                                                  (EinheitenGrafik         => 'S',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser => True,
+                                                                                               others                   => False),
+                                                                   MaximaleLebenspunkte    => 2,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 1,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 2,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 2),
+                                               
+                                                                -- Kanonenschiff
+                                                                6 =>
+                                                                  (EinheitenGrafik         => 'S',
+                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser => True,
+                                                                                               others                   => False),
+                                                                   MaximaleLebenspunkte    => 3,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 8,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 2,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- UBoot
+                                                                7 =>
+                                                                  (EinheitenGrafik         => 'U',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser      => True,
+                                                                                               GlobaleDatentypen.Unterwasser => True,
+                                                                                               others                        => False),
+                                                                   MaximaleLebenspunkte    => 1000,
+                                                                   MaximaleBewegungspunkte => 100.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 10,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 5),
+                                               
+                                                                -- Jäger
+                                                                8 =>
+                                                                  (EinheitenGrafik         => 'J',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 100,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden  => True,
+                                                                                               GlobaleDatentypen.Wasser => True,
+                                                                                               GlobaleDatentypen.Luft   => True,
+                                                                                               others                   => False),
+                                                                   MaximaleLebenspunkte    => 8,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 1,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Bomber
+                                                                9 =>
+                                                                  (EinheitenGrafik         => 'B',
+                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
+                                                                   PreisGeld               => 100,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden  => True,
+                                                                                               GlobaleDatentypen.Wasser => True,
+                                                                                               GlobaleDatentypen.Luft   => True,
+                                                                                               others                   => False),
+                                                                   MaximaleLebenspunkte    => 8,
+                                                                   MaximaleBewegungspunkte => 3.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 2,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Rakete
+                                                                10 =>
+                                                                  (EinheitenGrafik         => 'R',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden    => True,
+                                                                                               GlobaleDatentypen.Wasser   => True,
+                                                                                               GlobaleDatentypen.Luft     => True,
+                                                                                               GlobaleDatentypen.Weltraum => True,
+                                                                                               others                     => False),
+                                                                   MaximaleLebenspunkte    => 1000,
+                                                                   MaximaleBewegungspunkte => 100.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 10,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Unterwasserrakete
+                                                                11 =>
+                                                                  (EinheitenGrafik         => 'R',
+                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
+                                                                   PreisGeld               => 20,
+                                                                   PreisRessourcen         => 10,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 20,
+                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden       => True,
+                                                                                               GlobaleDatentypen.Wasser      => True,
+                                                                                               GlobaleDatentypen.Luft        => True,
+                                                                                               GlobaleDatentypen.Weltraum    => True,
+                                                                                               GlobaleDatentypen.Unterwasser => True,
+                                                                                               others                        => False),
+                                                                   MaximaleLebenspunkte    => 1000,
+                                                                   MaximaleBewegungspunkte => 100.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 30,
+                                                                   MaximalerRang           => 3,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 10,
+                                                                   Verteidigung            => 10,
+                                                                   KannTransportieren      => 0,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 0),
+                                               
+                                                                -- Alleskönner
+                                                                12 =>
+                                                                  (EinheitenGrafik         => 'A',
+                                                                   EinheitArt              => GlobaleDatentypen.Beides,
+                                                                   PreisGeld               => 1,
+                                                                   PreisRessourcen         => 1,
+                                                                   PermanenteKosten        => (others => 0),
+                                                                   Anforderungen           => 0,
+                                                                   Passierbarkeit          => (others => True),
+                                                                   MaximaleLebenspunkte    => 100,
+                                                                   MaximaleBewegungspunkte => 100.00,
+                                                                   WirdVerbessertZu        => 0,
+                                                                   Beförderungsgrenze      => 1,
+                                                                   MaximalerRang           => 1,
+                                                                   Reichweite              => 1,
+                                                                   Angriff                 => 1,
+                                                                   Verteidigung            => 1,
+                                                                   KannTransportieren      => 10,
+                                                                   KannTransportiertWerden => 0,
+                                                                   Transportkapazität      => 10),
+                                                               
+                                                                others => GlobaleKonstanten.LeerEinheitListe),
+         
+                                                             GlobaleDatentypen.Wölfe =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -5320,7 +6157,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_2 =>
+                                                             GlobaleDatentypen.Fischotter =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -5599,7 +6436,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_3 =>
+                                                             GlobaleDatentypen.Marderhund =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -5878,7 +6715,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_4 =>
+                                                             GlobaleDatentypen.Wildschwein =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -6157,7 +6994,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_5 =>
+                                                             GlobaleDatentypen.Waschbär =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -6436,7 +7273,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_6 =>
+                                                             GlobaleDatentypen.Maulwurf =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -6715,7 +7552,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_7 =>
+                                                             GlobaleDatentypen.Ziesel =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -6994,7 +7831,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_8 =>
+                                                             GlobaleDatentypen.Spinnen =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -7273,7 +8110,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_9 =>
+                                                             GlobaleDatentypen.Steinbock =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -7552,7 +8389,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_10 =>
+                                                             GlobaleDatentypen.Greifvögel =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -7831,7 +8668,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_11 =>
+                                                             GlobaleDatentypen.Fische =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -8110,7 +8947,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_12 =>
+                                                             GlobaleDatentypen.Schlangen =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -8389,7 +9226,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_13 =>
+                                                             GlobaleDatentypen.Salamander =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -8668,844 +9505,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
          
-                                                             GlobaleDatentypen.Rasse_14 =>
-                                                               (
-                                                                -- Siedler
-                                                                1 =>
-                                                                  (EinheitenGrafik         => 'S',
-                                                                   EinheitArt              => GlobaleDatentypen.Unbewaffnet,
-                                                                   PreisGeld               => 10,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
-                                                                                               others                  => False),
-                                                                   MaximaleLebenspunkte    => 3,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 1,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 1,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Steinbeilkämpfer
-                                                                2 =>
-                                                                  (EinheitenGrafik         => 'A',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 25,
-                                                                   PreisRessourcen         => 20,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
-                                                                                               others                  => False),
-                                                                   MaximaleLebenspunkte    => 5,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 3,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 1,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Bogenschütze
-                                                                3 =>
-                                                                  (EinheitenGrafik         => 'B',
-                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
-                                                                   PreisGeld               => 25,
-                                                                   PreisRessourcen         => 20,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 5,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
-                                                                                               others                  => False),
-                                                                   MaximaleLebenspunkte    => 5,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 4,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 3,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 1,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Kanone
-                                                                4 =>
-                                                                  (EinheitenGrafik         => 'K',
-                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
-                                                                   PreisGeld               => 50,
-                                                                   PreisRessourcen         => 5,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 8,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
-                                                                                               others                  => False),
-                                                                   MaximaleLebenspunkte    => 3,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 3,
-                                                                   Angriff                 => 8,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 2,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Ägyptisches Nilschiff
-                                                                5 =>
-                                                                  (EinheitenGrafik         => 'S',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser => True,
-                                                                                               others                   => False),
-                                                                   MaximaleLebenspunkte    => 2,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 1,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 2,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 2),
-                                               
-                                                                -- Kanonenschiff
-                                                                6 =>
-                                                                  (EinheitenGrafik         => 'S',
-                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser => True,
-                                                                                               others                   => False),
-                                                                   MaximaleLebenspunkte    => 3,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 8,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 2,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- UBoot
-                                                                7 =>
-                                                                  (EinheitenGrafik         => 'U',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser      => True,
-                                                                                               GlobaleDatentypen.Unterwasser => True,
-                                                                                               others                        => False),
-                                                                   MaximaleLebenspunkte    => 1000,
-                                                                   MaximaleBewegungspunkte => 100.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 10,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 5),
-                                               
-                                                                -- Jäger
-                                                                8 =>
-                                                                  (EinheitenGrafik         => 'J',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 100,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden  => True,
-                                                                                               GlobaleDatentypen.Wasser => True,
-                                                                                               GlobaleDatentypen.Luft   => True,
-                                                                                               others                   => False),
-                                                                   MaximaleLebenspunkte    => 8,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 1,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Bomber
-                                                                9 =>
-                                                                  (EinheitenGrafik         => 'B',
-                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
-                                                                   PreisGeld               => 100,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden  => True,
-                                                                                               GlobaleDatentypen.Wasser => True,
-                                                                                               GlobaleDatentypen.Luft   => True,
-                                                                                               others                   => False),
-                                                                   MaximaleLebenspunkte    => 8,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 2,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Rakete
-                                                                10 =>
-                                                                  (EinheitenGrafik         => 'R',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden    => True,
-                                                                                               GlobaleDatentypen.Wasser   => True,
-                                                                                               GlobaleDatentypen.Luft     => True,
-                                                                                               GlobaleDatentypen.Weltraum => True,
-                                                                                               others                     => False),
-                                                                   MaximaleLebenspunkte    => 1000,
-                                                                   MaximaleBewegungspunkte => 100.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 10,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Unterwasserrakete
-                                                                11 =>
-                                                                  (EinheitenGrafik         => 'R',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden       => True,
-                                                                                               GlobaleDatentypen.Wasser      => True,
-                                                                                               GlobaleDatentypen.Luft        => True,
-                                                                                               GlobaleDatentypen.Weltraum    => True,
-                                                                                               GlobaleDatentypen.Unterwasser => True,
-                                                                                               others                        => False),
-                                                                   MaximaleLebenspunkte    => 1000,
-                                                                   MaximaleBewegungspunkte => 100.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 10,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Alleskönner
-                                                                12 =>
-                                                                  (EinheitenGrafik         => 'A',
-                                                                   EinheitArt              => GlobaleDatentypen.Beides,
-                                                                   PreisGeld               => 1,
-                                                                   PreisRessourcen         => 1,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (others => True),
-                                                                   MaximaleLebenspunkte    => 100,
-                                                                   MaximaleBewegungspunkte => 100.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 1,
-                                                                   MaximalerRang           => 1,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 1,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 10,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 10),
-                                                               
-                                                                others => GlobaleKonstanten.LeerEinheitListe),
-         
-                                                             GlobaleDatentypen.Rasse_15 =>
-                                                               (
-                                                                -- Siedler
-                                                                1 =>
-                                                                  (EinheitenGrafik         => 'S',
-                                                                   EinheitArt              => GlobaleDatentypen.Unbewaffnet,
-                                                                   PreisGeld               => 10,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
-                                                                                               others                  => False),
-                                                                   MaximaleLebenspunkte    => 3,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 1,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 1,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Steinbeilkämpfer
-                                                                2 =>
-                                                                  (EinheitenGrafik         => 'A',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 25,
-                                                                   PreisRessourcen         => 20,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
-                                                                                               others                  => False),
-                                                                   MaximaleLebenspunkte    => 5,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 3,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 1,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Bogenschütze
-                                                                3 =>
-                                                                  (EinheitenGrafik         => 'B',
-                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
-                                                                   PreisGeld               => 25,
-                                                                   PreisRessourcen         => 20,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 5,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
-                                                                                               others                  => False),
-                                                                   MaximaleLebenspunkte    => 5,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 4,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 3,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 1,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Kanone
-                                                                4 =>
-                                                                  (EinheitenGrafik         => 'K',
-                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
-                                                                   PreisGeld               => 50,
-                                                                   PreisRessourcen         => 5,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 8,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
-                                                                                               others                  => False),
-                                                                   MaximaleLebenspunkte    => 3,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 3,
-                                                                   Angriff                 => 8,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 2,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Ägyptisches Nilschiff
-                                                                5 =>
-                                                                  (EinheitenGrafik         => 'S',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser => True,
-                                                                                               others                   => False),
-                                                                   MaximaleLebenspunkte    => 2,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 1,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 2,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 2),
-                                               
-                                                                -- Kanonenschiff
-                                                                6 =>
-                                                                  (EinheitenGrafik         => 'S',
-                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser => True,
-                                                                                               others                   => False),
-                                                                   MaximaleLebenspunkte    => 3,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 8,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 2,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- UBoot
-                                                                7 =>
-                                                                  (EinheitenGrafik         => 'U',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser      => True,
-                                                                                               GlobaleDatentypen.Unterwasser => True,
-                                                                                               others                        => False),
-                                                                   MaximaleLebenspunkte    => 1000,
-                                                                   MaximaleBewegungspunkte => 100.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 10,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 5),
-                                               
-                                                                -- Jäger
-                                                                8 =>
-                                                                  (EinheitenGrafik         => 'J',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 100,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden  => True,
-                                                                                               GlobaleDatentypen.Wasser => True,
-                                                                                               GlobaleDatentypen.Luft   => True,
-                                                                                               others                   => False),
-                                                                   MaximaleLebenspunkte    => 8,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 1,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Bomber
-                                                                9 =>
-                                                                  (EinheitenGrafik         => 'B',
-                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
-                                                                   PreisGeld               => 100,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden  => True,
-                                                                                               GlobaleDatentypen.Wasser => True,
-                                                                                               GlobaleDatentypen.Luft   => True,
-                                                                                               others                   => False),
-                                                                   MaximaleLebenspunkte    => 8,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 2,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Rakete
-                                                                10 =>
-                                                                  (EinheitenGrafik         => 'R',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden    => True,
-                                                                                               GlobaleDatentypen.Wasser   => True,
-                                                                                               GlobaleDatentypen.Luft     => True,
-                                                                                               GlobaleDatentypen.Weltraum => True,
-                                                                                               others                     => False),
-                                                                   MaximaleLebenspunkte    => 1000,
-                                                                   MaximaleBewegungspunkte => 100.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 10,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Unterwasserrakete
-                                                                11 =>
-                                                                  (EinheitenGrafik         => 'R',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden       => True,
-                                                                                               GlobaleDatentypen.Wasser      => True,
-                                                                                               GlobaleDatentypen.Luft        => True,
-                                                                                               GlobaleDatentypen.Weltraum    => True,
-                                                                                               GlobaleDatentypen.Unterwasser => True,
-                                                                                               others                        => False),
-                                                                   MaximaleLebenspunkte    => 1000,
-                                                                   MaximaleBewegungspunkte => 100.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 10,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Alleskönner
-                                                                12 =>
-                                                                  (EinheitenGrafik         => 'A',
-                                                                   EinheitArt              => GlobaleDatentypen.Beides,
-                                                                   PreisGeld               => 1,
-                                                                   PreisRessourcen         => 1,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (others => True),
-                                                                   MaximaleLebenspunkte    => 100,
-                                                                   MaximaleBewegungspunkte => 100.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 1,
-                                                                   MaximalerRang           => 1,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 1,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 10,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 10),
-                                                               
-                                                                others => GlobaleKonstanten.LeerEinheitListe),
-         
-                                                             GlobaleDatentypen.Rasse_16 =>
-                                                               (
-                                                                -- Siedler
-                                                                1 =>
-                                                                  (EinheitenGrafik         => 'S',
-                                                                   EinheitArt              => GlobaleDatentypen.Unbewaffnet,
-                                                                   PreisGeld               => 10,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
-                                                                                               others                  => False),
-                                                                   MaximaleLebenspunkte    => 3,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 1,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 1,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Steinbeilkämpfer
-                                                                2 =>
-                                                                  (EinheitenGrafik         => 'A',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 25,
-                                                                   PreisRessourcen         => 20,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
-                                                                                               others                  => False),
-                                                                   MaximaleLebenspunkte    => 5,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 3,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 1,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Bogenschütze
-                                                                3 =>
-                                                                  (EinheitenGrafik         => 'B',
-                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
-                                                                   PreisGeld               => 25,
-                                                                   PreisRessourcen         => 20,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 5,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
-                                                                                               others                  => False),
-                                                                   MaximaleLebenspunkte    => 5,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 4,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 3,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 1,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Kanone
-                                                                4 =>
-                                                                  (EinheitenGrafik         => 'K',
-                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
-                                                                   PreisGeld               => 50,
-                                                                   PreisRessourcen         => 5,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 8,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden => True,
-                                                                                               others                  => False),
-                                                                   MaximaleLebenspunkte    => 3,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 3,
-                                                                   Angriff                 => 8,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 2,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Ägyptisches Nilschiff
-                                                                5 =>
-                                                                  (EinheitenGrafik         => 'S',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser => True,
-                                                                                               others                   => False),
-                                                                   MaximaleLebenspunkte    => 2,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 1,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 2,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 2),
-                                               
-                                                                -- Kanonenschiff
-                                                                6 =>
-                                                                  (EinheitenGrafik         => 'S',
-                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser => True,
-                                                                                               others                   => False),
-                                                                   MaximaleLebenspunkte    => 3,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 8,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 2,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- UBoot
-                                                                7 =>
-                                                                  (EinheitenGrafik         => 'U',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Wasser      => True,
-                                                                                               GlobaleDatentypen.Unterwasser => True,
-                                                                                               others                        => False),
-                                                                   MaximaleLebenspunkte    => 1000,
-                                                                   MaximaleBewegungspunkte => 100.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 10,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 5),
-                                               
-                                                                -- Jäger
-                                                                8 =>
-                                                                  (EinheitenGrafik         => 'J',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 100,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden  => True,
-                                                                                               GlobaleDatentypen.Wasser => True,
-                                                                                               GlobaleDatentypen.Luft   => True,
-                                                                                               others                   => False),
-                                                                   MaximaleLebenspunkte    => 8,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 1,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Bomber
-                                                                9 =>
-                                                                  (EinheitenGrafik         => 'B',
-                                                                   EinheitArt              => GlobaleDatentypen.Fernkämpfer,
-                                                                   PreisGeld               => 100,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden  => True,
-                                                                                               GlobaleDatentypen.Wasser => True,
-                                                                                               GlobaleDatentypen.Luft   => True,
-                                                                                               others                   => False),
-                                                                   MaximaleLebenspunkte    => 8,
-                                                                   MaximaleBewegungspunkte => 3.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 2,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Rakete
-                                                                10 =>
-                                                                  (EinheitenGrafik         => 'R',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden    => True,
-                                                                                               GlobaleDatentypen.Wasser   => True,
-                                                                                               GlobaleDatentypen.Luft     => True,
-                                                                                               GlobaleDatentypen.Weltraum => True,
-                                                                                               others                     => False),
-                                                                   MaximaleLebenspunkte    => 1000,
-                                                                   MaximaleBewegungspunkte => 100.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 10,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Unterwasserrakete
-                                                                11 =>
-                                                                  (EinheitenGrafik         => 'R',
-                                                                   EinheitArt              => GlobaleDatentypen.Nahkämpfer,
-                                                                   PreisGeld               => 20,
-                                                                   PreisRessourcen         => 10,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 20,
-                                                                   Passierbarkeit          => (GlobaleDatentypen.Boden       => True,
-                                                                                               GlobaleDatentypen.Wasser      => True,
-                                                                                               GlobaleDatentypen.Luft        => True,
-                                                                                               GlobaleDatentypen.Weltraum    => True,
-                                                                                               GlobaleDatentypen.Unterwasser => True,
-                                                                                               others                        => False),
-                                                                   MaximaleLebenspunkte    => 1000,
-                                                                   MaximaleBewegungspunkte => 100.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 30,
-                                                                   MaximalerRang           => 3,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 10,
-                                                                   Verteidigung            => 10,
-                                                                   KannTransportieren      => 0,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 0),
-                                               
-                                                                -- Alleskönner
-                                                                12 =>
-                                                                  (EinheitenGrafik         => 'A',
-                                                                   EinheitArt              => GlobaleDatentypen.Beides,
-                                                                   PreisGeld               => 1,
-                                                                   PreisRessourcen         => 1,
-                                                                   PermanenteKosten        => (others => 0),
-                                                                   Anforderungen           => 0,
-                                                                   Passierbarkeit          => (others => True),
-                                                                   MaximaleLebenspunkte    => 100,
-                                                                   MaximaleBewegungspunkte => 100.00,
-                                                                   WirdVerbessertZu        => 0,
-                                                                   Beförderungsgrenze      => 1,
-                                                                   MaximalerRang           => 1,
-                                                                   Reichweite              => 1,
-                                                                   Angriff                 => 1,
-                                                                   Verteidigung            => 1,
-                                                                   KannTransportieren      => 10,
-                                                                   KannTransportiertWerden => 0,
-                                                                   Transportkapazität      => 10),
-                                                               
-                                                                others => GlobaleKonstanten.LeerEinheitListe),
-         
-                                                             GlobaleDatentypen.Rasse_17 =>
+                                                             GlobaleDatentypen.Pflanzen =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>
@@ -9784,7 +9784,7 @@ private
                                                                
                                                                 others => GlobaleKonstanten.LeerEinheitListe),
                                                
-                                                             GlobaleDatentypen.Rasse_18 =>
+                                                             GlobaleDatentypen.Igel =>
                                                                (
                                                                 -- Siedler
                                                                 1 =>

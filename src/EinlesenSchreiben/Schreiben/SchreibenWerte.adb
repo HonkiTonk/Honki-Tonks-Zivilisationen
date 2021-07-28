@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Directories;
 use Ada.Directories;
 
-with EinheitenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, DatenbankRecords;
+with EinheitenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, RassenDatenbank, DatenbankRecords;
 
 package body SchreibenWerte is
    
@@ -15,6 +15,7 @@ package body SchreibenWerte is
       SchreibenGebäudeDatenbank;
       SchreibenKartenDatenbank;
       SchreibenVerbesserungenDatenbank;
+      SchreibenRassenDatenbank;
       
    end SchreibenAlleDatenbanken;
    
@@ -27,12 +28,12 @@ package body SchreibenWerte is
         Exists (Name => "Einstellungen/EinheitenDatenbank")
       is
          when True =>
-            Open (File => EinheitenDatenbankSpeichern,
+            Open (File => DatenbankSpeichern,
                   Mode => Out_File,
                   Name => "Daten/EinheitenDatenbank");
             
          when False =>
-            Create (File => EinheitenDatenbankSpeichern,
+            Create (File => DatenbankSpeichern,
                     Mode => Out_File,
                     Name => "Daten/EinheitenDatenbank");
       end case;
@@ -42,7 +43,7 @@ package body SchreibenWerte is
          EinheitSchleife:
          for EinheitSchleifenwert in EinheitenDatenbank.EinheitenListeArray'Range (2) loop
             
-            DatenbankRecords.EinheitenListeRecord'Write (Stream (File => EinheitenDatenbankSpeichern),
+            DatenbankRecords.EinheitenListeRecord'Write (Stream (File => DatenbankSpeichern),
                                                          EinheitenDatenbank.EinheitenListe (RasseSchleifenwert, EinheitSchleifenwert));
             
          end loop EinheitSchleife;
@@ -60,12 +61,12 @@ package body SchreibenWerte is
         Exists (Name => "Einstellungen/ForschungsDatenbank")
       is
          when True =>
-            Open (File => ForschungsDatenbankSpeichern,
+            Open (File => DatenbankSpeichern,
                   Mode => Out_File,
                   Name => "Daten/ForschungsDatenbank");
             
          when False =>
-            Create (File => ForschungsDatenbankSpeichern,
+            Create (File => DatenbankSpeichern,
                     Mode => Out_File,
                     Name => "Daten/ForschungsDatenbank");
       end case;      
@@ -75,7 +76,7 @@ package body SchreibenWerte is
          TechnologieSchleife:
          for TechnologieSchleifenwert in ForschungsDatenbank.ForschungListeArray'Range (2) loop
             
-            DatenbankRecords.ForschungListeRecord'Write (Stream (File => ForschungsDatenbankSpeichern),
+            DatenbankRecords.ForschungListeRecord'Write (Stream (File => DatenbankSpeichern),
                                                          ForschungsDatenbank.ForschungListe (RasseSchleifenwert, TechnologieSchleifenwert));
             
          end loop TechnologieSchleife;
@@ -94,12 +95,12 @@ package body SchreibenWerte is
         Exists (Name => "Einstellungen/GebaeudeDatenbank")
       is
          when True =>
-            Open (File => GebäudeDatenbankSpeichern,
+            Open (File => DatenbankSpeichern,
                   Mode => Out_File,
                   Name => "Daten/GebaeudeDatenbank");
             
          when False =>
-            Create (File => GebäudeDatenbankSpeichern,
+            Create (File => DatenbankSpeichern,
                     Mode => Out_File,
                     Name => "Daten/GebaeudeDatenbank");
       end case;
@@ -109,7 +110,7 @@ package body SchreibenWerte is
          GebäudeSchleife:
          for GebäudeSchleifenwert in GebaeudeDatenbank.GebäudeListeArray'Range (2) loop
             
-            DatenbankRecords.GebäudeListeRecord'Write (Stream (File => GebäudeDatenbankSpeichern),
+            DatenbankRecords.GebäudeListeRecord'Write (Stream (File => DatenbankSpeichern),
                                                         GebaeudeDatenbank.GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert));
             
          end loop GebäudeSchleife;
@@ -128,12 +129,12 @@ package body SchreibenWerte is
         Exists (Name => "Einstellungen/KartenDatenbank")
       is
          when True =>
-            Open (File => KartenDatenbankSpeichern,
+            Open (File => DatenbankSpeichern,
                   Mode => Out_File,
                   Name => "Daten/KartenDatenbank");
             
          when False =>
-            Create (File => KartenDatenbankSpeichern,
+            Create (File => DatenbankSpeichern,
                     Mode => Out_File,
                     Name => "Daten/KartenDatenbank");
       end case;
@@ -141,7 +142,7 @@ package body SchreibenWerte is
       KartenGrundSchleife:
       for KartenGrundSchleifenwert in KartenDatenbank.KartenListeArray'Range loop
             
-         DatenbankRecords.KartenListeRecord'Write (Stream (File => KartenDatenbankSpeichern),
+         DatenbankRecords.KartenListeRecord'Write (Stream (File => DatenbankSpeichern),
                                                    KartenDatenbank.KartenListe (KartenGrundSchleifenwert));
             
       end loop KartenGrundSchleife;
@@ -159,12 +160,12 @@ package body SchreibenWerte is
         Exists (Name => "Einstellungen/VerbesserungenDatenbank")
       is
          when True =>
-            Open (File => VerbesserungenDatenbankSpeichern,
+            Open (File => DatenbankSpeichern,
                   Mode => Out_File,
                   Name => "Daten/VerbesserungenDatenbank");
             
          when False =>
-            Create (File => VerbesserungenDatenbankSpeichern,
+            Create (File => DatenbankSpeichern,
                     Mode => Out_File,
                     Name => "Daten/VerbesserungenDatenbank");
       end case;
@@ -172,7 +173,7 @@ package body SchreibenWerte is
       VerbesserungenSchleife:
       for VerbesserungenSchleifenwert in VerbesserungenDatenbank.VerbesserungListeArray'Range loop
             
-         DatenbankRecords.VerbesserungListeRecord'Write (Stream (File => VerbesserungenDatenbankSpeichern),
+         DatenbankRecords.VerbesserungListeRecord'Write (Stream (File => DatenbankSpeichern),
                                                          VerbesserungenDatenbank.VerbesserungListe (VerbesserungenSchleifenwert));
             
       end loop VerbesserungenSchleife;
@@ -180,5 +181,36 @@ package body SchreibenWerte is
       Close (File => VerbesserungenDatenbankSpeichern);
       
    end SchreibenVerbesserungenDatenbank;
+   
+   
+   
+   procedure SchreibenRassenDatenbank
+   is begin
+      
+      case
+        Exists (Name => "Einstellungen/RassenDatenbank")
+      is
+         when True =>
+            Open (File => DatenbankSpeichern,
+                  Mode => Out_File,
+                  Name => "Daten/RassenDatenbank");
+            
+         when False =>
+            Create (File => DatenbankSpeichern,
+                    Mode => Out_File,
+                    Name => "Daten/RassenDatenbank");
+      end case;
+      
+      RassenSchleife:
+      for RassenSchleifenwert in RassenDatenbank.RassenListeArray'Range loop
+            
+         DatenbankRecords.RassenListeRecord'Write (Stream (File => DatenbankSpeichern),
+                                                   RassenDatenbank.RassenListe (RassenSchleifenwert));
+            
+      end loop RassenSchleife;
+      
+      Close (File => VerbesserungenDatenbankSpeichern);
+      
+   end SchreibenRassenDatenbank;
 
 end SchreibenWerte;

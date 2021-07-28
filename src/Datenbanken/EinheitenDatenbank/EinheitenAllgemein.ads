@@ -121,6 +121,16 @@ package EinheitenAllgemein is
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function PermanenteKosten
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      WelcheRessourceExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum)
+      return GlobaleDatentypen.GesamtproduktionStadt
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 private
    

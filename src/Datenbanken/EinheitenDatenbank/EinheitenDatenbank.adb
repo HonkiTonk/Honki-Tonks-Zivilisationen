@@ -2,11 +2,11 @@ pragma SPARK_Mode (On);
 
 package body EinheitenDatenbank is
    
-   procedure StandardEinheitenDatenbankWiederherstellen
+   procedure StandardEinheitenDatenbankLaden
    is begin
       
       EinheitenListe := EinheitenListeStandard;
       
-   end StandardEinheitenDatenbankWiederherstellen;
+   end StandardEinheitenDatenbankLaden;
    
 end EinheitenDatenbank;

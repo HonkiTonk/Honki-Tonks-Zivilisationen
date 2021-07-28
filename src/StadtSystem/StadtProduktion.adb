@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with VerbesserungenDatenbank, KartenDatenbank, GebaeudeDatenbank;
+with GebaeudeDatenbank;
 
-with Wachstum, KartePositionPruefen, Karten;
+with Wachstum, KartePositionPruefen, KartenAllgemein, StadtWerteTesten;
 
 package body StadtProduktion is
 
@@ -38,7 +38,8 @@ package body StadtProduktion is
             -- Überprüfung beim Bauen einer Stadt
          when others =>
             StadtProduktionPrüfenBerechnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
-            Wachstum.WachstumBeiStadtGründung (RasseExtern => StadtRasseNummerExtern.Rasse);
+            Wachstum.WachstumStadtExistiert (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                             StadtGegründetExtern  => True);
       end case;
       
    end StadtProduktionPrüfen;
@@ -80,31 +81,23 @@ package body StadtProduktion is
                      when True =>
                         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion
                           := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion
-                          + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Nahrungsgewinnung
-                          + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Nahrungsgewinnung
-                          + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Nahrungsbonus
-                          + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Nahrungsbonus;
+                          + KartenAllgemein.GrundNahrung (PositionExtern => KartenWert) + KartenAllgemein.RessourceNahrung (PositionExtern => KartenWert) + KartenAllgemein.StraßeNahrung (PositionExtern => KartenWert)
+                          + KartenAllgemein.VerbesserungNahrung (PositionExtern => KartenWert);
 
                         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate
                           := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate
-                          + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Ressourcengewinnung
-                          + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Ressourcengewinnung
-                          + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Ressourcenbonus
-                          + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Ressourcenbonus;
+                          + KartenAllgemein.GrundRessourcen (PositionExtern => KartenWert) + KartenAllgemein.RessourceRessourcen (PositionExtern => KartenWert)
+                          + KartenAllgemein.StraßeRessourcen (PositionExtern => KartenWert) + KartenAllgemein.VerbesserungRessourcen (PositionExtern => KartenWert);
 
                         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung
                           := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung
-                          + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Geldgewinnung
-                          + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Geldgewinnung
-                          + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Geldbonus
-                          + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Geldbonus;
+                          + KartenAllgemein.GrundGeld (PositionExtern => KartenWert) + KartenAllgemein.RessourceGeld (PositionExtern => KartenWert) + KartenAllgemein.StraßeGeld (PositionExtern => KartenWert)
+                          + KartenAllgemein.VerbesserungGeld (PositionExtern => KartenWert);
 
                         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate
                           := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate
-                          + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund).Wissensgewinnung
-                          + KartenDatenbank.KartenListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Ressource).Wissensgewinnung
-                          + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungStraße).Wissensbonus
-                          + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungGebiet).Wissensbonus;
+                          + KartenAllgemein.GrundWissen (PositionExtern => KartenWert) + KartenAllgemein.RessourceWissen (PositionExtern => KartenWert) + KartenAllgemein.StraßeWissen (PositionExtern => KartenWert)
+                          + KartenAllgemein.VerbesserungWissen (PositionExtern => KartenWert);
 
                      when others =>
                         null;
@@ -126,6 +119,11 @@ package body StadtProduktion is
    procedure WeitereNahrungsproduktionÄnderungen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
+      
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion :=
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion
+        - StadtWerteTesten.PermanenteKosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                             WelcheRessourceExtern  => GlobaleDatentypen.Nahrung);
 
       case
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
@@ -155,8 +153,13 @@ package body StadtProduktion is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate :=
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate
+        - StadtWerteTesten.PermanenteKosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                             WelcheRessourceExtern  => GlobaleDatentypen.Ressourcen);
+      
       if
-        StadtRasseNummerExtern.Rasse = GlobaleDatentypen.Rasse_1
+        StadtRasseNummerExtern.Rasse = GlobaleDatentypen.Menschen
         and
           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (4) = True
       then
@@ -207,6 +210,11 @@ package body StadtProduktion is
    procedure WeitereGeldgewinnungÄnderungen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
+      
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung :=
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung
+        - StadtWerteTesten.PermanenteKosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                             WelcheRessourceExtern  => GlobaleDatentypen.Geld);
 
       case
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption

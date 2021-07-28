@@ -432,7 +432,6 @@ package body EinheitenAllgemein is
       
       
       
-      
    function EinheitenIDErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.EinheitenID
@@ -441,5 +440,17 @@ package body EinheitenAllgemein is
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID;
          
    end EinheitenIDErmitteln;
+   
+   
+   
+   function PermanenteKosten
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      WelcheRessourceExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).PermanenteKosten (WelcheRessourceExtern);
+      
+   end PermanenteKosten;
 
 end EinheitenAllgemein;

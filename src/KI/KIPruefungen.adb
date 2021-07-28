@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIKonstanten, KIDatentypen;
 
-with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt;
+with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, RassenAllgemein;
 
 package body KIPruefungen is
    
@@ -82,14 +82,14 @@ package body KIPruefungen is
                          Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse,
                                            StadtVerbesserungUmgebungKoordinaten.YAchse,
                                            StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungStraße = GlobaleDatentypen.Leer)
-                      and
-                        (EinheitAufFeld.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
-                         or
-                           EinheitAufFeld.Platznummer = EinheitNummerExtern)
+                    and
+                      (EinheitAufFeld.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+                       or
+                         EinheitAufFeld.Platznummer = EinheitNummerExtern)
                     and
                       Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse, StadtVerbesserungUmgebungKoordinaten.YAchse, StadtVerbesserungUmgebungKoordinaten.XAchse).DurchStadtBelegterGrund
                   in
-                    GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Anfangswert) .. GlobaleKonstanten.FeldBelegung (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Endwert)
+                    RassenAllgemein.RassenBelegungAnfang (RasseExtern => StadtRasseNummerExtern.Rasse) .. RassenAllgemein.RassenBelegungEnde (RasseExtern => StadtRasseNummerExtern.Rasse)
                   then               
                      case
                        KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen,

@@ -18,5 +18,19 @@ package WichtigesSetzen is
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+   
+   procedure ForschungsrateFestlegen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      ForschungsrateZugewinnExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+   
+   procedure GeldZugewinnFestlegen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      GeldZugewinnExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
 end WichtigesSetzen;

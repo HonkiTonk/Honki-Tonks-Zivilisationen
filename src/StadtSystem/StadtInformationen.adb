@@ -5,8 +5,6 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleTexte;
 
-with KartenDatenbank, VerbesserungenDatenbank;
-
 with Anzeige, VerbesserungenAllgemein, KartenAllgemein;
 
 package body StadtInformationen is
@@ -308,45 +306,42 @@ package body StadtInformationen is
    is begin
       
       Nahrungsgewinnung := 0;
-      Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund).Nahrungsgewinnung;
+      Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.GrundNahrung (PositionExtern => KoordinatenExtern);
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
+        KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
       then
-         KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource);
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource).Nahrungsgewinnung;
+         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern));
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.RessourceNahrung (PositionExtern => KoordinatenExtern);
+      else
+         null;
+      end if;
+      
+      if
+        KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum
+      then
+         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern));
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.VerbesserungNahrung (PositionExtern => KoordinatenExtern);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldStraße (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Straße_Enum
       then
-         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet);
-         Nahrungsgewinnung
-           := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Nahrungsbonus;
+         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldStraße (PositionExtern => KoordinatenExtern));
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.StraßeNahrung (PositionExtern => KoordinatenExtern);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
       then
-         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße);
-         Nahrungsgewinnung
-           := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Nahrungsbonus;
-         
-      else
-         null;
-      end if;
-      
-      if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
-      then
-         KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss);
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss).Nahrungsgewinnung;
+         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern));
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.FlussNahrung (PositionExtern => KoordinatenExtern);
          
       else
          null;
@@ -373,41 +368,39 @@ package body StadtInformationen is
    is begin
       
       Ressourcengewinnung := 0;
-      Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund).Ressourcengewinnung;
+      Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.GrundRessourcen (PositionExtern => KoordinatenExtern);
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
+        KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
       then
-         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource).Ressourcengewinnung;
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.RessourceRessourcen (PositionExtern => KoordinatenExtern);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum
       then
-         Ressourcengewinnung
-           := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Ressourcenbonus;
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.VerbesserungRessourcen (PositionExtern => KoordinatenExtern);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldStraße (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Straße_Enum
       then
-         Ressourcengewinnung
-           := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Ressourcenbonus;
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.StraßeRessourcen (PositionExtern => KoordinatenExtern);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
+        KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
       then
-         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss).Ressourcengewinnung;
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.FlussRessourcen (PositionExtern => KoordinatenExtern);
          
       else
          null;
@@ -434,39 +427,39 @@ package body StadtInformationen is
    is begin
       
       Geldgewinnung := 0;      
-      Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund).Geldgewinnung;
+      Geldgewinnung := Geldgewinnung + KartenAllgemein.GrundGeld (PositionExtern => KoordinatenExtern);
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
+        KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
       then
-         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource).Geldgewinnung;
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.RessourceGeld (PositionExtern => KoordinatenExtern);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum
       then
-         Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Geldbonus;
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.VerbesserungGeld (PositionExtern => KoordinatenExtern);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldStraße (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Straße_Enum
       then
-         Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Geldbonus;
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.StraßeGeld (PositionExtern => KoordinatenExtern);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
+        KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
       then
-         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss).Geldgewinnung;
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.FlussGeld (PositionExtern => KoordinatenExtern);
          
       else
          null;
@@ -492,39 +485,39 @@ package body StadtInformationen is
    is begin
       
       Wissensgewinnung := 0;
-      Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund).Wissensgewinnung;
+      Wissensgewinnung := Wissensgewinnung + KartenAllgemein.GrundWissen (PositionExtern => KoordinatenExtern);
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
+        KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
       then
-         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Ressource).Wissensgewinnung;
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.RessourceWissen (PositionExtern => KoordinatenExtern);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum
       then
-         Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungGebiet).Wissensbonus;
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.VerbesserungWissen (PositionExtern => KoordinatenExtern);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldStraße (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Straße_Enum
       then
-         Wissensgewinnung := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße).Wissensbonus;
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.StraßeWissen (PositionExtern => KoordinatenExtern);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
+        KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
       then
-         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Fluss).Wissensgewinnung;
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.FlussWissen (PositionExtern => KoordinatenExtern);
          
       else
          null;

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with RassenAllgemein;
 
 package body FeldTesten is
 
@@ -13,7 +13,7 @@ package body FeldTesten is
       if
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund
       in
-        GlobaleKonstanten.FeldBelegung (RasseExtern, GlobaleDatentypen.Anfangswert) .. GlobaleKonstanten.FeldBelegung (RasseExtern, GlobaleDatentypen.Endwert)
+        RassenAllgemein.RassenBelegungAnfang (RasseExtern => RasseExtern) .. RassenAllgemein.RassenBelegungEnde (RasseExtern => RasseExtern)
       then
          return True;
          

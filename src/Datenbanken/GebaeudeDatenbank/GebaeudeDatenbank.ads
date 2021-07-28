@@ -9,7 +9,7 @@ package GebaeudeDatenbank is
 
    type GebäudeListeArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.GebäudeID'Range) of DatenbankRecords.GebäudeListeRecord;
    GebäudeListe : GebäudeListeArray := (
-                                          GlobaleDatentypen.Rasse_1 =>
+                                          GlobaleDatentypen.Menschen =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -152,7 +152,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_2 =>
+                                          GlobaleDatentypen.Maschinen =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -295,7 +295,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_3 =>
+                                          GlobaleDatentypen.Biber =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -438,7 +438,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_4 =>
+                                          GlobaleDatentypen.Wölfe =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -581,7 +581,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_5 =>
+                                          GlobaleDatentypen.Fischotter =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -724,7 +724,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_6 =>
+                                          GlobaleDatentypen.Marderhund =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -867,7 +867,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_7 =>
+                                          GlobaleDatentypen.Wildschwein =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -1010,7 +1010,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_8 =>
+                                          GlobaleDatentypen.Waschbär =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -1153,7 +1153,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_9 =>
+                                          GlobaleDatentypen.Maulwurf =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -1296,7 +1296,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_10 =>
+                                          GlobaleDatentypen.Ziesel =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -1439,7 +1439,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_11 =>
+                                          GlobaleDatentypen.Spinnen =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -1582,7 +1582,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_12 =>
+                                          GlobaleDatentypen.Steinbock =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -1725,7 +1725,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_13 =>
+                                          GlobaleDatentypen.Greifvögel =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -1868,7 +1868,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_14 =>
+                                          GlobaleDatentypen.Fische =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -2011,7 +2011,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_15 =>
+                                          GlobaleDatentypen.Schlangen =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -2154,7 +2154,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_16 =>
+                                          GlobaleDatentypen.Salamander =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -2297,7 +2297,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_17 =>
+                                          GlobaleDatentypen.Pflanzen =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -2440,7 +2440,7 @@ package GebaeudeDatenbank is
                                                               
                                              others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                          GlobaleDatentypen.Rasse_18 =>
+                                          GlobaleDatentypen.Igel =>
                                             (
                                              -- Holzhäuser
                                              1 =>
@@ -2584,12 +2584,12 @@ package GebaeudeDatenbank is
                                              others => GlobaleKonstanten.LeerGebäudeListe)
                                          );
    
-   procedure StandardGebaeudeDatenbankWiederherstellen;
+   procedure StandardGebaeudeDatenbankLaden;
    
 private
    
    GebäudeListeStandard : constant GebäudeListeArray := (
-                                                           GlobaleDatentypen.Rasse_1 =>
+                                                           GlobaleDatentypen.Menschen =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -2732,7 +2732,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_2 =>
+                                                           GlobaleDatentypen.Maschinen =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -2875,7 +2875,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_3 =>
+                                                           GlobaleDatentypen.Biber =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -3018,7 +3018,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_4 =>
+                                                           GlobaleDatentypen.Wölfe =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -3161,7 +3161,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_5 =>
+                                                           GlobaleDatentypen.Fischotter =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -3304,7 +3304,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_6 =>
+                                                           GlobaleDatentypen.Marderhund =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -3447,7 +3447,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_7 =>
+                                                           GlobaleDatentypen.Wildschwein =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -3590,7 +3590,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_8 =>
+                                                           GlobaleDatentypen.Waschbär =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -3733,7 +3733,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_9 =>
+                                                           GlobaleDatentypen.Maulwurf =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -3876,7 +3876,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_10 =>
+                                                           GlobaleDatentypen.Ziesel =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -4019,7 +4019,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_11 =>
+                                                           GlobaleDatentypen.Spinnen =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -4162,7 +4162,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_12 =>
+                                                           GlobaleDatentypen.Steinbock =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -4305,7 +4305,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_13 =>
+                                                           GlobaleDatentypen.Greifvögel =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -4448,7 +4448,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_14 =>
+                                                           GlobaleDatentypen.Fische =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -4591,7 +4591,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_15 =>
+                                                           GlobaleDatentypen.Schlangen =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -4734,7 +4734,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_16 =>
+                                                           GlobaleDatentypen.Salamander =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -4877,7 +4877,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_17 =>
+                                                           GlobaleDatentypen.Pflanzen =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>
@@ -5020,7 +5020,7 @@ private
                                                               
                                                               others => GlobaleKonstanten.LeerGebäudeListe),
                                                    
-                                                           GlobaleDatentypen.Rasse_18 =>
+                                                           GlobaleDatentypen.Igel =>
                                                              (
                                                               -- Holzhäuser
                                                               1 =>

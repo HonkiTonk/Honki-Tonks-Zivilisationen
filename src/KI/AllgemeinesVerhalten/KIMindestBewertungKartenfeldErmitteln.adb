@@ -14,7 +14,7 @@ package body KIMindestBewertungKartenfeldErmitteln is
       case
         EinheitRasseNummerExtern.Rasse
       is
-         when GlobaleDatentypen.Rasse_1 =>
+         when GlobaleDatentypen.Menschen =>
             MindestBewertungKartenfeld := 90;
             
          when others =>

@@ -42,10 +42,10 @@ package GlobaleDatentypen is
 
 
    -- Für Rassen
-   type Rassen_Enum is (Leer, Rasse_1, Rasse_2, Rasse_3, Rasse_4, Rasse_5, Rasse_6, Rasse_7, Rasse_8, Rasse_9, Rasse_10, Rasse_11, Rasse_12, Rasse_13, Rasse_14, Rasse_15, Rasse_16, Rasse_17, Rasse_18);
-   for Rassen_Enum use (Leer => 0, Rasse_1 => 1, Rasse_2 => 2, Rasse_3 => 3, Rasse_4 => 4, Rasse_5 => 5, Rasse_6 => 6, Rasse_7 => 7, Rasse_8 => 8, Rasse_9 => 9, Rasse_10 => 10, Rasse_11 => 11, Rasse_12 => 12,
-                        Rasse_13 => 13, Rasse_14 => 14, Rasse_15 => 15, Rasse_16 => 16, Rasse_17 => 17, Rasse_18 => 18);
-   subtype Rassen_Verwendet_Enum is Rassen_Enum range Rasse_1 .. Rassen_Enum'Last;
+   type Rassen_Enum is (Leer, Menschen, Maschinen, Biber, Wölfe, Fischotter, Marderhund, Wildschwein, Waschbär, Maulwurf, Ziesel, Spinnen, Steinbock, Greifvögel, Fische, Schlangen, Salamander, Pflanzen, Igel);
+   for Rassen_Enum use (Leer => 0, Menschen => 1, Maschinen => 2, Biber => 3, Wölfe => 4, Fischotter => 5, Marderhund => 6, Wildschwein => 7, Waschbär => 8, Maulwurf => 9, Ziesel => 10, Spinnen => 11, Steinbock => 12,
+                        Greifvögel => 13, Fische => 14, Schlangen => 15, Salamander => 16, Pflanzen => 17, Igel => 18);
+   subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen .. Rassen_Enum'Last;
 
    type Spieler_Enum is (Leer, Spieler_Mensch, Spieler_KI);
    for Spieler_Enum use (Leer => 0, Spieler_Mensch => 1, Spieler_KI => 2);

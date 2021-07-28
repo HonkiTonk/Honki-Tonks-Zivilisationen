@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Directories;
 use Ada.Directories;
 
-with EinheitenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, DatenbankRecords;
+with EinheitenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, RassenDatenbank, DatenbankRecords;
 
 package body EinlesenWerte is 
    
@@ -15,11 +15,12 @@ package body EinlesenWerte is
       EinlesenGebäudeDatenbank;
       EinlesenKartenDatenbank;
       EinlesenVerbesserungenDatenbank;
+      EinlesenRassenDatenbank;
       
    end EinlesenAlleDatenbanken;
    
    
-   
+
    procedure EinlesenEinheitenDatenbank
    is begin
       
@@ -32,6 +33,7 @@ package body EinlesenWerte is
                   Name => "Daten/EinheitenDatenbank");
 
          when False =>
+            EinheitenDatenbank.StandardEinheitenDatenbankLaden;
             return;
       end case;
       
@@ -64,6 +66,7 @@ package body EinlesenWerte is
                   Name => "Daten/ForschungsDatenbank");
 
          when False =>
+            ForschungsDatenbank.StandardForschungsDatenbankLaden;
             return;
       end case;
       
@@ -96,6 +99,7 @@ package body EinlesenWerte is
                   Name => "Daten/GebaeudeDatenbank");
 
          when False =>
+            GebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
             return;
       end case;
       
@@ -171,5 +175,35 @@ package body EinlesenWerte is
       Close (File => DatenbankEinlesen);
       
    end EinlesenVerbesserungenDatenbank;
+   
+   
+   
+   procedure EinlesenRassenDatenbank
+   is begin
+      
+      case
+        Exists (Name => "Daten/RassenDatenbank")
+      is
+         when True =>
+            Open (File => DatenbankEinlesen,
+                  Mode => In_File,
+                  Name => "Daten/RassenDatenbank");
+
+         when False =>
+            RassenDatenbank.StandardRassenDatenbankLaden;
+            return;
+      end case;
+      
+      RassenSchleife:
+      for RassenSchleifenwert in RassenDatenbank.RassenListeArray'Range loop
+            
+         DatenbankRecords.RassenListeRecord'Read (Stream (File => DatenbankEinlesen),
+                                                  RassenDatenbank.RassenListe (RassenSchleifenwert));
+            
+      end loop RassenSchleife;
+      
+      Close (File => DatenbankEinlesen);
+      
+   end EinlesenRassenDatenbank;
 
 end EinlesenWerte;

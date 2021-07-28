@@ -2,11 +2,11 @@ pragma SPARK_Mode (On);
 
 package body GebaeudeDatenbank is
    
-   procedure StandardGebaeudeDatenbankWiederherstellen
+   procedure StandardGebaeudeDatenbankLaden
    is begin
       
       GebäudeListe := GebäudeListeStandard;
       
-   end StandardGebaeudeDatenbankWiederherstellen;
+   end StandardGebaeudeDatenbankLaden;
 
 end GebaeudeDatenbank;

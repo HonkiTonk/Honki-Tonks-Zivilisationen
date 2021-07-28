@@ -2,11 +2,11 @@ pragma SPARK_Mode (On);
 
 package body ForschungsDatenbank is
    
-   procedure StandardForschungsDatenbankWiederherstellen
+   procedure StandardForschungsDatenbankLaden
    is begin
       
       ForschungListe := ForschungListeStandard;
       
-   end StandardForschungsDatenbankWiederherstellen;
+   end StandardForschungsDatenbankLaden;
 
 end ForschungsDatenbank;

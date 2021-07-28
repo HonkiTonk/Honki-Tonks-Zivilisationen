@@ -590,7 +590,7 @@ package body SpielEinstellungen is
                        PrüfungGrund
                      is
                         when False =>
-                           PlatzBelegt := (GlobaleDatentypen.Rasse_1, 1);
+                           PlatzBelegt := (RasseExtern, 1);
                            
                         when True =>
                            PlatzBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert);

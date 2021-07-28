@@ -3,9 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleKonstanten;
-
-with Auswahl, InDerStadtBauen, KarteStadt, BewegungssystemCursor, Eingabe, EinwohnerZuweisenEntfernen, GebaeudeVerkaufen;
+with InDerStadtBauen, KarteStadt, BewegungssystemCursor, Eingabe, EinwohnerZuweisenEntfernen, GebaeudeVerkaufen;
 
 package body InDerStadt is
 
@@ -35,23 +33,7 @@ package body InDerStadt is
                EinwohnerZuweisenEntfernen.EinwohnerZuweisenEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);                  
                
             when GlobaleDatentypen.Bauen =>
-               if
-                 GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt = 0
-               then
-                  InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-                     
-                  -- Diese Auswahl nach InDerStadtBauen verschieben
-               else
-                  case
-                    Auswahl.AuswahlJaNein (FrageZeileExtern => 14)
-                  is
-                     when GlobaleKonstanten.JaKonstante =>
-                        InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-                     
-                     when others =>
-                        null;
-                  end case;
-               end if;
+               InDerStadtBauen.Bauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                
                -- Gebäude verkaufen
             when GlobaleDatentypen.Einheit_Auflösen =>

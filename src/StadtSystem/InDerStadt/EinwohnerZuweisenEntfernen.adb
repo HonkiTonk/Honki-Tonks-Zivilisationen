@@ -17,13 +17,9 @@ package body EinwohnerZuweisenEntfernen is
          RelativeCursorPositionX := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse - 17;
          NutzbarerBereich := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
          if
-           RelativeCursorPositionY < -NutzbarerBereich
+         abs (RelativeCursorPositionY) > NutzbarerBereich
            or
-             RelativeCursorPositionY > NutzbarerBereich
-             or
-               RelativeCursorPositionX < -NutzbarerBereich
-               or
-                 RelativeCursorPositionX > NutzbarerBereich
+         abs (RelativeCursorPositionX) > NutzbarerBereich
          then
             null;
                   
@@ -58,8 +54,8 @@ package body EinwohnerZuweisenEntfernen is
            := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) - 1;
                         
       else         
-         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                     ÄnderungExtern       => (0, RelativeCursorPositionY, RelativeCursorPositionX));
+         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                                     ÄnderungExtern    => (0, RelativeCursorPositionY, RelativeCursorPositionX));
          
          if
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2)

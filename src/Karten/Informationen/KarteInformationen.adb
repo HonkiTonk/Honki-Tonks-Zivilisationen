@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with KartenDatenbank, VerbesserungenDatenbank, EinheitenDatenbank;
+with EinheitenDatenbank;
 
 with Anzeige, Cheat, Karten, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein;
 
@@ -31,8 +31,8 @@ package body KarteInformationen is
       InformationenForschungsrate (RasseExtern => RasseExtern);
       
       case
-        Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Sichtbar (RasseExtern)
+        KartenAllgemein.FeldSichtbar (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                      RasseExtern    => RasseExtern)
       is
          when True =>
             EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
@@ -445,8 +445,7 @@ package body KarteInformationen is
            or
              GlobaleVariablen.FeindlicheInformationenSehen
          then                              
-            Verteidigungsbonus := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungListe (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
-                                                                                                  StadtRasseNummerExtern.Platznummer).ID).Verteidigungsbonus;
+            Verteidigungsbonus := Verteidigungsbonus + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position);
 
          else
             null;
@@ -492,177 +491,88 @@ package body KarteInformationen is
          KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
                                        GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund);
 
-         Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Verteidigungsbonus;
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Nahrungsgewinnung;
-         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                                   GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                                   GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Ressourcengewinnung;
-         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Geldgewinnung;
-         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Wissensgewinnung;
+         Verteidigungsbonus := Verteidigungsbonus + KartenAllgemein.GrundVerteidigung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.GrundNahrung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.GrundRessourcen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.GrundGeld (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.GrundWissen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
          
       elsif
-        Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Hügel = True
+        KartenAllgemein.FeldHügel (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)
       then
-         KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund);
+         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldGrund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
 
-         Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Verteidigungsbonus;
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Nahrungsgewinnung;
-         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                                   GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                                   GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Ressourcengewinnung;
-         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Geldgewinnung;
-         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Wissensgewinnung;
+         Verteidigungsbonus := Verteidigungsbonus + KartenAllgemein.GrundVerteidigung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.GrundNahrung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.GrundRessourcen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.GrundGeld (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.GrundWissen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
                
       else         
-         KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund);
+         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldGrund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
 
-         Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Verteidigungsbonus;
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Nahrungsgewinnung;
-         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                                   GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                                   GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Ressourcengewinnung;
-         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Geldgewinnung;
-         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund).Wissensgewinnung;
+         Verteidigungsbonus := Verteidigungsbonus + KartenAllgemein.GrundVerteidigung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.GrundNahrung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.GrundRessourcen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.GrundGeld (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.GrundWissen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
       end if;
       
       if
-        Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Ressource /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldRessource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
       then
-         KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Ressource);
+         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldRessource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
 
-         Verteidigungsbonus
-           := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Ressource).Verteidigungsbonus;
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Ressource).Nahrungsgewinnung;
-         Ressourcengewinnung
-           := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Ressource).Ressourcengewinnung;
-         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Ressource).Geldgewinnung;
-         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Ressource).Wissensgewinnung;
+         Verteidigungsbonus := Verteidigungsbonus + KartenAllgemein.RessourceVerteidigung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.RessourceNahrung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.RessourceRessourcen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.RessourceGeld (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.RessourceWissen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
       then
-         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet);
+         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
 
-         Verteidigungsbonus
-           := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet).Verteidigungsbonus;
-         Nahrungsgewinnung
-           := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet).Nahrungsbonus;
-         Ressourcengewinnung
-           := Ressourcengewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet).Ressourcenbonus;
-         Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                                     GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                                     GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet).Geldbonus;
-         Wissensgewinnung
-           := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet).Wissensbonus;
+         Verteidigungsbonus := Verteidigungsbonus + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.VerbesserungNahrung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.VerbesserungRessourcen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.VerbesserungGeld (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.VerbesserungWissen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
          
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldStraße (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
       then
-         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße);
+         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldStraße (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
 
-         Verteidigungsbonus
-           := Verteidigungsbonus + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                              GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße).Verteidigungsbonus;
-         Nahrungsgewinnung
-           := Nahrungsgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße).Nahrungsbonus;
-         Ressourcengewinnung
-           := Ressourcengewinnung
-             + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße).Ressourcenbonus;
-         Geldgewinnung := Geldgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                                     GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                                     GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße).Geldbonus;
-         Wissensgewinnung
-           := Wissensgewinnung + VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße).Wissensbonus;
+         Verteidigungsbonus := Verteidigungsbonus + KartenAllgemein.StraßeVerteidigung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.StraßeNahrung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.StraßeRessourcen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.StraßeGeld (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.StraßeWissen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
                
       else
          null;
       end if;
       
       if
-        Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Fluss /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldFluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
       then
-         KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Fluss);
+         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldFluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
 
-         Verteidigungsbonus := Verteidigungsbonus + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Fluss).Verteidigungsbonus;
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                               GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Fluss).Nahrungsgewinnung;
-         Ressourcengewinnung := Ressourcengewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                                   GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                                   GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Fluss).Ressourcengewinnung;
-         Geldgewinnung := Geldgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Fluss).Geldgewinnung;
-         Wissensgewinnung := Wissensgewinnung + KartenDatenbank.KartenListe (Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                                                             GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Fluss).Wissensgewinnung;
+         Verteidigungsbonus := Verteidigungsbonus + KartenAllgemein.FlussVerteidigung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.FlussNahrung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.FlussRessourcen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.FlussGeld (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.FlussWissen (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
          
       else
          null;

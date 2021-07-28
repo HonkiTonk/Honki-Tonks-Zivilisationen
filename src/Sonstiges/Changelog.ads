@@ -1,9 +1,23 @@
 package Changelog is
    
-   -- Version 0.00.7950 => 0.00.79:
+   -- Version 0.00.7970 => 0.00.79:
    
-   -- 
+   --
    -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.7950 => 0.00.7970:
+   
+   -- Unnötigen Code in den Stadtsystemen gelöscht und diverse Proceduren zusammengefasst.
+   -- Die Prüfungen für verschiedene Stadtwerteänderungen in eine eigene Datei/eigene Proceduren ausgelagert.
+   -- Verschiedene Abfragen für Werte aus der Kartendatenbank oder für Kartenfelder zentralisiert.
+   -- Den Rassen verschiedenen Lebewesen zugewiesen.
+   -- Array für die Werte von DurchStadtBelegterGrund in zwei Funktionen umgewandelt.
+   -- Angefangen die einzelnen Rassenbestandteile der Forschung/Einheiten/Gebaeude/RassenDatenbanken in einzelne Dateien auszulagern.
+   -- Die Laden- und Speicherfunktionen für die Datenbanken um die RassenDatenbank erweitert.
+   -- Permanente Kosten für Einheiten und Begäude werden jetzt bei den Berechnungen für die Stadtwerte berücksichtigt.
+   -- Kleinigkeiten korrigiert/angepasst/überarbeitet/vereinfacht.
    
    
    
@@ -32,7 +46,7 @@ package Changelog is
    -- Es wird jetzt die Ladung eigener Schiffe angezeigt.
    -- Das Berechnen einiger Werte aus GlobaleVeriablen.Wichtiges in eine eigene Datei ausgelagert.
    -- Unnötigen Code gelöscht.
-   -- Kommentare, Contracts und Kleinigkeiten korrigiert/angepasst/vereinfacht.
+   -- Kommentare, Contracts und Kleinigkeiten korrigiert/angepasst/überarbeitet/vereinfacht.
    
    
 

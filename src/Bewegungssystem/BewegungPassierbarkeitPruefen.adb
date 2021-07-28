@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitenDatenbank, KartenDatenbank, VerbesserungenDatenbank;
+with EinheitenDatenbank;
+
+with KartenAllgemein;
 
 with StadtSuchen, UmgebungErreichbarTesten;
 
@@ -58,31 +60,32 @@ package body BewegungPassierbarkeitPruefen is
             when True =>               
                -- Erste Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
                if
-                 Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
+                 KartenAllgemein.FeldVerbesserung (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
                  and
-                   VerbesserungenDatenbank.VerbesserungListe
-                     (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet).Passierbarkeit (PassierbarkeitSchleifenwert) = False
+                   KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
+                                                           PassierbarkeitExtern => PassierbarkeitSchleifenwert) = False
                then
                   null;
                   
                elsif
                  (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
                   and
-                    VerbesserungenDatenbank.VerbesserungListe
-                      (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße).Passierbarkeit (PassierbarkeitSchleifenwert) = True)
+                    KartenAllgemein.PassierbarStraße (PositionExtern       => NeuePositionExtern,
+                                                       PassierbarkeitExtern => PassierbarkeitSchleifenwert) = True)
                  or
-                   (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
+                   (KartenAllgemein.FeldVerbesserung (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
                     and
-                      VerbesserungenDatenbank.VerbesserungListe
-                        (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungGebiet).Passierbarkeit (PassierbarkeitSchleifenwert) = True)
+                      KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
+                                                              PassierbarkeitExtern => PassierbarkeitSchleifenwert) = True)
                then
                   return True;
          
                elsif
-                 KartenDatenbank.KartenListe (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund).Passierbarkeit (PassierbarkeitSchleifenwert) = True
+                 KartenAllgemein.PassierbarGrund (PositionExtern       => NeuePositionExtern,
+                                                  PassierbarkeitExtern => PassierbarkeitSchleifenwert) = True
                then
                   return True;
-            
+                  
                else
                   null;
                end if;

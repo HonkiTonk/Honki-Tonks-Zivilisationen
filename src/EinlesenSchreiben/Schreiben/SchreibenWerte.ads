@@ -17,12 +17,10 @@ package SchreibenWerte is
 
    procedure SchreibenVerbesserungenDatenbank;
 
+   procedure SchreibenRassenDatenbank;
+
 private
 
-   EinheitenDatenbankSpeichern : File_Type;
-   ForschungsDatenbankSpeichern : File_Type;
-   GebäudeDatenbankSpeichern : File_Type;
-   KartenDatenbankSpeichern : File_Type;
-   VerbesserungenDatenbankSpeichern : File_Type;
+   DatenbankSpeichern : File_Type;
 
 end SchreibenWerte;

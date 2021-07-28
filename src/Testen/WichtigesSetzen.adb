@@ -40,5 +40,41 @@ package body WichtigesSetzen is
       end if;
       
    end ForschungsmengeFestlegen;
+   
+   
+   
+   procedure ForschungsrateFestlegen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      ForschungsrateZugewinnExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+   is begin
+      
+      if
+        GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern > GlobaleDatentypen.KostenLager'Last
+      then
+         GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := GlobaleDatentypen.KostenLager'Last;
+               
+      else
+         GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern;
+      end if;
+      
+   end ForschungsrateFestlegen;
+   
+   
+   
+   procedure GeldZugewinnFestlegen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      GeldZugewinnExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+   is begin
+      
+      if
+        GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern > GlobaleDatentypen.KostenLager'Last
+      then
+         GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := GlobaleDatentypen.KostenLager'Last;
+               
+      else
+         GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern;
+      end if;
+      
+   end GeldZugewinnFestlegen;
 
 end WichtigesSetzen;

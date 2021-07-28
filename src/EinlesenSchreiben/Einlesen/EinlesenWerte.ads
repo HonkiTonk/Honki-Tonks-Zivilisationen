@@ -17,6 +17,8 @@ package EinlesenWerte is
    
    procedure EinlesenVerbesserungenDatenbank;
    
+   procedure EinlesenRassenDatenbank;
+   
 private
    
    DatenbankEinlesen : File_Type;

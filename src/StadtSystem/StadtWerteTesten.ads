@@ -1,38 +1,38 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
-package Wachstum is
-   
-   procedure Wachstum;
-   
-   procedure WachstumStadtExistiert
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      StadtGegründetExtern : in Boolean)
+package StadtWerteTesten is
+
+   procedure Nahrungsmittel
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   procedure Produktion
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function PermanenteKosten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      WelcheRessourceExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum)
+      return GlobaleDatentypen.GesamtproduktionStadt
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
 private
    
-   EinwohnerÄnderung : Boolean;
-   
-   procedure WachstumEinwohner
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
-          and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   PermanenteKostenBerechnen : GlobaleDatentypen.GesamtproduktionStadt;
 
-   procedure WachstumProduktion
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
-          and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-
-end Wachstum;
+end StadtWerteTesten;

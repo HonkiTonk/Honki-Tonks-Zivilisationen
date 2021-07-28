@@ -55,6 +55,20 @@ package RassenAllgemein is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
+   function RassenBelegungAnfang
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.BelegterGrund
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+   
+   function RassenBelegungEnde
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.BelegterGrund
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+   
 private
    
    
