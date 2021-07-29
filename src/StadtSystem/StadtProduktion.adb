@@ -29,7 +29,7 @@ package body StadtProduktion is
                         null;
                   
                      when others =>
-                        StadtProduktionPrüfenBerechnung (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert));
+                        StadtProduktionBerechnung (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert));
                   end case;
                
                end loop StadtSchleife;
@@ -37,7 +37,7 @@ package body StadtProduktion is
          
             -- Überprüfung beim Bauen einer Stadt
          when others =>
-            StadtProduktionPrüfenBerechnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            StadtProduktionBerechnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
             Wachstum.WachstumStadtExistiert (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                              StadtGegründetExtern  => True);
       end case;
@@ -46,7 +46,7 @@ package body StadtProduktion is
    
 
 
-   procedure StadtProduktionPrüfenBerechnung
+   procedure StadtProduktionBerechnung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -65,8 +65,8 @@ package body StadtProduktion is
          XAchseSchleife:
          for XÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                        ÄnderungExtern      => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             case
               KartenWert.XAchse
@@ -112,7 +112,7 @@ package body StadtProduktion is
       WeitereGeldgewinnungÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       WeitereForschungsrateÄnderungen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-   end StadtProduktionPrüfenBerechnung;
+   end StadtProduktionBerechnung;
    
    
    

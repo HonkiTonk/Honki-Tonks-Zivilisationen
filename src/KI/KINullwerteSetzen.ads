@@ -7,7 +7,7 @@ package KINullwerteSetzen is
 
    procedure ZielBewegungNullSetzen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      WelchenWertNullSetzten : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      WelchenWertNullSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2)

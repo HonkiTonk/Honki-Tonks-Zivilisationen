@@ -25,6 +25,7 @@ package GlobaleKonstanten is
    InformationenKonstante : constant Positive := 5;
    WiederherstellenKonstante : constant Positive := 6;
    WürdigungenKonstante : constant Positive := 7;
+   RundeBeendenKonstante : constant Integer := -1_000;
    -- Für die Auswahl
 
 
@@ -117,6 +118,7 @@ package GlobaleKonstanten is
                                                              Ressourcen              => 0,
                                                              Produktionrate          => 0,
                                                              Geldgewinnung           => 0,
+                                                             PermanenteKostenPosten  => (others => 0),
                                                              Forschungsrate          => 0,
                                                              Bauprojekt              => 0,
                                                              Bauzeit                 => 0,

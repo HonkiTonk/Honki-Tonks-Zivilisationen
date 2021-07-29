@@ -7,7 +7,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with EinheitenDatenbank;
 
-with Auswahl, Anzeige, Eingabe, Sichtbarkeit;
+with Auswahl, Anzeige, Eingabe, Sichtbarkeit, StadtProduktion;
 
 package body EinheitenAllgemein is
 
@@ -135,11 +135,23 @@ package body EinheitenAllgemein is
       IDExtern : in GlobaleDatentypen.EinheitenID;
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
-            
+      
       GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerExtern) := GlobaleKonstanten.LeerEinheit;
       GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerExtern).ID := IDExtern;
       GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerExtern).Position := KoordinatenExtern;
       GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerExtern).Heimatstadt := StadtRasseNummerExtern.Platznummer;
+      
+      case
+        StadtRasseNummerExtern.Platznummer
+      is
+         when 0 =>
+            null;
+
+         when others =>
+            PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                 IDExtern                => IDExtern,
+                                                 VorzeichenWechselExtern => 1);
+      end case;
       
       LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
       Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
@@ -151,10 +163,63 @@ package body EinheitenAllgemein is
    procedure EinheitEntfernen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
+      
+      case
+        HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      is
+         when 0 =>
+            null;
+
+         when others =>
+            PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
+                                                 IDExtern                => EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                 VorzeichenWechselExtern => -1);
+      end case;
 
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerEinheit;
       
    end EinheitEntfernen;
+   
+   
+   
+   procedure PermanenteKostenDurchEinheitÄndern
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.EinheitenID;
+      VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+   is begin
+      
+      PermanenteKostenSchleife:
+      for PermanenteKostenSchleifenwert in GlobaleDatentypen.PermanenteKostenArray'Range loop
+         
+         if
+           EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, IDExtern).PermanenteKosten (PermanenteKostenSchleifenwert) <= 0
+         then
+            null;
+               
+         elsif
+           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert)
+           + GesamtePermanenteKosten (VorzeichenWechselExtern) * EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, IDExtern).PermanenteKosten (PermanenteKostenSchleifenwert) < 0
+         then
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert) := 0;
+               
+         elsif
+           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert)
+           + GesamtePermanenteKosten (VorzeichenWechselExtern) * EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, IDExtern).PermanenteKosten (PermanenteKostenSchleifenwert)
+           > GlobaleDatentypen.GesamtePermanenteKosten'Last
+         then
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert) := GlobaleDatentypen.GesamtePermanenteKosten'Last;
+               
+         else
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert)
+              := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert)
+              + GesamtePermanenteKosten (VorzeichenWechselExtern) * EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, IDExtern).PermanenteKosten (PermanenteKostenSchleifenwert);
+         end if;
+         
+      end loop PermanenteKostenSchleife;
+      
+      StadtProduktion.StadtProduktionBerechnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+   end PermanenteKostenDurchEinheitÄndern;
    
    
 
@@ -452,5 +517,45 @@ package body EinheitenAllgemein is
       return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).PermanenteKosten (WelcheRessourceExtern);
       
    end PermanenteKosten;
+   
+   
+   
+   function HeimatstadtErmitteln
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
+   is begin
+         
+      return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Heimatstadt;
+         
+   end HeimatstadtErmitteln;
+   
+   
+   
+   procedure HeimatstadtÄndern
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeueStadtExtern : in GlobaleDatentypen.MaximaleStädte)
+   is begin
+      
+      StadtNummer := HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      case
+        StadtNummer
+      is
+         when GlobaleKonstanten.LeerEinheitStadtNummer =>
+            null;
+            
+         when others =>
+            PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+                                                 IDExtern                => EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                 VorzeichenWechselExtern => -1);
+      end case;
+      
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Heimatstadt := NeueStadtExtern;
+      
+      PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, NeueStadtExtern),
+                                           IDExtern                => EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                           VorzeichenWechselExtern => 1);
+      
+   end HeimatstadtÄndern;
 
 end EinheitenAllgemein;

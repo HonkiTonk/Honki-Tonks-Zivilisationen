@@ -16,5 +16,24 @@ package GebaeudeAllgemein is
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   procedure GebäudeEntfernen     
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      WelchesGebäudeExtern : in GlobaleDatentypen.GebäudeID)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+private
+   
+   procedure PermanenteKostenDurchGebäudeÄndern
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.GebäudeID;
+      VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+     with
+       Pre =>
+         (VorzeichenWechselExtern /= 0);
 
 end GebaeudeAllgemein;

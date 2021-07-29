@@ -43,7 +43,7 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    PlatzBelegt : GlobaleRecords.RassePlatznummerRecord;
 
-   type KoordinatenArray is array (1 .. 2) of GlobaleRecords.AchsenKartenfeldRecord;
+   type KoordinatenArray is array (1 .. 2) of GlobaleRecords.AchsenKartenfeldPositivRecord;
    Koordinaten : KoordinatenArray;
 
    procedure StartwerteErmitteln;

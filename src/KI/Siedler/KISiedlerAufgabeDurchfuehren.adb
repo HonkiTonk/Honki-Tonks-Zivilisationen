@@ -15,8 +15,8 @@ package body KISiedlerAufgabeDurchfuehren is
       is
          when KIDatentypen.Stadt_Bauen =>
             StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                      WelchenWertNullSetzten   => 0);
+            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
+                                                      WelchenWertNullSetzenExtern => 0);
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
             
             

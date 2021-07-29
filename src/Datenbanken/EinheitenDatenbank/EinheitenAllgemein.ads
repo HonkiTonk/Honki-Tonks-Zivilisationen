@@ -29,8 +29,6 @@ package EinheitenAllgemein is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
-            StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebautArray'First (2)
-          and
             KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
@@ -57,6 +55,15 @@ package EinheitenAllgemein is
             BesiegteEinheitExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
             GlobaleVariablen.RassenImSpiel (BesiegteEinheitExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   procedure HeimatstadtÄndern
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeueStadtExtern : in GlobaleDatentypen.MaximaleStädte)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    
 
@@ -131,8 +138,19 @@ package EinheitenAllgemein is
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function HeimatstadtErmitteln
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 private
+   
+   StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
    Heilungsrate : constant GlobaleDatentypen.MaximaleStädte := 10;
    
@@ -153,5 +171,13 @@ private
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   procedure PermanenteKostenDurchEinheitÄndern
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.EinheitenID;
+      VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+     with
+       Pre =>
+         (VorzeichenWechselExtern /= 0);
 
 end EinheitenAllgemein;

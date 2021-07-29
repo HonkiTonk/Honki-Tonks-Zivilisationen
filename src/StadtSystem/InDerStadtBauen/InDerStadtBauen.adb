@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with GebaeudeDatenbank, EinheitenDatenbank, DatenbankRecords;
+with GebaeudeDatenbank, EinheitenDatenbank;
      
 with Anzeige, Eingabe, Auswahl;
 
@@ -373,6 +373,33 @@ package body InDerStadtBauen is
       Ada.Integer_Text_IO.Put (Item  => Positive (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                - GlobaleKonstanten.EinheitAufschlag)).MaximaleBewegungspunkte),
                                Width => 1);
+
+      New_Line;
+      
+      PermanenteKostenSchleife:
+      for PermanenteKostenSchleifenwert in GlobaleDatentypen.PermanenteKostenArray'Range loop
+         
+         if
+           EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
+                                              - GlobaleKonstanten.EinheitAufschlag)).PermanenteKosten (PermanenteKostenSchleifenwert) > 0
+         then
+            Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                          TextDateiExtern        => GlobaleTexte.Zeug,
+                                          ÜberschriftZeileExtern => 0,
+                                          -- Muss eins kleiner sein als der echte Startwert, da der kleinse Pluswert eins ist.
+                                          ErsteZeileExtern       => 53 + GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Pos (PermanenteKostenSchleifenwert),
+                                          AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                          AbstandEndeExtern      => GlobaleTexte.Leer);
+            Ada.Integer_Text_IO.Put (Item  => Positive (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
+                                     - GlobaleKonstanten.EinheitAufschlag)).PermanenteKosten (PermanenteKostenSchleifenwert)),
+                                     Width => 1);
+            New_Line;
+         
+         else
+            null;
+         end if;
+         
+      end loop PermanenteKostenSchleife;
       
    end AnzeigeEinheiten;
    
@@ -416,7 +443,7 @@ package body InDerStadtBauen is
       New_Line;
       
       PermanenteKostenSchleife:
-      for PermanenteKostenSchleifenwert in DatenbankRecords.PermanenteKostenArray'Range loop
+      for PermanenteKostenSchleifenwert in GlobaleDatentypen.PermanenteKostenArray'Range loop
          
          if
            GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
@@ -425,12 +452,14 @@ package body InDerStadtBauen is
             Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                           TextDateiExtern        => GlobaleTexte.Zeug,
                                           ÜberschriftZeileExtern => 0,
-                                          ErsteZeileExtern       => 50,
+                                          -- Muss eins kleiner sein als der echte Startwert, da der kleinse Pluswert eins ist.
+                                          ErsteZeileExtern       => 53 + GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Pos (PermanenteKostenSchleifenwert),
                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
-                                          AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+                                          AbstandEndeExtern      => GlobaleTexte.Leer);
             Ada.Integer_Text_IO.Put (Item  => Positive (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                      - GlobaleKonstanten.GebäudeAufschlag)).PermanenteKosten (PermanenteKostenSchleifenwert)),
                                      Width => 1);
+            New_Line;
          
          else
             null;

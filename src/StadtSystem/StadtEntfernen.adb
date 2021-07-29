@@ -11,6 +11,7 @@ package body StadtEntfernen is
    is begin
       
       BelegteStadtfelderFreigeben (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      HeimatstädteEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerStadt;
       
@@ -50,5 +51,27 @@ package body StadtEntfernen is
       end loop YUmgebungFreigebenSchleife;
       
    end BelegteStadtfelderFreigeben;
+   
+   
+   
+   procedure HeimatstädteEntfernen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      EinheitenSchleife:
+      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+         
+         if
+           GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert).Heimatstadt = StadtRasseNummerExtern.Platznummer
+         then
+            GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert).Heimatstadt := 0;
+            
+         else
+            null;
+         end if;
+         
+      end loop EinheitenSchleife;
+      
+   end HeimatstädteEntfernen;
 
 end StadtEntfernen;

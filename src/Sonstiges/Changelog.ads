@@ -1,9 +1,24 @@
 package Changelog is
    
-   -- Version 0.00.7970 => 0.00.79:
+   -- Version 0.00.7990 => 0.00.80:
    
-   --
    -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.7970 => 0.00.7990:
+   
+   -- Aktuelle Koordinatenposition wird jetzt immer angezeigt und nicht nur wenn man Cheats nutzt.
+   -- Permanente Kostenberechnung wird jetzt im Stadtrecord gespeichert und beim Bauen/Entfernen einer Einheit modifiziert anstatt am Ende einer Runde über tausende Elemente zu loopen.
+   -- Es ist jetzt möglich die Heimatstadt einer Einheit zu ändern.
+   -- Heimatstadt von eigenen Einheiten wird jetzt angezeigt.
+   -- Permanente Kosten für vorhandene Gebäude werden jetzt beim Bauen/Verkaufen eines Gebäudes modifiziert anstatt am Ende einer Runde über hunderte Elemente zu loopen.
+   -- Beim Entfernen einer Stadt werden jetzt alle Heimatstadtwerte von Einheiten die diese Stadt als Heimatstadt haben auf 0 gesetzt.
+   -- Kleine Änderungen an der Textdarstellung im Spiel.
+   -- Im Baumenü werden jetzt die permanenten Kosten von Einheiten und Gebäuden angezeigt.
+   -- Das Erzeugen von Einheiten sollte mit der Standardprocedure jetzt auch dann funktioneren wenn die Einheiten anders als durch das Bauen in einer Stadt erschaffen werden.
+   -- Angefangen den Rassen richtige Namen zu geben.
+   -- Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    

@@ -30,9 +30,5 @@ package StadtWerteTesten is
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'Range (2)
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-private
-   
-   PermanenteKostenBerechnen : GlobaleDatentypen.GesamtproduktionStadt;
 
 end StadtWerteTesten;

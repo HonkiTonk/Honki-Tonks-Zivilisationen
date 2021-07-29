@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, GlobaleKonstanten;
 use GlobaleDatentypen;
 
 package BefehleImSpiel is
@@ -12,7 +12,7 @@ package BefehleImSpiel is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch),
          Post =>
-           (Befehle'Result in -1_000 .. 5);
+           (Befehle'Result in GlobaleKonstanten.RundeBeendenKonstante .. 5);
 
 private
 
@@ -30,49 +30,31 @@ private
    StadtSuchenNachNamen : GlobaleRecords.RassePlatznummerRecord;
    
    procedure AuswahlEinheitStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
 
    procedure EinheitOderStadt
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       AuswahlExtern : in Integer;
       StadtNummerExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert);
    
    procedure BaueStadt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
    
    procedure Technologie
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
    
    procedure EinheitBefehle
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum);
    
    procedure StadtUmbenennen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
    
    procedure StadtAbreißen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure HeimatstadtÄndern
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
    
 end BefehleImSpiel;

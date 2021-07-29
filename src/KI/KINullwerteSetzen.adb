@@ -6,11 +6,11 @@ package body KINullwerteSetzen is
 
    procedure ZielBewegungNullSetzen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      WelchenWertNullSetzten : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      WelchenWertNullSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
    is begin
       
       case
-        WelchenWertNullSetzten
+        WelchenWertNullSetzenExtern
       is
          when -1 =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIKonstanten.NullKoordinate;

@@ -3,8 +3,6 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with GlobaleKonstanten;
-
 with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, Verbesserungen, ForschungAllgemein, KI, Ladezeiten, Speichern, Laden, StadtProduktion, EinheitenAllgemein, SiegBedingungen;
 
 package body ImSpiel is
@@ -150,7 +148,7 @@ package body ImSpiel is
                return AktuellerBefehlSpieler;
 
                -- Runde beenden
-            when -1_000 =>
+            when GlobaleKonstanten.RundeBeendenKonstante =>
                return GlobaleKonstanten.StartNormalKonstante;      
                   
             when others =>

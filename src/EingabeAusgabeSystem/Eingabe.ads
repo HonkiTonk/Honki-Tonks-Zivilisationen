@@ -47,7 +47,8 @@ package Eingabe is
                                                Runde_Aussetzen => Space,
                                                Einheit_Auflösen => DEL,
                                                Plündern => 'j',
-                                               Einheit_Verbessern => '<',
+                                               Heimatstadt_Ändern => '<',
+                                               Einheit_Verbessern => '-',
                                                Infos => 'i',
 
                                                Diplomatie => '#',
@@ -96,6 +97,7 @@ package Eingabe is
                                                Runde_Aussetzen => NUL,
                                                Einheit_Auflösen => NUL,
                                                Plündern => NUL,
+                                               Heimatstadt_Ändern => NUL,
                                                Einheit_Verbessern => NUL,
                                                Infos => NUL,
 
@@ -197,6 +199,7 @@ private
                                                                 Runde_Aussetzen => Space,
                                                                 Einheit_Auflösen => DEL,
                                                                 Plündern => 'j',
+                                                                Heimatstadt_Ändern => '<',
                                                                 Einheit_Verbessern => '-',
                                                                 Infos => 'i',
 
@@ -246,6 +249,7 @@ private
                                                                 Runde_Aussetzen => NUL,
                                                                 Einheit_Auflösen => NUL,
                                                                 Plündern => NUL,
+                                                                Heimatstadt_Ändern => NUL,
                                                                 Einheit_Verbessern => NUL,
                                                                 Infos => NUL,
 

@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GebaeudeDatenbank;
-
-with StadtProduktion, WichtigesSetzen;
+with StadtProduktion, GebaeudeAllgemein;
 
 package body GebaeudeVerkaufen is
 
@@ -38,12 +36,8 @@ package body GebaeudeVerkaufen is
                null;
                         
             else
-               WichtigesSetzen.GeldFestlegen (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                              GeldZugewinnExtern => Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse,
-                                                GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse)).PreisGeld / 2));
-               
-               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
-                 (GlobaleDatentypen.GebäudeID ((GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + Aufschlag * 12)) := False;
+               GebaeudeAllgemein.GebäudeEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                   WelchesGebäudeExtern   => GlobaleDatentypen.GebäudeID ((GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + Aufschlag * 12));
                StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => StadtRasseNummerExtern);
             end if;
       end case;

@@ -105,8 +105,9 @@ package GlobaleRecords is
       Nahrungsproduktion : GlobaleDatentypen.GesamtproduktionStadt;
       Ressourcen : GlobaleDatentypen.KostenLager;
       Produktionrate : GlobaleDatentypen.GesamtproduktionStadt;
-
       Geldgewinnung : GlobaleDatentypen.GesamtproduktionStadt;
+      PermanenteKostenPosten : GlobaleDatentypen.PermanenteKostenArray;
+      
       Forschungsrate : GlobaleDatentypen.GesamtproduktionStadt;
       Bauprojekt : Natural;
       Bauzeit : GlobaleDatentypen.KostenLager;

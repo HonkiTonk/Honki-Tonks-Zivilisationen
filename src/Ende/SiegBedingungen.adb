@@ -49,7 +49,7 @@ package body SiegBedingungen is
          when 1 =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                                            TextDateiExtern        => GlobaleTexte.Gewonnen,
-                                           ÜberschriftZeileExtern => 51,
+                                           ÜberschriftZeileExtern => 50,
                                            ErsteZeileExtern       => 1,
                                            LetzteZeileExtern      => 1,
                                            AbstandAnfangExtern    => GlobaleTexte.Leer,
@@ -71,7 +71,7 @@ package body SiegBedingungen is
          then
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                                            TextDateiExtern        => GlobaleTexte.Gewonnen,
-                                           ÜberschriftZeileExtern => 51,
+                                           ÜberschriftZeileExtern => 50,
                                            ErsteZeileExtern       => 2,
                                            LetzteZeileExtern      => 2,
                                            AbstandAnfangExtern    => GlobaleTexte.Leer,
@@ -96,7 +96,7 @@ package body SiegBedingungen is
          when True =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                                            TextDateiExtern        => GlobaleTexte.Gewonnen,
-                                           ÜberschriftZeileExtern => 51,
+                                           ÜberschriftZeileExtern => 50,
                                            ErsteZeileExtern       => 3,
                                            LetzteZeileExtern      => 3,
                                            AbstandAnfangExtern    => GlobaleTexte.Leer,

@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleTexte;
+with GlobaleTexte;
 
 with EinheitenDatenbank;
 
@@ -80,17 +80,20 @@ package body BefehleImSpiel is
          when GlobaleDatentypen.Stadt_Suchen =>
             StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
             
+         when GlobaleDatentypen.Heimatstadt_Ändern =>
+            HeimatstadtÄndern (RasseExtern => RasseExtern);
+            
          when GlobaleDatentypen.Runde_Beenden =>
-            return -1_000;
+            return GlobaleKonstanten.RundeBeendenKonstante;
             
          when GlobaleDatentypen.Cheatmenü =>
             Cheat.Menü (RasseExtern => RasseExtern);
             
-            -- when 39 =>
+            -- when GlobaleDatentypen. =>
             -- Meldungen von Städte
             -- null;
             
-            -- when 40 =>
+            -- when GlobaleDatentypen. =>
             -- Meldungen von Einheiten
             -- null;
          
@@ -376,5 +379,35 @@ package body BefehleImSpiel is
       end case;
       
    end StadtAbreißen;
+   
+   
+   
+   procedure HeimatstadtÄndern
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+      StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+      
+      if
+        EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
+        or
+          StadtNummer = GlobaleKonstanten.LeerEinheitStadtNummer
+      then
+         null;
+         
+      elsif
+        StadtNummer = EinheitenAllgemein.HeimatstadtErmitteln (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer))
+      then
+         null;
+         
+      else
+         EinheitenAllgemein.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
+                                                NeueStadtExtern          => StadtNummer);
+      end if;
+      
+   end HeimatstadtÄndern;
 
 end BefehleImSpiel;

@@ -1,9 +1,5 @@
 pragma SPARK_Mode (On);
 
-with GebaeudeDatenbank;
-
-with EinheitenAllgemein;
-
 package body StadtWerteTesten is
    
    procedure Nahrungsmittel
@@ -68,53 +64,7 @@ package body StadtWerteTesten is
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
-      PermanenteKostenBerechnen := 0;
-      
-      EinheitenSchleife:
-      for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
-         
-         if
-           GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).ID = 0
-         then
-            null;
-            
-         elsif
-           GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Heimatstadt /= StadtRasseNummerExtern.Platznummer
-           or
-             EinheitenAllgemein.PermanenteKosten (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert),
-                                                  WelcheRessourceExtern    => WelcheRessourceExtern) <= 0
-         then
-            null;
-            
-         else
-            PermanenteKostenBerechnen := PermanenteKostenBerechnen + EinheitenAllgemein.PermanenteKosten (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert),
-                                                                                                          WelcheRessourceExtern    => WelcheRessourceExtern);
-         end if;
-         
-      end loop EinheitenSchleife;
-      
-      
-      
-      GebäudeSchleife:
-      for GebäudeSchleifenwert in GlobaleRecords.GebäudeVorhandenArray'Range loop
-         
-         if
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = False
-         then
-            null;
-            
-         elsif
-           GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).PermanenteKosten (WelcheRessourceExtern) <= 0
-         then
-            null;
-           
-         else
-            PermanenteKostenBerechnen := PermanenteKostenBerechnen + GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).PermanenteKosten (WelcheRessourceExtern);
-         end if;
-         
-      end loop GebäudeSchleife;
-      
-      return PermanenteKostenBerechnen;
+      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (WelcheRessourceExtern);
       
    end PermanenteKosten;
 

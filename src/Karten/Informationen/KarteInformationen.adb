@@ -7,7 +7,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with EinheitenDatenbank;
 
-with Anzeige, Cheat, Karten, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein;
+with Anzeige, Cheat, Karten, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein, StadtInformationen;
 
 package body KarteInformationen is
 
@@ -71,12 +71,17 @@ package body KarteInformationen is
 
       New_Line;
       
+      -- Aktuelle Kartenposition
+      Put (Item => "Aktuelle Position:" & GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse'Wide_Wide_Image & "," & GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse'Wide_Wide_Image
+           & "," & GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse'Wide_Wide_Image);
+      New_Line (2);
+      
       case
         GlobaleVariablen.FeindlicheInformationenSehen
       is
          when False =>
             null;
-                                 
+            
          when True =>
             Cheat.KarteInfosFeld (RasseExtern => RasseExtern);
       end case;
@@ -356,7 +361,33 @@ package body KarteInformationen is
          Ada.Integer_Text_IO.Put (Item  => Natural (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).MaximalerRang),
                                   Width => 1);
+                     
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                        TextDateiExtern        => GlobaleTexte.Zeug,
+                                        ÜberschriftZeileExtern => 0,
+                                        ErsteZeileExtern       => 52,
+                                        LetzteZeileExtern      => 52,
+                                        AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
+                                        AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
          
+         case
+           EinheitenAllgemein.HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+         is
+            when GlobaleKonstanten.LeerEinheitStadtNummer =>
+               Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                              TextDateiExtern        => GlobaleTexte.Zeug,
+                                              ÜberschriftZeileExtern => 0,
+                                              ErsteZeileExtern       => 53,
+                                              LetzteZeileExtern      => 53,
+                                              AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                              AbstandMitteExtern     => GlobaleTexte.Leer,
+                                              AbstandEndeExtern      => GlobaleTexte.Leer);
+               
+            when others =>
+               StadtInformationen.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitenAllgemein.HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+         end case;
+                 
          case
            EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).KannTransportieren
          is
@@ -378,7 +409,7 @@ package body KarteInformationen is
                      ErsteAnzeige := False;
                      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                                                     TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
-                                                    ÜberschriftZeileExtern => 52,
+                                                    ÜberschriftZeileExtern => 5,
                                                     ErsteZeileExtern       => Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
                                                       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert)).ID),
                                                     LetzteZeileExtern      => Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
@@ -409,7 +440,7 @@ package body KarteInformationen is
          end case;         
          
          New_Line;
-                              
+         
       else
          null;
       end if;

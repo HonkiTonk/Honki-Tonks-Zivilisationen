@@ -629,17 +629,15 @@ package body SpielEinstellungen is
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
 
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).ID := 1;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).Position.EAchse := Koordinaten (1).EAchse;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).Position.YAchse := Koordinaten (1).YAchse;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).Position.XAchse := Koordinaten (1).XAchse;
-      EinheitenAllgemein.LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (RasseExtern, 1));
-
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).ID := 2;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).Position.EAchse := Koordinaten (2).EAchse;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).Position.YAchse := Koordinaten (2).YAchse;
-      GlobaleVariablen.EinheitenGebaut (RasseExtern, 2).Position.XAchse := Koordinaten (2).XAchse;
-      EinheitenAllgemein.LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (RasseExtern, 2));
+      EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => Koordinaten (1),
+                                          EinheitNummerExtern    => 1,
+                                          IDExtern               => 1,
+                                          StadtRasseNummerExtern => (RasseExtern, 0));
+      
+      EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => Koordinaten (2),
+                                          EinheitNummerExtern    => 2,
+                                          IDExtern               => 2,
+                                          StadtRasseNummerExtern => (RasseExtern, 0));
       
       GlobaleVariablen.CursorImSpiel (RasseExtern).Position := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).Position;
       GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).Position;

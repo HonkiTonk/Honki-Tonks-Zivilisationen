@@ -19,8 +19,8 @@ package body KIBewegungDurchfuehren is
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position
            = GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten
          then
-            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                      WelchenWertNullSetzten   => 0);
+            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
+                                                      WelchenWertNullSetzenExtern => 0);
             return;
             
          elsif
@@ -72,8 +72,8 @@ package body KIBewegungDurchfuehren is
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (GlobaleRecords.KIBewegungPlanArray'Last) := KIKonstanten.NullKoordinate;
             
          when others =>
-            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                      WelchenWertNullSetzten   => 0);
+            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
+                                                      WelchenWertNullSetzenExtern => 0);
       end case;
       
    end BewegungDurchführen;

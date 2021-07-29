@@ -28,6 +28,7 @@ package GlobaleDatentypen is
                                 Nächste_Stadt, Einheit_Mit_Bewegungspunkte, Alle_Einheiten, Einheiten_Ohne_Bewegungspunkte,
                                 -- Einheitenbefehle
                                 Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Plündern, Einheit_Auflösen, Einheit_Verbessern,
+                                Heimatstadt_Ändern,
                                 Infos, Diplomatie, GeheZu,
                                 Stadt_Umbenennen, Stadt_Abreißen, Stadt_Suchen,
                                 Runde_Beenden, Cheatmenü);
@@ -201,12 +202,15 @@ package GlobaleDatentypen is
    subtype MaximaleStädte is MaximaleStädteMitNullWert range 1 .. 100;
 
    type KostenLager is range -10_000 .. 10_000;
-   subtype GesamtproduktionStadt is KostenLager range -500 .. 500;
+   subtype GesamtePermanenteKosten is KostenLager range -500 .. 5_000;
+   subtype GesamtproduktionStadt is GesamtePermanenteKosten range -500 .. 500;
    subtype ProduktionFeld is GesamtproduktionStadt range -100 .. 100;
 
    type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
 
    type Stadt_Meldung_Enum is (Leer, Produktion_Abgeschlossen, Einwohner_Wachstum, Einwohner_Reduktion, Einheit_Unplatzierbar, Stadt_Angegriffen);
+
+   type PermanenteKostenArray is array (GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of GlobaleDatentypen.GesamtePermanenteKosten;
    -- Für Stadt
 
 

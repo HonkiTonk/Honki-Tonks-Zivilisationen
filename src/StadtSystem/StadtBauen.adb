@@ -1,13 +1,8 @@
 pragma SPARK_Mode (On);
 
-with Ada.Strings.Wide_Wide_Unbounded;
-use Ada.Strings.Wide_Wide_Unbounded;
-
 with GlobaleKonstanten, GlobaleTexte;
 
-with KIDatentypen;
-
-with Anzeige, StadtWerteFestlegen, Eingabe, Karten, KartePositionPruefen, StadtProduktion, ForschungAllgemein, EinheitenAllgemein, Sichtbarkeit, FeldTesten;
+with Anzeige, StadtWerteFestlegen, Eingabe, Karten, KartePositionPruefen, StadtProduktion, ForschungAllgemein, EinheitenAllgemein, Sichtbarkeit, FeldTesten, KartenAllgemein;
 
 package body StadtBauen is
 
@@ -72,24 +67,21 @@ package body StadtBauen is
       -- Aktuelle Meldungen
       -- KI aktuelle Beschäftigung
       
-      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer) :=
-        (Stadtart, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position, False, (1, 1),
-         0, 0, 0, 0,
-         0, 0, 0, 0,
-         0, (others => False), To_Unbounded_Wide_Wide_String (Source => "KIStadtname"),
-         (0 => (0 => True, others => False), others => (others => False)), 1,
-         (others => GlobaleDatentypen.Leer),
-         KIDatentypen.Keine_Aufgabe
-        );
+      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer) := GlobaleKonstanten.LeerStadt;
+      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).ID := Stadtart;
+      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).Position := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position;
+      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).EinwohnerArbeiter := (1, 1);
+      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).UmgebungBewirtschaftung := (0 => (0 => True, others => False), others => (others => False));
+      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).UmgebungGröße := 1;
       
       case
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse
       is
          when -1 .. 0 =>
-            AmWasser (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AmWasser (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
                   
          when others =>
-            null;
+            GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).AmWasser := False;
       end case;
       
       StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
@@ -115,7 +107,7 @@ package body StadtBauen is
 
    function ErweitertesStadtBauenPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
+                         return Boolean
    is begin
       
       YAchseSchleife:
@@ -151,7 +143,7 @@ package body StadtBauen is
 
    function HauptstadtPrüfen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+                         return GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       
       HauptsstadtSchleife:
@@ -176,7 +168,7 @@ package body StadtBauen is
    
    
    procedure AmWasser
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
       YAchsenSchleife:
@@ -184,7 +176,7 @@ package body StadtBauen is
          XAchsenSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
                                                                         ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             if
@@ -193,11 +185,11 @@ package body StadtBauen is
                null;
                
             elsif
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
+              KartenAllgemein.FeldGrund (PositionExtern => KartenWert)
             in
               GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range
             then
-               GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).AmWasser := True;
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AmWasser := True;
                exit YAchsenSchleife;
                
             else
@@ -206,6 +198,8 @@ package body StadtBauen is
                   
          end loop XAchsenSchleife;
       end loop YAchsenSchleife;
+      
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AmWasser := False;
       
    end AmWasser;
    

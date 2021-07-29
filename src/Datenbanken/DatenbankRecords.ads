@@ -6,7 +6,6 @@ package DatenbankRecords is
 
    -- EinheitenDatenbank
    type PassierbarkeitArray is array (GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum'Range) of Boolean;
-   type PermanenteKostenArray is array (GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of GlobaleDatentypen.GesamtproduktionStadt;
 
    type EinheitenListeRecord is record
       
@@ -16,7 +15,7 @@ package DatenbankRecords is
       EinheitArt : GlobaleDatentypen.Einheit_Art_Enum;
       PreisGeld : GlobaleDatentypen.KostenLager;
       PreisRessourcen : GlobaleDatentypen.KostenLager;
-      PermanenteKosten : PermanenteKostenArray;
+      PermanenteKosten : GlobaleDatentypen.PermanenteKostenArray;
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
 
       -- Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
@@ -63,7 +62,7 @@ package DatenbankRecords is
       
       PreisGeld : GlobaleDatentypen.KostenLager;      
       PreisRessourcen : GlobaleDatentypen.KostenLager;
-      PermanenteKosten : PermanenteKostenArray;
+      PermanenteKosten : GlobaleDatentypen.PermanenteKostenArray;
       
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
       
@@ -81,7 +80,7 @@ package DatenbankRecords is
 
 
 
-   -- KartenDatenbank
+   -- KartenDatenbankz
    type KartenListeRecord is record
 
       KartenGrafik : Wide_Wide_Character;
