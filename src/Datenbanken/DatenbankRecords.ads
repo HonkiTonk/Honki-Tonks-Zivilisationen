@@ -37,6 +37,8 @@ package DatenbankRecords is
       Transportkapazität : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       
    end record;
+   
+   type EinheitenListeArray is array (GlobaleDatentypen.EinheitenID'Range) of EinheitenListeRecord;
    -- EinheitenDatenbank
    
    
@@ -45,10 +47,11 @@ package DatenbankRecords is
    type ForschungListeRecord is record
 
       PreisForschung : GlobaleDatentypen.KostenLager;
-      AnforderungForschung : GlobaleDatentypen.AnforderungForschungArray;
-      
+      AnforderungForschung : GlobaleDatentypen.AnforderungForschungArray;      
 
    end record;
+   
+   type ForschungListeArray is array (GlobaleDatentypen.ForschungID'Range) of ForschungListeRecord;
    -- ForschungsDatenbank
 
 
@@ -76,6 +79,8 @@ package DatenbankRecords is
       GebäudeSpezielleEigenschaft : GlobaleDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 
    end record;
+   
+   type GebäudeListeArray is array (GlobaleDatentypen.GebäudeID'Range) of GebäudeListeRecord;
    -- GebaeudeDatenbank
 
 

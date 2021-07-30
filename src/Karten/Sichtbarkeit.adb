@@ -13,7 +13,7 @@ package body Sichtbarkeit is
    is begin
       
       EinheitenSchleife:
-      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
 
          case
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID
@@ -28,7 +28,7 @@ package body Sichtbarkeit is
       end loop EinheitenSchleife;
 
       StädteSchleife:
-      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
 
          case
            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID

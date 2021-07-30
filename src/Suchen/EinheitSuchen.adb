@@ -13,7 +13,7 @@ package body EinheitSuchen is
    is begin
       
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          if
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).Position = KoordinatenExtern
@@ -39,7 +39,7 @@ package body EinheitSuchen is
    is begin
       
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          if
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).Position = KoordinatenExtern
@@ -67,32 +67,37 @@ package body EinheitSuchen is
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
-         EinheitSchleife:
-         for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
-            
-            if
-              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
-            then
-               exit EinheitSchleife;
-               
-            elsif
-              GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).Position = KoordinatenExtern
-            then
-               if
-                 GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).WirdTransportiert = GlobaleKonstanten.LeerTransportiertWirdTransportiert
-               then
-                  return (RasseSchleifenwert, EinheitNummerSchleifenwert);
-                  
-               else
-                  return (RasseSchleifenwert, GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).WirdTransportiert);
-               end if;
-               
-            else
+      for RasseSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
+         
+         case
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+         is
+            when GlobaleDatentypen.Leer =>
                null;
-            end if;
+               
+            when others =>
+               EinheitSchleife:
+               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
             
-         end loop EinheitSchleife;
+                  if
+                    GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).Position = KoordinatenExtern
+                  then
+                     if
+                       GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).WirdTransportiert = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+                     then
+                        return (RasseSchleifenwert, EinheitNummerSchleifenwert);
+                  
+                     else
+                        return (RasseSchleifenwert, GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).WirdTransportiert);
+                     end if;
+               
+                  else
+                     null;
+                  end if;
+            
+               end loop EinheitSchleife;
+         end case;
+         
       end loop RasseSchleife;
       
       return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.LeerEinheitStadtNummer);
@@ -108,27 +113,31 @@ package body EinheitSuchen is
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
-         EinheitSchleife:
-         for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for RasseSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
+         
+         if
+           RasseExtern = RasseSchleifenwert
+           or
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
+         then
+            null;
+           
+         else
+            EinheitSchleife:
+            for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
 
-            if
-              RasseExtern = RasseSchleifenwert
-              or
-                GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
-            then
-               exit EinheitSchleife;
+               if
+                 GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).Position = KoordinatenExtern
+               then
+                  return (RasseSchleifenwert, EinheitNummerSchleifenwert);
                
-            elsif
-              GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).Position = KoordinatenExtern
-            then
-               return (RasseSchleifenwert, EinheitNummerSchleifenwert);
-               
-            else
-               null;
-            end if;
+               else
+                  null;
+               end if;
             
-         end loop EinheitSchleife;
+            end loop EinheitSchleife;
+         end if;
+         
       end loop RasseSchleife;
       
       return (GlobaleDatentypen.Rassen_Enum'First, GlobaleKonstanten.LeerEinheitStadtNummer);
@@ -199,7 +208,7 @@ package body EinheitSuchen is
       AnzahlEinheitTyp := 0;
       
       EinheitSchleife:
-      for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          if
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID
@@ -243,7 +252,7 @@ package body EinheitSuchen is
       AnzahlEinheiten := 0;
       
       EinheitenSchleife:
-      for EinheitenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          if
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitenSchleifenwert).ID /= GlobaleKonstanten.LeerEinheit.ID

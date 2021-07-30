@@ -15,7 +15,7 @@ package body KIStadtSuchen is
       AktuellGefundeneStadt := 0;
       
       StadtSchleife:
-      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          if
            GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).ID = GlobaleDatentypen.Leer
@@ -66,7 +66,7 @@ package body KIStadtSuchen is
    is begin
       
       StadtSchleife:
-      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (FeindlicheRasseExtern).Städtegrenze loop
          
          case
            GlobaleVariablen.StadtGebaut (FeindlicheRasseExtern, StadtNummerSchleifenwert).ID

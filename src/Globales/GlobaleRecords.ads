@@ -55,6 +55,15 @@ package GlobaleRecords is
       PositionStadt : AchsenStadtfeldRecord;
       
    end record;
+   
+   
+   
+   type GrenzenRecord is record
+      
+      Städtegrenze : GlobaleDatentypen.MaximaleStädte;
+      Einheitengrenze : GlobaleDatentypen.MaximaleEinheiten;
+      
+   end record;
 
 
 

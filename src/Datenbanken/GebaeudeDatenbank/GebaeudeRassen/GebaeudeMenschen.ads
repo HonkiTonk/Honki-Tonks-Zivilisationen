@@ -1,13 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleKonstanten;
+with GlobaleDatentypen, GlobaleKonstanten;
 
 with DatenbankRecords;
 
 package GebaeudeMenschen is
-
-   type GebäudeMenschenListArray is array (GlobaleDatentypen.GebäudeID'Range) of DatenbankRecords.GebäudeListeRecord;
-   GebäudeMenschenListe : constant GebäudeMenschenListArray :=
+   
+   GebäudeMenschenListe : constant DatenbankRecords.GebäudeListeArray :=
      (
       -- Holzhäuser
       1 =>

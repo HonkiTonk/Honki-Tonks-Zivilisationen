@@ -14,15 +14,14 @@ package body NaechstesObjekt is
       EinheitSuchenSchleife:
       loop
 
-         case
-           AktuelleEinheit (RasseExtern)
-         is
-            when GlobaleDatentypen.MaximaleEinheiten'Last =>
-               AktuelleEinheit (RasseExtern) := 1;
+         if
+           AktuelleEinheit (RasseExtern) >= GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
+         then
+            AktuelleEinheit (RasseExtern) := 1;
                
-            when others =>
-               AktuelleEinheit (RasseExtern) := AktuelleEinheit (RasseExtern) + 1;
-         end case;
+         else
+            AktuelleEinheit (RasseExtern) := AktuelleEinheit (RasseExtern) + 1;
+         end if;
                
          if
            GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).ID = GlobaleKonstanten.LeerEinheit.ID
@@ -63,15 +62,14 @@ package body NaechstesObjekt is
       StadtSuchenSchleife:
       loop
 
-         case
-           AktuelleStadt (RasseExtern)
-         is
-            when GlobaleDatentypen.MaximaleStädte'Last =>
-               AktuelleStadt (RasseExtern) := 1;
+         if
+           AktuelleStadt (RasseExtern) >= GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
+         then
+            AktuelleStadt (RasseExtern) := 1;
                
-            when others =>
-               AktuelleStadt (RasseExtern) := AktuelleStadt (RasseExtern) + 1;
-         end case;
+         else
+            AktuelleStadt (RasseExtern) := AktuelleStadt (RasseExtern) + 1;
+         end if;
                
          if
            GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt (RasseExtern)).ID = GlobaleDatentypen.Leer

@@ -13,7 +13,7 @@ package body KIAufgabenVerteilt is
       GleicheAufgabe := 0;
      
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze loop
             
          if
            EinheitNummerSchleifenwert = EinheitRasseNummerExtern.Platznummer
@@ -47,7 +47,7 @@ package body KIAufgabenVerteilt is
    is begin
       
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          if
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).KIBeschäftigt = AufgabeExtern
@@ -75,7 +75,7 @@ package body KIAufgabenVerteilt is
    is begin
       
       EinheitSchleife:
-      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          if
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).KIZielKoordinaten = ZielKoordinatenExtern

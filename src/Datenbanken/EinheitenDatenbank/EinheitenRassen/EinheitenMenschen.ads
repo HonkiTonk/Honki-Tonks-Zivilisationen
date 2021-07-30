@@ -1,13 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleKonstanten;
+with GlobaleDatentypen, GlobaleKonstanten, GlobaleRecords;
 
 with DatenbankRecords;
 
 package EinheitenMenschen is
-
-   type EinheitenMenschenListeArray is array (GlobaleDatentypen.EinheitenID'Range) of DatenbankRecords.EinheitenListeRecord;
-   EinheitenMenschenListe : constant EinheitenMenschenListeArray :=
+   
+   EinheitenMenschenListe : constant DatenbankRecords.EinheitenListeArray :=
      (
       -- Siedler
       1 =>

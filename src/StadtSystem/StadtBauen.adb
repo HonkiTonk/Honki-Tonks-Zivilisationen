@@ -27,10 +27,10 @@ package body StadtBauen is
       end if;
 
       StadtSchleife:
-      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze loop
          
          if
-           StadtNummerSchleifenwert = GlobaleVariablen.StadtGebautArray'Last (2)
+           StadtNummerSchleifenwert = GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze
            and
              GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= GlobaleDatentypen.Leer
          then
@@ -58,14 +58,6 @@ package body StadtBauen is
       end loop StadtSchleife;
       
       Stadtart := HauptstadtPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
-      
-      -- ID, AchsenPosition, Am Wasser, (Einwohner, Arbeiter)
-      -- Aktuelle Nahrungsmittel, Aktuelle Nahrungsproduktion, Aktuelle Ressourcen, Aktuelle Produktionrate
-      -- Aktuelle Geldgewinnung, Aktuelle Forschungsrate, Aktuelles Bauprojekt, Verbleibende Bauzeit
-      -- Korruption, Gebäude Vorhanden, Stadtname
-      -- UmgebungBewirtschaftung, UmgebungGröße
-      -- Aktuelle Meldungen
-      -- KI aktuelle Beschäftigung
       
       GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer) := GlobaleKonstanten.LeerStadt;
       GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).ID := Stadtart;
@@ -107,7 +99,7 @@ package body StadtBauen is
 
    function ErweitertesStadtBauenPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-                         return Boolean
+      return Boolean
    is begin
       
       YAchseSchleife:
@@ -143,11 +135,11 @@ package body StadtBauen is
 
    function HauptstadtPrüfen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-                         return GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum
+      return GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum
    is begin
       
       HauptsstadtSchleife:
-      for HauptstadtSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+      for HauptstadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          case
            GlobaleVariablen.StadtGebaut (RasseExtern, HauptstadtSchleifenwert).ID

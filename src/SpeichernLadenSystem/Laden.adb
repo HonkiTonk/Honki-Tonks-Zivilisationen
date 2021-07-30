@@ -147,10 +147,18 @@ package body Laden is
 
 
 
-      -- Rassen im Spiel laden
+      -- Rassen und Rassengrenzen laden
       GlobaleDatentypen.RassenImSpielArray'Read (Stream (File => DateiLadenNeu),
                                                  GlobaleVariablen.RassenImSpiel);
-      -- Rassen im Spiel laden
+      
+      GrenzenRassenSchleife:
+      for GrenzenRassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+         
+         GlobaleRecords.GrenzenRecord'Read (Stream (File => DateiLadenNeu),
+                                            GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));
+         
+      end loop GrenzenRassenSchleife;
+      -- Rassen und Rassengrenzen laden
 
 
 
@@ -166,7 +174,7 @@ package body Laden is
                
             when others =>
                EinheitenSchleife:
-               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseEinheitenSchleifenwert).Einheitengrenze loop
             
                   GlobaleRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
                                                              GlobaleVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
@@ -181,7 +189,7 @@ package body Laden is
 
       -- Schleife zum Laden der Städte
       StadtRassenSchleife:
-      for RasseStadtSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
+      for RasseStadtSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (1) loop
 
          case
            GlobaleVariablen.RassenImSpiel (RasseStadtSchleifenwert)
@@ -191,7 +199,7 @@ package body Laden is
                
             when others =>
                StadtSchleife:
-               for StadtNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+               for StadtNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
                   
                   GlobaleRecords.EinheitenGebautRecord'Read (Stream (File => DateiLadenNeu),
                                                              GlobaleVariablen.EinheitenGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));

@@ -5,7 +5,8 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Calendar;
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with ImSpiel, KartenGenerator, Eingabe, Auswahl, Anzeige, ZufallGeneratorenKarten, Ladezeiten, KartePositionPruefen, EinheitSuchen, ZufallGeneratorenSpieleinstellungen, EinheitenAllgemein;
+with ImSpiel, KartenGenerator, Eingabe, Auswahl, Anzeige, ZufallGeneratorenKarten, Ladezeiten, KartePositionPruefen, EinheitSuchen, ZufallGeneratorenSpieleinstellungen, EinheitenAllgemein, BewegungPassierbarkeitPruefen,
+     KartenAllgemein;
 
 package body SpielEinstellungen is
 
@@ -370,10 +371,8 @@ package body SpielEinstellungen is
            GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (SpielerartAuswahl))
          is
             when GlobaleDatentypen.Leer =>
-               JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 21);
-         
                if
-                 JaOderNein = GlobaleKonstanten.JaKonstante
+                 Auswahl.AuswahlJaNein (FrageZeileExtern => 21) = GlobaleKonstanten.JaKonstante
                then
                   GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (SpielerartAuswahl)) := GlobaleDatentypen.Spieler_Mensch;
                   Spieler := Spieler + 1;
@@ -424,10 +423,9 @@ package body SpielEinstellungen is
                                                 AbstandAnfangExtern    => GlobaleTexte.Leer,
                                                 AbstandEndeExtern      => GlobaleTexte.Leer);
                   Eingabe.WartenEingabe;
-                  JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 6);
                
                   case
-                    JaOderNein
+                    Auswahl.AuswahlJaNein (FrageZeileExtern => 6)
                   is
                      when GlobaleKonstanten.JaKonstante =>
                         return RassenAuswahl;
@@ -436,11 +434,9 @@ package body SpielEinstellungen is
                         null;
                   end case;
                   
-               else
-                  JaOderNein := Auswahl.AuswahlJaNein (FrageZeileExtern => 32);
-               
+               else               
                   case
-                    JaOderNein
+                    Auswahl.AuswahlJaNein (FrageZeileExtern => 32)
                   is
                      when GlobaleKonstanten.JaKonstante =>
                         GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (RassenAuswahl)) := GlobaleDatentypen.Leer;
@@ -452,9 +448,8 @@ package body SpielEinstellungen is
                   end case;
                end if;
 
-            when 19 =>               
-               Zufallswahl := GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (ZufallGeneratorenSpieleinstellungen.ZufälligeRasse);
-               return Zufallswahl;
+            when 19 =>
+               return GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (ZufallGeneratorenSpieleinstellungen.ZufälligeRasse);
 
             when -2 .. 0 =>
                return RassenAuswahl;
@@ -489,14 +484,11 @@ package body SpielEinstellungen is
                StartwerteFestlegenSchleife:
                loop
                   
-                  Koordinaten := ((0, 0, 0), (0, 0, 0));
-                  GezogeneWerte := ZufallGeneratorenKarten.YXPosition;
+                  StartKoordinaten := ((0, 0, 0), (0, 0, 0));
+                  GezogeneWerte := ZufallGeneratorenKarten.StartPosition (RasseSchleifenwert);
 
-                  PrüfungEinheit := UmgebungPrüfen (YPositionExtern   => GezogeneWerte.YAchse,
-                                                      XPositionExtern   => GezogeneWerte.XAchse,
-                                                      RasseExtern       => RasseSchleifenwert);
-
-                  exit StartwerteFestlegenSchleife when PrüfungEinheit;
+                  exit StartwerteFestlegenSchleife when UmgebungPrüfen (PositionExtern => GezogeneWerte,
+                                                                         RasseExtern    => RasseSchleifenwert);
                   
                   SicherheitsTestWert := SicherheitsTestWert + 1;
 
@@ -528,42 +520,32 @@ package body SpielEinstellungen is
 
 
    function UmgebungPrüfen
-     (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
       
       case
-        Karten.Weltkarte (0, YPositionExtern, XPositionExtern).Grund
+        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern)
       is
-         when GlobaleDatentypen.Karten_Grund_Felder_Ungünstig_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Wasser'Range =>
-            PrüfungGrund := False;
-            
-         when others =>
-            PrüfungGrund := True;
-      end case;
-
-      case
-        PrüfungGrund
-      is
-         when False =>
+         when GlobaleDatentypen.Lava | GlobaleDatentypen.Eis =>
             return False;
             
-         when True =>
-            PositionWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => (0, YPositionExtern, XPositionExtern));
+         when others =>
+            null;
       end case;
 
       case
-        PositionWert.Platznummer
+        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => PositionExtern).Platznummer
       is
          when GlobaleKonstanten.LeerEinheitStadtNummer =>
-            Koordinaten (1) := (0, YPositionExtern, XPositionExtern);
+            StartKoordinaten (1) := PositionExtern;
             YAchseSchleife:
             for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                XAchseSchleife:
                for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-                  KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YPositionExtern, XPositionExtern),
+                  KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => PositionExtern,
                                                                               ÄnderungExtern       => (0, YÄnderung, XÄnderung));
             
                   if
@@ -572,44 +554,35 @@ package body SpielEinstellungen is
                      null;
                      
                   elsif
-                    YÄnderung /= 0
+                    BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
+                                                                           IDExtern           => 2,
+                                                                           NeuePositionExtern => KartenWert) = False
                     or
-                      XÄnderung /= 0
+                      Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = GlobaleDatentypen.Lava
+                    or
+                      Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = GlobaleDatentypen.Eis
                   then
+                     null;
+                     
+                  elsif
+                    YÄnderung = 0
+                    and
+                      XÄnderung = 0
+                  then
+                     null;
+                     
+                  else                           
                      case
-                       Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund
-                     is
-                        when GlobaleDatentypen.Karten_Grund_Felder_Ungünstig_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Wasser'Range =>
-                           PrüfungGrund := False;
-            
-                        when others =>
-                           PrüfungGrund := True;
-                     end case;
-
-                     case
-                       PrüfungGrund
-                     is
-                        when False =>
-                           PlatzBelegt := (RasseExtern, 1);
-                           
-                        when True =>
-                           PlatzBelegt := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert);
-                     end case;
-                           
-                     case
-                       PlatzBelegt.Platznummer
+                       EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
                      is
                         when GlobaleKonstanten.LeerEinheitStadtNummer =>
-                           Koordinaten (2) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse);
+                           StartKoordinaten (2) := KartenWert;
                            StartpunktFestlegen (RasseExtern => RasseExtern);
                            return True;
                                  
                         when others =>
                            null;
                      end case;
-                                             
-                  else
-                     null;
                   end if;
 
                end loop XAchseSchleife;
@@ -629,12 +602,12 @@ package body SpielEinstellungen is
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
 
-      EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => Koordinaten (1),
+      EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (1),
                                           EinheitNummerExtern    => 1,
                                           IDExtern               => 1,
                                           StadtRasseNummerExtern => (RasseExtern, 0));
       
-      EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => Koordinaten (2),
+      EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (2),
                                           EinheitNummerExtern    => 2,
                                           IDExtern               => 2,
                                           StadtRasseNummerExtern => (RasseExtern, 0));

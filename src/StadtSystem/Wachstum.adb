@@ -11,38 +11,44 @@ package body Wachstum is
       
       RassenEinsSchleife:
       for RasseEinsSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (1) loop
-         StadtSchleife:
-         for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
-            
-            exit StadtSchleife when GlobaleVariablen.RassenImSpiel (RasseEinsSchleifenwert) = GlobaleDatentypen.Leer;
-            
-            case
-              StadtNummerSchleifenwert
-            is
-               when 1 =>
-                  GlobaleVariablen.Wichtiges (RasseEinsSchleifenwert).GesamteForschungsrate := 0;
-                  GlobaleVariablen.Wichtiges (RasseEinsSchleifenwert).GeldZugewinnProRunde := 0;
-                  
-               when others =>
-                  null;
-            end case;
-            
-            case
-              GlobaleVariablen.StadtGebaut (RasseEinsSchleifenwert, StadtNummerSchleifenwert).ID
-            is
-               when GlobaleDatentypen.Leer =>
-                  null;
+         
+         case
+           GlobaleVariablen.RassenImSpiel (RasseEinsSchleifenwert)
+         is
+            when GlobaleDatentypen.Leer =>
+               null;
                
-               when others =>
-                  WachstumEinwohner (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert));
-                  WachstumStadtExistiert (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert),
-                                          StadtGegründetExtern  => False);
-            end case;               
+            when others =>
+               StadtSchleife:
+               for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseEinsSchleifenwert).Städtegrenze loop
             
-         end loop StadtSchleife;
+                  case
+                    StadtNummerSchleifenwert
+                  is
+                     when 1 =>
+                        GlobaleVariablen.Wichtiges (RasseEinsSchleifenwert).GesamteForschungsrate := 0;
+                        GlobaleVariablen.Wichtiges (RasseEinsSchleifenwert).GeldZugewinnProRunde := 0;
+                  
+                     when others =>
+                        null;
+                  end case;
+            
+                  case
+                    GlobaleVariablen.StadtGebaut (RasseEinsSchleifenwert, StadtNummerSchleifenwert).ID
+                  is
+                     when GlobaleDatentypen.Leer =>
+                        null;
+               
+                     when others =>
+                        WachstumEinwohner (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert));
+                        WachstumStadtExistiert (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert),
+                                                StadtGegründetExtern  => False);
+                  end case;               
+            
+               end loop StadtSchleife;
+         end case;
+         
       end loop RassenEinsSchleife;
-      
-      
 
       RassenZweiSchleife:
       for RasseZweiSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop

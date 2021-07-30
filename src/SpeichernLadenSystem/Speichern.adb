@@ -155,10 +155,18 @@ package body Speichern is
 
 
 
-      -- Rassen im Spiel speichern
+      -- Rassen und Rassengrenzen speichern
       GlobaleDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernNeu),
                                                   GlobaleVariablen.RassenImSpiel);
-      -- Rassen im Spiel speichern
+      
+      GrenzenRassenSchleife:
+      for GrenzenRassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+         
+         GlobaleRecords.GrenzenRecord'Write (Stream (File => DateiSpeichernNeu),
+                                             GlobaleVariablen.Grenzen (GrenzenRassenSchleifenwert));
+         
+      end loop GrenzenRassenSchleife;
+      -- Rassen und Rassengrenzen speichern
 
 
 
@@ -174,7 +182,7 @@ package body Speichern is
                
             when others =>
                EinheitenSchleife:
-               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseEinheitenSchleifenwert).Einheitengrenze loop
                   
                   GlobaleRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernNeu),
                                                               GlobaleVariablen.EinheitenGebaut (RasseEinheitenSchleifenwert, EinheitNummerSchleifenwert));
@@ -199,7 +207,7 @@ package body Speichern is
 
             when others =>
                StadtSchleife:
-               for StadtNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+               for StadtNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseStadtSchleifenwert).Städtegrenze loop
                   
                   GlobaleRecords.EinheitenGebautRecord'Write (Stream (File => DateiSpeichernNeu),
                                                               GlobaleVariablen.EinheitenGebaut (RasseStadtSchleifenwert, StadtNummerSchleifenwert));

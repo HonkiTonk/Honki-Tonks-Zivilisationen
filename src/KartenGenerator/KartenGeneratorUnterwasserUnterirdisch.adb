@@ -24,7 +24,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
               Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund
             is
                when GlobaleDatentypen.Eis =>
-                  Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Erde;
+                  Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Erdgestein;
                      
                when GlobaleDatentypen.Wasser =>
                   Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Unter_Wasser;
@@ -32,8 +32,8 @@ package body KartenGeneratorUnterwasserUnterirdisch is
                when GlobaleDatentypen.Küstengewässer =>
                   Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Unter_Küstengewässer;
                      
-               when GlobaleDatentypen.Gebirge =>
-                  Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Gestein;
+               when GlobaleDatentypen.Gebirge | GlobaleDatentypen.Hügel =>
+                  Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Erdgestein;
                      
                when others =>
                   Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Erde;

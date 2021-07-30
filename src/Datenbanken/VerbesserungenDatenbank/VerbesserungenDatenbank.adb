@@ -2,11 +2,11 @@ pragma SPARK_Mode (On);
 
 package body VerbesserungenDatenbank is
    
-   procedure StandardVerbesserungenDatenbankWiederherstellen
+   procedure StandardVerbesserungenDatenbankLaden
    is begin
       
       VerbesserungListe := VerbesserungListeStandard;
       
-   end StandardVerbesserungenDatenbankWiederherstellen;
+   end StandardVerbesserungenDatenbankLaden;
    
 end VerbesserungenDatenbank;

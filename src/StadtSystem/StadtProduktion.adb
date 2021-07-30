@@ -16,23 +16,31 @@ package body StadtProduktion is
          -- Überprüfung für alle Rassen bei Runde beenden.
          when GlobaleDatentypen.Leer =>
             RassenSchleife:
-            for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
-               StadtSchleife:
-               for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
-                  
-                  exit StadtSchleife when GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer;
+            for RasseSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (1) loop
                
-                  case
-                    GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID
-                  is
-                     when GlobaleDatentypen.Leer =>
-                        null;
+               case
+                 GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+               is
+                  when GlobaleDatentypen.Leer =>
+                     null;
+                     
+                  when others =>
+                     StadtSchleife:
+                     for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
                   
-                     when others =>
-                        StadtProduktionBerechnung (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert));
-                  end case;
+                        case
+                          GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID
+                        is
+                           when GlobaleDatentypen.Leer =>
+                              null;
+                  
+                           when others =>
+                              StadtProduktionBerechnung (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert));
+                        end case;
                
-               end loop StadtSchleife;
+                     end loop StadtSchleife;
+               end case;
+               
             end loop RassenSchleife;
          
             -- Überprüfung beim Bauen einer Stadt

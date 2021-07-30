@@ -132,6 +132,7 @@ package body EinlesenWerte is
                   Name => "Daten/KartenDatenbank");
 
          when False =>
+            KartenDatenbank.StandardKartenDatenbankLaden;
             return;
       end case;
       
@@ -161,6 +162,7 @@ package body EinlesenWerte is
                   Name => "Daten/VerbesserungenDatenbank");
 
          when False =>
+            VerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
             return;
       end case;
       

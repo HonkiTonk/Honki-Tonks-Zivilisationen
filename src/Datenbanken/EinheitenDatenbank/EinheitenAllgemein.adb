@@ -47,22 +47,29 @@ package body EinheitenAllgemein is
       
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
-         EinheitenSchleife:
-         for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
-            
-            if
-              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
-            then
-               exit EinheitenSchleife;
-
-            elsif GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID then
+         
+         case
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+         is
+            when GlobaleDatentypen.Leer =>
                null;
+           
+            when others =>
+               EinheitenSchleife:
+               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
+                              
+                  if
+                    GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID
+                  then
+                     null;
                   
-            else
-               HeilungBewegungspunkteNeueRundeSetzen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
-            end if;            
+                  else
+                     HeilungBewegungspunkteNeueRundeSetzen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
+                  end if;            
             
-         end loop EinheitenSchleife;
+               end loop EinheitenSchleife;
+         end case;
+         
       end loop RassenSchleife;
       
    end HeilungBewegungspunkteNeueRundeErmitteln;

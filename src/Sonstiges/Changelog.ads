@@ -1,12 +1,37 @@
 package Changelog is
    
-   -- Version 0.00.7990 => 0.00.80:
+   -- Version 0.00.80 => 0.00.80 (01.08.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.7970 => 0.00.7990:
+   -- Version 0.00.8020 => 0.00.80 (31.07.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.7990 => 0.00.8020 (30.07.2021):
+   
+   -- Allen Rassen einen richtigen Namen gegeben.
+   -- Alle Datenbanken mit rassenspezifischem Inhalt in einzelne Teile aufgeteilt, welche beim Spielstart in die Gesamtdatenbank geschrieben werden.
+   -- Alle anderen Datenbank werden jetzt ebenfalls beim Spielstart beschrieben.
+   -- Die Datenbanken werden jetzt alle mit Standardinhalten befüllt, wenn keine Datendateien gefunden werden.
+   -- Einen großen Haufen unnötigen Code gelöscht.
+   -- Diverse Schleifenprüfungen auf vor die Schleife verschoben, so dass diese Prüfung nicht mehr für jeden Schleifenwert durchlaufen wird.
+   -- Einheiten- und Städtelimits eingebaut und alle Schleifen daran angepasst, Limit ist aber noch nicht vom Nutzer festlegbar.
+   -- Einheiten- und Städtelimits werden jetzt im Spielstand gespeichert und geladen.
+   -- Die Passierbarkeit der Anfangseinheiten jeder Rasse an ihren Lebensraum angepasst, Passierbarkeit Küstenwasser und Kartengrund Erdgestein hinzugefügt.
+   -- Die Startplatzierung an die unterschiedlichen Startsiedler und Rasseneigenschaften angepasst.
+   -- Changelog um Datumsangabe erweitert, äußerst wichtig und erwähnenswert.
+   -- Kommentare, Contracts und Kleinigkeiten korrigiert/angepasst/überarbeitet/entfernt.
+   
+   
+   
+   -- Version 0.00.7970 => 0.00.7990 (29.07.2021):
    
    -- Aktuelle Koordinatenposition wird jetzt immer angezeigt und nicht nur wenn man Cheats nutzt.
    -- Permanente Kostenberechnung wird jetzt im Stadtrecord gespeichert und beim Bauen/Entfernen einer Einheit modifiziert anstatt am Ende einer Runde über tausende Elemente zu loopen.
@@ -22,7 +47,7 @@ package Changelog is
    
    
    
-   -- Version 0.00.7950 => 0.00.7970:
+   -- Version 0.00.7950 => 0.00.7970 (28.07.2021):
    
    -- Unnötigen Code in den Stadtsystemen gelöscht und diverse Proceduren zusammengefasst.
    -- Die Prüfungen für verschiedene Stadtwerteänderungen in eine eigene Datei/eigene Proceduren ausgelagert.
@@ -36,7 +61,7 @@ package Changelog is
    
    
    
-   -- Version 0.00.7910 => 0.00.7950:
+   -- Version 0.00.7910 => 0.00.7950 (27.07.2021):
    
    -- RassenDatenbank angelegt um verschiedene Verhaltensweisen für die KI zu ermöglichen.
    -- RassenAllgemein angelegt um Werte aus der RassenDatenbank abzufragen.
@@ -65,7 +90,7 @@ package Changelog is
    
    
 
-   -- Version 0.00.7890 => 0.00.7910:
+   -- Version 0.00.7890 => 0.00.7910 (26.07.2021):
    
    -- Bewegungssystem fertig überarbeitet, sollte jetzt übersichtlich sein.
    -- Durch die Überarbeitung unnötigen Code gelöscht.

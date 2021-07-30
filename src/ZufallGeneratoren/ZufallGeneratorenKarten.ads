@@ -3,20 +3,25 @@ pragma SPARK_Mode (Off);
 with Ada.Numerics.Discrete_Random;
 with Ada.Numerics.Float_Random;
 
-with GlobaleDatentypen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
 with Karten;
 
 package ZufallGeneratorenKarten is
      
-   function YXPosition
-     return GlobaleRecords.AchsenKartenfeldPositivRecord
+   function StartPosition
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
      with
-       Post =>
-         (YXPosition'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            YXPosition'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer),
+         Post =>
+           (StartPosition'Result.EAchse in -1 .. 0
+            and
+              StartPosition'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+            and
+              StartPosition'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function ZufälligerWert
      return Float;
@@ -25,6 +30,10 @@ package ZufallGeneratorenKarten is
      return GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum;
 
 private
+   
+   EAchse : GlobaleDatentypen.EbeneVorhanden;
+   YAchse : GlobaleDatentypen.KartenfeldPositiv;
+   XAchse : GlobaleDatentypen.KartenfeldPositiv;
 
    -- Generatoren für Positionsbestimmung bei Spielstart, in Abhängigkeit der Kartengröße, da gibt es doch bestimmt eine bessere Lösung für
    ZufallsPunktKarte : GlobaleRecords.AchsenKartenfeldPositivRecord;

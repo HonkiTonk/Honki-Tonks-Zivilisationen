@@ -17,7 +17,7 @@ package Cheat is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
-            EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
+            EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze);
    
    procedure KarteInfosFeld
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
@@ -31,7 +31,7 @@ package Cheat is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
-            StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebautArray'First (2));
+            StadtRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze);
    
    GewonnenDurchCheat : Boolean := False;
 

@@ -26,7 +26,7 @@ package body KI is
    is begin
       
       EinheitenSchleife:
-      for EinheitNummerEinsSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+      for EinheitNummerEinsSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          if
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID
@@ -50,7 +50,7 @@ package body KI is
    is begin
       
       StadtSchleife:
-      for StadtNummerEinsSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+      for StadtNummerEinsSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
             
          if
            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).ID /= GlobaleDatentypen.Leer

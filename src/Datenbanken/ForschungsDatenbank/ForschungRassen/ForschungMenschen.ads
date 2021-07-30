@@ -1,13 +1,12 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleKonstanten;
+with GlobaleKonstanten;
 
 with DatenbankRecords;
 
 package ForschungMenschen is
 
-   type ForschungMenschenListeArray is array (GlobaleDatentypen.ForschungID'Range) of DatenbankRecords.ForschungListeRecord;
-   ForschungMenschenListe : constant ForschungMenschenListeArray :=
+   ForschungMenschenListe : constant DatenbankRecords.ForschungListeArray :=
      (
       -- Einfache Landwirtschaft
       1 =>

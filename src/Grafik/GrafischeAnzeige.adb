@@ -242,6 +242,9 @@ package body GrafischeAnzeige is
          when GlobaleDatentypen.Erde =>
             Put (Item => CSI & "48;2;139;69;19m");
             
+         when GlobaleDatentypen.Erdgestein =>
+            Put (Item => CSI & "48;2;120;120;120m");
+            
          when GlobaleDatentypen.Lava =>
             Put (Item => CSI & "48;2;250;39;39m");
             

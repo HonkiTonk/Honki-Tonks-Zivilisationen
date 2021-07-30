@@ -11,7 +11,7 @@ package body KIStadtLaufendeBauprojekte is
       GleichesBauprojekt := 0;
      
       StadtSchleife:
-      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
+      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
             
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Platznummer

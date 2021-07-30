@@ -36,9 +36,12 @@ package GlobaleVariablen is
    RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => GlobaleDatentypen.Leer);
    RasseAmZugNachLaden : GlobaleDatentypen.Rassen_Enum := GlobaleDatentypen.Leer;
 
-   -- Hier über LoopMinusDreiBisDrei nachdenken
    Schwierigkeitsgrad : GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum;   
    Gewonnen : Boolean := False;
+   
+   -- Später über Nutzereingaben neu belegbar machen.
+   type GrenzenArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleRecords.GrenzenRecord;
+   Grenzen : GrenzenArray := (others => (GlobaleDatentypen.MaximaleStädte'Last, GlobaleDatentypen.MaximaleEinheiten'Last));
    -- Zeug
    
 

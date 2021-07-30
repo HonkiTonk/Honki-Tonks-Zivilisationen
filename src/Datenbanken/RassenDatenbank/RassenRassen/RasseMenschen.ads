@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleKonstanten;
+with GlobaleDatentypen;
 
 with DatenbankRecords;
 

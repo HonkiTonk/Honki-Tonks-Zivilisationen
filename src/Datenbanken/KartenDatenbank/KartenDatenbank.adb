@@ -2,11 +2,11 @@ pragma SPARK_Mode (On);
 
 package body KartenDatenbank is
    
-   procedure StandardKartenDatenbankWiederherstellen
+   procedure StandardKartenDatenbankLaden
    is begin
       
       KartenListe := KartenListeStandard;
       
-   end StandardKartenDatenbankWiederherstellen;
+   end StandardKartenDatenbankLaden;
 
 end KartenDatenbank;

@@ -43,9 +43,9 @@ package GlobaleDatentypen is
 
 
    -- Für Rassen
-   type Rassen_Enum is (Leer, Menschen, Maschinen, Biber, Wölfe, Fischotter, Marderhund, Wildschwein, Waschbär, Maulwurf, Ziesel, Spinnen, Steinbock, Greifvögel, Fische, Schlangen, Salamander, Pflanzen, Igel);
-   for Rassen_Enum use (Leer => 0, Menschen => 1, Maschinen => 2, Biber => 3, Wölfe => 4, Fischotter => 5, Marderhund => 6, Wildschwein => 7, Waschbär => 8, Maulwurf => 9, Ziesel => 10, Spinnen => 11, Steinbock => 12,
-                        Greifvögel => 13, Fische => 14, Schlangen => 15, Salamander => 16, Pflanzen => 17, Igel => 18);
+   type Rassen_Enum is (Leer, Menschen, Kasrodiah, Lasupin, Lamustra, Manuky, Suroka, Pryolon, Talbidahr, Moru_Phisihl, Larinos_Lotaris, Carupex, Alary, Tesorahn, Natries_Zermanis, Tridatus, Senelari, Aspari_2, Ekropa);
+   for Rassen_Enum use (Leer => 0, Menschen => 1, Kasrodiah => 2, Lasupin => 3, Lamustra => 4, Manuky => 5, Suroka => 6, Pryolon => 7, Talbidahr => 8, Moru_Phisihl => 9, Larinos_Lotaris => 10, Carupex => 11, Alary => 12,
+                        Tesorahn => 13, Natries_Zermanis => 14, Tridatus => 15, Senelari => 16, Aspari_2 => 17, Ekropa => 18);
    subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen .. Rassen_Enum'Last;
 
    type Spieler_Enum is (Leer, Spieler_Mensch, Spieler_KI);
@@ -96,7 +96,7 @@ package GlobaleDatentypen is
    type Karten_Grund_Enum is (Leer,
                               -- Feld
                               Wasser, Küstengewässer, Unter_Wasser, Unter_Küstengewässer,
-                              Eis, Lava, Flachland, Tundra, Wüste, Hügel, Gebirge, Wald, Dschungel, Sumpf, Hügel_Mit, Wolken, Weltraum, Erde, Gestein,
+                              Eis, Lava, Flachland, Tundra, Wüste, Hügel, Gebirge, Wald, Dschungel, Sumpf, Hügel_Mit, Wolken, Weltraum, Erde, Erdgestein, Gestein,
                               -- Ressource
                               Fisch, Wal,
                               Kohle, Eisen, Öl, Hochwertiger_Boden, Gold,
@@ -104,8 +104,7 @@ package GlobaleDatentypen is
                               Flusskreuzung_Vier, Fluss_Waagrecht, Fluss_Senkrecht, Flusskurve_Unten_Rechts, Flusskurve_Unten_Links, Flusskurve_Oben_Rechts, Flusskurve_Oben_Links, Flusskreuzung_Drei_Oben,
                               Flusskreuzung_Drei_Unten, Flusskreuzung_Drei_Rechts, Flusskreuzung_Drei_Links, Flussendstück_Links, Flussendstück_Rechts, Flussendstück_Unten, Flussendstück_Oben, Fluss_Einzeln);
    subtype Karten_Grund_Alle_Felder_Enum is Karten_Grund_Enum range Wasser .. Gestein;
-   subtype Karten_Grund_Felder_Ungünstig_Enum is Karten_Grund_Alle_Felder_Enum range Wasser .. Lava;
-   subtype Karten_Grund_Wasser_Mit_Eis_Enum is Karten_Grund_Felder_Ungünstig_Enum range Wasser .. Eis;
+   subtype Karten_Grund_Wasser_Mit_Eis_Enum is Karten_Grund_Alle_Felder_Enum range Wasser .. Eis;
    subtype Karten_Grund_Wasser_Enum is Karten_Grund_Wasser_Mit_Eis_Enum range Wasser .. Unter_Küstengewässer;
    subtype Karten_Grund_Land_Enum is Karten_Grund_Alle_Felder_Enum range Eis .. Gestein;
    subtype Karten_Grund_Land_Ohne_Eis_Enum is Karten_Grund_Land_Enum range Flachland .. Gestein;
@@ -162,7 +161,7 @@ package GlobaleDatentypen is
    -- Passierbarkeit
    type Passierbarkeit_Enum is (Leer,
                                 Boden,
-                                Wasser, Unterwasser,
+                                Wasser, Küstenwasser, Unterwasser,
                                 Luft, Weltraum,
                                 Unteridrisch, Planeteninneres,
                                 Lava);

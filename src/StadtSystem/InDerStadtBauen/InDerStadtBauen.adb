@@ -104,24 +104,29 @@ package body InDerStadtBauen is
          
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
-         StadtSchleife:
-         for StadtNummer in GlobaleVariablen.StadtGebautArray'Range (2) loop
-
-            if
-              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
-            then
-               exit StadtSchleife;
-                     
-            elsif
-              GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummer).ID = GlobaleDatentypen.Leer
-            then
+         
+         case
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+         is
+            when GlobaleDatentypen.Leer =>
                null;
+               
+            when others =>
+               StadtSchleife:
+               for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
+
+                  if
+                    GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID = GlobaleDatentypen.Leer
+                  then
+                     null;
                         
-            else
-               BauzeitEinzeln (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummer));
-            end if;
+                  else
+                     BauzeitEinzeln (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert));
+                  end if;
       
-         end loop StadtSchleife;
+               end loop StadtSchleife;
+         end case;
+         
       end loop RassenSchleife;
       
    end BauzeitAlle;

@@ -127,7 +127,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
         and
@@ -137,7 +137,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
         and
@@ -192,7 +192,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
         and
@@ -202,7 +202,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
         and
@@ -280,7 +280,7 @@ package body Verbesserungen is
    is begin
 
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (1) = False
         and
@@ -290,7 +290,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (1) = False
         and
@@ -376,7 +376,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
@@ -386,7 +386,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
@@ -522,7 +522,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
@@ -532,7 +532,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Ziesel
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
         and
           GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
         and
@@ -718,24 +718,29 @@ package body Verbesserungen is
       
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
-         EinheitenSchleife:
-         for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebaut'Range (2) loop
          
-            if
-              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
-            then
-               exit EinheitenSchleife;
-               
-            elsif
-              GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID
-            then
+         case
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+         is
+            when GlobaleDatentypen.Leer =>
                null;
-
-            else
-               VerbesserungFertiggestelltPrüfen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
-            end if;
+               
+            when others =>
+               EinheitenSchleife:
+               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebaut'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
          
-         end loop EinheitenSchleife;
+                  if
+                    GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID
+                  then
+                     null;
+
+                  else
+                     VerbesserungFertiggestelltPrüfen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
+                  end if;
+         
+               end loop EinheitenSchleife;
+         end case;
+         
       end loop RassenSchleife;
       
    end VerbesserungFertiggestellt;

@@ -15,8 +15,6 @@ package SpielEinstellungen is
 
 private
 
-   PrüfungEinheit : Boolean;
-   PrüfungGrund : Boolean;
    RassenVorhanden : Boolean;
 
    SicherheitsTestWert : GlobaleDatentypen.KartenfeldPositivMitNullwert;
@@ -33,18 +31,14 @@ private
    SpieleranzahlAuswahl : Integer;
    SpielerartAuswahl : Integer;
    RassenAuswahl : Integer;
-   JaOderNein : Integer;
    SchwierigkeitAuswahl : Integer;
    BenutzerdefinierteGröße : Integer;
-   Zufallswahl : Integer;
 
-   PositionWert : GlobaleRecords.RassePlatznummerRecord;
    GezogeneWerte : GlobaleRecords.AchsenKartenfeldPositivRecord;
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   PlatzBelegt : GlobaleRecords.RassePlatznummerRecord;
 
    type KoordinatenArray is array (1 .. 2) of GlobaleRecords.AchsenKartenfeldPositivRecord;
-   Koordinaten : KoordinatenArray;
+   StartKoordinaten : KoordinatenArray;
 
    procedure StartwerteErmitteln;
 
@@ -97,14 +91,14 @@ private
          (RasseWählen'Result >= -2);
 
    function UmgebungPrüfen
-     (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
      with
        Pre =>
-         (YPositionExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            XPositionExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+            PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
