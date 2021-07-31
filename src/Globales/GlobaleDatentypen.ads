@@ -3,9 +3,8 @@ pragma SPARK_Mode (On);
 package GlobaleDatentypen is
 
    -- Sonstiges
-   type Anfang_Ende_Enum is (Leer, Anfangswert, Endwert);
-   for Anfang_Ende_Enum use (Leer => 0, Anfangswert => 1, Endwert => 2);
-   subtype Anfang_Ende_Verwendet is Anfang_Ende_Enum range Anfangswert .. Endwert;
+   type Anfang_Ende_Enum is (Anfangswert, Endwert);
+   for Anfang_Ende_Enum use (Anfangswert => 0, Endwert => 1);
 
    type Schwierigkeitsgrad_Enum is (Leer, Einfach, Mittel, Schwer);
    subtype Schwierigkeitsgrad_Verwendet_Enum is Schwierigkeitsgrad_Enum range Einfach .. Schwierigkeitsgrad_Enum'Last;
@@ -13,7 +12,7 @@ package GlobaleDatentypen is
 
    -- Für Anzeige
    type TextDateien is range 0 .. 30;
-   type TextZeilen is range 0 .. 105;
+   type TextZeilen is range 0 .. 107;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;
    -- Für Anzeige
 
@@ -89,8 +88,8 @@ package GlobaleDatentypen is
    for Kartentemperatur_Enum use (Leer => 0, Kalt => 1, Gemäßigt => 2, Heiß => 3, Eiszeit => 4, Wüste => 5);
    subtype Kartentemperatur_Verwendet_Enum is Kartentemperatur_Enum range Kalt .. Kartentemperatur_Enum'Last;
 
-   type Kartenform_Enum is (Leer, X_Zylinder, Y_Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht, Tugel);
-   for Kartenform_Enum use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5, Kugel_Gedreht => 6, Tugel => 7);
+   type Kartenform_Enum is (Leer, X_Zylinder, Y_Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht, Tugel, Tugel_Gedreht, Tugel_Extrem);
+   for Kartenform_Enum use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5, Kugel_Gedreht => 6, Tugel => 7, Tugel_Gedreht => 8, Tugel_Extrem => 9);
    subtype Kartenform_Verwendet_Enum is Kartenform_Enum range X_Zylinder .. Kartenform_Enum'Last;
 
    type Karten_Grund_Enum is (Leer,

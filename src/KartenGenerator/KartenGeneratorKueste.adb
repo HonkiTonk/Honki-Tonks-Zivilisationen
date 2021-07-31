@@ -18,8 +18,7 @@ package body KartenGeneratorKueste is
               Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund
             is
                when GlobaleDatentypen.Wasser =>
-                  GewässerFestlegen (YAchseSchleifenwertExtern => YAchseSchleifenwert,
-                                      XAchseSchleifenwertExtern => XAchseSchleifenwert);
+                  GewässerFestlegen (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                   
                when others =>
                   null;
@@ -33,30 +32,34 @@ package body KartenGeneratorKueste is
    
    
    procedure GewässerFestlegen
-     (YAchseSchleifenwertExtern, XAchseSchleifenwertExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      ZweiteYAchseSchleife:
+      YAchseSchleife:
       for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-         ZweiteXAchseSchleife:
+         XAchseSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                      
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => (0, YAchseSchleifenwertExtern, XAchseSchleifenwertExtern),
-                                                                        ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
+                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                         
             if
               KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
-              or else
-                Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= GlobaleDatentypen.Flachland
+            then
+               null;
+               
+            elsif
+              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= GlobaleDatentypen.Flachland
             then
                null;
                
             else
-               Karten.Weltkarte (0, YAchseSchleifenwertExtern, XAchseSchleifenwertExtern).Grund := GlobaleDatentypen.Küstengewässer;
+               Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund := GlobaleDatentypen.Küstengewässer;
+               return;
             end if;
                         
-         end loop ZweiteXAchseSchleife;
-      end loop ZweiteYAchseSchleife;
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
       
    end GewässerFestlegen;
 

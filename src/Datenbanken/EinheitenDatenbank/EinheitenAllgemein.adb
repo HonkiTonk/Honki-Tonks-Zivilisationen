@@ -7,7 +7,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with EinheitenDatenbank;
 
-with Auswahl, Anzeige, Eingabe, Sichtbarkeit, StadtProduktion;
+with Auswahl, Anzeige, Eingabe, Sichtbarkeit, StadtProduktion, RasseEntfernen;
 
 package body EinheitenAllgemein is
 
@@ -184,6 +184,7 @@ package body EinheitenAllgemein is
       end case;
 
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerEinheit;
+      RasseEntfernen.RasseExistenzPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
    end EinheitEntfernen;
    

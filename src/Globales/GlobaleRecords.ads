@@ -62,6 +62,11 @@ package GlobaleRecords is
       
       Städtegrenze : GlobaleDatentypen.MaximaleStädte;
       Einheitengrenze : GlobaleDatentypen.MaximaleEinheiten;
+      Geldgrenze : Integer;
+      Forschungsgrenze : GlobaleDatentypen.KostenLager;
+      Geldgewinngrenze : GlobaleDatentypen.KostenLager;
+      ForschungGewinngrenze : GlobaleDatentypen.KostenLager;
+      RassenRundengrenze : Natural;
       
    end record;
 

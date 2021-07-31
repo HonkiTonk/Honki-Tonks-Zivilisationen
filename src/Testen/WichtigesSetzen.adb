@@ -8,9 +8,9 @@ package body WichtigesSetzen is
    is begin
          
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern > Integer'Last
+        GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern > GlobaleVariablen.Grenzen (RasseExtern).Geldgrenze
       then
-         GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge := Integer'Last;
+         GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge := GlobaleVariablen.Grenzen (RasseExtern).Geldgrenze;
             
       elsif
         GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge + GeldZugewinnExtern < Integer'First
@@ -31,9 +31,9 @@ package body WichtigesSetzen is
    is begin
       
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge + ForschungZugewinnExtern > GlobaleDatentypen.KostenLager'Last
+        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge + ForschungZugewinnExtern > GlobaleVariablen.Grenzen (RasseExtern).Forschungsgrenze
       then
-         GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := GlobaleDatentypen.KostenLager'Last;
+         GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := GlobaleVariablen.Grenzen (RasseExtern).Forschungsgrenze;
             
       else
          GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge + ForschungZugewinnExtern;
@@ -49,9 +49,9 @@ package body WichtigesSetzen is
    is begin
       
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern > GlobaleDatentypen.KostenLager'Last
+        GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern > GlobaleVariablen.Grenzen (RasseExtern).ForschungGewinngrenze
       then
-         GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := GlobaleDatentypen.KostenLager'Last;
+         GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := GlobaleVariablen.Grenzen (RasseExtern).ForschungGewinngrenze;
                
       else
          GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate + ForschungsrateZugewinnExtern;
@@ -67,9 +67,9 @@ package body WichtigesSetzen is
    is begin
       
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern > GlobaleDatentypen.KostenLager'Last
+        GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern > GlobaleVariablen.Grenzen (RasseExtern).Geldgewinngrenze
       then
-         GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := GlobaleDatentypen.KostenLager'Last;
+         GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := GlobaleVariablen.Grenzen (RasseExtern).Geldgewinngrenze;
                
       else
          GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde := GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde + GeldZugewinnExtern;

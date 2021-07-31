@@ -12,65 +12,67 @@ package KartenGeneratorStandard is
 private
 
    BeliebigerLandwert : Float;
-
+   
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
-   type Land_Erzeugung_Enum is (Leer, Land_Eisschild, Landmasse_Eisschild, Land_Normal, Landmasse_Normal, Land_Sonstiges, Land_Fläche_Frei, Land_Fläche_Belegt);
-   for Land_Erzeugung_Enum use (Leer => 0, Land_Eisschild => 1, Landmasse_Eisschild => 2, Land_Normal => 3, Landmasse_Normal => 4, Land_Sonstiges => 5, Land_Fläche_Frei => 6, Land_Fläche_Belegt => 7);
-   subtype Land_Erzeugung_Verwendet_Enum is Land_Erzeugung_Enum range Land_Eisschild .. Land_Fläche_Belegt;
-
-   type WahrscheinlichkeitenFürLandArray is array (GlobaleDatentypen.Kartenart_Verwendet_Enum'Range, Land_Erzeugung_Verwendet_Enum'Range) of Float;
-   WahrscheinlichkeitenFürLand : constant WahrscheinlichkeitenFürLandArray := (
-                                                                                 GlobaleDatentypen.Inseln =>
-                                                                                   (
-                                                                                    Land_Eisschild => 0.92,
-                                                                                    Landmasse_Eisschild => 0.98,
-                                                                                    Land_Normal => 0.75,
-                                                                                    Landmasse_Normal => 0.80,
-                                                                                    Land_Sonstiges => 0.98,
-                                                                                    Land_Fläche_Frei => 0.15,
-                                                                                    Land_Fläche_Belegt => 0.70),
+   type Land_Erzeugung_Enum is (Leer, Feld_Eisschild, Masse_Eisschild, Feld_Normal, Masse_Normal, Feld_Sonstiges, Feld_Fläche_Frei, Feld_Fläche_Belegt);
+   for Land_Erzeugung_Enum use (Leer => 0, Feld_Eisschild => 1, Masse_Eisschild => 2, Feld_Normal => 3, Masse_Normal => 4, Feld_Sonstiges => 5, Feld_Fläche_Frei => 6, Feld_Fläche_Belegt => 7);
+   subtype Land_Erzeugung_Verwendet_Enum is Land_Erzeugung_Enum range Feld_Eisschild .. Land_Erzeugung_Enum'Last;
+   
+   type WahrscheinlichkeitenRecord is record
+      
+      Anfangswert : Float;
+      Endwert : Float;
+      
+   end record;
+   
+   -- Dafür noch feste Standardwerte einbauen? Wäre dann später bei weiterführenden Einstellungen wie viel Wasser sinnvoll.
+   type WahrscheinlichkeitenLandArray is array (GlobaleDatentypen.Kartenart_Verwendet_Enum'Range, Land_Erzeugung_Verwendet_Enum'Range) of WahrscheinlichkeitenRecord;
+   WahrscheinlichkeitenLand : constant WahrscheinlichkeitenLandArray := (
+                                                                         GlobaleDatentypen.Inseln =>
+                                                                           (
+                                                                            Masse_Eisschild    => (0.00, 0.02),
+                                                                            Feld_Eisschild     => (0.02, 0.10),
+                                                                            Masse_Normal       => (0.00, 0.20),
+                                                                            Feld_Normal        => (0.20, 0.45),
+                                                                            Feld_Sonstiges     => (0.00, 0.02),
+                                                                            Feld_Fläche_Frei   => (0.00, 0.85),
+                                                                            Feld_Fläche_Belegt => (0.00, 0.30)
+                                                                           ),
                                                                                  
-                                                                                 GlobaleDatentypen.Kontinente =>
-                                                                                   (
-                                                                                    Land_Eisschild => 0.92,
-                                                                                    Landmasse_Eisschild => 0.98,
-                                                                                    Land_Normal => 0.75,
-                                                                                    Landmasse_Normal => 0.80,
-                                                                                    Land_Sonstiges => 0.98,
-                                                                                    Land_Fläche_Frei => 0.15,
-                                                                                    Land_Fläche_Belegt => 0.70),
+                                                                         GlobaleDatentypen.Kontinente =>
+                                                                           (
+                                                                            Masse_Eisschild    => (0.00, 0.02),
+                                                                            Feld_Eisschild     => (0.02, 0.10),
+                                                                            Masse_Normal       => (0.00, 0.20),
+                                                                            Feld_Normal        => (0.20, 0.45),
+                                                                            Feld_Sonstiges     => (0.00, 0.02),
+                                                                            Feld_Fläche_Frei   => (0.00, 0.85),
+                                                                            Feld_Fläche_Belegt => (0.00, 0.30)
+                                                                           ),
                                                                                  
-                                                                                 GlobaleDatentypen.Pangäa =>
-                                                                                   (
-                                                                                    Land_Eisschild => 0.92,
-                                                                                    Landmasse_Eisschild => 0.98,
-                                                                                    Land_Normal => 0.75,
-                                                                                    Landmasse_Normal => 0.80,
-                                                                                    Land_Sonstiges => 0.98,
-                                                                                    Land_Fläche_Frei => 0.15,
-                                                                                    Land_Fläche_Belegt => 0.70),
-                                                                                 
-                                                                                 GlobaleDatentypen.Nur_Land =>
-                                                                                   (
-                                                                                    Land_Eisschild => 0.50,
-                                                                                    Landmasse_Eisschild => 0.00,
-                                                                                    Land_Normal => 0.50,
-                                                                                    Landmasse_Normal => 0.00,
-                                                                                    Land_Sonstiges => 0.50,
-                                                                                    Land_Fläche_Frei => 0.00,
-                                                                                    Land_Fläche_Belegt => 0.50),
-                                                                                 
-                                                                                 GlobaleDatentypen.Chaos =>
-                                                                                   (
-                                                                                    Land_Eisschild => 0.00,
-                                                                                    Landmasse_Eisschild => 0.00, 
-                                                                                    Land_Normal => 0.00,
-                                                                                    Landmasse_Normal => 0.00,
-                                                                                    Land_Sonstiges => 0.00,
-                                                                                    Land_Fläche_Frei => 0.00,
-                                                                                    Land_Fläche_Belegt => 0.00)
-                                                                                );
+                                                                         GlobaleDatentypen.Pangäa =>
+                                                                           (
+                                                                            Masse_Eisschild    => (0.00, 0.02),
+                                                                            Feld_Eisschild     => (0.02, 0.10),
+                                                                            Masse_Normal       => (0.00, 0.20),
+                                                                            Feld_Normal        => (0.20, 0.45),
+                                                                            Feld_Sonstiges     => (0.00, 0.02),
+                                                                            Feld_Fläche_Frei   => (0.00, 0.85),
+                                                                            Feld_Fläche_Belegt => (0.00, 0.30)
+                                                                           ),
+                                                                         
+                                                                         others =>
+                                                                           (
+                                                                            Masse_Eisschild    => (0.00, 0.00),
+                                                                            Feld_Eisschild     => (0.00, 0.00),
+                                                                            Masse_Normal       => (0.00, 0.00),
+                                                                            Feld_Normal        => (0.00, 0.00),
+                                                                            Feld_Sonstiges     => (0.00, 0.00),
+                                                                            Feld_Fläche_Frei   => (0.00, 0.00),
+                                                                            Feld_Fläche_Belegt => (0.00, 0.00)
+                                                                           )
+                                                                        );
 
    -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
    -- Sollte so aber ganz gut sein, da bei halbem Loop zu wenig Wasser ist, aber eventuell Werte ein wenig verringern.
@@ -110,5 +112,7 @@ private
             XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    procedure GenerierungNurLand;
+   
+   procedure EisrandGenerieren;
 
 end KartenGeneratorStandard;

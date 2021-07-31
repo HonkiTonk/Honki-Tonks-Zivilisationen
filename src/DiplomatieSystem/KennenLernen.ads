@@ -15,4 +15,26 @@ package KennenLernen is
           and
             GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) /= GlobaleDatentypen.Leer);
 
+private
+
+   procedure ErstkontaktMenschMensch
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (EigeneRasseExtern /= FremdeRasseExtern
+          and
+            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
+          and
+            GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+
+   procedure ErstkontaktMenschKI
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (EigeneRasseExtern /= FremdeRasseExtern
+          and
+            (GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
+             or
+               GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch));
+
 end KennenLernen;

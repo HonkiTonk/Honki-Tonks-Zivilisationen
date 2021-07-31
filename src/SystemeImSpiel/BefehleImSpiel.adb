@@ -66,7 +66,7 @@ package body BefehleImSpiel is
             FeldInformationen.Aufteilung (RasseExtern => RasseExtern);
 
          when GlobaleDatentypen.Diplomatie =>
-            Diplomatie.DiplomatieAuswählen (RasseExtern => RasseExtern);
+            Diplomatie.DiplomatieMenü (RasseExtern => RasseExtern);
 
          when GlobaleDatentypen.GeheZu =>
             BewegungssystemCursor.GeheZuCursor (RasseExtern => RasseExtern);

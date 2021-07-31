@@ -7,16 +7,16 @@ with GlobaleDatentypen;
 
 package Ladezeiten is
 
-   type LadezeitenArray is array (Positive range <>, GlobaleDatentypen.Anfang_Ende_Verwendet range <>) of Time;
-   SpielweltErstellenZeit : LadezeitenArray (1 .. 12, GlobaleDatentypen.Anfang_Ende_Verwendet'Range);
+   type LadezeitenArray is array (Positive range <>, GlobaleDatentypen.Anfang_Ende_Enum range <>) of Time;
+   SpielweltErstellenZeit : LadezeitenArray (1 .. 12, GlobaleDatentypen.Anfang_Ende_Enum'Range);
    
    -- 1. Startzeit
    -- 2. Zeit zwischen den Runden
    -- 3. Zeit zum Speichern
    -- 4. Zeit zum Laden
-   EinzelneZeiten : LadezeitenArray (1 .. 4, GlobaleDatentypen.Anfang_Ende_Verwendet'Range);
+   EinzelneZeiten : LadezeitenArray (1 .. 4, GlobaleDatentypen.Anfang_Ende_Enum'Range);
                                                       
-   KIZeiten : LadezeitenArray (1 .. 19, GlobaleDatentypen.Anfang_Ende_Verwendet'Range);
+   KIZeiten : LadezeitenArray (1 .. 19, GlobaleDatentypen.Anfang_Ende_Enum'Range);
 
    procedure LadezeitenSpielweltErstellen
      (WelcheZeitExtern : in Positive);

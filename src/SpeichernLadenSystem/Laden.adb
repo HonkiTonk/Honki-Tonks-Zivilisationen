@@ -56,10 +56,13 @@ package body Laden is
          end case;
       end if;
 
-      -- Rundenanzahl laden
+      -- Rundenanzahl und Grenze laden
       Positive'Read (Stream (File => DateiLadenNeu),
                      GlobaleVariablen.RundenAnzahl);
-      -- Rundenanzahl laden
+      
+      Natural'Read (Stream (File => DateiLadenNeu),
+                     GlobaleVariablen.Rundengrenze);
+      -- Rundenanzahl und Grenze laden
       
       
 

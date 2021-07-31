@@ -31,8 +31,6 @@ package Sichtbarkeit is
 
 private
 
-   SichtbarkeitTesten : Boolean;
-
    SichtweiteObjekt : GlobaleDatentypen.Sichtweite;
    BereitsGetestet : GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
    Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;

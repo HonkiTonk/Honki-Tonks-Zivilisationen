@@ -14,11 +14,11 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    procedure GewässerFestlegen
-     (YAchseSchleifenwertExtern, XAchseSchleifenwertExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
-         (YAchseSchleifenwertExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            XAchseSchleifenwertExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 end KartenGeneratorKueste;

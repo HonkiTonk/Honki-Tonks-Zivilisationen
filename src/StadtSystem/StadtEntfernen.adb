@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Karten, KartePositionPruefen;
+with Karten, KartePositionPruefen, RasseEntfernen;
 
 package body StadtEntfernen is
 
@@ -12,8 +12,8 @@ package body StadtEntfernen is
       
       BelegteStadtfelderFreigeben (StadtRasseNummerExtern => StadtRasseNummerExtern);
       HeimatstädteEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerStadt;
+      RasseEntfernen.RasseExistenzPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
       
    end StadtEntfernen;
    

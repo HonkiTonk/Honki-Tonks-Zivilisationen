@@ -18,8 +18,8 @@ package body FelderwerteFestlegen is
                XAchseÄnderungSchleife:
                for XAchseÄnderungSchleifenwert in LoopRangeMinusDreiZuDrei'Range loop
                   
-                  KartenWertEins (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                                                                             ÄnderungExtern       => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert));
+                  KartenWertEins (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
+                                                                                                             ÄnderungExtern    => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert));
 
                   case
                     KartenWertEins (KoordinatenExtern.EAchse).XAchse
@@ -52,8 +52,8 @@ package body FelderwerteFestlegen is
          BewertungXÄnderungSchleife:
          for BewertungXÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
-            KartenWertZwei (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                                                                       ÄnderungExtern       => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert));
+            KartenWertZwei (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
+                                                                                                       ÄnderungExtern    => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert));
 
             if
               KartenWertZwei (KoordinatenExtern.EAchse).XAchse = GlobaleKonstanten.LeerYXKartenWert

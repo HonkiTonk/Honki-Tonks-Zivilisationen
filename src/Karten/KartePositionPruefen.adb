@@ -39,6 +39,12 @@ package body KartePositionPruefen is
          when GlobaleDatentypen.Tugel =>
             return KartenPositionTugel (KoordinatenExtern => KoordinatenExtern,
                                         ÄnderungExtern    => ÄnderungExtern);
+            
+         when GlobaleDatentypen.Tugel_Gedreht =>
+            return (0, 0, 0);
+            
+         when GlobaleDatentypen.Tugel_Extrem =>
+            return (0, 0, 0);
       end case;
       
    end KartenPositionBestimmen;
@@ -283,6 +289,7 @@ package body KartePositionPruefen is
    
    
    
+   -- Die Tugel brauchen wahrscheinlich neue Berechnungen
    function KartenPositionTugel
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
@@ -319,6 +326,84 @@ package body KartePositionPruefen is
       return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
       
    end KartenPositionTugel;
+   
+   
+   
+   function KartenPositionTugelGedreht
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+   is begin
+      
+      EAchse (KoordinatenExtern.EAchse) := PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                        ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
+      
+      case
+        EAchse (KoordinatenExtern.EAchse)
+      is
+         when GlobaleDatentypen.Ebene'First =>
+            return GlobaleKonstanten.LeerKartenPosition;
+
+         when others =>
+            null;
+      end case;
+            
+      ZwischenPositionAchse (KoordinatenExtern.EAchse) := PositionBestimmen_Y_X_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                         ÄnderungExtern    => ÄnderungExtern);
+      
+      ZwischenPositionTugelAchse (KoordinatenExtern.EAchse) := PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                              ÄnderungExtern    => ÄnderungExtern);
+      
+      YAchse (KoordinatenExtern.EAchse) := PositionBestimmenYWechsel (YAchseExtern         => ZwischenPositionTugelAchse (KoordinatenExtern.EAchse).YAchse,
+                                                                      ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
+                                                                      ArrayPositionExtern  => KoordinatenExtern.EAchse);
+            
+      XAchse (KoordinatenExtern.EAchse) := PositionBestimmenXWechsel (XAchseExtern         => ZwischenPositionAchse (KoordinatenExtern.EAchse).XAchse,
+                                                                      ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
+                                                                      ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      
+      return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
+      
+   end KartenPositionTugelGedreht;
+   
+   
+     
+   function KartenPositionTugelExtrem
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+   is begin
+      
+      EAchse (KoordinatenExtern.EAchse) := PositionBestimmenEAchseFest (EAchseExtern          => KoordinatenExtern.EAchse,
+                                                                        ÄnderungEAchseExtern  => ÄnderungExtern.EAchse);
+      
+      case
+        EAchse (KoordinatenExtern.EAchse)
+      is
+         when GlobaleDatentypen.Ebene'First =>
+            return GlobaleKonstanten.LeerKartenPosition;
+
+         when others =>
+            null;
+      end case;
+            
+      ZwischenPositionAchse (KoordinatenExtern.EAchse) := PositionBestimmen_Y_X_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                         ÄnderungExtern    => ÄnderungExtern);
+      
+      ZwischenPositionTugelAchse (KoordinatenExtern.EAchse) := PositionBestimmen_X_Y_Wechsel (KoordinatenExtern => KoordinatenExtern,
+                                                                                              ÄnderungExtern    => ÄnderungExtern);
+      
+      YAchse (KoordinatenExtern.EAchse) := PositionBestimmenYWechsel (YAchseExtern         => ZwischenPositionTugelAchse (KoordinatenExtern.EAchse).YAchse,
+                                                                      ÄnderungYAchseExtern => ÄnderungExtern.YAchse,
+                                                                      ArrayPositionExtern  => KoordinatenExtern.EAchse);
+            
+      XAchse (KoordinatenExtern.EAchse) := PositionBestimmenXWechsel (XAchseExtern         => ZwischenPositionAchse (KoordinatenExtern.EAchse).XAchse,
+                                                                      ÄnderungXAchseExtern => ÄnderungExtern.XAchse,
+                                                                      ArrayPositionExtern  => KoordinatenExtern.EAchse);
+      
+      return (EAchse (KoordinatenExtern.EAchse), YAchse (KoordinatenExtern.EAchse), XAchse (KoordinatenExtern.EAchse));
+      
+   end KartenPositionTugelExtrem;
    -- Kartenformen
    
    

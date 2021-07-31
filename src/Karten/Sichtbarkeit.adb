@@ -51,22 +51,22 @@ package body Sichtbarkeit is
    is begin
       
       if
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Luft) = True
-        or
-          EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Weltraum) = True
+        (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
+                                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Luft) = True
+         or
+           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
+                                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Weltraum) = True)
+        and
+          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse >= 0
       then
          SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                             SichtweiteExtern         => 3);
          return;
          
       else
-         null;
+         KoordinatenEinheit := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position;
+         AktuellerGrund := Karten.Weltkarte (KoordinatenEinheit.EAchse, KoordinatenEinheit.YAchse, KoordinatenEinheit.XAchse).Grund;
       end if;
-      
-      KoordinatenEinheit := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position;
-      AktuellerGrund := Karten.Weltkarte (KoordinatenEinheit.EAchse, KoordinatenEinheit.YAchse, KoordinatenEinheit.XAchse).Grund;
       
       if
         AktuellerGrund = GlobaleDatentypen.Gebirge
@@ -181,13 +181,11 @@ package body Sichtbarkeit is
             XÄnderungSchleife:
             for XÄnderungSchleifenwert in 0 .. SichtweiteXRichtungExtern loop
                     
-               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                 YÄnderungExtern   => YÄnderungSchleifenwert - 1,
-                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert,
-                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
-                     
                if
-                 SichtbarkeitTesten = False
+                 SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                             YÄnderungExtern   => YÄnderungSchleifenwert - 1,
+                                             XÄnderungExtern   => -XÄnderungSchleifenwert,
+                                             SichtweiteExtern  => SichtweiteMaximalExtern) = False
                then
                   exit YÄnderungSchleife;
                         
@@ -215,14 +213,12 @@ package body Sichtbarkeit is
          for YÄnderungSchleifenwert in 0 .. SichtweiteYRichtungExtern loop
             XÄnderungSchleife22:
             for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
-               
-               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                 YÄnderungExtern   => YÄnderungSchleifenwert,
-                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
-                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
-                  
+                                 
                if
-                 SichtbarkeitTesten = False
+                 SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                             YÄnderungExtern   => YÄnderungSchleifenwert,
+                                             XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
+                                             SichtweiteExtern  => SichtweiteMaximalExtern) = False
                then
                   exit YÄnderungSchleife22;
                         
@@ -247,13 +243,11 @@ package body Sichtbarkeit is
             XÄnderungSchleife333:
             for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
                      
-               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                 YÄnderungExtern   => YÄnderungSchleifenwert - 1,
-                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
-                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
-                  
                if
-                 SichtbarkeitTesten = False
+                 SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                             YÄnderungExtern   => YÄnderungSchleifenwert - 1,
+                                             XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
+                                             SichtweiteExtern  => SichtweiteMaximalExtern) = False
                then
                   exit YÄnderungSchleife333;
                         
@@ -308,14 +302,12 @@ package body Sichtbarkeit is
          for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
             XÄnderungSchleife:
             for XÄnderungSchleifenwert in 0 .. SichtweiteXRichtungExtern loop
-                    
-               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
-                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert,
-                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
-                     
+                                         
                if
-                 SichtbarkeitTesten = False
+                 SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                             YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
+                                             XÄnderungExtern   => -XÄnderungSchleifenwert,
+                                             SichtweiteExtern  => SichtweiteMaximalExtern) = False
                then
                   exit YÄnderungSchleife;
                         
@@ -343,14 +335,12 @@ package body Sichtbarkeit is
          for YÄnderungSchleifenwert in 0 .. SichtweiteYRichtungExtern loop
             XÄnderungSchleife22:
             for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
-               
-               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert,
-                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
-                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
-                  
+                                 
                if
-                 SichtbarkeitTesten = False
+                 SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                             YÄnderungExtern   => -YÄnderungSchleifenwert,
+                                             XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
+                                             SichtweiteExtern  => SichtweiteMaximalExtern) = False
                then
                   exit YÄnderungSchleife22;
                         
@@ -375,13 +365,11 @@ package body Sichtbarkeit is
             XÄnderungSchleife333:
             for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
                      
-               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
-                                                                 XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
-                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
-                  
                if
-                 SichtbarkeitTesten = False
+                 SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                             YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
+                                             XÄnderungExtern   => -XÄnderungSchleifenwert + 1,
+                                             SichtweiteExtern  => SichtweiteMaximalExtern) = False
                then
                   exit YÄnderungSchleife333;
                         
@@ -437,13 +425,11 @@ package body Sichtbarkeit is
             XÄnderungSchleife:
             for XÄnderungSchleifenwert in 0 .. SichtweiteXRichtungExtern loop
                     
-               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
-                                                                 XÄnderungExtern   => XÄnderungSchleifenwert,
-                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
-                     
                if
-                 SichtbarkeitTesten = False
+                 SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                             YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
+                                             XÄnderungExtern   => XÄnderungSchleifenwert,
+                                             SichtweiteExtern  => SichtweiteMaximalExtern) = False
                then
                   exit YÄnderungSchleife;
                         
@@ -472,13 +458,11 @@ package body Sichtbarkeit is
             XÄnderungSchleife22:
             for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
                
-               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert,
-                                                                 XÄnderungExtern   => XÄnderungSchleifenwert - 1,
-                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
-                  
                if
-                 SichtbarkeitTesten = False
+                 SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                             YÄnderungExtern   => -YÄnderungSchleifenwert,
+                                             XÄnderungExtern   => XÄnderungSchleifenwert - 1,
+                                             SichtweiteExtern  => SichtweiteMaximalExtern) = False
                then
                   exit YÄnderungSchleife22;
                         
@@ -502,14 +486,12 @@ package body Sichtbarkeit is
          for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
             XÄnderungSchleife333:
             for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
-                     
-               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                 YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
-                                                                 XÄnderungExtern   => XÄnderungSchleifenwert - 1,
-                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
-                  
+                                       
                if
-                 SichtbarkeitTesten = False
+                 SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                             YÄnderungExtern   => -YÄnderungSchleifenwert + 1,
+                                             XÄnderungExtern   => XÄnderungSchleifenwert - 1,
+                                             SichtweiteExtern  => SichtweiteMaximalExtern) = False
                then
                   exit YÄnderungSchleife333;
                         
@@ -564,14 +546,12 @@ package body Sichtbarkeit is
          for YÄnderungSchleifenwert in 2 .. SichtweiteYRichtungExtern loop
             XÄnderungSchleife:
             for XÄnderungSchleifenwert in 0 .. SichtweiteXRichtungExtern loop
-                    
-               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                 YÄnderungExtern   => YÄnderungSchleifenwert - 1,
-                                                                 XÄnderungExtern   => XÄnderungSchleifenwert,
-                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
-                     
+               
                if
-                 SichtbarkeitTesten = False
+                 SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                             YÄnderungExtern   => YÄnderungSchleifenwert - 1,
+                                             XÄnderungExtern   => XÄnderungSchleifenwert,
+                                             SichtweiteExtern  => SichtweiteMaximalExtern) = False
                then
                   exit YÄnderungSchleife;
                         
@@ -600,16 +580,14 @@ package body Sichtbarkeit is
             XÄnderungSchleife22:
             for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
                
-               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                 YÄnderungExtern   => YÄnderungSchleifenwert,
-                                                                 XÄnderungExtern   => XÄnderungSchleifenwert - 1,
-                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
-                  
                if
-                 SichtbarkeitTesten = False
+                 SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                             YÄnderungExtern   => YÄnderungSchleifenwert,
+                                             XÄnderungExtern   => XÄnderungSchleifenwert - 1,
+                                             SichtweiteExtern  => SichtweiteMaximalExtern) = False
                then
                   exit YÄnderungSchleife22;
-                        
+                  
                elsif
                  YÄnderungSchleifenwert = SichtweiteYRichtungExtern
                  and
@@ -631,13 +609,11 @@ package body Sichtbarkeit is
             XÄnderungSchleife333:
             for XÄnderungSchleifenwert in 2 .. SichtweiteXRichtungExtern loop
                      
-               SichtbarkeitTesten := SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
-                                                                 YÄnderungExtern   => YÄnderungSchleifenwert - 1,
-                                                                 XÄnderungExtern   => XÄnderungSchleifenwert - 1,
-                                                                 SichtweiteExtern  => SichtweiteMaximalExtern);
-                  
                if
-                 SichtbarkeitTesten = False
+                 SichtbarkeitBlockadeTesten (KoordinatenExtern => KartenQuadrantWert,
+                                             YÄnderungExtern   => YÄnderungSchleifenwert - 1,
+                                             XÄnderungExtern   => XÄnderungSchleifenwert - 1,
+                                             SichtweiteExtern  => SichtweiteMaximalExtern) = False
                then
                   exit YÄnderungSchleife333;
                         
@@ -737,22 +713,15 @@ package body Sichtbarkeit is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) < 10
-      then
-         SichtweiteObjekt := 2;
+      SichtweiteObjekt := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße + 1;
             
-      else
-         SichtweiteObjekt := 3;
-      end if;
-
       YÄnderungStadtSchleife:         
       for YÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop            
          XÄnderungStadtSchleife:
          for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                        ÄnderungExtern      => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             case
               KartenWert.XAchse
@@ -777,6 +746,9 @@ package body Sichtbarkeit is
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
    is begin      
       
+      -- Die Kontaktsichtbarkeitsprüfung aus BewegungBerechnen kann hier nicht reingebaut werden, da dann jedes neu sichtbare Feld geprüft wird ob die anderen Rassen das sehen
+      -- und nicht nur für das Feld auf dem die Einheit dann steht.
+      
       case
         Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern)
       is
@@ -798,7 +770,7 @@ package body Sichtbarkeit is
             
          when others =>
             KennenLernen.Erstkontakt (EigeneRasseExtern => RasseExtern,
-                                    FremdeRasseExtern => FremdeEinheitStadt.Rasse);
+                                      FremdeRasseExtern => FremdeEinheitStadt.Rasse);
             return;
       end case;
       
@@ -813,7 +785,7 @@ package body Sichtbarkeit is
             
          when others =>
             KennenLernen.Erstkontakt (EigeneRasseExtern => RasseExtern,
-                                    FremdeRasseExtern => FremdeEinheitStadt.Rasse);
+                                      FremdeRasseExtern => FremdeEinheitStadt.Rasse);
       end case;
       
    end SichtbarkeitSetzen;

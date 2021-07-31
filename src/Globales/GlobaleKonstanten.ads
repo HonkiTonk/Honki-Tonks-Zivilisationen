@@ -54,7 +54,10 @@ package GlobaleKonstanten is
    EinheitBefehlAbzug : constant Positive := 19;
 
    LeerEinheitStadtNummer : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := GlobaleDatentypen.MaximaleEinheitenMitNullWert'First;
-   LeerTransportiertWirdTransportiert :constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := GlobaleDatentypen.MaximaleEinheitenMitNullWert'First;
+   LeerTransportiertWirdTransportiert : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := GlobaleDatentypen.MaximaleEinheitenMitNullWert'First;
+
+   LeerEinheitenID : constant GlobaleDatentypen.EinheitenIDMitNullWert := GlobaleDatentypen.EinheitenIDMitNullWert'First;
+   LeerStadtID : constant GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum := GlobaleDatentypen.Leer;
 
    GebäudeAufschlag : constant Positive := 1_000;
    EinheitAufschlag : constant Positive := 10_000;
@@ -65,6 +68,7 @@ package GlobaleKonstanten is
 
 
    -- Für die Kartengenerierung
+   -- An Kartengröße und Temperatur anpassen?
    Eisrand : constant GlobaleDatentypen.LoopRangeMinusEinsZuEins := 1;
    Eisschild : constant GlobaleDatentypen.LoopRangeMinusDreiZuDrei := 3;
    -- Für die Kartengenerierung
@@ -226,6 +230,16 @@ package GlobaleKonstanten is
                                                                                              GlobaleDatentypen.Anarchie,
                                                                                              GlobaleDatentypen.Anarchie)
                                                                    );
+
+   LeerGrenzen : constant GlobaleRecords.GrenzenRecord := (
+                                                           Städtegrenze          => GlobaleDatentypen.MaximaleStädte'Last,
+                                                           Einheitengrenze       => GlobaleDatentypen.MaximaleEinheiten'Last,
+                                                           Geldgrenze            => Integer'Last,
+                                                           Forschungsgrenze      => GlobaleDatentypen.KostenLager'Last,
+                                                           Geldgewinngrenze      => GlobaleDatentypen.KostenLager'Last,
+                                                           ForschungGewinngrenze => GlobaleDatentypen.KostenLager'Last,
+                                                           RassenRundengrenze    => 0
+                                                          );
    -- Für die Leerwerte
 
    -- Für die grafische Anzeige

@@ -94,6 +94,16 @@ private
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
       return GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
+   function KartenPositionTugelGedreht
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord;
+     
+   function KartenPositionTugelExtrem
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      ÄnderungExtern : in GlobaleRecords.AchsenKartenfeldRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord;
    -- Kartenformen
    
    

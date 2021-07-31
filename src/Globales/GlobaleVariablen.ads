@@ -31,6 +31,7 @@ package GlobaleVariablen is
 
    -- Zeug
    RundenAnzahl : Positive := 1;
+   Rundengrenze : Natural := 0;
 
    -- Nicht belegt, Menschlicher Spieler, KI
    RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => GlobaleDatentypen.Leer);
@@ -41,7 +42,7 @@ package GlobaleVariablen is
    
    -- Später über Nutzereingaben neu belegbar machen.
    type GrenzenArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleRecords.GrenzenRecord;
-   Grenzen : GrenzenArray := (others => (GlobaleDatentypen.MaximaleStädte'Last, GlobaleDatentypen.MaximaleEinheiten'Last));
+   Grenzen : GrenzenArray := (others => GlobaleKonstanten.LeerGrenzen);
    -- Zeug
    
 

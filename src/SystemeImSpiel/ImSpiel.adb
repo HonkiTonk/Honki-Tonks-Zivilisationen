@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, Verbesserungen, ForschungAllgemein, KI, Ladezeiten, Speichern, Laden, StadtProduktion, EinheitenAllgemein, SiegBedingungen;
+with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, Verbesserungen, ForschungAllgemein, KI, Ladezeiten, Speichern, Laden, StadtProduktion, EinheitenAllgemein, SiegBedingungen, RasseEntfernen;
 
 package body ImSpiel is
 
@@ -17,6 +17,19 @@ package body ImSpiel is
       loop         
          RassenSchleife:
          for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+            
+            if
+              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= GlobaleDatentypen.Leer
+              and
+                GlobaleVariablen.Grenzen (RasseSchleifenwert).RassenRundengrenze < GlobaleVariablen.RundenAnzahl
+              and
+                GlobaleVariablen.Grenzen (RasseSchleifenwert).RassenRundengrenze > 0
+            then
+               RasseEntfernen.RasseEntfernen (RasseExtern => RasseSchleifenwert);
+               
+            else
+               null;
+            end if;
             
             if
               GlobaleVariablen.RasseAmZugNachLaden = GlobaleDatentypen.Leer

@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with Diplomatie, KIDiplomatie;
+with DiplomatischerZustand;
+
+with KIDiplomatie;
 
 package body KennenLernen is
 
@@ -9,8 +11,8 @@ package body KennenLernen is
    is begin
       
       case
-        Diplomatie.DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
-                                                FremdeRasseExtern => FremdeRasseExtern)
+        DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
+                                                           FremdeRasseExtern => FremdeRasseExtern)
       is
          when GlobaleDatentypen.Leer =>
             GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern) := GlobaleDatentypen.Neutral;   
@@ -24,16 +26,16 @@ package body KennenLernen is
         and
           GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch
       then
-         Diplomatie.ErstkontaktMenschMensch (EigeneRasseExtern => EigeneRasseExtern,
-                                             FremdeRasseExtern => FremdeRasseExtern);
+         ErstkontaktMenschMensch (EigeneRasseExtern => EigeneRasseExtern,
+                                  FremdeRasseExtern => FremdeRasseExtern);
       
       elsif
         GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch
         or
           GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch
       then
-         Diplomatie.ErstkontaktMenschKI (EigeneRasseExtern => EigeneRasseExtern,
-                                         FremdeRasseExtern => FremdeRasseExtern);
+         ErstkontaktMenschKI (EigeneRasseExtern => EigeneRasseExtern,
+                              FremdeRasseExtern => FremdeRasseExtern);
          
       else
          KIDiplomatie.DiplomatieKIKI (EigeneRasseExtern   => EigeneRasseExtern,
@@ -41,5 +43,25 @@ package body KennenLernen is
       end if;
       
    end Erstkontakt;
+   
+   
+   
+   procedure ErstkontaktMenschMensch
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      null;
+      
+   end ErstkontaktMenschMensch;
+   
+   
+   
+   procedure ErstkontaktMenschKI
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      null;
+      
+   end ErstkontaktMenschKI;
 
 end KennenLernen;

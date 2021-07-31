@@ -227,16 +227,16 @@ package body SpielEinstellungen is
                                                TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                                FrageZeileExtern  => 31,
                                                ErsteZeileExtern  => 83,
-                                               LetzteZeileExtern=> 92);
+                                               LetzteZeileExtern=> 94);
          
          case
            KartenformAuswahl
          is
-            when 1 .. 7 =>
+            when 1 .. 9 =>
                Karten.Kartenform := GlobaleDatentypen.Kartenform_Verwendet_Enum'Val (KartenformAuswahl);
                return 4;
                
-            when 8 =>               
+            when 10 =>
                Karten.Kartenform := ZufallGeneratorenSpieleinstellungen.ZufälligeKartenform;
                return 4;
                

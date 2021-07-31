@@ -88,7 +88,11 @@ package body Karte is
                   or
                     Karten.Kartenform = GlobaleDatentypen.Kugel_Gedreht
                   or
-                    Karten.Kartenform = GlobaleDatentypen.Tugel)
+                    Karten.Kartenform = GlobaleDatentypen.Tugel
+                  or
+                    Karten.Kartenform = GlobaleDatentypen.Tugel_Gedreht
+                  or
+                    Karten.Kartenform = GlobaleDatentypen.Tugel_Extrem)
                  and
                    KartenWert.XAchse > GlobaleKonstanten.LeerYXKartenWert
                then

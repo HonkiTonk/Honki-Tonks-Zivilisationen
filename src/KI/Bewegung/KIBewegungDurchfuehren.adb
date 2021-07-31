@@ -73,7 +73,7 @@ package body KIBewegungDurchfuehren is
             
          when others =>
             KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
-                                                      WelchenWertNullSetzenExtern => 0);
+                                                      WelchenWertNullSetzenExtern => 1);
       end case;
       
    end BewegungDurchführen;

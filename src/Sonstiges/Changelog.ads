@@ -1,16 +1,30 @@
 package Changelog is
    
-   -- Version 0.00.80 => 0.00.80 (01.08.2021):
+   -- Version 0.00.80 => 0.00.80 (02.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8020 => 0.00.80 (31.07.2021):
+   -- Version 0.00.8040 => 0.00.80 (01.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8020 => 0.00.8040 (31.07.2021):
+   
+   -- Das Plündern von Verbesserungen und Straßen gibt jetzt eine kleine Menge Geld.
+   -- Angefangen die verschiedenen Tugelarten einzubauen.
+   -- Sichtweite der Stadt ist jetzt ihre Umgebungsgröße + 1.
+   -- Noch mehr Zeit mit UmgebungErreichbarTesten verschwendet ohne zu einem Ergebnis zu kommen.
+   -- Mehr Vorbereitungen für Grenzmöglichkeiten erledigt.
+   -- Procedure eingebaut um zu prüfen ob eine Rasse noch Einheiten/Städte hat und um sie vollständig zu entfernen.
+   -- Kartengenerator angefangen zu überarbeitet.
+   -- Angefangen das Diplomatiesystem zu erweitern.
+   -- Kommentar und Kleinigkeiten korrigiert/überarbeitet/angepasst/vereinfacht.
    
    
    
@@ -101,5 +115,5 @@ package Changelog is
    -- Fehler behoben der das Ziel der KI vor der Wegplanung immer wieder auf 0 setzte.
    -- Angefangen die Aufgabenermittlung und Aufgabenfestlegung der KI zu verallgemeinern.
    -- Kleinigkeiten korrigiert.
-
+   
 end Changelog;

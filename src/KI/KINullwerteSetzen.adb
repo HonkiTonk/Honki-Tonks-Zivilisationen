@@ -4,6 +4,7 @@ with KIKonstanten;
 
 package body KINullwerteSetzen is
 
+   -- Das hier ist so keine Lösung, vielleicht durch Enum ersetzen oder ganz rauswerfen?
    procedure ZielBewegungNullSetzen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       WelchenWertNullSetzenExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)

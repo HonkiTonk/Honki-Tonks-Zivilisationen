@@ -67,10 +67,13 @@ package body Speichern is
       
       
       
-      -- Rundenanzahl speichern
+      -- Rundenanzahl und Grenze speichern
       Positive'Write (Stream (File => DateiSpeichernNeu),
                       GlobaleVariablen.RundenAnzahl);
-      -- Rundenanzahl speichern
+      
+      Natural'Write (Stream (File => DateiSpeichernNeu),
+                     GlobaleVariablen.Rundengrenze);
+      -- Rundenanzahl und Grenze speichern
       
       
 

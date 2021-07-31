@@ -10,7 +10,7 @@ project Stream is
 
    package Compiler is
       for Switches ("ada") use ("-g", "-gnatW8", "-fstack-check", "-gnato", "-gnata", "-gnatf", "-gnat2020", "-O", "-gnatVacdefimoprst", 
-         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.w.x.zcdfghijklmopqrtuvwxyzae", "-gnatyACOSadefhiklnprsxL7M222");
+         "-gnatw.a.b.c.d.f.g.h.i.j.k.l.m.n.o.p.q.r.s.t.u.v.w.x.zcdfghijklmopqrtuvwxyzae", "-gnatyACOSadefhiklnprsxM222L7");
    end Compiler;
 
    package Builder is
