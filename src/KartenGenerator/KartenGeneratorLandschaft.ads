@@ -11,105 +11,99 @@ package KartenGeneratorLandschaft is
 
 private
 
-   HügelGebirgeUmgebung : SichtweiteMitNullwert;
-
-   BeliebigerLandschaftwert : Float;
-   BeliebigerLandschaftFeldwert : Float;
-   BeliebigerHügelwert : Float;
-
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   KartenWertHügel : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWertAbstand : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWertHügel : GlobaleRecords.AchsenKartenfeldPositivRecord;   
    
-   type WahrscheinlichkeitenRecord is record
-         
-      Anfangswert : Float;
-      Endwert : Float;
-         
-   end record;
+   type AnzahlGleicherFelder is range 0 .. 8;
+   AnzahlGleicherGrund : AnzahlGleicherFelder;
    
-   type KartengrundWahrscheinlichkeitenArray is array (GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Range, Landschaft_Wahrscheinlichkeit_Enum'Range) of WahrscheinlichkeitenRecord;
-   KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray := (
-                                                                                       GlobaleDatentypen.Kalt => 
-                                                                                         (
-                                                                                          GlobaleDatentypen.Tundra    => (0.00, 0.25),
-                                                                                          GlobaleDatentypen.Wüste     => (0.25, 0.30),
-                                                                                          GlobaleDatentypen.Hügel     => (0.30, 0.40),
-                                                                                          GlobaleDatentypen.Gebirge   => (0.40, 0.50),
-                                                                                          GlobaleDatentypen.Wald      => (0.50, 0.65),
-                                                                                          GlobaleDatentypen.Dschungel => (0.65, 0.70),
-                                                                                          GlobaleDatentypen.Sumpf     => (0.70, 0.80)
-                                                                                         ),
+   -- Später vielleicht noch um Kartenarten wie hügelig erweitern?
+   type ZusatzHügelArray is array (AnzahlGleicherFelder'Range) of Float;
+   ZusatzHügel : constant ZusatzHügelArray := (0 => 0.10, 1 => 0.15, 2 => 0.15, 3 => 0.15, 4 => 0.20, 5 => 0.20, 6 => 0.25, 7 => 0.30, 8 => 0.40);
+   
+   type KartengrundWahrscheinlichkeitenArray is array (GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Range, GlobaleDatentypen.Landschaft_Wahrscheinlichkeit_Enum'Range, AnzahlGleicherFelder'Range) of Float;
+   KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray :=
+     (
+      GlobaleDatentypen.Kalt => 
+        (
+         GlobaleDatentypen.Tundra    => (0 => 0.25, 1 => 0.30, 2 => 0.30, 3 => 0.35, 4 => 0.40, 5 => 0.45, 6 => 0.50, 7 => 0.55, 8 => 0.70),
+         GlobaleDatentypen.Wüste     => (0 => 0.05, 1 => 0.10, 2 => 0.15, 3 => 0.15, 4 => 0.20, 5 => 0.20, 6 => 0.25, 7 => 0.25, 8 => 0.30),
+         GlobaleDatentypen.Hügel     => (0 => 0.15, 1 => 0.15, 2 => 0.20, 3 => 0.20, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.45),
+         GlobaleDatentypen.Gebirge   => (0 => 0.15, 1 => 0.15, 2 => 0.20, 3 => 0.20, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.45),
+         GlobaleDatentypen.Wald      => (0 => 0.30, 1 => 0.30, 2 => 0.35, 3 => 0.35, 4 => 0.40, 5 => 0.40, 6 => 0.40, 7 => 0.45, 8 => 0.55),
+         GlobaleDatentypen.Dschungel => (0 => 0.10, 1 => 0.10, 2 => 0.15, 3 => 0.15, 4 => 0.20, 5 => 0.25, 6 => 0.25, 7 => 0.30, 8 => 0.35),
+         GlobaleDatentypen.Sumpf     => (0 => 0.15, 1 => 0.15, 2 => 0.20, 3 => 0.20, 4 => 0.25, 5 => 0.25, 6 => 0.30, 7 => 0.30, 8 => 0.40)
+        ),
                                                                                        
-                                                                                       GlobaleDatentypen.Gemäßigt =>
-                                                                                         (
-                                                                                          GlobaleDatentypen.Tundra    => (0.00, 0.15),
-                                                                                          GlobaleDatentypen.Wüste     => (0.15, 0.30),
-                                                                                          GlobaleDatentypen.Hügel     => (0.30, 0.40),
-                                                                                          GlobaleDatentypen.Gebirge   => (0.40, 0.50),
-                                                                                          GlobaleDatentypen.Wald      => (0.50, 0.70),
-                                                                                          GlobaleDatentypen.Dschungel => (0.70, 0.75),
-                                                                                          GlobaleDatentypen.Sumpf     => (0.75, 0.85)
-                                                                                         ),
+      GlobaleDatentypen.Gemäßigt =>
+        (
+         GlobaleDatentypen.Tundra    => (0 => 0.20, 1 => 0.25, 2 => 0.25, 3 => 0.30, 4 => 0.30, 5 => 0.35, 6 => 0.35, 7 => 0.40, 8 => 0.45),
+         GlobaleDatentypen.Wüste     => (0 => 0.20, 1 => 0.25, 2 => 0.25, 3 => 0.30, 4 => 0.30, 5 => 0.35, 6 => 0.35, 7 => 0.40, 8 => 0.45),
+         GlobaleDatentypen.Hügel     => (0 => 0.15, 1 => 0.15, 2 => 0.20, 3 => 0.20, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.45),
+         GlobaleDatentypen.Gebirge   => (0 => 0.15, 1 => 0.15, 2 => 0.20, 3 => 0.20, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.45),
+         GlobaleDatentypen.Wald      => (0 => 0.30, 1 => 0.35, 2 => 0.35, 3 => 0.35, 4 => 0.40, 5 => 0.40, 6 => 0.40, 7 => 0.50, 8 => 0.65),
+         GlobaleDatentypen.Dschungel => (0 => 0.20, 1 => 0.25, 2 => 0.25, 3 => 0.30, 4 => 0.30, 5 => 0.30, 6 => 0.35, 7 => 0.35, 8 => 0.40),
+         GlobaleDatentypen.Sumpf     => (0 => 0.20, 1 => 0.25, 2 => 0.25, 3 => 0.30, 4 => 0.30, 5 => 0.30, 6 => 0.35, 7 => 0.35, 8 => 0.40)
+        ),
                                                                                        
-                                                                                       GlobaleDatentypen.Heiß =>
-                                                                                         (
-                                                                                          GlobaleDatentypen.Tundra    => (0.00, 0.05),
-                                                                                          GlobaleDatentypen.Wüste     => (0.05, 0.35),
-                                                                                          GlobaleDatentypen.Hügel     => (0.35, 0.45),
-                                                                                          GlobaleDatentypen.Gebirge   => (0.45, 0.50),
-                                                                                          GlobaleDatentypen.Wald      => (0.50, 0.65),
-                                                                                          GlobaleDatentypen.Dschungel => (0.65, 0.70),
-                                                                                          GlobaleDatentypen.Sumpf     => (0.70, 0.90)
-                                                                                         ),
+      GlobaleDatentypen.Heiß =>
+        (
+         GlobaleDatentypen.Tundra    => (0 => 0.05, 1 => 0.10, 2 => 0.15, 3 => 0.15, 4 => 0.20, 5 => 0.20, 6 => 0.25, 7 => 0.25, 8 => 0.30),
+         GlobaleDatentypen.Wüste     => (0 => 0.25, 1 => 0.30, 2 => 0.30, 3 => 0.35, 4 => 0.40, 5 => 0.45, 6 => 0.50, 7 => 0.55, 8 => 0.70),
+         GlobaleDatentypen.Hügel     => (0 => 0.15, 1 => 0.15, 2 => 0.20, 3 => 0.20, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.45),
+         GlobaleDatentypen.Gebirge   => (0 => 0.15, 1 => 0.15, 2 => 0.20, 3 => 0.20, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.45),
+         GlobaleDatentypen.Wald      => (0 => 0.30, 1 => 0.30, 2 => 0.35, 3 => 0.35, 4 => 0.40, 5 => 0.40, 6 => 0.40, 7 => 0.45, 8 => 0.55),
+         GlobaleDatentypen.Dschungel => (0 => 0.30, 1 => 0.30, 2 => 0.35, 3 => 0.35, 4 => 0.40, 5 => 0.40, 6 => 0.40, 7 => 0.45, 8 => 0.55),
+         GlobaleDatentypen.Sumpf     => (0 => 0.20, 1 => 0.25, 2 => 0.25, 3 => 0.30, 4 => 0.30, 5 => 0.30, 6 => 0.35, 7 => 0.35, 8 => 0.40)
+        ),
                                                                                        
-                                                                                       GlobaleDatentypen.Eiszeit =>
-                                                                                         (
-                                                                                          GlobaleDatentypen.Tundra    => (0.00, 0.40),
-                                                                                          GlobaleDatentypen.Wüste     => (0.40, 0.44),
-                                                                                          GlobaleDatentypen.Hügel     => (0.44, 0.45),
-                                                                                          GlobaleDatentypen.Gebirge   => (0.45, 0.55),
-                                                                                          GlobaleDatentypen.Wald      => (0.55, 0.70),
-                                                                                          GlobaleDatentypen.Dschungel => (0.70, 0.71),
-                                                                                          GlobaleDatentypen.Sumpf     => (0.71, 0.80)
-                                                                                         ),
+      GlobaleDatentypen.Eiszeit =>
+        (
+         GlobaleDatentypen.Tundra    => (0 => 0.50, 1 => 0.55, 2 => 0.55, 3 => 0.60, 4 => 0.65, 5 => 0.70, 6 => 0.80, 7 => 0.90, 8 => 0.95),
+         GlobaleDatentypen.Wüste     => (0 => 0.01, 1 => 0.05, 2 => 0.05, 3 => 0.10, 4 => 0.10, 5 => 0.15, 6 => 0.15, 7 => 0.20, 8 => 0.25),
+         GlobaleDatentypen.Hügel     => (0 => 0.15, 1 => 0.15, 2 => 0.20, 3 => 0.20, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.45),
+         GlobaleDatentypen.Gebirge   => (0 => 0.15, 1 => 0.15, 2 => 0.20, 3 => 0.20, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.45),
+         GlobaleDatentypen.Wald      => (0 => 0.15, 1 => 0.20, 2 => 0.20, 3 => 0.25, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.40),
+         GlobaleDatentypen.Dschungel => (0 => 0.05, 1 => 0.10, 2 => 0.10, 3 => 0.15, 4 => 0.15, 5 => 0.20, 6 => 0.20, 7 => 0.25, 8 => 0.30),
+         GlobaleDatentypen.Sumpf     => (0 => 0.05, 1 => 0.10, 2 => 0.10, 3 => 0.15, 4 => 0.15, 5 => 0.20, 6 => 0.20, 7 => 0.25, 8 => 0.30)
+        ),
                                                                                        
-                                                                                       GlobaleDatentypen.Wüste =>
-                                                                                         (
-                                                                                          GlobaleDatentypen.Tundra    => (0.00, 0.05),
-                                                                                          GlobaleDatentypen.Wüste     => (0.05, 0.50),
-                                                                                          GlobaleDatentypen.Hügel     => (0.50, 0.55),
-                                                                                          GlobaleDatentypen.Gebirge   => (0.55, 0.60),
-                                                                                          GlobaleDatentypen.Wald      => (0.60, 0.70),
-                                                                                          GlobaleDatentypen.Dschungel => (0.70, 0.75),
-                                                                                          GlobaleDatentypen.Sumpf     => (0.75, 0.95)
-                                                                                         )
-                                                                                      );
+      GlobaleDatentypen.Wüste =>
+        (
+         GlobaleDatentypen.Tundra    => (0 => 0.01, 1 => 0.05, 2 => 0.05, 3 => 0.10, 4 => 0.10, 5 => 0.15, 6 => 0.15, 7 => 0.20, 8 => 0.25),
+         GlobaleDatentypen.Wüste     => (0 => 0.50, 1 => 0.55, 2 => 0.55, 3 => 0.60, 4 => 0.65, 5 => 0.70, 6 => 0.80, 7 => 0.90, 8 => 0.95),
+         GlobaleDatentypen.Hügel     => (0 => 0.15, 1 => 0.15, 2 => 0.20, 3 => 0.20, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.45),
+         GlobaleDatentypen.Gebirge   => (0 => 0.15, 1 => 0.15, 2 => 0.20, 3 => 0.20, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.45),
+         GlobaleDatentypen.Wald      => (0 => 0.15, 1 => 0.20, 2 => 0.20, 3 => 0.25, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.40),
+         GlobaleDatentypen.Dschungel => (0 => 0.15, 1 => 0.20, 2 => 0.20, 3 => 0.25, 4 => 0.25, 5 => 0.30, 6 => 0.30, 7 => 0.35, 8 => 0.40),
+         GlobaleDatentypen.Sumpf     => (0 => 0.05, 1 => 0.10, 2 => 0.10, 3 => 0.15, 4 => 0.15, 5 => 0.20, 6 => 0.20, 7 => 0.25, 8 => 0.30)
+        )
+     );
    
    procedure LandschaftBestimmen
-     (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
-         (YPositionExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            XPositionExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
-   procedure GenerierungLandschaftFelder
-     (GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
-      YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+   procedure AbstandTundraWüste
+     (GrundExtern : in GlobaleDatentypen.Karten_Grund_Generator_Enum;
+      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
-         (GrundExtern /= GlobaleDatentypen.Leer
+         (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
-
-   procedure GenerierungLandschaftHügel
-     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+            PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+   procedure WeitereHügel
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+         (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 end KartenGeneratorLandschaft;

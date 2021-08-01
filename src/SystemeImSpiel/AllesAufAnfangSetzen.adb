@@ -21,7 +21,7 @@ package body AllesAufAnfangSetzen is
       Cheat.GewonnenDurchCheat := False;
 
       Karten.Weltkarte := (others => (others => (others => GlobaleKonstanten.LeerWeltkarte)));
-      Karten.Kartengrößen := ((20, 20, 12), (40, 40, 50), (80, 80, 200), (120, 80, 300), (120, 160, 600), (160, 160, 800), (240, 240, 1_800), (320, 320, 3200), (1_000, 1_000, 31_250), (1, 1, 1));
+      Karten.Kartengrößen := ((20, 20), (40, 40), (80, 80), (120, 80), (120, 160), (160, 160), (240, 240), (320, 320), (1_000, 1_000), (1, 1));
             
    end AllesAufAnfangSetzen;
 

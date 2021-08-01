@@ -57,7 +57,7 @@ package body SpielEinstellungen is
 
       KartenGenerator.KartenGenerator;
       
-      Ladezeiten.SpielweltErstellenZeit (12, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Spieler_Platzieren, GlobaleDatentypen.Anfangswert) := Clock;
       StartwerteErmitteln;
       RassenVorhanden := False;
       
@@ -88,10 +88,10 @@ package body SpielEinstellungen is
             return GlobaleKonstanten.SpielBeendenKonstante;
       end case;               
          
-      Ladezeiten.SpielweltErstellenZeit (12, GlobaleDatentypen.Endwert) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 12);
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Spieler_Platzieren, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Spieler_Platzieren);
 
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 1);
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Gesamtzeit);
          
       return ImSpiel.ImSpiel;
               
@@ -147,9 +147,6 @@ package body SpielEinstellungen is
                            
                else
                   Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).XAchsenGröße := GlobaleDatentypen.KartenfeldPositiv (BenutzerdefinierteGröße);
-                  Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).Ressourcenmenge
-                    := Integer (Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).YAchsenGröße)
-                    * Integer (Karten.Kartengrößen (GlobaleDatentypen.Kartengröße_Verwendet_Enum'Val (KartengrößeAuswahl)).XAchsenGröße) / 32;
                   return 2;
                end if;
                

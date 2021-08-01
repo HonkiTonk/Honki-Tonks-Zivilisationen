@@ -80,9 +80,9 @@ package body ImSpiel is
                      else
                         null;
                      end if;
-                     Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), GlobaleDatentypen.Anfangswert) := Clock;
+                     Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Anfangswert) := Clock;
                      KI.KI (RasseExtern => RasseSchleifenwert);
-                     Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), GlobaleDatentypen.Endwert) := Clock;
+                     Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Endwert) := Clock;
                end case;
 
             else
@@ -177,7 +177,7 @@ package body ImSpiel is
    procedure BerechnungenNachZugendeAllerSpieler
    is begin
             
-      Ladezeiten.EinzelneZeiten (2, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, GlobaleDatentypen.Anfangswert) := Clock;
       EinheitenAllgemein.HeilungBewegungspunkteNeueRundeErmitteln;
       Verbesserungen.VerbesserungFertiggestellt;
       Wachstum.Wachstum;
@@ -210,21 +210,20 @@ package body ImSpiel is
          if
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Spieler_KI
          then            
-            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert));
+            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => RasseSchleifenwert);
             
          else
-            Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), GlobaleDatentypen.Anfangswert) := Clock;
-            Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), GlobaleDatentypen.Endwert)
-              := Ladezeiten.KIZeiten (GlobaleDatentypen.Rassen_Enum'Pos (RasseSchleifenwert), GlobaleDatentypen.Anfangswert);
+            Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Anfangswert) := Clock;
+            Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Endwert) := Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Anfangswert);
          end if;
          
       end loop RassenSchleife;
       
       SiegBedingungen.SiegBedingungen;
-      Ladezeiten.EinzelneZeiten (2, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, GlobaleDatentypen.Endwert) := Clock;
       
-      Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => 19);
-      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => 2);      
+      Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => GlobaleDatentypen.Leer);
+      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Zwischen_Runden);      
       
    end BerechnungenNachZugendeAllerSpieler;
 

@@ -1,16 +1,26 @@
 package Changelog is
    
-   -- Version 0.00.80 => 0.00.80 (02.08.2021):
+   -- Version 0.00.80 => 0.00.8 (03.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   -- Version 0.00.8060 => 0.00.80 (02.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8040 => 0.00.80 (01.08.2021):
+   -- Version 0.00.8040 => 0.00.8060 (01.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Kartengenerator für die Oberflächenlandschaft überarbeitet, er berücksichtigt jetzt den bereits vorhandenen Grund bei der Bestimmung des Grundes für ein unbelegtes Feld.
+   -- Ladezeiten auf Enum umgeschrieben.
+   -- Der Kartengenerator für Flusserzeugung berücksichtigt jetzt die Kartentemperatur für die Erzeugung von Flüssen und ist leicht schneller.
+   -- Reihenfolge der Kartengenerierung überarbeitet.
+   -- Ressourcenmaximum rausgeworfen, der Ressourcengenerator platziert jetzt auf Basis verschiedenen Wahrscheinlichkeiten die Ressourcen auf den dazu passenden Feldern.
+   -- Angefangen eine Möglichkeit einzubauen die vorhandene Ressourcenmenge einzustellen.
+   -- Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
    

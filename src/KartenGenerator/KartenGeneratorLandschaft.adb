@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with ZufallGeneratorenKarten, KartePositionPruefen;
+with ZufallGeneratorenKarten, KartePositionPruefen, KartenAllgemein;
 
 package body KartenGeneratorLandschaft is
 
@@ -41,345 +41,199 @@ package body KartenGeneratorLandschaft is
               Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund in GlobaleDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
             then
                Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) := True;
+               
+            elsif
+              Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = True
+            then
+               null;
 
             else
-               LandschaftBestimmen (YPositionExtern => YAchseSchleifenwert,
-                                    XPositionExtern => XAchseSchleifenwert);
+               LandschaftBestimmen (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             end if;
                         
          end loop XAchseSchleife;
-      end loop YAchseSchleife;         
+      end loop YAchseSchleife;
          
    end GenerierungLandschaft;
    
    
    
    procedure LandschaftBestimmen
-     (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      case
-        Karten.GeneratorGrund (YPositionExtern, XPositionExtern)
-      is
-         when True =>
-            return;
-            
-         when False =>
-            BeliebigerLandschaftwert := ZufallGeneratorenKarten.ZufälligerWert;
-      end case;
-      
-      if
-        BeliebigerLandschaftwert
-      in
-        KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Tundra).Anfangswert .. KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Tundra).Endwert
-        and
-          Karten.GeneratorKarte (YPositionExtern, XPositionExtern) /= GlobaleDatentypen.Wüste
-      then
-         GenerierungLandschaftFelder (GrundExtern  => GlobaleDatentypen.Tundra,
-                                      YAchseExtern => YPositionExtern,
-                                      XAchseExtern => XPositionExtern);
-
-      elsif
-        BeliebigerLandschaftwert
-      in
-        KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Wüste).Anfangswert .. KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Wüste).Endwert
-        and
-          Karten.GeneratorKarte (YPositionExtern, XPositionExtern) /= GlobaleDatentypen.Tundra
-      then
-         GenerierungLandschaftFelder (GrundExtern  => GlobaleDatentypen.Wüste,
-                                      YAchseExtern => YPositionExtern,
-                                      XAchseExtern => XPositionExtern);
-
-      elsif
-        BeliebigerLandschaftwert
-      in
-        KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Hügel).Anfangswert .. KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Hügel).Endwert
-      then
-         GenerierungLandschaftFelder (GrundExtern  => GlobaleDatentypen.Hügel,
-                                      YAchseExtern => YPositionExtern,
-                                      XAchseExtern => XPositionExtern);
-
-      elsif
-        BeliebigerLandschaftwert
-      in
-        KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Gebirge).Anfangswert .. KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Gebirge).Endwert
-      then
-         GenerierungLandschaftFelder (GrundExtern  => GlobaleDatentypen.Gebirge,
-                                      YAchseExtern => YPositionExtern,
-                                      XAchseExtern => XPositionExtern);
-
-      elsif
-        BeliebigerLandschaftwert
-      in
-        KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Wald).Anfangswert .. KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Wald).Endwert
-      then
-         GenerierungLandschaftFelder (GrundExtern  => GlobaleDatentypen.Wald,
-                                      YAchseExtern => YPositionExtern,
-                                      XAchseExtern => XPositionExtern);
-
-      elsif
-        BeliebigerLandschaftwert
-      in
-        KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Dschungel).Anfangswert .. KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Dschungel).Endwert
-      then
-         GenerierungLandschaftFelder (GrundExtern  => GlobaleDatentypen.Dschungel,
-                                      YAchseExtern => YPositionExtern,
-                                      XAchseExtern => XPositionExtern);
-
-      elsif
-        BeliebigerLandschaftwert
-      in
-        KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Sumpf).Anfangswert .. KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GlobaleDatentypen.Sumpf).Endwert
-      then
-         GenerierungLandschaftFelder (GrundExtern  => GlobaleDatentypen.Sumpf,
-                                      YAchseExtern => YPositionExtern,
-                                      XAchseExtern => XPositionExtern);
-                  
-      else
-         Karten.GeneratorGrund (YPositionExtern, XPositionExtern) := True;
-      end if;
-      
-   end LandschaftBestimmen;
-
-
-
-   procedure GenerierungLandschaftFelder
-     (GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
-      YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
-   is begin
-      
-      YAchseEinsSchleife:
-      for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeNullZuEins'Range loop
-         XAchseEinsSchleife:
-         for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeNullZuEins'Range loop            
-            
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-
-            if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
-            then
-               null;
-               
-            elsif
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund in GlobaleDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
-            then
-               null;
+      GrundSchleife:
+      for GrundSchleifenwert in GlobaleDatentypen.Karten_Grund_Generator_Enum'Range loop
+         
+         case
+           GrundSchleifenwert
+         is
+            when GlobaleDatentypen.Flachland =>
+               Karten.GeneratorGrund (PositionExtern.YAchse, PositionExtern.XAchse) := True;
+               return;
                      
-            elsif
-              YÄnderungSchleifenwert = 0
-              and
-                XÄnderungSchleifenwert = 0
-            then
-               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
-               Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
-                     
-            else
-               BeliebigerLandschaftFeldwert := ZufallGeneratorenKarten.ZufälligerWert;
-               if
-                 BeliebigerLandschaftFeldwert > 0.50
-                 and
-                   Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) = False
-               then
-                  if
-                    GrundExtern = GlobaleDatentypen.Tundra
-                    and
-                      Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = GlobaleDatentypen.Wüste
-                  then
-                     null;
-                           
-                  elsif
-                    GrundExtern = GlobaleDatentypen.Wüste
-                    and
-                      Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) = GlobaleDatentypen.Tundra
-                  then
-                     null;
-                           
-                  else
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund := GrundExtern;
-                     Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
-                  end if;
-                        
-               else
-                  Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;                       
-               end if;
-            end if;
-
-            if
-              -- Hügel - Gebirge
-              GrundExtern = GlobaleDatentypen.Hügel
-              or
-                GrundExtern = GlobaleDatentypen.Gebirge
-            then
-               null;
-               
-            elsif
-              Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund in GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range
-            then
-               null;
-               
-            else
-               GenerierungLandschaftHügel (YAchseExtern => KartenWert.YAchse,
-                                            XAchseExtern => KartenWert.XAchse);
-            end if;
+            when others =>
+               AnzahlGleicherGrund := 0;
+         end case;
+         
+         if
+           GrundSchleifenwert = GlobaleDatentypen.Wüste
+           and
+             Karten.GeneratorKarte (PositionExtern.YAchse, PositionExtern.XAchse) = GlobaleDatentypen.Tundra
+         then
+            null;
             
-         end loop XAchseEinsSchleife;
-      end loop YAchseEinsSchleife;      
-
-      case
-        GrundExtern
-      is
-         when GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste =>
-            YAchseZweiSchleife:
-            for YÄnderungZweiSchleifenwert in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
-               XAchseZweiSchleife:
-               for XÄnderungZweiSchleifenwert in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
+         elsif
+           GrundSchleifenwert = GlobaleDatentypen.Tundra
+           and
+             Karten.GeneratorKarte (PositionExtern.YAchse, PositionExtern.XAchse) = GlobaleDatentypen.Wüste
+         then
+            null;
             
-                  KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                                                                              ÄnderungExtern    => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert));
-
+         else           
+            YAchseSchleife:
+            for YAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+               XAchseSchleife:
+               for XAchsenSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+               
+                  KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
+                                                                              ÄnderungExtern    => (0, YAchseSchleifenwert, XAchsenSchleifenwert));
+               
                   if
                     KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
                   then
+                     -- Prüfung für die Änderung (0, 0) nicht benötigt, da das Feld immer mit Flachland belegt sein sollte.
+                     null;
+                  
+                  elsif
+                    KartenAllgemein.FeldGrund (PositionExtern => KartenWert) = GrundSchleifenwert
+                  then
+                     AnzahlGleicherGrund := AnzahlGleicherGrund + 1;
+                  
+                  else
+                     null;
+                  end if;
+               
+               end loop XAchseSchleife;
+            end loop YAchseSchleife;
+            
+            if
+              ZufallGeneratorenKarten.ZufälligerWert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GrundSchleifenwert, AnzahlGleicherGrund)
+            then
+               Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund := GrundSchleifenwert;
+               Karten.GeneratorGrund (PositionExtern.YAchse, PositionExtern.XAchse) := True;
+               
+               case
+                 GrundSchleifenwert
+               is
+                  when GlobaleDatentypen.Wüste | GlobaleDatentypen.Tundra =>
+                     AbstandTundraWüste (GrundExtern    => GrundSchleifenwert,
+                                          PositionExtern => PositionExtern);
+                     
+                  when others =>
+                     null;
+               end case;
+               
+               case
+                 GrundSchleifenwert
+               is
+                  when GlobaleDatentypen.Gebirge | GlobaleDatentypen.Hügel =>
                      null;
                      
-                  elsif
-                    Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) /= GlobaleDatentypen.Leer
-                  then
-                     null;
-                    
-                  else
-                     Karten.GeneratorKarte (KartenWert.YAchse, KartenWert.XAchse) := GrundExtern;
-                  end if;
-                  
-               end loop XAchseZweiSchleife;
-            end loop YAchseZweiSchleife;
-            
-         when others =>
-            null;
-      end case;
+                  when others =>
+                     WeitereHügel (PositionExtern => PositionExtern);
+               end case;
+               
+               return;
+               
+            else
+               null;
+            end if;            
+         end if;
+         
+      end loop GrundSchleife;
       
-   end GenerierungLandschaftFelder;
-
-
-
-   procedure GenerierungLandschaftHügel
-     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+   end LandschaftBestimmen;
+   
+   
+   
+   procedure AbstandTundraWüste
+     (GrundExtern : in GlobaleDatentypen.Karten_Grund_Generator_Enum;
+      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
    is begin
       
-      HügelGebirgeUmgebung := 0;
-      YAchseHügelSchleife:
-      for YÄnderungHügelSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-         XAchseHügelSchleife:
-         for XÄnderungHügelSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop            
-            
-            KartenWertHügel := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => (0, YAchseExtern, XAchseExtern),
-                                                                              ÄnderungExtern   => (0, YÄnderungHügelSchleifenwert, XÄnderungHügelSchleifenwert));
+      YAchseSchleife:
+      for YAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusZweiZuZwei'Range loop
 
+            KartenWertAbstand := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
+                                                                               ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+            
             if
-              KartenWertHügel.XAchse = GlobaleKonstanten.LeerYXKartenWert
+              KartenWertAbstand.XAchse = GlobaleKonstanten.LeerYXKartenWert
             then
                null;
                
-            else            
-               if
-                 YÄnderungHügelSchleifenwert = 0
-                 and
-                   XÄnderungHügelSchleifenwert = 0
-               then
-                  null;
-                                 
-               elsif
-                 Karten.Weltkarte (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund = GlobaleDatentypen.Hügel
-                 or
-                   Karten.Weltkarte (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Grund = GlobaleDatentypen.Gebirge
-                 or
-                   Karten.Weltkarte (0, KartenWertHügel.YAchse, KartenWertHügel.XAchse).Hügel = True
-               then
-                  HügelGebirgeUmgebung := HügelGebirgeUmgebung + 1;
-                                 
-               else
-                  null;
-               end if;  
+            elsif
+              Karten.GeneratorKarte (KartenWertAbstand.YAchse, KartenWertAbstand.XAchse) /= GlobaleDatentypen.Leer
+            then
+               null;
+               
+            else
+               Karten.GeneratorKarte (KartenWertAbstand.YAchse, KartenWertAbstand.XAchse) := GrundExtern;
             end if;
             
-         end loop XAchseHügelSchleife;
-      end loop YAchseHügelSchleife;
-
-      BeliebigerHügelwert := ZufallGeneratorenKarten.ZufälligerWert;
-
-      case
-        HügelGebirgeUmgebung
-      is                  
-         when 1 .. 3 =>
-            if
-              BeliebigerHügelwert >= 0.85
-            then
-               if
-                 Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = GlobaleDatentypen.Flachland
-               then
-                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := GlobaleDatentypen.Hügel;
-                    
-               else
-                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Hügel := True;
-               end if;
-                     
-            else
-               null;
-            end if;
-                  
-         when 4 .. 7 =>
-            if
-              BeliebigerHügelwert >= 0.66
-            then
-               if
-                 Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = GlobaleDatentypen.Flachland
-               then
-                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := GlobaleDatentypen.Hügel;
-                    
-               else
-                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Hügel := True;
-               end if;
-                     
-            else
-               null;
-            end if;
-                  
-         when 8 =>
-            if
-              BeliebigerHügelwert >= 0.33
-            then
-               if
-                 Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = GlobaleDatentypen.Flachland
-               then
-                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := GlobaleDatentypen.Hügel;
-                    
-               else
-                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Hügel := True;
-               end if;
-                     
-            else
-               null;
-            end if;
-                  
-         when others =>
-            if
-              BeliebigerHügelwert >= 0.95
-            then
-               if
-                 Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund = GlobaleDatentypen.Flachland
-               then
-                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Grund := GlobaleDatentypen.Hügel;
-                    
-               else
-                  Karten.Weltkarte (0, YAchseExtern, XAchseExtern).Hügel := True;
-               end if;
-                     
-            else
-               null;
-            end if;
-      end case;
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
       
-   end GenerierungLandschaftHügel;
+   end AbstandTundraWüste;
+   
+   
+   
+   procedure WeitereHügel
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      AnzahlGleicherGrund := 0;
+      
+      YAchseSchleife:
+      for YAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         XAchseSchleife:
+         for XAchsenSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+               
+            KartenWertHügel := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
+                                                                              ÄnderungExtern    => (0, YAchseSchleifenwert, XAchsenSchleifenwert));
+               
+            if
+              KartenWertHügel.XAchse = GlobaleKonstanten.LeerYXKartenWert
+            then
+               -- Prüfung für die Änderung (0, 0) nicht benötigt, da das Feld nie mit Hügel belegt sein sollte.
+               null;
+                  
+            elsif
+              KartenAllgemein.FeldGrund (PositionExtern => KartenWertHügel) = GlobaleDatentypen.Gebirge
+              or
+                KartenAllgemein.FeldGrund (PositionExtern => KartenWertHügel) = GlobaleDatentypen.Hügel
+            then
+               AnzahlGleicherGrund := AnzahlGleicherGrund + 1;
+                  
+            else
+               null;
+            end if;
+               
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+      if
+        ZufallGeneratorenKarten.ZufälligerWert <= ZusatzHügel (AnzahlGleicherGrund)
+      then
+         Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Hügel := True;
+         
+      else
+         null;
+      end if;
+      
+   end WeitereHügel;
 
 end KartenGeneratorLandschaft;

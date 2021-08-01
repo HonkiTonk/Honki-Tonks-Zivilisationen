@@ -14,7 +14,7 @@ package body KartenGenerator is
    procedure KartenGenerator
    is begin
 
-      Ladezeiten.SpielweltErstellenZeit (2, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Oberfläche, GlobaleDatentypen.Anfangswert) := Clock;
       GrößeLandartFestlegen;
       case
         Karten.Kartenart
@@ -25,72 +25,77 @@ package body KartenGenerator is
          when others =>
             KartenGeneratorStandard.StandardKarte;
       end case;
-      Ladezeiten.SpielweltErstellenZeit (2, GlobaleDatentypen.Endwert) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 2);
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Oberfläche, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Ebene_Oberfläche);
       
       case
         Karten.Kartenart
       is
          when GlobaleDatentypen.Chaos | GlobaleDatentypen.Nur_Land =>
-            Ladezeiten.SpielweltErstellenZeit (3, GlobaleDatentypen.Anfangswert) := Clock;
-            Ladezeiten.SpielweltErstellenZeit (3, GlobaleDatentypen.Endwert) := Ladezeiten.SpielweltErstellenZeit (3, GlobaleDatentypen.Anfangswert);
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Küstengewässer, GlobaleDatentypen.Anfangswert) := Clock;
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Küstengewässer, GlobaleDatentypen.Endwert) := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Küstengewässer, GlobaleDatentypen.Anfangswert);
             
          when others =>  
-            Ladezeiten.SpielweltErstellenZeit (3, GlobaleDatentypen.Anfangswert) := Clock;
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Küstengewässer, GlobaleDatentypen.Anfangswert) := Clock;
             KartenGeneratorKueste.GenerierungKüstenSeeGewässer;
-            Ladezeiten.SpielweltErstellenZeit (3, GlobaleDatentypen.Endwert) := Clock;   
-            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 3);
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Küstengewässer, GlobaleDatentypen.Endwert) := Clock;   
+            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Küstengewässer);
       end case;
+      
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Flüsse, GlobaleDatentypen.Anfangswert) := Clock;
+      KartenGeneratorFluss.GenerierungFlüsse;
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Flüsse, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Flüsse);
       
       case
         Karten.Kartenart
       is
          when GlobaleDatentypen.Chaos =>
-            Ladezeiten.SpielweltErstellenZeit (4, GlobaleDatentypen.Anfangswert) := Clock;
-            Ladezeiten.SpielweltErstellenZeit (4, GlobaleDatentypen.Endwert) := Ladezeiten.SpielweltErstellenZeit (4, GlobaleDatentypen.Anfangswert);
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Landschaft_Ebene_Oberfläche, GlobaleDatentypen.Anfangswert) := Clock;
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Landschaft_Ebene_Oberfläche, GlobaleDatentypen.Endwert)
+              := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Landschaft_Ebene_Oberfläche, GlobaleDatentypen.Anfangswert);
             
          when others =>            
-            Ladezeiten.SpielweltErstellenZeit (4, GlobaleDatentypen.Anfangswert) := Clock;
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Landschaft_Ebene_Oberfläche, GlobaleDatentypen.Anfangswert) := Clock;
             KartenGeneratorLandschaft.GenerierungLandschaft;
-            Ladezeiten.SpielweltErstellenZeit (4, GlobaleDatentypen.Endwert) := Clock;
-            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 4);
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Landschaft_Ebene_Oberfläche, GlobaleDatentypen.Endwert) := Clock;
+            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Landschaft_Ebene_Oberfläche);
       end case;
       
-      Ladezeiten.SpielweltErstellenZeit (5, GlobaleDatentypen.Anfangswert) := Clock;
-      KartenGeneratorFluss.GenerierungFlüsse;
-      Ladezeiten.SpielweltErstellenZeit (5, GlobaleDatentypen.Endwert) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 5);
-      
-      Ladezeiten.SpielweltErstellenZeit (6, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ressourcen, GlobaleDatentypen.Anfangswert) := Clock;
       KartenGeneratorRessourcen.GenerierungRessourcen;
-      Ladezeiten.SpielweltErstellenZeit (6, GlobaleDatentypen.Endwert) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 6);
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ressourcen, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Ressourcen);
       
       case
         Karten.Kartenart
       is
          when GlobaleDatentypen.Chaos =>
-            Ladezeiten.SpielweltErstellenZeit (7, GlobaleDatentypen.Anfangswert) := Clock;
-            Ladezeiten.SpielweltErstellenZeit (7, GlobaleDatentypen.Endwert) := Ladezeiten.SpielweltErstellenZeit (7, GlobaleDatentypen.Anfangswert);
-            Ladezeiten.SpielweltErstellenZeit (8, GlobaleDatentypen.Anfangswert) := Ladezeiten.SpielweltErstellenZeit (7, GlobaleDatentypen.Anfangswert);
-            Ladezeiten.SpielweltErstellenZeit (8, GlobaleDatentypen.Endwert) := Ladezeiten.SpielweltErstellenZeit (7, GlobaleDatentypen.Anfangswert);
-            Ladezeiten.SpielweltErstellenZeit (9, GlobaleDatentypen.Anfangswert) := Ladezeiten.SpielweltErstellenZeit (7, GlobaleDatentypen.Anfangswert);
-            Ladezeiten.SpielweltErstellenZeit (9, GlobaleDatentypen.Endwert) := Ladezeiten.SpielweltErstellenZeit (7, GlobaleDatentypen.Anfangswert);
-            Ladezeiten.SpielweltErstellenZeit (10, GlobaleDatentypen.Anfangswert) := Ladezeiten.SpielweltErstellenZeit (7, GlobaleDatentypen.Anfangswert);
-            Ladezeiten.SpielweltErstellenZeit (10, GlobaleDatentypen.Endwert) := Ladezeiten.SpielweltErstellenZeit (7, GlobaleDatentypen.Anfangswert);
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Anfangswert) := Clock;
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Endwert)
+              := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Anfangswert);
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Weltraum, GlobaleDatentypen.Anfangswert) := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Anfangswert);
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Weltraum, GlobaleDatentypen.Endwert) := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Anfangswert);
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Unterirdisch, GlobaleDatentypen.Anfangswert)
+              := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Anfangswert);
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Unterirdisch, GlobaleDatentypen.Endwert) := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Anfangswert);
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Planeteninneres, GlobaleDatentypen.Anfangswert)
+              := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Anfangswert);
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Planeteninneres, GlobaleDatentypen.Endwert)
+              := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Anfangswert);
             
          when others =>
             AndereEbenen;
-            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 7);
-            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 8);
-            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 9);
-            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 10);
+            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Ebene_Himmel);
+            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Ebene_Weltraum);
+            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Ebene_Unterirdisch);
+            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Ebene_Planeteninneres);
       end case;
 
-      Ladezeiten.SpielweltErstellenZeit (11, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Kartenfelder_Bewerten, GlobaleDatentypen.Anfangswert) := Clock;
       KartenfelderBewerten.KartenfelderBewerten;
-      Ladezeiten.SpielweltErstellenZeit (11, GlobaleDatentypen.Endwert) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => 11);
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Kartenfelder_Bewerten, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Kartenfelder_Bewerten);
       
    end KartenGenerator;
    

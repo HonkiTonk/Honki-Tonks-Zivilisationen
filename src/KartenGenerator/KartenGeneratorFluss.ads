@@ -11,7 +11,14 @@ package KartenGeneratorFluss is
 
 private
 
-   WahrscheinlichkeitFluss : constant Float := 0.75;
+   type WahscheinlichkeitFlussArray is array (GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Range) of Float;
+   WahrscheinlichkeitFluss : constant WahscheinlichkeitFlussArray := (
+                                                                      GlobaleDatentypen.Kalt     => 0.25,
+                                                                      GlobaleDatentypen.Gemäßigt => 0.30,
+                                                                      GlobaleDatentypen.Heiß     => 0.25,
+                                                                      GlobaleDatentypen.Eiszeit  => 0.15,
+                                                                      GlobaleDatentypen.Wüste    => 0.15
+                                                                     );
 
    Flusswert : Positive;
 

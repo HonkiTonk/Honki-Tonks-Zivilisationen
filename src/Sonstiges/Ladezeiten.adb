@@ -10,7 +10,7 @@ with Anzeige, Eingabe;
 package body Ladezeiten is
 
    procedure LadezeitenSpielweltErstellen
-     (WelcheZeitExtern : in Positive)
+     (WelcheZeitExtern : in Spielwelt_Erstellen_Zeit_Verwendet_Enum)
    is begin
 
       GesamtzeitSpielweltErstellen := 0.00;
@@ -18,8 +18,8 @@ package body Ladezeiten is
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                      TextDateiExtern        => GlobaleTexte.Ladezeiten,
                                      ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => WelcheZeitExtern,
-                                     LetzteZeileExtern      => WelcheZeitExtern,
+                                     ErsteZeileExtern       => Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern),
+                                     LetzteZeileExtern      => Spielwelt_Erstellen_Zeit_Verwendet_Enum'Pos (WelcheZeitExtern),
                                      AbstandAnfangExtern    => GlobaleTexte.Leer,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
@@ -27,9 +27,9 @@ package body Ladezeiten is
       case
         WelcheZeitExtern
       is
-         when 1 =>
+         when Gesamtzeit =>
             ZeitAuswahlSchleife:
-            for VerschiedeneZeitenSchleifenwert in 2 .. SpielweltErstellenZeit'Last (1) loop                  
+            for VerschiedeneZeitenSchleifenwert in Gesamtzeit_Enum'Range loop                  
                
                GesamtzeitSpielweltErstellen := GesamtzeitSpielweltErstellen + Float (SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Endwert)
                                                                                      - SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Anfangswert));
@@ -54,7 +54,7 @@ package body Ladezeiten is
    
    
    procedure AnzeigeEinzelneZeit
-     (WelcheZeitExtern : in Positive)
+     (WelcheZeitExtern : in Einzelne_Zeiten_Enum)
    is begin
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -77,7 +77,7 @@ package body Ladezeiten is
    
    
    procedure AnzeigeKIZeit
-     (WelcheZeitExtern : in Positive)
+     (WelcheZeitExtern : in GlobaleDatentypen.Rassen_Enum)
    is begin
 
       GesamtzeitKI := 0.00;
@@ -85,8 +85,8 @@ package body Ladezeiten is
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                      TextDateiExtern        => GlobaleTexte.Ladezeiten,
                                      ÜberschriftZeileExtern => 0,
-                                     ErsteZeileExtern       => WelcheZeitExtern + KIAufschlag,
-                                     LetzteZeileExtern      => WelcheZeitExtern + KIAufschlag,
+                                     ErsteZeileExtern       => KIText (WelcheZeitExtern),
+                                     LetzteZeileExtern      => KIText (WelcheZeitExtern),
                                      AbstandAnfangExtern    => GlobaleTexte.Leer,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
@@ -94,9 +94,9 @@ package body Ladezeiten is
       case
         WelcheZeitExtern
       is
-         when 19 =>
+         when GlobaleDatentypen.Leer =>
             ZeitAuswahlSchleife:
-            for VerschiedeneZeitenSchleifenwert in KIZeiten'First (1) .. KIZeiten'Last (1) - 1 loop                  
+            for VerschiedeneZeitenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop                  
                
                GesamtzeitKI := GesamtzeitKI + Float (KIZeiten (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Endwert) - KIZeiten (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Anfangswert));
                   

@@ -92,10 +92,14 @@ package GlobaleDatentypen is
    for Kartenform_Enum use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5, Kugel_Gedreht => 6, Tugel => 7, Tugel_Gedreht => 8, Tugel_Extrem => 9);
    subtype Kartenform_Verwendet_Enum is Kartenform_Enum range X_Zylinder .. Kartenform_Enum'Last;
 
+   type Karten_Ressourcen_Reichtum_Enum is (Leer, Arm, Wenig, Mittel, Viel, Überfluss);
+   subtype Karten_Ressourcen_Reichtum_Vorhanden_Enum is Karten_Ressourcen_Reichtum_Enum range Arm .. Karten_Ressourcen_Reichtum_Enum'Last;
+
    type Karten_Grund_Enum is (Leer,
                               -- Feld
                               Wasser, Küstengewässer, Unter_Wasser, Unter_Küstengewässer,
-                              Eis, Lava, Flachland, Tundra, Wüste, Hügel, Gebirge, Wald, Dschungel, Sumpf, Hügel_Mit, Wolken, Weltraum, Erde, Erdgestein, Gestein,
+                              Eis, Lava,
+                              Tundra, Wüste, Hügel, Gebirge, Wald, Dschungel, Sumpf, Flachland, Hügel_Mit, Wolken, Weltraum, Erde, Erdgestein, Gestein,
                               -- Ressource
                               Fisch, Wal,
                               Kohle, Eisen, Öl, Hochwertiger_Boden, Gold,
@@ -106,12 +110,14 @@ package GlobaleDatentypen is
    subtype Karten_Grund_Wasser_Mit_Eis_Enum is Karten_Grund_Alle_Felder_Enum range Wasser .. Eis;
    subtype Karten_Grund_Wasser_Enum is Karten_Grund_Wasser_Mit_Eis_Enum range Wasser .. Unter_Küstengewässer;
    subtype Karten_Grund_Land_Enum is Karten_Grund_Alle_Felder_Enum range Eis .. Gestein;
-   subtype Karten_Grund_Land_Ohne_Eis_Enum is Karten_Grund_Land_Enum range Flachland .. Gestein;
+   subtype Karten_Grund_Land_Ohne_Eis_Enum is Karten_Grund_Land_Enum range Tundra .. Gestein;
    subtype Karten_Grund_Ressourcen_Enum is Karten_Grund_Enum range Fisch .. Gold;
    subtype Karten_Grund_Ressourcen_Wasser is Karten_Grund_Ressourcen_Enum range Fisch .. Wal;
    subtype Karten_Grund_Ressourcen_Land is Karten_Grund_Ressourcen_Enum range Kohle .. Gold;
    subtype Karten_Grund_Fluss_Enum is Karten_Grund_Enum range Flusskreuzung_Vier .. Fluss_Einzeln;
-   subtype Landschaft_Wahrscheinlichkeit_Enum is Karten_Grund_Land_Ohne_Eis_Enum range GlobaleDatentypen.Tundra .. GlobaleDatentypen.Sumpf;
+   subtype Landschaft_Wahrscheinlichkeit_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Sumpf;
+   -- Flachland muss hier immer am Schluss kommen, sonst geht der Kartengenerator kaputt!
+   subtype Karten_Grund_Generator_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Flachland;
 
    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
    type KartenverbesserungEinheitenID is range 0 .. 78;

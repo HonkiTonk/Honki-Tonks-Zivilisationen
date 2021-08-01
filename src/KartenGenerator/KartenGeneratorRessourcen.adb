@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleKonstanten, GlobaleDatentypen;
 use GlobaleDatentypen;
 
-with Karten, ZufallGeneratorenKarten;
+with Karten, ZufallGeneratorenKarten, KartePositionPruefen;
 
 package body KartenGeneratorRessourcen is
 
@@ -11,82 +11,111 @@ package body KartenGeneratorRessourcen is
    procedure GenerierungRessourcen
    is begin
 
-      NochVerteilbareRessourcen := Karten.Kartengrößen (Karten.Kartengröße).Ressourcenmenge;
+      Karten.GeneratorGrund := (others => (others => False));
 
-      RessourcenSchleife:
-      while NochVerteilbareRessourcen /= 0 loop      
-         YAchseSchleife:
-         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop            
+      YAchseSchleife:
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop            
                
-               exit RessourcenSchleife when NochVerteilbareRessourcen = 0;
-
-               BeliebigerRessourcenwert := ZufallGeneratorenKarten.ZufälligerWert;
-               if
-                 BeliebigerRessourcenwert >= 0.98
-                 and
-                   (Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund = GlobaleDatentypen.Wasser
-                    or
-                      Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund = GlobaleDatentypen.Küstengewässer)
-               then
-                  if
-                    Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund = GlobaleDatentypen.Wasser
-                    and
-                      BeliebigerRessourcenwert > 0.99
-                  then
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Wal;
-                     NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;
-                           
-                  else
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Fisch;
-                     NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;
-                  end if;
-                        
-               elsif
-                 BeliebigerRessourcenwert <= 0.05
-                 and
-                   Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund /= GlobaleDatentypen.Wasser
-                 and
-                   Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund /= GlobaleDatentypen.Küstengewässer
-               then
-                  if
-                    BeliebigerRessourcenwert < 0.01
-                  then
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Eisen;
-                     NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                      
-
-                  elsif
-                    BeliebigerRessourcenwert < 0.02
-                  then
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Öl;
-                     NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                      
-
-                  elsif
-                    BeliebigerRessourcenwert < 0.03
-                  then
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Hochwertiger_Boden;
-                     NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                      
-
-                  elsif
-                    BeliebigerRessourcenwert < 0.04
-                  then
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Gold;
-                     NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;                           
-                           
-                  else
-                     Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Kohle;
-                     NochVerteilbareRessourcen := NochVerteilbareRessourcen - 1;
-                  end if;
-                        
-               else
-                  null;
-               end if;
+            if
+              Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund in Karten_Grund_Wasser_Enum'Range
+              and
+                Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
+            then
+               RessourcenWasser (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-      end loop RessourcenSchleife;
+            elsif
+              Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund in Karten_Grund_Land_Ohne_Eis_Enum'Range
+              and
+                Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
+            then
+               RessourcenLand (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                  
+            else
+               null;
+            end if;
+                           
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
       
    end GenerierungRessourcen;
+   
+   
+   
+   procedure RessourcenWasser
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      WasserRessourcenSchleife:
+      for WasserRessourceSchleifenwert in GlobaleDatentypen.Karten_Grund_Ressourcen_Wasser'Range loop
+                     
+         if
+           ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Ressourcenreichtum, WasserRessourceSchleifenwert)
+         then
+            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource := WasserRessourceSchleifenwert;
+            RessourcenUmgebungBelegen (PositionExtern => PositionExtern);
+            exit WasserRessourcenSchleife;
+                        
+         else
+            null;
+         end if;
+                     
+      end loop WasserRessourcenSchleife;
+      
+   end RessourcenWasser;
+   
+   
+   
+   procedure RessourcenLand
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      LandRessourcenSchleife:
+      for LandRessourceSchleifenwert in GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range loop
+                     
+         if
+           ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Ressourcenreichtum, LandRessourceSchleifenwert)
+         then
+            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource := LandRessourceSchleifenwert;
+            RessourcenUmgebungBelegen (PositionExtern => PositionExtern);
+            exit LandRessourcenSchleife;
+                        
+         else
+            null;
+         end if;
+                     
+      end loop LandRessourcenSchleife;
+      
+   end RessourcenLand;
+   
+   
+   
+   procedure RessourcenUmgebungBelegen
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      YAchseSchleife:
+      for YAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
+                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+            
+            case
+              KartenWert.XAchse
+            is
+               when GlobaleKonstanten.LeerYXKartenWert =>
+                  null;
+                  
+               when others =>
+                  Karten.GeneratorGrund (KartenWert.YAchse, KartenWert.XAchse) := True;
+            end case;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+   end RessourcenUmgebungBelegen;
 
 end KartenGeneratorRessourcen;

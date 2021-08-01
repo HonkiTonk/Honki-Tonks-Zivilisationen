@@ -13,7 +13,7 @@ package body Einlesen is
      return Boolean
    is begin
       
-      Ladezeiten.EinzelneZeiten (1, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, GlobaleDatentypen.Anfangswert) := Clock;
       EinlesenEinstellungen.EinlesenEinstellungen;
       
       if
@@ -49,8 +49,8 @@ package body Einlesen is
       
       EinlesenWerte.EinlesenAlleDatenbanken;
       EinlesenTastatur.EinlesenTastaturbelegung;
-      Ladezeiten.EinzelneZeiten (1, GlobaleDatentypen.Endwert) := Clock;
-      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => 1);
+      Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Startzeit);
       return Erfolgreich;
       
    end Einlesen;

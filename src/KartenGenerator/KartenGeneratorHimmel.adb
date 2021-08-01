@@ -12,7 +12,7 @@ package body KartenGeneratorHimmel is
    procedure Himmel
    is begin
       
-      Ladezeiten.SpielweltErstellenZeit (7, GlobaleDatentypen.Anfangswert) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Anfangswert) := Clock;
          
       YAchseHimmelSchleife:
       for YAchseHimmelSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
@@ -24,7 +24,7 @@ package body KartenGeneratorHimmel is
          end loop XAchseHimmelSchleife;
       end loop YAchseHimmelSchleife;
          
-      Ladezeiten.SpielweltErstellenZeit (7, GlobaleDatentypen.Endwert) := Clock;
+      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Endwert) := Clock;
 
    end Himmel;
 
