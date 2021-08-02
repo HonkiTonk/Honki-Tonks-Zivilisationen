@@ -1,49 +1,169 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleTexte, GlobaleKonstanten;
 
-with Auswahl, DiplomatischerZustand;
+with Anzeige, Auswahl, DiplomatischerZustand, Handeln, EinheitVerschieben;
 
 package body Diplomatie is
+   
+   procedure DiplomatieMöglich
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      AndereRassenVorhanden := False;
+      
+      RassenSchleife:
+      for RassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+         
+         if
+           RassenSchleifenwert = RasseExtern
+           or
+             GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Leer
+           or
+             GlobaleVariablen.Diplomatie (RasseExtern, RassenSchleifenwert) = GlobaleDatentypen.Unbekannt
+         then
+            null;
+            
+         else
+            AndereRassenVorhanden := True;
+            exit RassenSchleife;
+         end if;
+         
+      end loop RassenSchleife;
+      
+      case
+        AndereRassenVorhanden
+      is
+         when True =>
+            DiplomatieMenü (RasseExtern => RasseExtern);
+            
+         when False =>
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                                                  TextZeileExtern => 20);
+      end case;
+      
+   end DiplomatieMöglich;
+   
+   
 
    procedure DiplomatieMenü
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      null;
+      DiplomatieSchleife:
+      loop         
+         WelcheRasseSchleife:
+         loop
+         
+            WelcheRasse := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
+                                            TextDateiExtern   => GlobaleTexte.Rassen_Beschreibung_Kurz,
+                                            FrageZeileExtern  => 2,
+                                            ErsteZeileExtern  => 1,
+                                            LetzteZeileExtern => 19);
+            
+            case
+              WelcheRasse
+            is
+               when GlobaleKonstanten.ZurückKonstante =>
+                  return;
+                  
+               when others =>
+                  null;
+            end case;
+            
+            if
+              GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse) = RasseExtern
+              or
+                GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = GlobaleDatentypen.Leer
+                or
+                  GlobaleVariablen.Diplomatie (RasseExtern, GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)) = GlobaleDatentypen.Unbekannt
+            then
+               
+               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                                                     TextZeileExtern => 21);
+            
+            else
+               exit WelcheRasseSchleife;
+            end if;
+            
+         end loop WelcheRasseSchleife;
+            
+         DiplomatischeAktionSchleife:
+         loop
+         
+            DiplomatischeAktion := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
+                                                    TextDateiExtern   => GlobaleTexte.Diplomatie,
+                                                    FrageZeileExtern  => 1,
+                                                    ErsteZeileExtern  => 3,
+                                                    LetzteZeileExtern => 7);
+            
+            case
+              DiplomatischeAktion
+            is
+               when 1 =>                  
+                  DiplomatischeAktion := DiplomatischenStatusÄndern (RasseExtern             => RasseExtern,
+                                                                      KontaktierteRasseExtern => GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+                  
+               when 2 =>
+                  DiplomatischeAktion := Handeln.Handelsmenü (RasseExtern             => RasseExtern,
+                                                               KontaktierteRasseExtern => GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+                  
+               when 3 =>
+                  EinheitVerschieben.VonEigenemLandWerfen (RasseExtern             => RasseExtern,
+                                                           KontaktierteRasseExtern => GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse));
+                  
+               when GlobaleKonstanten.ZurückKonstante =>
+                  exit DiplomatischeAktionSchleife;
+                  
+               when others =>
+                  return;
+            end case;
+            
+            case
+              DiplomatischeAktion
+            is
+               when others =>
+                  null;
+            end case;
+         
+         end loop DiplomatischeAktionSchleife;
+      end loop DiplomatieSchleife;
       
    end DiplomatieMenü;
-
-
-
-   function GegnerAngreifen
-     (EigeneRasseExtern, GegnerischeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
+   
+   
+   
+   -- Später abfragen für Menschen und KI für die jeweiligen Möglichkeiten einbauen.
+   function DiplomatischenStatusÄndern
+     (RasseExtern, KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Integer
    is begin
       
+      StatusAuswahl := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
+                                        TextDateiExtern   => GlobaleTexte.Diplomatie,
+                                        FrageZeileExtern  => 3,
+                                        ErsteZeileExtern  => 9,
+                                        LetzteZeileExtern => 15);
+            
       case
-        DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
-                                                           FremdeRasseExtern => GegnerischeRasseExtern)
+        StatusAuswahl
       is
-         when GlobaleDatentypen.Neutral | GlobaleDatentypen.Offene_Grenzen =>
-            if
-              Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = GlobaleKonstanten.JaKonstante
-            then
-               DiplomatischerZustand.KriegDurchDirektenAngriff (AngreifendeRasseExtern  => EigeneRasseExtern,
-                                                                VerteidigendeRasseExtern => GegnerischeRasseExtern);
-               return True;
-                  
-            else
-               return False;
-            end if;
-                  
-         when GlobaleDatentypen.Krieg =>
-            return True;
-
+         when 1 .. 5 =>
+            DiplomatischerZustand.DiplomatischenStatusÄndern (RasseEinsExtern   => RasseExtern,
+                                                               RasseZweiExtern   => KontaktierteRasseExtern,
+                                                               NeuerStatusExtern => GlobaleDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
+            return 1;
+            
+         when 6 =>
+            DiplomatischerZustand.DiplomatischenStatusÄndern (RasseEinsExtern   => RasseExtern,
+                                                               RasseZweiExtern   => KontaktierteRasseExtern,
+                                                               NeuerStatusExtern => GlobaleDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
+            return 1;
+            
          when others =>
-            return False;
+            return 0;
       end case;
       
-   end GegnerAngreifen;
+   end DiplomatischenStatusÄndern;
 
 end Diplomatie;

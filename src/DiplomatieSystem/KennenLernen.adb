@@ -14,8 +14,10 @@ package body KennenLernen is
         DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
                                                            FremdeRasseExtern => FremdeRasseExtern)
       is
-         when GlobaleDatentypen.Leer =>
-            GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern) := GlobaleDatentypen.Neutral;   
+         when GlobaleDatentypen.Unbekannt =>
+            DiplomatischerZustand.DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
+                                                               RasseZweiExtern   => FremdeRasseExtern,
+                                                               NeuerStatusExtern => GlobaleDatentypen.Neutral);
                
          when others =>
             return;

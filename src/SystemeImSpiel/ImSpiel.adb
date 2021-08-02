@@ -14,80 +14,24 @@ package body ImSpiel is
       SichtbarkeitsprüfungNotwendig := True;
       
       SpielSchleife:
-      loop         
+      loop
          RassenSchleife:
          for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
             
-            if
-              GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= GlobaleDatentypen.Leer
-              and
-                GlobaleVariablen.Grenzen (RasseSchleifenwert).RassenRundengrenze < GlobaleVariablen.RundenAnzahl
-              and
-                GlobaleVariablen.Grenzen (RasseSchleifenwert).RassenRundengrenze > 0
-            then
-               RasseEntfernen.RasseEntfernen (RasseExtern => RasseSchleifenwert);
-               
-            else
-               null;
-            end if;
+            RückgabeRassen := EinzelneRassenDurchgehen (RasseExtern => RasseSchleifenwert);
             
-            if
-              GlobaleVariablen.RasseAmZugNachLaden = GlobaleDatentypen.Leer
-              or
-                RasseSchleifenwert = GlobaleVariablen.RasseAmZugNachLaden
-            then
-               GlobaleVariablen.RasseAmZugNachLaden := GlobaleDatentypen.Leer;
-            
-               case
-                 GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
-               is
-                  when GlobaleDatentypen.Leer =>
-                     null;
-                     
-                  when GlobaleDatentypen.Spieler_Mensch =>
-                     if
-                       SichtbarkeitsprüfungNotwendig
-                     then
-                        Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
-                        
-                     else
-                        null;
-                     end if;
-                     
-                     RückgabeWert := MenschlicherSpieler (RasseExtern => RasseSchleifenwert);
-                     if
-                       RückgabeWert = GlobaleKonstanten.SpielBeendenKonstante
-                       or
-                         RückgabeWert = GlobaleKonstanten.HauptmenüKonstante
-                     then
-                        return RückgabeWert;
-
-                     elsif
-                       RückgabeWert = -300
-                     then
-                        exit RassenSchleife;
-                        
-                     else
-                        null;
-                     end if;
+            case
+              RückgabeRassen
+            is
+               when GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
+                  return RückgabeRassen;
                   
-                  when GlobaleDatentypen.Spieler_KI =>
-                     if
-                       SichtbarkeitsprüfungNotwendig
-                     then
-                        Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseSchleifenwert);
-                        
-                     else
-                        null;
-                     end if;
-                     Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Anfangswert) := Clock;
-                     KI.KI (RasseExtern => RasseSchleifenwert);
-                     Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Endwert) := Clock;
-               end case;
-
-            else
-               null;
-            end if;
+               when RassenSchleifeVerlassenKonstante =>
+                  exit RassenSchleife;
+               
+               when others =>
+                  null;
+            end case;
             
          end loop RassenSchleife;
                
@@ -101,11 +45,111 @@ package body ImSpiel is
                null;
          end case;
          
+         if
+           GlobaleVariablen.Rundengrenze > GlobaleVariablen.RundenAnzahl
+         then
+            return GlobaleKonstanten.HauptmenüKonstante;
+               
+         else
+            null;
+         end if;         
+         
          SichtbarkeitsprüfungNotwendig := False;
             
       end loop SpielSchleife;
             
    end ImSpiel;
+   
+   
+   
+   function EinzelneRassenDurchgehen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Integer
+   is begin
+      
+      if
+        GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+        and
+          GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze < GlobaleVariablen.RundenAnzahl
+        and
+          GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze > 0
+      then
+         RasseEntfernen.RasseEntfernen (RasseExtern => RasseExtern);
+               
+      else
+         null;
+      end if;
+            
+      if
+        GlobaleVariablen.RasseAmZugNachLaden = GlobaleDatentypen.Leer
+        or
+          RasseExtern = GlobaleVariablen.RasseAmZugNachLaden
+      then
+         GlobaleVariablen.RasseAmZugNachLaden := GlobaleDatentypen.Leer;
+            
+         case
+           GlobaleVariablen.RassenImSpiel (RasseExtern)
+         is
+            when GlobaleDatentypen.Leer =>
+               null;
+                     
+            when GlobaleDatentypen.Spieler_Mensch =>
+               if
+                 SichtbarkeitsprüfungNotwendig
+               then
+                  Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseExtern);
+                        
+               else
+                  null;
+               end if;
+                     
+               RückgabeWert := MenschlicherSpieler (RasseExtern => RasseExtern);
+               if
+                 (RückgabeWert = GlobaleKonstanten.SpielBeendenKonstante
+                  or
+                    RückgabeWert = GlobaleKonstanten.HauptmenüKonstante)
+                 and
+                   NochSpielerVorhanden (RasseExtern => RasseExtern) = True
+               then                        
+                  RasseEntfernen.RasseAufKISetzen (RasseExtern => RasseExtern);
+                        
+               elsif
+                 RückgabeWert = GlobaleKonstanten.SpielBeendenKonstante
+                 or
+                   RückgabeWert = GlobaleKonstanten.HauptmenüKonstante
+               then
+                  return RückgabeWert;
+
+               elsif
+                 RückgabeWert = RassenSchleifeVerlassenKonstante
+               then
+                  return RassenSchleifeVerlassenKonstante;
+                        
+               else
+                  null;
+               end if;
+                  
+            when GlobaleDatentypen.Spieler_KI =>
+               if
+                 SichtbarkeitsprüfungNotwendig
+               then
+                  Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseExtern);
+                        
+               else
+                  null;
+               end if;
+               Ladezeiten.KIZeiten (RasseExtern, GlobaleDatentypen.Anfangswert) := Clock;
+               KI.KI (RasseExtern => RasseExtern);
+               Ladezeiten.KIZeiten (RasseExtern, GlobaleDatentypen.Endwert) := Clock;
+         end case;
+
+      else
+         null;
+      end if;
+      
+      return GlobaleKonstanten.StartNormalKonstante;
+      
+   end EinzelneRassenDurchgehen;
 
 
 
@@ -136,7 +180,7 @@ package body ImSpiel is
                if
                  Laden.LadenNeu = True
                then
-                  return -300;
+                  return RassenSchleifeVerlassenKonstante;
 
                else
                   null;
@@ -226,5 +270,32 @@ package body ImSpiel is
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Zwischen_Runden);      
       
    end BerechnungenNachZugendeAllerSpieler;
+   
+   
+   
+   function NochSpielerVorhanden
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Boolean
+   is begin
+      
+      RassenSchleife:
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+         
+         if
+           RasseSchleifenwert = RasseExtern
+           or
+             GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) /= GlobaleDatentypen.Spieler_Mensch
+         then
+            null;
+            
+         else
+            return True;
+         end if;
+         
+      end loop RassenSchleife;
+      
+      return False;
+      
+   end NochSpielerVorhanden;
 
 end ImSpiel;

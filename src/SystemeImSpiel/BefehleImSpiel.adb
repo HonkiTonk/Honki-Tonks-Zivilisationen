@@ -66,7 +66,7 @@ package body BefehleImSpiel is
             FeldInformationen.Aufteilung (RasseExtern => RasseExtern);
 
          when GlobaleDatentypen.Diplomatie =>
-            Diplomatie.DiplomatieMenü (RasseExtern => RasseExtern);
+            Diplomatie.DiplomatieMöglich (RasseExtern => RasseExtern);
 
          when GlobaleDatentypen.GeheZu =>
             BewegungssystemCursor.GeheZuCursor (RasseExtern => RasseExtern);
@@ -81,7 +81,7 @@ package body BefehleImSpiel is
             StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
             
          when GlobaleDatentypen.Heimatstadt_Ändern =>
-            HeimatstadtÄndern (RasseExtern => RasseExtern);
+            EinheitenAllgemein.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
             
          when GlobaleDatentypen.Runde_Beenden =>
             return GlobaleKonstanten.RundeBeendenKonstante;
@@ -379,35 +379,5 @@ package body BefehleImSpiel is
       end case;
       
    end StadtAbreißen;
-   
-   
-   
-   procedure HeimatstadtÄndern
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                       KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
-      StadtNummer := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
-      
-      if
-        EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
-        or
-          StadtNummer = GlobaleKonstanten.LeerEinheitStadtNummer
-      then
-         null;
-         
-      elsif
-        StadtNummer = EinheitenAllgemein.HeimatstadtErmitteln (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer))
-      then
-         null;
-         
-      else
-         EinheitenAllgemein.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
-                                                NeueStadtExtern          => StadtNummer);
-      end if;
-      
-   end HeimatstadtÄndern;
 
 end BefehleImSpiel;

@@ -33,5 +33,12 @@ private
    GefundeneFelder : Positive;
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWertZwei : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
+   function NochErreichbar
+     (AktuellePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID)
+      return Boolean;
 
 end UmgebungErreichbarTesten;

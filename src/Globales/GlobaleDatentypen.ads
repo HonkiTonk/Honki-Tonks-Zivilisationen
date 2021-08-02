@@ -10,8 +10,10 @@ package GlobaleDatentypen is
    subtype Schwierigkeitsgrad_Verwendet_Enum is Schwierigkeitsgrad_Enum range Einfach .. Schwierigkeitsgrad_Enum'Last;
    -- Sonstiges
 
+
+
    -- Für Anzeige
-   type TextDateien is range 0 .. 30;
+   type TextDateien is range 0 .. 31;
    type TextZeilen is range 0 .. 107;
    subtype TextZeilenOhneNull is TextZeilen range 1 .. TextZeilen'Last;
    -- Für Anzeige
@@ -220,7 +222,7 @@ package GlobaleDatentypen is
 
 
    -- Für Diplomatie
-   type Status_Untereinander_Enum is (Leer,
+   type Status_Untereinander_Enum is (Unbekannt,
                                       -- Neutral
                                       Neutral,
                                       -- Friedlich

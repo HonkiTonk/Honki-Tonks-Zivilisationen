@@ -25,8 +25,8 @@ package body RasseEntfernen is
       DiplomatieSchleife:
       for DiplomatieSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop         
          
-         GlobaleVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert) := GlobaleDatentypen.Leer;
-         GlobaleVariablen.Diplomatie (DiplomatieSchleifenwert, RasseExtern) := GlobaleDatentypen.Leer;
+         GlobaleVariablen.Diplomatie (RasseExtern, DiplomatieSchleifenwert) := GlobaleDatentypen.Unbekannt;
+         GlobaleVariablen.Diplomatie (DiplomatieSchleifenwert, RasseExtern) := GlobaleDatentypen.Unbekannt;
          
       end loop DiplomatieSchleife;
       
@@ -76,5 +76,15 @@ package body RasseEntfernen is
       RasseEntfernen (RasseExtern => RasseExtern);
       
    end RasseExistenzPrüfen;
+   
+   
+   
+   procedure RasseAufKISetzen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      GlobaleVariablen.RassenImSpiel (RasseExtern) := GlobaleDatentypen.Spieler_KI;
+      
+   end RasseAufKISetzen;
 
 end RasseEntfernen;

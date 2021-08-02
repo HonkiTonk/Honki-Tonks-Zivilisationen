@@ -43,6 +43,8 @@ package GlobaleVariablen is
    -- Später über Nutzereingaben neu belegbar machen.
    type GrenzenArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleRecords.GrenzenRecord;
    Grenzen : GrenzenArray := (others => GlobaleKonstanten.LeerGrenzen);
+   
+   IronmanName : Unbounded_Wide_Wide_String := To_Unbounded_Wide_Wide_String (Source => "");
    -- Zeug
    
 
@@ -66,7 +68,7 @@ package GlobaleVariablen is
    Wichtiges : WichtigesArray := (others => GlobaleKonstanten.LeerWichtigesZeug);
    
    type DiplomatieArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.Status_Untereinander_Enum;
-   Diplomatie : DiplomatieArray := (others => (others => GlobaleDatentypen.Leer));
+   Diplomatie : DiplomatieArray := (others => (others => GlobaleDatentypen.Unbekannt));
    -- Wichtiges Zeug
    
    

@@ -15,11 +15,20 @@ private
 
    SichtbarkeitsprüfungNotwendig : Boolean;
 
+   RassenSchleifeVerlassenKonstante : constant Integer := -300;
+
    AktuellerBefehlSpieler : Integer;
    RückgabeWert : Integer;
    RückgabeOptionen : Integer;
+   RückgabeRassen : Integer;
 
    procedure BerechnungenNachZugendeAllerSpieler;
+
+
+
+   function EinzelneRassenDurchgehen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Integer;
 
    function MenschlicherSpieler
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
@@ -29,5 +38,12 @@ private
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch),
          Post =>
            (MenschlicherSpieler'Result in GlobaleKonstanten.RundeBeendenKonstante .. 5);
+
+   function NochSpielerVorhanden
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Boolean
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
 
 end ImSpiel;

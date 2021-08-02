@@ -55,13 +55,20 @@ package body Laden is
                return False;
          end case;
       end if;
+      
+      -- Ironmanmodus speichern
+      Unbounded_Wide_Wide_String'Read (Stream (File => DateiLadenNeu), 
+                                       GlobaleVariablen.IronmanName);
+      -- Ironmanmodus speichern
+      
+      
 
       -- Rundenanzahl und Grenze laden
       Positive'Read (Stream (File => DateiLadenNeu),
                      GlobaleVariablen.RundenAnzahl);
       
       Natural'Read (Stream (File => DateiLadenNeu),
-                     GlobaleVariablen.Rundengrenze);
+                    GlobaleVariablen.Rundengrenze);
       -- Rundenanzahl und Grenze laden
       
       

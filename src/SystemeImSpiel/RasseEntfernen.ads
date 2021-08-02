@@ -17,4 +17,10 @@ package RasseEntfernen is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
+   procedure RasseAufKISetzen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+
 end RasseEntfernen;

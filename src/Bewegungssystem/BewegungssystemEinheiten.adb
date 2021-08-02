@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, Diplomatie, BewegungLadenEntladen, Kampfsystem, StadtSuchen, StadtEntfernen;
+with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, DiplomatischerZustand, BewegungLadenEntladen, Kampfsystem, StadtSuchen, StadtEntfernen;
 
 package body BewegungssystemEinheiten is
 
@@ -47,6 +47,10 @@ package body BewegungssystemEinheiten is
             
             when GlobaleDatentypen.Ebene_Runter =>
                Änderung := (-1, 0, 0);
+               
+            when GlobaleDatentypen.Heimatstadt_Ändern =>
+               EinheitenAllgemein.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               Änderung := (0, 0, 0);
             
             when others =>
                return;
@@ -191,8 +195,8 @@ package body BewegungssystemEinheiten is
    is begin
             
       case
-        Diplomatie.GegnerAngreifen (EigeneRasseExtern      => EinheitRasseNummerExtern.Rasse,
-                                    GegnerischeRasseExtern => FremdeEinheitExtern.Rasse)
+        DiplomatischerZustand.GegnerAngreifen (EigeneRasseExtern      => EinheitRasseNummerExtern.Rasse,
+                                               GegnerischeRasseExtern => FremdeEinheitExtern.Rasse)
       is
          when True =>
             if
@@ -231,8 +235,8 @@ package body BewegungssystemEinheiten is
    is begin
       
       case
-        Diplomatie.GegnerAngreifen (EigeneRasseExtern      => RasseExtern,
-                                    GegnerischeRasseExtern => FremdeStadtExtern.Rasse)
+        DiplomatischerZustand.GegnerAngreifen (EigeneRasseExtern      => RasseExtern,
+                                               GegnerischeRasseExtern => FremdeStadtExtern.Rasse)
       is
          when True =>
             StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => FremdeStadtExtern);

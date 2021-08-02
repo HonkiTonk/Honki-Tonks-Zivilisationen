@@ -7,7 +7,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with EinheitenDatenbank;
 
-with Auswahl, Anzeige, Eingabe, Sichtbarkeit, StadtProduktion, RasseEntfernen;
+with Auswahl, Anzeige, Eingabe, Sichtbarkeit, StadtProduktion, RasseEntfernen, EinheitSuchen, StadtSuchen;
 
 package body EinheitenAllgemein is
 
@@ -540,28 +540,57 @@ package body EinheitenAllgemein is
    
    
    procedure HeimatstadtÄndern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeueStadtExtern : in GlobaleDatentypen.MaximaleStädte)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      StadtNummer := HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      case
+        EinheitRasseNummerExtern.Platznummer
+      is
+         when GlobaleKonstanten.LeerEinheitStadtNummer =>
+            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                             KoordinatenExtern => GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position);
+            
+         when others =>
+            EinheitNummer := EinheitRasseNummerExtern.Platznummer;
+      end case;
+      
+      StadtNummerNeu := StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                    KoordinatenExtern => GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position);
+      
+      if
+        EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
+        or
+          StadtNummerNeu = GlobaleKonstanten.LeerEinheitStadtNummer
+      then
+         return;
+         
+      elsif
+        StadtNummerNeu = EinheitenAllgemein.HeimatstadtErmitteln (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))
+      then
+         return;
+         
+      else
+         null;
+      end if;
+      
+      StadtNummerAlt := HeimatstadtErmitteln (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer));
       
       case
-        StadtNummer
+        StadtNummerAlt
       is
          when GlobaleKonstanten.LeerEinheitStadtNummer =>
             null;
             
          when others =>
-            PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                                                 IDExtern                => EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+            PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummerAlt),
+                                                 IDExtern                => EinheitenIDErmitteln (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)),
                                                  VorzeichenWechselExtern => -1);
       end case;
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Heimatstadt := NeueStadtExtern;
+      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Heimatstadt := StadtNummerNeu;
       
-      PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, NeueStadtExtern),
-                                           IDExtern                => EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+      PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummerNeu),
+                                           IDExtern                => EinheitenIDErmitteln (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)),
                                            VorzeichenWechselExtern => 1);
       
    end HeimatstadtÄndern;

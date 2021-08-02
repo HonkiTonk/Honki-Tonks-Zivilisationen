@@ -54,7 +54,4 @@ private
    procedure StadtAbreißen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
    
-   procedure HeimatstadtÄndern
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
-   
 end BefehleImSpiel;

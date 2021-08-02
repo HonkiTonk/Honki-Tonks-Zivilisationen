@@ -1,15 +1,20 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
+with Auswahl;
+
 package body DiplomatischerZustand is
 
-   procedure KriegDurchDirektenAngriff
-     (AngreifendeRasseExtern, VerteidigendeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   procedure DiplomatischenStatusÄndern
+     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      NeuerStatusExtern : in GlobaleDatentypen.Status_Untereinander_Enum)
    is begin
       
-      GlobaleVariablen.Diplomatie (AngreifendeRasseExtern, VerteidigendeRasseExtern) := GlobaleDatentypen.Krieg;
-      GlobaleVariablen.Diplomatie (VerteidigendeRasseExtern, AngreifendeRasseExtern) := GlobaleDatentypen.Krieg;
+      GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern) := NeuerStatusExtern;
+      GlobaleVariablen.Diplomatie (RasseZweiExtern, RasseEinsExtern) := NeuerStatusExtern;
       
-   end KriegDurchDirektenAngriff;
+   end DiplomatischenStatusÄndern;
 
 
 
@@ -21,5 +26,38 @@ package body DiplomatischerZustand is
       return GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern);
       
    end DiplomatischenStatusPrüfen;
+
+
+
+   function GegnerAngreifen
+     (EigeneRasseExtern, GegnerischeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Boolean
+   is begin
+      
+      case
+        DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
+                                     FremdeRasseExtern => GegnerischeRasseExtern)
+      is
+         when GlobaleDatentypen.Neutral | GlobaleDatentypen.Offene_Grenzen =>
+            if
+              Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = GlobaleKonstanten.JaKonstante
+            then
+               DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,
+                                            RasseZweiExtern   => GegnerischeRasseExtern,
+                                            NeuerStatusExtern => GlobaleDatentypen.Krieg);
+               return True;
+                  
+            else
+               return False;
+            end if;
+                  
+         when GlobaleDatentypen.Krieg =>
+            return True;
+
+         when others =>
+            return False;
+      end case;
+      
+   end GegnerAngreifen;
 
 end DiplomatischerZustand;

@@ -29,6 +29,17 @@ package Sichtbarkeit is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
+   procedure SichtbarkeitHandel
+     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      WelcherHandelExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+     with
+       Pre =>
+         (RasseEinsExtern /= RasseZweiExtern
+          and
+            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= GlobaleDatentypen.Leer
+          and
+            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= GlobaleDatentypen.Leer);
+
 private
 
    SichtweiteObjekt : GlobaleDatentypen.Sichtweite;

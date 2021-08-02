@@ -5,6 +5,20 @@ use GlobaleDatentypen;
 
 package Diplomatie is
 
+   procedure DiplomatieMöglich
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+
+private
+
+   AndereRassenVorhanden : Boolean;
+
+   DiplomatischeAktion : Integer;
+   StatusAuswahl : Integer;
+   WelcheRasse : Integer;
+
    procedure DiplomatieMenü
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
@@ -13,15 +27,8 @@ package Diplomatie is
 
 
 
-   function GegnerAngreifen
-     (EigeneRasseExtern, GegnerischeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
-     with
-       Pre =>
-         (EigeneRasseExtern /= GegnerischeRasseExtern
-          and
-            GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) /= GlobaleDatentypen.Leer
-          and
-            GlobaleVariablen.RassenImSpiel (GegnerischeRasseExtern) /= GlobaleDatentypen.Leer);
+   function DiplomatischenStatusÄndern
+     (RasseExtern, KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Integer;
 
 end Diplomatie;

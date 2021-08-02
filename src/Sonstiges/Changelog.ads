@@ -1,14 +1,43 @@
 package Changelog is
    
-   -- Version 0.00.80 => 0.00.8 (03.08.2021):
+   -- Version 0.00.8 => 0.00.8 (05.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
-   -- Version 0.00.8060 => 0.00.80 (02.08.2021):
+   -- Version 0.00.8 => 0.00.8 (04.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8080 => 0.00.8 (03.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8060 => 0.00.8080 (02.08.2021):
+   
+   -- Fehler behoben der verhinderte dass man in einer Hafenstadt Schiffe bauen kann.
+   -- Platzierung von neu gebauten Einheiten/Einheiten die aus einem Schiff entladen werden verbessert.
+   -- Angefangen das Diplomatiesystem einzubauen.
+   -- Das Ändern des diplomatischen Zustandes vereinheitlicht.
+   -- Sichtbarkeitscheat setzt jetz auch alle Rassen auf Bekannt.
+   -- Es ist jetzt möglich den diplomatischen Zustand zu einer anderen Rasse zu ändern.
+   -- Angefangen ein Handelsmenü einzubauen.
+   -- Wenn ein menschlicher Spieler das Spiel verlässt und noch weitere Menschen vorhanden sind, wird das Spiel jetzt nicht mehr beendet sonder die Rasse des Spielers auf die KI übertragen.
+   -- Eine Möglichkeit eingebaut Einheiten einer anderen Rasse unter bestimmten Bedingungen von seinem eigenen Land zu entfernen.
+   -- Fehler behoben der dazu führte dass eine Spielerrasse auch dann auf die KI gesetzt wurde wenn nur die Runde beendet wurde.
+   -- Karten tauschen/kaufen/verkaufen ist jetzt möglich bringt/kostet aber noch kein Geld und es existiert keine Ablehnungsmöglichkeit.
+   -- Kontakte tauschen/kaufen/verkaufen ist jetzt möglich bringt/kostet aber noch kein Geld und es existiert keine Ablehnungsmöglichkeit.
+   -- Man kann jetzt Geld verschenken, wenn man mehr Geld als 0 hat.
+   -- Angefangen einen Ironmanmodus einzubauen.
+   -- Es ist jetzt auch möglich die Heimatstadt während der Bewegung einer Einheit zu ändern.
+   -- Angefangen ImSpiel zu überarbeiten und übersichtlicher zu gestalten.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst.
    
    
    

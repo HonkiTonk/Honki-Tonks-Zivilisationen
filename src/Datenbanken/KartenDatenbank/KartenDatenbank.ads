@@ -14,7 +14,7 @@ package KartenDatenbank is
    
 private
    
-   -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
+   -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
    
    KartenListeStandard : constant KartenListeArray :=
      (

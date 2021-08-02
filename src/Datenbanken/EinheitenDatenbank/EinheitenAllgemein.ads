@@ -57,13 +57,10 @@ package EinheitenAllgemein is
             GlobaleVariablen.RassenImSpiel (BesiegteEinheitExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure HeimatstadtÄndern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NeueStadtExtern : in GlobaleDatentypen.MaximaleStädte)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+         (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    
 
@@ -161,6 +158,8 @@ private
    AktuellePosition : GlobaleDatentypen.EinheitenIDMitNullWert;
    
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   StadtNummerAlt : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   StadtNummerNeu : GlobaleDatentypen.MaximaleStädteMitNullWert;
 
    Position : GlobaleRecords.AchsenKartenfeldPositivRecord;
 

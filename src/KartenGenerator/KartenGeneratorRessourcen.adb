@@ -7,7 +7,6 @@ with Karten, ZufallGeneratorenKarten, KartePositionPruefen;
 
 package body KartenGeneratorRessourcen is
 
-   -- Die Verteilung mehrmals loopen lassen? Einmal von oben zur mitte, von unten zur mitte, von mitte nach oben und von mitte nach unten?
    procedure GenerierungRessourcen
    is begin
 
@@ -49,7 +48,7 @@ package body KartenGeneratorRessourcen is
       
       WasserRessourcenSchleife:
       for WasserRessourceSchleifenwert in GlobaleDatentypen.Karten_Grund_Ressourcen_Wasser'Range loop
-                     
+         
          if
            ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Ressourcenreichtum, WasserRessourceSchleifenwert)
          then

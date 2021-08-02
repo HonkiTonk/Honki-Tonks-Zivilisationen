@@ -79,6 +79,16 @@ package body Cheat is
          end loop YAchseSchleife;
       end loop EbeneSchleife;
       
+      RassenErsteSchleife:
+      for RasseEinsSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+         RassenZweiteSchleife:
+         for RasseZweiSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+            
+            GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert) := GlobaleDatentypen.Neutral;
+            
+         end loop RassenZweiteSchleife;
+      end loop RassenErsteSchleife;
+      
    end Sichtbarkeit;
    
    

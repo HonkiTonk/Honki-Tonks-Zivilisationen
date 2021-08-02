@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank;
   
-with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen;
+with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen, KartenAllgemein;
 
 package body Sichtbarkeit is
 
@@ -789,5 +789,80 @@ package body Sichtbarkeit is
       end case;
       
    end SichtbarkeitSetzen;
+   
+   
+   
+   procedure SichtbarkeitHandel
+     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      WelcherHandelExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+   is begin
+      
+      case
+        WelcherHandelExtern
+      is
+         when 0 | -1 =>
+            EAchseEinsSchleife:
+            for EAchseEinsSchleifenwert in Karten.WeltkarteArray'Range (1) loop
+               YAchseEinsSchleife:
+               for YAchseEinsSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+                  XAchseEinsSchleife:
+                  for XAchseEinsSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+
+                     if
+                       KartenAllgemein.FeldSichtbar (PositionExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
+                                                     RasseExtern    => RasseEinsExtern) = False
+                       and
+                         KartenAllgemein.FeldSichtbar (PositionExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
+                                                       RasseExtern    => RasseZweiExtern) = True
+                     then
+                        SichtbarkeitSetzen (RasseExtern       => RasseEinsExtern,
+                                            KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert));
+                        
+                     else
+                        null;
+                     end if;
+
+                  end loop XAchseEinsSchleife;
+               end loop YAchseEinsSchleife;
+            end loop EAchseEinsSchleife;
+
+         when others =>
+            null;
+      end case;
+      
+      case
+        WelcherHandelExtern
+      is
+         when 0 | 1 =>
+            EAchseZweiSchleife:
+            for EAchseZweiSchleifenwert in Karten.WeltkarteArray'Range (1) loop
+               YAchseZweiSchleife:
+               for YAchseZweiSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+                  XAchseZweiSchleife:
+                  for XAchseZweiSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
+
+                     if
+                       KartenAllgemein.FeldSichtbar (PositionExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
+                                                     RasseExtern    => RasseZweiExtern) = False
+                       and
+                         KartenAllgemein.FeldSichtbar (PositionExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
+                                                       RasseExtern    => RasseEinsExtern) = True
+                     then
+                        SichtbarkeitSetzen (RasseExtern       => RasseZweiExtern,
+                                            KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert));
+                        
+                     else
+                        null;
+                     end if;
+
+                  end loop XAchseZweiSchleife;
+               end loop YAchseZweiSchleife;
+            end loop EAchseZweiSchleife;
+            
+         when others =>
+            null;
+      end case;
+              
+   end SichtbarkeitHandel;
 
 end Sichtbarkeit;

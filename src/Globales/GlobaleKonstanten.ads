@@ -130,7 +130,7 @@ package GlobaleKonstanten is
                                                              GebäudeVorhanden        => (others => False),
                                                              Name                    => To_Unbounded_Wide_Wide_String (Source => ""),
                                                              UmgebungBewirtschaftung => (others => (others => False)),
-                                                             UmgebungGröße           => 1,
+                                                             UmgebungGröße           => 0,
                                                              Meldungen               => (others => GlobaleDatentypen.Leer),
                                                              KIBeschäftigung         => KIDatentypen.Keine_Aufgabe
                                                             );

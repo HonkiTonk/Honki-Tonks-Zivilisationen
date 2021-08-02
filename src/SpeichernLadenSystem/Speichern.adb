@@ -17,40 +17,54 @@ package body Speichern is
         AutospeichernExtern
       is
          when False =>
-            SpielstandName := Eingabe.SpielstandName;
-
-            -- Anzeige der vorhandenen Spielstände einbauen
             if
-              Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) = True
+              To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= ""
             then
-               case
-                 Auswahl.AuswahlJaNein (FrageZeileExtern => 18)
-               is
-                  when -3 =>
-                     null;
-                     
-                  when others =>
-                     return;
-               end case;
-
+               SpielstandName := GlobaleVariablen.IronmanName;
+               
             else
-               null;
+               SpielstandName := Eingabe.SpielstandName;
+
+               -- Anzeige der vorhandenen Spielstände einbauen
+               if
+                 Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) = True
+               then
+                  case
+                    Auswahl.AuswahlJaNein (FrageZeileExtern => 18)
+                  is
+                     when -3 =>
+                        null;
+                     
+                     when others =>
+                        return;
+                  end case;
+
+               else
+                  null;
+               end if;
             end if;
 
-         when True =>                        
-            SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
+         when True =>
             if
-              GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 1
+              To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= ""
             then
-               null;
+               SpielstandName := GlobaleVariablen.IronmanName;
+               
+            else
+               SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
+               if
+                 GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 1
+               then
+                  null;
 
-            elsif
-              AutospeichernWert <= GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave - 1
-            then
-               AutospeichernWert := AutospeichernWert + 1;
+               elsif
+                 AutospeichernWert <= GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave - 1
+               then
+                  AutospeichernWert := AutospeichernWert + 1;
                   
-            else               
-               AutospeichernWert := 1;
+               else               
+                  AutospeichernWert := 1;
+               end if;
             end if;
       end case;
 
@@ -64,6 +78,13 @@ package body Speichern is
       Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu), 
                               Informationen.Versionsnummer);
       -- Versionsnummer speichern
+      
+      
+      
+      -- Ironmanmodus speichern
+      Unbounded_Wide_Wide_String'Write (Stream (File => DateiSpeichernNeu), 
+                                        GlobaleVariablen.IronmanName);
+      -- Ironmanmodus speichern
       
       
       
