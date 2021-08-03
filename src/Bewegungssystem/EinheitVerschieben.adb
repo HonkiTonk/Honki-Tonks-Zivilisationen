@@ -11,7 +11,7 @@ package body EinheitVerschieben is
    is begin
       
       case
-        GlobaleVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern)
+        GlobaleVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
       is
          when GlobaleDatentypen.Nichtangriffspakt | GlobaleDatentypen.Neutral =>
             EinheitNummer := 0;

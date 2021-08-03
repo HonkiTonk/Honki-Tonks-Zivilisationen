@@ -12,7 +12,7 @@ package body Handeln is
    is begin
       
       case
-        GlobaleVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern)
+        GlobaleVariablen.Diplomatie (RasseExtern, KontaktierteRasseExtern).AktuellerZustand
       is
          when GlobaleDatentypen.Krieg =>
             return 1;
@@ -112,9 +112,9 @@ package body Handeln is
                  or
                    RasseEinsSchleifenwert = KontaktierteRasseExtern
                    or
-                     GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert) = GlobaleDatentypen.Unbekannt
+                     GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseEinsSchleifenwert).AktuellerZustand = GlobaleDatentypen.Unbekannt
                  or
-                   GlobaleVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert) /= GlobaleDatentypen.Unbekannt
+                   GlobaleVariablen.Diplomatie (RasseExtern, RasseEinsSchleifenwert).AktuellerZustand /= GlobaleDatentypen.Unbekannt
                then
                   null;
                   
@@ -141,9 +141,9 @@ package body Handeln is
                  or
                    RasseZweiSchleifenwert = KontaktierteRasseExtern
                    or
-                     GlobaleVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert) = GlobaleDatentypen.Unbekannt
+                     GlobaleVariablen.Diplomatie (RasseExtern, RasseZweiSchleifenwert).AktuellerZustand = GlobaleDatentypen.Unbekannt
                  or
-                   GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert) /= GlobaleDatentypen.Unbekannt
+                   GlobaleVariablen.Diplomatie (KontaktierteRasseExtern, RasseZweiSchleifenwert).AktuellerZustand /= GlobaleDatentypen.Unbekannt
                then
                   null;
                   

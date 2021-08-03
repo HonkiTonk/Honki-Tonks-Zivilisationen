@@ -50,7 +50,7 @@ package body KartenGeneratorRessourcen is
       for WasserRessourceSchleifenwert in GlobaleDatentypen.Karten_Grund_Ressourcen_Wasser'Range loop
          
          if
-           ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Ressourcenreichtum, WasserRessourceSchleifenwert)
+           ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenressourcen, WasserRessourceSchleifenwert)
          then
             Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource := WasserRessourceSchleifenwert;
             RessourcenUmgebungBelegen (PositionExtern => PositionExtern);
@@ -74,7 +74,7 @@ package body KartenGeneratorRessourcen is
       for LandRessourceSchleifenwert in GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range loop
                      
          if
-           ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Ressourcenreichtum, LandRessourceSchleifenwert)
+           ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenressourcen, LandRessourceSchleifenwert)
          then
             Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource := LandRessourceSchleifenwert;
             RessourcenUmgebungBelegen (PositionExtern => PositionExtern);

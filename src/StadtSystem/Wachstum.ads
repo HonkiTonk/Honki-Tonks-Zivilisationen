@@ -17,7 +17,7 @@ package Wachstum is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 private
    
-   EinwohnerÄnderung : Boolean;
+   WachstumSchrumpfung : Boolean;
    
    procedure WachstumEinwohner
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

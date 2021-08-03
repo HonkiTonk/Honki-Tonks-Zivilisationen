@@ -46,7 +46,7 @@ package Karten is
    -- X-Zylinder, Y-Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht
    Kartenform : GlobaleDatentypen.Kartenform_Verwendet_Enum := GlobaleDatentypen.X_Zylinder;
    -- Arm, Wenig, Mittel, Viel, Überfluss
-   Ressourcenreichtum : GlobaleDatentypen.Karten_Ressourcen_Reichtum_Vorhanden_Enum := GlobaleDatentypen.Mittel;
+   Kartenressourcen : GlobaleDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum := GlobaleDatentypen.Mittel;
 
    type GeneratorKarteArray is array (Karten.Weltkarte'Range (2), Karten.Weltkarte'Range (3)) of GlobaleDatentypen.Karten_Grund_Enum;
    GeneratorKarte : GeneratorKarteArray;

@@ -67,8 +67,8 @@ package GlobaleVariablen is
    type WichtigesArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleRecords.WichtigesRecord;
    Wichtiges : WichtigesArray := (others => GlobaleKonstanten.LeerWichtigesZeug);
    
-   type DiplomatieArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.Status_Untereinander_Enum;
-   Diplomatie : DiplomatieArray := (others => (others => GlobaleDatentypen.Unbekannt));
+   type DiplomatieArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleRecords.DiplomatieRecord;
+   Diplomatie : DiplomatieArray := (others => (others => GlobaleKonstanten.LeerDiplomatie));
    -- Wichtiges Zeug
    
    

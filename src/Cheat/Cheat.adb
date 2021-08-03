@@ -84,7 +84,7 @@ package body Cheat is
          RassenZweiteSchleife:
          for RasseZweiSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
             
-            GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert) := GlobaleDatentypen.Neutral;
+            GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := GlobaleDatentypen.Neutral;
             
          end loop RassenZweiteSchleife;
       end loop RassenErsteSchleife;

@@ -11,8 +11,11 @@ package body DiplomatischerZustand is
       NeuerStatusExtern : in GlobaleDatentypen.Status_Untereinander_Enum)
    is begin
       
-      GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern) := NeuerStatusExtern;
-      GlobaleVariablen.Diplomatie (RasseZweiExtern, RasseEinsExtern) := NeuerStatusExtern;
+      GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand := NeuerStatusExtern;
+      GlobaleVariablen.Diplomatie (RasseZweiExtern, RasseEinsExtern).AktuellerZustand := NeuerStatusExtern;
+      
+      GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung := 0;
+      GlobaleVariablen.Diplomatie (RasseZweiExtern, RasseEinsExtern).ZeitSeitLetzterÄnderung := 0;
       
    end DiplomatischenStatusÄndern;
 
@@ -23,7 +26,7 @@ package body DiplomatischerZustand is
       return GlobaleDatentypen.Status_Untereinander_Enum
    is begin
       
-      return GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern);
+      return GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuellerZustand;
       
    end DiplomatischenStatusPrüfen;
 

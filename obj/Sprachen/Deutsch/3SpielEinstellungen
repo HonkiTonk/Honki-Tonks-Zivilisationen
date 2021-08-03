@@ -1,4 +1,4 @@
-| Spieleinstellungen Größe
+Kartengröße wählen:
 Winzig (20x20)
 Klein (40x40)
 Mittel (80x80)
@@ -9,11 +9,10 @@ Riesig (240x240)
 Gigantisch (320x320)
 Absurd (1000x1000) (Erzeugt sehr große Speicherdateien)
 Benutzerdefiniert
-Zufällig 
+Zufällig
 Hauptmenü
 Spiel beenden
-|
-| Spieleinstellungen Kartenart
+Kartenart wählen:
 Inseln
 Kontinente
 Pangäa
@@ -23,8 +22,7 @@ Zufällig
 Zurück
 Hauptmenü
 Spiel beenden
-|
-| Spieleinstellungen Kartentemperatur
+Kartentemperatur wählen:
 Kalt
 Gemäßigt
 Heiß
@@ -34,32 +32,13 @@ Zufällig
 Zurück
 Hauptmenü
 Spiel beenden
-|
-| Spieleinstellungen Spieleranzahl
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
+Spieleranzahl festlegen:
+Eingabe
 Zufall
 Zurück
 Hauptmenü
 Spiel beenden
-|
-| Spieleinstellungen Rassennamen
+Rasse wählen:
 Menschen
 Kasrodiah
 Lasupin
@@ -82,8 +61,7 @@ Zufall
 Zurück
 Hauptmenü
 Spiel beenden
-|
-| Spieleinstellungen Schwierigkeitsgrad
+Schwierigkeitsgrad festlegen:
 Leicht (aktuell existiert nur ein Schwierigkeitsgrad)
 Mittel (aktuell existiert nur ein Schwierigkeitsgrad)
 Schwer (aktuell existiert nur ein Schwierigkeitsgrad)
@@ -91,8 +69,7 @@ Zufall (aktuell existiert nur ein Schwierigkeitsgrad)
 Zurück
 Hauptmenü
 Spiel beenden
-|
-|
+Kartenform wählen:
 X-Zylinder
 Y-Zylinder
 Torus
@@ -102,6 +79,15 @@ Kugel gedreht
 Tugel (was auch immer es ist, es existiert und funktioniert, irgendwie)
 Tugel gedreht (nicht eingebaut)
 Tugel extrem (nicht eingebaut)
+Zurück
+Hauptmenü
+Spiel beenden
+Vorhandene Ressourcenmenge wählen:
+Arm
+Wenig
+Mittel
+Viel
+Überfluss
 Zurück
 Hauptmenü
 Spiel beenden

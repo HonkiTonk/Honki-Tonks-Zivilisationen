@@ -67,15 +67,24 @@ package body ImSpiel is
       return Integer
    is begin
       
+      case
+        GlobaleVariablen.RassenImSpiel (RasseExtern)
+      is
+         when GlobaleDatentypen.Leer =>
+            return GlobaleKonstanten.StartNormalKonstante;
+            
+         when others =>
+            null;
+      end case;
+      
       if
-        GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
-        and
-          GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze < GlobaleVariablen.RundenAnzahl
+        GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze < GlobaleVariablen.RundenAnzahl
         and
           GlobaleVariablen.Grenzen (RasseExtern).RassenRundengrenze > 0
       then
          RasseEntfernen.RasseEntfernen (RasseExtern => RasseExtern);
-               
+         return GlobaleKonstanten.StartNormalKonstante;
+         
       else
          null;
       end if;
@@ -89,16 +98,13 @@ package body ImSpiel is
             
          case
            GlobaleVariablen.RassenImSpiel (RasseExtern)
-         is
-            when GlobaleDatentypen.Leer =>
-               null;
-                     
+         is                     
             when GlobaleDatentypen.Spieler_Mensch =>
                if
                  SichtbarkeitsprüfungNotwendig
                then
                   Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseExtern);
-                        
+                  
                else
                   null;
                end if;
@@ -128,8 +134,9 @@ package body ImSpiel is
                else
                   null;
                end if;
-                  
-            when GlobaleDatentypen.Spieler_KI =>
+                 
+               -- Ist die KI, der Fall Leer kann ja gar nicht mehr auftreten.
+            when others =>
                if
                  SichtbarkeitsprüfungNotwendig
                then
@@ -209,7 +216,7 @@ package body ImSpiel is
                return GlobaleKonstanten.StartNormalKonstante;      
                   
             when others =>
-               Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseExtern);
+               null;
          end case;
                      
       end loop SpielerSchleife;

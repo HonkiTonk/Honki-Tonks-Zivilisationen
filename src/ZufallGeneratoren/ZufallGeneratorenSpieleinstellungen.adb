@@ -45,6 +45,17 @@ package body ZufallGeneratorenSpieleinstellungen is
       return ZufälligeKartentemperaturWählen.Random (ZufälligeKartentemperaturGewählt);
       
    end ZufälligeKartentemperatur;
+
+   
+   
+   function ZufälligeKartenressourcen
+     return GlobaleDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum
+   is begin
+      
+      ZufälligeKartenressourcenWählen.Reset (ZufälligeKartenressourcenGewählt);
+      return ZufälligeKartenressourcenWählen.Random (ZufälligeKartenressourcenGewählt);
+      
+   end ZufälligeKartenressourcen;
    
    
    

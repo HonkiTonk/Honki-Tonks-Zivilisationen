@@ -20,7 +20,7 @@ package body KartenGeneratorPlanetenInneres is
          XAchseInneresSchleife:
          for XAchseInneresSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
-            Karten.Weltkarte (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert).Grund := GlobaleDatentypen.Erde;
+            Karten.Weltkarte (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert).Grund := GlobaleDatentypen.Lava;
                
          end loop XAchseInneresSchleife;
       end loop YAchseInneresSchleife;

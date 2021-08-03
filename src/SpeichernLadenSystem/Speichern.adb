@@ -285,8 +285,8 @@ package body Speichern is
                         null;
                      
                      when others =>
-                        GlobaleDatentypen.Status_Untereinander_Enum'Write (Stream (File => DateiSpeichernNeu),
-                                                                           GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
+                        GlobaleRecords.DiplomatieRecord'Write (Stream (File => DateiSpeichernNeu),
+                                                               GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
                   end case;
 
                end loop DiplomatieSchleifeInnen;

@@ -18,6 +18,9 @@ package ZufallGeneratorenSpieleinstellungen is
    function ZufälligeKartentemperatur
      return GlobaleDatentypen.Kartentemperatur_Verwendet_Enum;
    
+   function ZufälligeKartenressourcen
+     return GlobaleDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum;
+   
    function ZufälligeSpieleranzahl
      return Positive;
      
@@ -36,6 +39,7 @@ private
    package ZufälligeKartenartWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Kartenart_Verwendet_Enum);
    package ZufälligeKartenformWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Kartenform_Verwendet_Enum);
    package ZufälligeKartentemperaturWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Kartentemperatur_Verwendet_Enum);
+   package ZufälligeKartenressourcenWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Karten_Ressourcen_Reichtum_Verwendet_Enum);
    package ZufälligeSpieleranzahlRasseWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Rassen_Verwendet_Enum);
    package ZufälligenSchwierigkeitsgradWählen is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Schwierigkeitsgrad_Verwendet_Enum);
 
@@ -43,6 +47,7 @@ private
    ZufälligeKartenartGewählt : ZufälligeKartenartWählen.Generator;
    ZufälligeKartenformGewählt : ZufälligeKartenformWählen.Generator;
    ZufälligeKartentemperaturGewählt : ZufälligeKartentemperaturWählen.Generator;
+   ZufälligeKartenressourcenGewählt : ZufälligeKartenressourcenWählen.Generator;
    ZufälligeSpieleranzahlRasseGewählt : ZufälligeSpieleranzahlRasseWählen.Generator;
    ZufälligerSchwierigkeitsgradGewählt : ZufälligenSchwierigkeitsgradWählen.Generator;
    -- Generatoren für zufällige Spieleinstellungen

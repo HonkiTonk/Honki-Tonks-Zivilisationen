@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with GebaeudeDatenbank;
 
-with Wachstum, KartePositionPruefen, KartenAllgemein, StadtWerteTesten;
+with Wachstum, KartePositionPruefen, StadtWerteTesten, ProduktionFeld;
 
 package body StadtProduktion is
 
@@ -88,24 +88,16 @@ package body StadtProduktion is
                   is
                      when True =>
                         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion
-                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion
-                          + KartenAllgemein.GrundNahrung (PositionExtern => KartenWert) + KartenAllgemein.RessourceNahrung (PositionExtern => KartenWert) + KartenAllgemein.StraßeNahrung (PositionExtern => KartenWert)
-                          + KartenAllgemein.VerbesserungNahrung (PositionExtern => KartenWert);
+                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion + ProduktionFeld.ProduktionFeldNahrung (KoordinatenExtern => KartenWert);
 
                         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate
-                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate
-                          + KartenAllgemein.GrundRessourcen (PositionExtern => KartenWert) + KartenAllgemein.RessourceRessourcen (PositionExtern => KartenWert)
-                          + KartenAllgemein.StraßeRessourcen (PositionExtern => KartenWert) + KartenAllgemein.VerbesserungRessourcen (PositionExtern => KartenWert);
+                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate + ProduktionFeld.ProduktionFeldRessourcen (KoordinatenExtern => KartenWert);
 
                         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung
-                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung
-                          + KartenAllgemein.GrundGeld (PositionExtern => KartenWert) + KartenAllgemein.RessourceGeld (PositionExtern => KartenWert) + KartenAllgemein.StraßeGeld (PositionExtern => KartenWert)
-                          + KartenAllgemein.VerbesserungGeld (PositionExtern => KartenWert);
+                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung + ProduktionFeld.ProduktionFeldGeld (KoordinatenExtern => KartenWert);
 
                         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate
-                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate
-                          + KartenAllgemein.GrundWissen (PositionExtern => KartenWert) + KartenAllgemein.RessourceWissen (PositionExtern => KartenWert) + KartenAllgemein.StraßeWissen (PositionExtern => KartenWert)
-                          + KartenAllgemein.VerbesserungWissen (PositionExtern => KartenWert);
+                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate + ProduktionFeld.ProduktionFeldWissen (KoordinatenExtern => KartenWert);
 
                      when others =>
                         null;

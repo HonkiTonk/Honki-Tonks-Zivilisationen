@@ -157,6 +157,16 @@ package GlobaleRecords is
    
    
    
+   type DiplomatieRecord is record
+      
+      AktuellerZustand : GlobaleDatentypen.Status_Untereinander_Enum;
+      AktuelleSympathieBewertung : GlobaleDatentypen.ProduktionFeld;
+      ZeitSeitLetzterÄnderung : Natural;
+      
+   end record;
+   
+   
+   
    type KartenRecord is record
 
       Grund : GlobaleDatentypen.Karten_Grund_Enum;

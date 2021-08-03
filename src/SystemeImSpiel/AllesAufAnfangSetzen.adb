@@ -16,7 +16,7 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.EinheitenGebaut := (others => (others => GlobaleKonstanten.LeerEinheit));
       GlobaleVariablen.StadtGebaut := (others => (others => GlobaleKonstanten.LeerStadt));
       GlobaleVariablen.Wichtiges := (others => GlobaleKonstanten.LeerWichtigesZeug);
-      GlobaleVariablen.Diplomatie := (others => (others => GlobaleDatentypen.Unbekannt));
+      GlobaleVariablen.Diplomatie := (others => (others => GlobaleKonstanten.LeerDiplomatie));
       GlobaleVariablen.RundenAnzahl := 1;
       GlobaleVariablen.RasseAmZugNachLaden := GlobaleDatentypen.Leer;
       GlobaleVariablen.CursorImSpiel := (others => GlobaleKonstanten.LeerCursor);

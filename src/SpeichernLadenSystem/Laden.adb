@@ -263,8 +263,8 @@ package body Laden is
                         null;
                      
                      when others =>
-                        GlobaleDatentypen.Status_Untereinander_Enum'Read (Stream (File => DateiLadenNeu),
-                                                                          GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
+                        GlobaleRecords.DiplomatieRecord'Read (Stream (File => DateiLadenNeu),
+                                                              GlobaleVariablen.Diplomatie (RasseDiplomatieEinsSchleifenwert, RasseDiplomatieZweiSchleifenwert));
                   end case;
 
                end loop DiplomatieSchleifeInnen;

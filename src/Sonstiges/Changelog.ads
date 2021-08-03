@@ -1,21 +1,39 @@
 package Changelog is
    
-   -- Version 0.00.8 => 0.00.8 (05.08.2021):
-   
-   -- 
-   -- Kleinigkeiten korrigiert.
-   
-   -- Version 0.00.8 => 0.00.8 (04.08.2021):
+   -- Version 0.00.81 => 0.00.81 (06.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8080 => 0.00.8 (03.08.2021):
+   -- Version 0.00.81 => 0.00.81 (05.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8100 => 0.00.81 (04.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8080 => 0.00.8100 (03.08.2021):
+   
+   -- ImSpiel fertig überarbeitet.
+   -- Es ist jetzt möglich die vorhandene Ressourcenmenge einzustellen.
+   -- Fehler behoben der dazu führte das zwei Einwohner einer Stadt verhunderten statt Einer.
+   -- Vereinfachte Abfrage für die Gesamtproduktion eines Feldes eingebaut.
+   -- Automatische Arbeiterbelegung in den Städte verbessert. Es werden jetzt Felder mit höheren Werte bevorzugt belegt und bei fehlender Nahrungsproduktion Felder mit hoher Nahrungsproduktion zuerst belegt.
+   -- Fehler behoben der verhinderte dass beim Städtewachstum die Umgebung nicht korrekt aufgedeckt wurde.
+   -- Fehler behoben der verhinderte das beim Wachstum der Stadtumgebungsgröße noch freie Arbeiter verteilt wurden.
+   -- Unnötigen Code gelöscht.
+   -- Angefangen die Änderungen des diplomatischen Zustandes anhand des aktuellen Zustandes einzuschränken.
+   -- Interne Diplomatiewerte um Zeit seit letzter diplomatischer Änderung und aktueller Sympathiebewertung erweitert.
+   -- Kommentare und Kleinigkeiten korrigiert/überarbeitet/angepasst/zusammengefasst/hinzugefügt.
    
    
    
@@ -25,7 +43,7 @@ package Changelog is
    -- Platzierung von neu gebauten Einheiten/Einheiten die aus einem Schiff entladen werden verbessert.
    -- Angefangen das Diplomatiesystem einzubauen.
    -- Das Ändern des diplomatischen Zustandes vereinheitlicht.
-   -- Sichtbarkeitscheat setzt jetz auch alle Rassen auf Bekannt.
+   -- Sichtbarkeitscheat setzt jetzt auch alle Rassen auf Bekannt.
    -- Es ist jetzt möglich den diplomatischen Zustand zu einer anderen Rasse zu ändern.
    -- Angefangen ein Handelsmenü einzubauen.
    -- Wenn ein menschlicher Spieler das Spiel verlässt und noch weitere Menschen vorhanden sind, wird das Spiel jetzt nicht mehr beendet sonder die Rasse des Spielers auf die KI übertragen.
