@@ -122,6 +122,9 @@ package body Diplomatie is
             case
               DiplomatischeAktion
             is
+               when GlobaleKonstanten.ZurückKonstante =>
+                  return;
+                  
                when others =>
                   null;
             end case;
@@ -149,17 +152,24 @@ package body Diplomatie is
         StatusAuswahl
       is
          when 1 .. 5 =>
-            DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
-                                                                       RasseZweiExtern   => KontaktierteRasseExtern,
-                                                                       NeuerStatusExtern => GlobaleDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
+            KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
+                                                                                     RasseZweiExtern   => KontaktierteRasseExtern,
+                                                                                     NeuerStatusExtern => GlobaleDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
             return 1;
             
             -- Ist dazu da um im Kriegsfall sofort das Diplomatiemenü zu schließen.
          when 6 =>
-            DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
-                                                                        RasseZweiExtern   => KontaktierteRasseExtern,
-                                                                        NeuerStatusExtern => GlobaleDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
-            return 1;
+            KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
+                                                                                     RasseZweiExtern   => KontaktierteRasseExtern,
+                                                                                     NeuerStatusExtern => GlobaleDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
+            if
+              KriegJetzt
+            then
+               return GlobaleKonstanten.ZurückKonstante;
+               
+            else
+               return 1;
+            end if;
             
          when others =>
             return 0;

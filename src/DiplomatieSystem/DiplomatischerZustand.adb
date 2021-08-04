@@ -17,6 +17,28 @@ package body DiplomatischerZustand is
       GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung := 0;
       GlobaleVariablen.Diplomatie (RasseZweiExtern, RasseEinsExtern).ZeitSeitLetzterÄnderung := 0;
       
+      SympathieÄndern (EigeneRasseExtern => RasseEinsExtern,
+                        FremdeRasseExtern => RasseZweiExtern,
+                        ÄnderungExtern   => 0);
+      SympathieÄndern (EigeneRasseExtern => RasseZweiExtern,
+                        FremdeRasseExtern => RasseEinsExtern,
+                        ÄnderungExtern   => 0);
+      
+      case
+        NeuerStatusExtern
+      is
+         when GlobaleDatentypen.Krieg =>
+            SympathieÄndern (EigeneRasseExtern => RasseEinsExtern,
+                              FremdeRasseExtern => RasseZweiExtern,
+                              ÄnderungExtern   => -30);
+            SympathieÄndern (EigeneRasseExtern => RasseZweiExtern,
+                              FremdeRasseExtern => RasseEinsExtern,
+                              ÄnderungExtern   => -30);
+            
+         when others =>
+            null;
+      end case;
+            
    end DiplomatischenStatusÄndern;
 
 
@@ -29,6 +51,53 @@ package body DiplomatischerZustand is
       return GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuellerZustand;
       
    end DiplomatischenStatusPrüfen;
+   
+   
+   
+   function DiplomatischerStatusLetzteÄnderung
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Natural
+   is begin
+      
+      return GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).ZeitSeitLetzterÄnderung;
+      
+   end DiplomatischerStatusLetzteÄnderung;
+   
+   
+   
+   function AktuelleSympathie
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionFeld
+   is begin
+      
+      return GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung;
+      
+   end AktuelleSympathie;
+   
+   
+   
+   procedure SympathieÄndern
+     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      ÄnderungExtern : in GlobaleDatentypen.ProduktionFeld)
+   is begin
+      
+      if
+        GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung + ÄnderungExtern > SympathieGrenzen (DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
+                                                                                                                                                                         FremdeRasseExtern => FremdeRasseExtern))
+      then
+         GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung := SympathieGrenzen (DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
+                                                                                                                                                         FremdeRasseExtern => FremdeRasseExtern));
+           
+      elsif
+        GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung + ÄnderungExtern < GlobaleDatentypen.ProduktionFeld'First
+      then
+         GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung := GlobaleDatentypen.ProduktionFeld'First;
+                                                                                                                            
+      else
+         GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung := GlobaleVariablen.Diplomatie (EigeneRasseExtern, FremdeRasseExtern).AktuelleSympathieBewertung + ÄnderungExtern;
+      end if;
+      
+   end SympathieÄndern;
 
 
 
@@ -41,7 +110,7 @@ package body DiplomatischerZustand is
         DiplomatischenStatusPrüfen (EigeneRasseExtern => EigeneRasseExtern,
                                      FremdeRasseExtern => GegnerischeRasseExtern)
       is
-         when GlobaleDatentypen.Neutral | GlobaleDatentypen.Offene_Grenzen =>
+         when GlobaleDatentypen.Neutral =>
             if
               Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = GlobaleKonstanten.JaKonstante
             then

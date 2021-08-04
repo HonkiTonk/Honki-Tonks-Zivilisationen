@@ -7,16 +7,24 @@ package Changelog is
    
    
    
-   -- Version 0.00.81 => 0.00.81 (05.08.2021):
+   -- Version 0.00.8110 => 0.00.81 (05.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8100 => 0.00.81 (04.08.2021):
+   -- Version 0.00.8100 => 0.00.8110 (04.08.2021):
    
-   -- 
+   -- Zeit seit letzter Änderung des diplomatischen Zustandes wird jetzt am Ende jeder Runde erhöht (mit Überlaufschutz).
+   -- Grenzen für die maximale Sympathie, in Abhängigkeit vom aktuellen Status, eingebaut.
+   -- Sympathie wird am Ende jeder Runde für bekannte Rassen um eins bis zum Maximum erhöht.
+   -- Einige diplomatischen Zustände rausgeworfen um die unnötige Komplexität zu reduzieren.
+   -- Man kann jetzt Geld verlangen.
+   -- Prüfungen ob die Änderuing des aktuellen Zustandes möglich ist, in Abhängigkeit von Sympathie und letzter Zustandänderung, eingebaut.
+   -- Aktuelle Sympathiewerte werden bei Zustandänderung jetzt angepasst.
+   -- Geld schenken/verlangen hat jetzt Auswirkung auf die aktuelle Sympathie.
+   -- Rassenspezifische Bewertung von Kartenfeldern/Verbesserungen eingebaut.
    -- Kleinigkeiten korrigiert.
    
    

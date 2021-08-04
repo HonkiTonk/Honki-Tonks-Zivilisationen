@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleTexte, GlobaleKonstanten;
 
-with Auswahl, Sichtbarkeit, KennenLernen, Eingabe, WichtigesSetzen;
+with Auswahl, Sichtbarkeit, KennenLernen, Eingabe, WichtigesSetzen, DiplomatischerZustand;
 
 package body Handeln is
 
@@ -28,47 +28,54 @@ package body Handeln is
                                             TextDateiExtern   => GlobaleTexte.Handeln,
                                             FrageZeileExtern  => 1,
                                             ErsteZeileExtern  => 2,
-                                            LetzteZeileExtern => 9);
+                                            LetzteZeileExtern => 10);
       
          case
            AuswahlHandeln
          is
             when 1 =>
+               -- Karten tauschen
                Sichtbarkeit.SichtbarkeitHandel (RasseEinsExtern     => RasseExtern,
                                                 RasseZweiExtern     => KontaktierteRasseExtern,
                                                 WelcherHandelExtern => 0);
                
             when 2 =>
+               -- Karten kaufen
                Sichtbarkeit.SichtbarkeitHandel (RasseEinsExtern     => RasseExtern,
                                                 RasseZweiExtern     => KontaktierteRasseExtern,
                                                 WelcherHandelExtern => -1);
                
             when 3 =>
+               -- Karten verkaufen
                Sichtbarkeit.SichtbarkeitHandel (RasseEinsExtern     => RasseExtern,
                                                 RasseZweiExtern     => KontaktierteRasseExtern,
                                                 WelcherHandelExtern => 1);
                
             when 4 =>
+               -- Kontakte tauschen
                KontakteTauschen (RasseExtern             => RasseExtern,
                                  KontaktierteRasseExtern => KontaktierteRasseExtern,
                                  WelcherHandelExtern     => 0);
                
             when 5 =>
+               -- Kontakte kaufen
                KontakteTauschen (RasseExtern             => RasseExtern,
                                  KontaktierteRasseExtern => KontaktierteRasseExtern,
                                  WelcherHandelExtern     => -1);
                
             when 6 =>
+               -- Kontakte verkaufen
                KontakteTauschen (RasseExtern             => RasseExtern,
                                  KontaktierteRasseExtern => KontaktierteRasseExtern,
                                  WelcherHandelExtern     => 1);
                
             when 7 =>
+               -- Geld verschenken
                if
                  GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge > 0
                then
                   Geldmenge := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Handeln,
-                                                  ZeileExtern         => 10,
+                                                  ZeileExtern         => 11,
                                                   ZahlenMinimumExtern => 0,
                                                   ZahlenMaximumExtern => GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge);
                
@@ -77,6 +84,52 @@ package body Handeln is
                
                   WichtigesSetzen.GeldFestlegen (RasseExtern        => KontaktierteRasseExtern,
                                                  GeldZugewinnExtern => Geldmenge);
+                  
+                  if
+                    Geldmenge / 25 > Integer (GlobaleDatentypen.ProduktionFeld'Last)
+                  then
+                     DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
+                                                             FremdeRasseExtern => RasseExtern,
+                                                             ÄnderungExtern   => GlobaleDatentypen.ProduktionFeld'Last);
+                     
+                  else
+                     DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
+                                                             FremdeRasseExtern => RasseExtern,
+                                                             ÄnderungExtern   => GlobaleDatentypen.ProduktionFeld (Geldmenge / 25));
+                  end if;
+                  
+               else
+                  null;
+               end if;
+               
+            when 8 =>
+               -- Geld verlangen
+               if
+                 GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge > 0
+               then
+                  Geldmenge := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Handeln,
+                                                  ZeileExtern         => 12,
+                                                  ZahlenMinimumExtern => 0,
+                                                  ZahlenMaximumExtern => GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge);
+               
+                  WichtigesSetzen.GeldFestlegen (RasseExtern        => RasseExtern,
+                                                 GeldZugewinnExtern => Geldmenge);
+               
+                  WichtigesSetzen.GeldFestlegen (RasseExtern        => KontaktierteRasseExtern,
+                                                 GeldZugewinnExtern => -Geldmenge);
+                  
+                  if
+                    Geldmenge / 25 > Integer (GlobaleDatentypen.ProduktionFeld'Last)
+                  then
+                     DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
+                                                             FremdeRasseExtern => RasseExtern,
+                                                             ÄnderungExtern   => -GlobaleDatentypen.ProduktionFeld'Last);
+                     
+                  else
+                     DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => KontaktierteRasseExtern,
+                                                             FremdeRasseExtern => RasseExtern,
+                                                             ÄnderungExtern   => -GlobaleDatentypen.ProduktionFeld (Geldmenge / 25));
+                  end if;
                   
                else
                   null;

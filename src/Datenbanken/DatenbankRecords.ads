@@ -56,7 +56,7 @@ package DatenbankRecords is
 
 
    
-   type WertNahrungRessourcenGeldWissenVerteidigungArray is array (1 .. 5) of GlobaleDatentypen.ProduktionFeld;
+   type NameArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.ProduktionFeld;
 
    -- GebaeudeDatenbank
    type GebäudeListeRecord is record
@@ -85,7 +85,9 @@ package DatenbankRecords is
 
 
 
-   -- KartenDatenbankz
+   type BewertungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.ProduktionFeld;
+   
+   -- KartenDatenbank
    type KartenListeRecord is record
 
       KartenGrafik : Wide_Wide_Character;
@@ -98,6 +100,7 @@ package DatenbankRecords is
       Geldgewinnung : GlobaleDatentypen.ProduktionFeld;
       Wissensgewinnung : GlobaleDatentypen.ProduktionFeld;
       Verteidigungsbonus : GlobaleDatentypen.ProduktionFeld;
+      Bewertung : BewertungArray;
       
    end record;
    -- KartenDatenbank
@@ -117,6 +120,7 @@ package DatenbankRecords is
       Geldbonus : GlobaleDatentypen.ProduktionFeld;
       Wissensbonus : GlobaleDatentypen.ProduktionFeld;
       Verteidigungsbonus : GlobaleDatentypen.ProduktionFeld;
+      Bewertung : BewertungArray;
       
    end record;
    -- verbesserungenDatenbank

@@ -222,17 +222,8 @@ package GlobaleDatentypen is
 
 
    -- Für Diplomatie
-   type Status_Untereinander_Enum is (Unbekannt,
-                                      -- Neutral
-                                      Neutral,
-                                      -- Friedlich
-                                      Offene_Grenzen, Nichtangriffspakt, Defensivbündnis, Offensivbündnis,
-                                      -- Aggressiv
-                                      Krieg);
+   type Status_Untereinander_Enum is (Unbekannt, Neutral, Nichtangriffspakt, Krieg);
    subtype Status_Untereinander_Bekannt_Enum is Status_Untereinander_Enum range Neutral .. Status_Untereinander_Enum'Last;
-   subtype Status_Untereinander_Neutral_Enum is Status_Untereinander_Bekannt_Enum range Neutral .. Neutral;
-   subtype Status_Untereinander_Friedlich_Enum is Status_Untereinander_Bekannt_Enum range Offene_Grenzen .. Offensivbündnis;
-   subtype Status_Untereinander_Aggressiv_Enum is Status_Untereinander_Bekannt_Enum range Krieg .. Krieg;
    -- Für Diplomatie
 
 end GlobaleDatentypen;

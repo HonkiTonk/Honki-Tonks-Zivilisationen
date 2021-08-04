@@ -14,6 +14,7 @@ package Diplomatie is
 private
 
    AndereRassenVorhanden : Boolean;
+   KriegJetzt : Boolean;
 
    DiplomatischeAktion : Integer;
    StatusAuswahl : Integer;

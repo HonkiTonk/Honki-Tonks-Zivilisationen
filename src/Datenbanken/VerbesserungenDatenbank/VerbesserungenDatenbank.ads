@@ -29,7 +29,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 0,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 3),
+         Verteidigungsbonus => 3,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Eigene_Stadt =>
         (VerbesserungGrafik => '♠',
@@ -38,7 +39,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 0,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 2),
+         Verteidigungsbonus => 2,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Fremde_Hauptstadt =>
         (VerbesserungGrafik => '⌂',
@@ -47,7 +49,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 0,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 3),
+         Verteidigungsbonus => 3,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Fremde_Stadt =>
         (VerbesserungGrafik => '¤',
@@ -56,7 +59,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 0,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 2),
+         Verteidigungsbonus => 2,
+         Bewertung          => (others => 0)),
                                                   
       -- Gebilde
       GlobaleDatentypen.Farm =>
@@ -69,7 +73,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 1),
+         Verteidigungsbonus => 1,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Mine =>
         (VerbesserungGrafik => 'M',
@@ -81,7 +86,8 @@ private
          Ressourcenbonus    => 2,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 1),
+         Verteidigungsbonus => 1,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Festung =>
         (VerbesserungGrafik => 'B',
@@ -93,7 +99,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 0,
          Wissensbonus       => 0, 
-         Verteidigungsbonus => 2),
+         Verteidigungsbonus => 2,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Sperre =>
         (VerbesserungGrafik => 'S',
@@ -104,7 +111,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 0,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       -- Straßen
       GlobaleDatentypen.Straßenkreuzung_Vier =>
@@ -117,7 +125,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straße_Waagrecht =>
         (VerbesserungGrafik => '═',
@@ -129,7 +138,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straße_Senkrecht =>
         (VerbesserungGrafik => '║',
@@ -141,7 +151,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straßenkurve_Unten_Rechts =>
         (VerbesserungGrafik => '╔',
@@ -153,7 +164,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straßenkurve_Unten_Links =>
         (VerbesserungGrafik => '╗',
@@ -165,7 +177,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straßenkurve_Oben_Rechts =>
         (VerbesserungGrafik => '╚',
@@ -177,7 +190,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straßenkurve_Oben_Links =>
         (VerbesserungGrafik => '╝',
@@ -189,7 +203,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straßenkreuzung_Drei_Oben =>
         (VerbesserungGrafik => '╩',
@@ -201,7 +216,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straßenkreuzung_Drei_Unten =>
         (VerbesserungGrafik => '╦',
@@ -213,7 +229,8 @@ private
          Ressourcenbonus    => 0, 
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straßenkreuzung_Drei_Rechts =>
         (VerbesserungGrafik => '╠',
@@ -225,7 +242,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straßenkreuzung_Drei_Links =>
         (VerbesserungGrafik => '╣',
@@ -237,7 +255,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straßenendstück_Links =>
         (VerbesserungGrafik => '╞',
@@ -249,7 +268,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straßenendstück_Rechts =>
         (VerbesserungGrafik => '╡',
@@ -261,7 +281,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straßenendstück_Unten =>
         (VerbesserungGrafik => '╨',
@@ -273,7 +294,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straßenendstück_Oben =>
         (VerbesserungGrafik => '╥',
@@ -285,7 +307,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 1,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0),
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0)),
                                                   
       GlobaleDatentypen.Straße_Einzeln =>
         (VerbesserungGrafik => '▫',
@@ -297,7 +320,8 @@ private
          Ressourcenbonus    => 0,
          Geldbonus          => 0,
          Wissensbonus       => 0,
-         Verteidigungsbonus => 0)
+         Verteidigungsbonus => 0,
+         Bewertung          => (others => 0))
      );
          
 end VerbesserungenDatenbank;

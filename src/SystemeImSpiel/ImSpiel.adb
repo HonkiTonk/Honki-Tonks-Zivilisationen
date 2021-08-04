@@ -3,7 +3,8 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, Verbesserungen, ForschungAllgemein, KI, Ladezeiten, Speichern, Laden, StadtProduktion, EinheitenAllgemein, SiegBedingungen, RasseEntfernen;
+with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, Verbesserungen, ForschungAllgemein, KI, Ladezeiten, Speichern, Laden, StadtProduktion, EinheitenAllgemein, SiegBedingungen, RasseEntfernen,
+     DiplomatischerZustand;
 
 package body ImSpiel is
 
@@ -267,6 +268,32 @@ package body ImSpiel is
             Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Anfangswert) := Clock;
             Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Endwert) := Ladezeiten.KIZeiten (RasseSchleifenwert, GlobaleDatentypen.Anfangswert);
          end if;
+         
+         RassenZweiSchleife:
+         for RasseZweiSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+            
+            case
+              GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand
+            is
+               when GlobaleDatentypen.Unbekannt =>
+                  null;
+                  
+               when others =>
+                  if
+                    GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung + 1 > Natural'Last
+                  then
+                     GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung := Natural'Last;
+               
+                  else
+                     GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung := GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung + 1;
+                  end if;
+            
+                  DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => RasseSchleifenwert,
+                                                          FremdeRasseExtern => RasseZweiSchleifenwert,
+                                                          ÄnderungExtern    => 1);
+            end case;
+            
+         end loop RassenZweiSchleife;
          
       end loop RassenSchleife;
       

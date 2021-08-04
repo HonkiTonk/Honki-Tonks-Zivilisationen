@@ -166,7 +166,8 @@ package GlobaleKonstanten is
                                                                      Ressourcengewinnung => 0,
                                                                      Geldgewinnung       => 0,
                                                                      Wissensgewinnung    => 0,
-                                                                     Verteidigungsbonus  => 0
+                                                                     Verteidigungsbonus  => 0,
+                                                                     Bewertung           => (others => 0)
                                                                     );
 
    LeerWeltkarte : constant GlobaleRecords.KartenRecord := (
@@ -188,7 +189,8 @@ package GlobaleKonstanten is
                                                                                  Ressourcenbonus    => 0,
                                                                                  Geldbonus          => 0,
                                                                                  Wissensbonus       => 0,
-                                                                                 Verteidigungsbonus => 0
+                                                                                 Verteidigungsbonus => 0,
+                                                                                 Bewertung          => (others => 0)
                                                                                 );
 
    LeerEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (

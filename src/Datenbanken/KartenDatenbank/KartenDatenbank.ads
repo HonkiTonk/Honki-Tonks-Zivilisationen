@@ -32,7 +32,8 @@ private
          Ressourcengewinnung => 0, 
          Geldgewinnung       => 0,
          Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Wasser =>
         (KartenGrafik        => ' ',
@@ -45,7 +46,8 @@ private
          Ressourcengewinnung => 1,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flachland =>
         (KartenGrafik        => ' ',
@@ -57,7 +59,8 @@ private
          Ressourcengewinnung => 1,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Tundra =>
         (KartenGrafik        => ' ',
@@ -69,7 +72,8 @@ private
          Ressourcengewinnung => 2,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Wüste =>
         (KartenGrafik        => ' ',
@@ -81,7 +85,8 @@ private
          Ressourcengewinnung => 1,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
       GlobaleDatentypen.Hügel =>
@@ -94,7 +99,8 @@ private
          Ressourcengewinnung => 2,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Gebirge =>
         (KartenGrafik        => ' ',
@@ -106,7 +112,8 @@ private
          Ressourcengewinnung => 3,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 2),
+         Verteidigungsbonus  => 2,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Wald =>
         (KartenGrafik        => ' ',
@@ -118,7 +125,8 @@ private
          Ressourcengewinnung => 2,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Dschungel =>
         (KartenGrafik        => ' ',
@@ -130,7 +138,8 @@ private
          Ressourcengewinnung => 3,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 2),
+         Verteidigungsbonus  => 2,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Küstengewässer =>
         (KartenGrafik        => ' ',
@@ -144,7 +153,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Sumpf =>
         (KartenGrafik        => ' ',
@@ -156,7 +166,8 @@ private
          Ressourcengewinnung => 1,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 2),
+         Verteidigungsbonus  => 2,
+         Bewertung           => (others => 0)),
                                       
       -- Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?
       GlobaleDatentypen.Hügel_Mit =>
@@ -169,7 +180,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 0,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Lava =>
         (KartenGrafik        => ' ',
@@ -179,7 +191,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 0,
          Wissensgewinnung    => 2,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Wolken =>
         (KartenGrafik        => ' ',
@@ -190,7 +203,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 0,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Weltraum =>
         (KartenGrafik        => ' ',
@@ -200,7 +214,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 0,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Erde =>
         (KartenGrafik        => ' ',
@@ -210,7 +225,8 @@ private
          Ressourcengewinnung => 1,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Erdgestein =>
         (KartenGrafik        => ' ',
@@ -220,7 +236,8 @@ private
          Ressourcengewinnung => 2,
          Geldgewinnung       => 2,
          Wissensgewinnung    => 2,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Gestein =>
         (KartenGrafik        => ' ',
@@ -230,7 +247,8 @@ private
          Ressourcengewinnung => 2,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Unter_Wasser =>
         (KartenGrafik        => ' ',
@@ -240,7 +258,8 @@ private
          Ressourcengewinnung => 1,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Unter_Küstengewässer =>
         (KartenGrafik        => ' ',
@@ -250,7 +269,8 @@ private
          Ressourcengewinnung => 1,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       -- Ressourcen
       GlobaleDatentypen.Kohle =>
@@ -263,7 +283,8 @@ private
          Ressourcengewinnung => 2,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Eisen =>
         (KartenGrafik        => '♦',
@@ -275,7 +296,8 @@ private
          Ressourcengewinnung => 2,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Öl =>
         (KartenGrafik        => '♦',
@@ -287,7 +309,8 @@ private
          Ressourcengewinnung => 2,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Fisch =>
         (KartenGrafik        => '≈',
@@ -301,7 +324,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Wal =>
         (KartenGrafik        => '≈',
@@ -315,7 +339,8 @@ private
          Ressourcengewinnung => 1,
          Geldgewinnung       => 2,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Hochwertiger_Boden =>
         (KartenGrafik        => '♦',
@@ -327,7 +352,8 @@ private
          Ressourcengewinnung => 1,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Gold =>
         (KartenGrafik        => '♦',
@@ -339,7 +365,8 @@ private
          Ressourcengewinnung => 1,
          Geldgewinnung       => 3,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0),
+         Verteidigungsbonus  => 0,
+         Bewertung           => (others => 0)),
                                       
       -- Fluss
       GlobaleDatentypen.Flusskreuzung_Vier =>
@@ -352,7 +379,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Fluss_Waagrecht =>
         (KartenGrafik        => '━',
@@ -364,7 +392,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Fluss_Senkrecht =>
         (KartenGrafik        => '┃',
@@ -376,7 +405,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flusskurve_Unten_Rechts =>
         (KartenGrafik        => '┏',
@@ -388,7 +418,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flusskurve_Unten_Links =>
         (KartenGrafik        => '┓',
@@ -400,7 +431,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flusskurve_Oben_Rechts =>
         (KartenGrafik        => '┗',
@@ -412,7 +444,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flusskurve_Oben_Links =>
         (KartenGrafik        => '┛',
@@ -424,7 +457,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flusskreuzung_Drei_Oben =>
         (KartenGrafik        => '┻',
@@ -436,7 +470,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flusskreuzung_Drei_Unten =>
         (KartenGrafik        => '┳',
@@ -448,7 +483,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flusskreuzung_Drei_Rechts =>
         (KartenGrafik        => '┣',
@@ -460,7 +496,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flusskreuzung_Drei_Links =>
         (KartenGrafik        => '┫',
@@ -471,8 +508,9 @@ private
          Nahrungsgewinnung   => 1,
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
-         Wissensgewinnung     => 0,
-         Verteidigungsbonus  => 1),
+         Wissensgewinnung    => 0,
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flussendstück_Links =>
         (KartenGrafik        => '╺',
@@ -484,7 +522,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flussendstück_Rechts =>
         (KartenGrafik        => '╸',
@@ -496,7 +535,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flussendstück_Unten =>
         (KartenGrafik        => '╹',
@@ -508,7 +548,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Flussendstück_Oben =>
         (KartenGrafik        => '╻',
@@ -520,7 +561,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1),
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0)),
                                       
       GlobaleDatentypen.Fluss_Einzeln =>
         (KartenGrafik        => '▪',
@@ -532,7 +574,8 @@ private
          Ressourcengewinnung => 0,
          Geldgewinnung       => 1,
          Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1)
+         Verteidigungsbonus  => 1,
+         Bewertung           => (others => 0))
      );
 
 end KartenDatenbank;

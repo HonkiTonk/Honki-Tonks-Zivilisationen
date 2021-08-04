@@ -6,9 +6,10 @@ with Anzeige, DiplomatischerZustand;
 
 package body DiplomatischerZustandAenderbar is
 
-   procedure StatusÄnderbarkeitPrüfen
+   function StatusÄnderbarkeitPrüfen
      (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       NeuerStatusExtern : in GlobaleDatentypen.Status_Untereinander_Bekannt_Enum)
+      return Boolean
    is begin
       
       if
@@ -16,39 +17,31 @@ package body DiplomatischerZustandAenderbar is
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 22);
-         return;
+         return False;
          
       else
-         null;
+         AktuellerStatus := DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseEinsExtern,
+                                                                               FremdeRasseExtern => RasseZweiExtern);
+         
+         ZeitSeitÄnderung := DiplomatischerZustand.DiplomatischerStatusLetzteÄnderung (EigeneRasseExtern => RasseEinsExtern,
+                                                                                         FremdeRasseExtern => RasseZweiExtern);
+         
+         -- Die Sympathiewerte einer Rasse zu einer Anderen müssen nur Zwei zu Eins berückstichtigt werden, da Eins ja was von Zwei will.
+         SympathieZweiZuEins := DiplomatischerZustand.AktuelleSympathie (EigeneRasseExtern => RasseZweiExtern,
+                                                                         FremdeRasseExtern => RasseEinsExtern);
       end if;
       
       case
         NeuerStatusExtern
       is
          when GlobaleDatentypen.Neutral =>
-            ÄnderungMöglich := NeutralMöglich (RasseEinsExtern => RasseEinsExtern,
-                                                  RasseZweiExtern => RasseZweiExtern);
-            
-         when GlobaleDatentypen.Offene_Grenzen =>
-            ÄnderungMöglich := OffeneGrenzenMöglich (RasseEinsExtern => RasseEinsExtern,
-                                                        RasseZweiExtern => RasseZweiExtern);
+            ÄnderungMöglich := NeutralMöglich;
                         
          when GlobaleDatentypen.Nichtangriffspakt =>
-            ÄnderungMöglich := NichtangriffspaktMöglich (RasseEinsExtern => RasseEinsExtern,
-                                                            RasseZweiExtern => RasseZweiExtern);
-                        
-         when GlobaleDatentypen.Defensivbündnis =>
-            ÄnderungMöglich := DefensivbündnisMöglich (RasseEinsExtern => RasseEinsExtern,
-                                                           RasseZweiExtern => RasseZweiExtern);
-            
-            
-         when GlobaleDatentypen.Offensivbündnis =>
-            ÄnderungMöglich := OffensivbündnisMöglich (RasseEinsExtern => RasseEinsExtern,
-                                                           RasseZweiExtern => RasseZweiExtern);
+            ÄnderungMöglich := NichtangriffspaktMöglich;
                         
          when GlobaleDatentypen.Krieg =>
-            ÄnderungMöglich := KriegMöglich (RasseEinsExtern => RasseEinsExtern,
-                                                RasseZweiExtern => RasseZweiExtern);            
+            ÄnderungMöglich := KriegMöglich;            
       end case;
       
       case
@@ -62,6 +55,8 @@ package body DiplomatischerZustandAenderbar is
          when False =>
             null;
       end case;
+      
+      return ÄnderungMöglich;
       
    end StatusÄnderbarkeitPrüfen;
    
@@ -78,140 +73,79 @@ package body DiplomatischerZustandAenderbar is
    
    
    function NeutralMöglich
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
+     return Boolean
    is begin
       
       if
-        RasseEinsExtern = RasseZweiExtern
+        AktuellerStatus = GlobaleDatentypen.Nichtangriffspakt
+        and
+          ZeitSeitÄnderung >= 10
       then
-         null;
+         return True;
+         
+      elsif
+        AktuellerStatus = GlobaleDatentypen.Krieg
+        and
+          ZeitSeitÄnderung >= 10
+          and
+            SympathieZweiZuEins >= DiplomatischerZustand.SympathieGrenzen (AktuellerStatus) - 20
+      then
+         return True;
          
       else
-         null;
+         return False;
       end if;
-      
-      return True;
       
    end NeutralMöglich;
    
    
    
-   function OffeneGrenzenMöglich
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
-   is begin
-      
-      if
-        GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand = GlobaleDatentypen.Krieg
-      then
-         EsHerrschtKrieg;
-         return False;
-               
-      else
-         null;
-      end if;
-      
-      return True;
-      
-   end OffeneGrenzenMöglich;
-   
-   
-   
    function NichtangriffspaktMöglich
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
+     return Boolean
    is begin
       
       if
-        GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand = GlobaleDatentypen.Krieg
+        AktuellerStatus = GlobaleDatentypen.Krieg
       then
          EsHerrschtKrieg;
          return False;
-               
+         
+      elsif
+        AktuellerStatus = GlobaleDatentypen.Neutral
+        and
+          SympathieZweiZuEins >= DiplomatischerZustand.SympathieGrenzen (AktuellerStatus) - 10
+      then
+         return True;
+         
       else
-         null;
+         return False;
       end if;
-      
-      return True;
       
    end NichtangriffspaktMöglich;
    
    
    
-   function DefensivbündnisMöglich
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
-   is begin
-      
-      if
-        GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand = GlobaleDatentypen.Krieg
-      then
-         EsHerrschtKrieg;
-         return False;
-              
-      elsif
-        GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand = GlobaleDatentypen.Nichtangriffspakt
-      then
-         null;
-               
-      else
-         null;
-      end if;
-      
-      return True;
-      
-   end DefensivbündnisMöglich;
-   
-   
-   
-   function OffensivbündnisMöglich
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
-   is begin
-      
-      if
-        GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand = GlobaleDatentypen.Krieg
-      then
-         EsHerrschtKrieg;
-         return False;
-               
-      elsif
-        GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand = GlobaleDatentypen.Nichtangriffspakt
-      then
-         null;
-               
-      else
-         null;
-      end if;
-      
-      return True;
-      
-   end OffensivbündnisMöglich;
-   
-   
-   
    function KriegMöglich
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
+     return Boolean
    is begin
       
-      if
-        GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand = GlobaleDatentypen.Offensivbündnis
-        or
-          GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand = GlobaleDatentypen.Defensivbündnis
-        or
-          GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).AktuellerZustand = GlobaleDatentypen.Nichtangriffspakt
+      if        
+        AktuellerStatus = GlobaleDatentypen.Nichtangriffspakt
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 24);
          return False;
-               
+         
+      elsif
+        AktuellerStatus = GlobaleDatentypen.Neutral
+        and
+          ZeitSeitÄnderung >= 10
+      then
+         return True;
+         
       else
-         null;
+         return False;
       end if;
-      
-      return True;
       
    end KriegMöglich;
 

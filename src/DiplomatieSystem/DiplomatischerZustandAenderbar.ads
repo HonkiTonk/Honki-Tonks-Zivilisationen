@@ -5,9 +5,10 @@ use GlobaleDatentypen;
 
 package DiplomatischerZustandAenderbar is
 
-   procedure StatusÄnderbarkeitPrüfen
+   function StatusÄnderbarkeitPrüfen
      (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       NeuerStatusExtern : in GlobaleDatentypen.Status_Untereinander_Bekannt_Enum)
+      return Boolean
      with
        Pre =>
          (RasseEinsExtern /= RasseZweiExtern
@@ -20,32 +21,24 @@ private
    
    ÄnderungMöglich : Boolean;
    
+   AktuellerStatus : GlobaleDatentypen.Status_Untereinander_Bekannt_Enum;
+   
+   SympathieZweiZuEins : GlobaleDatentypen.ProduktionFeld;
+   SympathieÄnderung : GlobaleDatentypen.ProduktionFeld;
+   
+   ZeitSeitÄnderung : Natural;
+   
    procedure EsHerrschtKrieg;
    
    
    
    function NeutralMöglich
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     return Boolean;
-   
-   function OffeneGrenzenMöglich
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      return Boolean;
    
    function NichtangriffspaktMöglich
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     return Boolean;
-   
-   function DefensivbündnisMöglich
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     return Boolean;
-   
-   function OffensivbündnisMöglich
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      return Boolean;
    
    function KriegMöglich
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      return Boolean;
 
 end DiplomatischerZustandAenderbar;
