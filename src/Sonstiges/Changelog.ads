@@ -9,7 +9,7 @@ package Changelog is
    
    -- Version 0.00.8110 => 0.00.8130 (05.08.2021):
    
-   -- Forschungsbaum überarbeitet und deutlich erweitert.
+   -- Menschlichen Forschungsbaum überarbeitet und deutlich erweitert.
    -- Experimente mit richtiger Grafik gemacht.
    -- Kleinigkeiten korrigiert.
    
