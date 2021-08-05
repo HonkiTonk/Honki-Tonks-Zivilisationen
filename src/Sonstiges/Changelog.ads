@@ -1,15 +1,16 @@
 package Changelog is
    
-   -- Version 0.00.81 => 0.00.81 (06.08.2021):
+   -- Version 0.00.8130 => 0.00.81 (06.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8110 => 0.00.81 (05.08.2021):
+   -- Version 0.00.8110 => 0.00.8130 (05.08.2021):
    
-   -- 
+   -- Forschungsbaum überarbeitet und deutlich erweitert.
+   -- Experimente mit richtiger Grafik gemacht.
    -- Kleinigkeiten korrigiert.
    
    
@@ -25,7 +26,7 @@ package Changelog is
    -- Aktuelle Sympathiewerte werden bei Zustandänderung jetzt angepasst.
    -- Geld schenken/verlangen hat jetzt Auswirkung auf die aktuelle Sympathie.
    -- Rassenspezifische Bewertung von Kartenfeldern/Verbesserungen eingebaut.
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    

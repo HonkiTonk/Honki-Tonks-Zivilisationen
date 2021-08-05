@@ -122,7 +122,7 @@ package GlobaleDatentypen is
    subtype Karten_Grund_Generator_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Flachland;
 
    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
-   type KartenverbesserungEinheitenID is range 0 .. 78;
+   type KartenverbesserungEinheitenID is range 0 .. 100;
 
    type Karten_Verbesserung_Enum is (Leer,
                                      -- Städte
@@ -194,7 +194,7 @@ package GlobaleDatentypen is
 
 
    -- Für Forschung
-   subtype ForschungIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 25;
+   subtype ForschungIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 84;
    subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
 
    type AnforderungForschungArray is array (1 .. 4) of ForschungIDMitNullWert;

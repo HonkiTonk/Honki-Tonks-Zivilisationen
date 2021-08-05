@@ -272,26 +272,31 @@ package body ImSpiel is
          RassenZweiSchleife:
          for RasseZweiSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
             
-            case
-              GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand
-            is
-               when GlobaleDatentypen.Unbekannt =>
-                  null;
+            if
+              GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand = GlobaleDatentypen.Unbekannt
+              or
+                RasseSchleifenwert = RasseZweiSchleifenwert
+                or
+                  GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
+              or
+                GlobaleVariablen.RassenImSpiel (RasseZweiSchleifenwert) = GlobaleDatentypen.Leer
+            then
+               null;
                   
-               when others =>
-                  if
-                    GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung + 1 > Natural'Last
-                  then
-                     GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung := Natural'Last;
+            else
+               if
+                 GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung + 1 > Natural'Last
+               then
+                  GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung := Natural'Last;
                
-                  else
-                     GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung := GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung + 1;
-                  end if;
+               else
+                  GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung := GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung + 1;
+               end if;
             
-                  DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => RasseSchleifenwert,
-                                                          FremdeRasseExtern => RasseZweiSchleifenwert,
-                                                          ÄnderungExtern    => 1);
-            end case;
+               DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => RasseSchleifenwert,
+                                                       FremdeRasseExtern => RasseZweiSchleifenwert,
+                                                       ÄnderungExtern    => 1);
+            end if;
             
          end loop RassenZweiSchleife;
          
