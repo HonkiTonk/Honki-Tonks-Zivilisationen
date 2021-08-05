@@ -1,5 +1,6 @@
 # Civ-Klon
-Mein Rundenstrategiespiel (Civilization-Klon), geschrieben in Ada/SPARK.
+Mein Rundenstrategiespiel (Civilization-Klon), geschrieben in Ada.
+My turn based strategy game (Civilization clone), written in Ada.
 
 Version: 0.00.8130
 
