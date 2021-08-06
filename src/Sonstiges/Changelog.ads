@@ -1,9 +1,28 @@
 package Changelog is
    
-   -- Version 0.00.8130 => 0.00.81 (06.08.2021):
+   -- Version 0.00.81 => 0.00.81 (08.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8150 => 0.00.81 (07.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8130 => 0.00.8150 (06.08.2021):
+   
+   -- Die Tastaturbelegung wird jetzt genauso belegt wie die Datenbanken.
+   -- Meldungen für Ereignisse bei Städten und Einheiten eingebaut, inklusive einer Taste um zu diesen Einheiten zu springen.
+   -- Wenn sich eine sichtbare Einheit einer anderen Rasse in der Nähe befindet und man mit dieser keinen Nichtangriffspak hat, wird jetzt auch eine Meldung gesetzt.
+   -- Man startet jetzt mit 100 Geldeinheiten.
+   -- Städtebau in der Luft/im Weltraum/im Planeteninnerem getestet.
+   -- Angefangen rassenspezifische Kartenbewertungen und Feldergewinne einzubauen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    

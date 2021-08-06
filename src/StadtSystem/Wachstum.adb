@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, StadtEinheitenBauen, StadtGebaeudeBauen, StadtEntfernen, WichtigesSetzen, StadtWerteTesten, Sichtbarkeit;
+with StadtWerteFestlegen, GebaeudeDatenbank, EinheitenDatenbank, StadtEinheitenBauen, StadtGebaeudeBauen, StadtEntfernen, WichtigesSetzen, StadtWerteTesten, Sichtbarkeit, StadtMeldungenSetzen;
 
 package body Wachstum is
 
@@ -166,6 +166,8 @@ package body Wachstum is
         WachstumSchrumpfung
       is
          when True =>
+            StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                             EreignisExtern         => GlobaleDatentypen.Einwohner_Wachstum);
             if
               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) = StadtWerteFestlegen.EinwohnerErstesWachstum
               or
@@ -179,6 +181,8 @@ package body Wachstum is
             end if;
             
          when False =>
+            StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                             EreignisExtern         => GlobaleDatentypen.Einwohner_Reduktion);
             if
               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) = StadtWerteFestlegen.EinwohnerErstesWachstum - 1
               or

@@ -390,11 +390,11 @@ package body Eingabe is
    
    
    
-   procedure StandardTastenbelegungWiederherstellen
+   procedure StandardTastenbelegungLaden
    is begin
       
       Tastenbelegung := TastenbelegungStandard;
       
-   end StandardTastenbelegungWiederherstellen;
+   end StandardTastenbelegungLaden;
 
 end Eingabe;

@@ -262,7 +262,7 @@ package body KIPruefungen is
       end case;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung >= MindestBewertungFeldExtern
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (EinheitRasseNummerExtern.Rasse) >= MindestBewertungFeldExtern
       then
          null;
          

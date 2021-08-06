@@ -397,10 +397,14 @@ package body KarteStadt is
          KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund);
       end if;
       
-      StadtInformationen.EinzelnesFeldNahrungsgewinnung (KoordinatenExtern => KartenWert);
-      StadtInformationen.EinzelnesFeldRessourcengewinnung (KoordinatenExtern => KartenWert);
-      StadtInformationen.EinzelnesFeldGeldgewinnung (KoordinatenExtern => KartenWert);
-      StadtInformationen.EinzelnesFeldWissensgewinnung (KoordinatenExtern => KartenWert);
+      StadtInformationen.EinzelnesFeldNahrungsgewinnung (KoordinatenExtern => KartenWert,
+                                                         RasseExtern       => StadtRasseNummerExtern.Rasse);
+      StadtInformationen.EinzelnesFeldRessourcengewinnung (KoordinatenExtern => KartenWert,
+                                                           RasseExtern       => StadtRasseNummerExtern.Rasse);
+      StadtInformationen.EinzelnesFeldGeldgewinnung (KoordinatenExtern => KartenWert,
+                                                     RasseExtern       => StadtRasseNummerExtern.Rasse);
+      StadtInformationen.EinzelnesFeldWissensgewinnung (KoordinatenExtern => KartenWert,
+                                                        RasseExtern       => StadtRasseNummerExtern.Rasse);
       StadtInformationen.StadtfeldBewirtschaftet (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                   CursorYAchseabstraktionExtern => CursorYAchseabstraktion,
                                                   CursorXAchseabstraktionExtern => CursorXAchseabstraktion);

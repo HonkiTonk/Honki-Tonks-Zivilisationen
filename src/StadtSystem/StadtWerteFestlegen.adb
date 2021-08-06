@@ -206,10 +206,14 @@ package body StadtWerteFestlegen is
    is begin
       
       Bewertung := 0;
-      NahrungGesamt := ProduktionFeld.ProduktionFeldNahrung (KoordinatenExtern => PositionExtern);
-      RessourcenGesamt := ProduktionFeld.ProduktionFeldRessourcen (KoordinatenExtern => PositionExtern);
-      GeldGesamt := ProduktionFeld.ProduktionFeldGeld (KoordinatenExtern => PositionExtern);
-      WissenGesamt := ProduktionFeld.ProduktionFeldWissen (KoordinatenExtern => PositionExtern);
+      NahrungGesamt := ProduktionFeld.FeldNahrung (KoordinatenExtern => PositionExtern,
+                                                   RasseExtern       => StadtRasseNummerExtern.Rasse);
+      RessourcenGesamt := ProduktionFeld.FeldProduktion (KoordinatenExtern => PositionExtern,
+                                                         RasseExtern       => StadtRasseNummerExtern.Rasse);
+      GeldGesamt := ProduktionFeld.FeldGeld (KoordinatenExtern => PositionExtern,
+                                             RasseExtern       => StadtRasseNummerExtern.Rasse);
+      WissenGesamt := ProduktionFeld.FeldWissen (KoordinatenExtern => PositionExtern,
+                                                 RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       if
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion <= 1

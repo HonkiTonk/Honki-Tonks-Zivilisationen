@@ -74,6 +74,7 @@ package GlobaleRecords is
 
    type KIBewegungPlanArray is array (1 .. 15) of GlobaleRecords.AchsenKartenfeldPositivRecord;
    type TransporterArray is array (GlobaleDatentypen.MaximaleEinheiten'First .. 5) of GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   type EinheitMeldungenArray is array (GlobaleDatentypen.Einheit_Meldung_Art_Enum'Range) of GlobaleDatentypen.Einheit_Meldung_Enum;
    -- type AufgabenArray is array (1 .. 10) of Tastenbelegung_Verbesserung_Befehle_Enum;
 
    type EinheitenGebautRecord is record
@@ -100,13 +101,15 @@ package GlobaleRecords is
       Transportiert : TransporterArray;
       WirdTransportiert : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       
+      Meldungen : EinheitMeldungenArray;
+      
    end record;
 
 
 
    type EinwohnerArbeiterArray is array (1 .. 2) of GlobaleDatentypen.ProduktionFeld;
    type GebäudeVorhandenArray is array (GlobaleDatentypen.GebäudeID'Range) of Boolean;
-   type StadtMeldungenArray is array (1 .. 3) of GlobaleDatentypen.Stadt_Meldung_Enum;
+   type StadtMeldungenArray is array (GlobaleDatentypen.Stadt_Meldung_Art_Enum'Range) of GlobaleDatentypen.Stadt_Meldung_Enum;
 
    type StadtGebautRecord is record
       
@@ -167,6 +170,8 @@ package GlobaleRecords is
    
    
    
+   type FelderwertungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.GesamtproduktionStadt;
+   
    type KartenRecord is record
 
       Grund : GlobaleDatentypen.Karten_Grund_Enum;
@@ -179,7 +184,7 @@ package GlobaleRecords is
       Ressource : GlobaleDatentypen.Karten_Grund_Enum;
       
       DurchStadtBelegterGrund : GlobaleDatentypen.BelegterGrund;
-      Felderwertung : GlobaleDatentypen.GesamtproduktionStadt;
+      Felderwertung : FelderwertungArray;
 
    end record;
    

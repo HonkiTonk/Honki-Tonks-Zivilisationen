@@ -19,6 +19,7 @@ package body EinlesenTastatur is
                   Name => "Einstellungen/Tastenbelegung");
 
          when False =>
+            Eingabe.StandardTastenbelegungLaden;
             return;
       end case;
       

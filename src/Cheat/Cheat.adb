@@ -127,7 +127,7 @@ package body Cheat is
    is begin
       
       Put (Item => "Kartenfeldbewertung:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Felderwertung'Wide_Wide_Image);
+           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Felderwertung (RasseExtern)'Wide_Wide_Image);
       Put_Line (Item => "    Aktuelle GrundID:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund'Wide_Wide_Image);
       Put_Line (Item => "Aktuelle Stadtbelegung:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,

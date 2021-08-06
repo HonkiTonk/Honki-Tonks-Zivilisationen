@@ -4,24 +4,29 @@ with GlobaleRecords, GlobaleDatentypen;
 
 package ProduktionFeld is
 
-   function ProduktionFeldNahrung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function FeldNahrung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
    
-   function ProduktionFeldRessourcen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function FeldProduktion
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
      
-   function ProduktionFeldGeld
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function FeldGeld
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
      
-   function ProduktionFeldWissen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function FeldWissen
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
    
-   function ProduktionFeldVerteidigung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function FeldVerteidigung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
    
 private

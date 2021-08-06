@@ -106,6 +106,7 @@ package body EinheitSuchen is
 
 
 
+   -- Sucht ohne die Rasse die hineingegeben wird.
    function KoordinatenEinheitOhneSpezielleRasseSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)

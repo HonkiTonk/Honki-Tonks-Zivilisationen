@@ -4,7 +4,7 @@ with Ada.Calendar;
 use Ada.Calendar;
 
 with Wachstum, InDerStadtBauen, Karte, BefehleImSpiel, Optionen, Sichtbarkeit, Verbesserungen, ForschungAllgemein, KI, Ladezeiten, Speichern, Laden, StadtProduktion, EinheitenAllgemein, SiegBedingungen, RasseEntfernen,
-     DiplomatischerZustand;
+     DiplomatischerZustand, StadtMeldungenSetzen, EinheitenMeldungenSetzen, EinheitInUmgebung;
 
 package body ImSpiel is
 
@@ -228,8 +228,12 @@ package body ImSpiel is
 
    procedure BerechnungenNachZugendeAllerSpieler
    is begin
-            
+      
       Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, GlobaleDatentypen.Anfangswert) := Clock;
+      StadtMeldungenSetzen.StadtMeldungenSetzenRundenEnde;
+      EinheitenMeldungenSetzen.EinheitenMeldungenSetzenRundenEnde;
+      EinheitInUmgebung.EinheitInUmgebung;
+      
       EinheitenAllgemein.HeilungBewegungspunkteNeueRundeErmitteln;
       Verbesserungen.VerbesserungFertiggestellt;
       Wachstum.Wachstum;

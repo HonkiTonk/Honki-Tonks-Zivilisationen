@@ -123,7 +123,8 @@ package GlobaleKonstanten is
                                                                    KIBeschäftigt                => KIDatentypen.Keine_Aufgabe,
                                                                    KIBewegungPlan               => (others => (0, 0, 0)),
                                                                    Transportiert                => (others => 0),
-                                                                   WirdTransportiert            => 0
+                                                                   WirdTransportiert            => 0,
+                                                                   Meldungen                    => (others => GlobaleDatentypen.Leer)
                                                                   );
 
    LeerStadt : constant GlobaleRecords.StadtGebautRecord := (
@@ -150,7 +151,7 @@ package GlobaleKonstanten is
                                                             );
 
    LeerWichtigesZeug : constant GlobaleRecords.WichtigesRecord := (
-                                                                   Geldmenge                  => 0,
+                                                                   Geldmenge                  => 100,
                                                                    GeldZugewinnProRunde       => 0,
                                                                    GesamteForschungsrate      => 0,
                                                                    Forschungsmenge            => 0,
@@ -162,12 +163,7 @@ package GlobaleKonstanten is
    LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (
                                                                      KartenGrafik        => ' ',
                                                                      Passierbarkeit      => (others => False),
-                                                                     Nahrungsgewinnung   => 0,
-                                                                     Ressourcengewinnung => 0,
-                                                                     Geldgewinnung       => 0,
-                                                                     Wissensgewinnung    => 0,
-                                                                     Verteidigungsbonus  => 0,
-                                                                     Bewertung           => (others => 0)
+                                                                     FeldWerte           => (others => (others => 0))
                                                                     );
 
    LeerWeltkarte : constant GlobaleRecords.KartenRecord := (
@@ -179,7 +175,7 @@ package GlobaleKonstanten is
                                                             VerbesserungGebiet      => GlobaleDatentypen.Leer,
                                                             Ressource               => GlobaleDatentypen.Leer,
                                                             DurchStadtBelegterGrund => 0,
-                                                            Felderwertung           => 0
+                                                            Felderwertung           => (others => 0)
                                                            );
 
    LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (

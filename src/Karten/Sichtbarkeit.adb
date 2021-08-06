@@ -18,7 +18,7 @@ package body Sichtbarkeit is
          case
            GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID
          is
-            when 0 =>
+            when GlobaleKonstanten.LeerEinheitenID =>
                null;
             
             when others =>
@@ -33,7 +33,7 @@ package body Sichtbarkeit is
          case
            GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID
          is
-            when GlobaleDatentypen.Leer =>
+            when GlobaleKonstanten.LeerStadtID =>
                null;
                
             when others =>

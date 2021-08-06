@@ -116,7 +116,7 @@ package body Laden is
       end case;
 
       EAchseBisBodenSchleife:
-      for EAchseSchleifenwert in Karten.WeltkarteArray'First (1) .. 0 loop
+      for EAchseSchleifenwert in Karten.WeltkarteArray'Range (1) loop
          YAchseBisBodenSchleife:
          for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
             XAchseBisBodenSchleife:
@@ -128,31 +128,6 @@ package body Laden is
             end loop XAchseBisBodenSchleife;
          end loop YAchseBisBodenSchleife;
       end loop EAchseBisBodenSchleife;
-      
-      -- Als eigener Task direkt beim Start ausführen
-      LeerwerteSetzen;
-      
-      EAchseBisWeltraumSchleife:
-      for EAchseSchleifenwert in 1 .. Karten.WeltkarteArray'Last (1) loop
-         YAchseBisWeltraumSchleife:
-         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
-            XAchseBisWeltraumSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
-
-               GlobaleDatentypen.SichtbarkeitArray'Read (Stream (File => DateiLadenNeu),
-                                                         Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Sichtbar);
-               GlobaleDatentypen.Karten_Verbesserung_Enum'Read (Stream (File => DateiLadenNeu),
-                                                                Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).VerbesserungStraße);
-               GlobaleDatentypen.Karten_Verbesserung_Enum'Read (Stream (File => DateiLadenNeu),
-                                                                Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).VerbesserungGebiet);
-               GlobaleDatentypen.BelegterGrund'Read (Stream (File => DateiLadenNeu),
-                                                     Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).DurchStadtBelegterGrund);
-               GlobaleDatentypen.GesamtproduktionStadt'Read (Stream (File => DateiLadenNeu),
-                                                             Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Felderwertung);
-               
-            end loop XAchseBisWeltraumSchleife;
-         end loop YAchseBisWeltraumSchleife;
-      end loop EAchseBisWeltraumSchleife;
       -- Schleife zum Laden der Karte
 
 
@@ -301,38 +276,5 @@ package body Laden is
       return True;
       
    end LadenNeu;
-   
-   
-   
-   -- Das hier könnte man parallelisieren
-   procedure LeerwerteSetzen
-   is begin
-      
-      EAchseLeerwerteSchleife:
-      for EAchseSchleifenwert in 1 .. Karten.WeltkarteArray'Last (1) loop
-         YAchseLeerwerteSchleife:
-         for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
-            XAchseLeerwerteSchleife:
-            for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
-
-               case
-                 EAchseSchleifenwert
-               is
-                  when 1 =>
-                     Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Grund := GlobaleDatentypen.Wolken;
-                     
-                  when others =>
-                     Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Grund := GlobaleDatentypen.Weltraum;
-               end case;
-               
-               Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Hügel := False;
-               Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Fluss := GlobaleDatentypen.Leer;
-               Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := GlobaleDatentypen.Leer;
-               
-            end loop XAchseLeerwerteSchleife;
-         end loop YAchseLeerwerteSchleife;
-      end loop EAchseLeerwerteSchleife;
-      
-   end LeerwerteSetzen;
 
 end Laden;

@@ -56,8 +56,6 @@ package DatenbankRecords is
 
 
    
-   type NameArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.ProduktionFeld;
-
    -- GebaeudeDatenbank
    type GebäudeListeRecord is record
       
@@ -85,6 +83,9 @@ package DatenbankRecords is
 
 
 
+   -- Feldwertung, Nahrung, Produktion, Geld, Wissen, Verteidigung
+   type GewinnBewertungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Bewertung_Werte_Enum'Range) of GlobaleDatentypen.ProduktionElement;
+   
    type BewertungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.ProduktionFeld;
    
    -- KartenDatenbank
@@ -94,13 +95,15 @@ package DatenbankRecords is
       
       -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
       Passierbarkeit : PassierbarkeitArray;
+      
+      FeldWerte : GewinnBewertungArray;
 
-      Nahrungsgewinnung : GlobaleDatentypen.ProduktionFeld;
-      Ressourcengewinnung : GlobaleDatentypen.ProduktionFeld;
-      Geldgewinnung : GlobaleDatentypen.ProduktionFeld;
-      Wissensgewinnung : GlobaleDatentypen.ProduktionFeld;
-      Verteidigungsbonus : GlobaleDatentypen.ProduktionFeld;
-      Bewertung : BewertungArray;
+      -- Nahrungsgewinnung : GlobaleDatentypen.ProduktionFeld;
+      -- Ressourcengewinnung : GlobaleDatentypen.ProduktionFeld;
+      -- Geldgewinnung : GlobaleDatentypen.ProduktionFeld;
+      -- Wissensgewinnung : GlobaleDatentypen.ProduktionFeld;
+      -- Verteidigungsbonus : GlobaleDatentypen.ProduktionFeld;
+      -- Bewertung : BewertungArray;
       
    end record;
    -- KartenDatenbank

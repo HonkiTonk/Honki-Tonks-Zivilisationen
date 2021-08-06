@@ -80,6 +80,12 @@ package body BefehleImSpiel is
          when GlobaleDatentypen.Stadt_Suchen =>
             StadtSuchenNachNamen := StadtSuchen.StadtNachNamenSuchen;
             
+         when GlobaleDatentypen.Nächste_Stadt_Mit_Meldung =>
+            NaechstesObjekt.NächsteStadtMeldung (RasseExtern => RasseExtern);
+            
+         when GlobaleDatentypen.Nächste_Einheit_Mit_Meldung =>
+            NaechstesObjekt.NächsteEinheitMeldung (RasseExtern => RasseExtern);
+            
          when GlobaleDatentypen.Heimatstadt_Ändern =>
             EinheitenAllgemein.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
             

@@ -26,7 +26,7 @@ package GlobaleDatentypen is
                                 Hoch, Links, Runter, Rechts, Links_Oben, Rechts_Oben, Links_Unten, Rechts_Unten, Ebene_Hoch, Ebene_Runter,
                                 Auswählen, Menü_Zurück,
                                 Bauen, Forschung, Tech_Baum,
-                                Nächste_Stadt, Einheit_Mit_Bewegungspunkte, Alle_Einheiten, Einheiten_Ohne_Bewegungspunkte,
+                                Nächste_Stadt, Einheit_Mit_Bewegungspunkte, Alle_Einheiten, Einheiten_Ohne_Bewegungspunkte, Nächste_Stadt_Mit_Meldung, Nächste_Einheit_Mit_Meldung,
                                 -- Einheitenbefehle
                                 Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Plündern, Einheit_Auflösen, Einheit_Verbessern,
                                 Heimatstadt_Ändern,
@@ -151,6 +151,8 @@ package GlobaleDatentypen is
 
    type Besondere_Ressourcen_Enum is (Leer, Kohle);
    subtype Besondere_Ressourcen_Verwendet_Enum is Besondere_Ressourcen_Enum range Kohle .. Besondere_Ressourcen_Enum'Last;
+
+   type Bewertung_Werte_Enum is (Feldwertung, Nahrung, Produktion, Geld, Wissen, Verteidigung);
    -- Für Karte
 
 
@@ -180,6 +182,10 @@ package GlobaleDatentypen is
 
    type Permanente_Kosten_Enum is (Leer, Nahrung, Geld, Ressourcen, Hier_Spezielle_Ressourcen_Einbauen);
    subtype Permanente_Kosten_Verwendet_Enum is Permanente_Kosten_Enum range Nahrung .. Permanente_Kosten_Enum'Last;
+
+   type Einheit_Meldung_Art_Enum is (Aufgabe_Fertig, Einheit_In_Der_Nähe);
+   type Einheit_Meldung_Enum is (Leer, Aufgabe_Abgeschlossen, Fremde_Einheit_Nahe);
+   subtype Einheit_Meldung_Verwendet_Enum is Einheit_Meldung_Enum range Aufgabe_Abgeschlossen .. Einheit_Meldung_Enum'Last;
    -- Für Einheiten
 
 
@@ -211,10 +217,13 @@ package GlobaleDatentypen is
    subtype GesamtePermanenteKosten is KostenLager range -500 .. 5_000;
    subtype GesamtproduktionStadt is GesamtePermanenteKosten range -500 .. 500;
    subtype ProduktionFeld is GesamtproduktionStadt range -100 .. 100;
+   subtype ProduktionElement is ProduktionFeld range -10 .. 10;
 
    type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
 
-   type Stadt_Meldung_Enum is (Leer, Produktion_Abgeschlossen, Einwohner_Wachstum, Einwohner_Reduktion, Einheit_Unplatzierbar, Stadt_Angegriffen);
+   type Stadt_Meldung_Art_Enum is (Produktion_Fertig, Hungersnot, Einheit_In_Der_Nähe);
+   type Stadt_Meldung_Enum is (Leer, Produktion_Abgeschlossen, Einheit_Unplatzierbar, Einwohner_Wachstum, Einwohner_Reduktion, Fremde_Einheit_Nahe_Stadt);
+   subtype Stadt_Meldungen_Verwendet_Enum is Stadt_Meldung_Enum range Produktion_Abgeschlossen .. Stadt_Meldung_Enum'Last;
 
    type PermanenteKostenArray is array (GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of GlobaleDatentypen.GesamtePermanenteKosten;
    -- Für Stadt

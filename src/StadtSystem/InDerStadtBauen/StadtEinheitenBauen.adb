@@ -4,7 +4,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with KIDatentypen;
 
-with Anzeige, Eingabe, Karte, EinheitSuchen, EinheitenAllgemein, UmgebungErreichbarTesten;
+with Anzeige, Eingabe, Karte, EinheitSuchen, EinheitenAllgemein, UmgebungErreichbarTesten, StadtMeldungenSetzen;
 
 package body StadtEinheitenBauen is
 
@@ -72,7 +72,8 @@ package body StadtEinheitenBauen is
         KartenWert.XAchse
       is
          when GlobaleKonstanten.LeerYXKartenWert =>
-            null;
+            StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                             EreignisExtern         => GlobaleDatentypen.Einheit_Unplatzierbar);
             
          when others =>
             EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => KartenWert,
@@ -87,8 +88,8 @@ package body StadtEinheitenBauen is
             if
               GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
             then
-               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,
-                                                     TextZeileExtern => 29);
+               StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                EreignisExtern         => GlobaleDatentypen.Produktion_Abgeschlossen);
          
             else
                GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := KIDatentypen.Keine_Aufgabe;

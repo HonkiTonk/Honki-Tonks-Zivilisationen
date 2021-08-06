@@ -60,7 +60,8 @@ package body Kampfsystem is
       VerteidigerStärkeVerteidigung :=
         Float (EinheitenDatenbank.EinheitenListe (VerteidigerRasseNummerExtern.Rasse,
                GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).ID).Verteidigung)
-        + 0.1 * Float (KartenAllgemein.GrundVerteidigung (PositionExtern => GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).Position))
+        + 0.1 * Float (KartenAllgemein.GrundVerteidigung (PositionExtern => GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).Position,
+                                                          RasseExtern    => VerteidigerRasseNummerExtern.Rasse))
         + 0.1 * Float (KartenAllgemein.VerbesserungVerteidigung (PositionExtern => GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).Position));
 
       if
@@ -68,7 +69,7 @@ package body Kampfsystem is
         and
           KartenAllgemein.FeldGrund (PositionExtern => GlobaleVariablen.EinheitenGebaut (VerteidigerRasseNummerExtern.Rasse, VerteidigerRasseNummerExtern.Platznummer).Position) /= GlobaleDatentypen.Hügel
       then
-         VerteidigerStärkeVerteidigung := VerteidigerStärkeVerteidigung + 0.1 * Float (KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel).Verteidigungsbonus);
+         VerteidigerStärkeVerteidigung := VerteidigerStärkeVerteidigung + 0.1 * Float (KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel).FeldWerte (VerteidigerRasseNummerExtern.Rasse, GlobaleDatentypen.Verteidigung));
 
       else
          null;

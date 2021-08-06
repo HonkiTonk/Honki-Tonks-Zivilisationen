@@ -7,67 +7,97 @@ with KartenAllgemein;
 
 package body ProduktionFeld is
 
-   function ProduktionFeldNahrung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function FeldNahrung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return KartenAllgemein.GrundNahrung (PositionExtern => KoordinatenExtern) + KartenAllgemein.RessourceNahrung (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.StraßeNahrung (PositionExtern => KoordinatenExtern) + KartenAllgemein.VerbesserungNahrung (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.FlussNahrung (PositionExtern => KoordinatenExtern);
+      return KartenAllgemein.GrundNahrung (PositionExtern => KoordinatenExtern,
+                                           RasseExtern    => RasseExtern)
+        + KartenAllgemein.RessourceNahrung (PositionExtern => KoordinatenExtern,
+                                            RasseExtern    => RasseExtern)
+        + KartenAllgemein.StraßeNahrung (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.VerbesserungNahrung (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.FlussNahrung (PositionExtern => KoordinatenExtern,
+                                        RasseExtern    => RasseExtern);
       
-   end ProduktionFeldNahrung;
+   end FeldNahrung;
      
      
      
-   function ProduktionFeldRessourcen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function FeldProduktion
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return KartenAllgemein.GrundRessourcen (PositionExtern => KoordinatenExtern) + KartenAllgemein.RessourceRessourcen (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.StraßeRessourcen (PositionExtern => KoordinatenExtern) + KartenAllgemein.VerbesserungRessourcen (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.FlussRessourcen (PositionExtern => KoordinatenExtern);
+      return KartenAllgemein.GrundProduktion (PositionExtern => KoordinatenExtern,
+                                              RasseExtern    => RasseExtern)
+        + KartenAllgemein.RessourceProduktion (PositionExtern => KoordinatenExtern,
+                                               RasseExtern    => RasseExtern)
+        + KartenAllgemein.StraßeRessourcen (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.VerbesserungRessourcen (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.FlussProduktion (PositionExtern => KoordinatenExtern,
+                                           RasseExtern    => RasseExtern);
       
-   end ProduktionFeldRessourcen;
+   end FeldProduktion;
      
      
      
-   function ProduktionFeldGeld
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function FeldGeld
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return KartenAllgemein.GrundGeld (PositionExtern => KoordinatenExtern) + KartenAllgemein.RessourceGeld (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.StraßeGeld (PositionExtern => KoordinatenExtern) + KartenAllgemein.VerbesserungGeld (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.FlussGeld (PositionExtern => KoordinatenExtern);
+      return KartenAllgemein.GrundGeld (PositionExtern => KoordinatenExtern,
+                                        RasseExtern    => RasseExtern)
+        + KartenAllgemein.RessourceGeld (PositionExtern => KoordinatenExtern,
+                                         RasseExtern    => RasseExtern)
+        + KartenAllgemein.StraßeGeld (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.VerbesserungGeld (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.FlussGeld (PositionExtern => KoordinatenExtern,
+                                     RasseExtern    => RasseExtern);
       
-   end ProduktionFeldGeld;
+   end FeldGeld;
      
      
      
-   function ProduktionFeldWissen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function FeldWissen
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return KartenAllgemein.GrundWissen (PositionExtern => KoordinatenExtern) + KartenAllgemein.RessourceWissen (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.StraßeWissen (PositionExtern => KoordinatenExtern) + KartenAllgemein.VerbesserungWissen (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.FlussWissen (PositionExtern => KoordinatenExtern);
+      return KartenAllgemein.GrundWissen (PositionExtern => KoordinatenExtern,
+                                          RasseExtern    => RasseExtern)
+        + KartenAllgemein.RessourceWissen (PositionExtern => KoordinatenExtern,
+                                           RasseExtern    => RasseExtern)
+        + KartenAllgemein.StraßeWissen (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.VerbesserungWissen (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.FlussWissen (PositionExtern => KoordinatenExtern,
+                                       RasseExtern    => RasseExtern);
       
-   end ProduktionFeldWissen;
+   end FeldWissen;
      
      
      
-   function ProduktionFeldVerteidigung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function FeldVerteidigung
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return KartenAllgemein.GrundVerteidigung (PositionExtern => KoordinatenExtern) + KartenAllgemein.RessourceVerteidigung (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.StraßeVerteidigung (PositionExtern => KoordinatenExtern) + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.FlussVerteidigung (PositionExtern => KoordinatenExtern);
+      return KartenAllgemein.GrundVerteidigung (PositionExtern => KoordinatenExtern,
+                                                RasseExtern    => RasseExtern)
+        + KartenAllgemein.RessourceVerteidigung (PositionExtern => KoordinatenExtern,
+                                                 RasseExtern    => RasseExtern)
+        + KartenAllgemein.StraßeVerteidigung (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.FlussVerteidigung (PositionExtern => KoordinatenExtern,
+                                             RasseExtern    => RasseExtern);
       
-   end ProduktionFeldVerteidigung;
+   end FeldVerteidigung;
 
 end ProduktionFeld;

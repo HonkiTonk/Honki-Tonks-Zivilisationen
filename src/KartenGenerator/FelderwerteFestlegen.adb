@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, GlobaleVariablen;
 
 with KartePositionPruefen, KartenAllgemein;
 
@@ -20,7 +20,7 @@ package body FelderwerteFestlegen is
                   
                   KartenWertEins (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
                                                                                                              ÄnderungExtern    => (0, YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert));
-
+                  
                   case
                     KartenWertEins (KoordinatenExtern.EAchse).XAchse
                   is
@@ -28,10 +28,12 @@ package body FelderwerteFestlegen is
                         null;
                      
                      when others =>                  
-                        Karten.Weltkarte (KartenWertEins (KoordinatenExtern.EAchse).EAchse, KartenWertEins (KoordinatenExtern.EAchse).YAchse, KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := 0;
+                        Karten.Weltkarte (KartenWertEins (KoordinatenExtern.EAchse).EAchse,
+                                          KartenWertEins (KoordinatenExtern.EAchse).YAchse,
+                                          KartenWertEins (KoordinatenExtern.EAchse).XAchse).Felderwertung := (others => 0);
                         KartenfelderBewertenKleineSchleife (KoordinatenExtern => KartenWertEins (KoordinatenExtern.EAchse));
                   end case;
-                                                            
+                  
                end loop XAchseÄnderungSchleife;
             end loop YAchseÄnderungSchleife;
             
@@ -55,39 +57,51 @@ package body FelderwerteFestlegen is
             KartenWertZwei (KoordinatenExtern.EAchse) := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
                                                                                                        ÄnderungExtern    => (0, BewertungYÄnderungSchleifenwert, BewertungXÄnderungSchleifenwert));
 
-            if
-              KartenWertZwei (KoordinatenExtern.EAchse).XAchse = GlobaleKonstanten.LeerYXKartenWert
-            then
-               null;
-            
-            elsif
-            abs (BewertungYÄnderungSchleifenwert) = 3
-              or
-            abs (BewertungXÄnderungSchleifenwert) = 3
-            then
-               BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
-                                YAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).YAchse,
-                                XAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).XAchse,
-                                TeilerExtern              => 3);
+            case
+              KartenWertZwei (KoordinatenExtern.EAchse).XAchse
+            is
+               when GlobaleKonstanten.LeerYXKartenWert =>
+                  null;
+                  
+               when others =>
+                  RassenSchleife:
+                  for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+                     
+                     case
+                       GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+                     is
+                        when GlobaleDatentypen.Spieler_KI =>
+                           if
+                             BewertungYÄnderungSchleifenwert = 0
+                             and
+                               BewertungXÄnderungSchleifenwert = 0
+                           then
+                              BewertungSelbst (KoordinatenFeldExtern     => KoordinatenExtern,
+                                               KoordinatenUmgebungExtern => KartenWertZwei (KoordinatenExtern.EAchse),
+                                               RasseExtern               => RasseSchleifenwert,
+                                               TeilerExtern              => 1);
 
-            elsif
-            abs (BewertungYÄnderungSchleifenwert) = 2
-              or
-            abs (BewertungXÄnderungSchleifenwert) = 2
-            then
-               BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
-                                YAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).YAchse,
-                                XAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).XAchse,
-                                TeilerExtern              => 2);
-
-               
-
-            else
-               BewertungSelbst (KoordinatenExtern         => KoordinatenExtern,
-                                YAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).YAchse,
-                                XAchseFeldAufschlagExtern => KartenWertZwei (KoordinatenExtern.EAchse).XAchse,
-                                TeilerExtern              => 1);
-            end if;
+                           elsif
+                           abs (BewertungYÄnderungSchleifenwert) > abs (BewertungXÄnderungSchleifenwert)
+                           then
+                              BewertungSelbst (KoordinatenFeldExtern     => KoordinatenExtern,
+                                               KoordinatenUmgebungExtern => KartenWertZwei (KoordinatenExtern.EAchse),
+                                               RasseExtern               => RasseSchleifenwert,
+                                               TeilerExtern              => abs (BewertungYÄnderungSchleifenwert));
+                              
+                           else
+                              BewertungSelbst (KoordinatenFeldExtern     => KoordinatenExtern,
+                                               KoordinatenUmgebungExtern => KartenWertZwei (KoordinatenExtern.EAchse),
+                                               RasseExtern               => RasseSchleifenwert,
+                                               TeilerExtern              => abs (BewertungXÄnderungSchleifenwert));
+                           end if;
+                           
+                        when others =>
+                           null;
+                     end case;
+                     
+                  end loop RassenSchleife;
+            end case;
                                  
          end loop BewertungXÄnderungSchleife;
       end loop BewertungYÄnderungSchleife;
@@ -97,81 +111,99 @@ package body FelderwerteFestlegen is
    
    
    procedure BewertungSelbst
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern : in GlobaleDatentypen.KartenfeldPositiv;
+     (KoordinatenFeldExtern, KoordinatenUmgebungExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       TeilerExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
    is begin
-            
-      Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
-        := Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
-        + (KartenAllgemein.GrundNahrung (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-           + KartenAllgemein.GrundRessourcen (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-           + KartenAllgemein.GrundGeld (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-           + KartenAllgemein.GrundWissen (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-           + KartenAllgemein.GrundVerteidigung (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))) / GesamtproduktionStadt (TeilerExtern);
+      
+      Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseExtern)
+        := Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseExtern)
+        + (KartenAllgemein.GrundNahrung (PositionExtern => KoordinatenUmgebungExtern,
+                                         RasseExtern    => RasseExtern)
+           + KartenAllgemein.GrundProduktion (PositionExtern => KoordinatenUmgebungExtern,
+                                              RasseExtern    => RasseExtern)
+           + KartenAllgemein.GrundGeld (PositionExtern => KoordinatenUmgebungExtern,
+                                        RasseExtern    => RasseExtern)
+           + KartenAllgemein.GrundWissen (PositionExtern => KoordinatenUmgebungExtern,
+                                          RasseExtern    => RasseExtern)
+           + KartenAllgemein.GrundVerteidigung (PositionExtern => KoordinatenUmgebungExtern,
+                                                RasseExtern    => RasseExtern))
+        / GesamtproduktionStadt (TeilerExtern);
 
       case
-        Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Fluss
+        Karten.Weltkarte (KoordinatenUmgebungExtern.EAchse, KoordinatenUmgebungExtern.YAchse, KoordinatenUmgebungExtern.XAchse).Fluss
       is
          when GlobaleDatentypen.Leer =>
             null;
             
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
-              := Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
-              + (KartenAllgemein.FlussNahrung (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.FlussRessourcen (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.FlussGeld (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.FlussWissen (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.FlussVerteidigung (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))) / GesamtproduktionStadt (TeilerExtern);
+            Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseExtern)
+              := Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseExtern)
+              + (KartenAllgemein.FlussNahrung (PositionExtern => KoordinatenUmgebungExtern,
+                                               RasseExtern    => RasseExtern)
+                 + KartenAllgemein.FlussProduktion (PositionExtern => KoordinatenUmgebungExtern,
+                                                    RasseExtern    => RasseExtern)
+                 + KartenAllgemein.FlussGeld (PositionExtern => KoordinatenUmgebungExtern,
+                                              RasseExtern    => RasseExtern)
+                 + KartenAllgemein.FlussWissen (PositionExtern => KoordinatenUmgebungExtern,
+                                                RasseExtern    => RasseExtern)
+                 + KartenAllgemein.FlussVerteidigung (PositionExtern => KoordinatenUmgebungExtern,
+                                                      RasseExtern    => RasseExtern))
+              / GesamtproduktionStadt (TeilerExtern);
       end case;
 
       case
-        Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungStraße
+        Karten.Weltkarte (KoordinatenUmgebungExtern.EAchse, KoordinatenUmgebungExtern.YAchse, KoordinatenUmgebungExtern.XAchse).VerbesserungStraße
       is
          when GlobaleDatentypen.Leer =>
             null;
             
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
-              := Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
-              + (KartenAllgemein.StraßeNahrung (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.StraßeRessourcen (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.StraßeGeld (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.StraßeWissen (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.StraßeVerteidigung (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))) / GesamtproduktionStadt (TeilerExtern);
+            Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseExtern)
+              := Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseExtern)
+              + (KartenAllgemein.StraßeNahrung (PositionExtern => KoordinatenUmgebungExtern)
+                 + KartenAllgemein.StraßeRessourcen (PositionExtern => KoordinatenUmgebungExtern)
+                 + KartenAllgemein.StraßeGeld (PositionExtern => KoordinatenUmgebungExtern)
+                 + KartenAllgemein.StraßeWissen (PositionExtern => KoordinatenUmgebungExtern)
+                 + KartenAllgemein.StraßeVerteidigung (PositionExtern => KoordinatenUmgebungExtern)) / GesamtproduktionStadt (TeilerExtern);
       end case;
 
       case
-        Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).VerbesserungGebiet
+        Karten.Weltkarte (KoordinatenUmgebungExtern.EAchse, KoordinatenUmgebungExtern.YAchse, KoordinatenUmgebungExtern.XAchse).VerbesserungGebiet
       is
          when GlobaleDatentypen.Leer =>
             null;
             
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
-              := Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
-              + (KartenAllgemein.VerbesserungNahrung (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.VerbesserungRessourcen (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.VerbesserungGeld (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.VerbesserungWissen (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))) / GesamtproduktionStadt (TeilerExtern);
+            Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseExtern)
+              := Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseExtern)
+              + (KartenAllgemein.VerbesserungNahrung (PositionExtern => KoordinatenUmgebungExtern)
+                 + KartenAllgemein.VerbesserungRessourcen (PositionExtern => KoordinatenUmgebungExtern)
+                 + KartenAllgemein.VerbesserungGeld (PositionExtern => KoordinatenUmgebungExtern)
+                 + KartenAllgemein.VerbesserungWissen (PositionExtern => KoordinatenUmgebungExtern)
+                 + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => KoordinatenUmgebungExtern)) / GesamtproduktionStadt (TeilerExtern);
       end case;
       
       case
-        Karten.Weltkarte (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern).Ressource
+        Karten.Weltkarte (KoordinatenUmgebungExtern.EAchse, KoordinatenUmgebungExtern.YAchse, KoordinatenUmgebungExtern.XAchse).Ressource
       is
          when GlobaleDatentypen.Leer =>
             null;
             
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
-              := Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung
-              + (KartenAllgemein.RessourceNahrung (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.RessourceRessourcen (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.RessourceGeld (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.RessourceWissen (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))
-                 + KartenAllgemein.RessourceVerteidigung (PositionExtern => (KoordinatenExtern.EAchse, YAchseFeldAufschlagExtern, XAchseFeldAufschlagExtern))) / GesamtproduktionStadt (TeilerExtern);
+            Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseExtern)
+              := Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseExtern)
+              + (KartenAllgemein.RessourceNahrung (PositionExtern => KoordinatenUmgebungExtern,
+                                                   RasseExtern    => RasseExtern)
+                 + KartenAllgemein.RessourceProduktion (PositionExtern => KoordinatenUmgebungExtern,
+                                                        RasseExtern    => RasseExtern)
+                 + KartenAllgemein.RessourceGeld (PositionExtern => KoordinatenUmgebungExtern,
+                                                  RasseExtern    => RasseExtern)
+                 + KartenAllgemein.RessourceWissen (PositionExtern => KoordinatenUmgebungExtern,
+                                                    RasseExtern    => RasseExtern)
+                 + KartenAllgemein.RessourceVerteidigung (PositionExtern => KoordinatenUmgebungExtern,
+                                                          RasseExtern    => RasseExtern))
+              / GesamtproduktionStadt (TeilerExtern);
       end case;
       
    end BewertungSelbst;

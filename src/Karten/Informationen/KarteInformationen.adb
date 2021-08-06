@@ -15,11 +15,16 @@ package body KarteInformationen is
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
 
-      Verteidigungsbonus := ProduktionFeld.ProduktionFeldVerteidigung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
-      Nahrungsgewinnung := ProduktionFeld.ProduktionFeldNahrung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
-      Ressourcengewinnung := ProduktionFeld.ProduktionFeldRessourcen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
-      Geldgewinnung := ProduktionFeld.ProduktionFeldGeld (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
-      Wissensgewinnung := ProduktionFeld.ProduktionFeldWissen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
+      Verteidigungsbonus := ProduktionFeld.FeldVerteidigung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                             RasseExtern       => RasseExtern);
+      Nahrungsgewinnung := ProduktionFeld.FeldNahrung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                       RasseExtern       => RasseExtern);
+      Ressourcengewinnung := ProduktionFeld.FeldProduktion (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                            RasseExtern       => RasseExtern);
+      Geldgewinnung := ProduktionFeld.FeldGeld (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                RasseExtern       => RasseExtern);
+      Wissensgewinnung := ProduktionFeld.FeldWissen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                     RasseExtern       => RasseExtern);
       
       -- Allgemeine Informationen über die eigene Rasse, immer sichtbar
       InformationenRundenanzahl;

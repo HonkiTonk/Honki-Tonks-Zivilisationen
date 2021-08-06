@@ -302,17 +302,20 @@ package body StadtInformationen is
    
    
    procedure EinzelnesFeldNahrungsgewinnung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Nahrungsgewinnung := 0;
-      Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.GrundNahrung (PositionExtern => KoordinatenExtern);
+      Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.GrundNahrung (PositionExtern => KoordinatenExtern,
+                                                                             RasseExtern    => RasseExtern);
       
       if
         KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
       then
          KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern));
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.RessourceNahrung (PositionExtern => KoordinatenExtern);
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.RessourceNahrung (PositionExtern => KoordinatenExtern,
+                                                                                    RasseExtern    => RasseExtern);
       else
          null;
       end if;
@@ -341,7 +344,8 @@ package body StadtInformationen is
         KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
       then
          KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern));
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.FlussNahrung (PositionExtern => KoordinatenExtern);
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.FlussNahrung (PositionExtern => KoordinatenExtern,
+                                                                                RasseExtern    => RasseExtern);
          
       else
          null;
@@ -364,16 +368,19 @@ package body StadtInformationen is
    
    
    procedure EinzelnesFeldRessourcengewinnung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Ressourcengewinnung := 0;
-      Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.GrundRessourcen (PositionExtern => KoordinatenExtern);
+      Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.GrundProduktion (PositionExtern => KoordinatenExtern,
+                                                                                    RasseExtern    => RasseExtern);
       
       if
         KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
       then
-         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.RessourceRessourcen (PositionExtern => KoordinatenExtern);
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.RessourceProduktion (PositionExtern => KoordinatenExtern,
+                                                                                           RasseExtern    => RasseExtern);
          
       else
          null;
@@ -400,7 +407,8 @@ package body StadtInformationen is
       if
         KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
       then
-         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.FlussRessourcen (PositionExtern => KoordinatenExtern);
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.FlussProduktion (PositionExtern => KoordinatenExtern,
+                                                                                       RasseExtern    => RasseExtern);
          
       else
          null;
@@ -423,16 +431,19 @@ package body StadtInformationen is
    
    
    procedure EinzelnesFeldGeldgewinnung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Geldgewinnung := 0;      
-      Geldgewinnung := Geldgewinnung + KartenAllgemein.GrundGeld (PositionExtern => KoordinatenExtern);
+      Geldgewinnung := Geldgewinnung + KartenAllgemein.GrundGeld (PositionExtern => KoordinatenExtern,
+                                                                  RasseExtern    => RasseExtern);
       
       if
         KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
       then
-         Geldgewinnung := Geldgewinnung + KartenAllgemein.RessourceGeld (PositionExtern => KoordinatenExtern);
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.RessourceGeld (PositionExtern => KoordinatenExtern,
+                                                                         RasseExtern    => RasseExtern);
          
       else
          null;
@@ -459,7 +470,8 @@ package body StadtInformationen is
       if
         KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
       then
-         Geldgewinnung := Geldgewinnung + KartenAllgemein.FlussGeld (PositionExtern => KoordinatenExtern);
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.FlussGeld (PositionExtern => KoordinatenExtern,
+                                                                     RasseExtern    => RasseExtern);
          
       else
          null;
@@ -481,16 +493,19 @@ package body StadtInformationen is
    
    
    procedure EinzelnesFeldWissensgewinnung
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       Wissensgewinnung := 0;
-      Wissensgewinnung := Wissensgewinnung + KartenAllgemein.GrundWissen (PositionExtern => KoordinatenExtern);
+      Wissensgewinnung := Wissensgewinnung + KartenAllgemein.GrundWissen (PositionExtern => KoordinatenExtern,
+                                                                          RasseExtern    => RasseExtern);
       
       if
         KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
       then
-         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.RessourceWissen (PositionExtern => KoordinatenExtern);
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.RessourceWissen (PositionExtern => KoordinatenExtern,
+                                                                                 RasseExtern    => RasseExtern);
          
       else
          null;
@@ -517,7 +532,8 @@ package body StadtInformationen is
       if
         KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
       then
-         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.FlussWissen (PositionExtern => KoordinatenExtern);
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.FlussWissen (PositionExtern => KoordinatenExtern,
+                                                                             RasseExtern    => RasseExtern);
          
       else
          null;

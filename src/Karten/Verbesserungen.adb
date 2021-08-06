@@ -6,7 +6,7 @@ with KIDatentypen;
 
 with EinheitenDatenbank;
   
-with Anzeige, FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, FeldTesten, KartenAllgemein, WichtigesSetzen;
+with Anzeige, FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, FeldTesten, KartenAllgemein, WichtigesSetzen, EinheitenMeldungenSetzen;
 
 package body Verbesserungen is
 
@@ -753,6 +753,8 @@ package body Verbesserungen is
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit = GlobaleKonstanten.LeerEinheit.Beschäftigungszeit
       then
+         EinheitenMeldungenSetzen.EinheitMeldungSetzenEreignis (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                EreignisExtern           => GlobaleDatentypen.Aufgabe_Abgeschlossen);
          VerbesserungAngelegt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
 
          case

@@ -28,26 +28,15 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 0,
-         Ressourcengewinnung => 0, 
-         Geldgewinnung       => 0,
-         Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Wasser =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Wasser      => True,
                                  GlobaleDatentypen.Luft        => True,
                                  GlobaleDatentypen.Weltraum    => True,
-                                 GlobaleDatentypen.Unterwasser => True,
                                  others                        => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 1,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flachland =>
         (KartenGrafik        => ' ',
@@ -55,12 +44,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 2,
-         Ressourcengewinnung => 1,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Tundra =>
         (KartenGrafik        => ' ',
@@ -68,12 +52,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 2,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Wüste =>
         (KartenGrafik        => ' ',
@@ -81,12 +60,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 1,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       -- Ersetzt Ebene oder ist Bestandteil von Wüste, Tundra, Wald und Dschungel
       GlobaleDatentypen.Hügel =>
@@ -95,12 +69,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 2,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Gebirge =>
         (KartenGrafik        => ' ',
@@ -108,12 +77,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 0,
-         Ressourcengewinnung => 3,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 2,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Wald =>
         (KartenGrafik        => ' ',
@@ -121,12 +85,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 2,
-         Ressourcengewinnung => 2,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Dschungel =>
         (KartenGrafik        => ' ',
@@ -134,27 +93,16 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 3,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 2,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Küstengewässer =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Wasser       => True,
                                  GlobaleDatentypen.Luft         => True,
                                  GlobaleDatentypen.Weltraum     => True,
-                                 GlobaleDatentypen.Unterwasser  => True,
                                  GlobaleDatentypen.Küstenwasser => True,
                                  others                         => False),
-         Nahrungsgewinnung   => 2,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Sumpf =>
         (KartenGrafik        => ' ',
@@ -162,12 +110,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 1,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 2,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       -- Platzhalter um die ID beim Einlesen korrekt zu behandeln, nicht löschen!, vielleicht später mehr drauf machen?
       GlobaleDatentypen.Hügel_Mit =>
@@ -176,101 +119,56 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 0,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 0,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Lava =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Lava => True,
                                  others                 => False),
-         Nahrungsgewinnung   => 0,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 0,
-         Wissensgewinnung    => 2,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Wolken =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 0,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 0,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Weltraum =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 0,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 0,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Erde =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Unteridrisch => True,
                                  others                         => False),
-         Nahrungsgewinnung   => 2,
-         Ressourcengewinnung => 1,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Erdgestein =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Unteridrisch => True,
                                  others                         => False),
-         Nahrungsgewinnung   => 0,
-         Ressourcengewinnung => 2,
-         Geldgewinnung       => 2,
-         Wissensgewinnung    => 2,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Gestein =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Planeteninneres => True,
                                  others                            => False),
-         Nahrungsgewinnung   => 0,
-         Ressourcengewinnung => 2,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Unter_Wasser =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Unterwasser => True,
                                  others                        => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 1,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Unter_Küstengewässer =>
         (KartenGrafik        => ' ',
          Passierbarkeit      => (GlobaleDatentypen.Unterwasser => True,
                                  others                        => False),
-         Nahrungsgewinnung   => 2,
-         Ressourcengewinnung => 1,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 1,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       -- Ressourcen
       GlobaleDatentypen.Kohle =>
@@ -279,12 +177,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 0,
-         Ressourcengewinnung => 2,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Eisen =>
         (KartenGrafik        => '♦',
@@ -292,12 +185,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 0,
-         Ressourcengewinnung => 2,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Öl =>
         (KartenGrafik        => '♦',
@@ -305,12 +193,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 0,
-         Ressourcengewinnung => 2,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Fisch =>
         (KartenGrafik        => '≈',
@@ -320,13 +203,8 @@ private
                                  GlobaleDatentypen.Unterwasser  => True,
                                  GlobaleDatentypen.Küstenwasser => True,
                                  others                         => False),
-         Nahrungsgewinnung   => 2,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
-                                      
+         FeldWerte           => (others => (others => 1))),
+      
       GlobaleDatentypen.Wal =>
         (KartenGrafik        => '≈',
          Passierbarkeit      => (GlobaleDatentypen.Wasser       => True,
@@ -335,12 +213,7 @@ private
                                  GlobaleDatentypen.Unterwasser  => True,
                                  GlobaleDatentypen.Küstenwasser => True,
                                  others                         => False),
-         Nahrungsgewinnung   => 2,
-         Ressourcengewinnung => 1,
-         Geldgewinnung       => 2,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Hochwertiger_Boden =>
         (KartenGrafik        => '♦',
@@ -348,12 +221,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 2,
-         Ressourcengewinnung => 1,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Gold =>
         (KartenGrafik        => '♦',
@@ -361,12 +229,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 0,
-         Ressourcengewinnung => 1,
-         Geldgewinnung       => 3,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 0,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       -- Fluss
       GlobaleDatentypen.Flusskreuzung_Vier =>
@@ -375,12 +238,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Fluss_Waagrecht =>
         (KartenGrafik        => '━',
@@ -388,12 +246,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Fluss_Senkrecht =>
         (KartenGrafik        => '┃',
@@ -401,12 +254,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flusskurve_Unten_Rechts =>
         (KartenGrafik        => '┏',
@@ -414,12 +262,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flusskurve_Unten_Links =>
         (KartenGrafik        => '┓',
@@ -427,12 +270,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flusskurve_Oben_Rechts =>
         (KartenGrafik        => '┗',
@@ -440,12 +278,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flusskurve_Oben_Links =>
         (KartenGrafik        => '┛',
@@ -453,12 +286,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flusskreuzung_Drei_Oben =>
         (KartenGrafik        => '┻',
@@ -466,12 +294,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flusskreuzung_Drei_Unten =>
         (KartenGrafik        => '┳',
@@ -479,12 +302,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flusskreuzung_Drei_Rechts =>
         (KartenGrafik        => '┣',
@@ -492,12 +310,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others =>                  False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flusskreuzung_Drei_Links =>
         (KartenGrafik        => '┫',
@@ -505,12 +318,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flussendstück_Links =>
         (KartenGrafik        => '╺',
@@ -518,12 +326,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flussendstück_Rechts =>
         (KartenGrafik        => '╸',
@@ -531,12 +334,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flussendstück_Unten =>
         (KartenGrafik        => '╹',
@@ -544,12 +342,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Flussendstück_Oben =>
         (KartenGrafik        => '╻',
@@ -557,12 +350,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0)),
+         FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Fluss_Einzeln =>
         (KartenGrafik        => '▪',
@@ -570,12 +358,7 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         Nahrungsgewinnung   => 1,
-         Ressourcengewinnung => 0,
-         Geldgewinnung       => 1,
-         Wissensgewinnung    => 0,
-         Verteidigungsbonus  => 1,
-         Bewertung           => (others => 0))
+         FeldWerte           => (others => (others => 1)))
      );
 
 end KartenDatenbank;

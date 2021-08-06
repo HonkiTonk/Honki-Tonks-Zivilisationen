@@ -32,7 +32,7 @@ package body OptionenSteuerung is
                SchreibenTastatur.TastenbelegungSchreiben;
                
             when GlobaleKonstanten.WiederherstellenKonstante =>
-               Eingabe.StandardTastenbelegungWiederherstellen;
+               Eingabe.StandardTastenbelegungLaden;
                SchreibenTastatur.TastenbelegungSchreiben;
                      
             when others =>
