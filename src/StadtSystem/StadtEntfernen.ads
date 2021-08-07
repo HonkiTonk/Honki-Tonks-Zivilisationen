@@ -22,5 +22,8 @@ private
    
    procedure HeimatstädteEntfernen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
+   procedure NeueHauptstadtSetzen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
 
 end StadtEntfernen;

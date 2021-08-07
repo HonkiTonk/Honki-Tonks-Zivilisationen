@@ -93,6 +93,18 @@ package body KartenAllgemein is
    
    
    
+   function GrundBewertung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement
+   is begin
+      
+      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
+      
+   end GrundBewertung;
+   
+   
+   
    function FlussNahrung
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
@@ -153,113 +165,169 @@ package body KartenAllgemein is
    
    
    
-   function StraßeNahrung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function FlussBewertung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement
+   is begin
+      
+      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss).FeldWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
+      
+   end FlussBewertung;
+   
+   
+   
+   function WegNahrung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungStraße).Nahrungsbonus;
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Nahrung);
       
-   end StraßeNahrung;
+   end WegNahrung;
    
    
    
-   function StraßeRessourcen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function WegProduktion
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungStraße).Ressourcenbonus;
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
+                                                        PositionExtern.YAchse,
+                                                        PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Produktion);
       
-   end StraßeRessourcen;
+   end WegProduktion;
    
    
    
-   function StraßeGeld
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function WegGeld
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungStraße).Geldbonus;
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Geld);
       
-   end StraßeGeld;
+   end WegGeld;
    
    
    
-   function StraßeWissen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function WegWissen
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungStraße).Wissensbonus;
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Wissen);
       
-   end StraßeWissen;
+   end WegWissen;
    
    
    
-   function StraßeVerteidigung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function WegVerteidigung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungStraße).Verteidigungsbonus;
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
+                                                        PositionExtern.YAchse,
+                                                        PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
       
-   end StraßeVerteidigung;
+   end WegVerteidigung;
+   
+   
+   
+   function WegBewertung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement
+   is begin
+      
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
+      
+   end WegBewertung;
    
    
    
    function VerbesserungNahrung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet).Nahrungsbonus;
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Nahrung);
       
    end VerbesserungNahrung;
    
    
    
-   function VerbesserungRessourcen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function VerbesserungProduktion
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet).Ressourcenbonus;
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
+                                                        PositionExtern.YAchse,
+                                                        PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Produktion);
       
-   end VerbesserungRessourcen;
+   end VerbesserungProduktion;
    
    
    
    function VerbesserungGeld
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet).Geldbonus;
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Geld);
       
    end VerbesserungGeld;
    
    
    
    function VerbesserungWissen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet).Wissensbonus;
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Wissen);
       
    end VerbesserungWissen;
    
    
    
    function VerbesserungVerteidigung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet).Verteidigungsbonus;
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
+                                                        PositionExtern.YAchse,
+                                                        PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
       
    end VerbesserungVerteidigung;
+   
+   
+   
+   function VerbesserungBewertung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement
+   is begin
+      
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
+                                                        PositionExtern.YAchse,
+                                                        PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
+      
+   end VerbesserungBewertung;
    
    
    
@@ -323,6 +391,18 @@ package body KartenAllgemein is
    
    
    
+   function RessourceBewertung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement
+   is begin
+      
+      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource).FeldWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
+      
+   end RessourceBewertung;
+   
+   
+   
    function FeldSichtbar
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
@@ -379,14 +459,14 @@ package body KartenAllgemein is
    
    
    
-   function FeldStraße
+   function FeldWeg
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.Karten_Verbesserung_Enum
    is begin
       
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungStraße;
+      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg;
       
-   end FeldStraße;
+   end FeldWeg;
    
    
    
@@ -398,6 +478,18 @@ package body KartenAllgemein is
       return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss;
       
    end FeldFluss;
+   
+   
+   
+   function FeldBewertung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Felderwertung (RasseExtern);
+      
+   end FeldBewertung;
    
    
    
@@ -425,14 +517,14 @@ package body KartenAllgemein is
    
    
    
-   function PassierbarStraße
+   function PassierbarWeg
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       PassierbarkeitExtern : in GlobaleDatentypen.Passierbarkeit_Enum)
       return Boolean
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungStraße).Passierbarkeit (PassierbarkeitExtern);
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg).Passierbarkeit (PassierbarkeitExtern);
       
-   end PassierbarStraße;
+   end PassierbarWeg;
 
 end KartenAllgemein;

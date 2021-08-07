@@ -17,8 +17,10 @@ package body ProduktionFeld is
                                            RasseExtern    => RasseExtern)
         + KartenAllgemein.RessourceNahrung (PositionExtern => KoordinatenExtern,
                                             RasseExtern    => RasseExtern)
-        + KartenAllgemein.StraßeNahrung (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.VerbesserungNahrung (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.WegNahrung (PositionExtern => KoordinatenExtern,
+                                          RasseExtern    => RasseExtern)
+        + KartenAllgemein.VerbesserungNahrung (PositionExtern => KoordinatenExtern,
+                                               RasseExtern    => RasseExtern)
         + KartenAllgemein.FlussNahrung (PositionExtern => KoordinatenExtern,
                                         RasseExtern    => RasseExtern);
       
@@ -36,8 +38,10 @@ package body ProduktionFeld is
                                               RasseExtern    => RasseExtern)
         + KartenAllgemein.RessourceProduktion (PositionExtern => KoordinatenExtern,
                                                RasseExtern    => RasseExtern)
-        + KartenAllgemein.StraßeRessourcen (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.VerbesserungRessourcen (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.WegProduktion (PositionExtern => KoordinatenExtern,
+                                             RasseExtern    => RasseExtern)
+        + KartenAllgemein.VerbesserungProduktion (PositionExtern => KoordinatenExtern,
+                                                  RasseExtern    => RasseExtern)
         + KartenAllgemein.FlussProduktion (PositionExtern => KoordinatenExtern,
                                            RasseExtern    => RasseExtern);
       
@@ -55,8 +59,10 @@ package body ProduktionFeld is
                                         RasseExtern    => RasseExtern)
         + KartenAllgemein.RessourceGeld (PositionExtern => KoordinatenExtern,
                                          RasseExtern    => RasseExtern)
-        + KartenAllgemein.StraßeGeld (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.VerbesserungGeld (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.WegGeld (PositionExtern => KoordinatenExtern,
+                                       RasseExtern    => RasseExtern)
+        + KartenAllgemein.VerbesserungGeld (PositionExtern => KoordinatenExtern,
+                                            RasseExtern    => RasseExtern)
         + KartenAllgemein.FlussGeld (PositionExtern => KoordinatenExtern,
                                      RasseExtern    => RasseExtern);
       
@@ -74,8 +80,10 @@ package body ProduktionFeld is
                                           RasseExtern    => RasseExtern)
         + KartenAllgemein.RessourceWissen (PositionExtern => KoordinatenExtern,
                                            RasseExtern    => RasseExtern)
-        + KartenAllgemein.StraßeWissen (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.VerbesserungWissen (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.WegWissen (PositionExtern => KoordinatenExtern,
+                                         RasseExtern    => RasseExtern)
+        + KartenAllgemein.VerbesserungWissen (PositionExtern => KoordinatenExtern,
+                                              RasseExtern    => RasseExtern)
         + KartenAllgemein.FlussWissen (PositionExtern => KoordinatenExtern,
                                        RasseExtern    => RasseExtern);
       
@@ -93,8 +101,10 @@ package body ProduktionFeld is
                                                 RasseExtern    => RasseExtern)
         + KartenAllgemein.RessourceVerteidigung (PositionExtern => KoordinatenExtern,
                                                  RasseExtern    => RasseExtern)
-        + KartenAllgemein.StraßeVerteidigung (PositionExtern => KoordinatenExtern)
-        + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => KoordinatenExtern)
+        + KartenAllgemein.WegVerteidigung (PositionExtern => KoordinatenExtern,
+                                               RasseExtern    => RasseExtern)
+        + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => KoordinatenExtern,
+                                                    RasseExtern    => RasseExtern)
         + KartenAllgemein.FlussVerteidigung (PositionExtern => KoordinatenExtern,
                                              RasseExtern    => RasseExtern);
       

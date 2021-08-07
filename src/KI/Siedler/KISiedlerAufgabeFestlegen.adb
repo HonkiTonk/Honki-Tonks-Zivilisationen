@@ -58,11 +58,9 @@ package body KISiedlerAufgabeFestlegen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln
-      MindestBewertungKartenfeld := KIMindestBewertungKartenfeldErmitteln.MindestBewertungKartenfeldStadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
       NeueStadtPosition := KIPruefungen.UmgebungStadtBauenPrüfen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                                                   MindestBewertungFeldExtern => MindestBewertungKartenfeld);
+                                                                   MindestBewertungFeldExtern => KIMindestBewertungKartenfeldErmitteln.MindestBewertungKartenfeldStadtBauen
+                                                                     (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       if
         NeueStadtPosition = KIKonstanten.NullKoordinate

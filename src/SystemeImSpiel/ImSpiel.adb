@@ -169,6 +169,16 @@ package body ImSpiel is
       SpielerSchleife:
       loop
          
+         case
+           GlobaleVariablen.RassenImSpiel (RasseExtern)
+         is
+            when GlobaleDatentypen.Spieler_Mensch =>
+               null;
+               
+            when others =>
+               return GlobaleKonstanten.HauptmenüKonstante;
+         end case;
+         
          Karte.AnzeigeKarte (RasseExtern => RasseExtern);
          AktuellerBefehlSpieler := BefehleImSpiel.Befehle (RasseExtern => RasseExtern);
          

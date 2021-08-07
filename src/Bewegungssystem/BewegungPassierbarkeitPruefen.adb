@@ -24,6 +24,7 @@ package body BewegungPassierbarkeitPruefen is
    
    
    
+   -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft werden muss!
    function PassierbarkeitPrüfenID
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.EinheitenID;
@@ -68,10 +69,10 @@ package body BewegungPassierbarkeitPruefen is
                   null;
                   
                elsif
-                 (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
+                 (Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungWeg /= GlobaleDatentypen.Leer
                   and
-                    KartenAllgemein.PassierbarStraße (PositionExtern       => NeuePositionExtern,
-                                                       PassierbarkeitExtern => PassierbarkeitSchleifenwert) = True)
+                    KartenAllgemein.PassierbarWeg (PositionExtern       => NeuePositionExtern,
+                                                   PassierbarkeitExtern => PassierbarkeitSchleifenwert) = True)
                  or
                    (KartenAllgemein.FeldVerbesserung (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
                     and

@@ -1,16 +1,26 @@
 package Changelog is
    
-   -- Version 0.00.81 => 0.00.81 (08.08.2021):
+   -- Version 0.00.8170 => 0.00.81 (08.08.2021):
    
-   -- 
+   -- Forschungsbäume erweitert und rassenspezifisches Gamedesign betrieben.
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8150 => 0.00.81 (07.08.2021):
+   -- Version 0.00.8150 => 0.00.8170 (07.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Rassenspezifische Verbesserungengewinne und Kartenbewertung eingebaut/erweitert.
+   -- Unnötigen Code gelöscht.
+   -- Bei Übernahme einer Rasse durch die KI wird jetzt die Kartenbewertung für diese Rasse durchgeführt.
+   -- Minimal nötige Kartenwerte für den Stadtbau durch die KI angepasst und als konstantes Array in KIKonstanten eingebaut.
+   -- Bewertung der Kartenfelder deutlich beschleunigt.
+   -- Optimierungsmöglichkeiten überprüft.
+   -- Wenn eine Stadt entfernt wird, wird jetzt geprüft ob es die Hauptstadt war und wenn nötig eine andere Stadt zur Hauptstadt bestimmt.
+   -- Fehler behoben der dazu führte dass nach dem Verlust aller Einheiten und Städte eines menschlichen Spielers das Spiel abstürzte.
+   -- Diverse interne und Ordnerumbenennungen.
+   -- Hüllen für die Datenbankeditoren angelegt.
+   -- Hülle für die Überprüfung ob an einer bestimmten Position eine Verbesserung von dieser Rasse angelegt werden kann eingebaut, inklusive einer Übergangslösung bis die Forschungsbäume weiter/fertig/brauchbar sind.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    

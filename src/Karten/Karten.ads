@@ -28,8 +28,8 @@ package Karten is
                                             GlobaleDatentypen.Karte_160_160   => (160, 160),
                                             GlobaleDatentypen.Karte_240_240   => (240, 240),
                                             GlobaleDatentypen.Karte_320_320   => (320, 320),
-                                            GlobaleDatentypen.Karte_1000_1000 => (1_000, 1_000),
-                                            GlobaleDatentypen.Karte_Nutzer    => (1, 1)
+                                            GlobaleDatentypen.Karte_1000_1000 => (GlobaleDatentypen.KartenfeldPositiv'Last, GlobaleDatentypen.KartenfeldPositiv'Last),
+                                            GlobaleDatentypen.Karte_Nutzer    => (GlobaleDatentypen.KartenfeldPositiv'First, GlobaleDatentypen.KartenfeldPositiv'First)
                                            );
 
    Kartengröße : GlobaleDatentypen.Kartengröße_Verwendet_Enum;

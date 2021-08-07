@@ -52,7 +52,7 @@ private
    
    Passierbar : Boolean;
 
-   BewegungMöglich : GlobaleDatentypen.Bewegung_Enum;
+  -- BewegungMöglich : GlobaleDatentypen.Bewegung_Enum;
    
    StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
    TransporterNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;

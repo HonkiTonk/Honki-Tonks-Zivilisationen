@@ -30,8 +30,8 @@ package GlobaleVariablen is
    
 
    -- Zeug
-   RundenAnzahl : Positive := 1;
-   Rundengrenze : Natural := 0;
+   RundenAnzahl : Positive := Positive'First;
+   Rundengrenze : Natural := Natural'First;
 
    -- Nicht belegt, Menschlicher Spieler, KI
    RassenImSpiel : GlobaleDatentypen.RassenImSpielArray := (others => GlobaleDatentypen.Leer);

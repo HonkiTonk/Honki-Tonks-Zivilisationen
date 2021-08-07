@@ -179,7 +179,7 @@ package GlobaleRecords is
       Sichtbar : GlobaleDatentypen.SichtbarkeitArray;
       
       Fluss : GlobaleDatentypen.Karten_Grund_Enum;
-      VerbesserungStraße : GlobaleDatentypen.Karten_Verbesserung_Enum;
+      VerbesserungWeg : GlobaleDatentypen.Karten_Verbesserung_Enum;
       VerbesserungGebiet : GlobaleDatentypen.Karten_Verbesserung_Enum;
       Ressource : GlobaleDatentypen.Karten_Grund_Enum;
       

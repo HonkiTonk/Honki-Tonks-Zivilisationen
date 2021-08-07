@@ -20,47 +20,32 @@ private
      (
       -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.
       GlobaleDatentypen.Leer => GlobaleKonstanten.LeerVerbesserungListe,
+      
+      
                                                   
       -- Städte
       GlobaleDatentypen.Eigene_Hauptstadt =>
         (VerbesserungGrafik => '♣',
          Passierbarkeit     => (others => True),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 0,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 3,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Eigene_Stadt =>
         (VerbesserungGrafik => '♠',
-         Passierbarkeit     => (others => True),   
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 0,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 2,
-         Bewertung          => (others => 0)),
+         Passierbarkeit     => (others => True),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Fremde_Hauptstadt =>
         (VerbesserungGrafik => '⌂',
          Passierbarkeit     => (others => True),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 0,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 3,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Fremde_Stadt =>
         (VerbesserungGrafik => '¤',
          Passierbarkeit     => (others => True),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 0,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 2,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
+      -- Städte
+      
+      
                                                   
       -- Gebilde
       GlobaleDatentypen.Farm =>
@@ -69,12 +54,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True, 
                                 others                     => False),
-         Nahrungsbonus      => 2,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 1,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Mine =>
         (VerbesserungGrafik => 'M',
@@ -82,12 +62,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 2,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 1,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Festung =>
         (VerbesserungGrafik => 'B',
@@ -95,38 +70,26 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 0,
-         Wissensbonus       => 0, 
-         Verteidigungsbonus => 2,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Sperre =>
         (VerbesserungGrafik => 'S',
          Passierbarkeit     => (GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 0,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
+      -- Gebilde
+      
+      
                                                   
-      -- Straßen
+      -- Wege
       GlobaleDatentypen.Straßenkreuzung_Vier =>
         (VerbesserungGrafik => '╬',
          Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straße_Waagrecht =>
         (VerbesserungGrafik => '═',
@@ -134,12 +97,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True, 
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straße_Senkrecht =>
         (VerbesserungGrafik => '║',
@@ -147,12 +105,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straßenkurve_Unten_Rechts =>
         (VerbesserungGrafik => '╔',
@@ -160,12 +113,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True, 
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straßenkurve_Unten_Links =>
         (VerbesserungGrafik => '╗',
@@ -173,12 +121,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straßenkurve_Oben_Rechts =>
         (VerbesserungGrafik => '╚',
@@ -186,12 +129,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straßenkurve_Oben_Links =>
         (VerbesserungGrafik => '╝',
@@ -199,12 +137,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straßenkreuzung_Drei_Oben =>
         (VerbesserungGrafik => '╩',
@@ -212,12 +145,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straßenkreuzung_Drei_Unten =>
         (VerbesserungGrafik => '╦',
@@ -225,12 +153,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0, 
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straßenkreuzung_Drei_Rechts =>
         (VerbesserungGrafik => '╠',
@@ -238,12 +161,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straßenkreuzung_Drei_Links =>
         (VerbesserungGrafik => '╣',
@@ -251,12 +169,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straßenendstück_Links =>
         (VerbesserungGrafik => '╞',
@@ -264,12 +177,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straßenendstück_Rechts =>
         (VerbesserungGrafik => '╡',
@@ -277,12 +185,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straßenendstück_Unten =>
         (VerbesserungGrafik => '╨',
@@ -290,12 +193,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straßenendstück_Oben =>
         (VerbesserungGrafik => '╥',
@@ -303,12 +201,7 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 1,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0)),
+         VerbesserungWerte  => (others => (others => 1))),
                                                   
       GlobaleDatentypen.Straße_Einzeln =>
         (VerbesserungGrafik => '▫',
@@ -316,12 +209,8 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         Nahrungsbonus      => 0,
-         Ressourcenbonus    => 0,
-         Geldbonus          => 0,
-         Wissensbonus       => 0,
-         Verteidigungsbonus => 0,
-         Bewertung          => (others => 0))
+         VerbesserungWerte  => (others => (others => 1)))
+      -- Wege
      );
          
 end VerbesserungenDatenbank;

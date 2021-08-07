@@ -38,6 +38,11 @@ package KartenAllgemein is
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement;
 
+   function GrundBewertung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement;
+
    function FlussNahrung
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
@@ -63,45 +68,70 @@ package KartenAllgemein is
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement;
 
-   function StraßeNahrung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function FlussBewertung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement;
+
+   function WegNahrung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
 
-   function StraßeRessourcen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function WegProduktion
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
 
-   function StraßeGeld
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function WegGeld
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
 
-   function StraßeWissen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function WegWissen
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
 
-   function StraßeVerteidigung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function WegVerteidigung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
+
+   function WegBewertung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement;
 
    function VerbesserungNahrung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
 
-   function VerbesserungRessourcen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   function VerbesserungProduktion
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
 
    function VerbesserungGeld
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
 
    function VerbesserungWissen
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
 
    function VerbesserungVerteidigung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
+
+   function VerbesserungBewertung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement;
 
    function RessourceNahrung
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -128,6 +158,11 @@ package KartenAllgemein is
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement;
 
+   function RessourceBewertung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement;
+
    function FeldSichtbar
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
@@ -149,13 +184,18 @@ package KartenAllgemein is
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.Karten_Verbesserung_Enum;
 
-   function FeldStraße
+   function FeldWeg
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.Karten_Verbesserung_Enum;
 
    function FeldFluss
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.Karten_Grund_Enum;
+
+   function FeldBewertung
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.GesamtproduktionStadt;
 
    function PassierbarGrund
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -167,7 +207,7 @@ package KartenAllgemein is
       PassierbarkeitExtern : in GlobaleDatentypen.Passierbarkeit_Enum)
       return Boolean;
 
-   function PassierbarStraße
+   function PassierbarWeg
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       PassierbarkeitExtern : in GlobaleDatentypen.Passierbarkeit_Enum)
       return Boolean;

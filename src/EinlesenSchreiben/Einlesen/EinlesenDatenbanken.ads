@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Streams.Stream_IO;
 use Ada.Streams.Stream_IO;
 
-package EinlesenWerte is
+package EinlesenDatenbanken is
    
    procedure EinlesenAlleDatenbanken;
    
@@ -23,4 +23,4 @@ private
    
    DatenbankEinlesen : File_Type;
 
-end EinlesenWerte;
+end EinlesenDatenbanken;

@@ -490,7 +490,8 @@ package body KarteInformationen is
            or
              GlobaleVariablen.FeindlicheInformationenSehen
          then                              
-            Verteidigungsbonus := Verteidigungsbonus + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position);
+            Verteidigungsbonus := Verteidigungsbonus + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                                                                 RasseExtern    => RasseExtern);
 
          else
             null;
@@ -564,9 +565,9 @@ package body KarteInformationen is
       end if;
       
       if
-        KartenAllgemein.FeldStraße (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
+        KartenAllgemein.FeldWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
       then
-         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldStraße (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
+         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
                
       else
          null;

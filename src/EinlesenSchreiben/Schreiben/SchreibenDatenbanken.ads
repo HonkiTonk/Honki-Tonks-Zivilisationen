@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Streams.Stream_IO;
 use Ada.Streams.Stream_IO;
 
-package SchreibenWerte is
+package SchreibenDatenbanken is
 
    procedure SchreibenAlleDatenbanken;
 
@@ -23,4 +23,4 @@ private
 
    DatenbankSpeichern : File_Type;
 
-end SchreibenWerte;
+end SchreibenDatenbanken;

@@ -324,17 +324,19 @@ package body StadtInformationen is
         KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum
       then
          VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern));
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.VerbesserungNahrung (PositionExtern => KoordinatenExtern);
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.VerbesserungNahrung (PositionExtern => KoordinatenExtern,
+                                                                                       RasseExtern    => RasseExtern);
          
       else
          null;
       end if;
       
       if
-        KartenAllgemein.FeldStraße (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Straße_Enum
+        KartenAllgemein.FeldWeg (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Weg_Enum
       then
-         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldStraße (PositionExtern => KoordinatenExtern));
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.StraßeNahrung (PositionExtern => KoordinatenExtern);
+         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldWeg (PositionExtern => KoordinatenExtern));
+         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.WegNahrung (PositionExtern => KoordinatenExtern,
+                                                                              RasseExtern    => RasseExtern);
          
       else
          null;
@@ -389,16 +391,18 @@ package body StadtInformationen is
       if
         KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum
       then
-         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.VerbesserungRessourcen (PositionExtern => KoordinatenExtern);
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.VerbesserungProduktion (PositionExtern => KoordinatenExtern,
+                                                                                              RasseExtern    => RasseExtern);
          
       else
          null;
       end if;
       
       if
-        KartenAllgemein.FeldStraße (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Straße_Enum
+        KartenAllgemein.FeldWeg (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Weg_Enum
       then
-         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.StraßeRessourcen (PositionExtern => KoordinatenExtern);
+         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.WegProduktion (PositionExtern => KoordinatenExtern,
+                                                                                     RasseExtern    => RasseExtern);
          
       else
          null;
@@ -452,16 +456,18 @@ package body StadtInformationen is
       if
         KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum
       then
-         Geldgewinnung := Geldgewinnung + KartenAllgemein.VerbesserungGeld (PositionExtern => KoordinatenExtern);
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.VerbesserungGeld (PositionExtern => KoordinatenExtern,
+                                                                            RasseExtern    => RasseExtern);
          
       else
          null;
       end if;
       
       if
-        KartenAllgemein.FeldStraße (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Straße_Enum
+        KartenAllgemein.FeldWeg (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Weg_Enum
       then
-         Geldgewinnung := Geldgewinnung + KartenAllgemein.StraßeGeld (PositionExtern => KoordinatenExtern);
+         Geldgewinnung := Geldgewinnung + KartenAllgemein.WegGeld (PositionExtern => KoordinatenExtern,
+                                                                   RasseExtern    => RasseExtern);
          
       else
          null;
@@ -514,16 +520,18 @@ package body StadtInformationen is
       if
         KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum
       then
-         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.VerbesserungWissen (PositionExtern => KoordinatenExtern);
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.VerbesserungWissen (PositionExtern => KoordinatenExtern,
+                                                                                    RasseExtern    => RasseExtern);
          
       else
          null;
       end if;
       
       if
-        KartenAllgemein.FeldStraße (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Straße_Enum
+        KartenAllgemein.FeldWeg (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Weg_Enum
       then
-         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.StraßeWissen (PositionExtern => KoordinatenExtern);
+         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.WegWissen (PositionExtern => KoordinatenExtern,
+                                                                           RasseExtern    => RasseExtern);
          
       else
          null;

@@ -5,7 +5,7 @@ use Ada.Directories;
 
 with EinheitenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, RassenDatenbank, DatenbankRecords;
 
-package body SchreibenWerte is
+package body SchreibenDatenbanken is
    
    procedure SchreibenAlleDatenbanken
    is begin
@@ -30,12 +30,12 @@ package body SchreibenWerte is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Daten/EinheitenDatenbank");
+                  Name => "Datenbanken/EinheitenDatenbank");
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Daten/EinheitenDatenbank");
+                    Name => "Datenbanken/EinheitenDatenbank");
       end case;
       
       RassenSchleife:
@@ -49,7 +49,7 @@ package body SchreibenWerte is
          end loop EinheitSchleife;
       end loop RassenSchleife;
       
-      Close (File => EinheitenDatenbankSpeichern);
+      Close (File => DatenbankSpeichern);
       
    end SchreibenEinheitenDatenbank;
    
@@ -63,12 +63,12 @@ package body SchreibenWerte is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Daten/ForschungsDatenbank");
+                  Name => "Datenbanken/ForschungsDatenbank");
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Daten/ForschungsDatenbank");
+                    Name => "Datenbanken/ForschungsDatenbank");
       end case;      
       
       RassenSchleife:
@@ -82,7 +82,7 @@ package body SchreibenWerte is
          end loop TechnologieSchleife;
       end loop RassenSchleife;
       
-      Close (File => ForschungsDatenbankSpeichern);
+      Close (File => DatenbankSpeichern);
       
    end SchreibenForschungsDatenbank;
    
@@ -97,12 +97,12 @@ package body SchreibenWerte is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Daten/GebaeudeDatenbank");
+                  Name => "Datenbanken/GebaeudeDatenbank");
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Daten/GebaeudeDatenbank");
+                    Name => "Datenbanken/GebaeudeDatenbank");
       end case;
       
       RassenSchleife:
@@ -116,7 +116,7 @@ package body SchreibenWerte is
          end loop GebäudeSchleife;
       end loop RassenSchleife;
       
-      Close (File => GebäudeDatenbankSpeichern);
+      Close (File => DatenbankSpeichern);
       
    end SchreibenGebäudeDatenbank;
    
@@ -131,12 +131,12 @@ package body SchreibenWerte is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Daten/KartenDatenbank");
+                  Name => "Datenbanken/KartenDatenbank");
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Daten/KartenDatenbank");
+                    Name => "Datenbanken/KartenDatenbank");
       end case;
       
       KartenGrundSchleife:
@@ -147,7 +147,7 @@ package body SchreibenWerte is
             
       end loop KartenGrundSchleife;
       
-      Close (File => KartenDatenbankSpeichern);
+      Close (File => DatenbankSpeichern);
       
    end SchreibenKartenDatenbank;
    
@@ -162,12 +162,12 @@ package body SchreibenWerte is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Daten/VerbesserungenDatenbank");
+                  Name => "Datenbanken/VerbesserungenDatenbank");
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Daten/VerbesserungenDatenbank");
+                    Name => "Datenbanken/VerbesserungenDatenbank");
       end case;
       
       VerbesserungenSchleife:
@@ -178,7 +178,7 @@ package body SchreibenWerte is
             
       end loop VerbesserungenSchleife;
       
-      Close (File => VerbesserungenDatenbankSpeichern);
+      Close (File => DatenbankSpeichern);
       
    end SchreibenVerbesserungenDatenbank;
    
@@ -193,12 +193,12 @@ package body SchreibenWerte is
          when True =>
             Open (File => DatenbankSpeichern,
                   Mode => Out_File,
-                  Name => "Daten/RassenDatenbank");
+                  Name => "Datenbanken/RassenDatenbank");
             
          when False =>
             Create (File => DatenbankSpeichern,
                     Mode => Out_File,
-                    Name => "Daten/RassenDatenbank");
+                    Name => "Datenbanken/RassenDatenbank");
       end case;
       
       RassenSchleife:
@@ -209,8 +209,8 @@ package body SchreibenWerte is
             
       end loop RassenSchleife;
       
-      Close (File => VerbesserungenDatenbankSpeichern);
+      Close (File => DatenbankSpeichern);
       
    end SchreibenRassenDatenbank;
 
-end SchreibenWerte;
+end SchreibenDatenbanken;

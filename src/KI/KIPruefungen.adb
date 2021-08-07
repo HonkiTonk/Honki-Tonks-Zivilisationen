@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIKonstanten, KIDatentypen;
 
-with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, RassenAllgemein;
+with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, RassenAllgemein, Verbesserungen;
 
 package body KIPruefungen is
    
@@ -58,8 +58,8 @@ package body KIPruefungen is
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
             
             StadtVerbesserungUmgebungKoordinaten
-              := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                               ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+              := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                               ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             case
               StadtVerbesserungUmgebungKoordinaten.XAchse
@@ -75,13 +75,16 @@ package body KIPruefungen is
                                                                                NeuePositionExtern       => StadtVerbesserungUmgebungKoordinaten)
                     = True
                     and
+                      Verbesserungen.BeliebigeVerbesserungHierAnlegbar (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                                        KoordinatenExtern => StadtVerbesserungUmgebungKoordinaten) = True
+                    and
                       (Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse,
                                          StadtVerbesserungUmgebungKoordinaten.YAchse,
                                          StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungGebiet = GlobaleDatentypen.Leer
                        or
                          Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse,
                                            StadtVerbesserungUmgebungKoordinaten.YAchse,
-                                           StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungStraße = GlobaleDatentypen.Leer)
+                                           StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungWeg = GlobaleDatentypen.Leer)
                     and
                       (EinheitAufFeld.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
                        or
@@ -285,8 +288,8 @@ package body KIPruefungen is
          XAchseUmgebungSchleife:
          for XAchseUmgebungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => KoordinatenExtern,
-                                                                        ÄnderungExtern       => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert));
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
+                                                                        ÄnderungExtern    => (0, YAchseUmgebungSchleifenwert, XAchseUmgebungSchleifenwert));
             
             if
               KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert

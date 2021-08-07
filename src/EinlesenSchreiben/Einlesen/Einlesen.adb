@@ -5,7 +5,7 @@ use Ada.Calendar, Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleVariablen, GlobaleDatentypen;
 
-with Ladezeiten, Auswahl, EinlesenSprache, EinlesenText, EinlesenTastatur, EinlesenWerte, EinlesenEinstellungen, SchreibenEinstellungen;
+with Ladezeiten, Auswahl, EinlesenSprache, EinlesenText, EinlesenTastatur, EinlesenDatenbanken, EinlesenEinstellungen, SchreibenEinstellungen;
 
 package body Einlesen is
 
@@ -47,7 +47,7 @@ package body Einlesen is
             return Erfolgreich;
       end case;
       
-      EinlesenWerte.EinlesenAlleDatenbanken;
+      EinlesenDatenbanken.EinlesenAlleDatenbanken;
       EinlesenTastatur.EinlesenTastaturbelegung;
       Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, GlobaleDatentypen.Endwert) := Clock;
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Startzeit);

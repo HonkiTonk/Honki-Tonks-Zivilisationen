@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with KIDatentypen;
 use KIDatentypen;
 
@@ -64,7 +66,7 @@ package body KISiedlerAufgabeErmitteln is
       VorhandeneStädte := StadtSuchen.AnzahlStädteErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       if
-        VorhandeneStädte = 0
+        VorhandeneStädte = GlobaleKonstanten.LeerEinheitStadtNummer
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
          return 11;
@@ -99,9 +101,9 @@ package body KISiedlerAufgabeErmitteln is
    is begin
       
       case
-        KIPruefungen.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern).YAchse
+        KIPruefungen.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern).XAchse
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerYXKartenWert =>
             return 0;
             
          when others =>

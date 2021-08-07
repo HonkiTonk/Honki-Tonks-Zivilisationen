@@ -39,13 +39,13 @@ package body SchreibenVerzeichnisse is
       end case;
       
       case
-        Exists (Name => "Daten")
+        Exists (Name => "Datenbanken")
       is
          when True =>
             null;
 
          when False =>
-            Create_Directory (New_Directory => "Daten");
+            Create_Directory (New_Directory => "Datenbanken");
       end case;
       
    end SchreibenVerzeichnisse;

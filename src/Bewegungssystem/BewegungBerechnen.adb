@@ -145,9 +145,9 @@ package body BewegungBerechnen is
             (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Weltraum) = False
       then
          case
-           Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungStraße
+           Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungWeg
          is
-            when GlobaleDatentypen.Karten_Verbesserung_Straße_Enum'Range =>
+            when GlobaleDatentypen.Karten_Verbesserung_Weg_Enum'Range =>
                return Straße_Fluss;
                   
             when others =>

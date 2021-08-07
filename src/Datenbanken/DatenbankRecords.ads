@@ -97,13 +97,6 @@ package DatenbankRecords is
       Passierbarkeit : PassierbarkeitArray;
       
       FeldWerte : GewinnBewertungArray;
-
-      -- Nahrungsgewinnung : GlobaleDatentypen.ProduktionFeld;
-      -- Ressourcengewinnung : GlobaleDatentypen.ProduktionFeld;
-      -- Geldgewinnung : GlobaleDatentypen.ProduktionFeld;
-      -- Wissensgewinnung : GlobaleDatentypen.ProduktionFeld;
-      -- Verteidigungsbonus : GlobaleDatentypen.ProduktionFeld;
-      -- Bewertung : BewertungArray;
       
    end record;
    -- KartenDatenbank
@@ -117,13 +110,8 @@ package DatenbankRecords is
       
       -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
       Passierbarkeit : PassierbarkeitArray;
-
-      Nahrungsbonus : GlobaleDatentypen.ProduktionFeld;
-      Ressourcenbonus : GlobaleDatentypen.ProduktionFeld;
-      Geldbonus : GlobaleDatentypen.ProduktionFeld;
-      Wissensbonus : GlobaleDatentypen.ProduktionFeld;
-      Verteidigungsbonus : GlobaleDatentypen.ProduktionFeld;
-      Bewertung : BewertungArray;
+      
+      VerbesserungWerte : GewinnBewertungArray;
       
    end record;
    -- verbesserungenDatenbank

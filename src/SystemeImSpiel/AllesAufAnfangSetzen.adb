@@ -17,7 +17,7 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.StadtGebaut := (others => (others => GlobaleKonstanten.LeerStadt));
       GlobaleVariablen.Wichtiges := (others => GlobaleKonstanten.LeerWichtigesZeug);
       GlobaleVariablen.Diplomatie := (others => (others => GlobaleKonstanten.LeerDiplomatie));
-      GlobaleVariablen.RundenAnzahl := 1;
+      GlobaleVariablen.RundenAnzahl := Positive'First;
       GlobaleVariablen.RasseAmZugNachLaden := GlobaleDatentypen.Leer;
       GlobaleVariablen.CursorImSpiel := (others => GlobaleKonstanten.LeerCursor);
       GlobaleVariablen.Gewonnen := False;
@@ -25,7 +25,8 @@ package body AllesAufAnfangSetzen is
       Cheat.GewonnenDurchCheat := False;
 
       Karten.Weltkarte := (others => (others => (others => GlobaleKonstanten.LeerWeltkarte)));
-      Karten.Kartengrößen := ((20, 20), (40, 40), (80, 80), (120, 80), (120, 160), (160, 160), (240, 240), (320, 320), (1_000, 1_000), (1, 1));
+      Karten.Kartengrößen := ((20, 20), (40, 40), (80, 80), (120, 80), (120, 160), (160, 160), (240, 240), (320, 320), (GlobaleDatentypen.KartenfeldPositiv'Last, GlobaleDatentypen.KartenfeldPositiv'Last),
+                                (GlobaleDatentypen.KartenfeldPositiv'First, GlobaleDatentypen.KartenfeldPositiv'First));
             
    end AllesAufAnfangSetzen;
 

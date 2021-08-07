@@ -15,6 +15,7 @@ package KartenDatenbank is
 private
    
    -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Küstenwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
+   -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft wird!
    
    KartenListeStandard : constant KartenListeArray :=
      (
@@ -142,13 +143,13 @@ private
                                       
       GlobaleDatentypen.Erde =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Unteridrisch => True,
+         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Erdgestein =>
         (KartenGrafik        => ' ',
-         Passierbarkeit      => (GlobaleDatentypen.Unteridrisch => True,
+         Passierbarkeit      => (GlobaleDatentypen.Unterirdisch => True,
                                  others                         => False),
          FeldWerte           => (others => (others => 1))),
                                       
@@ -169,67 +170,50 @@ private
          Passierbarkeit      => (GlobaleDatentypen.Unterwasser => True,
                                  others                        => False),
          FeldWerte           => (others => (others => 1))),
+      -- Feld
+      
+      
                                       
       -- Ressourcen
+      -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft wird!
       GlobaleDatentypen.Kohle =>
         (KartenGrafik        => '♦',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
-                                 others                     => False),
+         Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Eisen =>
         (KartenGrafik        => '♦',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
-                                 others                     => False),
+         Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Öl =>
         (KartenGrafik        => '♦',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
-                                 others                     => False),
+         Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Fisch =>
         (KartenGrafik        => '≈',
-         Passierbarkeit      => (GlobaleDatentypen.Wasser       => True,
-                                 GlobaleDatentypen.Luft         => True,
-                                 GlobaleDatentypen.Weltraum     => True,
-                                 GlobaleDatentypen.Unterwasser  => True,
-                                 GlobaleDatentypen.Küstenwasser => True,
-                                 others                         => False),
+         Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
       
       GlobaleDatentypen.Wal =>
         (KartenGrafik        => '≈',
-         Passierbarkeit      => (GlobaleDatentypen.Wasser       => True,
-                                 GlobaleDatentypen.Luft         => True,
-                                 GlobaleDatentypen.Weltraum     => True,
-                                 GlobaleDatentypen.Unterwasser  => True,
-                                 GlobaleDatentypen.Küstenwasser => True,
-                                 others                         => False),
+         Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Hochwertiger_Boden =>
         (KartenGrafik        => '♦',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
-                                 others                     => False),
+         Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Gold =>
         (KartenGrafik        => '♦',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
-                                 others                     => False),
+         Passierbarkeit      => (others => False),
          FeldWerte           => (others => (others => 1))),
+      -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft wird!
+      -- Ressourcen
+      
+      
                                       
       -- Fluss
       GlobaleDatentypen.Flusskreuzung_Vier =>
@@ -359,6 +343,7 @@ private
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
          FeldWerte           => (others => (others => 1)))
+      -- Fluss
      );
 
 end KartenDatenbank;

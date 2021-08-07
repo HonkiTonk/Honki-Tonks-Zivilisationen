@@ -41,9 +41,6 @@ private
 
    function NochSpielerVorhanden
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+      return Boolean;
 
 end ImSpiel;

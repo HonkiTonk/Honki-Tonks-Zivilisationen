@@ -5,7 +5,7 @@ use Ada.Directories;
 
 with EinheitenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, RassenDatenbank, DatenbankRecords;
 
-package body EinlesenWerte is 
+package body EinlesenDatenbanken is 
    
    procedure EinlesenAlleDatenbanken
    is begin
@@ -25,12 +25,12 @@ package body EinlesenWerte is
    is begin
       
       case
-        Exists (Name => "Daten/EinheitenDatenbank")
+        Exists (Name => "Datenbanken/EinheitenDatenbank")
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Daten/EinheitenDatenbank");
+                  Name => "Datenbanken/EinheitenDatenbank");
 
          when False =>
             EinheitenDatenbank.StandardEinheitenDatenbankLaden;
@@ -58,12 +58,12 @@ package body EinlesenWerte is
    is begin
       
       case
-        Exists (Name => "Daten/ForschungsDatenbank")
+        Exists (Name => "Datenbanken/ForschungsDatenbank")
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Daten/ForschungsDatenbank");
+                  Name => "Datenbanken/ForschungsDatenbank");
 
          when False =>
             ForschungsDatenbank.StandardForschungsDatenbankLaden;
@@ -91,12 +91,12 @@ package body EinlesenWerte is
    is begin
       
       case
-        Exists (Name => "Daten/GebaeudeDatenbank")
+        Exists (Name => "Datenbanken/GebaeudeDatenbank")
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Daten/GebaeudeDatenbank");
+                  Name => "Datenbanken/GebaeudeDatenbank");
 
          when False =>
             GebaeudeDatenbank.StandardGebaeudeDatenbankLaden;
@@ -124,12 +124,12 @@ package body EinlesenWerte is
    is begin
       
       case
-        Exists (Name => "Daten/KartenDatenbank")
+        Exists (Name => "Datenbanken/KartenDatenbank")
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Daten/KartenDatenbank");
+                  Name => "Datenbanken/KartenDatenbank");
 
          when False =>
             KartenDatenbank.StandardKartenDatenbankLaden;
@@ -154,12 +154,12 @@ package body EinlesenWerte is
    is begin
       
       case
-        Exists (Name => "Daten/VerbesserungenDatenbank")
+        Exists (Name => "Datenbanken/VerbesserungenDatenbank")
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Daten/VerbesserungenDatenbank");
+                  Name => "Datenbanken/VerbesserungenDatenbank");
 
          when False =>
             VerbesserungenDatenbank.StandardVerbesserungenDatenbankLaden;
@@ -184,12 +184,12 @@ package body EinlesenWerte is
    is begin
       
       case
-        Exists (Name => "Daten/RassenDatenbank")
+        Exists (Name => "Datenbanken/RassenDatenbank")
       is
          when True =>
             Open (File => DatenbankEinlesen,
                   Mode => In_File,
-                  Name => "Daten/RassenDatenbank");
+                  Name => "Datenbanken/RassenDatenbank");
 
          when False =>
             RassenDatenbank.StandardRassenDatenbankLaden;
@@ -208,4 +208,4 @@ package body EinlesenWerte is
       
    end EinlesenRassenDatenbank;
 
-end EinlesenWerte;
+end EinlesenDatenbanken;

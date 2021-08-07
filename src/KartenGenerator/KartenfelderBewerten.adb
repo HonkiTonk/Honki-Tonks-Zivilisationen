@@ -1,13 +1,14 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleDatentypen;
-use GlobaleDatentypen;
+with GlobaleKonstanten;
 
 with Karten, FelderwerteFestlegen;
 
 package body KartenfelderBewerten is
 
    procedure KartenfelderBewerten
+     -- Leerwert heineingeben um für alle Rassen die Werte zu berechnen, anderer Wert um für eine bestimmte Rasse die Werte zu berechnen.
+     (RasseExtern : in GlobaleDatentypen.Rassen_Enum)
    is
 
       task UnterwasserUnterirdischBewerten;
@@ -21,8 +22,8 @@ package body KartenfelderBewerten is
             XAchseUnterwasserSchleife:
             for XAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
-               FelderwerteFestlegen.KartenfelderBewerten (GenerierungExtern => True,
-                                                          KoordinatenExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert));
+               FelderwerteFestlegen.KartenfelderBewertenKleineSchleife (RasseExtern       => RasseExtern,
+                                                                        KoordinatenExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert));
                
             end loop XAchseUnterwasserSchleife;
          end loop YAchseUnterwasserSchleife;
@@ -39,8 +40,8 @@ package body KartenfelderBewerten is
             XAchseInneresSchleife:
             for XAchseInneresSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
-               FelderwerteFestlegen.KartenfelderBewerten (GenerierungExtern => True,
-                                                          KoordinatenExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert));
+               FelderwerteFestlegen.KartenfelderBewertenKleineSchleife (RasseExtern       => RasseExtern,
+                                                                        KoordinatenExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert));
                
             end loop XAchseInneresSchleife;
          end loop YAchseInneresSchleife;
@@ -54,8 +55,8 @@ package body KartenfelderBewerten is
          XAchseSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-            FelderwerteFestlegen.KartenfelderBewerten (GenerierungExtern => True,
-                                                       KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+            FelderwerteFestlegen.KartenfelderBewertenKleineSchleife (RasseExtern       => RasseExtern,
+                                                                     KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
                
          end loop XAchseSchleife;
       end loop YAchseSchleife;

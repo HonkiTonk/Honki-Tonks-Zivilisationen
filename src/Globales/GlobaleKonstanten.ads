@@ -171,7 +171,7 @@ package GlobaleKonstanten is
                                                             Hügel                   => False,
                                                             Sichtbar                => (others => False),
                                                             Fluss                   => GlobaleDatentypen.Leer,
-                                                            VerbesserungStraße      => GlobaleDatentypen.Leer,
+                                                            VerbesserungWeg         => GlobaleDatentypen.Leer,
                                                             VerbesserungGebiet      => GlobaleDatentypen.Leer,
                                                             Ressource               => GlobaleDatentypen.Leer,
                                                             DurchStadtBelegterGrund => 0,
@@ -181,12 +181,7 @@ package GlobaleKonstanten is
    LeerVerbesserungListe : constant DatenbankRecords.VerbesserungListeRecord := (
                                                                                  VerbesserungGrafik => ' ',
                                                                                  Passierbarkeit     => (others => False),
-                                                                                 Nahrungsbonus      => 0,
-                                                                                 Ressourcenbonus    => 0,
-                                                                                 Geldbonus          => 0,
-                                                                                 Wissensbonus       => 0,
-                                                                                 Verteidigungsbonus => 0,
-                                                                                 Bewertung          => (others => 0)
+                                                                                 VerbesserungWerte  => (others => (others => 0))
                                                                                 );
 
    LeerEinheitListe : constant DatenbankRecords.EinheitenListeRecord := (

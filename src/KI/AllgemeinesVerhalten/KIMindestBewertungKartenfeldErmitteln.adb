@@ -2,24 +2,19 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
+with KIKonstanten;
+
 with KartePositionPruefen, StadtSuchen;
 
 package body KIMindestBewertungKartenfeldErmitteln is
 
+   -- Später Rassen/Technolgie/Sonstigesabhängig die Mindestbewertung ermitteln
    function MindestBewertungKartenfeldStadtBauen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
-      case
-        EinheitRasseNummerExtern.Rasse
-      is
-         when GlobaleDatentypen.Menschen =>
-            MindestBewertungKartenfeld := 90;
-            
-         when others =>
-            MindestBewertungKartenfeld := 90;
-      end case;
+      MindestBewertungKartenfeld := KIKonstanten.KartenfeldBewertungStadtBauenMinimum (EinheitRasseNummerExtern.Rasse);
       
       EAchseSchleife:
       for EAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
@@ -28,8 +23,8 @@ package body KIMindestBewertungKartenfeldErmitteln is
             XAchseSchleife:
             for XAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
                               
-               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                                           ÄnderungExtern       => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
+               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                                                           ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                      
                case
                  KartenWert.XAchse
@@ -45,7 +40,7 @@ package body KIMindestBewertungKartenfeldErmitteln is
                         null;
                         
                      else
-                        MindestBewertungKartenfeld := MindestBewertungKartenfeld + 5;
+                        MindestBewertungKartenfeld := MindestBewertungKartenfeld + 2;
                      end if;
                end case;
                

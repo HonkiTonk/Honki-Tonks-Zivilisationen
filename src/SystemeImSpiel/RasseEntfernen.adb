@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
+with KartenfelderBewerten;
+
 package body RasseEntfernen is
 
    procedure RasseEntfernen
@@ -84,6 +86,7 @@ package body RasseEntfernen is
    is begin
       
       GlobaleVariablen.RassenImSpiel (RasseExtern) := GlobaleDatentypen.Spieler_KI;
+      KartenfelderBewerten.KartenfelderBewerten (RasseExtern => RasseExtern);
       
    end RasseAufKISetzen;
 

@@ -18,11 +18,25 @@ package Verbesserungen is
    
    procedure VerbesserungFertiggestellt;
    
+   
+   
+   function BeliebigeVerbesserungHierAnlegbar
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+          and
+            KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
 private
    
    Grund : GlobaleDatentypen.Karten_Grund_Enum;
 
-   Straßenwert : Positive;
+   Wegewert : Positive;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
@@ -41,7 +55,7 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
-   procedure VerbesserungStraße
+   procedure VerbesserungWeg
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
      with

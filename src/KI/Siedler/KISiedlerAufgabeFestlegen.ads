@@ -15,9 +15,7 @@ package KISiedlerAufgabeFestlegen is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
 private
-   
-   MindestBewertungKartenfeld : GlobaleDatentypen.GesamtproduktionStadt;
-   
+      
    NeueStadtPosition : GlobaleRecords.AchsenKartenfeldPositivRecord;   
 
    procedure StadtBauenPrüfung

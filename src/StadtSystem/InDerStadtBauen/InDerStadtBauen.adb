@@ -199,7 +199,7 @@ package body InDerStadtBauen is
            and
              EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Weltraum) = False
            and
-             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Unteridrisch) = False
+             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Unterirdisch) = False
            and
              EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Lava) = False
            and

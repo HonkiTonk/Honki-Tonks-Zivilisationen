@@ -106,10 +106,10 @@ package body GrafischeAnzeige is
                     RasseExtern              => GlobaleDatentypen.Leer);
            
          elsif
-           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße /= GlobaleDatentypen.Leer
+           Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg /= GlobaleDatentypen.Leer
          then
             Farben (EinheitExtern            => 0,
-                    VerbesserungExtern       => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungStraße,
+                    VerbesserungExtern       => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg,
                     RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund,
                     CursorExtern             => False,

@@ -102,7 +102,7 @@ package GlobaleDatentypen is
                               Wasser, Küstengewässer, Unter_Wasser, Unter_Küstengewässer,
                               Eis, Lava,
                               Tundra, Wüste, Hügel, Gebirge, Wald, Dschungel, Sumpf, Flachland, Hügel_Mit, Wolken, Weltraum, Erde, Erdgestein, Gestein,
-                              -- Ressource
+                              -- Ressourcen
                               Fisch, Wal,
                               Kohle, Eisen, Öl, Hochwertiger_Boden, Gold,
                               -- Fluss
@@ -124,6 +124,7 @@ package GlobaleDatentypen is
    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
    type KartenverbesserungEinheitenID is range 0 .. 100;
 
+   -- Immer dran denken, alle Wegearten am Schluss hinzufügen.
    type Karten_Verbesserung_Enum is (Leer,
                                      -- Städte
                                      Eigene_Hauptstadt, Eigene_Stadt,
@@ -131,7 +132,7 @@ package GlobaleDatentypen is
                                      -- Gebilde
                                      Farm, Mine,
                                      Festung, Sperre,
-                                     -- Straßen
+                                     -- Wege
                                      Straßenkreuzung_Vier, Straße_Waagrecht, Straße_Senkrecht, Straßenkurve_Unten_Rechts, Straßenkurve_Unten_Links, Straßenkurve_Oben_Rechts, Straßenkurve_Oben_Links,
                                      Straßenkreuzung_Drei_Oben, Straßenkreuzung_Drei_Unten, Straßenkreuzung_Drei_Rechts, Straßenkreuzung_Drei_Links, Straßenendstück_Links, Straßenendstück_Rechts,
                                      Straßenendstück_Unten, Straßenendstück_Oben, Straße_Einzeln);
@@ -142,7 +143,7 @@ package GlobaleDatentypen is
    subtype Karten_Verbesserung_Gebilde_Enum is Karten_Verbesserung_Enum range Farm .. Sperre;
    subtype Karten_Verbesserung_Gebilde_Friedlich_Enum is Karten_Verbesserung_Gebilde_Enum range Farm .. Mine;
    subtype Karten_Verbesserung_Gebilde_Kampf_Enum is Karten_Verbesserung_Gebilde_Enum range Festung .. Sperre;
-   subtype Karten_Verbesserung_Straße_Enum is Karten_Verbesserung_Enum range Straßenkreuzung_Vier .. Straße_Einzeln;
+   subtype Karten_Verbesserung_Weg_Enum is Karten_Verbesserung_Enum range Straßenkreuzung_Vier .. Karten_Verbesserung_Enum'Last;
 
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    type BelegterGrund is range 0 .. 18 * 1_000 + 100;
@@ -152,14 +153,13 @@ package GlobaleDatentypen is
    type Besondere_Ressourcen_Enum is (Leer, Kohle);
    subtype Besondere_Ressourcen_Verwendet_Enum is Besondere_Ressourcen_Enum range Kohle .. Besondere_Ressourcen_Enum'Last;
 
-   type Bewertung_Werte_Enum is (Feldwertung, Nahrung, Produktion, Geld, Wissen, Verteidigung);
+   type Bewertung_Werte_Enum is (Wertigkeit, Nahrung, Produktion, Geld, Wissen, Verteidigung);
    -- Für Karte
 
 
 
    -- Für Einheiten
    type Bewegung_Enum is (Leer, Keine_Bewegung_Möglich, Normale_Bewegung_Möglich, Beladen_Bewegung_Möglich, Entladen_Bewegung_Möglich, Gegner_Blockiert, Transporter_Stadt_Möglich);
-   -- type Befehle_Enum is (Keine, Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Einheit_Auflösen, Plündern);
 
    type MaximaleEinheitenMitNullWert is range 0 .. 1_000;
    subtype MaximaleEinheiten is MaximaleEinheitenMitNullWert range 1 .. MaximaleEinheitenMitNullWert'Last;
@@ -170,9 +170,10 @@ package GlobaleDatentypen is
    -- Passierbarkeit
    type Passierbarkeit_Enum is (Leer,
                                 Boden,
-                                Wasser, Küstenwasser, Unterwasser,
+                                Wasser, Küstenwasser,
+                                Unterwasser, Unterküstenwasser,
                                 Luft, Weltraum,
-                                Unteridrisch, Planeteninneres,
+                                Unterirdisch, Planeteninneres,
                                 Lava);
    subtype Passierbarkeit_Vorhanden_Enum is Passierbarkeit_Enum range Boden .. Passierbarkeit_Enum'Last;
    subtype Passierbarkeit_Fliegen_Enum is Passierbarkeit_Vorhanden_Enum range Luft .. Weltraum;

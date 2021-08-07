@@ -116,7 +116,7 @@ package body Cheat is
       Put_Line (Item => "AufgabeEins:" & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung'Wide_Wide_Image);
       Put_Line (Item => "AufgabeZwei:" & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
-      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Forschungsprojekt);
+      ForschungAllgemein.Beschreibung (IDExtern => GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Forschungsprojekt);
       
    end KarteInfosEinheiten;
    
@@ -126,16 +126,23 @@ package body Cheat is
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Put (Item => "Kartenfeldbewertung:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Felderwertung (RasseExtern)'Wide_Wide_Image);
-      Put_Line (Item => "    Aktuelle GrundID:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+      Put (Item => "Aktuelle GrundID: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund'Wide_Wide_Image);
-      Put_Line (Item => "Aktuelle Stadtbelegung:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+      Put_Line (Item => "    Aktuelle Stadtbelegung:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).DurchStadtBelegterGrund'Wide_Wide_Image);
-      Put (Item => "Straße:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungStraße'Wide_Wide_Image);
-      Put_Line (Item => "    Feldverbesserung:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+      Put (Item => "Weg: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungWeg'Wide_Wide_Image);
+      Put_Line (Item => "    Feldverbesserung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet'Wide_Wide_Image);
+      
+      RassenSchleife:
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+         
+         Put_Line (Item => "Kartenfeldbewertung " & RasseSchleifenwert'Wide_Wide_Image & ":"
+                   & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
+                     GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Felderwertung (RasseSchleifenwert)'Wide_Wide_Image);
+         
+      end loop RassenSchleife;
       
    end KarteInfosFeld;
    
@@ -148,7 +155,7 @@ package body Cheat is
       Put_Line (Item => "Aktuelle Rasse:" & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);
       Put_Line (Item => "KIAufgabe:" & GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
-      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Forschungsprojekt);
+      ForschungAllgemein.Beschreibung (IDExtern => GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Forschungsprojekt);
       
    end KarteStadtInfos;
 

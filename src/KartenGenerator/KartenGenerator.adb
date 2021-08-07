@@ -93,7 +93,7 @@ package body KartenGenerator is
       end case;
 
       Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Kartenfelder_Bewerten, GlobaleDatentypen.Anfangswert) := Clock;
-      KartenfelderBewerten.KartenfelderBewerten;
+      KartenfelderBewerten.KartenfelderBewerten (RasseExtern => GlobaleDatentypen.Leer);
       Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Kartenfelder_Bewerten, GlobaleDatentypen.Endwert) := Clock;
       Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Kartenfelder_Bewerten);
       

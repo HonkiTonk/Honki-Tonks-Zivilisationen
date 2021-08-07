@@ -12,6 +12,7 @@ package body StadtEntfernen is
       
       BelegteStadtfelderFreigeben (StadtRasseNummerExtern => StadtRasseNummerExtern);
       HeimatstädteEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      NeueHauptstadtSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerStadt;
       RasseEntfernen.RasseExistenzPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
       
@@ -29,7 +30,7 @@ package body StadtEntfernen is
          for XUmgebungFreigebenSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
          
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                        ÄnderungExtern   => (0, YUmgebungFreigebenSchleifenwert, XUmgebungFreigebenSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YUmgebungFreigebenSchleifenwert, XUmgebungFreigebenSchleifenwert));
          
             if
               KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
@@ -73,5 +74,40 @@ package body StadtEntfernen is
       end loop EinheitenSchleife;
       
    end HeimatstädteEntfernen;
+   
+   
+   
+   procedure NeueHauptstadtSetzen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      case
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ID
+      is
+         when GlobaleDatentypen.Eigene_Hauptstadt =>
+            null;
+            
+         when others =>
+            return;
+      end case;
+      
+      StadtSchleife:
+      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
+         
+         if
+           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtSchleifenwert).ID = GlobaleDatentypen.Leer
+           or
+             StadtSchleifenwert = StadtRasseNummerExtern.Platznummer
+         then
+            null;
+            
+         else
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtSchleifenwert).ID := Eigene_Hauptstadt;
+            return;
+         end if;
+         
+      end loop StadtSchleife;
+      
+   end NeueHauptstadtSetzen;
 
 end StadtEntfernen;
