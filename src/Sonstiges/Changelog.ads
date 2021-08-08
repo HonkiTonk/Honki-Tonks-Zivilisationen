@@ -1,8 +1,10 @@
 package Changelog is
    
-   -- Version 0.00.8170 => 0.00.81 (08.08.2021):
+   -- Version 0.00.8170 => 0.00.8190 (08.08.2021):
    
-   -- Forschungsbäume erweitert und rassenspezifisches Gamedesign betrieben.
+   -- Kleine Hintergrundgeschichten für die jeweiligen Rassen geschrieben, welche ihre Lebensräume enthalten und eine kurze Beschreibung ihrer Eigenschaften/Entwicklungen liefern.
+   -- TextDatenbank angelegt.
+   -- Angefangen die Techbäume für mich grafisch aufzuarbeiten.
    -- Kleinigkeiten korrigiert.
    
    
