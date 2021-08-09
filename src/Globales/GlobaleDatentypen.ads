@@ -201,7 +201,7 @@ package GlobaleDatentypen is
 
 
    -- Für Forschung
-   subtype ForschungIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 84;
+   subtype ForschungIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 74;
    subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
 
    type AnforderungForschungArray is array (1 .. 4) of ForschungIDMitNullWert;

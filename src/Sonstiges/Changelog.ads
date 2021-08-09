@@ -1,10 +1,180 @@
 package Changelog is
    
+   -- Version 0.00.8 => 0.00.8 (01.09.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (31.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (30.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (29.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (28.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (27.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (26.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (25.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (24.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (23.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (22.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (21.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (20.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (19.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (18.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (17.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (16.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (15.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (14.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (13.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (12.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8 => 0.00.8 (11.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8210 => 0.00.8 (10.08.2021):
+   
+   -- 
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
+   -- Version 0.00.8190 => 0.00.8210 (09.08.2021):
+   
+   -- Die Techbäume für mich grafisch weiter konstruiert.
+   -- Den menschlichen Techbaum vorerst vervollständigt und eingebaut.
+   -- Alle Rassen nutzen fürs Erste den menschlichen Techbaum.
+   -- Kleinigkeiten korrigiert.
+   
+   
+   
    -- Version 0.00.8170 => 0.00.8190 (08.08.2021):
    
    -- Kleine Hintergrundgeschichten für die jeweiligen Rassen geschrieben, welche ihre Lebensräume enthalten und eine kurze Beschreibung ihrer Eigenschaften/Entwicklungen liefern.
    -- TextDatenbank angelegt.
-   -- Angefangen die Techbäume für mich grafisch aufzuarbeiten.
+   -- Angefangen die Techbäume für mich persönlich grafisch aufzuarbeiten.
    -- Kleinigkeiten korrigiert.
    
    
