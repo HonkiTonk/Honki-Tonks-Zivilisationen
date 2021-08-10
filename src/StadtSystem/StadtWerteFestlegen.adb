@@ -2,34 +2,39 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Karten, KartePositionPruefen, ProduktionFeld;
+with Karten, KartePositionPruefen, ProduktionFeld, StadtUmgebungsbereichFestlegen;
 
 package body StadtWerteFestlegen is
+   
+   procedure StadtUmgebungGrößeFestlegenTechnologie
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      StadtSchleife:
+      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
+         
+         case
+           GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).ID
+         is
+            when GlobaleKonstanten.LeerStadtID =>
+               null;
+               
+            when others =>
+               StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert));
+         end case;
+         
+      end loop StadtSchleife;
+      
+   end StadtUmgebungGrößeFestlegenTechnologie;
+   
+   
 
    procedure StadtUmgebungGrößeFestlegen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin    
             
       GrößeAlt := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
-        
-      if
-        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (4) = True
-        and
-          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) >= EinwohnerZweitesWachstum
-      then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := 3;
-         
-      elsif
-        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (2) = True
-        and
-          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) >= EinwohnerErstesWachstum
-      then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := 2;         
-                  
-      else
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := 1;
-      end if;
-            
+      StadtUmgebungsbereichFestlegen.Rassenaufteilung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       GrößeNeu := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
 
       -- StadtUmgebungGröße darf hier nicht genutzt werden, damit bei einer Verkleinerung auch alle Felder zurückgenommen werden können.

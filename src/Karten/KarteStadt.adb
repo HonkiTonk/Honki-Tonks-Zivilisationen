@@ -159,6 +159,28 @@ package body KarteStadt is
                                            EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
                                            RasseExtern        => GlobaleDatentypen.Leer);
                end if;
+               
+            elsif
+              YAchseSchleifenwert = 3
+              and
+                XAchseSchleifenwert < 3
+            then
+               if
+                 GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 24) = True
+               then
+                  Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 24).GebäudeGrafik);
+
+               else
+                  GrafischeAnzeige.Farben (EinheitExtern      => 0,
+                                           VerbesserungExtern => GlobaleDatentypen.Leer,
+                                           RessourceExtern    => GlobaleDatentypen.Leer,
+                                           GrundExtern        => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.EAchse,
+                                             GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.YAchse,
+                                             GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position.XAchse).Grund,
+                                           CursorExtern       => False,
+                                           EigeneRasseExtern  => StadtRasseNummerExtern.Rasse,
+                                           RasseExtern        => GlobaleDatentypen.Leer);
+               end if;
 
             else
                GrafischeAnzeige.Farben (EinheitExtern      => 0,
@@ -198,11 +220,15 @@ package body KarteStadt is
       end case;
       
       if
-        (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 1
-         or
-           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 2)
+        ((GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 1
+          or
+            GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 2)
          and
-           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse < 13
+           GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse < 13)
+        or
+          (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse = 3
+           and
+             GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse < 3)
       then
          Aufschlag := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse;
          
@@ -423,7 +449,7 @@ package body KarteStadt is
         StadtRasseNummer.Platznummer
       is
          when GlobaleKonstanten.LeerEinheitStadtNummer =>
-            -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat. Kann entfernt werden?
+            -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat. Sicherheitshalber nicht entfernen?
             return;
       
          when others =>

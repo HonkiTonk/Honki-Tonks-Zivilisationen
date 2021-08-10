@@ -4,9 +4,6 @@ with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package StadtWerteFestlegen is
-   
-   EinwohnerErstesWachstum : constant GlobaleDatentypen.ProduktionFeld := 10;
-   EinwohnerZweitesWachstum : constant GlobaleDatentypen.ProduktionFeld := 20;
 
    procedure BewirtschaftbareFelderBelegen
      (ZuwachsOderSchwundExtern : in Boolean;
@@ -16,6 +13,12 @@ package StadtWerteFestlegen is
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebaut'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   procedure StadtUmgebungGrößeFestlegenTechnologie
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure StadtUmgebungGrößeFestlegen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

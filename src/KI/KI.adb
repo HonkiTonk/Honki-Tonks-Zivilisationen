@@ -77,9 +77,6 @@ package body KI is
          when GlobaleDatentypen.Arbeiter =>
             KISiedler.KISiedler (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when GlobaleDatentypen.Unbewaffnet =>
-            null;
-            
          when GlobaleDatentypen.Nahkämpfer =>
             KINahkampfBoden.KINahkampfBoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             

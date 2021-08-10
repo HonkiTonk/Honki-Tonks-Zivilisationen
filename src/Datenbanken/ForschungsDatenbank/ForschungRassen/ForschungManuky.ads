@@ -478,6 +478,14 @@ package ForschungManuky is
                                   3 => 71,
                                   others => 0)),
 
+      -- Magnetische Kampfsysteme
+      74 =>
+        (PreisForschung       => 100,
+         AnforderungForschung => (1 => 71,
+                                  2 => 68,
+                                  3 => 69,
+                                  others => 0)),
+
       others => GlobaleKonstanten.LeerForschungListe
      );
 

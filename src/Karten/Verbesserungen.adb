@@ -94,7 +94,7 @@ package body Verbesserungen is
       is
          when GlobaleDatentypen.Straße_Bauen =>
             VerbesserungWeg (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                 GrundExtern              => Grund);
+                             GrundExtern              => Grund);
          
          when GlobaleDatentypen.Mine_Bauen =>
             VerbesserungMine (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -154,25 +154,6 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
-        and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
-        and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
-      then
-         VerbesserungFehler (WelcherFehlerExtern => 18);
-         return;
-         
-      elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
-        and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
-        and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
-      then
-         return;
-      
-      elsif
         KartenAllgemein.FeldWeg (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
       in
         GlobaleDatentypen.Karten_Verbesserung_Weg_Enum'Range
@@ -217,9 +198,9 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Menschen
         and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (6) = False
         and
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
@@ -227,9 +208,9 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Menschen
         and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (3) = False
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (6) = False
         and
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
@@ -299,9 +280,9 @@ package body Verbesserungen is
    is begin
 
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Menschen
         and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (1) = False
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
         and
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
@@ -309,9 +290,9 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
+        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Menschen
         and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (1) = False
+          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
         and
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
@@ -389,25 +370,6 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
-        and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
-        and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
-      then
-         VerbesserungFehler (WelcherFehlerExtern => 18);
-         return;
-         
-      elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
-        and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
-        and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
-      then
-         return;
-      
-      elsif
         KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Festung
       then
          VerbesserungFehler (WelcherFehlerExtern => 4);
@@ -523,29 +485,6 @@ package body Verbesserungen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
    is begin
-      
-      if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
-        and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
-        and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
-      then
-         VerbesserungFehler (WelcherFehlerExtern => 18);
-         return;
-         
-      elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Moru_Phisihl
-        and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (5) = False
-        and
-          GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
-      then
-         return;
-      
-      else
-         null;
-      end if;
 
       case
         GrundExtern

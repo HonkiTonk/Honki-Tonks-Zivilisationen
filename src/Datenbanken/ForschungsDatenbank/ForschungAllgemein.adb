@@ -7,7 +7,9 @@ with GlobaleTexte;
 
 with ForschungsDatenbank;
 
-with Anzeige, Eingabe, KIForschung;
+with Anzeige, Eingabe, StadtWerteFestlegen, StadtUmgebungsbereichFestlegen;
+
+with KIForschung;
 
 package body ForschungAllgemein is
 
@@ -413,6 +415,16 @@ package body ForschungAllgemein is
                  >= ForschungsDatenbank.ForschungListe (RasseSchleifenwert, GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt).PreisForschung
                then
                   GlobaleVariablen.Wichtiges (RasseSchleifenwert).Erforscht (GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt) := True;
+                  if
+                    GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Anfangswert)
+                    or
+                      GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Endwert)
+                  then
+                     StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseSchleifenwert);
+
+                  else
+                     null;
+                  end if;
                   GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt := AuswahlForschungNeu (RasseExtern => RasseSchleifenwert);
                   GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsmenge := 0;
                   ForschungZeit (RasseExtern => RasseSchleifenwert);
@@ -432,8 +444,19 @@ package body ForschungAllgemein is
                  >= ForschungsDatenbank.ForschungListe (RasseSchleifenwert, GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt).PreisForschung
                then
                   GlobaleVariablen.Wichtiges (RasseSchleifenwert).Erforscht (GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt) := True;
+                  if
+                    GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Anfangswert)
+                    or
+                      GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Endwert)
+                  then
+                     StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseSchleifenwert);
+
+                  else
+                     null;
+                  end if;
                   GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt := 0;
                   KIForschung.Forschung (RasseExtern => RasseSchleifenwert);
+                  StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseSchleifenwert);
             
                else
                   null;

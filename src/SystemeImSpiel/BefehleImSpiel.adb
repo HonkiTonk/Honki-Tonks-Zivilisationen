@@ -240,7 +240,7 @@ package body BefehleImSpiel is
       case
         EinheitNummer
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerEinheitStadtNummer =>
             return;
             
          when others =>

@@ -1,24 +1,24 @@
-Diese Verbesserung kann nicht auf diesem Grund gebaut werden.
-Dieser Befehl kann hier nicht befolgt werden.
-Diese Einheit kann diesen Befehl nicht ausführen.
-Diese Verbesserung existiert hier bereits.
-Diese Einheit verfügt bereits über volle Lebenspunkte.
-Zu Nahe an einer anderen Stadt.
-Sie haben das Maximum von 100 Städte pro Rasse erreicht und können keine weiteren Städte bauen.
-Zum Ausführen des Befehl benötigt die Einheit mindestens einen Bewegungspunkt.
-Spielstand konnte nicht geladen werden.
-Spielstand konnte nicht gespeichert werden.
-Die Einheit konnte nicht fertiggestellt werden, da es keinen freien Platz zum positionieren gibt.
-Keine gültige Koordinatenangabe.
-Die Zahl ist zu groß.
-Die Eingabe darf nur Zahlen enthalten.
-Die Zahl ist zu klein.
-Für folgende Rasse konnte kein Startpunkt festgelegt werden:
-Diese Rasse wird entfernt. Das Problem ist bekannt und eine Lösung wird bereits gesucht.
-Für diese Verbesserung fehlt der nötige technologische Fortschritt.
-Sie haben das Maximum von 1000 Einheiten pro Rasse erreicht und können keine weiteren Einheiten bauen.
-Keine Diplomatie mit anderen Rassen möglich.
-Keine Diplomatie mit dieser Rasse möglich.
-Dies ist der aktuelle Status.
-Sie müssen erst den Krieg beenden bevor sie diese diplomatische Vereinbarung vorschlagen können.
-Sie müssen erst den Nichtangriffspakt beenden bevor sie den Krieg erklären können.
+This improvement cannot be built on this ground.
+This command cannot be followed here.
+This unit cannot execute this command.
+This improvement already exists here.
+This unit already has full health points.
+Too close to another city.
+You have reached the maximum of 100 cities per race and cannot build any more cities.
+The unit needs at least one movement point to execute the command.
+The game could not be loaded.
+The game could not be saved.
+The unit could not be completed because there is no free space to position.
+No valid coordinates.
+The number is too big.
+The entry may only contain numbers.
+The number is too small.
+No starting point could be set for the following breed:
+This breed will be removed. The problem is known and a solution is already being sought.
+The technological progress required for this improvement is lacking.
+You have reached the maximum of 1000 units per race and cannot build any more units.
+No diplomacy with other races possible.
+No diplomacy possible with this breed.
+This is the current status.
+They must first end the war before they can propose this diplomatic arrangement.
+They have to end the non-aggression pact before they can declare war.

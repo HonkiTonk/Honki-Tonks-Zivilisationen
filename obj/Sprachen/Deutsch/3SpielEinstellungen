@@ -1,13 +1,13 @@
 Kartengröße wählen:
-Winzig (20x20)
-Klein (40x40)
-Mittel (80x80)
-Rechteck (120x80)
-Großes Rechteck (120x160)
-Groß (160x160)
-Riesig (240x240)
-Gigantisch (320x320)
-Absurd (1000x1000) (Erzeugt sehr große Speicherdateien)
+Winzig (5x20x20 Felder)
+Klein (5x40x40 Felder)
+Mittel (5x80x80 Felder)
+Rechteck (5x120x80 Felder)
+Großes Rechteck (5x120x160 Felder)
+Groß (5x160x160 Felder)
+Riesig (5x240x240 Felder)
+Gigantisch (5x320x320 Felder)
+Absurd (5x1000x1000 Felder)
 Benutzerdefiniert
 Zufällig
 Hauptmenü
@@ -76,9 +76,9 @@ Torus
 Kugel
 Viereck
 Kugel gedreht
-Tugel (was auch immer es ist, es existiert und funktioniert, irgendwie)
-Tugel gedreht (nicht eingebaut)
-Tugel extrem (nicht eingebaut)
+Tugel (besser nicht benutzen)
+Tugel gedreht (besser nicht benutzen)
+Tugel extrem (besser nicht benutzen)
 Zurück
 Hauptmenü
 Spiel beenden

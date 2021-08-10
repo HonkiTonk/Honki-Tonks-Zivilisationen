@@ -4,7 +4,7 @@ with RassenAllgemein;
 
 package body FeldTesten is
 
-   function BelegterGrundTesten     
+   function BelegterGrundTesten
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       KoordinatenExtern : GlobaleRecords.AchsenKartenfeldPositivRecord)
       return Boolean
@@ -42,5 +42,25 @@ package body FeldTesten is
       end if;
    
    end BelegterGrundLeerTesten;
+   
+   
+   
+   function BestimmteStadtBelegtGrund
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      KoordinatenExtern : GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+   is begin
+     
+      if
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund
+          = GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse) * 1_000 + StadtRasseNummerExtern.Platznummer)
+      then
+         return True;
+         
+      else
+         return False;
+      end if;
+      
+   end BestimmteStadtBelegtGrund;
 
 end FeldTesten;

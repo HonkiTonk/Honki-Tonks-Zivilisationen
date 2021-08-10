@@ -146,19 +146,19 @@ package body Diplomatie is
                                         TextDateiExtern   => GlobaleTexte.Diplomatie,
                                         FrageZeileExtern  => 3,
                                         ErsteZeileExtern  => 9,
-                                        LetzteZeileExtern => 15);
+                                        LetzteZeileExtern => 12);
             
       case
         StatusAuswahl
       is
-         when 1 .. 5 =>
+         when 1 .. 2 =>
             KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
                                                                                      RasseZweiExtern   => KontaktierteRasseExtern,
                                                                                      NeuerStatusExtern => GlobaleDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));
             return 1;
             
             -- Ist dazu da um im Kriegsfall sofort das Diplomatiemenü zu schließen.
-         when 6 =>
+         when 3 =>
             KriegJetzt := DiplomatischerZustandAenderbar.StatusÄnderbarkeitPrüfen (RasseEinsExtern   => RasseExtern,
                                                                                      RasseZweiExtern   => KontaktierteRasseExtern,
                                                                                      NeuerStatusExtern => GlobaleDatentypen.Status_Untereinander_Enum'Val (StatusAuswahl));

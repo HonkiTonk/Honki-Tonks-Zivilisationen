@@ -32,7 +32,7 @@ package body KIStadt is
       end if;
       
       SiedlerVorhanden := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern         => StadtRasseNummerExtern.Rasse,
-                                                                       EinheitTypExtern    => GlobaleDatentypen.Unbewaffnet,
+                                                                       EinheitTypExtern    => GlobaleDatentypen.Arbeiter,
                                                                        GesuchteMengeExtern => 2);
       
       if

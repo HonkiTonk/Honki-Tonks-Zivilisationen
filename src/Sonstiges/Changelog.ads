@@ -154,10 +154,20 @@ package Changelog is
    
    
    
-   -- Version 0.00.8210 => 0.00.8 (10.08.2021):
+   -- Version 0.00.8210 => 0.00.8240 (10.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Menschlichen Forschungsbaum verfeinert.
+   -- Menschliche Einheitendatenbank vorerst vervollständigt.
+   -- Umgebungsgrößenänderung von Städten an die aktuell vorhandenen Forschungsbäume angepasst.
+   -- Grundlegendes System angelegt um später die Änderung der Stadtumgebungsgröße an jede Rasse individuell anzupassen.
+   -- Die Stadtumgebungsgrößenänderungen finden jetzt nicht nur statt wenn die benötigten Bevölkerungen erreicht werden, sondern auch wenn die entsprechenden Technologien erforscht werden.
+   -- Es ist jetzt als Mensch möglich, die entsprechenden erforschten Technologien vorausgesetzt, Städte auf dem Wasser, Unterwasser, Unterirdisch, im Planeteninneren, in der Luft und im Orbit zu bauen.
+   -- Fehler behoben bei dem durch manuelle Arbeiterplatzierung ein Kartenfeld von mehreren Städte bewirtschaftet werden konnte.
+   -- Simple englische Übersetzung eingebaut, welche ab jetzt auch beibehalten werden soll.
+   -- Menschliche Gebäudedatenbank stark erweitert und fürs Erste als Standard für alle Rassen gesetzt.
+   -- Stadtanzeige für die neuen Gebäude erweitert.
+   -- Angefangen Verbesserungen an die neuen Techbaum anzupassen.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    

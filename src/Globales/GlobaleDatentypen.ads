@@ -178,8 +178,8 @@ package GlobaleDatentypen is
    subtype Passierbarkeit_Vorhanden_Enum is Passierbarkeit_Enum range Boden .. Passierbarkeit_Enum'Last;
    subtype Passierbarkeit_Fliegen_Enum is Passierbarkeit_Vorhanden_Enum range Luft .. Weltraum;
 
-   type Einheit_Art_Enum is (Leer, Arbeiter, Unbewaffnet, Nahkämpfer, Fernkämpfer, Beides, Sonstiges);
-   subtype Einheit_Art_Verwendet_Enum is Einheit_Art_Enum range Unbewaffnet .. Einheit_Art_Enum'Last;
+   type Einheit_Art_Enum is (Leer, Arbeiter, Nahkämpfer, Fernkämpfer, Beides, Sonstiges);
+   subtype Einheit_Art_Verwendet_Enum is Einheit_Art_Enum range Arbeiter .. Einheit_Art_Enum'Last;
 
    type Permanente_Kosten_Enum is (Leer, Nahrung, Geld, Ressourcen, Hier_Spezielle_Ressourcen_Einbauen);
    subtype Permanente_Kosten_Verwendet_Enum is Permanente_Kosten_Enum range Nahrung .. Permanente_Kosten_Enum'Last;
@@ -192,7 +192,7 @@ package GlobaleDatentypen is
 
 
    -- Für Gebäude
-   subtype GebäudeID is KartenverbesserungEinheitenID range 1 .. 25;
+   subtype GebäudeID is KartenverbesserungEinheitenID range 1 .. 27;
 
    type Gebäude_Spezielle_Eigenschaften_Enum is (Leer, Eigenschaft);
    subtype Gebäude_Spezielle_Eigenschaften_Verwendet_Enum is Gebäude_Spezielle_Eigenschaften_Enum range Eigenschaft .. Gebäude_Spezielle_Eigenschaften_Enum'Last;
@@ -201,7 +201,7 @@ package GlobaleDatentypen is
 
 
    -- Für Forschung
-   subtype ForschungIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 74;
+   subtype ForschungIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 75;
    subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
 
    type AnforderungForschungArray is array (1 .. 4) of ForschungIDMitNullWert;
