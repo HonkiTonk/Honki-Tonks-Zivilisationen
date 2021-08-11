@@ -16,7 +16,7 @@ package Anzeige is
    end record;
    
    -- Im Array immer die größte Auswahlfläche reinschreiben, damit es bei allen funktioniert.
-   type AlgemeineAnzeigeTextArray is array (GlobaleDatentypen.KartenverbesserungEinheitenID'First + 1 .. GlobaleDatentypen.KartenverbesserungEinheitenID'Last) of AllgemeineAnzeigeTextRecord;
+   type AlgemeineAnzeigeTextArray is array (GlobaleDatentypen.KartenverbesserungEinheitenID'First + 2 .. GlobaleDatentypen.KartenverbesserungEinheitenID'Last) of AllgemeineAnzeigeTextRecord;
    AllgemeineAnzeigeText : AlgemeineAnzeigeTextArray;
 
    procedure AnzeigeOhneAuswahlNeu
@@ -87,16 +87,4 @@ private
 
    TextNeu : Unbounded_Wide_Wide_String;
    
-   type WelcheDateienWelcheTexteRecord is record
-            
-      TextDatei : GlobaleDatentypen.TextDateien;
-
-      TextAnfangZeile : GlobaleDatentypen.TextZeilen;
-      TextEndeZeile : GlobaleDatentypen.TextZeilen;
-      
-   end record;
-   
-   type WelcheDateienWelcheTexteArray is array (0 .. 21, 0 .. 84) of WelcheDateienWelcheTexteRecord;
-   WelcheDateienWelcheTexte : constant WelcheDateienWelcheTexteArray := (others => (others => (0, 0, 0)));
-
 end Anzeige;

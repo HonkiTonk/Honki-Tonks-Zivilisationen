@@ -34,7 +34,7 @@ package body StadtWerteFestlegen is
    is begin    
             
       GrößeAlt := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
-      StadtUmgebungsbereichFestlegen.Rassenaufteilung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtUmgebungsbereichFestlegen.StadtUmgebungsbereichFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       GrößeNeu := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
 
       -- StadtUmgebungGröße darf hier nicht genutzt werden, damit bei einer Verkleinerung auch alle Felder zurückgenommen werden können.

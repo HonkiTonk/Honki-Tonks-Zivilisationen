@@ -140,17 +140,19 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (12.08.2021):
+   -- Version 0.00.8250 => 0.00.8 (12.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (11.08.2021):
+   -- Version 0.00.8240 => 0.00.8250 (11.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Angefangen eine Prüfung ob von einer Rasse auf einem bestimmten Feld eine Verbesserung/Weg angelegt werden kann einzubauen.
+   -- Unnötigen Code gelöscht und Dinge zusammengefasst.
+   -- Fehler behoben der die aktuelle Beschäftigung falsch anzeigte.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt.
    
    
    

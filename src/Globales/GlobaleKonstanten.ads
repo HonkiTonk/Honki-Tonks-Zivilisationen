@@ -65,7 +65,7 @@ package GlobaleKonstanten is
 
    -- Für Einheiten/Städte
    -- Wird für die Textanzeige benötigt
-   EinheitBefehlAbzug : constant Positive := 19;
+   EinheitBefehlAbzug : constant Positive := 21;
 
    LeerEinheitStadtNummer : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := GlobaleDatentypen.MaximaleEinheitenMitNullWert'First;
    LeerTransportiertWirdTransportiert : constant GlobaleDatentypen.MaximaleEinheitenMitNullWert := GlobaleDatentypen.MaximaleEinheitenMitNullWert'First;
@@ -73,13 +73,240 @@ package GlobaleKonstanten is
    LeerEinheitenID : constant GlobaleDatentypen.EinheitenIDMitNullWert := GlobaleDatentypen.EinheitenIDMitNullWert'First;
    LeerStadtID : constant GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum := GlobaleDatentypen.Leer;
 
-   EinwohnerErstesWachstum : constant GlobaleDatentypen.ProduktionFeld := 10;
-   EinwohnerZweitesWachstum : constant GlobaleDatentypen.ProduktionFeld := 20;
-
    GebäudeAufschlag : constant Positive := 1_000;
    EinheitAufschlag : constant Positive := 10_000;
 
    RassenMulitplikationWert : constant GlobaleDatentypen.BelegterGrund := 1_000;
+
+   type StadtUmgebungWachstumArray is array (GlobaleDatentypen.Anfang_Ende_Enum'Range, GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.ProduktionFeld;
+   StadtUmgebungWachstum : constant StadtUmgebungWachstumArray := (
+                                                                   GlobaleDatentypen.Anfangswert =>
+                                                                     (
+                                                                      GlobaleDatentypen.Menschen         => 10,
+                                                                      GlobaleDatentypen.Kasrodiah        => 10,
+                                                                      GlobaleDatentypen.Lasupin          => 10,
+                                                                      GlobaleDatentypen.Lamustra         => 10,
+                                                                      GlobaleDatentypen.Manuky           => 10,
+                                                                      GlobaleDatentypen.Suroka           => 10,
+                                                                      GlobaleDatentypen.Pryolon          => 10,
+                                                                      GlobaleDatentypen.Talbidahr        => 10,
+                                                                      GlobaleDatentypen.Moru_Phisihl     => 10,
+                                                                      GlobaleDatentypen.Larinos_Lotaris  => 10,
+                                                                      GlobaleDatentypen.Carupex          => 10,
+                                                                      GlobaleDatentypen.Alary            => 10,
+                                                                      GlobaleDatentypen.Tesorahn         => 10,
+                                                                      GlobaleDatentypen.Natries_Zermanis => 10,
+                                                                      GlobaleDatentypen.Tridatus         => 10,
+                                                                      GlobaleDatentypen.Senelari         => 10,
+                                                                      GlobaleDatentypen.Aspari_2         => 10,
+                                                                      GlobaleDatentypen.Ekropa           => 10
+                                                                     ),
+
+                                                                   GlobaleDatentypen.Endwert =>
+                                                                     (
+                                                                      GlobaleDatentypen.Menschen         => 20,
+                                                                      GlobaleDatentypen.Kasrodiah        => 20,
+                                                                      GlobaleDatentypen.Lasupin          => 20,
+                                                                      GlobaleDatentypen.Lamustra         => 20,
+                                                                      GlobaleDatentypen.Manuky           => 20,
+                                                                      GlobaleDatentypen.Suroka           => 20,
+                                                                      GlobaleDatentypen.Pryolon          => 20,
+                                                                      GlobaleDatentypen.Talbidahr        => 20,
+                                                                      GlobaleDatentypen.Moru_Phisihl     => 20,
+                                                                      GlobaleDatentypen.Larinos_Lotaris  => 20,
+                                                                      GlobaleDatentypen.Carupex          => 20,
+                                                                      GlobaleDatentypen.Alary            => 20,
+                                                                      GlobaleDatentypen.Tesorahn         => 20,
+                                                                      GlobaleDatentypen.Natries_Zermanis => 20,
+                                                                      GlobaleDatentypen.Tridatus         => 20,
+                                                                      GlobaleDatentypen.Senelari         => 20,
+                                                                      GlobaleDatentypen.Aspari_2         => 20,
+                                                                      GlobaleDatentypen.Ekropa           => 20
+                                                                     )
+                                                                  );
+
+   type TechnologieVerbesserungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range) of GlobaleDatentypen.ForschungIDNichtMöglich;
+   TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
+                                                                       GlobaleDatentypen.Menschen =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Kasrodiah =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Lasupin =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Lamustra =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Manuky =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Suroka =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Pryolon =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Talbidahr =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Moru_Phisihl =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Larinos_Lotaris =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Carupex =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Alary =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Tesorahn =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Natries_Zermanis =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Tridatus =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Senelari =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Aspari_2 =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         ),
+
+                                                                       GlobaleDatentypen.Ekropa =>
+                                                                         (
+                                                                          GlobaleDatentypen.Straße_Bauen       => 0,
+                                                                          GlobaleDatentypen.Wald_Aufforsten    => 0,
+                                                                          GlobaleDatentypen.Mine_Bauen         => 6,
+                                                                          GlobaleDatentypen.Farm_Bauen         => 2,
+                                                                          GlobaleDatentypen.Festung_Bauen      => 11,
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                         )
+                                                                      );
    -- Für Einheiten/Städte
 
 

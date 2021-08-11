@@ -5,7 +5,7 @@ use GlobaleDatentypen;
 
 package StadtUmgebungsbereichFestlegen is
    
-   type TechnologieUmgebungsgrößeArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Anfang_Ende_Enum'Range) of GlobaleDatentypen.ForschungIDMitNullWert;
+   type TechnologieUmgebungsgrößeArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Anfang_Ende_Enum'Range) of GlobaleDatentypen.ForschungID;
    TechnologieUmgebungsgröße : constant TechnologieUmgebungsgrößeArray := (
                                                                                GlobaleDatentypen.Menschen =>
                                                                                  (GlobaleDatentypen.Anfangswert => 19,
@@ -80,7 +80,7 @@ package StadtUmgebungsbereichFestlegen is
                                                                                   GlobaleDatentypen.Endwert     => 43)
                                                                               );
 
-   procedure Rassenaufteilung
+   procedure StadtUmgebungsbereichFestlegen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
@@ -90,58 +90,7 @@ package StadtUmgebungsbereichFestlegen is
    
 private
    
-   procedure StadtUmgebungMenschen
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungKasrodiah
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungLasupin
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungLamustra
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungManuky
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungSuroka
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungPryolon
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungTalbidahr
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungMoruPhisihl
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungLarinosLotaris
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungCarupex
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungAlary
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungTesorahn
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-     
-   procedure StadtUmgebungNatriesZermanis
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungTridatus
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungSenelari
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungAspari2
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
-   
-   procedure StadtUmgebungEkropa
+   procedure StadtUmgebungErmitteln
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
 
 end StadtUmgebungsbereichFestlegen;

@@ -9,37 +9,6 @@ with EinheitenDatenbank;
 with Anzeige, FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, FeldTesten, KartenAllgemein, WichtigesSetzen, EinheitenMeldungenSetzen;
 
 package body Verbesserungen is
-   
-   -- Hierfür erst die Forschungsbäume erweitern und fertigstellen.
-   function BeliebigeVerbesserungHierAnlegbar
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Boolean
-   is begin
-      
-      case
-        RasseExtern
-      is
-         when GlobaleDatentypen.Menschen =>
-            null;
-            
-         when others =>
-            null;
-      end case;
-      
-      case
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund
-      is
-         when GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range =>
-            return False;
-            
-         when others =>
-            return True;
-      end case;
-      
-   end BeliebigeVerbesserungHierAnlegbar;
-   
-   
 
    procedure Verbesserung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -198,9 +167,7 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Menschen
-        and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (6) = False
+        GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (GlobaleKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Mine_Bauen)) = False
         and
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
@@ -208,9 +175,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Menschen
-        and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (6) = False
+        GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (GlobaleKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Mine_Bauen)) = False
         and
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
@@ -280,9 +245,7 @@ package body Verbesserungen is
    is begin
 
       if
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Menschen
-        and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
+        GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (GlobaleKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Farm_Bauen)) = False
         and
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
@@ -290,9 +253,7 @@ package body Verbesserungen is
          return;
          
       elsif
-        EinheitRasseNummerExtern.Rasse = GlobaleDatentypen.Menschen
-        and
-          GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (2) = False
+        GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (GlobaleKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Farm_Bauen)) = False
         and
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
@@ -369,7 +330,13 @@ package body Verbesserungen is
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
    is begin
       
+      
       if
+        GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (GlobaleKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Festung_Bauen)) = False
+      then
+         return;
+         
+      elsif
         KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Festung
       then
          VerbesserungFehler (WelcherFehlerExtern => 4);
@@ -486,23 +453,30 @@ package body Verbesserungen is
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
    is begin
 
-      case
-        GrundExtern
-      is
-         when GlobaleDatentypen.Wald | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Roden_Trockenlegen;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 3;
+      if
+        GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (GlobaleKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Roden_Trockenlegen)) = False
+      then
+         null;
+         
+      else
+         case
+           GrundExtern
+         is
+            when GlobaleDatentypen.Wald | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Roden_Trockenlegen;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 3;
               
-         when others =>
-            if
-              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
-            then
-               VerbesserungFehler (WelcherFehlerExtern => 2);
+            when others =>
+               if
+                 GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
+               then
+                  VerbesserungFehler (WelcherFehlerExtern => 2);
                
-            else
-               null;
-            end if;
-      end case;
+               else
+                  null;
+               end if;
+         end case;
+      end if;
       
    end VerbesserungRoden;
    
@@ -743,7 +717,7 @@ package body Verbesserungen is
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger := GlobaleDatentypen.Nicht_Vorhanden;
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger := GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger;
          end case;
-                        
+         
       else
          null;
       end if;

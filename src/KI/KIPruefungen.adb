@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIKonstanten, KIDatentypen;
 
-with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, RassenAllgemein, Verbesserungen;
+with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, RassenAllgemein, VerbesserungenAnlegbarErmitteln;
 
 package body KIPruefungen is
    
@@ -75,8 +75,9 @@ package body KIPruefungen is
                                                                                NeuePositionExtern       => StadtVerbesserungUmgebungKoordinaten)
                     = True
                     and
-                      Verbesserungen.BeliebigeVerbesserungHierAnlegbar (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                                                        KoordinatenExtern => StadtVerbesserungUmgebungKoordinaten) = True
+                      VerbesserungenAnlegbarErmitteln.VerbesserungenAnlegbar (RasseExtern              => StadtRasseNummerExtern.Rasse,
+                                                                              KoordinatenExtern        => StadtVerbesserungUmgebungKoordinaten,
+                                                                              WelcheVerbesserungExtern => GlobaleDatentypen.Farm_Bauen) = True
                     and
                       (Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse,
                                          StadtVerbesserungUmgebungKoordinaten.YAchse,

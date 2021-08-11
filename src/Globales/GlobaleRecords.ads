@@ -75,7 +75,6 @@ package GlobaleRecords is
    type KIBewegungPlanArray is array (1 .. 15) of GlobaleRecords.AchsenKartenfeldPositivRecord;
    type TransporterArray is array (GlobaleDatentypen.MaximaleEinheiten'First .. 5) of GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    type EinheitMeldungenArray is array (GlobaleDatentypen.Einheit_Meldung_Art_Enum'Range) of GlobaleDatentypen.Einheit_Meldung_Enum;
-   -- type AufgabenArray is array (1 .. 10) of Tastenbelegung_Verbesserung_Befehle_Enum;
 
    type EinheitenGebautRecord is record
       

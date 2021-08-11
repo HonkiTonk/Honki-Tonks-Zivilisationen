@@ -94,14 +94,6 @@ package body BefehleImSpiel is
             
          when GlobaleDatentypen.Cheatmenü =>
             Cheat.Menü (RasseExtern => RasseExtern);
-            
-            -- when GlobaleDatentypen. =>
-            -- Meldungen von Städte
-            -- null;
-            
-            -- when GlobaleDatentypen. =>
-            -- Meldungen von Einheiten
-            -- null;
          
          when GlobaleDatentypen.Nicht_Vorhanden =>
             null;

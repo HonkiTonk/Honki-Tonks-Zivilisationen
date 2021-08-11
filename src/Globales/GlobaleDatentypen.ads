@@ -27,9 +27,12 @@ package GlobaleDatentypen is
                                 Auswählen, Menü_Zurück,
                                 Bauen, Forschung, Tech_Baum,
                                 Nächste_Stadt, Einheit_Mit_Bewegungspunkte, Alle_Einheiten, Einheiten_Ohne_Bewegungspunkte, Nächste_Stadt_Mit_Meldung, Nächste_Einheit_Mit_Meldung,
-                                -- Einheitenbefehle
-                                Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen, Heilen, Verschanzen, Runde_Aussetzen, Plündern, Einheit_Auflösen, Einheit_Verbessern,
+                                -- Einheitenbefehle Verbesserungen
+                                Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen,
+                                -- Einheitenbefehle allgemein
+                                Heilen, Verschanzen, Runde_Aussetzen, Plündern, Einheit_Auflösen, Einheit_Verbessern,
                                 Heimatstadt_Ändern,
+                                -- Sonstiges
                                 Infos, Diplomatie, GeheZu,
                                 Stadt_Umbenennen, Stadt_Abreißen, Stadt_Suchen,
                                 Runde_Beenden, Cheatmenü);
@@ -122,7 +125,7 @@ package GlobaleDatentypen is
    subtype Karten_Grund_Generator_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Flachland;
 
    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
-   type KartenverbesserungEinheitenID is range 0 .. 100;
+   type KartenverbesserungEinheitenID is range -1 .. 100;
 
    -- Immer dran denken, alle Wegearten am Schluss hinzufügen.
    type Karten_Verbesserung_Enum is (Leer,
@@ -143,7 +146,7 @@ package GlobaleDatentypen is
    subtype Karten_Verbesserung_Gebilde_Enum is Karten_Verbesserung_Enum range Farm .. Sperre;
    subtype Karten_Verbesserung_Gebilde_Friedlich_Enum is Karten_Verbesserung_Gebilde_Enum range Farm .. Mine;
    subtype Karten_Verbesserung_Gebilde_Kampf_Enum is Karten_Verbesserung_Gebilde_Enum range Festung .. Sperre;
-   subtype Karten_Verbesserung_Weg_Enum is Karten_Verbesserung_Enum range Straßenkreuzung_Vier .. Karten_Verbesserung_Enum'Last;
+   subtype Karten_Verbesserung_Weg_Enum is Karten_Verbesserung_Enum range Straßenkreuzung_Vier .. Straße_Einzeln;
 
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    type BelegterGrund is range 0 .. 18 * 1_000 + 100;
@@ -201,7 +204,8 @@ package GlobaleDatentypen is
 
 
    -- Für Forschung
-   subtype ForschungIDMitNullWert is KartenverbesserungEinheitenID range 0 .. 75;
+   subtype ForschungIDNichtMöglich is KartenverbesserungEinheitenID range -1 .. 75;
+   subtype ForschungIDMitNullWert is ForschungIDNichtMöglich range 0 .. ForschungIDNichtMöglich'Last;
    subtype ForschungID is ForschungIDMitNullWert range 1 .. ForschungIDMitNullWert'Last;
 
    type AnforderungForschungArray is array (1 .. 4) of ForschungIDMitNullWert;
