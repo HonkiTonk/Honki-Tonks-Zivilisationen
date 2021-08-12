@@ -29,9 +29,7 @@ package body StadtEinheitenBauen is
             
       end loop EinheitenSchleife;
       
-      -- Das hier so ändern dass die Städte gespeichert werden und am Anfang der Spielerrunde erst die Meldungen kommen, dann auch nutzbar für die KI
-      -- Per Taste abrufbar machen
-      -- Auch bei Wachstum direkt berücksichtigen
+      -- Hier noch Meldungsnutzung einbauen
       if
         EinheitNummer = 0
         and

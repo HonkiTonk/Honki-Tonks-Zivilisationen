@@ -7,7 +7,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with GebaeudeDatenbank, EinheitenDatenbank;
      
-with Anzeige, Eingabe, Auswahl;
+with Anzeige, Eingabe, Auswahl, KartePositionPruefen, BewegungPassierbarkeitPruefen, KartenAllgemein, FeldTesten;
 
 package body InDerStadtBauen is
 
@@ -149,14 +149,69 @@ package body InDerStadtBauen is
                                 Positive (GebäudeSchleifenwert))) = "|"
          then
             exit GebäudeSchleife;
-
-         elsif
+            
+         else
+            null;
+         end if;
+         
+         case
+           GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).UmgebungBenötigt
+         is
+            when GlobaleDatentypen.Leer =>
+               PassendeUmgebungVorhanden := True;
+               
+            when others =>
+               PassendeUmgebungVorhanden := False;
+               -- Bei Gebäuden über den gesammten Bereich loopen, bei Einheiten nur um das direkte Umfeld.
+               YAchseGebäudeSchleife:
+               for YAchseGebäudeSchleifenwert in -GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
+                 .. GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße loop
+                  XAchseGebäudeSchleife:
+                  for XAchseGebäudeSchleifenwert in -GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
+                    .. GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße loop
+               
+                     KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                                                 ÄnderungExtern    => (0, YAchseGebäudeSchleifenwert, XAchseGebäudeSchleifenwert));
+               
+                     if
+                       KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+                     then
+                        null;
+                        
+                     elsif
+                       FeldTesten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                             KoordinatenExtern      => KartenWert) = False
+                     then
+                        null;
+                  
+                     elsif
+                       -- Noch um Umgebungsverbesserung erweitern?
+                       KartenAllgemein.FeldGrund (PositionExtern => KartenWert) = GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).UmgebungBenötigt
+                       or
+                         KartenAllgemein.FeldFluss (PositionExtern => KartenWert) = GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).UmgebungBenötigt
+                       or
+                         KartenAllgemein.FeldRessource (PositionExtern => KartenWert) = GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).UmgebungBenötigt
+                     then
+                        PassendeUmgebungVorhanden := True;
+                        exit YAchseGebäudeSchleife;
+                  
+                     else
+                        null;
+                     end if;
+               
+                  end loop XAchseGebäudeSchleife;
+               end loop YAchseGebäudeSchleife;
+         end case;
+         
+         if
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = True
          then
             null;
 
          elsif
            GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen /= 0
+           and
+             PassendeUmgebungVorhanden
          then
             if
               GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen) = False
@@ -170,11 +225,16 @@ package body InDerStadtBauen is
                Ende := Ende + 1;
             end if;
             
-         else
+         elsif
+           PassendeUmgebungVorhanden
+         then
             Anzeige.AllgemeineAnzeigeText (Ende).Text
               := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert));
             Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
             Ende := Ende + 1;
+            
+         else
+            null;
          end if;
          
       end loop GebäudeSchleife;
@@ -187,30 +247,53 @@ package body InDerStadtBauen is
                                 Positive (EinheitSchleifenwert))) = "|"
          then
             exit EinheitenSchleife;
-
-         elsif
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).AmWasser = False
-           and
-             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Wasser) = True
-           and
-             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Boden) = False
-           and
-             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Luft) = False
-           and
-             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Weltraum) = False
-           and
-             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Unterirdisch) = False
-           and
-             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Lava) = False
-           and
-             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Planeteninneres) = False
-           and
-             EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Passierbarkeit (GlobaleDatentypen.Unterwasser) = False
-         then
+            
+         else
             null;
-
-         elsif
+         end if;
+         
+         UmgebungPassierbar := False;
+         
+         -- Bei Gebäuden über den gesammten Bereich loopen, bei Einheiten nur um das direkte Umfeld.
+         YAchseEinheitenSchleife:
+         for YAchseEinheitenSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            XAchseEinheitenSchleife:
+            for XAchseEinheitenSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+               
+               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                                                           ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert));
+               
+               if
+                 KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+               then
+                  null;
+                  
+               elsif
+                 YAchseEinheitenSchleifenwert = 0
+                 and
+                   XAchseEinheitenSchleifenwert = 0
+               then
+                  null;
+                  
+               elsif
+                 BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                        IDExtern           => EinheitSchleifenwert,
+                                                                        NeuePositionExtern => KartenWert) = True
+               then
+                  UmgebungPassierbar := True;
+                  exit YAchseEinheitenSchleife;
+                  
+               else
+                  null;
+               end if;
+               
+            end loop XAchseEinheitenSchleife;
+         end loop YAchseEinheitenSchleife;
+         
+         if
            EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Anforderungen /= 0
+           and
+             UmgebungPassierbar
          then
             if
               GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, EinheitSchleifenwert).Anforderungen) = False
@@ -225,11 +308,16 @@ package body InDerStadtBauen is
                Ende := Ende + 1;
             end if;
             
-         else
+         elsif
+           UmgebungPassierbar
+         then
             Anzeige.AllgemeineAnzeigeText (Ende).Text
               := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert));
             Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
             Ende := Ende + 1;
+            
+         else
+            null;
          end if;
          
       end loop EinheitenSchleife;

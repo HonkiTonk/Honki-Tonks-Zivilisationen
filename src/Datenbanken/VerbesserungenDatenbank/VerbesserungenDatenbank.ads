@@ -83,6 +83,7 @@ private
       
                                                   
       -- Wege
+      -- Straßen
       GlobaleDatentypen.Straßenkreuzung_Vier =>
         (VerbesserungGrafik => '╬',
          Passierbarkeit     => (GlobaleDatentypen.Boden    => True,
@@ -209,8 +210,21 @@ private
                                 GlobaleDatentypen.Luft     => True,
                                 GlobaleDatentypen.Weltraum => True,
                                 others                     => False),
-         VerbesserungWerte  => (others => (others => 1)))
+         VerbesserungWerte  => (others => (others => 1))),
+      -- Straßen
+      
+      
+      
+      -- Schienen
+      -- Schienen
+      
+      
+      
+      -- Tunnel
+      -- Tunnel
       -- Wege
+      
+      others                => GlobaleKonstanten.LeerVerbesserungListe
      );
          
 end VerbesserungenDatenbank;

@@ -215,7 +215,8 @@ private
       
       
                                       
-      -- Fluss
+      -- Flüsss
+      -- Normal
       GlobaleDatentypen.Flusskreuzung_Vier =>
         (KartenGrafik        => '╋',
          Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
@@ -342,8 +343,21 @@ private
                                  GlobaleDatentypen.Luft     => True,
                                  GlobaleDatentypen.Weltraum => True,
                                  others                     => False),
-         FeldWerte           => (others => (others => 1)))
-      -- Fluss
+         FeldWerte           => (others => (others => 1))),
+      -- Normal
+      
+      
+      
+      -- Unterirdisch
+      -- Unterirdisch
+      
+      
+      
+      -- Lava
+      -- Lava
+      -- Flüsss
+      
+      others                 => GlobaleKonstanten.LeerKartenListe
      );
 
 end KartenDatenbank;

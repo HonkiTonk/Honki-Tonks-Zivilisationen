@@ -33,14 +33,6 @@ private
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
-   procedure AmWasser
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-
    procedure StandardStadtNamen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with

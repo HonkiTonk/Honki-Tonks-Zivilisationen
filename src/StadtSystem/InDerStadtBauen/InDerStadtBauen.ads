@@ -25,11 +25,16 @@ package InDerStadtBauen is
 
 private
 
+   UmgebungPassierbar : Boolean;
+   PassendeUmgebungVorhanden : Boolean;
+
    AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
    Ende : GlobaleDatentypen.KartenverbesserungEinheitenID;
 
    WasGebautWerdenSoll : Natural;
    Befehl : Natural;
+
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    procedure AnzeigeEinheiten
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);

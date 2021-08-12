@@ -17,6 +17,7 @@ package BefehleImSpiel is
 private
 
    Transportiert : Boolean;
+   AufgabeDurchführen : Boolean;
    
    Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
 

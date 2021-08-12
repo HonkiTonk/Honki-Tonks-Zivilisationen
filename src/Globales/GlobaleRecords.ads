@@ -114,7 +114,6 @@ package GlobaleRecords is
       
       ID : GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum;
       Position : AchsenKartenfeldPositivRecord;
-      AmWasser : Boolean;
       EinwohnerArbeiter : EinwohnerArbeiterArray;
       
       Nahrungsmittel : GlobaleDatentypen.GesamtproduktionStadt;

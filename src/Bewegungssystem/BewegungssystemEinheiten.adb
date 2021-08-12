@@ -2,7 +2,8 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, DiplomatischerZustand, BewegungLadenEntladen, Kampfsystem, StadtSuchen, StadtEntfernen;
+with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, DiplomatischerZustand, BewegungLadenEntladen, Kampfsystem, StadtSuchen, StadtEntfernen,
+     StadtBauen, Verbesserungen;
 
 package body BewegungssystemEinheiten is
 
@@ -15,8 +16,10 @@ package body BewegungssystemEinheiten is
       BewegenSchleife:
       loop
          
+         Befehl := Eingabe.Tastenwert;
+         
          case
-           Eingabe.Tastenwert
+           Befehl
          is
             when GlobaleDatentypen.Hoch =>
                Änderung := (0, -1, 0);
@@ -50,25 +53,51 @@ package body BewegungssystemEinheiten is
                
             when GlobaleDatentypen.Heimatstadt_Ändern =>
                EinheitenAllgemein.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-               Änderung := (0, 0, 0);
+               Änderung := KeineÄnderung;
+               
+            when GlobaleDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | GlobaleDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>
+               AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                          BefehlExtern             => Befehl);
+               
+               case
+                 AufgabeDurchführen
+               is
+                  when True =>
+                     return;
+               
+                  when False =>
+                     Änderung := KeineÄnderung;
+                     -- Hier Meldung einbauen
+               end case;
+               
+            when GlobaleDatentypen.Bauen =>
+               StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               Änderung := KeineÄnderung;
             
             when others =>
                return;
          end case;
          
-         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                                     ÄnderungExtern       => Änderung);
+         if
+           Änderung = KeineÄnderung
+         then
+            AktuellerStatus := NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         else
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                                                        ÄnderungExtern    => Änderung);
          
-         case
-           KartenWert.XAchse
-         is               
-            when GlobaleKonstanten.LeerYXKartenWert =>
-               AktuellerStatus := Bewegbar;               
+            case
+              KartenWert.XAchse
+            is               
+               when GlobaleKonstanten.LeerYXKartenWert =>
+                  AktuellerStatus := Bewegbar;               
                
-            when others =>
-               AktuellerStatus := BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   NeuePositionExtern       => KartenWert);
-         end case;
+               when others =>
+                  AktuellerStatus := BewegungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                      NeuePositionExtern       => KartenWert);
+            end case;
+         end if;
          
          case
            AktuellerStatus
@@ -174,6 +203,17 @@ package body BewegungssystemEinheiten is
             null;
       end case;
       
+      return NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+   end BewegungPrüfen;
+   
+   
+   
+   function NochBewegungspunkte
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Bewegung_Noch_Möglich_Enum
+   is begin
+      
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte <= GlobaleKonstanten.LeerEinheit.Bewegungspunkte
         or
@@ -185,7 +225,7 @@ package body BewegungssystemEinheiten is
          return Bewegbar;
       end if;
       
-   end BewegungPrüfen;
+   end NochBewegungspunkte;
    
    
    

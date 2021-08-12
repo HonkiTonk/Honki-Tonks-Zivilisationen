@@ -7,95 +7,44 @@ with Karten;
 
 package Verbesserungen is
 
-   procedure Verbesserung
+   procedure VerbesserungFertiggestellt;
+   
+   
+   
+   function VerbesserungTesten
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
+      return Boolean
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
-   procedure VerbesserungFertiggestellt;
+   function VerbesserungAnlegen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
 private
    
+   Test : Boolean;
+   
    Grund : GlobaleDatentypen.Karten_Grund_Enum;
 
-   Wegewert : Positive;
+   Wegewert : GlobaleDatentypen.BelegterGrund;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-
-   procedure VerbesserungFehler
-     (WelcherFehlerExtern : in Positive);
 
    procedure VerbesserungFertiggestelltPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
    
-   procedure VerbesserungFestgelegt
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      BefehlExtern : in Tastenbelegung_Befehle_Enum)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-
-   procedure VerbesserungWeg
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   procedure VerbesserungMine
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-
-   procedure VerbesserungFarm
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   procedure VerbesserungFestung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   procedure VerbesserungWald
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   procedure VerbesserungRoden
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   procedure VerbesserungHeilen
+   procedure EinheitVerschanzen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
@@ -103,7 +52,7 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
-   procedure VerbesserungVerschanzen
+   procedure RundeAussetzen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
@@ -111,38 +60,13 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
-   procedure VerbesserungAussetzen
+   procedure EinheitAuflösen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   procedure VerbesserungAuflösen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   procedure VerbesserungPlündern
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   procedure VerbesserungEinheit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-
    procedure VerbesserungAngelegt
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
@@ -158,5 +82,124 @@ private
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+   
+   
+   function VerbesserungFestgelegt
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      BefehlExtern : in Tastenbelegung_Befehle_Enum;
+      AnlegenTestenExtern : in Boolean)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+
+   function VerbesserungWeg
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+      AnlegenTestenExtern : in Boolean)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function VerbesserungMine
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+      AnlegenTestenExtern : in Boolean)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+
+   function VerbesserungFarm
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+      AnlegenTestenExtern : in Boolean)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function VerbesserungFestung
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+      AnlegenTestenExtern : in Boolean)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function VerbesserungWald
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+      AnlegenTestenExtern : in Boolean)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function VerbesserungRoden
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
+      AnlegenTestenExtern : in Boolean)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function EinheitHeilen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      AnlegenTestenExtern : in Boolean)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function VerbesserungPlündern
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      AnlegenTestenExtern : in Boolean)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function VerbesserungEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      AnlegenTestenExtern : in Boolean)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function AllgemeinerAnfangstest
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      BefehlExtern : in GlobaleDatentypen.Tastenbelegung_Befehle_Enum)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 end Verbesserungen;

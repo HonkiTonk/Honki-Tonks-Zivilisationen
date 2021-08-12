@@ -83,7 +83,6 @@ package EinheitenMenschen is
          PermanenteKosten        => (others => 0),
          Anforderungen           => 7,
          Passierbarkeit          => (GlobaleDatentypen.Wasser       => True,
-                                       -- Für das erste Schiff keine Wasserpassierbarkeit?
                                      GlobaleDatentypen.Küstenwasser => True,
                                      others                         => False),
          MaximaleLebenspunkte    => 5,
@@ -94,9 +93,9 @@ package EinheitenMenschen is
          Reichweite              => 2,
          Angriff                 => 3,
          Verteidigung            => 1,
-         KannTransportieren      => 0,
+         KannTransportieren      => 1,
          KannTransportiertWerden => 1,
-         Transportkapazität      => 0),
+         Transportkapazität      => 2),
                                                
       -- Bronzekämpfer
       5 =>
@@ -161,7 +160,7 @@ package EinheitenMenschen is
          Angriff                 => 3,
          Verteidigung            => 1,
          KannTransportieren      => 0,
-         KannTransportiertWerden => 1,
+         KannTransportiertWerden => 2,
          Transportkapazität      => 0),
                                                
       -- Katapult
@@ -227,9 +226,9 @@ package EinheitenMenschen is
          Reichweite              => 2,
          Angriff                 => 3,
          Verteidigung            => 1,
-         KannTransportieren      => 0,
-         KannTransportiertWerden => 1,
-         Transportkapazität      => 0),
+         KannTransportieren      => 2,
+         KannTransportiertWerden => 0,
+         Transportkapazität      => 4),
                                                
       -- Großes Segelschiff
       11 =>

@@ -13,4 +13,8 @@ package KINahkampfBodenAufgabeDurchfuehren is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
+private
+
+   AufgabeDurchführen : Boolean;
+
 end KINahkampfBodenAufgabeDurchfuehren;

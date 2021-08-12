@@ -2,8 +2,6 @@ pragma SPARK_Mode (On);
 
 with GlobaleTexte;
 
-with EinheitenDatenbank;
-
 with InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, NaechstesObjekt, Verbesserungen, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen,
      Eingabe, FeldInformationen, ForschungAllgemein, EinheitenAllgemein, StadtEntfernen;
 
@@ -20,9 +18,9 @@ package body BefehleImSpiel is
         Befehl
       is
          when GlobaleDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
-            BewegungssystemCursor.BewegungCursorRichtung (KarteExtern       => True,
-                                                          RichtungExtern    => Befehl,
-                                                          RasseExtern       => RasseExtern);
+            BewegungssystemCursor.BewegungCursorRichtung (KarteExtern    => True,
+                                                          RichtungExtern => Befehl,
+                                                          RasseExtern    => RasseExtern);
             
          when GlobaleDatentypen.Auswählen =>
             AuswahlEinheitStadt (RasseExtern => RasseExtern);
@@ -239,10 +237,8 @@ package body BefehleImSpiel is
             null;
       end case;
       
-      if 
-        EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitArt = GlobaleDatentypen.Arbeiter
-        and
-          GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte > GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+      if
+        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte > GlobaleKonstanten.LeerEinheit.Bewegungspunkte
       then
          StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                      
@@ -298,33 +294,29 @@ package body BefehleImSpiel is
       else
          null;
       end if;
-
+            
       if
-        EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitArt /= GlobaleDatentypen.Arbeiter
-        and
-          BefehlExtern in Tastenbelegung_Verbesserung_Befehle_Enum'Range
-      then
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                               TextZeileExtern => 3);
-
-      elsif
-        EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).ID).EinheitArt = GlobaleDatentypen.Arbeiter
-        and
-          BefehlExtern = GlobaleDatentypen.Plündern
-      then
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                               TextZeileExtern => 3);
-                     
-      elsif
         GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 8);
+         AufgabeDurchführen := False;
                      
       else
-         Verbesserungen.Verbesserung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
-                                      BefehlExtern             => BefehlExtern);
+         AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer),
+                                                                    BefehlExtern             => BefehlExtern);
       end if;
+      
+      case
+        AufgabeDurchführen
+      is
+         when False =>
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                                                  TextZeileExtern => 2);
+            
+         when True =>
+            null;
+      end case;
       
    end EinheitBefehle;
    

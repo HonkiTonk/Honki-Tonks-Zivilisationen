@@ -125,7 +125,7 @@ package GlobaleKonstanten is
                                                                      )
                                                                   );
 
-   type TechnologieVerbesserungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range) of GlobaleDatentypen.ForschungIDNichtMöglich;
+   type TechnologieVerbesserungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Tastenbelegung_Befehle_Enum'Range) of GlobaleDatentypen.ForschungIDNichtMöglich;
    TechnologieVerbesserung : constant TechnologieVerbesserungArray := (
                                                                        GlobaleDatentypen.Menschen =>
                                                                          (
@@ -134,7 +134,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Kasrodiah =>
@@ -144,7 +145,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Lasupin =>
@@ -154,7 +156,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Lamustra =>
@@ -164,7 +167,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Manuky =>
@@ -174,7 +178,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Suroka =>
@@ -184,7 +189,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Pryolon =>
@@ -194,7 +200,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Talbidahr =>
@@ -204,7 +211,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Moru_Phisihl =>
@@ -214,7 +222,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Larinos_Lotaris =>
@@ -224,7 +233,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Carupex =>
@@ -234,7 +244,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Alary =>
@@ -244,7 +255,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Tesorahn =>
@@ -254,7 +266,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Natries_Zermanis =>
@@ -264,7 +277,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Tridatus =>
@@ -274,7 +288,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Senelari =>
@@ -284,7 +299,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Aspari_2 =>
@@ -294,7 +310,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          ),
 
                                                                        GlobaleDatentypen.Ekropa =>
@@ -304,7 +321,8 @@ package GlobaleKonstanten is
                                                                           GlobaleDatentypen.Mine_Bauen         => 6,
                                                                           GlobaleDatentypen.Farm_Bauen         => 2,
                                                                           GlobaleDatentypen.Festung_Bauen      => 11,
-                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1
+                                                                          GlobaleDatentypen.Roden_Trockenlegen => 1,
+                                                                          others                               => 0
                                                                          )
                                                                       );
    -- Für Einheiten/Städte
@@ -360,8 +378,7 @@ package GlobaleKonstanten is
    LeerStadt : constant GlobaleRecords.StadtGebautRecord := (
                                                              ID                      => GlobaleDatentypen.Leer,
                                                              Position                => (0, 0, 0),
-                                                             AmWasser                => False,
-                                                             EinwohnerArbeiter       => (0 , 0),
+                                                             EinwohnerArbeiter       => (0, 0),
                                                              Nahrungsmittel          => 0,
                                                              Nahrungsproduktion      => 0,
                                                              Ressourcen              => 0,
@@ -451,6 +468,7 @@ package GlobaleKonstanten is
                                                                          WissenBonus                 => 0,
                                                                          VerteidigungBonus           => 0,
                                                                          NahrungBonus                => 0,
+                                                                         UmgebungBenötigt            => GlobaleDatentypen.Leer,
                                                                          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer
                                                                         );
 

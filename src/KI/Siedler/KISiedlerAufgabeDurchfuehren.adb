@@ -10,6 +10,8 @@ package body KISiedlerAufgabeDurchfuehren is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
+      AufgabeDurchführen := True;
+      
       case
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt
       is
@@ -17,22 +19,21 @@ package body KISiedlerAufgabeDurchfuehren is
             StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
                                                       WelchenWertNullSetzenExtern => 0);
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
-            
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;            
             
          when KIDatentypen.Verbesserung_Anlegen =>
-            WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            AufgabeDurchführen := WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Flucht =>
             null;
             
          when KIDatentypen.Einheit_Heilen =>
-            Verbesserungen.Verbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                         BefehlExtern             => GlobaleDatentypen.Heilen);
+            AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                       BefehlExtern             => GlobaleDatentypen.Heilen);
             
          when KIDatentypen.Einheit_Festsetzen =>
-            Verbesserungen.Verbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                         BefehlExtern             => GlobaleDatentypen.Verschanzen);
+            AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                       BefehlExtern             => GlobaleDatentypen.Verschanzen);
             
          when KIDatentypen.Einheit_Verbessern =>
             null;
@@ -41,12 +42,24 @@ package body KISiedlerAufgabeDurchfuehren is
             null;
       end case;
       
+      case
+        AufgabeDurchführen
+      is
+         when True =>
+            null;
+            
+         when False =>
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
+      end case;
+      
    end SiedlerAufgabeDurchfuehren;
    
    
    
-   procedure WelcheVerbesserungAnlegen
+   function WelcheVerbesserungAnlegen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
    is begin
       
       case
@@ -60,35 +73,48 @@ package body KISiedlerAufgabeDurchfuehren is
                                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund;
       
             if
-              Grund = GlobaleDatentypen.Hügel 
-              or
-                Grund = GlobaleDatentypen.Gebirge
-                or
-                  Grund = GlobaleDatentypen.Kohle
-                  or
-                    Grund = GlobaleDatentypen.Eisen
-                    or
-                      Grund = GlobaleDatentypen.Gold
-                      or
-                        Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Hügel = True
+              (Grund = GlobaleDatentypen.Hügel 
+               or
+                 Grund = GlobaleDatentypen.Gebirge
+               or
+                 Grund = GlobaleDatentypen.Kohle
+               or
+                 Grund = GlobaleDatentypen.Eisen
+               or
+                 Grund = GlobaleDatentypen.Gold
+               or
+                 Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
+                                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Hügel = True)
+              and
+                Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                   BefehlExtern             => GlobaleDatentypen.Mine_Bauen) = True
             then
-               Verbesserungen.Verbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                            BefehlExtern             => GlobaleDatentypen.Mine_Bauen);
+               AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                          BefehlExtern             => GlobaleDatentypen.Mine_Bauen);
+               return True;
          
             elsif
               Grund = GlobaleDatentypen.Eis
+              and
+                Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                   BefehlExtern             => GlobaleDatentypen.Festung_Bauen) = True
             then
-               Verbesserungen.Verbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                            BefehlExtern             => GlobaleDatentypen.Festung_Bauen);
+               AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                          BefehlExtern             => GlobaleDatentypen.Festung_Bauen);
+               return True;
          
-            else
-               Verbesserungen.Verbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                            BefehlExtern             => GlobaleDatentypen.Farm_Bauen);
-            end if;
+            elsif
+              Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 BefehlExtern             => GlobaleDatentypen.Farm_Bauen) = True
+            then
+               AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                          BefehlExtern             => GlobaleDatentypen.Farm_Bauen);
+               return True;
             
-            return;
+            else
+               null;
+            end if;
       
          when others =>
             null;
@@ -100,14 +126,15 @@ package body KISiedlerAufgabeDurchfuehren is
                           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungWeg
       is
          when GlobaleDatentypen.Leer =>
-            Verbesserungen.Verbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                         BefehlExtern             => GlobaleDatentypen.Straße_Bauen);
-            return;
+            AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                       BefehlExtern             => GlobaleDatentypen.Straße_Bauen);
+            return True;
             
          when others =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
+            null;
       end case;
+      
+      return False;
       
    end WelcheVerbesserungAnlegen;
 

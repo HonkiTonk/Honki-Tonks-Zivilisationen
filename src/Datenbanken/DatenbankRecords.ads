@@ -11,14 +11,12 @@ package DatenbankRecords is
       
       EinheitenGrafik : Wide_Wide_Character;
       
-      -- Leer, Unbewaffnet, Nahkämpfer, Fernkämpfer, Beides, Sonstiges
       EinheitArt : GlobaleDatentypen.Einheit_Art_Enum;
       PreisGeld : GlobaleDatentypen.KostenLager;
       PreisRessourcen : GlobaleDatentypen.KostenLager;
       PermanenteKosten : GlobaleDatentypen.PermanenteKostenArray;
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
 
-      -- Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
       Passierbarkeit : PassierbarkeitArray;
       
       MaximaleLebenspunkte : GlobaleDatentypen.MaximaleEinheiten;
@@ -73,7 +71,7 @@ package DatenbankRecords is
       VerteidigungBonus : GlobaleDatentypen.ProduktionFeld;
       NahrungBonus : GlobaleDatentypen.ProduktionFeld;
       
-      -- Auch in ein Array umschreiben wie die permanenten Kosten?
+      UmgebungBenötigt : GlobaleDatentypen.Karten_Grund_Enum;
       GebäudeSpezielleEigenschaft : GlobaleDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 
    end record;
@@ -93,9 +91,7 @@ package DatenbankRecords is
 
       KartenGrafik : Wide_Wide_Character;
       
-      -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
-      Passierbarkeit : PassierbarkeitArray;
-      
+      Passierbarkeit : PassierbarkeitArray;      
       FeldWerte : GewinnBewertungArray;
       
    end record;
@@ -108,9 +104,7 @@ package DatenbankRecords is
 
       VerbesserungGrafik : Wide_Wide_Character;
       
-      -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
-      Passierbarkeit : PassierbarkeitArray;
-      
+      Passierbarkeit : PassierbarkeitArray;      
       VerbesserungWerte : GewinnBewertungArray;
       
    end record;

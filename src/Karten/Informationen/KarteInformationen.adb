@@ -423,7 +423,7 @@ package body KarteInformationen is
                      ErsteAnzeige := False;
                      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                                                     TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
-                                                    ÜberschriftZeileExtern => 5,
+                                                    ÜberschriftZeileExtern => 51,
                                                     ErsteZeileExtern       => Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
                                                       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert)).ID),
                                                     LetzteZeileExtern      => Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,

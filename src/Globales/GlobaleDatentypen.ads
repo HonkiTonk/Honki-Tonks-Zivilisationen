@@ -28,7 +28,7 @@ package GlobaleDatentypen is
                                 Bauen, Forschung, Tech_Baum,
                                 Nächste_Stadt, Einheit_Mit_Bewegungspunkte, Alle_Einheiten, Einheiten_Ohne_Bewegungspunkte, Nächste_Stadt_Mit_Meldung, Nächste_Einheit_Mit_Meldung,
                                 -- Einheitenbefehle Verbesserungen
-                                Straße_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen,
+                                Straße_Bauen, Schiene_Bauen, Tunnel_Bauen, Mine_Bauen, Farm_Bauen, Festung_Bauen, Wald_Aufforsten, Roden_Trockenlegen,
                                 -- Einheitenbefehle allgemein
                                 Heilen, Verschanzen, Runde_Aussetzen, Plündern, Einheit_Auflösen, Einheit_Verbessern,
                                 Heimatstadt_Ändern,
@@ -42,6 +42,7 @@ package GlobaleDatentypen is
    subtype Tastenbelegung_Bewegung_Stadt_Enum is Tastenbelegung_Verwendet_Enum range Hoch .. Rechts_Unten;
    subtype Tastenbelegung_Befehle_Enum is Tastenbelegung_Verwendet_Enum range Straße_Bauen .. Einheit_Verbessern;
    subtype Tastenbelegung_Verbesserung_Befehle_Enum is Tastenbelegung_Befehle_Enum range Straße_Bauen .. Roden_Trockenlegen;
+   subtype Tastenbelegung_Allgemeine_Befehle_Enum is Tastenbelegung_Befehle_Enum range Heilen .. Tastenbelegung_Befehle_Enum'Last;
    -- Für Tastenbelegung
 
 
@@ -53,7 +54,6 @@ package GlobaleDatentypen is
    subtype Rassen_Verwendet_Enum is Rassen_Enum range Menschen .. Rassen_Enum'Last;
 
    type Spieler_Enum is (Leer, Spieler_Mensch, Spieler_KI);
-   for Spieler_Enum use (Leer => 0, Spieler_Mensch => 1, Spieler_KI => 2);
    type RassenImSpielArray is array (Rassen_Verwendet_Enum'Range) of Spieler_Enum;
 
    type Staatsform_Enum is (Anarchie,
@@ -75,26 +75,21 @@ package GlobaleDatentypen is
    subtype LoopRangeMinusZweiZuZwei is Kartenfeld range -2 .. 2;
    subtype LoopRangeMinusDreiZuDrei is Kartenfeld range -3 .. 3;
    subtype LoopRangeNullZuEins is Kartenfeld range 0 .. 1;
-   -- Rückgabewert, Tiefenbohrung, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
+   -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    subtype Ebene is LoopRangeMinusDreiZuDrei range -3 .. 2;
 
    -- Kartenwerte
    type Kartengröße_Enum is (Leer, Karte_20_20, Karte_40_40, Karte_80_80, Karte_120_80, Karte_120_160, Karte_160_160, Karte_240_240, Karte_320_320, Karte_1000_1000, Karte_Nutzer);
-   for Kartengröße_Enum use (Leer => 0, Karte_20_20 => 1, Karte_40_40 => 2, Karte_80_80 => 3, Karte_120_80 => 4, Karte_120_160 => 5, Karte_160_160 => 6, Karte_240_240 => 7, Karte_320_320 => 8,
-                               Karte_1000_1000 => 9, Karte_Nutzer => 10);
    subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range Karte_20_20 .. Kartengröße_Enum'Last;
    subtype Kartengröße_Zufall_Enum is Kartengröße_Verwendet_Enum range Karte_20_20 .. Karte_1000_1000;
 
    type Kartenart_Enum is (Leer, Inseln, Kontinente, Pangäa, Nur_Land, Chaos);
-   for Kartenart_Enum use (Leer => 0, Inseln => 1, Kontinente => 2, Pangäa => 3, Nur_Land => 4, Chaos => 5);
    subtype Kartenart_Verwendet_Enum is Kartenart_Enum range Inseln .. Kartenart_Enum'Last;
 
    type Kartentemperatur_Enum is (Leer, Kalt, Gemäßigt, Heiß, Eiszeit, Wüste);
-   for Kartentemperatur_Enum use (Leer => 0, Kalt => 1, Gemäßigt => 2, Heiß => 3, Eiszeit => 4, Wüste => 5);
    subtype Kartentemperatur_Verwendet_Enum is Kartentemperatur_Enum range Kalt .. Kartentemperatur_Enum'Last;
 
    type Kartenform_Enum is (Leer, X_Zylinder, Y_Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht, Tugel, Tugel_Gedreht, Tugel_Extrem);
-   for Kartenform_Enum use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5, Kugel_Gedreht => 6, Tugel => 7, Tugel_Gedreht => 8, Tugel_Extrem => 9);
    subtype Kartenform_Verwendet_Enum is Kartenform_Enum range X_Zylinder .. Kartenform_Enum'Last;
 
    type Karten_Ressourcen_Reichtum_Enum is (Leer, Arm, Wenig, Mittel, Viel, Überfluss);
@@ -110,7 +105,17 @@ package GlobaleDatentypen is
                               Kohle, Eisen, Öl, Hochwertiger_Boden, Gold,
                               -- Fluss
                               Flusskreuzung_Vier, Fluss_Waagrecht, Fluss_Senkrecht, Flusskurve_Unten_Rechts, Flusskurve_Unten_Links, Flusskurve_Oben_Rechts, Flusskurve_Oben_Links, Flusskreuzung_Drei_Oben,
-                              Flusskreuzung_Drei_Unten, Flusskreuzung_Drei_Rechts, Flusskreuzung_Drei_Links, Flussendstück_Links, Flussendstück_Rechts, Flussendstück_Unten, Flussendstück_Oben, Fluss_Einzeln);
+                              Flusskreuzung_Drei_Unten, Flusskreuzung_Drei_Rechts, Flusskreuzung_Drei_Links, Flussendstück_Links, Flussendstück_Rechts, Flussendstück_Unten, Flussendstück_Oben, Fluss_Einzeln,
+                              -- Unterirdischer Fluss
+                              Unterirdische_Flusskreuzung_Vier, Unterirdischer_Fluss_Waagrecht, Unterirdischer_Fluss_Senkrecht, Unterirdische_Flusskurve_Unten_Rechts, Unterirdische_Flusskurve_Unten_Links,
+                              Unterirdische_Flusskurve_Oben_Rechts, Unterirdische_Flusskurve_Oben_Links, Unterirdische_Flusskreuzung_Drei_Oben, Unterirdische_Flusskreuzung_Drei_Unten,
+                              Unterirdische_Flusskreuzung_Drei_Rechts, Unterirdische_Flusskreuzung_Drei_Links, Unterirdisches_Flussendstück_Links, Unterirdisches_Flussendstück_Rechts,
+                              Unterirdisches_Flussendstück_Unten, Unterirdisches_Flussendstück_Oben, Unterirdischer_Fluss_Einzeln,
+                              -- Lavafluss
+                              Lavaflusskreuzung_Vier, Lavafluss_Waagrecht, Lavafluss_Senkrecht, Lavaflusskurve_Unten_Rechts, Lavaflusskurve_Unten_Links, Lavaflusskurve_Oben_Rechts, Lavaflusskurve_Oben_Links,
+                              Lavaflusskreuzung_Drei_Oben, Lavaflusskreuzung_Drei_Unten, Lavaflusskreuzung_Drei_Rechts, Lavaflusskreuzung_Drei_Links, Lavaflussendstück_Links, Lavaflussendstück_Rechts,
+                              Lavaflussendstück_Unten, Lavaflussendstück_Oben, Lavafluss_Einzeln
+                             );
    subtype Karten_Grund_Alle_Felder_Enum is Karten_Grund_Enum range Wasser .. Gestein;
    subtype Karten_Grund_Wasser_Mit_Eis_Enum is Karten_Grund_Alle_Felder_Enum range Wasser .. Eis;
    subtype Karten_Grund_Wasser_Enum is Karten_Grund_Wasser_Mit_Eis_Enum range Wasser .. Unter_Küstengewässer;
@@ -120,6 +125,8 @@ package GlobaleDatentypen is
    subtype Karten_Grund_Ressourcen_Wasser is Karten_Grund_Ressourcen_Enum range Fisch .. Wal;
    subtype Karten_Grund_Ressourcen_Land is Karten_Grund_Ressourcen_Enum range Kohle .. Gold;
    subtype Karten_Grund_Fluss_Enum is Karten_Grund_Enum range Flusskreuzung_Vier .. Fluss_Einzeln;
+   subtype Karten_Grund_Unterirdischer_Fluss_Enum is Karten_Grund_Enum range Unterirdische_Flusskreuzung_Vier .. Unterirdischer_Fluss_Einzeln;
+   subtype Karten_Grund_Lavafluss_Enum is Karten_Grund_Enum range Lavaflusskreuzung_Vier .. Lavafluss_Einzeln;
    subtype Landschaft_Wahrscheinlichkeit_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Sumpf;
    -- Flachland muss hier immer am Schluss kommen, sonst geht der Kartengenerator kaputt!
    subtype Karten_Grund_Generator_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Flachland;
@@ -135,10 +142,19 @@ package GlobaleDatentypen is
                                      -- Gebilde
                                      Farm, Mine,
                                      Festung, Sperre,
-                                     -- Wege
+                                     -- Wege - Straßen
                                      Straßenkreuzung_Vier, Straße_Waagrecht, Straße_Senkrecht, Straßenkurve_Unten_Rechts, Straßenkurve_Unten_Links, Straßenkurve_Oben_Rechts, Straßenkurve_Oben_Links,
                                      Straßenkreuzung_Drei_Oben, Straßenkreuzung_Drei_Unten, Straßenkreuzung_Drei_Rechts, Straßenkreuzung_Drei_Links, Straßenendstück_Links, Straßenendstück_Rechts,
-                                     Straßenendstück_Unten, Straßenendstück_Oben, Straße_Einzeln);
+                                     Straßenendstück_Unten, Straßenendstück_Oben, Straße_Einzeln,
+                                     -- Schienen
+                                     Schienenkreuzung_Vier, Schiene_Waagrecht, Schiene_Senkrecht, Schienenkurve_Unten_Rechts, Schienenkurve_Unten_Links, Schienenkurve_Oben_Rechts, Schienenkurve_Oben_Links,
+                                     Schienenkreuzung_Drei_Oben, Schienenkreuzung_Drei_Unten, Schienenkreuzung_Drei_Rechts, Schienenkreuzung_Drei_Links, Schienenendstück_Links, Schienenendstück_Rechts,
+                                     Schienenendstück_Unten, Schienenendstück_Oben, Schiene_Einzeln,
+                                     -- Tunnel
+                                     Tunnelkreuzung_Vier, Tunnel_Waagrecht, Tunnel_Senkrecht, Tunnelkurve_Unten_Rechts, Tunnelkurve_Unten_Links, Tunnelkurve_Oben_Rechts, Tunnelkurve_Oben_Links,
+                                     Tunnelkreuzung_Drei_Oben, Tunnelkreuzung_Drei_Unten, Tunnelkreuzung_Drei_Rechts, Tunnelkreuzung_Drei_Links, Tunnelendstück_Links, Tunnelendstück_Rechts,
+                                     Tunnelendstück_Unten, Tunnelendstück_Oben, Tunnel_Einzeln
+                                    );
    subtype Karten_Verbesserung_Stadt_ID_Enum is Karten_Verbesserung_Enum range Leer .. Eigene_Stadt;
    subtype Karten_Verbesserung_Städte_Enum is Karten_Verbesserung_Enum range Eigene_Hauptstadt .. Fremde_Stadt;
    subtype Karten_Verbesserung_Eigene_Städte_Enum is Karten_Verbesserung_Städte_Enum range Eigene_Hauptstadt .. Eigene_Stadt;
@@ -147,6 +163,8 @@ package GlobaleDatentypen is
    subtype Karten_Verbesserung_Gebilde_Friedlich_Enum is Karten_Verbesserung_Gebilde_Enum range Farm .. Mine;
    subtype Karten_Verbesserung_Gebilde_Kampf_Enum is Karten_Verbesserung_Gebilde_Enum range Festung .. Sperre;
    subtype Karten_Verbesserung_Weg_Enum is Karten_Verbesserung_Enum range Straßenkreuzung_Vier .. Straße_Einzeln;
+   subtype Karten_Verbesserung_Schiene_Enum is Karten_Verbesserung_Enum range Schienenkreuzung_Vier .. Schiene_Einzeln;
+   subtype Karten_Verbesserung_Tunnel_Enum is Karten_Verbesserung_Enum range Tunnelkreuzung_Vier .. Tunnel_Einzeln;
 
    subtype EbeneVorhanden is Ebene range -2 .. 2;
    type BelegterGrund is range 0 .. 18 * 1_000 + 100;
@@ -175,9 +193,10 @@ package GlobaleDatentypen is
                                 Boden,
                                 Wasser, Küstenwasser,
                                 Unterwasser, Unterküstenwasser,
-                                Luft, Weltraum,
-                                Unterirdisch, Planeteninneres,
-                                Lava);
+                                Luft,
+                                Weltraum,
+                                Unterirdisch,
+                                Planeteninneres, Lava);
    subtype Passierbarkeit_Vorhanden_Enum is Passierbarkeit_Enum range Boden .. Passierbarkeit_Enum'Last;
    subtype Passierbarkeit_Fliegen_Enum is Passierbarkeit_Vorhanden_Enum range Luft .. Weltraum;
 

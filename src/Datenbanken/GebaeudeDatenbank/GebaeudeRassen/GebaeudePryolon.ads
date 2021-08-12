@@ -20,6 +20,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Nahrungslager
@@ -34,6 +35,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Holzpalisade
@@ -48,6 +50,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Schmiede
@@ -62,6 +65,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
       
       -- Bibliothek
@@ -76,6 +80,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Steinmauer
@@ -90,6 +95,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Bücherei
@@ -104,6 +110,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Bewässerungssystem
@@ -118,6 +125,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Kaserne
@@ -132,6 +140,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Wassermühle
@@ -146,6 +155,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Windmühle
@@ -160,6 +170,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Seehafen
@@ -174,6 +185,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Hochofen
@@ -188,6 +200,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Universität
@@ -202,6 +215,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Burg
@@ -216,6 +230,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Schwere Burg
@@ -230,6 +245,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Festungen
@@ -244,6 +260,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Kohlekraftwerk
@@ -258,6 +275,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Fabrik
@@ -272,6 +290,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Krankenhaus
@@ -286,6 +305,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Flughafen
@@ -300,6 +320,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Atomkraftwerk
@@ -314,6 +335,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Regenerative Kraftwerke (aufteilen oder zusammenlassen?)
@@ -328,6 +350,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Genklinik
@@ -342,6 +365,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- Fusionskraftwerk
@@ -356,6 +380,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
       -- NAMR Kraftwerk
@@ -370,6 +395,7 @@ package GebaeudePryolon is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                                               
       others => GlobaleKonstanten.LeerGebäudeListe

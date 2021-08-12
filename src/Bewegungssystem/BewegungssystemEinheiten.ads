@@ -1,7 +1,7 @@
 pragma SPARK_Mode (On);
 
 with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
-use GlobaleDatentypen;
+use GlobaleDatentypen, GlobaleRecords;
 
 with Karten;
 
@@ -20,11 +20,15 @@ private
    FeldPassierbar : Boolean;
    BewegungDurchführen : Boolean;
    Gewonnen : Boolean;
+   AufgabeDurchführen : Boolean;
+   
+   Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
    
    EinheitAufFeld : GlobaleRecords.RassePlatznummerRecord;
    StadtAufFeld : GlobaleRecords.RassePlatznummerRecord;
    
    Änderung : GlobaleRecords.AchsenKartenfeldRecord;
+   KeineÄnderung : constant GlobaleRecords.AchsenKartenfeldRecord := (0, 0, 0);
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
@@ -45,6 +49,10 @@ private
          (NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+   function NochBewegungspunkte
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Bewegung_Noch_Möglich_Enum;
    
    function FremderAufFeld
      (EinheitRasseNummerExtern, FremdeEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)

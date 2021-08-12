@@ -133,17 +133,32 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (13.08.2021):
+   -- Version 0.00.82 => 0.00.8 (13.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8250 => 0.00.8 (12.08.2021):
+   -- Version 0.00.8250 => 0.00.8280 (12.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Verbesserung so umgebaut dass es jetzt sowohl als Prüfung als auch Festlegung genutzt werden kann.
+   -- Fehler behoben durch den man einen Hügel mit Flachland ersetzen konnte.
+   -- Unnötigen Code gelöscht.
+   -- KI Prüfung ob die Stadtumgebung verbessert werden kann übersichtlicher gestaltet, die neue Version von Verbesserung eingebunden und den Umgebungsbereich auf die Stadtumgebungsgröße erweitert.
+   -- Das Bewegungssystem so überarbeitet dass es jetzt möglich ist Einheiten während der Bewegung Befehle zu erteilen.
+   -- Alle Verbesserungsprüfungen und -durchführungen durch die KI auf die neue Version von Verbesserung umgeschrieben/angepasst.
+   -- Diverse Prüfungen verschoben um doppelten Code zu vermeiden.
+   -- Fehler behoben der es unmöglich machte Einheiten auf modernere Versionen zu verbessern.
+   -- Fehler behoben der es verhinderte dass man bestimmte Technologien erforschen konnte.
+   -- Passierbarkeitsprüfung beim Bauen einer Einheit eingebaut, so dass man jetzt keine Einheiten mehr in Städten bauen kann deren Umgebung für diese Einheit ungeeignet ist.
+   -- GebäudeListeRecord um einen Eintrag für benötigten Kartengrund erweitert und eine Prüfung eingebaut um zu testen ob der eventuell benötigte Grund auch vorhanden ist.
+   -- Kurze Beschreibungen zu jeder Rasse eingefügt und englische Übersetzung erweitert.
+   -- Angefangen die Anfangstechnologien der restlichen Rassen für mich grafisch aufzuarbeiten.
+   -- Kartenverbesserungsenum um Schienen und Tunnel erweitert, aber noch nicht ins Spiel eingebaut.
+   -- Kartengrundenum um unterirdische und Lavaflüsse erweitert, aber noch nicht ins Spiel eingebaut.
+   -- Fehler in der Steuerung belegen korrigiert, welcher verhinderte dass alle Auswahlmöglichkeiten angezeigt wurden und alle Befehle korrekt neu belegt werden konnten.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt.
    
    
    

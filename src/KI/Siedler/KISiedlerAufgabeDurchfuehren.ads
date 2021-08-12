@@ -15,10 +15,13 @@ package KISiedlerAufgabeDurchfuehren is
 
 private
 
+   AufgabeDurchführen : Boolean;
+
    Grund : GlobaleDatentypen.Karten_Grund_Enum;
 
-   procedure WelcheVerbesserungAnlegen
+   function WelcheVerbesserungAnlegen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

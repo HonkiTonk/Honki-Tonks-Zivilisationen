@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIKonstanten, KIDatentypen;
 
-with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, RassenAllgemein, VerbesserungenAnlegbarErmitteln;
+with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, RassenAllgemein, Verbesserungen;
 
 package body KIPruefungen is
    
@@ -53,64 +53,40 @@ package body KIPruefungen is
    is begin
       
       YAchseSchleife:
-      for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+      for YÄnderungSchleifenwert in -GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
+        .. GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße loop
          XAchseSchleife:
-         for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         for XÄnderungSchleifenwert in -GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
+           .. GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße loop
             
             StadtVerbesserungUmgebungKoordinaten
               := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
                                                                ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
-            case
-              StadtVerbesserungUmgebungKoordinaten.XAchse
-            is
-               when GlobaleKonstanten.LeerYXKartenWert =>
-                  null;
-                  
-               when others =>
-                  EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => StadtVerbesserungUmgebungKoordinaten);
-            
-                  if
-                    BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                                                               NeuePositionExtern       => StadtVerbesserungUmgebungKoordinaten)
-                    = True
-                    and
-                      VerbesserungenAnlegbarErmitteln.VerbesserungenAnlegbar (RasseExtern              => StadtRasseNummerExtern.Rasse,
-                                                                              KoordinatenExtern        => StadtVerbesserungUmgebungKoordinaten,
-                                                                              WelcheVerbesserungExtern => GlobaleDatentypen.Farm_Bauen) = True
-                    and
-                      (Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse,
-                                         StadtVerbesserungUmgebungKoordinaten.YAchse,
-                                         StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungGebiet = GlobaleDatentypen.Leer
-                       or
-                         Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse,
-                                           StadtVerbesserungUmgebungKoordinaten.YAchse,
-                                           StadtVerbesserungUmgebungKoordinaten.XAchse).VerbesserungWeg = GlobaleDatentypen.Leer)
-                    and
-                      (EinheitAufFeld.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
-                       or
-                         EinheitAufFeld.Platznummer = EinheitNummerExtern)
-                    and
-                      Karten.Weltkarte (StadtVerbesserungUmgebungKoordinaten.EAchse, StadtVerbesserungUmgebungKoordinaten.YAchse, StadtVerbesserungUmgebungKoordinaten.XAchse).DurchStadtBelegterGrund
-                  in
-                    RassenAllgemein.RassenBelegungAnfang (RasseExtern => StadtRasseNummerExtern.Rasse) .. RassenAllgemein.RassenBelegungEnde (RasseExtern => StadtRasseNummerExtern.Rasse)
-                  then               
-                     case
-                       KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen,
-                                                              RasseExtern           => StadtRasseNummerExtern.Rasse,
-                                                              ZielKoordinatenExtern => StadtVerbesserungUmgebungKoordinaten)
-                     is
-                        when False =>
-                           return StadtVerbesserungUmgebungKoordinaten;
-                  
-                        when True =>
-                           null;
-                     end case;
+            if
+              StadtVerbesserungUmgebungKoordinaten.XAchse = GlobaleKonstanten.LeerYXKartenWert
+            then
+               null;
                
-                  else
+            elsif
+              KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen,
+                                                     RasseExtern           => StadtRasseNummerExtern.Rasse,
+                                                     ZielKoordinatenExtern => StadtVerbesserungUmgebungKoordinaten) = True
+            then
+               null;
+                  
+            else
+               case
+                 VerbesserungDortAnlegen (KoordinatenExtern        => StadtVerbesserungUmgebungKoordinaten,
+                                          EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern))
+               is
+                  when True =>
+                     return StadtVerbesserungUmgebungKoordinaten;
+                     
+                  when False =>
                      null;
-                  end if;
-            end case;
+               end case;
+            end if;
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -118,6 +94,73 @@ package body KIPruefungen is
       return KIKonstanten.NullKoordinate;
       
    end StadtUmgebungUnverbessert;
+   
+   
+   
+   function VerbesserungDortAnlegen
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
+      EinheitAufFeld := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KoordinatenExtern);
+            
+      if
+        BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer),
+                                                                   NeuePositionExtern       => KoordinatenExtern) = False
+      then
+         return False;
+         
+      elsif
+        Karten.Weltkarte (KoordinatenExtern.EAchse,
+                          KoordinatenExtern.YAchse,
+                          KoordinatenExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
+        and
+          Karten.Weltkarte (KoordinatenExtern.EAchse,
+                            KoordinatenExtern.YAchse,
+                            KoordinatenExtern.XAchse).VerbesserungWeg /= GlobaleDatentypen.Leer
+      then
+         return False;
+         
+      elsif
+        EinheitAufFeld.Platznummer /= GlobaleKonstanten.LeerEinheitStadtNummer
+        and
+          EinheitAufFeld.Platznummer /= EinheitRasseNummerExtern.Platznummer
+      then
+         return False;
+         
+      elsif
+        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund
+      in
+        RassenAllgemein.RassenBelegungAnfang (RasseExtern => EinheitRasseNummerExtern.Rasse) .. RassenAllgemein.RassenBelegungEnde (RasseExtern => EinheitRasseNummerExtern.Rasse)
+      then
+         null;
+         
+      else
+         return False;
+      end if;
+        
+      AufgabenSchleife:
+      for AufgabeSchleifenwert in GlobaleDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range loop
+         
+         VerbesserungAnlegbar := Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer),
+                                                                    BefehlExtern             => AufgabeSchleifenwert);
+         
+         case
+           VerbesserungAnlegbar
+         is
+            when True =>
+               exit AufgabenSchleife;
+               
+            when False =>
+               null;
+         end case;
+         
+      end loop AufgabenSchleife;
+      
+      return VerbesserungAnlegbar;
+      
+   end VerbesserungDortAnlegen;
    
    
    
