@@ -163,7 +163,7 @@ package body BefehleImSpiel is
          case
            EinheitTransportNummer
          is
-            when 0 =>
+            when GlobaleKonstanten.LeerEinheitStadtNummer =>
                null;
                         
             when others =>
@@ -287,7 +287,7 @@ package body BefehleImSpiel is
       EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => RasseExtern,
                                                                        KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
       if
-        EinheitNummer = 0
+        EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
          return;
                   

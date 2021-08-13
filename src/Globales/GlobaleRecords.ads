@@ -103,6 +103,13 @@ package GlobaleRecords is
       Meldungen : EinheitMeldungenArray;
       
    end record;
+   
+   type KampfwerteRecord is record
+      
+      Angriff : GlobaleDatentypen.ProduktionFeld;
+      Verteidigung : GlobaleDatentypen.ProduktionFeld;
+      
+   end record;
 
 
 

@@ -20,6 +20,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -35,6 +36,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -50,6 +52,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -65,6 +68,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
       
@@ -80,6 +84,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -95,6 +100,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -110,6 +116,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -125,6 +132,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -140,6 +148,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -155,6 +164,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -170,6 +180,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -185,6 +196,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -200,6 +212,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -215,6 +228,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -230,6 +244,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -245,6 +260,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -260,6 +276,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -275,6 +292,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -290,6 +308,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -305,6 +324,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -320,6 +340,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -335,6 +356,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -350,6 +372,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -365,6 +388,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -380,6 +404,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                              
@@ -395,6 +420,7 @@ package GebaeudeEkropa is
          WissenBonus                 => 0,
          VerteidigungBonus           => 0,
          NahrungBonus                => 0,
+         AngriffBonus                => 0,
          UmgebungBenötigt            => GlobaleDatentypen.Leer,
          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer),
                                                               

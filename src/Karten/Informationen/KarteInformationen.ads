@@ -22,7 +22,8 @@ private
    Ressourcengewinnung : GlobaleDatentypen.ProduktionFeld;
    Geldgewinnung : GlobaleDatentypen.ProduktionFeld;
    Wissensgewinnung : GlobaleDatentypen.ProduktionFeld;
-   
+   Angriffsbonus : GlobaleDatentypen.ProduktionFeld;
+      
    EinheitRasseNummer : GlobaleRecords.RassePlatznummerRecord;
    StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord;
    
@@ -80,7 +81,7 @@ private
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (StadtRasseNummerExtern.Platznummer >= GlobaleVariablen.StadtGebaut'First (2)
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and

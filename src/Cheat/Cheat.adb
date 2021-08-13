@@ -156,6 +156,7 @@ package body Cheat is
       Put_Line (Item => "KIAufgabe:" & GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
       ForschungAllgemein.Beschreibung (IDExtern => GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Forschungsprojekt);
+      New_Line;
       
    end KarteStadtInfos;
 

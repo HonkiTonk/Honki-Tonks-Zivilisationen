@@ -12,7 +12,7 @@ package BewegungLadenEntladen is
       LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
      with
        Pre =>
-         (TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
    
@@ -21,7 +21,7 @@ package BewegungLadenEntladen is
       LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
      with
        Pre =>
-         (TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
    
@@ -30,7 +30,7 @@ package BewegungLadenEntladen is
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
@@ -43,7 +43,7 @@ package BewegungLadenEntladen is
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and

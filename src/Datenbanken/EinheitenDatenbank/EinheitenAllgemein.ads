@@ -14,7 +14,7 @@ package EinheitenAllgemein is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
@@ -37,7 +37,7 @@ package EinheitenAllgemein is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
@@ -45,16 +45,12 @@ package EinheitenAllgemein is
      (ArbeitExtern : in GlobaleDatentypen.Tastenbelegung_Enum);
    
    procedure Beförderung
-     (EinheitRasseNummerExtern, BesiegteEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
-          and
-            BesiegteEinheitExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
-          and
-            GlobaleVariablen.RassenImSpiel (BesiegteEinheitExtern.Rasse) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure HeimatstadtÄndern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -73,7 +69,7 @@ package EinheitenAllgemein is
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert     
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
@@ -82,7 +78,7 @@ package EinheitenAllgemein is
       return GlobaleDatentypen.Einheit_Art_Verwendet_Enum
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
@@ -91,11 +87,11 @@ package EinheitenAllgemein is
       return Boolean
      with
        Pre =>
-         (LadungExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (LadungExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (LadungExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (LadungExtern.Rasse) /= GlobaleDatentypen.Leer
           and
-            TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+            TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
    
@@ -104,7 +100,7 @@ package EinheitenAllgemein is
       return GlobaleDatentypen.EinheitenIDMitNullWert
      with
        Pre =>
-         (LadungExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (LadungExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (LadungExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (LadungExtern.Rasse) /= GlobaleDatentypen.Leer);
    
@@ -113,7 +109,7 @@ package EinheitenAllgemein is
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
      with
        Pre =>
-         (TransporterExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
    
@@ -122,7 +118,7 @@ package EinheitenAllgemein is
       return GlobaleDatentypen.EinheitenID
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
@@ -132,7 +128,7 @@ package EinheitenAllgemein is
       return GlobaleDatentypen.GesamtproduktionStadt
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
@@ -141,7 +137,7 @@ package EinheitenAllgemein is
       return GlobaleDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
@@ -167,7 +163,7 @@ private
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    

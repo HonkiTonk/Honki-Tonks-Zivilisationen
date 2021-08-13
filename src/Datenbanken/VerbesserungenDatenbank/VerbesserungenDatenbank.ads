@@ -13,9 +13,7 @@ package VerbesserungenDatenbank is
    procedure StandardVerbesserungenDatenbankLaden;
       
 private
-      
-   -- Passierbarkeit: Boden, Wasser, Luft, Weltraum, Unterwasser, Unterirdisch (Erde), Planeteninneres (Gestein), Lava
-   
+         
    VerbesserungListeStandard : constant VerbesserungListeArray :=
      (
       -- Nullwert, notwendig da sonst das Aufrechnen der Stadtwerte nicht funktioniert.

@@ -1,13 +1,23 @@
 pragma SPARK_Mode (On);
 
-with GlobaleRecords, GlobaleDatentypen;
+with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
+use GlobaleDatentypen;
 
-package ProduktionFeld is
+with Karten;
+
+package GesamtwerteFeld is
 
    function FeldNahrung
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.ProduktionFeld;
+      return GlobaleDatentypen.ProduktionFeld
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+          and
+            KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function FeldProduktion
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -29,8 +39,13 @@ package ProduktionFeld is
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
    
+   function FeldAngriff
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionFeld;
+   
 private
    
    GesamtProduktion : GlobaleDatentypen.ProduktionFeld;
 
-end ProduktionFeld;
+end GesamtwerteFeld;

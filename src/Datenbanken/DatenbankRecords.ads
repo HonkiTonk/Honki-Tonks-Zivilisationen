@@ -65,11 +65,13 @@ package DatenbankRecords is
       
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
       
+      -- Eventuell auch hier das GewinnBewertungArray nutzen und die Bewertung für die Baupriorität der KI verwenden?
       ProduktionBonus : GlobaleDatentypen.ProduktionFeld;
       GeldBonus : GlobaleDatentypen.ProduktionFeld;
       WissenBonus : GlobaleDatentypen.ProduktionFeld;
       VerteidigungBonus : GlobaleDatentypen.ProduktionFeld;
       NahrungBonus : GlobaleDatentypen.ProduktionFeld;
+      AngriffBonus : GlobaleDatentypen.ProduktionFeld;
       
       UmgebungBenötigt : GlobaleDatentypen.Karten_Grund_Enum;
       GebäudeSpezielleEigenschaft : GlobaleDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
@@ -81,7 +83,7 @@ package DatenbankRecords is
 
 
 
-   -- Feldwertung, Nahrung, Produktion, Geld, Wissen, Verteidigung
+   -- Feldwertung, Nahrung, Produktion, Geld, Wissen, Verteidigung, Angriff
    type GewinnBewertungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Bewertung_Werte_Enum'Range) of GlobaleDatentypen.ProduktionElement;
    
    type BewertungArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.ProduktionFeld;

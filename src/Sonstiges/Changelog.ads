@@ -126,17 +126,30 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (14.08.2021):
+   -- Version 0.00.8310 => 0.00.83 (14.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.82 => 0.00.8 (13.08.2021):
+   -- Version 0.00.8280 => 0.00.8310 (13.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler behoben der es einem ermöglichte den Krieg sofort zu erklären ohne die diplomatische Wartezeit abwarten zu müssen.
+   -- Ein Kampfsystem für Städte eingebaut.
+   -- Verteidigungsberechnung einer Stadt neu gebaut, es berücksichtigt jetzt auch vorhandene Gebäude.
+   -- Prüfung eingebaut um zu verhindern dass eine zu hohe Stadtbevölkerung zu einem Out of Range führt.
+   -- Das Einheitenkampfsystem neu geschrieben.
+   -- Berechnung für den aktuellen Angriffs- und Verteidigungswert von Einheiten neu gebaut und ausgelagert, damit alle Bereiche des Spiels darauf zugreifen können.
+   -- Berechnung für den aktuellen Angriffs- und Verteidigungswert auch für Städte eingebaut.
+   -- Bei der Berechnung der Kampfwerte wird jetzt ein Hügel unter anderem Grund korrekt mit einbezogen.
+   -- Gebäude, Grund, Flüsse, Straßen und Verbesserungen können jetzt neben einem Verteidigungsbonus auch einen Angriffsbonus geben.
+   -- Beförderungssystem leicht überarbeitet.
+   -- Anzeigen für die neuen Werte eingebaut und alte Anzeigen überarbeitet.
+   -- Doppelten/Unnötigen Code gelöscht.
+   -- Fehler in der Beschäftigungsanzeige korrigiert, welcher dafür sorgte dass bei keiner Beschäftigung "Heilt sich" angezeigt wurde.
+   -- Verschanzungsbonus bei verschanzten Einheiten und Stadtbonus für Einheiten in einer Stadt für die Verteidigung eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt/vereinheitlicht/hinzugefügt.
    
    
    
@@ -158,7 +171,7 @@ package Changelog is
    -- Kartenverbesserungsenum um Schienen und Tunnel erweitert, aber noch nicht ins Spiel eingebaut.
    -- Kartengrundenum um unterirdische und Lavaflüsse erweitert, aber noch nicht ins Spiel eingebaut.
    -- Fehler in der Steuerung belegen korrigiert, welcher verhinderte dass alle Auswahlmöglichkeiten angezeigt wurden und alle Befehle korrekt neu belegt werden konnten.
-   -- Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt/überarbeitet.
    
    
    

@@ -100,7 +100,7 @@ package body EinheitenAllgemein is
            := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte;
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := GlobaleKonstanten.LeerEinheit.Beschäftigungszeit;
-                  
+         
       elsif
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung = GlobaleDatentypen.Heilen
         and
@@ -242,8 +242,8 @@ package body EinheitenAllgemein is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Beschäftigung_Kurz,
                                            ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => 9,
-                                           LetzteZeileExtern      => 9,
+                                           ErsteZeileExtern       => 11,
+                                           LetzteZeileExtern      => 11,
                                            AbstandAnfangExtern    => GlobaleTexte.Leer,
                                            AbstandMitteExtern     => GlobaleTexte.Leer,
                                            AbstandEndeExtern      => GlobaleTexte.Leer);
@@ -452,10 +452,10 @@ package body EinheitenAllgemein is
    
    
    procedure Beförderung
-     (EinheitRasseNummerExtern, BesiegteEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      ErhalteneErfahrungspunkte := EinheitenDatenbank.EinheitenListe (BesiegteEinheitExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => BesiegteEinheitExtern)).Beförderungsgrenze / 5;
+      ErhalteneErfahrungspunkte := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze / 5;
       
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte + ErhalteneErfahrungspunkte > GlobaleDatentypen.MaximaleStädte'Last

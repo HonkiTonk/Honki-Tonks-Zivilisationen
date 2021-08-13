@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleTexte;
 
-with Anzeige, VerbesserungenAllgemein, KartenAllgemein;
+with Anzeige, GesamtwerteFeld, KampfwerteStadtErmitteln;
 
 package body StadtInformationen is
 
@@ -197,6 +197,44 @@ package body StadtInformationen is
    
    
    
+   procedure AktuelleVerteidigung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                     TextDateiExtern        => GlobaleTexte.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 25,
+                                     LetzteZeileExtern      => 25,
+                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
+                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (KampfwerteStadtErmitteln.AktuelleVerteidigungStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)),
+                               Width => 1);
+      
+   end AktuelleVerteidigung;
+   
+   
+   
+   procedure AktuellerAngriff
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                     TextDateiExtern        => GlobaleTexte.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 62,
+                                     LetzteZeileExtern      => 62,
+                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
+                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (KampfwerteStadtErmitteln.AktuellerAngriffStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)),
+                               Width => 1);
+      
+   end AktuellerAngriff;
+   
+   
+   
    procedure Korruption
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
@@ -306,52 +344,6 @@ package body StadtInformationen is
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Nahrungsgewinnung := 0;
-      Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.GrundNahrung (PositionExtern => KoordinatenExtern,
-                                                                             RasseExtern    => RasseExtern);
-      
-      if
-        KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
-      then
-         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern));
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.RessourceNahrung (PositionExtern => KoordinatenExtern,
-                                                                                    RasseExtern    => RasseExtern);
-      else
-         null;
-      end if;
-      
-      if
-        KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum
-      then
-         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern));
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.VerbesserungNahrung (PositionExtern => KoordinatenExtern,
-                                                                                       RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-      
-      if
-        KartenAllgemein.FeldWeg (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Weg_Enum
-      then
-         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldWeg (PositionExtern => KoordinatenExtern));
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.WegNahrung (PositionExtern => KoordinatenExtern,
-                                                                              RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-      
-      if
-        KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
-      then
-         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern));
-         Nahrungsgewinnung := Nahrungsgewinnung + KartenAllgemein.FlussNahrung (PositionExtern => KoordinatenExtern,
-                                                                                RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
       New_Line;
          
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -362,7 +354,8 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (Nahrungsgewinnung),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldNahrung (KoordinatenExtern => KoordinatenExtern,
+                                                                              RasseExtern       => RasseExtern)),
                                Width => 1);
       
    end EinzelnesFeldNahrungsgewinnung;
@@ -373,51 +366,7 @@ package body StadtInformationen is
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
-      
-      Ressourcengewinnung := 0;
-      Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.GrundProduktion (PositionExtern => KoordinatenExtern,
-                                                                                    RasseExtern    => RasseExtern);
-      
-      if
-        KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
-      then
-         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.RessourceProduktion (PositionExtern => KoordinatenExtern,
-                                                                                           RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-      
-      if
-        KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum
-      then
-         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.VerbesserungProduktion (PositionExtern => KoordinatenExtern,
-                                                                                              RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-      
-      if
-        KartenAllgemein.FeldWeg (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Weg_Enum
-      then
-         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.WegProduktion (PositionExtern => KoordinatenExtern,
-                                                                                     RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-      
-      if
-        KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
-      then
-         Ressourcengewinnung := Ressourcengewinnung + KartenAllgemein.FlussProduktion (PositionExtern => KoordinatenExtern,
-                                                                                       RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-         
+                     
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                      TextDateiExtern        => GlobaleTexte.Zeug,
                                      ÜberschriftZeileExtern => 0,
@@ -426,7 +375,8 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (Ressourcengewinnung),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldProduktion (KoordinatenExtern => KoordinatenExtern,
+                                                                                 RasseExtern       => RasseExtern)),
                                Width => 1);
       New_Line;
       
@@ -438,51 +388,7 @@ package body StadtInformationen is
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
-      
-      Geldgewinnung := 0;      
-      Geldgewinnung := Geldgewinnung + KartenAllgemein.GrundGeld (PositionExtern => KoordinatenExtern,
-                                                                  RasseExtern    => RasseExtern);
-      
-      if
-        KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
-      then
-         Geldgewinnung := Geldgewinnung + KartenAllgemein.RessourceGeld (PositionExtern => KoordinatenExtern,
-                                                                         RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-      
-      if
-        KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum
-      then
-         Geldgewinnung := Geldgewinnung + KartenAllgemein.VerbesserungGeld (PositionExtern => KoordinatenExtern,
-                                                                            RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-      
-      if
-        KartenAllgemein.FeldWeg (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Weg_Enum
-      then
-         Geldgewinnung := Geldgewinnung + KartenAllgemein.WegGeld (PositionExtern => KoordinatenExtern,
-                                                                   RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-      
-      if
-        KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
-      then
-         Geldgewinnung := Geldgewinnung + KartenAllgemein.FlussGeld (PositionExtern => KoordinatenExtern,
-                                                                     RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-         
+       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                      TextDateiExtern        => GlobaleTexte.Zeug,
                                      ÜberschriftZeileExtern => 0,
@@ -491,7 +397,8 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (Geldgewinnung),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldGeld (KoordinatenExtern => KoordinatenExtern,
+                                                                           RasseExtern       => RasseExtern)),
                                Width => 1);
       
    end EinzelnesFeldGeldgewinnung;
@@ -502,51 +409,7 @@ package body StadtInformationen is
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
-      
-      Wissensgewinnung := 0;
-      Wissensgewinnung := Wissensgewinnung + KartenAllgemein.GrundWissen (PositionExtern => KoordinatenExtern,
-                                                                          RasseExtern    => RasseExtern);
-      
-      if
-        KartenAllgemein.FeldRessource (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range
-      then
-         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.RessourceWissen (PositionExtern => KoordinatenExtern,
-                                                                                 RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-      
-      if
-        KartenAllgemein.FeldVerbesserung (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum
-      then
-         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.VerbesserungWissen (PositionExtern => KoordinatenExtern,
-                                                                                    RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-      
-      if
-        KartenAllgemein.FeldWeg (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Verbesserung_Weg_Enum
-      then
-         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.WegWissen (PositionExtern => KoordinatenExtern,
-                                                                           RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-      
-      if
-        KartenAllgemein.FeldFluss (PositionExtern => KoordinatenExtern) in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
-      then
-         Wissensgewinnung := Wissensgewinnung + KartenAllgemein.FlussWissen (PositionExtern => KoordinatenExtern,
-                                                                             RasseExtern    => RasseExtern);
-         
-      else
-         null;
-      end if;
-         
+               
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                      TextDateiExtern        => GlobaleTexte.Zeug,
                                      ÜberschriftZeileExtern => 0,
@@ -555,7 +418,8 @@ package body StadtInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (Wissensgewinnung),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldWissen (KoordinatenExtern => KoordinatenExtern,
+                                                                             RasseExtern       => RasseExtern)),
                                Width => 1);
       New_Line;
       

@@ -1,9 +1,9 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten;
+with GlobaleKonstanten, GlobaleTexte;
 
-with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, DiplomatischerZustand, BewegungLadenEntladen, Kampfsystem, StadtSuchen, StadtEntfernen,
-     StadtBauen, Verbesserungen;
+with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, DiplomatischerZustand, BewegungLadenEntladen, KampfsystemEinheiten, StadtSuchen,
+     StadtBauen, Verbesserungen, Anzeige, KampfsystemStadt;
 
 package body BewegungssystemEinheiten is
 
@@ -67,7 +67,8 @@ package body BewegungssystemEinheiten is
                
                   when False =>
                      Änderung := KeineÄnderung;
-                     -- Hier Meldung einbauen
+                     Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                                                           TextZeileExtern => 2);
                end case;
                
             when GlobaleDatentypen.Bauen =>
@@ -178,8 +179,8 @@ package body BewegungssystemEinheiten is
           FeldPassierbar
       then
          case
-           FremdeStadtAufFeld (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                               FremdeStadtExtern => StadtAufFeld)
+           FremdeStadtAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                               FremdeStadtExtern        => StadtAufFeld)
          is
             when False =>
                null;
@@ -240,8 +241,8 @@ package body BewegungssystemEinheiten is
       is
          when True =>
             if
-              Kampfsystem.KampfsystemNahkampf (AngreiferRasseNummerExtern   => EinheitRasseNummerExtern,
-                                               VerteidigerRasseNummerExtern => FremdeEinheitExtern) = True
+              KampfsystemEinheiten.KampfsystemNahkampf (AngreiferExtern    => EinheitRasseNummerExtern,
+                                                        VerteidigerExtern => FremdeEinheitExtern) = True
             then
                case
                  StadtAufFeld.Platznummer
@@ -250,8 +251,7 @@ package body BewegungssystemEinheiten is
                      return True;
                      
                   when others =>
-                     return FremdeStadtAufFeld (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                FremdeStadtExtern => StadtAufFeld);
+                     return False;
                end case;
                
             else
@@ -269,18 +269,17 @@ package body BewegungssystemEinheiten is
    
    
    function FremdeStadtAufFeld
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      FremdeStadtExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern, FremdeStadtExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
       case
-        DiplomatischerZustand.GegnerAngreifen (EigeneRasseExtern      => RasseExtern,
+        DiplomatischerZustand.GegnerAngreifen (EigeneRasseExtern      => EinheitRasseNummerExtern.Rasse,
                                                GegnerischeRasseExtern => FremdeStadtExtern.Rasse)
       is
          when True =>
-            StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => FremdeStadtExtern);
-            return True;
+            return KampfsystemStadt.KampfsystemStadt (AngreifendeEinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                      VerteidigendeStadtRasseNummerExtern => FremdeStadtExtern);
             
          when False =>
             return False;

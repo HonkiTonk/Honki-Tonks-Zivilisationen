@@ -92,6 +92,18 @@ package body KartenAllgemein is
    end GrundVerteidigung;
    
    
+
+   function GrundAngriff
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement
+   is begin
+      
+      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff);
+      
+   end GrundAngriff;
+   
+   
    
    function GrundBewertung
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -162,6 +174,18 @@ package body KartenAllgemein is
       return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
       
    end FlussVerteidigung;
+   
+   
+
+   function FlussAngriff
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement
+   is begin
+      
+      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff);
+      
+   end FlussAngriff;
    
    
    
@@ -241,6 +265,20 @@ package body KartenAllgemein is
    
    
    
+   function WegAngriff
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionFeld
+   is begin
+      
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
+                                                        PositionExtern.YAchse,
+                                                        PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Angriff);
+      
+   end WegAngriff;
+   
+   
+   
    function WegBewertung
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
@@ -317,6 +355,20 @@ package body KartenAllgemein is
    
    
    
+   function VerbesserungAngriff
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionFeld
+   is begin
+      
+      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
+                                                        PositionExtern.YAchse,
+                                                        PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Angriff);
+      
+   end VerbesserungAngriff;
+   
+   
+   
    function VerbesserungBewertung
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
@@ -388,6 +440,18 @@ package body KartenAllgemein is
       return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
       
    end RessourceVerteidigung;
+   
+   
+   
+   function RessourceAngriff
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ProduktionElement
+   is begin
+      
+      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff);
+      
+   end RessourceAngriff;
    
    
    

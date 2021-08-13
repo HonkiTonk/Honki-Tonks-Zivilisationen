@@ -7,7 +7,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with GebaeudeDatenbank;
   
-with KartePositionPruefen, StadtSuchen, Karten, StadtInformationen, Anzeige, GebaeudeAllgemein, KartenAllgemein, GrafischeAnzeige;
+with KartePositionPruefen, Karten, StadtInformationen, Anzeige, GebaeudeAllgemein, KartenAllgemein, GrafischeAnzeige;
 
 package body KarteStadt is
 
@@ -207,7 +207,8 @@ package body KarteStadt is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
 
-      Beschreibung (RasseExtern => StadtRasseNummerExtern.Rasse);
+      Beschreibung (RasseExtern            => StadtRasseNummerExtern.Rasse,
+                    StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       case
         InformationenStadtAufrufen
@@ -440,49 +441,41 @@ package body KarteStadt is
    
 
    procedure Beschreibung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
-
-      StadtRasseNummer := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
-
-      case
-        StadtRasseNummer.Platznummer
-      is
-         when GlobaleKonstanten.LeerEinheitStadtNummer =>
-            -- Sollte nie eintreten, da entweder aus der Stadt aufgerufen oder nur wenn die Kartenprüfung bereits eine Stadt gefunden hat. Sicherheitshalber nicht entfernen?
-            return;
-      
-         when others =>
-            null;
-      end case;
       
       -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Stadt befindet
       StadtInformationen.StadtArtBesitzer (RasseExtern               => RasseExtern,
-                                           StadtRasseNummerExtern => StadtRasseNummer);
-      StadtInformationen.StadtName (StadtRasseNummerExtern => StadtRasseNummer);
-      StadtInformationen.Einwohner (StadtRasseNummerExtern => StadtRasseNummer);      
+                                           StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtInformationen.StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtInformationen.Einwohner (StadtRasseNummerExtern => StadtRasseNummerExtern);      
 
       -- "Volle" Stadtinformationen, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist                      
       if
-        StadtRasseNummer.Rasse = RasseExtern
+        StadtRasseNummerExtern.Rasse = RasseExtern
         or
           GlobaleVariablen.FeindlicheInformationenSehen
       then
          
-         StadtInformationen.AktuelleNahrungsmittel (StadtRasseNummerExtern => StadtRasseNummer);
-         StadtInformationen.AktuelleNahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummer);         
+         StadtInformationen.AktuelleNahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         StadtInformationen.AktuelleNahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);         
          New_Line;
                         
-         StadtInformationen.AktuelleProduktionrate (StadtRasseNummerExtern => StadtRasseNummer);
-         StadtInformationen.AktuelleGeldgewinnung (StadtRasseNummerExtern => StadtRasseNummer);
-         StadtInformationen.AktuelleForschungsrate (StadtRasseNummerExtern => StadtRasseNummer);         
+         StadtInformationen.AktuelleProduktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         StadtInformationen.AktuelleGeldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         StadtInformationen.AktuelleForschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern);         
+         New_Line;
+         
+         StadtInformationen.AktuelleVerteidigung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         StadtInformationen.AktuellerAngriff (StadtRasseNummerExtern => StadtRasseNummerExtern);
          New_Line;
 
-         StadtInformationen.Korruption (StadtRasseNummerExtern => StadtRasseNummer);
-         StadtInformationen.EinwohnerOhneArbeit (StadtRasseNummerExtern => StadtRasseNummer);
+         StadtInformationen.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         StadtInformationen.EinwohnerOhneArbeit (StadtRasseNummerExtern => StadtRasseNummerExtern);
          New_Line;
                
-         StadtInformationen.AktuellesBauprojekt (StadtRasseNummerExtern => StadtRasseNummer);
+         StadtInformationen.AktuellesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       else
          null;

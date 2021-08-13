@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Karten, KartePositionPruefen, ProduktionFeld, StadtUmgebungsbereichFestlegen;
+with Karten, KartePositionPruefen, GesamtwerteFeld, StadtUmgebungsbereichFestlegen;
 
 package body StadtWerteFestlegen is
    
@@ -211,14 +211,14 @@ package body StadtWerteFestlegen is
    is begin
       
       Bewertung := 0;
-      NahrungGesamt := ProduktionFeld.FeldNahrung (KoordinatenExtern => PositionExtern,
-                                                   RasseExtern       => StadtRasseNummerExtern.Rasse);
-      RessourcenGesamt := ProduktionFeld.FeldProduktion (KoordinatenExtern => PositionExtern,
-                                                         RasseExtern       => StadtRasseNummerExtern.Rasse);
-      GeldGesamt := ProduktionFeld.FeldGeld (KoordinatenExtern => PositionExtern,
-                                             RasseExtern       => StadtRasseNummerExtern.Rasse);
-      WissenGesamt := ProduktionFeld.FeldWissen (KoordinatenExtern => PositionExtern,
-                                                 RasseExtern       => StadtRasseNummerExtern.Rasse);
+      NahrungGesamt := GesamtwerteFeld.FeldNahrung (KoordinatenExtern => PositionExtern,
+                                                    RasseExtern       => StadtRasseNummerExtern.Rasse);
+      RessourcenGesamt := GesamtwerteFeld.FeldProduktion (KoordinatenExtern => PositionExtern,
+                                                          RasseExtern       => StadtRasseNummerExtern.Rasse);
+      GeldGesamt := GesamtwerteFeld.FeldGeld (KoordinatenExtern => PositionExtern,
+                                              RasseExtern       => StadtRasseNummerExtern.Rasse);
+      WissenGesamt := GesamtwerteFeld.FeldWissen (KoordinatenExtern => PositionExtern,
+                                                  RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       if
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion <= 1

@@ -24,7 +24,7 @@ package StadtInformationen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            StadtRasseNummerExtern.Platznummer > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure Einwohner
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -32,7 +32,7 @@ package StadtInformationen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            StadtRasseNummerExtern.Platznummer > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure AktuelleNahrungsmittel
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -40,7 +40,7 @@ package StadtInformationen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            StadtRasseNummerExtern.Platznummer > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure AktuelleNahrungsproduktion
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -48,7 +48,7 @@ package StadtInformationen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            StadtRasseNummerExtern.Platznummer > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure AktuelleProduktionrate
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -56,7 +56,7 @@ package StadtInformationen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            StadtRasseNummerExtern.Platznummer > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure AktuelleGeldgewinnung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -64,7 +64,7 @@ package StadtInformationen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            StadtRasseNummerExtern.Platznummer > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure AktuelleForschungsrate
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -72,7 +72,23 @@ package StadtInformationen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            StadtRasseNummerExtern.Platznummer > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+
+   procedure AktuelleVerteidigung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+
+   procedure AktuellerAngriff
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure Korruption
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -80,7 +96,7 @@ package StadtInformationen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            StadtRasseNummerExtern.Platznummer > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure EinwohnerOhneArbeit
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -88,7 +104,7 @@ package StadtInformationen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            StadtRasseNummerExtern.Platznummer > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure AktuellesBauprojekt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -96,7 +112,7 @@ package StadtInformationen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            StadtRasseNummerExtern.Platznummer > 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure EinzelnesFeldNahrungsgewinnung
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -105,7 +121,9 @@ package StadtInformationen is
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure EinzelnesFeldRessourcengewinnung
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -114,7 +132,9 @@ package StadtInformationen is
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure EinzelnesFeldGeldgewinnung
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -123,7 +143,9 @@ package StadtInformationen is
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure EinzelnesFeldWissensgewinnung
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -132,7 +154,9 @@ package StadtInformationen is
        Pre =>
          (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure StadtfeldBewirtschaftet
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -141,13 +165,6 @@ package StadtInformationen is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            StadtRasseNummerExtern.Platznummer > 0);
-
-private
-
-   Nahrungsgewinnung : GlobaleDatentypen.ProduktionFeld;
-   Ressourcengewinnung : GlobaleDatentypen.ProduktionFeld;
-   Geldgewinnung : GlobaleDatentypen.ProduktionFeld;
-   Wissensgewinnung : GlobaleDatentypen.ProduktionFeld;
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 end StadtInformationen;

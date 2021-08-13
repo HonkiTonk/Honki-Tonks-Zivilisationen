@@ -112,6 +112,11 @@ package body DiplomatischerZustand is
       is
          when GlobaleDatentypen.Neutral =>
             if
+              GlobaleVariablen.Diplomatie (EigeneRasseExtern, GegnerischeRasseExtern).ZeitSeitLetzterÄnderung < GlobaleKonstanten.DiplomatischerStatusÄnderungszeit
+            then
+               return False;
+              
+            elsif
               Auswahl.AuswahlJaNein (FrageZeileExtern => 11) = GlobaleKonstanten.JaKonstante
             then
                DiplomatischenStatusÄndern (RasseEinsExtern   => EigeneRasseExtern,

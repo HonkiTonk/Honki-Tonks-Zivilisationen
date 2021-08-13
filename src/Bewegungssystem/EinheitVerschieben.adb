@@ -21,7 +21,7 @@ package body EinheitVerschieben is
       end case;
       
       StadtSchleife:
-      for StadtSchleifenwert in GlobaleVariablen.StadtGebaut'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
+      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          case
            GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).ID

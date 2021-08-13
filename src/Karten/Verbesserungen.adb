@@ -814,7 +814,7 @@ package body Verbesserungen is
                
             when others =>
                EinheitenSchleife:
-               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebaut'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
+               for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
          
                   if
                     GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID

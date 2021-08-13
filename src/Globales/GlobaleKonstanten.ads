@@ -347,6 +347,12 @@ package GlobaleKonstanten is
 
 
 
+   -- Für Diplomatie
+   DiplomatischerStatusÄnderungszeit : constant Positive := 10;
+   -- Für Diplomatie
+
+
+
    -- Für die Leerwerte
    LeerCursor : constant GlobaleRecords.CursorRecord := (
                                                          CursorGrafik  => '©',
@@ -468,6 +474,7 @@ package GlobaleKonstanten is
                                                                          WissenBonus                 => 0,
                                                                          VerteidigungBonus           => 0,
                                                                          NahrungBonus                => 0,
+                                                                         AngriffBonus                => 0,
                                                                          UmgebungBenötigt            => GlobaleDatentypen.Leer,
                                                                          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer
                                                                         );

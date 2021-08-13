@@ -11,7 +11,7 @@ package BewegungssystemEinheiten is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
-         (EinheitRasseNummerExtern.Platznummer >= GlobaleVariablen.EinheitenGebaut'First (2)
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch);
    
@@ -59,8 +59,7 @@ private
       return Boolean;
    
    function FremdeStadtAufFeld
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      FremdeStadtExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern, FremdeStadtExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean;
 
 end BewegungssystemEinheiten;

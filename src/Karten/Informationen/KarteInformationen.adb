@@ -7,7 +7,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with EinheitenDatenbank;
 
-with Anzeige, Cheat, Karten, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein, StadtInformationen, ProduktionFeld;
+with Anzeige, Cheat, Karten, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein, StadtInformationen, GesamtwerteFeld, KampfwerteEinheitErmitteln;
 
 package body KarteInformationen is
 
@@ -15,16 +15,18 @@ package body KarteInformationen is
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
 
-      Verteidigungsbonus := ProduktionFeld.FeldVerteidigung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+      Verteidigungsbonus := GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                              RasseExtern       => RasseExtern);
+      Nahrungsgewinnung := GesamtwerteFeld.FeldNahrung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                        RasseExtern       => RasseExtern);
+      Ressourcengewinnung := GesamtwerteFeld.FeldProduktion (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
                                                              RasseExtern       => RasseExtern);
-      Nahrungsgewinnung := ProduktionFeld.FeldNahrung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                       RasseExtern       => RasseExtern);
-      Ressourcengewinnung := ProduktionFeld.FeldProduktion (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                            RasseExtern       => RasseExtern);
-      Geldgewinnung := ProduktionFeld.FeldGeld (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                RasseExtern       => RasseExtern);
-      Wissensgewinnung := ProduktionFeld.FeldWissen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                     RasseExtern       => RasseExtern);
+      Geldgewinnung := GesamtwerteFeld.FeldGeld (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                 RasseExtern       => RasseExtern);
+      Wissensgewinnung := GesamtwerteFeld.FeldWissen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                      RasseExtern       => RasseExtern);      
+      Angriffsbonus := GesamtwerteFeld.FeldAngriff (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                    RasseExtern       => RasseExtern);
       
       -- Allgemeine Informationen über die eigene Rasse, immer sichtbar
       InformationenRundenanzahl;
@@ -401,6 +403,31 @@ package body KarteInformationen is
             when others =>
                StadtInformationen.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitenAllgemein.HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
          end case;
+         New_Line;
+         
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                        TextDateiExtern        => GlobaleTexte.Zeug,
+                                        ÜberschriftZeileExtern => 0,
+                                        ErsteZeileExtern       => 60,
+                                        LetzteZeileExtern      => 60,
+                                        AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
+                                        AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+         Ada.Integer_Text_IO.Put (Item  => Integer (KampfwerteEinheitErmitteln.AktuelleVerteidigungEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                            AngreiferExtern          => False)),
+                                  Width => 1);
+
+         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                        TextDateiExtern        => GlobaleTexte.Zeug,
+                                        ÜberschriftZeileExtern => 0,
+                                        ErsteZeileExtern       => 61,
+                                        LetzteZeileExtern      => 61,
+                                        AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                        AbstandMitteExtern     => GlobaleTexte.Leer,
+                                        AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+         Ada.Integer_Text_IO.Put (Item  => Integer (KampfwerteEinheitErmitteln.AktuellerAngriffEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                        AngreiferExtern          => False)),
+                                  Width => 1);
                  
          case
            EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).KannTransportieren
@@ -482,21 +509,10 @@ package body KarteInformationen is
       if
         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
       then
-         KarteStadt.Beschreibung (RasseExtern => RasseExtern);
+         KarteStadt.Beschreibung (RasseExtern            => RasseExtern,
+                                  StadtRasseNummerExtern => StadtRasseNummerExtern);
 
-         -- Stadtverteidigungsinformation, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist
-         if
-           StadtRasseNummerExtern.Rasse = RasseExtern
-           or
-             GlobaleVariablen.FeindlicheInformationenSehen
-         then                              
-            Verteidigungsbonus := Verteidigungsbonus + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                                                                 RasseExtern    => RasseExtern);
-
-         else
-            null;
-         end if;
-
+         -- Debuginformationen, nur sichtbar wenn Cheat aktiviert ist
          case
            GlobaleVariablen.FeindlicheInformationenSehen
          is
@@ -592,6 +608,17 @@ package body KarteInformationen is
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
       Ada.Integer_Text_IO.Put (Item  => Integer (Verteidigungsbonus),
+                               Width => 1);
+      
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                     TextDateiExtern        => GlobaleTexte.Zeug,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => 59,
+                                     LetzteZeileExtern      => 59,
+                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
+                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
+      Ada.Integer_Text_IO.Put (Item  => Integer (Angriffsbonus),
                                Width => 1);
             
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,

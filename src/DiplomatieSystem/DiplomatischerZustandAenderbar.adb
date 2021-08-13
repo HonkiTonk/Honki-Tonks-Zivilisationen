@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte;
+with GlobaleTexte, GlobaleKonstanten;
 
 with Anzeige, DiplomatischerZustand;
 
@@ -79,7 +79,7 @@ package body DiplomatischerZustandAenderbar is
       if
         AktuellerStatus = GlobaleDatentypen.Nichtangriffspakt
         and
-          ZeitSeitÄnderung >= 10
+          ZeitSeitÄnderung >= GlobaleKonstanten.DiplomatischerStatusÄnderungszeit
       then
          return True;
          
@@ -139,7 +139,7 @@ package body DiplomatischerZustandAenderbar is
       elsif
         AktuellerStatus = GlobaleDatentypen.Neutral
         and
-          ZeitSeitÄnderung >= 10
+          ZeitSeitÄnderung >= GlobaleKonstanten.DiplomatischerStatusÄnderungszeit
       then
          return True;
          
