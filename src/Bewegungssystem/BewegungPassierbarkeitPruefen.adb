@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitenDatenbank;
+with EinheitenDatenbank, VerbesserungenDatenbank;
 
 with KartenAllgemein;
 
@@ -35,14 +35,67 @@ package body BewegungPassierbarkeitPruefen is
       PassierbarkeitSchleife:
       for PassierbarkeitSchleifenwert in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum'Range loop
          
+         Passierbar := False;
+         
          if
-           EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Passierbarkeit (PassierbarkeitSchleifenwert) = True
+           NeuePositionExtern.EAchse = -2
+           and
+             PassierbarkeitSchleifenwert /= GlobaleDatentypen.Planeteninneres
+             and
+               PassierbarkeitSchleifenwert /= GlobaleDatentypen.Lava
          then
-            Passierbar := True;
+            null;
+                  
+         elsif
+           NeuePositionExtern.EAchse = -1
+           and
+             PassierbarkeitSchleifenwert /= GlobaleDatentypen.Unterwasser
+             and
+               PassierbarkeitSchleifenwert /= GlobaleDatentypen.Unterküstenwasser
+               and
+                 PassierbarkeitSchleifenwert /= Unterirdisch
+         then
+            null;
+                  
+         elsif
+           NeuePositionExtern.EAchse = 0
+           and
+             PassierbarkeitSchleifenwert /= GlobaleDatentypen.Wasser
+             and
+               PassierbarkeitSchleifenwert /= GlobaleDatentypen.Küstenwasser
+               and
+                 PassierbarkeitSchleifenwert /= GlobaleDatentypen.Boden
+                 and
+                   PassierbarkeitSchleifenwert /= GlobaleDatentypen.Luft
+                   and
+                     PassierbarkeitSchleifenwert /= GlobaleDatentypen.Weltraum
+         then
+            null;
+                  
+         elsif
+           NeuePositionExtern.EAchse = 1
+           and
+             PassierbarkeitSchleifenwert /= GlobaleDatentypen.Luft
+             and
+               PassierbarkeitSchleifenwert /= GlobaleDatentypen.Weltraum
+         then
+            null;
+                  
+         elsif
+           NeuePositionExtern.EAchse = 2
+           and
+             PassierbarkeitSchleifenwert /= GlobaleDatentypen.Weltraum
+         then
+            null;
+            
+         elsif
+           EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Passierbarkeit (PassierbarkeitSchleifenwert) = False
+         then
+            null;
             
          else
-            Passierbar := False;
-         end if;         
+            Passierbar := True;
+         end if;
          
          case
            Passierbar
@@ -54,12 +107,17 @@ package body BewegungPassierbarkeitPruefen is
                then
                   null;
                   
+               elsif
+                 VerbesserungenDatenbank.VerbesserungListe (KartenAllgemein.FeldWeg (PositionExtern => NeuePositionExtern)).Passierbarkeit (PassierbarkeitSchleifenwert) = False
+               then
+                  null;
+                  
                else
                   return True;
                end if;
                
-            when True =>               
-               -- Erste Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
+            when True =>
+               -- Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
                if
                  KartenAllgemein.FeldVerbesserung (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
                  and

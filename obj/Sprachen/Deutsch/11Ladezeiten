@@ -1,13 +1,10 @@
 Gesamtzeit Spielweltgenerierung:
-Generierung Ebene 0:
+Generierung Ebene 0, 1 und 2 und Landschaft Ebene -2:
 Unterscheide zwischen See- und Küstengewässer:
-Generiere Flüsse Ebene 0:
 Generiere Landschaft Ebene 0:
-Generiere Ressourcen Ebene 0:
-Generiere Ebene 1 (Himmel):
-Generiere Ebene 2 (Weltraum):
-Generiere Ebene -1 (Unterirdisch/Unterwasser):
-Generiere Ebene -2 (PlanetenInneres):
+Generiere Landschaft Ebene -1:
+Generiere Flüsse:
+Generiere Ressourcen:
 Kartenfelder bewerten:
 Spieler platzieren:
 Dauer des Spielstarts:

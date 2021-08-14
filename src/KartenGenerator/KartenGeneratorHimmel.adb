@@ -1,19 +1,14 @@
 pragma SPARK_Mode (On);
 
-with Ada.Calendar;
-use Ada.Calendar;
-
 with GlobaleDatentypen;
 
-with Ladezeiten, Karten;
+with Karten;
 
 package body KartenGeneratorHimmel is
 
    procedure Himmel
    is begin
-      
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Anfangswert) := Clock;
-         
+               
       YAchseHimmelSchleife:
       for YAchseHimmelSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
          XAchseHimmelSchleife:
@@ -24,8 +19,6 @@ package body KartenGeneratorHimmel is
          end loop XAchseHimmelSchleife;
       end loop YAchseHimmelSchleife;
          
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Himmel, GlobaleDatentypen.Endwert) := Clock;
-
    end Himmel;
 
 end KartenGeneratorHimmel;

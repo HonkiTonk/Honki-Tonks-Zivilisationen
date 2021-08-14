@@ -148,7 +148,7 @@ package body KartenGeneratorLandschaft is
                
             else
                null;
-            end if;            
+            end if;
          end if;
          
       end loop GrundSchleife;

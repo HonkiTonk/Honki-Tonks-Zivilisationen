@@ -112,24 +112,38 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (16.08.2021):
+   -- Version 0.00.83 => 0.00.8 (16.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (15.08.2021):
+   -- Version 0.00.8340 => 0.00.83 (15.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8310 => 0.00.83 (14.08.2021):
+   -- Version 0.00.8310 => 0.00.8340 (14.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Beförderungssystem von Einheiten leicht überarbetiet.
+   -- Passierbarkeitsprüfung überarbeitet, sollte jetzt auch bei falsch gesetzten Werten in der Kartendatenbank noch korrekt funktionieren und WegVerbesserungen sollten jetzt frühzeitige Übergänge ermöglichen können.
+   -- Weitere Kartenfelder für Unterwasser, Unterirdische und Planeteninneres hinzugefügt.
+   -- Die neuen Kartenfelder in die grafische Darstellung eingebaut.
+   -- Die neuen Kartenfelder in den Kartengenerator eingebaut.
+   -- Die Arbeitsreihenfolge des Kartengenerator überarbeitet und optimiert.
+   -- Der Kartengenerator erzeugt jetzt Unterwasser/Unterirdische Landschaften bestehend aus Korallen, Wasser, Unterwasserwald, Erde, Erdgestein und Sand.
+   -- Der Kartengenerator erzeugt jetzt Planeteninneres aus Lava, Planetenkern und Gestein.
+   -- Unterirdische und Lavaflüsse eingebaut.
+   -- Flussgenerierung überarbeitet und für die neuen Flussversionen angepasst.
+   -- Grafische Anzeige leicht optimiert und für die neuen Kartenfelder und Flüsse angepasst.
+   -- Achsenfehler in der Flussgenerierung behoben.
+   -- Ladezeiten an den neue Generierung angepasst.
+   -- Unnötigen Code gelöscht.
+   -- Einfache Ressourcengenerierung für Unterwasser/Unterirdisch eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/hinzugefügt.
    
    
    
@@ -147,7 +161,7 @@ package Changelog is
    -- Beförderungssystem leicht überarbeitet.
    -- Anzeigen für die neuen Werte eingebaut und alte Anzeigen überarbeitet.
    -- Doppelten/Unnötigen Code gelöscht.
-   -- Fehler in der Beschäftigungsanzeige korrigiert, welcher dafür sorgte dass bei keiner Beschäftigung "Heilt sich" angezeigt wurde.
+   -- Fehler in der Beschäftigungsanzeige korrigiert, welcher dafür sorgte dass bei keiner Beschäftigung 'Heilt sich' angezeigt wurde.
    -- Verschanzungsbonus bei verschanzten Einheiten und Stadtbonus für Einheiten in einer Stadt für die Verteidigung eingebaut.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt/vereinheitlicht/hinzugefügt.
    

@@ -68,6 +68,9 @@ private
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
+   procedure RessourcenGenerierung
+     (EbeneExtern : in GlobaleDatentypen.EbeneVorhanden);
+   
    procedure RessourcenWasser
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord);
    

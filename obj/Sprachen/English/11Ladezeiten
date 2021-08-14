@@ -1,13 +1,10 @@
 Total time game world generation:
-Generation level 0:
+Generation level 0, 1 and 2 and landscape level -2:
 Distinguish between sea and coastal waters:
-Generate rivers level 0:
 Generate landscape level 0:
-Generate resources level 0:
-Generate level 1 (sky):
-Generate level 2 (space):
-Generate level -1 (underground / underwater):
-Generate level -2 (planet interior):
+Generate landscape level -1:
+Generate rivers:
+Generate resources:
 Rate map tiles:
 Place players:
 Duration of the game start:

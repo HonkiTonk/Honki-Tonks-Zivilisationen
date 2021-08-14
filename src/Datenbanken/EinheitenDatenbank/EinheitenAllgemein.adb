@@ -455,6 +455,16 @@ package body EinheitenAllgemein is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
+      if
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
+        >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang
+      then
+         return;
+         
+      else
+         null;
+      end if;
+      
       ErhalteneErfahrungspunkte := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze / 5;
       
       if
@@ -474,9 +484,6 @@ package body EinheitenAllgemein is
          if
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
            >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze
-           and
-             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
-           < EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang
          then
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
               := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
@@ -484,22 +491,22 @@ package body EinheitenAllgemein is
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
               := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang + 1;
          
-         elsif
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
-           >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze
-           and
-             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
-           >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang
-         then
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
-              := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze;
-            exit BeförderungSchleife;
-         
          else
             null;
          end if;
          
       end loop BeförderungSchleife;
+      
+      if
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
+        > EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang
+      then
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
+           := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang;
+         
+      else
+         null;
+      end if;
       
    end Beförderung;
       

@@ -176,40 +176,14 @@ package body GrafischeAnzeige is
       CursorExtern : in Boolean;
       EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.Rassen_Enum)
    is begin
-      
-      case
-        VerbesserungExtern
-      is
-         when GlobaleDatentypen.Leer =>
-            null;
             
-         when others =>
-            Put (Item => CSI & "38;2;0;0;0m");
-      end case;
-      
-      case
-        RessourceExtern
-      is
-         when GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
-            Put (Item => CSI & "38;2;0;0;0m");
-            
-         when GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range =>
-            Put (Item => CSI & "38;2;0;0;205m");
-
-         when GlobaleDatentypen.Karten_Grund_Ressourcen_Wasser => 
-            Put (Item => CSI & "38;2;255;255;255m");
-            
-         when others =>
-            null;
-      end case;
-      
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Eis =>
+         when GlobaleDatentypen.Eis | GlobaleDatentypen.Unterwasser_Eis =>
             Put (Item => CSI & "48;2;255;245;238m");
             
-         when GlobaleDatentypen.Wasser | GlobaleDatentypen.Unter_Wasser =>
+         when GlobaleDatentypen.Wasser | GlobaleDatentypen.Unterwasser_Wasser =>
             Put (Item => CSI & "48;2;0;0;205m");
             
          when GlobaleDatentypen.Flachland =>
@@ -218,7 +192,7 @@ package body GrafischeAnzeige is
          when GlobaleDatentypen.Tundra =>
             Put (Item => CSI & "48;2;205;200;177m");
             
-         when GlobaleDatentypen.Wüste =>
+         when GlobaleDatentypen.Wüste | GlobaleDatentypen.Sand =>
             Put (Item => CSI & "48;2;238;238;0m");
             
          when GlobaleDatentypen.Hügel =>
@@ -233,7 +207,7 @@ package body GrafischeAnzeige is
          when GlobaleDatentypen.Dschungel =>
             Put (Item => CSI & "48;2;0;70;0m");
             
-         when GlobaleDatentypen.Küstengewässer | GlobaleDatentypen.Unter_Küstengewässer =>
+         when GlobaleDatentypen.Küstengewässer | GlobaleDatentypen.Unterwasser_Küstengewässer =>
             Put (Item => CSI & "48;2;135;206;250m");
             
          when GlobaleDatentypen.Sumpf =>
@@ -255,7 +229,16 @@ package body GrafischeAnzeige is
             Put (Item => CSI & "48;2;127;127;127m");
             
          when GlobaleDatentypen.Gestein =>
-            Put (Item => CSI & "48;2;87;87;87m");            
+            Put (Item => CSI & "48;2;87;87;87m");   
+            
+         when GlobaleDatentypen.Planetenkern =>
+            Put (Item => CSI & "48;2;205;0;0m");
+            
+         when GlobaleDatentypen.Unterwasser_Wald =>
+            Put (Item => CSI & "48;2;127;255;212m");
+            
+         when GlobaleDatentypen.Korallen =>
+            Put (Item => CSI & "48;2;255;114;86m");
             
          when others =>
             null;
@@ -264,11 +247,19 @@ package body GrafischeAnzeige is
       case
         GrundExtern
       is
-         when GlobaleDatentypen.Eis | GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste | GlobaleDatentypen.Küstengewässer | GlobaleDatentypen.Wolken | GlobaleDatentypen.Unter_Küstengewässer =>
+         when GlobaleDatentypen.Eis | GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste | GlobaleDatentypen.Sand | GlobaleDatentypen.Küstengewässer | GlobaleDatentypen.Wolken | GlobaleDatentypen.Unterwasser_Eis
+            | GlobaleDatentypen.Unterwasser_Küstengewässer =>
             if
               RessourceExtern in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
+              or
+                RessourceExtern in GlobaleDatentypen.Karten_Grund_Unterirdischer_Fluss_Enum'Range
             then
                Put (Item => CSI & "38;2;0;0;205m");
+               
+            elsif
+              RessourceExtern in GlobaleDatentypen.Karten_Grund_Lavafluss_Enum'Range
+            then
+               Put (Item => CSI & "38;2;230;50;50m");
                
             else
                Put (Item => CSI & "38;2;0;0;0m");
@@ -277,8 +268,15 @@ package body GrafischeAnzeige is
          when others =>
             if
               RessourceExtern in GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range
+              or
+                RessourceExtern in GlobaleDatentypen.Karten_Grund_Unterirdischer_Fluss_Enum'Range
             then
                Put (Item => CSI & "38;2;135;206;250m");
+               
+            elsif
+              RessourceExtern in GlobaleDatentypen.Karten_Grund_Lavafluss_Enum'Range
+            then
+               Put (Item => CSI & "38;2;230;50;50m");
                
             else
                Put (Item => CSI & "38;2;255;255;255m");
@@ -320,8 +318,6 @@ package body GrafischeAnzeige is
             
       elsif
         VerbesserungExtern /= GlobaleDatentypen.Leer
-        and
-          VerbesserungExtern not in GlobaleDatentypen.Karten_Verbesserung_Städte_Enum'Range
       then
          Put (Item => VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).VerbesserungGrafik & CSI & "0m");
 
@@ -335,6 +331,5 @@ package body GrafischeAnzeige is
       end if;
       
    end Farben;
-
 
 end GrafischeAnzeige;

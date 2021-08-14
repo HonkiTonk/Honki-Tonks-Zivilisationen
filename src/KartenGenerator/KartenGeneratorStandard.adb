@@ -2,12 +2,43 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with ZufallGeneratorenKarten, KartePositionPruefen;
+with ZufallGeneratorenKarten, KartePositionPruefen, KartenGeneratorHimmel, KartenGeneratorWeltraum, KartenGeneratorPlanetenInneres;
 
 package body KartenGeneratorStandard is
 
    procedure StandardKarte
-   is begin
+   is
+   
+      task Himmel;
+      task Weltraum;
+      task PlanetenInneres;
+      
+      task body Himmel
+      is begin
+         
+         KartenGeneratorHimmel.Himmel;
+         
+      end Himmel;
+      
+      
+      
+      task body Weltraum
+      is begin
+
+         KartenGeneratorWeltraum.Weltraum;
+         
+      end Weltraum;
+      
+      
+      
+      task body PlanetenInneres
+      is begin
+         
+         KartenGeneratorPlanetenInneres.PlanetenInneres;
+         
+      end PlanetenInneres;
+   
+   begin
       
       EisrandGenerieren;
       
@@ -258,6 +289,9 @@ package body KartenGeneratorStandard is
          
          Karten.Weltkarte (0, 1, EisSchleifenwert).Grund := GlobaleDatentypen.Eis;
          Karten.Weltkarte (0, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße, EisSchleifenwert).Grund := GlobaleDatentypen.Eis;
+         
+         Karten.Weltkarte (-1, 1, EisSchleifenwert).Grund := GlobaleDatentypen.Unterwasser_Eis;
+         Karten.Weltkarte (-1, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße, EisSchleifenwert).Grund := GlobaleDatentypen.Unterwasser_Eis;
          
       end loop EisSchleife;
       

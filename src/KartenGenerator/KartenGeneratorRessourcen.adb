@@ -8,9 +8,29 @@ with Karten, ZufallGeneratorenKarten, KartePositionPruefen;
 package body KartenGeneratorRessourcen is
 
    procedure GenerierungRessourcen
-   is begin
+   is
+   
+      task RessourcenUnterwasserUnterirdisch;
+      -- Später noch Ressourcen für weitere Ebenen einbauen?
+      
+      task body RessourcenUnterwasserUnterirdisch
+      is begin
+         
+         RessourcenGenerierung (EbeneExtern => -1);
+         
+      end RessourcenUnterwasserUnterirdisch;
+   
+   begin
 
-      Karten.GeneratorGrund := (others => (others => False));
+      RessourcenGenerierung (EbeneExtern => 0);
+      
+   end GenerierungRessourcen;
+   
+   
+   
+   procedure RessourcenGenerierung
+     (EbeneExtern : in GlobaleDatentypen.EbeneVorhanden)
+   is begin
 
       YAchseSchleife:
       for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand loop
@@ -18,18 +38,20 @@ package body KartenGeneratorRessourcen is
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop            
                
             if
-              Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund in Karten_Grund_Wasser_Enum'Range
+              (Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Grund in GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range
+               or
+                 Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Grund in GlobaleDatentypen.Karten_Unterwasser_Generator_Enum'Range)
               and
                 Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
             then
-               RessourcenWasser (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+               RessourcenWasser (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                
             elsif
-              Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund in Karten_Grund_Land_Ohne_Eis_Enum'Range
+              Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Grund in GlobaleDatentypen.Karten_Grund_Land_Ohne_Eis_Enum'Range
               and
                 Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
             then
-               RessourcenLand (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+               RessourcenLand (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                   
             else
                null;
@@ -38,7 +60,7 @@ package body KartenGeneratorRessourcen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-   end GenerierungRessourcen;
+   end RessourcenGenerierung;
    
    
    

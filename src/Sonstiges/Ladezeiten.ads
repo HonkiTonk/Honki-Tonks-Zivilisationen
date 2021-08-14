@@ -8,10 +8,10 @@ with GlobaleDatentypen;
 package Ladezeiten is
 
    
-   type Spielwelt_Erstellen_Zeit_Enum is (Leer, Gesamtzeit, Generiere_Ebene_Oberfläche, Generiere_Küstengewässer, Generiere_Flüsse, Generiere_Landschaft_Ebene_Oberfläche, Generiere_Ressourcen, Generiere_Ebene_Himmel,
-                                          Generiere_Ebene_Weltraum, Generiere_Ebene_Unterirdisch, Generiere_Ebene_Planeteninneres, Kartenfelder_Bewerten, Spieler_Platzieren);
+   type Spielwelt_Erstellen_Zeit_Enum is (Leer, Gesamtzeit, Generiere_Normal_Himmel_Weltraum_Planeteninneres, Generiere_Küstengewässer, Generiere_Landschaft_Ebene_Oberfläche, Generiere_Unterwasser_Unterirdisch,
+                                          Generiere_Flüsse, Generiere_Ressourcen, Kartenfelder_Bewerten, Spieler_Platzieren);
    subtype Spielwelt_Erstellen_Zeit_Verwendet_Enum is Spielwelt_Erstellen_Zeit_Enum range Gesamtzeit .. Spielwelt_Erstellen_Zeit_Enum'Last;
-   subtype Gesamtzeit_Enum is Spielwelt_Erstellen_Zeit_Verwendet_Enum range Generiere_Ebene_Oberfläche .. Spielwelt_Erstellen_Zeit_Verwendet_Enum'Last;
+   subtype Gesamtzeit_Enum is Spielwelt_Erstellen_Zeit_Verwendet_Enum range Generiere_Normal_Himmel_Weltraum_Planeteninneres .. Spielwelt_Erstellen_Zeit_Verwendet_Enum'Last;
    
    type SpielweltErstellenZeitArray is array (Spielwelt_Erstellen_Zeit_Verwendet_Enum'Range, GlobaleDatentypen.Anfang_Ende_Enum'Range) of Time;
    SpielweltErstellenZeit : SpielweltErstellenZeitArray;
@@ -37,14 +37,14 @@ private
    -- Für die Textausgabe
    type AufschlagArray is array (Einzelne_Zeiten_Enum'Range) of Positive;
    Aufschlag : constant AufschlagArray := (
-                                           Startzeit       => 13,
-                                           Zwischen_Runden => 14,
-                                           Speicherzeit    => 15,
-                                           Ladezeit        => 16
+                                           Startzeit       => 10,
+                                           Zwischen_Runden => 11,
+                                           Speicherzeit    => 12,
+                                           Ladezeit        => 13
                                           );
    
    type KITextArray is array (GlobaleDatentypen.Rassen_Enum'Range) of Positive;
-   KIText : KITextArray := (35, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34);
+   KIText : KITextArray := (32, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31);
 
    GesamtzeitSpielweltErstellen : Float;
    GesamtzeitKI : Float;

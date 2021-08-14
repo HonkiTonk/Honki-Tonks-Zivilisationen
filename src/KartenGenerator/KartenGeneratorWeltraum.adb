@@ -1,19 +1,14 @@
 pragma SPARK_Mode (On);
 
-with Ada.Calendar;
-use Ada.Calendar;
-
 with GlobaleDatentypen;
 
-with Ladezeiten, Karten;
+with Karten;
 
 package body KartenGeneratorWeltraum is
 
    procedure Weltraum
    is begin
       
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Weltraum, GlobaleDatentypen.Anfangswert) := Clock;
-
       YAchseWeltraumSchleife:
       for YAchseWeltraumSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
          XAchseWeltraumSchleife:
@@ -23,8 +18,6 @@ package body KartenGeneratorWeltraum is
                
          end loop XAchseWeltraumSchleife;
       end loop YAchseWeltraumSchleife;
-
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ebene_Weltraum, GlobaleDatentypen.Endwert) := Clock;
       
    end Weltraum;
 

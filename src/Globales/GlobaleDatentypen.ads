@@ -97,9 +97,11 @@ package GlobaleDatentypen is
 
    type Karten_Grund_Enum is (Leer,
                               -- Feld
-                              Wasser, Küstengewässer, Unter_Wasser, Unter_Küstengewässer,
-                              Eis, Lava,
-                              Tundra, Wüste, Hügel, Gebirge, Wald, Dschungel, Sumpf, Flachland, Hügel_Mit, Wolken, Weltraum, Erde, Erdgestein, Gestein,
+                              Wasser, Küstengewässer, Unterwasser_Wasser, Unterwasser_Küstengewässer,
+                              Eis, Unterwasser_Eis,
+                              Lava, Planetenkern,
+                              Tundra, Wüste, Hügel, Gebirge, Wald, Dschungel, Sumpf, Flachland, Hügel_Mit, Wolken, Weltraum, Erde, Erdgestein, Sand, Gestein,
+                              Korallen, Unterwasser_Wald,
                               -- Ressourcen
                               Fisch, Wal,
                               Kohle, Eisen, Öl, Hochwertiger_Boden, Gold,
@@ -116,20 +118,23 @@ package GlobaleDatentypen is
                               Lavaflusskreuzung_Drei_Oben, Lavaflusskreuzung_Drei_Unten, Lavaflusskreuzung_Drei_Rechts, Lavaflusskreuzung_Drei_Links, Lavaflussendstück_Links, Lavaflussendstück_Rechts,
                               Lavaflussendstück_Unten, Lavaflussendstück_Oben, Lavafluss_Einzeln
                              );
-   subtype Karten_Grund_Alle_Felder_Enum is Karten_Grund_Enum range Wasser .. Gestein;
-   subtype Karten_Grund_Wasser_Mit_Eis_Enum is Karten_Grund_Alle_Felder_Enum range Wasser .. Eis;
-   subtype Karten_Grund_Wasser_Enum is Karten_Grund_Wasser_Mit_Eis_Enum range Wasser .. Unter_Küstengewässer;
+
+   subtype Karten_Grund_Alle_Felder_Enum is Karten_Grund_Enum range Wasser .. Unterwasser_Wald;
+   subtype Karten_Grund_Wasser_Mit_Eis_Enum is Karten_Grund_Alle_Felder_Enum range Wasser .. Unterwasser_Eis;
+   subtype Karten_Grund_Wasser_Enum is Karten_Grund_Wasser_Mit_Eis_Enum range Wasser .. Unterwasser_Küstengewässer;
    subtype Karten_Grund_Land_Enum is Karten_Grund_Alle_Felder_Enum range Eis .. Gestein;
    subtype Karten_Grund_Land_Ohne_Eis_Enum is Karten_Grund_Land_Enum range Tundra .. Gestein;
    subtype Karten_Grund_Ressourcen_Enum is Karten_Grund_Enum range Fisch .. Gold;
    subtype Karten_Grund_Ressourcen_Wasser is Karten_Grund_Ressourcen_Enum range Fisch .. Wal;
    subtype Karten_Grund_Ressourcen_Land is Karten_Grund_Ressourcen_Enum range Kohle .. Gold;
-   subtype Karten_Grund_Fluss_Enum is Karten_Grund_Enum range Flusskreuzung_Vier .. Fluss_Einzeln;
-   subtype Karten_Grund_Unterirdischer_Fluss_Enum is Karten_Grund_Enum range Unterirdische_Flusskreuzung_Vier .. Unterirdischer_Fluss_Einzeln;
-   subtype Karten_Grund_Lavafluss_Enum is Karten_Grund_Enum range Lavaflusskreuzung_Vier .. Lavafluss_Einzeln;
+   subtype Karten_Fluss_Enum is Karten_Grund_Enum range Flusskreuzung_Vier .. Lavafluss_Einzeln;
+   subtype Karten_Grund_Fluss_Enum is Karten_Fluss_Enum range Flusskreuzung_Vier .. Fluss_Einzeln;
+   subtype Karten_Grund_Unterirdischer_Fluss_Enum is Karten_Fluss_Enum range Unterirdische_Flusskreuzung_Vier .. Unterirdischer_Fluss_Einzeln;
+   subtype Karten_Grund_Lavafluss_Enum is Karten_Fluss_Enum range Lavaflusskreuzung_Vier .. Lavafluss_Einzeln;
    subtype Landschaft_Wahrscheinlichkeit_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Sumpf;
    -- Flachland muss hier immer am Schluss kommen, sonst geht der Kartengenerator kaputt!
    subtype Karten_Grund_Generator_Enum is Karten_Grund_Land_Ohne_Eis_Enum range Tundra .. Flachland;
+   subtype Karten_Unterwasser_Generator_Enum is Karten_Grund_Alle_Felder_Enum range Korallen .. Unterwasser_Wald;
 
    -- Muss aktuell immer so lange sein wie (EinheitenID + GebäudeID + 1), wegen TextBauenNeuArray und der Anzeige der Bauliste
    type KartenverbesserungEinheitenID is range -1 .. 100;
@@ -155,6 +160,7 @@ package GlobaleDatentypen is
                                      Tunnelkreuzung_Drei_Oben, Tunnelkreuzung_Drei_Unten, Tunnelkreuzung_Drei_Rechts, Tunnelkreuzung_Drei_Links, Tunnelendstück_Links, Tunnelendstück_Rechts,
                                      Tunnelendstück_Unten, Tunnelendstück_Oben, Tunnel_Einzeln
                                     );
+
    subtype Karten_Verbesserung_Stadt_ID_Enum is Karten_Verbesserung_Enum range Leer .. Eigene_Stadt;
    subtype Karten_Verbesserung_Städte_Enum is Karten_Verbesserung_Enum range Eigene_Hauptstadt .. Fremde_Stadt;
    subtype Karten_Verbesserung_Eigene_Städte_Enum is Karten_Verbesserung_Städte_Enum range Eigene_Hauptstadt .. Eigene_Stadt;
@@ -197,6 +203,7 @@ package GlobaleDatentypen is
                                 Weltraum,
                                 Unterirdisch,
                                 Planeteninneres, Lava);
+
    subtype Passierbarkeit_Vorhanden_Enum is Passierbarkeit_Enum range Boden .. Passierbarkeit_Enum'Last;
    subtype Passierbarkeit_Fliegen_Enum is Passierbarkeit_Vorhanden_Enum range Luft .. Weltraum;
 
