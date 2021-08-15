@@ -72,6 +72,9 @@ private
    procedure ArbeiterEntfernen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
    
+   procedure GebäudeEntfernen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
    
    
    function FeldBewerten

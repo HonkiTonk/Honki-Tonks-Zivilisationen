@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Karten, KartePositionPruefen, GesamtwerteFeld, StadtUmgebungsbereichFestlegen;
+with Karten, KartePositionPruefen, GesamtwerteFeld, StadtUmgebungsbereichFestlegen, GebaeudeRichtigeUmgebung;
 
 package body StadtWerteFestlegen is
    
@@ -106,6 +106,11 @@ package body StadtWerteFestlegen is
                                            StadtRasseNummerExtern   => StadtRasseNummerExtern);
             
          end loop ArbeiterSchleife;
+         
+      elsif
+        GrößeNeu < GrößeAlt
+      then
+         GebäudeEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
          
       else
          null;
@@ -419,5 +424,33 @@ package body StadtWerteFestlegen is
       end case;
       
    end ArbeiterEntfernen;
+   
+   
+   
+   procedure GebäudeEntfernen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      GebäudeSchleife:
+      for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
+         
+         if
+           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = False
+         then
+            null;
+            
+         elsif
+           GebaeudeRichtigeUmgebung.BenötigteUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                 GebäudeIDExtern       => GebäudeSchleifenwert) = True
+         then
+            null;
+            
+         else
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) := False;
+         end if;
+         
+      end loop GebäudeSchleife;
+      
+   end GebäudeEntfernen;
    
 end StadtWerteFestlegen;

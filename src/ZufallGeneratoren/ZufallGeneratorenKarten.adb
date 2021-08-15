@@ -124,13 +124,81 @@ package body ZufallGeneratorenKarten is
 
 
 
-   function Chaoskarte
+   function ChaoskarteGrund
      return GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum
    is begin
       
       WerteWählenChaoskarte.Reset (GrundGewählt);
       return WerteWählenChaoskarte.Random (GrundGewählt);
       
-   end Chaoskarte;
+   end ChaoskarteGrund;
+   
+   
+   
+   function ChaoskarteFluss
+      return GlobaleDatentypen.Karten_Grund_Enum
+   is begin
+      
+      FlussWählenChaoskarte.Reset (FlussGewählt);
+      
+      WählenSchleife:
+      loop
+         
+         FlussWert := FlussWählenChaoskarte.Random (FlussGewählt);
+         
+         if
+           FlussWert in GlobaleDatentypen.Karten_Fluss_Enum'Range
+         then
+            return FlussWert;
+                  
+         else
+            return GlobaleDatentypen.Leer;
+         end if;
+         
+      end loop WählenSchleife;
+      
+   end ChaoskarteFluss;
+   
+   
+   
+   function ChaoskarteRessource
+     (WasserLandExtern : in Boolean)
+      return GlobaleDatentypen.Karten_Grund_Enum
+   is begin
+      
+      RessourceWählenChaoskarte.Reset (RessourceGewählt);
+      
+      WählenSchleife:
+      loop
+         
+         RessourceWert := RessourceWählenChaoskarte.Random (RessourceGewählt);
+         
+         case
+           WasserLandExtern
+         is
+            when True =>
+               if
+                 RessourceWert in GlobaleDatentypen.Karten_Grund_Ressourcen_Wasser'Range
+               then
+                  return RessourceWert;
+                  
+               else
+                  return GlobaleDatentypen.Leer;
+               end if;
+
+            when False =>
+               if
+                 RessourceWert in GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range
+               then
+                  return RessourceWert;
+                  
+               else
+                  return GlobaleDatentypen.Leer;
+               end if;
+         end case;
+         
+      end loop WählenSchleife;
+      
+   end ChaoskarteRessource;
 
 end ZufallGeneratorenKarten;

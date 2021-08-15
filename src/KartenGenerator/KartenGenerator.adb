@@ -120,9 +120,19 @@ package body KartenGenerator is
    is begin
       
       Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Flüsse, GlobaleDatentypen.Anfangswert) := Clock;
-      KartenGeneratorFluss.GenerierungFlüsse;
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Flüsse, GlobaleDatentypen.Endwert) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Flüsse);
+      
+      case
+        Karten.Kartenart
+      is
+         when GlobaleDatentypen.Chaos =>
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Flüsse, GlobaleDatentypen.Endwert)
+              := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Flüsse, GlobaleDatentypen.Anfangswert);
+            
+         when others =>            
+            KartenGeneratorFluss.GenerierungFlüsse;
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Flüsse, GlobaleDatentypen.Endwert) := Clock;
+            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Flüsse);
+      end case;
       
    end FlüsseGenerieren;
    
@@ -132,10 +142,20 @@ package body KartenGenerator is
    is begin
       
       Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ressourcen, GlobaleDatentypen.Anfangswert) := Clock;
-      Karten.GeneratorGrund := (others => (others => False));
-      KartenGeneratorRessourcen.GenerierungRessourcen;
-      Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ressourcen, GlobaleDatentypen.Endwert) := Clock;
-      Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Ressourcen);
+      
+      case
+        Karten.Kartenart
+      is
+         when GlobaleDatentypen.Chaos =>
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ressourcen, GlobaleDatentypen.Endwert)
+              := Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ressourcen, GlobaleDatentypen.Anfangswert);
+            
+         when others =>
+            Karten.GeneratorGrund := (others => (others => False));
+            KartenGeneratorRessourcen.GenerierungRessourcen;
+            Ladezeiten.SpielweltErstellenZeit (Ladezeiten.Generiere_Ressourcen, GlobaleDatentypen.Endwert) := Clock;
+            Ladezeiten.LadezeitenSpielweltErstellen (WelcheZeitExtern => Ladezeiten.Generiere_Ressourcen);
+      end case;
       
    end RessourcenGenerieren;
    

@@ -55,7 +55,8 @@ package body KartenGeneratorStandard is
       end case;
       
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand (Karten.Kartengröße)
+        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand (Karten.Kartengröße) loop
          XAchseSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
@@ -96,9 +97,9 @@ package body KartenGeneratorStandard is
       is
          when GlobaleDatentypen.Leer =>
             if
-              YAchseExtern <= Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisschild
+              YAchseExtern <= Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisschild (Karten.Kartengröße)
               or
-                YAchseExtern >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisschild
+                YAchseExtern >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisschild (Karten.Kartengröße)
             then
                if
                  BeliebigerLandwert in WahrscheinlichkeitenLand (Karten.Kartenart, Masse_Eisschild).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenart, Masse_Eisschild).Endwert
@@ -162,9 +163,9 @@ package body KartenGeneratorStandard is
                                                                         ÄnderungExtern    => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert));
 
             if
-              KartenWert.YAchse <= Karten.WeltkarteArray'First (2)
+              KartenWert.YAchse <= Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisschild (Karten.Kartengröße)
               or
-                KartenWert.YAchse >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+                KartenWert.YAchse >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisschild (Karten.Kartengröße)
             then
                null;
                
@@ -268,7 +269,8 @@ package body KartenGeneratorStandard is
    is begin
       
       YAchseSchleife:
-      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand loop
+      for YAchseSchleifenwert in Karten.WeltkarteArray'First (2) + GlobaleKonstanten.Eisrand (Karten.Kartengröße)
+        .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - GlobaleKonstanten.Eisrand (Karten.Kartengröße) loop
          XAchseSchleife:
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
@@ -284,16 +286,19 @@ package body KartenGeneratorStandard is
    procedure EisrandGenerieren
    is begin
       
-      EisSchleife:
-      for EisSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
+      YAchseEisSchleife:
+      for YAchseEisSchleifenwert in Karten.WeltkarteArray'First (2) .. GlobaleKonstanten.Eisrand (Karten.Kartengröße) loop
+         XAchseEisSchleife:
+         for XAchseEisSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
          
-         Karten.Weltkarte (0, 1, EisSchleifenwert).Grund := GlobaleDatentypen.Eis;
-         Karten.Weltkarte (0, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße, EisSchleifenwert).Grund := GlobaleDatentypen.Eis;
+            Karten.Weltkarte (0, YAchseEisSchleifenwert, XAchseEisSchleifenwert).Grund := GlobaleDatentypen.Eis;
+            Karten.Weltkarte (0, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - YAchseEisSchleifenwert + 1, XAchseEisSchleifenwert).Grund := GlobaleDatentypen.Eis;
          
-         Karten.Weltkarte (-1, 1, EisSchleifenwert).Grund := GlobaleDatentypen.Unterwasser_Eis;
-         Karten.Weltkarte (-1, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße, EisSchleifenwert).Grund := GlobaleDatentypen.Unterwasser_Eis;
+            Karten.Weltkarte (-1, YAchseEisSchleifenwert, XAchseEisSchleifenwert).Grund := GlobaleDatentypen.Unterwasser_Eis;
+            Karten.Weltkarte (-1, Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße - YAchseEisSchleifenwert + 1, XAchseEisSchleifenwert).Grund := GlobaleDatentypen.Unterwasser_Eis;
          
-      end loop EisSchleife;
+         end loop XAchseEisSchleife;
+      end loop YAchseEisSchleife;
       
    end EisrandGenerieren;
 

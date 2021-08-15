@@ -206,9 +206,6 @@ package body Verbesserungen is
          when GlobaleDatentypen.Einheit_Verbessern =>
             return VerbesserungEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                         AnlegenTestenExtern      => AnlegenTestenExtern);
-            
-         when others =>
-            return False;
       end case;
       
       return True;
@@ -217,6 +214,7 @@ package body Verbesserungen is
 
 
 
+   -- Hier prüfen welcher Weg
    function VerbesserungWeg
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
@@ -239,7 +237,7 @@ package body Verbesserungen is
         GrundExtern
       is
          when GlobaleDatentypen.Eis | GlobaleDatentypen.Flachland | GlobaleDatentypen.Tundra | GlobaleDatentypen.Wüste | GlobaleDatentypen.Hügel | GlobaleDatentypen.Wald
-            | GlobaleDatentypen.Karten_Grund_Fluss_Enum'Range | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
+            | GlobaleDatentypen.Karten_Grund_Ressourcen_Land'Range =>
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Straße_Bauen;
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 3;
 

@@ -108,6 +108,7 @@ package body BewegungssystemCursor is
          when others =>
             Position.XAchse := GlobaleDatentypen.Kartenfeld (KoordinatenPunkt);
             GlobaleVariablen.CursorImSpiel (RasseExtern).Position := Position;
+            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt := Position;
       end case;
       
    end GeheZuCursor;

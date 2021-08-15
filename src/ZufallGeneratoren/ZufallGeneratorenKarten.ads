@@ -26,10 +26,20 @@ package ZufallGeneratorenKarten is
    function ZufälligerWert
      return Float;
      
-   function Chaoskarte
+   function ChaoskarteGrund
      return GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum;
+   
+   function ChaoskarteFluss
+     return GlobaleDatentypen.Karten_Grund_Enum;
+   
+   function ChaoskarteRessource
+     (WasserLandExtern : in Boolean)
+      return GlobaleDatentypen.Karten_Grund_Enum;
 
 private
+   
+   FlussWert : GlobaleDatentypen.Karten_Grund_Enum;
+   RessourceWert : GlobaleDatentypen.Karten_Grund_Enum;
    
    EAchse : GlobaleDatentypen.EbeneVorhanden;
    YAchse : GlobaleDatentypen.KartenfeldPositiv;
@@ -74,8 +84,14 @@ private
 
 
    -- Generator für Chaoskarte
-   package WerteWählenChaoskarte is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum);   
+   package WerteWählenChaoskarte is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum);
    GrundGewählt : WerteWählenChaoskarte.Generator;
+   
+   package FlussWählenChaoskarte is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Karten_Grund_Enum);
+   FlussGewählt : FlussWählenChaoskarte.Generator;
+   
+   package RessourceWählenChaoskarte is new Ada.Numerics.Discrete_Random (GlobaleDatentypen.Karten_Grund_Enum);
+   RessourceGewählt : RessourceWählenChaoskarte.Generator;
    -- Generator für Chaoskarte
 
 end ZufallGeneratorenKarten;

@@ -91,8 +91,6 @@ private
                                                                 Nächste_Einheit_Mit_Meldung    => 'o',
 
                                                                 Straße_Bauen                   => 'l',
-                                                                Schiene_Bauen                  => NUL,
-                                                                Tunnel_Bauen                   => NUL,
                                                                 Mine_Bauen                     => 'm',
                                                                 Farm_Bauen                     => 'f',
                                                                 Festung_Bauen                  => 'u',
@@ -145,8 +143,6 @@ private
                                                                 Nächste_Einheit_Mit_Meldung    => NUL,
 
                                                                 Straße_Bauen                   => NUL,
-                                                                Schiene_Bauen                  => NUL,
-                                                                Tunnel_Bauen                   => NUL,
                                                                 Mine_Bauen                     => NUL,
                                                                 Farm_Bauen                     => NUL,
                                                                 Festung_Bauen                  => NUL,

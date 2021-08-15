@@ -20,7 +20,7 @@ package body OptionenSteuerung is
                                          TextDateiExtern   => GlobaleTexte.Menü_Auswahl,
                                          FrageZeileExtern  => 28,
                                          ErsteZeileExtern  => 22,
-                                         LetzteZeileExtern => 68);
+                                         LetzteZeileExtern => 66);
          
          case
            AuswahlWert

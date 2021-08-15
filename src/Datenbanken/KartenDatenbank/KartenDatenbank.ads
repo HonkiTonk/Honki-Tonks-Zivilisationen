@@ -10,7 +10,7 @@ package KartenDatenbank is
    type KartenListeArray is array (GlobaleDatentypen.Karten_Grund_Enum'Range) of DatenbankRecords.KartenListeRecord;
    KartenListe : KartenListeArray;
    
-   procedure StandardKartenDatenbankLaden;   
+   procedure StandardKartenDatenbankLaden;
    
 private
    
@@ -258,16 +258,16 @@ private
       -- Ressourcen
       
       
-                                      
+      
       -- Flüsss
       -- Normal
-      GlobaleDatentypen.Flusskreuzung_Vier =>
-        (KartenGrafik        => '╋',
-         Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
-                                 GlobaleDatentypen.Luft     => True,
-                                 GlobaleDatentypen.Weltraum => True,
-                                 others                     => False),
-         FeldWerte           => (others => (others => 1))),
+        GlobaleDatentypen.Flusskreuzung_Vier =>
+          (KartenGrafik        => '╋',
+           Passierbarkeit      => (GlobaleDatentypen.Boden    => True,
+                                   GlobaleDatentypen.Luft     => True,
+                                   GlobaleDatentypen.Weltraum => True,
+                                   others                     => False),
+           FeldWerte           => (others => (others => 1))),
                                       
       GlobaleDatentypen.Fluss_Waagrecht =>
         (KartenGrafik        => '━',

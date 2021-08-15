@@ -112,23 +112,29 @@ package Changelog is
    
    
    
-   -- Version 0.00.83 => 0.00.8 (16.08.2021):
+   -- Version 0.00.8360 => 0.00.83 (16.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8340 => 0.00.83 (15.08.2021):
+   -- Version 0.00.8340 => 0.00.8360 (15.08.2021):
    
-   -- 
+   -- Den Aspari_2 Forschungsbaum grafisch größtenteils 'erstellt'.
+   -- Die anderen Forschungsbäume grafisch erweitert.
+   -- Chaoskartengenerator um Ressourcen und Flüsse erweitert.
+   -- Prüfung ob die richtige Umgebung für ein Gebäude vorhanden ist ausgelagert, um sie so später für die KI und bei Verkleinerungen der Stadtumgebung wiederverwerten zu können.
+   -- Wenn durch Stadtschrumpfung die Anforderungen für ein Gebäude nicht mehr erfüllt werden, dann wird dieses Gebäude jetzt entfernt
+   -- Der Eisrand und der benötigte Generatorenabstand dazu ist jetzt Kartengrößenabhängig.
+   -- Fehler in Goto behoben, welcher in bestimmten Fällen dafür sorgte dass die Karte auf der alten Position blieb.
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8310 => 0.00.8340 (14.08.2021):
    
-   -- Beförderungssystem von Einheiten leicht überarbetiet.
+   -- Beförderungssystem von Einheiten leicht überarbeitet.
    -- Passierbarkeitsprüfung überarbeitet, sollte jetzt auch bei falsch gesetzten Werten in der Kartendatenbank noch korrekt funktionieren und WegVerbesserungen sollten jetzt frühzeitige Übergänge ermöglichen können.
    -- Weitere Kartenfelder für Unterwasser, Unterirdische und Planeteninneres hinzugefügt.
    -- Die neuen Kartenfelder in die grafische Darstellung eingebaut.
@@ -140,10 +146,10 @@ package Changelog is
    -- Flussgenerierung überarbeitet und für die neuen Flussversionen angepasst.
    -- Grafische Anzeige leicht optimiert und für die neuen Kartenfelder und Flüsse angepasst.
    -- Achsenfehler in der Flussgenerierung behoben.
-   -- Ladezeiten an den neue Generierung angepasst.
+   -- Ladezeiten an die neue Generierung angepasst.
    -- Unnötigen Code gelöscht.
    -- Einfache Ressourcengenerierung für Unterwasser/Unterirdisch eingebaut.
-   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/hinzugefügt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/hinzugefügt/überarbeitet.
    
    
    
