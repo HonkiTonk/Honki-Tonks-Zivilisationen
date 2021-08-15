@@ -121,14 +121,14 @@ package Changelog is
    
    -- Version 0.00.8340 => 0.00.8360 (15.08.2021):
    
-   -- Den Aspari_2 Forschungsbaum grafisch größtenteils 'erstellt'.
+   -- Den Aspari_2 Forschungsbaum grafisch größtenteils erstellt.
    -- Die anderen Forschungsbäume grafisch erweitert.
    -- Chaoskartengenerator um Ressourcen und Flüsse erweitert.
    -- Prüfung ob die richtige Umgebung für ein Gebäude vorhanden ist ausgelagert, um sie so später für die KI und bei Verkleinerungen der Stadtumgebung wiederverwerten zu können.
-   -- Wenn durch Stadtschrumpfung die Anforderungen für ein Gebäude nicht mehr erfüllt werden, dann wird dieses Gebäude jetzt entfernt
+   -- Wenn durch Stadtschrumpfung die Anforderungen für ein Gebäude nicht mehr erfüllt werden, dann wird dieses Gebäude jetzt entfernt.
    -- Der Eisrand und der benötigte Generatorenabstand dazu ist jetzt Kartengrößenabhängig.
    -- Fehler in Goto behoben, welcher in bestimmten Fällen dafür sorgte dass die Karte auf der alten Position blieb.
-   -- Kleinigkeiten korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    
