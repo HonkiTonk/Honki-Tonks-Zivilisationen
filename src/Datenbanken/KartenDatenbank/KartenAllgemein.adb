@@ -39,7 +39,18 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung);
+      if
+        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
+        and
+          KartenAllgemein.FeldHügel (PositionExtern => PositionExtern) = True
+      then
+         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung)
+           + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung) / 2;
+         
+      else
+         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung);
+      end if;
+      
       
    end GrundNahrung;
    
@@ -51,7 +62,17 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion);
+      if
+        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
+        and
+          KartenAllgemein.FeldHügel (PositionExtern => PositionExtern) = True
+      then
+         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion)
+           + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion) / 2;
+         
+      else
+         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion);
+      end if;
       
    end GrundProduktion;
    
@@ -63,7 +84,17 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Geld);
+      if
+        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
+        and
+          KartenAllgemein.FeldHügel (PositionExtern => PositionExtern) = True
+      then
+         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Geld)
+           + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (RasseExtern, GlobaleDatentypen.Geld) / 2;
+         
+      else
+         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Geld);
+      end if;
       
    end GrundGeld;
    
@@ -75,8 +106,18 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen);
-      
+      if
+        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
+        and
+          KartenAllgemein.FeldHügel (PositionExtern => PositionExtern) = True
+      then
+         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen)
+           + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen) / 2;
+         
+      else
+         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen);
+      end if;
+            
    end GrundWissen;
    
    
@@ -87,7 +128,17 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
+      if
+        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
+        and
+          KartenAllgemein.FeldHügel (PositionExtern => PositionExtern) = True
+      then
+         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung)
+           + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung) / 2;
+         
+      else
+         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
+      end if;
       
    end GrundVerteidigung;
    
@@ -99,7 +150,17 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff);
+      if
+        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
+        and
+          KartenAllgemein.FeldHügel (PositionExtern => PositionExtern) = True
+      then
+         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff)
+           + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff) / 2;
+         
+      else
+         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff);
+      end if;
       
    end GrundAngriff;
    

@@ -105,17 +105,19 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (17.08.2021):
+   -- Version 0.00.83 => 0.00.8 (17.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8360 => 0.00.83 (16.08.2021):
+   -- Version 0.00.8360 => 0.00.8370 (16.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Hügel_Mit wird jetzt bei den entsprechenden Feldwerten jetzt berücksichtigt.
+   -- Ermittlung der Kampfwerte vereinfacht.
+   -- Sicherheitsprüfung für Einheiten eingebaut, welche transportieren können, aber ein Transporterlimit von 0 haben.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    

@@ -43,9 +43,5 @@ package GesamtwerteFeld is
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionFeld;
-   
-private
-   
-   GesamtProduktion : GlobaleDatentypen.ProduktionFeld;
 
 end GesamtwerteFeld;

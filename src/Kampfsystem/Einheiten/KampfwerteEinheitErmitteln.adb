@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitenDatenbank, KartenDatenbank;
+with EinheitenDatenbank;
 
-with KartenAllgemein, StadtSuchen;
+with StadtSuchen, GesamtwerteFeld;
 
 package body KampfwerteEinheitErmitteln is
 
@@ -21,31 +21,8 @@ package body KampfwerteEinheitErmitteln is
         AngreiferExtern
       is
          when False =>
-            VerteidigungWert := VerteidigungWert
-              + KartenAllgemein.FlussVerteidigung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                   RasseExtern    => EinheitRasseNummerExtern.Rasse)
-              + KartenAllgemein.WegVerteidigung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                 RasseExtern    => EinheitRasseNummerExtern.Rasse)
-              + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                          RasseExtern    => EinheitRasseNummerExtern.Rasse)
-              + KartenAllgemein.RessourceVerteidigung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                       RasseExtern    => EinheitRasseNummerExtern.Rasse);
-              
-            if
-              KartenAllgemein.FeldGrund (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) /= GlobaleDatentypen.Hügel
-              and
-                KartenAllgemein.FeldHügel (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = True
-            then
-               VerteidigungWert := VerteidigungWert
-                 + KartenAllgemein.GrundVerteidigung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                      RasseExtern    => EinheitRasseNummerExtern.Rasse)
-                 + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Verteidigung) / 2;
-                 
-            else
-               VerteidigungWert := VerteidigungWert
-                 + KartenAllgemein.GrundVerteidigung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                      RasseExtern    => EinheitRasseNummerExtern.Rasse);
-            end if;
+            VerteidigungWert := VerteidigungWert + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                                                                     RasseExtern       => EinheitRasseNummerExtern.Rasse);
             
             case
               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung
@@ -104,31 +81,8 @@ package body KampfwerteEinheitErmitteln is
         AngreiferExtern
       is
          when True =>
-            AngriffWert := AngriffWert
-              + KartenAllgemein.FlussAngriff (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                              RasseExtern    => EinheitRasseNummerExtern.Rasse)
-              + KartenAllgemein.WegAngriff (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                            RasseExtern    => EinheitRasseNummerExtern.Rasse)
-              + KartenAllgemein.VerbesserungAngriff (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                     RasseExtern    => EinheitRasseNummerExtern.Rasse)
-              + KartenAllgemein.RessourceAngriff (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                  RasseExtern    => EinheitRasseNummerExtern.Rasse);
-              
-            if
-              KartenAllgemein.FeldGrund (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) /= GlobaleDatentypen.Hügel
-              and
-                KartenAllgemein.FeldHügel (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = True
-            then
-               AngriffWert := AngriffWert
-                 + KartenAllgemein.GrundAngriff (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                 RasseExtern    => EinheitRasseNummerExtern.Rasse)
-                 + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (EinheitRasseNummerExtern.Rasse, GlobaleDatentypen.Angriff) / 2;
-                 
-            else
-               AngriffWert := AngriffWert
-                 + KartenAllgemein.GrundAngriff (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
-                                                 RasseExtern    => EinheitRasseNummerExtern.Rasse);
-            end if;
+            AngriffWert := AngriffWert + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                                                      RasseExtern       => EinheitRasseNummerExtern.Rasse);
             
             -- Diesen Bonus anders gestalten, vielleicht auf Basis der Bewegungspunkte?
             if

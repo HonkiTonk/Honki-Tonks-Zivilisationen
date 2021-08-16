@@ -24,7 +24,7 @@ package body GesamtwerteFeld is
    end FeldNahrung;
      
      
-     
+   
    function FeldProduktion
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)

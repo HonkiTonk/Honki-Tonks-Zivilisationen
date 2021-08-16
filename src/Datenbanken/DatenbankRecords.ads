@@ -23,7 +23,6 @@ package DatenbankRecords is
       MaximaleBewegungspunkte : Float;
       WirdVerbessertZu : GlobaleDatentypen.EinheitenIDMitNullWert;
 
-      -- In BenötigteErfahrungspunkte umbenennen?
       Beförderungsgrenze : GlobaleDatentypen.MaximaleStädte;
       MaximalerRang : GlobaleDatentypen.MaximaleStädteMitNullWert;
       Reichweite : GlobaleDatentypen.ProduktionFeld;

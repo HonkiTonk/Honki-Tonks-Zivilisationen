@@ -437,7 +437,16 @@ package body EinheitenAllgemein is
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert
    is begin
       
+      
+      -- Wenn eine Einheit transportieren können soll, die Kapazität aber nicht korrekt gesetzt wurde, dann ist das hier eine Art Sicherheitsprüfung.
       if
+        EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).KannTransportieren > 0
+        and
+          EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).Transportkapazität = 0
+      then
+         return 1;
+         
+      elsif
         EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).Transportkapazität
           <= GlobaleRecords.TransporterArray'Last
       then

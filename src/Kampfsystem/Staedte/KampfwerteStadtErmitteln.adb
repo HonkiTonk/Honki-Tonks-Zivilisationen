@@ -1,8 +1,8 @@
 pragma SPARK_Mode (On);
 
-with GebaeudeDatenbank, VerbesserungenDatenbank, KartenDatenbank;
+with GebaeudeDatenbank, VerbesserungenDatenbank;
 
-with KartenAllgemein;
+with GesamtwerteFeld;
 
 package body KampfwerteStadtErmitteln is
 
@@ -12,31 +12,9 @@ package body KampfwerteStadtErmitteln is
    is begin
       
       VerteidigungWert := VerbesserungenDatenbank.VerbesserungListe (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
-                                                                     StadtRasseNummerExtern.Platznummer).ID).VerbesserungWerte (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Verteidigung) 
-        + KartenAllgemein.VerbesserungVerteidigung (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                    RasseExtern    => StadtRasseNummerExtern.Rasse)
-        + KartenAllgemein.FlussVerteidigung (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                             RasseExtern    => StadtRasseNummerExtern.Rasse)
-        + KartenAllgemein.WegVerteidigung (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                           RasseExtern    => StadtRasseNummerExtern.Rasse)
-        + KartenAllgemein.RessourceVerteidigung (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                 RasseExtern    => StadtRasseNummerExtern.Rasse);
-              
-      if
-        KartenAllgemein.FeldGrund (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position) /= GlobaleDatentypen.Hügel
-        and
-          KartenAllgemein.FeldHügel (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position) = True
-      then
-         VerteidigungWert := VerteidigungWert
-           + KartenAllgemein.GrundVerteidigung (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                RasseExtern    => StadtRasseNummerExtern.Rasse)
-           + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Verteidigung) / 2;
-                 
-      else
-         VerteidigungWert := VerteidigungWert
-           + KartenAllgemein.GrundVerteidigung (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                                RasseExtern    => StadtRasseNummerExtern.Rasse);
-      end if;
+                                                                     StadtRasseNummerExtern.Platznummer).ID).VerbesserungWerte (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Verteidigung)
+        + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                            RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
@@ -65,30 +43,8 @@ package body KampfwerteStadtErmitteln is
       
       AngriffWert := VerbesserungenDatenbank.VerbesserungListe (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
                                                                 StadtRasseNummerExtern.Platznummer).ID).VerbesserungWerte (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Angriff)
-        + KartenAllgemein.FlussAngriff (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                        RasseExtern    => StadtRasseNummerExtern.Rasse)
-        + KartenAllgemein.WegAngriff (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                      RasseExtern    => StadtRasseNummerExtern.Rasse)
-        + KartenAllgemein.VerbesserungAngriff (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                               RasseExtern    => StadtRasseNummerExtern.Rasse)
-        + KartenAllgemein.RessourceAngriff (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                            RasseExtern    => StadtRasseNummerExtern.Rasse);
-              
-      if
-        KartenAllgemein.FeldGrund (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position) /= GlobaleDatentypen.Hügel
-        and
-          KartenAllgemein.FeldHügel (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position) = True
-      then
-         AngriffWert := AngriffWert
-           + KartenAllgemein.GrundAngriff (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                           RasseExtern    => StadtRasseNummerExtern.Rasse)
-           + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Angriff) / 2;
-                 
-      else
-         AngriffWert := AngriffWert
-           + KartenAllgemein.GrundAngriff (PositionExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
-                                           RasseExtern    => StadtRasseNummerExtern.Rasse);
-      end if;
+        + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+                                       RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
@@ -104,7 +60,7 @@ package body KampfwerteStadtErmitteln is
          
       end loop GebäudeSchleife;
       
-      -- Noch einen Angriffsbonus einbauen? Aber wenn auf welche Basis?
+      -- Noch einen Angriffsbonus einbauen? Aber wenn auf welcher Basis?
       
       return AngriffWert;
       
