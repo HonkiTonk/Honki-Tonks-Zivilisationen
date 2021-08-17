@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen;
 use GlobaleDatentypen;
 
-with Karten, ZufallGeneratorenKarten;
+with Karten, ZufallGeneratorenKarten, SchreibeKarten;
 
 package body KartenGeneratorPlanetenInneres is
 
@@ -25,15 +25,18 @@ package body KartenGeneratorPlanetenInneres is
               and
                 XAchseInneresSchleifenwert in XKernanfang .. XKernende
             then
-               Karten.Weltkarte (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert).Grund := GlobaleDatentypen.Planetenkern;
+               SchreibeKarten.Grund (PositionExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert),
+                                     GrundExtern    => GlobaleDatentypen.Planetenkern);
             
             elsif
               ZufallGeneratorenKarten.ZufälligerWert > 0.65
             then
-               Karten.Weltkarte (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert).Grund := GlobaleDatentypen.Lava;
+               SchreibeKarten.Grund (PositionExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert),
+                                     GrundExtern    => GlobaleDatentypen.Lava);
                
             else
-               Karten.Weltkarte (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert).Grund := GlobaleDatentypen.Gestein;
+               SchreibeKarten.Grund (PositionExtern => (-2, YAchseInneresSchleifenwert, XAchseInneresSchleifenwert),
+                                     GrundExtern    => GlobaleDatentypen.Gestein);
             end if;
                
          end loop XAchseInneresSchleife;

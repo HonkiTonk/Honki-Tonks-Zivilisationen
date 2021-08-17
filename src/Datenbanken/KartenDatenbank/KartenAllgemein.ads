@@ -188,40 +188,6 @@ package KartenAllgemein is
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ProduktionElement;
 
-   function FeldSichtbar
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return Boolean;
-
-   function FeldHügel
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Boolean;
-
-   function FeldGrund
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Grund_Enum;
-
-   function FeldRessource
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Grund_Enum;
-
-   function FeldVerbesserung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Verbesserung_Enum;
-
-   function FeldWeg
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Verbesserung_Enum;
-
-   function FeldFluss
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Grund_Enum;
-
-   function FeldBewertung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.GesamtproduktionStadt;
-
    function PassierbarGrund
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       PassierbarkeitExtern : in GlobaleDatentypen.Passierbarkeit_Enum)

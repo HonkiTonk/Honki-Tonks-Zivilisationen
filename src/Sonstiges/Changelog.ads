@@ -98,17 +98,20 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (18.08.2021):
+   -- Version 0.00.8380 => 0.00.8 (18.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.83 => 0.00.8 (17.08.2021):
+   -- Version 0.00.8370 => 0.00.8380 (17.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Alle lesenden Zugriffe auf Karten.Weltkarte erfolgen jetzt über LeseKarten.
+   -- SchreibeKarten erstellt und alle schreibenden Zugriffe auf Karten.Weltkarten darauf umgelegt.
+   -- Die Grundänderung von irgendeinem Grund auf Hügel sollte jetzt immer Hügel auf False setzen.
+   -- Angefangen alle lesenden Zugriff auf GlobaleVariablen.EinheitenGebaut über LeseEinheitenGebaut umzuleiten.
+   -- Contracts und Kleinigkeiten korrigiert/angepasst/hinzugefügt.
    
    
    

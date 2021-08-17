@@ -6,7 +6,7 @@ use Ada.Calendar;
 with GlobaleDatentypen, GlobaleKonstanten;
 use GlobaleDatentypen;
 
-with Ladezeiten, Karten, KartePositionPruefen, KartenAllgemein, ZufallGeneratorenKarten;
+with Ladezeiten, Karten, KartePositionPruefen, LeseKarten, ZufallGeneratorenKarten, SchreibeKarten;
 
 package body KartenGeneratorUnterwasserUnterirdisch is
 
@@ -22,41 +22,46 @@ package body KartenGeneratorUnterwasserUnterirdisch is
          for XAchseUnterwasserSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             case
-              Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund
+              LeseKarten.Grund (PositionExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert))
             is
                when GlobaleDatentypen.Leer =>               
                   if
-                    Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund = GlobaleDatentypen.Eis
+                    LeseKarten.Grund (PositionExtern => (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert)) = GlobaleDatentypen.Eis
                   then
-                     Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Unterwasser_Eis;
+                     SchreibeKarten.Grund (PositionExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert),
+                                           GrundExtern    => GlobaleDatentypen.Unterwasser_Eis);
                      
                   elsif
-                    Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund = GlobaleDatentypen.Wasser
+                    LeseKarten.Grund (PositionExtern => (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert)) = GlobaleDatentypen.Wasser
                   then
                      WasserweltErzeugen (YPositionExtern => YAchseUnterwasserSchleifenwert,
                                          XPositionExtern => XAchseUnterwasserSchleifenwert);
                      
                   elsif
-                    Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund = GlobaleDatentypen.Küstengewässer
+                    LeseKarten.Grund (PositionExtern => (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert)) = GlobaleDatentypen.Küstengewässer
                   then
-                     Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Unterwasser_Küstengewässer;
+                     SchreibeKarten.Grund (PositionExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert),
+                                           GrundExtern    => GlobaleDatentypen.Unterwasser_Küstengewässer);
                      
                   elsif
-                    Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund = GlobaleDatentypen.Gebirge
+                    LeseKarten.Grund (PositionExtern => (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert)) = GlobaleDatentypen.Gebirge
                     or
-                      Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund = GlobaleDatentypen.Hügel
-                    or
-                      Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Hügel = True
+                      LeseKarten.Grund (PositionExtern => (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert)) = GlobaleDatentypen.Hügel
+                      or
+                        LeseKarten.Hügel (PositionExtern => (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert)) = True
                   then
-                     Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Erdgestein;
+                     SchreibeKarten.Grund (PositionExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert),
+                                           GrundExtern    => GlobaleDatentypen.Erdgestein);
                   
                   elsif
-                    Karten.Weltkarte (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund = GlobaleDatentypen.Wüste
+                    LeseKarten.Grund (PositionExtern => (0, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert)) = GlobaleDatentypen.Wüste
                   then
-                     Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Sand;
+                     SchreibeKarten.Grund (PositionExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert),
+                                           GrundExtern    => GlobaleDatentypen.Sand);
                      
                   else
-                     Karten.Weltkarte (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert).Grund := GlobaleDatentypen.Erde;
+                     SchreibeKarten.Grund (PositionExtern => (-1, YAchseUnterwasserSchleifenwert, XAchseUnterwasserSchleifenwert),
+                                           GrundExtern    => GlobaleDatentypen.Erde);
                   end if;
                   
                when others =>
@@ -95,7 +100,7 @@ package body KartenGeneratorUnterwasserUnterirdisch is
                   null;
                   
                elsif
-                 KartenAllgemein.FeldGrund (PositionExtern => KartenWert) = GrundSchleifenwert
+                 LeseKarten.Grund (PositionExtern => KartenWert) = GrundSchleifenwert
                then
                   AnzahlGleicherGrund := AnzahlGleicherGrund + 1;
                   
@@ -109,7 +114,8 @@ package body KartenGeneratorUnterwasserUnterirdisch is
          if
            ZufallGeneratorenKarten.ZufälligerWert <= KartengrundWahrscheinlichkeiten (GrundSchleifenwert, AnzahlGleicherGrund)
          then
-            Karten.Weltkarte (-1, YPositionExtern, XPositionExtern).Grund := GrundSchleifenwert;
+            SchreibeKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern),
+                                  GrundExtern    => GrundSchleifenwert);
                
          else
             null;
@@ -118,10 +124,11 @@ package body KartenGeneratorUnterwasserUnterirdisch is
       end loop GrundSchleife;
       
       case
-        Karten.Weltkarte (-1, YPositionExtern, XPositionExtern).Grund
+        LeseKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern))
       is
          when GlobaleDatentypen.Leer =>
-            Karten.Weltkarte (-1, YPositionExtern, XPositionExtern).Grund := GlobaleDatentypen.Unterwasser_Wasser;
+            SchreibeKarten.Grund (PositionExtern => (-1, YPositionExtern, XPositionExtern),
+                                  GrundExtern    => GlobaleDatentypen.Unterwasser_Wasser);
             
          when others =>
             null;

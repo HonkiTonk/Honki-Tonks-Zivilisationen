@@ -7,7 +7,8 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with EinheitenDatenbank;
 
-with Anzeige, Cheat, Karten, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein, StadtInformationen, GesamtwerteFeld, KampfwerteEinheitErmitteln;
+with Anzeige, Cheat, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein, StadtInformationen, GesamtwerteFeld, KampfwerteEinheitErmitteln,
+     LeseKarten;
 
 package body KarteInformationen is
 
@@ -38,8 +39,8 @@ package body KarteInformationen is
       InformationenForschungsrate (RasseExtern => RasseExtern);
       
       case
-        KartenAllgemein.FeldSichtbar (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                      RasseExtern    => RasseExtern)
+        LeseKarten.Sichtbar (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                             RasseExtern    => RasseExtern)
       is
          when True =>
             EinheitRasseNummer := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position);
@@ -536,11 +537,9 @@ package body KarteInformationen is
    is begin
       
       if
-        Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                          GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Hügel = True
+        LeseKarten.Hügel (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) = True
         and
-          Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse,
-                            GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund /= GlobaleDatentypen.Hügel
+          LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Hügel
       then
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                         TextDateiExtern        => GlobaleTexte.Beschreibungen_Kartenfelder_Kurz,
@@ -550,49 +549,48 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleTexte.Leer,
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Leer);
-         KartenAllgemein.Beschreibung (KartenGrundExtern => Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                                       GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund);
+         KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
          
       elsif
-        KartenAllgemein.FeldHügel (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)
+        LeseKarten.Hügel (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)
       then
-         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldGrund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
+         KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
                
       else         
-         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldGrund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
+         KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
       end if;
       
       if
-        KartenAllgemein.FeldRessource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
+        LeseKarten.Ressource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
       then
-         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldRessource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
+         KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Ressource (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
          
       else
          null;
       end if;
       
       if
-        KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
+        LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
       then
-         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
+         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
          
       else
          null;
       end if;
       
       if
-        KartenAllgemein.FeldWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
+        LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
       then
-         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => KartenAllgemein.FeldWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
+         VerbesserungenAllgemein.Beschreibung (KartenVerbesserungExtern => LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
                
       else
          null;
       end if;
       
       if
-        KartenAllgemein.FeldFluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
+        LeseKarten.Fluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position) /= GlobaleDatentypen.Leer
       then
-         KartenAllgemein.Beschreibung (KartenGrundExtern => KartenAllgemein.FeldFluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
+         KartenAllgemein.Beschreibung (KartenGrundExtern => LeseKarten.Fluss (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position));
          
       else
          null;

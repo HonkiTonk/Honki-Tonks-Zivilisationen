@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleTexte;
 
-with Karte, Karten, Anzeige, Eingabe, ForschungAllgemein;
+with Karte, Karten, Anzeige, Eingabe, ForschungAllgemein, LeseKarten, SchreibeKarten;
 
 package body Cheat is
 
@@ -28,7 +28,7 @@ package body Cheat is
          case
            Eingabe.TastenEingabe
          is
-               -- Volle Informationen (unabhängig von der Rasse)
+            -- Volle Informationen (unabhängig von der Rasse)
             when 'i' =>
                Informationen;
 
@@ -73,7 +73,9 @@ package body Cheat is
             XAchseSchleife:
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
-               Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Sichtbar (RasseExtern) := True;
+               SchreibeKarten.Sichtbar (PositionExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                        RasseExtern    => RasseExtern,
+                                        SichtbarExtern => True);
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;
@@ -126,21 +128,17 @@ package body Cheat is
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      Put (Item => "Aktuelle GrundID: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Grund'Wide_Wide_Image);
+      Put (Item => "Aktuelle GrundID: " & LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)'Wide_Wide_Image);
       Put_Line (Item => "    Aktuelle Stadtbelegung:" & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
                 GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).DurchStadtBelegterGrund'Wide_Wide_Image);
-      Put (Item => "Weg: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-           GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungWeg'Wide_Wide_Image);
-      Put_Line (Item => "    Feldverbesserung: " & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).VerbesserungGebiet'Wide_Wide_Image);
+      Put (Item => "Weg: " & LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)'Wide_Wide_Image);
+      Put_Line (Item => "    Feldverbesserung: " & LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)'Wide_Wide_Image);
       
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         Put_Line (Item => "Kartenfeldbewertung " & RasseSchleifenwert'Wide_Wide_Image & ":"
-                   & Karten.Weltkarte (GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse, GlobaleVariablen.CursorImSpiel (RasseExtern).Position.YAchse,
-                     GlobaleVariablen.CursorImSpiel (RasseExtern).Position.XAchse).Felderwertung (RasseSchleifenwert)'Wide_Wide_Image);
+         Put_Line (Item => "Kartenfeldbewertung " & RasseSchleifenwert'Wide_Wide_Image & ":" & LeseKarten.Bewertung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                                                                                     RasseExtern    => RasseSchleifenwert)'Wide_Wide_Image);
          
       end loop RassenSchleife;
       

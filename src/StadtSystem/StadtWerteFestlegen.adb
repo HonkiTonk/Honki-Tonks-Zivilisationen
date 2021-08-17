@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Karten, KartePositionPruefen, GesamtwerteFeld, StadtUmgebungsbereichFestlegen, GebaeudeRichtigeUmgebung;
+with KartePositionPruefen, GesamtwerteFeld, StadtUmgebungsbereichFestlegen, GebaeudeRichtigeUmgebung, LeseKarten, SchreibeKarten;
 
 package body StadtWerteFestlegen is
    
@@ -56,11 +56,11 @@ package body StadtWerteFestlegen is
                or
                abs (XÄnderungSchleifenwert) > GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße)
               and
-                Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund 
-              = GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse)) * GlobaleKonstanten.RassenMulitplikationWert
-              + GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer)
+                LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                      KoordinatenExtern      => KartenWert) = True
             then
-               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund := 0;
+               SchreibeKarten.BelegterGrund (PositionExtern      => KartenWert,
+                                             BelegterGrundExtern => GlobaleKonstanten.LeerDurchStadtBelegterGrund);
                
                case
                  GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YÄnderungSchleifenwert, XÄnderungSchleifenwert)
@@ -82,12 +82,14 @@ package body StadtWerteFestlegen is
                null;
                      
             elsif
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund = 0
+              LeseKarten.BelegterGrundLeer (KoordinatenExtern => KartenWert) = True
             then
-               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
-                 := GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse)) * GlobaleKonstanten.RassenMulitplikationWert
-                   + GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer);
-                     
+               SchreibeKarten.BelegterGrund (PositionExtern      => KartenWert,
+                                             BelegterGrundExtern => 
+                                               (GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse) * GlobaleKonstanten.RassenMulitplikationWert
+                                                + GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer))
+                                            );
+               
             else
                null;
             end if;
@@ -170,9 +172,8 @@ package body StadtWerteFestlegen is
                null;
                
             elsif
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
-              /= GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse)) * GlobaleKonstanten.RassenMulitplikationWert
-                + GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer)
+              LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                    KoordinatenExtern      => KartenWert) = False
             then
                null;
               

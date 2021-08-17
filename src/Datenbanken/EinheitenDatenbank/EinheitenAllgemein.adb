@@ -7,7 +7,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with EinheitenDatenbank;
 
-with Auswahl, Anzeige, Eingabe, Sichtbarkeit, StadtProduktion, RasseEntfernen, EinheitSuchen, StadtSuchen;
+with Auswahl, Anzeige, Eingabe, Sichtbarkeit, StadtProduktion, RasseEntfernen, EinheitSuchen, StadtSuchen, LeseEinheitenGebaut;
 
 package body EinheitenAllgemein is
 
@@ -151,7 +151,7 @@ package body EinheitenAllgemein is
       case
         StadtRasseNummerExtern.Platznummer
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerEinheitStadtNummer =>
             null;
 
          when others =>
@@ -174,12 +174,12 @@ package body EinheitenAllgemein is
       case
         HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerEinheitStadtNummer =>
             null;
 
          when others =>
             PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
-                                                 IDExtern                => EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                 IDExtern                => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                  VorzeichenWechselExtern => -1);
       end case;
 
@@ -466,7 +466,7 @@ package body EinheitenAllgemein is
       
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
-        >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang
+        >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang
       then
          return;
          
@@ -474,7 +474,7 @@ package body EinheitenAllgemein is
          null;
       end if;
       
-      ErhalteneErfahrungspunkte := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze / 5;
+      ErhalteneErfahrungspunkte := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze / 5;
       
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte + ErhalteneErfahrungspunkte > GlobaleDatentypen.MaximaleStädte'Last
@@ -488,15 +488,15 @@ package body EinheitenAllgemein is
       
       BeförderungSchleife:
       while GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
-        >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze loop
+        >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze loop
          
          if
            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
-           >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze
+           >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze
          then
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
               := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
-              - EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze;            
+              - EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze;            
             GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
               := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang + 1;
          
@@ -508,27 +508,16 @@ package body EinheitenAllgemein is
       
       if
         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
-        > EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang
+        > EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
-           := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang;
+           := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang;
          
       else
          null;
       end if;
       
    end Beförderung;
-      
-      
-      
-   function EinheitenIDErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.EinheitenID
-   is begin
-         
-      return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID;
-         
-   end EinheitenIDErmitteln;
    
    
    
@@ -538,7 +527,7 @@ package body EinheitenAllgemein is
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitenIDErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).PermanenteKosten (WelcheRessourceExtern);
+      return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).PermanenteKosten (WelcheRessourceExtern);
       
    end PermanenteKosten;
    
@@ -599,14 +588,14 @@ package body EinheitenAllgemein is
             
          when others =>
             PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummerAlt),
-                                                 IDExtern                => EinheitenIDErmitteln (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)),
+                                                 IDExtern                => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)),
                                                  VorzeichenWechselExtern => -1);
       end case;
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Heimatstadt := StadtNummerNeu;
       
       PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummerNeu),
-                                           IDExtern                => EinheitenIDErmitteln (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)),
+                                           IDExtern                => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)),
                                            VorzeichenWechselExtern => 1);
       
    end HeimatstadtÄndern;

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Karten, KartePositionPruefen, RasseEntfernen;
+with KartePositionPruefen, RasseEntfernen, LeseKarten, SchreibeKarten;
 
 package body StadtEntfernen is
 
@@ -38,11 +38,11 @@ package body StadtEntfernen is
                null;
                
             elsif
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund
-              = GlobaleDatentypen.BelegterGrund (GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (StadtRasseNummerExtern.Rasse)) * GlobaleKonstanten.RassenMulitplikationWert
-              + GlobaleDatentypen.BelegterGrund (StadtRasseNummerExtern.Platznummer)
+              LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                    KoordinatenExtern      => KartenWert) = True
             then
-               Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund := 0;
+               SchreibeKarten.BelegterGrund (PositionExtern      => KartenWert,
+                                             BelegterGrundExtern => GlobaleKonstanten.LeerDurchStadtBelegterGrund);
             
             else
                null;

@@ -72,6 +72,7 @@ package GlobaleKonstanten is
 
    LeerEinheitenID : constant GlobaleDatentypen.EinheitenIDMitNullWert := GlobaleDatentypen.EinheitenIDMitNullWert'First;
    LeerStadtID : constant GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum := GlobaleDatentypen.Leer;
+   LeerDurchStadtBelegterGrund : constant GlobaleDatentypen.BelegterGrund := 0;
 
    GebäudeAufschlag : constant Positive := 1_000;
    EinheitAufschlag : constant Positive := 10_000;

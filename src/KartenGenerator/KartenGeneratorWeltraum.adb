@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleDatentypen;
 
-with Karten;
+with Karten, SchreibeKarten;
 
 package body KartenGeneratorWeltraum is
 
@@ -14,7 +14,8 @@ package body KartenGeneratorWeltraum is
          XAchseWeltraumSchleife:
          for XAchseWeltraumSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
 
-            Karten.Weltkarte (2, YAchseWeltraumSchleifenwert, XAchseWeltraumSchleifenwert).Grund := GlobaleDatentypen.Weltraum;
+            SchreibeKarten.Grund (PositionExtern => (2, YAchseWeltraumSchleifenwert, XAchseWeltraumSchleifenwert),
+                                  GrundExtern    => GlobaleDatentypen.Weltraum);
                
          end loop XAchseWeltraumSchleife;
       end loop YAchseWeltraumSchleife;

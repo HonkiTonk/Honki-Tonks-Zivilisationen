@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten, GlobaleVariablen;
 
-with KartePositionPruefen, KartenAllgemein;
+with KartePositionPruefen, LeseKarten, SchreibeKarten, KartenAllgemein;
 
 package body FelderwerteFestlegen is
    
@@ -108,66 +108,86 @@ package body FelderwerteFestlegen is
               or
                 RasseExtern = RasseSchleifenwert)
          then
-            Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseSchleifenwert)
-              := Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseSchleifenwert)
-              + KartenAllgemein.GrundBewertung (PositionExtern => KoordinatenUmgebungExtern,
-                                                RasseExtern    => RasseSchleifenwert)
-              / GesamtproduktionStadt (TeilerExtern);
+            SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
+                                      RasseExtern     => RasseSchleifenwert,
+                                      BewertungExtern => 
+                                        LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
+                                                              RasseExtern    => RasseSchleifenwert)
+                                      + KartenAllgemein.GrundBewertung (PositionExtern => KoordinatenUmgebungExtern,
+                                                                        RasseExtern    => RasseSchleifenwert)
+                                      / GesamtproduktionStadt (TeilerExtern)
+                                     );
 
             case
-              Karten.Weltkarte (KoordinatenUmgebungExtern.EAchse, KoordinatenUmgebungExtern.YAchse, KoordinatenUmgebungExtern.XAchse).Fluss
+              LeseKarten.Fluss (PositionExtern => KoordinatenUmgebungExtern)
             is
                when GlobaleDatentypen.Leer =>
                   null;
             
                when others =>
-                  Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseSchleifenwert)
-                    := Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseSchleifenwert)
-                    + KartenAllgemein.FlussBewertung (PositionExtern => KoordinatenUmgebungExtern,
-                                                      RasseExtern    => RasseSchleifenwert)
-                    / GesamtproduktionStadt (TeilerExtern);
+                  SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
+                                            RasseExtern     => RasseSchleifenwert,
+                                            BewertungExtern => 
+                                               LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
+                                                                     RasseExtern    => RasseSchleifenwert)
+                                            + KartenAllgemein.FlussBewertung (PositionExtern => KoordinatenUmgebungExtern,
+                                                                              RasseExtern    => RasseSchleifenwert)
+                                            / GesamtproduktionStadt (TeilerExtern)
+                                           );
             end case;
 
             case
-              Karten.Weltkarte (KoordinatenUmgebungExtern.EAchse, KoordinatenUmgebungExtern.YAchse, KoordinatenUmgebungExtern.XAchse).VerbesserungWeg
+              LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenUmgebungExtern)
             is
                when GlobaleDatentypen.Leer =>
                   null;
             
                when others =>
-                  Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseSchleifenwert)
-                    := Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseSchleifenwert)
-                    + KartenAllgemein.WegBewertung (PositionExtern => KoordinatenUmgebungExtern,
-                                                    RasseExtern    => RasseSchleifenwert)
-                    / GesamtproduktionStadt (TeilerExtern);
+                  SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
+                                            RasseExtern     => RasseSchleifenwert,
+                                            BewertungExtern => 
+                                               LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
+                                                                     RasseExtern    => RasseSchleifenwert)
+                                            + KartenAllgemein.WegBewertung (PositionExtern => KoordinatenUmgebungExtern,
+                                                                            RasseExtern    => RasseSchleifenwert)
+                                            / GesamtproduktionStadt (TeilerExtern)
+                                           );
             end case;
 
             case
-              Karten.Weltkarte (KoordinatenUmgebungExtern.EAchse, KoordinatenUmgebungExtern.YAchse, KoordinatenUmgebungExtern.XAchse).VerbesserungGebiet
+              LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenUmgebungExtern)
             is
                when GlobaleDatentypen.Leer =>
                   null;
             
                when others =>
-                  Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseSchleifenwert)
-                    := Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseSchleifenwert)
-                    + KartenAllgemein.VerbesserungBewertung (PositionExtern => KoordinatenUmgebungExtern,
-                                                             RasseExtern    => RasseSchleifenwert)
-                    / GesamtproduktionStadt (TeilerExtern);
+                  SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
+                                            RasseExtern     => RasseSchleifenwert,
+                                            BewertungExtern => 
+                                               LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
+                                                                     RasseExtern    => RasseSchleifenwert)
+                                            + KartenAllgemein.VerbesserungBewertung (PositionExtern => KoordinatenUmgebungExtern,
+                                                                                     RasseExtern    => RasseSchleifenwert)
+                                            / GesamtproduktionStadt (TeilerExtern)
+                                           );
             end case;
       
             case
-              Karten.Weltkarte (KoordinatenUmgebungExtern.EAchse, KoordinatenUmgebungExtern.YAchse, KoordinatenUmgebungExtern.XAchse).Ressource
+              LeseKarten.Ressource (PositionExtern => KoordinatenUmgebungExtern)
             is
                when GlobaleDatentypen.Leer =>
                   null;
             
                when others =>
-                  Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseSchleifenwert)
-                    := Karten.Weltkarte (KoordinatenFeldExtern.EAchse, KoordinatenFeldExtern.YAchse, KoordinatenFeldExtern.XAchse).Felderwertung (RasseSchleifenwert)
-                    + KartenAllgemein.RessourceBewertung (PositionExtern => KoordinatenUmgebungExtern,
-                                                          RasseExtern    => RasseSchleifenwert)
-                    / GesamtproduktionStadt (TeilerExtern);
+                  SchreibeKarten.Bewertung (PositionExtern  => KoordinatenFeldExtern,
+                                            RasseExtern     => RasseSchleifenwert,
+                                            BewertungExtern => 
+                                               LeseKarten.Bewertung (PositionExtern => KoordinatenFeldExtern,
+                                                                     RasseExtern    => RasseSchleifenwert)
+                                            + KartenAllgemein.RessourceBewertung (PositionExtern => KoordinatenUmgebungExtern,
+                                                                                  RasseExtern    => RasseSchleifenwert)
+                                            / GesamtproduktionStadt (TeilerExtern)
+                                           );
             end case;
                
          else

@@ -4,7 +4,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with EinheitenDatenbank;
 
-with Anzeige, StadtWerteFestlegen, Eingabe, Karten, KartePositionPruefen, StadtProduktion, ForschungAllgemein, EinheitenAllgemein, Sichtbarkeit, FeldTesten;
+with Anzeige, StadtWerteFestlegen, Eingabe, KartePositionPruefen, StadtProduktion, ForschungAllgemein, EinheitenAllgemein, Sichtbarkeit, LeseKarten;
 
 package body StadtBauen is
 
@@ -23,7 +23,7 @@ package body StadtBauen is
       end if;
       
       if
-        FeldTesten.BelegterGrundLeerTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+        LeseKarten.BelegterGrundLeer (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = True
       then
          null;
          
@@ -118,7 +118,7 @@ package body StadtBauen is
                null;
                
             elsif
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund = 0
+              LeseKarten.BelegterGrundLeer (KoordinatenExtern => KartenWert) = True
             then
                null;
                

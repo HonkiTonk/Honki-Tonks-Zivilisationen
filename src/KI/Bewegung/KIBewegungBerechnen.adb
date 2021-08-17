@@ -53,18 +53,9 @@ package body KIBewegungBerechnen is
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      AktuellePlanpositionExtern : in Positive)
+      AktuellePlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
       return Boolean
    is begin
-      
-      if
-        AktuellePlanpositionExtern > GlobaleRecords.KIBewegungPlanArray'Last
-      then
-         return True;
-         
-      else
-         null;
-      end if;
       
       DurchlaufSchleife:
       for DurchlaufSchleifenwert in 1 .. 8 loop
@@ -121,11 +112,19 @@ package body KIBewegungBerechnen is
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (AktuellePlanpositionExtern)
                  := (Bewertung (DurchlaufSchleifenwert).EAchse, Bewertung (DurchlaufSchleifenwert).YAchse, Bewertung (DurchlaufSchleifenwert).XAchse);
                
-               PlanungErfolgreichRekursiv := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                                             AktuelleKoordinatenExtern  => (Bewertung (DurchlaufSchleifenwert).EAchse,
-                                                                                            Bewertung (DurchlaufSchleifenwert).YAchse,
-                                                                                            Bewertung (DurchlaufSchleifenwert).XAchse),
-                                                             AktuellePlanpositionExtern => AktuellePlanpositionExtern + 1);
+               if
+                 AktuellePlanpositionExtern = GlobaleRecords.KIBewegungPlanArray'Last
+               then
+                  return True;
+         
+               else
+                  PlanungErfolgreichRekursiv := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
+                                                                AktuelleKoordinatenExtern  => (Bewertung (DurchlaufSchleifenwert).EAchse,
+                                                                                               Bewertung (DurchlaufSchleifenwert).YAchse,
+                                                                                               Bewertung (DurchlaufSchleifenwert).XAchse),
+                                                                AktuellePlanpositionExtern => AktuellePlanpositionExtern + 1);
+               end if;
+               
          end case;
          
          case
@@ -190,7 +189,7 @@ package body KIBewegungBerechnen is
                   
       case
         BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                         NeuePositionExtern       => KartenWert)
+                                                                   NeuePositionExtern       => KartenWert)
       is
          when True =>                  
             null;
@@ -343,7 +342,7 @@ package body KIBewegungBerechnen is
    
    procedure VorhandenenPlanVereinfachenPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ErsterZugExtern, ÜberNächsterZugExtern : in Positive)
+      ErsterZugExtern, ÜberNächsterZugExtern : in GlobaleDatentypen.Stadtfeld)
    is begin
       
       EAchseSchleife:
@@ -387,7 +386,7 @@ package body KIBewegungBerechnen is
    
    
    function TransporterNötig
-      return Boolean
+     return Boolean
    is begin
       
       return False;

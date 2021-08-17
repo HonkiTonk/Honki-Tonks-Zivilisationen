@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen, BewegungPassierbarkeitPruefen, FeldTesten, EinheitSuchen;
+with KartePositionPruefen, BewegungPassierbarkeitPruefen, LeseKarten, EinheitSuchen;
 
 package body UmgebungErreichbarTesten is
    
@@ -43,8 +43,8 @@ package body UmgebungErreichbarTesten is
                   null;
                      
                elsif
-                 FeldTesten.BelegterGrundTesten (RasseExtern       => RasseExtern,
-                                                 KoordinatenExtern => KartenWert) = True
+                 LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
+                                           KoordinatenExtern => KartenWert) = True
                  and
                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
                  and
@@ -61,8 +61,8 @@ package body UmgebungErreichbarTesten is
                   GefundeneFelder := GefundeneFelder + 1;
                   
                elsif
-                 FeldTesten.BelegterGrundTesten (RasseExtern       => RasseExtern,
-                                                 KoordinatenExtern => KartenWert) = True
+                 LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
+                                           KoordinatenExtern => KartenWert) = True
                  and
                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
                  and
@@ -125,8 +125,8 @@ package body UmgebungErreichbarTesten is
                null;
                
             elsif
-              FeldTesten.BelegterGrundTesten (RasseExtern       => RasseExtern,
-                                              KoordinatenExtern => KartenWertZwei) = True
+              LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
+                                        KoordinatenExtern => KartenWertZwei) = True
               and
                 BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
                                                                        IDExtern           => IDExtern,

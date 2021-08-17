@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank;
   
-with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen, KartenAllgemein;
+with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen, LeseKarten, SchreibeKarten;
 
 package body Sichtbarkeit is
 
@@ -65,7 +65,7 @@ package body Sichtbarkeit is
          
       else
          KoordinatenEinheit := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position;
-         AktuellerGrund := Karten.Weltkarte (KoordinatenEinheit.EAchse, KoordinatenEinheit.YAchse, KoordinatenEinheit.XAchse).Grund;
+         AktuellerGrund := LeseKarten.Grund (PositionExtern => KoordinatenEinheit);
       end if;
       
       if
@@ -73,7 +73,7 @@ package body Sichtbarkeit is
         or
           AktuellerGrund = GlobaleDatentypen.Hügel
           or
-            Karten.Weltkarte (KoordinatenEinheit.EAchse, KoordinatenEinheit.YAchse, KoordinatenEinheit.XAchse).Hügel = True
+            LeseKarten.Hügel (PositionExtern => KoordinatenEinheit) = True
       then
          SichtweiteObjekt := 3;
 
@@ -652,19 +652,19 @@ package body Sichtbarkeit is
          null;
          
       elsif
-        Karten.Weltkarte (KartenBlockadeWert.EAchse, KartenBlockadeWert.YAchse, KartenBlockadeWert.XAchse).Grund = GlobaleDatentypen.Gebirge
+        LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = GlobaleDatentypen.Gebirge
         or
-          Karten.Weltkarte (KartenBlockadeWert.EAchse, KartenBlockadeWert.YAchse, KartenBlockadeWert.XAchse).Grund = GlobaleDatentypen.Hügel
+          LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = GlobaleDatentypen.Hügel
         or
-          Karten.Weltkarte (KartenBlockadeWert.EAchse, KartenBlockadeWert.YAchse, KartenBlockadeWert.XAchse).Hügel = True
+          LeseKarten.Hügel (PositionExtern => KartenBlockadeWert) = True
         or
           (SichtweiteExtern /= 3
            and
-             (Karten.Weltkarte (KartenBlockadeWert.EAchse, KartenBlockadeWert.YAchse, KartenBlockadeWert.XAchse).Grund = GlobaleDatentypen.Dschungel
+             (LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = GlobaleDatentypen.Dschungel
               or
-                Karten.Weltkarte (KartenBlockadeWert.EAchse, KartenBlockadeWert.YAchse, KartenBlockadeWert.XAchse).Grund = GlobaleDatentypen.Sumpf
+                LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = GlobaleDatentypen.Sumpf
               or
-                Karten.Weltkarte (KartenBlockadeWert.EAchse, KartenBlockadeWert.YAchse, KartenBlockadeWert.XAchse).Grund = GlobaleDatentypen.Wald))
+                LeseKarten.Grund (PositionExtern => KartenBlockadeWert) = GlobaleDatentypen.Wald))
       then
          return False;
          
@@ -750,13 +750,16 @@ package body Sichtbarkeit is
       -- und nicht nur für das Feld auf dem die Einheit dann steht.
       
       case
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern)
+        LeseKarten.Sichtbar (PositionExtern => KoordinatenExtern,
+                             RasseExtern    => RasseExtern)
       is
          when True =>
             return;
             
          when False =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Sichtbar (RasseExtern) := True;
+            SchreibeKarten.Sichtbar (PositionExtern => KoordinatenExtern,
+                                     RasseExtern    => RasseExtern,
+                                     SichtbarExtern => True);
       end case;
       
       FremdeEinheitStadt := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => RasseExtern,
@@ -809,11 +812,11 @@ package body Sichtbarkeit is
                   for XAchseEinsSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
 
                      if
-                       KartenAllgemein.FeldSichtbar (PositionExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                                     RasseExtern    => RasseEinsExtern) = False
+                       LeseKarten.Sichtbar (PositionExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
+                                            RasseExtern    => RasseEinsExtern) = False
                        and
-                         KartenAllgemein.FeldSichtbar (PositionExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                                       RasseExtern    => RasseZweiExtern) = True
+                         LeseKarten.Sichtbar (PositionExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
+                                              RasseExtern    => RasseZweiExtern) = True
                      then
                         SichtbarkeitSetzen (RasseExtern       => RasseEinsExtern,
                                             KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert));
@@ -842,11 +845,11 @@ package body Sichtbarkeit is
                   for XAchseZweiSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
 
                      if
-                       KartenAllgemein.FeldSichtbar (PositionExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                                     RasseExtern    => RasseZweiExtern) = False
+                       LeseKarten.Sichtbar (PositionExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
+                                            RasseExtern    => RasseZweiExtern) = False
                        and
-                         KartenAllgemein.FeldSichtbar (PositionExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                                       RasseExtern    => RasseEinsExtern) = True
+                         LeseKarten.Sichtbar (PositionExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
+                                              RasseExtern    => RasseEinsExtern) = True
                      then
                         SichtbarkeitSetzen (RasseExtern       => RasseZweiExtern,
                                             KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert));

@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIDatentypen, KIKonstanten;
 
-with EinheitSuchen, KartePositionPruefen, Karten, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt, KIAufgabenFestlegenAllgemein;
+with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt, KIAufgabenFestlegenAllgemein, LeseKarten;
 
 package body KINahkampfBodenAufgabeFestlegen is
 
@@ -173,7 +173,8 @@ package body KINahkampfBodenAufgabeFestlegen is
                      null;
                         
                   elsif
-                    Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Sichtbar (EinheitRasseNummerExtern.Rasse) = False
+                    LeseKarten.Sichtbar (PositionExtern => KartenWert,
+                                         RasseExtern    => EinheitRasseNummerExtern.Rasse) = False
                     and
                       BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                  NeuePositionExtern       => KartenWert)

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with ZufallGeneratorenKarten, KartePositionPruefen, KartenAllgemein;
+with ZufallGeneratorenKarten, KartePositionPruefen, LeseKarten, SchreibeKarten;
 
 package body KartenGeneratorLandschaft is
 
@@ -39,7 +39,7 @@ package body KartenGeneratorLandschaft is
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
             
             if
-              Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund in GlobaleDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
+              LeseKarten.Grund (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert)) in GlobaleDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum'Range
             then
                Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) := True;
                
@@ -107,7 +107,7 @@ package body KartenGeneratorLandschaft is
                      null;
                   
                   elsif
-                    KartenAllgemein.FeldGrund (PositionExtern => KartenWert) = GrundSchleifenwert
+                    LeseKarten.Grund (PositionExtern => KartenWert) = GrundSchleifenwert
                   then
                      AnzahlGleicherGrund := AnzahlGleicherGrund + 1;
                   
@@ -121,7 +121,8 @@ package body KartenGeneratorLandschaft is
             if
               ZufallGeneratorenKarten.ZufälligerWert <= KartengrundWahrscheinlichkeiten (Karten.Kartentemperatur, GrundSchleifenwert, AnzahlGleicherGrund)
             then
-               Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund := GrundSchleifenwert;
+               SchreibeKarten.Grund (PositionExtern => PositionExtern,
+                                     GrundExtern    => GrundSchleifenwert);
                Karten.GeneratorGrund (PositionExtern.YAchse, PositionExtern.XAchse) := True;
                
                case
@@ -213,9 +214,9 @@ package body KartenGeneratorLandschaft is
                null;
                   
             elsif
-              KartenAllgemein.FeldGrund (PositionExtern => KartenWertHügel) = GlobaleDatentypen.Gebirge
+              LeseKarten.Grund (PositionExtern => KartenWertHügel) = GlobaleDatentypen.Gebirge
               or
-                KartenAllgemein.FeldGrund (PositionExtern => KartenWertHügel) = GlobaleDatentypen.Hügel
+                LeseKarten.Grund (PositionExtern => KartenWertHügel) = GlobaleDatentypen.Hügel
             then
                AnzahlGleicherGrund := AnzahlGleicherGrund + 1;
                   
@@ -229,7 +230,8 @@ package body KartenGeneratorLandschaft is
       if
         ZufallGeneratorenKarten.ZufälligerWert <= ZusatzHügel (AnzahlGleicherGrund)
       then
-         Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Hügel := True;
+         SchreibeKarten.Hügel (PositionExtern => PositionExtern,
+                                HügelExtern   => True);
          
       else
          null;

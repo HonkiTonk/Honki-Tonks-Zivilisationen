@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with GebaeudeDatenbank;
 
-with KartePositionPruefen, KartenAllgemein, FeldTesten;
+with KartePositionPruefen, LeseKarten;
 
 package body GebaeudeRichtigeUmgebung is
 
@@ -41,18 +41,18 @@ package body GebaeudeRichtigeUmgebung is
                null;
                         
             elsif
-              FeldTesten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
+              LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                     KoordinatenExtern      => KartenWert) = False
             then
                null;
                   
             elsif
               -- Noch um Umgebungsverbesserung erweitern?
-              KartenAllgemein.FeldGrund (PositionExtern => KartenWert) = GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeIDExtern).UmgebungBenötigt
+              LeseKarten.Grund (PositionExtern => KartenWert) = GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeIDExtern).UmgebungBenötigt
               or
-                KartenAllgemein.FeldFluss (PositionExtern => KartenWert) = GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeIDExtern).UmgebungBenötigt
+                LeseKarten.Fluss (PositionExtern => KartenWert) = GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeIDExtern).UmgebungBenötigt
               or
-                KartenAllgemein.FeldRessource (PositionExtern => KartenWert) = GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeIDExtern).UmgebungBenötigt
+                LeseKarten.Ressource (PositionExtern => KartenWert) = GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeIDExtern).UmgebungBenötigt
             then
                return True;
                   

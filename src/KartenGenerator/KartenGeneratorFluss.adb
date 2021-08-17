@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen, ZufallGeneratorenKarten;
+with KartePositionPruefen, ZufallGeneratorenKarten, LeseKarten, SchreibeKarten;
 
 package body KartenGeneratorFluss is
 
@@ -47,22 +47,23 @@ package body KartenGeneratorFluss is
             BeliebigerFlusswert (EbeneExtern) := ZufallGeneratorenKarten.ZufälligerWert;
             
             if
-              Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Grund in GlobaleDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum
+              LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in GlobaleDatentypen.Karten_Grund_Wasser_Mit_Eis_Enum
               or
-                Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Grund = GlobaleDatentypen.Lava
-              or
-                Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Grund = GlobaleDatentypen.Planetenkern
-              or
-                Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Grund = GlobaleDatentypen.Korallen
-              or
-                Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Grund = GlobaleDatentypen.Unterwasser_Wald
+                LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) = GlobaleDatentypen.Lava
+                or
+                  LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) = GlobaleDatentypen.Planetenkern
+                  or
+                    LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) = GlobaleDatentypen.Korallen
+                    or
+                      LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) = GlobaleDatentypen.Unterwasser_Wald
             then
                null;
                
             elsif
               BeliebigerFlusswert (EbeneExtern) <= WahrscheinlichkeitFluss (Karten.Kartentemperatur)
             then
-               Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Fluss := StandardFluss (EbeneExtern);
+               SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert),
+                                     FlussExtern    => StandardFluss (EbeneExtern));
                
             else
                FlussUmgebungTesten (YKoordinateExtern => YAchseSchleifenwert,
@@ -71,7 +72,7 @@ package body KartenGeneratorFluss is
             end if;
 
             case
-              Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Fluss
+              LeseKarten.Fluss (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when GlobaleDatentypen.Leer =>
                   null;
@@ -108,11 +109,12 @@ package body KartenGeneratorFluss is
                null;
                
             elsif
-              Karten.Weltkarte (KartenWertTesten (EbeneExtern).EAchse, KartenWertTesten (EbeneExtern).YAchse, KartenWertTesten (EbeneExtern).XAchse).Fluss /= GlobaleDatentypen.Leer
+              LeseKarten.Fluss (PositionExtern => KartenWertTesten (EbeneExtern)) /= GlobaleDatentypen.Leer
               and
                 BeliebigerFlusswert (EbeneExtern) <= WahrscheinlichkeitFluss (Karten.Kartentemperatur) * 1.25
-            then                        
-               Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss := StandardFluss (EbeneExtern);
+            then
+               SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                     FlussExtern    => StandardFluss (EbeneExtern));
                return;
 
             else
@@ -152,65 +154,81 @@ package body KartenGeneratorFluss is
                 YÄnderungSchleifenwert = 0
             then
                if
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss = GlobaleDatentypen.Leer
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern)) = GlobaleDatentypen.Leer
                then
                   Flusswert (EbeneExtern) := Flusswert (EbeneExtern) - 1_000;
                
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Senkrecht) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Rechts) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Rechts)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Links) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Unten) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Unten)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Links) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Oben) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Oben)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Links) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Vier) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Vier)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Rechts) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Waagrecht) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Waagrecht)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Unten) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Rechts) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Rechts)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Oben) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Rechts) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Rechts)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Einzeln) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Links) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Links)
+                                            + WelcherFlusstyp (EbeneExtern)));
                                                    
                else
                   null;
@@ -223,65 +241,81 @@ package body KartenGeneratorFluss is
                 YÄnderungSchleifenwert = 0
             then
                if
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss = GlobaleDatentypen.Leer
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern)) = GlobaleDatentypen.Leer
                then
                   Flusswert (EbeneExtern) := Flusswert (EbeneExtern) - 100;
                
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Senkrecht) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Links) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Links)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Rechts) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Unten) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Unten)
+                                            + WelcherFlusstyp (EbeneExtern)));
                
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Rechts) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Oben) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Oben)
+                                            + WelcherFlusstyp (EbeneExtern)));
                
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Rechts) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Vier) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Vier)
+                                            + WelcherFlusstyp (EbeneExtern)));
                
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Links) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Waagrecht) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Waagrecht)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Unten) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Links) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Links)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Oben) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Links) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Links)
+                                            + WelcherFlusstyp (EbeneExtern)));
                
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Einzeln) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Rechts) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Rechts)
+                                            + WelcherFlusstyp (EbeneExtern)));
                      
                else
                   null;
@@ -294,65 +328,81 @@ package body KartenGeneratorFluss is
                 XÄnderungSchleifenwert = 0
             then
                if
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss = GlobaleDatentypen.Leer
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern)) = GlobaleDatentypen.Leer
                then
                   Flusswert (EbeneExtern) := Flusswert (EbeneExtern) - 10;
                
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Waagrecht) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Unten) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Unten)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Rechts) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Rechts) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Rechts)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Links) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Links) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Links)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Oben) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Vier) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Vier)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Links) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Rechts) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Rechts)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Rechts) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Links) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Links)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Unten) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Senkrecht) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Senkrecht)
+                                            + WelcherFlusstyp (EbeneExtern)));
                
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Einzeln) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Oben) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Oben)
+                                            + WelcherFlusstyp (EbeneExtern)));
                
                else
                   null;
@@ -365,65 +415,81 @@ package body KartenGeneratorFluss is
                 XÄnderungSchleifenwert = 0
             then
                if
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss = GlobaleDatentypen.Leer
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern)) = GlobaleDatentypen.Leer
                then
                   Flusswert (EbeneExtern) := Flusswert (EbeneExtern) - 1;
                
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Waagrecht) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Oben) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Oben)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Rechts) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Rechts) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Rechts)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Links) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Links) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Links)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Unten) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Vier) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Vier)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Links) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Rechts) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Rechts)
+                                            + WelcherFlusstyp (EbeneExtern)));
                
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Rechts) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Links) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Links)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Oben) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Senkrecht) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Senkrecht)
+                                            + WelcherFlusstyp (EbeneExtern)));
                
                elsif
-                 Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
+                 LeseKarten.Fluss (PositionExtern => KartenWert (EbeneExtern))
                    = GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Einzeln) + WelcherFlusstyp (EbeneExtern))
                then
-                  Karten.Weltkarte (KartenWert (EbeneExtern).EAchse, KartenWert (EbeneExtern).YAchse, KartenWert (EbeneExtern).XAchse).Fluss
-                    := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Unten) + WelcherFlusstyp (EbeneExtern));
+                  SchreibeKarten.Fluss (PositionExtern => KartenWert (EbeneExtern),
+                                        FlussExtern    =>
+                                          GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Unten)
+                                            + WelcherFlusstyp (EbeneExtern)));
                   
                end if;
                Flusswert (EbeneExtern) := Flusswert (EbeneExtern) + 1;
@@ -439,68 +505,100 @@ package body KartenGeneratorFluss is
         Flusswert (EbeneExtern)
       is
          when 11_111 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Vier) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Vier)
+                                    + WelcherFlusstyp (EbeneExtern)));
 
          when 11_110 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Oben) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Oben)
+                                    + WelcherFlusstyp (EbeneExtern)));
 
          when 11_101 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Unten) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Unten)
+                                    + WelcherFlusstyp (EbeneExtern)));
             
          when 11_100 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Waagrecht) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Waagrecht)
+                                    + WelcherFlusstyp (EbeneExtern)));
             
          when 11_011 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Links) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Links)
+                                    + WelcherFlusstyp (EbeneExtern)));
 
          when 11_010 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Links) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Links)
+                                    + WelcherFlusstyp (EbeneExtern)));
 
          when 11_001 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Links) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Links)
+                                    + WelcherFlusstyp (EbeneExtern)));
             
          when 11_000 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Rechts) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Rechts)
+                                    + WelcherFlusstyp (EbeneExtern)));
 
          when 10_111 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Rechts) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskreuzung_Drei_Rechts)
+                                    + WelcherFlusstyp (EbeneExtern)));
 
          when 10_110 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Rechts) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Oben_Rechts)
+                                    + WelcherFlusstyp (EbeneExtern)));
 
          when 10_101 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Rechts) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flusskurve_Unten_Rechts)
+                                    + WelcherFlusstyp (EbeneExtern)));
 
          when 10_100 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Links) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Links)
+                                    + WelcherFlusstyp (EbeneExtern)));
 
          when 10_010 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Unten) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Unten)
+                                    + WelcherFlusstyp (EbeneExtern)));
 
          when 10_011 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Senkrecht) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Senkrecht)
+                                    + WelcherFlusstyp (EbeneExtern)));
 
          when 10_001 =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Oben) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Flussendstück_Oben)
+                                    + WelcherFlusstyp (EbeneExtern)));
          
          when others =>
-            Karten.Weltkarte (EbeneExtern, YKoordinateExtern, XKoordinateExtern).Fluss
-              := GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Einzeln) + WelcherFlusstyp (EbeneExtern));
+            SchreibeKarten.Fluss (PositionExtern => (EbeneExtern, YKoordinateExtern, XKoordinateExtern),
+                                  FlussExtern    =>
+                                     GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Val (GlobaleDatentypen.Karten_Grund_Alle_Felder_Enum'Pos (GlobaleDatentypen.Fluss_Einzeln)
+                                    + WelcherFlusstyp (EbeneExtern)));
       end case;
       
    end FlussBerechnung;

@@ -4,7 +4,7 @@ with GlobaleTexte;
 
 with KartenDatenbank, VerbesserungenDatenbank;
 
-with Anzeige, Karten;
+with Anzeige, LeseKarten;
 
 package body KartenAllgemein is
 
@@ -40,15 +40,15 @@ package body KartenAllgemein is
    is begin
       
       if
-        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
+        LeseKarten.Grund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
         and
-          KartenAllgemein.FeldHügel (PositionExtern => PositionExtern) = True
+          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
-         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung)
+         return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung)
            + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung) / 2;
          
       else
-         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung);
+         return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung);
       end if;
       
       
@@ -63,15 +63,15 @@ package body KartenAllgemein is
    is begin
       
       if
-        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
+        LeseKarten.Grund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
         and
-          KartenAllgemein.FeldHügel (PositionExtern => PositionExtern) = True
+          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
-         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion)
+         return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion)
            + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion) / 2;
          
       else
-         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion);
+         return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion);
       end if;
       
    end GrundProduktion;
@@ -85,15 +85,15 @@ package body KartenAllgemein is
    is begin
       
       if
-        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
+        LeseKarten.Grund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
         and
-          KartenAllgemein.FeldHügel (PositionExtern => PositionExtern) = True
+          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
-         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Geld)
+         return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Geld)
            + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (RasseExtern, GlobaleDatentypen.Geld) / 2;
          
       else
-         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Geld);
+         return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Geld);
       end if;
       
    end GrundGeld;
@@ -107,15 +107,15 @@ package body KartenAllgemein is
    is begin
       
       if
-        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
+        LeseKarten.Grund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
         and
-          KartenAllgemein.FeldHügel (PositionExtern => PositionExtern) = True
+          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
-         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen)
+         return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen)
            + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen) / 2;
          
       else
-         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen);
+         return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen);
       end if;
             
    end GrundWissen;
@@ -129,15 +129,15 @@ package body KartenAllgemein is
    is begin
       
       if
-        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
+        LeseKarten.Grund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
         and
-          KartenAllgemein.FeldHügel (PositionExtern => PositionExtern) = True
+          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
-         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung)
+         return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung)
            + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung) / 2;
          
       else
-         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
+         return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
       end if;
       
    end GrundVerteidigung;
@@ -151,15 +151,15 @@ package body KartenAllgemein is
    is begin
       
       if
-        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
+        LeseKarten.Grund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
         and
-          KartenAllgemein.FeldHügel (PositionExtern => PositionExtern) = True
+          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
-         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff)
+         return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff)
            + KartenDatenbank.KartenListe (GlobaleDatentypen.Hügel_Mit).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff) / 2;
          
       else
-         return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff);
+         return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff);
       end if;
       
    end GrundAngriff;
@@ -172,7 +172,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).FeldWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
+      return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
       
    end GrundBewertung;
    
@@ -184,7 +184,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung);
+      return KartenDatenbank.KartenListe (LeseKarten.Fluss (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung);
       
    end FlussNahrung;
    
@@ -196,7 +196,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion);
+      return KartenDatenbank.KartenListe (LeseKarten.Fluss (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion);
       
    end FlussProduktion;
    
@@ -208,7 +208,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss).FeldWerte (RasseExtern, GlobaleDatentypen.Geld);
+      return KartenDatenbank.KartenListe (LeseKarten.Fluss (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Geld);
       
    end FlussGeld;
    
@@ -220,7 +220,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen);
+      return KartenDatenbank.KartenListe (LeseKarten.Fluss (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen);
       
    end FlussWissen;
    
@@ -232,7 +232,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
+      return KartenDatenbank.KartenListe (LeseKarten.Fluss (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
       
    end FlussVerteidigung;
    
@@ -244,7 +244,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff);
+      return KartenDatenbank.KartenListe (LeseKarten.Fluss (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff);
       
    end FlussAngriff;
    
@@ -256,7 +256,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss).FeldWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
+      return KartenDatenbank.KartenListe (LeseKarten.Fluss (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
       
    end FlussBewertung;
    
@@ -268,7 +268,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Nahrung);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Nahrung);
       
    end WegNahrung;
    
@@ -280,9 +280,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
-                                                        PositionExtern.YAchse,
-                                                        PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Produktion);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Produktion);
       
    end WegProduktion;
    
@@ -294,7 +292,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Geld);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Geld);
       
    end WegGeld;
    
@@ -306,7 +304,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Wissen);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Wissen);
       
    end WegWissen;
    
@@ -318,9 +316,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
-                                                        PositionExtern.YAchse,
-                                                        PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
       
    end WegVerteidigung;
    
@@ -332,9 +328,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
-                                                        PositionExtern.YAchse,
-                                                        PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Angriff);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Angriff);
       
    end WegAngriff;
    
@@ -346,7 +340,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
       
    end WegBewertung;
    
@@ -358,7 +352,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Nahrung);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Nahrung);
       
    end VerbesserungNahrung;
    
@@ -370,9 +364,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
-                                                        PositionExtern.YAchse,
-                                                        PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Produktion);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Produktion);
       
    end VerbesserungProduktion;
    
@@ -384,7 +376,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Geld);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Geld);
       
    end VerbesserungGeld;
    
@@ -396,7 +388,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Wissen);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Wissen);
       
    end VerbesserungWissen;
    
@@ -408,9 +400,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
-                                                        PositionExtern.YAchse,
-                                                        PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
       
    end VerbesserungVerteidigung;
    
@@ -422,9 +412,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
-                                                        PositionExtern.YAchse,
-                                                        PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Angriff);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Angriff);
       
    end VerbesserungAngriff;
    
@@ -436,9 +424,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse,
-                                                        PositionExtern.YAchse,
-                                                        PositionExtern.XAchse).VerbesserungGebiet).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern)).VerbesserungWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
       
    end VerbesserungBewertung;
    
@@ -450,7 +436,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung);
+      return KartenDatenbank.KartenListe (LeseKarten.Ressource (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Nahrung);
       
    end RessourceNahrung;
    
@@ -462,7 +448,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion);
+      return KartenDatenbank.KartenListe (LeseKarten.Ressource (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Produktion);
       
    end RessourceProduktion;
    
@@ -474,7 +460,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource).FeldWerte (RasseExtern, GlobaleDatentypen.Geld);
+      return KartenDatenbank.KartenListe (LeseKarten.Ressource (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Geld);
       
    end RessourceGeld;
    
@@ -486,7 +472,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen);
+      return KartenDatenbank.KartenListe (LeseKarten.Ressource (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Wissen);
       
    end RessourceWissen;
    
@@ -498,7 +484,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
+      return KartenDatenbank.KartenListe (LeseKarten.Ressource (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Verteidigung);
       
    end RessourceVerteidigung;
    
@@ -510,7 +496,7 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff);
+      return KartenDatenbank.KartenListe (LeseKarten.Ressource (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Angriff);
       
    end RessourceAngriff;
    
@@ -522,99 +508,9 @@ package body KartenAllgemein is
       return GlobaleDatentypen.ProduktionElement
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource).FeldWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
+      return KartenDatenbank.KartenListe (LeseKarten.Ressource (PositionExtern => PositionExtern)).FeldWerte (RasseExtern, GlobaleDatentypen.Wertigkeit);
       
    end RessourceBewertung;
-   
-   
-   
-   function FeldSichtbar
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return Boolean
-   is begin
-      
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Sichtbar (RasseExtern);
-        
-   end FeldSichtbar;
-   
-   
-   
-   function FeldHügel
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Boolean
-   is begin
-      
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Hügel;
-      
-   end FeldHügel;
-   
-   
-   
-   function FeldGrund
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Grund_Enum
-   is begin
-      
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund;
-      
-   end FeldGrund;
-   
-   
-   
-   function FeldRessource
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Grund_Enum
-   is begin
-      
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource;
-      
-   end FeldRessource;
-   
-   
-   
-   function FeldVerbesserung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Verbesserung_Enum
-   is begin
-      
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet;
-      
-   end FeldVerbesserung;
-   
-   
-   
-   function FeldWeg
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Verbesserung_Enum
-   is begin
-      
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg;
-      
-   end FeldWeg;
-   
-   
-   
-   function FeldFluss
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Karten_Grund_Enum
-   is begin
-      
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Fluss;
-      
-   end FeldFluss;
-   
-   
-   
-   function FeldBewertung
-     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.GesamtproduktionStadt
-   is begin
-      
-      return Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Felderwertung (RasseExtern);
-      
-   end FeldBewertung;
    
    
    
@@ -624,7 +520,7 @@ package body KartenAllgemein is
       return Boolean
    is begin
       
-      return KartenDatenbank.KartenListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Grund).Passierbarkeit (PassierbarkeitExtern);
+      return KartenDatenbank.KartenListe (LeseKarten.Grund (PositionExtern => PositionExtern)).Passierbarkeit (PassierbarkeitExtern);
       
    end PassierbarGrund;
    
@@ -636,7 +532,7 @@ package body KartenAllgemein is
       return Boolean
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungGebiet).Passierbarkeit (PassierbarkeitExtern);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungGebiet (PositionExtern => PositionExtern)).Passierbarkeit (PassierbarkeitExtern);
       
    end PassierbarVerbesserung;
    
@@ -648,7 +544,7 @@ package body KartenAllgemein is
       return Boolean
    is begin
       
-      return VerbesserungenDatenbank.VerbesserungListe (Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).VerbesserungWeg).Passierbarkeit (PassierbarkeitExtern);
+      return VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungWeg (PositionExtern => PositionExtern)).Passierbarkeit (PassierbarkeitExtern);
       
    end PassierbarWeg;
 

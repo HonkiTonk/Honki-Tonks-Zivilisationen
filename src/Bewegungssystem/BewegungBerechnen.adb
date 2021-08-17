@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank;
 
-with Sichtbarkeit, KennenLernen, BewegungLadenEntladen, StadtSuchen, BewegungPassierbarkeitPruefen;
+with Sichtbarkeit, KennenLernen, BewegungLadenEntladen, StadtSuchen, BewegungPassierbarkeitPruefen, LeseKarten;
 
 package body BewegungBerechnen is
 
@@ -43,11 +43,11 @@ package body BewegungBerechnen is
          end case;
       end if;
 
-        Welchen_Bonus := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                        NeuePositionExtern       => NeuePositionExtern);
+      Welchen_Bonus := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                               NeuePositionExtern       => NeuePositionExtern);
 
       case
-        Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Grund
+        LeseKarten.Grund (PositionExtern => NeuePositionExtern)
       is
          when GlobaleDatentypen.Eis | GlobaleDatentypen.Gebirge | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
             if
@@ -113,7 +113,8 @@ package body BewegungBerechnen is
             null;
             
          elsif
-           Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Sichtbar (FremdeSichtbarkeitSchleifenwert) = True
+           LeseKarten.Sichtbar (PositionExtern => NeuePositionExtern,
+                                RasseExtern    => FremdeSichtbarkeitSchleifenwert) = True
          then
             KennenLernen.Erstkontakt (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                       FremdeRasseExtern => FremdeSichtbarkeitSchleifenwert);
@@ -145,7 +146,7 @@ package body BewegungBerechnen is
             (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Weltraum) = False
       then
          case
-           Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).VerbesserungWeg
+           LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern)
          is
             when GlobaleDatentypen.Karten_Verbesserung_Weg_Enum'Range =>
                return Straße_Fluss;
@@ -155,7 +156,7 @@ package body BewegungBerechnen is
          end case;
 
          case
-           Karten.Weltkarte (NeuePositionExtern.EAchse, NeuePositionExtern.YAchse, NeuePositionExtern.XAchse).Fluss
+           LeseKarten.Fluss (PositionExtern => NeuePositionExtern)
          is
             when GlobaleDatentypen.Leer =>
                null;

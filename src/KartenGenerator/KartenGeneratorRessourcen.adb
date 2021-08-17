@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleKonstanten, GlobaleDatentypen;
 use GlobaleDatentypen;
 
-with Karten, ZufallGeneratorenKarten, KartePositionPruefen;
+with Karten, ZufallGeneratorenKarten, KartePositionPruefen, LeseKarten, SchreibeKarten;
 
 package body KartenGeneratorRessourcen is
 
@@ -39,16 +39,16 @@ package body KartenGeneratorRessourcen is
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop            
                
             if
-              (Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Grund in GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range
+              (LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range
                or
-                 Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Grund in GlobaleDatentypen.Karten_Unterwasser_Generator_Enum'Range)
+                 LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in GlobaleDatentypen.Karten_Unterwasser_Generator_Enum'Range)
               and
                 Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
             then
                RessourcenWasser (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                
             elsif
-              Karten.Weltkarte (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert).Grund in GlobaleDatentypen.Karten_Grund_Land_Ohne_Eis_Enum'Range
+              LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in GlobaleDatentypen.Karten_Grund_Land_Ohne_Eis_Enum'Range
               and
                 Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
             then
@@ -75,7 +75,8 @@ package body KartenGeneratorRessourcen is
          if
            ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenressourcen, WasserRessourceSchleifenwert)
          then
-            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource := WasserRessourceSchleifenwert;
+            SchreibeKarten.Ressource (PositionExtern  => PositionExtern,
+                                      RessourceExtern => WasserRessourceSchleifenwert);
             RessourcenUmgebungBelegen (PositionExtern => PositionExtern);
             exit WasserRessourcenSchleife;
                         
@@ -99,7 +100,8 @@ package body KartenGeneratorRessourcen is
          if
            ZufallGeneratorenKarten.ZufälligerWert <= WahrscheinlichkeitRessourcen (Karten.Kartenressourcen, LandRessourceSchleifenwert)
          then
-            Karten.Weltkarte (PositionExtern.EAchse, PositionExtern.YAchse, PositionExtern.XAchse).Ressource := LandRessourceSchleifenwert;
+            SchreibeKarten.Ressource (PositionExtern  => PositionExtern,
+                                      RessourceExtern => LandRessourceSchleifenwert);
             RessourcenUmgebungBelegen (PositionExtern => PositionExtern);
             exit LandRessourcenSchleife;
                         

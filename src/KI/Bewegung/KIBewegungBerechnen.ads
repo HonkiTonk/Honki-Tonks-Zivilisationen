@@ -59,23 +59,19 @@ private
    
    procedure VorhandenenPlanVereinfachenPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ErsterZugExtern, ÜberNächsterZugExtern : in Positive)
+      ErsterZugExtern, ÜberNächsterZugExtern : in GlobaleDatentypen.Stadtfeld)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
-          and
-            ErsterZugExtern <= GlobaleRecords.KIBewegungPlanArray'Last
-          and
-            ÜberNächsterZugExtern <= GlobaleRecords.KIBewegungPlanArray'Last);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    
    
    function PlanenRekursiv
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      AktuellePlanpositionExtern : in Positive)
+      AktuellePlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
       return Boolean
      with
        Pre =>
@@ -117,6 +113,6 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function TransporterNötig
-      return Boolean;
+     return Boolean;
 
 end KIBewegungBerechnen;

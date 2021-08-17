@@ -6,7 +6,7 @@ with KIDatentypen;
 
 with EinheitenDatenbank;
 
-with FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, FeldTesten, KartenAllgemein, WichtigesSetzen, EinheitenMeldungenSetzen;
+with FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, WichtigesSetzen, EinheitenMeldungenSetzen, LeseKarten, SchreibeKarten;
 
 package body Verbesserungen is
    
@@ -140,9 +140,7 @@ package body Verbesserungen is
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 0;
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger := 0;
 
-      Grund := Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund;
+      Grund := LeseKarten.Grund (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position);
       
       case
         BefehlExtern
@@ -192,9 +190,9 @@ package body Verbesserungen is
          
          when GlobaleDatentypen.Plündern =>
             if
-              KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) /= GlobaleDatentypen.Leer
+              LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) /= GlobaleDatentypen.Leer
               or
-                KartenAllgemein.FeldWeg (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) /= GlobaleDatentypen.Leer
+                LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) /= GlobaleDatentypen.Leer
             then
                return VerbesserungPlündern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                              AnlegenTestenExtern      => AnlegenTestenExtern);
@@ -223,7 +221,7 @@ package body Verbesserungen is
    is begin
       
       if
-        KartenAllgemein.FeldWeg (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
+        LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
       in
         GlobaleDatentypen.Karten_Verbesserung_Weg_Enum'Range
       then
@@ -274,12 +272,12 @@ package body Verbesserungen is
    is begin
       
       if
-        KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Mine
+        LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Mine
       then
          return False;
 
       elsif
-        KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
+        LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
       in
         GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and
@@ -353,19 +351,17 @@ package body Verbesserungen is
    is begin
 
       if
-        KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Farm
+        LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Farm
       then
          return False;
 
       elsif
-        Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund = GlobaleDatentypen.Eis
+        LeseKarten.Grund (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Eis
       then
          return False;
 
       elsif
-        KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) 
+        LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) 
       in
         GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and
@@ -439,12 +435,12 @@ package body Verbesserungen is
    is begin
             
       if
-        KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Festung
+        LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Festung
       then
          return False;
 
       elsif
-        KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
+        LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
       in
         GlobaleDatentypen.Karten_Verbesserung_Gebilde_Enum'Range
         and
@@ -505,9 +501,9 @@ package body Verbesserungen is
    is begin
       
       if
-        KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Farm
+        LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Farm
         or
-          KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Mine
+          LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Mine
       then
          if
            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
@@ -692,9 +688,9 @@ package body Verbesserungen is
    is begin
             
       if
-        KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Leer
+        LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Leer
         and
-          KartenAllgemein.FeldWeg (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Leer
+          LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Leer
       then
          return False;
          
@@ -721,29 +717,27 @@ package body Verbesserungen is
       end if;
       
       case
-        KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
+        LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
       is
          when GlobaleDatentypen.Leer =>
             null;
             
          when others =>
-            Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := GlobaleDatentypen.Leer;
+            SchreibeKarten.VerbesserungGebiet (PositionExtern     => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                               VerbesserungExtern => GlobaleDatentypen.Leer);
             WichtigesSetzen.GeldFestlegen (RasseExtern        => EinheitRasseNummerExtern.Rasse,
                                            GeldZugewinnExtern => 10);
       end case;
       
       case
-        KartenAllgemein.FeldWeg (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
+        LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
       is
          when GlobaleDatentypen.Leer =>
             null;
             
          when others =>
-            Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungWeg := GlobaleDatentypen.Leer;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                            WegExtern      => GlobaleDatentypen.Leer);
             WichtigesSetzen.GeldFestlegen (RasseExtern        => EinheitRasseNummerExtern.Rasse,
                                            GeldZugewinnExtern => 5);
       end case;
@@ -763,8 +757,8 @@ package body Verbesserungen is
       if
         EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).WirdVerbessertZu = 0
         or
-          FeldTesten.BelegterGrundTesten (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                          KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = False
+          LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                    KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = False
       then
          return False;
          
@@ -892,45 +886,37 @@ package body Verbesserungen is
             StraßeBerechnung (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position);
               
          when GlobaleDatentypen.Mine_Bauen =>
-            Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := GlobaleDatentypen.Mine;
+            SchreibeKarten.VerbesserungGebiet (PositionExtern     => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                               VerbesserungExtern => GlobaleDatentypen.Mine);
             
          when GlobaleDatentypen.Farm_Bauen =>
-            Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := GlobaleDatentypen.Farm;
+            SchreibeKarten.VerbesserungGebiet (PositionExtern     => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                               VerbesserungExtern => GlobaleDatentypen.Farm);
             
          when GlobaleDatentypen.Festung_Bauen =>
-            Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := GlobaleDatentypen.Festung;
+            SchreibeKarten.VerbesserungGebiet (PositionExtern     => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                               VerbesserungExtern => GlobaleDatentypen.Festung);
               
          when GlobaleDatentypen.Wald_Aufforsten =>
             if
-              Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund = GlobaleDatentypen.Hügel
+              LeseKarten.Grund (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = GlobaleDatentypen.Hügel
             then
-               Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Hügel := True;
+               SchreibeKarten.Hügel (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                      HügelExtern   => True);
                
             else
                null;
             end if;
             
-            Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund := GlobaleDatentypen.Wald;
+            SchreibeKarten.Grund (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                  GrundExtern    => GlobaleDatentypen.Wald);
             if
-              KartenAllgemein.FeldVerbesserung (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
+              LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
             in
               GlobaleDatentypen.Karten_Verbesserung_Gebilde_Friedlich_Enum'Range
             then
-               Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).VerbesserungGebiet := GlobaleDatentypen.Leer;
+               SchreibeKarten.VerbesserungGebiet (PositionExtern     => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                                  VerbesserungExtern => GlobaleDatentypen.Leer);
                   
             else
                null;
@@ -938,19 +924,14 @@ package body Verbesserungen is
               
          when GlobaleDatentypen.Roden_Trockenlegen =>
             if
-              KartenAllgemein.FeldHügel (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = True
+              LeseKarten.Hügel (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = True
             then
-               Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund := GlobaleDatentypen.Hügel;
-               Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Hügel := False;
+               SchreibeKarten.Grund (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                     GrundExtern    => GlobaleDatentypen.Hügel);
                   
             else
-               Karten.Weltkarte (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.YAchse,
-                                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.XAchse).Grund := GlobaleDatentypen.Flachland;
+               SchreibeKarten.Grund (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                     GrundExtern    => GlobaleDatentypen.Flachland);
             end if;
             
          when others =>
@@ -988,34 +969,42 @@ package body Verbesserungen is
                 YÄnderungSchleifenwert = 0
             then
                case
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg
+                 LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
                is
                   when GlobaleDatentypen.Leer =>
                      Wegewert := Wegewert - 1_000;
 
                   when GlobaleDatentypen.Straße_Senkrecht =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Rechts;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Rechts);
                      
                   when GlobaleDatentypen.Straßenkurve_Unten_Links =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Unten;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Unten);
 
                   when GlobaleDatentypen.Straßenkurve_Oben_Links =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Oben;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Oben);
 
                   when GlobaleDatentypen.Straßenkreuzung_Drei_Links =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Vier;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Vier);
 
                   when GlobaleDatentypen.Straßenendstück_Rechts =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straße_Waagrecht;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straße_Waagrecht);
 
                   when GlobaleDatentypen.Straßenendstück_Unten =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkurve_Oben_Rechts;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Rechts);
 
                   when GlobaleDatentypen.Straßenendstück_Oben =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkurve_Unten_Rechts;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Rechts);
                      
                   when GlobaleDatentypen.Straße_Einzeln =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenendstück_Links;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenendstück_Links);
                      
                   when others =>
                      null;
@@ -1028,34 +1017,42 @@ package body Verbesserungen is
                 YÄnderungSchleifenwert = 0
             then
                case
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg
+                 LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
                is
                   when GlobaleDatentypen.Leer =>
                      Wegewert := Wegewert - 100;
 
                   when GlobaleDatentypen.Straße_Senkrecht =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Links;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Links);
                      
                   when GlobaleDatentypen.Straßenkurve_Unten_Rechts =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Unten;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Unten);
 
-                  when GlobaleDatentypen.Straßenkurve_Oben_Rechts =>                     
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Oben;
+                  when GlobaleDatentypen.Straßenkurve_Oben_Rechts =>
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Oben);
 
                   when GlobaleDatentypen.Straßenkreuzung_Drei_Rechts =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Vier;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Vier);
 
                   when GlobaleDatentypen.Straßenendstück_Links =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straße_Waagrecht;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straße_Waagrecht);
 
                   when GlobaleDatentypen.Straßenendstück_Unten =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkurve_Oben_Links;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Links);
 
                   when GlobaleDatentypen.Straßenendstück_Oben =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkurve_Unten_Links;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Links);
                      
                   when GlobaleDatentypen.Straße_Einzeln =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenendstück_Rechts;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenendstück_Rechts);
                      
                   when others =>
                      null;
@@ -1068,34 +1065,42 @@ package body Verbesserungen is
                 XÄnderungSchleifenwert = 0
             then
                case
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg
+                 LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
                is
                   when GlobaleDatentypen.Leer =>
                      Wegewert := Wegewert - 10;
                      
                   when GlobaleDatentypen.Straße_Waagrecht =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Unten;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Unten);
                      
                   when GlobaleDatentypen.Straßenkurve_Oben_Rechts =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Rechts;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Rechts);
 
-                  when GlobaleDatentypen.Straßenkurve_Oben_Links =>                     
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Links;
+                  when GlobaleDatentypen.Straßenkurve_Oben_Links =>
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Links);
 
                   when GlobaleDatentypen.Straßenkreuzung_Drei_Oben =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Vier;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Vier);
 
                   when GlobaleDatentypen.Straßenendstück_Links =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkurve_Unten_Rechts;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Rechts);
 
                   when GlobaleDatentypen.Straßenendstück_Rechts =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkurve_Unten_Links;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Links);
 
                   when GlobaleDatentypen.Straßenendstück_Unten =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straße_Senkrecht;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straße_Senkrecht);
                      
                   when GlobaleDatentypen.Straße_Einzeln =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenendstück_Oben;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenendstück_Oben);
                      
                   when others =>
                      null;
@@ -1108,34 +1113,42 @@ package body Verbesserungen is
                 XÄnderungSchleifenwert = 0
             then
                case
-                 Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg
+                 LeseKarten.VerbesserungWeg (PositionExtern => KartenWert)
                is
                   when GlobaleDatentypen.Leer =>
                      Wegewert := Wegewert - 1;
                      
                   when GlobaleDatentypen.Straße_Waagrecht =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Oben;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Oben);
                      
                   when GlobaleDatentypen.Straßenkurve_Unten_Rechts =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Rechts;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Rechts);
 
-                  when GlobaleDatentypen.Straßenkurve_Unten_Links =>                     
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Links;
+                  when GlobaleDatentypen.Straßenkurve_Unten_Links =>
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Links);
 
                   when GlobaleDatentypen.Straßenkreuzung_Drei_Unten =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Vier;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkreuzung_Vier);
 
                   when GlobaleDatentypen.Straßenendstück_Links =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkurve_Oben_Rechts;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Rechts);
 
                   when GlobaleDatentypen.Straßenendstück_Rechts =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkurve_Oben_Links;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Links);
 
                   when GlobaleDatentypen.Straßenendstück_Oben =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straße_Senkrecht;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straße_Senkrecht);
                      
                   when GlobaleDatentypen.Straße_Einzeln =>
-                     Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenendstück_Unten;
+                     SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                                     WegExtern      => GlobaleDatentypen.Straßenendstück_Unten);
                      
                   when others =>
                      null;
@@ -1153,52 +1166,68 @@ package body Verbesserungen is
         Wegewert
       is
          when 11_111 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Vier;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Vier);
 
          when 11_110 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Oben;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Oben);
 
          when 11_101 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Unten;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Unten);
             
          when 11_100 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straße_Waagrecht;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straße_Waagrecht);
             
          when 11_011 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Links;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Links);
 
          when 11_010 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkurve_Oben_Links;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Links);
 
          when 11_001 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkurve_Unten_Links;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Links);
             
          when 11_000 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenendstück_Rechts;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenendstück_Rechts);
 
          when 10_111 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkreuzung_Drei_Rechts;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Rechts);
 
          when 10_110 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkurve_Oben_Rechts;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Rechts);
 
          when 10_101 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenkurve_Unten_Rechts;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Rechts);
 
          when 10_100 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenendstück_Links;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenendstück_Links);
 
          when 10_011 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straße_Senkrecht;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straße_Senkrecht);
 
          when 10_010 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenendstück_Unten;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenendstück_Unten);
 
          when 10_001 =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straßenendstück_Oben;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straßenendstück_Oben);
          
          when others =>
-            Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).VerbesserungWeg := GlobaleDatentypen.Straße_Einzeln;
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+                                            WegExtern      => GlobaleDatentypen.Straße_Einzeln);
       end case;
       
    end StraßeBerechnung;

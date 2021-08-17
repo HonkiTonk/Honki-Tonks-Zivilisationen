@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIKonstanten, KIDatentypen;
 
-with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, RassenAllgemein, Verbesserungen;
+with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, Verbesserungen, LeseKarten;
 
 package body KIPruefungen is
    
@@ -112,13 +112,9 @@ package body KIPruefungen is
          return False;
          
       elsif
-        Karten.Weltkarte (KoordinatenExtern.EAchse,
-                          KoordinatenExtern.YAchse,
-                          KoordinatenExtern.XAchse).VerbesserungGebiet /= GlobaleDatentypen.Leer
+        LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
         and
-          Karten.Weltkarte (KoordinatenExtern.EAchse,
-                            KoordinatenExtern.YAchse,
-                            KoordinatenExtern.XAchse).VerbesserungWeg /= GlobaleDatentypen.Leer
+          LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
       then
          return False;
          
@@ -130,9 +126,8 @@ package body KIPruefungen is
          return False;
          
       elsif
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund
-      in
-        RassenAllgemein.RassenBelegungAnfang (RasseExtern => EinheitRasseNummerExtern.Rasse) .. RassenAllgemein.RassenBelegungEnde (RasseExtern => EinheitRasseNummerExtern.Rasse)
+        LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                  KoordinatenExtern => KoordinatenExtern) = True
       then
          null;
          
@@ -299,17 +294,18 @@ package body KIPruefungen is
       end if;
       
       case
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).DurchStadtBelegterGrund
+        LeseKarten.BelegterGrundLeer (KoordinatenExtern => KoordinatenExtern)
       is
-         when 0 =>
+         when True =>
             null;
             
-         when others =>
+         when False =>
             return False;
       end case;
       
       if
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Felderwertung (EinheitRasseNummerExtern.Rasse) >= MindestBewertungFeldExtern
+        LeseKarten.Bewertung (PositionExtern => KoordinatenExtern,
+                              RasseExtern    => EinheitRasseNummerExtern.Rasse) >= MindestBewertungFeldExtern
       then
          null;
          
@@ -318,7 +314,7 @@ package body KIPruefungen is
       end if;
       
       case
-        Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund
+        LeseKarten.Grund (PositionExtern => KoordinatenExtern)
       is
          when GlobaleDatentypen.Eis | GlobaleDatentypen.Wasser | GlobaleDatentypen.Küstengewässer =>
             return False;
@@ -341,7 +337,7 @@ package body KIPruefungen is
                null;
                
             elsif
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).DurchStadtBelegterGrund > 0
+              LeseKarten.BelegterGrundLeer (KoordinatenExtern => KartenWert) = False
             then
                return False;
                

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleVariablen, GlobaleKonstanten;
 
-with KartePositionPruefen, KartenAllgemein, EinheitSuchen, DiplomatischerZustand, EinheitenMeldungenSetzen, StadtMeldungenSetzen;
+with KartePositionPruefen, EinheitSuchen, DiplomatischerZustand, EinheitenMeldungenSetzen, StadtMeldungenSetzen, LeseKarten;
 
 package body EinheitInUmgebung is
 
@@ -102,8 +102,8 @@ package body EinheitInUmgebung is
                null;
                
             elsif
-              KartenAllgemein.FeldSichtbar (PositionExtern => KartenWert,
-                                            RasseExtern    => RasseExtern) = False
+              LeseKarten.Sichtbar (PositionExtern => KartenWert,
+                                   RasseExtern    => RasseExtern) = False
             then
                null;
                

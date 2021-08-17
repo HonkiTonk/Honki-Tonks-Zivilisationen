@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleTexte, GlobaleKonstanten;
 
-with Auswahl, ZufallGeneratorenSpieleinstellungen, Anzeige, Eingabe, ZufallGeneratorenKarten, KartenAllgemein, EinheitenAllgemein, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen;
+with Auswahl, ZufallGeneratorenSpieleinstellungen, Anzeige, Eingabe, ZufallGeneratorenKarten, EinheitenAllgemein, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, LeseKarten;
 
 package body SpielEinstellungenRasseSpieler is
 
@@ -244,7 +244,7 @@ package body SpielEinstellungenRasseSpieler is
    is begin
       
       case
-        KartenAllgemein.FeldGrund (PositionExtern => PositionExtern)
+        LeseKarten.Grund (PositionExtern => PositionExtern)
       is
          when GlobaleDatentypen.Lava | GlobaleDatentypen.Eis =>
             return False;
@@ -276,9 +276,9 @@ package body SpielEinstellungenRasseSpieler is
                                                                            IDExtern           => 2,
                                                                            NeuePositionExtern => KartenWert) = False
                     or
-                      Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = GlobaleDatentypen.Lava
+                      LeseKarten.Grund (PositionExtern => KartenWert) = GlobaleDatentypen.Lava
                     or
-                      Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund = GlobaleDatentypen.Eis
+                      LeseKarten.Grund (PositionExtern => KartenWert) = GlobaleDatentypen.Eis
                   then
                      null;
                      

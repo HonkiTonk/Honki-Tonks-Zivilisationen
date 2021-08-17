@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen;
+with KartePositionPruefen, LeseKarten, SchreibeKarten;
 
 package body KartenGeneratorKueste is
 
@@ -16,7 +16,7 @@ package body KartenGeneratorKueste is
          for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                               
             case
-              Karten.Weltkarte (0, YAchseSchleifenwert, XAchseSchleifenwert).Grund
+              LeseKarten.Grund (PositionExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert))
             is
                when GlobaleDatentypen.Wasser =>
                   GewässerFestlegen (KoordinatenExtern => (0, YAchseSchleifenwert, XAchseSchleifenwert));
@@ -50,12 +50,13 @@ package body KartenGeneratorKueste is
                null;
                
             elsif
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Grund /= GlobaleDatentypen.Flachland
+              LeseKarten.Grund (PositionExtern => KartenWert) /= GlobaleDatentypen.Flachland
             then
                null;
                
             else
-               Karten.Weltkarte (KoordinatenExtern.EAchse, KoordinatenExtern.YAchse, KoordinatenExtern.XAchse).Grund := GlobaleDatentypen.Küstengewässer;
+               SchreibeKarten.Grund (PositionExtern => KoordinatenExtern,
+                                     GrundExtern    => GlobaleDatentypen.Küstengewässer);
                return;
             end if;
                         

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen;
 use GlobaleDatentypen;
 
-with Karten, ZufallGeneratorenKarten;
+with Karten, ZufallGeneratorenKarten, SchreibeKarten;
 
 package body KartenGeneratorChaos is
 
@@ -18,7 +18,8 @@ package body KartenGeneratorChaos is
             for XAchseSchleifenwert in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße loop
                
                GrundZufall := ZufallGeneratorenKarten.ChaoskarteGrund;
-               Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Grund := GrundZufall;               
+               SchreibeKarten.Grund (PositionExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                     GrundExtern    => GrundZufall);
                
                case
                  GrundZufall
@@ -27,17 +28,20 @@ package body KartenGeneratorChaos is
                      null;
                      
                   when others =>
-                     Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Fluss := ZufallGeneratorenKarten.ChaoskarteFluss;
+                     SchreibeKarten.Fluss (PositionExtern => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                           FlussExtern    => ZufallGeneratorenKarten.ChaoskarteFluss);
                end case;
                
                case
                  GrundZufall
                is
                   when GlobaleDatentypen.Karten_Grund_Wasser_Enum'Range =>
-                     Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := ZufallGeneratorenKarten.ChaoskarteRessource (WasserLandExtern => True);
+                     SchreibeKarten.Ressource (PositionExtern  => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                               RessourceExtern => ZufallGeneratorenKarten.ChaoskarteRessource (WasserLandExtern => True));
                      
                   when GlobaleDatentypen.Karten_Grund_Land_Ohne_Eis_Enum =>
-                     Karten.Weltkarte (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert).Ressource := ZufallGeneratorenKarten.ChaoskarteRessource (WasserLandExtern => False);
+                     SchreibeKarten.Ressource (PositionExtern  => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert),
+                                               RessourceExtern => ZufallGeneratorenKarten.ChaoskarteRessource (WasserLandExtern => False));
                      
                   when others =>
                      null;

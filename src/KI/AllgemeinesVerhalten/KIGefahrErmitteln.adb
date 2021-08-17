@@ -24,7 +24,8 @@ package body KIGefahrErmitteln is
                null;
                   
             elsif
-              Karten.Weltkarte (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse).Sichtbar (EinheitRasseNummerExtern.Rasse) = False
+              LeseKarten.Sichtbar (PositionExtern => KartenWert,
+                                      RasseExtern    => EinheitRasseNummerExtern.Rasse) = False
             then
                null;
                   

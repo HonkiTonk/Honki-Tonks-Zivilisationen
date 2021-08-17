@@ -72,7 +72,7 @@ package GlobaleRecords is
 
 
 
-   type KIBewegungPlanArray is array (1 .. 15) of GlobaleRecords.AchsenKartenfeldPositivRecord;
+   type KIBewegungPlanArray is array (GlobaleDatentypen.Stadtfeld'Range) of GlobaleRecords.AchsenKartenfeldPositivRecord;
    type TransporterArray is array (GlobaleDatentypen.MaximaleEinheiten'First .. 5) of GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    type EinheitMeldungenArray is array (GlobaleDatentypen.Einheit_Meldung_Art_Enum'Range) of GlobaleDatentypen.Einheit_Meldung_Enum;
 
@@ -92,7 +92,7 @@ package GlobaleRecords is
       
       Beschäftigungszeit : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
       BeschäftigungszeitNachfolger : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-
+      
       KIZielKoordinaten : AchsenKartenfeldPositivRecord;
       KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
       KIBewegungPlan : KIBewegungPlanArray;
