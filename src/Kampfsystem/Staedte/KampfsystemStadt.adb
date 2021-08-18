@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with StadtEntfernen, KampfwerteStadtErmitteln, KampfwerteEinheitErmitteln, EinheitenAllgemein, KampfsystemEinheiten, ZufallGeneratorenKampf, StadtWerteFestlegen, StadtMeldungenSetzen;
+with StadtEntfernen, KampfwerteStadtErmitteln, KampfwerteEinheitErmitteln, EinheitenAllgemein, KampfsystemEinheiten, ZufallGeneratorenKampf, StadtWerteFestlegen, StadtMeldungenSetzen, LeseEinheitenGebaut;
 
 package body KampfsystemStadt is
 
@@ -57,7 +57,7 @@ package body KampfsystemStadt is
          end if;
          
          if
-           GlobaleVariablen.EinheitenGebaut (AngreifendeEinheitRasseNummerExtern.Rasse, AngreifendeEinheitRasseNummerExtern.Platznummer).Bewegungspunkte - 1.50 < 0.00
+           LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern) - 1.50 < 0.00
          then
             GlobaleVariablen.EinheitenGebaut (AngreifendeEinheitRasseNummerExtern.Rasse, AngreifendeEinheitRasseNummerExtern.Platznummer).Bewegungspunkte := 0.00;
             
@@ -99,7 +99,7 @@ package body KampfsystemStadt is
                                                VerteidigungExtern => KampfwerteAngreifer.Verteidigung);
          
          if
-           GlobaleVariablen.EinheitenGebaut (AngreifendeEinheitRasseNummerExtern.Rasse, AngreifendeEinheitRasseNummerExtern.Platznummer).Lebenspunkte = GlobaleKonstanten.LeerEinheit.Lebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.Lebenspunkte
          then
             EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
             return False;

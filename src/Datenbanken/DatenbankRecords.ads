@@ -44,7 +44,7 @@ package DatenbankRecords is
    type ForschungListeRecord is record
 
       PreisForschung : GlobaleDatentypen.KostenLager;
-      AnforderungForschung : GlobaleDatentypen.AnforderungForschungArray;      
+      AnforderungForschung : GlobaleDatentypen.AnforderungForschungArray;
 
    end record;
    

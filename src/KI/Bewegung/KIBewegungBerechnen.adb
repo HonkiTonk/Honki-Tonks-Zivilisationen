@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIKonstanten, KIDatentypen;
 
-with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen;
+with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen, LeseEinheitenGebaut;
 
 package body KIBewegungBerechnen is
    
@@ -28,7 +28,7 @@ package body KIBewegungBerechnen is
       end case;
       
       PlanungErfolgreich := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                            AktuelleKoordinatenExtern  => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+                                            AktuelleKoordinatenExtern  => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                             AktuellePlanpositionExtern => 1);
       
       case
@@ -210,7 +210,7 @@ package body KIBewegungBerechnen is
       end case;
       
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten = KartenWert
+        LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KartenWert
       then
          return 11;
         
@@ -286,7 +286,8 @@ package body KIBewegungBerechnen is
       for FelderSchleifenwert in GlobaleRecords.KIBewegungPlanArray'Range loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (FelderSchleifenwert) = KoordinatenExtern
+           LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                               PlanschrittExtern        => FelderSchleifenwert) = KoordinatenExtern
          then
             return True;
             
@@ -312,9 +313,11 @@ package body KIBewegungBerechnen is
          for ÜberNächsterZugSchleifenwert in GlobaleRecords.KIBewegungPlanArray'Range loop
             
             if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ÜberNächsterZugSchleifenwert) = KIKonstanten.NullKoordinate
+              LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  PlanschrittExtern        => ÜberNächsterZugSchleifenwert) = KIKonstanten.NullKoordinate
               or
-                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ErsterZugSchleifenwert) = KIKonstanten.NullKoordinate
+                LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    PlanschrittExtern        => ErsterZugSchleifenwert) = KIKonstanten.NullKoordinate
             then
                return;
                
@@ -352,9 +355,9 @@ package body KIBewegungBerechnen is
             XAchseSchleife:
             for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                
-               KartenWertVereinfachung := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                                                        EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ErsterZugExtern),
-                                                                                        ÄnderungExtern       => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                 KartenWertVereinfachung := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                      PlanschrittExtern        => ErsterZugExtern),
+                                                                                          ÄnderungExtern       => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                      
                if
                  KartenWertVereinfachung.XAchse = GlobaleKonstanten.LeerYXKartenWert
@@ -362,7 +365,8 @@ package body KIBewegungBerechnen is
                   null;
               
                elsif
-                 KartenWertVereinfachung = GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ÜberNächsterZugExtern)
+                 KartenWertVereinfachung = LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                               PlanschrittExtern        => ÜberNächsterZugExtern)
                then
                   BewegungPlanVerschiebenSchleife:
                   for PositionSchleifenwert in ErsterZugExtern .. GlobaleRecords.KIBewegungPlanArray'Last - 1 loop

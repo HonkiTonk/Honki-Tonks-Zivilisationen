@@ -8,7 +8,7 @@ with GlobaleKonstanten, GlobaleTexte;
 with EinheitenDatenbank;
 
 with Anzeige, Cheat, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein, StadtInformationen, GesamtwerteFeld, KampfwerteEinheitErmitteln,
-     LeseKarten;
+     LeseEinheitenGebaut, LeseKarten;
 
 package body KarteInformationen is
 
@@ -389,7 +389,7 @@ package body KarteInformationen is
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
          
          case
-           EinheitenAllgemein.HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+           LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is
             when GlobaleKonstanten.LeerEinheitStadtNummer =>
                Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -402,7 +402,7 @@ package body KarteInformationen is
                                               AbstandEndeExtern      => GlobaleTexte.Leer);
                
             when others =>
-               StadtInformationen.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitenAllgemein.HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+               StadtInformationen.StadtName (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
          end case;
          New_Line;
          

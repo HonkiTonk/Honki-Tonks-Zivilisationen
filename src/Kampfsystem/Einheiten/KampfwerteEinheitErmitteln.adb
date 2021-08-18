@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank;
 
-with StadtSuchen, GesamtwerteFeld;
+with StadtSuchen, GesamtwerteFeld, LeseEinheitenGebaut;
 
 package body KampfwerteEinheitErmitteln is
 
@@ -15,17 +15,17 @@ package body KampfwerteEinheitErmitteln is
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
-      VerteidigungWert := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Verteidigung;
+      VerteidigungWert := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Verteidigung;
       
       case
         AngreiferExtern
       is
          when False =>
-            VerteidigungWert := VerteidigungWert + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+            VerteidigungWert := VerteidigungWert + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                                      RasseExtern       => EinheitRasseNummerExtern.Rasse);
             
             case
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung
+              LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
             is
                when GlobaleDatentypen.Verschanzen =>
                   if
@@ -43,7 +43,7 @@ package body KampfwerteEinheitErmitteln is
             
             case
               StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                          KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
+                                                          KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
             is
                when GlobaleKonstanten.LeerEinheitStadtNummer =>
                   null;
@@ -75,13 +75,13 @@ package body KampfwerteEinheitErmitteln is
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
-      AngriffWert := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Angriff;
+      AngriffWert := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Angriff;
       
       case
         AngreiferExtern
       is
          when True =>
-            AngriffWert := AngriffWert + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+            AngriffWert := AngriffWert + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                       RasseExtern       => EinheitRasseNummerExtern.Rasse);
             
             -- Diesen Bonus anders gestalten, vielleicht auf Basis der Bewegungspunkte?

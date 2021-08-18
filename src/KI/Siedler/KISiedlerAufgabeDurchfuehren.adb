@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen;
 
-with StadtBauen, KINullwerteSetzen, Verbesserungen, LeseKarten;
+with StadtBauen, KINullwerteSetzen, Verbesserungen, LeseKarten, LeseEinheitenGebaut;
 
 package body KISiedlerAufgabeDurchfuehren is
 
@@ -13,7 +13,7 @@ package body KISiedlerAufgabeDurchfuehren is
       AufgabeDurchführen := True;
       
       case
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when KIDatentypen.Stadt_Bauen =>
             StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -63,10 +63,10 @@ package body KISiedlerAufgabeDurchfuehren is
    is begin
       
       case
-        LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
+        LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when GlobaleDatentypen.Leer =>         
-            Grund := LeseKarten.Grund (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position);
+            Grund := LeseKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
             if
               (Grund = GlobaleDatentypen.Hügel 
@@ -79,7 +79,7 @@ package body KISiedlerAufgabeDurchfuehren is
                or
                  Grund = GlobaleDatentypen.Gold
                or
-                 LeseKarten.Hügel (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position) = True)
+                 LeseKarten.Hügel (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
               and
                 Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    BefehlExtern             => GlobaleDatentypen.Mine_Bauen) = True
@@ -115,7 +115,7 @@ package body KISiedlerAufgabeDurchfuehren is
       end case;
       
       case
-        LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position)
+        LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when GlobaleDatentypen.Leer =>
             AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

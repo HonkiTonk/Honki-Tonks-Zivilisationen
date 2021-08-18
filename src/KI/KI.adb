@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank;
 
-with KISiedler, KINahkampfBoden, KIStadt, KIForschung, KIDiplomatie;
+with KISiedler, KINahkampfBoden, KIStadt, KIForschung, KIDiplomatie, LeseEinheitenGebaut;
 
 package body KI is
 
@@ -29,9 +29,9 @@ package body KI is
       for EinheitNummerEinsSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID
+           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerEinsSchleifenwert)) = GlobaleKonstanten.LeerEinheit.ID
            or
-             GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerEinsSchleifenwert).Bewegungspunkte <= GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+             LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerEinsSchleifenwert)) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
          then
             null;
             
@@ -72,7 +72,7 @@ package body KI is
    is begin
       
       case
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).EinheitArt
+        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).EinheitArt
       is
          when GlobaleDatentypen.Arbeiter =>
             KISiedler.KISiedler (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

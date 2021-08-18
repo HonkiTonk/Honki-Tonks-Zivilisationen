@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
   
-with ZufallGeneratorenKampf, EinheitenAllgemein, KampfwerteEinheitErmitteln;
+with ZufallGeneratorenKampf, EinheitenAllgemein, KampfwerteEinheitErmitteln, LeseEinheitenGebaut;
 
 package body KampfsystemEinheiten is
 
@@ -41,7 +41,7 @@ package body KampfsystemEinheiten is
                           VerteidigungExtern => KampfwerteVerteidiger.Verteidigung);
 
          if
-           GlobaleVariablen.EinheitenGebaut (VerteidigerExtern.Rasse, VerteidigerExtern.Platznummer).Lebenspunkte = GlobaleKonstanten.LeerEinheit.Lebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern) = GlobaleKonstanten.LeerEinheit.Lebenspunkte
          then
             EinheitenAllgemein.Beförderung (EinheitRasseNummerExtern => AngreiferExtern);
             EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerExtern);
@@ -56,7 +56,7 @@ package body KampfsystemEinheiten is
                           VerteidigungExtern => KampfwerteAngreifer.Verteidigung);
          
          if
-           GlobaleVariablen.EinheitenGebaut (AngreiferExtern.Rasse, AngreiferExtern.Platznummer).Lebenspunkte = GlobaleKonstanten.LeerEinheit.Lebenspunkte
+           LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern) = GlobaleKonstanten.LeerEinheit.Lebenspunkte
          then
             EinheitenAllgemein.Beförderung (EinheitRasseNummerExtern => VerteidigerExtern);
             EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferExtern);

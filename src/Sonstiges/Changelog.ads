@@ -77,31 +77,33 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (21.08.2021):
+   -- Version 0.00.84 => 0.00.8 (21.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (20.08.2021):
+   -- Version 0.00.84 => 0.00.84 (20.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (19.08.2021):
+   -- Version 0.00.8390 => 0.00.84 (19.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8380 => 0.00.8 (18.08.2021):
+   -- Version 0.00.8380 => 0.00.8390 (18.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- LeseEinheitenGebaut und SchreibeEinheitenGebaut fürs Erste fertiggestellt.
+   -- Angefangen LeseEinheitenEingebaut überall einzubauen.
+   -- Dateien für alle weiteren Lese/Schreibezugriffe angelegt.
+   -- Contracts und Kleinigkeiten korrigiert/angepasst/hinzugefügt.
    
    
    

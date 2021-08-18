@@ -172,13 +172,13 @@ package body EinheitenAllgemein is
    is begin
       
       case
-        HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when GlobaleKonstanten.LeerEinheitStadtNummer =>
             null;
 
          when others =>
-            PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, HeimatstadtErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
+            PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
                                                  IDExtern                => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                  VorzeichenWechselExtern => -1);
       end case;
@@ -533,17 +533,6 @@ package body EinheitenAllgemein is
    
    
    
-   function HeimatstadtErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
-   is begin
-         
-      return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Heimatstadt;
-         
-   end HeimatstadtErmitteln;
-   
-   
-   
    procedure HeimatstadtÄndern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
@@ -570,7 +559,7 @@ package body EinheitenAllgemein is
          return;
          
       elsif
-        StadtNummerNeu = EinheitenAllgemein.HeimatstadtErmitteln (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))
+        StadtNummerNeu = LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))
       then
          return;
          
@@ -578,7 +567,7 @@ package body EinheitenAllgemein is
          null;
       end if;
       
-      StadtNummerAlt := HeimatstadtErmitteln (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer));
+      StadtNummerAlt := LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer));
       
       case
         StadtNummerAlt

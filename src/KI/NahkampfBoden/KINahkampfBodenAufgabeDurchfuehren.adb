@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen;
 
-with Verbesserungen;
+with Verbesserungen, LeseEinheitenGebaut;
 
 package body KINahkampfBodenAufgabeDurchfuehren is
 
@@ -13,7 +13,7 @@ package body KINahkampfBodenAufgabeDurchfuehren is
       AufgabeDurchführen := True;
       
       case
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when KIDatentypen.Stadt_Bewachen =>
             AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

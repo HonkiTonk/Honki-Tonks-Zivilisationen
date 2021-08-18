@@ -73,7 +73,7 @@ package GlobaleRecords is
 
 
    type KIBewegungPlanArray is array (GlobaleDatentypen.Stadtfeld'Range) of GlobaleRecords.AchsenKartenfeldPositivRecord;
-   type TransporterArray is array (GlobaleDatentypen.MaximaleEinheiten'First .. 5) of GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   type TransporterArray is array (GlobaleDatentypen.MaximaleStädte'First .. 5) of GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    type EinheitMeldungenArray is array (GlobaleDatentypen.Einheit_Meldung_Art_Enum'Range) of GlobaleDatentypen.Einheit_Meldung_Enum;
 
    type EinheitenGebautRecord is record
@@ -82,16 +82,16 @@ package GlobaleRecords is
       Position : AchsenKartenfeldPositivRecord;
       Heimatstadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
       
-      Lebenspunkte : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      Lebenspunkte : GlobaleDatentypen.MaximaleStädteMitNullWert;
       Bewegungspunkte : Float;
-      Erfahrungspunkte : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-      Rang : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      Erfahrungspunkte : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      Rang : GlobaleDatentypen.MaximaleStädteMitNullWert;
       
       Beschäftigung : GlobaleDatentypen.Tastenbelegung_Enum;
       BeschäftigungNachfolger : GlobaleDatentypen.Tastenbelegung_Enum;
       
-      Beschäftigungszeit : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-      BeschäftigungszeitNachfolger : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      Beschäftigungszeit : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      BeschäftigungszeitNachfolger : GlobaleDatentypen.MaximaleStädteMitNullWert;
       
       KIZielKoordinaten : AchsenKartenfeldPositivRecord;
       KIBeschäftigt : KIDatentypen.Einheit_Aufgabe_Enum;
