@@ -84,17 +84,18 @@ package Changelog is
    
    
    
-   -- Version 0.00.84 => 0.00.84 (20.08.2021):
+   -- Version 0.00.8400 => 0.00.84 (20.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8390 => 0.00.84 (19.08.2021):
+   -- Version 0.00.8390 => 0.00.8400 (19.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- LeseStadtGebaut und SchreibeStadtGebaut fürs Erste fertiggestellt.
+   -- BewegungFloat angelegt.
+   -- Contracts und Kleinigkeiten korrigiert/angepasst/hinzugefügt.
    
    
    

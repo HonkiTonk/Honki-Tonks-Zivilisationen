@@ -48,7 +48,7 @@ package body LeseEinheitenGebaut is
    
    function Bewegungspunkte
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Float
+      return GlobaleDatentypen.BewegungFloat
    is begin
       
       if

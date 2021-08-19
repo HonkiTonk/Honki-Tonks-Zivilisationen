@@ -51,7 +51,7 @@ package LeseEinheitenGebaut is
    
    function Bewegungspunkte
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Float
+      return GlobaleDatentypen.BewegungFloat
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 package body SchreibeEinheitenGebaut is
 
    procedure ID
@@ -73,7 +75,7 @@ package body SchreibeEinheitenGebaut is
    
    procedure Bewegungspunkte
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      BewegungspunkteExtern : in Float;
+      BewegungspunkteExtern : in GlobaleDatentypen.BewegungFloat;
       SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
    is begin
       
@@ -85,19 +87,20 @@ package body SchreibeEinheitenGebaut is
             
          when others =>
             if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte + Float (SetzenÄndernExtern) * BewegungspunkteExtern
-              > Float'Last
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte + GlobaleDatentypen.BewegungFloat (SetzenÄndernExtern) * BewegungspunkteExtern
+              > GlobaleDatentypen.BewegungFloat'Last
             then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := Float'Last;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleDatentypen.BewegungFloat'Last;
                
             elsif
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte + Float (SetzenÄndernExtern) * BewegungspunkteExtern
-              < Float'First
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte + GlobaleDatentypen.BewegungFloat (SetzenÄndernExtern) * BewegungspunkteExtern
+              < GlobaleKonstanten.LeerEinheit.Bewegungspunkte
             then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := Float'First;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
                
             else
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := BewegungspunkteExtern + Float (SetzenÄndernExtern) * BewegungspunkteExtern;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := BewegungspunkteExtern
+                 + GlobaleDatentypen.BewegungFloat (SetzenÄndernExtern) * BewegungspunkteExtern;
             end if;
       end case;
       

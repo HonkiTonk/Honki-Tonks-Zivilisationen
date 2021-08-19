@@ -28,10 +28,10 @@ private
    
    Welchen_Bonus : Bewegungsbonuse_Enum;
    
-   type BewegungsmodifikatorArray is array (Bewegungsbonuse_Enum'Range) of Float;
-   Bewegungsmodifikator : constant BewegungsmodifikatorArray := (Leer => 0.00,
+   type BewegungsmodifikatorArray is array (Bewegungsbonuse_Enum'Range) of GlobaleDatentypen.BewegungFloat;
+   Bewegungsmodifikator : constant BewegungsmodifikatorArray := (Leer         => 0.00,
                                                                  Straße_Fluss => 0.50,
-                                                                 Schiene => 1.00);
+                                                                 Schiene      => 1.00);
    
    function StraßeUndFlussPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;

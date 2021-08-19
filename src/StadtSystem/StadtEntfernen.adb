@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen, RasseEntfernen, LeseKarten, SchreibeKarten, LeseEinheitenGebaut;
+with KartePositionPruefen, RasseEntfernen, LeseKarten, SchreibeKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
 
 package body StadtEntfernen is
 
@@ -65,7 +65,8 @@ package body StadtEntfernen is
          if
            LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert)) = StadtRasseNummerExtern.Platznummer
          then
-            GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert).Heimatstadt := 0;
+            SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert),
+                                                 HeimatstadtExtern        => GlobaleKonstanten.LeerEinheit.Heimatstadt);
             
          else
             null;

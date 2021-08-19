@@ -291,13 +291,13 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-         Ada.Float_Text_IO.Put (Item => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Bewegungspunkte,
+         Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Bewegungspunkte),
                                 Fore => 1,
                                 Aft  => 2,
                                 Exp  => 0);
          Put (Item => " / ");
-         Ada.Float_Text_IO.Put (Item => EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                EinheitNummer).ID).MaximaleBewegungspunkte,
+         Ada.Float_Text_IO.Put (Item => Float (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
+                                EinheitNummer).ID).MaximaleBewegungspunkte),
                                 Fore => 1,
                                 Aft  => 2,
                                 Exp  => 0);

@@ -217,6 +217,8 @@ package GlobaleDatentypen is
    type Einheit_Meldung_Art_Enum is (Aufgabe_Fertig, Einheit_In_Der_Nähe);
    type Einheit_Meldung_Enum is (Leer, Aufgabe_Abgeschlossen, Fremde_Einheit_Nahe);
    subtype Einheit_Meldung_Verwendet_Enum is Einheit_Meldung_Enum range Aufgabe_Abgeschlossen .. Einheit_Meldung_Enum'Last;
+
+   type BewegungFloat is digits 2 range -100.00 .. 100.00;
    -- Für Einheiten
 
 

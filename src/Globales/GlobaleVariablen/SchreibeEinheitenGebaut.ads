@@ -52,7 +52,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Bewegungspunkte
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      BewegungspunkteExtern : in Float;
+      BewegungspunkteExtern : in GlobaleDatentypen.BewegungFloat;
       SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
      with
        Pre =>

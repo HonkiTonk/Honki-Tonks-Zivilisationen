@@ -20,7 +20,7 @@ package DatenbankRecords is
       Passierbarkeit : PassierbarkeitArray;
       
       MaximaleLebenspunkte : GlobaleDatentypen.MaximaleEinheiten;
-      MaximaleBewegungspunkte : Float;
+      MaximaleBewegungspunkte : GlobaleDatentypen.BewegungFloat;
       WirdVerbessertZu : GlobaleDatentypen.EinheitenIDMitNullWert;
 
       Beförderungsgrenze : GlobaleDatentypen.MaximaleStädte;

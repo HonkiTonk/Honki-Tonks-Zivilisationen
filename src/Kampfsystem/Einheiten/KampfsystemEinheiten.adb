@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
   
-with ZufallGeneratorenKampf, EinheitenAllgemein, KampfwerteEinheitErmitteln, LeseEinheitenGebaut;
+with ZufallGeneratorenKampf, EinheitenAllgemein, KampfwerteEinheitErmitteln, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
 
 package body KampfsystemEinheiten is
 
@@ -122,15 +122,9 @@ package body KampfsystemEinheiten is
               
       end loop AngerichteterSchadenSchleife;
       
-      if
-        GlobaleVariablen.EinheitenGebaut (VerteidigerExtern.Rasse, VerteidigerExtern.Platznummer).Lebenspunkte - AngerichteterSchaden < GlobaleKonstanten.LeerEinheit.Lebenspunkte
-      then
-         GlobaleVariablen.EinheitenGebaut (VerteidigerExtern.Rasse, VerteidigerExtern.Platznummer).Lebenspunkte := GlobaleKonstanten.LeerEinheit.Lebenspunkte;
-         
-      else
-         GlobaleVariablen.EinheitenGebaut (VerteidigerExtern.Rasse, VerteidigerExtern.Platznummer).Lebenspunkte
-           := GlobaleVariablen.EinheitenGebaut (VerteidigerExtern.Rasse, VerteidigerExtern.Platznummer).Lebenspunkte - AngerichteterSchaden;
-      end if;
+      SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
+                                            LebenspunkteExtern       => AngerichteterSchaden,
+                                            SetzenÄndernExtern       => -1);
       
    end KampfBerechnung;
 

@@ -83,7 +83,7 @@ package GlobaleRecords is
       Heimatstadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
       
       Lebenspunkte : GlobaleDatentypen.MaximaleStädteMitNullWert;
-      Bewegungspunkte : Float;
+      Bewegungspunkte : GlobaleDatentypen.BewegungFloat;
       Erfahrungspunkte : GlobaleDatentypen.MaximaleStädteMitNullWert;
       Rang : GlobaleDatentypen.MaximaleStädteMitNullWert;
       
