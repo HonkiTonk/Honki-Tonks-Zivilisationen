@@ -11,7 +11,7 @@ package LeseEinheitenGebaut is
 
    function ID
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.EinheitenID
+      return GlobaleDatentypen.EinheitenIDMitNullWert
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

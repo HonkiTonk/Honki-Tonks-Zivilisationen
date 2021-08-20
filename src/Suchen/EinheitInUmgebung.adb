@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleVariablen, GlobaleKonstanten;
 
-with KartePositionPruefen, EinheitSuchen, DiplomatischerZustand, EinheitenMeldungenSetzen, StadtMeldungenSetzen, LeseKarten;
+with KartePositionPruefen, EinheitSuchen, DiplomatischerZustand, EinheitenMeldungenSetzen, StadtMeldungenSetzen, LeseKarten, LeseEinheitenGebaut;
 
 package body EinheitInUmgebung is
 
@@ -50,14 +50,13 @@ package body EinheitInUmgebung is
                for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
                   
                   case
-                    GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitSchleifenwert).ID
+                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitSchleifenwert))
                   is
                      when GlobaleKonstanten.LeerEinheitenID =>
                         null;
                         
                      when others =>
-                        
-                        EinheitInDerNähe := EinheitFinden (PositionExtern => GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitSchleifenwert).Position,
+                        EinheitInDerNähe := EinheitFinden (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitSchleifenwert)),
                                                             UmgebungExtern => 3,
                                                             RasseExtern    => RasseSchleifenwert);
                   end case;

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen;
 
-with Verbesserungen, LeseEinheitenGebaut;
+with Verbesserungen, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
 
 package body KINahkampfBodenAufgabeDurchfuehren is
 
@@ -40,7 +40,8 @@ package body KINahkampfBodenAufgabeDurchfuehren is
             null;
             
          when KIDatentypen.Erkunden =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
             
          when others =>
             null;
@@ -53,7 +54,8 @@ package body KINahkampfBodenAufgabeDurchfuehren is
             null;
             
          when False =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
       end case;
       
    end NahkampfBodenAufgabeDurchfuehren;

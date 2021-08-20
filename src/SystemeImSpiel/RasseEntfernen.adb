@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartenfelderBewerten;
+with KartenfelderBewerten, LeseEinheitenGebaut;
 
 package body RasseEntfernen is
 
@@ -49,7 +49,7 @@ package body RasseEntfernen is
       for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          case
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert).ID
+           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert))
          is
             when GlobaleKonstanten.LeerEinheitenID =>
                null;

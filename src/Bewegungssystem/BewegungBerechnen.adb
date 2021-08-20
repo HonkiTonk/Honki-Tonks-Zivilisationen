@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank;
 
-with Sichtbarkeit, KennenLernen, BewegungLadenEntladen, StadtSuchen, BewegungPassierbarkeitPruefen, LeseKarten;
+with Sichtbarkeit, KennenLernen, BewegungLadenEntladen, StadtSuchen, BewegungPassierbarkeitPruefen, LeseKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
 
 package body BewegungBerechnen is
 
@@ -15,7 +15,7 @@ package body BewegungBerechnen is
 
       -- Immer berücksichtigen dass in BewegungssystemEinheiten.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
       if
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).KannTransportieren
+        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).KannTransportieren
           = GlobaleKonstanten.LeerTransportiertWirdTransportiert
       then
          null;
@@ -51,40 +51,34 @@ package body BewegungBerechnen is
       is
          when GlobaleDatentypen.Eis | GlobaleDatentypen.Gebirge | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
             if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte < 1.00
+              LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < 1.00
             then
+               -- Hier noch Minus das Maximum einfügen.
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
                return;
                
-            else                     
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte
-                 := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte - 2.00 + Bewegungsmodifikator (Welchen_Bonus);
+            else
+               BewegungspunkteAbzug := 2.00 - Bewegungsmodifikator (Welchen_Bonus);
             end if;
                
          when others =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte
-              := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte - 1.00 + Bewegungsmodifikator (Welchen_Bonus);
+            BewegungspunkteAbzug := 1.00 - Bewegungsmodifikator (Welchen_Bonus);
       end case;
 
-      if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte < GlobaleKonstanten.LeerEinheit.Bewegungspunkte
-      then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
-         -- Hier nicht return, da Bewegung zwar erfolgreich aber jetzt noch die Rechnungen durchlaufen müssen.
-                  
-      else
-         null;
-      end if;
+      SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                               BewegungspunkteExtern    => BewegungspunkteAbzug,
+                                               PlusMinusExtern          => False);
+      -- Hier nicht return, da Bewegung zwar erfolgreich aber jetzt noch die Rechnungen durchlaufen müssen.
 
       case
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert
+        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
             null;
             
          when others =>
             BewegungLadenEntladen.EinheitAusTransporterEntfernen (TransporterExtern => (EinheitRasseNummerExtern.Rasse,
-                                                                                        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert),
+                                                                                        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
                                                                   LadungExtern      => EinheitRasseNummerExtern.Platznummer);
       end case;
       
@@ -98,7 +92,8 @@ package body BewegungBerechnen is
             GlobaleVariablen.CursorImSpiel (EinheitRasseNummerExtern.Rasse).Position := NeuePositionExtern;
       end case;      
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := NeuePositionExtern;
+      SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                        PositionExtern           => NeuePositionExtern);
       Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       -- Prüft nur ob das Feld auf dass sich diese Einheit bewegt bereits von einer anderen Rasse aufgedackt wurde und stellt entsprechend Kontakt her.
@@ -137,13 +132,13 @@ package body BewegungBerechnen is
 
       if
         EinheitenDatenbank.EinheitenListe
-          (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Boden) = True
+          (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Passierbarkeit (GlobaleDatentypen.Boden) = True
         and
           EinheitenDatenbank.EinheitenListe
-            (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Luft) = False
+            (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Passierbarkeit (GlobaleDatentypen.Luft) = False
         and
           EinheitenDatenbank.EinheitenListe
-            (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Weltraum) = False
+            (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Passierbarkeit (GlobaleDatentypen.Weltraum) = False
       then
          case
            LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern)

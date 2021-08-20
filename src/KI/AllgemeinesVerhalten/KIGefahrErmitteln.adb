@@ -43,6 +43,7 @@ package body KIGefahrErmitteln is
                    StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= GlobaleKonstanten.LeerEinheitStadtNummer
                then
+                  -- Hier das Maximum als Minus übergeben.
                   GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
                   
                elsif

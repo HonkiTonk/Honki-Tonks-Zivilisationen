@@ -124,7 +124,7 @@ package body KampfsystemEinheiten is
       
       SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
                                             LebenspunkteExtern       => AngerichteterSchaden,
-                                            SetzenÄndernExtern       => -1);
+                                            PlusMinusExtern          => False);
       
    end KampfBerechnung;
 

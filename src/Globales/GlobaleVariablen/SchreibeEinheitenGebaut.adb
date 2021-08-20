@@ -6,7 +6,7 @@ package body SchreibeEinheitenGebaut is
 
    procedure ID
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
+      IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert)
    is begin
       
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID := IDExtern;
@@ -40,32 +40,32 @@ package body SchreibeEinheitenGebaut is
    procedure Lebenspunkte
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       LebenspunkteExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      PlusMinusExtern : in Boolean)
    is begin
       
       case
-        SetzenÄndernExtern
+        PlusMinusExtern
       is
-         when 0 =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte := LebenspunkteExtern;
-            
-         when others =>
+         when True =>
             if
-              Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte) + Integer (SetzenÄndernExtern) * Natural (LebenspunkteExtern)
-              > Positive (GlobaleDatentypen.MaximaleStädteMitNullWert'Last)
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte + LebenspunkteExtern > GlobaleDatentypen.MaximaleStädteMitNullWert'Last
             then
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte := GlobaleDatentypen.MaximaleStädteMitNullWert'Last;
                
-            elsif
-              Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte) + Integer (SetzenÄndernExtern) * Natural (LebenspunkteExtern)
-              < Natural (GlobaleDatentypen.MaximaleStädteMitNullWert'First)
+            else
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
+                 := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte + LebenspunkteExtern;
+            end if;
+               
+         when False =>
+            if
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte - LebenspunkteExtern < GlobaleDatentypen.MaximaleStädteMitNullWert'First
             then
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte := GlobaleDatentypen.MaximaleStädteMitNullWert'First;
                
             else
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
-                 := GlobaleDatentypen.MaximaleStädteMitNullWert (Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte)
-                                                                  + Integer (SetzenÄndernExtern) * Natural (LebenspunkteExtern));
+                 := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte - LebenspunkteExtern;
             end if;
       end case;
       
@@ -76,31 +76,32 @@ package body SchreibeEinheitenGebaut is
    procedure Bewegungspunkte
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       BewegungspunkteExtern : in GlobaleDatentypen.BewegungFloat;
-      SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      PlusMinusExtern : in Boolean)
    is begin
       
       case
-        SetzenÄndernExtern
+        PlusMinusExtern
       is
-         when 0 =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := BewegungspunkteExtern;
-            
-         when others =>
+         when True =>
             if
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte + GlobaleDatentypen.BewegungFloat (SetzenÄndernExtern) * BewegungspunkteExtern
-              > GlobaleDatentypen.BewegungFloat'Last
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte + BewegungspunkteExtern > GlobaleDatentypen.BewegungFloat'Last
             then
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleDatentypen.BewegungFloat'Last;
-               
-            elsif
-              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte + GlobaleDatentypen.BewegungFloat (SetzenÄndernExtern) * BewegungspunkteExtern
-              < GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+                 
+            else
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte
+                 := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte + BewegungspunkteExtern;
+            end if;
+            
+         when False =>
+            if
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte - BewegungspunkteExtern < GlobaleKonstanten.LeerEinheit.Bewegungspunkte
             then
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
-               
+                 
             else
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := BewegungspunkteExtern
-                 + GlobaleDatentypen.BewegungFloat (SetzenÄndernExtern) * BewegungspunkteExtern;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte
+                 := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte - BewegungspunkteExtern;
             end if;
       end case;
       
@@ -110,71 +111,38 @@ package body SchreibeEinheitenGebaut is
    
    procedure Erfahrungspunkte
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ErfahrungspunkteExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      ErfahrungspunkteExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert)
    is begin
       
-      case
-        SetzenÄndernExtern
-      is
-         when 0 =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte := ErfahrungspunkteExtern;
-            
-         when others =>
-            if
-              Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte) + Integer (SetzenÄndernExtern) * Natural (ErfahrungspunkteExtern)
-              > Positive (GlobaleDatentypen.MaximaleStädteMitNullWert'Last)
-            then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte := GlobaleDatentypen.MaximaleStädteMitNullWert'Last;
+      if
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte + ErfahrungspunkteExtern
+        > GlobaleDatentypen.MaximaleStädteMitNullWert'Last
+      then
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte := GlobaleDatentypen.MaximaleStädteMitNullWert'Last;
                
-            elsif
-              Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte) + Integer (SetzenÄndernExtern) * Natural (ErfahrungspunkteExtern)
-              < Natural (GlobaleDatentypen.MaximaleStädteMitNullWert'First)
-            then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte := GlobaleDatentypen.MaximaleStädteMitNullWert'First;
-               
-            else
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte :=
-                 GlobaleDatentypen.MaximaleStädteMitNullWert (Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte)
-                                                               + Integer (SetzenÄndernExtern) * Natural (ErfahrungspunkteExtern));
-            end if;
-      end case;
+      else
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte :=
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte + ErfahrungspunkteExtern;
+      end if;
       
    end Erfahrungspunkte;
    
    
    
    procedure Rang
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      RangExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      case
-        SetzenÄndernExtern
-      is
-         when 0 =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang := RangExtern;
-            
-         when others =>
-            if
-              Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang) + Integer (SetzenÄndernExtern) * Natural (RangExtern)
-              > Positive (GlobaleDatentypen.MaximaleStädteMitNullWert'Last)
-            then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang := GlobaleDatentypen.MaximaleStädteMitNullWert'Last;
-               
-            elsif
-              Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang) + Integer (SetzenÄndernExtern) * Natural (RangExtern)
-              < Natural (GlobaleDatentypen.MaximaleStädteMitNullWert'First)
-            then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang := GlobaleDatentypen.MaximaleStädteMitNullWert'First;
-               
-            else
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang :=
-                 GlobaleDatentypen.MaximaleStädteMitNullWert (Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang)
-                                                               + Integer (SetzenÄndernExtern) * Natural (RangExtern));
-            end if;
-      end case;
+      if
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang + 1
+        > GlobaleDatentypen.MaximaleStädteMitNullWert'Last
+      then
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang := GlobaleDatentypen.MaximaleStädteMitNullWert'Last;
+                           
+      else
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang :=
+           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang + 1;
+      end if;
       
    end Rang;
       
@@ -205,32 +173,32 @@ package body SchreibeEinheitenGebaut is
    procedure Beschäftigungszeit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       ZeitExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      PlusMinusExtern : in Boolean)
    is begin
       
       case
-        SetzenÄndernExtern
+        PlusMinusExtern
       is
-         when 0 =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := ZeitExtern;
-            
-         when others =>
+         when True =>
             if
-              Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit) + Integer (SetzenÄndernExtern) * Natural (ZeitExtern)
-              > Positive (GlobaleDatentypen.MaximaleStädteMitNullWert'Last)
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit + ZeitExtern > GlobaleDatentypen.MaximaleStädteMitNullWert'Last
             then
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := GlobaleDatentypen.MaximaleStädteMitNullWert'Last;
                
-            elsif
-              Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit) + Integer (SetzenÄndernExtern) * Natural (ZeitExtern)
-              < Natural (GlobaleDatentypen.MaximaleStädteMitNullWert'First)
+            else
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit :=
+                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit + ZeitExtern;
+            end if;
+            
+         when False =>
+            if
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit - ZeitExtern < GlobaleKonstanten.LeerEinheit.Beschäftigungszeit
             then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := GlobaleDatentypen.MaximaleStädteMitNullWert'First;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := GlobaleDatentypen.MaximaleStädteMitNullWert'Last;
                
             else
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit :=
-                 GlobaleDatentypen.MaximaleStädteMitNullWert (Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit)
-                                                               + Integer (SetzenÄndernExtern) * Natural (ZeitExtern));
+                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit - ZeitExtern;
             end if;
       end case;
       
@@ -241,32 +209,33 @@ package body SchreibeEinheitenGebaut is
    procedure BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       ZeitExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      PlusMinusExtern : in Boolean)
    is begin
       
       case
-        SetzenÄndernExtern
+        PlusMinusExtern
       is
-         when 0 =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger := ZeitExtern;
-            
-         when others =>
+         when True =>
             if
-              Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger) + Integer (SetzenÄndernExtern) * Natural (ZeitExtern)
-              > Positive (GlobaleDatentypen.MaximaleStädteMitNullWert'Last)
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger + ZeitExtern > GlobaleDatentypen.MaximaleStädteMitNullWert'Last
             then
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger := GlobaleDatentypen.MaximaleStädteMitNullWert'Last;
                
-            elsif
-              Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger) + Integer (SetzenÄndernExtern) * Natural (ZeitExtern)
-              < Natural (GlobaleDatentypen.MaximaleStädteMitNullWert'First)
+            else
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger :=
+                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger + ZeitExtern;
+            end if;
+            
+         when False =>
+            if
+              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger - ZeitExtern
+              < GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger
             then
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger := GlobaleDatentypen.MaximaleStädteMitNullWert'First;
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger := GlobaleDatentypen.MaximaleStädteMitNullWert'Last;
                
             else
                GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger :=
-                 GlobaleDatentypen.MaximaleStädteMitNullWert (Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger)
-                                                               + Integer (SetzenÄndernExtern) * Natural (ZeitExtern));
+                 GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger - ZeitExtern;
             end if;
       end case;
       

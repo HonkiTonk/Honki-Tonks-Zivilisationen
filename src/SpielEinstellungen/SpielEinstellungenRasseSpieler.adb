@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleTexte, GlobaleKonstanten;
 
-with Auswahl, ZufallGeneratorenSpieleinstellungen, Anzeige, Eingabe, ZufallGeneratorenKarten, EinheitenAllgemein, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, LeseKarten;
+with Auswahl, ZufallGeneratorenSpieleinstellungen, Anzeige, Eingabe, ZufallGeneratorenKarten, EinheitenAllgemein, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, LeseKarten, LeseEinheitenGebaut;
 
 package body SpielEinstellungenRasseSpieler is
 
@@ -330,8 +330,8 @@ package body SpielEinstellungenRasseSpieler is
                                           IDExtern               => 2,
                                           StadtRasseNummerExtern => (RasseExtern, 0));
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).Position;
-      GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt := GlobaleVariablen.EinheitenGebaut (RasseExtern, 1).Position;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, 1));
+      GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt := GlobaleVariablen.CursorImSpiel (RasseExtern).Position;
       
    end StartpunktFestlegen;
 

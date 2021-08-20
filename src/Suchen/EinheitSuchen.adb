@@ -158,7 +158,8 @@ package body EinheitSuchen is
       for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => TransporterExtern) loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert) = LadungExtern
+           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+                                              PlatzExtern              => TransporterPlatzSchleifenwert) = LadungExtern
          then
             return TransporterPlatzSchleifenwert;
             
@@ -183,8 +184,8 @@ package body EinheitSuchen is
       for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => EinheitRassePlatznummerExtern) loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (EinheitRassePlatznummerExtern.Rasse, EinheitRassePlatznummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert)
-           /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRassePlatznummerExtern,
+                                              PlatzExtern              => TransporterPlatzSchleifenwert) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             return True;
             
@@ -213,12 +214,12 @@ package body EinheitSuchen is
       for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID
+           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert)) = GlobaleKonstanten.LeerEinheit.ID
          then
             null;
          
          elsif
-           EinheitenDatenbank.EinheitenListe (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitSchleifenwert).ID).EinheitArt = EinheitTypExtern
+           EinheitenDatenbank.EinheitenListe (RasseExtern, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert))).EinheitArt = EinheitTypExtern
          then
             AnzahlEinheitTyp := AnzahlEinheitTyp + 1;
             
@@ -257,7 +258,7 @@ package body EinheitSuchen is
       for EinheitenSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitenSchleifenwert).ID /= GlobaleKonstanten.LeerEinheit.ID
+           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitenSchleifenwert)) /= GlobaleKonstanten.LeerEinheit.ID
          then
             AnzahlEinheiten := AnzahlEinheiten + 1;
             

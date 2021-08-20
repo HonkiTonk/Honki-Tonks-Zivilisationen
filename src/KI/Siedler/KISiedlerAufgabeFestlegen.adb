@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIDatentypen, KIKonstanten;
 
-with StadtBauen, KIPruefungen, EinheitenAllgemein, KIMindestBewertungKartenfeldErmitteln, KIAufgabenFestlegenAllgemein;
+with StadtBauen, KIPruefungen, EinheitenAllgemein, KIMindestBewertungKartenfeldErmitteln, KIAufgabenFestlegenAllgemein, SchreibeEinheitenGebaut;
 
 package body KISiedlerAufgabeFestlegen is
 
@@ -46,8 +46,10 @@ package body KISiedlerAufgabeFestlegen is
             
             -- Nichts tun
          when others =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
+            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
       end case;
       
    end SiedlerAufgabeFestlegen;
@@ -70,8 +72,10 @@ package body KISiedlerAufgabeFestlegen is
       elsif
         NeueStadtPosition.XAchse /= GlobaleKonstanten.LeerYXKartenWert
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := (NeueStadtPosition.EAchse, NeueStadtPosition.YAchse, NeueStadtPosition.XAchse);
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
+         SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    KoordinatenExtern        => NeueStadtPosition);
+         SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 AufgabeExtern            => KIDatentypen.Stadt_Bauen);
          
       else
          null;
@@ -85,9 +89,10 @@ package body KISiedlerAufgabeFestlegen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Verbesserung_Anlegen;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten
-        := KIPruefungen.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              AufgabeExtern            => KIDatentypen.Verbesserung_Anlegen);
+      SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 KoordinatenExtern        => KIPruefungen.StadtUmgebungPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
    end StadtUmgebungVerbesserung;
    
@@ -95,9 +100,10 @@ package body KISiedlerAufgabeFestlegen is
    
    procedure Fliehen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin      
+   is begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Flucht;
+      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              AufgabeExtern            => KIDatentypen.Flucht);
       
    end Fliehen;
    
@@ -107,7 +113,8 @@ package body KISiedlerAufgabeFestlegen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Festsetzen;
+      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              AufgabeExtern            => KIDatentypen.Einheit_Festsetzen);
       
    end Befestigen;
 

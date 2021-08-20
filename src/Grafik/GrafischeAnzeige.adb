@@ -7,7 +7,7 @@ with GlobaleKonstanten;
 
 with KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank;
 
-with EinheitSuchen, StadtSuchen, LeseKarten;
+with EinheitSuchen, StadtSuchen, LeseKarten, LeseEinheitenGebaut;
 
 package body GrafischeAnzeige is
 
@@ -54,10 +54,10 @@ package body GrafischeAnzeige is
             null;
             
          elsif
-           GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).WirdTransportiert /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+           LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
-            Farben (EinheitExtern            => GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse,
-                    GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).WirdTransportiert).ID,
+            Farben (EinheitExtern            => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitStadtRasseNummer.Rasse,
+                                                                                                     LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer))),
                     VerbesserungExtern       => GlobaleDatentypen.Leer,
                     RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -67,7 +67,7 @@ package body GrafischeAnzeige is
             return;
             
          else
-            Farben (EinheitExtern            => GlobaleVariablen.EinheitenGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).ID,
+            Farben (EinheitExtern            => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitStadtRasseNummer),
                     VerbesserungExtern       => GlobaleDatentypen.Leer,
                     RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),

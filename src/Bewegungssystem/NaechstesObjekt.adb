@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten, GlobaleRecords;
 
+with LeseEinheitenGebaut;
+
 package body NaechstesObjekt is  
 
    procedure NächsteEinheit
@@ -24,13 +26,13 @@ package body NaechstesObjekt is
          end if;
                
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).ID = GlobaleKonstanten.LeerEinheitenID
+           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) = GlobaleKonstanten.LeerEinheitenID
            or
-             (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).Bewegungspunkte <= GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
               and
                 BewegungspunkteExtern = Hat_Bewegungspunkte)
            or
-             (GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).Bewegungspunkte > GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) > GlobaleKonstanten.LeerEinheit.Bewegungspunkte
               and
                 BewegungspunkteExtern = Keine_Bewegungspunkte)
          then
@@ -51,7 +53,7 @@ package body NaechstesObjekt is
 
       end loop EinheitSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheit (RasseExtern)).Position;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern)));
       
    end NächsteEinheit;
    
@@ -177,7 +179,7 @@ package body NaechstesObjekt is
          end if;
                
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheitMeldung (RasseExtern)).ID = GlobaleKonstanten.LeerEinheitenID
+           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern))) = GlobaleKonstanten.LeerEinheitenID
          then
             null;
          
@@ -186,7 +188,8 @@ package body NaechstesObjekt is
             for MeldungSchleifenwert in GlobaleRecords.EinheitMeldungenArray'Range loop
                
                case
-                 GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheitMeldung (RasseExtern)).Meldungen (MeldungSchleifenwert)
+                 LeseEinheitenGebaut.Meldungen (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)),
+                                                WelcheMeldungExtern      => MeldungSchleifenwert)
                is
                   when GlobaleDatentypen.Leer =>
                      null;
@@ -209,7 +212,7 @@ package body NaechstesObjekt is
 
       end loop EinheitSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := GlobaleVariablen.EinheitenGebaut (RasseExtern, AktuelleEinheitMeldung (RasseExtern)).Position;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheitMeldung (RasseExtern)));
       
    end NächsteEinheitMeldung;
    

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleVariablen, GlobaleKonstanten;
 
-with LeseKarten, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen;
+with LeseKarten, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
 
 package body EinheitVerschieben is
    
@@ -92,7 +92,7 @@ package body EinheitVerschieben is
             XAchseSchleife:
             for XAchseSchleifenwert in -UmgebungPrüfen .. UmgebungPrüfen loop
                      
-               KartenWertVerschieben := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+               KartenWertVerschieben := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                                       ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
                if
@@ -116,7 +116,8 @@ package body EinheitVerschieben is
                  and
                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWertVerschieben).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
                then
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position := KartenWertVerschieben;
+                  SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    PositionExtern           => KartenWertVerschieben);
                   return;
                   
                else

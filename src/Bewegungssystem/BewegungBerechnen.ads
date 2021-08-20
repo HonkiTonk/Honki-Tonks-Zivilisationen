@@ -23,6 +23,8 @@ package BewegungBerechnen is
 private
    
    PlatzZumEntladen : Boolean;
+   
+   BewegungspunkteAbzug : GlobaleDatentypen.BewegungFloat;
       
    type Bewegungsbonuse_Enum is (Leer, Straße_Fluss, Schiene);
    

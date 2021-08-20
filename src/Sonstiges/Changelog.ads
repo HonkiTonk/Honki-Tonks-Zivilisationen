@@ -77,17 +77,17 @@ package Changelog is
    
    
    
-   -- Version 0.00.84 => 0.00.8 (21.08.2021):
+   -- Version 0.00.8410 => 0.00.8 (21.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8400 => 0.00.84 (20.08.2021):
+   -- Version 0.00.8400 => 0.00.8410 (20.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- LeseEinheitenGebaut und SchreibeEinheitenGebaut wird jetzt fast überall verwendet um die Werte in GlobaleVariablen.EinheitenGebaut zu Lesen/Schreiben und dabei die entsprechenden Prüfungen durchzuführen.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
    

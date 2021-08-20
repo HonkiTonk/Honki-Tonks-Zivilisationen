@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleTexte;
 
 with InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, NaechstesObjekt, Verbesserungen, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen,
-     Eingabe, FeldInformationen, ForschungAllgemein, EinheitenAllgemein, StadtEntfernen;
+     Eingabe, FeldInformationen, ForschungAllgemein, EinheitenAllgemein, StadtEntfernen, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
 
 package body BefehleImSpiel is
 
@@ -137,7 +137,7 @@ package body BefehleImSpiel is
       then
          Transportiert := EinheitSuchen.HatTransporterLadung (EinheitRassePlatznummerExtern => (RasseExtern, EinheitNummer));
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+           LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
            and
              Transportiert = False
          then
@@ -152,9 +152,10 @@ package body BefehleImSpiel is
          end if;
          
          if
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+           LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
-            EinheitTransportNummer := EinheitenAllgemein.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).WirdTransportiert));
+            EinheitTransportNummer
+              := EinheitenAllgemein.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer))));
 
          else
             EinheitTransportNummer := EinheitenAllgemein.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
@@ -202,14 +203,15 @@ package body BefehleImSpiel is
       end case;
       
       if
-        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Beschäftigung /= GlobaleDatentypen.Nicht_Vorhanden
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern)) /= GlobaleDatentypen.Nicht_Vorhanden
         and then
           EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then
-         GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
+         SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
+                                                 BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
                   
       elsif
-        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerExtern).Bewegungspunkte = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern)) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
       then
          null;
                      
@@ -238,7 +240,7 @@ package body BefehleImSpiel is
       end case;
       
       if
-        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte > GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) > GlobaleKonstanten.LeerEinheit.Bewegungspunkte
       then
          StadtBauen.StadtBauen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
                      
@@ -296,7 +298,7 @@ package body BefehleImSpiel is
       end if;
             
       if
-        GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummer).Bewegungspunkte = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
       then
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 8);

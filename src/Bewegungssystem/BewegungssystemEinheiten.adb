@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleKonstanten, GlobaleTexte;
 
 with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, DiplomatischerZustand, BewegungLadenEntladen, KampfsystemEinheiten, StadtSuchen,
-     StadtBauen, Verbesserungen, Anzeige, KampfsystemStadt;
+     StadtBauen, Verbesserungen, Anzeige, KampfsystemStadt, LeseEinheitenGebaut;
 
 package body BewegungssystemEinheiten is
 
@@ -85,7 +85,7 @@ package body BewegungssystemEinheiten is
             AktuellerStatus := NochBewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          else
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                         ÄnderungExtern    => Änderung);
          
             case
@@ -216,9 +216,9 @@ package body BewegungssystemEinheiten is
    is begin
       
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte <= GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+        LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
         or
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte = GlobaleKonstanten.LeerEinheit.Lebenspunkte
+          LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.Lebenspunkte
       then
          return Zurück;
             

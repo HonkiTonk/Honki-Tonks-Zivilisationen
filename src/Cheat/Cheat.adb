@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleTexte;
 
-with Karte, Karten, Anzeige, Eingabe, ForschungAllgemein, LeseKarten, SchreibeKarten;
+with Karte, Karten, Anzeige, Eingabe, ForschungAllgemein, LeseKarten, SchreibeKarten, LeseEinheitenGebaut;
 
 package body Cheat is
 
@@ -104,19 +104,22 @@ package body Cheat is
       BewegungPlanSchleife:
       for BewegungGeplantSchleifenwert in GlobaleRecords.KIBewegungPlanArray'Range loop
                         
-         Put_Line (Item => "EAchse:" & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).EAchse'Wide_Wide_Image
-                   & "    " & "YAchse:" & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).YAchse'Wide_Wide_Image
-                   & "    " & "XAchse:" & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (BewegungGeplantSchleifenwert).XAchse'Wide_Wide_Image);
+         Put_Line (Item => "EAchse:" & LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                           PlanschrittExtern        => BewegungGeplantSchleifenwert).EAchse'Wide_Wide_Image
+                   & "    " & "YAchse:" & LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                              PlanschrittExtern        => BewegungGeplantSchleifenwert).YAchse'Wide_Wide_Image
+                   & "    " & "XAchse:" & LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                              PlanschrittExtern        => BewegungGeplantSchleifenwert).XAchse'Wide_Wide_Image);
                         
       end loop BewegungPlanSchleife;
                      
-      Put_Line (Item => "Ziel EAchse:" & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.EAchse'Wide_Wide_Image & "    "
-                & "Ziel YAchse:" & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse'Wide_Wide_Image & "    "
-                & "Ziel XAchse:" & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse'Wide_Wide_Image);
+      Put_Line (Item => "Ziel EAchse:" & LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse'Wide_Wide_Image & "    "
+                & "Ziel YAchse:" & LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).YAchse'Wide_Wide_Image & "    "
+                & "Ziel XAchse:" & LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).XAchse'Wide_Wide_Image);
                      
-      Put_Line (Item => "KIAufgabe:" & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt'Wide_Wide_Image);
-      Put_Line (Item => "AufgabeEins:" & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung'Wide_Wide_Image);
-      Put_Line (Item => "AufgabeZwei:" & GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungNachfolger'Wide_Wide_Image);
+      Put_Line (Item => "KIAufgabe:" & LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
+      Put_Line (Item => "AufgabeEins:" & LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
+      Put_Line (Item => "AufgabeZwei:" & LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
       ForschungAllgemein.Beschreibung (IDExtern => GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Forschungsprojekt);
       

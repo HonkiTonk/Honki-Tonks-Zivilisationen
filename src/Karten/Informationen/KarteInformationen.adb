@@ -251,15 +251,15 @@ package body KarteInformationen is
    is begin
       
       case
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert
+        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
             EinheitNummer := EinheitRasseNummerExtern.Platznummer;
                         
          when others =>
-            EinheitNummer := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).WirdTransportiert;
+            EinheitNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
-      EinheitenAllgemein.Beschreibung (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID);
+      EinheitenAllgemein.Beschreibung (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)));
       New_Line;
                   
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -270,11 +270,11 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Lebenspunkte),
+      Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))),
                                Width => 1);
       Put (Item => " / ");
       Ada.Integer_Text_IO.Put (Item  => Positive (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).MaximaleLebenspunkte),
+                               LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).MaximaleLebenspunkte),
                                Width => 1);
             
       -- "Volle" Einheiteninformationen, nur sichtbar wenn eigene Einheit oder wenn Cheat aktiviert ist
@@ -291,13 +291,13 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-         Ada.Float_Text_IO.Put (Item => Float (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Bewegungspunkte),
+         Ada.Float_Text_IO.Put (Item => Float (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))),
                                 Fore => 1,
                                 Aft  => 2,
                                 Exp  => 0);
          Put (Item => " / ");
-         Ada.Float_Text_IO.Put (Item => Float (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                EinheitNummer).ID).MaximaleBewegungspunkte),
+         Ada.Float_Text_IO.Put (Item => Float (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
+                                LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).MaximaleBewegungspunkte),
                                 Fore => 1,
                                 Aft  => 2,
                                 Exp  => 0);
@@ -310,11 +310,11 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Erfahrungspunkte),
+         Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))),
                                   Width => 1);
          Put (Item => " / ");
-         Ada.Integer_Text_IO.Put (Item  => Natural (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                  EinheitNummer).ID).Beförderungsgrenze),
+         Ada.Integer_Text_IO.Put (Item  => Natural (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
+                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).Beförderungsgrenze),
                                   Width => 1);
          New_Line;
                               
@@ -326,7 +326,7 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-         EinheitenAllgemein.Beschäftigung (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Beschäftigung);
+         EinheitenAllgemein.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)));
 
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                         TextDateiExtern        => GlobaleTexte.Zeug,
@@ -336,7 +336,7 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Beschäftigungszeit),
+         Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))),
                                   Width => 1);
          New_Line;
 
@@ -349,7 +349,7 @@ package body KarteInformationen is
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
          Ada.Integer_Text_IO.Put (Item  => Integer (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).Angriff),
+                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).Angriff),
                                   Width => 1);
 
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -361,9 +361,9 @@ package body KarteInformationen is
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
          Ada.Integer_Text_IO.Put (Item  => Integer (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).Verteidigung),
+                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).Verteidigung),
                                   Width => 1);
-                     
+         
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                         TextDateiExtern        => GlobaleTexte.Zeug,
                                         ÜberschriftZeileExtern => 0,
@@ -372,11 +372,11 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => Natural (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Rang),
+         Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenGebaut.Rang (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))),
                                   Width => 1);
          Put (Item => " / ");
          Ada.Integer_Text_IO.Put (Item  => Natural (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).MaximalerRang),
+                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).MaximalerRang),
                                   Width => 1);
                      
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -431,7 +431,7 @@ package body KarteInformationen is
                                   Width => 1);
                  
          case
-           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).ID).KannTransportieren
+           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).KannTransportieren
          is
             when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
                null;
@@ -441,9 +441,10 @@ package body KarteInformationen is
                
                LadungSchleife:
                for LadungSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => EinheitRasseNummerExtern) loop
-                        
+                  
                   if
-                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+                    LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       PlatzExtern              => LadungSchleifenwert) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
                     and
                       ErsteAnzeige
                   then
@@ -452,24 +453,33 @@ package body KarteInformationen is
                      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                                                     TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
                                                     ÜberschriftZeileExtern => 51,
-                                                    ErsteZeileExtern       => Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert)).ID),
-                                                    LetzteZeileExtern      => Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert)).ID),
+                                                    ErsteZeileExtern       =>
+                                                      Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse,
+                                                                                                                     LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                        PlatzExtern              => LadungSchleifenwert)))),
+                                                    LetzteZeileExtern      =>
+                                                      Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse,
+                                                                                                                     LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                        PlatzExtern              => LadungSchleifenwert)))),
                                                     AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                                     AbstandEndeExtern      => GlobaleTexte.Großer_Abstand);
                      
                   elsif
-                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+                    LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       PlatzExtern              => LadungSchleifenwert) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
                   then
                      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                                     TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,
                                                     ÜberschriftZeileExtern => 0,
-                                                    ErsteZeileExtern       => Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert)).ID),
-                                                    LetzteZeileExtern      => Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                                                      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (LadungSchleifenwert)).ID),
+                                                    ErsteZeileExtern       =>
+                                                      Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse,
+                                                                                                                     LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                        PlatzExtern              => LadungSchleifenwert)))),
+                                                    LetzteZeileExtern      =>
+                                                      Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse,
+                                                                                                                     LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                        PlatzExtern              => LadungSchleifenwert)))),
                                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
                                                     AbstandMitteExtern     => GlobaleTexte.Leer,
                                                     AbstandEndeExtern      => GlobaleTexte.Großer_Abstand);

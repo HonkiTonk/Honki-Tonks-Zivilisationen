@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with SchreibeEinheitenGebaut;
+
 package body EinheitenMeldungenSetzen is
 
    procedure EinheitenMeldungenSetzenRundenEnde
@@ -43,7 +45,9 @@ package body EinheitenMeldungenSetzen is
             ArtDerMeldung := GlobaleDatentypen.Einheit_In_Der_Nähe;
       end case;
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Meldungen (ArtDerMeldung) := EreignisExtern;
+      SchreibeEinheitenGebaut.Meldungen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                         MeldungExtern            => EreignisExtern,
+                                         WelcheMeldungExtern      => ArtDerMeldung);
       
    end EinheitMeldungSetzenEreignis;
 

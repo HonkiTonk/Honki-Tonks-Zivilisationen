@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIDatentypen, KIKonstanten;
 
-with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt, KIAufgabenFestlegenAllgemein, LeseKarten, LeseEinheitenGebaut;
+with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt, KIAufgabenFestlegenAllgemein, LeseKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
 
 package body KINahkampfBodenAufgabeFestlegen is
 
@@ -54,8 +54,10 @@ package body KINahkampfBodenAufgabeFestlegen is
             
             -- Nichts tun
          when others =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
+            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
       end case;
       
    end NahkampfBodenAufgabeFestlegen;
@@ -85,9 +87,10 @@ package body KINahkampfBodenAufgabeFestlegen is
            EinheitNummer
          is
             when GlobaleKonstanten.LeerEinheitStadtNummer =>
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten
-                 := GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).Position;
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bewachen;
+               SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                          KoordinatenExtern        => GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).Position);
+               SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       AufgabeExtern            => KIDatentypen.Stadt_Bewachen);
                return;
                
             when others =>
@@ -112,9 +115,10 @@ package body KINahkampfBodenAufgabeFestlegen is
    
    procedure Fliehen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin      
+   is begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Flucht;
+      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              AufgabeExtern            => KIDatentypen.Flucht);
       
    end Fliehen;
         
@@ -124,7 +128,8 @@ package body KINahkampfBodenAufgabeFestlegen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Festsetzen;
+      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              AufgabeExtern            => KIDatentypen.Einheit_Festsetzen);
       
    end Befestigen;
    
@@ -183,8 +188,10 @@ package body KINahkampfBodenAufgabeFestlegen is
                       KIAufgabenVerteilt.EinheitZiel (RasseExtern           => EinheitRasseNummerExtern.Rasse,
                                                       ZielKoordinatenExtern => KartenWert) = False
                   then
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Erkunden;
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KartenWert;
+                     SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                KoordinatenExtern        => KartenWert);
+                     SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                             AufgabeExtern            => KIDatentypen.Erkunden);
                      return;
                      
                   else
@@ -204,8 +211,10 @@ package body KINahkampfBodenAufgabeFestlegen is
          
       end loop UnbekanntesFeldSuchenSchleife;
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIKonstanten.NullKoordinate;
+      SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 KoordinatenExtern        => KIKonstanten.NullKoordinate);
+      SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
       
    end Erkunden;
 

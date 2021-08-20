@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank;
   
-with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen, LeseKarten, SchreibeKarten;
+with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen, LeseKarten, SchreibeKarten, LeseEinheitenGebaut;
 
 package body Sichtbarkeit is
 
@@ -16,7 +16,7 @@ package body Sichtbarkeit is
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
 
          case
-           GlobaleVariablen.EinheitenGebaut (RasseExtern, EinheitNummerSchleifenwert).ID
+           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert))
          is
             when GlobaleKonstanten.LeerEinheitenID =>
                null;
@@ -51,20 +51,18 @@ package body Sichtbarkeit is
    is begin
       
       if
-        (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Luft) = True
+        (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Passierbarkeit (GlobaleDatentypen.Luft) = True
          or
-           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                              GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).Passierbarkeit (GlobaleDatentypen.Weltraum) = True)
+           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Passierbarkeit (GlobaleDatentypen.Weltraum) = True)
         and
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position.EAchse >= 0
+          LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse >= 0
       then
          SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                             SichtweiteExtern         => 3);
          return;
          
       else
-         KoordinatenEinheit := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position;
+         KoordinatenEinheit := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          AktuellerGrund := LeseKarten.Grund (PositionExtern => KoordinatenEinheit);
       end if;
       
@@ -688,7 +686,7 @@ package body Sichtbarkeit is
          XÄnderungEinheitenSchleife:
          for XÄnderungSchleifenwert in -SichtweiteExtern .. SichtweiteExtern loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Position,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             case

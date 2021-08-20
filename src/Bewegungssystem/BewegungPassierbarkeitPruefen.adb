@@ -6,7 +6,7 @@ with EinheitenDatenbank, VerbesserungenDatenbank;
 
 with KartenAllgemein;
 
-with StadtSuchen, UmgebungErreichbarTesten, LeseKarten;
+with StadtSuchen, UmgebungErreichbarTesten, LeseKarten, LeseEinheitenGebaut;
 
 package body BewegungPassierbarkeitPruefen is
    
@@ -17,7 +17,7 @@ package body BewegungPassierbarkeitPruefen is
    is begin
       
       return PassierbarkeitPrüfenID (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                      IDExtern           => GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID,
+                                      IDExtern           => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                       NeuePositionExtern => NeuePositionExtern);
       
    end PassierbarkeitPrüfenNummer;
@@ -168,21 +168,24 @@ package body BewegungPassierbarkeitPruefen is
          
       BelegterPlatzSchleife:
       for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First
-        .. EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).Transportkapazität loop
+        .. EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)).Transportkapazität loop
                         
          case
-           GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)
+           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+                                              PlatzExtern              => BelegterPlatzSchleifenwert)
          is
             when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
                null;
                               
             when others =>
-               KartenWert := UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeuePositionExtern,
-                                                                                RasseExtern               => TransporterExtern.Rasse,
-                                                                                IDExtern                  => GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse,
-                                                                                  GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse,
-                                                                                    TransporterExtern.Platznummer).Transportiert (BelegterPlatzSchleifenwert)).ID,
-                                                                                NotwendigeFelderExtern    => BenötigteFelder);
+               KartenWert :=
+                 UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeuePositionExtern,
+                                                                    RasseExtern               => TransporterExtern.Rasse,
+                                                                    IDExtern                  =>
+                                                                       LeseEinheitenGebaut.ID (EinheitRasseNummerExtern =>
+                                                                                                   (TransporterExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+                                                                                                                                                                PlatzExtern              => BelegterPlatzSchleifenwert))),
+                                                                    NotwendigeFelderExtern    => BenötigteFelder);
                
                if
                  KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert

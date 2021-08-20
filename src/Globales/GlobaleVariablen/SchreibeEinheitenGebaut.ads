@@ -11,7 +11,7 @@ package SchreibeEinheitenGebaut is
 
    procedure ID
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.EinheitenID)
+      IDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -43,7 +43,7 @@ package SchreibeEinheitenGebaut is
    procedure Lebenspunkte
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       LebenspunkteExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      PlusMinusExtern : in Boolean)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -53,7 +53,7 @@ package SchreibeEinheitenGebaut is
    procedure Bewegungspunkte
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       BewegungspunkteExtern : in GlobaleDatentypen.BewegungFloat;
-      SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      PlusMinusExtern : in Boolean)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -62,8 +62,7 @@ package SchreibeEinheitenGebaut is
    
    procedure Erfahrungspunkte
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ErfahrungspunkteExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      ErfahrungspunkteExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -71,9 +70,7 @@ package SchreibeEinheitenGebaut is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure Rang
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      RangExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -101,7 +98,7 @@ package SchreibeEinheitenGebaut is
    procedure Beschäftigungszeit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       ZeitExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      PlusMinusExtern : in Boolean)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -111,7 +108,7 @@ package SchreibeEinheitenGebaut is
    procedure BeschäftigungszeitNachfolger
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       ZeitExtern : in GlobaleDatentypen.MaximaleStädteMitNullWert;
-      SetzenÄndernExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      PlusMinusExtern : in Boolean)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

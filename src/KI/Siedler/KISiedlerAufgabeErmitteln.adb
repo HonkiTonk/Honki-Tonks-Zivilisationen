@@ -5,7 +5,7 @@ with GlobaleKonstanten;
 with KIDatentypen;
 use KIDatentypen;
 
-with StadtSuchen, KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt, KIAufgabenErmittelnAllgemein, RassenAllgemein;
+with StadtSuchen, KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt, KIAufgabenErmittelnAllgemein, RassenAllgemein, SchreibeEinheitenGebaut;
 
 package body KISiedlerAufgabeErmitteln is
 
@@ -68,14 +68,16 @@ package body KISiedlerAufgabeErmitteln is
       if
         VorhandeneStädte = GlobaleKonstanten.LeerEinheitStadtNummer
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
+         SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 AufgabeExtern            => KIDatentypen.Stadt_Bauen);
          return 11;
          
       elsif
         GlobaleVariablen.RundenAnzahl > (Positive (VorhandeneStädte) + KIAufgabenVerteilt.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                              AufgabeExtern            => KIDatentypen.Stadt_Bauen)) * 10
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Stadt_Bauen;
+         SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 AufgabeExtern            => KIDatentypen.Stadt_Bauen);
          return 5;
          
       else

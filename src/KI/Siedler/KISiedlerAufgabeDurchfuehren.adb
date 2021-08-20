@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen;
 
-with StadtBauen, KINullwerteSetzen, Verbesserungen, LeseKarten, LeseEinheitenGebaut;
+with StadtBauen, KINullwerteSetzen, Verbesserungen, LeseKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
 
 package body KISiedlerAufgabeDurchfuehren is
 
@@ -19,7 +19,8 @@ package body KISiedlerAufgabeDurchfuehren is
             StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
                                                       WelchenWertNullSetzenExtern => 0);
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;            
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Keine_Aufgabe);          
             
          when KIDatentypen.Verbesserung_Anlegen =>
             AufgabeDurchführen := WelcheVerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -49,8 +50,10 @@ package body KISiedlerAufgabeDurchfuehren is
             null;
             
          when False =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
+            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
       end case;
       
    end SiedlerAufgabeDurchfuehren;

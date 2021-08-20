@@ -4,7 +4,7 @@ package body LeseEinheitenGebaut is
 
    function ID
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.EinheitenID
+      return GlobaleDatentypen.EinheitenIDMitNullWert
    is begin
       
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID;

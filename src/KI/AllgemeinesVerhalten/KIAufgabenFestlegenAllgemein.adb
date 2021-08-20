@@ -8,6 +8,7 @@ package body KIAufgabenFestlegenAllgemein is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
+      -- Das hier so lassen? Als KI Version von EinheitenAllgemein?
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Einheit_Heilen;
       
    end Heilen;
