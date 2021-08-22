@@ -2,23 +2,61 @@ pragma SPARK_Mode (On);
 
 package body LeseGebaeudeDatenbank is
 
-   GebäudeGrafik : Wide_Wide_Character;
+   function GebäudeGrafik
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return Wide_Wide_Character;
       
-   PreisGeld : GlobaleDatentypen.KostenLager;      
-   PreisRessourcen : GlobaleDatentypen.KostenLager;
-   PermanenteKosten : GlobaleDatentypen.PermanenteKostenArray;
+   function PreisGeld
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.KostenLager;      
+   function PreisRessourcen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.KostenLager;
+   function PermanenteKosten
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.PermanenteKostenArray;
       
-   Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
+   function Anforderungen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.ForschungIDMitNullWert;
       
-   -- Eventuell auch hier das GewinnBewertungArray nutzen und die Bewertung für die Baupriorität der KI verwenden?
-   ProduktionBonus : GlobaleDatentypen.ProduktionFeld;
-   GeldBonus : GlobaleDatentypen.ProduktionFeld;
-   WissenBonus : GlobaleDatentypen.ProduktionFeld;
-   VerteidigungBonus : GlobaleDatentypen.ProduktionFeld;
-   NahrungBonus : GlobaleDatentypen.ProduktionFeld;
-   AngriffBonus : GlobaleDatentypen.ProduktionFeld;
+   function ProduktionBonus
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.ProduktionFeld;
+   function GeldBonus
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.ProduktionFeld;
+   function WissenBonus
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.ProduktionFeld;
+   function VerteidigungBonus
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.ProduktionFeld;
+   function NahrungBonus
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.ProduktionFeld;
+   function AngriffBonus
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.ProduktionFeld;
       
-   UmgebungBenötigt : GlobaleDatentypen.Karten_Grund_Enum;
-   GebäudeSpezielleEigenschaft : GlobaleDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
+   function UmgebungBenötigt
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.Karten_Grund_Enum;
+   function GebäudeSpezielleEigenschaft
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;
 
 end LeseGebaeudeDatenbank;

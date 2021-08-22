@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 
 package body LeseVerbesserungenDatenbank is
 
-   VerbesserungGrafik : Wide_Wide_Character;
+   function VerbesserungGrafik : Wide_Wide_Character;
       
-   Passierbarkeit : PassierbarkeitArray;      
-   VerbesserungWerte : GewinnBewertungArray;
+   function Passierbarkeit : PassierbarkeitArray;      
+   function VerbesserungWerte : GewinnBewertungArray;
 
 end LeseVerbesserungenDatenbank;

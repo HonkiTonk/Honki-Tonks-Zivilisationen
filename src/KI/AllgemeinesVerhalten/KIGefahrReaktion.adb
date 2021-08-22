@@ -26,10 +26,12 @@ package body KIGefahrReaktion is
                                                     BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
             SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                               BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
-            -- Hier das Maximum als Minus übergeben.
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := 0;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).BeschäftigungszeitNachfolger := 0;
-            -- GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Flucht;
+            SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                         ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
+                                                         RechnenSetzenExtern      => 0);
+            SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                   ZeitExtern               => GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
+                                                                   RechnenSetzenExtern      => 0);
       end case;
       
    end KIGefahrReaktion;

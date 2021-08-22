@@ -54,7 +54,9 @@ package body BewegungBerechnen is
               LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < 1.00
             then
                -- Hier noch Minus das Maximum einfügen.
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
+               SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                        BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
+                                                        RechnenSetzenExtern      => 0);
                return;
                
             else
@@ -67,7 +69,7 @@ package body BewegungBerechnen is
 
       SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                BewegungspunkteExtern    => BewegungspunkteAbzug,
-                                               PlusMinusExtern          => False);
+                                               RechnenSetzenExtern      => -1);
       -- Hier nicht return, da Bewegung zwar erfolgreich aber jetzt noch die Rechnungen durchlaufen müssen.
 
       case

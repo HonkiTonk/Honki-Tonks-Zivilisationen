@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIKonstanten, KIDatentypen;
 
-with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen, LeseEinheitenGebaut;
+with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
 
 package body KIBewegungBerechnen is
    
@@ -22,8 +22,10 @@ package body KIBewegungBerechnen is
          when True =>
             KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
                                                       WelchenWertNullSetzenExtern => 0);
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
+            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
             return False;
       end case;
       
@@ -40,8 +42,10 @@ package body KIBewegungBerechnen is
          when False =>
             KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
                                                       WelchenWertNullSetzenExtern => 0);
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBeschäftigt := KIDatentypen.Keine_Aufgabe;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
+            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
       end case;
       
       return PlanungErfolgreich;
@@ -104,13 +108,15 @@ package body KIBewegungBerechnen is
                PlanungErfolgreichRekursiv := False;
                
             when 11 =>
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (AktuellePlanpositionExtern)
-                 := (Bewertung (DurchlaufSchleifenwert).EAchse, Bewertung (DurchlaufSchleifenwert).YAchse, Bewertung (DurchlaufSchleifenwert).XAchse);
+               SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       PositionExtern           => (Bewertung (DurchlaufSchleifenwert).EAchse, Bewertung (DurchlaufSchleifenwert).YAchse, Bewertung (DurchlaufSchleifenwert).XAchse),
+                                                       PlanpositionExtern       => AktuellePlanpositionExtern);
                return True;
                
             when others =>
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (AktuellePlanpositionExtern)
-                 := (Bewertung (DurchlaufSchleifenwert).EAchse, Bewertung (DurchlaufSchleifenwert).YAchse, Bewertung (DurchlaufSchleifenwert).XAchse);
+               SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       PositionExtern           => (Bewertung (DurchlaufSchleifenwert).EAchse, Bewertung (DurchlaufSchleifenwert).YAchse, Bewertung (DurchlaufSchleifenwert).XAchse),
+                                                       PlanpositionExtern       => AktuellePlanpositionExtern);
                
                if
                  AktuellePlanpositionExtern = GlobaleRecords.KIBewegungPlanArray'Last
@@ -134,7 +140,9 @@ package body KIBewegungBerechnen is
                return True;
                
             when False =>
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (AktuellePlanpositionExtern) := KIKonstanten.NullKoordinate;
+               SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       PositionExtern           => KIKonstanten.NullKoordinate,
+                                                       PlanpositionExtern       => AktuellePlanpositionExtern);
          end case;
          
       end loop DurchlaufSchleife;
@@ -371,11 +379,15 @@ package body KIBewegungBerechnen is
                   BewegungPlanVerschiebenSchleife:
                   for PositionSchleifenwert in ErsterZugExtern .. GlobaleRecords.KIBewegungPlanArray'Last - 1 loop
                
-                     GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (PositionSchleifenwert + 1)
-                       := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (ÜberNächsterZugExtern);
+                     SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                             PositionExtern           => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                             PlanschrittExtern        => (ÜberNächsterZugExtern)),
+                                                             PlanpositionExtern       => (PositionSchleifenwert + 1));
                
                   end loop BewegungPlanVerschiebenSchleife;
-                  GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan (GlobaleRecords.KIBewegungPlanArray'Last) := KIKonstanten.NullKoordinate;
+                  SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                          PositionExtern           => KIKonstanten.NullKoordinate,
+                                                          PlanpositionExtern       => GlobaleRecords.KIBewegungPlanArray'Last);
                            
                else
                   null;

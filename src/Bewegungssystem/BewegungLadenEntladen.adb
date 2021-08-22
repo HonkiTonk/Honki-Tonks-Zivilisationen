@@ -49,11 +49,9 @@ package body BewegungLadenEntladen is
             SchreibeEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                                    LadungExtern             => LadungExtern,
                                                    LadungspositionExtern    => FreierPlatzNummer);
-            -- Hier die maximalen Bewegunspunkte als Minus übergeben
             SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
-                                                     BewegungspunkteExtern    => 0.00,
-                                                     PlusMinusExtern          => False);
-            GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, LadungExtern).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
+                                                     BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
+                                                     RechnenSetzenExtern      => 0);
             SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),
                                               PositionExtern           => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => TransporterExtern));
             SchreibeEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, LadungExtern),

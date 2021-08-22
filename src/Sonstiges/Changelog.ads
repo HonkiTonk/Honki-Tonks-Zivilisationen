@@ -63,24 +63,24 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (23.08.2021):
+   -- Version 0.00.8420 => 0.00.8 (23.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (22.08.2021):
+   -- Version 0.00.8410 => 0.00.8420 (22.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- LeseFunktionen für die Datenbanken weiter erstellt.
+   -- Änderungen an Lese/SchreibeEinheitenGebaut vorgenommen und überall wo es aktuell halbwegs sinnvoll ist eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/hinzugefügt/entfernt.
    
    
    
-   -- Version 0.00.8410 => 0.00.8 (21.08.2021):
+   -- Version 0.00.8410 => 0.00.8410 (21.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Krank
    
    
    

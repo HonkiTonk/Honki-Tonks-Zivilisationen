@@ -59,7 +59,7 @@ package body KampfsystemStadt is
          
          SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
                                                   BewegungspunkteExtern    => 1.50,
-                                                  PlusMinusExtern          => False);
+                                                  RechnenSetzenExtern      => -1);
          return False;
          
       end if;
