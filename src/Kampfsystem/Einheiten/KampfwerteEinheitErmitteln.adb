@@ -2,9 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitenDatenbank;
-
-with StadtSuchen, GesamtwerteFeld, LeseEinheitenGebaut;
+with StadtSuchen, GesamtwerteFeld, LeseEinheitenGebaut, LeseEinheitenDatenbank;
 
 package body KampfwerteEinheitErmitteln is
 
@@ -15,14 +13,23 @@ package body KampfwerteEinheitErmitteln is
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
-      VerteidigungWert := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Verteidigung;
+      VerteidigungWert := LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       case
         AngreiferExtern
       is
          when False =>
-            VerteidigungWert := VerteidigungWert + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                     RasseExtern       => EinheitRasseNummerExtern.Rasse);
+            if
+              VerteidigungWert + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                   RasseExtern       => EinheitRasseNummerExtern.Rasse) > GlobaleDatentypen.ProduktionFeld'Last
+            then
+               VerteidigungWert := GlobaleDatentypen.ProduktionFeld'Last;
+               
+            else
+               VerteidigungWert := VerteidigungWert + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                        RasseExtern       => EinheitRasseNummerExtern.Rasse);
+            end if;
             
             case
               LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
@@ -75,7 +82,8 @@ package body KampfwerteEinheitErmitteln is
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
-      AngriffWert := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Angriff;
+      AngriffWert := LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                     IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       case
         AngreiferExtern

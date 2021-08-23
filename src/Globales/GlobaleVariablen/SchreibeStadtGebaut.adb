@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 package body SchreibeStadtGebaut is
 
    procedure ID
@@ -72,10 +74,32 @@ package body SchreibeStadtGebaut is
       
    procedure Nahrungsmittel
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NahrungsmittelExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      NahrungsmittelExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+      ÄndernSetzenExtern : in Boolean)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel := NahrungsmittelExtern;
+      case
+        ÄndernSetzenExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel + NahrungsmittelExtern > GlobaleDatentypen.GesamtproduktionStadt'Last
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel := GlobaleDatentypen.GesamtproduktionStadt'Last;
+               
+            elsif
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel + NahrungsmittelExtern < GlobaleDatentypen.GesamtproduktionStadt'First
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel := GlobaleDatentypen.GesamtproduktionStadt'First;
+               
+            else
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel
+                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel + NahrungsmittelExtern;
+            end if;
+            
+         when False =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel := NahrungsmittelExtern;
+      end case;
       
    end Nahrungsmittel;
    
@@ -83,10 +107,32 @@ package body SchreibeStadtGebaut is
    
    procedure Nahrungsproduktion
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NahrungsproduktionExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      NahrungsproduktionExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+      ÄndernSetzenExtern : in Boolean)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion := NahrungsproduktionExtern;
+      case
+        ÄndernSetzenExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion + NahrungsproduktionExtern > GlobaleDatentypen.GesamtproduktionStadt'Last
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion := GlobaleDatentypen.GesamtproduktionStadt'Last;
+               
+            elsif
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion + NahrungsproduktionExtern < GlobaleDatentypen.GesamtproduktionStadt'First
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion := GlobaleDatentypen.GesamtproduktionStadt'First;
+               
+            else
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion
+                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion + NahrungsproduktionExtern;
+            end if;
+            
+         when False =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion := NahrungsproduktionExtern;
+      end case;
       
    end Nahrungsproduktion;
    
@@ -94,10 +140,32 @@ package body SchreibeStadtGebaut is
    
    procedure Ressourcen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      RessourcenExtern : in GlobaleDatentypen.KostenLager)
+      RessourcenExtern : in GlobaleDatentypen.KostenLager;
+      ÄndernSetzenExtern : in Boolean)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := RessourcenExtern;
+      case
+        ÄndernSetzenExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen + RessourcenExtern > GlobaleDatentypen.KostenLager'Last
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := GlobaleDatentypen.KostenLager'Last;
+               
+            elsif
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen + RessourcenExtern < GlobaleDatentypen.KostenLager'First
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := GlobaleDatentypen.KostenLager'First;
+               
+            else
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen
+                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen + RessourcenExtern;
+            end if;
+            
+         when False =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := RessourcenExtern;
+      end case;
       
    end Ressourcen;
    
@@ -105,10 +173,32 @@ package body SchreibeStadtGebaut is
    
    procedure Produktionrate
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ProduktionrateExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      ProduktionrateExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+      ÄndernSetzenExtern : in Boolean)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate := ProduktionrateExtern;
+      case
+        ÄndernSetzenExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate + ProduktionrateExtern > GlobaleDatentypen.GesamtproduktionStadt'Last
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate := GlobaleDatentypen.GesamtproduktionStadt'Last;
+               
+            elsif
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate + ProduktionrateExtern < GlobaleDatentypen.GesamtproduktionStadt'First
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate := GlobaleDatentypen.GesamtproduktionStadt'First;
+               
+            else
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate
+                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate + ProduktionrateExtern;
+            end if;
+            
+         when False =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate := ProduktionrateExtern;
+      end case;
       
    end Produktionrate;
    
@@ -116,10 +206,32 @@ package body SchreibeStadtGebaut is
    
    procedure Geldgewinnung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GeldgewinnungExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      GeldgewinnungExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+      ÄndernSetzenExtern : in Boolean)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung := GeldgewinnungExtern;
+      case
+        ÄndernSetzenExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung + GeldgewinnungExtern > GlobaleDatentypen.GesamtproduktionStadt'Last
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung := GlobaleDatentypen.GesamtproduktionStadt'Last;
+               
+            elsif
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung + GeldgewinnungExtern < GlobaleDatentypen.GesamtproduktionStadt'First
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung := GlobaleDatentypen.GesamtproduktionStadt'First;
+               
+            else
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung
+                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung + GeldgewinnungExtern;
+            end if;
+            
+         when False =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung := GeldgewinnungExtern;
+      end case;
       
    end Geldgewinnung;
    
@@ -128,10 +240,32 @@ package body SchreibeStadtGebaut is
    procedure PermanenteKostenPosten
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       WelcherPostenExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum;
-      KostenExtern : in GlobaleDatentypen.GesamtePermanenteKosten)
+      KostenExtern : in GlobaleDatentypen.GesamtePermanenteKosten;
+      ÄndernSetzenExtern : in Boolean)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (WelcherPostenExtern) := KostenExtern;
+      case
+        ÄndernSetzenExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (WelcherPostenExtern) + KostenExtern > GlobaleDatentypen.GesamtproduktionStadt'Last
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (WelcherPostenExtern) := GlobaleDatentypen.GesamtproduktionStadt'Last;
+               
+            elsif
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (WelcherPostenExtern) + KostenExtern < GlobaleDatentypen.GesamtproduktionStadt'First
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (WelcherPostenExtern) := GlobaleDatentypen.GesamtproduktionStadt'First;
+               
+            else
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (WelcherPostenExtern)
+                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (WelcherPostenExtern) + KostenExtern;
+            end if;
+            
+         when False =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (WelcherPostenExtern) := KostenExtern;
+      end case;
       
    end PermanenteKostenPosten;
    
@@ -139,10 +273,32 @@ package body SchreibeStadtGebaut is
       
    procedure Forschungsrate
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ForschungsrateExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      ForschungsrateExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+      ÄndernSetzenExtern : in Boolean)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate := ForschungsrateExtern;
+      case
+        ÄndernSetzenExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate + ForschungsrateExtern > GlobaleDatentypen.GesamtproduktionStadt'Last
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate := GlobaleDatentypen.GesamtproduktionStadt'Last;
+               
+            elsif
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate + ForschungsrateExtern < GlobaleKonstanten.LeerStadt.Forschungsrate
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate := GlobaleKonstanten.LeerStadt.Forschungsrate;
+               
+            else
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate
+                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate + ForschungsrateExtern;
+            end if;
+            
+         when False =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate := ForschungsrateExtern;
+      end case;
       
    end Forschungsrate;
    
@@ -153,7 +309,15 @@ package body SchreibeStadtGebaut is
       BauprojektExtern : in Natural)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := BauprojektExtern;
+      case
+        BauprojektExtern
+      is
+         when GlobaleKonstanten.BauprojekteGebäudeAnfang .. GlobaleKonstanten.BauprojekteGebäudeEnde | GlobaleKonstanten.BauprojekteEinheitenAnfang .. GlobaleKonstanten.BauprojekteEinheitenEnde =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := BauprojektExtern;
+            
+         when others =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := GlobaleKonstanten.LeerStadt.Bauprojekt;
+      end case;
       
    end Bauprojekt;
    
@@ -161,10 +325,32 @@ package body SchreibeStadtGebaut is
    
    procedure Bauzeit
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      BauzeitExtern : in GlobaleDatentypen.KostenLager)
+      BauzeitExtern : in GlobaleDatentypen.KostenLager;
+      ÄndernSetzenExtern : in Boolean)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := BauzeitExtern;
+      case
+        ÄndernSetzenExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit + BauzeitExtern > GlobaleDatentypen.KostenLager'Last
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := GlobaleDatentypen.KostenLager'Last;
+               
+            elsif
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit + BauzeitExtern < GlobaleDatentypen.KostenLager'First
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := GlobaleDatentypen.KostenLager'First;
+               
+            else
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit
+                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit + BauzeitExtern;
+            end if;
+            
+         when False =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := BauzeitExtern;
+      end case;
       
    end Bauzeit;
    
@@ -172,10 +358,32 @@ package body SchreibeStadtGebaut is
    
    procedure Korruption
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KorruptionExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      KorruptionExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+      ÄndernSetzenExtern : in Boolean)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption := KorruptionExtern;
+      case
+        ÄndernSetzenExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption + KorruptionExtern > GlobaleDatentypen.GesamtproduktionStadt'Last
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption := GlobaleDatentypen.GesamtproduktionStadt'Last;
+               
+            elsif
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption + KorruptionExtern < GlobaleDatentypen.GesamtproduktionStadt'First
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption := GlobaleDatentypen.GesamtproduktionStadt'First;
+               
+            else
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption
+                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption + KorruptionExtern;
+            end if;
+            
+         when False =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption := KorruptionExtern;
+      end case;
       
    end Korruption;
    
@@ -206,11 +414,11 @@ package body SchreibeStadtGebaut is
    
    procedure UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      YPosition, XPosition : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+      YPositionExtern, XPositionExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
       BelegenEntfernenExtern : in Boolean)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YPosition, XPosition) := BelegenEntfernenExtern;
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YPositionExtern, XPositionExtern) := BelegenEntfernenExtern;
       
    end UmgebungBewirtschaftung;
    
@@ -218,10 +426,32 @@ package body SchreibeStadtGebaut is
    
    procedure UmgebungGröße
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      UmgebungGrößeExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+      UmgebungGrößeExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+      ÄndernSetzenExtern : in Boolean)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := UmgebungGrößeExtern;
+      case
+        ÄndernSetzenExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße + UmgebungGrößeExtern > GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Last
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Last;
+               
+            elsif
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße + UmgebungGrößeExtern < GlobaleKonstanten.LeerStadt.UmgebungGröße
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := GlobaleKonstanten.LeerStadt.UmgebungGröße;
+               
+            else
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
+                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße + UmgebungGrößeExtern;
+            end if;
+            
+         when False =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := UmgebungGrößeExtern;
+      end case;
       
    end UmgebungGröße;
       
@@ -247,5 +477,26 @@ package body SchreibeStadtGebaut is
       GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := BeschäftigungExtern;
       
    end KIBeschäftigung;
+   
+   
+   
+   procedure Nullsetzung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerStadt;
+      
+   end Nullsetzung;
+   
+   
+   
+   procedure GanzerEintrag
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EintragExtern : in GlobaleRecords.StadtGebautRecord)
+   is begin
+      
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := EintragExtern;
+      
+   end GanzerEintrag;
 
 end SchreibeStadtGebaut;

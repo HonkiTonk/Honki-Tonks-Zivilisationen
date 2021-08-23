@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleVariablen, GlobaleKonstanten;
 
-with LeseKarten, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+with LeseKarten, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseStadtGebaut;
 
 package body EinheitVerschieben is
    
@@ -24,22 +24,24 @@ package body EinheitVerschieben is
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          case
-           GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).ID
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
          is
             when GlobaleKonstanten.LeerStadtID =>
                null;
                
             when others =>
                YAchseSchleife:
-               for YAchseSchleifenwert in -GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).UmgebungGröße .. GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).UmgebungGröße loop
+               for YAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
+                 .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) loop
                   XAchseSchleife:
-                  for XAchseSchleifenwert in -GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).UmgebungGröße .. GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).UmgebungGröße loop
+                  for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
+                    .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) loop
                
-                     KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Position,
-                                                                                 ÄnderungExtern   => (GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Position.EAchse,
+                     KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
+                                                                                 ÄnderungExtern   => (LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)).EAchse,
                                                                                                        YAchseSchleifenwert,
                                                                                                        XAchseSchleifenwert));
-               
+                     
                      if
                        KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
                      then

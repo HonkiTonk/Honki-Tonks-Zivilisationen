@@ -46,7 +46,8 @@ package SchreibeStadtGebaut is
       
    procedure Nahrungsmittel
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NahrungsmittelExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      NahrungsmittelExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -55,7 +56,8 @@ package SchreibeStadtGebaut is
    
    procedure Nahrungsproduktion
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      NahrungsproduktionExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      NahrungsproduktionExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -64,7 +66,8 @@ package SchreibeStadtGebaut is
    
    procedure Ressourcen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      RessourcenExtern : in GlobaleDatentypen.KostenLager)
+      RessourcenExtern : in GlobaleDatentypen.KostenLager;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -73,7 +76,8 @@ package SchreibeStadtGebaut is
    
    procedure Produktionrate
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ProduktionrateExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      ProduktionrateExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -82,7 +86,8 @@ package SchreibeStadtGebaut is
    
    procedure Geldgewinnung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      GeldgewinnungExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      GeldgewinnungExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -92,7 +97,8 @@ package SchreibeStadtGebaut is
    procedure PermanenteKostenPosten
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       WelcherPostenExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum;
-      KostenExtern : in GlobaleDatentypen.GesamtePermanenteKosten)
+      KostenExtern : in GlobaleDatentypen.GesamtePermanenteKosten;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -101,7 +107,8 @@ package SchreibeStadtGebaut is
       
    procedure Forschungsrate
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ForschungsrateExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      ForschungsrateExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -119,7 +126,8 @@ package SchreibeStadtGebaut is
    
    procedure Bauzeit
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      BauzeitExtern : in GlobaleDatentypen.KostenLager)
+      BauzeitExtern : in GlobaleDatentypen.KostenLager;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -128,7 +136,8 @@ package SchreibeStadtGebaut is
    
    procedure Korruption
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KorruptionExtern : in GlobaleDatentypen.GesamtproduktionStadt)
+      KorruptionExtern : in GlobaleDatentypen.GesamtproduktionStadt;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -156,7 +165,7 @@ package SchreibeStadtGebaut is
    
    procedure UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      YPosition, XPosition : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+      YPositionExtern, XPositionExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
       BelegenEntfernenExtern : in Boolean)
      with
        Pre =>
@@ -166,7 +175,8 @@ package SchreibeStadtGebaut is
    
    procedure UmgebungGröße
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      UmgebungGrößeExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+      UmgebungGrößeExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+      ÄndernSetzenExtern : in Boolean)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
@@ -186,6 +196,23 @@ package SchreibeStadtGebaut is
    procedure KIBeschäftigung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       BeschäftigungExtern : in KIDatentypen.Stadt_Aufgabe_Enum)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   procedure Nullsetzung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+      
+   procedure GanzerEintrag
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EintragExtern : in GlobaleRecords.StadtGebautRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

@@ -2,9 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitenDatenbank;
-
-with KISiedler, KINahkampfBoden, KIStadt, KIForschung, KIDiplomatie, LeseEinheitenGebaut;
+with KISiedler, KINahkampfBoden, KIStadt, KIForschung, KIDiplomatie, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
 
 package body KI is
 
@@ -52,14 +50,15 @@ package body KI is
       StadtSchleife:
       for StadtNummerEinsSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
             
-         if
-           GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerEinsSchleifenwert).ID /= GlobaleDatentypen.Leer
-         then
-            KIStadt.KIStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummerEinsSchleifenwert));
-            
-         else
-            null;
-         end if;
+         case
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerEinsSchleifenwert))
+         is
+            when GlobaleDatentypen.Leer =>
+               null;
+               
+            when others =>
+               KIStadt.KIStadt (StadtRasseNummerExtern => (RasseExtern, StadtNummerEinsSchleifenwert));
+         end case;
 
       end loop StadtSchleife;
       
@@ -72,7 +71,8 @@ package body KI is
    is begin
       
       case
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).EinheitArt
+        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when GlobaleDatentypen.Arbeiter =>
             KISiedler.KISiedler (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

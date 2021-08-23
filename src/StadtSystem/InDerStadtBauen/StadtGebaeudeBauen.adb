@@ -4,7 +4,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with KIDatentypen;
 
-with Anzeige, GebaeudeAllgemein;
+with Anzeige, GebaeudeAllgemein, LeseStadtGebaut, SchreibeStadtGebaut;
 
 package body StadtGebaeudeBauen is
 
@@ -13,13 +13,14 @@ package body StadtGebaeudeBauen is
    is begin
       
       GebaeudeAllgemein.GebäudeProduktionBeenden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                   IDExtern               => GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
-                                                     StadtRasseNummerExtern.Platznummer).Bauprojekt - GlobaleKonstanten.GebäudeAufschlag));
+                                                   IDExtern               =>
+                                                     GlobaleDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.GebäudeAufschlag));
             
       if
         GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Spieler_Mensch
-      then   
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := KIDatentypen.Keine_Aufgabe;
+      then
+         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                               BeschäftigungExtern   => KIDatentypen.Keine_Aufgabe);
                
       else
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Zeug,

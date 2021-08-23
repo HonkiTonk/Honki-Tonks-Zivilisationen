@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleTexte;
 
 with InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, NaechstesObjekt, Verbesserungen, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen,
-     Eingabe, FeldInformationen, ForschungAllgemein, EinheitenAllgemein, StadtEntfernen, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+     Eingabe, FeldInformationen, ForschungAllgemein, EinheitenAllgemein, StadtEntfernen, LeseEinheitenGebaut, SchreibeEinheitenGebaut, SchreibeStadtGebaut;
 
 package body BefehleImSpiel is
 
@@ -336,7 +336,8 @@ package body BefehleImSpiel is
          null;
                   
       else
-         GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummer).Name := Eingabe.StadtName;
+         SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (RasseExtern, StadtNummer),
+                                   NameExtern             => Eingabe.StadtName);
       end if;
       
    end StadtUmbenennen;

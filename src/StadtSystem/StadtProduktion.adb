@@ -2,9 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with GebaeudeDatenbank;
-
-with Wachstum, KartePositionPruefen, StadtWerteTesten, GesamtwerteFeld;
+with Wachstum, KartePositionPruefen, GesamtwerteFeld, LeseStadtGebaut, SchreibeStadtGebaut;
 
 package body StadtProduktion is
 
@@ -29,7 +27,7 @@ package body StadtProduktion is
                      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
                   
                         case
-                          GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtNummerSchleifenwert).ID
+                          LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert))
                         is
                            when GlobaleDatentypen.Leer =>
                               null;
@@ -58,22 +56,32 @@ package body StadtProduktion is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion := 0;
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate := 0;
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung := 0;
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate := 0;
+      SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
+                                              NahrungsproduktionExtern => GlobaleKonstanten.LeerStadt.Nahrungsproduktion,
+                                              ÄndernSetzenExtern       => False);
+      SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                          ProduktionrateExtern   => GlobaleKonstanten.LeerStadt.Produktionrate,
+                                          ÄndernSetzenExtern     => False);
+      SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         GeldgewinnungExtern    => GlobaleKonstanten.LeerStadt.Geldgewinnung,
+                                         ÄndernSetzenExtern     => False);
+      SchreibeStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                          ForschungsrateExtern   => GlobaleKonstanten.LeerStadt.Forschungsrate,
+                                          ÄndernSetzenExtern     => False);
 
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption
-        := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) / 3;
+      SchreibeStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                      KorruptionExtern       => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                   EinwohnerArbeiterExtern => True) / 3,
+                                      ÄndernSetzenExtern    => False);
 
-      NutzbarerBereich := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
+      NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       YAchseSchleife:
       for YÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
          XAchseSchleife:
          for XÄnderungSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             case
@@ -84,30 +92,29 @@ package body StadtProduktion is
                   
                when others =>            
                   case
-                    GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YÄnderungSchleifenwert, XÄnderungSchleifenwert)
+                    LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                             YPositionExtern        => YÄnderungSchleifenwert,
+                                                             XPositionExtern        => XÄnderungSchleifenwert)
                   is
                      when True =>
-                        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion
-                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion
-                          + GesamtwerteFeld.FeldNahrung (KoordinatenExtern => KartenWert,
-                                                         RasseExtern       => StadtRasseNummerExtern.Rasse);
+                        SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
+                                                                NahrungsproduktionExtern => GesamtwerteFeld.FeldNahrung (KoordinatenExtern => KartenWert,
+                                                                                                                         RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                                ÄndernSetzenExtern       => True);
+                        SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                            ProduktionrateExtern   => GesamtwerteFeld.FeldProduktion (KoordinatenExtern => KartenWert,
+                                                                                                                      RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                            ÄndernSetzenExtern     => True);
+                        SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                           GeldgewinnungExtern    => GesamtwerteFeld.FeldGeld (KoordinatenExtern => KartenWert,
+                                                                                                               RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                           ÄndernSetzenExtern     => True);
+                        SchreibeStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                            ForschungsrateExtern   => GesamtwerteFeld.FeldWissen (KoordinatenExtern => KartenWert,
+                                                                                                                  RasseExtern       => StadtRasseNummerExtern.Rasse),
+                                                            ÄndernSetzenExtern     => True);
 
-                        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate
-                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate
-                          + GesamtwerteFeld.FeldProduktion (KoordinatenExtern => KartenWert,
-                                                            RasseExtern       => StadtRasseNummerExtern.Rasse);
-
-                        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung
-                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung
-                          + GesamtwerteFeld.FeldGeld (KoordinatenExtern => KartenWert,
-                                                      RasseExtern       => StadtRasseNummerExtern.Rasse);
-
-                        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate
-                          := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate
-                          + GesamtwerteFeld.FeldWissen (KoordinatenExtern => KartenWert,
-                                                        RasseExtern       => StadtRasseNummerExtern.Rasse);
-
-                     when others =>
+                     when False =>
                         null;
                   end case;
             end case;
@@ -128,30 +135,34 @@ package body StadtProduktion is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion :=
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion
-        - StadtWerteTesten.PermanenteKosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                             WelcheRessourceExtern  => GlobaleDatentypen.Nahrung);
+      SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
+                                              NahrungsproduktionExtern => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                                                                   WelcherPostenExtern    => GlobaleDatentypen.Nahrung),
+                                              ÄndernSetzenExtern       => True);
 
       case
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
+        -- Diesen Wert an der Bevölkerung und nicht an der Korruption messen?
+        LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                           EinwohnerArbeiterExtern => True)
       is
+         -- Den Multiplikator immer Minus setzen, damit er später direkt einen negativen Wert übergibt, eventuelle für mehr nutzen, wenn Gebäude bestimmte Werte entsprechend beeinflussen.
          when 0 .. 3 =>
-            NahrungsverbrauchEinwohnerMultiplikator := 0;
+            NahrungsverbrauchEinwohnerMultiplikator := -0;
             
          when 4 .. 9 =>
-            NahrungsverbrauchEinwohnerMultiplikator := 0;
+            NahrungsverbrauchEinwohnerMultiplikator := -0;
             
          when 10 .. 19 =>
-            NahrungsverbrauchEinwohnerMultiplikator := 0;
+            NahrungsverbrauchEinwohnerMultiplikator := -0;
             
          when others =>
-            NahrungsverbrauchEinwohnerMultiplikator := 0;
+            NahrungsverbrauchEinwohnerMultiplikator := -0;
       end case;
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion :=
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion
-        - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) * NahrungsverbrauchEinwohnerMultiplikator;
+      SchreibeStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern   => StadtRasseNummerExtern,
+                                              NahrungsproduktionExtern => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                             EinwohnerArbeiterExtern => True) * NahrungsverbrauchEinwohnerMultiplikator,
+                                              ÄndernSetzenExtern      => True);
       
    end WeitereNahrungsproduktionÄnderungen;
 
@@ -161,55 +172,35 @@ package body StadtProduktion is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate :=
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate
-        - StadtWerteTesten.PermanenteKosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                             WelcheRessourceExtern  => GlobaleDatentypen.Ressourcen);
-      
-      if
-        StadtRasseNummerExtern.Rasse = GlobaleDatentypen.Menschen
-        and
-          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (4) = True
-      then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate :=
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate + GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, 4).ProduktionBonus;
-
-      else
-         null;
-      end if;
-      
+      SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                          ProduktionrateExtern   => - LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                                                              WelcherPostenExtern    => GlobaleDatentypen.Ressourcen),
+                                          ÄndernSetzenExtern    => True);
+            
       case
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption
+        LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
+         -- Den Multiplikator immer Minus setzen, damit er später direkt einen negativen Wert übergibt, eventuelle für mehr nutzen, wenn Gebäude bestimmte Werte entsprechend beeinflussen.
          when 0 =>
-            RessourcenverbrauchKorruptionMultiplikator := 0;
+            RessourcenverbrauchKorruptionMultiplikator := -0;
             
          when 1 .. 4 =>
-            RessourcenverbrauchKorruptionMultiplikator := 0;
+            RessourcenverbrauchKorruptionMultiplikator := -0;
             
          when 5 .. 7 =>
-            RessourcenverbrauchKorruptionMultiplikator := 0;
+            RessourcenverbrauchKorruptionMultiplikator := -0;
             
          when 8 .. 10 =>
-            RessourcenverbrauchKorruptionMultiplikator := 0;
+            RessourcenverbrauchKorruptionMultiplikator := -0;
             
          when others =>
-            RessourcenverbrauchKorruptionMultiplikator := 0;
+            RessourcenverbrauchKorruptionMultiplikator := -0;
       end case;
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate :=
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate
-        - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) * RessourcenverbrauchKorruptionMultiplikator;
-
-      if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate < 0
-      -- Warum sollte die Produktionsrate nicht auch negativ sein können?
-      then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate := 0;
-         
-      else
-         null;
-      end if;
+      SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                          ProduktionrateExtern   => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                     EinwohnerArbeiterExtern => True) * RessourcenverbrauchKorruptionMultiplikator,
+                                          ÄndernSetzenExtern     => True);
       
    end WeitereProduktionrateÄnderungen;
 
@@ -219,33 +210,35 @@ package body StadtProduktion is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung :=
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung
-        - StadtWerteTesten.PermanenteKosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                             WelcheRessourceExtern  => GlobaleDatentypen.Geld);
+      SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         GeldgewinnungExtern    => -LeseStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                                                            WelcherPostenExtern    => GlobaleDatentypen.Geld),
+                                         ÄndernSetzenExtern     => True);
 
       case
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption
+        LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
+         -- Den Multiplikator immer Minus setzen, damit er später direkt einen negativen Wert übergibt, eventuelle für mehr nutzen, wenn Gebäude bestimmte Werte entsprechend beeinflussen.
          when 0 =>
-            GeldverbrauchKorruptionMultiplikator := 0;
+            GeldverbrauchKorruptionMultiplikator := -0;
             
          when 1 .. 4 =>
-            GeldverbrauchKorruptionMultiplikator := 0;
+            GeldverbrauchKorruptionMultiplikator := -0;
             
          when 5 .. 7 =>
-            GeldverbrauchKorruptionMultiplikator := 0;
+            GeldverbrauchKorruptionMultiplikator := -0;
             
          when 8 .. 10 =>
-            GeldverbrauchKorruptionMultiplikator := 0;
+            GeldverbrauchKorruptionMultiplikator := -0;
             
          when others =>
-            GeldverbrauchKorruptionMultiplikator := 0;
+            GeldverbrauchKorruptionMultiplikator := -0;
       end case;
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung :=
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung
-        - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) * GeldverbrauchKorruptionMultiplikator;
+      SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         GeldgewinnungExtern    => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                     EinwohnerArbeiterExtern => True) * GeldverbrauchKorruptionMultiplikator,
+                                         ÄndernSetzenExtern     => True);
       
    end WeitereGeldgewinnungÄnderungen;
 
@@ -256,36 +249,29 @@ package body StadtProduktion is
    is begin
 
       case
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Korruption
+        LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
+         -- Den Multiplikator immer Minus setzen, damit er später direkt einen negativen Wert übergibt, eventuelle für mehr nutzen, wenn Gebäude bestimmte Werte entsprechend beeinflussen.
          when 0 =>
-            ForschungsverbrauchKorruptionMultiplikator := 0;
+            ForschungsverbrauchKorruptionMultiplikator := -0;
             
          when 1 .. 4 =>
-            ForschungsverbrauchKorruptionMultiplikator := 0;
+            ForschungsverbrauchKorruptionMultiplikator := -0;
             
          when 5 .. 7 =>
-            ForschungsverbrauchKorruptionMultiplikator := 0;
+            ForschungsverbrauchKorruptionMultiplikator := -0;
             
          when 8 .. 10 =>
-            ForschungsverbrauchKorruptionMultiplikator := 0;
+            ForschungsverbrauchKorruptionMultiplikator := -0;
             
          when others =>
-            ForschungsverbrauchKorruptionMultiplikator := 0;
+            ForschungsverbrauchKorruptionMultiplikator := -0;
       end case;
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate :=
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate
-        - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) * ForschungsverbrauchKorruptionMultiplikator;
-
-      if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate < 0
-      then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate := 0;
-         
-      else
-         null;
-      end if;
+      SchreibeStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                          ForschungsrateExtern   => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                       EinwohnerArbeiterExtern => True) * ForschungsverbrauchKorruptionMultiplikator,
+                                          ÄndernSetzenExtern     => True);
       
    end WeitereForschungsrateÄnderungen;
 

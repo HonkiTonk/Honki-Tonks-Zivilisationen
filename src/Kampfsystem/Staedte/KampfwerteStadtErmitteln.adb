@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GebaeudeDatenbank, VerbesserungenDatenbank;
-
-with GesamtwerteFeld;
+with GesamtwerteFeld, LeseStadtGebaut, LeseGebaeudeDatenbank, LeseVerbesserungenDatenbank;
 
 package body KampfwerteStadtErmitteln is
 
@@ -11,21 +9,24 @@ package body KampfwerteStadtErmitteln is
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
-      VerteidigungWert := VerbesserungenDatenbank.VerbesserungListe (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
-                                                                     StadtRasseNummerExtern.Platznummer).ID).VerbesserungWerte (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Verteidigung)
-        + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+      VerteidigungWert := LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                         RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                         WelcherWertExtern  => GlobaleDatentypen.Verteidigung)
+        + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                             RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
          
          if
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = False
+           LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                             WelchesGebäudeExtern   => GebäudeSchleifenwert) = False
          then
             null;
             
          else
-            VerteidigungWert := VerteidigungWert + GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).VerteidigungBonus;
+            VerteidigungWert := VerteidigungWert + LeseGebaeudeDatenbank.VerteidigungBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                            IDExtern    => GebäudeSchleifenwert);
          end if;
          
       end loop GebäudeSchleife;
@@ -41,21 +42,24 @@ package body KampfwerteStadtErmitteln is
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
-      AngriffWert := VerbesserungenDatenbank.VerbesserungListe (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse,
-                                                                StadtRasseNummerExtern.Platznummer).ID).VerbesserungWerte (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Angriff)
-        + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+      AngriffWert := LeseVerbesserungenDatenbank.VerbesserungWerte (VerbesserungExtern => LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                    RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                    WelcherWertExtern  => GlobaleDatentypen.Angriff)
+        + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                        RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       GebäudeSchleife:
       for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
          
          if
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = False
+           LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                             WelchesGebäudeExtern   => GebäudeSchleifenwert) = False
          then
             null;
             
          else
-            AngriffWert := AngriffWert + GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).AngriffBonus;
+            AngriffWert := AngriffWert + LeseGebaeudeDatenbank.AngriffBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                             IDExtern    => GebäudeSchleifenwert);
          end if;
          
       end loop GebäudeSchleife;

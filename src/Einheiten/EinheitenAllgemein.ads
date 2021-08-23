@@ -10,14 +10,6 @@ package EinheitenAllgemein is
    procedure Beschreibung
      (IDExtern : in GlobaleDatentypen.EinheitenID);
    
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
    procedure HeilungBewegungspunkteNeueRundeErmitteln;
    
    procedure EinheitErzeugen
@@ -44,14 +36,6 @@ package EinheitenAllgemein is
    procedure Beschäftigung
      (ArbeitExtern : in GlobaleDatentypen.Tastenbelegung_Enum);
    
-   procedure Beförderung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
    procedure HeimatstadtÄndern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
@@ -67,15 +51,6 @@ package EinheitenAllgemein is
    function EinheitTransporterAuswählen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.MaximaleEinheitenMitNullWert     
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   function EinheitenTypErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.Einheit_Art_Verwendet_Enum
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -103,25 +78,6 @@ package EinheitenAllgemein is
          (LadungExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (LadungExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (LadungExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   function MaximaleTransporterKapazität
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
-     with
-       Pre =>
-         (TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
-          and
-            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   function PermanenteKosten
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      WelcheRessourceExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return GlobaleDatentypen.GesamtproduktionStadt
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 private
    

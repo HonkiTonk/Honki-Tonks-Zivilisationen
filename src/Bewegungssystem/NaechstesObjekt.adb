@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten, GlobaleRecords;
 
-with LeseEinheitenGebaut;
+with LeseEinheitenGebaut, LeseStadtGebaut;
 
 package body NaechstesObjekt is  
 
@@ -76,15 +76,16 @@ package body NaechstesObjekt is
          else
             AktuelleStadt (RasseExtern) := AktuelleStadt (RasseExtern) + 1;
          end if;
-               
-         if
-           GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt (RasseExtern)).ID = GlobaleKonstanten.LeerStadtID
-         then
-            null;
          
-         else
-            exit StadtSuchenSchleife;
-         end if;
+         case
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)))
+         is
+            when GlobaleKonstanten.LeerStadtID =>
+               null;
+               
+            when others =>
+               exit StadtSuchenSchleife;
+         end case;
          
          if
            SchleifenBegrenzung < GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
@@ -97,7 +98,7 @@ package body NaechstesObjekt is
 
       end loop StadtSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt (RasseExtern)).Position;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, AktuelleStadt (RasseExtern)));
       
    end NächsteStadt;
    
@@ -122,7 +123,7 @@ package body NaechstesObjekt is
          end if;
                
          if
-           GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadtMeldung (RasseExtern)).ID = GlobaleKonstanten.LeerStadtID
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern))) = GlobaleKonstanten.LeerStadtID
          then
             null;
          
@@ -131,7 +132,8 @@ package body NaechstesObjekt is
             for MeldungSchleifenwert in GlobaleRecords.StadtMeldungenArray'Range loop
                
                case
-                 GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadtMeldung (RasseExtern)).Meldungen (MeldungSchleifenwert)
+                 LeseStadtGebaut.Meldungen (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)),
+                                            WelcheMeldungExtern    => MeldungSchleifenwert)
                is
                   when GlobaleDatentypen.Leer =>
                      null;
@@ -154,7 +156,7 @@ package body NaechstesObjekt is
 
       end loop StadtSuchenSchleife;
       
-      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadtMeldung (RasseExtern)).Position;
+      GlobaleVariablen.CursorImSpiel (RasseExtern).Position := LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, AktuelleStadtMeldung (RasseExtern)));
       
    end NächsteStadtMeldung;
    

@@ -3,11 +3,9 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
-with GlobaleTexte;
+with GlobaleTexte, GlobaleKonstanten;
 
-with ForschungsDatenbank;
-
-with Anzeige, Eingabe, StadtWerteFestlegen, StadtUmgebungsbereichFestlegen;
+with Anzeige, Eingabe, StadtWerteFestlegen, StadtUmgebungsbereichFestlegen, LeseForschungsDatenbank;
 
 with KIForschung;
 
@@ -86,9 +84,9 @@ package body ForschungAllgemein is
          GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := 10_000;
 
       else
-         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit
-           := (ForschungsDatenbank.ForschungListe (RasseExtern, GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt).PreisForschung
-               - GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge) / GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
+         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := (LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseExtern,
+                                                                                                                         IDExtern    => GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt)
+                                                                                 - GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge) / GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
          return;
       end if;
       
@@ -124,11 +122,17 @@ package body ForschungAllgemein is
             for Anforderung in AnforderungForschungArray'Range loop
             
                if
-                 ForschungsDatenbank.ForschungListe (RasseExtern, ForschungenSchleifenwert).AnforderungForschung (Anforderung) = 0
+                 LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                                               IDExtern                => ForschungenSchleifenwert,
+                                                               WelcheAnforderungExtern => Anforderung) = GlobaleKonstanten.LeerForschungAnforderung
                then
                   null;
                   
-               elsif GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ForschungsDatenbank.ForschungListe (RasseExtern, ForschungenSchleifenwert).AnforderungForschung (Anforderung)) = True then                  
+               elsif
+                 GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                                                                                                   IDExtern                => ForschungenSchleifenwert,
+                                                                                                                   WelcheAnforderungExtern => Anforderung)) = True
+               then                  
                   null;
                   
                else
@@ -257,12 +261,16 @@ package body ForschungAllgemein is
          for NeueForschungSchleifenwert in GlobaleDatentypen.AnforderungForschungArray'Range loop
          
             if
-              ForschungsDatenbank.ForschungListe (RasseExtern, TechnologieSchleifenwert).AnforderungForschung (NeueForschungSchleifenwert) = 0
+              LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                                            IDExtern                => TechnologieSchleifenwert,
+                                                            WelcheAnforderungExtern => NeueForschungSchleifenwert) = GlobaleKonstanten.LeerForschungAnforderung
             then
                exit ErmöglichtSchleife;
             
             elsif
-              ForschungsDatenbank.ForschungListe (RasseExtern, TechnologieSchleifenwert).AnforderungForschung (NeueForschungSchleifenwert) = ForschungNummerExtern
+              LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                                            IDExtern                => TechnologieSchleifenwert,
+                                                            WelcheAnforderungExtern => NeueForschungSchleifenwert) = ForschungNummerExtern
             then
                Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                               TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
@@ -297,7 +305,9 @@ package body ForschungAllgemein is
       for NeueForschungSchleifenwert in GlobaleDatentypen.AnforderungForschungArray'Range loop
          
          if
-           ForschungsDatenbank.ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert) = 0
+           LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                                         IDExtern                => ForschungNummerExtern,
+                                                         WelcheAnforderungExtern => NeueForschungSchleifenwert) = GlobaleKonstanten.LeerForschungAnforderung
          then
             exit BenötigtSchleife;
                
@@ -305,8 +315,12 @@ package body ForschungAllgemein is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Forschung_Kurz,
                                            ÜberschriftZeileExtern => 44,
-                                           ErsteZeileExtern       => Positive (ForschungsDatenbank.ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert)),
-                                           LetzteZeileExtern      => Positive (ForschungsDatenbank.ForschungListe (RasseExtern, ForschungNummerExtern).AnforderungForschung (NeueForschungSchleifenwert)),
+                                           ErsteZeileExtern       => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                                                                                                             IDExtern                => ForschungNummerExtern,
+                                                                                                                             WelcheAnforderungExtern => NeueForschungSchleifenwert)),
+                                           LetzteZeileExtern      => Positive (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                                                                                                             IDExtern                => ForschungNummerExtern,
+                                                                                                                             WelcheAnforderungExtern => NeueForschungSchleifenwert)),
                                            AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                            AbstandMitteExtern     => GlobaleTexte.Großer_Abstand,
                                            AbstandEndeExtern      => GlobaleTexte.Leer);
@@ -412,7 +426,8 @@ package body ForschungAllgemein is
          
                elsif
                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsmenge
-                 >= ForschungsDatenbank.ForschungListe (RasseSchleifenwert, GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt).PreisForschung
+                 >= LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseSchleifenwert,
+                                                            IDExtern    => GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt)
                then
                   GlobaleVariablen.Wichtiges (RasseSchleifenwert).Erforscht (GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt) := True;
                   if
@@ -441,7 +456,8 @@ package body ForschungAllgemein is
          
                elsif
                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsmenge
-                 >= ForschungsDatenbank.ForschungListe (RasseSchleifenwert, GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt).PreisForschung
+                 >= LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseSchleifenwert,
+                                                            IDExtern    => GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt)
                then
                   GlobaleVariablen.Wichtiges (RasseSchleifenwert).Erforscht (GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt) := True;
                   if

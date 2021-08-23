@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with SchreibeStadtGebaut;
+
 package body StadtMeldungenSetzen is
 
    procedure StadtMeldungenSetzenRundenEnde
@@ -47,7 +49,9 @@ package body StadtMeldungenSetzen is
             ArtDerMeldung := GlobaleDatentypen.Einheit_In_Der_Nähe;
       end case;
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Meldungen (ArtDerMeldung) := EreignisExtern;
+      SchreibeStadtGebaut.Meldungen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                     WelcheMeldungExtern    => ArtDerMeldung,
+                                     MeldungExtern          => EreignisExtern);
       
    end StadtMeldungSetzenEreignis;
 

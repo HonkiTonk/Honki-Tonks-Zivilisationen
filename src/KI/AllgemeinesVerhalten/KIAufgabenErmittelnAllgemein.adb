@@ -1,8 +1,6 @@
 pragma SPARK_Mode (On);
 
-with EinheitenDatenbank;
-
-with LeseEinheitenGebaut;
+with LeseEinheitenGebaut, LeseEinheitenDatenbank;
 
 package body KIAufgabenErmittelnAllgemein is
    
@@ -15,19 +13,22 @@ package body KIAufgabenErmittelnAllgemein is
       
       if
         LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-        = EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitID).MaximaleLebenspunkte
+        = LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                       IDExtern    => EinheitID)
       then
          return 0;
          
       elsif
         LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-        > EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitID).MaximaleLebenspunkte / 3 * 2
+        > LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                       IDExtern    => EinheitID) / 3 * 2
       then
          return 3;
          
       elsif
         LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-        > EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, EinheitID).MaximaleLebenspunkte / 2
+        > LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                       IDExtern    => EinheitID) / 2
       then
          return 5;
          

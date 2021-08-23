@@ -2,9 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with GebaeudeDatenbank;
-
-with KartePositionPruefen, LeseKarten;
+with KartePositionPruefen, LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
 
 package body GebaeudeRichtigeUmgebung is
 
@@ -15,7 +13,8 @@ package body GebaeudeRichtigeUmgebung is
    is begin
       
       case
-        GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeIDExtern).UmgebungBenötigt
+        LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                 IDExtern    => GebäudeIDExtern)
       is
          when GlobaleDatentypen.Leer =>
             return True;
@@ -26,13 +25,11 @@ package body GebaeudeRichtigeUmgebung is
       
       -- Bei Gebäuden über den gesammten Bereich loopen, bei Einheiten nur um das direkte Umfeld.
       YAchseGebäudeSchleife:
-      for YAchseGebäudeSchleifenwert in -GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
-        .. GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße loop
+      for YAchseGebäudeSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
          XAchseGebäudeSchleife:
-         for XAchseGebäudeSchleifenwert in -GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
-           .. GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße loop
+         for XAchseGebäudeSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
                
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                         ÄnderungExtern    => (0, YAchseGebäudeSchleifenwert, XAchseGebäudeSchleifenwert));
                
             if
@@ -48,11 +45,14 @@ package body GebaeudeRichtigeUmgebung is
                   
             elsif
               -- Noch um Umgebungsverbesserung erweitern?
-              LeseKarten.Grund (PositionExtern => KartenWert) = GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeIDExtern).UmgebungBenötigt
+              LeseKarten.Grund (PositionExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                         IDExtern    => GebäudeIDExtern)
               or
-                LeseKarten.Fluss (PositionExtern => KartenWert) = GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeIDExtern).UmgebungBenötigt
+                LeseKarten.Fluss (PositionExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                           IDExtern    => GebäudeIDExtern)
               or
-                LeseKarten.Ressource (PositionExtern => KartenWert) = GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeIDExtern).UmgebungBenötigt
+                LeseKarten.Ressource (PositionExtern => KartenWert) = LeseGebaeudeDatenbank.UmgebungBenötigt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                               IDExtern    => GebäudeIDExtern)
             then
                return True;
                   

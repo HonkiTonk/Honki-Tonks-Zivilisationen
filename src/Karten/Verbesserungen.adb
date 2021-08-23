@@ -4,9 +4,7 @@ with GlobaleKonstanten;
 
 with KIDatentypen;
 
-with EinheitenDatenbank;
-
-with FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, WichtigesSetzen, EinheitenMeldungenSetzen, LeseKarten, SchreibeKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+with FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, WichtigesSetzen, EinheitenMeldungenSetzen, LeseKarten, SchreibeKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseEinheitenDatenbank;
 
 package body Verbesserungen is
    
@@ -105,16 +103,16 @@ package body Verbesserungen is
       if
         BefehlExtern in GlobaleDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range
         and
-          EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).EinheitArt
-            /= GlobaleDatentypen.Arbeiter
+          LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= GlobaleDatentypen.Arbeiter
       then
          return False;
          
       elsif
         BefehlExtern = GlobaleDatentypen.Plündern
         and
-          EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).EinheitArt
-            = GlobaleDatentypen.Arbeiter
+          LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.Arbeiter
       then
          return False;
          
@@ -674,7 +672,8 @@ package body Verbesserungen is
       
       if
         LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-        = EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximaleLebenspunkte
+        = LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       then
          return False;
          
@@ -826,7 +825,8 @@ package body Verbesserungen is
    is begin
       
       if
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).WirdVerbessertZu = 0
+        LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.EinheitenIDMitNullWert'First
         or
           LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                     KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = False
@@ -835,9 +835,9 @@ package body Verbesserungen is
          
       elsif
         GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht
-        (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-         EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).WirdVerbessertZu).Anforderungen)
-        = False
+        (LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                               IDExtern    => LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)))) = False
       then
          return False;
          
@@ -853,8 +853,8 @@ package body Verbesserungen is
                                                      BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
                                                      RechnenSetzenExtern      => 0);
             SchreibeEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                        IDExtern                 =>                                           
-                                           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).WirdVerbessertZu);
+                                        IDExtern                 => LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
                         
          when False =>
             null;
@@ -882,15 +882,16 @@ package body Verbesserungen is
                EinheitenSchleife:
                for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
          
-                  if
-                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)) = GlobaleKonstanten.LeerEinheit.ID
-                  then
-                     null;
+                  case
+                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert))
+                  is
+                     when GlobaleKonstanten.LeerEinheitenID =>
+                        null;
 
-                  else
-                     VerbesserungFertiggestelltPrüfen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
-                  end if;
-         
+                     when others =>
+                        VerbesserungFertiggestelltPrüfen (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert));
+                  end case;
+                  
                end loop EinheitenSchleife;
          end case;
          
@@ -1249,67 +1250,67 @@ package body Verbesserungen is
         Wegewert
       is
          when 11_111 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenkreuzung_Vier);
 
          when 11_110 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Oben);
 
          when 11_101 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Unten);
             
          when 11_100 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straße_Waagrecht);
             
          when 11_011 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Links);
 
          when 11_010 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Links);
 
          when 11_001 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Links);
             
          when 11_000 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenendstück_Rechts);
 
          when 10_111 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenkreuzung_Drei_Rechts);
 
          when 10_110 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenkurve_Oben_Rechts);
 
          when 10_101 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenkurve_Unten_Rechts);
 
          when 10_100 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenendstück_Links);
 
          when 10_011 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straße_Senkrecht);
 
          when 10_010 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenendstück_Unten);
 
          when 10_001 =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straßenendstück_Oben);
          
          when others =>
-            SchreibeKarten.VerbesserungWeg (PositionExtern => KartenWert,
+            SchreibeKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern,
                                             WegExtern      => GlobaleDatentypen.Straße_Einzeln);
       end case;
       

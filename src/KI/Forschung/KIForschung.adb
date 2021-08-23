@@ -1,8 +1,10 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with ForschungsDatenbank;
 
-with ForschungAllgemein;
+with ForschungAllgemein, LeseForschungsDatenbank;
 
 package body KIForschung is
 
@@ -25,7 +27,9 @@ package body KIForschung is
                elsif
                  GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (TechnologieSchleifenwert) = False
                  and
-                   ForschungsDatenbank.ForschungListe (RasseExtern, TechnologieSchleifenwert).AnforderungForschung (1) = 0
+                   LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                                                 IDExtern                => TechnologieSchleifenwert,
+                                                                 WelcheAnforderungExtern => 1) = GlobaleKonstanten.LeerForschungAnforderung
                then
                   GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := TechnologieSchleifenwert;
                   GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := 0;
@@ -39,12 +43,16 @@ package body KIForschung is
                   ForschungMöglichSchleife:
                   for AnforderungenSchleifenwert in GlobaleDatentypen.AnforderungForschungArray'Range loop
                      
-                     exit ForschungMöglichSchleife when ForschungsDatenbank.ForschungListe (RasseExtern, TechnologieSchleifenwert).AnforderungForschung (AnforderungenSchleifenwert) = 0;
+                     exit ForschungMöglichSchleife when LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                                                                                       IDExtern                => TechnologieSchleifenwert,
+                                                                                                       WelcheAnforderungExtern => AnforderungenSchleifenwert) = GlobaleKonstanten.LeerForschungAnforderung;
                      
                      AnforderungVorhanden := AnforderungVorhanden + 1;
                      
                      if
-                       GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ForschungsDatenbank.ForschungListe (RasseExtern, TechnologieSchleifenwert).AnforderungForschung (AnforderungenSchleifenwert)) = True
+                       GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+                                                                                                                         IDExtern                => TechnologieSchleifenwert,
+                                                                                                                         WelcheAnforderungExtern => AnforderungenSchleifenwert)) = True
                      then
                         AnforderungErfüllt := AnforderungErfüllt + 1;
                     

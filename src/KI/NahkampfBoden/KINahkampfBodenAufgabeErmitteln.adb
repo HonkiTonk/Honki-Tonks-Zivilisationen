@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIDatentypen;
 
-with KINahkampfBodenAufgabeFestlegen, EinheitSuchen, KIAufgabenVerteilt, StadtSuchen, KIAufgabenErmittelnAllgemein;
+with KINahkampfBodenAufgabeFestlegen, EinheitSuchen, KIAufgabenVerteilt, StadtSuchen, KIAufgabenErmittelnAllgemein, LeseStadtGebaut;
 
 package body KINahkampfBodenAufgabeErmitteln is
 
@@ -69,22 +69,23 @@ package body KINahkampfBodenAufgabeErmitteln is
       StadtSchleife:
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze loop
          
-         if
-           GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= GlobaleDatentypen.Leer
-         then
-            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                             KoordinatenExtern => GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).Position);
-            
-         else
-            null;
-         end if;
+         case
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
+         is
+            when GlobaleDatentypen.Leer =>
+               null;
+               
+            when others =>
+               EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)));
+         end case;
          
          if
            EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
            and
              KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Stadt_Bewachen,
                                                     RasseExtern           => EinheitRasseNummerExtern.Rasse,
-                                                    ZielKoordinatenExtern => GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).Position)
+                                                    ZielKoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)))
                = False
          then
             return 10;

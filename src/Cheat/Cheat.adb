@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleTexte;
 
-with Karte, Karten, Anzeige, Eingabe, ForschungAllgemein, LeseKarten, SchreibeKarten, LeseEinheitenGebaut;
+with Karte, Karten, Anzeige, Eingabe, ForschungAllgemein, LeseKarten, SchreibeKarten, LeseEinheitenGebaut, LeseStadtGebaut;
 
 package body Cheat is
 
@@ -154,7 +154,7 @@ package body Cheat is
    is begin
       
       Put_Line (Item => "Aktuelle Rasse:" & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);
-      Put_Line (Item => "KIAufgabe:" & GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung'Wide_Wide_Image);
+      Put_Line (Item => "KIAufgabe:" & LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
       ForschungAllgemein.Beschreibung (IDExtern => GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Forschungsprojekt);
       New_Line;

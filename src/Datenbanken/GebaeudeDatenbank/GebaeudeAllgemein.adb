@@ -1,10 +1,8 @@
 pragma SPARK_Mode (On);
 
-with GlobaleTexte;
+with GlobaleTexte, GlobaleKonstanten;
 
-with GebaeudeDatenbank;
-
-with Anzeige, WichtigesSetzen;
+with Anzeige, WichtigesSetzen, SchreibeStadtGebaut, LeseGebaeudeDatenbank;
 
 package body GebaeudeAllgemein is
 
@@ -27,10 +25,17 @@ package body GebaeudeAllgemein is
       IDExtern : in GebäudeID)
    is begin     
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (IDExtern) := True;
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := 0;
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := 0;
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := 0;
+      SchreibeStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                   BauzeitExtern          => GlobaleKonstanten.LeerStadt.Bauzeit,
+                                   ÄndernSetzenExtern     => False);
+      SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                      RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
+                                      ÄndernSetzenExtern     => False);
+      SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                      BauprojektExtern       => GlobaleKonstanten.LeerBauprojekt);
+      SchreibeStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern     => StadtRasseNummerExtern,
+                                            WelchesGebäudeExtern       => IDExtern,
+                                            HinzufügenEntfernenExtern  => True);
       
       PermanenteKostenDurchGebäudeÄndern (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                           IDExtern                => IDExtern,
@@ -46,8 +51,11 @@ package body GebaeudeAllgemein is
    is begin
       
       WichtigesSetzen.GeldFestlegen (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                     GeldZugewinnExtern => Integer (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, WelchesGebäudeExtern).PreisGeld) / 2);
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (WelchesGebäudeExtern) := False;
+                                     GeldZugewinnExtern => Integer (LeseGebaeudeDatenbank.PreisGeld (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                     IDExtern    => WelchesGebäudeExtern)) / 2);
+      SchreibeStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern     => StadtRasseNummerExtern,
+                                             WelchesGebäudeExtern      => WelchesGebäudeExtern,
+                                             HinzufügenEntfernenExtern => False);
       
       PermanenteKostenDurchGebäudeÄndern (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                             IDExtern                => WelchesGebäudeExtern,
@@ -60,35 +68,20 @@ package body GebaeudeAllgemein is
    procedure PermanenteKostenDurchGebäudeÄndern
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       IDExtern : in GlobaleDatentypen.GebäudeID;
+      -- Der Vorzeichenwechsel wird benötigt um auch bei Entfernung von Gebäuden die permanenten Kosten korrekt zu ändern
       VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
    is begin
       
       PermanenteKostenSchleife:
       for PermanenteKostenSchleifenwert in GlobaleDatentypen.PermanenteKostenArray'Range loop
          
-         if
-           GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, IDExtern).PermanenteKosten (PermanenteKostenSchleifenwert) <= 0
-         then
-            null;
-               
-         elsif
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert)
-           + GesamtePermanenteKosten (VorzeichenWechselExtern) * GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, IDExtern).PermanenteKosten (PermanenteKostenSchleifenwert) < 0
-         then
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert) := 0;
-               
-         elsif
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert)
-           + GesamtePermanenteKosten (VorzeichenWechselExtern) * GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, IDExtern).PermanenteKosten (PermanenteKostenSchleifenwert)
-           > GlobaleDatentypen.GesamtePermanenteKosten'Last
-         then
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert) := GlobaleDatentypen.GesamtePermanenteKosten'Last;
-               
-         else
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert)
-              := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert)
-              + GesamtePermanenteKosten (VorzeichenWechselExtern) * GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, IDExtern).PermanenteKosten (PermanenteKostenSchleifenwert);
-         end if;
+         SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                     WelcherPostenExtern    => PermanenteKostenSchleifenwert,
+                                                     KostenExtern           => GesamtePermanenteKosten (VorzeichenWechselExtern)
+                                                     * LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                               IDExtern           => IDExtern,
+                                                                                               WelcheKostenExtern => PermanenteKostenSchleifenwert),
+                                                     ÄndernSetzenExtern    => True);
          
       end loop PermanenteKostenSchleife;
       

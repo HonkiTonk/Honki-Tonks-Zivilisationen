@@ -5,10 +5,8 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with EinheitenDatenbank;
-
 with Anzeige, Cheat, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein, StadtInformationen, GesamtwerteFeld, KampfwerteEinheitErmitteln,
-     LeseEinheitenGebaut, LeseKarten;
+     LeseEinheitenGebaut, LeseKarten, LeseEinheitenDatenbank, LeseStadtGebaut;
 
 package body KarteInformationen is
 
@@ -273,8 +271,8 @@ package body KarteInformationen is
       Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))),
                                Width => 1);
       Put (Item => " / ");
-      Ada.Integer_Text_IO.Put (Item  => Positive (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                               LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).MaximaleLebenspunkte),
+      Ada.Integer_Text_IO.Put (Item  => Positive (LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)))),
                                Width => 1);
             
       -- "Volle" Einheiteninformationen, nur sichtbar wenn eigene Einheit oder wenn Cheat aktiviert ist
@@ -296,8 +294,8 @@ package body KarteInformationen is
                                 Aft  => 2,
                                 Exp  => 0);
          Put (Item => " / ");
-         Ada.Float_Text_IO.Put (Item => Float (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).MaximaleBewegungspunkte),
+         Ada.Float_Text_IO.Put (Item => Float (LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)))),
                                 Fore => 1,
                                 Aft  => 2,
                                 Exp  => 0);
@@ -313,8 +311,8 @@ package body KarteInformationen is
          Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))),
                                   Width => 1);
          Put (Item => " / ");
-         Ada.Integer_Text_IO.Put (Item  => Natural (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).Beförderungsgrenze),
+         Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)))),
                                   Width => 1);
          New_Line;
                               
@@ -348,8 +346,8 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => Integer (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).Angriff),
+         Ada.Integer_Text_IO.Put (Item  => Integer (LeseEinheitenDatenbank.Angriff (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                    IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)))),
                                   Width => 1);
 
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -360,8 +358,8 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-         Ada.Integer_Text_IO.Put (Item  => Integer (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).Verteidigung),
+         Ada.Integer_Text_IO.Put (Item  => Integer (LeseEinheitenDatenbank.Verteidigung (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                         IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)))),
                                   Width => 1);
          
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -375,10 +373,10 @@ package body KarteInformationen is
          Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenGebaut.Rang (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))),
                                   Width => 1);
          Put (Item => " / ");
-         Ada.Integer_Text_IO.Put (Item  => Natural (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse,
-                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).MaximalerRang),
+         Ada.Integer_Text_IO.Put (Item  => Natural (LeseEinheitenDatenbank.MaximalerRang (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                          IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)))),
                                   Width => 1);
-                     
+         
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                         TextDateiExtern        => GlobaleTexte.Zeug,
                                         ÜberschriftZeileExtern => 0,
@@ -431,7 +429,8 @@ package body KarteInformationen is
                                   Width => 1);
                  
          case
-           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))).KannTransportieren
+           (LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer))))
          is
             when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
                null;
@@ -440,7 +439,9 @@ package body KarteInformationen is
                ErsteAnzeige := True;
                
                LadungSchleife:
-               for LadungSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => EinheitRasseNummerExtern) loop
+               for LadungSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                               IDExtern    =>
+                                                                                                                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
                   
                   if
                     LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -518,7 +519,7 @@ package body KarteInformationen is
    is begin
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
+        LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern) = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
       then
          KarteStadt.Beschreibung (RasseExtern            => RasseExtern,
                                   StadtRasseNummerExtern => StadtRasseNummerExtern);

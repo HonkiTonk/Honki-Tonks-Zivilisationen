@@ -180,11 +180,11 @@ package body LeseStadtGebaut is
    
    function UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      YPosition, XPosition : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+      YPositionExtern, XPositionExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
       return Boolean
    is begin
       
-      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YPosition, XPosition);
+      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YPositionExtern, XPositionExtern);
       
    end UmgebungBewirtschaftung;
    
@@ -221,5 +221,16 @@ package body LeseStadtGebaut is
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung;
       
    end KIBeschäftigung;
-
+   
+   
+   
+   function GanzerEintrag
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleRecords.StadtGebautRecord
+   is begin
+      
+      return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer);
+      
+   end GanzerEintrag;
+   
 end LeseStadtGebaut;

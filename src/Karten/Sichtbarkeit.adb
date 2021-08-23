@@ -1,10 +1,8 @@
 pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
-
-with EinheitenDatenbank;
   
-with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen, LeseKarten, SchreibeKarten, LeseEinheitenGebaut;
+with KartePositionPruefen, EinheitSuchen, StadtSuchen, KennenLernen, LeseKarten, SchreibeKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
 
 package body Sichtbarkeit is
 
@@ -31,7 +29,7 @@ package body Sichtbarkeit is
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
 
          case
-           GlobaleVariablen.StadtGebaut (RasseExtern, StadtNummerSchleifenwert).ID
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert))
          is
             when GlobaleKonstanten.LeerStadtID =>
                null;
@@ -51,9 +49,13 @@ package body Sichtbarkeit is
    is begin
       
       if
-        (EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Passierbarkeit (GlobaleDatentypen.Luft) = True
+        (LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                                                IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                WelcheUmgebungExtern => GlobaleDatentypen.Luft) = True
          or
-           EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Passierbarkeit (GlobaleDatentypen.Weltraum) = True)
+           LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                                                  IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                  WelcheUmgebungExtern => GlobaleDatentypen.Weltraum) = True)
         and
           LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse >= 0
       then
@@ -711,14 +713,14 @@ package body Sichtbarkeit is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      SichtweiteObjekt := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße + 1;
+      SichtweiteObjekt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) + 1;
             
       YÄnderungStadtSchleife:         
       for YÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop            
          XÄnderungStadtSchleife:
          for XÄnderungSchleifenwert in -SichtweiteObjekt .. SichtweiteObjekt loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             case

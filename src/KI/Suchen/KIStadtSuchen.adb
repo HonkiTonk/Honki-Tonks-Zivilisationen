@@ -18,7 +18,7 @@ package body KIStadtSuchen is
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          if
-           GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).ID = GlobaleDatentypen.Leer
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) = GlobaleDatentypen.Leer
          then
             null;
             
@@ -53,7 +53,7 @@ package body KIStadtSuchen is
             return GlobaleKonstanten.LeerKartenPosition;
             
          when others =>
-            return GlobaleVariablen.StadtGebaut (RasseExtern, AktuellGefundeneStadt).Position;
+            return LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, AktuellGefundeneStadt));
       end case;
       
    end NähesteStadtSuchen;
@@ -69,7 +69,7 @@ package body KIStadtSuchen is
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (FeindlicheRasseExtern).Städtegrenze loop
          
          case
-           GlobaleVariablen.StadtGebaut (FeindlicheRasseExtern, StadtNummerSchleifenwert).ID
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert))
          is
             when GlobaleDatentypen.Leer =>
                null;
@@ -77,10 +77,10 @@ package body KIStadtSuchen is
             when others =>
                if
                  EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
-                                                                 KoordinatenExtern => GlobaleVariablen.StadtGebaut (FeindlicheRasseExtern, StadtNummerSchleifenwert).Position)
+                                                                 KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)))
                    = GlobaleKonstanten.LeerEinheitStadtNummer
                then
-                  return GlobaleVariablen.StadtGebaut (FeindlicheRasseExtern, StadtNummerSchleifenwert).Position;
+                  return LeseStadtGebaut.Position (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert));
                   
                else
                   null;

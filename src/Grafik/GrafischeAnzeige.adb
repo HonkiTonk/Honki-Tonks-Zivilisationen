@@ -5,9 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten;
 
-with KartenDatenbank, EinheitenDatenbank, VerbesserungenDatenbank;
-
-with EinheitSuchen, StadtSuchen, LeseKarten, LeseEinheitenGebaut;
+with EinheitSuchen, StadtSuchen, LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut, LeseKartenDatenbank, LeseVerbesserungenDatenbank;
 
 package body GrafischeAnzeige is
 
@@ -33,7 +31,7 @@ package body GrafischeAnzeige is
            and
              InDerStadtExtern = False
          then
-            Farben (EinheitExtern            => 0,
+            Farben (EinheitIDExtern          => 0,
                     VerbesserungExtern       => GlobaleDatentypen.Leer,
                     RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -56,7 +54,7 @@ package body GrafischeAnzeige is
          elsif
            LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
-            Farben (EinheitExtern            => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitStadtRasseNummer.Rasse,
+            Farben (EinheitIDExtern          => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitStadtRasseNummer.Rasse,
                                                                                                      LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitStadtRasseNummer))),
                     VerbesserungExtern       => GlobaleDatentypen.Leer,
                     RessourceExtern          => GlobaleDatentypen.Leer,
@@ -67,7 +65,7 @@ package body GrafischeAnzeige is
             return;
             
          else
-            Farben (EinheitExtern            => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitStadtRasseNummer),
+            Farben (EinheitIDExtern          => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitStadtRasseNummer),
                     VerbesserungExtern       => GlobaleDatentypen.Leer,
                     RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -85,8 +83,8 @@ package body GrafischeAnzeige is
             null;
             
          else
-            Farben (EinheitExtern            => 0,
-                    VerbesserungExtern       => GlobaleVariablen.StadtGebaut (EinheitStadtRasseNummer.Rasse, EinheitStadtRasseNummer.Platznummer).ID,
+            Farben (EinheitIDExtern          => 0,
+                    VerbesserungExtern       => LeseStadtGebaut.ID (StadtRasseNummerExtern => EinheitStadtRasseNummer),
                     RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
                     CursorExtern             => False,
@@ -98,7 +96,7 @@ package body GrafischeAnzeige is
          if
            LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
          then            
-            Farben (EinheitExtern            => 0,
+            Farben (EinheitIDExtern          => 0,
                     VerbesserungExtern       => LeseKarten.VerbesserungGebiet (PositionExtern => KoordinatenExtern),
                     RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -109,7 +107,7 @@ package body GrafischeAnzeige is
          elsif
            LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
          then
-            Farben (EinheitExtern            => 0,
+            Farben (EinheitIDExtern          => 0,
                     VerbesserungExtern       => LeseKarten.VerbesserungWeg (PositionExtern => KoordinatenExtern),
                     RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -120,7 +118,7 @@ package body GrafischeAnzeige is
          elsif
            LeseKarten.Ressource (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
          then
-            Farben (EinheitExtern            => 0,
+            Farben (EinheitIDExtern          => 0,
                     VerbesserungExtern       => GlobaleDatentypen.Leer,
                     RessourceExtern          => LeseKarten.Ressource (PositionExtern => KoordinatenExtern),
                     GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -131,7 +129,7 @@ package body GrafischeAnzeige is
          elsif
            LeseKarten.Fluss (PositionExtern => KoordinatenExtern) /= GlobaleDatentypen.Leer
          then
-            Farben (EinheitExtern            => 0,
+            Farben (EinheitIDExtern          => 0,
                     VerbesserungExtern       => GlobaleDatentypen.Leer,
                     RessourceExtern          => LeseKarten.Fluss (PositionExtern => KoordinatenExtern),
                     GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -140,7 +138,7 @@ package body GrafischeAnzeige is
                     RasseExtern              => GlobaleDatentypen.Leer);
             
          else
-            Farben (EinheitExtern            => 0,
+            Farben (EinheitIDExtern          => 0,
                     VerbesserungExtern       => GlobaleDatentypen.Leer,
                     RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => LeseKarten.Grund (PositionExtern => KoordinatenExtern),
@@ -153,7 +151,7 @@ package body GrafischeAnzeige is
          if
            KoordinatenExtern = GlobaleVariablen.CursorImSpiel (RasseExtern).Position
          then         
-            Farben (EinheitExtern            => 0,
+            Farben (EinheitIDExtern          => 0,
                     VerbesserungExtern       => GlobaleDatentypen.Leer,
                     RessourceExtern          => GlobaleDatentypen.Leer,
                     GrundExtern              => GlobaleDatentypen.Leer,
@@ -171,7 +169,7 @@ package body GrafischeAnzeige is
 
 
    procedure Farben
-     (EinheitExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
+     (EinheitIDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum;
       RessourceExtern, GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       CursorExtern : in Boolean;
@@ -290,16 +288,17 @@ package body GrafischeAnzeige is
          Put (Item => CSI & "5m" & GlobaleVariablen.CursorImSpiel (EigeneRasseExtern).CursorGrafik & CSI & "0m");
          
       elsif
-        EinheitExtern /= 0
+        EinheitIDExtern > GlobaleDatentypen.EinheitenIDMitNullWert'First
       then
-         Put (Item => EinheitenDatenbank.EinheitenListe (EigeneRasseExtern, EinheitExtern).EinheitenGrafik & CSI & "0m");
+         Put (Item => LeseEinheitenDatenbank.EinheitenGrafik (RasseExtern => EigeneRasseExtern,
+                                                              IDExtern    => EinheitIDExtern) & CSI & "0m");
         
       elsif
         VerbesserungExtern in GlobaleDatentypen.Karten_Verbesserung_Eigene_Städte_Enum'Range
         and
           RasseExtern = EigeneRasseExtern
       then            
-         Put (Item => VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).VerbesserungGrafik & CSI & "0m");
+         Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => VerbesserungExtern) & CSI & "0m");
             
       elsif
         VerbesserungExtern in GlobaleDatentypen.Karten_Verbesserung_Eigene_Städte_Enum'Range
@@ -308,10 +307,10 @@ package body GrafischeAnzeige is
            VerbesserungExtern
          is
             when GlobaleDatentypen.Eigene_Hauptstadt =>
-               Put (Item => VerbesserungenDatenbank.VerbesserungListe (GlobaleDatentypen.Fremde_Hauptstadt).VerbesserungGrafik & CSI & "0m");
+               Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => GlobaleDatentypen.Fremde_Hauptstadt) & CSI & "0m");
                
             when GlobaleDatentypen.Eigene_Stadt =>
-               Put (Item => VerbesserungenDatenbank.VerbesserungListe (GlobaleDatentypen.Fremde_Stadt).VerbesserungGrafik & CSI & "0m");
+               Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => GlobaleDatentypen.Fremde_Stadt) & CSI & "0m");
                
             when others =>
                null;
@@ -320,15 +319,15 @@ package body GrafischeAnzeige is
       elsif
         VerbesserungExtern /= GlobaleDatentypen.Leer
       then
-         Put (Item => VerbesserungenDatenbank.VerbesserungListe (VerbesserungExtern).VerbesserungGrafik & CSI & "0m");
+         Put (Item => LeseVerbesserungenDatenbank.VerbesserungGrafik (VerbesserungExtern => VerbesserungExtern) & CSI & "0m");
 
       elsif
         RessourceExtern /= GlobaleDatentypen.Leer
       then
-         Put (Item => KartenDatenbank.KartenListe (RessourceExtern).KartenGrafik & CSI & "0m");
+         Put (Item => LeseKartenDatenbank.KartenGrafik (GrundExtern => RessourceExtern) & CSI & "0m");
             
       else
-         Put (Item => KartenDatenbank.KartenListe (GrundExtern).KartenGrafik & CSI & "0m");
+         Put (Item => LeseKartenDatenbank.KartenGrafik (GrundExtern => GrundExtern) & CSI & "0m");
       end if;
       
    end Farben;

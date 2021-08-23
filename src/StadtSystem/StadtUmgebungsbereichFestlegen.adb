@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
+with LeseStadtGebaut, SchreibeStadtGebaut;
+
 package body StadtUmgebungsbereichFestlegen is
 
    procedure StadtUmgebungsbereichFestlegen
@@ -30,21 +32,29 @@ package body StadtUmgebungsbereichFestlegen is
       if
         GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Endwert)) = True
         and
-          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
+          LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                             EinwohnerArbeiterExtern => True)
         >= GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, StadtRasseNummerExtern.Rasse)
       then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := 3;
+         SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                              UmgebungGrößeExtern    => 3,
+                                              ÄndernSetzenExtern     => False);
          
       elsif
         GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Anfangswert)) = True
         and
-          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
+          LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                             EinwohnerArbeiterExtern => True)
         >= GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, StadtRasseNummerExtern.Rasse)
       then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := 2;         
+         SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                              UmgebungGrößeExtern    => 2,
+                                              ÄndernSetzenExtern     => False);       
                   
       else
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := 1;
+         SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                              UmgebungGrößeExtern    => 1,
+                                              ÄndernSetzenExtern     => False);
       end if;
       
    end StadtUmgebungErmitteln;

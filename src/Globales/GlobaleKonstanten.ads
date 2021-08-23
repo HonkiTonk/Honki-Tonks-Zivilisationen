@@ -73,9 +73,18 @@ package GlobaleKonstanten is
    LeerEinheitenID : constant GlobaleDatentypen.EinheitenIDMitNullWert := GlobaleDatentypen.EinheitenIDMitNullWert'First;
    LeerStadtID : constant GlobaleDatentypen.Karten_Verbesserung_Stadt_ID_Enum := GlobaleDatentypen.Leer;
    LeerDurchStadtBelegterGrund : constant GlobaleDatentypen.BelegterGrund := 0;
+   NullPermanenteKosten : constant GlobaleDatentypen.GesamtePermanenteKosten := 0;
 
    GebäudeAufschlag : constant Positive := 1_000;
    EinheitAufschlag : constant Positive := 10_000;
+
+   BauprojekteGebäudeAnfang : constant Positive := 1_001;
+   BauprojekteGebäudeEnde : constant Positive := 9_999;
+   BauprojekteEinheitenAnfang : constant Positive := 10_001;
+   BauprojekteEinheitenEnde : constant Positive := 99_999;
+   LeerBauprojekt : constant Natural := 0;
+
+   MaximaleBauzeit : constant GlobaleDatentypen.KostenLager := GlobaleDatentypen.KostenLager'Last;
 
    RassenMulitplikationWert : constant GlobaleDatentypen.BelegterGrund := 1_000;
 
@@ -375,6 +384,12 @@ package GlobaleKonstanten is
    -- Für Diplomatie
    DiplomatischerStatusÄnderungszeit : constant Positive := 10;
    -- Für Diplomatie
+
+
+
+   -- Für Forschung
+   LeerForschungAnforderung : constant GlobaleDatentypen.ForschungIDMitNullWert := 0;
+   -- Für Forschung
 
 
 

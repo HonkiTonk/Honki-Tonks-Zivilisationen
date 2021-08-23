@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
   
-with ZufallGeneratorenKampf, EinheitenAllgemein, KampfwerteEinheitErmitteln, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+with ZufallGeneratorenKampf, EinheitenAllgemein, KampfwerteEinheitErmitteln, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseEinheitenDatenbank;
 
 package body KampfsystemEinheiten is
 
@@ -43,10 +43,12 @@ package body KampfsystemEinheiten is
          if
            LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => VerteidigerExtern) = GlobaleKonstanten.LeerEinheit.Lebenspunkte
          then
-            EinheitenAllgemein.Beförderung (EinheitRasseNummerExtern => AngreiferExtern);
+            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreiferExtern,
+                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreiferExtern.Rasse,
+                                                                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AngreiferExtern)),
+                                                      AddierenSetzenExtern     => True);
             EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerExtern);
             return True;
-            
          else
             null;
          end if;
@@ -58,7 +60,10 @@ package body KampfsystemEinheiten is
          if
            LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreiferExtern) = GlobaleKonstanten.LeerEinheit.Lebenspunkte
          then
-            EinheitenAllgemein.Beförderung (EinheitRasseNummerExtern => VerteidigerExtern);
+            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => VerteidigerExtern,
+                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => VerteidigerExtern.Rasse,
+                                                                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => VerteidigerExtern)),
+                                                      AddierenSetzenExtern     => True);
             EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferExtern);
             return False;
 

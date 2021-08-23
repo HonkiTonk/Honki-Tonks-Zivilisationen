@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen, GesamtwerteFeld, StadtUmgebungsbereichFestlegen, GebaeudeRichtigeUmgebung, LeseKarten, SchreibeKarten;
+with KartePositionPruefen, GesamtwerteFeld, StadtUmgebungsbereichFestlegen, GebaeudeRichtigeUmgebung, LeseKarten, SchreibeKarten, SchreibeStadtGebaut;
 
 package body StadtWerteFestlegen is
    
@@ -14,7 +14,7 @@ package body StadtWerteFestlegen is
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          case
-           GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).ID
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
          is
             when GlobaleKonstanten.LeerStadtID =>
                null;
@@ -33,9 +33,9 @@ package body StadtWerteFestlegen is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin    
             
-      GrößeAlt := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
+      GrößeAlt := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtUmgebungsbereichFestlegen.StadtUmgebungsbereichFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      GrößeNeu := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
+      GrößeNeu := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       -- StadtUmgebungGröße darf hier nicht genutzt werden, damit bei einer Verkleinerung auch alle Felder zurückgenommen werden können.
       YAchseSchleife:
@@ -43,7 +43,7 @@ package body StadtWerteFestlegen is
          XAchseSchleife:
          for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                         ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
             if
@@ -52,9 +52,9 @@ package body StadtWerteFestlegen is
                null;
                
             elsif
-              (abs (YÄnderungSchleifenwert) > GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
+              (abs (YÄnderungSchleifenwert) > GrößeNeu
                or
-               abs (XÄnderungSchleifenwert) > GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße)
+               abs (XÄnderungSchleifenwert) > GrößeNeu)
               and
                 LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                       KoordinatenExtern      => KartenWert) = True
@@ -63,21 +63,27 @@ package body StadtWerteFestlegen is
                                              BelegterGrundExtern => GlobaleKonstanten.LeerDurchStadtBelegterGrund);
                
                case
-                 GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YÄnderungSchleifenwert, XÄnderungSchleifenwert)
+                 LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                          YPositionExtern        => YÄnderungSchleifenwert,
+                                                          XPositionExtern        => XÄnderungSchleifenwert)
                is
                   when True =>
-                     GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2)
-                       := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) - 1;
-                     GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YÄnderungSchleifenwert, XÄnderungSchleifenwert) := False;
+                     SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                            EinwohnerArbeiterExtern => False,
+                                                            ÄnderungExtern          => -1);
+                     SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                  YPositionExtern        => YÄnderungSchleifenwert,
+                                                                  XPositionExtern        => XÄnderungSchleifenwert,
+                                                                  BelegenEntfernenExtern => False);
                      
                   when False =>
                      null;
                end case;
 
             elsif
-            abs (YÄnderungSchleifenwert) > GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
+            abs (YÄnderungSchleifenwert) > GrößeNeu
               or
-            abs (XÄnderungSchleifenwert) > GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße
+            abs (XÄnderungSchleifenwert) > GrößeNeu
             then
                null;
                      
@@ -101,8 +107,9 @@ package body StadtWerteFestlegen is
         GrößeNeu > GrößeAlt
       then
          ArbeiterSchleife:
-         for ArbeiterSchleifenwert in 1 .. GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
-           - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) loop
+         for ArbeiterSchleifenwert in 1 .. LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                              EinwohnerArbeiterExtern => True) - LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                                                                    EinwohnerArbeiterExtern => False) loop
             
             BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => True,
                                            StadtRasseNummerExtern   => StadtRasseNummerExtern);
@@ -131,12 +138,14 @@ package body StadtWerteFestlegen is
         ZuwachsOderSchwundExtern
       is
          when False =>
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
-              := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) - 1;
+            SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                   EinwohnerArbeiterExtern => True,
+                                                   ÄnderungExtern         => -1);
             
             if
-              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
-              >= GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2)
+              LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                 EinwohnerArbeiterExtern => True) >= LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                                                                                        EinwohnerArbeiterExtern => False)
             then
                return;
                
@@ -148,7 +157,7 @@ package body StadtWerteFestlegen is
             null;
       end case;
       
-      NutzbarerBereich := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
+      NutzbarerBereich := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
       Umgebung := (others => (others => (False, GlobaleDatentypen.GesamtproduktionStadt'First)));
 
       YAchseSchleife:
@@ -156,7 +165,7 @@ package body StadtWerteFestlegen is
          XAchseSchleife:
          for XPositionSchleifenwert in -NutzbarerBereich .. NutzbarerBereich loop
             
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                         ÄnderungExtern    => (0, YPositionSchleifenwert, XPositionSchleifenwert));
             
             if
@@ -178,7 +187,9 @@ package body StadtWerteFestlegen is
                null;
               
             elsif
-              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (YPositionSchleifenwert, XPositionSchleifenwert) = ZuwachsOderSchwundExtern
+              LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                       YPositionExtern        => YPositionSchleifenwert,
+                                                       XPositionExtern        => XPositionSchleifenwert) = ZuwachsOderSchwundExtern
             then
                Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Belegt := ZuwachsOderSchwundExtern;
                
@@ -227,7 +238,7 @@ package body StadtWerteFestlegen is
                                                   RasseExtern       => StadtRasseNummerExtern.Rasse);
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsproduktion <= 1
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 1
         and
           NahrungGesamt >= 1
       then
@@ -254,7 +265,7 @@ package body StadtWerteFestlegen is
       end if;
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate <= 0
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 0
         and
           RessourcenGesamt >= 1
       then
@@ -281,7 +292,7 @@ package body StadtWerteFestlegen is
       end if;
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Geldgewinnung <= 0
+        LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 0
         and
           GeldGesamt >= 1
       then
@@ -308,7 +319,7 @@ package body StadtWerteFestlegen is
       end if;
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate <= 0
+        LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern) <= 0
         and
           WissenGesamt >= 1
       then
@@ -375,9 +386,13 @@ package body StadtWerteFestlegen is
             null;
             
          when others =>
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (WelchesFeld.YKoordinate, WelchesFeld.XKoordinate) := True;
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2)
-              := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) + 1;
+            SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                         YPositionExtern        => WelchesFeld.YKoordinate,
+                                                         XPositionExtern        => WelchesFeld.XKoordinate,
+                                                         BelegenEntfernenExtern => True);
+            SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                   EinwohnerArbeiterExtern => False,
+                                                   ÄnderungExtern         => 1);
       end case;
       
    end ArbeiterBelegen;
@@ -419,9 +434,13 @@ package body StadtWerteFestlegen is
             null;
             
          when others =>
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung (WelchesFeld.YKoordinate, WelchesFeld.XKoordinate) := False;
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2)
-              := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) - 1;
+            SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                         YPositionExtern        => WelchesFeld.YKoordinate,
+                                                         XPositionExtern        => WelchesFeld.XKoordinate,
+                                                         BelegenEntfernenExtern => False);
+            SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                   EinwohnerArbeiterExtern => False,
+                                                   ÄnderungExtern         => -1);
       end case;
       
    end ArbeiterEntfernen;
@@ -436,7 +455,8 @@ package body StadtWerteFestlegen is
       for GebäudeSchleifenwert in GlobaleDatentypen.GebäudeID'Range loop
          
          if
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = False
+           LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                              WelchesGebäudeExtern  => GebäudeSchleifenwert) = False
          then
             null;
             
@@ -447,7 +467,9 @@ package body StadtWerteFestlegen is
             null;
             
          else
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) := False;
+            SchreibeStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern     => StadtRasseNummerExtern,
+                                                   WelchesGebäudeExtern      => GebäudeSchleifenwert,
+                                                   HinzufügenEntfernenExtern => False);
          end if;
          
       end loop GebäudeSchleife;

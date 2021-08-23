@@ -2,8 +2,6 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitenAllgemein;
-
 package body EinheitSuchen is
 
    function KoordinatenEinheitMitRasseSuchen
@@ -44,7 +42,8 @@ package body EinheitSuchen is
          if
            LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = KoordinatenExtern
            and then
-             EinheitenDatenbank.EinheitenListe (RasseExtern, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert))).KannTransportieren
+             LeseEinheitenDatenbank.KannTransportieren (RasseExtern => RasseExtern,
+                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)))
            /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             return EinheitNummerSchleifenwert;
@@ -155,7 +154,8 @@ package body EinheitSuchen is
    is begin
 
       TransporterSchleife:
-      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => TransporterExtern) loop
+      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                                                                                IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
          
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
@@ -181,7 +181,9 @@ package body EinheitSuchen is
    is begin
       
       TransporterSchleife:
-      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => EinheitRassePlatznummerExtern) loop
+      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRassePlatznummerExtern.Rasse,
+                                                                                                                                IDExtern    =>
+                                                                                                                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRassePlatznummerExtern)) loop
          
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRassePlatznummerExtern,
@@ -219,7 +221,8 @@ package body EinheitSuchen is
             null;
          
          elsif
-           EinheitenDatenbank.EinheitenListe (RasseExtern, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert))).EinheitArt = EinheitTypExtern
+           LeseEinheitenDatenbank.EinheitArt (RasseExtern => RasseExtern,
+                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitSchleifenwert))) = EinheitTypExtern
          then
             AnzahlEinheitTyp := AnzahlEinheitTyp + 1;
             

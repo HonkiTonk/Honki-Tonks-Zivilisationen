@@ -56,17 +56,22 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (24.08.2021):
+   -- Version 0.00.8450 => 0.00.84 (24.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8420 => 0.00.8 (23.08.2021):
+   -- Version 0.00.8420 => 0.00.8450 (23.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Lesefunktionen für die Datenbanken fertig erstellt.
+   -- Alles Lesefunktionen und Schreibefunktionen für die Datenbanken, EinheitenGebaut und StadtGebaut, bis auf einige Ausnahmen, eingebaut.
+   -- Einige Teile des Codes an die neuen Funktionen angepasst.
+   -- Diverse jetzt unnötige Prüfungen gelöscht.
+   -- Unnötigen Code gelöscht.
+   -- Diverse Fehler korrigiert und fehlende Over/Underflowprüfungen eingebaut.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/hinzugefügt/entfernt/überarbeitet.
    
    
    

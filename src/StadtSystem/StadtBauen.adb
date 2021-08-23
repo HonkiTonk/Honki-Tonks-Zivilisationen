@@ -2,9 +2,8 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with EinheitenDatenbank;
-
-with Anzeige, StadtWerteFestlegen, Eingabe, KartePositionPruefen, StadtProduktion, ForschungAllgemein, EinheitenAllgemein, Sichtbarkeit, LeseKarten, LeseEinheitenGebaut;
+with Anzeige, StadtWerteFestlegen, Eingabe, KartePositionPruefen, StadtProduktion, ForschungAllgemein, EinheitenAllgemein, Sichtbarkeit, LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut,
+     SchreibeStadtGebaut;
 
 package body StadtBauen is
 
@@ -12,9 +11,9 @@ package body StadtBauen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin     
         
-      if 
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).EinheitArt
-          = GlobaleDatentypen.Arbeiter
+      if
+        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.Arbeiter
       then
          null;
          
@@ -44,7 +43,7 @@ package body StadtBauen is
          if
            StadtNummerSchleifenwert = GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze
            and
-             GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= GlobaleDatentypen.Leer
+             LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) /= GlobaleDatentypen.Leer
          then
             if
               GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
@@ -58,7 +57,7 @@ package body StadtBauen is
             end if;
 
          elsif
-           GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= GlobaleDatentypen.Leer
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) /= GlobaleDatentypen.Leer
          then
             null;
             
@@ -71,12 +70,21 @@ package body StadtBauen is
       
       Stadtart := HauptstadtPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
-      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer) := GlobaleKonstanten.LeerStadt;
-      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).ID := Stadtart;
-      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).Position := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).EinwohnerArbeiter := (1, 1);
+      SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
+      SchreibeStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+                              IDExtern               => Stadtart);
+      SchreibeStadtGebaut.Position (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+                                    PositionExtern         => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+                                           UmgebungGrößeExtern    => 1,
+                                           ÄndernSetzenExtern     => False);
+      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+                                             EinwohnerArbeiterExtern => True,
+                                             ÄnderungExtern         => 1);
+      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+                                             EinwohnerArbeiterExtern => False,
+                                             ÄnderungExtern         => 1);
       GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).UmgebungBewirtschaftung := (0 => (0 => True, others => False), others => (others => False));
-      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).UmgebungGröße := 1;
       
       StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
       StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
@@ -92,7 +100,8 @@ package body StadtBauen is
             StandardStadtNamen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
                   
          when others =>
-            GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).Name := Eingabe.StadtName;
+            SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+                                      NameExtern             => Eingabe.StadtName);
       end case;
       
    end StadtBauen;
@@ -144,7 +153,7 @@ package body StadtBauen is
       for HauptstadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          case
-           GlobaleVariablen.StadtGebaut (RasseExtern, HauptstadtSchleifenwert).ID
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, HauptstadtSchleifenwert))
          is
             when GlobaleDatentypen.Eigene_Hauptstadt =>
                return GlobaleDatentypen.Eigene_Stadt;
@@ -165,7 +174,8 @@ package body StadtBauen is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Name := GlobaleTexte.TexteEinlesenNeu (22, WelcherName);
+      SchreibeStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                NameExtern             => GlobaleTexte.TexteEinlesenNeu (22, WelcherName));
       
       case
         WelcherName

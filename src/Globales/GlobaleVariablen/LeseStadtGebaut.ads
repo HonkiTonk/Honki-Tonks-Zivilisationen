@@ -28,9 +28,9 @@ package LeseStadtGebaut is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer),
          Post =>
-           (Position'Result.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           (Position'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
             and
-              Position'Result.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+              Position'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    function EinwohnerArbeiter
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -156,7 +156,7 @@ package LeseStadtGebaut is
 
    function UmgebungBewirtschaftung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      YPosition, XPosition : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
+      YPositionExtern, XPositionExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
       return Boolean
      with
        Pre =>
@@ -188,6 +188,15 @@ package LeseStadtGebaut is
    function KIBeschäftigung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return KIDatentypen.Stadt_Aufgabe_Enum
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   function GanzerEintrag
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleRecords.StadtGebautRecord
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

@@ -20,7 +20,7 @@ package GrafischeAnzeige is
             GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
 
    procedure Farben
-     (EinheitExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID;
+     (EinheitIDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert;
       VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum;
       RessourceExtern, GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
       CursorExtern : in Boolean;

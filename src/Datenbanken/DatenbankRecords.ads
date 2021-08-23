@@ -29,9 +29,9 @@ package DatenbankRecords is
       Angriff : GlobaleDatentypen.ProduktionFeld;
       Verteidigung : GlobaleDatentypen.ProduktionFeld;
 
-      KannTransportieren : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-      KannTransportiertWerden : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-      Transportkapazität : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      KannTransportieren : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      KannTransportiertWerden : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      Transportkapazität : GlobaleDatentypen.MaximaleStädteMitNullWert;
       
    end record;
    

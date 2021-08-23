@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
+with DatenbankRecords;
+
 package LeseEinheitenDatenbank is
 
    function EinheitenGrafik
@@ -130,7 +132,7 @@ package LeseEinheitenDatenbank is
    function KannTransportieren
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
@@ -138,7 +140,7 @@ package LeseEinheitenDatenbank is
    function KannTransportiertWerden
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
@@ -146,7 +148,15 @@ package LeseEinheitenDatenbank is
    function Transportkapazität
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.EinheitenID)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+   
+   function GanzerEintrag
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      IDExtern : in GlobaleDatentypen.EinheitenID)
+      return DatenbankRecords.EinheitenListeRecord
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen, RasseEntfernen, LeseKarten, SchreibeKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+with KartePositionPruefen, RasseEntfernen, LeseKarten, SchreibeKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, SchreibeStadtGebaut, LeseStadtGebaut;
 
 package body StadtEntfernen is
 
@@ -13,7 +13,7 @@ package body StadtEntfernen is
       BelegteStadtfelderFreigeben (StadtRasseNummerExtern => StadtRasseNummerExtern);
       HeimatstädteEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       NeueHauptstadtSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerStadt;
+      SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
       RasseEntfernen.RasseExistenzPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
       
    end StadtEntfernen;
@@ -29,7 +29,7 @@ package body StadtEntfernen is
          XUmgebungFreigebenSchleife:
          for XUmgebungFreigebenSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
          
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position,
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                                                         ÄnderungExtern    => (0, YUmgebungFreigebenSchleifenwert, XUmgebungFreigebenSchleifenwert));
          
             if
@@ -83,7 +83,7 @@ package body StadtEntfernen is
    is begin
       
       case
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).ID
+        LeseStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          when GlobaleDatentypen.Eigene_Hauptstadt =>
             null;
@@ -96,14 +96,15 @@ package body StadtEntfernen is
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze loop
          
          if
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtSchleifenwert).ID = GlobaleDatentypen.Leer
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert)) = GlobaleDatentypen.Leer
            or
              StadtSchleifenwert = StadtRasseNummerExtern.Platznummer
          then
             null;
             
          else
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtSchleifenwert).ID := Eigene_Hauptstadt;
+            SchreibeStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtSchleifenwert),
+                                    IDExtern               => GlobaleDatentypen.Eigene_Hauptstadt);
             return;
          end if;
          

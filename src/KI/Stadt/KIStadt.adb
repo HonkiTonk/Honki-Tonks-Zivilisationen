@@ -3,9 +3,7 @@ pragma SPARK_Mode (On);
 with KIDatentypen;
 use KIDatentypen;
 
-with GebaeudeDatenbank;
-
-with EinheitSuchen, KIStadtLaufendeBauprojekte, StadtSuchen;
+with EinheitSuchen, KIStadtLaufendeBauprojekte, StadtSuchen, LeseStadtGebaut, LeseGebaeudeDatenbank;
 
 package body KIStadt is
 
@@ -14,7 +12,7 @@ package body KIStadt is
    is begin
       
       if
-        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung /= KIDatentypen.Keine_Aufgabe
+        LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern) /= KIDatentypen.Keine_Aufgabe
       then
          case
            GefahrStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)
@@ -81,9 +79,11 @@ package body KIStadt is
          if
            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = False
            and
-             (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen = 0
+             (LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                   IDExtern    => GebäudeSchleifenwert) = 0
               or else
-              GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen) = True)
+              GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                                        IDExtern    => GebäudeSchleifenwert)) = True)
          then
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := KIDatentypen.Gebäude_Bauen;
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := 1_000 + Positive (GebäudeSchleifenwert);

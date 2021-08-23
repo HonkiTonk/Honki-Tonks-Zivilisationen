@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with InDerStadtBauen, KarteStadt, BewegungssystemCursor, Eingabe, EinwohnerZuweisenEntfernen, GebaeudeVerkaufen;
+with InDerStadtBauen, KarteStadt, BewegungssystemCursor, Eingabe, EinwohnerZuweisenEntfernen, GebaeudeVerkaufen, SchreibeStadtGebaut;
 
 package body InDerStadt is
 
@@ -40,7 +40,8 @@ package body InDerStadt is
                GebaeudeVerkaufen.GebäudeVerkaufen (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
             when GlobaleDatentypen.Stadt_Umbenennen =>
-               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Name := Eingabe.StadtName;
+               SchreibeStadtGebaut.Name (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         NameExtern             => Eingabe.StadtName);
 
                -- Stadt verlassen
             when GlobaleDatentypen.Menü_Zurück =>

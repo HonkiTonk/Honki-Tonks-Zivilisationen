@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with LeseStadtGebaut;
+
 package body KIStadtLaufendeBauprojekte is
 
    function StadtLaufendeBauprojekte
@@ -16,12 +18,12 @@ package body KIStadtLaufendeBauprojekte is
          if
            StadtNummerSchleifenwert = StadtRasseNummerExtern.Platznummer
            or
-             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID = GlobaleDatentypen.Leer
+             LeseStadtGebaut.ID (StadtRasseNummerExtern => (StadtRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) = GlobaleDatentypen.Leer
          then
             null;
                
          elsif
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt = BauprojektExtern
+           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) = BauprojektExtern
          then
             GleichesBauprojekt := GleichesBauprojekt + 1;
                

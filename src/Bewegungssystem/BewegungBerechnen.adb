@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with EinheitenDatenbank;
 
-with Sichtbarkeit, KennenLernen, BewegungLadenEntladen, StadtSuchen, BewegungPassierbarkeitPruefen, LeseKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+with Sichtbarkeit, KennenLernen, BewegungLadenEntladen, StadtSuchen, BewegungPassierbarkeitPruefen, LeseKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseEinheitenDatenbank;
 
 package body BewegungBerechnen is
 
@@ -15,8 +15,8 @@ package body BewegungBerechnen is
 
       -- Immer berücksichtigen dass in BewegungssystemEinheiten.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
       if
-        EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).KannTransportieren
-          = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+        LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                   IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
       then
          null;
          

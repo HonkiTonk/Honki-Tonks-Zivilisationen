@@ -3,9 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen, GlobaleRecords;
 
-with EinheitenDatenbank;
-
-with Karten, LeseEinheitenGebaut;
+with Karten, LeseEinheitenGebaut, LeseEinheitenDatenbank;
 
 package EinheitSuchen is
 
@@ -34,7 +32,8 @@ package EinheitSuchen is
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer),
          Post =>
            ((if KoordinatenTransporterMitRasseSuchen'Result > 0 then
-                      EinheitenDatenbank.EinheitenListe (RasseExtern, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, KoordinatenTransporterMitRasseSuchen'Result))).KannTransportieren > 0));
+                      LeseEinheitenDatenbank.KannTransportieren (RasseExtern => RasseExtern,
+                                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, KoordinatenTransporterMitRasseSuchen'Result))) > 0));
 
    function KoordinatenEinheitOhneRasseSuchen
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)

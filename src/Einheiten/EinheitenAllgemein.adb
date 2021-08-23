@@ -5,9 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9, Ada.Strings.Wide_Wi
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with EinheitenDatenbank;
-
-with Auswahl, Anzeige, Eingabe, Sichtbarkeit, StadtProduktion, RasseEntfernen, EinheitSuchen, StadtSuchen, LeseEinheitenGebaut;
+with Auswahl, Anzeige, Eingabe, Sichtbarkeit, StadtProduktion, RasseEntfernen, EinheitSuchen, StadtSuchen, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseEinheitenDatenbank, SchreibeStadtGebaut;
 
 package body EinheitenAllgemein is
 
@@ -28,19 +26,6 @@ package body EinheitenAllgemein is
 
 
 
-   procedure LebenspunkteBewegungspunkteAufMaximumSetzen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-            
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
-        := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte;
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte
-        := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleBewegungspunkte;
-      
-   end LebenspunkteBewegungspunkteAufMaximumSetzen;
-
-
-
    procedure HeilungBewegungspunkteNeueRundeErmitteln
    is begin
       
@@ -58,7 +43,7 @@ package body EinheitenAllgemein is
                for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
                               
                   if
-                    GlobaleVariablen.EinheitenGebaut (RasseSchleifenwert, EinheitNummerSchleifenwert).ID = GlobaleKonstanten.LeerEinheit.ID
+                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)) = GlobaleKonstanten.LeerEinheit.ID
                   then
                      null;
                   
@@ -80,56 +65,30 @@ package body EinheitenAllgemein is
    is begin
       
       if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung = GlobaleDatentypen.Nicht_Vorhanden
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleDatentypen.Nicht_Vorhanden
       then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte
-           := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleBewegungspunkte;
+         SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  BewegungspunkteExtern    => LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
+                                                  RechnenSetzenExtern      => 0);
 
       else
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Bewegungspunkte := GlobaleKonstanten.LeerEinheit.Bewegungspunkte;
+         SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
+                                                  RechnenSetzenExtern      => 0);
       end if;
 
-      if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung = GlobaleDatentypen.Heilen
-        and
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte + Heilungsrate
-        >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte
-      then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
-           := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte;
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung := GlobaleDatentypen.Nicht_Vorhanden;
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigungszeit := GlobaleKonstanten.LeerEinheit.Beschäftigungszeit;
-         
-      elsif
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung = GlobaleDatentypen.Heilen
-        and
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte + Heilungsrate
-        < EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte
-      then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
-           := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte + Heilungsrate;
-         
-      elsif
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung = GlobaleDatentypen.Verschanzen
-        and
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte + Heilungsrate
-        >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte
-      then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
-           := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte;
-         
-      elsif
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Beschäftigung = GlobaleDatentypen.Verschanzen
-        and
-          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte + Heilungsrate
-        < EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).MaximaleLebenspunkte
-      then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte
-           := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Lebenspunkte + Heilungsrate;
-        
-      else
-         null;
-      end if;
+      case
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      is
+         when GlobaleDatentypen.Heilen | GlobaleDatentypen.Verschanzen =>
+            SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  LebenspunkteExtern       => Heilungsrate,
+                                                  RechnenSetzenExtern      => 1);
+            
+         when others =>
+            null;
+      end case;
       
    end HeilungBewegungspunkteNeueRundeSetzen;
    
@@ -142,10 +101,27 @@ package body EinheitenAllgemein is
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerExtern) := GlobaleKonstanten.LeerEinheit;
-      GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerExtern).ID := IDExtern;
-      GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerExtern).Position := KoordinatenExtern;
-      GlobaleVariablen.EinheitenGebaut (StadtRasseNummerExtern.Rasse, EinheitNummerExtern).Heimatstadt := StadtRasseNummerExtern.Platznummer;
+      SchreibeEinheitenGebaut.Nullsetzung (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
+      SchreibeEinheitenGebaut.ID (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
+                                  IDExtern                 => IDExtern);
+      
+      SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
+                                        PositionExtern           => KoordinatenExtern);
+      
+      SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
+                                           HeimatstadtExtern        => StadtRasseNummerExtern.Platznummer);
+      
+      SchreibeEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
+                                            LebenspunkteExtern       =>
+                                              LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                           IDExtern    => IDExtern),
+                                            RechnenSetzenExtern      => 0);
+      
+      SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
+                                               BewegungspunkteExtern    =>
+                                                 LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                 IDExtern    => IDExtern),
+                                               RechnenSetzenExtern      => 0);
       
       case
         StadtRasseNummerExtern.Platznummer
@@ -159,7 +135,6 @@ package body EinheitenAllgemein is
                                                  VorzeichenWechselExtern => 1);
       end case;
       
-      LebenspunkteBewegungspunkteAufMaximumSetzen (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
       Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
       
    end EinheitErzeugen;
@@ -182,7 +157,7 @@ package body EinheitenAllgemein is
                                                  VorzeichenWechselExtern => -1);
       end case;
 
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerEinheit;
+      SchreibeEinheitenGebaut.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       RasseEntfernen.RasseExistenzPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
    end EinheitEntfernen;
@@ -199,27 +174,20 @@ package body EinheitenAllgemein is
       for PermanenteKostenSchleifenwert in GlobaleDatentypen.PermanenteKostenArray'Range loop
          
          if
-           EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, IDExtern).PermanenteKosten (PermanenteKostenSchleifenwert) <= 0
+           LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                    IDExtern           => IDExtern,
+                                                    WelcheKostenExtern => PermanenteKostenSchleifenwert) <= 0
          then
             null;
-               
-         elsif
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert)
-           + GesamtePermanenteKosten (VorzeichenWechselExtern) * EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, IDExtern).PermanenteKosten (PermanenteKostenSchleifenwert) < 0
-         then
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert) := 0;
-               
-         elsif
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert)
-           + GesamtePermanenteKosten (VorzeichenWechselExtern) * EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, IDExtern).PermanenteKosten (PermanenteKostenSchleifenwert)
-           > GlobaleDatentypen.GesamtePermanenteKosten'Last
-         then
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert) := GlobaleDatentypen.GesamtePermanenteKosten'Last;
-               
+            
          else
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert)
-              := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).PermanenteKostenPosten (PermanenteKostenSchleifenwert)
-              + GesamtePermanenteKosten (VorzeichenWechselExtern) * EinheitenDatenbank.EinheitenListe (StadtRasseNummerExtern.Rasse, IDExtern).PermanenteKosten (PermanenteKostenSchleifenwert);
+            SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                        WelcherPostenExtern    => PermanenteKostenSchleifenwert,
+                                                        KostenExtern           =>
+                                                          GesamtePermanenteKosten (VorzeichenWechselExtern) * LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                                                                       IDExtern           => IDExtern,
+                                                                                                                                                       WelcheKostenExtern => PermanenteKostenSchleifenwert),
+                                                        ÄndernSetzenExtern     => True);
          end if;
          
       end loop PermanenteKostenSchleife;
@@ -289,24 +257,29 @@ package body EinheitenAllgemein is
 
       Anzeige.AllgemeineAnzeigeText := (others => (To_Unbounded_Wide_Wide_String (Source => "|"), 0));
       Anzeige.AllgemeineAnzeigeText (1) := (GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
-                                            Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID)), Positive (EinheitRasseNummerExtern.Platznummer));
+                                            Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))), Positive (EinheitRasseNummerExtern.Platznummer));
       AktuellePosition := 2;
       Ende := 1;
 
       TransporterSchleife:
-      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. MaximaleTransporterKapazität (TransporterExtern => EinheitRasseNummerExtern) loop
+      for TransporterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                IDExtern    =>
+                                                                                                                                  LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              PlatzExtern              => TransporterPlatzSchleifenwert) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             null;
             
          else
             Anzeige.AllgemeineAnzeigeText (AktuellePosition)
               := (GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
-                  Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse,
-                    GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert)).ID)),
-                  Positive (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Transportiert (TransporterPlatzSchleifenwert)));
+                  
+                  Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                    PlatzExtern              => TransporterPlatzSchleifenwert))))),
+                  Positive (LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                               PlatzExtern              => TransporterPlatzSchleifenwert)));
 
             AktuellePosition := AktuellePosition + 1;
             Ende := Ende + 1;
@@ -362,28 +335,21 @@ package body EinheitenAllgemein is
    
    
    
-   function EinheitenTypErmitteln
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.Einheit_Art_Verwendet_Enum
-   is begin
-     
-      return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID).EinheitArt;
-   
-   end EinheitenTypErmitteln;
-   
-   
-   
    function KannTransportiertWerden
      (LadungExtern, TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
       if
-        EinheitenDatenbank.EinheitenListe (LadungExtern.Rasse, GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).ID).KannTransportiertWerden
-          = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+        LeseEinheitenDatenbank.KannTransportiertWerden (RasseExtern => LadungExtern.Rasse,
+                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (LadungExtern.Rasse, LadungExtern.Platznummer)))
+                                                        = GlobaleKonstanten.LeerTransportiertWirdTransportiert
         or
-          EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).KannTransportieren
-            < EinheitenDatenbank.EinheitenListe (LadungExtern.Rasse, GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).ID).KannTransportiertWerden
+          LeseEinheitenDatenbank.KannTransportieren (RasseExtern => TransporterExtern.Rasse,
+                                                     IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Platznummer)))
+            <
+        LeseEinheitenDatenbank.KannTransportiertWerden (RasseExtern => LadungExtern.Rasse,
+                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (LadungExtern.Rasse, LadungExtern.Platznummer)))
       then
          return False;
          
@@ -392,10 +358,12 @@ package body EinheitenAllgemein is
       end if;
       
       PlatzFreiSchleife:
-      for PlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. MaximaleTransporterKapazität (TransporterExtern => TransporterExtern) loop
+      for PlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                                                                     IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
          
          if
-           GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).Transportiert (PlatzSchleifenwert) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Platznummer),
+                                              PlatzExtern              => PlatzSchleifenwert) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             return True;
             
@@ -418,117 +386,16 @@ package body EinheitenAllgemein is
    is begin
       
       case
-        GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).WirdTransportiert
+        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (LadungExtern.Rasse, LadungExtern.Platznummer))
       is
          when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
             return GlobaleKonstanten.LeerEinheit.ID;
             
          when others =>
-            return GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, GlobaleVariablen.EinheitenGebaut (LadungExtern.Rasse, LadungExtern.Platznummer).WirdTransportiert).ID;
+            return LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (LadungExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (LadungExtern.Rasse, LadungExtern.Platznummer))));
       end case;
       
    end IDTransporterAusLadung;
-   
-   
-   
-   function MaximaleTransporterKapazität
-     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
-   is begin
-      
-      
-      -- Wenn eine Einheit transportieren können soll, die Kapazität aber nicht korrekt gesetzt wurde, dann ist das hier eine Art Sicherheitsprüfung.
-      if
-        EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).KannTransportieren > 0
-        and
-          EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).Transportkapazität = 0
-      then
-         return 1;
-         
-      elsif
-        EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).Transportkapazität
-          <= GlobaleRecords.TransporterArray'Last
-      then
-         return EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, GlobaleVariablen.EinheitenGebaut (TransporterExtern.Rasse, TransporterExtern.Platznummer).ID).Transportkapazität;
-         
-      else
-         return GlobaleRecords.TransporterArray'Last;
-      end if;
-      
-   end MaximaleTransporterKapazität;
-   
-   
-   
-   procedure Beförderung
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-      
-      if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
-        >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang
-      then
-         return;
-         
-      else
-         null;
-      end if;
-      
-      ErhalteneErfahrungspunkte := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze / 5;
-      
-      if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte + ErhalteneErfahrungspunkte > GlobaleDatentypen.MaximaleStädte'Last
-      then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte := GlobaleDatentypen.MaximaleStädte'Last;
-         
-      else
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
-           := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte + ErhalteneErfahrungspunkte;
-      end if;
-      
-      BeförderungSchleife:
-      while GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
-        >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze loop
-         
-         if
-           GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
-           >= EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze
-         then
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
-              := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Erfahrungspunkte
-              - EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Beförderungsgrenze;            
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
-              := GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang + 1;
-         
-         else
-            null;
-         end if;
-         
-      end loop BeförderungSchleife;
-      
-      if
-        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
-        > EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang
-      then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Rang
-           := EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).MaximalerRang;
-         
-      else
-         null;
-      end if;
-      
-   end Beförderung;
-   
-   
-   
-   function PermanenteKosten
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      WelcheRessourceExtern : in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum)
-      return GlobaleDatentypen.GesamtproduktionStadt
-   is begin
-      
-      return EinheitenDatenbank.EinheitenListe (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).PermanenteKosten (WelcheRessourceExtern);
-      
-   end PermanenteKosten;
    
    
    
@@ -580,7 +447,8 @@ package body EinheitenAllgemein is
                                                  VorzeichenWechselExtern => -1);
       end case;
       
-      GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitNummer).Heimatstadt := StadtNummerNeu;
+      SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
+                                           HeimatstadtExtern        => StadtNummerNeu);
       
       PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummerNeu),
                                            IDExtern                => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)),

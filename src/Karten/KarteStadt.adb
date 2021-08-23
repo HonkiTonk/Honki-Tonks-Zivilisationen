@@ -4,10 +4,8 @@ with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten, GlobaleTexte;
-
-with GebaeudeDatenbank;
   
-with KartePositionPruefen, Karten, StadtInformationen, Anzeige, GebaeudeAllgemein, KartenAllgemein, GrafischeAnzeige, LeseKarten;
+with KartePositionPruefen, Karten, StadtInformationen, Anzeige, GebaeudeAllgemein, KartenAllgemein, GrafischeAnzeige, LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
 
 package body KarteStadt is
 
@@ -17,7 +15,7 @@ package body KarteStadt is
       
       Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
 
-      Stadtumgebungsgröße := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
+      Stadtumgebungsgröße := LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern);
 
       YAchsenabstraktion := -Stadtumgebungsgröße;
       InformationenStadtAufrufen := False;
@@ -81,7 +79,7 @@ package body KarteStadt is
                     and
                       XAchseSchleifenwert >= Karten.Stadtkarte'Last (2) - 7)
                then
-                  GrafischeAnzeige.Farben (EinheitExtern      => 0,
+                  GrafischeAnzeige.Farben (EinheitIDExtern    => 0,
                                            VerbesserungExtern => GlobaleDatentypen.Leer,
                                            RessourceExtern    => GlobaleDatentypen.Leer,
                                            GrundExtern        => GlobaleDatentypen.Leer,
@@ -90,7 +88,7 @@ package body KarteStadt is
                                            RasseExtern        => GlobaleDatentypen.Leer);
 
                else
-                  GrafischeAnzeige.Farben (EinheitExtern      => 0,
+                  GrafischeAnzeige.Farben (EinheitIDExtern    => 0,
                                            VerbesserungExtern => GlobaleDatentypen.Leer,
                                            RessourceExtern    => GlobaleDatentypen.Leer,
                                            GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position),
@@ -120,12 +118,14 @@ package body KarteStadt is
                 XAchseSchleifenwert < 13
             then
                if
-                 GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert)) = True
+                 LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                    WelchesGebäudeExtern   => GlobaleDatentypen.GebäudeID (XAchseSchleifenwert)) = True
                then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (XAchseSchleifenwert)).GebäudeGrafik);
+                  Put (Item => LeseGebaeudeDatenbank.GebäudeGrafik (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                     IDExtern    => GlobaleDatentypen.GebäudeID (XAchseSchleifenwert)));
 
                else
-                  GrafischeAnzeige.Farben (EinheitExtern      => 0,
+                  GrafischeAnzeige.Farben (EinheitIDExtern    => 0,
                                            VerbesserungExtern => GlobaleDatentypen.Leer,
                                            RessourceExtern    => GlobaleDatentypen.Leer,
                                            GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position),
@@ -140,12 +140,14 @@ package body KarteStadt is
                 XAchseSchleifenwert < 13
             then
                if
-                 GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 12) = True
+                 LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                    WelchesGebäudeExtern  => (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 12)) = True
                then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 12).GebäudeGrafik);
+                  Put (Item => LeseGebaeudeDatenbank.GebäudeGrafik (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                     IDExtern    => GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 12));
 
                else
-                  GrafischeAnzeige.Farben (EinheitExtern      => 0,
+                  GrafischeAnzeige.Farben (EinheitIDExtern    => 0,
                                            VerbesserungExtern => GlobaleDatentypen.Leer,
                                            RessourceExtern    => GlobaleDatentypen.Leer,
                                            GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position),
@@ -160,12 +162,14 @@ package body KarteStadt is
                 XAchseSchleifenwert < 3
             then
                if
-                 GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 24) = True
+                 LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                    WelchesGebäudeExtern  => (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 24)) = True
                then
-                  Put (Item => GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 24).GebäudeGrafik);
+                  Put (Item => LeseGebaeudeDatenbank.GebäudeGrafik (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                     IDExtern    => GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 24));
 
                else
-                  GrafischeAnzeige.Farben (EinheitExtern      => 0,
+                  GrafischeAnzeige.Farben (EinheitIDExtern    => 0,
                                            VerbesserungExtern => GlobaleDatentypen.Leer,
                                            RessourceExtern    => GlobaleDatentypen.Leer,
                                            GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position),
@@ -175,7 +179,7 @@ package body KarteStadt is
                end if;
 
             else
-               GrafischeAnzeige.Farben (EinheitExtern      => 0,
+               GrafischeAnzeige.Farben (EinheitIDExtern    => 0,
                                         VerbesserungExtern => GlobaleDatentypen.Leer,
                                         RessourceExtern    => GlobaleDatentypen.Leer,
                                         GrundExtern        => LeseKarten.Grund (PositionExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position),
@@ -236,8 +240,8 @@ package body KarteStadt is
          when others =>
             Aufschlag := Aufschlag - 1;
             if
-              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden
-              (GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12)) = True
+              LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                 WelchesGebäudeExtern  => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12)) = True
             then
                GebaeudeAllgemein.Beschreibung (IDExtern => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12));
             
@@ -264,7 +268,7 @@ package body KarteStadt is
          if
            GlobaleVariablen.CursorImSpiel (RasseExtern).PositionStadt = (YAchseExtern, XAchseExtern + UmgebungSchleifenwert - 1)
          then
-            GrafischeAnzeige.Farben (EinheitExtern      => 0,
+            GrafischeAnzeige.Farben (EinheitIDExtern    => 0,
                                      VerbesserungExtern => GlobaleDatentypen.Leer,
                                      RessourceExtern    => GlobaleDatentypen.Leer,
                                      GrundExtern        => GlobaleDatentypen.Leer,
@@ -299,7 +303,7 @@ package body KarteStadt is
             if
               UmgebungSchleifenwert < -Stadtumgebungsgröße or UmgebungSchleifenwert > Stadtumgebungsgröße
             then
-               GrafischeAnzeige.Farben (EinheitExtern      => 0,
+               GrafischeAnzeige.Farben (EinheitIDExtern    => 0,
                                         VerbesserungExtern => GlobaleDatentypen.Leer,
                                         RessourceExtern    => GlobaleDatentypen.Leer,
                                         GrundExtern        => GlobaleDatentypen.Leer,
@@ -317,7 +321,7 @@ package body KarteStadt is
                  KartenWert.XAchse
                is
                   when GlobaleKonstanten.LeerYXKartenWert =>
-                     GrafischeAnzeige.Farben (EinheitExtern      => 0,
+                     GrafischeAnzeige.Farben (EinheitIDExtern    => 0,
                                               VerbesserungExtern => GlobaleDatentypen.Leer,
                                               RessourceExtern    => GlobaleDatentypen.Leer,
                                               GrundExtern        => GlobaleDatentypen.Leer,
@@ -326,7 +330,7 @@ package body KarteStadt is
                                               RasseExtern        => GlobaleDatentypen.Leer);
 
                   when others =>
-                     GrafischeAnzeige.Farben (EinheitExtern      => 0,
+                     GrafischeAnzeige.Farben (EinheitIDExtern    => 0,
                                               VerbesserungExtern => GlobaleDatentypen.Leer,
                                               RessourceExtern    => GlobaleDatentypen.Leer,
                                               GrundExtern        => LeseKarten.Grund (PositionExtern => KartenWert),

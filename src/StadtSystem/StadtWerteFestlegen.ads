@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
+with LeseStadtGebaut;
+
 package StadtWerteFestlegen is
 
    procedure BewirtschaftbareFelderBelegen
@@ -28,7 +30,8 @@ package StadtWerteFestlegen is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) >= 1);
+            LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                               EinwohnerArbeiterExtern => True) >= 1);
 
 private
    

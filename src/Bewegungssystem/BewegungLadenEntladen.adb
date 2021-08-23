@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with UmgebungErreichbarTesten, EinheitenAllgemein, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+with UmgebungErreichbarTesten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseEinheitenDatenbank;
 
 package body BewegungLadenEntladen is
 
@@ -14,7 +14,8 @@ package body BewegungLadenEntladen is
       FreierPlatzNummer := GlobaleKonstanten.LeerTransportiertWirdTransportiert;
                                           
       TransporterSchleife:
-      for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => TransporterExtern) loop
+      for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
         
          case
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
@@ -69,7 +70,8 @@ package body BewegungLadenEntladen is
    is begin
       
       TransporterLeerenSchleife:
-      for TransporterLeerenSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => TransporterExtern) loop
+      for TransporterLeerenSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                                                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
 
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
@@ -98,7 +100,9 @@ package body BewegungLadenEntladen is
    is begin
       
       TransporterUmladenSchleife:
-      for TransporterUmladenSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => EinheitRasseNummerExtern) loop
+      for TransporterUmladenSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                  IDExtern    =>
+                                                                                                                                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
                
          case
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -125,7 +129,9 @@ package body BewegungLadenEntladen is
    is begin
             
       BelegterPlatzSchleife:
-      for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. EinheitenAllgemein.MaximaleTransporterKapazität (TransporterExtern => EinheitRasseNummerExtern) loop
+      for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                             IDExtern    =>
+                                                                                                                               LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
          
          case
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,

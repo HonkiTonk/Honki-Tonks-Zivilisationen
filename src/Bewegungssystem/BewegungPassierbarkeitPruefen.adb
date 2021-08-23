@@ -2,11 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitenDatenbank, VerbesserungenDatenbank;
-
 with KartenAllgemein;
 
-with StadtSuchen, UmgebungErreichbarTesten, LeseKarten, LeseEinheitenGebaut;
+with StadtSuchen, UmgebungErreichbarTesten, LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseVerbesserungenDatenbank;
 
 package body BewegungPassierbarkeitPruefen is
    
@@ -89,7 +87,9 @@ package body BewegungPassierbarkeitPruefen is
             null;
             
          elsif
-           EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Passierbarkeit (PassierbarkeitSchleifenwert) = False
+           LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => RasseExtern,
+                                                  IDExtern             => IDExtern,
+                                                  WelcheUmgebungExtern => PassierbarkeitSchleifenwert) = False
          then
             null;
             
@@ -108,7 +108,8 @@ package body BewegungPassierbarkeitPruefen is
                   null;
                   
                elsif
-                 VerbesserungenDatenbank.VerbesserungListe (LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern)).Passierbarkeit (PassierbarkeitSchleifenwert) = False
+                 LeseVerbesserungenDatenbank.Passierbarkeit (VerbesserungExtern   => LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern),
+                                                             WelcheUmgebungExtern => PassierbarkeitSchleifenwert) = False
                then
                   null;
                   
@@ -167,9 +168,9 @@ package body BewegungPassierbarkeitPruefen is
       BenötigteFelder := 1;
          
       BelegterPlatzSchleife:
-      for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First
-        .. EinheitenDatenbank.EinheitenListe (TransporterExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)).Transportkapazität loop
-                        
+      for BelegterPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                                                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
+         
          case
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                               PlatzExtern              => BelegterPlatzSchleifenwert)

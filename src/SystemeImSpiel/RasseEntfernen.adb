@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartenfelderBewerten, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+with KartenfelderBewerten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseStadtGebaut, SchreibeStadtGebaut;
 
 package body RasseEntfernen is
 
@@ -20,7 +20,7 @@ package body RasseEntfernen is
       StadtSchleife:
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
-         GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert) := GlobaleKonstanten.LeerStadt;
+         SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert));
          
       end loop StadtSchleife;
             
@@ -64,7 +64,7 @@ package body RasseEntfernen is
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
          case
-           GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).ID
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
          is
             when GlobaleKonstanten.LeerStadtID =>
                null;

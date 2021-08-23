@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIDatentypen, KIKonstanten;
 
-with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt, KIAufgabenFestlegenAllgemein, LeseKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt, KIAufgabenFestlegenAllgemein, LeseKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseStadtGebaut;
 
 package body KINahkampfBodenAufgabeFestlegen is
 
@@ -73,22 +73,23 @@ package body KINahkampfBodenAufgabeFestlegen is
       StadtSchleife:
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze loop
          
-         if
-           GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).ID /= GlobaleDatentypen.Leer
-         then
-            EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                             KoordinatenExtern => GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).Position);
-            
-         else
-            null;
-         end if;
+         case
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert))
+         is
+            when GlobaleDatentypen.Leer =>
+               null;
+               
+            when others =>
+               EinheitNummer := EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                                KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)));
+         end case;
          
          case
            EinheitNummer
          is
             when GlobaleKonstanten.LeerEinheitStadtNummer =>
                SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                          KoordinatenExtern        => GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert).Position);
+                                                          KoordinatenExtern        => LeseStadtGebaut.Position (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)));
                SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        AufgabeExtern            => KIDatentypen.Stadt_Bewachen);
                return;

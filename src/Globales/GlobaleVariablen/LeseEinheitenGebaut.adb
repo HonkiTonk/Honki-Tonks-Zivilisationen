@@ -198,5 +198,16 @@ package body LeseEinheitenGebaut is
       return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).Meldungen (WelcheMeldungExtern);
       
    end Meldungen;
+   
+   
+   
+   function GanzerEintrag
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleRecords.EinheitenGebautRecord
+   is begin
+      
+      return GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer);
+      
+   end GanzerEintrag;
 
 end LeseEinheitenGebaut;

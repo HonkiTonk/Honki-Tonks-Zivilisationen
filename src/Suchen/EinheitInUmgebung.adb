@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleVariablen, GlobaleKonstanten;
 
-with KartePositionPruefen, EinheitSuchen, DiplomatischerZustand, EinheitenMeldungenSetzen, StadtMeldungenSetzen, LeseKarten, LeseEinheitenGebaut;
+with KartePositionPruefen, EinheitSuchen, DiplomatischerZustand, EinheitenMeldungenSetzen, StadtMeldungenSetzen, LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
 
 package body EinheitInUmgebung is
 
@@ -23,14 +23,14 @@ package body EinheitInUmgebung is
                for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
                   
                   case
-                    GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtSchleifenwert).ID
+                    LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert))
                   is
                      when GlobaleKonstanten.LeerStadtID =>
                         null;
                         
                      when others =>
-                        EinheitInDerNähe := EinheitFinden (PositionExtern => GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtSchleifenwert).Position,
-                                                            UmgebungExtern => GlobaleVariablen.StadtGebaut (RasseSchleifenwert, StadtSchleifenwert).UmgebungGröße + 1,
+                        EinheitInDerNähe := EinheitFinden (PositionExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert)),
+                                                            UmgebungExtern => LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert)) + 1,
                                                             RasseExtern    => RasseSchleifenwert);
                         
                         if

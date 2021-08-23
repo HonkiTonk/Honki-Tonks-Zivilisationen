@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleKonstanten;
 
 with StadtEntfernen, KampfwerteStadtErmitteln, KampfwerteEinheitErmitteln, EinheitenAllgemein, KampfsystemEinheiten, ZufallGeneratorenKampf, StadtWerteFestlegen, StadtMeldungenSetzen, LeseEinheitenGebaut,
-     SchreibeEinheitenGebaut;
+     SchreibeEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
 
 package body KampfsystemStadt is
 
@@ -21,7 +21,8 @@ package body KampfsystemStadt is
                                                                                          AngreiferExtern          => True);
       
       -- Arbeiter nur halb anrechnen?
-      GesundheitStadt := GlobaleVariablen.StadtGebaut (VerteidigendeStadtRasseNummerExtern.Rasse, VerteidigendeStadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1);
+      GesundheitStadt := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
+                                                            EinwohnerArbeiterExtern => True);
       
       case
         Kampfverlauf (AngreifendeEinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern)
@@ -34,7 +35,8 @@ package body KampfsystemStadt is
       end case;
       
       if
-        GlobaleVariablen.StadtGebaut (VerteidigendeStadtRasseNummerExtern.Rasse, VerteidigendeStadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) - 1 <= GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (1)
+        LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
+                                           EinwohnerArbeiterExtern => True) - 1 <= GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (1)
       then
          StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
          return True;
@@ -45,10 +47,12 @@ package body KampfsystemStadt is
          StadtMeldungenSetzen.StadtMeldungSetzenEreignis (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern,
                                                           EreignisExtern         => GlobaleDatentypen.Einwohner_Reduktion);
          if
-           GlobaleVariablen.StadtGebaut (VerteidigendeStadtRasseNummerExtern.Rasse, VerteidigendeStadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
+           LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
+                                              EinwohnerArbeiterExtern => True)
            = GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
            or
-             GlobaleVariablen.StadtGebaut (VerteidigendeStadtRasseNummerExtern.Rasse, VerteidigendeStadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1)
+             LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
+                                                EinwohnerArbeiterExtern => True)
            = GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, VerteidigendeStadtRasseNummerExtern.Rasse) - 1
          then
             StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
@@ -82,7 +86,11 @@ package body KampfsystemStadt is
          if
            GesundheitStadt <= 0
          then
-            EinheitenAllgemein.Beförderung (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
+            SchreibeEinheitenGebaut.Erfahrungspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
+                                                      ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreifendeEinheitRasseNummerExtern.Rasse,
+                                                                                                                              IDExtern    =>
+                                                                                                                                LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern)),
+                                                      AddierenSetzenExtern     => True);
             return True;
             
          else
