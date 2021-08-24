@@ -6,7 +6,7 @@ package body KIAufgabenErmittelnAllgemein is
    
    function SichHeilen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       EinheitID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -46,7 +46,7 @@ package body KIAufgabenErmittelnAllgemein is
    
    
    function SichVerbessern
-     return Natural
+     return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       return 0;
@@ -56,7 +56,7 @@ package body KIAufgabenErmittelnAllgemein is
    
 
    function NichtsTun
-     return Natural
+     return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       return 1;

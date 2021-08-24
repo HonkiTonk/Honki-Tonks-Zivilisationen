@@ -117,7 +117,15 @@ package body LeseEinheitenDatenbank is
    return GlobaleDatentypen.BewegungFloat
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).MaximaleBewegungspunkte;
+      if
+        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).MaximaleBewegungspunkte < 1.00
+      then
+         return 1.00;
+         
+      else
+         return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).MaximaleBewegungspunkte;
+      end if;
+        
       
    end MaximaleBewegungspunkte;
    
@@ -177,7 +185,14 @@ package body LeseEinheitenDatenbank is
    return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Angriff;
+      if
+        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Angriff < 0
+      then
+         return 0;
+         
+      else
+         return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Angriff;
+      end if;
       
    end Angriff;
    
@@ -189,7 +204,14 @@ package body LeseEinheitenDatenbank is
    return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Verteidigung;
+      if
+        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Verteidigung < 0
+      then
+         return 0;
+         
+      else
+         return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Verteidigung;
+      end if;
       
    end Verteidigung;
    

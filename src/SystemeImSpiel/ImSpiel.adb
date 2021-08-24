@@ -105,6 +105,7 @@ package body ImSpiel is
                  SichtbarkeitsprüfungNotwendig
                then
                   Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseExtern);
+                  Karte.SichtweiteBewegungsfeldFestlegen;
                   
                else
                   null;
@@ -135,13 +136,13 @@ package body ImSpiel is
                else
                   null;
                end if;
-                 
-               -- Ist die KI, der Fall Leer kann ja gar nicht mehr auftreten.
-            when others =>
+               
+            when GlobaleDatentypen.Spieler_KI =>
                if
                  SichtbarkeitsprüfungNotwendig
                then
                   Sichtbarkeit.SichtbarkeitsprüfungFürRasse (RasseExtern => RasseExtern);
+                  Karte.SichtweiteBewegungsfeldFestlegen;
                         
                else
                   null;
@@ -149,6 +150,10 @@ package body ImSpiel is
                Ladezeiten.KIZeiten (RasseExtern, GlobaleDatentypen.Anfangswert) := Clock;
                KI.KI (RasseExtern => RasseExtern);
                Ladezeiten.KIZeiten (RasseExtern, GlobaleDatentypen.Endwert) := Clock;
+               
+            when GlobaleDatentypen.Leer =>
+               null;
+               -- Dieser Fall sollte hier niemals eintreten.
          end case;
 
       else

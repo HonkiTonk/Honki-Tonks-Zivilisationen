@@ -2,11 +2,16 @@ pragma SPARK_Mode (On);
 
 with GlobaleRecords, GlobaleDatentypen;
 
+with KIRecords;
+
 package KIKonstanten is
 
    -- Nullwert für Koordinaten
    NullKoordinate : constant GlobaleRecords.AchsenKartenfeldPositivRecord := (0, 0, 0);
    -- Nullwert für Koordinaten
+
+   LeerEinheitIDBewertung : constant KIRecords.EinheitIDBewertungRecord := (0, 0);
+   LeerGebäudeIDBewertung : constant KIRecords.GebäudeIDBewertungRecord := (0, 0);
 
    type KartenfeldBewertungStadtBauenMinimumArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleDatentypen.GesamtproduktionStadt;
    KartenfeldBewertungStadtBauenMinimum : constant KartenfeldBewertungStadtBauenMinimumArray := (

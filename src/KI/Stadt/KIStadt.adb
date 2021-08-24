@@ -1,9 +1,11 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with KIDatentypen;
 use KIDatentypen;
 
-with EinheitSuchen, KIStadtLaufendeBauprojekte, StadtSuchen, LeseStadtGebaut, LeseGebaeudeDatenbank;
+with EinheitSuchen, LeseStadtGebaut, KartePositionPruefen, DiplomatischerZustand, LeseEinheitenDatenbank, LeseEinheitenGebaut, KIEinheitenBauen, KIGebaeudeBauen, SchreibeStadtGebaut;
 
 package body KIStadt is
 
@@ -11,119 +13,132 @@ package body KIStadt is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      if
-        LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern) /= KIDatentypen.Keine_Aufgabe
-      then
-         case
-           GefahrStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)
-         is
-            when False =>
-               return;
-               
-            when True =>
-               null;
-         end case;
-         
-      else
-         StädteMitGleichemBauprojekt := 0;
-         AnzahlStädte := StadtSuchen.AnzahlStädteErmitteln (RasseExtern => StadtRasseNummerExtern.Rasse);
-      end if;
+      case
+        LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern)
+      is
+         when KIDatentypen.Keine_Aufgabe =>
+            null;
+            
+         when others =>
+            GefahrStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            return;
+      end case;
       
-      SiedlerVorhanden := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern         => StadtRasseNummerExtern.Rasse,
-                                                                       EinheitTypExtern    => GlobaleDatentypen.Arbeiter,
-                                                                       GesuchteMengeExtern => 2);
-      
-      if
-        SiedlerVorhanden >= 2
-      then
-         null;
+      NotAus := GlobaleDatentypen.Sichtweite'First;
+
+      BaumöglichkeitenSchleife:
+      loop
          
-      elsif
-        SiedlerVorhanden + KIStadtLaufendeBauprojekte.StadtLaufendeBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                BauprojektExtern       => 10_001)
-        >= 2
-      then
-         null;
-         
-      else         
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := KIDatentypen.Einheit_Bauen;
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := 10_001;
-         return;
-      end if;      
-      
-      VerteidigerVorhanden := EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern         => StadtRasseNummerExtern.Rasse,
-                                                                           EinheitTypExtern    => GlobaleDatentypen.Nahkämpfer,
-                                                                           GesuchteMengeExtern => AnzahlStädte);
-      
-      if
-        VerteidigerVorhanden >= AnzahlStädte * 10
-      then
-         null;
-         
-      elsif
-        VerteidigerVorhanden + KIStadtLaufendeBauprojekte.StadtLaufendeBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                    BauprojektExtern       => 10_002)
-        >= AnzahlStädte * 10
-      then
-         null;
-         
-      else
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := KIDatentypen.Einheit_Bauen;
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := 10_002;
-         return;
-      end if;
-      
-      GebäudeSchleife:
-      for GebäudeSchleifenwert in GlobaleRecords.GebäudeVorhandenArray'Range loop
+         EinheitBauen := KIEinheitenBauen.EinheitenBauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         GebäudeBauen := KIGebaeudeBauen.GebäudeBauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
          
          if
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = False
+           EinheitBauen.ID = GlobaleKonstanten.LeerEinheitenID
            and
-             (LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                   IDExtern    => GebäudeSchleifenwert) = 0
-              or else
-              GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                                        IDExtern    => GebäudeSchleifenwert)) = True)
+             GebäudeBauen.ID = GlobaleDatentypen.GebäudeIDMitNullwert'First
          then
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := KIDatentypen.Gebäude_Bauen;
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := 1_000 + Positive (GebäudeSchleifenwert);
-            return;
-            
-         else
             null;
+
+         else
+            exit BaumöglichkeitenSchleife;
          end if;
          
-      end loop GebäudeSchleife;
+         case
+           NotAus
+         is
+            when GlobaleDatentypen.Sichtweite'Last =>
+               return;
+               
+            when others =>
+               NotAus := NotAus + 1;
+         end case;
+         
+      end loop BaumöglichkeitenSchleife;
       
       if
-        VerteidigerVorhanden <= 10
+        EinheitBauen.Bewertung >= GebäudeBauen.Bewertung
       then
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).KIBeschäftigung := KIDatentypen.Einheit_Bauen;
-         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := 10_002;
-         
+         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                               BeschäftigungExtern   => KIDatentypen.Einheit_Bauen);
+         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         BauprojektExtern       => Positive (EinheitBauen.ID) + GlobaleKonstanten.EinheitAufschlag);
+
       else
-         null;
+         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                               BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen);
+         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         BauprojektExtern       => Positive (GebäudeBauen.ID) + GlobaleKonstanten.GebäudeAufschlag);
       end if;
       
    end KIStadt;
    
    
    
-   function GefahrStadt
+   procedure GefahrStadt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
    is begin
       
-      if
-        StadtRasseNummerExtern.Platznummer = 0
-      then
-         null;
-         
-      else
-         null;
-      end if;
+      FeindNahe := False;
       
-      return False;
+      YAchseSchleife:
+      for YAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
+            
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                        ÄnderungExtern   => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+            
+            case
+              KartenWert.XAchse
+            is
+               when GlobaleKonstanten.LeerYXKartenWert =>
+                  null;
+                  
+               when others =>
+                  FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => StadtRasseNummerExtern.Rasse,
+                                                                                             KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern));
+                  if
+                    FremdeEinheit.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+                  then
+                     null;
+                     
+                  elsif
+                    DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                       FremdeRasseExtern => FremdeEinheit.Rasse) /= GlobaleDatentypen.Krieg
+                  then
+                     null;
+                     
+                  else
+                     FeindNahe := True;
+                     exit YAchseSchleife;
+                  end if;
+            end case;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+      case
+        FeindNahe
+      is
+         when True =>
+            null;
+            
+         when False =>
+            return;
+      end case;
+      
+      case
+        LeseEinheitenDatenbank.EinheitArt (RasseExtern => FremdeEinheit.Rasse,
+                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FremdeEinheit))
+      is
+         when GlobaleDatentypen.Arbeiter =>
+            return;
+            
+         when others =>
+            null;
+      end case;
+      
+      return;
         
    end GefahrStadt;
 

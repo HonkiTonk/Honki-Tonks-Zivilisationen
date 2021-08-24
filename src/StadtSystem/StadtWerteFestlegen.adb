@@ -461,8 +461,8 @@ package body StadtWerteFestlegen is
             null;
             
          elsif
-           GebaeudeRichtigeUmgebung.BenötigteUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                 GebäudeIDExtern       => GebäudeSchleifenwert) = True
+           GebaeudeRichtigeUmgebung.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                               GebäudeIDExtern       => GebäudeSchleifenwert) = True
          then
             null;
             

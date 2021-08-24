@@ -120,7 +120,6 @@ package body BewegungssystemCursor is
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      -- Kann nicht nach KartePositionPruefen.KartenPositionBestimmen verschoben werden, da darüber auch Einheiten geprüft werden
       if
         ÄnderungExtern.EAchse = 1
         and

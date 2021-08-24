@@ -1,5 +1,9 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
+with Karten;
+
 package body LeseStadtGebaut is
 
    function ID
@@ -18,6 +22,17 @@ package body LeseStadtGebaut is
       return GlobaleRecords.AchsenKartenfeldPositivRecord
    is begin
       
+      if
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+        or
+          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position.XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+      then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position := GlobaleKonstanten.LeerKartenPosition;
+
+      else
+         null;
+      end if;
+            
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Position;
       
    end Position;
@@ -34,15 +49,33 @@ package body LeseStadtGebaut is
         EinwohnerArbeiterExtern
       is
          when True =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) < GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (1)
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1) := GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (1);
+               
+            else
+               null;
+            end if;
+                        
             return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (1);
             
          when False =>
+            if
+              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) < GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (2)
+            then
+               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2) := GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (2);
+               
+            else
+               null;
+            end if;
+            
             return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).EinwohnerArbeiter (2);
       end case;
       
    end EinwohnerArbeiter;
    
-      
+   
       
    function Nahrungsmittel
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -116,6 +149,15 @@ package body LeseStadtGebaut is
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
+      if
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate < GlobaleKonstanten.LeerStadt.Forschungsrate
+      then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate := GlobaleKonstanten.LeerStadt.Forschungsrate;
+         
+      else
+         null;
+      end if;
+            
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Forschungsrate;
       
    end Forschungsrate;
@@ -126,6 +168,17 @@ package body LeseStadtGebaut is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Natural
    is begin
+      
+      case
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt
+      is
+         when GlobaleKonstanten.BauprojekteGebäudeAnfang .. GlobaleKonstanten.BauprojekteGebäudeEnde | GlobaleKonstanten.BauprojekteEinheitenAnfang .. GlobaleKonstanten.BauprojekteEinheitenEnde
+            | GlobaleKonstanten.LeerBauprojekt =>
+            null;
+            
+         when others =>
+            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := GlobaleKonstanten.LeerBauprojekt;
+      end case;
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt;
       
@@ -194,6 +247,15 @@ package body LeseStadtGebaut is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return GlobaleDatentypen.LoopRangeMinusDreiZuDrei
    is begin
+      
+      if
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße < GlobaleKonstanten.LeerStadt.UmgebungGröße
+      then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße := GlobaleKonstanten.LeerStadt.UmgebungGröße;
+         
+      else
+         null;
+      end if;
       
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungGröße;
       

@@ -13,19 +13,6 @@ package body KarteInformationen is
    procedure KarteInformation
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
-
-      Verteidigungsbonus := GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                              RasseExtern       => RasseExtern);
-      Nahrungsgewinnung := GesamtwerteFeld.FeldNahrung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                        RasseExtern       => RasseExtern);
-      Ressourcengewinnung := GesamtwerteFeld.FeldProduktion (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                             RasseExtern       => RasseExtern);
-      Geldgewinnung := GesamtwerteFeld.FeldGeld (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                 RasseExtern       => RasseExtern);
-      Wissensgewinnung := GesamtwerteFeld.FeldWissen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                      RasseExtern       => RasseExtern);      
-      Angriffsbonus := GesamtwerteFeld.FeldAngriff (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                    RasseExtern       => RasseExtern);
       
       -- Allgemeine Informationen über die eigene Rasse, immer sichtbar
       InformationenRundenanzahl;
@@ -48,7 +35,7 @@ package body KarteInformationen is
             then
                null;
                 
-               -- Allgemeine Einheiteninformationen, nur sichtbar wenn das Kartenfeld aufgedackt ist und sich dort eine Einheit befindet
+               -- Allgemeine Einheiteninformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Einheit befindet
             else
                InformationenEinheiten (RasseExtern              => RasseExtern,
                                        EinheitRasseNummerExtern => EinheitRasseNummer);
@@ -606,8 +593,8 @@ package body KarteInformationen is
       else
          null;
       end if;
-            
       New_Line;
+      
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                      TextDateiExtern        => GlobaleTexte.Zeug,
                                      ÜberschriftZeileExtern => 0,
@@ -616,7 +603,8 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (Verteidigungsbonus),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                                                   RasseExtern       => RasseExtern)),
                                Width => 1);
       
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -627,7 +615,8 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (Angriffsbonus),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldAngriff (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                                              RasseExtern       => RasseExtern)),
                                Width => 1);
             
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -638,7 +627,8 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (Nahrungsgewinnung),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldNahrung (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                                              RasseExtern       => RasseExtern)),
                                Width => 1);
       New_Line;
             
@@ -650,7 +640,8 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (Ressourcengewinnung),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldProduktion (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                                                 RasseExtern       => RasseExtern)),
                                Width => 1);
             
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -661,7 +652,8 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (Geldgewinnung),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldGeld (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                                           RasseExtern       => RasseExtern)),
                                Width => 1);
             
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -672,7 +664,8 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (Wissensgewinnung),
+      Ada.Integer_Text_IO.Put (Item  => Integer (GesamtwerteFeld.FeldWissen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                                             RasseExtern       => RasseExtern)),
                                Width => 1);
       New_Line;
       

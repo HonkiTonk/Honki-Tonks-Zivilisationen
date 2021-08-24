@@ -97,7 +97,7 @@ package body BefehleImSpiel is
             null;
       end case;
 
-      return 1;
+      return GlobaleKonstanten.StartNormalKonstante;
       
    end Befehle;
    
@@ -209,6 +209,14 @@ package body BefehleImSpiel is
       then
          SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
                                                  BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+         SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
+                                                      ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
+                                                      RechnenSetzenExtern      => 0);
+         SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
+                                                           BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+         SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
+                                                                ZeitExtern               => GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
+                                                                RechnenSetzenExtern      => 0);
                   
       elsif
         LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern)) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte

@@ -19,12 +19,12 @@ private
 
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
 
-   type WichtigkeitArray is array (0 .. 9) of Natural;
+   type WichtigkeitArray is array (0 .. 9) of GlobaleDatentypen.GesamtproduktionStadt;
    Wichtigkeit : WichtigkeitArray;
 
    function StadtBewachen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -33,7 +33,7 @@ private
 
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -41,18 +41,18 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
    function Fliehen
-     return Natural;
+     return GlobaleDatentypen.GesamtproduktionStadt;
 
    function SichBefestigen
-     return Natural;
+     return GlobaleDatentypen.GesamtproduktionStadt;
 
    function StadtUmgebungZerstören
-     return Natural;
+     return GlobaleDatentypen.GesamtproduktionStadt;
 
    function Angreifen
-     return Natural;
+     return GlobaleDatentypen.GesamtproduktionStadt;
 
    function Erkunden
-     return Natural;
+     return GlobaleDatentypen.GesamtproduktionStadt;
 
 end KINahkampfBodenAufgabeErmitteln;

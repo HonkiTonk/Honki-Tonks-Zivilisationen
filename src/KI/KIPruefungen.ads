@@ -3,8 +3,6 @@ pragma SPARK_Mode (On);
 with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen, GlobaleRecords;
 
-with KIRecords;
-
 with Karten;
 
 package KIPruefungen is

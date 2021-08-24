@@ -2,8 +2,6 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with EinheitenDatenbank;
-
 with Sichtbarkeit, KennenLernen, BewegungLadenEntladen, StadtSuchen, BewegungPassierbarkeitPruefen, LeseKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseEinheitenDatenbank;
 
 package body BewegungBerechnen is
@@ -133,14 +131,17 @@ package body BewegungBerechnen is
    is begin
 
       if
-        EinheitenDatenbank.EinheitenListe
-          (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Passierbarkeit (GlobaleDatentypen.Boden) = True
+        LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                                               IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                               WelcheUmgebungExtern => GlobaleDatentypen.Boden) = True
         and
-          EinheitenDatenbank.EinheitenListe
-            (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Passierbarkeit (GlobaleDatentypen.Luft) = False
+          LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                                                 IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                 WelcheUmgebungExtern => GlobaleDatentypen.Luft) = False
         and
-          EinheitenDatenbank.EinheitenListe
-            (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)).Passierbarkeit (GlobaleDatentypen.Weltraum) = False
+          LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                                                 IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                 WelcheUmgebungExtern => GlobaleDatentypen.Weltraum) = False
       then
          case
            LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern)

@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
 use GlobaleDatentypen;
 
+with KIRecords;
+
 package KIStadt is
 
    procedure KIStadt
@@ -16,16 +18,20 @@ package KIStadt is
 private
 
    ProduktionÄndernNotwendig : Boolean;
+   FeindNahe : Boolean;
 
-   AnzahlStädte : GlobaleDatentypen.MaximaleStädteMitNullWert;
-   SiedlerVorhanden : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-   VerteidigerVorhanden : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+   NotAus : GlobaleDatentypen.Sichtweite;
 
-   StädteMitGleichemBauprojekt : Natural;
 
-   function GefahrStadt
+   EinheitBauen : KIRecords.EinheitIDBewertungRecord;
+   GebäudeBauen : KIRecords.GebäudeIDBewertungRecord;
+
+   FremdeEinheit : GlobaleRecords.RassePlatznummerRecord;
+
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+
+   procedure GefahrStadt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range

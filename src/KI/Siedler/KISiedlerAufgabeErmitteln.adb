@@ -60,7 +60,7 @@ package body KISiedlerAufgabeErmitteln is
 
    function NeueStadtBauenGehen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       VorhandeneStädte := StadtSuchen.AnzahlStädteErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
@@ -99,7 +99,7 @@ package body KISiedlerAufgabeErmitteln is
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       case
@@ -117,7 +117,7 @@ package body KISiedlerAufgabeErmitteln is
                                     
                                     
    function EinheitAuflösen
-     return Natural
+     return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       return 0;
@@ -127,7 +127,7 @@ package body KISiedlerAufgabeErmitteln is
                                     
                                     
    function Fliehen
-     return Natural
+     return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       return 0;
@@ -137,7 +137,7 @@ package body KISiedlerAufgabeErmitteln is
    
    
    function SichBefestigen
-     return Natural
+     return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       return 0;

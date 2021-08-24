@@ -224,7 +224,8 @@ package GlobaleDatentypen is
 
 
    -- Für Gebäude
-   subtype GebäudeID is KartenverbesserungEinheitenID range 1 .. 27;
+   subtype GebäudeIDMitNullwert is KartenverbesserungEinheitenID range 0 .. 27;
+   subtype GebäudeID is GebäudeIDMitNullwert range 1 .. GebäudeIDMitNullwert'Last;
 
    type Gebäude_Spezielle_Eigenschaften_Enum is (Leer, Eigenschaft);
    subtype Gebäude_Spezielle_Eigenschaften_Verwendet_Enum is Gebäude_Spezielle_Eigenschaften_Enum range Eigenschaft .. Gebäude_Spezielle_Eigenschaften_Enum'Last;

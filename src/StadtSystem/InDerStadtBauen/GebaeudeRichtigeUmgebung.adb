@@ -6,7 +6,7 @@ with KartePositionPruefen, LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
 
 package body GebaeudeRichtigeUmgebung is
 
-   function BenötigteUmgebungVorhanden
+   function RichtigeUmgebungVorhanden
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       GebäudeIDExtern : in GlobaleDatentypen.GebäudeID)
       return Boolean
@@ -65,6 +65,6 @@ package body GebaeudeRichtigeUmgebung is
       
       return False;
       
-   end BenötigteUmgebungVorhanden;
+   end RichtigeUmgebungVorhanden;
 
 end GebaeudeRichtigeUmgebung;

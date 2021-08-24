@@ -109,7 +109,7 @@ package DatenbankRecords is
       VerbesserungWerte : GewinnBewertungArray;
       
    end record;
-   -- verbesserungenDatenbank
+   -- VerbesserungenDatenbank
    
    
    

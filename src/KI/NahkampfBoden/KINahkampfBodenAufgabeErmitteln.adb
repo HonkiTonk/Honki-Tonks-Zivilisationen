@@ -61,7 +61,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    function StadtBewachen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       EinheitNummer := 1;
@@ -104,7 +104,7 @@ package body KINahkampfBodenAufgabeErmitteln is
                                     
    function EinheitAuflösen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       if
@@ -123,7 +123,7 @@ package body KINahkampfBodenAufgabeErmitteln is
                                     
                                     
    function Fliehen
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       return 0;
@@ -133,7 +133,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    
    function SichBefestigen
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       return 0;
@@ -143,7 +143,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    
    function StadtUmgebungZerstören
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       return 0;
@@ -153,7 +153,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    
    function Angreifen
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       return 0;
@@ -163,7 +163,7 @@ package body KINahkampfBodenAufgabeErmitteln is
    
    
    function Erkunden
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
       return 2;

@@ -35,5 +35,8 @@ private
    
    VerteidigungWert : GlobaleDatentypen.ProduktionFeld;
    AngriffWert : GlobaleDatentypen.ProduktionFeld;
+   
+   VerteidigungWertFloat : Float;
+   AngriffWertFloat : Float;
 
 end KampfwerteEinheitErmitteln;

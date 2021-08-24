@@ -5,8 +5,6 @@ use GlobaleDatentypen;
 
 with KIDatentypen;
 
-with Karten;
-
 package LeseEinheitenGebaut is
 
    function ID
@@ -25,11 +23,7 @@ package LeseEinheitenGebaut is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer),
-         Post =>
-           (Position'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-            and
-              Position'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    function Heimatstadt
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -119,11 +113,7 @@ package LeseEinheitenGebaut is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer),
-         Post =>
-           (KIZielKoordinaten'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-            and
-              KIZielKoordinaten'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    function KIBeschäftigt
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -142,11 +132,7 @@ package LeseEinheitenGebaut is
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer),
-         Post =>
-           (KIBewegungPlan'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-            and
-              KIBewegungPlan'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
       
    function Transportiert
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;

@@ -7,7 +7,7 @@ package KIAufgabenErmittelnAllgemein is
    
    function SichHeilen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -15,10 +15,10 @@ package KIAufgabenErmittelnAllgemein is
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function SichVerbessern
-     return Natural;
+     return GlobaleDatentypen.GesamtproduktionStadt;
    
    function NichtsTun
-     return Natural;
+     return GlobaleDatentypen.GesamtproduktionStadt;
    
 private
    

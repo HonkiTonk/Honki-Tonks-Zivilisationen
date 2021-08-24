@@ -46,11 +46,7 @@ package LeseKarten is
        Pre =>
          (PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            PositionExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-         Post =>
-           (Fluss'Result in GlobaleDatentypen.Karten_Fluss_Enum'Range
-            or
-              Fluss'Result = GlobaleDatentypen.Leer);
+            PositionExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function VerbesserungWeg
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
@@ -59,11 +55,7 @@ package LeseKarten is
        Pre =>
          (PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            PositionExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-         Post =>
-           (VerbesserungWeg'Result in GlobaleDatentypen.Karten_Weg_Enum'Range
-            or
-              VerbesserungWeg'Result = GlobaleDatentypen.Leer);
+            PositionExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function VerbesserungGebiet
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
@@ -72,11 +64,7 @@ package LeseKarten is
        Pre =>
          (PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            PositionExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-         Post =>
-           (VerbesserungGebiet'Result = GlobaleDatentypen.Leer
-            or
-              VerbesserungGebiet'Result in Karten_Verbesserung_Gebilde_Enum'Range);
+            PositionExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function Ressource
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
@@ -85,11 +73,7 @@ package LeseKarten is
        Pre =>
          (PositionExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            PositionExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße),
-         Post =>
-           (Ressource'Result = GlobaleDatentypen.Leer
-            or
-              Ressource'Result in GlobaleDatentypen.Karten_Grund_Ressourcen_Enum'Range);
+            PositionExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    function Bewertung
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;

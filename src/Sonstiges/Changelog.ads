@@ -49,17 +49,27 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (25.08.2021):
+   -- Version 0.00.8470 => 0.00.8 (25.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8450 => 0.00.84 (24.08.2021):
+   -- Version 0.00.8450 => 0.00.8470 (24.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Leichte Codeanpassungen um unnötige Mehrfachaufrufe/Berechnungen zu vermeiden.
+   -- Diverse Fehler korrigiert die aufgrund der neuen Lese/Schreibefunktionen entstanden sind.
+   -- Suchenfunktionen für Einheiten und Städte optimiert.
+   -- Optimierungen in der Darstellungsgeschwindigkeit bei maximaler Kartengröße vorgenommen.
+   -- Rundungsungenauigkeiten beim Ermitteln der Kampfwerte von Einheiten entfernt.
+   -- Weitere Prüfungen eingebaut um Over/Underflow zu verhindern.
+   -- Angefangen die Stadtverwaltungs- und Verteidigungsfähigkeiten der KI zu erweitern.
+   -- Gebäude/EinheitenID und das Speichern als Bauprojekt überdacht.
+   -- Diverse Prüfungen eingebaut um bei falsch gesetzten/berechneten Werte sichere Standardwerte zurückzugeben.
+   -- Die KI berücksichtigt beim Bauen von Gebäuden jetzt auch die benötigten Umgebungsvoraussetzungen.
+   -- Angefangen eine Bewertung von Einheiten und Gebäuden einzubauen, anhand derer die KI Bauprojekte in ihren Städten auswählt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt/hinzugefügt/überarbeitet.
    
    
    

@@ -1,9 +1,11 @@
 pragma SPARK_Mode (On);
 
 with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
-use GlobaleDatentypen, GlobaleRecords;
+use GlobaleDatentypen;
 
 package Karte is
+
+   procedure SichtweiteBewegungsfeldFestlegen;
 
    procedure AnzeigeKarte
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
@@ -13,28 +15,21 @@ package Karte is
 
 private
 
-   StehtDrauf : Boolean;
-
-   -- MöglicheAngriffsfelder : constant Wide_Wide_Character := '■'; -- Später für Fernkampfeinheiten wieder einbauen?
-
    SichtweiteFestlegen : Positive;
    BewegungsfeldFestlegen : Positive;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
-
    type SichtweitenArray is array (1 .. 3) of GlobaleRecords.AchsenKartenfeldPositivRecord;
 
-   -- Hier noch was für die Sichtweite einfügen, vor allem in den Himmel. Eventuell auch von der Technologie abhängig machen.
    Sichtweiten : constant SichtweitenArray := (1 => (0, 6, 8),
-                                               2 => (0, 6, 20),
-                                               3 => (0, 6, 35));
+                                               2 => (0, 6, 16),
+                                               3 => (0, 6, 24));
 
    -- Muss immer eins kleiner sein als Sichtweiten
-   -- Hier noch was für die Bewegung einfügen und von der Technologie abhängig machen.
-   Bewegungsfeld : constant SichtweitenArray := (1 => (0, 5, 7),
-                                                 2 => (0, 5, 19),
-                                                 3 => (0, 5, 34));
+   Bewegungsfeld : constant SichtweitenArray := (1 => (0, Sichtweiten (1).YAchse - 1, Sichtweiten (1).XAchse - 1),
+                                                 2 => (0, Sichtweiten (1).YAchse - 1, Sichtweiten (1).XAchse - 1),
+                                                 3 => (0, Sichtweiten (1).YAchse - 1, Sichtweiten (1).XAchse - 1));
 
    procedure CursorPositionAltFestlegen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;

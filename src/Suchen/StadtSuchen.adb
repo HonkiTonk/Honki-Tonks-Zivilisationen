@@ -15,14 +15,22 @@ package body StadtSuchen is
       StadtSchleife:
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
          
-         if
-           LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) = KoordinatenExtern
-         then
-            return StadtNummerSchleifenwert;
+         case
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert))
+         is
+            when GlobaleKonstanten.LeerStadtID =>
+               null;
+               
+            when others =>
+               if
+                 LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) = KoordinatenExtern
+               then
+                  return StadtNummerSchleifenwert;
             
-         else
-            null;
-         end if;
+               else
+                  null;
+               end if;
+         end case;
          
       end loop StadtSchleife;
       
@@ -50,14 +58,22 @@ package body StadtSuchen is
                StadtSchleife:
                for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
             
-                  if
-                    LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = KoordinatenExtern
-                  then
-                     return (RasseSchleifenwert, StadtNummerSchleifenwert);
+                  case
+                    LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert))
+                  is
+                     when GlobaleKonstanten.LeerStadtID =>
+                        null;
+                        
+                     when others =>
+                        if
+                          LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = KoordinatenExtern
+                        then
+                           return (RasseSchleifenwert, StadtNummerSchleifenwert);
                
-                  else
-                     null;
-                  end if;
+                        else
+                           null;
+                        end if;
+                  end case;
             
                end loop StadtSchleife;
          end case;
@@ -90,14 +106,22 @@ package body StadtSuchen is
             StadtSchleife:
             for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
 
-               if
-                 LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = KoordinatenExtern
-               then
-                  return (RasseSchleifenwert, StadtNummerSchleifenwert);
+               case
+                 LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert))
+               is
+                  when GlobaleKonstanten.LeerStadtID =>
+                     null;
+                     
+                  when others =>
+                     if
+                       LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = KoordinatenExtern
+                     then
+                        return (RasseSchleifenwert, StadtNummerSchleifenwert);
                
-               else
-                  null;
-               end if;
+                     else
+                        null;
+                     end if;
+               end case;
             
             end loop StadtSchleife;
          end if;
@@ -123,11 +147,11 @@ package body StadtSuchen is
          case
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert))
          is
-         when GlobaleDatentypen.Leer =>
-            null;
+            when GlobaleDatentypen.Leer =>
+               null;
             
-         when others =>
-            AnzahlStädte := AnzahlStädte + 1;
+            when others =>
+               AnzahlStädte := AnzahlStädte + 1;
          end case;
          
       end loop StädteSchleife;
@@ -156,17 +180,23 @@ package body StadtSuchen is
             when others =>
                StadtSchleife:
                for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
-                           
-                  if
-                    LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = StadtName
-                    and
-                      LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) /= GlobaleDatentypen.Leer
-                  then
-                     return (RasseSchleifenwert, StadtNummerSchleifenwert);
+                  
+                  case
+                    LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert))
+                  is
+                     when GlobaleKonstanten.LeerStadtID =>
+                        null;
+                        
+                     when others =>
+                        if
+                          LeseStadtGebaut.Name (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert)) = StadtName
+                        then
+                           return (RasseSchleifenwert, StadtNummerSchleifenwert);
                
-                  else
-                     null;
-                  end if;
+                        else
+                           null;
+                        end if;
+                  end case;
             
                end loop StadtSchleife;
          end case;

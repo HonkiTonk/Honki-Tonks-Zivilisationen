@@ -209,8 +209,8 @@ package body EinheitenAllgemein is
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                            TextDateiExtern        => GlobaleTexte.Beschreibungen_Beschäftigung_Kurz,
                                            ÜberschriftZeileExtern => 0,
-                                           ErsteZeileExtern       => 11,
-                                           LetzteZeileExtern      => 11,
+                                           ErsteZeileExtern       => 9,
+                                           LetzteZeileExtern      => 9,
                                            AbstandAnfangExtern    => GlobaleTexte.Leer,
                                            AbstandMitteExtern     => GlobaleTexte.Leer,
                                            AbstandEndeExtern      => GlobaleTexte.Leer);

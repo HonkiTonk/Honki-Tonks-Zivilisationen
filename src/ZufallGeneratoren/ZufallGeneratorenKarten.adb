@@ -13,7 +13,7 @@ package body ZufallGeneratorenKarten is
         RasseExtern
       is
          when GlobaleDatentypen.Talbidahr | GlobaleDatentypen.Tesorahn =>
-            -- Vorübergehend geändert, da alle Rassen gerade den menschlichen Einheitsbaum haben
+            -- Vorübergehend geändert, da alle Rassen gerade den menschlichen Einheitenbaum haben
             EAchse := 0; -- -1;
             
          when others =>

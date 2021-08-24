@@ -4,8 +4,6 @@ with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten, GlobaleTexte;
-
-with GebaeudeDatenbank;
      
 with Anzeige, Eingabe, Auswahl, KartePositionPruefen, BewegungPassierbarkeitPruefen, GebaeudeRichtigeUmgebung, SchreibeStadtGebaut, LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
 
@@ -150,8 +148,8 @@ package body InDerStadtBauen is
             null;
          end if;
          
-         PassendeUmgebungVorhanden := GebaeudeRichtigeUmgebung.BenötigteUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                            GebäudeIDExtern       => GebäudeSchleifenwert);
+         PassendeUmgebungVorhanden := GebaeudeRichtigeUmgebung.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                                          GebäudeIDExtern       => GebäudeSchleifenwert);
          
          if
            LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -160,12 +158,14 @@ package body InDerStadtBauen is
             null;
 
          elsif
-           GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen /= 0
+           LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                IDExtern    => GebäudeSchleifenwert) /= 0
            and
              PassendeUmgebungVorhanden
          then
             if
-              GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GebäudeSchleifenwert).Anforderungen) = False
+              GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                                        IDExtern    => GebäudeSchleifenwert)) = False
             then 
                null;
 
@@ -477,22 +477,25 @@ package body InDerStadtBauen is
                                     ErsteZeileExtern       => 48,
                                     AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Positive (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
-                               - GlobaleKonstanten.GebäudeAufschlag)).PreisRessourcen),
+      Ada.Integer_Text_IO.Put (Item  => Positive (LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                         IDExtern    => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
+                                                                                           - GlobaleKonstanten.GebäudeAufschlag))),
                                Width => 1);
-            
+      
       Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                     TextDateiExtern        => GlobaleTexte.Zeug,
                                     ÜberschriftZeileExtern => 0,
                                     ErsteZeileExtern       => 49,
                                     AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Natural (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
-                               - GlobaleKonstanten.GebäudeAufschlag)).NahrungBonus),
+      Ada.Integer_Text_IO.Put (Item  => Natural (LeseGebaeudeDatenbank.NahrungBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                     IDExtern    => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
+                                                                                       - GlobaleKonstanten.GebäudeAufschlag))),
                                Width => 1);
       Put (Item => "    ");
-      Ada.Integer_Text_IO.Put (Item  => Natural (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
-                               - GlobaleKonstanten.GebäudeAufschlag)).ProduktionBonus),
+      Ada.Integer_Text_IO.Put (Item  => Natural (LeseGebaeudeDatenbank.ProduktionBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                        IDExtern    => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
+                                                                                          - GlobaleKonstanten.GebäudeAufschlag))),
                                Width => 1);
 
       New_Line;
@@ -501,8 +504,10 @@ package body InDerStadtBauen is
       for PermanenteKostenSchleifenwert in GlobaleDatentypen.PermanenteKostenArray'Range loop
          
          if
-           GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
-                                            - GlobaleKonstanten.GebäudeAufschlag)).PermanenteKosten (PermanenteKostenSchleifenwert) > 0
+           LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                   IDExtern           => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
+                                                     - GlobaleKonstanten.GebäudeAufschlag),
+                                                   WelcheKostenExtern => PermanenteKostenSchleifenwert) > 0
          then
             Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                           TextDateiExtern        => GlobaleTexte.Zeug,
@@ -511,8 +516,10 @@ package body InDerStadtBauen is
                                           ErsteZeileExtern       => 53 + GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Pos (PermanenteKostenSchleifenwert),
                                           AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                           AbstandEndeExtern      => GlobaleTexte.Leer);
-            Ada.Integer_Text_IO.Put (Item  => Positive (GebaeudeDatenbank.GebäudeListe (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
-                                     - GlobaleKonstanten.GebäudeAufschlag)).PermanenteKosten (PermanenteKostenSchleifenwert)),
+            Ada.Integer_Text_IO.Put (Item  => Positive (LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                                IDExtern           => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
+                                                                                                  - GlobaleKonstanten.GebäudeAufschlag),
+                                                                                                WelcheKostenExtern => PermanenteKostenSchleifenwert)),
                                      Width => 1);
             New_Line;
          

@@ -5,7 +5,7 @@ use GlobaleDatentypen;
 
 package GebaeudeRichtigeUmgebung is
 
-   function BenötigteUmgebungVorhanden
+   function RichtigeUmgebungVorhanden
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       GebäudeIDExtern : in GlobaleDatentypen.GebäudeID)
       return Boolean

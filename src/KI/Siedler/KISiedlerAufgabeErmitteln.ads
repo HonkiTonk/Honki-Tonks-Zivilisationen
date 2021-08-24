@@ -19,12 +19,12 @@ private
    VorhandeneStädte : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
    
-   type WichtigkeitArray is array (0 .. 7) of Natural;
+   type WichtigkeitArray is array (0 .. 7) of GlobaleDatentypen.GesamtproduktionStadt;
    Wichtigkeit : WichtigkeitArray;
 
    function StadtUmgebungVerbessern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -32,14 +32,14 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function EinheitAuflösen
-      return Natural;
+      return GlobaleDatentypen.GesamtproduktionStadt;
    
    function Fliehen
-      return Natural;
+      return GlobaleDatentypen.GesamtproduktionStadt;
 
    function NeueStadtBauenGehen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Natural
+      return GlobaleDatentypen.GesamtproduktionStadt
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -47,6 +47,6 @@ private
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
    function SichBefestigen
-      return Natural;
+      return GlobaleDatentypen.GesamtproduktionStadt;
 
 end KISiedlerAufgabeErmitteln;

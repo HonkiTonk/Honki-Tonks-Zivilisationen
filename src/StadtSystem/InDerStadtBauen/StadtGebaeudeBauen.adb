@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleTexte;
+with GlobaleTexte, GlobaleKonstanten;
 
 with KIDatentypen;
 

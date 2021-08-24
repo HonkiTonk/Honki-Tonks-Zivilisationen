@@ -8,9 +8,8 @@ with GlobaleKonstanten;
 with Karten, KartePositionPruefen, KarteInformationen, GrafischeAnzeige;
 
 package body Karte is
-
-   procedure AnzeigeKarte
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   
+   procedure SichtweiteBewegungsfeldFestlegen
    is begin
       
       case
@@ -50,6 +49,14 @@ package body Karte is
             SichtweiteFestlegen := 3;
             BewegungsfeldFestlegen := 3;            
       end case;
+      
+   end SichtweiteBewegungsfeldFestlegen;
+   
+   
+
+   procedure AnzeigeKarte
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
       
       CursorPositionAltFestlegen (RasseExtern                  => RasseExtern,
                                   BewegungsfeldFestlegenExtern => BewegungsfeldFestlegen);

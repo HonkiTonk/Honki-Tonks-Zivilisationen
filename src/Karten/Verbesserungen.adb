@@ -334,16 +334,16 @@ package body Verbesserungen is
                                  GrundExtern              => GrundExtern,
                                  AnlegenTestenExtern      => AnlegenTestenExtern) = True
             then
-               SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       BeschäftigungExtern     => GlobaleDatentypen.Mine_Bauen);
-               SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                            ZeitExtern               => 3,
-                                                            RechnenSetzenExtern      => 0);
+               SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 BeschäftigungExtern     => GlobaleDatentypen.Mine_Bauen);
+               SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                      ZeitExtern               => 3,
+                                                                      RechnenSetzenExtern      => 0);
                
             else
                return False;
             end if;
-               
+            
          when others =>
             return False;
       end case;
@@ -430,11 +430,11 @@ package body Verbesserungen is
                                  GrundExtern              => GrundExtern,
                                  AnlegenTestenExtern      => AnlegenTestenExtern) = True
             then
-               SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       BeschäftigungExtern     => GlobaleDatentypen.Farm_Bauen);
-               SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                            ZeitExtern               => 3,
-                                                            RechnenSetzenExtern      => 0);
+               SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 BeschäftigungExtern     => GlobaleDatentypen.Farm_Bauen);
+               SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                      ZeitExtern               => 3,
+                                                                      RechnenSetzenExtern      => 0);
                
             else
                return False;
@@ -944,11 +944,11 @@ package body Verbesserungen is
                SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                             ZeitExtern               => LeseEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                             RechnenSetzenExtern      => 0);
-               SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
-               SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                            ZeitExtern               => GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
-                                                            RechnenSetzenExtern      => 0);
+               SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                 BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+               SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                      ZeitExtern               => GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
+                                                                      RechnenSetzenExtern      => 0);
          end case;
          
       else

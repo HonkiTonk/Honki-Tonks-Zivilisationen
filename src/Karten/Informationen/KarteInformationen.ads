@@ -17,13 +17,6 @@ private
    
    EinheitNummer : GlobaleDatentypen.MaximaleEinheiten;
    
-   Verteidigungsbonus : GlobaleDatentypen.ProduktionFeld;
-   Nahrungsgewinnung : GlobaleDatentypen.ProduktionFeld;
-   Ressourcengewinnung : GlobaleDatentypen.ProduktionFeld;
-   Geldgewinnung : GlobaleDatentypen.ProduktionFeld;
-   Wissensgewinnung : GlobaleDatentypen.ProduktionFeld;
-   Angriffsbonus : GlobaleDatentypen.ProduktionFeld;
-      
    EinheitRasseNummer : GlobaleRecords.RassePlatznummerRecord;
    StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord;
    

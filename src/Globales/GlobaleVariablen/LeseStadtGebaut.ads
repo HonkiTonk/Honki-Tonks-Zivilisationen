@@ -6,7 +6,7 @@ use Ada.Strings.Wide_Wide_Unbounded;
 with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
-with Karten, KIDatentypen;
+with KIDatentypen;
 
 package LeseStadtGebaut is
 
@@ -26,11 +26,7 @@ package LeseStadtGebaut is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer),
-         Post =>
-           (Position'Result.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-            and
-              Position'Result.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    function EinwohnerArbeiter
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -171,9 +167,7 @@ package LeseStadtGebaut is
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer),
-         Post =>
-           (UmgebungGröße'Result >= 0);
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
       
    function Meldungen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
