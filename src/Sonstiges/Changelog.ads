@@ -42,17 +42,18 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (26.08.2021):
+   -- Version 0.00.8480 => 0.00.8 (26.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8470 => 0.00.8 (25.08.2021):
+   -- Version 0.00.8470 => 0.00.8480 (25.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Umgebungsprüfung für den Bau von Einheiten ausgelagert damit sie auch für die KI verwendet werden kann.
+   -- Kleine Anpassungen an der Bewertung des nächsten Bauprojektes der KI vorgtenommen.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    

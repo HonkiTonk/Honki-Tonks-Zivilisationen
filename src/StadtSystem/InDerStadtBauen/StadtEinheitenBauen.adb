@@ -17,15 +17,16 @@ package body StadtEinheitenBauen is
       EinheitenSchleife:
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze loop
             
-         if
-           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert)) = GlobaleKonstanten.LeerEinheit.ID
-         then
-            EinheitNummer := EinheitNummerSchleifenwert;
-            exit EinheitenSchleife;
+         case
+           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerSchleifenwert))
+         is
+            when GlobaleKonstanten.LeerEinheitenID =>
+               EinheitNummer := EinheitNummerSchleifenwert;
+               exit EinheitenSchleife;
             
-         else
-            null;
-         end if;
+            when others =>
+               null;
+         end case;
             
       end loop EinheitenSchleife;
       

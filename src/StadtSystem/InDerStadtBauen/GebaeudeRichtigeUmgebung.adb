@@ -23,7 +23,7 @@ package body GebaeudeRichtigeUmgebung is
             null;
       end case;
       
-      -- Bei Gebäuden über den gesammten Bereich loopen, bei Einheiten nur um das direkte Umfeld.
+      -- Bei Gebäuden über den gesammten UmgebungGröße-Bereich loopen.
       YAchseGebäudeSchleife:
       for YAchseGebäudeSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
          XAchseGebäudeSchleife:

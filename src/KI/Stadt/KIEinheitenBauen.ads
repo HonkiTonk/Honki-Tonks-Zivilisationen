@@ -18,11 +18,25 @@ package KIEinheitenBauen is
    
 private
    
+   UmgebungPassierbar : Boolean;
+   
    AnzahlStädte : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   
+   MinimaleSiedlerMenge : constant GlobaleDatentypen.MaximaleStädte := 2;
    
    SiedlerVorhanden : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    VerteidigerVorhanden : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
    EinheitBewertet : KIRecords.EinheitIDBewertungRecord;
+   
+   function Siedler
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
+      return Boolean
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
 end KIEinheitenBauen;

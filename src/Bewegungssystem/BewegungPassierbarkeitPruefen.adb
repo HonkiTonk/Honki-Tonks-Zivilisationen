@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KartenAllgemein;
 
-with StadtSuchen, UmgebungErreichbarTesten, LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseVerbesserungenDatenbank;
+with StadtSuchen, UmgebungErreichbarTesten, LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseVerbesserungenDatenbank, KartePositionPruefen, LeseStadtGebaut;
 
 package body BewegungPassierbarkeitPruefen is
    
@@ -203,5 +203,53 @@ package body BewegungPassierbarkeitPruefen is
       return True;
 
    end InStadtEntladbar;
+   
+   
+   
+   function RichtigeUmgebungVorhanden
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EinheitenIDExtern : in GlobaleDatentypen.EinheitenID)
+      return Boolean
+   is begin
+      
+      -- Bei Einheiten nur um das direkte StadtumfeldUmfeld loopen. Das ist doch Blödsinn, die Einheiten werden ja auf einem beliebigen Feld innerhalb des Stadtbereiches platziert.
+      -- Oder reicht das weil es ja hauptsächlich dazu da ist um z.B. Panzer im Himmel zu verhindern?
+      YAchseEinheitenSchleife:
+      for YAchseEinheitenSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         XAchseEinheitenSchleife:
+         for XAchseEinheitenSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+               
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                                                        ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert));
+               
+            if
+              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+            then
+               null;
+                  
+            elsif
+              YAchseEinheitenSchleifenwert = 0
+              and
+                XAchseEinheitenSchleifenwert = 0
+            then
+               null;
+                  
+            elsif
+              BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                     IDExtern           => EinheitenIDExtern,
+                                                                     NeuePositionExtern => KartenWert) = True
+            then
+               return True;
+                  
+            else
+               null;
+            end if;
+               
+         end loop XAchseEinheitenSchleife;
+      end loop YAchseEinheitenSchleife;
+      
+      return False;
+      
+   end RichtigeUmgebungVorhanden;
 
 end BewegungPassierbarkeitPruefen;

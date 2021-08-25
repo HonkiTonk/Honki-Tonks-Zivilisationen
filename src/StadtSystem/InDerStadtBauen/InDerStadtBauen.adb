@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_
 
 with GlobaleKonstanten, GlobaleTexte;
      
-with Anzeige, Eingabe, Auswahl, KartePositionPruefen, BewegungPassierbarkeitPruefen, GebaeudeRichtigeUmgebung, SchreibeStadtGebaut, LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
+with Anzeige, Eingabe, Auswahl, BewegungPassierbarkeitPruefen, GebaeudeRichtigeUmgebung, SchreibeStadtGebaut, LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
 
 package body InDerStadtBauen is
 
@@ -203,43 +203,8 @@ package body InDerStadtBauen is
             null;
          end if;
          
-         UmgebungPassierbar := False;
-         
-         -- Bei Gebäuden über den gesammten Bereich loopen, bei Einheiten nur um das direkte Umfeld.
-         YAchseEinheitenSchleife:
-         for YAchseEinheitenSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-            XAchseEinheitenSchleife:
-            for XAchseEinheitenSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-               
-               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                           ÄnderungExtern    => (0, YAchseEinheitenSchleifenwert, XAchseEinheitenSchleifenwert));
-               
-               if
-                 KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
-               then
-                  null;
-                  
-               elsif
-                 YAchseEinheitenSchleifenwert = 0
-                 and
-                   XAchseEinheitenSchleifenwert = 0
-               then
-                  null;
-                  
-               elsif
-                 BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                        IDExtern           => EinheitSchleifenwert,
-                                                                        NeuePositionExtern => KartenWert) = True
-               then
-                  UmgebungPassierbar := True;
-                  exit YAchseEinheitenSchleife;
-                  
-               else
-                  null;
-               end if;
-               
-            end loop XAchseEinheitenSchleife;
-         end loop YAchseEinheitenSchleife;
+         UmgebungPassierbar := BewegungPassierbarkeitPruefen.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                                        EinheitenIDExtern      => EinheitSchleifenwert);
          
          if
            LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
