@@ -60,7 +60,7 @@ package body KIBewegungDurchfuehren is
                                                  NeuePositionExtern       => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                  PlanschrittExtern        => 1))
       is
-         when GlobaleDatentypen.Normale_Bewegung_Möglich =>      
+         when False =>      
             BewegungBerechnen.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                            NeuePositionExtern       => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                                                            PlanschrittExtern        => 1));
@@ -77,7 +77,7 @@ package body KIBewegungDurchfuehren is
                                                     PositionExtern           => KIKonstanten.NullKoordinate,
                                                     PlanpositionExtern       => GlobaleRecords.KIBewegungPlanArray'Last);
             
-         when others =>
+         when True =>
             KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
                                                       WelchenWertNullSetzenExtern => 1);
       end case;

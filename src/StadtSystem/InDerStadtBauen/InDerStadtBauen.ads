@@ -25,9 +25,6 @@ package InDerStadtBauen is
 
 private
 
-   UmgebungPassierbar : Boolean;
-   PassendeUmgebungVorhanden : Boolean;
-
    AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
    Ende : GlobaleDatentypen.KartenverbesserungEinheitenID;
 

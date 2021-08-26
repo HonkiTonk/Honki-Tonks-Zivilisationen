@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Sichtbarkeit, KennenLernen, BewegungLadenEntladen, StadtSuchen, BewegungPassierbarkeitPruefen, LeseKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseEinheitenDatenbank;
+with SchreibeEinheitenGebaut;
+with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank;
+
+with Sichtbarkeit, KennenLernen, BewegungLadenEntladen, StadtSuchen, BewegungPassierbarkeitPruefen;
 
 package body BewegungBerechnen is
 
@@ -14,13 +17,15 @@ package body BewegungBerechnen is
       -- Immer berücksichtigen dass in BewegungssystemEinheiten.BewegungPrüfen bereits geprüft wird ob der Transporter die Einheit transportieren kann und ein freier Platz vorhanden ist.
       if
         LeseEinheitenDatenbank.KannTransportieren (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                   IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+                                                   IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+          = GlobaleKonstanten.LeerTransportiertWirdTransportiert
       then
          null;
          
       elsif
         StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                    KoordinatenExtern => NeuePositionExtern) = GlobaleKonstanten.LeerEinheitStadtNummer
+                                                    KoordinatenExtern => NeuePositionExtern)
+        = GlobaleKonstanten.LeerEinheitStadtNummer
       then
          BewegungLadenEntladen.TransporterladungVerschieben (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              NeuePositionExtern       => NeuePositionExtern);
@@ -133,15 +138,18 @@ package body BewegungBerechnen is
       if
         LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               WelcheUmgebungExtern => GlobaleDatentypen.Boden) = True
+                                               WelcheUmgebungExtern => GlobaleDatentypen.Boden)
+        = True
         and
           LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                  IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                 WelcheUmgebungExtern => GlobaleDatentypen.Luft) = False
+                                                 WelcheUmgebungExtern => GlobaleDatentypen.Luft)
+        = False
         and
           LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                  IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                 WelcheUmgebungExtern => GlobaleDatentypen.Weltraum) = False
+                                                 WelcheUmgebungExtern => GlobaleDatentypen.Weltraum)
+        = False
       then
          case
            LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern)

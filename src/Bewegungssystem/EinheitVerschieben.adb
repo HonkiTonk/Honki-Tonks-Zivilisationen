@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleVariablen, GlobaleKonstanten;
 
-with LeseKarten, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseStadtGebaut;
+with SchreibeEinheitenGebaut;
+with LeseEinheitenGebaut, LeseStadtGebaut, LeseKarten;
+
+with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen;
 
 package body EinheitVerschieben is
    
@@ -111,10 +114,12 @@ package body EinheitVerschieben is
             
                elsif
                  LeseKarten.BelegterGrund (RasseExtern       => RasseLandExtern,
-                                           KoordinatenExtern => KartenWertVerschieben) = False
+                                           KoordinatenExtern => KartenWertVerschieben)
+                 = False
                  and
                    BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                              NeuePositionExtern       => KartenWertVerschieben) = True
+                                                                              NeuePositionExtern       => KartenWertVerschieben)
+                 = True
                  and
                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWertVerschieben).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
                then

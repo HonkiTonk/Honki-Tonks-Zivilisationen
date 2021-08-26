@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with StadtSuchen, GesamtwerteFeld, LeseEinheitenGebaut, LeseEinheitenDatenbank;
+with LeseEinheitenGebaut, LeseEinheitenDatenbank;
+
+with StadtSuchen, GesamtwerteFeld;
 
 package body KampfwerteEinheitErmitteln is
 
@@ -22,7 +24,8 @@ package body KampfwerteEinheitErmitteln is
          when False =>
             if
               VerteidigungWert + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                   RasseExtern       => EinheitRasseNummerExtern.Rasse) > GlobaleDatentypen.ProduktionFeld'Last
+                                                                   RasseExtern       => EinheitRasseNummerExtern.Rasse)
+              > GlobaleDatentypen.ProduktionFeld'Last
             then
                VerteidigungWert := GlobaleDatentypen.ProduktionFeld'Last;
                

@@ -4,8 +4,10 @@ with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten, GlobaleTexte;
-  
-with KartePositionPruefen, Karten, StadtInformationen, Anzeige, GebaeudeAllgemein, KartenAllgemein, GrafischeAnzeige, LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
+
+with LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
+
+with KartePositionPruefen, Karten, StadtInformationen, Anzeige, GebaeudeAllgemein, KartenAllgemein, GrafischeAnzeige;
 
 package body KarteStadt is
 
@@ -141,7 +143,8 @@ package body KarteStadt is
             then
                if
                  LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                    WelchesGebäudeExtern  => (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 12)) = True
+                                                    WelchesGebäudeExtern  => (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 12))
+                 = True
                then
                   Put (Item => LeseGebaeudeDatenbank.GebäudeGrafik (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                      IDExtern    => GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 12));
@@ -163,7 +166,8 @@ package body KarteStadt is
             then
                if
                  LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                    WelchesGebäudeExtern  => (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 24)) = True
+                                                    WelchesGebäudeExtern  => (GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 24))
+                 = True
                then
                   Put (Item => LeseGebaeudeDatenbank.GebäudeGrafik (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                      IDExtern    => GlobaleDatentypen.GebäudeID (XAchseSchleifenwert) + 24));
@@ -241,7 +245,8 @@ package body KarteStadt is
             Aufschlag := Aufschlag - 1;
             if
               LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                 WelchesGebäudeExtern  => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12)) = True
+                                                 WelchesGebäudeExtern  => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12))
+              = True
             then
                GebaeudeAllgemein.Beschreibung (IDExtern => GlobaleDatentypen.GebäudeID (GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse + Aufschlag * 12));
             
@@ -315,8 +320,8 @@ package body KarteStadt is
                CursorYAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse - 4;
                CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse - 17;
                
-               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
-                                                                           ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion));
+               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
+                                                                           ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion));
                case
                  KartenWert.XAchse
                is
@@ -349,8 +354,8 @@ package body KarteStadt is
             Put (Item => " ");
 
          else            
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
-                                                                        ÄnderungExtern       => (0, YAchsenabstraktion, UmgebungSchleifenwert));
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
+                                                                        ÄnderungExtern    => (0, YAchsenabstraktion, UmgebungSchleifenwert));
             
             case
               KartenWert.XAchse
@@ -381,8 +386,8 @@ package body KarteStadt is
       CursorYAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.YAchse - 4;
       CursorXAchseabstraktion := GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse - 17;
       
-      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
-                                                                  ÄnderungExtern       => (0, CursorYAchseabstraktion, CursorXAchseabstraktion));
+      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).Position,
+                                                                  ÄnderungExtern    => (0, CursorYAchseabstraktion, CursorXAchseabstraktion));
       
       case
         KartenWert.XAchse
@@ -440,7 +445,7 @@ package body KarteStadt is
    is begin
       
       -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Stadt befindet
-      StadtInformationen.StadtArtBesitzer (RasseExtern               => RasseExtern,
+      StadtInformationen.StadtArtBesitzer (RasseExtern            => RasseExtern,
                                            StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtInformationen.StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern);
       StadtInformationen.Einwohner (StadtRasseNummerExtern => StadtRasseNummerExtern);      

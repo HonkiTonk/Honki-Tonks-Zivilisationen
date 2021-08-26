@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleVariablen, GlobaleKonstanten;
 
-with KartePositionPruefen, EinheitSuchen, DiplomatischerZustand, EinheitenMeldungenSetzen, StadtMeldungenSetzen, LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+
+with KartePositionPruefen, EinheitSuchen, DiplomatischerZustand, EinheitenMeldungenSetzen, StadtMeldungenSetzen;
 
 package body EinheitInUmgebung is
 
@@ -102,7 +104,8 @@ package body EinheitInUmgebung is
                
             elsif
               LeseKarten.Sichtbar (PositionExtern => KartenWert,
-                                   RasseExtern    => RasseExtern) = False
+                                   RasseExtern    => RasseExtern)
+              = False
             then
                null;
                
@@ -117,7 +120,8 @@ package body EinheitInUmgebung is
                     
                elsif
                  DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
-                                                                    FremdeRasseExtern => AndereEinheit.Rasse) = GlobaleDatentypen.Nichtangriffspakt
+                                                                    FremdeRasseExtern => AndereEinheit.Rasse)
+                 = GlobaleDatentypen.Nichtangriffspakt
                then
                   null;
                   

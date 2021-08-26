@@ -21,7 +21,7 @@ package GlobaleDatentypen is
 
 
    -- Für Tastenbelegung
-   type Tastenbelegung_Enum is (Nicht_Vorhanden,
+   type Tastenbelegung_Enum is (Leer,
                                 -- Bewegung
                                 Hoch, Links, Runter, Rechts, Links_Oben, Rechts_Oben, Links_Unten, Rechts_Unten, Ebene_Hoch, Ebene_Runter,
                                 Auswählen, Menü_Zurück,
@@ -187,8 +187,6 @@ package GlobaleDatentypen is
 
 
    -- Für Einheiten
-   type Bewegung_Enum is (Leer, Keine_Bewegung_Möglich, Normale_Bewegung_Möglich, Beladen_Bewegung_Möglich, Entladen_Bewegung_Möglich, Gegner_Blockiert, Transporter_Stadt_Möglich);
-
    type MaximaleEinheitenMitNullWert is range 0 .. 1_000;
    subtype MaximaleEinheiten is MaximaleEinheitenMitNullWert range 1 .. MaximaleEinheitenMitNullWert'Last;
 
@@ -254,13 +252,9 @@ package GlobaleDatentypen is
    subtype ProduktionFeld is GesamtproduktionStadt range -100 .. 100;
    subtype ProduktionElement is ProduktionFeld range -10 .. 10;
 
-   type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
-
    type Stadt_Meldung_Art_Enum is (Produktion_Fertig, Hungersnot, Einheit_In_Der_Nähe);
    type Stadt_Meldung_Enum is (Leer, Produktion_Abgeschlossen, Einheit_Unplatzierbar, Einwohner_Wachstum, Einwohner_Reduktion, Fremde_Einheit_Nahe_Stadt);
    subtype Stadt_Meldungen_Verwendet_Enum is Stadt_Meldung_Enum range Produktion_Abgeschlossen .. Stadt_Meldung_Enum'Last;
-
-   type PermanenteKostenArray is array (GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of GlobaleDatentypen.GesamtePermanenteKosten;
    -- Für Stadt
 
 

@@ -8,7 +8,7 @@ is
    function BlockiertStadtEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Bewegung_Enum
+      return Boolean
    is begin
 
       StadtWert := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
@@ -21,7 +21,7 @@ is
          null;
          
       else
-         return GlobaleDatentypen.Gegner_Blockiert;
+         return True;
       end if;        
 
       EinheitWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
@@ -29,15 +29,15 @@ is
       if
         EinheitWert.Rasse = EinheitRasseNummerExtern.Rasse
       then
-         return GlobaleDatentypen.Keine_Bewegung_Möglich;
+         return True;
 
       elsif
         EinheitWert.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
-         return GlobaleDatentypen.Normale_Bewegung_Möglich;
+         return False;
          
       else
-         return GlobaleDatentypen.Gegner_Blockiert;
+         return True;
       end if;
       
    end BlockiertStadtEinheit;

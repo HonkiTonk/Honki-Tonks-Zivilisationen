@@ -2,8 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with StadtEntfernen, KampfwerteStadtErmitteln, KampfwerteEinheitErmitteln, EinheitenAllgemein, KampfsystemEinheiten, ZufallGeneratorenKampf, StadtWerteFestlegen, StadtMeldungenSetzen, LeseEinheitenGebaut,
-     SchreibeEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
+with SchreibeEinheitenGebaut;
+with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
+
+with StadtEntfernen, KampfwerteStadtErmitteln, KampfwerteEinheitErmitteln, EinheitenAllgemein, KampfsystemEinheiten, ZufallGeneratorenKampf, StadtWerteFestlegen, StadtMeldungenSetzen;
 
 package body KampfsystemStadt is
 

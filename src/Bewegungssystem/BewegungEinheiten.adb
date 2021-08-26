@@ -2,10 +2,12 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, DiplomatischerZustand, BewegungLadenEntladen, KampfsystemEinheiten, StadtSuchen,
-     StadtBauen, Verbesserungen, Anzeige, KampfsystemStadt, LeseEinheitenGebaut;
+with LeseEinheitenGebaut;
 
-package body BewegungssystemEinheiten is
+with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, DiplomatischerZustand, BewegungLadenEntladen, KampfsystemEinheiten, StadtSuchen,
+     StadtBauen, Verbesserungen, Anzeige, KampfsystemStadt, EinheitenTransporter;
+
+package body BewegungEinheiten is
 
    procedure BewegungEinheitenRichtung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -142,16 +144,18 @@ package body BewegungssystemEinheiten is
       elsif
         EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
         and then
-          EinheitenAllgemein.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
-                                                      TransporterExtern => EinheitAufFeld) = False
+          EinheitenTransporter.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
+                                                        TransporterExtern => EinheitAufFeld)
+        = False
       then
          return Bewegbar;
          
       elsif
         EinheitAufFeld.Rasse = EinheitRasseNummerExtern.Rasse
         and then
-          EinheitenAllgemein.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
-                                                      TransporterExtern => EinheitAufFeld) = True
+          EinheitenTransporter.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
+                                                        TransporterExtern => EinheitAufFeld)
+        = True
       then
          EigeneEinheitAufFeld (BewegendeEinheitExtern     => EinheitRasseNummerExtern,
                                FeldBelegendeEinheitExtern => EinheitAufFeld);
@@ -163,7 +167,8 @@ package body BewegungssystemEinheiten is
       then
          if
            FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                           FremdeEinheitExtern      => EinheitAufFeld) = True
+                           FremdeEinheitExtern      => EinheitAufFeld)
+           = True
            and
              FeldPassierbar
          then
@@ -242,7 +247,8 @@ package body BewegungssystemEinheiten is
          when True =>
             if
               KampfsystemEinheiten.KampfsystemNahkampf (AngreiferExtern    => EinheitRasseNummerExtern,
-                                                        VerteidigerExtern => FremdeEinheitExtern) = True
+                                                        VerteidigerExtern => FremdeEinheitExtern)
+              = True
             then
                case
                  StadtAufFeld.Platznummer
@@ -299,4 +305,4 @@ package body BewegungssystemEinheiten is
       
    end EigeneEinheitAufFeld;
 
-end BewegungssystemEinheiten;
+end BewegungEinheiten;

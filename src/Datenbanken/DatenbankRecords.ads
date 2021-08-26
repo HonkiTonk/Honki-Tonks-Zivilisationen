@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen;
+with GlobaleDatentypen, GlobaleRecords;
 
 package DatenbankRecords is
 
@@ -14,7 +14,7 @@ package DatenbankRecords is
       EinheitArt : GlobaleDatentypen.Einheit_Art_Enum;
       PreisGeld : GlobaleDatentypen.KostenLager;
       PreisRessourcen : GlobaleDatentypen.KostenLager;
-      PermanenteKosten : GlobaleDatentypen.PermanenteKostenArray;
+      PermanenteKosten : GlobaleRecords.PermanenteKostenArray;
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
 
       Passierbarkeit : PassierbarkeitArray;
@@ -60,7 +60,7 @@ package DatenbankRecords is
       
       PreisGeld : GlobaleDatentypen.KostenLager;      
       PreisRessourcen : GlobaleDatentypen.KostenLager;
-      PermanenteKosten : GlobaleDatentypen.PermanenteKostenArray;
+      PermanenteKosten : GlobaleRecords.PermanenteKostenArray;
       
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
       

@@ -5,7 +5,7 @@ use GlobaleDatentypen, GlobaleRecords;
 
 with Karten;
 
-package BewegungssystemEinheiten is
+package BewegungEinheiten is
 
    procedure BewegungEinheitenRichtung
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -62,4 +62,4 @@ private
      (EinheitRasseNummerExtern, FremdeStadtExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean;
 
-end BewegungssystemEinheiten;
+end BewegungEinheiten;

@@ -3,7 +3,9 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen;
 use GlobaleDatentypen;
 
-with Karten, ZufallGeneratorenKarten, SchreibeKarten;
+with SchreibeKarten;
+
+with Karten, ZufallGeneratorenKarten;
 
 package body KartenGeneratorChaos is
 

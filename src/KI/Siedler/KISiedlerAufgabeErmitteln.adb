@@ -5,7 +5,10 @@ with GlobaleKonstanten;
 with KIDatentypen;
 use KIDatentypen;
 
-with StadtSuchen, KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt, KIAufgabenErmittelnAllgemein, RassenAllgemein, SchreibeEinheitenGebaut;
+with SchreibeEinheitenGebaut;
+with LeseRassenDatenbank;
+
+with StadtSuchen, KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt, KIAufgabenErmittelnAllgemein;
 
 package body KISiedlerAufgabeErmitteln is
 
@@ -85,7 +88,7 @@ package body KISiedlerAufgabeErmitteln is
       end if;
       
       if
-        RassenAllgemein.RassenExpansion (EinheitRasseNummerExtern.Rasse) > 10
+        LeseRassenDatenbank.RassenExpansion (EinheitRasseNummerExtern.Rasse) > 10
       then
          return 3;
          

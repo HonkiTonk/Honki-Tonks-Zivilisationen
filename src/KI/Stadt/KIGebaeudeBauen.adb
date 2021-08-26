@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIKonstanten;
 
-with LeseGebaeudeDatenbank, GebaeudeRichtigeUmgebung;
+with LeseGebaeudeDatenbank, LeseStadtGebaut, GebaeudeAllgemein;
 
 package body KIGebaeudeBauen is
 
@@ -18,49 +18,288 @@ package body KIGebaeudeBauen is
       GebäudeSchleife:
       for GebäudeSchleifenwert in GlobaleRecords.GebäudeVorhandenArray'Range loop
          
-         if
-           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).GebäudeVorhanden (GebäudeSchleifenwert) = True
-         then
-            null;
-            
-         elsif
-           LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                IDExtern    => GebäudeSchleifenwert) = GlobaleKonstanten.LeerForschungAnforderung
-           or else
-             GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                                       IDExtern    => GebäudeSchleifenwert)) = True
-         then            
-            case
-              GebaeudeRichtigeUmgebung.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                  GebäudeIDExtern        => GebäudeSchleifenwert)
-            is
-               when True =>
-                  if
-                    GebäudeBewertet = KIKonstanten.LeerGebäudeIDBewertung
-                  then
-                     GebäudeBewertet := (GebäudeSchleifenwert, 10);
-                     
-                  elsif
-                    GebäudeBewertet.Bewertung < 10
-                  then
-                     GebäudeBewertet := (GebäudeSchleifenwert, 10);
-
-                  else
-                     null;
-                  end if;
-                  
-               when False =>
-                  null;
-            end case;
-            
-         else
-            null;
-         end if;
+         case
+           GebaeudeAllgemein.GebäudeAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                            IDExtern               => GebäudeSchleifenwert)
+         is
+            when True =>
+               GebäudeBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                 IDExtern               => GebäudeSchleifenwert);
+               
+            when False =>
+               null;
+         end case;
          
       end loop GebäudeSchleife;
       
       return GebäudeBewertet;
       
    end GebäudeBauen;
+   
+   
+   
+   procedure GebäudeBewerten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+   is begin
+      
+      Gesamtwertung := GlobaleDatentypen.KostenLager (GlobaleDatentypen.GebäudeID'Last - IDExtern);
+      
+      Gesamtwertung := Gesamtwertung + NahrungsproduktionBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                   IDExtern               => IDExtern);
+      Gesamtwertung := Gesamtwertung + GeldproduktionBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                               IDExtern               => IDExtern);
+      Gesamtwertung := Gesamtwertung + WissensgewinnBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                              IDExtern               => IDExtern);
+      Gesamtwertung := Gesamtwertung + RessourcenproduktionBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                     IDExtern               => IDExtern);
+      Gesamtwertung := Gesamtwertung + VerteidigungBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                             IDExtern               => IDExtern);
+      Gesamtwertung := Gesamtwertung + AngriffBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                        IDExtern               => IDExtern);
+      Gesamtwertung := Gesamtwertung + KostenBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                       IDExtern               => IDExtern);
+      
+      if
+        GebäudeBewertet.ID = GlobaleKonstanten.LeerEinheitenID
+        or
+          GebäudeBewertet.Bewertung < Gesamtwertung
+      then
+         GebäudeBewertet := (IDExtern, Gesamtwertung);
+
+      else
+         null;
+      end if;
+            
+   end GebäudeBewerten;
+   
+   
+   
+   function NahrungsproduktionBewerten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      if
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+        and
+          LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        + LeseGebaeudeDatenbank.NahrungBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                              IDExtern    => IDExtern)
+        >= GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+      then
+         return 20;
+                  
+      elsif
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+        and
+          LeseGebaeudeDatenbank.NahrungBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                              IDExtern    => IDExtern)
+        > GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+      then
+         return 10;
+         
+      elsif
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+        and
+          LeseGebaeudeDatenbank.NahrungBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                              IDExtern    => IDExtern)
+        = GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+      then
+         return 5;
+      
+      elsif
+        LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                  IDExtern           => IDExtern,
+                                                  WelcheKostenExtern => GlobaleDatentypen.Nahrung)
+        < GlobaleKonstanten.LeerStadt.Nahrungsproduktion
+      then
+         return -20;
+         
+      else
+         return LeseGebaeudeDatenbank.NahrungBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                    IDExtern    => IDExtern)
+           - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                     IDExtern           => IDExtern,
+                                                     WelcheKostenExtern => GlobaleDatentypen.Nahrung);
+      end if;
+      
+   end NahrungsproduktionBewerten;
+   
+   
+   
+   function GeldproduktionBewerten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      if
+        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).GeldZugewinnProRunde < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        and
+          GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).GeldZugewinnProRunde
+        + LeseGebaeudeDatenbank.GeldBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                           IDExtern    => IDExtern)
+        >= GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+      then
+         return 20;
+         
+      elsif
+        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).GeldZugewinnProRunde < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        and
+          LeseGebaeudeDatenbank.GeldBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                           IDExtern    => IDExtern)
+        > GlobaleKonstanten.LeerStadt.Geldgewinnung
+      then
+         return 10;
+         
+      elsif
+        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).GeldZugewinnProRunde < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        and
+          LeseGebaeudeDatenbank.GeldBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                           IDExtern    => IDExtern)
+        = GlobaleKonstanten.LeerStadt.Geldgewinnung
+      then
+         return 5;
+         
+      elsif
+        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).GeldZugewinnProRunde
+        - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                  IDExtern           => IDExtern,
+                                                  WelcheKostenExtern => GlobaleDatentypen.Geld)
+        < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+      then
+         return -20;
+         
+      else
+         return LeseGebaeudeDatenbank.GeldBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                 IDExtern    => IDExtern)
+           - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                     IDExtern           => IDExtern,
+                                                     WelcheKostenExtern => GlobaleDatentypen.Geld);
+      end if;
+      
+   end GeldproduktionBewerten;
+   
+   
+     
+   function WissensgewinnBewerten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      if
+        LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern) = GlobaleKonstanten.LeerStadt.Forschungsrate
+        and
+          LeseGebaeudeDatenbank.WissenBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                             IDExtern    => IDExtern)
+        > GlobaleKonstanten.LeerWichtigesZeug.GesamteForschungsrate
+      then
+         return 5;
+         
+      else
+         return LeseGebaeudeDatenbank.WissenBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                   IDExtern    => IDExtern);
+      end if;
+      
+   end WissensgewinnBewerten;
+   
+     
+          
+   function RessourcenproduktionBewerten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      if
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Produktionrate
+        and
+          LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        + LeseGebaeudeDatenbank.ProduktionBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                 IDExtern    => IDExtern)
+        >= GlobaleKonstanten.LeerStadt.Produktionrate
+      then
+         return 20;
+         
+      elsif
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Produktionrate
+        and
+          + LeseGebaeudeDatenbank.ProduktionBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                   IDExtern    => IDExtern)
+        > GlobaleKonstanten.LeerStadt.Produktionrate
+      then
+         return 10;
+         
+      elsif
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) < GlobaleKonstanten.LeerStadt.Produktionrate
+        and
+          + LeseGebaeudeDatenbank.ProduktionBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                   IDExtern    => IDExtern)
+        = GlobaleKonstanten.LeerStadt.Produktionrate
+      then
+         return 5;
+         
+      elsif
+        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
+        - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                  IDExtern           => IDExtern,
+                                                  WelcheKostenExtern => GlobaleDatentypen.Ressourcen)
+        < GlobaleKonstanten.LeerStadt.Produktionrate
+      then
+         return -20;
+         
+      else
+         return LeseGebaeudeDatenbank.ProduktionBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                       IDExtern    => IDExtern)
+           - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                     IDExtern           => IDExtern,
+                                                     WelcheKostenExtern => GlobaleDatentypen.Ressourcen);
+      end if;
+      
+   end RessourcenproduktionBewerten;
+     
+   
+     
+   function VerteidigungBewerten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      return LeseGebaeudeDatenbank.VerteidigungBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                      IDExtern    => IDExtern);
+      
+   end VerteidigungBewerten;
+     
+   
+     
+   function AngriffBewerten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      return LeseGebaeudeDatenbank.AngriffBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                 IDExtern    => IDExtern);
+      
+   end AngriffBewerten;
+     
+   
+     
+   function KostenBewerten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      return -(LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                      IDExtern    => IDExtern)
+               / LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)
+               / 10);
+      
+   end KostenBewerten;
 
 end KIGebaeudeBauen;

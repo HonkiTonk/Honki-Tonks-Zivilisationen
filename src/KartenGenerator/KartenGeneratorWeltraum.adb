@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleDatentypen;
 
-with Karten, SchreibeKarten;
+with SchreibeKarten;
+
+with Karten;
 
 package body KartenGeneratorWeltraum is
 

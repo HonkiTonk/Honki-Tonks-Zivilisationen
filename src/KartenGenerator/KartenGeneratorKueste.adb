@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen, LeseKarten, SchreibeKarten;
+with SchreibeKarten;
+with LeseKarten;
+
+with KartePositionPruefen;
 
 package body KartenGeneratorKueste is
 

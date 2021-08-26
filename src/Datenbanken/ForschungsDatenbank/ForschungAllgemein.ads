@@ -28,9 +28,19 @@ package ForschungAllgemein is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
+
+
+   function ForschungAnforderungErfüllt
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      ForschungIDExtern : in GlobaleDatentypen.ForschungID)
+      return Boolean
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+
 private
 
-   AnforderungenErfüllt : Boolean;
+   ErsterDurchlauf : Boolean;
 
    WasErforschtWerdenSoll : GlobaleDatentypen.ForschungIDMitNullWert;
 

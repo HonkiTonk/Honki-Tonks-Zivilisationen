@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with UmgebungErreichbarTesten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseEinheitenDatenbank;
+with SchreibeEinheitenGebaut;
+with LeseEinheitenGebaut, LeseEinheitenDatenbank;
+
+with UmgebungErreichbarTesten;
 
 package body BewegungLadenEntladen is
 

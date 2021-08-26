@@ -51,7 +51,7 @@ package body KISiedlerAufgabeDurchfuehren is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
       end case;

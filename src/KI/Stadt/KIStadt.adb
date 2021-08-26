@@ -20,42 +20,37 @@ package body KIStadt is
             null;
             
          when others =>
-            GefahrStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            -- GefahrStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             return;
       end case;
-      
-      NotAus := GlobaleDatentypen.Sichtweite'First;
-
-      BaumöglichkeitenSchleife:
-      loop
-         
-         EinheitBauen := KIEinheitenBauen.EinheitenBauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         GebäudeBauen := KIGebaeudeBauen.GebäudeBauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         
-         if
-           EinheitBauen.ID = GlobaleKonstanten.LeerEinheitenID
-           and
-             GebäudeBauen.ID = GlobaleDatentypen.GebäudeIDMitNullwert'First
-         then
-            null;
-
-         else
-            exit BaumöglichkeitenSchleife;
-         end if;
-         
-         case
-           NotAus
-         is
-            when GlobaleDatentypen.Sichtweite'Last =>
-               return;
                
-            when others =>
-               NotAus := NotAus + 1;
-         end case;
-         
-      end loop BaumöglichkeitenSchleife;
+      EinheitBauen := KIEinheitenBauen.EinheitenBauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      GebäudeBauen := KIGebaeudeBauen.GebäudeBauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
       if
+        EinheitBauen.ID = GlobaleKonstanten.LeerEinheitenID
+        and
+          GebäudeBauen.ID = GlobaleDatentypen.GebäudeIDMitNullwert'First
+      then
+         null;
+         
+      elsif
+        EinheitBauen.ID = GlobaleKonstanten.LeerEinheitenID
+      then
+         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                               BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen);
+         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         BauprojektExtern       => Positive (GebäudeBauen.ID) + GlobaleKonstanten.GebäudeAufschlag);
+         
+      elsif
+        GebäudeBauen.ID = GlobaleDatentypen.GebäudeIDMitNullwert'First
+      then
+         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                               BeschäftigungExtern   => KIDatentypen.Einheit_Bauen);
+         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         BauprojektExtern       => Positive (EinheitBauen.ID) + GlobaleKonstanten.EinheitAufschlag);
+      
+      elsif
         EinheitBauen.Bewertung >= GebäudeBauen.Bewertung
       then
          SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,

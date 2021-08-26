@@ -1,8 +1,11 @@
 pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
-  
-with ZufallGeneratorenKampf, EinheitenAllgemein, KampfwerteEinheitErmitteln, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseEinheitenDatenbank;
+
+with SchreibeEinheitenGebaut;
+with LeseEinheitenGebaut, LeseEinheitenDatenbank;
+
+with ZufallGeneratorenKampf, EinheitenAllgemein, KampfwerteEinheitErmitteln;
 
 package body KampfsystemEinheiten is
 

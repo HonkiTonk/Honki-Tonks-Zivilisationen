@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with GesamtwerteFeld, LeseStadtGebaut, LeseGebaeudeDatenbank, LeseVerbesserungenDatenbank;
+with LeseStadtGebaut, LeseGebaeudeDatenbank, LeseVerbesserungenDatenbank;
+
+with GesamtwerteFeld;
 
 package body KampfwerteStadtErmitteln is
 

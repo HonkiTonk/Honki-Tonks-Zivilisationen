@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleTexte, GlobaleKonstanten;
 
-with Anzeige, WichtigesSetzen, SchreibeStadtGebaut, LeseGebaeudeDatenbank;
+with Anzeige, WichtigesSetzen, SchreibeStadtGebaut, LeseGebaeudeDatenbank, LeseStadtGebaut, GebaeudeRichtigeUmgebung;
 
 package body GebaeudeAllgemein is
 
@@ -34,12 +34,12 @@ package body GebaeudeAllgemein is
       SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       BauprojektExtern       => GlobaleKonstanten.LeerBauprojekt);
       SchreibeStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern     => StadtRasseNummerExtern,
-                                            WelchesGebäudeExtern       => IDExtern,
-                                            HinzufügenEntfernenExtern  => True);
+                                             WelchesGebäudeExtern       => IDExtern,
+                                             HinzufügenEntfernenExtern  => True);
       
       PermanenteKostenDurchGebäudeÄndern (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                          IDExtern                => IDExtern,
-                                          VorzeichenWechselExtern => 1);
+                                            IDExtern                => IDExtern,
+                                            VorzeichenWechselExtern => 1);
                   
    end GebäudeProduktionBeenden;
    
@@ -73,7 +73,7 @@ package body GebaeudeAllgemein is
    is begin
       
       PermanenteKostenSchleife:
-      for PermanenteKostenSchleifenwert in GlobaleDatentypen.PermanenteKostenArray'Range loop
+      for PermanenteKostenSchleifenwert in GlobaleRecords.PermanenteKostenArray'Range loop
          
          SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                      WelcherPostenExtern    => PermanenteKostenSchleifenwert,
@@ -86,5 +86,53 @@ package body GebaeudeAllgemein is
       end loop PermanenteKostenSchleife;
       
    end PermanenteKostenDurchGebäudeÄndern;
+   
+   
+   
+   -- Hier vielleicht noch Prüfungen einbauen um zu testen ob das Gebäude für diese Rasse überhaupt existiert?
+   function GebäudeAnforderungenErfüllt
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.GebäudeID)
+      return Boolean
+   is begin
+      
+      case
+        LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                           WelchesGebäudeExtern  => IDExtern)
+      is
+         when True =>
+            return False;
+            
+         when False =>
+            null;
+      end case;
+      
+      case
+        GebaeudeRichtigeUmgebung.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                            GebäudeIDExtern        => IDExtern)
+      is
+         when False =>
+            return False;
+            
+         when True =>
+            null;
+      end case;
+      
+      if
+        LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                             IDExtern    => IDExtern)
+        = GlobaleKonstanten.LeerForschungAnforderung
+        or else
+          GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                                    IDExtern    => IDExtern))
+        = True
+      then
+         return True;
+      
+      else
+         return False;
+      end if;
+      
+   end GebäudeAnforderungenErfüllt;
 
 end GebaeudeAllgemein;

@@ -384,7 +384,7 @@ package body Eingabe is
          end loop BelegungPositionSchleife;
       end loop BelegungFeldSchleife;
       
-      return GlobaleDatentypen.Nicht_Vorhanden;
+      return GlobaleDatentypen.Leer;
       
    end Tastenwert;
    

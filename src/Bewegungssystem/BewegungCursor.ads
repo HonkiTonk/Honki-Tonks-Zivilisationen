@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
 use GlobaleDatentypen;
 
-package BewegungssystemCursor is
+package BewegungCursor is
 
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
@@ -55,4 +55,4 @@ private
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
-end BewegungssystemCursor;
+end BewegungCursor;

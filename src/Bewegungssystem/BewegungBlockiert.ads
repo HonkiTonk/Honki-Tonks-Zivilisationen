@@ -10,7 +10,7 @@ package BewegungBlockiert is
    function BlockiertStadtEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleDatentypen.Bewegung_Enum
+      return Boolean
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -20,17 +20,11 @@ package BewegungBlockiert is
             NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer),
-         Post =>
-           (BlockiertStadtEinheit'Result = GlobaleDatentypen.Gegner_Blockiert
-            or
-              BlockiertStadtEinheit'Result = GlobaleDatentypen.Keine_Bewegung_Möglich
-            or
-              BlockiertStadtEinheit'Result = GlobaleDatentypen.Normale_Bewegung_Möglich),
-     Global =>
-       (Input => (GlobaleKonstanten.LeerEinheitStadtNummer)),
-       Depends =>
-         (BlockiertStadtEinheit'Result => (EinheitRasseNummerExtern, NeuePositionExtern),
-          null => (GlobaleKonstanten.LeerEinheitStadtNummer));
+         Global =>
+           (Input => (GlobaleKonstanten.LeerEinheitStadtNummer)),
+           Depends =>
+             (BlockiertStadtEinheit'Result => (EinheitRasseNummerExtern, NeuePositionExtern),
+              null => (GlobaleKonstanten.LeerEinheitStadtNummer));
 
 private
 

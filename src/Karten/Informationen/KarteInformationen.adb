@@ -5,8 +5,10 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with Anzeige, Cheat, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein, StadtInformationen, GesamtwerteFeld, KampfwerteEinheitErmitteln,
-     LeseEinheitenGebaut, LeseKarten, LeseEinheitenDatenbank, LeseStadtGebaut;
+with LeseEinheitenGebaut, LeseKarten, LeseEinheitenDatenbank, LeseStadtGebaut;
+
+with Anzeige, Cheat, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein, StadtInformationen, GesamtwerteFeld, KampfwerteEinheitErmitteln;
+     
 
 package body KarteInformationen is
 
@@ -432,7 +434,8 @@ package body KarteInformationen is
                   
                   if
                     LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       PlatzExtern              => LadungSchleifenwert) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+                                                       PlatzExtern              => LadungSchleifenwert)
+                    /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
                     and
                       ErsteAnzeige
                   then
@@ -455,7 +458,8 @@ package body KarteInformationen is
                      
                   elsif
                     LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       PlatzExtern              => LadungSchleifenwert) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+                                                       PlatzExtern              => LadungSchleifenwert)
+                    /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
                   then
                      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                                     TextDateiExtern        => GlobaleTexte.Beschreibungen_Einheiten_Kurz,

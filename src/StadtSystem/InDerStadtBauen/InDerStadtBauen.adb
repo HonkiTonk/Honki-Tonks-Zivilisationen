@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_
 
 with GlobaleKonstanten, GlobaleTexte;
      
-with Anzeige, Eingabe, Auswahl, BewegungPassierbarkeitPruefen, GebaeudeRichtigeUmgebung, SchreibeStadtGebaut, LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
+with Anzeige, Eingabe, Auswahl, EinheitenAllgemein, GebaeudeAllgemein, SchreibeStadtGebaut, LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
 
 package body InDerStadtBauen is
 
@@ -148,36 +148,10 @@ package body InDerStadtBauen is
             null;
          end if;
          
-         PassendeUmgebungVorhanden := GebaeudeRichtigeUmgebung.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                          GebäudeIDExtern       => GebäudeSchleifenwert);
-         
          if
-           LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                              WelchesGebäudeExtern  => GebäudeSchleifenwert) = True
-         then
-            null;
-
-         elsif
-           LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                IDExtern    => GebäudeSchleifenwert) /= 0
-           and
-             PassendeUmgebungVorhanden
-         then
-            if
-              GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                                        IDExtern    => GebäudeSchleifenwert)) = False
-            then 
-               null;
-
-            else
-               Anzeige.AllgemeineAnzeigeText (Ende).Text
-                 := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert));
-               Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.GebäudeAufschlag + Positive (GebäudeSchleifenwert);
-               Ende := Ende + 1;
-            end if;
-            
-         elsif
-           PassendeUmgebungVorhanden
+           GebaeudeAllgemein.GebäudeAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                            IDExtern               => GebäudeSchleifenwert)
+           = True
          then
             Anzeige.AllgemeineAnzeigeText (Ende).Text
               := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz), Positive (GebäudeSchleifenwert));
@@ -203,34 +177,14 @@ package body InDerStadtBauen is
             null;
          end if;
          
-         UmgebungPassierbar := BewegungPassierbarkeitPruefen.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                                        EinheitenIDExtern      => EinheitSchleifenwert);
-         
          if
-           LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                 IDExtern    => EinheitSchleifenwert) /= 0
-           and
-             UmgebungPassierbar
-         then
-            if
-              GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                                         IDExtern    => EinheitSchleifenwert)) = False
-            then
-               null;
-               
-            else
-               Anzeige.AllgemeineAnzeigeText (Ende).Text
-                 := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
-                                                   Positive (EinheitSchleifenwert));
-               Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
-               Ende := Ende + 1;
-            end if;
-            
-         elsif
-           UmgebungPassierbar
+           EinheitenAllgemein.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                            IDExtern               => EinheitSchleifenwert)
+           = True
          then
             Anzeige.AllgemeineAnzeigeText (Ende).Text
-              := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz), Positive (EinheitSchleifenwert));
+              := GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
+                                                Positive (EinheitSchleifenwert));
             Anzeige.AllgemeineAnzeigeText (Ende).Nummer := GlobaleKonstanten.EinheitAufschlag + Positive (EinheitSchleifenwert);
             Ende := Ende + 1;
             
@@ -393,7 +347,7 @@ package body InDerStadtBauen is
       New_Line;
       
       PermanenteKostenSchleife:
-      for PermanenteKostenSchleifenwert in GlobaleDatentypen.PermanenteKostenArray'Range loop
+      for PermanenteKostenSchleifenwert in GlobaleRecords.PermanenteKostenArray'Range loop
          
          if
            LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
@@ -466,7 +420,7 @@ package body InDerStadtBauen is
       New_Line;
       
       PermanenteKostenSchleife:
-      for PermanenteKostenSchleifenwert in GlobaleDatentypen.PermanenteKostenArray'Range loop
+      for PermanenteKostenSchleifenwert in GlobaleRecords.PermanenteKostenArray'Range loop
          
          if
            LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,

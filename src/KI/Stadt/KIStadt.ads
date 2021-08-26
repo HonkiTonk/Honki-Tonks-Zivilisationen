@@ -20,9 +20,6 @@ private
    ProduktionÄndernNotwendig : Boolean;
    FeindNahe : Boolean;
 
-   NotAus : GlobaleDatentypen.Sichtweite;
-
-
    EinheitBauen : KIRecords.EinheitIDBewertungRecord;
    GebäudeBauen : KIRecords.GebäudeIDBewertungRecord;
 

@@ -25,7 +25,7 @@ package body KIBewegungBerechnen is
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
             return False;
       end case;
       
@@ -45,7 +45,7 @@ package body KIBewegungBerechnen is
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
       end case;
       
       return PlanungErfolgreich;
@@ -210,10 +210,10 @@ package body KIBewegungBerechnen is
         BewegungBlockiert.BlockiertStadtEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  NeuePositionExtern       => KartenWert)
       is
-         when GlobaleDatentypen.Normale_Bewegung_Möglich =>   
+         when False =>   
             null;
                         
-         when others =>
+         when True =>
             return 0;
       end case;
       

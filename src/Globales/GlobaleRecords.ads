@@ -104,6 +104,8 @@ package GlobaleRecords is
       
    end record;
    
+   
+   
    type KampfwerteRecord is record
       
       Angriff : GlobaleDatentypen.ProduktionFeld;
@@ -116,6 +118,8 @@ package GlobaleRecords is
    type EinwohnerArbeiterArray is array (1 .. 2) of GlobaleDatentypen.ProduktionFeld;
    type GebäudeVorhandenArray is array (GlobaleDatentypen.GebäudeID'Range) of Boolean;
    type StadtMeldungenArray is array (GlobaleDatentypen.Stadt_Meldung_Art_Enum'Range) of GlobaleDatentypen.Stadt_Meldung_Enum;
+   type UmgebungBewirtschaftungArray is array (GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range, GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range) of Boolean;
+   type PermanenteKostenArray is array (GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Range) of GlobaleDatentypen.GesamtePermanenteKosten;
 
    type StadtGebautRecord is record
       
@@ -128,7 +132,7 @@ package GlobaleRecords is
       Ressourcen : GlobaleDatentypen.KostenLager;
       Produktionrate : GlobaleDatentypen.GesamtproduktionStadt;
       Geldgewinnung : GlobaleDatentypen.GesamtproduktionStadt;
-      PermanenteKostenPosten : GlobaleDatentypen.PermanenteKostenArray;
+      PermanenteKostenPosten : PermanenteKostenArray;
       
       Forschungsrate : GlobaleDatentypen.GesamtproduktionStadt;
       Bauprojekt : Natural;
@@ -138,7 +142,7 @@ package GlobaleRecords is
       GebäudeVorhanden : GebäudeVorhandenArray;
       Name : Unbounded_Wide_Wide_String;
 
-      UmgebungBewirtschaftung : GlobaleDatentypen.UmgebungBewirtschaftungArray;
+      UmgebungBewirtschaftung : UmgebungBewirtschaftungArray;
       UmgebungGröße : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
       
       Meldungen : StadtMeldungenArray;

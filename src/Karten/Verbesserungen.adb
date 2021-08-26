@@ -4,7 +4,10 @@ with GlobaleKonstanten;
 
 with KIDatentypen;
 
-with FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, WichtigesSetzen, EinheitenMeldungenSetzen, LeseKarten, SchreibeKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseEinheitenDatenbank;
+with SchreibeKarten, SchreibeEinheitenGebaut;
+with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank;
+
+with FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, WichtigesSetzen, EinheitenMeldungenSetzen;
 
 package body Verbesserungen is
    
@@ -49,7 +52,7 @@ package body Verbesserungen is
       end case;
      
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleDatentypen.Nicht_Vorhanden
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleDatentypen.Leer
         or
           GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
@@ -104,7 +107,8 @@ package body Verbesserungen is
         BefehlExtern in GlobaleDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range
         and
           LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= GlobaleDatentypen.Arbeiter
+                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+            /= GlobaleDatentypen.Arbeiter
       then
          return False;
          
@@ -112,7 +116,8 @@ package body Verbesserungen is
         BefehlExtern = GlobaleDatentypen.Plündern
         and
           LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.Arbeiter
+                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+            = GlobaleDatentypen.Arbeiter
       then
          return False;
          
@@ -134,12 +139,12 @@ package body Verbesserungen is
    is begin
       
       SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                              BeschäftigungExtern     => GlobaleDatentypen.Leer);
       SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                    ZeitExtern               => 0,
                                                    RechnenSetzenExtern      => 0);
       SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                        BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                        BeschäftigungExtern     => GlobaleDatentypen.Leer);
       SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                              ZeitExtern               => 0,
                                                              RechnenSetzenExtern      => 0);
@@ -265,7 +270,7 @@ package body Verbesserungen is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);
@@ -356,7 +361,7 @@ package body Verbesserungen is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);
@@ -452,7 +457,7 @@ package body Verbesserungen is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);
@@ -527,7 +532,7 @@ package body Verbesserungen is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);
@@ -611,7 +616,7 @@ package body Verbesserungen is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);
@@ -652,7 +657,7 @@ package body Verbesserungen is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);
@@ -690,7 +695,7 @@ package body Verbesserungen is
             
          when False =>
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);
@@ -826,10 +831,12 @@ package body Verbesserungen is
       
       if
         LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.EinheitenIDMitNullWert'First
+                                                 IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+          = GlobaleDatentypen.EinheitenIDMitNullWert'First
         or
           LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                    KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = False
+                                    KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+            = False
       then
          return False;
          
@@ -837,7 +844,8 @@ package body Verbesserungen is
         GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht
         (LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                                IDExtern    => LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)))) = False
+                                                                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))))
+        = False
       then
          return False;
          
@@ -908,7 +916,7 @@ package body Verbesserungen is
       case
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when GlobaleDatentypen.Nicht_Vorhanden | GlobaleDatentypen.Heilen | GlobaleDatentypen.Verschanzen =>
+         when GlobaleDatentypen.Leer | GlobaleDatentypen.Heilen | GlobaleDatentypen.Verschanzen =>
             return;
                
          when others =>
@@ -929,9 +937,9 @@ package body Verbesserungen is
          case
            LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          is
-            when GlobaleDatentypen.Nicht_Vorhanden =>
+            when GlobaleDatentypen.Leer =>
                SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                       BeschäftigungExtern     => GlobaleDatentypen.Leer);
                SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
                SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -945,7 +953,7 @@ package body Verbesserungen is
                                                             ZeitExtern               => LeseEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                             RechnenSetzenExtern      => 0);
                SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                 BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                                 BeschäftigungExtern     => GlobaleDatentypen.Leer);
                SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                       ZeitExtern               => GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
                                                                       RechnenSetzenExtern      => 0);

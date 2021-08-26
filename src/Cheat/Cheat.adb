@@ -5,7 +5,9 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleTexte;
 
-with Karte, Karten, Anzeige, Eingabe, ForschungAllgemein, LeseKarten, SchreibeKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+with LeseKarten, SchreibeKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+
+with Karte, Karten, Anzeige, Eingabe, ForschungAllgemein;
 
 package body Cheat is
 

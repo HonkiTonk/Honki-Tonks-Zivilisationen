@@ -49,7 +49,7 @@ package body KISiedlerAufgabeFestlegen is
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
       end case;
       
    end SiedlerAufgabeFestlegen;

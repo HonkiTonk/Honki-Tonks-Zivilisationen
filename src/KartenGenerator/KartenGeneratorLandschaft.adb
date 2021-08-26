@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with ZufallGeneratorenKarten, KartePositionPruefen, LeseKarten, SchreibeKarten;
+with SchreibeKarten;
+with LeseKarten;
+
+with ZufallGeneratorenKarten, KartePositionPruefen;
 
 package body KartenGeneratorLandschaft is
 

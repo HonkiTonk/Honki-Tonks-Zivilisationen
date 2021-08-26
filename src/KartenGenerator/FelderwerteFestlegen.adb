@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten, GlobaleVariablen;
 
-with KartePositionPruefen, LeseKarten, SchreibeKarten, KartenAllgemein;
+with SchreibeKarten;
+with LeseKarten;
+
+with KartePositionPruefen, KartenAllgemein;
 
 package body FelderwerteFestlegen is
    

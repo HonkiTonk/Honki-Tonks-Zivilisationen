@@ -4,7 +4,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with Karten, Eingabe, KartePositionPruefen;
 
-package body BewegungssystemCursor is
+package body BewegungCursor is
 
    procedure BewegungCursorRichtung
      (KarteExtern : in Boolean;
@@ -198,4 +198,4 @@ package body BewegungssystemCursor is
       
    end BewegungCursorBerechnenStadt;
 
-end BewegungssystemCursor;
+end BewegungCursor;

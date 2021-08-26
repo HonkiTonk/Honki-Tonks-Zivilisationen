@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartenAllgemein;
+with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseVerbesserungenDatenbank, LeseStadtGebaut;
 
-with StadtSuchen, UmgebungErreichbarTesten, LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseVerbesserungenDatenbank, KartePositionPruefen, LeseStadtGebaut;
+with StadtSuchen, UmgebungErreichbarTesten, KartePositionPruefen, KartenAllgemein;
 
 package body BewegungPassierbarkeitPruefen is
    
@@ -89,7 +89,8 @@ package body BewegungPassierbarkeitPruefen is
          elsif
            LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => RasseExtern,
                                                   IDExtern             => IDExtern,
-                                                  WelcheUmgebungExtern => PassierbarkeitSchleifenwert) = False
+                                                  WelcheUmgebungExtern => PassierbarkeitSchleifenwert)
+           = False
          then
             null;
             
@@ -103,13 +104,15 @@ package body BewegungPassierbarkeitPruefen is
             when False =>
                if
                  StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                             KoordinatenExtern => NeuePositionExtern) = GlobaleKonstanten.LeerEinheitStadtNummer
+                                                             KoordinatenExtern => NeuePositionExtern)
+                 = GlobaleKonstanten.LeerEinheitStadtNummer
                then
                   null;
                   
                elsif
                  LeseVerbesserungenDatenbank.Passierbarkeit (VerbesserungExtern   => LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern),
-                                                             WelcheUmgebungExtern => PassierbarkeitSchleifenwert) = False
+                                                             WelcheUmgebungExtern => PassierbarkeitSchleifenwert)
+                 = False
                then
                   null;
                   
@@ -123,7 +126,8 @@ package body BewegungPassierbarkeitPruefen is
                  LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
                  and
                    KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
-                                                           PassierbarkeitExtern => PassierbarkeitSchleifenwert) = False
+                                                           PassierbarkeitExtern => PassierbarkeitSchleifenwert)
+                 = False
                then
                   null;
                   
@@ -131,18 +135,21 @@ package body BewegungPassierbarkeitPruefen is
                  (LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
                   and
                     KartenAllgemein.PassierbarWeg (PositionExtern       => NeuePositionExtern,
-                                                   PassierbarkeitExtern => PassierbarkeitSchleifenwert) = True)
+                                                   PassierbarkeitExtern => PassierbarkeitSchleifenwert)
+                  = True)
                  or
                    (LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
                     and
                       KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
-                                                              PassierbarkeitExtern => PassierbarkeitSchleifenwert) = True)
+                                                              PassierbarkeitExtern => PassierbarkeitSchleifenwert)
+                    = True)
                then
                   return True;
          
                elsif
                  KartenAllgemein.PassierbarGrund (PositionExtern       => NeuePositionExtern,
-                                                  PassierbarkeitExtern => PassierbarkeitSchleifenwert) = True
+                                                  PassierbarkeitExtern => PassierbarkeitSchleifenwert)
+                 = True
                then
                   return True;
                   

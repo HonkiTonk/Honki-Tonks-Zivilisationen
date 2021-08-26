@@ -63,7 +63,7 @@ package body SchreibeEinheitenGebaut is
                is
                   when GlobaleDatentypen.Heilen =>
                      Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                     BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                     BeschäftigungExtern     => GlobaleDatentypen.Leer);
                      Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                           ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
                                           RechnenSetzenExtern      => 0);

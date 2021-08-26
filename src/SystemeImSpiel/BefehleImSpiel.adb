@@ -2,8 +2,8 @@ pragma SPARK_Mode (On);
 
 with GlobaleTexte;
 
-with InDerStadt, BewegungssystemEinheiten, BewegungssystemCursor, Auswahl, NaechstesObjekt, Verbesserungen, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen,
-     Eingabe, FeldInformationen, ForschungAllgemein, EinheitenAllgemein, StadtEntfernen, LeseEinheitenGebaut, SchreibeEinheitenGebaut, SchreibeStadtGebaut;
+with InDerStadt, BewegungEinheiten, BewegungCursor, Auswahl, NaechstesObjekt, Verbesserungen, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen,
+     Eingabe, FeldInformationen, ForschungAllgemein, EinheitenAllgemein, StadtEntfernen, LeseEinheitenGebaut, SchreibeEinheitenGebaut, SchreibeStadtGebaut, EinheitenTransporter;
 
 package body BefehleImSpiel is
 
@@ -18,7 +18,7 @@ package body BefehleImSpiel is
         Befehl
       is
          when GlobaleDatentypen.Tastenbelegung_Bewegung_Enum'Range =>
-            BewegungssystemCursor.BewegungCursorRichtung (KarteExtern    => True,
+            BewegungCursor.BewegungCursorRichtung (KarteExtern    => True,
                                                           RichtungExtern => Befehl,
                                                           RasseExtern    => RasseExtern);
             
@@ -67,7 +67,7 @@ package body BefehleImSpiel is
             Diplomatie.DiplomatieMöglich (RasseExtern => RasseExtern);
 
          when GlobaleDatentypen.GeheZu =>
-            BewegungssystemCursor.GeheZuCursor (RasseExtern => RasseExtern);
+            BewegungCursor.GeheZuCursor (RasseExtern => RasseExtern);
 
          when GlobaleDatentypen.Stadt_Umbenennen =>
             StadtUmbenennen (RasseExtern => RasseExtern);
@@ -93,7 +93,7 @@ package body BefehleImSpiel is
          when GlobaleDatentypen.Cheatmenü =>
             Cheat.Menü (RasseExtern => RasseExtern);
          
-         when GlobaleDatentypen.Nicht_Vorhanden =>
+         when GlobaleDatentypen.Leer =>
             null;
       end case;
 
@@ -155,10 +155,10 @@ package body BefehleImSpiel is
            LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             EinheitTransportNummer
-              := EinheitenAllgemein.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer))));
+              := EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer))));
 
          else
-            EinheitTransportNummer := EinheitenAllgemein.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
+            EinheitTransportNummer := EinheitenTransporter.EinheitTransporterAuswählen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer));
          end if;
                   
          case
@@ -203,17 +203,17 @@ package body BefehleImSpiel is
       end case;
       
       if
-        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern)) /= GlobaleDatentypen.Nicht_Vorhanden
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern)) /= GlobaleDatentypen.Leer
         and then
           EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then
          SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
-                                                 BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                 BeschäftigungExtern     => GlobaleDatentypen.Leer);
          SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
                                                       ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
                                                       RechnenSetzenExtern      => 0);
          SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
-                                                           BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                           BeschäftigungExtern     => GlobaleDatentypen.Leer);
          SchreibeEinheitenGebaut.BeschäftigungszeitNachfolger (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
                                                                 ZeitExtern               => GlobaleKonstanten.LeerEinheit.BeschäftigungszeitNachfolger,
                                                                 RechnenSetzenExtern      => 0);
@@ -224,7 +224,7 @@ package body BefehleImSpiel is
          null;
                      
       else
-         BewegungssystemEinheiten.BewegungEinheitenRichtung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
+         BewegungEinheiten.BewegungEinheitenRichtung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern));
       end if;
       
    end EinheitOderStadt;

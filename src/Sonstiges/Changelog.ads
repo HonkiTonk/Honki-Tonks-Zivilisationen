@@ -14,45 +14,55 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (30.08.2021):
+   -- Version 0.00.85 => 0.00.8 (30.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (29.08.2021):
+   -- Version 0.00.85 => 0.00.85 (29.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (28.08.2021):
+   -- Version 0.00.85 => 0.00.85 (28.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (27.08.2021):
+   -- Version 0.00.8500 => 0.00.85 (27.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8480 => 0.00.8 (26.08.2021):
+   -- Version 0.00.8480 => 0.00.8500 (26.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- InDerStadtBauen vereinfacht durch Auslagerung der Einheiten/Gebäudeprüfungen.
+   -- Die ausgelagerten Einheiten/Gebäudeprüfungen bei den KI Prüfungen für das Bauen von Einheiten und Gebäuden eingebunden
+   -- Einfaches Gebäudebewertungssystem für die KI fertiggestellt, wodurch beim Gebäudebau die Vorteile, permanenten Kosten und der Preis der Gebäude berücksichtigt werden.
+   -- Einfaches Einheitbewertungssystem für die KI fertiggestellt, wodurch beim Gebäudebau die permanenten Kosten, der Preis und die bereits vorhandenen Einheiten gleicher Art berücksichtigt werden.
+   -- Angefangen EinheitenAllgemein in verschiedene, aufgabenspezifische Dateien zu zerlegen.
+   -- Benennungen von Datentypen sinnvoll angepasst und unnötige Typen entfernt, außerdem angefangen die GlobalenDateien zu überarbeiten.
+   -- Formatierung des SourceCodes überarbeitet.
+   -- Diverse Prüfungen ob eine Forschung möglich ist ausgelagert und in einer Funktion zusammengesfasst.
+   -- Die neue Forschungsfunktion bei der KI eingebaut.
+   -- Unnötigen Code gelöscht.
+   -- LeseRassenDatenbank angelegt und überall eingebunden.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/gelöscht/hinzugefügt.
    
    
    
    -- Version 0.00.8470 => 0.00.8480 (25.08.2021):
    
    -- Umgebungsprüfung für den Bau von Einheiten ausgelagert damit sie auch für die KI verwendet werden kann.
-   -- Kleine Anpassungen an der Bewertung des nächsten Bauprojektes der KI vorgtenommen.
+   -- Kleine Anpassungen an der Bewertung des nächsten Bauprojektes der KI vorgenommen.
    -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    

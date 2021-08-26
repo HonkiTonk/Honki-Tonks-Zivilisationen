@@ -17,6 +17,16 @@ package KIStadtLaufendeBauprojekte is
           and
             BauprojektExtern <= 99_999);
    
+   function GleicheEinheitArtBauprojekte
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EinheitArtExtern : in GlobaleDatentypen.Einheit_Art_Verwendet_Enum)
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+   
 private
    
    GleichesBauprojekt : GlobaleDatentypen.MaximaleStädteMitNullWert;

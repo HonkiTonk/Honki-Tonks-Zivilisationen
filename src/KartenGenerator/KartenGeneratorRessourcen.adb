@@ -3,7 +3,10 @@ pragma SPARK_Mode (On);
 with GlobaleKonstanten, GlobaleDatentypen;
 use GlobaleDatentypen;
 
-with Karten, ZufallGeneratorenKarten, KartePositionPruefen, LeseKarten, SchreibeKarten;
+with SchreibeKarten;
+with LeseKarten;
+
+with Karten, ZufallGeneratorenKarten, KartePositionPruefen;
 
 package body KartenGeneratorRessourcen is
 

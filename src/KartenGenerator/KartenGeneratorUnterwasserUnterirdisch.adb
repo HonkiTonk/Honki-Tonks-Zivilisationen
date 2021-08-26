@@ -6,7 +6,10 @@ use Ada.Calendar;
 with GlobaleDatentypen, GlobaleKonstanten;
 use GlobaleDatentypen;
 
-with Ladezeiten, Karten, KartePositionPruefen, LeseKarten, ZufallGeneratorenKarten, SchreibeKarten;
+with SchreibeKarten;
+with LeseKarten;
+
+with Ladezeiten, Karten, KartePositionPruefen, ZufallGeneratorenKarten;
 
 package body KartenGeneratorUnterwasserUnterirdisch is
 
