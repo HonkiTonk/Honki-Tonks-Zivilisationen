@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen;
 
-with StadtBauen, KINullwerteSetzen, Verbesserungen, LeseKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+with SchreibeEinheitenGebaut;
+with LeseKarten, LeseEinheitenGebaut;
+
+with StadtBauen, KINullwerteSetzen, Verbesserungen;
 
 package body KISiedlerAufgabeDurchfuehren is
 
@@ -85,7 +88,8 @@ package body KISiedlerAufgabeDurchfuehren is
                  LeseKarten.Hügel (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
               and
                 Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   BefehlExtern             => GlobaleDatentypen.Mine_Bauen) = True
+                                                   BefehlExtern             => GlobaleDatentypen.Mine_Bauen)
+              = True
             then
                AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                           BefehlExtern             => GlobaleDatentypen.Mine_Bauen);
@@ -95,7 +99,8 @@ package body KISiedlerAufgabeDurchfuehren is
               Grund = GlobaleDatentypen.Eis
               and
                 Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                   BefehlExtern             => GlobaleDatentypen.Festung_Bauen) = True
+                                                   BefehlExtern             => GlobaleDatentypen.Festung_Bauen)
+              = True
             then
                AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                           BefehlExtern             => GlobaleDatentypen.Festung_Bauen);
@@ -103,7 +108,8 @@ package body KISiedlerAufgabeDurchfuehren is
          
             elsif
               Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 BefehlExtern             => GlobaleDatentypen.Farm_Bauen) = True
+                                                 BefehlExtern             => GlobaleDatentypen.Farm_Bauen)
+              = True
             then
                AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                           BefehlExtern             => GlobaleDatentypen.Farm_Bauen);

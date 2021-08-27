@@ -1,8 +1,10 @@
 pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
+
+with LeseStadtGebaut;
   
-with Eingabe, LeseStadtGebaut;
+with Eingabe;
 
 package body StadtSuchen is
 

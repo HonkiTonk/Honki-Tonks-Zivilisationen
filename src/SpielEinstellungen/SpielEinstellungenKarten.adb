@@ -134,7 +134,7 @@ package body SpielEinstellungenKarten is
                                                TextDateiExtern   => GlobaleTexte.Spiel_Einstellungen,
                                                FrageZeileExtern  => 72,
                                                ErsteZeileExtern  => 73,
-                                               LetzteZeileExtern=> 84);
+                                               LetzteZeileExtern => 84);
          
          case
            KartenformAuswahl

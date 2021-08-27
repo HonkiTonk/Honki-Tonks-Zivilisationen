@@ -9,8 +9,7 @@ with Ladezeiten, Auswahl, EinlesenSprache, EinlesenText, EinlesenTastatur, Einle
 
 package body Einlesen is
 
-   function Einlesen
-     return Boolean
+   procedure Einlesen
    is begin
       
       Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, GlobaleDatentypen.Anfangswert) := Clock;
@@ -28,7 +27,7 @@ package body Einlesen is
                SchreibenEinstellungen.SchreibenEinstellungen;
             
             when False =>
-               return Erfolgreich;
+               return;
          end case;
          
       else
@@ -44,14 +43,14 @@ package body Einlesen is
             null;
 
          when False =>
-            return Erfolgreich;
+            return;
       end case;
       
       EinlesenDatenbanken.EinlesenAlleDatenbanken;
       EinlesenTastatur.EinlesenTastaturbelegung;
       Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, GlobaleDatentypen.Endwert) := Clock;
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Startzeit);
-      return Erfolgreich;
+      return;
       
    end Einlesen;
 

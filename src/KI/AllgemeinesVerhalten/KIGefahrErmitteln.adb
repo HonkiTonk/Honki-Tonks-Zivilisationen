@@ -25,7 +25,8 @@ package body KIGefahrErmitteln is
                   
             elsif
               LeseKarten.Sichtbar (PositionExtern => KartenWert,
-                                      RasseExtern    => EinheitRasseNummerExtern.Rasse) = False
+                                   RasseExtern    => EinheitRasseNummerExtern.Rasse)
+              = False
             then
                null;
                   
@@ -41,7 +42,8 @@ package body KIGefahrErmitteln is
                  GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitUnzugeordnet.Rasse) in GlobaleDatentypen.Status_Untereinander_Aggressiv_Enum
                  and
                    StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                               KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) /= GlobaleKonstanten.LeerEinheitStadtNummer
+                                                               KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+                     /= GlobaleKonstanten.LeerEinheitStadtNummer
                then
                   SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                            BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,

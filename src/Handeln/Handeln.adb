@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleTexte, GlobaleKonstanten;
 
-with Auswahl, Sichtbarkeit, KennenLernen, Eingabe, WichtigesSetzen, DiplomatischerZustand;
+with SchreibeWichtiges;
+
+with Auswahl, Sichtbarkeit, KennenLernen, Eingabe, DiplomatischerZustand;
 
 package body Handeln is
 
@@ -72,18 +74,20 @@ package body Handeln is
             when 7 =>
                -- Geld verschenken
                if
-                 GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge > 0
+                 GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge >= Positive'First
                then
                   Geldmenge := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Handeln,
                                                   ZeileExtern         => 11,
                                                   ZahlenMinimumExtern => 0,
                                                   ZahlenMaximumExtern => GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge);
                
-                  WichtigesSetzen.GeldFestlegen (RasseExtern        => RasseExtern,
-                                                 GeldZugewinnExtern => -Geldmenge);
+                  SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
+                                               GeldZugewinnExtern  => -Geldmenge,
+                                               RechnenSetzenExtern => True);
                
-                  WichtigesSetzen.GeldFestlegen (RasseExtern        => KontaktierteRasseExtern,
-                                                 GeldZugewinnExtern => Geldmenge);
+                  SchreibeWichtiges.Geldmenge (RasseExtern         => KontaktierteRasseExtern,
+                                               GeldZugewinnExtern  => Geldmenge,
+                                               RechnenSetzenExtern => True);
                   
                   if
                     Geldmenge / 25 > Integer (GlobaleDatentypen.ProduktionFeld'Last)
@@ -105,18 +109,20 @@ package body Handeln is
             when 8 =>
                -- Geld verlangen
                if
-                 GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge > 0
+                 GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge >= Positive'First
                then
                   Geldmenge := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Handeln,
                                                   ZeileExtern         => 12,
                                                   ZahlenMinimumExtern => 0,
                                                   ZahlenMaximumExtern => GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge);
                
-                  WichtigesSetzen.GeldFestlegen (RasseExtern        => RasseExtern,
-                                                 GeldZugewinnExtern => Geldmenge);
+                  SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
+                                               GeldZugewinnExtern  => Geldmenge,
+                                               RechnenSetzenExtern => True);
                
-                  WichtigesSetzen.GeldFestlegen (RasseExtern        => KontaktierteRasseExtern,
-                                                 GeldZugewinnExtern => -Geldmenge);
+                  SchreibeWichtiges.Geldmenge (RasseExtern         => KontaktierteRasseExtern,
+                                               GeldZugewinnExtern  => -Geldmenge,
+                                               RechnenSetzenExtern => True);
                   
                   if
                     Geldmenge / 25 > Integer (GlobaleDatentypen.ProduktionFeld'Last)

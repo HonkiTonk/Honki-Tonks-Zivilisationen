@@ -5,7 +5,9 @@ with GlobaleKonstanten;
 with KIKonstanten, KIDatentypen;
 use KIDatentypen;
 
-with KIBewegungDurchfuehren, KINahkampfBodenAufgabeErmitteln, KINahkampfBodenAufgabeDurchfuehren, LeseEinheitenGebaut;
+with LeseEinheitenGebaut;
+
+with KIBewegungDurchfuehren, KINahkampfBodenAufgabeErmitteln, KINahkampfBodenAufgabeDurchfuehren;
 
 package body KINahkampfBoden is
 

@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Wachstum, KartePositionPruefen, GesamtwerteFeld, LeseStadtGebaut, SchreibeStadtGebaut;
+with SchreibeStadtGebaut;
+with LeseStadtGebaut;
+
+with Wachstum, KartePositionPruefen, GesamtwerteFeld;
 
 package body StadtProduktion is
 

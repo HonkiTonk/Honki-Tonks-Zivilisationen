@@ -4,7 +4,10 @@ with GlobaleTexte, GlobaleKonstanten;
 
 with KIDatentypen;
 
-with Anzeige, GebaeudeAllgemein, LeseStadtGebaut, SchreibeStadtGebaut;
+with SchreibeStadtGebaut;
+with LeseStadtGebaut;
+
+with Anzeige, GebaeudeAllgemein;
 
 package body StadtGebaeudeBauen is
 

@@ -4,7 +4,9 @@ with GlobaleKonstanten;
 
 with KIDatentypen, KIKonstanten;
 
-with StadtBauen, KIPruefungen, EinheitenAllgemein, KIMindestBewertungKartenfeldErmitteln, KIAufgabenFestlegenAllgemein, SchreibeEinheitenGebaut;
+with SchreibeEinheitenGebaut;
+
+with StadtBauen, KIPruefungen, EinheitenAllgemein, KIMindestBewertungKartenfeldErmitteln, KIAufgabenFestlegenAllgemein;
 
 package body KISiedlerAufgabeFestlegen is
 

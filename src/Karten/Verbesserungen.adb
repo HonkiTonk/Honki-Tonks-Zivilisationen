@@ -4,10 +4,10 @@ with GlobaleKonstanten;
 
 with KIDatentypen;
 
-with SchreibeKarten, SchreibeEinheitenGebaut;
+with SchreibeKarten, SchreibeEinheitenGebaut, SchreibeWichtiges;
 with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank;
 
-with FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, WichtigesSetzen, EinheitenMeldungenSetzen;
+with FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, EinheitenMeldungenSetzen;
 
 package body Verbesserungen is
    
@@ -800,8 +800,9 @@ package body Verbesserungen is
          when others =>
             SchreibeKarten.VerbesserungGebiet (PositionExtern     => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                VerbesserungExtern => GlobaleDatentypen.Leer);
-            WichtigesSetzen.GeldFestlegen (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                           GeldZugewinnExtern => 10);
+            SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+                                         GeldZugewinnExtern  => 10,
+                                         RechnenSetzenExtern => True);
       end case;
       
       case
@@ -813,8 +814,9 @@ package body Verbesserungen is
          when others =>
             SchreibeKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                             WegExtern      => GlobaleDatentypen.Leer);
-            WichtigesSetzen.GeldFestlegen (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                           GeldZugewinnExtern => 5);
+            SchreibeWichtiges.Geldmenge (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+                                         GeldZugewinnExtern  => 5,
+                                         RechnenSetzenExtern => True);
       end case;
       
       return True;

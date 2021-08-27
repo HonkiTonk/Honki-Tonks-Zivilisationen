@@ -5,7 +5,9 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleTexte, GlobaleKonstanten;
 
-with Auswahl, ZufallGeneratorenSpieleinstellungen, Anzeige, Eingabe, ZufallGeneratorenKarten, EinheitenAllgemein, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, LeseKarten, LeseEinheitenGebaut;
+with LeseKarten, LeseEinheitenGebaut;
+
+with Auswahl, ZufallGeneratorenSpieleinstellungen, Anzeige, Eingabe, ZufallGeneratorenKarten, EinheitenAllgemein, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen;
 
 package body SpielEinstellungenRasseSpieler is
 
@@ -263,8 +265,8 @@ package body SpielEinstellungenRasseSpieler is
                XAchseSchleife:
                for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
-                  KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => PositionExtern,
-                                                                              ÄnderungExtern       => (0, YÄnderung, XÄnderung));
+                  KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
+                                                                              ÄnderungExtern    => (0, YÄnderung, XÄnderung));
             
                   if
                     KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert

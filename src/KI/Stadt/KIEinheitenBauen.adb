@@ -4,7 +4,9 @@ with GlobaleKonstanten;
 
 with KIKonstanten;
 
-with EinheitSuchen, KIStadtLaufendeBauprojekte, LeseEinheitenDatenbank, EinheitenAllgemein, LeseStadtGebaut;
+with LeseEinheitenDatenbank, LeseStadtGebaut;
+
+with EinheitSuchen, KIStadtLaufendeBauprojekte, EinheitenAllgemein;
 
 package body KIEinheitenBauen is
 

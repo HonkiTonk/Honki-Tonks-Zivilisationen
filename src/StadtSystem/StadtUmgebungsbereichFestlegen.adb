@@ -2,7 +2,8 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with LeseStadtGebaut, SchreibeStadtGebaut;
+with SchreibeStadtGebaut;
+with LeseStadtGebaut;
 
 package body StadtUmgebungsbereichFestlegen is
 

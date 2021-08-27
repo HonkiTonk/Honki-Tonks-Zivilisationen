@@ -2,8 +2,11 @@ pragma SPARK_Mode (On);
 
 with GlobaleTexte;
 
-with InDerStadt, BewegungEinheiten, BewegungCursor, Auswahl, NaechstesObjekt, Verbesserungen, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen,
-     Eingabe, FeldInformationen, ForschungAllgemein, EinheitenAllgemein, StadtEntfernen, LeseEinheitenGebaut, SchreibeEinheitenGebaut, SchreibeStadtGebaut, EinheitenTransporter;
+with SchreibeEinheitenGebaut, SchreibeStadtGebaut;
+with LeseEinheitenGebaut;
+
+with InDerStadt, BewegungEinheiten, BewegungCursor, Auswahl, NaechstesObjekt, Verbesserungen, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, FeldInformationen, ForschungAllgemein,
+     EinheitenAllgemein, StadtEntfernen, EinheitenTransporter;
 
 package body BefehleImSpiel is
 

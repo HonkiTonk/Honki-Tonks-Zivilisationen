@@ -31,9 +31,10 @@ package body Ladezeiten is
             ZeitAuswahlSchleife:
             for VerschiedeneZeitenSchleifenwert in Gesamtzeit_Enum'Range loop                  
                
-               GesamtzeitSpielweltErstellen := GesamtzeitSpielweltErstellen + Float (SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Endwert)
-                                                                                     - SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Anfangswert));
-                  
+               GesamtzeitSpielweltErstellen
+                 := GesamtzeitSpielweltErstellen
+                   + Float (SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Endwert) - SpielweltErstellenZeit (VerschiedeneZeitenSchleifenwert, GlobaleDatentypen.Anfangswert));
+               
             end loop ZeitAuswahlSchleife;
             Ada.Float_Text_IO.Put (Item => GesamtzeitSpielweltErstellen,
                                    Fore => 1,

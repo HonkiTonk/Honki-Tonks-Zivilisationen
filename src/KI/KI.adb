@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KISiedler, KINahkampfBoden, KIStadt, KIForschung, KIDiplomatie, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
+with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
+
+with KISiedler, KINahkampfBoden, KIStadt, KIForschung, KIDiplomatie;
 
 package body KI is
 

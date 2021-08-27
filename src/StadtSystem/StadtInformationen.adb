@@ -5,7 +5,9 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded;
 
 with GlobaleTexte, GlobaleKonstanten;
 
-with Anzeige, GesamtwerteFeld, KampfwerteStadtErmitteln, LeseStadtGebaut;
+with LeseStadtGebaut;
+
+with Anzeige, GesamtwerteFeld, KampfwerteStadtErmitteln;
 
 package body StadtInformationen is
 

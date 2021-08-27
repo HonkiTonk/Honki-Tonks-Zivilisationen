@@ -4,8 +4,11 @@ with Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide
 use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleKonstanten, GlobaleTexte;
+
+with SchreibeStadtGebaut;
+with LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
      
-with Anzeige, Eingabe, Auswahl, EinheitenAllgemein, GebaeudeAllgemein, SchreibeStadtGebaut, LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
+with Anzeige, Eingabe, Auswahl, EinheitenAllgemein, GebaeudeAllgemein;
 
 package body InDerStadtBauen is
 
@@ -140,7 +143,8 @@ package body InDerStadtBauen is
          
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Gebäude_Kurz),
-                                Positive (GebäudeSchleifenwert))) = "|"
+                                Positive (GebäudeSchleifenwert)))
+           = "|"
          then
             exit GebäudeSchleife;
             
@@ -169,7 +173,8 @@ package body InDerStadtBauen is
          
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
-                                Positive (EinheitSchleifenwert))) = "|"
+                                Positive (EinheitSchleifenwert)))
+           = "|"
          then
             exit EinheitenSchleife;
             
@@ -353,7 +358,8 @@ package body InDerStadtBauen is
            LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                     IDExtern           => GlobaleDatentypen.EinheitenID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
                                                       - GlobaleKonstanten.EinheitAufschlag),
-                                                    WelcheKostenExtern => PermanenteKostenSchleifenwert) > GlobaleKonstanten.NullPermanenteKosten
+                                                    WelcheKostenExtern => PermanenteKostenSchleifenwert)
+           > GlobaleKonstanten.NullPermanenteKosten
          then
             Anzeige.AnzeigeLangerTextNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                           TextDateiExtern        => GlobaleTexte.Zeug,

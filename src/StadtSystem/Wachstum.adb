@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with StadtWerteFestlegen, StadtEinheitenBauen, StadtGebaeudeBauen, StadtEntfernen, WichtigesSetzen, Sichtbarkeit, StadtMeldungenSetzen, LeseEinheitenDatenbank, LeseStadtGebaut, SchreibeStadtGebaut, LeseGebaeudeDatenbank;
+with SchreibeStadtGebaut, SchreibeWichtiges;
+with LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
+
+with StadtWerteFestlegen, StadtEinheitenBauen, StadtGebaeudeBauen, StadtEntfernen, Sichtbarkeit, StadtMeldungenSetzen;
 
 package body Wachstum is
 
@@ -25,9 +28,13 @@ package body Wachstum is
                   case
                     StadtNummerSchleifenwert
                   is
-                     when 1 =>
-                        GlobaleVariablen.Wichtiges (RasseEinsSchleifenwert).GesamteForschungsrate := 0;
-                        GlobaleVariablen.Wichtiges (RasseEinsSchleifenwert).GeldZugewinnProRunde := 0;
+                     when GlobaleVariablen.StadtGebautArray'First (2) =>
+                        SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => RasseEinsSchleifenwert,
+                                                                 ForschungsrateZugewinnExtern => 0,
+                                                                 RechnenSetzenExtern          => False);
+                        SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseEinsSchleifenwert,
+                                                                GeldZugewinnExtern  => 0,
+                                                                RechnenSetzenExtern => False);
                   
                      when others =>
                         null;
@@ -59,20 +66,13 @@ package body Wachstum is
             null;
             
          else
-            WichtigesSetzen.GeldFestlegen (RasseExtern        => RasseZweiSchleifenwert,
-                                           GeldZugewinnExtern => Integer (GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GeldZugewinnProRunde));
-            
-            if
-              GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GesamteForschungsrate < 0
-            then
-               GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GesamteForschungsrate := 0;
+            SchreibeWichtiges.Geldmenge (RasseExtern         => RasseZweiSchleifenwert,
+                                         GeldZugewinnExtern  => Integer (GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GeldZugewinnProRunde),
+                                         RechnenSetzenExtern => True);
          
-            else
-               null;
-            end if;
-         
-            WichtigesSetzen.ForschungsmengeFestlegen (RasseExtern             => RasseZweiSchleifenwert,
-                                                      ForschungZugewinnExtern => GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GesamteForschungsrate);
+            SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseZweiSchleifenwert,
+                                               ForschungZugewinnExtern => GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GesamteForschungsrate,
+                                               RechnenSetzenExtern     => True);
          end if;
          
       end loop RassenZweiSchleife;
@@ -86,11 +86,13 @@ package body Wachstum is
       StadtGegründetExtern : in Boolean)
    is begin
       
-      WichtigesSetzen.ForschungsrateFestlegen (RasseExtern                  => StadtRasseNummerExtern.Rasse,
-                                               ForschungsrateZugewinnExtern => LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern));
+      SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => StadtRasseNummerExtern.Rasse,
+                                               ForschungsrateZugewinnExtern => LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                               RechnenSetzenExtern          => True);
       
-      WichtigesSetzen.GeldZugewinnFestlegen (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                             GeldZugewinnExtern => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern));
+      SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => StadtRasseNummerExtern.Rasse,
+                                              GeldZugewinnExtern  => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                                              RechnenSetzenExtern => True);
                   
       if
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) > GlobaleKonstanten.LeerStadt.Produktionrate
@@ -208,8 +210,9 @@ package body Wachstum is
         LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          when GlobaleKonstanten.LeerBauprojekt =>
-            WichtigesSetzen.GeldFestlegen (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                           GeldZugewinnExtern => Integer (LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)) / 5);
+            SchreibeWichtiges.Geldmenge (RasseExtern         => StadtRasseNummerExtern.Rasse,
+                                         GeldZugewinnExtern  => Integer (LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)) / 5,
+                                         RechnenSetzenExtern => True);
             SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                             RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
                                             ÄndernSetzenExtern    => False);

@@ -5,7 +5,9 @@ with GlobaleKonstanten;
 with KIDatentypen, KIKonstanten;
 use KIDatentypen;
 
-with KIBewegungDurchfuehren, KISiedlerAufgabeErmitteln, KISiedlerAufgabeDurchfuehren, LeseEinheitenGebaut; -- , KIGefahrErmitteln;
+with LeseEinheitenGebaut;
+
+with KIBewegungDurchfuehren, KISiedlerAufgabeErmitteln, KISiedlerAufgabeDurchfuehren; -- , KIGefahrErmitteln;
 
 package body KISiedler is
 

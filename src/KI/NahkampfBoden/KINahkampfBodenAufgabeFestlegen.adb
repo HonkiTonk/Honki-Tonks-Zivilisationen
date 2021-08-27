@@ -4,7 +4,10 @@ with GlobaleKonstanten;
 
 with KIDatentypen, KIKonstanten;
 
-with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt, KIAufgabenFestlegenAllgemein, LeseKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseStadtGebaut;
+with SchreibeEinheitenGebaut;
+with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+
+with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt, KIAufgabenFestlegenAllgemein;
 
 package body KINahkampfBodenAufgabeFestlegen is
 
@@ -170,8 +173,8 @@ package body KINahkampfBodenAufgabeFestlegen is
                   null;
                   
                else
-                  KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                              ÄnderungExtern       => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+                  KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                              ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                   
                   if
                     KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
@@ -180,7 +183,8 @@ package body KINahkampfBodenAufgabeFestlegen is
                         
                   elsif
                     LeseKarten.Sichtbar (PositionExtern => KartenWert,
-                                         RasseExtern    => EinheitRasseNummerExtern.Rasse) = False
+                                         RasseExtern    => EinheitRasseNummerExtern.Rasse)
+                    = False
                     and
                       BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                                                  NeuePositionExtern       => KartenWert)

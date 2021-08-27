@@ -4,7 +4,9 @@ with GlobaleKonstanten;
 
 with KIKonstanten;
 
-with KartePositionPruefen, StadtSuchen, LeseEinheitenGebaut;
+with LeseEinheitenGebaut;
+
+with KartePositionPruefen, StadtSuchen;
 
 package body KIMindestBewertungKartenfeldErmitteln is
 
@@ -35,7 +37,8 @@ package body KIMindestBewertungKartenfeldErmitteln is
                   when others =>               
                      if
                        StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                             KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+                                                                             KoordinatenExtern => KartenWert).Platznummer
+                       = GlobaleKonstanten.LeerEinheitStadtNummer
                      then
                         null;
                         

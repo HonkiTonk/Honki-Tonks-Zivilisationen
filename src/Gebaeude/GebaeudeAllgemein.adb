@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleTexte, GlobaleKonstanten;
 
-with Anzeige, WichtigesSetzen, SchreibeStadtGebaut, LeseGebaeudeDatenbank, LeseStadtGebaut, GebaeudeRichtigeUmgebung;
+with SchreibeWichtiges, SchreibeStadtGebaut;
+with LeseStadtGebaut, LeseGebaeudeDatenbank;
+
+with Anzeige, GebaeudeRichtigeUmgebung;
 
 package body GebaeudeAllgemein is
 
@@ -50,9 +53,10 @@ package body GebaeudeAllgemein is
       WelchesGebäudeExtern : in GlobaleDatentypen.GebäudeID)
    is begin
       
-      WichtigesSetzen.GeldFestlegen (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                     GeldZugewinnExtern => Integer (LeseGebaeudeDatenbank.PreisGeld (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                     IDExtern    => WelchesGebäudeExtern)) / 2);
+      SchreibeWichtiges.Geldmenge (RasseExtern         => StadtRasseNummerExtern.Rasse,
+                                   GeldZugewinnExtern  => Integer (LeseGebaeudeDatenbank.PreisGeld (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                    IDExtern    => WelchesGebäudeExtern)) / 2,
+                                   RechnenSetzenExtern => True);
       SchreibeStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern     => StadtRasseNummerExtern,
                                              WelchesGebäudeExtern      => WelchesGebäudeExtern,
                                              HinzufügenEntfernenExtern => False);

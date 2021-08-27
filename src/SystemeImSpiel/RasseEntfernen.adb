@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartenfelderBewerten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, LeseStadtGebaut, SchreibeStadtGebaut;
+with SchreibeStadtGebaut, SchreibeEinheitenGebaut;
+with LeseEinheitenGebaut, LeseStadtGebaut;
+
+with KartenfelderBewerten;
 
 package body RasseEntfernen is
 

@@ -5,6 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_
 
 with GlobaleTexte, GlobaleKonstanten;
 
+with SchreibeWichtiges;
 with LeseForschungsDatenbank;
 
 with Anzeige, Eingabe, StadtWerteFestlegen, StadtUmgebungsbereichFestlegen;
@@ -62,37 +63,17 @@ package body ForschungAllgemein is
                return;
                
             when GlobaleDatentypen.ForschungID'Range =>
-               GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := 0;
+               SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseExtern,
+                                                  ForschungZugewinnExtern => 0,
+                                                  RechnenSetzenExtern     => False);
                GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := WasErforschtWerdenSoll;
-               ForschungZeit (RasseExtern => RasseExtern);
+               SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
                return;
          end case;
          
       end loop ForschungSchleife;
       
    end Forschung;
-
-
-
-   procedure ForschungZeit
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-   is begin
-      
-      if
-        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt = 0
-        or
-          GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate = 0
-      then
-         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := 10_000;
-
-      else
-         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := (LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseExtern,
-                                                                                                                         IDExtern    => GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt)
-                                                                                 - GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge) / GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
-         return;
-      end if;
-      
-   end ForschungZeit;
 
 
 
@@ -442,10 +423,10 @@ package body ForschungAllgemein is
                   end if;
                   GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt := AuswahlForschungNeu (RasseExtern => RasseSchleifenwert);
                   GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsmenge := 0;
-                  ForschungZeit (RasseExtern => RasseSchleifenwert);
+                  SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseSchleifenwert);
             
                else
-                  ForschungZeit (RasseExtern => RasseSchleifenwert);
+                  SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseSchleifenwert);
                end if;
                
             when GlobaleDatentypen.Spieler_KI =>

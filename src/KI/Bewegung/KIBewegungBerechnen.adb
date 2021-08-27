@@ -4,7 +4,10 @@ with GlobaleKonstanten;
 
 with KIKonstanten, KIDatentypen;
 
-with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+with SchreibeEinheitenGebaut;
+with LeseEinheitenGebaut;
+
+with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen;
 
 package body KIBewegungBerechnen is
    
@@ -363,9 +366,9 @@ package body KIBewegungBerechnen is
             XAchseSchleife:
             for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                
-                 KartenWertVereinfachung := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                      PlanschrittExtern        => ErsterZugExtern),
-                                                                                          ÄnderungExtern       => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
+               KartenWertVereinfachung := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                                                    PlanschrittExtern        => ErsterZugExtern),
+                                                                                        ÄnderungExtern       => (EÄnderungSchleifenwert, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                      
                if
                  KartenWertVereinfachung.XAchse = GlobaleKonstanten.LeerYXKartenWert

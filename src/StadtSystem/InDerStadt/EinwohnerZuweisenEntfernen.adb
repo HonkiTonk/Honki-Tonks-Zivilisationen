@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with Karten, KartePositionPruefen, LeseKarten, LeseStadtGebaut, SchreibeStadtGebaut;
+with LeseKarten, LeseStadtGebaut, SchreibeStadtGebaut;
+
+with Karten, KartePositionPruefen;
 
 package body EinwohnerZuweisenEntfernen is
 
@@ -51,7 +53,8 @@ package body EinwohnerZuweisenEntfernen is
       if
         LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                  YPositionExtern        => RelativeCursorPositionY,
-                                                 XPositionExtern        => RelativeCursorPositionX) = True
+                                                 XPositionExtern        => RelativeCursorPositionX)
+        = True
       then
          SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                       YPositionExtern        => RelativeCursorPositionY,
@@ -80,7 +83,8 @@ package body EinwohnerZuweisenEntfernen is
                                                     EinwohnerArbeiterExtern => True)
                  and
                    LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                         KoordinatenExtern      => KartenWert) = True
+                                                         KoordinatenExtern      => KartenWert)
+                 = True
                then
                   SchreibeStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                YPositionExtern        => RelativeCursorPositionY,

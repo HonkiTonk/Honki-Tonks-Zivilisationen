@@ -3,63 +3,56 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
-package ForschungAllgemein is
+package LeseWichtiges is
 
-   procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.ForschungIDMitNullWert);
-
-   procedure Forschung
+   function Geldmenge
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Integer
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-
-   procedure ForschungsBaum
+   
+   function GeldZugewinnProRunde
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.KostenLager
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
-   procedure ForschungFortschritt;
-
-
-
-   function ForschungAnforderungErfüllt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungIDExtern : in GlobaleDatentypen.ForschungID)
-      return Boolean
+   function GesamteForschungsrate
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.KostenLager
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-
-private
-
-   ErsterDurchlauf : Boolean;
-
-   WasErforschtWerdenSoll : GlobaleDatentypen.ForschungIDMitNullWert;
-
-   AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
-   Ende : GlobaleDatentypen.ForschungID;
-
-   procedure Ermöglicht
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
+   
+   function Forschungsmenge
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.KostenLager
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-
-   procedure Benötigt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
+   
+   function VerbleibendeForschungszeit
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.KostenLager
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-
-   function AuswahlForschungNeu
+   
+   function Forschungsprojekt
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ForschungIDMitNullWert
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
-end ForschungAllgemein;
+   function Erforscht
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      WelcheTechnologieExtern : in GlobaleDatentypen.ForschungID)
+      return Boolean
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+
+end LeseWichtiges;

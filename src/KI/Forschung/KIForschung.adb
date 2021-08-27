@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with ForschungsDatenbank;
 
+with SchreibeWichtiges;
+
 with ForschungAllgemein;
 
 package body KIForschung is
@@ -23,8 +25,10 @@ package body KIForschung is
                is
                   when True =>
                      GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := TechnologieSchleifenwert;
-                     GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := 0;
-                     ForschungAllgemein.ForschungZeit (RasseExtern => RasseExtern);
+                     SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseExtern,
+                                                        ForschungZugewinnExtern => 0,
+                                                        RechnenSetzenExtern     => False);
+                     SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
                      return;
                      
                   when False =>

@@ -1,6 +1,8 @@
 pragma SPARK_Mode (On);
 
-with StadtProduktion, GebaeudeAllgemein, LeseStadtGebaut;
+with LeseStadtGebaut;
+
+with StadtProduktion, GebaeudeAllgemein;
 
 package body GebaeudeVerkaufen is
 
@@ -31,7 +33,8 @@ package body GebaeudeVerkaufen is
             Aufschlag := Aufschlag - 1;
             if
               LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                 WelchesGebäudeExtern  => GlobaleDatentypen.GebäudeID ((GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + Aufschlag * 12)) = False
+                                                 WelchesGebäudeExtern  => GlobaleDatentypen.GebäudeID ((GlobaleVariablen.CursorImSpiel (StadtRasseNummerExtern.Rasse).PositionStadt.XAchse) + Aufschlag * 12))
+                = False
             then
                null;
                         

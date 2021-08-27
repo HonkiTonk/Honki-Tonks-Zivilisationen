@@ -5,7 +5,10 @@ with GlobaleKonstanten;
 with KIDatentypen;
 use KIDatentypen;
 
-with EinheitSuchen, LeseStadtGebaut, KartePositionPruefen, DiplomatischerZustand, LeseEinheitenDatenbank, LeseEinheitenGebaut, KIEinheitenBauen, KIGebaeudeBauen, SchreibeStadtGebaut;
+with SchreibeStadtGebaut;
+with LeseStadtGebaut, LeseEinheitenDatenbank, LeseEinheitenGebaut;
+
+with EinheitSuchen, KartePositionPruefen, DiplomatischerZustand, KIEinheitenBauen, KIGebaeudeBauen;
 
 package body KIStadt is
 
@@ -81,7 +84,7 @@ package body KIStadt is
          for XAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                                                        ÄnderungExtern   => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
             case
               KartenWert.XAchse
@@ -99,7 +102,8 @@ package body KIStadt is
                      
                   elsif
                     DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                       FremdeRasseExtern => FremdeEinheit.Rasse) /= GlobaleDatentypen.Krieg
+                                                                       FremdeRasseExtern => FremdeEinheit.Rasse)
+                    /= GlobaleDatentypen.Krieg
                   then
                      null;
                      

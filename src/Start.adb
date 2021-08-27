@@ -2,22 +2,13 @@ pragma SPARK_Mode (On);
 
 with GlobaleTexte;
 
-with Einlesen, Anzeige, Hauptmenue, Intro, SchreibenVerzeichnisse, AllesAufStandardSetzen;
+with Einlesen, Anzeige, Hauptmenue, Intro, SchreibenVerzeichnisse;
 
 procedure Start
 is begin
 
    SchreibenVerzeichnisse.SchreibenVerzeichnisse;
-
-   case
-     Einlesen.Einlesen
-   is
-      when True =>
-         null;
-
-      when False =>
-         AllesAufStandardSetzen.AllesAufStandardSetzen;
-   end case;
+   Einlesen.Einlesen;
 
    Intro.Intro;
    Hauptmenue.Hauptmenü;

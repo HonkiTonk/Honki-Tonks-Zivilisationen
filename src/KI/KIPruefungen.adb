@@ -4,7 +4,9 @@ with GlobaleKonstanten;
 
 with KIKonstanten, KIDatentypen;
 
-with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, Verbesserungen, LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+
+with KartePositionPruefen, EinheitSuchen, BewegungPassierbarkeitPruefen, KIAufgabenVerteilt, Verbesserungen;
 
 package body KIPruefungen is
    
@@ -70,7 +72,8 @@ package body KIPruefungen is
             elsif
               KIAufgabenVerteilt.EinheitAufgabeZiel (AufgabeExtern         => KIDatentypen.Verbesserung_Anlegen,
                                                      RasseExtern           => StadtRasseNummerExtern.Rasse,
-                                                     ZielKoordinatenExtern => StadtVerbesserungUmgebungKoordinaten) = True
+                                                     ZielKoordinatenExtern => StadtVerbesserungUmgebungKoordinaten)
+              = True
             then
                null;
                   
@@ -106,7 +109,8 @@ package body KIPruefungen is
             
       if
         BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer),
-                                                                   NeuePositionExtern       => KoordinatenExtern) = False
+                                                                   NeuePositionExtern       => KoordinatenExtern)
+        = False
       then
          return False;
          
@@ -126,7 +130,8 @@ package body KIPruefungen is
          
       elsif
         LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                  KoordinatenExtern => KoordinatenExtern) = True
+                                  KoordinatenExtern => KoordinatenExtern)
+        = True
       then
          null;
          
@@ -190,8 +195,8 @@ package body KIPruefungen is
             XAchseKartenfeldSuchenSchleife:
             for XAchseSchleifenwert in -XAchseKoordinatePrüfen .. XAchseKoordinatePrüfen loop
                
-               StadtBauenUmgebungKoordinaten := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                              ÄnderungExtern       => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+               StadtBauenUmgebungKoordinaten := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                                              ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
             
                                          
                if
@@ -303,7 +308,8 @@ package body KIPruefungen is
       
       if
         LeseKarten.Bewertung (PositionExtern => KoordinatenExtern,
-                              RasseExtern    => EinheitRasseNummerExtern.Rasse) >= MindestBewertungFeldExtern
+                              RasseExtern    => EinheitRasseNummerExtern.Rasse)
+        >= MindestBewertungFeldExtern
       then
          null;
          

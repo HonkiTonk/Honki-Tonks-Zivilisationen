@@ -3,7 +3,9 @@ pragma SPARK_Mode (On);
 with Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
-with InDerStadtBauen, KarteStadt, BewegungCursor, Eingabe, EinwohnerZuweisenEntfernen, GebaeudeVerkaufen, SchreibeStadtGebaut;
+with SchreibeStadtGebaut;
+
+with InDerStadtBauen, KarteStadt, BewegungCursor, Eingabe, EinwohnerZuweisenEntfernen, GebaeudeVerkaufen;
 
 package body InDerStadt is
 
@@ -25,8 +27,8 @@ package body InDerStadt is
          is
             when GlobaleDatentypen.Tastenbelegung_Bewegung_Stadt_Enum'Range =>
                BewegungCursor.BewegungCursorRichtung (KarteExtern    => False,
-                                                             RichtungExtern => Befehl,
-                                                             RasseExtern    => StadtRasseNummerExtern.Rasse);
+                                                      RichtungExtern => Befehl,
+                                                      RasseExtern    => StadtRasseNummerExtern.Rasse);
 
                -- Einwohner von Feld entfernen/zuweisen
             when GlobaleDatentypen.Auswählen =>

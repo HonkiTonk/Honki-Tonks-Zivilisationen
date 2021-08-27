@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with KIDatentypen;
 
-with Verbesserungen, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+with SchreibeEinheitenGebaut;
+with LeseEinheitenGebaut;
+
+with Verbesserungen;
 
 package body KINahkampfBodenAufgabeDurchfuehren is
 

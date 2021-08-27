@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen, GesamtwerteFeld, StadtUmgebungsbereichFestlegen, GebaeudeRichtigeUmgebung, LeseKarten, SchreibeKarten, SchreibeStadtGebaut;
+with SchreibeKarten, SchreibeStadtGebaut;
+with LeseKarten;
+
+with KartePositionPruefen, GesamtwerteFeld, StadtUmgebungsbereichFestlegen, GebaeudeRichtigeUmgebung;
 
 package body StadtWerteFestlegen is
    
@@ -57,7 +60,8 @@ package body StadtWerteFestlegen is
                abs (XÄnderungSchleifenwert) > GrößeNeu)
               and
                 LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                      KoordinatenExtern      => KartenWert) = True
+                                                      KoordinatenExtern      => KartenWert)
+              = True
             then
                SchreibeKarten.BelegterGrund (PositionExtern      => KartenWert,
                                              BelegterGrundExtern => GlobaleKonstanten.LeerDurchStadtBelegterGrund);
@@ -144,7 +148,8 @@ package body StadtWerteFestlegen is
             
             if
               LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                 EinwohnerArbeiterExtern => True) >= LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                                 EinwohnerArbeiterExtern => True)
+              >= LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                                                                                         EinwohnerArbeiterExtern => False)
             then
                return;
@@ -182,14 +187,16 @@ package body StadtWerteFestlegen is
                
             elsif
               LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                    KoordinatenExtern      => KartenWert) = False
+                                                    KoordinatenExtern      => KartenWert)
+              = False
             then
                null;
               
             elsif
               LeseStadtGebaut.UmgebungBewirtschaftung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                        YPositionExtern        => YPositionSchleifenwert,
-                                                       XPositionExtern        => XPositionSchleifenwert) = ZuwachsOderSchwundExtern
+                                                       XPositionExtern        => XPositionSchleifenwert)
+              = ZuwachsOderSchwundExtern
             then
                Umgebung (YPositionSchleifenwert, XPositionSchleifenwert).Belegt := ZuwachsOderSchwundExtern;
                
@@ -456,13 +463,15 @@ package body StadtWerteFestlegen is
          
          if
            LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                              WelchesGebäudeExtern  => GebäudeSchleifenwert) = False
+                                              WelchesGebäudeExtern  => GebäudeSchleifenwert)
+           = False
          then
             null;
             
          elsif
            GebaeudeRichtigeUmgebung.RichtigeUmgebungVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                               GebäudeIDExtern       => GebäudeSchleifenwert) = True
+                                                               GebäudeIDExtern       => GebäudeSchleifenwert)
+           = True
          then
             null;
             

@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen, BewegungPassierbarkeitPruefen, LeseKarten, EinheitSuchen;
+with LeseKarten;
+
+with KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitSuchen;
 
 package body UmgebungErreichbarTesten is
    
@@ -25,7 +27,7 @@ package body UmgebungErreichbarTesten is
          for YÄnderungSchleifenwert in -Umgebung .. Umgebung loop
             XAchseSchleife:
             for XÄnderungSchleifenwert in -Umgebung .. Umgebung loop
-                           
+               
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => AktuelleKoordinatenExtern,
                                                                            ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
                
@@ -41,20 +43,23 @@ package body UmgebungErreichbarTesten is
                       XAchseBereitsGetestet >= abs (XÄnderungSchleifenwert))
                then
                   null;
-                     
+                  
                elsif
                  LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
-                                           KoordinatenExtern => KartenWert) = True
+                                           KoordinatenExtern => KartenWert)
+                 = True
                  and
                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
                  and
                    BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
                                                                           IDExtern           => IDExtern,
-                                                                          NeuePositionExtern => KartenWert) = True
+                                                                          NeuePositionExtern => KartenWert)
+                 = True
                  and
                    NochErreichbar (AktuellePositionExtern => KartenWert,
                                    RasseExtern            => RasseExtern,
-                                   IDExtern               => IDExtern) = True
+                                   IDExtern               => IDExtern)
+                 = True
                  and
                    GefundeneFelder < NotwendigeFelderExtern
                then
@@ -62,17 +67,20 @@ package body UmgebungErreichbarTesten is
                   
                elsif
                  LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
-                                           KoordinatenExtern => KartenWert) = True
+                                           KoordinatenExtern => KartenWert)
+                 = True
                  and
                    EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
                  and
                    BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
                                                                           IDExtern           => IDExtern,
-                                                                          NeuePositionExtern => KartenWert) = True
+                                                                          NeuePositionExtern => KartenWert)
+                 = True
                  and
                    NochErreichbar (AktuellePositionExtern => KartenWert,
                                    RasseExtern            => RasseExtern,
-                                   IDExtern               => IDExtern) = True
+                                   IDExtern               => IDExtern)
+                 = True
                then
                   return KartenWert;
                               
@@ -126,11 +134,13 @@ package body UmgebungErreichbarTesten is
                
             elsif
               LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
-                                        KoordinatenExtern => KartenWertZwei) = True
+                                        KoordinatenExtern => KartenWertZwei)
+              = True
               and
                 BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
                                                                        IDExtern           => IDExtern,
-                                                                       NeuePositionExtern => KartenWertZwei) = True
+                                                                       NeuePositionExtern => KartenWertZwei)
+              = True
             then
                return True;
                

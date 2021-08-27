@@ -2,8 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with Anzeige, StadtWerteFestlegen, Eingabe, KartePositionPruefen, StadtProduktion, ForschungAllgemein, EinheitenAllgemein, Sichtbarkeit, LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut,
-     SchreibeStadtGebaut;
+with SchreibeStadtGebaut, SchreibeWichtiges;
+with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
+
+with Anzeige, StadtWerteFestlegen, Eingabe, KartePositionPruefen, StadtProduktion, EinheitenAllgemein, Sichtbarkeit;
 
 package body StadtBauen is
 
@@ -13,7 +15,8 @@ package body StadtBauen is
         
       if
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = GlobaleDatentypen.Arbeiter
+                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+          = GlobaleDatentypen.Arbeiter
       then
          null;
          
@@ -88,7 +91,7 @@ package body StadtBauen is
       
       StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
       StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
-      ForschungAllgemein.ForschungZeit (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => EinheitRasseNummerExtern.Rasse);
       Sichtbarkeit.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
             
       EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

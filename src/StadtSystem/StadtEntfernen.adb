@@ -2,7 +2,10 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen, RasseEntfernen, LeseKarten, SchreibeKarten, LeseEinheitenGebaut, SchreibeEinheitenGebaut, SchreibeStadtGebaut, LeseStadtGebaut;
+with SchreibeEinheitenGebaut, SchreibeStadtGebaut, SchreibeKarten;
+with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+
+with KartePositionPruefen, RasseEntfernen;
 
 package body StadtEntfernen is
 
@@ -39,7 +42,8 @@ package body StadtEntfernen is
                
             elsif
               LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                    KoordinatenExtern      => KartenWert) = True
+                                                    KoordinatenExtern      => KartenWert)
+              = True
             then
                SchreibeKarten.BelegterGrund (PositionExtern      => KartenWert,
                                              BelegterGrundExtern => GlobaleKonstanten.LeerDurchStadtBelegterGrund);

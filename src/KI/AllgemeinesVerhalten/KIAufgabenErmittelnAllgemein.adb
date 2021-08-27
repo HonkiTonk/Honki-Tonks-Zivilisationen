@@ -21,14 +21,16 @@ package body KIAufgabenErmittelnAllgemein is
       elsif
         LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
         > LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                       IDExtern    => EinheitID) / 3 * 2
+                                                       IDExtern    => EinheitID)
+        / 3 * 2
       then
          return 3;
          
       elsif
         LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
         > LeseEinheitenDatenbank.MaximaleLebenspunkte (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                       IDExtern    => EinheitID) / 2
+                                                       IDExtern    => EinheitID)
+        / 2
       then
          return 5;
          

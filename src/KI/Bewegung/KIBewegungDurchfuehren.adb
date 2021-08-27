@@ -4,7 +4,10 @@ with GlobaleKonstanten;
 
 with KIKonstanten;
 
-with BewegungBlockiert, KIBewegungBerechnen, KINullwerteSetzen, BewegungBerechnen, LeseEinheitenGebaut, SchreibeEinheitenGebaut;
+with SchreibeEinheitenGebaut;
+with LeseEinheitenGebaut;
+
+with BewegungBlockiert, KIBewegungBerechnen, KINullwerteSetzen, BewegungBerechnen;
 
 package body KIBewegungDurchfuehren is
    
@@ -29,7 +32,8 @@ package body KIBewegungDurchfuehren is
             
          elsif
            LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               PlanschrittExtern        => 1) = KIKonstanten.NullKoordinate
+                                               PlanschrittExtern        => 1)
+           = KIKonstanten.NullKoordinate
          then            
             case
               KIBewegungBerechnen.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)

@@ -2,7 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen, LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
+with LeseKarten, LeseStadtGebaut, LeseGebaeudeDatenbank;
+
+with KartePositionPruefen;
 
 package body GebaeudeRichtigeUmgebung is
 
@@ -39,7 +41,8 @@ package body GebaeudeRichtigeUmgebung is
                         
             elsif
               LeseKarten.BestimmteStadtBelegtGrund (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                    KoordinatenExtern      => KartenWert) = False
+                                                    KoordinatenExtern      => KartenWert)
+              = False
             then
                null;
                   

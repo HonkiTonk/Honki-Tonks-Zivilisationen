@@ -4,7 +4,9 @@ with GlobaleKonstanten;
 
 with KIDatentypen;
 
-with KINahkampfBodenAufgabeFestlegen, EinheitSuchen, KIAufgabenVerteilt, StadtSuchen, KIAufgabenErmittelnAllgemein, LeseStadtGebaut;
+with LeseStadtGebaut;
+
+with KINahkampfBodenAufgabeFestlegen, EinheitSuchen, KIAufgabenVerteilt, StadtSuchen, KIAufgabenErmittelnAllgemein;
 
 package body KINahkampfBodenAufgabeErmitteln is
 
@@ -108,9 +110,10 @@ package body KINahkampfBodenAufgabeErmitteln is
    is begin
       
       if
-        18 + StadtSuchen.AnzahlStädteErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse) > EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern         => EinheitRasseNummerExtern.Rasse,
-                                                                                                                                              EinheitTypExtern    => GlobaleDatentypen.Nahkämpfer,
-                                                                                                                                              GesuchteMengeExtern => 0)
+        18 + StadtSuchen.AnzahlStädteErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse)
+        > EinheitSuchen.MengeEinesEinheitenTypsSuchen (RasseExtern         => EinheitRasseNummerExtern.Rasse,
+                                                       EinheitTypExtern    => GlobaleDatentypen.Nahkämpfer,
+                                                       GesuchteMengeExtern => 0)
       then
          return 0;
          

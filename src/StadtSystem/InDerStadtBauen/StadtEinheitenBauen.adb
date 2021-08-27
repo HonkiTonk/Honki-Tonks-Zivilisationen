@@ -4,7 +4,10 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with KIDatentypen;
 
-with Anzeige, Eingabe, Karte, EinheitSuchen, EinheitenAllgemein, UmgebungErreichbarTesten, StadtMeldungenSetzen, LeseEinheitenGebaut, LeseStadtGebaut, SchreibeStadtGebaut;
+with SchreibeStadtGebaut;
+with LeseEinheitenGebaut, LeseStadtGebaut;
+
+with Anzeige, Eingabe, Karte, EinheitSuchen, EinheitenAllgemein, UmgebungErreichbarTesten, StadtMeldungenSetzen;
 
 package body StadtEinheitenBauen is
 
@@ -54,8 +57,7 @@ package body StadtEinheitenBauen is
       end if;
             
       if
-        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern)).Platznummer
-          = GlobaleKonstanten.LeerEinheitStadtNummer
+        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern)).Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
          KartenWert := LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern);
          

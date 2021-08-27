@@ -4,7 +4,9 @@ with GlobaleKonstanten;
 
 with KIKonstanten;
 
-with LeseGebaeudeDatenbank, LeseStadtGebaut, GebaeudeAllgemein;
+with LeseGebaeudeDatenbank, LeseStadtGebaut;
+
+with GebaeudeAllgemein;
 
 package body KIGebaeudeBauen is
 
