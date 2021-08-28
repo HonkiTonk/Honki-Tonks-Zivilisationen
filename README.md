@@ -3,7 +3,7 @@ Mein Rundenstrategiespiel (Civilization-Klon), geschrieben in Ada.
 
 My turn based strategy game (Civilization clone), written in Ada.
 
-Version: 0.00.8510
+Version: 0.00.8520
 
 Wird nur unter Linux intensiv getestet, sollte aber auch unter anderen Betriebssystemen problemlos funktionieren. Außerdem werden diverse Control Sequence Introducer Befehle verwendet, welche nicht in jeder Konsole korrekt funktionieren. Ausgelegt auf eine Konsolengröße von 110x35, bei anderen Abmessungen kann es zu zusätzlichen merkwürdigen Textformatierungen kommen.
 

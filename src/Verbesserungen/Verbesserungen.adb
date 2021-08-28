@@ -5,7 +5,7 @@ with GlobaleKonstanten;
 with KIDatentypen;
 
 with SchreibeKarten, SchreibeEinheitenGebaut, SchreibeWichtiges;
-with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank;
+with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseWichtiges;
 
 with FelderwerteFestlegen, KartePositionPruefen, EinheitenAllgemein, EinheitenMeldungenSetzen;
 
@@ -95,7 +95,9 @@ package body Verbesserungen is
          null;
 
       elsif
-        GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht (GlobaleKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, BefehlExtern)) = True
+        LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
+                                 WelcheTechnologieExtern => GlobaleKonstanten.TechnologieVerbesserung (EinheitRasseNummerExtern.Rasse, BefehlExtern))
+          = True
       then
          null;
          
@@ -843,10 +845,12 @@ package body Verbesserungen is
          return False;
          
       elsif
-        GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Erforscht
-        (LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                               IDExtern    => LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))))
+        LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
+                                 WelcheTechnologieExtern =>
+                                   LeseEinheitenDatenbank.Anforderungen (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                         IDExtern    => LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                 IDExtern    =>
+                                                                                                                                   LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))))
         = False
       then
          return False;

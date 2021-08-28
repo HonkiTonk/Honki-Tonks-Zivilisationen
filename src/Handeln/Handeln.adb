@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleTexte, GlobaleKonstanten;
 
 with SchreibeWichtiges;
+with LeseWichtiges;
 
 with Auswahl, Sichtbarkeit, KennenLernen, Eingabe, DiplomatischerZustand;
 
@@ -74,12 +75,12 @@ package body Handeln is
             when 7 =>
                -- Geld verschenken
                if
-                 GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge >= Positive'First
+                 LeseWichtiges.Geldmenge (RasseExtern => RasseExtern) >= Positive'First
                then
                   Geldmenge := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Handeln,
                                                   ZeileExtern         => 11,
                                                   ZahlenMinimumExtern => 0,
-                                                  ZahlenMaximumExtern => GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge);
+                                                  ZahlenMaximumExtern => LeseWichtiges.Geldmenge (RasseExtern => RasseExtern));
                
                   SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
                                                GeldZugewinnExtern  => -Geldmenge,
@@ -109,12 +110,12 @@ package body Handeln is
             when 8 =>
                -- Geld verlangen
                if
-                 GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge >= Positive'First
+                 LeseWichtiges.Geldmenge (RasseExtern => KontaktierteRasseExtern) >= Positive'First
                then
                   Geldmenge := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Handeln,
                                                   ZeileExtern         => 12,
                                                   ZahlenMinimumExtern => 0,
-                                                  ZahlenMaximumExtern => GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge);
+                                                  ZahlenMaximumExtern => LeseWichtiges.Geldmenge (RasseExtern => KontaktierteRasseExtern));
                
                   SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
                                                GeldZugewinnExtern  => Geldmenge,

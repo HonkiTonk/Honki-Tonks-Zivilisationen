@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleKonstanten, GlobaleTexte;
 
 with SchreibeEinheitenGebaut, SchreibeStadtGebaut;
-with LeseEinheitenGebaut, LeseEinheitenDatenbank;
+with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseWichtiges;
 
 with Auswahl, Anzeige, Sichtbarkeit, StadtProduktion, RasseEntfernen, EinheitSuchen, StadtSuchen, BewegungPassierbarkeitPruefen;
 
@@ -331,8 +331,9 @@ package body EinheitenAllgemein is
                                               IDExtern    => IDExtern)
         = GlobaleKonstanten.LeerForschungAnforderung
         or else
-          GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                                     IDExtern    => IDExtern))
+          LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
+                                   WelcheTechnologieExtern => LeseEinheitenDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                    IDExtern    => IDExtern))
         = True
       then
          return True;

@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleTexte;
 
 with SchreibeEinheitenGebaut, SchreibeStadtGebaut;
-with LeseEinheitenGebaut;
+with LeseEinheitenGebaut, LeseWichtiges;
 
 with InDerStadt, BewegungEinheiten, BewegungCursor, Auswahl, NaechstesObjekt, Verbesserungen, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, FeldInformationen, ForschungAllgemein,
      EinheitenAllgemein, StadtEntfernen, EinheitenTransporter;
@@ -268,7 +268,7 @@ package body BefehleImSpiel is
    is begin
       
       case
-        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt
+        LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern)
       is
          when 0 =>
             ForschungAllgemein.Forschung (RasseExtern => RasseExtern);

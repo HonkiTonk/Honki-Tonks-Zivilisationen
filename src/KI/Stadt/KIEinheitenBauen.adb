@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIKonstanten;
 
-with LeseEinheitenDatenbank, LeseStadtGebaut;
+with LeseEinheitenDatenbank, LeseStadtGebaut, LeseWichtiges;
 
 with EinheitSuchen, KIStadtLaufendeBauprojekte, EinheitenAllgemein;
 
@@ -231,7 +231,7 @@ package body KIEinheitenBauen is
          return 5;
          
       elsif
-        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse)
         - LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                    IDExtern           => EinheitenIDExtern,
                                                    WelcheKostenExtern => GlobaleDatentypen.Geld)

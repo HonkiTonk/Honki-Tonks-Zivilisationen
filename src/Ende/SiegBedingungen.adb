@@ -3,6 +3,8 @@ pragma SPARK_Mode (On);
 with GlobaleTexte, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
+with LeseWichtiges;
+
 with Anzeige, Eingabe, Cheat;
 
 package body SiegBedingungen is
@@ -67,7 +69,7 @@ package body SiegBedingungen is
       for RassenGeldSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
-           GlobaleVariablen.Wichtiges (RassenGeldSchleifenwert).Geldmenge = Integer'Last
+           LeseWichtiges.Geldmenge (RasseExtern => RassenGeldSchleifenwert) = Integer'Last
          then
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                                            TextDateiExtern        => GlobaleTexte.Gewonnen,

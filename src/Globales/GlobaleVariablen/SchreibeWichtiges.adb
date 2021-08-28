@@ -105,6 +105,8 @@ package body SchreibeWichtiges is
             end if;
       end case;
       
+      VerbleibendeForschungszeit (RasseExtern => RasseExtern);
+      
    end GesamteForschungsrate;
    
    
@@ -144,6 +146,8 @@ package body SchreibeWichtiges is
             end if;
       end case;
       
+      VerbleibendeForschungszeit (RasseExtern => RasseExtern);
+      
    end Forschungsmenge;
    
    
@@ -157,7 +161,7 @@ package body SchreibeWichtiges is
         or
           GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate = 0
       then
-         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := 10_000;
+         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := GlobaleDatentypen.KostenLager'Last;
          
       else
          GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit
@@ -177,17 +181,26 @@ package body SchreibeWichtiges is
    is begin
       
       GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := ForschungIDExtern;
+      GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := GlobaleKonstanten.LeerWichtigesZeug.Forschungsmenge;
+      SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
       
    end Forschungsprojekt;
    
    
 
    procedure Erforscht
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungIDExtern : in GlobaleDatentypen.ForschungID)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ForschungIDExtern) := True;
+      case
+        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt
+      is
+         when 0 =>
+            null;
+            
+         when others =>
+            GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt) := True;
+      end case;
       
    end Erforscht;
       

@@ -22,10 +22,6 @@ private
    RückgabeOptionen : Integer;
    RückgabeRassen : Integer;
 
-   procedure BerechnungenNachZugendeAllerSpieler;
-
-
-
    function EinzelneRassenDurchgehen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Integer;

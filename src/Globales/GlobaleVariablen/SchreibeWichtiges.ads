@@ -51,8 +51,7 @@ package SchreibeWichtiges is
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    procedure Erforscht
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      ForschungIDExtern : in GlobaleDatentypen.ForschungID)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);

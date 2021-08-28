@@ -7,31 +7,32 @@ package Changelog is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (31.08.2021):
+   -- Version 0.00.85 => 0.00.8 (31.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.85 => 0.00.8 (30.08.2021):
+   -- Version 0.00.85 => 0.00.85 (30.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.85 => 0.00.85 (29.08.2021):
+   -- Version 0.00.8520 => 0.00.85 (29.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8510 => 0.00.85 (28.08.2021):
+   -- Version 0.00.8510 => 0.00.8520 (28.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- LeseWichtiges überall angeschlossen.
+   -- Berechnungen zwischen den Runden in eigene Datei ausgelagert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    

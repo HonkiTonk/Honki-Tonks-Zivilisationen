@@ -3,6 +3,7 @@ pragma SPARK_Mode (On);
 with ForschungsDatenbank;
 
 with SchreibeWichtiges;
+with LeseWichtiges;
 
 with ForschungAllgemein;
 
@@ -13,9 +14,9 @@ package body KIForschung is
    is begin
       
       case
-        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt
+        LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern)
       is
-         when 0 =>      
+         when GlobaleDatentypen.ForschungIDMitNullWert'First =>      
             ForschungSchleife:
             for TechnologieSchleifenwert in ForschungsDatenbank.ForschungListeArray'Range (2) loop
                
@@ -24,11 +25,8 @@ package body KIForschung is
                                                                   ForschungIDExtern => TechnologieSchleifenwert)
                is
                   when True =>
-                     GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := TechnologieSchleifenwert;
-                     SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseExtern,
-                                                        ForschungZugewinnExtern => 0,
-                                                        RechnenSetzenExtern     => False);
-                     SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
+                     SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
+                                                          ForschungIDExtern => TechnologieSchleifenwert);
                      return;
                      
                   when False =>

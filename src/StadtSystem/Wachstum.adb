@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleKonstanten;
 
 with SchreibeStadtGebaut, SchreibeWichtiges;
-with LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
+with LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank, LeseWichtiges;
 
 with StadtWerteFestlegen, StadtEinheitenBauen, StadtGebaeudeBauen, StadtEntfernen, Sichtbarkeit, StadtMeldungenSetzen;
 
@@ -49,7 +49,7 @@ package body Wachstum is
                      when others =>
                         WachstumEinwohner (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert));
                         WachstumStadtExistiert (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert),
-                                                StadtGegründetExtern  => False);
+                                                StadtGegründetExtern   => False);
                   end case;               
             
                end loop StadtSchleife;
@@ -67,11 +67,11 @@ package body Wachstum is
             
          else
             SchreibeWichtiges.Geldmenge (RasseExtern         => RasseZweiSchleifenwert,
-                                         GeldZugewinnExtern  => Integer (GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GeldZugewinnProRunde),
+                                         GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseZweiSchleifenwert)),
                                          RechnenSetzenExtern => True);
          
             SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseZweiSchleifenwert,
-                                               ForschungZugewinnExtern => GlobaleVariablen.Wichtiges (RasseZweiSchleifenwert).GesamteForschungsrate,
+                                               ForschungZugewinnExtern => LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseZweiSchleifenwert),
                                                RechnenSetzenExtern     => True);
          end if;
          
@@ -120,7 +120,8 @@ package body Wachstum is
       if
         LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)
         > GlobaleDatentypen.KostenLager (10 + LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                 EinwohnerArbeiterExtern => True) * 5)
+                                                                                 EinwohnerArbeiterExtern => True)
+                                         * 5)
       then
          SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                              NahrungsmittelExtern   => GlobaleKonstanten.LeerStadt.Nahrungsmittel,
@@ -165,10 +166,12 @@ package body Wachstum is
                                                              EreignisExtern         => GlobaleDatentypen.Einwohner_Wachstum);
             if
               LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                 EinwohnerArbeiterExtern => True) = GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, StadtRasseNummerExtern.Rasse)
+                                                 EinwohnerArbeiterExtern => True)
+              = GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, StadtRasseNummerExtern.Rasse)
               or
                 LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                   EinwohnerArbeiterExtern => True) = GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, StadtRasseNummerExtern.Rasse)
+                                                   EinwohnerArbeiterExtern => True)
+              = GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, StadtRasseNummerExtern.Rasse)
             then
                StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
                Sichtbarkeit.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
@@ -182,10 +185,12 @@ package body Wachstum is
                                                              EreignisExtern         => GlobaleDatentypen.Einwohner_Reduktion);
             if
               LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                 EinwohnerArbeiterExtern => True) = GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, StadtRasseNummerExtern.Rasse) - 1
+                                                 EinwohnerArbeiterExtern => True)
+              = GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Anfangswert, StadtRasseNummerExtern.Rasse) - 1
               or
                 LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                   EinwohnerArbeiterExtern => True) = GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, StadtRasseNummerExtern.Rasse) - 1
+                                                   EinwohnerArbeiterExtern => True)
+              = GlobaleKonstanten.StadtUmgebungWachstum (GlobaleDatentypen.Endwert, StadtRasseNummerExtern.Rasse) - 1
             then
                StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
             
@@ -215,7 +220,7 @@ package body Wachstum is
                                          RechnenSetzenExtern => True);
             SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                             RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
-                                            ÄndernSetzenExtern    => False);
+                                            ÄndernSetzenExtern     => False);
             
          when GlobaleKonstanten.BauprojekteGebäudeAnfang .. GlobaleKonstanten.BauprojekteGebäudeEnde =>
             if

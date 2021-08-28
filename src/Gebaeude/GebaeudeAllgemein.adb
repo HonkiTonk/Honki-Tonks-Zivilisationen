@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleTexte, GlobaleKonstanten;
 
 with SchreibeWichtiges, SchreibeStadtGebaut;
-with LeseStadtGebaut, LeseGebaeudeDatenbank;
+with LeseStadtGebaut, LeseGebaeudeDatenbank, LeseWichtiges;
 
 with Anzeige, GebaeudeRichtigeUmgebung;
 
@@ -127,8 +127,9 @@ package body GebaeudeAllgemein is
                                              IDExtern    => IDExtern)
         = GlobaleKonstanten.LeerForschungAnforderung
         or else
-          GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                                    IDExtern    => IDExtern))
+          LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
+                                   WelcheTechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                   IDExtern    => IDExtern))
         = True
       then
          return True;

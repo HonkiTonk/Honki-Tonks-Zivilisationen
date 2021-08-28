@@ -5,7 +5,8 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleTexte;
 
-with LeseKarten, SchreibeKarten, LeseEinheitenGebaut, LeseStadtGebaut;
+with SchreibeWichtiges;
+with LeseKarten, SchreibeKarten, LeseEinheitenGebaut, LeseStadtGebaut, LeseWichtiges;
 
 with Karte, Karten, Anzeige, Eingabe, ForschungAllgemein;
 
@@ -42,7 +43,9 @@ package body Cheat is
                GewonnenDurchCheat := not GewonnenDurchCheat;
                
             when 'm' =>
-               GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge := Integer'Last;
+               SchreibeWichtiges.Geldmenge (RasseExtern         => RasseExtern,
+                                            GeldZugewinnExtern  => Integer'Last,
+                                            RechnenSetzenExtern => False);
                
             when others =>
                return;
@@ -123,7 +126,7 @@ package body Cheat is
       Put_Line (Item => "AufgabeEins:" & LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "AufgabeZwei:" & LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
-      ForschungAllgemein.Beschreibung (IDExtern => GlobaleVariablen.Wichtiges (EinheitRasseNummerExtern.Rasse).Forschungsprojekt);
+      ForschungAllgemein.Beschreibung (IDExtern => LeseWichtiges.Forschungsprojekt (RasseExtern => EinheitRasseNummerExtern.Rasse));
       
    end KarteInfosEinheiten;
    
@@ -158,7 +161,7 @@ package body Cheat is
       Put_Line (Item => "Aktuelle Rasse:" & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);
       Put_Line (Item => "KIAufgabe:" & LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
-      ForschungAllgemein.Beschreibung (IDExtern => GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Forschungsprojekt);
+      ForschungAllgemein.Beschreibung (IDExtern => LeseWichtiges.Forschungsprojekt (RasseExtern => StadtRasseNummerExtern.Rasse));
       New_Line;
       
    end KarteStadtInfos;

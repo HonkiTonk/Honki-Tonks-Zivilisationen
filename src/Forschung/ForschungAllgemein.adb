@@ -6,7 +6,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Strings.Wide_Wide_Unbounded, Ada.Characters.Wide_
 with GlobaleTexte, GlobaleKonstanten;
 
 with SchreibeWichtiges;
-with LeseForschungsDatenbank;
+with LeseForschungsDatenbank, LeseWichtiges;
 
 with Anzeige, Eingabe, StadtWerteFestlegen, StadtUmgebungsbereichFestlegen;
 
@@ -50,28 +50,19 @@ package body ForschungAllgemein is
    procedure Forschung
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
-      
-      ForschungSchleife:
-      loop
          
-         WasErforschtWerdenSoll := AuswahlForschungNeu (RasseExtern => RasseExtern);
+      WasErforschtWerdenSoll := AuswahlForschungNeu (RasseExtern => RasseExtern);
 
-         case
-           WasErforschtWerdenSoll
-         is
-            when 0 =>
-               return;
+      case
+        WasErforschtWerdenSoll
+      is
+         when GlobaleDatentypen.ForschungIDMitNullWert'First =>
+            null;
                
-            when GlobaleDatentypen.ForschungID'Range =>
-               SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseExtern,
-                                                  ForschungZugewinnExtern => 0,
-                                                  RechnenSetzenExtern     => False);
-               GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := WasErforschtWerdenSoll;
-               SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
-               return;
-         end case;
-         
-      end loop ForschungSchleife;
+         when others =>
+            SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
+                                                 ForschungIDExtern => WasErforschtWerdenSoll);
+      end case;
       
    end Forschung;
 
@@ -90,7 +81,8 @@ package body ForschungAllgemein is
          
          if
            To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Forschung_Kurz),
-                                Positive (ForschungenSchleifenwert))) = "|"
+                                Positive (ForschungenSchleifenwert)))
+           = "|"
          then
             exit ForschungSchleife;
             
@@ -253,7 +245,6 @@ package body ForschungAllgemein is
    
    
    
-   -- Funktioniert noch nicht ganz richtig, weil durch die Schleife die Überschrift immer wieder ausgegeben wird!
    procedure Benötigt
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       ForschungNummerExtern : in GlobaleDatentypen.ForschungID)
@@ -401,29 +392,28 @@ package body ForschungAllgemein is
                
             when GlobaleDatentypen.Spieler_Mensch =>
                if
-                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = 0
+                 LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert) = GlobaleDatentypen.ForschungIDMitNullWert'First
                then
                   null;
          
                elsif
-                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsmenge
+                 LeseWichtiges.Forschungsmenge (RasseExtern => RasseSchleifenwert)
                  >= LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseSchleifenwert,
-                                                            IDExtern    => GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt)
+                                                            IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert))
                then
-                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Erforscht (GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt) := True;
+                  SchreibeWichtiges.Erforscht (RasseExtern => RasseSchleifenwert);
                   if
-                    GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Anfangswert)
+                    LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert) = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Anfangswert)
                     or
-                      GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Endwert)
+                      LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert) = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Endwert)
                   then
                      StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseSchleifenwert);
 
                   else
                      null;
                   end if;
-                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt := AuswahlForschungNeu (RasseExtern => RasseSchleifenwert);
-                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsmenge := 0;
-                  SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseSchleifenwert);
+                  SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseSchleifenwert,
+                                                       ForschungIDExtern => AuswahlForschungNeu (RasseExtern => RasseSchleifenwert));
             
                else
                   SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseSchleifenwert);
@@ -431,27 +421,28 @@ package body ForschungAllgemein is
                
             when GlobaleDatentypen.Spieler_KI =>
                if
-                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = 0
+                 LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert) = GlobaleDatentypen.ForschungIDMitNullWert'First
                then
                   KIForschung.Forschung (RasseExtern => RasseSchleifenwert);
          
                elsif
-                 GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsmenge
+                 LeseWichtiges.Forschungsmenge (RasseExtern => RasseSchleifenwert)
                  >= LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseSchleifenwert,
-                                                            IDExtern    => GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt)
+                                                            IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert))
                then
-                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Erforscht (GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt) := True;
+                  SchreibeWichtiges.Erforscht (RasseExtern => RasseSchleifenwert);
                   if
-                    GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Anfangswert)
+                    LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert)  = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Anfangswert)
                     or
-                      GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Endwert)
+                      LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert)  = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Endwert)
                   then
                      StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseSchleifenwert);
 
                   else
                      null;
                   end if;
-                  GlobaleVariablen.Wichtiges (RasseSchleifenwert).Forschungsprojekt := 0;
+                  SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseSchleifenwert,
+                                                       ForschungIDExtern => 0);
                   KIForschung.Forschung (RasseExtern => RasseSchleifenwert);
                   StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseSchleifenwert);
             
@@ -473,7 +464,8 @@ package body ForschungAllgemein is
    is begin
    
       case
-        GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (ForschungIDExtern)
+        LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
+                                 WelcheTechnologieExtern => ForschungIDExtern)
       is
          when True =>
             return False;
@@ -494,7 +486,8 @@ package body ForschungAllgemein is
             null;
                   
          elsif
-           GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
+           LeseWichtiges.Erforscht (RasseExtern             => RasseExtern,
+                                    WelcheTechnologieExtern => LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,
                                                                                                              IDExtern                => ForschungIDExtern,
                                                                                                              WelcheAnforderungExtern => AnforderungSchleifenwert))
            = True

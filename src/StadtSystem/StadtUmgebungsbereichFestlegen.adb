@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleKonstanten;
 
 with SchreibeStadtGebaut;
-with LeseStadtGebaut;
+with LeseStadtGebaut, LeseWichtiges;
 
 package body StadtUmgebungsbereichFestlegen is
 
@@ -31,7 +31,9 @@ package body StadtUmgebungsbereichFestlegen is
    is begin
       
       if
-        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Endwert)) = True
+        LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
+                                 WelcheTechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Endwert))
+          = True
         and
           LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => True)
@@ -42,7 +44,9 @@ package body StadtUmgebungsbereichFestlegen is
                                               ÄndernSetzenExtern     => False);
          
       elsif
-        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).Erforscht (TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Anfangswert)) = True
+        LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
+                                 WelcheTechnologieExtern => TechnologieUmgebungsgröße (StadtRasseNummerExtern.Rasse, GlobaleDatentypen.Anfangswert))
+          = True
         and
           LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                              EinwohnerArbeiterExtern => True)

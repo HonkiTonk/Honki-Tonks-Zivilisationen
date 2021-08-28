@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO;
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with LeseEinheitenGebaut, LeseKarten, LeseEinheitenDatenbank, LeseStadtGebaut;
+with LeseEinheitenGebaut, LeseKarten, LeseEinheitenDatenbank, LeseStadtGebaut, LeseWichtiges;
 
 with Anzeige, Cheat, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein, StadtInformationen, GesamtwerteFeld, KampfwerteEinheitErmitteln;
      
@@ -124,7 +124,7 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => GlobaleVariablen.Wichtiges (RasseExtern).Geldmenge,
+      Ada.Integer_Text_IO.Put (Item  => LeseWichtiges.Geldmenge (RasseExtern => RasseExtern),
                                Width => 1);
       
    end InformationenGeldmenge;
@@ -143,7 +143,7 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).GeldZugewinnProRunde),
+      Ada.Integer_Text_IO.Put (Item  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseExtern)),
                                Width => 1);
       New_Line;
       
@@ -164,7 +164,7 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      ForschungAllgemein.Beschreibung (IDExtern    => GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt);
+      ForschungAllgemein.Beschreibung (IDExtern => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern));
       
    end InformationenForschungsprojekt;
      
@@ -183,7 +183,7 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit),
+      Ada.Integer_Text_IO.Put (Item  => Integer (LeseWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern)),
                                Width => 1);
       New_Line;
       
@@ -204,7 +204,7 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge),
+      Ada.Integer_Text_IO.Put (Item  => Integer (LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)),
                                Width => 1);
       
    end InformationenForschungsmenge;
@@ -224,7 +224,7 @@ package body KarteInformationen is
                                      AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                      AbstandMitteExtern     => GlobaleTexte.Leer,
                                      AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Integer (GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate),
+      Ada.Integer_Text_IO.Put (Item  => Integer (LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseExtern)),
                                Width => 1);
       New_Line (Spacing => 2);
       

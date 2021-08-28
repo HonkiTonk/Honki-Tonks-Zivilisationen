@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with KIKonstanten;
 
-with LeseGebaeudeDatenbank, LeseStadtGebaut;
+with LeseGebaeudeDatenbank, LeseStadtGebaut, LeseWichtiges;
 
 with GebaeudeAllgemein;
 
@@ -137,10 +137,11 @@ package body KIGebaeudeBauen is
       IDExtern : in GlobaleDatentypen.GebäudeID)
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
+      
       if
-        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).GeldZugewinnProRunde < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
         and
-          GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).GeldZugewinnProRunde
+          LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse)
         + LeseGebaeudeDatenbank.GeldBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
                                            IDExtern    => IDExtern)
         >= GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
@@ -148,7 +149,7 @@ package body KIGebaeudeBauen is
          return 20;
          
       elsif
-        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).GeldZugewinnProRunde < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
         and
           LeseGebaeudeDatenbank.GeldBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
                                            IDExtern    => IDExtern)
@@ -157,7 +158,7 @@ package body KIGebaeudeBauen is
          return 10;
          
       elsif
-        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).GeldZugewinnProRunde < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse) < GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde
         and
           LeseGebaeudeDatenbank.GeldBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
                                            IDExtern    => IDExtern)
@@ -166,7 +167,7 @@ package body KIGebaeudeBauen is
          return 5;
          
       elsif
-        GlobaleVariablen.Wichtiges (StadtRasseNummerExtern.Rasse).GeldZugewinnProRunde
+        LeseWichtiges.GeldZugewinnProRunde (RasseExtern => StadtRasseNummerExtern.Rasse)
         - LeseGebaeudeDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                   IDExtern           => IDExtern,
                                                   WelcheKostenExtern => GlobaleDatentypen.Geld)
