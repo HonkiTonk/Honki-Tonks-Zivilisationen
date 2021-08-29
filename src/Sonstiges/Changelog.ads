@@ -1,30 +1,32 @@
 package Changelog is
    
-   -- Version 0.00.8 => 0.00.8 (01.09.2021):
+   -- Version 0.00.85 => 0.00.8 (01.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.85 => 0.00.8 (31.08.2021):
+   -- Version 0.00.85 => 0.00.85 (31.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.85 => 0.00.85 (30.08.2021):
+   -- Version 0.00.8530 => 0.00.85 (30.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8520 => 0.00.85 (29.08.2021):
+   -- Version 0.00.8520 => 0.00.8530 (29.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Die Darstellung/Änderung der globalen Ressourcenwerte werden jetzt direkt angezeigt/berechnet, anstatt erst eine Runde später.
+   -- Die Standardbonis die ein Gebäude geben kann zusammengefasst um sie einfacher aufrufbar/einbaubar zu machen.
+   -- Die Verbleibende Produktionszeit wird jetzt immer sofort und korrekt angezeigt, anstatt erst eine Runde später.
+   -- Kleinigkeiten korrigiert/überarbeitet.
    
    
    

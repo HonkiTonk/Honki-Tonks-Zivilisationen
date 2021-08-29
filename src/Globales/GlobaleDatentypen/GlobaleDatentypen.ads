@@ -182,6 +182,7 @@ package GlobaleDatentypen is
    subtype Besondere_Ressourcen_Verwendet_Enum is Besondere_Ressourcen_Enum range Kohle .. Besondere_Ressourcen_Enum'Last;
 
    type Bewertung_Werte_Enum is (Wertigkeit, Nahrung, Produktion, Geld, Wissen, Verteidigung, Angriff);
+   subtype Bonus_Werte_Enum is Bewertung_Werte_Enum range Nahrung .. Angriff;
    -- Für Karte
 
 

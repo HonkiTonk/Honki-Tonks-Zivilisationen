@@ -48,49 +48,10 @@ package LeseGebaeudeDatenbank is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
       
-   function ProduktionBonus
+   function PermanenterBonus
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.ProduktionFeld
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-   
-   function GeldBonus
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.ProduktionFeld
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-   
-   function WissenBonus
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.ProduktionFeld
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-   
-   function VerteidigungBonus
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.ProduktionFeld
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-   
-   function NahrungBonus
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.ProduktionFeld
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-   
-   function AngriffBonus
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+      IDExtern : in GlobaleDatentypen.GebäudeID;
+      WelcherBonusExtern : in GlobaleDatentypen.Bonus_Werte_Enum)
       return GlobaleDatentypen.ProduktionFeld
      with
        Pre =>

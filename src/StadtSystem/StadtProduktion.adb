@@ -37,6 +37,8 @@ package body StadtProduktion is
                   
                            when others =>
                               StadtProduktionBerechnung (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert));
+                              Wachstum.WachstumStadtExistiert (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert),
+                                                               StadtGegründetExtern   => False);
                         end case;
                
                      end loop StadtSchleife;
@@ -48,7 +50,7 @@ package body StadtProduktion is
          when others =>
             StadtProduktionBerechnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
             Wachstum.WachstumStadtExistiert (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                             StadtGegründetExtern  => True);
+                                             StadtGegründetExtern   => True);
       end case;
       
    end StadtProduktionPrüfen;

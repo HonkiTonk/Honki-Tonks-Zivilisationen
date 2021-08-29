@@ -125,9 +125,7 @@ package SchreibeStadtGebaut is
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    procedure Bauzeit
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      BauzeitExtern : in GlobaleDatentypen.KostenLager;
-      ÄndernSetzenExtern : in Boolean)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze

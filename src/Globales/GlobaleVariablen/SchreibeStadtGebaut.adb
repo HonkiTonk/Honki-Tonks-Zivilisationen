@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
+with LeseGebaeudeDatenbank, LeseEinheitenDatenbank;
+
 package body SchreibeStadtGebaut is
 
    procedure ID
@@ -167,6 +169,8 @@ package body SchreibeStadtGebaut is
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen := RessourcenExtern;
       end case;
       
+      Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
    end Ressourcen;
    
    
@@ -199,6 +203,8 @@ package body SchreibeStadtGebaut is
          when False =>
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate := ProduktionrateExtern;
       end case;
+      
+      Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end Produktionrate;
    
@@ -319,41 +325,48 @@ package body SchreibeStadtGebaut is
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := GlobaleKonstanten.LeerStadt.Bauprojekt;
       end case;
       
+      Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
    end Bauprojekt;
    
    
    
    procedure Bauzeit
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      BauzeitExtern : in GlobaleDatentypen.KostenLager;
-      ÄndernSetzenExtern : in Boolean)
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      case
-        ÄndernSetzenExtern
-      is
-         when True =>
-            if
-              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit + BauzeitExtern > GlobaleDatentypen.KostenLager'Last
-            then
-               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := GlobaleDatentypen.KostenLager'Last;
-               
-            elsif
-              GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit + BauzeitExtern < GlobaleDatentypen.KostenLager'First
-            then
-               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := GlobaleDatentypen.KostenLager'First;
-               
-            else
-               GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit
-                 := GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit + BauzeitExtern;
-            end if;
-            
-         when False =>
-            GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := BauzeitExtern;
-      end case;
+      if
+        (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt not in GlobaleKonstanten.BauprojekteGebäudeAnfang .. GlobaleKonstanten.BauprojekteGebäudeEnde
+         and
+           GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt not in GlobaleKonstanten.BauprojekteEinheitenAnfang .. GlobaleKonstanten.BauprojekteEinheitenEnde)
+        or
+          GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate <= 0
+      then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit := GlobaleDatentypen.KostenLager'Last;
+         
+      elsif
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt in GlobaleKonstanten.BauprojekteGebäudeAnfang .. GlobaleKonstanten.BauprojekteGebäudeEnde
+      then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit
+           := (LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                      IDExtern    =>
+                                                        GlobaleDatentypen.GebäudeID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt
+                                                          - GlobaleKonstanten.GebäudeAufschlag))
+               - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen)
+             / GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate;
+                  
+      else
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauzeit
+           := (LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                       IDExtern    =>
+                                                         GlobaleDatentypen.EinheitenID (GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt
+                                                           - GlobaleKonstanten.EinheitAufschlag))
+               - GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Ressourcen)
+             / GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Produktionrate;
+      end if;
       
    end Bauzeit;
-   
+      
    
    
    procedure Korruption

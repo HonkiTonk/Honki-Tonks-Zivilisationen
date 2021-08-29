@@ -28,9 +28,6 @@ package body GebaeudeAllgemein is
       IDExtern : in GebäudeID)
    is begin     
       
-      SchreibeStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                   BauzeitExtern          => GlobaleKonstanten.LeerStadt.Bauzeit,
-                                   ÄndernSetzenExtern     => False);
       SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                       RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
                                       ÄndernSetzenExtern     => False);

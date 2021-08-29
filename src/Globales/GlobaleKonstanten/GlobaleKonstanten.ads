@@ -509,12 +509,7 @@ package GlobaleKonstanten is
                                                                          PreisRessourcen             => 0,
                                                                          PermanenteKosten            => (others => 0),
                                                                          Anforderungen               => 0,
-                                                                         ProduktionBonus             => 0,
-                                                                         GeldBonus                   => 0,
-                                                                         WissenBonus                 => 0,
-                                                                         VerteidigungBonus           => 0,
-                                                                         NahrungBonus                => 0,
-                                                                         AngriffBonus                => 0,
+                                                                         PermanenterBonus            => (others => 0),
                                                                          UmgebungBenötigt            => GlobaleDatentypen.Leer,
                                                                          GebäudeSpezielleEigenschaft => GlobaleDatentypen.Leer
                                                                         );

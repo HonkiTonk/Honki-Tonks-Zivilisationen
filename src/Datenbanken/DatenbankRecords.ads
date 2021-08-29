@@ -54,6 +54,8 @@ package DatenbankRecords is
 
    
    -- GebaeudeDatenbank
+   type PermanenterBonusArray is array (GlobaleDatentypen.Bonus_Werte_Enum'Range) of GlobaleDatentypen.ProduktionFeld;
+   
    type GebäudeListeRecord is record
       
       GebäudeGrafik : Wide_Wide_Character;
@@ -64,13 +66,7 @@ package DatenbankRecords is
       
       Anforderungen : GlobaleDatentypen.ForschungIDMitNullWert;
       
-      -- Eventuell auch hier das GewinnBewertungArray nutzen und die Bewertung für die Baupriorität der KI verwenden?
-      ProduktionBonus : GlobaleDatentypen.ProduktionFeld;
-      GeldBonus : GlobaleDatentypen.ProduktionFeld;
-      WissenBonus : GlobaleDatentypen.ProduktionFeld;
-      VerteidigungBonus : GlobaleDatentypen.ProduktionFeld;
-      NahrungBonus : GlobaleDatentypen.ProduktionFeld;
-      AngriffBonus : GlobaleDatentypen.ProduktionFeld;
+      PermanenterBonus : PermanenterBonusArray;
       
       UmgebungBenötigt : GlobaleDatentypen.Karten_Grund_Enum;
       GebäudeSpezielleEigenschaft : GlobaleDatentypen.Gebäude_Spezielle_Eigenschaften_Enum;

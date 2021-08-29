@@ -81,9 +81,6 @@ package body StadtEinheitenBauen is
                                                 EinheitNummerExtern    => EinheitNummer,
                                                 IDExtern               => GlobaleDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.EinheitAufschlag),
                                                 StadtRasseNummerExtern => StadtRasseNummerExtern);
-            SchreibeStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauzeitExtern          => GlobaleKonstanten.LeerStadt.Bauzeit,
-                                         ÄndernSetzenExtern     => False);
             SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                             RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
                                             ÄndernSetzenExtern     => False);

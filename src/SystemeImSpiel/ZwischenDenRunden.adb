@@ -6,7 +6,10 @@ use Ada.Calendar;
 with GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
-with Wachstum, InDerStadtBauen, Verbesserungen, ForschungAllgemein, StadtProduktion, EinheitenAllgemein, SiegBedingungen, DiplomatischerZustand, StadtMeldungenSetzen, EinheitenMeldungenSetzen, EinheitInUmgebung,
+with SchreibeWichtiges;
+with LeseWichtiges;
+
+with Wachstum, Verbesserungen, ForschungAllgemein, StadtProduktion, EinheitenAllgemein, SiegBedingungen, DiplomatischerZustand, StadtMeldungenSetzen, EinheitenMeldungenSetzen, EinheitInUmgebung,
      Ladezeiten, Speichern;
 
 package body ZwischenDenRunden is
@@ -22,8 +25,8 @@ package body ZwischenDenRunden is
       EinheitenAllgemein.HeilungBewegungspunkteNeueRundeErmitteln;
       Verbesserungen.VerbesserungFertiggestellt;
       Wachstum.Wachstum;
-      InDerStadtBauen.BauzeitAlle;
       StadtProduktion.StadtProduktionPrüfen ((GlobaleDatentypen.Leer, 0));
+      GeldForschungMengeSetzen;
       ForschungAllgemein.ForschungFortschritt;
       
       case
@@ -98,5 +101,33 @@ package body ZwischenDenRunden is
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Zwischen_Runden);      
       
    end BerechnungenNachZugendeAllerSpieler;
+   
+   
+   
+   procedure GeldForschungMengeSetzen
+   is begin
+      
+      RassenSchleife:
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+         
+         case
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+         is
+            when GlobaleDatentypen.Leer =>
+               null;
+            
+            when others =>
+               SchreibeWichtiges.Geldmenge (RasseExtern         => RasseSchleifenwert,
+                                            GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseSchleifenwert)),
+                                            RechnenSetzenExtern => True);
+         
+               SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseSchleifenwert,
+                                                  ForschungZugewinnExtern => LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseSchleifenwert),
+                                                  RechnenSetzenExtern     => True);
+         end case;
+         
+      end loop RassenSchleife;
+      
+   end GeldForschungMengeSetzen;
 
 end ZwischenDenRunden;

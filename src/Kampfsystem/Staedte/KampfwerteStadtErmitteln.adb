@@ -27,8 +27,9 @@ package body KampfwerteStadtErmitteln is
             null;
             
          else
-            VerteidigungWert := VerteidigungWert + LeseGebaeudeDatenbank.VerteidigungBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                            IDExtern    => GebäudeSchleifenwert);
+            VerteidigungWert := VerteidigungWert + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                           IDExtern           => GebäudeSchleifenwert,
+                                                                                           WelcherBonusExtern => GlobaleDatentypen.Verteidigung);
          end if;
          
       end loop GebäudeSchleife;
@@ -55,13 +56,14 @@ package body KampfwerteStadtErmitteln is
          
          if
            LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                             WelchesGebäudeExtern   => GebäudeSchleifenwert) = False
+                                              WelchesGebäudeExtern   => GebäudeSchleifenwert) = False
          then
             null;
             
          else
-            AngriffWert := AngriffWert + LeseGebaeudeDatenbank.AngriffBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                             IDExtern    => GebäudeSchleifenwert);
+            AngriffWert := AngriffWert + LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                 IDExtern           => GebäudeSchleifenwert,
+                                                                                 WelcherBonusExtern => GlobaleDatentypen.Angriff);
          end if;
          
       end loop GebäudeSchleife;

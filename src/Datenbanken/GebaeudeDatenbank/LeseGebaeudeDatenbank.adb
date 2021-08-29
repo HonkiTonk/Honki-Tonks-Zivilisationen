@@ -65,75 +65,16 @@ package body LeseGebaeudeDatenbank is
 
 
       
-   function ProduktionBonus
+   function PermanenterBonus
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
+      IDExtern : in GlobaleDatentypen.GebäudeID;
+      WelcherBonusExtern : in GlobaleDatentypen.Bonus_Werte_Enum)
       return GlobaleDatentypen.ProduktionFeld
    is begin
       
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).ProduktionBonus;
+      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).PermanenterBonus (WelcherBonusExtern);
       
-   end ProduktionBonus;
-
-
-   
-   function GeldBonus
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.ProduktionFeld
-   is begin
-      
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).GeldBonus;
-      
-   end GeldBonus;
-
-
-   
-   function WissenBonus
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.ProduktionFeld
-   is begin
-      
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).WissenBonus;
-      
-   end WissenBonus;
-
-
-   
-   function VerteidigungBonus
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.ProduktionFeld
-   is begin
-      
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).VerteidigungBonus;
-      
-   end VerteidigungBonus;
-
-
-   
-   function NahrungBonus
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.ProduktionFeld
-   is begin
-      
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).NahrungBonus;
-      
-   end NahrungBonus;
-
-
-   
-   function AngriffBonus
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      IDExtern : in GlobaleDatentypen.GebäudeID)
-      return GlobaleDatentypen.ProduktionFeld
-   is begin
-      
-      return GebaeudeDatenbank.GebäudeListe (RasseExtern, IDExtern).AngriffBonus;
-      
-   end AngriffBonus;
+   end PermanenterBonus;
 
 
       

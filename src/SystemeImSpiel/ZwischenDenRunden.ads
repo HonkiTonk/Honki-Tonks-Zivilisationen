@@ -4,4 +4,8 @@ package ZwischenDenRunden is
 
    procedure BerechnungenNachZugendeAllerSpieler;
 
+private
+
+   procedure GeldForschungMengeSetzen;
+
 end ZwischenDenRunden;

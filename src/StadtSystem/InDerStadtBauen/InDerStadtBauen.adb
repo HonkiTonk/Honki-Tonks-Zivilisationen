@@ -44,92 +44,6 @@ package body InDerStadtBauen is
 
 
 
-   procedure BauzeitEinzeln
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-
-      if
-        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) = GlobaleKonstanten.LeerStadt.Produktionrate
-      then
-         SchreibeStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      BauzeitExtern          => GlobaleKonstanten.MaximaleBauzeit,
-                                      ÄndernSetzenExtern    => False);
-
-      elsif
-        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) = GlobaleKonstanten.LeerBauprojekt
-      then
-         SchreibeStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      BauzeitExtern          => GlobaleKonstanten.LeerStadt.Bauzeit,
-                                      ÄndernSetzenExtern    => False);
-            
-      elsif
-        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) in GlobaleKonstanten.BauprojekteGebäudeAnfang .. GlobaleKonstanten.BauprojekteGebäudeEnde
-      then
-         SchreibeStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      BauzeitExtern          =>
-                                        (LeseGebaeudeDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                IDExtern    => GlobaleDatentypen.GebäudeID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern)
-                                                                                  - GlobaleKonstanten.GebäudeAufschlag))
-                                         - LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern))
-                                      / GlobaleDatentypen.KostenLager (LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)),
-                                      ÄndernSetzenExtern    => False);
-         
-         
-      elsif
-        LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) in GlobaleKonstanten.BauprojekteEinheitenAnfang .. GlobaleKonstanten.BauprojekteEinheitenEnde
-      then
-         SchreibeStadtGebaut.Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                      BauzeitExtern          => 
-                                        (LeseEinheitenDatenbank.PreisRessourcen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                 IDExtern    => GlobaleDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern)
-                                                                                   - GlobaleKonstanten.EinheitAufschlag))
-                                         - LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern))
-                                      / GlobaleDatentypen.KostenLager (LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)),
-                                      ÄndernSetzenExtern     => False);
-         
-      else
-         null;
-      end if;
-      
-   end BauzeitEinzeln;
-
-
-
-   procedure BauzeitAlle
-   is begin
-         
-      RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
-         
-         case
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
-         is
-            when GlobaleDatentypen.Leer =>
-               null;
-               
-            when others =>
-               StadtSchleife:
-               for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
-
-                  case
-                    LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert))
-                  is
-                     when GlobaleDatentypen.Leer =>
-                        null;
-                        
-                     when others =>
-                        BauzeitEinzeln (StadtRasseNummerExtern => (RasseSchleifenwert, StadtNummerSchleifenwert));
-                  end case;
-      
-               end loop StadtSchleife;
-         end case;
-         
-      end loop RassenSchleife;
-      
-   end BauzeitAlle;
-
-
-
    function BauobjektAuswählen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Natural
@@ -413,14 +327,16 @@ package body InDerStadtBauen is
                                     ErsteZeileExtern       => 49,
                                     AbstandAnfangExtern    => GlobaleTexte.Neue_Zeile,
                                     AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-      Ada.Integer_Text_IO.Put (Item  => Natural (LeseGebaeudeDatenbank.NahrungBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                     IDExtern    => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
-                                                                                       - GlobaleKonstanten.GebäudeAufschlag))),
+      Ada.Integer_Text_IO.Put (Item  => Natural (LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                         IDExtern           => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
+                                                                                           - GlobaleKonstanten.GebäudeAufschlag),
+                                                                                         WelcherBonusExtern => GlobaleDatentypen.Nahrung)),
                                Width => 1);
       Put (Item => "    ");
-      Ada.Integer_Text_IO.Put (Item  => Natural (LeseGebaeudeDatenbank.ProduktionBonus (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                        IDExtern    => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
-                                                                                          - GlobaleKonstanten.GebäudeAufschlag))),
+      Ada.Integer_Text_IO.Put (Item  => Natural (LeseGebaeudeDatenbank.PermanenterBonus (RasseExtern        => StadtRasseNummerExtern.Rasse,
+                                                                                         IDExtern           => GlobaleDatentypen.GebäudeID (Anzeige.AllgemeineAnzeigeText (AktuelleAuswahl).Nummer
+                                                                                           - GlobaleKonstanten.GebäudeAufschlag),
+                                                                                         WelcherBonusExtern => GlobaleDatentypen.Produktion)),
                                Width => 1);
 
       New_Line;

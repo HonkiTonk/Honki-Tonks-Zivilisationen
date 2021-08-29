@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with GlobaleKonstanten;
 
 with SchreibeStadtGebaut, SchreibeWichtiges;
-with LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank, LeseWichtiges;
+with LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
 
 with StadtWerteFestlegen, StadtEinheitenBauen, StadtGebaeudeBauen, StadtEntfernen, Sichtbarkeit, StadtMeldungenSetzen;
 
@@ -48,34 +48,12 @@ package body Wachstum is
                
                      when others =>
                         WachstumEinwohner (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert));
-                        WachstumStadtExistiert (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert),
-                                                StadtGegründetExtern   => False);
                   end case;               
             
                end loop StadtSchleife;
          end case;
          
       end loop RassenEinsSchleife;
-
-      RassenZweiSchleife:
-      for RasseZweiSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
-         
-         if
-           GlobaleVariablen.RassenImSpiel (RasseZweiSchleifenwert) = GlobaleDatentypen.Leer
-         then
-            null;
-            
-         else
-            SchreibeWichtiges.Geldmenge (RasseExtern         => RasseZweiSchleifenwert,
-                                         GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseZweiSchleifenwert)),
-                                         RechnenSetzenExtern => True);
-         
-            SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseZweiSchleifenwert,
-                                               ForschungZugewinnExtern => LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseZweiSchleifenwert),
-                                               RechnenSetzenExtern     => True);
-         end if;
-         
-      end loop RassenZweiSchleife;
       
    end Wachstum;
    
@@ -93,7 +71,7 @@ package body Wachstum is
       SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => StadtRasseNummerExtern.Rasse,
                                               GeldZugewinnExtern  => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern),
                                               RechnenSetzenExtern => True);
-                  
+      
       if
         LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) > GlobaleKonstanten.LeerStadt.Produktionrate
         and
