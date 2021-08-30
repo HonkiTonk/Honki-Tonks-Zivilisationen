@@ -6,7 +6,8 @@ with KIKonstanten;
 
 with LeseEinheitenDatenbank, LeseStadtGebaut, LeseWichtiges;
 
-with EinheitSuchen, KIStadtLaufendeBauprojekte, EinheitenAllgemein;
+with EinheitSuchen, EinheitenAllgemein;
+with KIKriegErmitteln, KIStadtLaufendeBauprojekte;
 
 package body KIEinheitenBauen is
 
@@ -145,23 +146,47 @@ package body KIEinheitenBauen is
       MengeImBau := KIStadtLaufendeBauprojekte.GleicheEinheitArtBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                              EinheitArtExtern       => GlobaleDatentypen.Nahkämpfer);
         
-      if
-        MengeVorhanden = AnzahlStädte + AnzahlStädte
-        or
-          MengeVorhanden + MengeImBau = AnzahlStädte + AnzahlStädte
-      then
-         return 0;
+      case
+        KIKriegErmitteln.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
+      is
+         when False =>
+            if
+              MengeVorhanden = 2 * AnzahlStädte
+              or
+                MengeVorhanden + MengeImBau = 2 * AnzahlStädte
+            then
+               return 0;
          
-      elsif
-        MengeVorhanden > AnzahlStädte + AnzahlStädte
-        or
-          MengeVorhanden + MengeImBau > AnzahlStädte + AnzahlStädte
-      then
-         return -5;
+            elsif
+              MengeVorhanden > 2 * AnzahlStädte
+              or
+                MengeVorhanden + MengeImBau > 2 * AnzahlStädte
+            then
+               return -5;
          
-      else
-         return 5 + GlobaleDatentypen.KostenLager (EinheitenIDExtern);
-      end if;
+            else
+               return 5 + GlobaleDatentypen.KostenLager (EinheitenIDExtern);
+            end if;
+            
+         when others =>
+            if
+              MengeVorhanden = 5 * AnzahlStädte
+              or
+                MengeVorhanden + MengeImBau = 5 * AnzahlStädte
+            then
+               return 0;
+         
+            elsif
+              MengeVorhanden > 5 * AnzahlStädte
+              or
+                MengeVorhanden + MengeImBau > 5 * AnzahlStädte
+            then
+               return -5;
+         
+            else
+               return 5 * (5 + GlobaleDatentypen.KostenLager (EinheitenIDExtern));
+            end if;
+      end case;
       
    end NahkämpferBewerten;
    
@@ -179,23 +204,47 @@ package body KIEinheitenBauen is
       MengeImBau := KIStadtLaufendeBauprojekte.GleicheEinheitArtBauprojekte (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                              EinheitArtExtern       => GlobaleDatentypen.Fernkämpfer);
         
-      if
-        MengeVorhanden = AnzahlStädte + AnzahlStädte
-        or
-          MengeVorhanden + MengeImBau = AnzahlStädte + AnzahlStädte
-      then
-         return 0;
+      case
+        KIKriegErmitteln.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
+      is
+         when False =>
+            if
+              MengeVorhanden = 2 * AnzahlStädte
+              or
+                MengeVorhanden + MengeImBau = 2 * AnzahlStädte
+            then
+               return 0;
          
-      elsif
-        MengeVorhanden > AnzahlStädte + AnzahlStädte
-        or
-          MengeVorhanden + MengeImBau > AnzahlStädte + AnzahlStädte
-      then
-         return -5;
+            elsif
+              MengeVorhanden > 2 * AnzahlStädte
+              or
+                MengeVorhanden + MengeImBau > 2 * AnzahlStädte
+            then
+               return -5;
          
-      else
-         return 5 + GlobaleDatentypen.KostenLager (EinheitenIDExtern);
-      end if;
+            else
+               return 5 + GlobaleDatentypen.KostenLager (EinheitenIDExtern);
+            end if;
+            
+         when others =>
+            if
+              MengeVorhanden = 5 * AnzahlStädte
+              or
+                MengeVorhanden + MengeImBau = 5 * AnzahlStädte
+            then
+               return 0;
+         
+            elsif
+              MengeVorhanden > 5 * AnzahlStädte
+              or
+                MengeVorhanden + MengeImBau > 5 * AnzahlStädte
+            then
+               return -5;
+         
+            else
+               return 5 * (5 + GlobaleDatentypen.KostenLager (EinheitenIDExtern));
+            end if;
+      end case;
       
    end FernkämpferBewerten;
    

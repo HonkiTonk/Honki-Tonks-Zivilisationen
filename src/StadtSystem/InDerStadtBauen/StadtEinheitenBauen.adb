@@ -33,9 +33,8 @@ package body StadtEinheitenBauen is
             
       end loop EinheitenSchleife;
       
-      -- Hier noch Meldungsnutzung einbauen
       if
-        EinheitNummer = 0
+        EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
         and
           GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch
       then
@@ -48,7 +47,7 @@ package body StadtEinheitenBauen is
          return;
          
       elsif
-        EinheitNummer = 0
+        EinheitNummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
          return;
          

@@ -13,7 +13,7 @@ package GebaeudeMenschen is
         (GebäudeGrafik               => 'A',
          PreisGeld                   => 100,
          PreisRessourcen             => 100,
-         PermanenteKosten            => (others => 0),
+         PermanenteKosten            => (others => 1),
          Anforderungen               => 0,
          PermanenterBonus            => (GlobaleDatentypen.Nahrung => 10,
                                          GlobaleDatentypen.Verteidigung => 10,

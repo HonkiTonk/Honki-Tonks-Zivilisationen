@@ -36,6 +36,8 @@ package Cheat is
    GewonnenDurchCheat : Boolean := False;
 
 private
+   
+   ErsteAnzeige : Boolean;
 
    procedure Informationen;
    

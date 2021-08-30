@@ -15,6 +15,8 @@ package InDerStadtBauen is
 
 private
 
+   PermanenteGebäudeWerte : Boolean;
+
    AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
    Ende : GlobaleDatentypen.KartenverbesserungEinheitenID;
 

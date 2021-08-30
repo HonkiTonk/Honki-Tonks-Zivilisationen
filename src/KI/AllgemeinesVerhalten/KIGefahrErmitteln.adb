@@ -2,7 +2,11 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with KartePositionPruefen, EinheitSuchen, Karten, KIGefahrReaktion, StadtSuchen;
+with SchreibeEinheitenGebaut;
+with LeseKarten, LeseEinheitenGebaut;
+
+with KartePositionPruefen, EinheitSuchen, StadtSuchen, DiplomatischerZustand;
+with KIGefahrReaktion;
 
 package body KIGefahrErmitteln is
    
@@ -35,11 +39,15 @@ package body KIGefahrErmitteln is
                   
                if
                  EinheitUnzugeordnet.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
+                 or
+                   EinheitUnzugeordnet.Rasse = EinheitRasseNummerExtern.Rasse
                then
                   null;
                      
                elsif
-                 GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitUnzugeordnet.Rasse) in GlobaleDatentypen.Status_Untereinander_Aggressiv_Enum
+                 DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                    FremdeRasseExtern => EinheitUnzugeordnet.Rasse)
+                 = GlobaleDatentypen.Krieg
                  and
                    StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
                                                                KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
@@ -50,7 +58,9 @@ package body KIGefahrErmitteln is
                                                            RechnenSetzenExtern      => 0);
                   
                elsif
-                 GlobaleVariablen.Diplomatie (EinheitRasseNummerExtern.Rasse, EinheitUnzugeordnet.Rasse) in GlobaleDatentypen.Status_Untereinander_Aggressiv_Enum
+                 DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                    FremdeRasseExtern => EinheitUnzugeordnet.Rasse)
+                 = GlobaleDatentypen.Krieg
                then
                   KIGefahrReaktion.KIGefahrReaktion (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                   return;

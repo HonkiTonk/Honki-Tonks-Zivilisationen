@@ -2,6 +2,9 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
+with SchreibeEinheitenGebaut;
+with LeseEinheitenGebaut;
+
 with KIStadtSuchen;
 
 package body KIGefahrReaktion is
@@ -23,9 +26,9 @@ package body KIGefahrReaktion is
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        KoordinatenExtern        => ZielStadt);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
             SchreibeEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                              BeschäftigungExtern     => GlobaleDatentypen.Nicht_Vorhanden);
+                                                              BeschäftigungExtern     => GlobaleDatentypen.Leer);
             SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                          ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
                                                          RechnenSetzenExtern      => 0);

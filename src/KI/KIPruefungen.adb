@@ -238,9 +238,9 @@ package body KIPruefungen is
          end loop YAchseKartenfeldSuchenSchleife;
          
          if
-           YAchseKoordinatePrüfen >= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           YAchseKoordinatePrüfen > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2
            and
-             XAchseKoordinatePrüfen > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+             XAchseKoordinatePrüfen > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2
          then
             exit KartenfeldSuchenSchleife;
             
@@ -249,7 +249,7 @@ package body KIPruefungen is
          end if;
          
          if
-           YAchseKoordinatePrüfen < Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+           YAchseKoordinatePrüfen < Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2
          then
             YAchseKoordinatePrüfen := YAchseKoordinatePrüfen + 1;
             YAchseKoordinatenSchonGeprüft := YAchseKoordinatePrüfen - 1;
@@ -259,7 +259,7 @@ package body KIPruefungen is
          end if;
             
          if
-           XAchseKoordinatePrüfen <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+           XAchseKoordinatePrüfen <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2
          then
             XAchseKoordinatePrüfen := XAchseKoordinatePrüfen + 1;
             XAchseKoordinatenSchonGeprüft := XAchseKoordinatePrüfen - 1;
@@ -296,6 +296,17 @@ package body KIPruefungen is
          return False;
       end if;
       
+      if
+        BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer),
+                                                                   NeuePositionExtern       => KoordinatenExtern)
+        = False
+      then
+         return False;
+         
+      else
+         null;
+      end if;
+      
       case
         LeseKarten.BelegterGrundLeer (KoordinatenExtern => KoordinatenExtern)
       is
@@ -320,7 +331,7 @@ package body KIPruefungen is
       case
         LeseKarten.Grund (PositionExtern => KoordinatenExtern)
       is
-         when GlobaleDatentypen.Eis | GlobaleDatentypen.Wasser | GlobaleDatentypen.Küstengewässer =>
+         when GlobaleDatentypen.Eis =>
             return False;
          
          when others =>

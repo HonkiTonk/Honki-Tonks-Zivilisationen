@@ -8,7 +8,8 @@ use KIDatentypen;
 with SchreibeStadtGebaut;
 with LeseStadtGebaut, LeseEinheitenDatenbank, LeseEinheitenGebaut;
 
-with EinheitSuchen, KartePositionPruefen, DiplomatischerZustand, KIEinheitenBauen, KIGebaeudeBauen;
+with EinheitSuchen, KartePositionPruefen, DiplomatischerZustand, EinheitenAllgemein;
+with KIEinheitenBauen, KIGebaeudeBauen;
 
 package body KIStadt is
 
@@ -17,63 +18,104 @@ package body KIStadt is
    is begin
       
       case
+        GefahrStadt (StadtRasseNummerExtern => StadtRasseNummerExtern)
+      is
+         when True =>
+            return;
+            
+         when False =>
+            null;
+      end case;
+      
+      case
         LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          when KIDatentypen.Keine_Aufgabe =>
             null;
             
          when others =>
-            -- GefahrStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
             return;
       end case;
-               
-      EinheitBauen := KIEinheitenBauen.EinheitenBauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
-      GebäudeBauen := KIGebaeudeBauen.GebäudeBauen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
-      if
-        EinheitBauen.ID = GlobaleKonstanten.LeerEinheitenID
-        and
-          GebäudeBauen.ID = GlobaleDatentypen.GebäudeIDMitNullwert'First
-      then
-         null;
-         
-      elsif
-        EinheitBauen.ID = GlobaleKonstanten.LeerEinheitenID
-      then
-         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                               BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen);
-         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => Positive (GebäudeBauen.ID) + GlobaleKonstanten.GebäudeAufschlag);
-         
-      elsif
-        GebäudeBauen.ID = GlobaleDatentypen.GebäudeIDMitNullwert'First
-      then
-         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                               BeschäftigungExtern   => KIDatentypen.Einheit_Bauen);
-         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => Positive (EinheitBauen.ID) + GlobaleKonstanten.EinheitAufschlag);
-      
-      elsif
-        EinheitBauen.Bewertung >= GebäudeBauen.Bewertung
-      then
-         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                               BeschäftigungExtern   => KIDatentypen.Einheit_Bauen);
-         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => Positive (EinheitBauen.ID) + GlobaleKonstanten.EinheitAufschlag);
-
-      else
-         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                               BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen);
-         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                         BauprojektExtern       => Positive (GebäudeBauen.ID) + GlobaleKonstanten.GebäudeAufschlag);
-      end if;
+      NeuesBauprojekt  (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                        EinheitBauenExtern     => KIEinheitenBauen.EinheitenBauen (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                        GebäudeBauenExtern     => KIGebaeudeBauen.GebäudeBauen (StadtRasseNummerExtern => StadtRasseNummerExtern),
+                        NotfallExtern          => False);
       
    end KIStadt;
    
    
    
-   procedure GefahrStadt
+   procedure NeuesBauprojekt
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EinheitBauenExtern : in KIRecords.EinheitIDBewertungRecord;
+      GebäudeBauenExtern : in KIRecords.GebäudeIDBewertungRecord;
+      NotfallExtern : in Boolean)
+   is begin
+      
+      if
+        EinheitBauenExtern.ID = GlobaleKonstanten.LeerEinheitenID
+        and
+          GebäudeBauenExtern.ID = GlobaleDatentypen.GebäudeIDMitNullwert'First
+      then
+         null;
+         
+      elsif
+        EinheitBauenExtern.ID = GlobaleKonstanten.LeerEinheitenID
+      then
+         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                               BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen);
+         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         BauprojektExtern       => Positive (GebäudeBauenExtern.ID) + GlobaleKonstanten.GebäudeAufschlag);
+         
+      elsif
+        GebäudeBauenExtern.ID = GlobaleDatentypen.GebäudeIDMitNullwert'First
+      then
+         case
+           NotfallExtern
+         is
+            when True =>
+               SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                     BeschäftigungExtern   => KIDatentypen.Gefahr_Einheit_Bauen);
+               
+            when False =>
+               SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                     BeschäftigungExtern   => KIDatentypen.Einheit_Bauen);
+         end case;
+         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         BauprojektExtern       => Positive (EinheitBauenExtern.ID) + GlobaleKonstanten.EinheitAufschlag);
+      
+      elsif
+        EinheitBauenExtern.Bewertung >= GebäudeBauenExtern.Bewertung
+      then
+         case
+           NotfallExtern
+         is
+            when True =>
+               SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                     BeschäftigungExtern   => KIDatentypen.Gefahr_Einheit_Bauen);
+               
+            when False =>
+               SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                     BeschäftigungExtern   => KIDatentypen.Einheit_Bauen);
+         end case;
+         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         BauprojektExtern       => Positive (EinheitBauenExtern.ID) + GlobaleKonstanten.EinheitAufschlag);
+
+      else
+         SchreibeStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                               BeschäftigungExtern   => KIDatentypen.Gebäude_Bauen);
+         SchreibeStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                         BauprojektExtern       => Positive (GebäudeBauenExtern.ID) + GlobaleKonstanten.GebäudeAufschlag);
+      end if;
+      
+   end NeuesBauprojekt;
+   
+   
+   
+   function GefahrStadt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
    is begin
       
       FeindNahe := False;
@@ -94,7 +136,7 @@ package body KIStadt is
                   
                when others =>
                   FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneSpezielleRasseSuchen (RasseExtern       => StadtRasseNummerExtern.Rasse,
-                                                                                             KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern));
+                                                                                             KoordinatenExtern => KartenWert);
                   if
                     FremdeEinheit.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
                   then
@@ -108,8 +150,17 @@ package body KIStadt is
                      null;
                      
                   else
-                     FeindNahe := True;
-                     exit YAchseSchleife;
+                     case
+                       LeseEinheitenDatenbank.EinheitArt (RasseExtern => FremdeEinheit.Rasse,
+                                                          IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FremdeEinheit))
+                     is
+                        when GlobaleDatentypen.Leer | GlobaleDatentypen.Arbeiter =>
+                           null;
+            
+                        when others =>
+                           FeindNahe := True;
+                           exit YAchseSchleife;
+                     end case;
                   end if;
             end case;
             
@@ -120,25 +171,87 @@ package body KIStadt is
         FeindNahe
       is
          when True =>
-            null;
+            NotfallEinheit := GlobaleDatentypen.EinheitenIDMitNullWert'First;
             
          when False =>
-            return;
+            return False;
       end case;
+      
+      EinheitenSchleife:
+      for EinheitenSchleifenwert in GlobaleDatentypen.EinheitenID'Range loop
+         
+         if
+           LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                              IDExtern    => EinheitenSchleifenwert)
+           = GlobaleDatentypen.Arbeiter
+           or
+             LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                IDExtern    => EinheitenSchleifenwert)
+           = GlobaleDatentypen.Leer
+         then
+            null;
+            
+         elsif
+           EinheitenAllgemein.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                            IDExtern               => EinheitenSchleifenwert)
+           = True
+         then
+            NotfallEinheitBauen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                 EinheitIDExtern        => EinheitenSchleifenwert);
+               
+         else
+            null;
+         end if;
+         
+      end loop EinheitenSchleife;
       
       case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => FremdeEinheit.Rasse,
-                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => FremdeEinheit))
+        NotfallEinheit
       is
-         when GlobaleDatentypen.Arbeiter =>
-            return;
+         when GlobaleDatentypen.EinheitenIDMitNullWert'First =>
+            return False;
             
          when others =>
-            null;
+            NeuesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                             EinheitBauenExtern     => (NotfallEinheit, 1),
+                             GebäudeBauenExtern     => (GlobaleDatentypen.GebäudeIDMitNullwert'First, 0),
+                             NotfallExtern          => True);
+            return True;
       end case;
       
-      return;
-        
    end GefahrStadt;
-
+   
+   
+   
+   procedure NotfallEinheitBauen
+   -- Stadt mit übergeben und später die Baukosten noch mit in die Bewertung einfließen lassen.
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EinheitIDExtern : in GlobaleDatentypen.EinheitenID)
+   is begin
+      
+      if
+        NotfallEinheit = GlobaleDatentypen.EinheitenIDMitNullWert'First
+      then
+         NotfallEinheit := EinheitIDExtern;
+         
+      elsif
+        LeseEinheitenDatenbank.Angriff (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                        IDExtern    => NotfallEinheit)
+        +
+        LeseEinheitenDatenbank.Verteidigung (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                             IDExtern    => NotfallEinheit)
+        < LeseEinheitenDatenbank.Angriff (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                          IDExtern    => EinheitIDExtern)
+        +
+        LeseEinheitenDatenbank.Verteidigung (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                             IDExtern    => EinheitIDExtern)
+      then
+         NotfallEinheit := EinheitIDExtern;
+         
+      else
+         null;
+      end if;
+      
+   end NotfallEinheitBauen;
+     
 end KIStadt;

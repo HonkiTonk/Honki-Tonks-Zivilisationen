@@ -77,6 +77,7 @@ package body KIBewegungDurchfuehren is
                                                        PlanpositionExtern       => (PositionSchleifenwert - 1));
                
             end loop BewegungPlanVerschiebenSchleife;
+            
             SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     PositionExtern           => KIKonstanten.NullKoordinate,
                                                     PlanpositionExtern       => GlobaleRecords.KIBewegungPlanArray'Last);

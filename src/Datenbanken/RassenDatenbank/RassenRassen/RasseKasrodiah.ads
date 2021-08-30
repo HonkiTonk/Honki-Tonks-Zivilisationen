@@ -9,7 +9,7 @@ package RasseKasrodiah is
    RasseKasrodiahListe : constant DatenbankRecords.RassenListeRecord :=
      (
       Aggressivität       => 0,
-      Expansion           => 0,
+      Expansion           => 20,
       Wissenschaft        => 0,
       Produktion          => 0,
       Wirtschaft          => 0,

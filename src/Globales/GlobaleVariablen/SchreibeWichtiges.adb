@@ -181,8 +181,9 @@ package body SchreibeWichtiges is
    is begin
       
       GlobaleVariablen.Wichtiges (RasseExtern).Forschungsprojekt := ForschungIDExtern;
-      GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := GlobaleKonstanten.LeerWichtigesZeug.Forschungsmenge;
-      SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
+      Forschungsmenge (RasseExtern             => RasseExtern,
+                       ForschungZugewinnExtern => GlobaleKonstanten.LeerWichtigesZeug.Forschungsmenge,
+                       RechnenSetzenExtern     => False);
       
    end Forschungsprojekt;
    

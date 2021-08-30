@@ -2,6 +2,8 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
+with LeseStadtGebaut;
+
 with EinheitSuchen;
 
 package body KIStadtSuchen is

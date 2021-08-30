@@ -104,29 +104,61 @@ package body Cheat is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      Put_Line (Item => "Aktuelle Rasse:" & EinheitRasseNummerExtern.Rasse'Wide_Wide_Image);
+      Put_Line (Item => "Aktuelle Rasse: " & EinheitRasseNummerExtern.Rasse'Wide_Wide_Image);
+      ErsteAnzeige := True;
+      
+      case
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
+      is
+         when GlobaleDatentypen.Spieler_KI =>
+            BewegungPlanSchleife:
+            for BewegungGeplantSchleifenwert in GlobaleRecords.KIBewegungPlanArray'Range loop
+                      
+               case
+                 ErsteAnzeige
+               is
+                  when True =>
+                     Put_Line (Item => "Bewegungsschritte:");
+                     ErsteAnzeige := False;
                      
-      BewegungPlanSchleife:
-      for BewegungGeplantSchleifenwert in GlobaleRecords.KIBewegungPlanArray'Range loop
+                  when False =>
+                     null;
+               end case;
+               
+               Put (Item => "    " & LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                         PlanschrittExtern        => BewegungGeplantSchleifenwert).EAchse'Wide_Wide_Image
+                    & "," & LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                PlanschrittExtern        => BewegungGeplantSchleifenwert).YAchse'Wide_Wide_Image
+                    & "," & LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                PlanschrittExtern        => BewegungGeplantSchleifenwert).XAchse'Wide_Wide_Image);
                         
-         Put_Line (Item => "EAchse:" & LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                           PlanschrittExtern        => BewegungGeplantSchleifenwert).EAchse'Wide_Wide_Image
-                   & "    " & "YAchse:" & LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                              PlanschrittExtern        => BewegungGeplantSchleifenwert).YAchse'Wide_Wide_Image
-                   & "    " & "XAchse:" & LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                              PlanschrittExtern        => BewegungGeplantSchleifenwert).XAchse'Wide_Wide_Image);
-                        
-      end loop BewegungPlanSchleife;
+               if
+                 BewegungGeplantSchleifenwert mod 8 = 0
+               then
+                  New_Line;
+                  
+               else
+                  null;
+               end if;
+               
+            end loop BewegungPlanSchleife;
                      
-      Put_Line (Item => "Ziel EAchse:" & LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse'Wide_Wide_Image & "    "
-                & "Ziel YAchse:" & LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).YAchse'Wide_Wide_Image & "    "
-                & "Ziel XAchse:" & LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).XAchse'Wide_Wide_Image);
-                     
-      Put_Line (Item => "KIAufgabe:" & LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
-      Put_Line (Item => "AufgabeEins:" & LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
-      Put_Line (Item => "AufgabeZwei:" & LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
+            New_Line;
+            Put_Line (Item => "Zielposition:" & LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse'Wide_Wide_Image
+                      & "," & LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).YAchse'Wide_Wide_Image
+                      & "," & LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern).XAchse'Wide_Wide_Image);
+            
+            Put_Line (Item => "KIAufgabe:" & LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
+            
+         when others =>
+            null;
+      end case;
+      
+      Put (Item => "AufgabeEins: " & LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
+      Put_Line (Item => "     AufgabeZwei: " & LeseEinheitenGebaut.BeschäftigungNachfolger (EinheitRasseNummerExtern => EinheitRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
       ForschungAllgemein.Beschreibung (IDExtern => LeseWichtiges.Forschungsprojekt (RasseExtern => EinheitRasseNummerExtern.Rasse));
+      New_Line;
       
    end KarteInfosEinheiten;
    
@@ -142,11 +174,33 @@ package body Cheat is
       Put (Item => "Weg: " & LeseKarten.VerbesserungWeg (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)'Wide_Wide_Image);
       Put_Line (Item => "    Feldverbesserung: " & LeseKarten.VerbesserungGebiet (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position)'Wide_Wide_Image);
       
+      ErsteAnzeige := True;
+      
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         Put_Line (Item => "Kartenfeldbewertung " & RasseSchleifenwert'Wide_Wide_Image & ":" & LeseKarten.Bewertung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                                                                                     RasseExtern    => RasseSchleifenwert)'Wide_Wide_Image);
+         case
+           ErsteAnzeige
+         is
+            when True =>
+               Put_Line (Item => "Kartenfeldbewertung:");
+               ErsteAnzeige := False;
+               
+            when False =>
+               null;
+         end case;
+         
+         Put (Item => "    " & RasseSchleifenwert'Wide_Wide_Image & ":" & LeseKarten.Bewertung (PositionExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                                                                RasseExtern    => RasseSchleifenwert)'Wide_Wide_Image);
+         
+         if
+           GlobaleDatentypen.Rassen_Verwendet_Enum'Pos (RasseSchleifenwert) mod 6 = 0
+         then
+            New_Line;
+            
+         else
+            null;
+         end if;
          
       end loop RassenSchleife;
       
@@ -158,8 +212,8 @@ package body Cheat is
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      Put_Line (Item => "Aktuelle Rasse:" & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);
-      Put_Line (Item => "KIAufgabe:" & LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
+      Put_Line (Item => "Aktuelle Rasse: " & StadtRasseNummerExtern.Rasse'Wide_Wide_Image);
+      Put_Line (Item => "KIAufgabe: " & LeseStadtGebaut.KIBeschäftigung (StadtRasseNummerExtern => StadtRasseNummerExtern)'Wide_Wide_Image);
       Put_Line (Item => "Aktuelles Forschungsprojekt:");
       ForschungAllgemein.Beschreibung (IDExtern => LeseWichtiges.Forschungsprojekt (RasseExtern => StadtRasseNummerExtern.Rasse));
       New_Line;

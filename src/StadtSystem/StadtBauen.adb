@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 
-with GlobaleKonstanten, GlobaleTexte;
+with GlobaleTexte;
 
 with SchreibeStadtGebaut, SchreibeWichtiges;
 with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
 
-with Anzeige, StadtWerteFestlegen, Eingabe, KartePositionPruefen, StadtProduktion, EinheitenAllgemein, Sichtbarkeit;
+with Anzeige, StadtWerteFestlegen, Eingabe, StadtProduktion, EinheitenAllgemein, Sichtbarkeit;
 
 package body StadtBauen is
 
@@ -48,16 +48,17 @@ package body StadtBauen is
            and
              LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) /= GlobaleDatentypen.Leer
          then
-            if
-              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
-            then
-               return;
+            case
+              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
+            is
+               when GlobaleDatentypen.Spieler_KI =>
+                  return;
                
-            else
-               Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                     TextZeileExtern => 7);
-               return;
-            end if;
+               when others =>
+                  Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                                                        TextZeileExtern => 7);
+                  return;
+            end case;
 
          elsif
            LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) /= GlobaleDatentypen.Leer
@@ -70,12 +71,10 @@ package body StadtBauen is
          end if;
          
       end loop StadtSchleife;
-      
-      Stadtart := HauptstadtPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
-      
+            
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
       SchreibeStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                              IDExtern               => Stadtart);
+                              IDExtern               => HauptstadtPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse));
       SchreibeStadtGebaut.Position (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
                                     PositionExtern         => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
@@ -108,42 +107,6 @@ package body StadtBauen is
       end case;
       
    end StadtBauen;
-
-
-
-   function ErweitertesStadtBauenPrüfen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return Boolean
-   is begin
-      
-      YAchseSchleife:
-      for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-         XAchseSchleife:
-         for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-            
-            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                        ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
-            
-            if
-              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
-            then
-               null;
-               
-            elsif
-              LeseKarten.BelegterGrundLeer (KoordinatenExtern => KartenWert) = True
-            then
-               null;
-               
-            else
-               return False;
-            end if;
-            
-         end loop XAchseSchleife;
-      end loop YAchseSchleife;
-
-      return True;
-
-   end ErweitertesStadtBauenPrüfen;
 
 
 

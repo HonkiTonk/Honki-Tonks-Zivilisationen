@@ -69,6 +69,11 @@ package body SiegBedingungen is
       for RassenGeldSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
+           GlobaleVariablen.RassenImSpiel (RassenGeldSchleifenwert) = GlobaleDatentypen.Leer
+         then
+            null;
+            
+         elsif
            LeseWichtiges.Geldmenge (RasseExtern => RassenGeldSchleifenwert) = Integer'Last
          then
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,

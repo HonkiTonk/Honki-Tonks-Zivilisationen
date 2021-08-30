@@ -7,7 +7,7 @@ use KIDatentypen;
 
 with LeseEinheitenGebaut;
 
-with KIBewegungDurchfuehren, KISiedlerAufgabeErmitteln, KISiedlerAufgabeDurchfuehren; -- , KIGefahrErmitteln;
+with KIBewegungDurchfuehren, KISiedlerAufgabeErmitteln, KISiedlerAufgabeDurchfuehren, KIGefahrErmitteln;
 
 package body KISiedler is
 
@@ -15,7 +15,7 @@ package body KISiedler is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      -- KIGefahrErmitteln.KIGefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      KIGefahrErmitteln.KIGefahrErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       NotAus := 1;
       

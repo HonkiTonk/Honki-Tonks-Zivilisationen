@@ -80,7 +80,7 @@ package body KISiedlerAufgabeErmitteln is
           > (Positive (VorhandeneStädte)
              + KIAufgabenVerteilt.AufgabenVerteilt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Stadt_Bauen))
-        * 10
+        * 20
       then
          SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  AufgabeExtern            => KIDatentypen.Stadt_Bauen);

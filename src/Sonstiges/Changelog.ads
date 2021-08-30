@@ -7,17 +7,28 @@ package Changelog is
    
    
    
-   -- Version 0.00.85 => 0.00.85 (31.08.2021):
+   -- Version 0.00.8550 => 0.00.85 (31.08.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8530 => 0.00.85 (30.08.2021):
+   -- Version 0.00.8530 => 0.00.8550 (30.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Textanzeige für die permanenten Kosten/Bonis von EInheiten/Gebäude beim Auswählen eines neuen Bauprojektes eingebaut.
+   -- Die KI versucht jetzt nicht mehr Städte auf Felder zu bauen, welche die Siedlereinheit gar nicht betreten kann.
+   -- Die KI kann jetzt auch Städte auf Wasser bauen.
+   -- Unnötigen Code gelöscht.
+   -- Fehler behoben der bei den Prüfungen der Siegbedingungen für einen Absturz sorgte.
+   -- Wenn sich Einheiten einer Rasse mit der die KI im Krieg ist in der Nähe einer Stadt auftauchen, dann ändert die KI in dieser Stadt jetzt ihr Bauprojekt auf eine möglichst gute Kampfeinheit.
+   -- Die KI baut jetzt mehr Kampfeinheiten wenn sie sich im Krieg mit einer anderen Rasse befindet.
+   -- Angefangen eine Überprüfung einzubauen mit der die KI ermitteln kann ob sich ein Krieg mit einer andere Rasse lohnt.
+   -- Angefangen die Gefahrenprüfungen für KI Einheiten zu überarbeiten/neu zu schreiben.
+   -- Angefangen die Berechnung des Bewegungsplans für KI Einheiten zu überarbeiten.
+   -- Die Informationsanzeige durch Cheat übersichtlicher und informativer gestaltet.
+   -- Diverse Tests durchgeführt um Fehler/Ungenauigkeiten/Verbesserungsmöglichkeiten zu finden.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt/hinzugefügt.
    
    
    
