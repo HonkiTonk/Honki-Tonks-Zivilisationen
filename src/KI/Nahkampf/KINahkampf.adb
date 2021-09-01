@@ -7,11 +7,11 @@ use KIDatentypen;
 
 with LeseEinheitenGebaut;
 
-with KIBewegungDurchfuehren, KINahkampfBodenAufgabeErmitteln, KINahkampfBodenAufgabeDurchfuehren;
+with KIBewegungDurchfuehren, KINahkampfAufgabeErmitteln, KINahkampfAufgabeDurchfuehren;
 
-package body KINahkampfBoden is
+package body KINahkampf is
 
-   procedure KINahkampfBoden
+   procedure KINahkampf
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -62,7 +62,7 @@ package body KINahkampfBoden is
            and
              LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Keine_Aufgabe
          then
-            KINahkampfBodenAufgabeErmitteln.NahkampfBodenAufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KINahkampfAufgabeErmitteln.NahkampfAufgabeErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
          else
             null;
@@ -95,7 +95,7 @@ package body KINahkampfBoden is
            and
              LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIKonstanten.NullKoordinate
          then
-            KINahkampfBodenAufgabeDurchfuehren.NahkampfBodenAufgabeDurchfuehren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KINahkampfAufgabeDurchfuehren.NahkampfAufgabeDurchfuehren (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          else
             return;
@@ -105,6 +105,6 @@ package body KINahkampfBoden is
          
       end loop AktivitätSchleife;
       
-   end KINahkampfBoden;
+   end KINahkampf;
 
-end KINahkampfBoden;
+end KINahkampf;

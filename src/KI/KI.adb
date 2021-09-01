@@ -4,7 +4,7 @@ with GlobaleKonstanten;
 
 with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
 
-with KISiedler, KINahkampfBoden, KIStadt, KIForschung, KIDiplomatie;
+with KISiedler, KINahkampf, KIStadt, KIForschung, KIDiplomatie;
 
 package body KI is
 
@@ -80,7 +80,7 @@ package body KI is
             KISiedler.KISiedler (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when GlobaleDatentypen.Nahkämpfer =>
-            KINahkampfBoden.KINahkampfBoden (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            KINahkampf.KINahkampf (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when GlobaleDatentypen.Fernkämpfer =>
             null;

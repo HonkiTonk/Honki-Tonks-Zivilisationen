@@ -3,9 +3,9 @@ pragma SPARK_Mode (On);
 with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
-package KINahkampfBodenAufgabeErmitteln is
+package KINahkampfAufgabeErmitteln is
 
-   procedure NahkampfBodenAufgabeErmitteln
+   procedure NahkampfAufgabeErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
@@ -55,4 +55,4 @@ private
    function Erkunden
      return GlobaleDatentypen.GesamtproduktionStadt;
 
-end KINahkampfBodenAufgabeErmitteln;
+end KINahkampfAufgabeErmitteln;

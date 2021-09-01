@@ -325,9 +325,7 @@ package body SchreibeStadtGebaut is
             GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Bauprojekt := GlobaleKonstanten.LeerStadt.Bauprojekt;
       end case;
       
-      Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                  RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
-                  ÄndernSetzenExtern     => False);
+      Bauzeit (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end Bauprojekt;
    

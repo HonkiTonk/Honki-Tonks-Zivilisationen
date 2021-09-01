@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 
 with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
-use GlobaleDatentypen;
+use GlobaleDatentypen, GlobaleRecords;
 
-package KIFernkampfSeeEinheit is
+package KINahkampf is
 
-   procedure KIFernkampfSeeEinheit
+   procedure KINahkampf
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
@@ -13,4 +13,8 @@ package KIFernkampfSeeEinheit is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
-end KIFernkampfSeeEinheit;
+private
+
+   NotAus : Positive;
+
+end KINahkampf;

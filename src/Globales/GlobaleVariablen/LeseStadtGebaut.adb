@@ -82,6 +82,15 @@ package body LeseStadtGebaut is
       return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
+      if
+        GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel < GlobaleKonstanten.LeerStadt.Nahrungsmittel
+      then
+         GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel := GlobaleKonstanten.LeerStadt.Nahrungsmittel;
+         
+      else
+         null;
+      end if;
+      
       return GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).Nahrungsmittel;
       
    end Nahrungsmittel;

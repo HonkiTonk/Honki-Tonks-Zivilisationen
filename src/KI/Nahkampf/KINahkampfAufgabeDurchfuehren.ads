@@ -1,11 +1,11 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleRecords, GlobaleVariablen;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
-package KINahkampfOrbital is
+package KINahkampfAufgabeDurchfuehren is
 
-   procedure KINahkampfOrbital
+   procedure NahkampfAufgabeDurchfuehren
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
@@ -13,4 +13,8 @@ package KINahkampfOrbital is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
-end KINahkampfOrbital;
+private
+
+   AufgabeDurchführen : Boolean;
+
+end KINahkampfAufgabeDurchfuehren;

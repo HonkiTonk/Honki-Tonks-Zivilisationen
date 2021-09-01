@@ -3,9 +3,9 @@ pragma SPARK_Mode (On);
 with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
-package KINahkampfBodenAufgabeFestlegen is
+package KINahkampfAufgabeFestlegen is
 
-   procedure NahkampfBodenAufgabeFestlegen
+   procedure NahkampfAufgabeFestlegen
      (GewählteAufgabeExtern : in Natural;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
@@ -73,4 +73,4 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
-end KINahkampfBodenAufgabeFestlegen;
+end KINahkampfAufgabeFestlegen;

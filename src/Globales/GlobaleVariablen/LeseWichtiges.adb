@@ -1,5 +1,7 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 package body LeseWichtiges is
 
    function Geldmenge
@@ -29,6 +31,15 @@ package body LeseWichtiges is
       return GlobaleDatentypen.KostenLager
    is begin
 
+      if
+        GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate < GlobaleKonstanten.LeerWichtigesZeug.GesamteForschungsrate
+      then
+         GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate := GlobaleKonstanten.LeerWichtigesZeug.GesamteForschungsrate;
+         
+      else
+         null;
+      end if;
+      
       return GlobaleVariablen.Wichtiges (RasseExtern).GesamteForschungsrate;
 
    end GesamteForschungsrate;
@@ -40,6 +51,15 @@ package body LeseWichtiges is
       return GlobaleDatentypen.KostenLager
    is begin
 
+      if
+        GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge < GlobaleKonstanten.LeerWichtigesZeug.Forschungsmenge
+      then
+         GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge := GlobaleKonstanten.LeerWichtigesZeug.Forschungsmenge;
+         
+      else
+         null;
+      end if;
+
       return GlobaleVariablen.Wichtiges (RasseExtern).Forschungsmenge;
 
    end Forschungsmenge;
@@ -50,6 +70,15 @@ package body LeseWichtiges is
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.KostenLager
    is begin
+
+      if
+        GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit < GlobaleKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit
+      then
+         GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := GlobaleKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit;
+         
+      else
+         null;
+      end if;
 
       return GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit;
 

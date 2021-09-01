@@ -1,16 +1,19 @@
 package Changelog is
    
-   -- Version 0.00.85 => 0.00.8 (01.09.2021):
+   -- Version 0.00.8550 => 0.00.8560 (01.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Fehler behoben durch den es nicht möglich war eine ausgewählte Rasse wieder abzuwählen.
+   -- Zusätzliche Prüfungen eingebaut um fehlerhafte Werte zu korrigieren.
+   -- Vorhandene Ressourcen, positiv wie negativ, werden jetzt nicht mehr verworfen wenn man das Bauprojekt wechselt.
+   -- Eine negative Produktionsrate führt bei fehlendem Bauprojekt zu Geldabzug.
+   -- Unnötigen Code gelöscht.
+   -- Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    
-   -- Version 0.00.8550 => 0.00.85 (31.08.2021):
+   -- Version 0.00.8550 => 0.00.8550 (31.08.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Internetprobleme.
    
    
    

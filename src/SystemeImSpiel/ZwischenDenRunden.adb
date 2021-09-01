@@ -14,7 +14,8 @@ with Wachstum, Verbesserungen, ForschungAllgemein, StadtProduktion, EinheitenAll
 
 package body ZwischenDenRunden is
 
-   procedure BerechnungenNachZugendeAllerSpieler
+   function BerechnungenNachZugendeAllerSpieler
+     return Boolean
    is begin
       
       Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, GlobaleDatentypen.Anfangswert) := Clock;
@@ -98,7 +99,9 @@ package body ZwischenDenRunden is
       Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, GlobaleDatentypen.Endwert) := Clock;
       
       Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => GlobaleDatentypen.Leer);
-      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Zwischen_Runden);      
+      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Zwischen_Runden);
+      
+      return False;
       
    end BerechnungenNachZugendeAllerSpieler;
    

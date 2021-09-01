@@ -2,7 +2,8 @@ pragma SPARK_Mode (On);
 
 package ZwischenDenRunden is
 
-   procedure BerechnungenNachZugendeAllerSpieler;
+   function BerechnungenNachZugendeAllerSpieler
+     return Boolean;
 
 private
 

@@ -9,9 +9,9 @@ with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
 
 with EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitenAllgemein, KIAufgabenVerteilt, KIAufgabenFestlegenAllgemein;
 
-package body KINahkampfBodenAufgabeFestlegen is
+package body KINahkampfAufgabeFestlegen is
 
-   procedure NahkampfBodenAufgabeFestlegen
+   procedure NahkampfAufgabeFestlegen
      (GewählteAufgabeExtern : in Natural;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
@@ -63,7 +63,7 @@ package body KINahkampfBodenAufgabeFestlegen is
                                                     BeschäftigungExtern     => GlobaleDatentypen.Leer);
       end case;
       
-   end NahkampfBodenAufgabeFestlegen;
+   end NahkampfAufgabeFestlegen;
    
    
    
@@ -223,4 +223,4 @@ package body KINahkampfBodenAufgabeFestlegen is
       
    end Erkunden;
 
-end KINahkampfBodenAufgabeFestlegen;
+end KINahkampfAufgabeFestlegen;

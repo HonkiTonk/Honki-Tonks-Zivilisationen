@@ -7,9 +7,9 @@ with LeseEinheitenGebaut;
 
 with Verbesserungen;
 
-package body KINahkampfBodenAufgabeDurchfuehren is
+package body KINahkampfAufgabeDurchfuehren is
 
-   procedure NahkampfBodenAufgabeDurchfuehren
+   procedure NahkampfAufgabeDurchfuehren
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -61,6 +61,6 @@ package body KINahkampfBodenAufgabeDurchfuehren is
                                                     AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
       end case;
       
-   end NahkampfBodenAufgabeDurchfuehren;
+   end NahkampfAufgabeDurchfuehren;
 
-end KINahkampfBodenAufgabeDurchfuehren;
+end KINahkampfAufgabeDurchfuehren;

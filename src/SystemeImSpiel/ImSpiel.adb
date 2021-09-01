@@ -39,7 +39,14 @@ package body ImSpiel is
            GlobaleVariablen.RasseAmZugNachLaden
          is
             when GlobaleDatentypen.Leer =>   
-               ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler;
+               if
+                 ZwischenDenRunden.BerechnungenNachZugendeAllerSpieler = True
+               then
+                  return GlobaleKonstanten.HauptmenüKonstante;
+                  
+               else
+                  null;
+               end if;
                
             when others =>
                null;
@@ -49,7 +56,7 @@ package body ImSpiel is
            GlobaleVariablen.Rundengrenze > GlobaleVariablen.RundenAnzahl
          then
             return GlobaleKonstanten.HauptmenüKonstante;
-               
+            
          else
             null;
          end if;         

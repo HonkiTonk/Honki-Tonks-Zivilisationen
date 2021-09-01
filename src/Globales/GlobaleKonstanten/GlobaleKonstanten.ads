@@ -26,6 +26,8 @@ package GlobaleKonstanten is
    WiederherstellenKonstante : constant Positive := 6;
    WürdigungenKonstante : constant Positive := 7;
    RundeBeendenKonstante : constant Integer := -1_000;
+   SiegKonstante : constant Positive := 1_000;
+   VernichtungKonstante : constant Positive := 2_000;
    -- Für die Auswahl
 
 

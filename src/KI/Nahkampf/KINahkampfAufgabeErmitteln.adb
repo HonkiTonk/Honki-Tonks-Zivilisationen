@@ -6,11 +6,11 @@ with KIDatentypen;
 
 with LeseStadtGebaut;
 
-with KINahkampfBodenAufgabeFestlegen, EinheitSuchen, KIAufgabenVerteilt, StadtSuchen, KIAufgabenErmittelnAllgemein;
+with KINahkampfAufgabeFestlegen, EinheitSuchen, KIAufgabenVerteilt, StadtSuchen, KIAufgabenErmittelnAllgemein;
 
-package body KINahkampfBodenAufgabeErmitteln is
+package body KINahkampfAufgabeErmitteln is
 
-   procedure NahkampfBodenAufgabeErmitteln
+   procedure NahkampfAufgabeErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
@@ -54,10 +54,10 @@ package body KINahkampfBodenAufgabeErmitteln is
          end loop WichtigkeitZweiSchleife;
       end loop WichtigkeitEinsSchleife;
       
-      KINahkampfBodenAufgabeFestlegen.NahkampfBodenAufgabeFestlegen (GewählteAufgabeExtern    => GewählteAufgabe,
-                                                                     EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      KINahkampfAufgabeFestlegen.NahkampfAufgabeFestlegen (GewählteAufgabeExtern    => GewählteAufgabe,
+                                                           EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-   end NahkampfBodenAufgabeErmitteln;
+   end NahkampfAufgabeErmitteln;
    
    
    
@@ -173,4 +173,4 @@ package body KINahkampfBodenAufgabeErmitteln is
       
    end Erkunden;
 
-end KINahkampfBodenAufgabeErmitteln;
+end KINahkampfAufgabeErmitteln;

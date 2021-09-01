@@ -183,6 +183,7 @@ package body StadtProduktion is
                                           ÄndernSetzenExtern    => True);
             
       case
+        -- Diesen Wert an der Bevölkerung und nicht an der Korruption messen?
         LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          -- Den Multiplikator immer Minus setzen, damit er später direkt einen negativen Wert übergibt, eventuelle für mehr nutzen, wenn Gebäude bestimmte Werte entsprechend beeinflussen.
@@ -204,7 +205,7 @@ package body StadtProduktion is
       
       SchreibeStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                           ProduktionrateExtern   => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                                     EinwohnerArbeiterExtern => True) * RessourcenverbrauchKorruptionMultiplikator,
+                                                                                                       EinwohnerArbeiterExtern => True) * RessourcenverbrauchKorruptionMultiplikator,
                                           ÄndernSetzenExtern     => True);
       
    end WeitereProduktionrateÄnderungen;
@@ -221,6 +222,7 @@ package body StadtProduktion is
                                          ÄndernSetzenExtern     => True);
 
       case
+        -- Diesen Wert an der Bevölkerung und nicht an der Korruption messen?
         LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          -- Den Multiplikator immer Minus setzen, damit er später direkt einen negativen Wert übergibt, eventuelle für mehr nutzen, wenn Gebäude bestimmte Werte entsprechend beeinflussen.
@@ -242,7 +244,7 @@ package body StadtProduktion is
       
       SchreibeStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                          GeldgewinnungExtern    => LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                                     EinwohnerArbeiterExtern => True) * GeldverbrauchKorruptionMultiplikator,
+                                                                                                      EinwohnerArbeiterExtern => True) * GeldverbrauchKorruptionMultiplikator,
                                          ÄndernSetzenExtern     => True);
       
    end WeitereGeldgewinnungÄnderungen;
@@ -254,6 +256,7 @@ package body StadtProduktion is
    is begin
 
       case
+        -- Diesen Wert an der Bevölkerung und nicht an der Korruption messen?
         LeseStadtGebaut.Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
          -- Den Multiplikator immer Minus setzen, damit er später direkt einen negativen Wert übergibt, eventuelle für mehr nutzen, wenn Gebäude bestimmte Werte entsprechend beeinflussen.
