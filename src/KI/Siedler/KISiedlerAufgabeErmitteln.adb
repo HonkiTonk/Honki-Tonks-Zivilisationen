@@ -8,7 +8,8 @@ use KIDatentypen;
 with SchreibeEinheitenGebaut;
 with LeseRassenDatenbank;
 
-with StadtSuchen, KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt, KIAufgabenErmittelnAllgemein;
+with StadtSuchen;
+with KISiedlerAufgabeFestlegen, KIPruefungen, KIAufgabenVerteilt, KIAufgabenErmittelnAllgemein;
 
 package body KISiedlerAufgabeErmitteln is
 

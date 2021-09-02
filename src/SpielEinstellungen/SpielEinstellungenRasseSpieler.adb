@@ -329,31 +329,15 @@ package body SpielEinstellungenRasseSpieler is
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
 
-      case
-        RasseExtern
-      is
-         when GlobaleDatentypen.Ekropa =>
-            EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => (0, 10, 2),
-                                                EinheitNummerExtern    => 1,
-                                                IDExtern               => 1,
-                                                StadtRasseNummerExtern => (RasseExtern, 0));
+      EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (1),
+                                          EinheitNummerExtern    => 1,
+                                          IDExtern               => 1,
+                                          StadtRasseNummerExtern => (RasseExtern, 0));
       
-            EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => (0, 10, 18),
-                                                EinheitNummerExtern    => 2,
-                                                IDExtern               => 2,
-                                                StadtRasseNummerExtern => (RasseExtern, 0));
-            
-         when others =>
-            EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (1),
-                                                EinheitNummerExtern    => 1,
-                                                IDExtern               => 1,
-                                                StadtRasseNummerExtern => (RasseExtern, 0));
-      
-            EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (2),
-                                                EinheitNummerExtern    => 2,
-                                                IDExtern               => 2,
-                                                StadtRasseNummerExtern => (RasseExtern, 0));
-      end case;
+      EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (2),
+                                          EinheitNummerExtern    => 2,
+                                          IDExtern               => 2,
+                                          StadtRasseNummerExtern => (RasseExtern, 0));
       
       GlobaleVariablen.CursorImSpiel (RasseExtern).Position := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, 1));
       GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt := GlobaleVariablen.CursorImSpiel (RasseExtern).Position;

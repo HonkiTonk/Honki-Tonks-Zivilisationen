@@ -1,13 +1,23 @@
 pragma SPARK_Mode (On);
 
+with GlobaleDatentypen;
+
 package SiegBedingungen is
 
-   procedure SiegBedingungen;
+   function SiegBedingungen
+     return Boolean;
 
 private
 
-   VorhandeneRassen : Natural;
+   VorhandeneRassen : GlobaleDatentypen.SichtweiteMitNullwert;
 
-   procedure SiegBedingungenPrüfen;
+   function SiegBedingungEins
+     return Boolean;
+
+   function SiegBedingungZwei
+     return Boolean;
+
+   function SiegBedingungDrei
+     return Boolean;
 
 end SiegBedingungen;

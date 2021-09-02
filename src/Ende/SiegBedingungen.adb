@@ -5,28 +5,55 @@ use GlobaleDatentypen;
 
 with LeseWichtiges;
 
-with Anzeige, Eingabe, Cheat;
+with Anzeige, Eingabe, Cheat, Enden;
 
 package body SiegBedingungen is
 
-   procedure SiegBedingungen
+   function SiegBedingungen
+     return Boolean
    is begin
       
       case
-        GlobaleVariablen.Gewonnen
+        SiegBedingungEins
       is
          when True =>
-            null;
+            Enden.EndeEins;
+            return True;
             
          when False =>
-            SiegBedingungenPrüfen;
+            null;
       end case;
+      
+      case
+        SiegBedingungZwei
+      is
+         when True =>
+            Enden.EndeEins;
+            return True;
+            
+         when False =>
+            null;
+      end case;
+      
+      case
+        SiegBedingungDrei
+      is
+         when True =>
+            Enden.EndeEins;
+            return True;
+            
+         when False =>
+            null;
+      end case;
+      
+      return False;
       
    end SiegBedingungen;
       
       
       
-   procedure SiegBedingungenPrüfen
+   function SiegBedingungEins
+     return Boolean
    is begin
          
       VorhandeneRassen := 0;
@@ -34,20 +61,35 @@ package body SiegBedingungen is
       RassenSchleife:
       for RassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
-         if
-           GlobaleVariablen.RassenImSpiel (RassenSchleifenwert) /= GlobaleDatentypen.Leer
-         then
-            VorhandeneRassen := VorhandeneRassen + 1;
-            
-         else
-            null;
-         end if;
+         case
+           GlobaleVariablen.RassenImSpiel (RassenSchleifenwert)
+         is
+            when GlobaleDatentypen.Leer =>
+               null;
+               
+            when others =>
+               VorhandeneRassen := VorhandeneRassen + 1;
+         end case;
+         
+         case
+           VorhandeneRassen
+         is
+            when 0 .. 1 =>
+               null;
+               
+            when others =>
+               exit RassenSchleife;
+         end case;
          
       end loop RassenSchleife;
       
       case
         VorhandeneRassen
       is
+         when 0 =>
+            -- Was mache ich denn in diesem Fall?
+            return True;
+            
          when 1 =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
                                            TextDateiExtern        => GlobaleTexte.Gewonnen,
@@ -59,11 +101,19 @@ package body SiegBedingungen is
                                            AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
             GlobaleVariablen.Gewonnen := True;
             Eingabe.WartenEingabe;
-            return;
+            return True;
             
          when others =>
-            null;
+            return False;
       end case;
+      
+   end SiegBedingungEins;
+   
+   
+   
+   function SiegBedingungZwei
+     return Boolean
+   is begin
       
       RassenGeldSchleife:
       for RassenGeldSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -86,7 +136,7 @@ package body SiegBedingungen is
                                            AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
             GlobaleVariablen.Gewonnen := True;
             Eingabe.WartenEingabe;
-            return;
+            return True;
             
          else
             null;
@@ -94,11 +144,21 @@ package body SiegBedingungen is
          
       end loop RassenGeldSchleife;
       
+      return False;
+      
+   end SiegBedingungZwei;
+   
+   
+   
+   function SiegBedingungDrei
+     return Boolean
+   is begin
+      
       case
         Cheat.GewonnenDurchCheat
       is
          when False =>
-            null;
+            return False;
             
          when True =>
             Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Zeug,
@@ -111,9 +171,9 @@ package body SiegBedingungen is
                                            AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
             GlobaleVariablen.Gewonnen := True;
             Eingabe.WartenEingabe;
-            return;
+            return True;
       end case;
          
-   end SiegBedingungenPrüfen;
+   end SiegBedingungDrei;
 
 end SiegBedingungen;

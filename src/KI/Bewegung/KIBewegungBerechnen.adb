@@ -7,7 +7,7 @@ with KIKonstanten, KIDatentypen;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen;
+with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen, EinheitenTransporter;
 
 package body KIBewegungBerechnen is
    
@@ -15,23 +15,7 @@ package body KIBewegungBerechnen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
-            
-      case
-        TransporterNötig
-      is
-         when False =>
-            null;
-            
-         when True =>
-            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
-                                                      WelchenWertNullSetzenExtern => 0);
-            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
-            SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
-            return False;
-      end case;
-      
+               
       PlanungErfolgreich := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
                                             AktuelleKoordinatenExtern  => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                             AktuellePlanpositionExtern => 1);
@@ -48,7 +32,7 @@ package body KIBewegungBerechnen is
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    BeschäftigungExtern     => GlobaleDatentypen.Leer);
+                                                    BeschäftigungExtern      => GlobaleDatentypen.Leer);
       end case;
       
       return PlanungErfolgreich;
@@ -205,10 +189,19 @@ package body KIBewegungBerechnen is
          when True =>                  
             null;
                         
-         when others =>
-            return 0;
+         when False =>
+            if
+              TransporterNutzen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                 KoordinatenExtern        => KartenWert)
+              = True
+            then
+               null;
+               
+            else             
+               return 0;
+            end if;
       end case;
-                  
+               
       case
         BewegungBlockiert.BlockiertStadtEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                  NeuePositionExtern       => KartenWert)
@@ -234,62 +227,303 @@ package body KIBewegungBerechnen is
       return Natural
    is begin
       
+      -- KoordinatenExtern ist der aktuelle Punkt, NeueKoordinatenExtern ist der mögliche neue Punkt.
       if
         LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = NeueKoordinatenExtern
       then
          return 11;
+         
+      else
+         PositionAltEins := (0,
+                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse),
+                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse));
+         PositionAltZwei := (0,
+                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse
+                               + Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße),
+                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse
+                               + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+         PositionAltDrei := (0,
+                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse + KoordinatenExtern.YAchse
+                               - Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße),
+                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse + KoordinatenExtern.XAchse
+                               - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+
+         PositionNeuEins := (0,
+                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse),
+                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse));
+         PositionNeuZwei := (0,
+                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse
+                               + Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße),
+                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse
+                               + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+         PositionNeuDrei := (0,
+                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse + NeueKoordinatenExtern.YAchse
+                               - Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße),
+                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse + NeueKoordinatenExtern.XAchse
+                               - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+      end if;
         
-      elsif
-      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse)
-        < abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse)
+      if
+        ((PositionNeuEins.YAchse < PositionAltEins.YAchse
+          and
+            PositionNeuEins.YAchse < PositionAltZwei.YAchse
+          and
+            PositionNeuEins.YAchse < PositionAltDrei.YAchse)
+         or
+           (PositionNeuZwei.YAchse < PositionAltEins.YAchse
+            and
+              PositionNeuZwei.YAchse < PositionAltZwei.YAchse
+            and
+              PositionNeuZwei.YAchse < PositionAltDrei.YAchse)
+         or
+           (PositionNeuDrei.YAchse < PositionAltEins.YAchse
+            and
+              PositionNeuDrei.YAchse < PositionAltZwei.YAchse
+            and
+              PositionNeuDrei.YAchse < PositionAltDrei.YAchse))
         and
-      abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse)
-        < abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse)
+          ((PositionNeuEins.XAchse < PositionAltEins.XAchse
+            and
+              PositionNeuEins.XAchse < PositionAltZwei.XAchse
+            and
+              PositionNeuEins.XAchse < PositionAltDrei.XAchse)
+           or
+             (PositionNeuZwei.XAchse < PositionAltEins.XAchse
+              and
+                PositionNeuZwei.XAchse < PositionAltZwei.XAchse
+              and
+                PositionNeuZwei.XAchse < PositionAltDrei.XAchse)
+           or
+             (PositionNeuDrei.XAchse < PositionAltEins.XAchse
+              and
+                PositionNeuDrei.XAchse < PositionAltZwei.XAchse
+              and
+                PositionNeuDrei.XAchse < PositionAltDrei.XAchse))
       then
          return 10;
          
       elsif
-        (abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse)
-         < abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse)
-         and
-         abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse)
-         = abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse))
-        or
-          (abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse)
-           = abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse)
+        (((PositionNeuEins.YAchse < PositionAltEins.YAchse
            and
-           abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse)
-           < abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse))
+             PositionNeuEins.YAchse < PositionAltZwei.YAchse
+           and
+             PositionNeuEins.YAchse < PositionAltDrei.YAchse)
+          or
+            (PositionNeuZwei.YAchse < PositionAltEins.YAchse
+             and
+               PositionNeuZwei.YAchse < PositionAltZwei.YAchse
+             and
+               PositionNeuZwei.YAchse < PositionAltDrei.YAchse)
+          or
+            (PositionNeuDrei.YAchse < PositionAltEins.YAchse
+             and
+               PositionNeuDrei.YAchse < PositionAltZwei.YAchse
+             and
+               PositionNeuDrei.YAchse < PositionAltDrei.YAchse))
+         and
+           ((PositionNeuEins.XAchse = PositionAltEins.XAchse
+             and
+               PositionNeuEins.XAchse = PositionAltZwei.XAchse
+             and
+               PositionNeuEins.XAchse = PositionAltDrei.XAchse)
+            or
+              (PositionNeuZwei.XAchse = PositionAltEins.XAchse
+               and
+                 PositionNeuZwei.XAchse = PositionAltZwei.XAchse
+               and
+                 PositionNeuZwei.XAchse = PositionAltDrei.XAchse)
+            or
+              (PositionNeuDrei.XAchse = PositionAltEins.XAchse
+               and
+                 PositionNeuDrei.XAchse = PositionAltZwei.XAchse
+               and
+                 PositionNeuDrei.XAchse = PositionAltDrei.XAchse)))
+        or
+          (((PositionNeuEins.YAchse = PositionAltEins.YAchse
+             and
+               PositionNeuEins.YAchse = PositionAltZwei.YAchse
+             and
+               PositionNeuEins.YAchse = PositionAltDrei.YAchse)
+            or
+              (PositionNeuZwei.YAchse = PositionAltEins.YAchse
+               and
+                 PositionNeuZwei.YAchse = PositionAltZwei.YAchse
+               and
+                 PositionNeuZwei.YAchse = PositionAltDrei.YAchse)
+            or
+              (PositionNeuDrei.YAchse = PositionAltEins.YAchse
+               and
+                 PositionNeuDrei.YAchse = PositionAltZwei.YAchse
+               and
+                 PositionNeuDrei.YAchse = PositionAltDrei.YAchse))
+           and
+             ((PositionNeuEins.XAchse < PositionAltEins.XAchse
+               and
+                 PositionNeuEins.XAchse < PositionAltZwei.XAchse
+               and
+                 PositionNeuEins.XAchse < PositionAltDrei.XAchse)
+              or
+                (PositionNeuZwei.XAchse < PositionAltEins.XAchse
+                 and
+                   PositionNeuZwei.XAchse < PositionAltZwei.XAchse
+                 and
+                   PositionNeuZwei.XAchse < PositionAltDrei.XAchse)
+              or
+                (PositionNeuDrei.XAchse < PositionAltEins.XAchse
+                 and
+                   PositionNeuDrei.XAchse < PositionAltZwei.XAchse
+                 and
+                   PositionNeuDrei.XAchse < PositionAltDrei.XAchse)))
       then
          return 5;
          
       elsif
-        (abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse)
-         < abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse)
-         and
-         abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse)
-         > abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse))
-        or
-          (abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse)
-           > abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse)
+        (((PositionNeuEins.YAchse < PositionAltEins.YAchse
            and
-           abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse)
-           < abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse))
+             PositionNeuEins.YAchse < PositionAltZwei.YAchse
+           and
+             PositionNeuEins.YAchse < PositionAltDrei.YAchse)
+          or
+            (PositionNeuZwei.YAchse < PositionAltEins.YAchse
+             and
+               PositionNeuZwei.YAchse < PositionAltZwei.YAchse
+             and
+               PositionNeuZwei.YAchse < PositionAltDrei.YAchse)
+          or
+            (PositionNeuDrei.YAchse < PositionAltEins.YAchse
+             and
+               PositionNeuDrei.YAchse < PositionAltZwei.YAchse
+             and
+               PositionNeuDrei.YAchse < PositionAltDrei.YAchse))
+         and
+           ((PositionNeuEins.XAchse > PositionAltEins.XAchse
+             and
+               PositionNeuEins.XAchse > PositionAltZwei.XAchse
+             and
+               PositionNeuEins.XAchse > PositionAltDrei.XAchse)
+            or
+              (PositionNeuZwei.XAchse > PositionAltEins.XAchse
+               and
+                 PositionNeuZwei.XAchse > PositionAltZwei.XAchse
+               and
+                 PositionNeuZwei.XAchse > PositionAltDrei.XAchse)
+            or
+              (PositionNeuDrei.XAchse > PositionAltEins.XAchse
+               and
+                 PositionNeuDrei.XAchse > PositionAltZwei.XAchse
+               and
+                 PositionNeuDrei.XAchse > PositionAltDrei.XAchse)))
+        or
+          (((PositionNeuEins.YAchse > PositionAltEins.YAchse
+             and
+               PositionNeuEins.YAchse > PositionAltZwei.YAchse
+             and
+               PositionNeuEins.YAchse > PositionAltDrei.YAchse)
+            or
+              (PositionNeuZwei.YAchse > PositionAltEins.YAchse
+               and
+                 PositionNeuZwei.YAchse > PositionAltZwei.YAchse
+               and
+                 PositionNeuZwei.YAchse > PositionAltDrei.YAchse)
+            or
+              (PositionNeuDrei.YAchse > PositionAltEins.YAchse
+               and
+                 PositionNeuDrei.YAchse > PositionAltZwei.YAchse
+               and
+                 PositionNeuDrei.YAchse > PositionAltDrei.YAchse))
+           and
+             ((PositionNeuEins.XAchse < PositionAltEins.XAchse
+               and
+                 PositionNeuEins.XAchse < PositionAltZwei.XAchse
+               and
+                 PositionNeuEins.XAchse < PositionAltDrei.XAchse)
+              or
+                (PositionNeuZwei.XAchse < PositionAltEins.XAchse
+                 and
+                   PositionNeuZwei.XAchse < PositionAltZwei.XAchse
+                 and
+                   PositionNeuZwei.XAchse < PositionAltDrei.XAchse)
+              or
+                (PositionNeuDrei.XAchse < PositionAltEins.XAchse
+                 and
+                   PositionNeuDrei.XAchse < PositionAltZwei.XAchse
+                 and
+                   PositionNeuDrei.XAchse < PositionAltDrei.XAchse)))
       then
          return 3;  
         
-      elsif        
-        (abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse)
-         > abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse)
-         and
-         abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse)
-         = abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse))
-        or
-          (abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse)
-           = abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse)
+      elsif
+        (((PositionNeuEins.YAchse = PositionAltEins.YAchse
            and
-           abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse)
-           > abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse))
+             PositionNeuEins.YAchse = PositionAltZwei.YAchse
+           and
+             PositionNeuEins.YAchse = PositionAltDrei.YAchse)
+          or
+            (PositionNeuZwei.YAchse = PositionAltEins.YAchse
+             and
+               PositionNeuZwei.YAchse = PositionAltZwei.YAchse
+             and
+               PositionNeuZwei.YAchse = PositionAltDrei.YAchse)
+          or
+            (PositionNeuDrei.YAchse = PositionAltEins.YAchse
+             and
+               PositionNeuDrei.YAchse = PositionAltZwei.YAchse
+             and
+               PositionNeuDrei.YAchse = PositionAltDrei.YAchse))
+         and
+           ((PositionNeuEins.XAchse > PositionAltEins.XAchse
+             and
+               PositionNeuEins.XAchse > PositionAltZwei.XAchse
+             and
+               PositionNeuEins.XAchse > PositionAltDrei.XAchse)
+            or
+              (PositionNeuZwei.XAchse > PositionAltEins.XAchse
+               and
+                 PositionNeuZwei.XAchse > PositionAltZwei.XAchse
+               and
+                 PositionNeuZwei.XAchse > PositionAltDrei.XAchse)
+            or
+              (PositionNeuDrei.XAchse > PositionAltEins.XAchse
+               and
+                 PositionNeuDrei.XAchse > PositionAltZwei.XAchse
+               and
+                 PositionNeuDrei.XAchse > PositionAltDrei.XAchse)))
+        or
+          (((PositionNeuEins.YAchse > PositionAltEins.YAchse
+             and
+               PositionNeuEins.YAchse > PositionAltZwei.YAchse
+             and
+               PositionNeuEins.YAchse > PositionAltDrei.YAchse)
+            or
+              (PositionNeuZwei.YAchse > PositionAltEins.YAchse
+               and
+                 PositionNeuZwei.YAchse > PositionAltZwei.YAchse
+               and
+                 PositionNeuZwei.YAchse > PositionAltDrei.YAchse)
+            or
+              (PositionNeuDrei.YAchse > PositionAltEins.YAchse
+               and
+                 PositionNeuDrei.YAchse > PositionAltZwei.YAchse
+               and
+                 PositionNeuDrei.YAchse > PositionAltDrei.YAchse))
+           and
+             ((PositionNeuEins.XAchse = PositionAltEins.XAchse
+               and
+                 PositionNeuEins.XAchse = PositionAltZwei.XAchse
+               and
+                 PositionNeuEins.XAchse = PositionAltDrei.XAchse)
+              or
+                (PositionNeuZwei.XAchse = PositionAltEins.XAchse
+                 and
+                   PositionNeuZwei.XAchse = PositionAltZwei.XAchse
+                 and
+                   PositionNeuZwei.XAchse = PositionAltDrei.XAchse)
+              or
+                (PositionNeuDrei.XAchse = PositionAltEins.XAchse
+                 and
+                   PositionNeuDrei.XAchse = PositionAltZwei.XAchse
+                 and
+                   PositionNeuDrei.XAchse = PositionAltDrei.XAchse)))
       then
          return 2;
          
@@ -312,7 +546,8 @@ package body KIBewegungBerechnen is
          
          if
            LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               PlanschrittExtern        => FelderSchleifenwert) = KoordinatenExtern
+                                               PlanschrittExtern        => FelderSchleifenwert)
+           = KoordinatenExtern
          then
             return True;
             
@@ -339,10 +574,12 @@ package body KIBewegungBerechnen is
             
             if
               LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  PlanschrittExtern        => ÜberNächsterZugSchleifenwert) = KIKonstanten.NullKoordinate
+                                                  PlanschrittExtern        => ÜberNächsterZugSchleifenwert)
+              = KIKonstanten.NullKoordinate
               or
                 LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    PlanschrittExtern        => ErsterZugSchleifenwert) = KIKonstanten.NullKoordinate
+                                                    PlanschrittExtern        => ErsterZugSchleifenwert)
+              = KIKonstanten.NullKoordinate
             then
                return;
                
@@ -418,12 +655,45 @@ package body KIBewegungBerechnen is
    
    
    
-   function TransporterNötig
-     return Boolean
+   function TransporterNutzen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
    is begin
+      
+      EinheitenSchleife:
+      for EinheitSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (2) loop
+         
+         if
+           EinheitRasseNummerExtern.Platznummer = EinheitSchleifenwert
+           or
+             LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheitenID
+         then
+            null;
+            
+         elsif
+           EinheitenTransporter.KannTransportiertWerden (LadungExtern      => EinheitRasseNummerExtern,
+                                                         TransporterExtern => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert))
+             = True
+           and
+             BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitSchleifenwert),
+                                                                        NeuePositionExtern       => KoordinatenExtern)
+           = True
+         then
+            -- Hier später True zurückgeben
+            null;
+            
+         else
+            null;
+         end if;
+         
+         -- Später entfernen
+         exit EinheitenSchleife;
+         
+      end loop EinheitenSchleife;
       
       return False;
       
-   end TransporterNötig;
+   end TransporterNutzen;
 
 end KIBewegungBerechnen;

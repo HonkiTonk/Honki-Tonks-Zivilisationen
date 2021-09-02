@@ -6,7 +6,8 @@ with KIDatentypen;
 
 with LeseStadtGebaut;
 
-with KINahkampfAufgabeFestlegen, EinheitSuchen, KIAufgabenVerteilt, StadtSuchen, KIAufgabenErmittelnAllgemein;
+with EinheitSuchen, StadtSuchen;
+with KINahkampfAufgabeFestlegen, KIAufgabenVerteilt, KIAufgabenErmittelnAllgemein;
 
 package body KINahkampfAufgabeErmitteln is
 

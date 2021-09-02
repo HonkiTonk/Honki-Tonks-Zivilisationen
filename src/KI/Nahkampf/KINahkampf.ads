@@ -15,6 +15,6 @@ package KINahkampf is
 
 private
 
-   NotAus : Positive;
+   NotAus : GlobaleDatentypen.Sichtweite;
 
 end KINahkampf;

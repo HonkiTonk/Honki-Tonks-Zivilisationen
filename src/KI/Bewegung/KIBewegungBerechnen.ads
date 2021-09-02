@@ -35,6 +35,13 @@ private
    KartenWertVereinfachung : GlobaleRecords.AchsenKartenfeldPositivRecord;
    KartenWertTransporter : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
+   PositionAltEins : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   PositionAltZwei : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   PositionAltDrei : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   PositionNeuEins : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   PositionNeuZwei : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   PositionNeuDrei : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
    type FeldBewertungArray is array (GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range, GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range) of Natural;
    FeldBewertung : FeldBewertungArray;
    
@@ -130,7 +137,9 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
-   function TransporterNötig
-     return Boolean;
+   function TransporterNutzen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean;
 
 end KIBewegungBerechnen;

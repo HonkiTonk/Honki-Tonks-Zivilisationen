@@ -19,6 +19,17 @@ package body ZwischenDenRunden is
    is begin
       
       Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, GlobaleDatentypen.Anfangswert) := Clock;
+      
+      case
+        SiegBedingungen.SiegBedingungen
+      is
+         when False =>
+            null;
+            
+         when True =>
+            return True;
+      end case;
+      
       StadtMeldungenSetzen.StadtMeldungenSetzenRundenEnde;
       EinheitenMeldungenSetzen.EinheitenMeldungenSetzenRundenEnde;
       EinheitInUmgebung.EinheitInUmgebung;
@@ -95,7 +106,6 @@ package body ZwischenDenRunden is
          
       end loop RassenSchleife;
       
-      SiegBedingungen.SiegBedingungen;
       Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, GlobaleDatentypen.Endwert) := Clock;
       
       Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => GlobaleDatentypen.Leer);

@@ -18,17 +18,7 @@ package body KINahkampf is
       NotAus := 1;
       
       AktivitätSchleife:
-      loop
-         
-         case
-           NotAus
-         is
-            when 8 =>
-               return;
-               
-            when others =>
-               null;
-         end case;
+      while NotAus /= GlobaleDatentypen.Sichtweite'Last loop
          
          if
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.ID
