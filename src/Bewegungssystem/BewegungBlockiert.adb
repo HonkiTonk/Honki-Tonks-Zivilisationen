@@ -2,9 +2,9 @@ pragma SPARK_Mode (On);
 
 with EinheitSuchen, StadtSuchen;
 
-package body BewegungBlockiert
-is
+package body BewegungBlockiert is
    
+  -- In zwei einzelne Funktionen aufteilen, muss jemals nur eines der beiden geprüft werden?
    function BlockiertStadtEinheit
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
@@ -26,6 +26,7 @@ is
 
       EinheitWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
 
+      -- Muss die Rasse hier geprüft werden?
       if
         EinheitWert.Rasse = EinheitRasseNummerExtern.Rasse
       then

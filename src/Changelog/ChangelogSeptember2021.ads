@@ -156,15 +156,17 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (04.09.2021):
+   -- Version 0.00.8580 => 0.00.8 (04.09.2021):
    
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8570 => 0.00.8 (03.09.2021):
+   -- Version 0.00.8570 => 0.00.8580 (03.09.2021):
    
-   -- Kleinigkeiten korrigiert.
+   -- KI Prüfung eingebaut um zu ermitteln ob weine Einheit verbesserbar ist.
+   -- Suche eingebaut damit die KI ein von ihr belegtes Kartenfeld findet um die Einheit dorthin zu bewegen und verbessern zu können.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst.
    
    
    

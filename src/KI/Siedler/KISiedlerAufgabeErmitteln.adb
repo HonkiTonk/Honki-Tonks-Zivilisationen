@@ -26,7 +26,7 @@ package body KISiedlerAufgabeErmitteln is
       Wichtigkeit (4) := Fliehen;
       Wichtigkeit (5) := KIAufgabenErmittelnAllgemein.SichHeilen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (6) := SichBefestigen;
-      Wichtigkeit (7) := KIAufgabenErmittelnAllgemein.SichVerbessern;
+      Wichtigkeit (7) := KIAufgabenErmittelnAllgemein.SichVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       WichtigkeitEinsSchleife:
       for WichtigkeitEinsSchleifenwert in WichtigkeitArray'Range loop

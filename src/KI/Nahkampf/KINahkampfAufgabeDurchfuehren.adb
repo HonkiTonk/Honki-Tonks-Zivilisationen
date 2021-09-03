@@ -6,6 +6,7 @@ with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
 with Verbesserungen;
+with KIAufgabenDurchfuehrenAllgemein;
 
 package body KINahkampfAufgabeDurchfuehren is
 
@@ -37,7 +38,7 @@ package body KINahkampfAufgabeDurchfuehren is
                                                                        BefehlExtern             => GlobaleDatentypen.Verschanzen);
             
          when KIDatentypen.Einheit_Verbessern =>
-            null;
+            AufgabeDurchführen := KIAufgabenDurchfuehrenAllgemein.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Angreifen =>
             null;

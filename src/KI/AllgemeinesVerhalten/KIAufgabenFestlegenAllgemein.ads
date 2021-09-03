@@ -21,4 +21,23 @@ package KIAufgabenFestlegenAllgemein is
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
+private
+
+   Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
+
+   PlatzGefunden : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+
+   function EinheitVerbessernPlatz
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     with
+       Pre =>
+         (EinheitNummerExtern <= GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+
 end KIAufgabenFestlegenAllgemein;

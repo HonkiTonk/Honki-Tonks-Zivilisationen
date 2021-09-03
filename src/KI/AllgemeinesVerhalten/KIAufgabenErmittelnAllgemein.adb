@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with LeseEinheitenGebaut, LeseEinheitenDatenbank;
+with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseWichtiges;
 
 package body KIAufgabenErmittelnAllgemein is
    
@@ -48,10 +48,33 @@ package body KIAufgabenErmittelnAllgemein is
    
    
    function SichVerbessern
-     return GlobaleDatentypen.GesamtproduktionStadt
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.GesamtproduktionStadt
    is begin
       
-      return 0;
+      NotwendigeTechnologie := LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
+      case
+        NotwendigeTechnologie
+      is
+         when GlobaleDatentypen.EinheitenIDMitNullWert'First =>
+            return 0;
+            
+         when others =>
+            null;
+      end case;
+      
+      if
+        LeseWichtiges.Erforscht (RasseExtern             => EinheitRasseNummerExtern.Rasse,
+                                 WelcheTechnologieExtern => NotwendigeTechnologie)
+        = True
+      then
+         return 2;
+            
+      else
+         return 0;
+      end if;
       
    end SichVerbessern;
    
