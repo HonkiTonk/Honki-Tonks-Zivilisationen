@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
+with SchreibeWichtiges;
 with LeseEinheitenDatenbank;
 
 package body SchreibeEinheitenGebaut is
@@ -367,6 +368,33 @@ package body SchreibeEinheitenGebaut is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
+      if
+        GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID = GlobaleKonstanten.LeerEinheitenID
+      then
+         null;
+         
+      else
+         case
+           LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                              IDExtern    => (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).ID))
+         is
+            when GlobaleDatentypen.Arbeiter =>
+               SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => EinheitRasseNummerExtern.Rasse,
+                                                 PlusMinusExtern => False);
+            
+            when GlobaleDatentypen.Nahkämpfer | GlobaleDatentypen.Fernkämpfer | GlobaleDatentypen.Beides =>
+               SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => EinheitRasseNummerExtern.Rasse,
+                                                 PlusMinusExtern => False);
+            
+            when GlobaleDatentypen.Sonstiges =>
+               SchreibeWichtiges.AnzahlSonstiges (RasseExtern     => EinheitRasseNummerExtern.Rasse,
+                                                  PlusMinusExtern => False);
+            
+            when others =>
+               null;
+         end case;
+      end if;
+                                           
       GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer) := GlobaleKonstanten.LeerEinheit;
       
    end Nullsetzung;

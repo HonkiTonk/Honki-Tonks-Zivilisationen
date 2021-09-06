@@ -78,29 +78,9 @@ package EinheitSuchen is
          (GlobaleVariablen.RassenImSpiel (EinheitRassePlatznummerExtern.Rasse) /= GlobaleDatentypen.Leer
           and
             EinheitRassePlatznummerExtern.Platznummer > 0);
-   
-   function MengeEinesEinheitenTypsSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      EinheitTypExtern : in GlobaleDatentypen.Einheit_Art_Verwendet_Enum;
-      GesuchteMengeExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-   
-   function AnzahlEinheitenSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      GesuchteMengeExtern : in GlobaleDatentypen.MaximaleEinheitenMitNullWert)
-      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
 private
    
    TransporterID : GlobaleDatentypen.EinheitenIDMitNullWert;
    
-   AnzahlEinheitTyp : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-   AnzahlEinheiten : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-
 end EinheitSuchen;

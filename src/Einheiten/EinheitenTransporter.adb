@@ -101,6 +101,16 @@ package body EinheitenTransporter is
       return Boolean
    is begin
       
+      case
+        LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Platznummer))
+      is
+         when 0 =>
+            return False;
+            
+         when others =>
+            null;
+      end case;
+      
       if
         LeseEinheitenDatenbank.KannTransportiertWerden (RasseExtern => LadungExtern.Rasse,
                                                         IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (LadungExtern.Rasse, LadungExtern.Platznummer)))

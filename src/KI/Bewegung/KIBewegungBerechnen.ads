@@ -42,12 +42,12 @@ private
    PositionNeuZwei : GlobaleRecords.AchsenKartenfeldPositivRecord;
    PositionNeuDrei : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
-   type FeldBewertungArray is array (GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range, GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range) of Natural;
+   type FeldBewertungArray is array (GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range, GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range) of GlobaleDatentypen.ProduktionSonstiges;
    FeldBewertung : FeldBewertungArray;
    
    type BewertungRecord is new GlobaleRecords.AchsenKartenfeldPositivRecord with record
       
-      Bewertung : Natural;
+      Bewertung : GlobaleDatentypen.ProduktionSonstiges;
       
    end record;
    
@@ -94,7 +94,7 @@ private
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       YÄnderungExtern, XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
-      return Natural
+      return GlobaleDatentypen.ProduktionSonstiges
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
@@ -108,7 +108,7 @@ private
    function BerechnungBewertungPosition
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       KoordinatenExtern, NeueKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Natural
+      return GlobaleDatentypen.ProduktionSonstiges
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

@@ -18,6 +18,7 @@ private
 
    Transportiert : Boolean;
    AufgabeDurchführen : Boolean;
+   NullWert : Boolean;
    
    Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
 

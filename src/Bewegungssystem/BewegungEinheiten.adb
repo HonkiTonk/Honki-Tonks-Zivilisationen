@@ -74,7 +74,7 @@ package body BewegungEinheiten is
                end case;
                
             when GlobaleDatentypen.Bauen =>
-               StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                Änderung := KeineÄnderung;
             
             when others =>

@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten, GlobaleTexte;
 
-with SchreibeEinheitenGebaut, SchreibeStadtGebaut;
+with SchreibeEinheitenGebaut, SchreibeStadtGebaut, SchreibeWichtiges;
 with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseWichtiges;
 
 with Auswahl, Anzeige, Sichtbarkeit, StadtProduktion, RasseEntfernen, EinheitSuchen, StadtSuchen, BewegungPassierbarkeitPruefen;
@@ -122,6 +122,25 @@ package body EinheitenAllgemein is
                                                  LeseEinheitenDatenbank.MaximaleBewegungspunkte (RasseExtern => StadtRasseNummerExtern.Rasse,
                                                                                                  IDExtern    => IDExtern),
                                                RechnenSetzenExtern      => 0);
+      case
+        LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                           IDExtern    => IDExtern)
+      is
+         when GlobaleDatentypen.Arbeiter =>
+            SchreibeWichtiges.AnzahlArbeiter (RasseExtern     => StadtRasseNummerExtern.Rasse,
+                                              PlusMinusExtern => True);
+            
+         when GlobaleDatentypen.Nahkämpfer | GlobaleDatentypen.Fernkämpfer | GlobaleDatentypen.Beides =>
+            SchreibeWichtiges.AnzahlKämpfer (RasseExtern     => StadtRasseNummerExtern.Rasse,
+                                              PlusMinusExtern => True);
+            
+         when GlobaleDatentypen.Sonstiges =>
+            SchreibeWichtiges.AnzahlSonstiges (RasseExtern     => StadtRasseNummerExtern.Rasse,
+                                               PlusMinusExtern => True);
+            
+         when others =>
+            null;
+      end case;
       
       case
         StadtRasseNummerExtern.Platznummer

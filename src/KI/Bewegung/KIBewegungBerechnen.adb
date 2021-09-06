@@ -7,7 +7,7 @@ with KIKonstanten, KIDatentypen;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, KINullwerteSetzen, EinheitenTransporter;
+with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, EinheitenTransporter;
 
 package body KIBewegungBerechnen is
    
@@ -27,10 +27,10 @@ package body KIBewegungBerechnen is
             VorhandenenPlanVereinfachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when False =>
-            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
-                                                      WelchenWertNullSetzenExtern => 0);
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIKonstanten.NullKoordinate;
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                    AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
+                                                    AufgabeExtern            => KIDatentypen.Tut_Nichts);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     BeschäftigungExtern      => GlobaleDatentypen.Leer);
       end case;
@@ -144,8 +144,11 @@ package body KIBewegungBerechnen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       YÄnderungExtern, XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
-      return Natural
+      return GlobaleDatentypen.ProduktionSonstiges
    is begin
+      
+      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
+                                                                  ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern));
       
       if
         YÄnderungExtern = 0
@@ -158,9 +161,6 @@ package body KIBewegungBerechnen is
          null;
       end if;
             
-      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                  ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern));
-      
       case
         KartenWert.XAchse
       is
@@ -203,8 +203,8 @@ package body KIBewegungBerechnen is
       end case;
                
       case
-        BewegungBlockiert.BlockiertStadtEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 NeuePositionExtern       => KartenWert)
+        BewegungBlockiert.FeldBlockiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                         NeuePositionExtern       => KartenWert)
       is
          when False =>   
             null;
@@ -224,7 +224,7 @@ package body KIBewegungBerechnen is
    function BerechnungBewertungPosition
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       KoordinatenExtern, NeueKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Natural
+      return GlobaleDatentypen.ProduktionSonstiges
    is begin
       
       -- KoordinatenExtern ist der aktuelle Punkt, NeueKoordinatenExtern ist der mögliche neue Punkt.

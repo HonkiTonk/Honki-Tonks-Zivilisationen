@@ -416,7 +416,7 @@ package GlobaleKonstanten is
                                                                    Beschäftigungszeit           => 0,
                                                                    BeschäftigungszeitNachfolger => 0,
                                                                    KIZielKoordinaten            => (0, 0, 0),
-                                                                   KIBeschäftigt                => KIDatentypen.Keine_Aufgabe,
+                                                                   KIBeschäftigt                => KIDatentypen.Tut_Nichts,
                                                                    KIBewegungPlan               => (others => (0, 0, 0)),
                                                                    Transportiert                => (others => 0),
                                                                    WirdTransportiert            => 0,
@@ -452,7 +452,11 @@ package GlobaleKonstanten is
                                                                    Forschungsmenge            => 0,
                                                                    VerbleibendeForschungszeit => 10_000,
                                                                    Forschungsprojekt          => 0,
-                                                                   Erforscht                  => (others => False)
+                                                                   Erforscht                  => (others => False),
+                                                                   AnzahlStädte               => 0,
+                                                                   AnzahlArbeiter             => 0,
+                                                                   AnzahlKämpfer              => 0,
+                                                                   AnzahlSonstiges            => 0
                                                                   );
 
    LeerKartenListe : constant DatenbankRecords.KartenListeRecord := (

@@ -5,8 +5,9 @@ use GlobaleDatentypen;
 
 package StadtBauen is
 
-   procedure StadtBauen
+   function StadtBauen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze

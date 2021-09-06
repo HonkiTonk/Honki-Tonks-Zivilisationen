@@ -120,45 +120,55 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (10.09.2021):
+   -- Version 0.00.86 => 0.00.8 (10.09.2021):
    
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (09.09.2021):
+   -- Version 0.00.86 => 0.00.86 (09.09.2021):
    
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (08.09.2021):
+   -- Version 0.00.86 => 0.00.86 (08.09.2021):
    
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (07.09.2021):
+   -- Version 0.00.8600 => 0.00.86 (07.09.2021):
    
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (06.09.2021):
+   -- Version 0.00.8580 => 0.00.8600 (06.09.2021):
    
-   -- Kleinigkeiten korrigiert.
+   -- Fehler behoben der dazu führte das ohne Einstellungsdatei die Tastenbelegung nicht gesetzt wurde.
+   -- Fehler behoben der möglicherweise falsche Werte setzte.
+   -- Datentypen angepasst.
+   -- Die Aufgabenbestimmung der KI für verschiedene Einheitenarten zusammengefasst.
+   -- Unnötigen Code gelöscht.
+   -- Die Aufgabenbestimmung der KI erweitert und verbessert.
+   -- Fehler behoben der dazu führte dass die KI ausschließlich Siedler baute.
+   -- Die Anzahl der Städte und Einheiten aller Rassen wird jetzt gespeichert anstatt jedes mal neu ermittelt.
+   -- Vorübergehende Prüfung eingebaut damit die KI nicht mehr extrem viele Einheiten baut.
+   -- Fehler behoben der zu Abstürzen führte, wenn die KI von zu viel Wasser umgeben war.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (05.09.2021):
+   -- Version 0.00.8580 => 0.00.8580 (05.09.2021):
    
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
    
-   -- Version 0.00.8580 => 0.00.8 (04.09.2021):
+   -- Version 0.00.8580 => 0.00.8580 (04.09.2021):
    
-   -- Kleinigkeiten korrigiert.
+   -- null.
    
    
    

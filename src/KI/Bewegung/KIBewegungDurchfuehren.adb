@@ -7,7 +7,7 @@ with KIKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with BewegungBlockiert, KIBewegungBerechnen, KINullwerteSetzen, BewegungBerechnen;
+with BewegungBlockiert, KIBewegungBerechnen, BewegungBerechnen;
 
 package body KIBewegungDurchfuehren is
    
@@ -21,8 +21,8 @@ package body KIBewegungDurchfuehren is
          if
            LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          then
-            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
-                                                      WelchenWertNullSetzenExtern => 0);
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIKonstanten.NullKoordinate;
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
             return;
             
          elsif
@@ -60,9 +60,9 @@ package body KIBewegungDurchfuehren is
    is begin
       
       case
-        BewegungBlockiert.BlockiertStadtEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 NeuePositionExtern       => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                 PlanschrittExtern        => 1))
+        BewegungBlockiert.FeldBlockiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                         NeuePositionExtern       => LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                         PlanschrittExtern        => 1))
       is
          when False =>      
             BewegungBerechnen.BewegungEinheitenBerechnung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -83,8 +83,7 @@ package body KIBewegungDurchfuehren is
                                                     PlanpositionExtern       => GlobaleRecords.KIBewegungPlanArray'Last);
             
          when True =>
-            KINullwerteSetzen.ZielBewegungNullSetzen (EinheitRasseNummerExtern    => EinheitRasseNummerExtern,
-                                                      WelchenWertNullSetzenExtern => 1);
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
       end case;
       
    end BewegungDurchführen;

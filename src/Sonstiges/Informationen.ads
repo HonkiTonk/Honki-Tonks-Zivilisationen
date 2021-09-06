@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 package Informationen is
 
-   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.00.8580";
+   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.00.8600";
 
    procedure Informationen
      with

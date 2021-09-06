@@ -14,6 +14,16 @@ package body BewegungPassierbarkeitPruefen is
       return Boolean
    is begin
       
+      case
+        LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      is
+         when 0 =>
+            return False;
+            
+         when others =>
+            null;
+      end case;
+      
       return PassierbarkeitPrüfenID (RasseExtern        => EinheitRasseNummerExtern.Rasse,
                                       IDExtern           => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                       NeuePositionExtern => NeuePositionExtern);

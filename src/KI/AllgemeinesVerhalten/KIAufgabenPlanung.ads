@@ -3,56 +3,44 @@ pragma SPARK_Mode (On);
 with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
-package KINahkampfAufgabeErmitteln is
+with KIDatentypen;
 
-   procedure NahkampfAufgabeErmitteln
+package KIAufgabenPlanung is
+   
+   procedure AufgabeErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
-
+   
+   procedure AufgabeUmsetzen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+   
 private
-
-   GewählteAufgabe : Natural;
-
-   EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-
-   type WichtigkeitArray is array (0 .. 9) of GlobaleDatentypen.GesamtproduktionStadt;
+      
+   AufgabeDurchführen : Boolean;
+   
+   EinheitArt : GlobaleDatentypen.Einheit_Art_Verwendet_Enum;
+   
+   GewählteAufgabe : KIDatentypen.Einheit_Aufgabe_Enum;
+   
+   type WichtigkeitArray is array (KIDatentypen.Einheit_Aufgabe_Enum'Range) of GlobaleDatentypen.ProduktionSonstiges;
    Wichtigkeit : WichtigkeitArray;
-
-   function StadtBewachen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt
+   
+   procedure AufgabeFestlegen
+     (GewählteAufgabeExtern : in KIDatentypen.Einheit_Aufgabe_Enum;
+      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
-
-   function EinheitAuflösen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.GesamtproduktionStadt
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
-
-   function Fliehen
-     return GlobaleDatentypen.GesamtproduktionStadt;
-
-   function SichBefestigen
-     return GlobaleDatentypen.GesamtproduktionStadt;
-
-   function StadtUmgebungZerstören
-     return GlobaleDatentypen.GesamtproduktionStadt;
-
-   function Angreifen
-     return GlobaleDatentypen.GesamtproduktionStadt;
-
-   function Erkunden
-     return GlobaleDatentypen.GesamtproduktionStadt;
-
-end KINahkampfAufgabeErmitteln;
+   
+end KIAufgabenPlanung;

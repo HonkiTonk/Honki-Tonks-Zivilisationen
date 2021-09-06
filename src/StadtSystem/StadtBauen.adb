@@ -9,20 +9,21 @@ with Anzeige, StadtWerteFestlegen, Eingabe, StadtProduktion, EinheitenAllgemein,
 
 package body StadtBauen is
 
-   procedure StadtBauen
+   function StadtBauen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
    is begin     
         
-      if
+      case
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-          = GlobaleDatentypen.Arbeiter
-      then
-         null;
+      is
+         when GlobaleDatentypen.Arbeiter =>
+            null;
          
-      else
-         return;
-      end if;
+         when others =>
+            return False;
+      end case;
       
       if
         LeseKarten.BelegterGrundLeer (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
@@ -32,12 +33,12 @@ package body StadtBauen is
       elsif
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
       then
-         return;
+         return False;
          
       else
          Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                TextZeileExtern => 6);
-         return;
+         return False;
       end if;
 
       StadtSchleife:
@@ -52,12 +53,12 @@ package body StadtBauen is
               GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
             is
                when GlobaleDatentypen.Spieler_KI =>
-                  return;
+                  return False;
                
                when others =>
                   Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                         TextZeileExtern => 7);
-                  return;
+                  return False;
             end case;
 
          elsif
@@ -87,6 +88,8 @@ package body StadtBauen is
                                              EinwohnerArbeiterExtern => False,
                                              ÄnderungExtern         => 1);
       GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).UmgebungBewirtschaftung := (0 => (0 => True, others => False), others => (others => False));
+      SchreibeWichtiges.AnzahlStädte (RasseExtern     => EinheitRasseNummerExtern.Rasse,
+                                       PlusMinusExtern => True);
       
       StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
       StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
@@ -105,6 +108,8 @@ package body StadtBauen is
             SchreibeStadtGebaut.Name (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
                                       NameExtern             => Eingabe.StadtName);
       end case;
+      
+      return True;
       
    end StadtBauen;
 

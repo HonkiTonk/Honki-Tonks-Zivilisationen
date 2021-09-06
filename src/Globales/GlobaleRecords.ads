@@ -165,6 +165,15 @@ package GlobaleRecords is
 
       Erforscht : GlobaleDatentypen.ErforschtArray;
       
+      AnzahlStädte : GlobaleDatentypen.MaximaleStädteMitNullWert;
+      AnzahlArbeiter : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      AnzahlKämpfer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      AnzahlSonstiges : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
+      
+      -- Einbau sinnvoll?
+      -- GesamterAngriff : GlobaleDatentypen.KostenLager;
+      -- GesamteVerteidigung : GlobaleDatentypen.KostenLager;
+      
    end record;
    
    

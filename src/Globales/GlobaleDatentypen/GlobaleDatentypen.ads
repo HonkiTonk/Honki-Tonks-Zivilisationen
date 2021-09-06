@@ -253,6 +253,8 @@ package GlobaleDatentypen is
    subtype ProduktionFeld is GesamtproduktionStadt range -100 .. 100;
    subtype ProduktionElement is ProduktionFeld range -10 .. 10;
 
+   type ProduktionSonstiges is new ProduktionFeld range -1 .. 100;
+
    type Stadt_Meldung_Art_Enum is (Produktion_Fertig, Hungersnot, Einheit_In_Der_Nähe);
    type Stadt_Meldung_Enum is (Leer, Produktion_Abgeschlossen, Einheit_Unplatzierbar, Einwohner_Wachstum, Einwohner_Reduktion, Fremde_Einheit_Nahe_Stadt);
    subtype Stadt_Meldungen_Verwendet_Enum is Stadt_Meldung_Enum range Produktion_Abgeschlossen .. Stadt_Meldung_Enum'Last;

@@ -14,6 +14,8 @@ package body Einlesen is
       
       Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, GlobaleDatentypen.Anfangswert) := Clock;
       EinlesenEinstellungen.EinlesenEinstellungen;
+      EinlesenDatenbanken.EinlesenAlleDatenbanken;
+      EinlesenTastatur.EinlesenTastaturbelegung;
       
       if
         GlobaleVariablen.NutzerEinstellungen.Sprache = "|"
@@ -46,8 +48,6 @@ package body Einlesen is
             return;
       end case;
       
-      EinlesenDatenbanken.EinlesenAlleDatenbanken;
-      EinlesenTastatur.EinlesenTastaturbelegung;
       Ladezeiten.EinzelneZeiten (Ladezeiten.Startzeit, GlobaleDatentypen.Endwert) := Clock;
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Startzeit);
       return;

@@ -1,16 +1,40 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 with EinheitSuchen, StadtSuchen;
 
 package body BewegungBlockiert is
    
-  -- In zwei einzelne Funktionen aufteilen, muss jemals nur eines der beiden geprüft werden?
-   function BlockiertStadtEinheit
+   function FeldBlockiert
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return Boolean
    is begin
-
+      
+      case
+        StadtBlockiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                        NeuePositionExtern       => NeuePositionExtern)
+      is
+         when True =>
+            return True;
+            
+         when others =>
+            null;
+      end case;
+      
+      return EinheitBlockiert (NeuePositionExtern => NeuePositionExtern);
+      
+   end FeldBlockiert;
+   
+   
+   
+   function StadtBlockiert
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+   is begin
+      
       StadtWert := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
       
       if
@@ -18,21 +42,24 @@ package body BewegungBlockiert is
         or
           StadtWert.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
-         null;
+         return False;
          
       else
          return True;
       end if;        
-
+      
+   end StadtBlockiert;
+   
+   
+   
+   function EinheitBlockiert
+     (NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+   is begin
+      
       EinheitWert := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePositionExtern);
 
-      -- Muss die Rasse hier geprüft werden?
       if
-        EinheitWert.Rasse = EinheitRasseNummerExtern.Rasse
-      then
-         return True;
-
-      elsif
         EinheitWert.Platznummer = GlobaleKonstanten.LeerEinheitStadtNummer
       then
          return False;
@@ -41,6 +68,6 @@ package body BewegungBlockiert is
          return True;
       end if;
       
-   end BlockiertStadtEinheit;
+   end EinheitBlockiert;
 
 end BewegungBlockiert;

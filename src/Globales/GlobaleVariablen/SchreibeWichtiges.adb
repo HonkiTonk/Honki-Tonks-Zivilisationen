@@ -204,5 +204,141 @@ package body SchreibeWichtiges is
       end case;
       
    end Erforscht;
+   
+   
+   
+   procedure AnzahlStädte
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      PlusMinusExtern : in Boolean)
+   is begin
+      
+      case
+        PlusMinusExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte >= GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
+            then
+               -- Bei den folgenden Fehlermeldungen nochmal nacharbeiten?
+               raise Program_Error;
+               
+            else
+               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte + 1;
+            end if;
+            
+         when False =>
+            if
+              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte = GlobaleDatentypen.MaximaleStädteMitNullWert'First
+            then
+               raise Program_Error;
+               
+            else
+               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte - 1;
+            end if;
+      end case;
+      
+   end AnzahlStädte;
+   
+   
+     
+   procedure AnzahlArbeiter
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      PlusMinusExtern : in Boolean)
+   is begin
+      
+      case
+        PlusMinusExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
+              >= GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
+            then
+               raise Program_Error;
+               
+            else
+               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + 1;
+            end if;
+            
+         when False =>
+            if
+              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter = GlobaleDatentypen.MaximaleEinheitenMitNullWert'First
+            then
+               raise Program_Error;
+               
+            else
+               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter - 1;
+            end if;
+      end case;
+            
+   end AnzahlArbeiter;
+   
+   
+     
+   procedure AnzahlKämpfer
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      PlusMinusExtern : in Boolean)
+   is begin
+      
+      case
+        PlusMinusExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
+              >= GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
+            then
+               raise Program_Error;
+               
+            else
+               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + 1;
+            end if;
+            
+         when False =>
+            if
+              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer = GlobaleDatentypen.MaximaleEinheitenMitNullWert'First
+            then
+               raise Program_Error;
+               
+            else
+               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer - 1;
+            end if;
+      end case;
+      
+   end AnzahlKämpfer;
+   
+   
+     
+   procedure AnzahlSonstiges
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      PlusMinusExtern : in Boolean)
+   is begin
+      
+      case
+        PlusMinusExtern
+      is
+         when True =>
+            if
+              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges
+              = GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze
+            then
+               raise Program_Error;
+               
+            else
+               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges + 1;
+            end if;
+            
+         when False =>
+            if
+              GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges = GlobaleDatentypen.MaximaleEinheitenMitNullWert'First
+            then
+               raise Program_Error;
+               
+            else
+               GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges := GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges - 1;
+            end if;
+      end case;
+      
+   end AnzahlSonstiges;
       
 end SchreibeWichtiges;

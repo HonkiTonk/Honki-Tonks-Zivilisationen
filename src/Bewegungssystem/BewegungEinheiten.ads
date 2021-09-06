@@ -21,6 +21,7 @@ private
    BewegungDurchführen : Boolean;
    Gewonnen : Boolean;
    AufgabeDurchführen : Boolean;
+   NullWert : Boolean;
    
    Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
    

@@ -947,7 +947,7 @@ package body Verbesserungen is
                SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                        BeschäftigungExtern     => GlobaleDatentypen.Leer);
                SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       AufgabeExtern            => KIDatentypen.Keine_Aufgabe);
+                                                       AufgabeExtern            => KIDatentypen.Tut_Nichts);
                SchreibeEinheitenGebaut.Beschäftigungszeit (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                             ZeitExtern               => GlobaleKonstanten.LeerEinheit.Beschäftigungszeit,
                                                             RechnenSetzenExtern      => 0);

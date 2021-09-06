@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with SchreibeEinheitenGebaut, SchreibeStadtGebaut, SchreibeKarten;
+with SchreibeEinheitenGebaut, SchreibeStadtGebaut, SchreibeKarten, SchreibeWichtiges;
 with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
 
 with KartePositionPruefen, RasseEntfernen;
@@ -17,6 +17,8 @@ package body StadtEntfernen is
       HeimatstädteEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       NeueHauptstadtSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
+                                       PlusMinusExtern => False);
       RasseEntfernen.RasseExistenzPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
       
    end StadtEntfernen;

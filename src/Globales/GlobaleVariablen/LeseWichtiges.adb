@@ -106,5 +106,60 @@ package body LeseWichtiges is
       return GlobaleVariablen.Wichtiges (RasseExtern).Erforscht (WelcheTechnologieExtern);
 
    end Erforscht;
+   
+   
+   
+   function AnzahlStädte
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
+   is begin
+      
+      return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlStädte;
+      
+   end AnzahlStädte;
+   
+   
+   
+   function AnzahlEinheiten
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+   is begin
+      
+      return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer + GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges;
+      
+   end AnzahlEinheiten;
+     
+   
+     
+   function AnzahlArbeiter
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+   is begin
+      
+      return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlArbeiter;
+      
+   end AnzahlArbeiter;
+   
+   
+     
+   function AnzahlKämpfer
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+   is begin
+      
+      return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlKämpfer;
+      
+   end AnzahlKämpfer;
+   
+   
+     
+   function AnzahlSonstiges
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+   is begin
+      
+      return GlobaleVariablen.Wichtiges (RasseExtern).AnzahlSonstiges;
+      
+   end AnzahlSonstiges;
 
 end LeseWichtiges;

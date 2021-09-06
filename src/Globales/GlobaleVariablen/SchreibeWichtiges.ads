@@ -55,5 +55,33 @@ package SchreibeWichtiges is
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+   
+   procedure AnzahlStädte
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      PlusMinusExtern : in Boolean)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+     
+   procedure AnzahlArbeiter
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      PlusMinusExtern : in Boolean)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+     
+   procedure AnzahlKämpfer
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      PlusMinusExtern : in Boolean)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+     
+   procedure AnzahlSonstiges
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      PlusMinusExtern : in Boolean)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
 end SchreibeWichtiges;
