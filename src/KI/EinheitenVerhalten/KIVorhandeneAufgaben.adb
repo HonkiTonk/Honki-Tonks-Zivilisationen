@@ -223,7 +223,7 @@ package body KIVorhandeneAufgaben is
                                                               FremdeRasseExtern => RasseSchleifenwert)
            = GlobaleDatentypen.Krieg
          then
-            return 2;
+            return 5;
             
          else
             null;
@@ -254,16 +254,47 @@ package body KIVorhandeneAufgaben is
       
       if
         18 + StadtSuchen.AnzahlStädteErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse)
-        > LeseWichtiges.AnzahlEinheiten (RasseExtern => EinheitRasseNummerExtern.Rasse)
+        < LeseWichtiges.AnzahlEinheiten (RasseExtern => EinheitRasseNummerExtern.Rasse)
       then
-         return 0;
+         return 3;
          
       else
-         return 2;
+         null;
       end if;
-                                    
+      
+      Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+        
+      case
+        Heimatstadt
+      is
+         when 0 =>
+            return 0;
+
+         when others =>
+            null;
+      end case;
+
+      KostenSchleife:
+      for KostenSchleifenwert in GlobaleDatentypen.Permanente_Kosten_Verwendet_Enum'Range loop
+         
+         if
+           LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                                    IDExtern           => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                    WelcheKostenExtern => KostenSchleifenwert)
+           = GlobaleKonstanten.NullPermanenteKosten
+         then
+            null;
+            
+         else
+            return 1;
+         end if;
+         
+      end loop KostenSchleife;
+                     
+      return 0;
+      
    end EinheitAuflösen;
-                                    
+   
                                     
    
    function Fliehen

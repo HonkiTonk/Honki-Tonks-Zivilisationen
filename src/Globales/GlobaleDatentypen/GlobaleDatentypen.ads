@@ -78,6 +78,8 @@ package GlobaleDatentypen is
    -- Rückgabewert, Planeteninneres, Unterirdisch/Unterwasser, Oberfläche, Himmel, Weltraum/Orbit
    subtype Ebene is LoopRangeMinusDreiZuDrei range -3 .. 2;
 
+   type NotAus is new Sichtweite range 1 .. 5;
+
    -- Kartenwerte
    type Kartengröße_Enum is (Leer, Karte_20_20, Karte_40_40, Karte_80_80, Karte_120_80, Karte_120_160, Karte_160_160, Karte_240_240, Karte_320_320, Karte_1000_1000, Karte_Nutzer);
    subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range Karte_20_20 .. Kartengröße_Enum'Last;

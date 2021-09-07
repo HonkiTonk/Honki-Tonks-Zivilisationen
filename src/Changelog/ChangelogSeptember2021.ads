@@ -2,145 +2,174 @@ package ChangelogSeptember2021 is
       
    -- Version 0.00.8 => 0.00.8 (30.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (29.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (28.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (27.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (26.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (25.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (24.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (23.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (22.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (21.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (20.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (19.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (18.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (17.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (16.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (15.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (14.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (13.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (12.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8 => 0.00.8 (11.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.86 => 0.00.8 (10.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.86 => 0.00.86 (09.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.86 => 0.00.86 (08.09.2021):
+   -- Version 0.00.8610 => 0.00.86 (08.09.2021):
    
+   -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8600 => 0.00.86 (07.09.2021):
+   -- Version 0.00.8600 => 0.00.8610 (07.09.2021):
    
-   -- Kleinigkeiten korrigiert.
+   -- Tastenbelegung in der Zahleneingabe erweitert.
+   -- Gefahrenermittlung für Einheiten der KI verbessert und erweitert.
+   -- Fehler in der KIAufgabenPlanung behoben der für Abstürze sorgen konnte.
+   -- KIEinheitHandlungen optimiert und erweitert.
+   -- Angefangen der KI die Möglichkeit zum Angriff zu geben und dabei die KI kaputt gemacht.
+   -- Erweiterung der Bewegungsberechnung der KI wieder entfernt, da es diverse Probleme verursachte.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/hinzugefügt.
    
    
    

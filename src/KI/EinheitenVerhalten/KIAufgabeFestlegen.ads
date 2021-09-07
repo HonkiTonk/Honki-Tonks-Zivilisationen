@@ -97,7 +97,7 @@ private
 
    NullWert : Boolean;
 
-   WenAngreifen : GlobaleDatentypen.Rassen_Verwendet_Enum;
+   WenAngreifen : GlobaleDatentypen.Rassen_Enum;
 
    Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
 
@@ -106,6 +106,7 @@ private
    KarteReichweite : GlobaleDatentypen.KartenfeldPositivMitNullwert;
    KarteGeprüft : GlobaleDatentypen.KartenfeldPositivMitNullwert;
 
+   KoordinatenFeind : GlobaleRecords.AchsenKartenfeldPositivRecord;
    PlatzGefunden : GlobaleRecords.AchsenKartenfeldPositivRecord;
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    NeueStadtPosition : GlobaleRecords.AchsenKartenfeldPositivRecord;

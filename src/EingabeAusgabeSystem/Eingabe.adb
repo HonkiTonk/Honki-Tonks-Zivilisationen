@@ -9,7 +9,7 @@ with Anzeige;
 
 package body Eingabe is 
 
-   -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
+   -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e/Enter (Eingabe bestätigen) = 2, sonst 0
    function GanzeZahl
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ZeileExtern : in Positive;
@@ -63,7 +63,7 @@ package body Eingabe is
       return GlobaleDatentypen.LoopRangeMinusZweiZuZwei
    is begin
 
-      -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
+      -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e/Enter (Eingabe bestätigen) = 2, sonst 0
       ZahlenSchleife:
       loop
 
@@ -114,7 +114,7 @@ package body Eingabe is
                                                Base  => 10);
          end if;
          
-         -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
+         -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e/Enter (Eingabe bestätigen) = 2, sonst 0
          Get_Immediate (Item => Zahlen);
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
          case
@@ -193,7 +193,7 @@ package body Eingabe is
 
 
 
-   -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e (Eingabe bestätigen) = 2, sonst 0
+   -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e/Enter (Eingabe bestätigen) = 2, sonst 0
    function GanzeZahlPrüfung
      (ZeichenExtern : in Wide_Wide_Character)
       return GlobaleDatentypen.LoopRangeMinusDreiZuDrei
@@ -205,13 +205,13 @@ package body Eingabe is
          when '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' =>            
             return 1;
             
-         when 'q' | 'Q' =>
+         when 'q' | 'Q' | ESC =>
             return -1;
 
          when DEL =>
             return -2;
 
-         when 'e' | 'E' =>
+         when 'e' | 'E' | LF =>
             return 2;
 
          when '-' =>

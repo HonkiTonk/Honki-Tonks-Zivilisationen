@@ -35,12 +35,8 @@ private
    KartenWertVereinfachung : GlobaleRecords.AchsenKartenfeldPositivRecord;
    KartenWertTransporter : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
-   PositionAltEins : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   PositionAltZwei : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   PositionAltDrei : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   PositionNeuEins : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   PositionNeuZwei : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   PositionNeuDrei : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   PositionAlt : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   PositionNeu : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    type FeldBewertungArray is array (GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range, GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range) of GlobaleDatentypen.ProduktionSonstiges;
    FeldBewertung : FeldBewertungArray;

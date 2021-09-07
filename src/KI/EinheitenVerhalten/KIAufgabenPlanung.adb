@@ -13,11 +13,9 @@ package body KIAufgabenPlanung is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      Wichtigkeit := (others => GlobaleDatentypen.ProduktionSonstiges'First);
       -- Muss für die Schleife weiter unten auf den ersten Wert gesetzt werden.
       GewählteAufgabe := KIDatentypen.Einheit_Aufgabe_Enum'First;
-      EinheitArt := LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      Wichtigkeit := (others => GlobaleDatentypen.ProduktionSonstiges'First);
             
       Wichtigkeit (KIDatentypen.Tut_Nichts) := KIVorhandeneAufgaben.NichtsTun;
       Wichtigkeit (KIDatentypen.Einheit_Auflösen) := KIVorhandeneAufgaben.EinheitAuflösen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -27,7 +25,8 @@ package body KIAufgabenPlanung is
       Wichtigkeit (KIDatentypen.Flucht) := KIVorhandeneAufgaben.Fliehen;
       
       case
-        EinheitArt
+        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when GlobaleDatentypen.Arbeiter =>
             Wichtigkeit (KIDatentypen.Stadt_Bauen) := KIVorhandeneAufgaben.NeueStadtBauenGehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
@@ -47,6 +46,10 @@ package body KIAufgabenPlanung is
             
          when GlobaleDatentypen.Sonstiges =>
             null;
+            
+         when GlobaleDatentypen.Leer =>
+            -- Sollte niemals eintreten.
+            return;
       end case;
             
       WichtigkeitEinsSchleife:
@@ -170,6 +173,9 @@ package body KIAufgabenPlanung is
             AufgabeDurchführen := KIAufgabeUmsetzen.EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Angreifen =>
+            KIAufgabeFestlegen.Angreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            
+         when KIDatentypen.Verteidigen =>
             null;
             
          when KIDatentypen.Erkunden =>

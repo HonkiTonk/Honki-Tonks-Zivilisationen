@@ -2,7 +2,8 @@ pragma SPARK_Mode (On);
 
 package Informationen is
 
-   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.00.8600";
+   -- Cheat.Sichtbar setzt den diplomatischen Zustand aktuell auf Krieg.
+   Versionsnummer : constant Wide_Wide_String (1 .. 9) := "0.00.8610";
 
    procedure Informationen
      with

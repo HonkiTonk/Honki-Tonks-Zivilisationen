@@ -104,7 +104,7 @@ package body EinheitenTransporter is
       case
         LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Platznummer))
       is
-         when 0 =>
+         when GlobaleKonstanten.LeerEinheitenID =>
             return False;
             
          when others =>

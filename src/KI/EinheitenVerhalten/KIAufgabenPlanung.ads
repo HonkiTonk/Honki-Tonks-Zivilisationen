@@ -26,9 +26,7 @@ package KIAufgabenPlanung is
 private
       
    AufgabeDurchführen : Boolean;
-   
-   EinheitArt : GlobaleDatentypen.Einheit_Art_Verwendet_Enum;
-   
+      
    GewählteAufgabe : KIDatentypen.Einheit_Aufgabe_Enum;
    
    type WichtigkeitArray is array (KIDatentypen.Einheit_Aufgabe_Enum'Range) of GlobaleDatentypen.ProduktionSonstiges;

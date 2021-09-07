@@ -234,296 +234,52 @@ package body KIBewegungBerechnen is
          return 11;
          
       else
-         PositionAltEins := (0,
-                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse),
-                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse));
-         PositionAltZwei := (0,
-                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse
-                               + Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße),
-                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse
-                               + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
-         PositionAltDrei := (0,
-                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse + KoordinatenExtern.YAchse
-                               - Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße),
-                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse + KoordinatenExtern.XAchse
-                               - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+         PositionAlt := (0,
+                         abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - KoordinatenExtern.YAchse),
+                         abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - KoordinatenExtern.XAchse));
 
-         PositionNeuEins := (0,
-                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse),
-                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse));
-         PositionNeuZwei := (0,
-                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse
-                               + Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße),
-                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse
-                               + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
-         PositionNeuDrei := (0,
-                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse + NeueKoordinatenExtern.YAchse
-                               - Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße),
-                             abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse + NeueKoordinatenExtern.XAchse
-                               - Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+         PositionNeu := (0,
+                         abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.YAchse - NeueKoordinatenExtern.YAchse),
+                         abs (GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten.XAchse - NeueKoordinatenExtern.XAchse));
       end if;
         
       if
-        ((PositionNeuEins.YAchse < PositionAltEins.YAchse
-          and
-            PositionNeuEins.YAchse < PositionAltZwei.YAchse
-          and
-            PositionNeuEins.YAchse < PositionAltDrei.YAchse)
-         or
-           (PositionNeuZwei.YAchse < PositionAltEins.YAchse
-            and
-              PositionNeuZwei.YAchse < PositionAltZwei.YAchse
-            and
-              PositionNeuZwei.YAchse < PositionAltDrei.YAchse)
-         or
-           (PositionNeuDrei.YAchse < PositionAltEins.YAchse
-            and
-              PositionNeuDrei.YAchse < PositionAltZwei.YAchse
-            and
-              PositionNeuDrei.YAchse < PositionAltDrei.YAchse))
+        PositionNeu.YAchse < PositionAlt.YAchse
         and
-          ((PositionNeuEins.XAchse < PositionAltEins.XAchse
-            and
-              PositionNeuEins.XAchse < PositionAltZwei.XAchse
-            and
-              PositionNeuEins.XAchse < PositionAltDrei.XAchse)
-           or
-             (PositionNeuZwei.XAchse < PositionAltEins.XAchse
-              and
-                PositionNeuZwei.XAchse < PositionAltZwei.XAchse
-              and
-                PositionNeuZwei.XAchse < PositionAltDrei.XAchse)
-           or
-             (PositionNeuDrei.XAchse < PositionAltEins.XAchse
-              and
-                PositionNeuDrei.XAchse < PositionAltZwei.XAchse
-              and
-                PositionNeuDrei.XAchse < PositionAltDrei.XAchse))
+          PositionNeu.XAchse < PositionAlt.XAchse
       then
          return 10;
          
       elsif
-        (((PositionNeuEins.YAchse < PositionAltEins.YAchse
-           and
-             PositionNeuEins.YAchse < PositionAltZwei.YAchse
-           and
-             PositionNeuEins.YAchse < PositionAltDrei.YAchse)
-          or
-            (PositionNeuZwei.YAchse < PositionAltEins.YAchse
-             and
-               PositionNeuZwei.YAchse < PositionAltZwei.YAchse
-             and
-               PositionNeuZwei.YAchse < PositionAltDrei.YAchse)
-          or
-            (PositionNeuDrei.YAchse < PositionAltEins.YAchse
-             and
-               PositionNeuDrei.YAchse < PositionAltZwei.YAchse
-             and
-               PositionNeuDrei.YAchse < PositionAltDrei.YAchse))
+        (PositionNeu.YAchse < PositionAlt.YAchse
          and
-           ((PositionNeuEins.XAchse = PositionAltEins.XAchse
-             and
-               PositionNeuEins.XAchse = PositionAltZwei.XAchse
-             and
-               PositionNeuEins.XAchse = PositionAltDrei.XAchse)
-            or
-              (PositionNeuZwei.XAchse = PositionAltEins.XAchse
-               and
-                 PositionNeuZwei.XAchse = PositionAltZwei.XAchse
-               and
-                 PositionNeuZwei.XAchse = PositionAltDrei.XAchse)
-            or
-              (PositionNeuDrei.XAchse = PositionAltEins.XAchse
-               and
-                 PositionNeuDrei.XAchse = PositionAltZwei.XAchse
-               and
-                 PositionNeuDrei.XAchse = PositionAltDrei.XAchse)))
+           PositionNeu.XAchse = PositionAlt.XAchse)
         or
-          (((PositionNeuEins.YAchse = PositionAltEins.YAchse
-             and
-               PositionNeuEins.YAchse = PositionAltZwei.YAchse
-             and
-               PositionNeuEins.YAchse = PositionAltDrei.YAchse)
-            or
-              (PositionNeuZwei.YAchse = PositionAltEins.YAchse
-               and
-                 PositionNeuZwei.YAchse = PositionAltZwei.YAchse
-               and
-                 PositionNeuZwei.YAchse = PositionAltDrei.YAchse)
-            or
-              (PositionNeuDrei.YAchse = PositionAltEins.YAchse
-               and
-                 PositionNeuDrei.YAchse = PositionAltZwei.YAchse
-               and
-                 PositionNeuDrei.YAchse = PositionAltDrei.YAchse))
+          (PositionNeu.YAchse = PositionAlt.YAchse
            and
-             ((PositionNeuEins.XAchse < PositionAltEins.XAchse
-               and
-                 PositionNeuEins.XAchse < PositionAltZwei.XAchse
-               and
-                 PositionNeuEins.XAchse < PositionAltDrei.XAchse)
-              or
-                (PositionNeuZwei.XAchse < PositionAltEins.XAchse
-                 and
-                   PositionNeuZwei.XAchse < PositionAltZwei.XAchse
-                 and
-                   PositionNeuZwei.XAchse < PositionAltDrei.XAchse)
-              or
-                (PositionNeuDrei.XAchse < PositionAltEins.XAchse
-                 and
-                   PositionNeuDrei.XAchse < PositionAltZwei.XAchse
-                 and
-                   PositionNeuDrei.XAchse < PositionAltDrei.XAchse)))
+             PositionNeu.XAchse < PositionAlt.XAchse)
       then
          return 5;
          
       elsif
-        (((PositionNeuEins.YAchse < PositionAltEins.YAchse
-           and
-             PositionNeuEins.YAchse < PositionAltZwei.YAchse
-           and
-             PositionNeuEins.YAchse < PositionAltDrei.YAchse)
-          or
-            (PositionNeuZwei.YAchse < PositionAltEins.YAchse
-             and
-               PositionNeuZwei.YAchse < PositionAltZwei.YAchse
-             and
-               PositionNeuZwei.YAchse < PositionAltDrei.YAchse)
-          or
-            (PositionNeuDrei.YAchse < PositionAltEins.YAchse
-             and
-               PositionNeuDrei.YAchse < PositionAltZwei.YAchse
-             and
-               PositionNeuDrei.YAchse < PositionAltDrei.YAchse))
+        (PositionNeu.YAchse < PositionAlt.YAchse
          and
-           ((PositionNeuEins.XAchse > PositionAltEins.XAchse
-             and
-               PositionNeuEins.XAchse > PositionAltZwei.XAchse
-             and
-               PositionNeuEins.XAchse > PositionAltDrei.XAchse)
-            or
-              (PositionNeuZwei.XAchse > PositionAltEins.XAchse
-               and
-                 PositionNeuZwei.XAchse > PositionAltZwei.XAchse
-               and
-                 PositionNeuZwei.XAchse > PositionAltDrei.XAchse)
-            or
-              (PositionNeuDrei.XAchse > PositionAltEins.XAchse
-               and
-                 PositionNeuDrei.XAchse > PositionAltZwei.XAchse
-               and
-                 PositionNeuDrei.XAchse > PositionAltDrei.XAchse)))
+           PositionNeu.XAchse > PositionAlt.XAchse)
         or
-          (((PositionNeuEins.YAchse > PositionAltEins.YAchse
-             and
-               PositionNeuEins.YAchse > PositionAltZwei.YAchse
-             and
-               PositionNeuEins.YAchse > PositionAltDrei.YAchse)
-            or
-              (PositionNeuZwei.YAchse > PositionAltEins.YAchse
-               and
-                 PositionNeuZwei.YAchse > PositionAltZwei.YAchse
-               and
-                 PositionNeuZwei.YAchse > PositionAltDrei.YAchse)
-            or
-              (PositionNeuDrei.YAchse > PositionAltEins.YAchse
-               and
-                 PositionNeuDrei.YAchse > PositionAltZwei.YAchse
-               and
-                 PositionNeuDrei.YAchse > PositionAltDrei.YAchse))
+          (PositionNeu.YAchse > PositionAlt.YAchse
            and
-             ((PositionNeuEins.XAchse < PositionAltEins.XAchse
-               and
-                 PositionNeuEins.XAchse < PositionAltZwei.XAchse
-               and
-                 PositionNeuEins.XAchse < PositionAltDrei.XAchse)
-              or
-                (PositionNeuZwei.XAchse < PositionAltEins.XAchse
-                 and
-                   PositionNeuZwei.XAchse < PositionAltZwei.XAchse
-                 and
-                   PositionNeuZwei.XAchse < PositionAltDrei.XAchse)
-              or
-                (PositionNeuDrei.XAchse < PositionAltEins.XAchse
-                 and
-                   PositionNeuDrei.XAchse < PositionAltZwei.XAchse
-                 and
-                   PositionNeuDrei.XAchse < PositionAltDrei.XAchse)))
+             PositionNeu.XAchse < PositionAlt.XAchse)
       then
          return 3;  
         
       elsif
-        (((PositionNeuEins.YAchse = PositionAltEins.YAchse
-           and
-             PositionNeuEins.YAchse = PositionAltZwei.YAchse
-           and
-             PositionNeuEins.YAchse = PositionAltDrei.YAchse)
-          or
-            (PositionNeuZwei.YAchse = PositionAltEins.YAchse
-             and
-               PositionNeuZwei.YAchse = PositionAltZwei.YAchse
-             and
-               PositionNeuZwei.YAchse = PositionAltDrei.YAchse)
-          or
-            (PositionNeuDrei.YAchse = PositionAltEins.YAchse
-             and
-               PositionNeuDrei.YAchse = PositionAltZwei.YAchse
-             and
-               PositionNeuDrei.YAchse = PositionAltDrei.YAchse))
+        (PositionNeu.YAchse = PositionAlt.YAchse
          and
-           ((PositionNeuEins.XAchse > PositionAltEins.XAchse
-             and
-               PositionNeuEins.XAchse > PositionAltZwei.XAchse
-             and
-               PositionNeuEins.XAchse > PositionAltDrei.XAchse)
-            or
-              (PositionNeuZwei.XAchse > PositionAltEins.XAchse
-               and
-                 PositionNeuZwei.XAchse > PositionAltZwei.XAchse
-               and
-                 PositionNeuZwei.XAchse > PositionAltDrei.XAchse)
-            or
-              (PositionNeuDrei.XAchse > PositionAltEins.XAchse
-               and
-                 PositionNeuDrei.XAchse > PositionAltZwei.XAchse
-               and
-                 PositionNeuDrei.XAchse > PositionAltDrei.XAchse)))
+           PositionNeu.XAchse > PositionAlt.XAchse)
         or
-          (((PositionNeuEins.YAchse > PositionAltEins.YAchse
-             and
-               PositionNeuEins.YAchse > PositionAltZwei.YAchse
-             and
-               PositionNeuEins.YAchse > PositionAltDrei.YAchse)
-            or
-              (PositionNeuZwei.YAchse > PositionAltEins.YAchse
-               and
-                 PositionNeuZwei.YAchse > PositionAltZwei.YAchse
-               and
-                 PositionNeuZwei.YAchse > PositionAltDrei.YAchse)
-            or
-              (PositionNeuDrei.YAchse > PositionAltEins.YAchse
-               and
-                 PositionNeuDrei.YAchse > PositionAltZwei.YAchse
-               and
-                 PositionNeuDrei.YAchse > PositionAltDrei.YAchse))
+          (PositionNeu.YAchse > PositionAlt.YAchse
            and
-             ((PositionNeuEins.XAchse = PositionAltEins.XAchse
-               and
-                 PositionNeuEins.XAchse = PositionAltZwei.XAchse
-               and
-                 PositionNeuEins.XAchse = PositionAltDrei.XAchse)
-              or
-                (PositionNeuZwei.XAchse = PositionAltEins.XAchse
-                 and
-                   PositionNeuZwei.XAchse = PositionAltZwei.XAchse
-                 and
-                   PositionNeuZwei.XAchse = PositionAltDrei.XAchse)
-              or
-                (PositionNeuDrei.XAchse = PositionAltEins.XAchse
-                 and
-                   PositionNeuDrei.XAchse = PositionAltZwei.XAchse
-                 and
-                   PositionNeuDrei.XAchse = PositionAltDrei.XAchse)))
+             PositionNeu.XAchse = PositionAlt.XAchse)
       then
          return 2;
          

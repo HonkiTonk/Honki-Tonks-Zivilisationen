@@ -1,6 +1,6 @@
 pragma SPARK_Mode (On);
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package KI is
@@ -24,13 +24,5 @@ private
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_KI);
-
-   procedure AKtivitätEinheit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
 end KI;

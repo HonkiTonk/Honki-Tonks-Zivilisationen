@@ -9,7 +9,7 @@ with LeseStadtGebaut, LeseEinheitenGebaut, LeseKarten;
 
 with KartePositionPruefen, BewegungPassierbarkeitPruefen, BewegungBlockiert, StadtBauen, EinheitSuchen, DiplomatischerZustand;
 
-with KIPruefungen, KIMindestBewertungKartenfeldErmitteln, KIAufgabenVerteilt;
+with KIPruefungen, KIMindestBewertungKartenfeldErmitteln, KIAufgabenVerteilt, KIFeindlicheEinheitSuchen, KIStadtSuchen;
 
 package body KIAufgabeFestlegen is
    
@@ -134,6 +134,8 @@ package body KIAufgabeFestlegen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
+      WenAngreifen := GlobaleDatentypen.Leer;
+      
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
@@ -159,13 +161,54 @@ package body KIAufgabeFestlegen is
          
       end loop RassenSchleife;
       
+      case
+        WenAngreifen
+      is
+         when GlobaleDatentypen.Leer =>
+            return;
+            
+         when others =>
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Angreifen);
+      end case;
       
+      KoordinatenFeind := KIFeindlicheEinheitSuchen.FeindlicheEinheitInUmgebungSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                       FeindExtern              => WenAngreifen);
+      
+      case
+        KoordinatenFeind.XAchse
+      is
+         when GlobaleKonstanten.LeerYXKartenWert =>
+            null;
+            
+         when others =>
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       KoordinatenExtern        => KoordinatenFeind);
+            return;
+      end case;
+      
+      KoordinatenFeind := KIStadtSuchen.NähesteStadtSuchen (RasseExtern             => WenAngreifen,
+                                                             AnfangKoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      
+      case
+        KoordinatenFeind.XAchse
+      is
+         when GlobaleKonstanten.LeerYXKartenWert =>
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Tut_Nichts);
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       KoordinatenExtern        => KIKonstanten.NullKoordinate);
+            
+         when others =>
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       KoordinatenExtern        => KoordinatenFeind);
+      end case;
       
    end Angreifen;
    
    
    
-   procedure Erkunden     
+   procedure Erkunden
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin      
             

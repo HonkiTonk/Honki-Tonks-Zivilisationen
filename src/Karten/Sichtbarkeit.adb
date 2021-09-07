@@ -44,12 +44,15 @@ package body Sichtbarkeit is
       end loop StädteSchleife;
       
    end SichtbarkeitsprüfungFürRasse;
-
-
-
-   procedure SichtbarkeitsprüfungFürEinheit
+   
+   
+   
+   function SichtweiteErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.Sichtweite
    is begin
+      
+      KoordinatenEinheit := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       if
         (LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
@@ -62,14 +65,11 @@ package body Sichtbarkeit is
                                                   WelcheUmgebungExtern => GlobaleDatentypen.Weltraum)
          = True)
         and
-          LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse >= 0
+          KoordinatenEinheit.EAchse >= 0
       then
-         SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                            SichtweiteExtern         => 3);
-         return;
+         return 3;
          
       else
-         KoordinatenEinheit := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          AktuellerGrund := LeseKarten.Grund (PositionExtern => KoordinatenEinheit);
       end if;
       
@@ -80,7 +80,7 @@ package body Sichtbarkeit is
           or
             LeseKarten.Hügel (PositionExtern => KoordinatenEinheit) = True
       then
-         SichtweiteObjekt := 3;
+         return 3;
 
       elsif
         AktuellerGrund = GlobaleDatentypen.Dschungel
@@ -89,13 +89,55 @@ package body Sichtbarkeit is
           or
             AktuellerGrund = GlobaleDatentypen.Wald
       then
-         SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                            SichtweiteExtern         => 1);
-         return;
+         return 1;
                
       else
-         SichtweiteObjekt := 2;
+         return 2;
       end if;
+      
+   end SichtweiteErmitteln;
+   
+
+
+   procedure SichtbarkeitsprüfungFürEinheit
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      SichtweiteObjekt := SichtweiteErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      case
+        SichtweiteObjekt
+      is
+         when GlobaleDatentypen.Sichtweite'First =>
+            SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                               SichtweiteExtern         => 1);
+            return;
+            
+         when 3 =>
+            if
+              (LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                                                      IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                      WelcheUmgebungExtern => GlobaleDatentypen.Luft)
+               = True
+               or
+                 LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
+                                                        IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                        WelcheUmgebungExtern => GlobaleDatentypen.Weltraum)
+               = True)
+              and
+                LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse >= 0
+            then
+               SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  SichtweiteExtern         => 3);
+               return;
+               
+            else
+               null;
+            end if;
+            
+         when others =>
+            null;
+      end case;
 
       YQuadrantSchleife:
       for YQuadrantSchleifenwert in 0 .. SichtweiteObjekt loop

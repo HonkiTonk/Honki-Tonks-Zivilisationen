@@ -62,7 +62,7 @@ package body LeseEinheitenDatenbank is
    is begin
       
       if
-        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern) < GlobaleKonstanten.LeerEinheitListe.PermanenteKosten (WelcheKostenExtern)
+        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).PermanenteKosten (WelcheKostenExtern) < GlobaleKonstanten.NullPermanenteKosten
       then
          return GlobaleKonstanten.LeerEinheitListe.PermanenteKosten (WelcheKostenExtern);
       

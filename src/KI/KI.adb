@@ -2,7 +2,7 @@ pragma SPARK_Mode (On);
 
 with GlobaleKonstanten;
 
-with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
+with LeseEinheitenGebaut, LeseStadtGebaut;
 
 with KIStadt, KIForschung, KIDiplomatie, KIEinheitHandlungen;
 
@@ -28,16 +28,15 @@ package body KI is
       EinheitenSchleife:
       for EinheitNummerEinsSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
-         if
-           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerEinsSchleifenwert)) = GlobaleKonstanten.LeerEinheit.ID
-           or
-             LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerEinsSchleifenwert)) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
-         then
-            null;
+         case
+           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerEinsSchleifenwert))
+         is
+            when GlobaleKonstanten.LeerEinheitenID =>
+               null;
             
-         else
-            AKtivitätEinheit (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerEinsSchleifenwert));
-         end if;
+            when others =>
+               KIEinheitHandlungen.EinheitHandlungen (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerEinsSchleifenwert));
+         end case;
             
       end loop EinheitenSchleife;
       
@@ -65,33 +64,5 @@ package body KI is
       end loop StadtSchleife;
       
    end StädteDurchgehen;
-   
-   
-
-   procedure AKtivitätEinheit
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-   is begin
-      
-      case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-      is
-         when GlobaleDatentypen.Arbeiter | GlobaleDatentypen.Nahkämpfer =>
-            KIEinheitHandlungen.EinheitHandlungen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-            
-         when GlobaleDatentypen.Fernkämpfer =>
-            null;
-            
-         when GlobaleDatentypen.Beides =>
-            null;
-            
-         when GlobaleDatentypen.Sonstiges =>
-            null;
-            
-         when GlobaleDatentypen.Leer =>
-            null;
-      end case;
-      
-   end AKtivitätEinheit;
 
 end KI;
