@@ -6,7 +6,7 @@ with KIKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut, LeseEinheitenDatenbank;
 
-with BewegungBlockiert, BewegungBerechnen, EinheitSuchen, DiplomatischerZustand, KampfsystemEinheiten;
+with BewegungBlockiert, BewegungBerechnen, EinheitSuchen, DiplomatischerZustand, KampfsystemEinheiten, StadtSuchen, KampfsystemStadt;
 with KIBewegungBerechnen;
 
 package body KIBewegungDurchfuehren is
@@ -119,9 +119,16 @@ package body KIBewegungDurchfuehren is
       end case;
       
       FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition);
+      FremdeStadt := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeuePosition);
       
       if
-        FremdeEinheit.Rasse = EinheitRasseNummerExtern.Rasse
+        (FremdeEinheit.Rasse = EinheitRasseNummerExtern.Rasse
+         or
+           FremdeEinheit.Rasse = GlobaleDatentypen.Leer)
+        and
+          (FremdeStadt.Rasse = EinheitRasseNummerExtern.Rasse
+           or
+             FremdeStadt.Rasse = GlobaleDatentypen.Leer)
       then
          GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
          return;
@@ -130,29 +137,81 @@ package body KIBewegungDurchfuehren is
          null;
       end if;
       
-      case
-        DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                           FremdeRasseExtern => FremdeEinheit.Rasse)
-      is
-         when GlobaleDatentypen.Krieg =>
-            null;
+      if
+        FremdeEinheit.Rasse = EinheitRasseNummerExtern.Rasse
+        or
+          FremdeEinheit.Rasse = GlobaleDatentypen.Leer
+      then
+         case
+           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                              FremdeRasseExtern => FremdeStadt.Rasse)
+         is
+            when GlobaleDatentypen.Krieg =>
+               null;
             
-         when others =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
-            return;
-      end case;
-      
-      case
-        KampfsystemEinheiten.KampfsystemNahkampf (AngreiferExtern   => EinheitRasseNummerExtern,
-                                                  VerteidigerExtern => FremdeEinheit)
-      is
-         when True =>
-            BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            when others =>
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
+               return;
+         end case;
+         
+      elsif
+        FremdeStadt.Rasse = EinheitRasseNummerExtern.Rasse
+        or
+          FremdeStadt.Rasse = GlobaleDatentypen.Leer
+      then
+         case
+           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                              FremdeRasseExtern => FremdeEinheit.Rasse)
+         is
+            when GlobaleDatentypen.Krieg =>
+               null;
+            
+            when others =>
+               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
+               return;
+         end case;
+         
+      else
+         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
+         return;
+      end if;
+         
+      if
+        FremdeStadt.Rasse = EinheitRasseNummerExtern.Rasse
+        or
+          FremdeStadt.Rasse = GlobaleDatentypen.Leer
+      then
+         case
+           KampfsystemEinheiten.KampfsystemNahkampf (AngreiferExtern   => EinheitRasseNummerExtern,
+                                                     VerteidigerExtern => FremdeEinheit)
+         is
+            when True =>
+               BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
               
-         when False =>
-            null;
-      end case;
-      
+            when False =>
+               null;
+         end case;
+         
+      elsif
+        FremdeEinheit.Rasse = EinheitRasseNummerExtern.Rasse
+        or
+          FremdeEinheit.Rasse = GlobaleDatentypen.Leer
+      then
+         case
+           KampfsystemStadt.KampfsystemStadt (AngreifendeEinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                              VerteidigendeStadtRasseNummerExtern => FremdeStadt)
+         is
+            when True =>
+               BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+              
+            when False =>
+               null;
+         end case;
+         
+      else
+         null;
+      end if;
+         
    end Blockiert;
 
 end KIBewegungDurchfuehren;

@@ -133,31 +133,35 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (11.09.2021):
+   -- Version 0.00.86 => 0.00.8 (11.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.86 => 0.00.8 (10.09.2021):
+   -- Version 0.00.86 => 0.00.86 (10.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.86 => 0.00.86 (09.09.2021):
+   -- Version 0.00.8630 => 0.00.86 (09.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8610 => 0.00.86 (08.09.2021):
+   -- Version 0.00.8610 => 0.00.8630 (08.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Versucht die Zahleneingabe zu verbessern/optimieren und dabei Probleme mit großen Zahlen entdeckt.
+   -- Unnötigen Code gelöscht.
+   -- Die KI greift mit ihren Kampfeinheiten jetzt Einheiten in der Nähe an, wenn diese einer Rasse angehören mit der sie im Krieg ist.
+   -- Die KI greift mit ihren Kampfeinheiten jetzt Städte an, wenn diese einer Rasse angehören mit der sie im Krieg ist.
+   -- Wegfindung und Bewegung der KI so angepasst dass die Kampfeinheiten in der Lage sind feindliche Einheiten und Städte anzugreifen.
+   -- Contracts und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    

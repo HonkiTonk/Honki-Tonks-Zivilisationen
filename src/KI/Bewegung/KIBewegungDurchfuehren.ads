@@ -16,6 +16,7 @@ package KIBewegungDurchfuehren is
 private
    
    FremdeEinheit : GlobaleRecords.RassePlatznummerRecord;
+   FremdeStadt : GlobaleRecords.RassePlatznummerRecord;
    
    NeuePosition : GlobaleRecords.AchsenKartenfeldPositivRecord;
 

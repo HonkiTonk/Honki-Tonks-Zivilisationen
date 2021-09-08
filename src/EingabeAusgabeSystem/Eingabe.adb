@@ -17,6 +17,43 @@ package body Eingabe is
       return Integer
    is begin
       
+      if
+        ZahlenMaximumExtern > ZahlenMaximum
+      then
+         MaximalerWert := ZahlenMaximum;
+         
+      elsif
+        ZahlenMaximumExtern < ZahlenMinimum
+      then
+         return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
+         
+      else
+         MaximalerWert := ZahlenMaximumExtern;
+      end if;
+      
+      if
+        ZahlenMinimumExtern < ZahlenMinimum
+      then
+         MinimalerWert := ZahlenMinimum;
+           
+      elsif
+        ZahlenMinimumExtern > ZahlenMaximum
+      then
+         return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
+           
+      else
+         MinimalerWert := ZahlenMinimumExtern;
+      end if;
+      
+      if
+        ZahlenMinimumExtern >= ZahlenMaximumExtern
+      then
+         return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
+         
+      else
+         null;
+      end if;
+      
       ZahlenString := ("000000000");
       WelchesVorzeichen := True;
 
@@ -26,8 +63,8 @@ package body Eingabe is
          case
            ZahlSchleife (TextDateiExtern     => TextDateiExtern,
                          ZeileExtern         => ZeileExtern,
-                         ZahlenMinimumExtern => ZahlenMinimumExtern,
-                         ZahlenMaximumExtern => ZahlenMaximumExtern)
+                         ZahlenMinimumExtern => MinimalerWert,
+                         ZahlenMaximumExtern => MaximalerWert)
          is
             when 2 =>
                exit ZahlenAußenSchleife;

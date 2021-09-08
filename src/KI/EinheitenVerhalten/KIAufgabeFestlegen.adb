@@ -187,8 +187,8 @@ package body KIAufgabeFestlegen is
             return;
       end case;
       
-      KoordinatenFeind := KIStadtSuchen.NähesteStadtSuchen (RasseExtern             => WenAngreifen,
-                                                             AnfangKoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+      KoordinatenFeind := KIStadtSuchen.NähesteFeindlicheStadtSuchen (RasseExtern             => WenAngreifen,
+                                                                       AnfangKoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       case
         KoordinatenFeind.XAchse

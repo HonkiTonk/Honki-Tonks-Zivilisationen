@@ -23,14 +23,8 @@ package Eingabe is
       ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
       return Integer
      with
-       Pre  =>
-         (ZahlenMaximumExtern <= 999_999_999
-          and
-            ZahlenMinimumExtern < ZahlenMaximumExtern
-          and
-            ZahlenMinimumExtern >= -999_999_999),
-         Post =>
-           (GanzeZahl'Result in -1_000_000_000 .. 999_999_999);
+       Post =>
+         (GanzeZahl'Result in -1_000_000_000 .. 999_999_999);
 
    function StadtName
      return Unbounded_Wide_Wide_String;
@@ -56,6 +50,11 @@ private
 
    MaximumMinimumAktuelleStelle : Positive;
    ZahlenMinimumPlusmacher : Positive;
+   ZahlenMaximum : constant Positive := 999_999_999;
+   ZahlenMinimum : constant Integer := -999_999_999;
+   MaximalerWert : Integer;
+   MinimalerWert : Integer;
+
    Wert : Integer;
 
    ZahlenString : Wide_Wide_String (1 .. 9);

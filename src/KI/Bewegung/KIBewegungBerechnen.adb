@@ -3,11 +3,12 @@ pragma SPARK_Mode (On);
 with GlobaleKonstanten;
 
 with KIKonstanten, KIDatentypen;
+use KIDatentypen;
 
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut;
 
-with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, EinheitenTransporter;
+with KartePositionPruefen, BewegungBlockiert, BewegungPassierbarkeitPruefen, EinheitenTransporter, DiplomatischerZustand, EinheitSuchen, StadtSuchen;
 
 package body KIBewegungBerechnen is
    
@@ -201,22 +202,69 @@ package body KIBewegungBerechnen is
                return 0;
             end if;
       end case;
-               
+      
       case
         BewegungBlockiert.FeldBlockiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                          NeuePositionExtern       => KartenWert)
       is
-         when False =>   
-            null;
+         when False =>
+            return BerechnungBewertungPosition (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                KoordinatenExtern        => KoordinatenExtern,
+                                                NeueKoordinatenExtern    => KartenWert);
             
          when True =>
-            return 0;
+            BlockierendeEinheit := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Rasse;
+            BlockierendeStadt := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => KartenWert).Rasse;
       end case;
       
-      return BerechnungBewertungPosition (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                          KoordinatenExtern        => KoordinatenExtern,
-                                          NeueKoordinatenExtern    => KartenWert);
+      if
+        (BlockierendeEinheit = GlobaleDatentypen.Leer
+         or
+           BlockierendeEinheit = EinheitRasseNummerExtern.Rasse)
+        and
+          (BlockierendeStadt = GlobaleDatentypen.Leer
+           or
+             BlockierendeEinheit = EinheitRasseNummerExtern.Rasse)
+      then
+         return 0;
+         
+      elsif
+        (BlockierendeEinheit = GlobaleDatentypen.Leer
+         or
+           BlockierendeEinheit = EinheitRasseNummerExtern.Rasse)
+        and then
+          DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                             FremdeRasseExtern => BlockierendeStadt)
+        /= GlobaleDatentypen.Krieg
+      then
+         return 0;
+         
+      elsif
+        (BlockierendeStadt = GlobaleDatentypen.Leer
+         or
+           BlockierendeEinheit = EinheitRasseNummerExtern.Rasse)
+        and then
+          DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                             FremdeRasseExtern => BlockierendeEinheit)
+        /= GlobaleDatentypen.Krieg
+      then
+         return 0;
       
+      else
+         null;
+      end if;
+         
+      if
+        LeseEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = KIDatentypen.Angreifen
+      then
+         return BerechnungBewertungPosition (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                             KoordinatenExtern        => KoordinatenExtern,
+                                             NeueKoordinatenExtern    => KartenWert);
+         
+      else
+         return 0;
+      end if;
+        
    end BewertungFeldposition;
    
    

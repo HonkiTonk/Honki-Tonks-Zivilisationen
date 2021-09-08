@@ -19,6 +19,18 @@ package KIStadtSuchen is
           and
             AnfangKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
+   function NähesteFeindlicheStadtSuchen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      AnfangKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+          and
+            AnfangKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            AnfangKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+
    function UnbewachteStadtSuchen
      (FeindlicheRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleRecords.AchsenKartenfeldPositivRecord
