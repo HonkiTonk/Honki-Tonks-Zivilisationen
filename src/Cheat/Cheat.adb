@@ -39,6 +39,9 @@ package body Cheat is
             when 's' =>
                Sichtbarkeit (RasseExtern => RasseExtern);
                
+            when 'k' =>
+               Krieg;
+               
             when 'g' =>
                GewonnenDurchCheat := not GewonnenDurchCheat;
                
@@ -86,17 +89,34 @@ package body Cheat is
          end loop YAchseSchleife;
       end loop EbeneSchleife;
       
+      Krieg;
+      
+   end Sichtbarkeit;
+   
+   
+   
+   procedure Krieg
+   is begin
+      
       RassenErsteSchleife:
       for RasseEinsSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          RassenZweiteSchleife:
          for RasseZweiSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
             
-            GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := GlobaleDatentypen.Neutral;
+            case
+              GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand
+            is
+               when GlobaleDatentypen.Krieg | GlobaleDatentypen.Unbekannt =>
+                  GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := GlobaleDatentypen.Neutral;
+                  
+               when others =>
+                  GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := GlobaleDatentypen.Krieg;
+            end case;
             
          end loop RassenZweiteSchleife;
       end loop RassenErsteSchleife;
       
-   end Sichtbarkeit;
+   end Krieg;
    
    
    

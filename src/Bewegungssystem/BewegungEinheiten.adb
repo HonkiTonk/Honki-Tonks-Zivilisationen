@@ -166,9 +166,9 @@ package body BewegungEinheiten is
           EinheitAufFeld.Rasse /= GlobaleDatentypen.Leer
       then
          if
-           FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+           (FremderAufFeld (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                            FremdeEinheitExtern      => EinheitAufFeld)
-           = True
+           = True)
            and
              FeldPassierbar
          then

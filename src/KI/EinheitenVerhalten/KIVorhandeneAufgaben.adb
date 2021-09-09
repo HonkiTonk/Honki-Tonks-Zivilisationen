@@ -79,7 +79,7 @@ package body KIVorhandeneAufgaben is
                                  WelcheTechnologieExtern => NotwendigeTechnologie)
         = True
       then
-         return 2;
+         return 3;
             
       else
          return 0;

@@ -4,10 +4,10 @@ with GlobaleKonstanten;
 with KIKonstanten;
 
 with SchreibeEinheitenGebaut;
-with LeseEinheitenGebaut, LeseEinheitenDatenbank;
+with LeseEinheitenGebaut;
 
-with BewegungBlockiert, BewegungBerechnen, EinheitSuchen, DiplomatischerZustand, KampfsystemEinheiten, StadtSuchen, KampfsystemStadt;
-with KIBewegungBerechnen;
+with BewegungBerechnen, EinheitSuchen, KampfsystemEinheiten, StadtSuchen, KampfsystemStadt;
+with KIBewegungBerechnen, KIBewegungAllgemein;
 
 package body KIBewegungDurchfuehren is
    
@@ -63,13 +63,17 @@ package body KIBewegungDurchfuehren is
                                                           PlanschrittExtern        => 1);
       
       case
-        BewegungBlockiert.FeldBlockiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                         NeuePositionExtern       => NeuePosition)
+        KIBewegungAllgemein.FeldBetreten (FeldPositionExtern       => NeuePosition,
+                                          EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when False =>      
+         when 0 =>      
             BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
-         when True =>
+         when 1 =>
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
+            return;
+            
+         when -1 =>
             Blockiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
       
@@ -105,81 +109,12 @@ package body KIBewegungDurchfuehren is
    procedure Blockiert
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
-            
-      case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-      is
-         when GlobaleDatentypen.Arbeiter | GlobaleDatentypen.Leer =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
-            return;
-            
-         when others =>
-            null;
-      end case;
       
       FremdeEinheit := EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => NeuePosition);
       FremdeStadt := StadtSuchen.KoordinatenStadtOhneRasseSuchen (KoordinatenExtern => NeuePosition);
-      
-      if
-        (FremdeEinheit.Rasse = EinheitRasseNummerExtern.Rasse
-         or
-           FremdeEinheit.Rasse = GlobaleDatentypen.Leer)
-        and
-          (FremdeStadt.Rasse = EinheitRasseNummerExtern.Rasse
-           or
-             FremdeStadt.Rasse = GlobaleDatentypen.Leer)
-      then
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
-         return;
-         
-      else
-         null;
-      end if;
-      
-      if
-        FremdeEinheit.Rasse = EinheitRasseNummerExtern.Rasse
-        or
-          FremdeEinheit.Rasse = GlobaleDatentypen.Leer
-      then
-         case
-           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                              FremdeRasseExtern => FremdeStadt.Rasse)
-         is
-            when GlobaleDatentypen.Krieg =>
-               null;
             
-            when others =>
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
-               return;
-         end case;
-         
-      elsif
-        FremdeStadt.Rasse = EinheitRasseNummerExtern.Rasse
-        or
-          FremdeStadt.Rasse = GlobaleDatentypen.Leer
-      then
-         case
-           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                              FremdeRasseExtern => FremdeEinheit.Rasse)
-         is
-            when GlobaleDatentypen.Krieg =>
-               null;
-            
-            when others =>
-               GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
-               return;
-         end case;
-         
-      else
-         GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
-         return;
-      end if;
-         
       if
-        FremdeStadt.Rasse = EinheitRasseNummerExtern.Rasse
-        or
-          FremdeStadt.Rasse = GlobaleDatentypen.Leer
+        FremdeStadt.Rasse = GlobaleDatentypen.Leer
       then
          case
            KampfsystemEinheiten.KampfsystemNahkampf (AngreiferExtern   => EinheitRasseNummerExtern,
@@ -192,11 +127,7 @@ package body KIBewegungDurchfuehren is
                null;
          end case;
          
-      elsif
-        FremdeEinheit.Rasse = EinheitRasseNummerExtern.Rasse
-        or
-          FremdeEinheit.Rasse = GlobaleDatentypen.Leer
-      then
+      else
          case
            KampfsystemStadt.KampfsystemStadt (AngreifendeEinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               VerteidigendeStadtRasseNummerExtern => FremdeStadt)
@@ -207,9 +138,6 @@ package body KIBewegungDurchfuehren is
             when False =>
                null;
          end case;
-         
-      else
-         null;
       end if;
          
    end Blockiert;

@@ -53,6 +53,8 @@ private
    
    Spieler : Natural;
    
+   RasseEntfernen : constant Positive := 20;
+   
    SpielerAnzahl : Integer;
    SpieleranzahlAuswahl : Integer;
    SpielerartAuswahl : Integer;

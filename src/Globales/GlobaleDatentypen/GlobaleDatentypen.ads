@@ -82,19 +82,25 @@ package GlobaleDatentypen is
 
    -- Kartenwerte
    type Kartengröße_Enum is (Leer, Karte_20_20, Karte_40_40, Karte_80_80, Karte_120_80, Karte_120_160, Karte_160_160, Karte_240_240, Karte_320_320, Karte_1000_1000, Karte_Nutzer);
+   for Kartengröße_Enum use (Leer => 0, Karte_20_20 => 1, Karte_40_40 => 2, Karte_80_80 => 3, Karte_120_80 => 4, Karte_120_160 => 5, Karte_160_160 => 6, Karte_240_240 => 7, Karte_320_320 => 8, Karte_1000_1000 => 9,
+                               Karte_Nutzer => 10);
    subtype Kartengröße_Verwendet_Enum is Kartengröße_Enum range Karte_20_20 .. Kartengröße_Enum'Last;
    subtype Kartengröße_Zufall_Enum is Kartengröße_Verwendet_Enum range Karte_20_20 .. Karte_1000_1000;
 
    type Kartenart_Enum is (Leer, Inseln, Kontinente, Pangäa, Nur_Land, Chaos);
+   for Kartenart_Enum use (Leer => 0, Inseln => 1, Kontinente => 2, Pangäa => 3, Nur_Land => 4, Chaos => 5);
    subtype Kartenart_Verwendet_Enum is Kartenart_Enum range Inseln .. Kartenart_Enum'Last;
 
    type Kartentemperatur_Enum is (Leer, Kalt, Gemäßigt, Heiß, Eiszeit, Wüste);
+   for Kartentemperatur_Enum use (Leer => 0, Kalt => 1, Gemäßigt => 2, Heiß => 3, Eiszeit => 4, Wüste => 5);
    subtype Kartentemperatur_Verwendet_Enum is Kartentemperatur_Enum range Kalt .. Kartentemperatur_Enum'Last;
 
    type Kartenform_Enum is (Leer, X_Zylinder, Y_Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht, Tugel, Tugel_Gedreht, Tugel_Extrem);
+   for Kartenform_Enum use (Leer => 0, X_Zylinder => 1, Y_Zylinder => 2, Torus => 3, Kugel => 4, Viereck => 5, Kugel_Gedreht => 6, Tugel => 7, Tugel_Gedreht => 8, Tugel_Extrem => 9);
    subtype Kartenform_Verwendet_Enum is Kartenform_Enum range X_Zylinder .. Kartenform_Enum'Last;
 
    type Karten_Ressourcen_Reichtum_Enum is (Leer, Arm, Wenig, Mittel, Viel, Überfluss);
+   for Karten_Ressourcen_Reichtum_Enum use (Leer => 0, Arm => 1, Wenig => 2, Mittel => 3, Viel => 4, Überfluss => 5);
    subtype Karten_Ressourcen_Reichtum_Verwendet_Enum is Karten_Ressourcen_Reichtum_Enum range Arm .. Karten_Ressourcen_Reichtum_Enum'Last;
 
    type Karten_Grund_Enum is (Leer,

@@ -3,14 +3,14 @@ pragma SPARK_Mode (On);
 with Ada.Calendar;
 use Ada.Calendar;
 
-with GlobaleDatentypen, GlobaleVariablen;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleKonstanten;
 use GlobaleDatentypen;
 
 with SchreibeWichtiges;
 with LeseWichtiges;
 
 with Wachstum, Verbesserungen, ForschungAllgemein, StadtProduktion, EinheitenAllgemein, SiegBedingungen, DiplomatischerZustand, StadtMeldungenSetzen, EinheitenMeldungenSetzen, EinheitInUmgebung,
-     Ladezeiten, Speichern;
+     Ladezeiten, Speichern, Auswahl;
 
 package body ZwischenDenRunden is
 
@@ -20,15 +20,30 @@ package body ZwischenDenRunden is
       
       Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, GlobaleDatentypen.Anfangswert) := Clock;
       
-      case
-        SiegBedingungen.SiegBedingungen
-      is
-         when False =>
-            null;
+      if
+        WeiterSpielen = False
+      then
+         
+         case
+           SiegBedingungen.SiegBedingungen
+         is
+            when False =>
+               null;
             
-         when True =>
-            return True;
-      end case;
+            when True =>
+               if
+                 Auswahl.AuswahlJaNein (FrageZeileExtern => 34) = GlobaleKonstanten.JaKonstante
+               then
+                  WeiterSpielen := True;
+                                 
+               else
+                  return True;
+               end if;
+         end case;
+         
+      else
+         null;
+      end if;
       
       StadtMeldungenSetzen.StadtMeldungenSetzenRundenEnde;
       EinheitenMeldungenSetzen.EinheitenMeldungenSetzenRundenEnde;
@@ -133,7 +148,7 @@ package body ZwischenDenRunden is
                SchreibeWichtiges.Geldmenge (RasseExtern         => RasseSchleifenwert,
                                             GeldZugewinnExtern  => Integer (LeseWichtiges.GeldZugewinnProRunde (RasseExtern => RasseSchleifenwert)),
                                             RechnenSetzenExtern => True);
-         
+               
                SchreibeWichtiges.Forschungsmenge (RasseExtern             => RasseSchleifenwert,
                                                   ForschungZugewinnExtern => LeseWichtiges.GesamteForschungsrate (RasseExtern => RasseSchleifenwert),
                                                   RechnenSetzenExtern     => True);

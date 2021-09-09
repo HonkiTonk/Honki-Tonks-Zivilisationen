@@ -72,7 +72,7 @@ package body LeseWichtiges is
    is begin
 
       if
-        GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit < GlobaleKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit
+        GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit > GlobaleKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit
       then
          GlobaleVariablen.Wichtiges (RasseExtern).VerbleibendeForschungszeit := GlobaleKonstanten.LeerWichtigesZeug.VerbleibendeForschungszeit;
          

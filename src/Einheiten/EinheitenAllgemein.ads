@@ -42,6 +42,17 @@ package EinheitenAllgemein is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
+   procedure PermanenteKostenDurchEinheitÄndern
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+          and
+            VorzeichenWechselExtern /= 0);
+   
    
 
    function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen
@@ -60,14 +71,16 @@ package EinheitenAllgemein is
 
 private
    
+   AktuelleID : GlobaleDatentypen.EinheitenID;
+   
    StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   Heimatstadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
    Heilungsrate : constant GlobaleDatentypen.MaximaleStädte := 10;
    
    ErhalteneErfahrungspunkte : GlobaleDatentypen.MaximaleStädte;
       
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-   StadtNummerAlt : GlobaleDatentypen.MaximaleStädteMitNullWert;
    StadtNummerNeu : GlobaleDatentypen.MaximaleStädteMitNullWert;
 
    Position : GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -79,13 +92,5 @@ private
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   procedure PermanenteKostenDurchEinheitÄndern
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.EinheitenID;
-      VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
-     with
-       Pre =>
-         (VorzeichenWechselExtern /= 0);
 
 end EinheitenAllgemein;

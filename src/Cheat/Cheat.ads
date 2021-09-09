@@ -46,5 +46,7 @@ private
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
+   
+   procedure Krieg;
 
 end Cheat;

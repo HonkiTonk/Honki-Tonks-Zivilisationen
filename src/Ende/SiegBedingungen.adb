@@ -87,7 +87,7 @@ package body SiegBedingungen is
         VorhandeneRassen
       is
          when 0 =>
-            -- Was mache ich denn in diesem Fall?
+            -- Was mache ich denn in diesem Fall? Kann der überhaupt auftreten?
             return True;
             
          when 1 =>

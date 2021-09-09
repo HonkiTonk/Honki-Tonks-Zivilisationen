@@ -74,6 +74,7 @@ package body SpielEinstellungenRasseSpieler is
       while Spieler < SpielerAnzahl loop
          
          SpielerartAuswahl := RasseWählen;
+         
          case
            SpielerartAuswahl
          is                  
@@ -88,7 +89,7 @@ package body SpielEinstellungenRasseSpieler is
          end case;
          
          if
-           SpielerartAuswahl = 10
+           SpielerartAuswahl = RasseEntfernen
          then
             null;
             
@@ -168,7 +169,7 @@ package body SpielEinstellungenRasseSpieler is
                      when GlobaleKonstanten.JaKonstante =>
                         GlobaleVariablen.RassenImSpiel (GlobaleDatentypen.Rassen_Verwendet_Enum'Val (RassenAuswahl)) := GlobaleDatentypen.Leer;
                         Spieler := Spieler - 1;
-                        return 10;
+                        return RasseEntfernen;
                      
                      when others =>
                         null;

@@ -140,17 +140,31 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.86 => 0.00.86 (10.09.2021):
+   -- Version 0.00.8660 => 0.00.86 (10.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8630 => 0.00.86 (09.09.2021):
+   -- Version 0.00.8630 => 0.00.8660 (09.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Rechtschreibung (Deutsch und Englisch) korrigiert.
+   -- Bewertung wann ein Feld für die KI belegt ist und nicht oder trotzdem betreten wird zusammengefasst und erweitert.
+   -- Wann die KI mit einer Einheit ein belegtes Feld betritt/angreift optimiert.
+   -- Cheats überarbeitet.
+   -- Fehler behoben der verhinderte dass man die Larinos Lotaris als Rassen auswählen konnte.
+   -- Versucht die Felderbewertung der KI zu optimieren.
+   -- Suchenfunktion für von eigenen Städten belegten Felder in der Umgebung von Einheiten eingebaut.
+   -- KI ist jetzt in der Lage ihre Einheiten zu verbessern.
+   -- Wenn eine Einheit verbessert wird, dann werden die permanenten Kosten der möglichen Heimatstadt jetzt entsprechend angepasst.
+   -- Fehler behoben der nach erreichen einer Siegbedingung das Spiel sofort beendet hat.
+   -- Eine Auswahlmöglichkeit eingebaut um nach dem Sieg weiterspielen zu können.
+   -- Einige Fehler behoben die das erfoglreiche Kompilieren unter Windows verhinderten.
+   -- Fehler behoben der dafür sorgte dass als verbleibende Forschungszeit immer 10.000 angezeigt wurde.
+   -- Bewegungsberechnung überarbeitet so dass diese jetzt einfacher zu warten ist und die Bewegungspunkte jetzt nicht mehr mehr werden statt weniger werden können.
+   -- Codeformatierung an einigen Stellen überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/hinzugefügt.
    
    
    

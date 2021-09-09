@@ -150,7 +150,7 @@ package body StadtWerteFestlegen is
               LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                  EinwohnerArbeiterExtern => True)
               >= LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                                                                                        EinwohnerArbeiterExtern => False)
+                                                    EinwohnerArbeiterExtern => False)
             then
                return;
                

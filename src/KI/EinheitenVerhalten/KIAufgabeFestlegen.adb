@@ -7,9 +7,9 @@ with KIDatentypen, KIKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseStadtGebaut, LeseEinheitenGebaut, LeseKarten;
 
-with KartePositionPruefen, BewegungPassierbarkeitPruefen, BewegungBlockiert, StadtBauen, EinheitSuchen, DiplomatischerZustand;
+with KartePositionPruefen, BewegungPassierbarkeitPruefen, StadtBauen, EinheitSuchen, DiplomatischerZustand;
 
-with KIPruefungen, KIMindestBewertungKartenfeldErmitteln, KIAufgabenVerteilt, KIFeindlicheEinheitSuchen, KIStadtSuchen;
+with KIPruefungen, KIMindestBewertungKartenfeldErmitteln, KIAufgabenVerteilt, KIFeindlicheEinheitSuchen, KIStadtSuchen, KIBewegungAllgemein, KISonstigesSuchen;
 
 package body KIAufgabeFestlegen is
    
@@ -307,7 +307,22 @@ package body KIAufgabeFestlegen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      PlatzGefunden := KIKonstanten.NullKoordinate;
+      PlatzGefunden := KISonstigesSuchen.EigenesFeldSuchen (AktuellePositionExtern   => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                            EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      case
+        PlatzGefunden.XAchse
+      is
+         when GlobaleKonstanten.LeerYXKartenWert =>
+            null;
+            
+         when others =>
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       KoordinatenExtern        => PlatzGefunden);
+            SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    AufgabeExtern            => KIDatentypen.Einheit_Verbessern);
+            return;
+      end case;
       
       StadtSchleife:
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (2) loop
@@ -340,6 +355,8 @@ package body KIAufgabeFestlegen is
             null;
             
          when others =>
+            SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       KoordinatenExtern        => PlatzGefunden);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Einheit_Verbessern);
       end case;
@@ -377,9 +394,9 @@ package body KIAufgabeFestlegen is
                null;
                
             elsif
-              BewegungBlockiert.FeldBlockiert (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
-                                               NeuePositionExtern       => KartenWert)
-              = True
+              KIBewegungAllgemein.FeldBetreten (FeldPositionExtern       => KartenWert,
+                                                EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern))
+                /= 0
             then
                null;
                

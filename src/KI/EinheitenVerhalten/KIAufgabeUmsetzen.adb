@@ -89,14 +89,8 @@ package body KIAufgabeUmsetzen is
       return Boolean
    is begin
       
-      if
-        EinheitRasseNummerExtern.Platznummer = 0
-      then
-         null;
-         
-      else
-         null;
-      end if;
+      NullWert := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                      BefehlExtern             => GlobaleDatentypen.Einheit_Verbessern);
       
       return False;
       

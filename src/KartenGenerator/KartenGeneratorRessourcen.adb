@@ -53,7 +53,7 @@ package body KartenGeneratorRessourcen is
             elsif
               LeseKarten.Grund (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert)) in GlobaleDatentypen.Karten_Grund_Land_Ohne_Eis_Enum'Range
               and
-                Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False
+                (Karten.GeneratorGrund (YAchseSchleifenwert, XAchseSchleifenwert) = False)
             then
                RessourcenLand (PositionExtern => (EbeneExtern, YAchseSchleifenwert, XAchseSchleifenwert));
                   

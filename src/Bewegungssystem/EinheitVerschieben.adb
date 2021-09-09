@@ -52,7 +52,8 @@ package body EinheitVerschieben is
                         
                      elsif
                        LeseKarten.BelegterGrund (RasseExtern       => RasseExtern,
-                                                 KoordinatenExtern => KartenWert) = False
+                                                 KoordinatenExtern => KartenWert)
+                       = False
                      then
                         null;
                   

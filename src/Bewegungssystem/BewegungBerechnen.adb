@@ -31,11 +31,9 @@ package body BewegungBerechnen is
                                                              NeuePositionExtern       => NeuePositionExtern);
 
       else
-         PlatzZumEntladen := BewegungPassierbarkeitPruefen.InStadtEntladbar (TransporterExtern  => EinheitRasseNummerExtern,
-                                                                             NeuePositionExtern => NeuePositionExtern);
-         
          case
-           PlatzZumEntladen
+           BewegungPassierbarkeitPruefen.InStadtEntladbar (TransporterExtern  => EinheitRasseNummerExtern,
+                                                           NeuePositionExtern => NeuePositionExtern)
          is
             when False =>
                return;
@@ -46,33 +44,22 @@ package body BewegungBerechnen is
          end case;
       end if;
 
-      Welchen_Bonus := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               NeuePositionExtern       => NeuePositionExtern);
-
-      case
-        LeseKarten.Grund (PositionExtern => NeuePositionExtern)
-      is
-         when GlobaleDatentypen.Eis | GlobaleDatentypen.Gebirge | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
-            if
-              LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < 1.00
-            then
-               -- Hier noch Minus das Maximum einfügen.
-               SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                        BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
-                                                        RechnenSetzenExtern      => 0);
-               return;
-               
-            else
-               BewegungspunkteAbzug := 2.00 - Bewegungsmodifikator (Welchen_Bonus);
-            end if;
-               
-         when others =>
-            BewegungspunkteAbzug := 1.00 - Bewegungsmodifikator (Welchen_Bonus);
-      end case;
-
-      SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               BewegungspunkteExtern    => BewegungspunkteAbzug,
-                                               RechnenSetzenExtern      => -1);
+      BewegungspunkteAbzug := AbzugDurchBewegung (NeuePositionExtern       => NeuePositionExtern,
+                                                  EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+        
+      if
+        BewegungspunkteAbzug = EinheitUnbewegbar
+      then
+         SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
+                                                  RechnenSetzenExtern      => 0);
+         return;
+         
+      else
+         SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                  BewegungspunkteExtern    => BewegungspunkteAbzug,
+                                                  RechnenSetzenExtern      => -1);
+      end if;
       -- Hier nicht return, da Bewegung zwar erfolgreich aber jetzt noch die Rechnungen durchlaufen müssen.
 
       case
@@ -82,8 +69,7 @@ package body BewegungBerechnen is
             null;
             
          when others =>
-            BewegungLadenEntladen.EinheitAusTransporterEntfernen (TransporterExtern => (EinheitRasseNummerExtern.Rasse,
-                                                                                        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
+            BewegungLadenEntladen.EinheitAusTransporterEntfernen (TransporterExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
                                                                   LadungExtern      => EinheitRasseNummerExtern.Platznummer);
       end case;
       
@@ -101,7 +87,7 @@ package body BewegungBerechnen is
                                         PositionExtern           => NeuePositionExtern);
       Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
-      -- Prüft nur ob das Feld auf dass sich diese Einheit bewegt bereits von einer anderen Rasse aufgedackt wurde und stellt entsprechend Kontakt her.
+      -- Prüft nur ob das Feld auf dass sich diese Einheit bewegt bereits von einer anderen Rasse aufgedeckt wurde und stellt entsprechend Kontakt her.
       KontaktSchleife:
       for FremdeSichtbarkeitSchleifenwert in GlobaleDatentypen.RassenImSpielArray'Range loop
          
@@ -114,7 +100,8 @@ package body BewegungBerechnen is
             
          elsif
            LeseKarten.Sichtbar (PositionExtern => NeuePositionExtern,
-                                RasseExtern    => FremdeSichtbarkeitSchleifenwert) = True
+                                RasseExtern    => FremdeSichtbarkeitSchleifenwert)
+           = True
          then
             KennenLernen.Erstkontakt (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
                                       FremdeRasseExtern => FremdeSichtbarkeitSchleifenwert);
@@ -126,8 +113,50 @@ package body BewegungBerechnen is
       end loop KontaktSchleife;
       
    end BewegungEinheitenBerechnung;
+   
+   
+   
+   function AbzugDurchBewegung
+     (NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.BewegungFloat
+   is begin
+      
+      Welchen_Bonus := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                               NeuePositionExtern       => NeuePositionExtern);
 
+      case
+        LeseKarten.Grund (PositionExtern => NeuePositionExtern)
+      is
+         when GlobaleDatentypen.Eis | GlobaleDatentypen.Gebirge | GlobaleDatentypen.Dschungel | GlobaleDatentypen.Sumpf =>
+            if
+              LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern) < KleinerAbzug
+            then
+               return EinheitUnbewegbar;
+      
+            elsif
+              MittlererAbzug - Bewegungsmodifikator (Welchen_Bonus) <= KeinAbzug
+            then
+               return KeinAbzug;
+               
+            else
+               return MittlererAbzug - Bewegungsmodifikator (Welchen_Bonus);
+            end if;
+            
+         when others =>
+            if
+              KleinerAbzug - Bewegungsmodifikator (Welchen_Bonus) <= KeinAbzug
+            then
+               return KeinAbzug;
+            
+            else
+               return KleinerAbzug - Bewegungsmodifikator (Welchen_Bonus);
+            end if;
+      end case;
+      
+   end AbzugDurchBewegung;
 
+   
 
    function StraßeUndFlussPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -138,12 +167,7 @@ package body BewegungBerechnen is
       if
         LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
                                                IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                               WelcheUmgebungExtern => GlobaleDatentypen.Boden)
-        = True
-        and
-          LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
-                                                 IDExtern             => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                 WelcheUmgebungExtern => GlobaleDatentypen.Luft)
+                                               WelcheUmgebungExtern => GlobaleDatentypen.Luft)
         = False
         and
           LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => EinheitRasseNummerExtern.Rasse,
@@ -155,6 +179,12 @@ package body BewegungBerechnen is
            LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern)
          is
             when GlobaleDatentypen.Karten_Verbesserung_Weg_Enum'Range =>
+               return Straße_Fluss;
+               
+            when GlobaleDatentypen.Karten_Verbesserung_Schiene_Enum'Range =>
+               return Schiene;
+               
+            when GlobaleDatentypen.Karten_Verbesserung_Tunnel_Enum =>
                return Straße_Fluss;
                   
             when others =>

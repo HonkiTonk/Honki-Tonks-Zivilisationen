@@ -36,7 +36,7 @@ private
    Test : Boolean;
    
    Grund : GlobaleDatentypen.Karten_Grund_Enum;
-
+   
    Wegewert : GlobaleDatentypen.BelegterGrund;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
@@ -87,6 +87,14 @@ private
          (KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+   procedure EinheitVerbessern
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
    
    

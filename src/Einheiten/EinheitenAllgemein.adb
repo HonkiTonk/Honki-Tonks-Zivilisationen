@@ -142,17 +142,8 @@ package body EinheitenAllgemein is
             null;
       end case;
       
-      case
-        StadtRasseNummerExtern.Platznummer
-      is
-         when GlobaleKonstanten.LeerEinheitStadtNummer =>
-            null;
-
-         when others =>
-            PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => StadtRasseNummerExtern,
-                                                 IDExtern                => IDExtern,
-                                                 VorzeichenWechselExtern => 1);
-      end case;
+      PermanenteKostenDurchEinheitÄndern (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern),
+                                           VorzeichenWechselExtern  => 1);
       
       Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => (StadtRasseNummerExtern.Rasse, EinheitNummerExtern));
       
@@ -164,17 +155,8 @@ package body EinheitenAllgemein is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      case
-        LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-      is
-         when GlobaleKonstanten.LeerEinheitStadtNummer =>
-            null;
-
-         when others =>
-            PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)),
-                                                 IDExtern                => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                 VorzeichenWechselExtern => -1);
-      end case;
+      PermanenteKostenDurchEinheitÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                           VorzeichenWechselExtern  => -1);
 
       SchreibeEinheitenGebaut.Nullsetzung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       RasseEntfernen.RasseExistenzPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse);
@@ -184,34 +166,46 @@ package body EinheitenAllgemein is
    
    
    procedure PermanenteKostenDurchEinheitÄndern
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      IDExtern : in GlobaleDatentypen.EinheitenID;
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
    is begin
+      
+      Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      case
+        Heimatstadt
+      is
+         when GlobaleDatentypen.MaximaleStädteMitNullWert'First =>
+            return;
+            
+         when others =>
+            AktuelleID := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      end case;
       
       PermanenteKostenSchleife:
       for PermanenteKostenSchleifenwert in GlobaleRecords.PermanenteKostenArray'Range loop
          
          if
-           LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                    IDExtern           => IDExtern,
-                                                    WelcheKostenExtern => PermanenteKostenSchleifenwert) <= 0
+           LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                                    IDExtern           => AktuelleID,
+                                                    WelcheKostenExtern => PermanenteKostenSchleifenwert)
+           <= 0
          then
             null;
             
          else
-            SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+            SchreibeStadtGebaut.PermanenteKostenPosten (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt),
                                                         WelcherPostenExtern    => PermanenteKostenSchleifenwert,
                                                         KostenExtern           =>
-                                                          GesamtePermanenteKosten (VorzeichenWechselExtern) * LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => StadtRasseNummerExtern.Rasse,
-                                                                                                                                                       IDExtern           => IDExtern,
+                                                          GesamtePermanenteKosten (VorzeichenWechselExtern) * LeseEinheitenDatenbank.PermanenteKosten (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                                                                                                                                       IDExtern           => AktuelleID,
                                                                                                                                                        WelcheKostenExtern => PermanenteKostenSchleifenwert),
                                                         ÄndernSetzenExtern     => True);
          end if;
          
       end loop PermanenteKostenSchleife;
       
-      StadtProduktion.StadtProduktionBerechnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtProduktion.StadtProduktionBerechnung (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt));
       
    end PermanenteKostenDurchEinheitÄndern;
    
@@ -303,26 +297,14 @@ package body EinheitenAllgemein is
          null;
       end if;
       
-      StadtNummerAlt := LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer));
-      
-      case
-        StadtNummerAlt
-      is
-         when GlobaleKonstanten.LeerEinheitStadtNummer =>
-            null;
-            
-         when others =>
-            PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummerAlt),
-                                                 IDExtern                => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)),
-                                                 VorzeichenWechselExtern => -1);
-      end case;
+      PermanenteKostenDurchEinheitÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                           VorzeichenWechselExtern  => -1);
       
       SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
                                            HeimatstadtExtern        => StadtNummerNeu);
       
-      PermanenteKostenDurchEinheitÄndern (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummerNeu),
-                                           IDExtern                => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)),
-                                           VorzeichenWechselExtern => 1);
+      PermanenteKostenDurchEinheitÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                           VorzeichenWechselExtern  => 1);
       
    end HeimatstadtÄndern;
    

@@ -26,6 +26,7 @@ package KIAufgabeUmsetzen is
 private
 
    AufgabeDurchführen : Boolean;
+   NullWert : Boolean;
 
    Grund : GlobaleDatentypen.Karten_Grund_Enum;
 

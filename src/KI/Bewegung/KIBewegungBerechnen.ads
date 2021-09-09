@@ -21,9 +21,6 @@ private
    PlanungErfolgreich : Boolean;
    PlanungErfolgreichRekursiv : Boolean;
    
-   BlockierendeEinheit : GlobaleDatentypen.Rassen_Enum;
-   BlockierendeStadt : GlobaleDatentypen.Rassen_Enum;
-   
    BewertungPosition : Positive;
    
    YAchseKoordinatePrüfen : GlobaleDatentypen.KartenfeldPositiv;

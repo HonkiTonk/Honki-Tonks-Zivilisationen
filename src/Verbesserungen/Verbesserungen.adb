@@ -863,13 +863,8 @@ package body Verbesserungen is
         AnlegenTestenExtern
       is
          when True =>
-            SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                     BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
-                                                     RechnenSetzenExtern      => 0);
-            SchreibeEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                        IDExtern                 => LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                                                                             IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
-                        
+            EinheitVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+                                    
          when False =>
             null;
       end case;
@@ -877,6 +872,28 @@ package body Verbesserungen is
       return True;
       
    end VerbesserungEinheit;
+   
+   
+   
+   procedure EinheitVerbessern
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      SchreibeEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                               BewegungspunkteExtern    => GlobaleKonstanten.LeerEinheit.Bewegungspunkte,
+                                               RechnenSetzenExtern      => 0);
+      
+      EinheitenAllgemein.PermanenteKostenDurchEinheitÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                              VorzeichenWechselExtern  => -1);
+      
+      SchreibeEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                  IDExtern                 => LeseEinheitenDatenbank.WirdVerbessertZu (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                                                                                       IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)));
+      
+      EinheitenAllgemein.PermanenteKostenDurchEinheitÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                              VorzeichenWechselExtern  => 1);
+      
+   end EinheitVerbessern;
    
 
 
