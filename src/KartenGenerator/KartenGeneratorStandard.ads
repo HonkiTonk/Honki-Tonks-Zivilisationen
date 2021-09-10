@@ -31,35 +31,35 @@ private
    WahrscheinlichkeitenLand : constant WahrscheinlichkeitenLandArray := (
                                                                          GlobaleDatentypen.Inseln =>
                                                                            (
-                                                                            Masse_Eisschild    => (0.00, 0.02),
-                                                                            Feld_Eisschild     => (0.02, 0.10),
-                                                                            Masse_Normal       => (0.00, 0.20),
-                                                                            Feld_Normal        => (0.20, 0.45),
-                                                                            Feld_Sonstiges     => (0.00, 0.02),
+                                                                            Masse_Eisschild    => (0.00, 0.05),
+                                                                            Feld_Eisschild     => (0.05, 0.15),
+                                                                            Masse_Normal       => (0.00, 0.25),
+                                                                            Feld_Normal        => (0.25, 0.55),
+                                                                            Feld_Sonstiges     => (0.00, 0.05),
                                                                             Feld_Fläche_Frei   => (0.00, 0.85),
-                                                                            Feld_Fläche_Belegt => (0.00, 0.30)
+                                                                            Feld_Fläche_Belegt => (0.00, 0.55)
                                                                            ),
                                                                                  
                                                                          GlobaleDatentypen.Kontinente =>
                                                                            (
-                                                                            Masse_Eisschild    => (0.00, 0.02),
-                                                                            Feld_Eisschild     => (0.02, 0.10),
-                                                                            Masse_Normal       => (0.00, 0.20),
-                                                                            Feld_Normal        => (0.20, 0.45),
+                                                                            Masse_Eisschild    => (0.00, 0.05),
+                                                                            Feld_Eisschild     => (0.05, 0.15),
+                                                                            Masse_Normal       => (0.00, 0.25),
+                                                                            Feld_Normal        => (0.25, 0.55),
                                                                             Feld_Sonstiges     => (0.00, 0.02),
-                                                                            Feld_Fläche_Frei   => (0.00, 0.85),
-                                                                            Feld_Fläche_Belegt => (0.00, 0.30)
+                                                                            Feld_Fläche_Frei   => (0.00, 0.95),
+                                                                            Feld_Fläche_Belegt => (0.00, 0.80)
                                                                            ),
                                                                                  
                                                                          GlobaleDatentypen.Pangäa =>
                                                                            (
-                                                                            Masse_Eisschild    => (0.00, 0.02),
-                                                                            Feld_Eisschild     => (0.02, 0.10),
-                                                                            Masse_Normal       => (0.00, 0.20),
-                                                                            Feld_Normal        => (0.20, 0.45),
+                                                                            Masse_Eisschild    => (0.00, 0.05),
+                                                                            Feld_Eisschild     => (0.05, 0.15),
+                                                                            Masse_Normal       => (0.00, 0.25),
+                                                                            Feld_Normal        => (0.25, 0.55),
                                                                             Feld_Sonstiges     => (0.00, 0.02),
-                                                                            Feld_Fläche_Frei   => (0.00, 0.85),
-                                                                            Feld_Fläche_Belegt => (0.00, 0.30)
+                                                                            Feld_Fläche_Frei   => (0.00, 0.95),
+                                                                            Feld_Fläche_Belegt => (0.00, 0.80)
                                                                            ),
                                                                          
                                                                          others =>
@@ -74,10 +74,7 @@ private
                                                                            )
                                                                         );
 
-   -- Immer berücksichtigen dass das ein Radiuswert ist und die Landgröße ein Durchmesser.
-   -- Sollte so aber ganz gut sein, da bei halbem Loop zu wenig Wasser ist, aber eventuell Werte ein wenig verringern.
-   type FelderVonLandartZuLandartArray is array (GlobaleDatentypen.Kartenart_Verwendet_Enum'Range) of GlobaleDatentypen.KartenfeldPositiv;
-   FelderVonLandartZuLandart : constant FelderVonLandartZuLandartArray := (12, 30, 1, 1, 1);
+   
    
    procedure GenerierungKartenart
      (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
@@ -112,7 +109,6 @@ private
             XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    procedure GenerierungNurLand;
-   
    procedure EisrandGenerieren;
 
 end KartenGeneratorStandard;

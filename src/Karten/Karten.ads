@@ -34,10 +34,17 @@ package Karten is
 
    Kartengröße : GlobaleDatentypen.Kartengröße_Verwendet_Enum;
 
+   type LandartenRecord is record
+
+      YAchse : GlobaleDatentypen.KartenfeldPositiv;
+      XAchse : GlobaleDatentypen.KartenfeldPositiv;
+
+   end record;
+
    -- Inseln, Kontinente, Pangäa
-   -- GrößeLandart bekommt erst innerhalb der Kartengenerierung Werte, da sonst die Werte für Pangäa nicht bekannt wären.
-   type GrößeLandartArray is array (GlobaleDatentypen.Kartenart_Verwendet_Enum'Range) of GlobaleDatentypen.KartenfeldPositiv;
+   type GrößeLandartArray is array (GlobaleDatentypen.Kartenart_Verwendet_Enum'Range) of LandartenRecord;
    GrößeLandart : GrößeLandartArray;
+   FelderVonLandartZuLandart : GrößeLandartArray;
 
    -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
    Kartenart : GlobaleDatentypen.Kartenart_Verwendet_Enum := GlobaleDatentypen.Inseln;

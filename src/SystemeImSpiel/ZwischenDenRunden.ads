@@ -9,6 +9,8 @@ package ZwischenDenRunden is
 
 private
 
+   KIVorhanden : Boolean;
+
    procedure GeldForschungMengeSetzen;
 
 end ZwischenDenRunden;

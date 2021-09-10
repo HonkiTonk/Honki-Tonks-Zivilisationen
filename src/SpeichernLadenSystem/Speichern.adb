@@ -296,7 +296,16 @@ package body Speichern is
       Close (File => DateiSpeichernNeu);
          
       Ladezeiten.EinzelneZeiten (Ladezeiten.Speicherzeit, GlobaleDatentypen.Endwert) := Clock;
-      Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Speicherzeit);
+      
+      case
+        AutospeichernExtern
+      is
+         when True =>
+            Ladezeiten.AnzeigeEinzelneZeitOhneWarten (WelcheZeitExtern => Ladezeiten.Speicherzeit);
+            
+         when False =>
+            Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Speicherzeit);
+      end case;
    
    end SpeichernNeu;
    

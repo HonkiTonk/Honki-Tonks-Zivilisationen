@@ -31,6 +31,9 @@ package Ladezeiten is
    
    procedure AnzeigeKIZeit
      (WelcheZeitExtern : in GlobaleDatentypen.Rassen_Enum);
+   
+   procedure AnzeigeEinzelneZeitOhneWarten
+     (WelcheZeitExtern : in Einzelne_Zeiten_Enum);
 
 private
 

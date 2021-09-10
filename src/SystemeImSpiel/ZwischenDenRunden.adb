@@ -23,7 +23,6 @@ package body ZwischenDenRunden is
       if
         WeiterSpielen = False
       then
-         
          case
            SiegBedingungen.SiegBedingungen
          is
@@ -65,22 +64,16 @@ package body ZwischenDenRunden is
          when others =>
             GlobaleVariablen.RundenAnzahl := GlobaleVariablen.RundenAnzahl + 1;
       end case;
-
-      if
-        GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 0
-      then
-         null;
-
-      else
-         Speichern.AutoSpeichern;
-      end if;      
+      
+      KIVorhanden := False;
       
       RassenSchleife:
       for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Spieler_KI
-         then            
+         then
+            KIVorhanden := True;
             Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => RasseSchleifenwert);
             
          else
@@ -103,14 +96,15 @@ package body ZwischenDenRunden is
                null;
                   
             else
-               if
-                 GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung + 1 > Natural'Last
-               then
-                  GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung := Natural'Last;
-               
-               else
-                  GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung := GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung + 1;
-               end if;
+               case
+                 GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung
+               is
+                  when Natural'Last =>
+                     null;
+                     
+                  when others =>
+                     GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung := GlobaleVariablen.Diplomatie (RasseSchleifenwert, RasseZweiSchleifenwert).ZeitSeitLetzterÄnderung + 1;
+               end case;
             
                DiplomatischerZustand.SympathieÄndern (EigeneRasseExtern => RasseSchleifenwert,
                                                        FremdeRasseExtern => RasseZweiSchleifenwert,
@@ -120,10 +114,28 @@ package body ZwischenDenRunden is
          end loop RassenZweiSchleife;
          
       end loop RassenSchleife;
+
+      -- Autospeichern muss hier immer als Letztes kommen, sonst werden eventuelle Änderungen nicht gespeichert.
+      if
+        GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 0
+      then
+         null;
+
+      else
+         Speichern.AutoSpeichern;
+      end if;    
+            
+      case
+        KIVorhanden
+      is
+         when True =>
+            Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => GlobaleDatentypen.Leer);
+            
+         when False =>
+            null;
+      end case;
       
       Ladezeiten.EinzelneZeiten (Ladezeiten.Zwischen_Runden, GlobaleDatentypen.Endwert) := Clock;
-      
-      Ladezeiten.AnzeigeKIZeit (WelcheZeitExtern => GlobaleDatentypen.Leer);
       Ladezeiten.AnzeigeEinzelneZeit (WelcheZeitExtern => Ladezeiten.Zwischen_Runden);
       
       return False;

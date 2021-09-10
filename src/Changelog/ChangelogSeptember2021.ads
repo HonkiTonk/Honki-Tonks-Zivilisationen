@@ -133,17 +133,21 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.86 => 0.00.8 (11.09.2021):
+   -- Version 0.00.8680 => 0.00.8 (11.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8660 => 0.00.86 (10.09.2021):
+   -- Version 0.00.8660 => 0.00.8680 (10.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Einige Anpassungen am Kartengenerator vorgenommen so dass er jetzt auch auf kleinen Karten mehr/bessere Landflächen generiert.
+   -- Angefangen den Kartengenerator so zu erweitern dass er nicht nur quadratische Abstände und Landmassen erzeugen kann, sondern auch Rechteckige.
+   -- Angefangen den Kartengenerator so zu erweitern dass er die Landgrößen und Abstände an die Kartengröße und Kartenart anpassen kann.
+   -- Fehler korrigiert welcher dafür sorgte dass das Autospeichern erfolgte bevor alle Berechnungen nach Rundenende durchgelaufen waren.
+   -- Anzeige einiger unnötigen Informationen entfernt.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/entfernt/überarbeitet.
    
    
    
@@ -164,7 +168,7 @@ package ChangelogSeptember2021 is
    -- Fehler behoben der dafür sorgte dass als verbleibende Forschungszeit immer 10.000 angezeigt wurde.
    -- Bewegungsberechnung überarbeitet so dass diese jetzt einfacher zu warten ist und die Bewegungspunkte jetzt nicht mehr mehr werden statt weniger werden können.
    -- Codeformatierung an einigen Stellen überarbeitet.
-   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/hinzugefügt.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/hinzugefügt/entfernt.
    
    
    
