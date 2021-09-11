@@ -10,36 +10,39 @@ package LandwerteFestlegen is
    procedure GrößeFestlegen;
       
 private
+   
+   -- Alle Größen- und Abstandsangaben sind Radien.
 
    GrößePangäa : GlobaleDatentypen.KartenfeldPositiv;
    YAchse : GlobaleDatentypen.KartenfeldPositiv;
    XAchse : GlobaleDatentypen.KartenfeldPositiv;
    
    MinimaleLandgröße : constant Karten.GrößeLandartArray := (
-                                                                 GlobaleDatentypen.Inseln     => (1, 1),
-                                                                 GlobaleDatentypen.Kontinente => (1, 1),
+                                                                 GlobaleDatentypen.Inseln     => (2, 2),
+                                                                 GlobaleDatentypen.Kontinente => (6, 6),
                                                                  GlobaleDatentypen.Pangäa     => (1, 1),
                                                                  GlobaleDatentypen.Nur_Land   => (1, 1),
                                                                  GlobaleDatentypen.Chaos      => (1, 1)
                                                                 );
+   MaximaleLandgröße : constant Karten.GrößeLandartArray := (
+                                                                 GlobaleDatentypen.Inseln     => (3, 3),
+                                                                 GlobaleDatentypen.Kontinente => (8, 8),
+                                                                 GlobaleDatentypen.Pangäa     => (GlobaleDatentypen.KartenfeldPositiv'Last, GlobaleDatentypen.KartenfeldPositiv'Last),
+                                                                 GlobaleDatentypen.Nur_Land   => (1, 1),
+                                                                 GlobaleDatentypen.Chaos      => (1, 1)
+                                                                );
+   
    MinimalerAbstand : constant Karten.GrößeLandartArray := (
-                                                              GlobaleDatentypen.Inseln     => (1, 1),
-                                                              GlobaleDatentypen.Kontinente => (1, 1),
+                                                              GlobaleDatentypen.Inseln     => (8, 8),
+                                                              GlobaleDatentypen.Kontinente => (13, 13),
                                                               GlobaleDatentypen.Pangäa     => (1, 1),
                                                               GlobaleDatentypen.Nur_Land   => (1, 1),
                                                               GlobaleDatentypen.Chaos      => (1, 1)
                                                              );
-   MaximaleLandgröße : constant Karten.GrößeLandartArray := (
-                                                                 GlobaleDatentypen.Inseln     => (19, 19),
-                                                                 GlobaleDatentypen.Kontinente => (45, 45),
-                                                                 GlobaleDatentypen.Pangäa     => (1, 1),
-                                                                 GlobaleDatentypen.Nur_Land   => (1, 1),
-                                                                 GlobaleDatentypen.Chaos      => (1, 1)
-                                                                );
    MaximalerAbstand : constant Karten.GrößeLandartArray := (
-                                                              GlobaleDatentypen.Inseln     => (19, 19),
-                                                              GlobaleDatentypen.Kontinente => (45, 45),
-                                                              GlobaleDatentypen.Pangäa     => (1, 1),
+                                                              GlobaleDatentypen.Inseln     => (15, 15),
+                                                              GlobaleDatentypen.Kontinente => (22, 22),
+                                                              GlobaleDatentypen.Pangäa     => (GlobaleDatentypen.KartenfeldPositiv'Last, GlobaleDatentypen.KartenfeldPositiv'Last),
                                                               GlobaleDatentypen.Nur_Land   => (1, 1),
                                                               GlobaleDatentypen.Chaos      => (1, 1)
                                                              );

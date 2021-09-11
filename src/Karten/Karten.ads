@@ -42,9 +42,22 @@ package Karten is
    end record;
 
    -- Inseln, Kontinente, Pangäa
+   -- Alle Größen- und Abstandsangaben sind Radien.
    type GrößeLandartArray is array (GlobaleDatentypen.Kartenart_Verwendet_Enum'Range) of LandartenRecord;
-   GrößeLandart : GrößeLandartArray;
-   FelderVonLandartZuLandart : GrößeLandartArray;
+   GrößeLandart : GrößeLandartArray := (
+                                            GlobaleDatentypen.Inseln     => (3, 3),
+                                            GlobaleDatentypen.Kontinente => (7, 7),
+                                            GlobaleDatentypen.Pangäa     => (1, 1),
+                                            GlobaleDatentypen.Nur_Land   => (1, 1),
+                                            GlobaleDatentypen.Chaos      => (1, 1)
+                                           );
+   FelderVonLandartZuLandart : GrößeLandartArray := (
+                                                       GlobaleDatentypen.Inseln     => (15, 15),
+                                                       GlobaleDatentypen.Kontinente => (22, 22),
+                                                       GlobaleDatentypen.Pangäa     => (1, 1),
+                                                       GlobaleDatentypen.Nur_Land   => (1, 1),
+                                                       GlobaleDatentypen.Chaos      => (1, 1)
+                                                      );
 
    -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
    Kartenart : GlobaleDatentypen.Kartenart_Verwendet_Enum := GlobaleDatentypen.Inseln;

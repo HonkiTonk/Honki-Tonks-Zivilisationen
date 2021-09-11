@@ -159,14 +159,15 @@ package body KartenGeneratorStandard is
 
    
    
+   -- Alle Größen- und Abstandsangaben sind Radien.
    procedure GenerierungLandmasse
      (YPositionLandmasseExtern, XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv)
    is begin
       
       YAchseLandflächeErzeugenSchleife:
-      for YÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart).YAchse / 2 .. Karten.GrößeLandart (Karten.Kartenart).YAchse / 2 loop
+      for YÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart).YAchse .. Karten.GrößeLandart (Karten.Kartenart).YAchse loop
          XAchseLandflächeErzeugenSchleife:
-         for XÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart).XAchse / 2 .. Karten.GrößeLandart (Karten.Kartenart).XAchse / 2 loop
+         for XÄnderungEinsSchleifenwert in -Karten.GrößeLandart (Karten.Kartenart).XAchse .. Karten.GrößeLandart (Karten.Kartenart).XAchse loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
                                                                         ÄnderungExtern    => (0, YÄnderungEinsSchleifenwert, XÄnderungEinsSchleifenwert));
@@ -187,9 +188,9 @@ package body KartenGeneratorStandard is
       end loop YAchseLandflächeErzeugenSchleife;
       
       YAchseAbstandFlächenSchleife:
-      for YÄnderungZweiSchleifenwert in -Karten.FelderVonLandartZuLandart (Karten.Kartenart).YAchse / 2 .. Karten.FelderVonLandartZuLandart (Karten.Kartenart).YAchse / 2 loop
+      for YÄnderungZweiSchleifenwert in -Karten.FelderVonLandartZuLandart (Karten.Kartenart).YAchse .. Karten.FelderVonLandartZuLandart (Karten.Kartenart).YAchse loop
          XAchseAbstandFlächenSchleife:
-         for XÄnderungZweiSchleifenwert in -Karten.FelderVonLandartZuLandart (Karten.Kartenart).XAchse / 2 .. Karten.FelderVonLandartZuLandart (Karten.Kartenart).XAchse / 2 loop
+         for XÄnderungZweiSchleifenwert in -Karten.FelderVonLandartZuLandart (Karten.Kartenart).XAchse .. Karten.FelderVonLandartZuLandart (Karten.Kartenart).XAchse loop
             
             KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => (0, YPositionLandmasseExtern, XPositionLandmasseExtern),
                                                                         ÄnderungExtern    => (0, YÄnderungZweiSchleifenwert, XÄnderungZweiSchleifenwert));

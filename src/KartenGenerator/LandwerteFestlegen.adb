@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 package body LandwerteFestlegen is
 
+   -- Alle Größen- und Abstandsangaben sind Radien.
    procedure GrößeFestlegen
    is begin
       
@@ -20,46 +21,6 @@ package body LandwerteFestlegen is
          when others =>
             return;
       end case;
-           
-      case
-        Karten.Kartenart
-      is
-         when GlobaleDatentypen.Inseln | GlobaleDatentypen.Kontinente | GlobaleDatentypen.Nur_Land | GlobaleDatentypen.Chaos =>
-            Karten.GrößeLandart := (
-                                      GlobaleDatentypen.Inseln     => (6, 6),
-                                      GlobaleDatentypen.Kontinente => (15, 15),
-                                      GlobaleDatentypen.Pangäa     => (1, 1),
-                                      GlobaleDatentypen.Nur_Land   => (1, 1),
-                                      GlobaleDatentypen.Chaos      => (1, 1)
-                                     );
-            AbstandFestlegen;
-            return;
-            
-         when GlobaleDatentypen.Pangäa =>
-            null;
-      end case;
-      
-      if
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße < Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2
-      then
-         GrößePangäa := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2;
-
-      elsif
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße < Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2
-      then
-         GrößePangäa := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2;
-
-      else
-         GrößePangäa := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3 + Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3;
-      end if;
-      
-      Karten.GrößeLandart := (
-                                GlobaleDatentypen.Inseln     => (6, 6),
-                                GlobaleDatentypen.Kontinente => (15, 15),
-                                GlobaleDatentypen.Pangäa     => (GrößePangäa, GrößePangäa),
-                                GlobaleDatentypen.Nur_Land   => (1, 1),
-                                GlobaleDatentypen.Chaos      => (1, 1)
-                               );
       
       AbstandFestlegen;
       
@@ -70,7 +31,35 @@ package body LandwerteFestlegen is
    procedure InselGröße
    is begin
       
-      null;
+      if
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 7 > MaximaleLandgröße (Karten.Kartenart).YAchse
+      then
+         YAchse := MaximaleLandgröße (Karten.Kartenart).YAchse;
+         
+      elsif
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 7 < MinimaleLandgröße (Karten.Kartenart).YAchse
+      then
+         YAchse := MinimaleLandgröße (Karten.Kartenart).YAchse;
+
+      else
+         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 7;
+      end if;
+
+      if
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 7 > MaximaleLandgröße (Karten.Kartenart).XAchse
+      then
+         XAchse := MaximaleLandgröße (Karten.Kartenart).XAchse;
+         
+      elsif
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 7 < MinimaleLandgröße (Karten.Kartenart).XAchse
+      then
+         XAchse := MinimaleLandgröße (Karten.Kartenart).XAchse;
+
+      else
+         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 7;
+      end if;
+
+      Karten.GrößeLandart (Karten.Kartenart) := (YAchse, XAchse);
       
    end InselGröße;
    
@@ -79,7 +68,35 @@ package body LandwerteFestlegen is
    procedure KontinentGröße
    is begin
       
-      null;
+      if
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3 > MaximaleLandgröße (Karten.Kartenart).YAchse
+      then
+         YAchse := MaximaleLandgröße (Karten.Kartenart).YAchse;
+         
+      elsif
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3 < MinimaleLandgröße (Karten.Kartenart).YAchse
+      then
+         YAchse := MinimaleLandgröße (Karten.Kartenart).YAchse;
+
+      else
+         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3;
+      end if;
+
+      if
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3 > MaximaleLandgröße (Karten.Kartenart).XAchse
+      then
+         XAchse := MaximaleLandgröße (Karten.Kartenart).XAchse;
+         
+      elsif
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3 < MinimaleLandgröße (Karten.Kartenart).XAchse
+      then
+         XAchse := MinimaleLandgröße (Karten.Kartenart).XAchse;
+
+      else
+         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3;
+      end if;
+
+      Karten.GrößeLandart (Karten.Kartenart) := (YAchse, XAchse);
       
    end KontinentGröße;
    
@@ -88,7 +105,35 @@ package body LandwerteFestlegen is
    procedure PangäaGröße
    is begin
       
-      null;
+      if
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2 > MaximaleLandgröße (Karten.Kartenart).YAchse
+      then
+         YAchse := MaximaleLandgröße (Karten.Kartenart).YAchse;
+         
+      elsif
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2 < MinimaleLandgröße (Karten.Kartenart).YAchse
+      then
+         YAchse := MinimaleLandgröße (Karten.Kartenart).YAchse;
+
+      else
+         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 7;
+      end if;
+
+      if
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2 > MaximaleLandgröße (Karten.Kartenart).XAchse
+      then
+         XAchse := MaximaleLandgröße (Karten.Kartenart).XAchse;
+         
+      elsif
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2 < MinimaleLandgröße (Karten.Kartenart).XAchse
+      then
+         XAchse := MinimaleLandgröße (Karten.Kartenart).XAchse;
+
+      else
+         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2;
+      end if;
+
+      Karten.GrößeLandart (Karten.Kartenart) := (YAchse, XAchse);
       
    end PangäaGröße;
    
@@ -113,14 +158,6 @@ package body LandwerteFestlegen is
             return;
       end case;
       
-      Karten.FelderVonLandartZuLandart := (
-                                           GlobaleDatentypen.Inseln     => (19, 19),
-                                           GlobaleDatentypen.Kontinente => (45, 45),
-                                           GlobaleDatentypen.Pangäa     => (1, 1),
-                                           GlobaleDatentypen.Nur_Land   => (1, 1),
-                                           GlobaleDatentypen.Chaos      => (1, 1)
-                                          );
-      
    end AbstandFestlegen;
    
    
@@ -128,7 +165,35 @@ package body LandwerteFestlegen is
    procedure InselAbstand
    is begin
       
-      null;
+      if
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3 > MaximalerAbstand (Karten.Kartenart).YAchse
+      then
+         YAchse := MaximalerAbstand (Karten.Kartenart).YAchse;
+         
+      elsif
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3 < MinimalerAbstand (Karten.Kartenart).YAchse
+      then
+         YAchse := MinimalerAbstand (Karten.Kartenart).YAchse;
+
+      else
+         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3;
+      end if;
+
+      if
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3 > MaximalerAbstand (Karten.Kartenart).XAchse
+      then
+         XAchse := MaximalerAbstand (Karten.Kartenart).XAchse;
+         
+      elsif
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3 < MinimalerAbstand (Karten.Kartenart).XAchse
+      then
+         XAchse := MinimalerAbstand (Karten.Kartenart).XAchse;
+
+      else
+         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3;
+      end if;
+
+      Karten.FelderVonLandartZuLandart (Karten.Kartenart) := (YAchse, XAchse);
       
    end InselAbstand;
    
@@ -137,7 +202,35 @@ package body LandwerteFestlegen is
    procedure KontinentAbstand
    is begin
       
-      null;
+      if
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2 > MaximalerAbstand (Karten.Kartenart).YAchse
+      then
+         YAchse := MaximalerAbstand (Karten.Kartenart).YAchse;
+         
+      elsif
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2 < MinimalerAbstand (Karten.Kartenart).YAchse
+      then
+         YAchse := MinimalerAbstand (Karten.Kartenart).YAchse;
+
+      else
+         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße;
+      end if;
+
+      if
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2 > MaximalerAbstand (Karten.Kartenart).XAchse
+      then
+         XAchse := MaximalerAbstand (Karten.Kartenart).XAchse;
+         
+      elsif
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2 < MinimalerAbstand (Karten.Kartenart).XAchse
+      then
+         XAchse := MinimalerAbstand (Karten.Kartenart).XAchse;
+
+      else
+         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
+      end if;
+
+      Karten.FelderVonLandartZuLandart (Karten.Kartenart) := (YAchse, XAchse);
       
    end KontinentAbstand;
    
@@ -146,7 +239,11 @@ package body LandwerteFestlegen is
    procedure PangäaAbstand
    is begin
       
-      null;
+      YAchse := MaximalerAbstand (Karten.Kartenart).YAchse;
+
+      XAchse := MaximalerAbstand (Karten.Kartenart).XAchse;
+
+      Karten.FelderVonLandartZuLandart (Karten.Kartenart) := (YAchse, XAchse);
       
    end PangäaAbstand;
 

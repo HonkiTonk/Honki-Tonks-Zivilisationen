@@ -105,44 +105,44 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (15.09.2021):
+   -- Version 0.00.87 => 0.00.8 (15.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (14.09.2021):
+   -- Version 0.00.87 => 0.00.87 (14.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (13.09.2021):
+   -- Version 0.00.87 => 0.00.87 (13.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8 => 0.00.8 (12.09.2021):
+   -- Version 0.00.8690 => 0.00.87 (12.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8680 => 0.00.8 (11.09.2021):
+   -- Version 0.00.8680 => 0.00.8690 (11.09.2021):
    
-   -- 
+   -- An der Anpassung der Lan- und Abstandsgrößen gearbietet.
    -- Kleinigkeiten korrigiert.
    
    
    
    -- Version 0.00.8660 => 0.00.8680 (10.09.2021):
    
-   -- Einige Anpassungen am Kartengenerator vorgenommen so dass er jetzt auch auf kleinen Karten mehr/bessere Landflächen generiert.
+   -- Einige Anpassungen am Kartengenerator vorgenommen so dass er mehr/bessere Landflächen generiert.
    -- Angefangen den Kartengenerator so zu erweitern dass er nicht nur quadratische Abstände und Landmassen erzeugen kann, sondern auch Rechteckige.
    -- Angefangen den Kartengenerator so zu erweitern dass er die Landgrößen und Abstände an die Kartengröße und Kartenart anpassen kann.
    -- Fehler korrigiert welcher dafür sorgte dass das Autospeichern erfolgte bevor alle Berechnungen nach Rundenende durchgelaufen waren.
