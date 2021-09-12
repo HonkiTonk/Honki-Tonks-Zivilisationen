@@ -297,13 +297,13 @@ package body EinheitenAllgemein is
          null;
       end if;
       
-      PermanenteKostenDurchEinheitÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      PermanenteKostenDurchEinheitÄndern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
                                            VorzeichenWechselExtern  => -1);
       
       SchreibeEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
                                            HeimatstadtExtern        => StadtNummerNeu);
       
-      PermanenteKostenDurchEinheitÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+      PermanenteKostenDurchEinheitÄndern (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer),
                                            VorzeichenWechselExtern  => 1);
       
    end HeimatstadtÄndern;

@@ -9,242 +9,88 @@ package body LandwerteFestlegen is
       case
         Karten.Kartenart
       is
-         when GlobaleDatentypen.Inseln =>
-            InselGröße;
-            
-         when GlobaleDatentypen.Kontinente =>
-            KontinentGröße;
-            
-         when GlobaleDatentypen.Pangäa =>
-            PangäaGröße;
+         when GlobaleDatentypen.Nur_Land | GlobaleDatentypen.Chaos =>
+            null;
             
          when others =>
-            return;
+            Größe;
+            Abstand;
       end case;
-      
-      AbstandFestlegen;
       
    end GrößeFestlegen;
    
    
    
-   procedure InselGröße
+   procedure Größe
    is begin
       
       if
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 7 > MaximaleLandgröße (Karten.Kartenart).YAchse
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / TeilerGröße (Karten.Kartenart).YAchse > MaximaleLandgröße (Karten.Kartenart).YAchse
       then
          YAchse := MaximaleLandgröße (Karten.Kartenart).YAchse;
          
       elsif
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 7 < MinimaleLandgröße (Karten.Kartenart).YAchse
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / TeilerGröße (Karten.Kartenart).YAchse < MinimaleLandgröße (Karten.Kartenart).YAchse
       then
          YAchse := MinimaleLandgröße (Karten.Kartenart).YAchse;
 
       else
-         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 7;
+         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / TeilerGröße (Karten.Kartenart).YAchse;
       end if;
 
       if
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 7 > MaximaleLandgröße (Karten.Kartenart).XAchse
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / TeilerGröße (Karten.Kartenart).XAchse > MaximaleLandgröße (Karten.Kartenart).XAchse
       then
          XAchse := MaximaleLandgröße (Karten.Kartenart).XAchse;
          
       elsif
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 7 < MinimaleLandgröße (Karten.Kartenart).XAchse
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / TeilerGröße (Karten.Kartenart).XAchse < MinimaleLandgröße (Karten.Kartenart).XAchse
       then
          XAchse := MinimaleLandgröße (Karten.Kartenart).XAchse;
 
       else
-         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 7;
+         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / TeilerGröße (Karten.Kartenart).XAchse;
       end if;
 
       Karten.GrößeLandart (Karten.Kartenart) := (YAchse, XAchse);
       
-   end InselGröße;
+   end Größe;
    
    
    
-   procedure KontinentGröße
+   procedure Abstand
    is begin
       
       if
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3 > MaximaleLandgröße (Karten.Kartenart).YAchse
-      then
-         YAchse := MaximaleLandgröße (Karten.Kartenart).YAchse;
-         
-      elsif
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3 < MinimaleLandgröße (Karten.Kartenart).YAchse
-      then
-         YAchse := MinimaleLandgröße (Karten.Kartenart).YAchse;
-
-      else
-         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3;
-      end if;
-
-      if
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3 > MaximaleLandgröße (Karten.Kartenart).XAchse
-      then
-         XAchse := MaximaleLandgröße (Karten.Kartenart).XAchse;
-         
-      elsif
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3 < MinimaleLandgröße (Karten.Kartenart).XAchse
-      then
-         XAchse := MinimaleLandgröße (Karten.Kartenart).XAchse;
-
-      else
-         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3;
-      end if;
-
-      Karten.GrößeLandart (Karten.Kartenart) := (YAchse, XAchse);
-      
-   end KontinentGröße;
-   
-   
-   
-   procedure PangäaGröße
-   is begin
-      
-      if
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2 > MaximaleLandgröße (Karten.Kartenart).YAchse
-      then
-         YAchse := MaximaleLandgröße (Karten.Kartenart).YAchse;
-         
-      elsif
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2 < MinimaleLandgröße (Karten.Kartenart).YAchse
-      then
-         YAchse := MinimaleLandgröße (Karten.Kartenart).YAchse;
-
-      else
-         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 7;
-      end if;
-
-      if
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2 > MaximaleLandgröße (Karten.Kartenart).XAchse
-      then
-         XAchse := MaximaleLandgröße (Karten.Kartenart).XAchse;
-         
-      elsif
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2 < MinimaleLandgröße (Karten.Kartenart).XAchse
-      then
-         XAchse := MinimaleLandgröße (Karten.Kartenart).XAchse;
-
-      else
-         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2;
-      end if;
-
-      Karten.GrößeLandart (Karten.Kartenart) := (YAchse, XAchse);
-      
-   end PangäaGröße;
-   
-   
-   
-   procedure AbstandFestlegen
-   is begin
-      
-      case
-        Karten.Kartenart
-      is
-         when GlobaleDatentypen.Inseln =>
-            InselAbstand;
-            
-         when GlobaleDatentypen.Kontinente =>
-            KontinentAbstand;
-            
-         when GlobaleDatentypen.Pangäa =>
-            PangäaAbstand;
-            
-         when others =>
-            return;
-      end case;
-      
-   end AbstandFestlegen;
-   
-   
-   
-   procedure InselAbstand
-   is begin
-      
-      if
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3 > MaximalerAbstand (Karten.Kartenart).YAchse
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / TeilerAbstand (Karten.Kartenart).YAchse > MaximalerAbstand (Karten.Kartenart).YAchse
       then
          YAchse := MaximalerAbstand (Karten.Kartenart).YAchse;
          
       elsif
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3 < MinimalerAbstand (Karten.Kartenart).YAchse
+        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / TeilerAbstand (Karten.Kartenart).YAchse < MinimalerAbstand (Karten.Kartenart).YAchse
       then
          YAchse := MinimalerAbstand (Karten.Kartenart).YAchse;
 
       else
-         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 3;
+         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / TeilerAbstand (Karten.Kartenart).YAchse;
       end if;
 
       if
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3 > MaximalerAbstand (Karten.Kartenart).XAchse
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / TeilerAbstand (Karten.Kartenart).XAchse > MaximalerAbstand (Karten.Kartenart).XAchse
       then
          XAchse := MaximalerAbstand (Karten.Kartenart).XAchse;
          
       elsif
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3 < MinimalerAbstand (Karten.Kartenart).XAchse
+        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / TeilerAbstand (Karten.Kartenart).XAchse < MinimalerAbstand (Karten.Kartenart).XAchse
       then
          XAchse := MinimalerAbstand (Karten.Kartenart).XAchse;
 
       else
-         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 3;
+         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / TeilerAbstand (Karten.Kartenart).XAchse;
       end if;
 
       Karten.FelderVonLandartZuLandart (Karten.Kartenart) := (YAchse, XAchse);
       
-   end InselAbstand;
-   
-   
-   
-   procedure KontinentAbstand
-   is begin
-      
-      if
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2 > MaximalerAbstand (Karten.Kartenart).YAchse
-      then
-         YAchse := MaximalerAbstand (Karten.Kartenart).YAchse;
-         
-      elsif
-        Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2 < MinimalerAbstand (Karten.Kartenart).YAchse
-      then
-         YAchse := MinimalerAbstand (Karten.Kartenart).YAchse;
-
-      else
-         YAchse := Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße;
-      end if;
-
-      if
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2 > MaximalerAbstand (Karten.Kartenart).XAchse
-      then
-         XAchse := MaximalerAbstand (Karten.Kartenart).XAchse;
-         
-      elsif
-        Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2 < MinimalerAbstand (Karten.Kartenart).XAchse
-      then
-         XAchse := MinimalerAbstand (Karten.Kartenart).XAchse;
-
-      else
-         XAchse := Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße;
-      end if;
-
-      Karten.FelderVonLandartZuLandart (Karten.Kartenart) := (YAchse, XAchse);
-      
-   end KontinentAbstand;
-   
-   
-   
-   procedure PangäaAbstand
-   is begin
-      
-      YAchse := MaximalerAbstand (Karten.Kartenart).YAchse;
-
-      XAchse := MaximalerAbstand (Karten.Kartenart).XAchse;
-
-      Karten.FelderVonLandartZuLandart (Karten.Kartenart) := (YAchse, XAchse);
-      
-   end PangäaAbstand;
+   end Abstand;
 
 end LandwerteFestlegen;

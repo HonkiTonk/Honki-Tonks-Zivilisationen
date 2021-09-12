@@ -72,16 +72,9 @@ package body KartenGeneratorStandard is
             else
                null;
             end if;
-            
-            case Karten.Kartenart is
-               when GlobaleDatentypen.Pangäa =>
-                  GenerierungPangäa (YAchseExtern => YAchseSchleifenwert,
-                                      XAchseExtern => XAchseSchleifenwert);
-                  
-               when others =>                     
-                  GenerierungKartenart (YAchseExtern => YAchseSchleifenwert,
-                                        XAchseExtern => XAchseSchleifenwert);
-            end case;
+                   
+            GenerierungKartenart (YAchseExtern => YAchseSchleifenwert,
+                                  XAchseExtern => XAchseSchleifenwert);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
@@ -244,36 +237,6 @@ package body KartenGeneratorStandard is
          
       
    end GenerierungLandmasseFläche;
-
-
-
-   procedure GenerierungPangäa
-     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
-   is begin
-      
-      if
-        YAchseExtern = Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße / 2
-        and
-          XAchseExtern = Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße / 2
-      then
-         GenerierungLandmasse (YPositionLandmasseExtern => YAchseExtern,
-                               XPositionLandmasseExtern => XAchseExtern);
-        
-      else
-         BeliebigerLandwert := ZufallGeneratorenKarten.ZufälligerWert;
-         if
-           BeliebigerLandwert in WahrscheinlichkeitenLand (Karten.Kartenart, Feld_Sonstiges).Anfangswert .. WahrscheinlichkeitenLand (Karten.Kartenart, Feld_Sonstiges).Endwert
-         then
-            SchreibeKarten.Grund (PositionExtern => (0, YAchseExtern, XAchseExtern),
-                                  GrundExtern    => GlobaleDatentypen.Flachland);
-            Karten.GeneratorKarte (YAchseExtern, XAchseExtern) := GlobaleDatentypen.Eis;
-         
-         else
-            null;
-         end if;
-      end if;
-      
-   end GenerierungPangäa;
    
    
    

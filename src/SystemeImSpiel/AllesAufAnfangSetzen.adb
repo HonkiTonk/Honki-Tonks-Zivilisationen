@@ -26,6 +26,7 @@ package body AllesAufAnfangSetzen is
       ZwischenDenRunden.WeiterSpielen := False;
 
       Karten.Weltkarte := (others => (others => (others => GlobaleKonstanten.LeerWeltkarte)));
+      Karten.KartenartGemischt := False;
             
    end AllesAufAnfangSetzen;
 

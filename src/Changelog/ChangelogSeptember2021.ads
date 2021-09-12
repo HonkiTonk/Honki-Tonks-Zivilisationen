@@ -98,14 +98,14 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.8 => 0.00.8 (16.09.2021):
+   -- Version 0.00.87 => 0.00.8 (16.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.87 => 0.00.8 (15.09.2021):
+   -- Version 0.00.87 => 0.00.87 (15.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
@@ -119,23 +119,25 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.87 => 0.00.87 (13.09.2021):
+   -- Version 0.00.8700 => 0.00.87 (13.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8690 => 0.00.87 (12.09.2021):
+   -- Version 0.00.8690 => 0.00.8700 (12.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Land- und Abstandsgrößenermittlung fertiggestellt, erzeugt jetzt halbwegs vernünftige Rechtecklandschaften in einer der Kartengröße angemessenen Menge.
+   -- Festlegung des Startpunkte so geändert dass jetzt immer mindestens drei freie Felder um die Siedlerstarteinheit gibt.
+   -- Fehler behoben der bei Änderung der Heimatstatdt einer Einheit zu Abstürzen führen konnte.
+   -- Kleinigkeiten korrigiert/angepasst.
    
    
    
    -- Version 0.00.8680 => 0.00.8690 (11.09.2021):
    
-   -- An der Anpassung der Lan- und Abstandsgrößen gearbietet.
+   -- An der Anpassung der Land- und Abstandsgrößen weitergearbeitet.
    -- Kleinigkeiten korrigiert.
    
    

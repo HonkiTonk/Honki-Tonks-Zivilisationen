@@ -59,18 +59,12 @@ private
                                                                             Feld_Normal        => (0.25, 0.55),
                                                                             Feld_Sonstiges     => (0.00, 0.02),
                                                                             Feld_Fläche_Frei   => (0.00, 0.95),
-                                                                            Feld_Fläche_Belegt => (0.00, 0.80)
+                                                                            Feld_Fläche_Belegt => (0.00, 0.00)
                                                                            ),
                                                                          
                                                                          others =>
                                                                            (
-                                                                            Masse_Eisschild    => (0.00, 0.00),
-                                                                            Feld_Eisschild     => (0.00, 0.00),
-                                                                            Masse_Normal       => (0.00, 0.00),
-                                                                            Feld_Normal        => (0.00, 0.00),
-                                                                            Feld_Sonstiges     => (0.00, 0.00),
-                                                                            Feld_Fläche_Frei   => (0.00, 0.00),
-                                                                            Feld_Fläche_Belegt => (0.00, 0.00)
+                                                                            others => (0.00, 0.00)
                                                                            )
                                                                         );
 
@@ -93,14 +87,6 @@ private
             XPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure GenerierungLandmasseFläche
-     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
-     with
-       Pre =>
-         (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
-
-   procedure GenerierungPangäa
      (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
      with
        Pre =>

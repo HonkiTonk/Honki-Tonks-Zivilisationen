@@ -48,19 +48,18 @@ package Karten is
                                             GlobaleDatentypen.Inseln     => (3, 3),
                                             GlobaleDatentypen.Kontinente => (7, 7),
                                             GlobaleDatentypen.Pangäa     => (1, 1),
-                                            GlobaleDatentypen.Nur_Land   => (1, 1),
-                                            GlobaleDatentypen.Chaos      => (1, 1)
+                                            others                       => (1, 1)
                                            );
    FelderVonLandartZuLandart : GrößeLandartArray := (
                                                        GlobaleDatentypen.Inseln     => (15, 15),
                                                        GlobaleDatentypen.Kontinente => (22, 22),
                                                        GlobaleDatentypen.Pangäa     => (1, 1),
-                                                       GlobaleDatentypen.Nur_Land   => (1, 1),
-                                                       GlobaleDatentypen.Chaos      => (1, 1)
+                                                       others                       => (1, 1)
                                                       );
 
    -- Inseln, Kontinente, Pangäa, Nur Land, Chaos
    Kartenart : GlobaleDatentypen.Kartenart_Verwendet_Enum := GlobaleDatentypen.Inseln;
+   KartenartGemischt : Boolean := False;
    -- Kalt, Gemäßigt, Heiß, Eiszeit, Wüste
    Kartentemperatur : GlobaleDatentypen.Kartentemperatur_Verwendet_Enum := GlobaleDatentypen.Kalt;
    -- X-Zylinder, Y-Zylinder, Torus, Kugel, Viereck, Kugel_Gedreht

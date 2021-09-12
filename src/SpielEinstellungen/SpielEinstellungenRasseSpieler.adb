@@ -5,7 +5,7 @@ use Ada.Wide_Wide_Text_IO, Ada.Characters.Wide_Wide_Latin_9;
 
 with GlobaleTexte, GlobaleKonstanten;
 
-with LeseKarten, LeseEinheitenGebaut;
+with LeseEinheitenGebaut;
 
 with Auswahl, ZufallGeneratorenSpieleinstellungen, Anzeige, Eingabe, ZufallGeneratorenKarten, EinheitenAllgemein, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen;
 
@@ -252,29 +252,23 @@ package body SpielEinstellungenRasseSpieler is
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Boolean
    is begin
-      
-      case
-        LeseKarten.Grund (PositionExtern => PositionExtern)
-      is
-         when GlobaleDatentypen.Lava | GlobaleDatentypen.Eis =>
-            return False;
-            
-         when others =>
-            null;
-      end case;
 
+      FreieFelder := 0;
+      
       case
         EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => PositionExtern).Platznummer
       is
          when GlobaleKonstanten.LeerEinheitStadtNummer =>
             StartKoordinaten (1) := PositionExtern;
+            StartpositionGefunden := False;
+            
             YAchseSchleife:
-            for YÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            for YÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
                XAchseSchleife:
-               for XÄnderung in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+               for XÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
 
                   KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => PositionExtern,
-                                                                              ÄnderungExtern    => (0, YÄnderung, XÄnderung));
+                                                                              ÄnderungExtern    => (0, YÄnderungSchleifenwert, XÄnderungSchleifenwert));
             
                   if
                     KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
@@ -284,33 +278,36 @@ package body SpielEinstellungenRasseSpieler is
                   elsif
                     BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
                                                                            IDExtern           => 2,
-                                                                           NeuePositionExtern => KartenWert) = False
-                    or
-                      LeseKarten.Grund (PositionExtern => KartenWert) = GlobaleDatentypen.Lava
-                    or
-                      LeseKarten.Grund (PositionExtern => KartenWert) = GlobaleDatentypen.Eis
+                                                                           NeuePositionExtern => KartenWert)
+                    = False
                   then
                      null;
                      
                   elsif
-                    YÄnderung = 0
+                    YÄnderungSchleifenwert = 0
                     and
-                      XÄnderung = 0
+                      XÄnderungSchleifenwert = 0
                   then
                      null;
                      
-                  else                           
+                  elsif
+                    StartpositionGefunden = False
+                  then
                      case
                        EinheitSuchen.KoordinatenEinheitOhneRasseSuchen (KoordinatenExtern => KartenWert).Platznummer
                      is
                         when GlobaleKonstanten.LeerEinheitStadtNummer =>
                            StartKoordinaten (2) := KartenWert;
                            StartpunktFestlegen (RasseExtern => RasseExtern);
-                           return True;
+                           StartpositionGefunden := True;
+                           FreieFelder := FreieFelder + 1;
                                  
                         when others =>
                            null;
                      end case;
+                     
+                  else                           
+                     FreieFelder := FreieFelder + 1;
                   end if;
 
                end loop XAchseSchleife;
@@ -320,7 +317,14 @@ package body SpielEinstellungenRasseSpieler is
             null;
       end case;
          
-      return False;
+      if
+        FreieFelder >= 3
+      then
+         return True;
+               
+      else
+         return False;
+      end if;
       
    end UmgebungPrüfen;
 

@@ -49,6 +49,10 @@ package SpielEinstellungenRasseSpieler is
    
 private
    
+   StartpositionGefunden : Boolean;
+   
+   FreieFelder : GlobaleDatentypen.SichtweiteMitNullwert;
+   
    SicherheitsTestWert : GlobaleDatentypen.KartenfeldPositivMitNullwert;
    
    Spieler : Natural;

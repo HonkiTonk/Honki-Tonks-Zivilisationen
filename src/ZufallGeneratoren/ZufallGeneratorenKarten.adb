@@ -1,5 +1,7 @@
 pragma SPARK_Mode (Off);
 
+with LeseKarten;
+
 with BewegungPassierbarkeitPruefen;
 
 package body ZufallGeneratorenKarten is
@@ -95,17 +97,19 @@ package body ZufallGeneratorenKarten is
                end loop BenutzerdefinierteAuswahlSchleife;
          end case;
          
-         case
+         if
            BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => RasseExtern,
                                                                   IDExtern           => 1,
                                                                   NeuePositionExtern => (EAchse, YAchse, XAchse))
-         is
-            when True =>
-               return (EAchse, YAchse, XAchse);
+             = True
+           and
+             LeseKarten.Grund (PositionExtern => (EAchse, YAchse, XAchse)) /= GlobaleDatentypen.Eis 
+         then
+            return (EAchse, YAchse, XAchse);
                
-            when False =>
-               null;
-         end case;
+         else
+            null;
+         end if;
          
       end loop PositionBestimmenSchleife;      
       
@@ -136,7 +140,7 @@ package body ZufallGeneratorenKarten is
    
    
    function ChaoskarteFluss
-      return GlobaleDatentypen.Karten_Grund_Enum
+     return GlobaleDatentypen.Karten_Grund_Enum
    is begin
       
       FlussWählenChaoskarte.Reset (FlussGewählt);
