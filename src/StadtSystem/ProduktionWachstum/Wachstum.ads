@@ -5,16 +5,11 @@ use GlobaleDatentypen;
 
 package Wachstum is
    
-   procedure Wachstum;
+   procedure StadtWachstum;
    
-   procedure WachstumStadtExistiert
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      StadtGegründetExtern : in Boolean)
-     with
-       Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-          and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   procedure WachstumWichtiges
+     (RasseExtern : in GlobaleDatentypen.Rassen_Enum);
+   
 private
    
    WachstumSchrumpfung : Boolean;
@@ -34,5 +29,11 @@ private
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   procedure WachstumsratenBerechnen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
 end Wachstum;

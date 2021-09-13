@@ -50,8 +50,8 @@ package body ZwischenDenRunden is
       
       EinheitenAllgemein.HeilungBewegungspunkteNeueRundeErmitteln;
       Verbesserungen.VerbesserungFertiggestellt;
-      Wachstum.Wachstum;
-      StadtProduktion.StadtProduktionPrüfen ((GlobaleDatentypen.Leer, 0));
+      Wachstum.StadtWachstum;
+      StadtProduktion.StadtProduktion ((GlobaleDatentypen.Leer, 0));
       GeldForschungMengeSetzen;
       ForschungAllgemein.ForschungFortschritt;
       

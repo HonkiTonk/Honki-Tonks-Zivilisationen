@@ -8,82 +8,40 @@ with LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
 with StadtWerteFestlegen, StadtEinheitenBauen, StadtGebaeudeBauen, StadtEntfernen, Sichtbarkeit, StadtMeldungenSetzen;
 
 package body Wachstum is
-
-   procedure Wachstum
+   
+   procedure StadtWachstum
    is begin
       
-      RassenEinsSchleife:
-      for RasseEinsSchleifenwert in GlobaleVariablen.StadtGebautArray'Range (1) loop
+      RassenSchleife:
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
-           GlobaleVariablen.RassenImSpiel (RasseEinsSchleifenwert)
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
          is
             when GlobaleDatentypen.Leer =>
                null;
                
             when others =>
                StadtSchleife:
-               for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseEinsSchleifenwert).Städtegrenze loop
-            
-                  case
-                    StadtNummerSchleifenwert
-                  is
-                     when GlobaleVariablen.StadtGebautArray'First (2) =>
-                        SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => RasseEinsSchleifenwert,
-                                                                 ForschungsrateZugewinnExtern => 0,
-                                                                 RechnenSetzenExtern          => False);
-                        SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseEinsSchleifenwert,
-                                                                GeldZugewinnExtern  => 0,
-                                                                RechnenSetzenExtern => False);
+               for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Städtegrenze loop
                   
-                     when others =>
-                        null;
-                  end case;
-            
                   case
-                    LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert))
+                    LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert))
                   is
                      when GlobaleDatentypen.Leer =>
                         null;
                
                      when others =>
-                        WachstumEinwohner (StadtRasseNummerExtern => (RasseEinsSchleifenwert, StadtNummerSchleifenwert));
+                        WachstumEinwohner (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert));
+                        WachstumProduktion (StadtRasseNummerExtern => (RasseSchleifenwert, StadtSchleifenwert));
                   end case;               
             
                end loop StadtSchleife;
          end case;
          
-      end loop RassenEinsSchleife;
+      end loop RassenSchleife;
       
-   end Wachstum;
-   
-   
-   
-   procedure WachstumStadtExistiert
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      StadtGegründetExtern : in Boolean)
-   is begin
-      
-      SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => StadtRasseNummerExtern.Rasse,
-                                               ForschungsrateZugewinnExtern => LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                               RechnenSetzenExtern          => True);
-      
-      SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => StadtRasseNummerExtern.Rasse,
-                                              GeldZugewinnExtern  => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                              RechnenSetzenExtern => True);
-      
-      if
-        LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern) > GlobaleKonstanten.LeerStadt.Produktionrate
-        and
-          StadtGegründetExtern = False
-      then
-         WachstumProduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
-         
-      else
-         null;
-      end if;        
-   
-   end WachstumStadtExistiert;
+   end StadtWachstum;
 
 
 
@@ -93,7 +51,7 @@ package body Wachstum is
       
       SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                           NahrungsmittelExtern   => LeseStadtGebaut.Nahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern),
-                                          ÄndernSetzenExtern    => True);
+                                          ÄndernSetzenExtern     => True);
 
       if
         LeseStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern)
@@ -103,10 +61,10 @@ package body Wachstum is
       then
          SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                              NahrungsmittelExtern   => GlobaleKonstanten.LeerStadt.Nahrungsmittel,
-                                             ÄndernSetzenExtern    => False);
+                                             ÄndernSetzenExtern     => False);
          SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
                                                 EinwohnerArbeiterExtern => True,
-                                                ÄnderungExtern         => 1);
+                                                ÄnderungExtern          => 1);
          StadtWerteFestlegen.BewirtschaftbareFelderBelegen (ZuwachsOderSchwundExtern => True,
                                                             StadtRasseNummerExtern   => StadtRasseNummerExtern);
          WachstumSchrumpfung := True;
@@ -116,7 +74,7 @@ package body Wachstum is
       then
          SchreibeStadtGebaut.Nahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                              NahrungsmittelExtern   => GlobaleKonstanten.LeerStadt.Nahrungsmittel,
-                                             ÄndernSetzenExtern    => False);
+                                             ÄndernSetzenExtern     => False);
          
          case
            LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
@@ -192,14 +150,6 @@ package body Wachstum is
       case
         LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern)
       is
-         when GlobaleKonstanten.LeerBauprojekt =>
-            SchreibeWichtiges.Geldmenge (RasseExtern         => StadtRasseNummerExtern.Rasse,
-                                         GeldZugewinnExtern  => Integer (LeseStadtGebaut.Produktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern)) / 5,
-                                         RechnenSetzenExtern => True);
-            SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                            RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
-                                            ÄndernSetzenExtern     => False);
-            
          when GlobaleKonstanten.BauprojekteGebäudeAnfang .. GlobaleKonstanten.BauprojekteGebäudeEnde =>
             if
               LeseStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern)
@@ -225,9 +175,77 @@ package body Wachstum is
             end if;
 
          when others =>
-            null;
+            SchreibeStadtGebaut.Ressourcen (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                            RessourcenExtern       => GlobaleKonstanten.LeerStadt.Ressourcen,
+                                            ÄndernSetzenExtern     => False);
       end case;
       
    end WachstumProduktion;
+   
+   
+   
+   procedure WachstumWichtiges
+     (RasseExtern : in GlobaleDatentypen.Rassen_Enum)
+   is begin
+      
+      case
+        RasseExtern
+      is
+         when GlobaleDatentypen.Leer =>
+            RassenSchleife:
+            for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+               
+               case
+                 GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
+               is
+                  when GlobaleDatentypen.Leer =>
+                     null;
+                     
+                  when others =>
+                     WachstumsratenBerechnen (RasseExtern => RasseSchleifenwert);
+               end case;
+               
+            end loop RassenSchleife;
+            
+         when others =>
+            WachstumsratenBerechnen (RasseExtern => RasseExtern);
+      end case;
+      
+   end WachstumWichtiges;
+   
+   
+   
+   procedure WachstumsratenBerechnen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,
+                                              GeldZugewinnExtern  => GlobaleKonstanten.LeerWichtigesZeug.GeldZugewinnProRunde,
+                                              RechnenSetzenExtern => False);
+      SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => RasseExtern,
+                                               ForschungsrateZugewinnExtern => GlobaleKonstanten.LeerWichtigesZeug.GesamteForschungsrate,
+                                               RechnenSetzenExtern          => False);
+      
+      StadtSchleife:
+      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
+         
+         case
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert))
+         is
+            when GlobaleDatentypen.Leer =>
+               null;
+               
+            when others =>
+               SchreibeWichtiges.GeldZugewinnProRunde (RasseExtern         => RasseExtern,
+                                                       GeldZugewinnExtern  => LeseStadtGebaut.Geldgewinnung (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
+                                                       RechnenSetzenExtern => True);
+               SchreibeWichtiges.GesamteForschungsrate (RasseExtern                  => RasseExtern,
+                                                        ForschungsrateZugewinnExtern => LeseStadtGebaut.Forschungsrate (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)),
+                                                        RechnenSetzenExtern          => True);
+         end case;
+         
+      end loop StadtSchleife;
+      
+   end WachstumsratenBerechnen;
 
 end Wachstum;

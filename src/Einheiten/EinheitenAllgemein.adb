@@ -205,7 +205,7 @@ package body EinheitenAllgemein is
          
       end loop PermanenteKostenSchleife;
       
-      StadtProduktion.StadtProduktionBerechnung (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt));
+      StadtProduktion.StadtProduktion (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Heimatstadt));
       
    end PermanenteKostenDurchEinheitÄndern;
    

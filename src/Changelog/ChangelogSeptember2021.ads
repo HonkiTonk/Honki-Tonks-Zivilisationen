@@ -112,17 +112,18 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.87 => 0.00.87 (14.09.2021):
+   -- Version 0.00.8710 => 0.00.87 (14.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8700 => 0.00.87 (13.09.2021):
+   -- Version 0.00.8700 => 0.00.8710 (13.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Berechnung der Stadtwerte und Wichtiges überarbeitet, so dass das gesamte Berechnungssystem jetzt einfacher und übersichtlicher ist.
+   -- Durch die Überarbeitung mehrere Berechnungsfehler/verzögerungen entfernt/korrigiert.
+   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    
@@ -131,7 +132,7 @@ package ChangelogSeptember2021 is
    -- Land- und Abstandsgrößenermittlung fertiggestellt, erzeugt jetzt halbwegs vernünftige Rechtecklandschaften in einer der Kartengröße angemessenen Menge.
    -- Festlegung des Startpunkte so geändert dass jetzt immer mindestens drei freie Felder um die Siedlerstarteinheit gibt.
    -- Fehler behoben der bei Änderung der Heimatstatdt einer Einheit zu Abstürzen führen konnte.
-   -- Kleinigkeiten korrigiert/angepasst.
+   -- Kleinigkeiten korrigiert/angepasst/überarbeitet.
    
    
    

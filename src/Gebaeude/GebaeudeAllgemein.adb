@@ -5,7 +5,7 @@ with GlobaleTexte, GlobaleKonstanten;
 with SchreibeWichtiges, SchreibeStadtGebaut;
 with LeseStadtGebaut, LeseGebaeudeDatenbank, LeseWichtiges;
 
-with Anzeige, GebaeudeRichtigeUmgebung;
+with Anzeige, GebaeudeRichtigeUmgebung, StadtProduktion;
 
 package body GebaeudeAllgemein is
 
@@ -85,6 +85,8 @@ package body GebaeudeAllgemein is
                                                      ÄndernSetzenExtern    => True);
          
       end loop PermanenteKostenSchleife;
+      
+      StadtProduktion.StadtProduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
       
    end PermanenteKostenDurchGebäudeÄndern;
    

@@ -16,10 +16,8 @@ package StadtBauen is
 
 private
 
-   StadtNummer : GlobaleDatentypen.MaximaleStädte;
+   StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
    WelcherName : Positive := 1;
-
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    procedure StandardStadtNamen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -29,7 +27,32 @@ private
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
+   procedure StadtEintragen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
+
+
+   function StadtBaubar
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+     with
+       Pre =>
+         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
+          and
+            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+
+   function StadtnummerErmitteln
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
    function HauptstadtPrüfen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)

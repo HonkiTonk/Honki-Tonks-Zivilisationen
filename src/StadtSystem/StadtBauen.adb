@@ -15,87 +15,29 @@ package body StadtBauen is
    is begin     
         
       case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
-                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+        StadtBaubar (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
-         when GlobaleDatentypen.Arbeiter =>
+         when True =>
             null;
-         
-         when others =>
+            
+         when False =>
             return False;
       end case;
+
+      StadtNummer := StadtnummerErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
-      if
-        LeseKarten.BelegterGrundLeer (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
-      then
-         null;
-         
-      elsif
-        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
-      then
-         return False;
-         
-      else
-         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                               TextZeileExtern => 6);
-         return False;
-      end if;
-
-      StadtSchleife:
-      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze loop
-         
-         if
-           StadtNummerSchleifenwert = GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Städtegrenze
-           and
-             LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) /= GlobaleDatentypen.Leer
-         then
-            case
-              GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)
-            is
-               when GlobaleDatentypen.Spieler_KI =>
-                  return False;
-               
-               when others =>
-                  Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                        TextZeileExtern => 7);
-                  return False;
-            end case;
-
-         elsif
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummerSchleifenwert)) /= GlobaleDatentypen.Leer
-         then
+      case
+        StadtNummer
+      is
+         when GlobaleDatentypen.MaximaleStädteMitNullWert'First =>
+            return False;
+            
+         when others =>
             null;
+      end case;
             
-         else
-            StadtNummer := StadtNummerSchleifenwert;
-            exit StadtSchleife;
-         end if;
-         
-      end loop StadtSchleife;
-            
-      SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
-      SchreibeStadtGebaut.ID (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                              IDExtern               => HauptstadtPrüfen (RasseExtern => EinheitRasseNummerExtern.Rasse));
-      SchreibeStadtGebaut.Position (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                                    PositionExtern         => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
-      SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                                           UmgebungGrößeExtern    => 1,
-                                           ÄndernSetzenExtern     => False);
-      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                                             EinwohnerArbeiterExtern => True,
-                                             ÄnderungExtern         => 1);
-      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => (EinheitRasseNummerExtern.Rasse, StadtNummer),
-                                             EinwohnerArbeiterExtern => False,
-                                             ÄnderungExtern         => 1);
-      GlobaleVariablen.StadtGebaut (EinheitRasseNummerExtern.Rasse, StadtNummer).UmgebungBewirtschaftung := (0 => (0 => True, others => False), others => (others => False));
-      SchreibeWichtiges.AnzahlStädte (RasseExtern     => EinheitRasseNummerExtern.Rasse,
-                                       PlusMinusExtern => True);
-      
-      StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
-      StadtProduktion.StadtProduktionPrüfen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
-      SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => EinheitRasseNummerExtern.Rasse);
-      Sichtbarkeit.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer));
-            
+      StadtEintragen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
+                      PositionExtern         => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));            
       EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
       case
@@ -112,6 +54,115 @@ package body StadtBauen is
       return True;
       
    end StadtBauen;
+   
+   
+   
+   function StadtBaubar
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
+      case
+        LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
+                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+      is
+         when GlobaleDatentypen.Arbeiter =>
+            null;
+         
+         when others =>
+            return False;
+      end case;
+      
+      if
+        LeseKarten.BelegterGrundLeer (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True
+      then
+         return True;
+         
+      elsif
+        GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI
+      then
+         return False;
+         
+      else
+         Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                                               TextZeileExtern => 6);
+         return False;
+      end if;
+      
+   end StadtBaubar;
+   
+   
+   
+   function StadtnummerErmitteln
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
+   is begin
+      
+      StadtSchleife:
+      for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
+         
+         if
+           StadtNummerSchleifenwert = GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze
+           and
+             LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= GlobaleDatentypen.Leer
+         then
+            case
+              GlobaleVariablen.RassenImSpiel (RasseExtern)
+            is
+               when GlobaleDatentypen.Spieler_Mensch =>
+                  Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                                                        TextZeileExtern => 7);
+               
+               when others =>
+                  null;
+            end case;
+
+         elsif
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtNummerSchleifenwert)) /= GlobaleDatentypen.Leer
+         then
+            null;
+            
+         else
+            return StadtNummerSchleifenwert;
+         end if;
+         
+      end loop StadtSchleife;
+      
+      return GlobaleDatentypen.MaximaleStädteMitNullWert'First;
+      
+   end StadtnummerErmitteln;
+   
+   
+   
+   procedure StadtEintragen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      SchreibeStadtGebaut.ID (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                              IDExtern               => HauptstadtPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse));
+      SchreibeStadtGebaut.Position (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                    PositionExtern         => PositionExtern);
+      SchreibeStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                           UmgebungGrößeExtern    => 1,
+                                           ÄndernSetzenExtern     => False);
+      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                             EinwohnerArbeiterExtern => True,
+                                             ÄnderungExtern         => 1);
+      SchreibeStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => StadtRasseNummerExtern,
+                                             EinwohnerArbeiterExtern => False,
+                                             ÄnderungExtern         => 1);
+      GlobaleVariablen.StadtGebaut (StadtRasseNummerExtern.Rasse, StadtRasseNummerExtern.Platznummer).UmgebungBewirtschaftung := (0 => (0 => True, others => False), others => (others => False));
+      SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
+                                       PlusMinusExtern => True);
+      
+      StadtWerteFestlegen.StadtUmgebungGrößeFestlegen (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtProduktion.StadtProduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => StadtRasseNummerExtern.Rasse);
+      Sichtbarkeit.SichtbarkeitsprüfungFürStadt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      
+   end StadtEintragen;
 
 
 

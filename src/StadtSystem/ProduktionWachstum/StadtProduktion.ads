@@ -4,25 +4,19 @@ with GlobaleRecords, GlobaleDatentypen, GlobaleVariablen;
 use GlobaleDatentypen;
 
 package StadtProduktion is
-
-   procedure StadtProduktionPrüfen
+   
+   procedure StadtProduktion
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer <= GlobaleVariablen.StadtGebaut'Last (2)
           and
             (if StadtRasseNummerExtern.Rasse /= GlobaleDatentypen.Leer then GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer));
-   
-   procedure StadtProduktionBerechnung
-     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-          and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 private
 
+   VorhandeneEinwohner : GlobaleDatentypen.ProduktionFeld;
+   
    NutzbarerBereich : GlobaleDatentypen.Kartenfeld;
 
    NahrungsverbrauchEinwohnerMultiplikator : GlobaleDatentypen.GesamtproduktionStadt;   
@@ -31,6 +25,24 @@ private
    ForschungsverbrauchKorruptionMultiplikator : GlobaleDatentypen.GesamtproduktionStadt;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
+   procedure StadtProduktionAlle;
+   
+   procedure StadtProduktionNullSetzen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   procedure FelderProduktionBerechnen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure WeitereNahrungsproduktionÄnderungen 
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -57,6 +69,14 @@ private
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
    procedure WeitereForschungsrateÄnderungen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
+          and
+            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
+   
+   procedure StadtProduktionBerechnung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>

@@ -5,7 +5,7 @@ with GlobaleKonstanten;
 with SchreibeEinheitenGebaut, SchreibeStadtGebaut, SchreibeKarten, SchreibeWichtiges;
 with LeseKarten, LeseEinheitenGebaut, LeseStadtGebaut;
 
-with KartePositionPruefen, RasseEntfernen;
+with KartePositionPruefen, RasseEntfernen, Wachstum;
 
 package body StadtEntfernen is
 
@@ -17,6 +17,7 @@ package body StadtEntfernen is
       HeimatstädteEntfernen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       NeueHauptstadtSetzen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       SchreibeStadtGebaut.Nullsetzung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Wachstum.WachstumWichtiges (RasseExtern => StadtRasseNummerExtern.Rasse);
       SchreibeWichtiges.AnzahlStädte (RasseExtern     => StadtRasseNummerExtern.Rasse,
                                        PlusMinusExtern => False);
       RasseEntfernen.RasseExistenzPrüfen (RasseExtern => StadtRasseNummerExtern.Rasse);
