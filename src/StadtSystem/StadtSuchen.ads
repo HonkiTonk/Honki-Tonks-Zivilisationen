@@ -47,13 +47,6 @@ package StadtSuchen is
          Post =>
            ((if KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse /= GlobaleDatentypen.Leer then GlobaleVariablen.RassenImSpiel (KoordinatenStadtOhneSpezielleRasseSuchen'Result.Rasse) /= GlobaleDatentypen.Leer));
    
-   function AnzahlStädteErmitteln
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-      return GlobaleDatentypen.MaximaleStädteMitNullWert
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-   
    function StadtNachNamenSuchen
      return GlobaleRecords.RassePlatznummerRecord;
 

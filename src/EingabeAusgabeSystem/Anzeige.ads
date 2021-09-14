@@ -72,19 +72,17 @@ package Anzeige is
    
    procedure AllgemeineAnzeige
      (AktuelleAuswahlExtern : in GlobaleDatentypen.KartenverbesserungEinheitenID);
+   
+   procedure AbstandEinbauen
+     (AbstandExtern : in GlobaleTexte.Welcher_Abstand_Enum);
 
 private
    
-   Taste : Wide_Wide_Character;
-
    Zeichengrenze : constant Positive := 100;
    ZeichengrenzenMultiplikator : Positive;
       
-   LängsterText : Integer;
-   Wert : Integer;
+   LängsterText : Natural;
    
-   Teilung : Float;
-
    TextNeu : Unbounded_Wide_Wide_String;
    
 end Anzeige;

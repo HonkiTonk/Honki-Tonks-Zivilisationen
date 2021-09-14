@@ -7,7 +7,7 @@ with KIDatentypen;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseWichtiges, LeseRassenDatenbank, LeseStadtGebaut;
 
-with StadtSuchen, EinheitSuchen, DiplomatischerZustand;
+with EinheitSuchen, DiplomatischerZustand;
 
 with KIAufgabenVerteilt, KIPruefungen;
 
@@ -94,7 +94,7 @@ package body KIVorhandeneAufgaben is
       return GlobaleDatentypen.ProduktionSonstiges
    is begin
       
-      VorhandeneStädte := StadtSuchen.AnzahlStädteErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
+      VorhandeneStädte := LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       if
         VorhandeneStädte = GlobaleKonstanten.LeerEinheitStadtNummer
@@ -253,7 +253,7 @@ package body KIVorhandeneAufgaben is
    is begin
       
       if
-        18 + StadtSuchen.AnzahlStädteErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse)
+        18 + LeseWichtiges.AnzahlStädte (RasseExtern => EinheitRasseNummerExtern.Rasse)
         < LeseWichtiges.AnzahlEinheiten (RasseExtern => EinheitRasseNummerExtern.Rasse)
       then
          return 3;

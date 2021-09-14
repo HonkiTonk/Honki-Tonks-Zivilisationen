@@ -54,10 +54,19 @@ package BewegungLadenEntladen is
 private   
    
    TransporterNummer : GlobaleDatentypen.MaximaleEinheiten;
-   EinheitAusladen : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
+   EinheitAusladen : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    FreierPlatzNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
+   function FreienPlatzErmitteln
+     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+     with
+       Pre =>
+         (TransporterExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (TransporterExtern.Rasse).Einheitengrenze
+          and
+            GlobaleVariablen.RassenImSpiel (TransporterExtern.Rasse) /= GlobaleDatentypen.Leer);
 
 end BewegungLadenEntladen;

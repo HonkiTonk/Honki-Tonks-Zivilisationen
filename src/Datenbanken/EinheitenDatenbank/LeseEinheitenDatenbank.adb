@@ -255,8 +255,7 @@ package body LeseEinheitenDatenbank is
          return 1;
          
       elsif
-        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Transportkapazität
-          <= GlobaleRecords.TransporterArray'Last
+        EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Transportkapazität <= GlobaleRecords.TransporterArray'Last
       then
          return EinheitenDatenbank.EinheitenListe (RasseExtern, IDExtern).Transportkapazität;
          

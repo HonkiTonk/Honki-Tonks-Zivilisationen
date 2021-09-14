@@ -85,6 +85,17 @@ package body BewegungBerechnen is
       
       SchreibeEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                         PositionExtern           => NeuePositionExtern);
+      
+      
+   end BewegungEinheitenBerechnung;
+   
+   
+   
+   procedure NachBewegung
+     (NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
       Sichtbarkeit.SichtbarkeitsprüfungFürEinheit (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       
       -- Prüft nur ob das Feld auf dass sich diese Einheit bewegt bereits von einer anderen Rasse aufgedeckt wurde und stellt entsprechend Kontakt her.
@@ -112,14 +123,14 @@ package body BewegungBerechnen is
          
       end loop KontaktSchleife;
       
-   end BewegungEinheitenBerechnung;
+   end NachBewegung;
    
-   
+      
    
    function AbzugDurchBewegung
      (NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.BewegungFloat
+         return GlobaleDatentypen.BewegungFloat
    is begin
       
       Welchen_Bonus := StraßeUndFlussPrüfen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -161,7 +172,7 @@ package body BewegungBerechnen is
    function StraßeUndFlussPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return Bewegungsbonuse_Enum
+         return Bewegungsbonuse_Enum
    is begin
 
       if

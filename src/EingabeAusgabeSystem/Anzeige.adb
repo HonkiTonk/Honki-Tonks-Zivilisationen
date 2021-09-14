@@ -24,21 +24,7 @@ package body Anzeige is
             Put_Line (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (ÜberschriftDateiExtern), ÜberschriftZeileExtern)));
       end case;
 
-      case
-        AbstandAnfangExtern
-      is
-         when GlobaleTexte.Leer =>
-            null;
-
-         when GlobaleTexte.Kleiner_Abstand =>
-            Put (Item => " ");
-            
-         when GlobaleTexte.Großer_Abstand =>
-            Put (Item => "    ");
-            
-         when GlobaleTexte.Neue_Zeile =>
-            New_Line;
-      end case;
+      AbstandEinbauen (AbstandExtern => AbstandAnfangExtern);
 
       TextAnzeigeSchleife:
       for TextZeileSchleifenwert in ErsteZeileExtern .. LetzteZeileExtern loop
@@ -55,21 +41,7 @@ package body Anzeige is
          elsif
            ErsteZeileExtern < LetzteZeileExtern
          then
-            case
-              AbstandMitteExtern
-            is
-               when GlobaleTexte.Leer =>
-                  null;
-                  
-               when GlobaleTexte.Kleiner_Abstand =>
-                  Put (Item => " ");
-            
-               when GlobaleTexte.Großer_Abstand =>
-                  Put (Item => "    ");
-            
-               when GlobaleTexte.Neue_Zeile =>
-                  New_Line;
-            end case;
+            AbstandEinbauen (AbstandExtern => AbstandMitteExtern);
 
          else
             null;
@@ -77,21 +49,7 @@ package body Anzeige is
 
       end loop TextAnzeigeSchleife;
       
-      case
-        AbstandEndeExtern
-      is
-         when GlobaleTexte.Leer =>
-            null;
-
-         when GlobaleTexte.Kleiner_Abstand =>
-            Put (Item => " ");
-            
-         when GlobaleTexte.Großer_Abstand =>
-            Put (Item => "    ");
-            
-         when GlobaleTexte.Neue_Zeile =>
-            New_Line;
-      end case;
+      AbstandEinbauen (AbstandExtern => AbstandEndeExtern);
       
    end AnzeigeOhneAuswahlNeu;
 
@@ -412,22 +370,8 @@ package body Anzeige is
          when others =>
             Put_Line (Item => To_Wide_Wide_String (Source => GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (ÜberschriftDateiExtern), ÜberschriftZeileExtern)));
       end case;
-
-      case
-        AbstandAnfangExtern
-      is
-         when GlobaleTexte.Leer =>
-            null;
-
-         when GlobaleTexte.Kleiner_Abstand =>
-            Put (Item => " ");
-            
-         when GlobaleTexte.Großer_Abstand =>
-            Put (Item => "    ");
-            
-         when GlobaleTexte.Neue_Zeile =>
-            New_Line;
-      end case;
+      
+      AbstandEinbauen (AbstandExtern => AbstandAnfangExtern);
 
       ZeichengrenzenMultiplikator := 1;
 
@@ -460,8 +404,18 @@ package body Anzeige is
          
       end loop AnzeigeSchleife;
 
+      AbstandEinbauen (AbstandExtern => AbstandEndeExtern);
+      
+   end AnzeigeLangerTextNeu;
+   
+   
+   
+   procedure AbstandEinbauen
+     (AbstandExtern : in GlobaleTexte.Welcher_Abstand_Enum)
+   is begin
+      
       case
-        AbstandEndeExtern
+        AbstandExtern
       is
          when GlobaleTexte.Leer =>
             null;
@@ -476,6 +430,6 @@ package body Anzeige is
             New_Line;
       end case;
       
-   end AnzeigeLangerTextNeu;
+   end AbstandEinbauen;
 
 end Anzeige;

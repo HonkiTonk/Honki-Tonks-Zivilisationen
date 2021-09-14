@@ -244,29 +244,31 @@ package body BewegungEinheiten is
         DiplomatischerZustand.GegnerAngreifen (EigeneRasseExtern      => EinheitRasseNummerExtern.Rasse,
                                                GegnerischeRasseExtern => FremdeEinheitExtern.Rasse)
       is
-         when True =>
-            if
-              KampfsystemEinheiten.KampfsystemNahkampf (AngreiferExtern    => EinheitRasseNummerExtern,
-                                                        VerteidigerExtern => FremdeEinheitExtern)
-              = True
-            then
-               case
-                 StadtAufFeld.Platznummer
-               is
-                  when GlobaleKonstanten.LeerEinheitStadtNummer =>
-                     return True;
-                     
-                  when others =>
-                     return False;
-               end case;
-               
-            else
-               null;
-            end if;
-            
          when False =>
+            return False;
+            
+         when True =>
             null;
       end case;
+      
+      if
+        KampfsystemEinheiten.KampfsystemNahkampf (AngreiferExtern    => EinheitRasseNummerExtern,
+                                                  VerteidigerExtern => FremdeEinheitExtern)
+        = True
+      then
+         case
+           StadtAufFeld.Platznummer
+         is
+            when GlobaleKonstanten.LeerEinheitStadtNummer =>
+               return True;
+                     
+            when others =>
+               null;
+         end case;
+               
+      else
+         null;
+      end if;
       
       return False;
       

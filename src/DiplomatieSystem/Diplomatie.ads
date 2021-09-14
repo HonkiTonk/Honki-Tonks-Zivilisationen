@@ -13,7 +13,6 @@ package Diplomatie is
 
 private
 
-   AndereRassenVorhanden : Boolean;
    KriegJetzt : Boolean;
 
    DiplomatischeAktion : Integer;
@@ -29,7 +28,15 @@ private
 
 
    function DiplomatischenStatusÄndern
-     (RasseExtern, KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Integer;
+
+   function AndereRassenVorhanden
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Boolean
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
 
 end Diplomatie;

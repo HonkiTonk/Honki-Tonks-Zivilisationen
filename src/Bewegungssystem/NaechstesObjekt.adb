@@ -28,7 +28,7 @@ package body NaechstesObjekt is
          if
            LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) = GlobaleKonstanten.LeerEinheitenID
            or
-             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) = GlobaleKonstanten.LeerEinheit.Bewegungspunkte
+             (LeseEinheitenGebaut.Bewegungspunkte (EinheitRasseNummerExtern => (RasseExtern, AktuelleEinheit (RasseExtern))) <= GlobaleKonstanten.LeerEinheit.Bewegungspunkte
               and
                 BewegungspunkteExtern = Hat_Bewegungspunkte)
            or

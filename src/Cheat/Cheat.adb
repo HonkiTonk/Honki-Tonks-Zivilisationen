@@ -103,15 +103,7 @@ package body Cheat is
          RassenZweiteSchleife:
          for RasseZweiSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
             
-            case
-              GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand
-            is
-               when GlobaleDatentypen.Krieg | GlobaleDatentypen.Unbekannt =>
-                  GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := GlobaleDatentypen.Neutral;
-                  
-               when others =>
-                  GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := GlobaleDatentypen.Krieg;
-            end case;
+            GlobaleVariablen.Diplomatie (RasseEinsSchleifenwert, RasseZweiSchleifenwert).AktuellerZustand := GlobaleDatentypen.Neutral;
             
          end loop RassenZweiteSchleife;
       end loop RassenErsteSchleife;

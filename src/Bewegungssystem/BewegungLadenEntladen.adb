@@ -14,25 +14,7 @@ package body BewegungLadenEntladen is
       LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
    is begin
       
-      FreierPlatzNummer := GlobaleKonstanten.LeerTransportiertWirdTransportiert;
-                                          
-      TransporterSchleife:
-      for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
-                                                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
-        
-         case
-           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
-                                              PlatzExtern              => FreierPlatzSchleifenwert)
-         is
-            when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
-               FreierPlatzNummer := FreierPlatzSchleifenwert;
-               exit TransporterSchleife;
-               
-            when others =>
-               null;
-         end case;
-         
-      end loop TransporterSchleife;      
+      FreierPlatzNummer := FreienPlatzErmitteln (TransporterExtern => TransporterExtern);
       
       case
         FreierPlatzNummer
@@ -67,6 +49,34 @@ package body BewegungLadenEntladen is
    
    
    
+   function FreienPlatzErmitteln
+     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+   is begin
+      
+      TransporterSchleife:
+      for FreierPlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
+                                                                                                                           IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
+        
+         case
+           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+                                              PlatzExtern              => FreierPlatzSchleifenwert)
+         is
+            when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
+               return FreierPlatzSchleifenwert;
+               
+            when others =>
+               null;
+         end case;
+         
+      end loop TransporterSchleife;
+      
+      return GlobaleKonstanten.LeerTransportiertWirdTransportiert;
+      
+   end FreienPlatzErmitteln;
+     
+      
+   
    procedure EinheitAusTransporterEntfernen
      (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord;
       LadungExtern : in GlobaleDatentypen.MaximaleEinheiten)
@@ -78,7 +88,8 @@ package body BewegungLadenEntladen is
 
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
-                                              PlatzExtern              => TransporterLeerenSchleifenwert) = LadungExtern
+                                              PlatzExtern              => TransporterLeerenSchleifenwert)
+           = LadungExtern
          then
             SchreibeEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
                                                    LadungExtern             => GlobaleKonstanten.LeerTransportiertWirdTransportiert,

@@ -9,41 +9,16 @@ with Anzeige;
 
 package body Eingabe is 
 
-   -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e/Enter (Eingabe bestätigen) = 2, sonst 0
    function GanzeZahl
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ZeileExtern : in Positive;
-      ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
+      ZahlenMinimumExtern : in Integer;
+      ZahlenMaximumExtern : in Integer)
       return Integer
    is begin
       
-      if
-        ZahlenMaximumExtern > ZahlenMaximum
-      then
-         MaximalerWert := ZahlenMaximum;
-         
-      elsif
-        ZahlenMaximumExtern < ZahlenMinimum
-      then
-         return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
-         
-      else
-         MaximalerWert := ZahlenMaximumExtern;
-      end if;
-      
-      if
-        ZahlenMinimumExtern < ZahlenMinimum
-      then
-         MinimalerWert := ZahlenMinimum;
-           
-      elsif
-        ZahlenMinimumExtern > ZahlenMaximum
-      then
-         return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
-           
-      else
-         MinimalerWert := ZahlenMinimumExtern;
-      end if;
+      MaximalerWert := MaximumErmitteln (ZahlenMaximumExtern => ZahlenMaximumExtern);
+      MinimalerWert := MinimumErmitteln (ZahlenMinimumExtern => ZahlenMinimumExtern);
       
       if
         ZahlenMinimumExtern >= ZahlenMaximumExtern
@@ -51,11 +26,9 @@ package body Eingabe is
          return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
          
       else
-         null;
+         ZahlenString := ("000000000");
+         WelchesVorzeichen := True;
       end if;
-      
-      ZahlenString := ("000000000");
-      WelchesVorzeichen := True;
 
       ZahlenAußenSchleife:
       loop         
@@ -90,97 +63,80 @@ package body Eingabe is
       
       
    end GanzeZahl;
+   
+   
+   
+   function MaximumErmitteln
+     (ZahlenMaximumExtern : in Integer)
+      return Integer
+   is begin
+      
+      if
+        ZahlenMaximumExtern > ZahlenMaximum
+      then
+         return ZahlenMaximum;
+         
+      elsif
+        ZahlenMaximumExtern < ZahlenMinimum
+      then
+         return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
+         
+      else
+         return ZahlenMaximumExtern;
+      end if;
+      
+   end MaximumErmitteln;
+   
+   
+   
+   function MinimumErmitteln
+     (ZahlenMinimumExtern : in Integer)
+      return Integer
+   is begin
+      
+      if
+        ZahlenMinimumExtern < ZahlenMinimum
+      then
+         return ZahlenMinimum;
+           
+      elsif
+        ZahlenMinimumExtern > ZahlenMaximum
+      then
+         return GlobaleKonstanten.GanzeZahlAbbruchKonstante;
+           
+      else
+         return ZahlenMinimumExtern;
+      end if;
+      
+   end MinimumErmitteln;
 
 
 
    function ZahlSchleife
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ZeileExtern : in Positive;
-      ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
+      ZahlenMinimumExtern : in Integer;
+      ZahlenMaximumExtern : in Integer)
       return GlobaleDatentypen.LoopRangeMinusZweiZuZwei
    is begin
-
-      -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e/Enter (Eingabe bestätigen) = 2, sonst 0
+      
       ZahlenSchleife:
       loop
 
-         Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
-                                        TextDateiExtern        => TextDateiExtern,
-                                        ÜberschriftZeileExtern => 0,
-                                        ErsteZeileExtern       => ZeileExtern,
-                                        LetzteZeileExtern      => ZeileExtern,
-                                        AbstandAnfangExtern    => GlobaleTexte.Leer,
-                                        AbstandMitteExtern     => GlobaleTexte.Leer,
-                                        AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
-
-         if
-           ZahlenMinimumExtern > 0
-           and
-             Integer'Wide_Wide_Value (ZahlenString) = 0
-         then
-            null;
-            
-         elsif
-           ZahlenMinimumExtern >= 0
-           and
-             WelchesVorzeichen = False
-         then
-            WelchesVorzeichen := True;
-            Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
-                                               Width => 1,
-                                               Base  => 10);
-            
-         else
-            if
-              WelchesVorzeichen
-            then
-               null;
-
-            elsif
-              WelchesVorzeichen = False
-              and
-                Integer'Wide_Wide_Value (ZahlenString) = 0
-            then
-               null;
-                  
-            else
-               Put (Item => "-");
-            end if;
-            Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
-                                               Width => 1,
-                                               Base  => 10);
-         end if;
+         ZahlenAnzeige (TextDateiExtern     => TextDateiExtern,
+                        ZeileExtern         => ZeileExtern,
+                        ZahlenMinimumExtern => ZahlenMinimumExtern);
          
-         -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen) = -1, DEL (Letzte Ziffer löschen) = -2, e/Enter (Eingabe bestätigen) = 2, sonst 0
          Get_Immediate (Item => Zahlen);
          Put (Item => CSI & "2J" & CSI & "3J" & CSI & "H");
+         
+         -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
          case
            GanzeZahlPrüfung (ZeichenExtern => Zahlen)
          is
             when 1 =>
-               ZahlenNachLinksVerschiebenSchleife:
-               for ZahlEinsSchleifenwert in ZahlenString'First + 1 .. ZahlenString'Last loop
-                  
-                  ZahlenString (ZahlEinsSchleifenwert - 1) := ZahlenString (ZahlEinsSchleifenwert);
-
-               end loop ZahlenNachLinksVerschiebenSchleife;
-               ZahlenString (ZahlenString'Last) := Zahlen;
-
-               if
-                 Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximumExtern
-               then
-                  null;
-                  
-               else
-                  if
-                    ZahlenMaximumExtern >= 100_000_000
-                  then
-                     ZahlenString := ZahlenMaximumExtern'Wide_Wide_Image;
-                       
-                  else
-                     MinimumMaximumSetzen (ZahlenMinimumMaximumExtern => ZahlenMaximumExtern);
-                  end if;
-               end if;
+               ZahlHinzufügen (ZahlenMaximumExtern   => ZahlenMaximumExtern,
+                                EingegebeneZahlExtern => Zahlen);
 
             when -1 =>
                return -1;
@@ -212,13 +168,7 @@ package body Eingabe is
                end if;
 
             when -2 =>
-               ZahlenNachRechtsVerschiebenSchleifeZwei:
-               for ZahlDreiSchleifenwert in reverse ZahlenString'First + 1 .. ZahlenString'Last loop
-                  
-                  ZahlenString (ZahlDreiSchleifenwert) := ZahlenString (ZahlDreiSchleifenwert - 1);
-
-               end loop ZahlenNachRechtsVerschiebenSchleifeZwei;
-               ZahlenString (1) := '0';
+               ZahlEntfernen;
                   
             when others =>
                null;
@@ -227,10 +177,113 @@ package body Eingabe is
       end loop ZahlenSchleife;
       
    end ZahlSchleife;
+   
+   
+   
+   procedure ZahlHinzufügen
+     (ZahlenMaximumExtern : in Integer;
+      EingegebeneZahlExtern : in Wide_Wide_Character)
+   is begin
+      
+      ZahlenNachLinksVerschiebenSchleife:
+      for ZahlEinsSchleifenwert in ZahlenString'First + 1 .. ZahlenString'Last loop
+                  
+         ZahlenString (ZahlEinsSchleifenwert - 1) := ZahlenString (ZahlEinsSchleifenwert);
+
+      end loop ZahlenNachLinksVerschiebenSchleife;
+      ZahlenString (ZahlenString'Last) := EingegebeneZahlExtern;
+
+      if
+        Integer'Wide_Wide_Value (ZahlenString) <= ZahlenMaximumExtern
+      then
+         null;
+                  
+      elsif
+        ZahlenMaximumExtern >= 100_000_000
+      then
+         ZahlenString := ZahlenMaximumExtern'Wide_Wide_Image;
+                       
+      else
+         MinimumMaximumSetzen (ZahlenMinimumMaximumExtern => ZahlenMaximumExtern);
+      end if;
+      
+   end ZahlHinzufügen;
+   
+   
+   
+   procedure ZahlEntfernen
+   is begin
+      
+      ZahlenNachRechtsVerschiebenSchleifeZwei:
+      for ZahlDreiSchleifenwert in reverse ZahlenString'First + 1 .. ZahlenString'Last loop
+                  
+         ZahlenString (ZahlDreiSchleifenwert) := ZahlenString (ZahlDreiSchleifenwert - 1);
+
+      end loop ZahlenNachRechtsVerschiebenSchleifeZwei;
+      ZahlenString (1) := '0';
+      
+   end ZahlEntfernen;
+   
+   
+   
+   procedure ZahlenAnzeige
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      ZeileExtern : in Positive;
+      ZahlenMinimumExtern : in Integer)
+   is begin
+      
+      Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+                                     TextDateiExtern        => TextDateiExtern,
+                                     ÜberschriftZeileExtern => 0,
+                                     ErsteZeileExtern       => ZeileExtern,
+                                     LetzteZeileExtern      => ZeileExtern,
+                                     AbstandAnfangExtern    => GlobaleTexte.Leer,
+                                     AbstandMitteExtern     => GlobaleTexte.Leer,
+                                     AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+
+      if
+        ZahlenMinimumExtern > 0
+        and
+          Integer'Wide_Wide_Value (ZahlenString) = 0
+      then
+         null;
+            
+      elsif
+        ZahlenMinimumExtern >= 0
+        and
+          WelchesVorzeichen = False
+      then
+         WelchesVorzeichen := True;
+         Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
+                                            Width => 1,
+                                            Base  => 10);
+            
+      else
+         if
+           WelchesVorzeichen
+         then
+            null;
+
+         elsif
+           WelchesVorzeichen = False
+           and
+             Integer'Wide_Wide_Value (ZahlenString) = 0
+         then
+            null;
+                  
+         else
+            Put (Item => "-");
+         end if;
+         Ada.Integer_Wide_Wide_Text_IO.Put (Item  => Integer'Wide_Wide_Value (ZahlenString),
+                                            Width => 1,
+                                            Base  => 10);
+      end if;
+      
+   end ZahlenAnzeige;
 
 
 
-   -- 1 = 0 bis 9 als Zahl, q (Eingabe verlassen = -1, DEL (Letzte Ziffer löschen) = -2, e/Enter (Eingabe bestätigen) = 2, sonst 0
+   -- 1 = 0 bis 9 als Zahl, -1 = q (Eingabe verlassen), -2 = DEL (Letzte Ziffer löschen), 2 = e/Enter (Eingabe bestätigen), sonst 0.
    function GanzeZahlPrüfung
      (ZeichenExtern : in Wide_Wide_Character)
       return GlobaleDatentypen.LoopRangeMinusDreiZuDrei

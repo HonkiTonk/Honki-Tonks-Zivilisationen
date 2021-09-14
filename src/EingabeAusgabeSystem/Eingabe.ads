@@ -20,7 +20,8 @@ package Eingabe is
    function GanzeZahl
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ZeileExtern : in Positive;
-      ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
+      ZahlenMinimumExtern : in Integer;
+      ZahlenMaximumExtern : in Integer)
       return Integer
      with
        Post =>
@@ -168,6 +169,25 @@ private
                                                                 Cheatmenü                      => NUL)
                                                             );
 
+   procedure ZahlenAnzeige
+     (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
+      ZeileExtern : in Positive;
+      ZahlenMinimumExtern : in Integer);
+
+   procedure MinimumMaximumSetzen
+     (ZahlenMinimumMaximumExtern : in Integer)
+     with
+       Pre =>
+         (ZahlenMinimumMaximumExtern in -99_999_999 .. 99_999_999);
+
+   procedure ZahlHinzufügen
+     (ZahlenMaximumExtern : in Integer;
+      EingegebeneZahlExtern : in Wide_Wide_Character);
+
+   procedure ZahlEntfernen;
+
+
+
    function GanzeZahlPrüfung
      (ZeichenExtern : in Wide_Wide_Character)
       return GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
@@ -175,7 +195,8 @@ private
    function ZahlSchleife
      (TextDateiExtern : in GlobaleTexte.Welche_Datei_Enum;
       ZeileExtern : in Positive;
-      ZahlenMinimumExtern, ZahlenMaximumExtern : in Integer)
+      ZahlenMinimumExtern : in Integer;
+      ZahlenMaximumExtern : in Integer)
       return GlobaleDatentypen.LoopRangeMinusZweiZuZwei
      with
        Pre =>
@@ -185,10 +206,12 @@ private
           and
             ZahlenMinimumExtern >= -999_999_999);
 
-   procedure MinimumMaximumSetzen
-     (ZahlenMinimumMaximumExtern : in Integer)
-     with
-       Pre =>
-         (ZahlenMinimumMaximumExtern in -99_999_999 .. 99_999_999);
+   function MaximumErmitteln
+     (ZahlenMaximumExtern : in Integer)
+      return Integer;
+
+   function MinimumErmitteln
+     (ZahlenMinimumExtern : in Integer)
+      return Integer;
 
 end Eingabe;

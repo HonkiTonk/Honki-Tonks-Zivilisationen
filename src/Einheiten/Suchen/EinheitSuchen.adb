@@ -13,29 +13,21 @@ package body EinheitSuchen is
       EinheitSchleife:
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
-         case
-           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert))
-         is
-            when GlobaleKonstanten.LeerEinheitenID =>
-               null;
-               
-            when others =>
-               if
-                 LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = KoordinatenExtern
-               then
-                  return EinheitNummerSchleifenwert;
+         if
+           LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) /= KoordinatenExtern
+         then
+            null;
             
-               else
-                  null;
-               end if;
-         end case;
+         else
+            return EinheitNummerSchleifenwert;
+         end if;
          
       end loop EinheitSchleife;
       
       return GlobaleKonstanten.LeerEinheitStadtNummer;
       
    end KoordinatenEinheitMitRasseSuchen;
-
+   
 
 
    function KoordinatenTransporterMitRasseSuchen
@@ -47,26 +39,18 @@ package body EinheitSuchen is
       EinheitSchleife:
       for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Einheitengrenze loop
          
-         case
-           LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert))
-         is
-            when GlobaleKonstanten.LeerEinheitenID =>
-               null;
-               
-            when others =>
-               if
-                 LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) = KoordinatenExtern
-                 and
-                   LeseEinheitenDatenbank.KannTransportieren (RasseExtern => RasseExtern,
-                                                              IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)))
-                 /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
-               then
-                  return EinheitNummerSchleifenwert;
+         if
+           LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)) /= KoordinatenExtern
+           or
+             LeseEinheitenDatenbank.KannTransportieren (RasseExtern => RasseExtern,
+                                                        IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerSchleifenwert)))
+           = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+         then
+            null;
             
-               else
-                  null;
-               end if;
-         end case;
+         else
+            return EinheitNummerSchleifenwert;
+         end if;
          
       end loop EinheitSchleife;
       
@@ -83,7 +67,7 @@ package body EinheitSuchen is
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
          case
            GlobaleVariablen.RassenImSpiel (RasseSchleifenwert)
@@ -96,13 +80,11 @@ package body EinheitSuchen is
                for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
             
                   if
-                    LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)) = GlobaleKonstanten.LeerEinheitenID
+                    LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)) /= KoordinatenExtern
                   then
                      null;
-                     
-                  elsif
-                    LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)) = KoordinatenExtern
-                  then
+               
+                  else
                      case
                        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert))
                      is
@@ -112,9 +94,6 @@ package body EinheitSuchen is
                         when others =>
                            return (RasseSchleifenwert, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)));
                      end case;
-               
-                  else
-                     null;
                   end if;
             
                end loop EinheitSchleife;
@@ -136,7 +115,7 @@ package body EinheitSuchen is
    is begin
 
       RasseSchleife:
-      for RasseSchleifenwert in GlobaleVariablen.EinheitenGebautArray'Range (1) loop
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
          
          if
            RasseExtern = RasseSchleifenwert
@@ -149,22 +128,14 @@ package body EinheitSuchen is
             EinheitSchleife:
             for EinheitNummerSchleifenwert in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseSchleifenwert).Einheitengrenze loop
 
-               case
-                 LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert))
-               is
-                  when GlobaleKonstanten.LeerEinheitenID =>
-                     null;
-                     
-                  when others =>
-                     if
-                       LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)) = KoordinatenExtern
-                     then
-                        return (RasseSchleifenwert, EinheitNummerSchleifenwert);
+               if
+                 LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseSchleifenwert, EinheitNummerSchleifenwert)) /= KoordinatenExtern
+               then
+                  null;
                
-                     else
-                        null;
-                     end if;
-               end case;
+               else
+                  return (RasseSchleifenwert, EinheitNummerSchleifenwert);
+               end if;
             
             end loop EinheitSchleife;
          end if;
@@ -189,7 +160,8 @@ package body EinheitSuchen is
          
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
-                                              PlatzExtern              => TransporterPlatzSchleifenwert) = LadungExtern
+                                              PlatzExtern              => TransporterPlatzSchleifenwert)
+           = LadungExtern
          then
             return TransporterPlatzSchleifenwert;
             
@@ -217,7 +189,8 @@ package body EinheitSuchen is
          
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRassePlatznummerExtern,
-                                              PlatzExtern              => TransporterPlatzSchleifenwert) /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
+                                              PlatzExtern              => TransporterPlatzSchleifenwert)
+           /= GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             return True;
             

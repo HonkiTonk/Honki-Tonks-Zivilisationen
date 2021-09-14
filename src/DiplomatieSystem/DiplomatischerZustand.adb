@@ -16,14 +16,7 @@ package body DiplomatischerZustand is
       
       GlobaleVariablen.Diplomatie (RasseEinsExtern, RasseZweiExtern).ZeitSeitLetzterÄnderung := 0;
       GlobaleVariablen.Diplomatie (RasseZweiExtern, RasseEinsExtern).ZeitSeitLetzterÄnderung := 0;
-      
-      SympathieÄndern (EigeneRasseExtern => RasseEinsExtern,
-                        FremdeRasseExtern => RasseZweiExtern,
-                        ÄnderungExtern   => 0);
-      SympathieÄndern (EigeneRasseExtern => RasseZweiExtern,
-                        FremdeRasseExtern => RasseEinsExtern,
-                        ÄnderungExtern   => 0);
-      
+            
       case
         NeuerStatusExtern
       is

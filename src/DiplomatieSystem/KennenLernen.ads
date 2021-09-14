@@ -6,7 +6,8 @@ use GlobaleDatentypen;
 package KennenLernen is
 
    procedure Erstkontakt
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
@@ -18,7 +19,8 @@ package KennenLernen is
 private
 
    procedure ErstkontaktMenschMensch
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern
@@ -28,7 +30,8 @@ private
             GlobaleVariablen.RassenImSpiel (FremdeRasseExtern) = GlobaleDatentypen.Spieler_Mensch);
 
    procedure ErstkontaktMenschKI
-     (EigeneRasseExtern, FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (EigeneRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      FremdeRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
          (EigeneRasseExtern /= FremdeRasseExtern

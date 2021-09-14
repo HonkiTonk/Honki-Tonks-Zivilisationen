@@ -14,25 +14,25 @@ package body BewegungPassierbarkeitPruefen is
       return Boolean
    is begin
       
+      IDEinheit := LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
       case
-        LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+        IDEinheit
       is
-         when 0 =>
+         when GlobaleDatentypen.EinheitenIDMitNullWert'First =>
             return False;
             
          when others =>
-            null;
+            return PassierbarkeitPrüfenID (RasseExtern        => EinheitRasseNummerExtern.Rasse,
+                                            IDExtern           => IDEinheit,
+                                            NeuePositionExtern => NeuePositionExtern);
       end case;
-      
-      return PassierbarkeitPrüfenID (RasseExtern        => EinheitRasseNummerExtern.Rasse,
-                                      IDExtern           => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                      NeuePositionExtern => NeuePositionExtern);
       
    end PassierbarkeitPrüfenNummer;
    
    
    
-   -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft werden muss!
+   -- Die Passierbarkeit für Ressourcen ist unwichtig, da sie sowieso nie geprüft werden muss.
    function PassierbarkeitPrüfenID
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       IDExtern : in GlobaleDatentypen.EinheitenID;
@@ -43,129 +43,30 @@ package body BewegungPassierbarkeitPruefen is
       PassierbarkeitSchleife:
       for PassierbarkeitSchleifenwert in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum'Range loop
          
-         Passierbar := False;
-         
-         if
-           NeuePositionExtern.EAchse = -2
-           and
-             PassierbarkeitSchleifenwert /= GlobaleDatentypen.Planeteninneres
-             and
-               PassierbarkeitSchleifenwert /= GlobaleDatentypen.Lava
-         then
-            null;
-                  
-         elsif
-           NeuePositionExtern.EAchse = -1
-           and
-             PassierbarkeitSchleifenwert /= GlobaleDatentypen.Unterwasser
-             and
-               PassierbarkeitSchleifenwert /= GlobaleDatentypen.Unterküstenwasser
-               and
-                 PassierbarkeitSchleifenwert /= Unterirdisch
-         then
-            null;
-                  
-         elsif
-           NeuePositionExtern.EAchse = 0
-           and
-             PassierbarkeitSchleifenwert /= GlobaleDatentypen.Wasser
-             and
-               PassierbarkeitSchleifenwert /= GlobaleDatentypen.Küstenwasser
-               and
-                 PassierbarkeitSchleifenwert /= GlobaleDatentypen.Boden
-                 and
-                   PassierbarkeitSchleifenwert /= GlobaleDatentypen.Luft
-                   and
-                     PassierbarkeitSchleifenwert /= GlobaleDatentypen.Weltraum
-         then
-            null;
-                  
-         elsif
-           NeuePositionExtern.EAchse = 1
-           and
-             PassierbarkeitSchleifenwert /= GlobaleDatentypen.Luft
-             and
-               PassierbarkeitSchleifenwert /= GlobaleDatentypen.Weltraum
-         then
-            null;
-                  
-         elsif
-           NeuePositionExtern.EAchse = 2
-           and
-             PassierbarkeitSchleifenwert /= GlobaleDatentypen.Weltraum
-         then
-            null;
-            
-         elsif
-           LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => RasseExtern,
-                                                  IDExtern             => IDExtern,
-                                                  WelcheUmgebungExtern => PassierbarkeitSchleifenwert)
-           = False
-         then
-            null;
-            
-         else
-            Passierbar := True;
-         end if;
+         case
+           PassierbarTesten (RasseExtern        => RasseExtern,
+                             UmgebungExtern     => PassierbarkeitSchleifenwert,
+                             IDExtern           => IDExtern,
+                             NeuePositionExtern => NeuePositionExtern)
+         is
+            when False =>
+               Passierbar := IstNichtPassierbar (RasseExtern        => RasseExtern,
+                                                 UmgebungExtern     => PassierbarkeitSchleifenwert,
+                                                 NeuePositionExtern => NeuePositionExtern);
+               
+            when True =>
+               Passierbar := IstPassierbar (UmgebungExtern     => PassierbarkeitSchleifenwert,
+                                            NeuePositionExtern => NeuePositionExtern);
+         end case;
          
          case
            Passierbar
          is
-            when False =>
-               if
-                 StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
-                                                             KoordinatenExtern => NeuePositionExtern)
-                 = GlobaleKonstanten.LeerEinheitStadtNummer
-               then
-                  null;
-                  
-               elsif
-                 LeseVerbesserungenDatenbank.Passierbarkeit (VerbesserungExtern   => LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern),
-                                                             WelcheUmgebungExtern => PassierbarkeitSchleifenwert)
-                 = False
-               then
-                  null;
-                  
-               else
-                  return True;
-               end if;
-               
             when True =>
-               -- Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
-               if
-                 LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
-                 and
-                   KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
-                                                           PassierbarkeitExtern => PassierbarkeitSchleifenwert)
-                 = False
-               then
-                  null;
-                  
-               elsif
-                 (LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
-                  and
-                    KartenAllgemein.PassierbarWeg (PositionExtern       => NeuePositionExtern,
-                                                   PassierbarkeitExtern => PassierbarkeitSchleifenwert)
-                  = True)
-                 or
-                   (LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
-                    and
-                      KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
-                                                              PassierbarkeitExtern => PassierbarkeitSchleifenwert)
-                    = True)
-               then
-                  return True;
-         
-               elsif
-                 KartenAllgemein.PassierbarGrund (PositionExtern       => NeuePositionExtern,
-                                                  PassierbarkeitExtern => PassierbarkeitSchleifenwert)
-                 = True
-               then
-                  return True;
-                  
-               else
-                  null;
-               end if;
+               return True;
+               
+            when False =>
+               null;
          end case;
          
       end loop PassierbarkeitSchleife;
@@ -173,7 +74,159 @@ package body BewegungPassierbarkeitPruefen is
       return False;
       
    end PassierbarkeitPrüfenID;
-
+   
+   
+   
+   function IstNichtPassierbar
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+   is begin
+      
+      if
+        StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => RasseExtern,
+                                                    KoordinatenExtern => NeuePositionExtern)
+        = GlobaleKonstanten.LeerEinheitStadtNummer
+      then
+         null;
+                  
+      elsif
+        LeseVerbesserungenDatenbank.Passierbarkeit (VerbesserungExtern   => LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern),
+                                                    WelcheUmgebungExtern => UmgebungExtern)
+        = False
+      then
+         null;
+                  
+      else
+         return True;
+      end if;
+      
+      return False;
+      
+   end IstNichtPassierbar;
+   
+   
+   
+   function IstPassierbar
+     (UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+   is begin
+      
+      -- Prüfung ist für Zeug wie Sperre gedacht, nicht entfernen.
+      if
+        LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) /= GlobaleDatentypen.Leer
+        and
+          KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
+                                                  PassierbarkeitExtern => UmgebungExtern)
+        = False
+      then
+         null;
+                  
+      elsif
+        (LeseKarten.VerbesserungWeg (PositionExtern => NeuePositionExtern) = GlobaleDatentypen.Leer
+         or
+           KartenAllgemein.PassierbarWeg (PositionExtern       => NeuePositionExtern,
+                                          PassierbarkeitExtern => UmgebungExtern)
+         = False)
+        and
+          (LeseKarten.VerbesserungGebiet (PositionExtern => NeuePositionExtern) = GlobaleDatentypen.Leer
+           or
+             KartenAllgemein.PassierbarVerbesserung (PositionExtern       => NeuePositionExtern,
+                                                     PassierbarkeitExtern => UmgebungExtern)
+           = False)
+      then
+         null;
+         
+      elsif
+        KartenAllgemein.PassierbarGrund (PositionExtern       => NeuePositionExtern,
+                                         PassierbarkeitExtern => UmgebungExtern)
+        = False
+      then
+         null;
+                  
+      else
+         return True;
+      end if;
+      
+      return False;
+      
+   end IstPassierbar;
+   
+   
+   
+   function PassierbarTesten
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
+      IDExtern : in GlobaleDatentypen.EinheitenID;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+   is begin
+      
+      if
+        NeuePositionExtern.EAchse = -2
+        and
+          UmgebungExtern /= GlobaleDatentypen.Planeteninneres
+          and
+            UmgebungExtern /= GlobaleDatentypen.Lava
+      then
+         null;
+                  
+      elsif
+        NeuePositionExtern.EAchse = -1
+        and
+          UmgebungExtern /= GlobaleDatentypen.Unterwasser
+          and
+            UmgebungExtern /= GlobaleDatentypen.Unterküstenwasser
+            and
+              UmgebungExtern /= Unterirdisch
+      then
+         null;
+                  
+      elsif
+        NeuePositionExtern.EAchse = 0
+        and
+          UmgebungExtern /= GlobaleDatentypen.Wasser
+          and
+            UmgebungExtern /= GlobaleDatentypen.Küstenwasser
+            and
+              UmgebungExtern /= GlobaleDatentypen.Boden
+              and
+                UmgebungExtern not in Passierbarkeit_Fliegen_Enum'Range
+      then
+         null;
+                  
+      elsif
+        NeuePositionExtern.EAchse = 1
+        and
+          UmgebungExtern not in Passierbarkeit_Fliegen_Enum'Range
+      then
+         null;
+         
+      elsif
+        NeuePositionExtern.EAchse = 2
+        and
+          UmgebungExtern /= GlobaleDatentypen.Weltraum
+      then
+         null;
+            
+      elsif
+        LeseEinheitenDatenbank.Passierbarkeit (RasseExtern          => RasseExtern,
+                                               IDExtern             => IDExtern,
+                                               WelcheUmgebungExtern => UmgebungExtern)
+        = False
+      then
+         null;
+            
+      else
+         return True;
+      end if;
+      
+      return False;
+      
+   end PassierbarTesten;
+   
 
 
    function InStadtEntladbar
@@ -196,17 +249,15 @@ package body BewegungPassierbarkeitPruefen is
                null;
                               
             when others =>
-               KartenWert :=
+               if
                  UmgebungErreichbarTesten.UmgebungErreichbarTesten (AktuelleKoordinatenExtern => NeuePositionExtern,
                                                                     RasseExtern               => TransporterExtern.Rasse,
                                                                     IDExtern                  =>
-                                                                       LeseEinheitenGebaut.ID (EinheitRasseNummerExtern =>
-                                                                                                   (TransporterExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
-                                                                                                                                                                PlatzExtern              => BelegterPlatzSchleifenwert))),
-                                                                    NotwendigeFelderExtern    => BenötigteFelder);
-               
-               if
-                 KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+                                                                      LeseEinheitenGebaut.ID (EinheitRasseNummerExtern =>
+                                                                                                  (TransporterExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => TransporterExtern,
+                                                                                                                                                               PlatzExtern              => BelegterPlatzSchleifenwert))),
+                                                                    NotwendigeFelderExtern    => BenötigteFelder).XAchse
+                 = GlobaleKonstanten.LeerYXKartenWert
                then
                   return False;
                      
@@ -254,12 +305,13 @@ package body BewegungPassierbarkeitPruefen is
             elsif
               BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenID (RasseExtern        => StadtRasseNummerExtern.Rasse,
                                                                      IDExtern           => EinheitenIDExtern,
-                                                                     NeuePositionExtern => KartenWert) = True
+                                                                     NeuePositionExtern => KartenWert)
+              = False
             then
-               return True;
+               null;
                   
             else
-               null;
+               return True;
             end if;
                
          end loop XAchseEinheitenSchleife;

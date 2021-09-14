@@ -81,8 +81,8 @@ package body BewegungCursor is
             Position.EAchse := GlobaleDatentypen.EbeneVorhanden (KoordinatenPunkt);
             KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
                                                    ZeileExtern         => 30,
-                                                   ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (2)),
-                                                   ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
+                                                   ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (2)),
+                                                   ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße));
       end case;
       
       case
@@ -95,8 +95,8 @@ package body BewegungCursor is
             Position.YAchse := GlobaleDatentypen.Kartenfeld (KoordinatenPunkt);
             KoordinatenPunkt := Eingabe.GanzeZahl (TextDateiExtern     => GlobaleTexte.Zeug,
                                                    ZeileExtern         => 31,
-                                                   ZahlenMinimumExtern => Integer (Karten.Weltkarte'First (3)),
-                                                   ZahlenMaximumExtern => Integer (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
+                                                   ZahlenMinimumExtern => Positive (Karten.Weltkarte'First (3)),
+                                                   ZahlenMaximumExtern => Positive (Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße));
       end case;
 
       case
@@ -146,8 +146,8 @@ package body BewegungCursor is
          null;
       end if;
             
-      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern    => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
-                                                                  ÄnderungExtern       => ÄnderungExtern);
+      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => GlobaleVariablen.CursorImSpiel (RasseExtern).Position,
+                                                                  ÄnderungExtern    => ÄnderungExtern);
       
       case
         KartenWert.XAchse

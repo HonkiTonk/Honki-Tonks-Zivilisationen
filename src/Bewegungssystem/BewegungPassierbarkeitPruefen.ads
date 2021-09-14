@@ -61,8 +61,8 @@ package BewegungPassierbarkeitPruefen is
 private
    
    Passierbar : Boolean;
-
-  -- BewegungMöglich : GlobaleDatentypen.Bewegung_Enum;
+   
+   IDEinheit : GlobaleDatentypen.EinheitenIDMitNullWert;
    
    StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
    TransporterNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
@@ -73,5 +73,42 @@ private
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;   
    
    TransportplatzEntladen : GlobaleRecords.TransporterArray;
+   
+   function PassierbarTesten
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
+      IDExtern : in GlobaleDatentypen.EinheitenID;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+     with
+       Pre =>
+         (NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+   
+   function IstNichtPassierbar
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+     with
+       Pre =>
+         (NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
+          and
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+     
+   function IstPassierbar
+     (UmgebungExtern : in GlobaleDatentypen.Passierbarkeit_Vorhanden_Enum;
+      NeuePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean
+     with
+       Pre =>
+         (NeuePositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
+          and
+            NeuePositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
 end BewegungPassierbarkeitPruefen;

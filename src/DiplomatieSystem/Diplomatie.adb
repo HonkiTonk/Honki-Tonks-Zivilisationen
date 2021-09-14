@@ -10,7 +10,25 @@ package body Diplomatie is
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
-      AndereRassenVorhanden := False;
+      case
+        AndereRassenVorhanden (RasseExtern => RasseExtern)
+      is
+         when True =>
+            DiplomatieMenü (RasseExtern => RasseExtern);
+            
+         when False =>
+            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
+                                                  TextZeileExtern => 20);
+      end case;
+      
+   end DiplomatieMöglich;
+   
+   
+   
+   function AndereRassenVorhanden
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Boolean
+   is begin
       
       RassenSchleife:
       for RassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -25,24 +43,14 @@ package body Diplomatie is
             null;
             
          else
-            AndereRassenVorhanden := True;
-            exit RassenSchleife;
+            return True;
          end if;
          
       end loop RassenSchleife;
       
-      case
-        AndereRassenVorhanden
-      is
-         when True =>
-            DiplomatieMenü (RasseExtern => RasseExtern);
-            
-         when False =>
-            Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
-                                                  TextZeileExtern => 20);
-      end case;
+      return False;
       
-   end DiplomatieMöglich;
+   end AndereRassenVorhanden;
    
    
 
@@ -78,7 +86,6 @@ package body Diplomatie is
                 or
                   GlobaleVariablen.Diplomatie (RasseExtern, GlobaleDatentypen.Rassen_Verwendet_Enum'Val (WelcheRasse)).AktuellerZustand = GlobaleDatentypen.Unbekannt
             then
-               
                Anzeige.EinzeiligeAnzeigeOhneAuswahl (TextDateiExtern => GlobaleTexte.Fehlermeldungen,
                                                      TextZeileExtern => 21);
             
@@ -90,7 +97,6 @@ package body Diplomatie is
             
          DiplomatischeAktionSchleife:
          loop
-         
             DiplomatischeAktion := Auswahl.Auswahl (FrageDateiExtern  => GlobaleTexte.Diplomatie,
                                                     TextDateiExtern   => GlobaleTexte.Diplomatie,
                                                     FrageZeileExtern  => 1,
@@ -138,7 +144,8 @@ package body Diplomatie is
    
    -- Später abfragen für Menschen und KI für die jeweiligen Möglichkeiten einbauen.
    function DiplomatischenStatusÄndern
-     (RasseExtern, KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      KontaktierteRasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return Integer
    is begin
       
