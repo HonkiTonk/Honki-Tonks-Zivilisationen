@@ -25,4 +25,8 @@ private
 
    DateiSpeichernNeu : File_Type;
 
+   function SpielstandNameFestlegen
+     (AutospeichernExtern : in Boolean)
+     return Boolean;
+
 end Speichern;

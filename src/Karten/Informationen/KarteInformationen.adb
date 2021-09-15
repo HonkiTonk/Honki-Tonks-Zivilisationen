@@ -7,7 +7,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with LeseEinheitenGebaut, LeseKarten, LeseEinheitenDatenbank, LeseStadtGebaut, LeseWichtiges;
 
-with Anzeige, Cheat, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, EinheitenAllgemein, StadtInformationen, GesamtwerteFeld, KampfwerteEinheitErmitteln;
+with Anzeige, Cheat, EinheitSuchen, StadtSuchen, KarteStadt, ForschungAllgemein, VerbesserungenAllgemein, KartenAllgemein, StadtInformationen, GesamtwerteFeld, KampfwerteEinheitErmitteln, EinheitenBeschreibungen;
      
 
 package body KarteInformationen is
@@ -246,7 +246,7 @@ package body KarteInformationen is
          when others =>
             EinheitNummer := LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
-      EinheitenAllgemein.Beschreibung (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)));
+      EinheitenBeschreibungen.Beschreibung (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)));
       New_Line;
                   
       Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
@@ -313,7 +313,7 @@ package body KarteInformationen is
                                         AbstandAnfangExtern    => GlobaleTexte.Großer_Abstand,
                                         AbstandMitteExtern     => GlobaleTexte.Leer,
                                         AbstandEndeExtern      => GlobaleTexte.Kleiner_Abstand);
-         EinheitenAllgemein.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)));
+         EinheitenBeschreibungen.Beschäftigung (LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, EinheitNummer)));
 
          Anzeige.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
                                         TextDateiExtern        => GlobaleTexte.Zeug,

@@ -27,20 +27,19 @@ package body EinheitenTransporter is
                                                                                                                                 IDExtern    =>
                                                                                                                                   LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) loop
          
+         Transportiert := LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                             PlatzExtern              => TransporterPlatzSchleifenwert);
+         
          if
-           LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              PlatzExtern              => TransporterPlatzSchleifenwert) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+           Transportiert = GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             null;
             
          else
             Anzeige.AllgemeineAnzeigeText (AktuellePosition)
-              := (GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),
-                  
-                  Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                                                    PlatzExtern              => TransporterPlatzSchleifenwert))))),
-                  Positive (LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                               PlatzExtern              => TransporterPlatzSchleifenwert)));
+              := (GlobaleTexte.TexteEinlesenNeu (GlobaleTexte.Welche_Datei_Enum'Pos (GlobaleTexte.Beschreibungen_Einheiten_Kurz),                  
+                  Positive (LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, Transportiert)))),
+                  Positive (Transportiert));
 
             AktuellePosition := AktuellePosition + 1;
             Ende := Ende + 1;
@@ -48,8 +47,18 @@ package body EinheitenTransporter is
          
       end loop TransporterSchleife;
 
+      return EinheitAuswählen;
+      
+   end EinheitTransporterAuswählen;
+   
+   
+   
+   function EinheitAuswählen
+     return GlobaleDatentypen.MaximaleEinheitenMitNullWert
+   is begin
+      
       AktuelleAuswahl := 1;
-
+      
       EinheitAuswählenSchleife:
       loop
          
@@ -92,12 +101,13 @@ package body EinheitenTransporter is
          
       end loop EinheitAuswählenSchleife;
       
-   end EinheitTransporterAuswählen;
+   end EinheitAuswählen;
    
    
    
    function KannTransportiertWerden
-     (LadungExtern, TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (LadungExtern : in GlobaleRecords.RassePlatznummerRecord;
+      TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -128,13 +138,25 @@ package body EinheitenTransporter is
          null;
       end if;
       
+      return PlatzFrei (TransporterExtern => TransporterExtern);
+      
+   end KannTransportiertWerden;
+   
+   
+   
+   function PlatzFrei
+     (TransporterExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
       PlatzFreiSchleife:
       for PlatzSchleifenwert in GlobaleRecords.TransporterArray'First .. LeseEinheitenDatenbank.Transportkapazität (RasseExtern => TransporterExtern.Rasse,
                                                                                                                      IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => TransporterExtern)) loop
          
          if
            LeseEinheitenGebaut.Transportiert (EinheitRasseNummerExtern => (TransporterExtern.Rasse, TransporterExtern.Platznummer),
-                                              PlatzExtern              => PlatzSchleifenwert) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
+                                              PlatzExtern              => PlatzSchleifenwert)
+           = GlobaleKonstanten.LeerTransportiertWirdTransportiert
          then
             return True;
             
@@ -146,26 +168,6 @@ package body EinheitenTransporter is
       
       return False;
       
-   end KannTransportiertWerden;
-   
-   
-   
-   
-   function IDTransporterAusLadung
-     (LadungExtern : in GlobaleRecords.RassePlatznummerRecord)
-      return GlobaleDatentypen.EinheitenIDMitNullWert
-   is begin
-      
-      case
-        LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (LadungExtern.Rasse, LadungExtern.Platznummer))
-      is
-         when GlobaleKonstanten.LeerTransportiertWirdTransportiert =>
-            return GlobaleKonstanten.LeerEinheit.ID;
-            
-         when others =>
-            return LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => (LadungExtern.Rasse, LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (LadungExtern.Rasse, LadungExtern.Platznummer))));
-      end case;
-      
-   end IDTransporterAusLadung;
+   end PlatzFrei;
 
 end EinheitenTransporter;

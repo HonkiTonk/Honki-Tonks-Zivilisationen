@@ -19,20 +19,35 @@ package GrafischeAnzeige is
           and
             GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch);
 
-   procedure Farben
-     (EinheitIDExtern : in GlobaleDatentypen.EinheitenIDMitNullWert;
-      VerbesserungExtern : in GlobaleDatentypen.Karten_Verbesserung_Enum;
-      RessourceExtern, GrundExtern : in GlobaleDatentypen.Karten_Grund_Enum;
-      CursorExtern : in Boolean;
-      EigeneRasseExtern, RasseExtern : in GlobaleDatentypen.Rassen_Enum)
-     with
-       Pre =>
-         ((if EigeneRasseExtern /= GlobaleDatentypen.Leer then GlobaleVariablen.RassenImSpiel (EigeneRasseExtern) = GlobaleDatentypen.Spieler_Mensch)
-          and
-            (if RasseExtern /= GlobaleDatentypen.Leer then GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer));
-
 private
 
    EinheitStadtRasseNummer : GlobaleRecords.RassePlatznummerRecord;
+
+   procedure IstSichtbar
+     (InDerStadtExtern : in Boolean;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+
+   procedure AnzeigeLandschaft
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+
+
+
+   function AnzeigeStadt
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Boolean;
+
+   function AnzeigeEinheit
+     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Boolean;
+
+   function AnzeigeCursor
+     (InDerStadtExtern : in Boolean;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return Boolean;
 
 end GrafischeAnzeige;

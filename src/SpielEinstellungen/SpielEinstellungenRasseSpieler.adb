@@ -7,7 +7,7 @@ with GlobaleTexte, GlobaleKonstanten;
 
 with LeseEinheitenGebaut;
 
-with Auswahl, ZufallGeneratorenSpieleinstellungen, Anzeige, Eingabe, ZufallGeneratorenKarten, EinheitenAllgemein, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen;
+with Auswahl, ZufallGeneratorenSpieleinstellungen, Anzeige, Eingabe, ZufallGeneratorenKarten, EinheitSuchen, KartePositionPruefen, BewegungPassierbarkeitPruefen, EinheitenErzeugenEntfernen;
 
 package body SpielEinstellungenRasseSpieler is
 
@@ -334,15 +334,15 @@ package body SpielEinstellungenRasseSpieler is
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
 
-      EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (1),
-                                          EinheitNummerExtern    => 1,
-                                          IDExtern               => 1,
-                                          StadtRasseNummerExtern => (RasseExtern, 0));
+      EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (1),
+                                                  EinheitNummerExtern    => 1,
+                                                  IDExtern               => 1,
+                                                  StadtRasseNummerExtern => (RasseExtern, 0));
       
-      EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (2),
-                                          EinheitNummerExtern    => 2,
-                                          IDExtern               => 2,
-                                          StadtRasseNummerExtern => (RasseExtern, 0));
+      EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => StartKoordinaten (2),
+                                                  EinheitNummerExtern    => 2,
+                                                  IDExtern               => 2,
+                                                  StadtRasseNummerExtern => (RasseExtern, 0));
       
       GlobaleVariablen.CursorImSpiel (RasseExtern).Position := LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => (RasseExtern, 1));
       GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt := GlobaleVariablen.CursorImSpiel (RasseExtern).Position;

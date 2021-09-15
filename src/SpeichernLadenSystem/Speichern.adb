@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories, Ada.Calendar;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Directories, Ada.Calendar;
 
-with GlobaleVariablen, GlobaleRecords;
+with GlobaleVariablen, GlobaleRecords, GlobaleKonstanten;
 
 with Karten, Eingabe, Auswahl, Ladezeiten, Informationen;
 
@@ -14,58 +14,13 @@ package body Speichern is
    is begin      
 
       case
-        AutospeichernExtern
+        SpielstandNameFestlegen (AutospeichernExtern => AutospeichernExtern)
       is
          when False =>
-            if
-              To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= ""
-            then
-               SpielstandName := GlobaleVariablen.IronmanName;
-               
-            else
-               SpielstandName := Eingabe.SpielstandName;
-
-               -- Anzeige der vorhandenen Spielstände einbauen
-               if
-                 Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) = True
-               then
-                  case
-                    Auswahl.AuswahlJaNein (FrageZeileExtern => 18)
-                  is
-                     when -3 =>
-                        null;
-                     
-                     when others =>
-                        return;
-                  end case;
-
-               else
-                  null;
-               end if;
-            end if;
-
+            return;
+              
          when True =>
-            if
-              To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= ""
-            then
-               SpielstandName := GlobaleVariablen.IronmanName;
-               
-            else
-               SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
-               if
-                 GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 1
-               then
-                  null;
-
-               elsif
-                 AutospeichernWert <= GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave - 1
-               then
-                  AutospeichernWert := AutospeichernWert + 1;
-                  
-               else               
-                  AutospeichernWert := 1;
-               end if;
-            end if;
+            null;
       end case;
 
       Ladezeiten.EinzelneZeiten (Ladezeiten.Speicherzeit, GlobaleDatentypen.Anfangswert) := Clock;
@@ -160,6 +115,9 @@ package body Speichern is
       -- Rassen und Rassengrenzen speichern
       GlobaleDatentypen.RassenImSpielArray'Write (Stream (File => DateiSpeichernNeu),
                                                   GlobaleVariablen.RassenImSpiel);
+      
+      GlobaleVariablen.GrenzenArray'Write (Stream (File => DateiSpeichernNeu),
+                                           GlobaleVariablen.Grenzen);
       
       GrenzenRassenSchleife:
       for GrenzenRassenSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
@@ -308,6 +266,72 @@ package body Speichern is
       end case;
    
    end SpeichernNeu;
+   
+   
+   
+   function SpielstandNameFestlegen
+     (AutospeichernExtern : in Boolean)
+      return Boolean
+   is begin
+      
+      case
+        AutospeichernExtern
+      is
+         when False =>
+            if
+              To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= ""
+            then
+               SpielstandName := GlobaleVariablen.IronmanName;
+               
+            else
+               SpielstandName := Eingabe.SpielstandName;
+
+               -- Anzeige der vorhandenen Spielstände einbauen
+               if
+                 Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName))) = True
+               then
+                  case
+                    Auswahl.AuswahlJaNein (FrageZeileExtern => 18)
+                  is
+                     when GlobaleKonstanten.JaKonstante =>
+                        null;
+                     
+                     when others =>
+                        return False;
+                  end case;
+
+               else
+                  null;
+               end if;
+            end if;
+
+         when True =>
+            if
+              To_Wide_Wide_String (Source => GlobaleVariablen.IronmanName) /= ""
+            then
+               SpielstandName := GlobaleVariablen.IronmanName;
+               
+            else
+               SpielstandName := To_Unbounded_Wide_Wide_String (Source => "Autospeichern" & AutospeichernWert'Wide_Wide_Image);
+               if
+                 GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave = 1
+               then
+                  null;
+
+               elsif
+                 AutospeichernWert <= GlobaleVariablen.NutzerEinstellungen.AnzahlAutosave - 1
+               then
+                  AutospeichernWert := AutospeichernWert + 1;
+                  
+               else               
+                  AutospeichernWert := 1;
+               end if;
+            end if;
+      end case;
+      
+      return True;
+      
+   end SpielstandNameFestlegen;
    
    
 

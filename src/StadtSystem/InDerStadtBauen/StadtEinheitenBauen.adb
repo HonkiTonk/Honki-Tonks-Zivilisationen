@@ -7,7 +7,7 @@ with KIDatentypen;
 with SchreibeStadtGebaut;
 with LeseEinheitenGebaut, LeseStadtGebaut;
 
-with Anzeige, Eingabe, Karte, EinheitSuchen, EinheitenAllgemein, UmgebungErreichbarTesten, StadtMeldungenSetzen;
+with Anzeige, Eingabe, Karte, EinheitSuchen, UmgebungErreichbarTesten, StadtMeldungenSetzen, EinheitenErzeugenEntfernen;
 
 package body StadtEinheitenBauen is
 
@@ -76,7 +76,7 @@ package body StadtEinheitenBauen is
                                                              EreignisExtern         => GlobaleDatentypen.Einheit_Unplatzierbar);
             
          when others =>
-            EinheitenAllgemein.EinheitErzeugen (KoordinatenExtern      => KartenWert,
+            EinheitenErzeugenEntfernen.EinheitErzeugen (KoordinatenExtern      => KartenWert,
                                                 EinheitNummerExtern    => EinheitNummer,
                                                 IDExtern               => GlobaleDatentypen.EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.EinheitAufschlag),
                                                 StadtRasseNummerExtern => StadtRasseNummerExtern);

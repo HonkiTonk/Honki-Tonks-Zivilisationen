@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with SchreibeEinheitenGebaut;
 with LeseEinheitenDatenbank, LeseEinheitenGebaut;
 
-with EinheitenAllgemein, StadtBauen, Verbesserungen;
+with StadtBauen, Verbesserungen, EinheitenErzeugenEntfernen;
 
 with KIVorhandeneAufgaben, KIAufgabeFestlegen, KIAufgabeUmsetzen;
 
@@ -101,7 +101,7 @@ package body KIAufgabenPlanung is
             KIAufgabeFestlegen.StadtUmgebungVerbesserung (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Einheit_Auflösen =>
-            EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+            EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when KIDatentypen.Flucht =>
             KIAufgabeFestlegen.Fliehen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);

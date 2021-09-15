@@ -4,7 +4,7 @@ with GlobaleKonstanten, GlobaleTexte;
 
 with LeseEinheitenGebaut;
 
-with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, EinheitenAllgemein, DiplomatischerZustand, BewegungLadenEntladen, KampfsystemEinheiten, StadtSuchen,
+with Karte, EinheitSuchen, KartePositionPruefen, Eingabe, BewegungPassierbarkeitPruefen, BewegungBerechnen, DiplomatischerZustand, BewegungLadenEntladen, KampfsystemEinheiten, StadtSuchen, EinheitenModifizieren,
      StadtBauen, Verbesserungen, Anzeige, KampfsystemStadt, EinheitenTransporter;
 
 package body BewegungEinheiten is
@@ -54,7 +54,7 @@ package body BewegungEinheiten is
                Änderung := (-1, 0, 0);
                
             when GlobaleDatentypen.Heimatstadt_Ändern =>
-               EinheitenAllgemein.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+               EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
                Änderung := KeineÄnderung;
                
             when GlobaleDatentypen.Tastenbelegung_Verbesserung_Befehle_Enum'Range | GlobaleDatentypen.Tastenbelegung_Allgemeine_Befehle_Enum'Range =>

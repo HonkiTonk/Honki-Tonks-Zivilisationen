@@ -127,6 +127,17 @@ package body ForschungAllgemein is
 
       AktuelleAuswahl := 1;
 
+      return ForschungAuswahl (RasseExtern => RasseExtern);
+
+   end AuswahlForschungNeu;
+   
+   
+   
+   function ForschungAuswahl
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+     return GlobaleDatentypen.ForschungIDMitNullWert
+   is begin
+      
       AuswahlSchleife:
       loop
 
@@ -186,8 +197,8 @@ package body ForschungAllgemein is
          end case;
          
       end loop AuswahlSchleife;
-
-   end AuswahlForschungNeu;
+      
+   end ForschungAuswahl;
    
    
    
@@ -391,69 +402,93 @@ package body ForschungAllgemein is
                null;
                
             when GlobaleDatentypen.Spieler_Mensch =>
-               if
-                 LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert) = GlobaleDatentypen.ForschungIDMitNullWert'First
-               then
-                  null;
-         
-               elsif
-                 LeseWichtiges.Forschungsmenge (RasseExtern => RasseSchleifenwert)
-                 >= LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseSchleifenwert,
-                                                            IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert))
-               then
-                  SchreibeWichtiges.Erforscht (RasseExtern => RasseSchleifenwert);
-                  if
-                    LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert) = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Anfangswert)
-                    or
-                      LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert) = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Endwert)
-                  then
-                     StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseSchleifenwert);
-
-                  else
-                     null;
-                  end if;
-                  SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseSchleifenwert,
-                                                       ForschungIDExtern => AuswahlForschungNeu (RasseExtern => RasseSchleifenwert));
-            
-               else
-                  SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseSchleifenwert);
-               end if;
+               FortschrittMensch (RasseExtern => RasseSchleifenwert);
                
             when GlobaleDatentypen.Spieler_KI =>
-               if
-                 LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert) = GlobaleDatentypen.ForschungIDMitNullWert'First
-               then
-                  KIForschung.Forschung (RasseExtern => RasseSchleifenwert);
-         
-               elsif
-                 LeseWichtiges.Forschungsmenge (RasseExtern => RasseSchleifenwert)
-                 >= LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseSchleifenwert,
-                                                            IDExtern    => LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert))
-               then
-                  SchreibeWichtiges.Erforscht (RasseExtern => RasseSchleifenwert);
-                  if
-                    LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert)  = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Anfangswert)
-                    or
-                      LeseWichtiges.Forschungsprojekt (RasseExtern => RasseSchleifenwert)  = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseSchleifenwert, GlobaleDatentypen.Endwert)
-                  then
-                     StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseSchleifenwert);
-
-                  else
-                     null;
-                  end if;
-                  SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseSchleifenwert,
-                                                       ForschungIDExtern => 0);
-                  KIForschung.Forschung (RasseExtern => RasseSchleifenwert);
-                  StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseSchleifenwert);
-            
-               else
-                  null;
-               end if;
+               FortschrittKI (RasseExtern => RasseSchleifenwert);
          end case;
                
       end loop RasseSchleife;
       
    end ForschungFortschritt;
+   
+   
+   
+   procedure FortschrittMensch
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
+      
+      if
+        AktuellesForschungsprojekt = GlobaleDatentypen.ForschungIDMitNullWert'First
+      then
+         null;
+         
+      elsif
+        LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)
+        >= LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseExtern,
+                                                   IDExtern    => AktuellesForschungsprojekt)
+      then
+         SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
+         if
+           AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, GlobaleDatentypen.Anfangswert)
+           or
+             AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, GlobaleDatentypen.Endwert)
+         then
+            StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseExtern);
+
+         else
+            null;
+         end if;
+         SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
+                                              ForschungIDExtern => AuswahlForschungNeu (RasseExtern => RasseExtern));
+            
+      else
+         SchreibeWichtiges.VerbleibendeForschungszeit (RasseExtern => RasseExtern);
+      end if;
+      
+   end FortschrittMensch;
+   
+   
+   
+   procedure FortschrittKI
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      AktuellesForschungsprojekt := LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern);
+      
+      if
+        AktuellesForschungsprojekt = GlobaleDatentypen.ForschungIDMitNullWert'First
+      then
+         KIForschung.Forschung (RasseExtern => RasseExtern);
+         
+      elsif
+        LeseWichtiges.Forschungsmenge (RasseExtern => RasseExtern)
+        >= LeseForschungsDatenbank.PreisForschung (RasseExtern => RasseExtern,
+                                                   IDExtern    => AktuellesForschungsprojekt)
+      then
+         SchreibeWichtiges.Erforscht (RasseExtern => RasseExtern);
+         if
+           AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, GlobaleDatentypen.Anfangswert)
+           or
+             AktuellesForschungsprojekt = StadtUmgebungsbereichFestlegen.TechnologieUmgebungsgröße (RasseExtern, GlobaleDatentypen.Endwert)
+         then
+            StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseExtern);
+
+         else
+            null;
+         end if;
+         SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
+                                              ForschungIDExtern => 0);
+         KIForschung.Forschung (RasseExtern => RasseExtern);
+         StadtWerteFestlegen.StadtUmgebungGrößeFestlegenTechnologie (RasseExtern => RasseExtern);
+            
+      else
+         null;
+      end if;
+      
+   end FortschrittKI;
    
    
    
@@ -475,7 +510,7 @@ package body ForschungAllgemein is
       end case;
       
       AnforderungSchleife:
-      for AnforderungSchleifenwert in AnforderungForschungArray'Range loop
+      for AnforderungSchleifenwert in GlobaleDatentypen.AnforderungForschungArray'Range loop
             
          if
            LeseForschungsDatenbank.AnforderungForschung (RasseExtern             => RasseExtern,

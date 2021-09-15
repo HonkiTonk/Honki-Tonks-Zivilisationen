@@ -19,4 +19,7 @@ private
 
    DateiLadenNeu : File_Type;
 
+   function SpielstandNameErmitteln
+     return Boolean;
+
 end Laden;

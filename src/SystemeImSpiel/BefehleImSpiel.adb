@@ -6,7 +6,7 @@ with SchreibeEinheitenGebaut, SchreibeStadtGebaut;
 with LeseEinheitenGebaut, LeseWichtiges;
 
 with InDerStadt, BewegungEinheiten, BewegungCursor, Auswahl, NaechstesObjekt, Verbesserungen, Anzeige, Diplomatie, Cheat, StadtBauen, EinheitSuchen, StadtSuchen, Eingabe, FeldInformationen, ForschungAllgemein,
-     EinheitenAllgemein, StadtEntfernen, EinheitenTransporter;
+     StadtEntfernen, EinheitenTransporter, TransporterSuchen, EinheitenBeschreibungen, EinheitenModifizieren;
 
 package body BefehleImSpiel is
 
@@ -88,7 +88,7 @@ package body BefehleImSpiel is
             NaechstesObjekt.NächsteEinheitMeldung (RasseExtern => RasseExtern);
             
          when GlobaleDatentypen.Heimatstadt_Ändern =>
-            EinheitenAllgemein.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
+            EinheitenModifizieren.HeimatstadtÄndern (EinheitRasseNummerExtern => (RasseExtern, 0));
             
          when GlobaleDatentypen.Runde_Beenden =>
             return GlobaleKonstanten.RundeBeendenKonstante;
@@ -138,7 +138,7 @@ package body BefehleImSpiel is
       elsif
         EinheitNummer /= 0
       then
-         Transportiert := EinheitSuchen.HatTransporterLadung (EinheitRassePlatznummerExtern => (RasseExtern, EinheitNummer));
+         Transportiert := TransporterSuchen.HatTransporterLadung (EinheitRassePlatznummerExtern => (RasseExtern, EinheitNummer));
          if
            LeseEinheitenGebaut.WirdTransportiert (EinheitRasseNummerExtern => (RasseExtern, EinheitNummer)) = GlobaleKonstanten.LeerTransportiertWirdTransportiert
            and
@@ -208,7 +208,7 @@ package body BefehleImSpiel is
       if
         LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern)) /= GlobaleDatentypen.Leer
         and then
-          EinheitenAllgemein.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
+          EinheitenBeschreibungen.BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen (7) = True
       then
          SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => (RasseExtern, EinheitNummerExtern),
                                                  BeschäftigungExtern     => GlobaleDatentypen.Leer);

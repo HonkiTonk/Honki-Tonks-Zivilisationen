@@ -8,7 +8,7 @@ with GlobaleKonstanten, GlobaleTexte;
 with SchreibeStadtGebaut;
 with LeseEinheitenDatenbank, LeseStadtGebaut, LeseGebaeudeDatenbank;
      
-with Anzeige, Eingabe, Auswahl, EinheitenAllgemein, GebaeudeAllgemein;
+with Anzeige, Eingabe, Auswahl, GebaeudeAllgemein, EinheitenModifizieren;
 
 package body InDerStadtBauen is
 
@@ -97,7 +97,7 @@ package body InDerStadtBauen is
          end if;
          
          if
-           EinheitenAllgemein.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+           EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                             IDExtern               => EinheitSchleifenwert)
            = True
          then

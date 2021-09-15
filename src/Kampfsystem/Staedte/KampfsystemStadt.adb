@@ -5,7 +5,7 @@ with GlobaleKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
 
-with StadtEntfernen, KampfwerteStadtErmitteln, KampfwerteEinheitErmitteln, EinheitenAllgemein, KampfsystemEinheiten, ZufallGeneratorenKampf, StadtWerteFestlegen, StadtMeldungenSetzen;
+with StadtEntfernen, KampfwerteStadtErmitteln, KampfwerteEinheitErmitteln, KampfsystemEinheiten, ZufallGeneratorenKampf, StadtWerteFestlegen, StadtMeldungenSetzen, EinheitenErzeugenEntfernen;
 
 package body KampfsystemStadt is
 
@@ -106,7 +106,7 @@ package body KampfsystemStadt is
          if
            LeseEinheitenGebaut.Lebenspunkte (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern) = GlobaleKonstanten.LeerEinheit.Lebenspunkte
          then
-            EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
+            EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern);
             return False;
 
          else

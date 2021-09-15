@@ -5,7 +5,7 @@ with GlobaleKonstanten;
 with SchreibeEinheitenGebaut;
 with LeseEinheitenGebaut, LeseEinheitenDatenbank;
 
-with ZufallGeneratorenKampf, EinheitenAllgemein, KampfwerteEinheitErmitteln;
+with ZufallGeneratorenKampf, KampfwerteEinheitErmitteln, EinheitenErzeugenEntfernen;
 
 package body KampfsystemEinheiten is
 
@@ -50,7 +50,7 @@ package body KampfsystemEinheiten is
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => AngreiferExtern.Rasse,
                                                                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => AngreiferExtern)),
                                                       AddierenSetzenExtern     => True);
-            EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerExtern);
+            EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerExtern);
             return True;
          else
             null;
@@ -67,7 +67,7 @@ package body KampfsystemEinheiten is
                                                       ErfahrungspunkteExtern   => LeseEinheitenDatenbank.Beförderungsgrenze (RasseExtern => VerteidigerExtern.Rasse,
                                                                                                                               IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => VerteidigerExtern)),
                                                       AddierenSetzenExtern     => True);
-            EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferExtern);
+            EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => AngreiferExtern);
             return False;
 
          else

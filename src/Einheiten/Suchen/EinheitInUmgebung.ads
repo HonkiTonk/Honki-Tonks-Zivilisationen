@@ -8,12 +8,18 @@ package EinheitInUmgebung is
    procedure EinheitInUmgebung;
    
 private
-   
-   EinheitInDerNähe : Boolean;
-   
+      
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    
    AndereEinheit : GlobaleRecords.RassePlatznummerRecord;
+   
+   procedure UmgebungStadt
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure UmgebungEinheit
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   
    
    function EinheitFinden
      (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;

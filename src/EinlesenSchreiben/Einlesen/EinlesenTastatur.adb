@@ -23,16 +23,8 @@ package body EinlesenTastatur is
             return;
       end case;
       
-      BelegungFeldSchleife:
-      for BelegungFeldSchleifenwert in Eingabe.TastenbelegungArray'Range (1) loop
-         BelegungPositionSchleife:
-         for BelegungPositionSchleifenwert in Eingabe.TastenbelegungArray'Range (2) loop
-            
-            Wide_Wide_Character'Read (Stream (File => TastenbelegungLaden),
-                                      Eingabe.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert));
-            
-         end loop BelegungPositionSchleife;
-      end loop BelegungFeldSchleife;
+      Eingabe.TastenbelegungArray'Read (Stream (File => TastenbelegungLaden),
+                                        Eingabe.Tastenbelegung);
       
       Close (File => TastenbelegungLaden);
       

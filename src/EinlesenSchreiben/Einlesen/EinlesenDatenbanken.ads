@@ -6,17 +6,11 @@ use Ada.Streams.Stream_IO;
 package EinlesenDatenbanken is
    
    procedure EinlesenAlleDatenbanken;
-   
    procedure EinlesenEinheitenDatenbank;
-   
    procedure EinlesenForschungsDatenbank;
-   
    procedure EinlesenGebäudeDatenbank;
-   
    procedure EinlesenKartenDatenbank;
-   
    procedure EinlesenVerbesserungenDatenbank;
-   
    procedure EinlesenRassenDatenbank;
    
 private

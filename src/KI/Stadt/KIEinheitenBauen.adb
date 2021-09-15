@@ -6,7 +6,7 @@ with KIKonstanten;
 
 with LeseEinheitenDatenbank, LeseStadtGebaut, LeseWichtiges;
 
-with EinheitenAllgemein;
+with EinheitenModifizieren;
 with KIKriegErmitteln, KIStadtLaufendeBauprojekte;
 
 package body KIEinheitenBauen is
@@ -43,8 +43,8 @@ package body KIEinheitenBauen is
          end case;
          
          case
-           EinheitenAllgemein.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                            IDExtern               => EinheitenSchleifenwert)
+           EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                               IDExtern               => EinheitenSchleifenwert)
          is
             when True =>
                EinheitBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,

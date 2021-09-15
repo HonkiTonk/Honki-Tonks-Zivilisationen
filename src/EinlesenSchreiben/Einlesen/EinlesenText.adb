@@ -59,6 +59,7 @@ package body EinlesenText is
          
          ZeilenSchleife:
          for ZeileSchleifenwert in GlobaleTexte.TexteEinlesenNeuArray'Range (2) loop
+            
             if
               End_Of_File (File => DateiNeuText) = True
             then

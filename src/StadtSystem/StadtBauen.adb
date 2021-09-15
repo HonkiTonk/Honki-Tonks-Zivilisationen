@@ -5,7 +5,7 @@ with GlobaleTexte;
 with SchreibeStadtGebaut, SchreibeWichtiges;
 with LeseKarten, LeseEinheitenGebaut, LeseEinheitenDatenbank, LeseStadtGebaut;
 
-with Anzeige, StadtWerteFestlegen, Eingabe, StadtProduktion, EinheitenAllgemein, Sichtbarkeit;
+with Anzeige, StadtWerteFestlegen, Eingabe, StadtProduktion, Sichtbarkeit, EinheitenErzeugenEntfernen;
 
 package body StadtBauen is
 
@@ -38,7 +38,7 @@ package body StadtBauen is
             
       StadtEintragen (StadtRasseNummerExtern => (EinheitRasseNummerExtern.Rasse, StadtNummer),
                       PositionExtern         => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));            
-      EinheitenAllgemein.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
       case
         GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse)

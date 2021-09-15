@@ -125,17 +125,22 @@ package body GebaeudeAllgemein is
         LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
                                              IDExtern    => IDExtern)
         = GlobaleKonstanten.LeerForschungAnforderung
-        or else
-          LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
-                                   WelcheTechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                                                                   IDExtern    => IDExtern))
+      then
+         null;
+         
+      elsif
+        LeseWichtiges.Erforscht (RasseExtern             => StadtRasseNummerExtern.Rasse,
+                                 WelcheTechnologieExtern => LeseGebaeudeDatenbank.Anforderungen (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                                                                 IDExtern    => IDExtern))
         = True
       then
-         return True;
+         null;
       
       else
          return False;
       end if;
+      
+      return True;
       
    end GebäudeAnforderungenErfüllt;
 

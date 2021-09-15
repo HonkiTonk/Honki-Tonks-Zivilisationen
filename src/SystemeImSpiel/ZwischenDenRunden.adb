@@ -9,7 +9,7 @@ use GlobaleDatentypen;
 with SchreibeWichtiges;
 with LeseWichtiges;
 
-with Wachstum, Verbesserungen, ForschungAllgemein, StadtProduktion, EinheitenAllgemein, SiegBedingungen, DiplomatischerZustand, StadtMeldungenSetzen, EinheitenMeldungenSetzen, EinheitInUmgebung,
+with Wachstum, Verbesserungen, ForschungAllgemein, StadtProduktion, SiegBedingungen, DiplomatischerZustand, StadtMeldungenSetzen, EinheitenMeldungenSetzen, EinheitInUmgebung, EinheitenModifizieren,
      Ladezeiten, Speichern, Auswahl;
 
 package body ZwischenDenRunden is
@@ -48,7 +48,7 @@ package body ZwischenDenRunden is
       EinheitenMeldungenSetzen.EinheitenMeldungenSetzenRundenEnde;
       EinheitInUmgebung.EinheitInUmgebung;
       
-      EinheitenAllgemein.HeilungBewegungspunkteNeueRundeErmitteln;
+      EinheitenModifizieren.HeilungBewegungspunkteNeueRundeErmitteln;
       Verbesserungen.VerbesserungFertiggestellt;
       Wachstum.StadtWachstum;
       StadtProduktion.StadtProduktion ((GlobaleDatentypen.Leer, 0));

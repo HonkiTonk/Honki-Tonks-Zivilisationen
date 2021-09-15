@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Directories;
 use Ada.Directories;
 
-with EinheitenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, RassenDatenbank, DatenbankRecords;
+with EinheitenDatenbank, ForschungsDatenbank, GebaeudeDatenbank, KartenDatenbank, VerbesserungenDatenbank, RassenDatenbank;
 
 package body EinlesenDatenbanken is 
    
@@ -37,16 +37,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      RassenSchleife:
-      for RasseSchleifenwert in EinheitenDatenbank.EinheitenListeArray'Range (1) loop
-         EinheitSchleife:
-         for EinheitSchleifenwert in EinheitenDatenbank.EinheitenListeArray'Range (2) loop
-            
-            DatenbankRecords.EinheitenListeRecord'Read (Stream (File => DatenbankEinlesen),
-                                                        EinheitenDatenbank.EinheitenListe (RasseSchleifenwert, EinheitSchleifenwert));
-            
-         end loop EinheitSchleife;
-      end loop RassenSchleife;
+      EinheitenDatenbank.EinheitenListeArray'Read (Stream (File => DatenbankEinlesen),
+                                                   EinheitenDatenbank.EinheitenListe);
       
       Close (File => DatenbankEinlesen);
       
@@ -70,16 +62,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      RassenSchleife:
-      for RasseSchleifenwert in ForschungsDatenbank.ForschungListeArray'Range (1) loop
-         TechnologieSchleife:
-         for TechnologieSchleifenwert in ForschungsDatenbank.ForschungListeArray'Range (2) loop
-            
-            DatenbankRecords.ForschungListeRecord'Read (Stream (File => DatenbankEinlesen),
-                                                        ForschungsDatenbank.ForschungListe (RasseSchleifenwert, TechnologieSchleifenwert));
-            
-         end loop TechnologieSchleife;
-      end loop RassenSchleife;
+      ForschungsDatenbank.ForschungListeArray'Read (Stream (File => DatenbankEinlesen),
+                                                    ForschungsDatenbank.ForschungListe);
       
       Close (File => DatenbankEinlesen);
       
@@ -103,16 +87,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      RassenSchleife:
-      for RasseSchleifenwert in GebaeudeDatenbank.GebäudeListeArray'Range (1) loop
-         GebäudeSchleife:
-         for GebäudeSchleifenwert in GebaeudeDatenbank.GebäudeListeArray'Range (2) loop
-            
-            DatenbankRecords.GebäudeListeRecord'Read (Stream (File => DatenbankEinlesen),
-                                                       GebaeudeDatenbank.GebäudeListe (RasseSchleifenwert, GebäudeSchleifenwert));
-            
-         end loop GebäudeSchleife;
-      end loop RassenSchleife;
+      GebaeudeDatenbank.GebäudeListeArray'Read (Stream (File => DatenbankEinlesen),
+                                                 GebaeudeDatenbank.GebäudeListe);
       
       Close (File => DatenbankEinlesen);
       
@@ -136,13 +112,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      KartenGrundSchleife:
-      for KartenGrundSchleifenwert in KartenDatenbank.KartenListeArray'Range loop
-            
-         DatenbankRecords.KartenListeRecord'Read (Stream (File => DatenbankEinlesen),
-                                                  KartenDatenbank.KartenListe (KartenGrundSchleifenwert));
-            
-      end loop KartenGrundSchleife;
+      KartenDatenbank.KartenListeArray'Read (Stream (File => DatenbankEinlesen),
+                                             KartenDatenbank.KartenListe);
       
       Close (File => DatenbankEinlesen);
       
@@ -166,13 +137,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      VerbesserungenSchleife:
-      for VerbesserungenSchleifenwert in VerbesserungenDatenbank.VerbesserungListeArray'Range loop
-            
-         DatenbankRecords.VerbesserungListeRecord'Read (Stream (File => DatenbankEinlesen),
-                                                        VerbesserungenDatenbank.VerbesserungListe (VerbesserungenSchleifenwert));
-            
-      end loop VerbesserungenSchleife;
+      VerbesserungenDatenbank.VerbesserungListeArray'Read (Stream (File => DatenbankEinlesen),
+                                                           VerbesserungenDatenbank.VerbesserungListe);
       
       Close (File => DatenbankEinlesen);
       
@@ -196,13 +162,8 @@ package body EinlesenDatenbanken is
             return;
       end case;
       
-      RassenSchleife:
-      for RassenSchleifenwert in RassenDatenbank.RassenListeArray'Range loop
-            
-         DatenbankRecords.RassenListeRecord'Read (Stream (File => DatenbankEinlesen),
-                                                  RassenDatenbank.RassenListe (RassenSchleifenwert));
-            
-      end loop RassenSchleife;
+      RassenDatenbank.RassenListeArray'Read (Stream (File => DatenbankEinlesen),
+                                             RassenDatenbank.RassenListe);
       
       Close (File => DatenbankEinlesen);
       

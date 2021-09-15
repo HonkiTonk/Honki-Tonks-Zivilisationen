@@ -8,7 +8,7 @@ use KIDatentypen;
 with SchreibeStadtGebaut;
 with LeseStadtGebaut, LeseEinheitenDatenbank, LeseEinheitenGebaut;
 
-with EinheitSuchen, KartePositionPruefen, DiplomatischerZustand, EinheitenAllgemein;
+with EinheitSuchen, KartePositionPruefen, DiplomatischerZustand, EinheitenModifizieren;
 with KIEinheitenBauen, KIGebaeudeBauen;
 
 package body KIStadt is
@@ -192,7 +192,7 @@ package body KIStadt is
             null;
             
          elsif
-           EinheitenAllgemein.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+           EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                             IDExtern               => EinheitenSchleifenwert)
            = True
          then

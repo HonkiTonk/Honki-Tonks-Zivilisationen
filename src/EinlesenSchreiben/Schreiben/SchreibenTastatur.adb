@@ -24,16 +24,8 @@ package body SchreibenTastatur is
                     Name => "Einstellungen/Tastenbelegung");
       end case;
       
-      BelegungFeldSchleife:
-      for BelegungFeldSchleifenwert in Eingabe.TastenbelegungArray'Range (1) loop
-         BelegungPositionSchleife:
-         for BelegungPositionSchleifenwert in Eingabe.TastenbelegungArray'Range (2) loop
-            
-            Wide_Wide_Character'Write (Stream (File => TastenbelegungSpeichern),
-                                       Eingabe.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert));
-            
-         end loop BelegungPositionSchleife;
-      end loop BelegungFeldSchleife;
+      Eingabe.TastenbelegungArray'Write (Stream (File => TastenbelegungSpeichern),
+                                         Eingabe.Tastenbelegung);
       
       Close (File => TastenbelegungSpeichern);
       

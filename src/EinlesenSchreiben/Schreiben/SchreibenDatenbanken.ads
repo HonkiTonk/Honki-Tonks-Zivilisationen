@@ -6,17 +6,11 @@ use Ada.Streams.Stream_IO;
 package SchreibenDatenbanken is
 
    procedure SchreibenAlleDatenbanken;
-
    procedure SchreibenEinheitenDatenbank;
-
    procedure SchreibenForschungsDatenbank;
-
    procedure SchreibenGebäudeDatenbank;
-
    procedure SchreibenKartenDatenbank;
-
    procedure SchreibenVerbesserungenDatenbank;
-
    procedure SchreibenRassenDatenbank;
 
 private

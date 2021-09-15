@@ -1,40 +1,11 @@
 pragma SPARK_Mode (On);
 
-with GlobaleVariablen, GlobaleRecords, GlobaleDatentypen;
+with GlobaleRecords, GlobaleVariablen, GlobaleDatentypen;
 use GlobaleDatentypen;
 
-with Karten;
+package EinheitenModifizieren is
 
-package EinheitenAllgemein is
-
-   procedure Beschreibung
-     (IDExtern : in GlobaleDatentypen.EinheitenID);
-   
    procedure HeilungBewegungspunkteNeueRundeErmitteln;
-   
-   procedure EinheitErzeugen
-     (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      EinheitNummerExtern : in GlobaleDatentypen.MaximaleEinheiten;
-      IDExtern : in GlobaleDatentypen.EinheitenID;
-      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
-          and
-            KoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            KoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
-
-   procedure EinheitEntfernen
-     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-   
-   procedure Beschäftigung
-     (ArbeitExtern : in GlobaleDatentypen.Tastenbelegung_Enum);
    
    procedure HeimatstadtÄndern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -42,7 +13,7 @@ package EinheitenAllgemein is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
    
-   procedure PermanenteKostenDurchEinheitÄndern
+   procedure PermanenteKostenÄndern
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       VorzeichenWechselExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
      with
@@ -54,10 +25,6 @@ package EinheitenAllgemein is
             VorzeichenWechselExtern /= 0);
    
    
-
-   function BeschäftigungAbbrechenVerbesserungErsetzenBrandschatzenEinheitAuflösen
-     (WelcheAuswahlExtern : in Natural)
-      return Boolean;
    
    function EinheitAnforderungenErfüllt
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
@@ -73,17 +40,15 @@ private
    
    AktuelleID : GlobaleDatentypen.EinheitenID;
    
-   StadtNummer : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   AktuelleBeschäftigung : GlobaleDatentypen.Tastenbelegung_Enum;
+   
    Heimatstadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   StadtNummerNeu : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
    Heilungsrate : constant GlobaleDatentypen.MaximaleStädte := 10;
-   
    ErhalteneErfahrungspunkte : GlobaleDatentypen.MaximaleStädte;
       
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
-   StadtNummerNeu : GlobaleDatentypen.MaximaleStädteMitNullWert;
-
-   Position : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    procedure HeilungBewegungspunkteNeueRundeSetzen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -93,4 +58,4 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
-end EinheitenAllgemein;
+end EinheitenModifizieren;

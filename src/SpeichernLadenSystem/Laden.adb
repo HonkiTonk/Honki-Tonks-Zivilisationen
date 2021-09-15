@@ -3,7 +3,7 @@ pragma SPARK_Mode (On);
 with Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Directories;
 use Ada.Strings.UTF_Encoding.Wide_Wide_Strings, Ada.Calendar, Ada.Directories;
 
-with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords;
+with GlobaleDatentypen, GlobaleVariablen, GlobaleRecords, GlobaleKonstanten;
 use GlobaleDatentypen;
 
 with Karten, Ladezeiten, Informationen, Auswahl, Eingabe;
@@ -14,18 +14,16 @@ package body Laden is
      return Boolean
    is begin
       
-      SpielstandName := Eingabe.SpielstandName;
-
       case
-        Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)))
+        SpielstandNameErmitteln
       is
-         -- Anzeige der vorhandenen Spielstände einbauen
          when True =>
             null;
-
+            
          when False =>
             return False;
       end case;
+      
       Ladezeiten.EinzelneZeiten (Ladezeiten.Ladezeit, GlobaleDatentypen.Anfangswert) := Clock;
 
       Open (File => DateiLadenNeu,
@@ -46,7 +44,7 @@ package body Laden is
          case
            Auswahl.AuswahlJaNein (FrageZeileExtern => 24)
          is
-            when -3 =>
+            when GlobaleKonstanten.JaKonstante =>
                null;
                      
             when others =>
@@ -276,5 +274,17 @@ package body Laden is
       return True;
       
    end LadenNeu;
+   
+   
+   
+   function SpielstandNameErmitteln
+     return Boolean
+   is begin
+      
+      SpielstandName := Eingabe.SpielstandName;
+
+      return Exists (Name => "Spielstand/" & Encode (Item => To_Wide_Wide_String (Source => SpielstandName)));
+      
+   end SpielstandNameErmitteln;
 
 end Laden;

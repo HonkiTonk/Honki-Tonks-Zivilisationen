@@ -37,6 +37,7 @@ private
    ErsterDurchlauf : Boolean;
 
    WasErforschtWerdenSoll : GlobaleDatentypen.ForschungIDMitNullWert;
+   AktuellesForschungsprojekt : GlobaleDatentypen.ForschungIDMitNullWert;
 
    AktuelleAuswahl : GlobaleDatentypen.KartenverbesserungEinheitenID;
    Ende : GlobaleDatentypen.ForschungID;
@@ -55,7 +56,22 @@ private
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
 
+   procedure FortschrittMensch
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+
+   procedure FortschrittKI
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+
+
+
    function AuswahlForschungNeu
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.ForschungIDMitNullWert
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+
+   function ForschungAuswahl
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
       return GlobaleDatentypen.ForschungIDMitNullWert
      with
