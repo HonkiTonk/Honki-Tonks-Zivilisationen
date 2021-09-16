@@ -70,11 +70,5 @@ package GlobaleVariablen is
    type DiplomatieArray is array (GlobaleDatentypen.Rassen_Verwendet_Enum'Range, GlobaleDatentypen.Rassen_Verwendet_Enum'Range) of GlobaleRecords.DiplomatieRecord;
    Diplomatie : DiplomatieArray := (others => (others => GlobaleKonstanten.LeerDiplomatie));
    -- Wichtiges Zeug
-   
-   
-  
-   -- Cheats
-   FeindlicheInformationenSehen : Boolean := False;
-   -- Cheats
                                                
 end GlobaleVariablen;

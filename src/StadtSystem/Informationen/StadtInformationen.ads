@@ -7,6 +7,17 @@ with Karten;
 
 package StadtInformationen is
 
+   procedure Stadt
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     with
+       Pre =>
+         (GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
+          and
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer
+          and
+            StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze);
+
    procedure StadtArtBesitzer
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)

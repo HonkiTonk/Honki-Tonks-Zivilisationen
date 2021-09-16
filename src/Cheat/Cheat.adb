@@ -64,7 +64,7 @@ package body Cheat is
    procedure Informationen
    is begin
       
-      GlobaleVariablen.FeindlicheInformationenSehen := not GlobaleVariablen.FeindlicheInformationenSehen;
+      FeindlicheInformationenSehen := not FeindlicheInformationenSehen;
    
    end Informationen;
 

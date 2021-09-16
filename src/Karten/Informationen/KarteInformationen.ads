@@ -13,61 +13,10 @@ package KarteInformationen is
    
 private
    
-   ErsteAnzeige : Boolean;
-   
-   EinheitNummer : GlobaleDatentypen.MaximaleEinheiten;
+   Sichtbar : Boolean;
    
    EinheitRasseNummer : GlobaleRecords.RassePlatznummerRecord;
    StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord;
-   
-   procedure InformationenRundenanzahl;
-   
-   procedure InformationenGeldmenge
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-     
-   procedure InformationenGeldGewinn
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-     
-   procedure InformationenForschungsprojekt
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-     
-   procedure InformationenForschungszeit
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-     
-   procedure InformationenForschungsmenge
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-     
-   procedure InformationenForschungsrate
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
-   
-   procedure InformationenEinheiten
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
-          and
-            GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer
-          and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
    
    procedure InformationenStadt
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
@@ -85,5 +34,35 @@ private
      with
        Pre =>
          (GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+   
+   procedure InformationenSichtbar
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure Kartenposition
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure Gecheatet
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure FeldWissen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure FeldGeld
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure FeldProduktion
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure FeldNahrung
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure FeldAngriff
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure FeldVerteidigung
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure Hügel
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
 
 end KarteInformationen;

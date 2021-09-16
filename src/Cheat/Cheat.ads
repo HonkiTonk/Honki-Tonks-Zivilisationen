@@ -5,6 +5,9 @@ use GlobaleDatentypen;
 
 package Cheat is
    
+   GewonnenDurchCheat : Boolean := False;
+   FeindlicheInformationenSehen : Boolean := False;
+   
    procedure Menü
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
@@ -33,8 +36,6 @@ package Cheat is
           and
             StadtRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze);
    
-   GewonnenDurchCheat : Boolean := False;
-
 private
    
    ErsteAnzeige : Boolean;

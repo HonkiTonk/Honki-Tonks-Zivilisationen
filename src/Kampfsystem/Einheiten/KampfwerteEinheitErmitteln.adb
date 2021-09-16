@@ -22,57 +22,74 @@ package body KampfwerteEinheitErmitteln is
         AngreiferExtern
       is
          when False =>
-            if
-              VerteidigungWert + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                   RasseExtern       => EinheitRasseNummerExtern.Rasse)
-              > GlobaleDatentypen.ProduktionFeld'Last
-            then
-               VerteidigungWert := GlobaleDatentypen.ProduktionFeld'Last;
-               
-            else
-               VerteidigungWert := VerteidigungWert + GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                                        RasseExtern       => EinheitRasseNummerExtern.Rasse);
-            end if;
-            
-            VerteidigungWertFloat := Float (VerteidigungWert);
-            
-            case
-              LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
-            is
-               when GlobaleDatentypen.Verschanzen =>
-                  VerteidigungWertFloat := VerteidigungWertFloat * VerschanzungBonus;
-                  
-               when others =>
-                  null;
-            end case;
-            
-            case
-              StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                          KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
-            is
-               when GlobaleKonstanten.LeerEinheitStadtNummer =>
-                  null;
-                  
-               when others =>
-                  VerteidigungWertFloat := VerteidigungWertFloat * StadtBonus;
-            end case;
-              
-            if
-              VerteidigungWertFloat > Float (GlobaleDatentypen.ProduktionFeld'Last)
-            then
-               VerteidigungWert := GlobaleDatentypen.ProduktionFeld'Last;
-               
-            else
-               VerteidigungWert := GlobaleDatentypen.ProduktionFeld (VerteidigungWertFloat);
-            end if;
+            Bonus := VerteidigungsbonusVerteidiger (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when True =>
-            null;
+            Bonus := VerteidigungsbonusAngreifer;
       end case;
       
-      return VerteidigungWert;
+      if
+        VerteidigungWert + Bonus > GlobaleDatentypen.GesamtproduktionStadt'Last
+      then
+         return GlobaleDatentypen.GesamtproduktionStadt'Last;
+         
+      else
+         return VerteidigungWert + Bonus;
+      end if;
       
    end AktuelleVerteidigungEinheit;
+   
+   
+   
+   function VerteidigungsbonusVerteidiger
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      VerteidigungWertFloat := Float (GesamtwerteFeld.FeldVerteidigung (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                                        RasseExtern       => EinheitRasseNummerExtern.Rasse));
+      
+      case
+        LeseEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
+      is
+         when GlobaleDatentypen.Verschanzen =>
+            VerteidigungWertFloat := VerteidigungWertFloat * VerschanzungBonus;
+                  
+         when others =>
+            null;
+      end case;
+            
+      case
+        StadtSuchen.KoordinatenStadtMitRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                    KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
+      is
+         when GlobaleKonstanten.LeerEinheitStadtNummer =>
+            null;
+                  
+         when others =>
+            VerteidigungWertFloat := VerteidigungWertFloat * StadtBonus;
+      end case;
+              
+      if
+        VerteidigungWertFloat > Float (GlobaleDatentypen.GesamtproduktionStadt'Last)
+      then
+         return GlobaleDatentypen.GesamtproduktionStadt'Last;
+               
+      else
+         return GlobaleDatentypen.GesamtproduktionStadt (VerteidigungWertFloat);
+      end if;
+      
+   end VerteidigungsbonusVerteidiger;
+   
+   
+   
+   function VerteidigungsbonusAngreifer
+     return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      return 0;
+      
+   end VerteidigungsbonusAngreifer;
    
    
    
@@ -89,28 +106,55 @@ package body KampfwerteEinheitErmitteln is
         AngreiferExtern
       is
          when True =>
-            AngriffWert := AngriffWert + GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
-                                                                      RasseExtern       => EinheitRasseNummerExtern.Rasse);
-            
-            AngriffWertFloat := Float (AngriffWert);
-            -- Diesen Bonus anders gestalten, vielleicht auf Basis der Bewegungspunkte?
-            AngriffWertFloat := AngriffWertFloat * AngriffBonus;
-            
-            if
-              AngriffWertFloat > Float (GlobaleDatentypen.ProduktionFeld'Last)
-            then
-               AngriffWert := GlobaleDatentypen.ProduktionFeld'Last;
-               
-            else
-               AngriffWert := GlobaleDatentypen.ProduktionFeld (AngriffWertFloat);
-            end if;
+            Bonus := AngriffsbonusAngreifer (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when False =>
-            null;
+            Bonus := AngriffsbonusVerteidiger;
       end case;
      
-      return AngriffWert;
+      if
+        AngriffWert + Bonus > GlobaleDatentypen.GesamtproduktionStadt'Last
+      then
+         return GlobaleDatentypen.GesamtproduktionStadt'Last;
+         
+      else
+         return AngriffWert + Bonus;
+      end if;
    
    end AktuellerAngriffEinheit;
+   
+   
+   
+   function AngriffsbonusAngreifer
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      AngriffWertFloat := Float (GesamtwerteFeld.FeldAngriff (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
+                                                              RasseExtern       => EinheitRasseNummerExtern.Rasse));
+            
+      -- Diesen Bonus anders gestalten, vielleicht auf Basis der Bewegungspunkte?
+      AngriffWertFloat := AngriffWertFloat * AngriffBonus;
+            
+      if
+        AngriffWertFloat > Float (GlobaleDatentypen.ProduktionFeld'Last)
+      then
+         return GlobaleDatentypen.GesamtproduktionStadt'Last;
+               
+      else
+         return GlobaleDatentypen.GesamtproduktionStadt (AngriffWertFloat);
+      end if;
+      
+   end AngriffsbonusAngreifer;
+   
+   
+   
+   function AngriffsbonusVerteidiger
+     return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      return 0;
+      
+   end AngriffsbonusVerteidiger;
 
 end KampfwerteEinheitErmitteln;

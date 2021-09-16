@@ -29,14 +29,28 @@ private
    
    VerschanzungBonus : constant Float := 1.25;
    StadtBonus : constant Float := 1.25;
-   
    -- Drin lassen? Anders gestalten?
    AngriffBonus : constant Float := 1.25;
    
-   VerteidigungWert : GlobaleDatentypen.ProduktionFeld;
-   AngriffWert : GlobaleDatentypen.ProduktionFeld;
+   VerteidigungWert : GlobaleDatentypen.GesamtproduktionStadt;
+   AngriffWert : GlobaleDatentypen.GesamtproduktionStadt;
+   Bonus : GlobaleDatentypen.GesamtproduktionStadt;
    
    VerteidigungWertFloat : Float;
    AngriffWertFloat : Float;
+   
+   function VerteidigungsbonusVerteidiger
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.GesamtproduktionStadt;
+   
+   function VerteidigungsbonusAngreifer
+     return GlobaleDatentypen.GesamtproduktionStadt;
+   
+   function AngriffsbonusAngreifer
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.GesamtproduktionStadt;
+   
+   function AngriffsbonusVerteidiger
+     return GlobaleDatentypen.GesamtproduktionStadt;
 
 end KampfwerteEinheitErmitteln;

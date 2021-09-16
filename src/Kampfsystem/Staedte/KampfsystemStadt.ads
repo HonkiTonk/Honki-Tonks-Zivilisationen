@@ -6,7 +6,8 @@ use GlobaleDatentypen;
 package KampfsystemStadt is
 
    function KampfsystemStadt
-     (AngreifendeEinheitRasseNummerExtern, VerteidigendeStadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>
@@ -59,12 +60,18 @@ private
                                                             );
    
    procedure SchadenStadtBerechnen
-     (AngriffExtern, VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld);
+     (AngriffExtern : in GlobaleDatentypen.ProduktionFeld;
+      VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld);
    
    
    
    function Kampfverlauf
      (AngreifendeEinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean;
+   
+   function Kampf
+     (AngreifendeEinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean;
 
 end KampfsystemStadt;

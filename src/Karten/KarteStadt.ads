@@ -13,37 +13,22 @@ package KarteStadt is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch);
 
-   procedure Beschreibung
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_Mensch
-          and
-            StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
-          and
-            GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
-
 private
 
    InformationenStadtAufrufen : Boolean;
    
    Stadtumgebungsgröße : GlobaleDatentypen.Stadtfeld;
-   KonstanterWertEins : constant GlobaleDatentypen.Sichtweite := 1;
-   KonstanterWertSieben : constant GlobaleDatentypen.Sichtweite := 7;
 
    YAchsenabstraktion : GlobaleDatentypen.Kartenfeld;
-   Aufschlag : GlobaleDatentypen.KartenfeldPositivMitNullwert;
+   Aufschlag : GlobaleDatentypen.SichtweiteMitNullwert;
    CursorKonstant : constant GlobaleDatentypen.Sichtweite := 3;
    Cursor : GlobaleDatentypen.Kartenfeld;
    CursorYAchseabstraktion : GlobaleDatentypen.Kartenfeld;
    CursorXAchseabstraktion : GlobaleDatentypen.Kartenfeld;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
-   
-   -- StadtRasseNummer : GlobaleRecords.RassePlatznummerRecord;
-   
-   procedure InformationenStadt
+      
+   procedure WeitereInformationen
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
      with
        Pre =>
@@ -51,8 +36,9 @@ private
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch);
 
-   procedure SchleifeFenster
-     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld;
+   procedure SchleifeAnsichtUmgebung
+     (YAchseExtern : in GlobaleDatentypen.Stadtfeld;
+      XAchseExtern : in GlobaleDatentypen.Stadtfeld;
       RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
      with
        Pre =>
@@ -60,11 +46,48 @@ private
 
    procedure AnzeigeStadtUmgebung
      (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      YAchseExtern, XAchseExtern : in GlobaleDatentypen.Stadtfeld)
+      YAchseExtern : in GlobaleDatentypen.Stadtfeld;
+      XAchseExtern : in GlobaleDatentypen.Stadtfeld)
      with
        Pre =>
          (StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_Mensch);
+   
+   procedure GrafischeDarstellung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
+   procedure GebäudeText
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
+   procedure AnsichtUmgebung
+     (YAchseExtern : in GlobaleDatentypen.Stadtfeld;
+      XAchseExtern : in GlobaleDatentypen.Stadtfeld;
+      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
+   procedure CursorDarstellung
+     (YAchseExtern : in GlobaleDatentypen.Stadtfeld;
+      XAchseExtern : in GlobaleDatentypen.Stadtfeld;
+      RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
+   
+   procedure GebäudeDarstellung
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.GebäudeID);
+   
+   procedure AnzeigeUmgebungCursor
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      UmgebungExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei);
+   
+   
+   
+   function Darstellung
+     (YAchseExtern : in GlobaleDatentypen.Stadtfeld;
+      XAchseExtern : in GlobaleDatentypen.Stadtfeld;
+      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean;
+   
+   function AufschlagGebäude
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.SichtweiteMitNullwert;
 
 end KarteStadt;

@@ -40,9 +40,7 @@ package body KartenAllgemein is
    is begin
       
       if
-        LeseKarten.Grund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
-        and
-          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
+        LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
          return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
                                                RasseExtern       => RasseExtern,
@@ -70,9 +68,7 @@ package body KartenAllgemein is
    is begin
       
       if
-        LeseKarten.Grund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
-        and
-          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
+        LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
          return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
                                                RasseExtern       => RasseExtern,
@@ -99,9 +95,7 @@ package body KartenAllgemein is
    is begin
       
       if
-        LeseKarten.Grund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
-        and
-          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
+        LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
          return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
                                                RasseExtern       => RasseExtern,
@@ -128,9 +122,7 @@ package body KartenAllgemein is
    is begin
       
       if
-        LeseKarten.Grund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
-        and
-          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
+        LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
          return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
                                                RasseExtern       => RasseExtern,
@@ -157,9 +149,7 @@ package body KartenAllgemein is
    is begin
       
       if
-        LeseKarten.Grund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
-        and
-          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
+        LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
          return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
                                                RasseExtern       => RasseExtern,
@@ -186,9 +176,7 @@ package body KartenAllgemein is
    is begin
       
       if
-        LeseKarten.Grund (PositionExtern => PositionExtern) /= GlobaleDatentypen.Hügel
-        and
-          LeseKarten.Hügel (PositionExtern => PositionExtern) = True
+        LeseKarten.Hügel (PositionExtern => PositionExtern) = True
       then
          return LeseKartenDatenbank.FeldWerte (GrundExtern       => LeseKarten.Grund (PositionExtern => PositionExtern),
                                                RasseExtern       => RasseExtern,

@@ -10,7 +10,8 @@ with StadtEntfernen, KampfwerteStadtErmitteln, KampfwerteEinheitErmitteln, Kampf
 package body KampfsystemStadt is
 
    function KampfsystemStadt
-     (AngreifendeEinheitRasseNummerExtern, VerteidigendeStadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (AngreifendeEinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       
@@ -26,6 +27,19 @@ package body KampfsystemStadt is
       GesundheitStadt := LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
                                                             EinwohnerArbeiterExtern => True);
       
+      return Kampf (AngreifendeEinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern,
+                    VerteidigendeStadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
+      
+   end KampfsystemStadt;
+   
+   
+   
+   function Kampf
+     (AngreifendeEinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      VerteidigendeStadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
       case
         Kampfverlauf (AngreifendeEinheitRasseNummerExtern => AngreifendeEinheitRasseNummerExtern)
       is
@@ -38,7 +52,8 @@ package body KampfsystemStadt is
       
       if
         LeseStadtGebaut.EinwohnerArbeiter (StadtRasseNummerExtern  => VerteidigendeStadtRasseNummerExtern,
-                                           EinwohnerArbeiterExtern => True) - 1 <= GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (1)
+                                           EinwohnerArbeiterExtern => True) - 1
+        <= GlobaleKonstanten.LeerStadt.EinwohnerArbeiter (1)
       then
          StadtEntfernen.StadtEntfernen (StadtRasseNummerExtern => VerteidigendeStadtRasseNummerExtern);
          return True;
@@ -67,10 +82,9 @@ package body KampfsystemStadt is
                                                   BewegungspunkteExtern    => 1.50,
                                                   RechnenSetzenExtern      => -1);
          return False;
-         
       end if;
       
-   end KampfsystemStadt;
+   end Kampf;
    
    
    
@@ -120,7 +134,8 @@ package body KampfsystemStadt is
    
    
    procedure SchadenStadtBerechnen
-     (AngriffExtern, VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld)
+     (AngriffExtern : in GlobaleDatentypen.ProduktionFeld;
+      VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld)
    is begin
       
       -- Bei Extremfällen AngerichteterSchaden schon vorher einen Wert geben?
@@ -174,8 +189,7 @@ package body KampfsystemStadt is
          GesundheitStadt := 0;
          
       else
-         GesundheitStadt
-           := GesundheitStadt - AngerichteterSchaden;
+         GesundheitStadt := GesundheitStadt - AngerichteterSchaden;
       end if;
       
    end SchadenStadtBerechnen;

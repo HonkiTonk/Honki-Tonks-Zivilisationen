@@ -10,7 +10,8 @@ with ZufallGeneratorenKampf, KampfwerteEinheitErmitteln, EinheitenErzeugenEntfer
 package body KampfsystemEinheiten is
 
    function KampfsystemNahkampf
-     (AngreiferExtern, VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (AngreiferExtern : in GlobaleRecords.RassePlatznummerRecord;
+      VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
 
@@ -32,7 +33,8 @@ package body KampfsystemEinheiten is
 
 
    function Kampf
-     (VerteidigerExtern, AngreiferExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      AngreiferExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
             
@@ -52,6 +54,7 @@ package body KampfsystemEinheiten is
                                                       AddierenSetzenExtern     => True);
             EinheitenErzeugenEntfernen.EinheitEntfernen (EinheitRasseNummerExtern => VerteidigerExtern);
             return True;
+            
          else
             null;
          end if;
@@ -82,7 +85,8 @@ package body KampfsystemEinheiten is
 
    procedure KampfBerechnung
      (VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AngriffExtern, VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld)
+      AngriffExtern : in GlobaleDatentypen.ProduktionFeld;
+      VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld)
    is begin
       
       -- Bei Extremfällen AngerichteterSchaden schon vorher einen Wert geben?

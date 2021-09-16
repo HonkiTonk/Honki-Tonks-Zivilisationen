@@ -83,57 +83,80 @@ package body Karte is
                                                  RasseExtern       => RasseExtern);
             end case;
             
-            if
-              XAchseSchleifenwert = Sichtweiten (SichtweiteFestlegen).XAchse
-            then
-               if
-                 (Karten.Kartenform = GlobaleDatentypen.X_Zylinder
-                  or
-                    Karten.Kartenform = GlobaleDatentypen.Torus
-                  or
-                    Karten.Kartenform = GlobaleDatentypen.Kugel
-                  or
-                    Karten.Kartenform = GlobaleDatentypen.Kugel_Gedreht
-                  or
-                    Karten.Kartenform = GlobaleDatentypen.Tugel
-                  or
-                    Karten.Kartenform = GlobaleDatentypen.Tugel_Gedreht
-                  or
-                    Karten.Kartenform = GlobaleDatentypen.Tugel_Extrem)
-                 and
-                   KartenWert.XAchse > GlobaleKonstanten.LeerYXKartenWert
-               then
-                  New_Line;
-                  
-               elsif
-                 Karten.Kartenform = GlobaleDatentypen.Y_Zylinder
-                 or
-                   Karten.Kartenform = GlobaleDatentypen.Viereck
-               then
-                  New_Line;
-               
-               else
-                  null;
-               end if;              
-                 
-            else
-               null;
-            end if;
+            NeueZeileKartenform (XAchseExtern => XAchseSchleifenwert);
             
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
       New_Line;
-      
       KarteInformationen.KarteInformation (RasseExtern => RasseExtern);
 
    end AnzeigeKarte;
    
    
    
+   procedure NeueZeileKartenform
+     (XAchseExtern : in GlobaleDatentypen.KartenfeldPositivMitNullwert)
+   is begin
+      
+      if
+        XAchseExtern = Sichtweiten (SichtweiteFestlegen).XAchse
+      then
+         if
+           (Karten.Kartenform = GlobaleDatentypen.X_Zylinder
+            or
+              Karten.Kartenform = GlobaleDatentypen.Torus
+            or
+              Karten.Kartenform = GlobaleDatentypen.Kugel
+            or
+              Karten.Kartenform = GlobaleDatentypen.Kugel_Gedreht
+            or
+              Karten.Kartenform = GlobaleDatentypen.Tugel
+            or
+              Karten.Kartenform = GlobaleDatentypen.Tugel_Gedreht
+            or
+              Karten.Kartenform = GlobaleDatentypen.Tugel_Extrem)
+           and
+             KartenWert.XAchse > GlobaleKonstanten.LeerYXKartenWert
+         then
+            New_Line;
+                  
+         elsif
+           Karten.Kartenform = GlobaleDatentypen.Y_Zylinder
+           or
+             Karten.Kartenform = GlobaleDatentypen.Viereck
+         then
+            New_Line;
+               
+         else
+            null;
+         end if;              
+                 
+      else
+         null;
+      end if;
+      
+   end NeueZeileKartenform;
+   
+   
+   
    procedure CursorPositionAltFestlegen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       BewegungsfeldFestlegenExtern : in Positive)
+   is begin
+      
+      AlteEAchseFestlegen (RasseExtern => RasseExtern);
+      AlteYAchseFestlegen (RasseExtern                  => RasseExtern,
+                           BewegungsfeldFestlegenExtern => BewegungsfeldFestlegenExtern);
+      AlteXAchseFestlegen (RasseExtern                  => RasseExtern,
+                           BewegungsfeldFestlegenExtern => BewegungsfeldFestlegenExtern);
+      
+   end CursorPositionAltFestlegen;
+   
+   
+   
+   procedure AlteEAchseFestlegen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
    is begin
       
       if
@@ -144,6 +167,15 @@ package body Karte is
       else
          GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.EAchse := GlobaleVariablen.CursorImSpiel (RasseExtern).Position.EAchse;
       end if;
+      
+   end AlteEAchseFestlegen;
+   
+   
+   
+   procedure AlteYAchseFestlegen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      BewegungsfeldFestlegenExtern : in Positive)
+   is begin
       
       if
         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.YAchse + Bewegungsfeld (BewegungsfeldFestlegenExtern).YAchse > Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -187,7 +219,16 @@ package body Karte is
             null;
          end if;
       end if;
-            
+      
+   end AlteYAchseFestlegen;
+   
+   
+   
+   procedure AlteXAchseFestlegen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      BewegungsfeldFestlegenExtern : in Positive)
+   is begin
+      
       if
         GlobaleVariablen.CursorImSpiel (RasseExtern).PositionAlt.XAchse + Bewegungsfeld (BewegungsfeldFestlegenExtern).XAchse > Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
       then
@@ -231,6 +272,6 @@ package body Karte is
          end if;
       end if;
       
-   end CursorPositionAltFestlegen;
+   end AlteXAchseFestlegen;
    
 end Karte;

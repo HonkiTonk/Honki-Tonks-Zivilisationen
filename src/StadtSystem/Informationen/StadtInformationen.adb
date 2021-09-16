@@ -7,9 +7,52 @@ with GlobaleTexte, GlobaleKonstanten;
 
 with LeseStadtGebaut;
 
-with Anzeige, GesamtwerteFeld, KampfwerteStadtErmitteln;
+with Anzeige, GesamtwerteFeld, KampfwerteStadtErmitteln, Cheat;
 
 package body StadtInformationen is
+   
+   procedure Stadt
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
+      -- Allgemeine Stadtinformationen, nur sichtbar wenn das Kartenfeld aufgedeckt ist und sich dort eine Stadt befindet
+      StadtArtBesitzer (RasseExtern            => RasseExtern,
+                        StadtRasseNummerExtern => StadtRasseNummerExtern);
+      StadtName (StadtRasseNummerExtern => StadtRasseNummerExtern);
+      Einwohner (StadtRasseNummerExtern => StadtRasseNummerExtern);      
+
+      -- "Volle" Stadtinformationen, nur sichtbar wenn eigene Stadt oder wenn Cheat aktiviert ist                      
+      if
+        StadtRasseNummerExtern.Rasse = RasseExtern
+        or
+          Cheat.FeindlicheInformationenSehen
+      then
+         AktuelleNahrungsmittel (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         AktuelleNahrungsproduktion (StadtRasseNummerExtern => StadtRasseNummerExtern);         
+         New_Line;
+                        
+         AktuelleProduktionrate (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         AktuelleGeldgewinnung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         AktuelleForschungsrate (StadtRasseNummerExtern => StadtRasseNummerExtern);         
+         New_Line;
+         
+         AktuelleVerteidigung (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         AktuellerAngriff (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         New_Line;
+
+         Korruption (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         EinwohnerOhneArbeit (StadtRasseNummerExtern => StadtRasseNummerExtern);
+         New_Line;
+               
+         AktuellesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+
+      else
+         null;
+      end if;   
+      New_Line;
+      
+   end Stadt;
 
    procedure StadtArtBesitzer
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;

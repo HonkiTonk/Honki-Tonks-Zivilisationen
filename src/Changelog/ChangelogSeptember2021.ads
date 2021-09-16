@@ -91,17 +91,19 @@ package ChangelogSeptember2021 is
    
    
    
-   -- Version 0.00.87 => 0.00.87 (17.09.2021):
+   -- Version 0.00.8770 => 0.00.87 (17.09.2021):
    
    -- 
    -- Kleinigkeiten korrigiert.
    
    
    
-   -- Version 0.00.8750 => 0.00.87 (16.09.2021):
+   -- Version 0.00.8750 => 0.00.8770 (16.09.2021):
    
-   -- 
-   -- Kleinigkeiten korrigiert.
+   -- Unnötigen Code gelöscht.
+   -- Systeme zum Speichern/Laden von Daten überarbeitet.
+   -- Funktionen/Prozeduren in ihrer Länge reduziert und Übersichtlichkeit des Codes verbessert.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/entfernt/hinzugefügt.
    
    
    
@@ -110,7 +112,7 @@ package ChangelogSeptember2021 is
    -- Unnötigen Code gelöscht.
    -- Systeme zum Speichern/Laden von Daten überarbeitet.
    -- Funktionen/Prozeduren in ihrer Länge reduziert und Übersichtlichkeit des Codes verbessert.
-   -- Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet.
+   -- Contracts, Kommentare und Kleinigkeiten korrigiert/angepasst/überarbeitet/entfernt/hinzugefügt.
    
    
    

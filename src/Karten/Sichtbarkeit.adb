@@ -110,7 +110,7 @@ package body Sichtbarkeit is
       is
          when GlobaleDatentypen.Sichtweite'First =>
             SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                               SichtweiteExtern         => 1);
+                                               SichtweiteExtern         => SichtweiteObjekt);
             return;
             
          when 3 =>
@@ -128,7 +128,7 @@ package body Sichtbarkeit is
                 LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern).EAchse >= 0
             then
                SichtbarkeitsprüfungOhneBlockade (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                  SichtweiteExtern         => 3);
+                                                  SichtweiteExtern         => SichtweiteObjekt);
                return;
                
             else
@@ -139,6 +139,16 @@ package body Sichtbarkeit is
             null;
       end case;
 
+      QuadrantenDurchlaufen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+   end SichtbarkeitsprüfungFürEinheit;
+   
+   
+   
+   procedure QuadrantenDurchlaufen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
       YQuadrantSchleife:
       for YQuadrantSchleifenwert in 0 .. SichtweiteObjekt loop
          XQuadrantSchleife:
@@ -192,13 +202,14 @@ package body Sichtbarkeit is
          end loop XQuadrantSchleife;
       end loop YQuadrantSchleife;
       
-   end SichtbarkeitsprüfungFürEinheit;
+   end QuadrantenDurchlaufen;
    
    
    
    procedure QuadrantEins
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
    is begin
               
@@ -323,7 +334,8 @@ package body Sichtbarkeit is
    
    procedure QuadrantZwei
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
    is begin
                     
@@ -448,7 +460,8 @@ package body Sichtbarkeit is
    
    procedure QuadrantDrei
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
    is begin
                     
@@ -573,7 +586,8 @@ package body Sichtbarkeit is
    
    procedure QuadrantVier
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite)
    is begin
                     
@@ -698,13 +712,15 @@ package body Sichtbarkeit is
    
    function SichtbarkeitBlockadeTesten
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      YÄnderungExtern, XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
+      YÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
+      XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
       SichtweiteExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
       return Boolean
    is begin
       
       KartenBlockadeWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
                                                                           ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern));
+      
       if
         KartenBlockadeWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
       then
@@ -852,83 +868,4 @@ package body Sichtbarkeit is
       
    end SichtbarkeitSetzen;
    
-   
-   
-   procedure SichtbarkeitHandel
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      WelcherHandelExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
-   is begin
-      
-      case
-        WelcherHandelExtern
-      is
-         when 0 | -1 =>
-            EAchseEinsSchleife:
-            for EAchseEinsSchleifenwert in Karten.WeltkarteArray'Range (1) loop
-               YAchseEinsSchleife:
-               for YAchseEinsSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
-                  XAchseEinsSchleife:
-                  for XAchseEinsSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
-
-                     if
-                       LeseKarten.Sichtbar (PositionExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                            RasseExtern    => RasseEinsExtern)
-                       = False
-                       and
-                         LeseKarten.Sichtbar (PositionExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert),
-                                              RasseExtern    => RasseZweiExtern)
-                       = True
-                     then
-                        SichtbarkeitSetzen (RasseExtern       => RasseEinsExtern,
-                                            KoordinatenExtern => (EAchseEinsSchleifenwert, YAchseEinsSchleifenwert, XAchseEinsSchleifenwert));
-                        
-                     else
-                        null;
-                     end if;
-
-                  end loop XAchseEinsSchleife;
-               end loop YAchseEinsSchleife;
-            end loop EAchseEinsSchleife;
-
-         when others =>
-            null;
-      end case;
-      
-      case
-        WelcherHandelExtern
-      is
-         when 0 | 1 =>
-            EAchseZweiSchleife:
-            for EAchseZweiSchleifenwert in Karten.WeltkarteArray'Range (1) loop
-               YAchseZweiSchleife:
-               for YAchseZweiSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
-                  XAchseZweiSchleife:
-                  for XAchseZweiSchleifenwert in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße loop
-
-                     if
-                       LeseKarten.Sichtbar (PositionExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                            RasseExtern    => RasseZweiExtern)
-                       = False
-                       and
-                         LeseKarten.Sichtbar (PositionExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert),
-                                              RasseExtern    => RasseEinsExtern)
-                       = True
-                     then
-                        SichtbarkeitSetzen (RasseExtern       => RasseZweiExtern,
-                                            KoordinatenExtern => (EAchseZweiSchleifenwert, YAchseZweiSchleifenwert, XAchseZweiSchleifenwert));
-                        
-                     else
-                        null;
-                     end if;
-
-                  end loop XAchseZweiSchleife;
-               end loop YAchseZweiSchleife;
-            end loop EAchseZweiSchleife;
-            
-         when others =>
-            null;
-      end case;
-              
-   end SichtbarkeitHandel;
-
 end Sichtbarkeit;

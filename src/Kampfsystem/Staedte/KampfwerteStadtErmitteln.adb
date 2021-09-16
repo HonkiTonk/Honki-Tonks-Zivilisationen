@@ -22,7 +22,8 @@ package body KampfwerteStadtErmitteln is
          
          if
            LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                             WelchesGebäudeExtern   => GebäudeSchleifenwert) = False
+                                              WelchesGebäudeExtern   => GebäudeSchleifenwert)
+           = False
          then
             null;
             
@@ -56,7 +57,8 @@ package body KampfwerteStadtErmitteln is
          
          if
            LeseStadtGebaut.GebäudeVorhanden (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                              WelchesGebäudeExtern   => GebäudeSchleifenwert) = False
+                                              WelchesGebäudeExtern   => GebäudeSchleifenwert)
+           = False
          then
             null;
             

@@ -6,7 +6,8 @@ use GlobaleDatentypen;
 package KampfsystemEinheiten is
 
    function KampfsystemNahkampf
-     (AngreiferExtern, VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (AngreiferExtern : in GlobaleRecords.RassePlatznummerRecord;
+      VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>
@@ -22,7 +23,8 @@ package KampfsystemEinheiten is
 
    procedure KampfBerechnung
      (VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      AngriffExtern, VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld)
+      AngriffExtern : in GlobaleDatentypen.ProduktionFeld;
+      VerteidigungExtern : in GlobaleDatentypen.ProduktionFeld)
      with
        Pre =>
          (VerteidigerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (VerteidigerExtern.Rasse).Einheitengrenze
@@ -68,7 +70,8 @@ private
                                                             );
 
    function Kampf
-     (VerteidigerExtern, AngreiferExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (VerteidigerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      AngreiferExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>

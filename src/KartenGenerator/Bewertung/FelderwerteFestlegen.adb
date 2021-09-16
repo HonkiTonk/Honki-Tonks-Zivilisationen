@@ -96,7 +96,8 @@ package body FelderwerteFestlegen is
    
    
    procedure BewertungSelbst
-     (KoordinatenFeldExtern, KoordinatenUmgebungExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+     (KoordinatenFeldExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      KoordinatenUmgebungExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
       RasseExtern : in GlobaleDatentypen.Rassen_Enum;
       TeilerExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
    is begin

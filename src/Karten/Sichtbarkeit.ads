@@ -29,16 +29,18 @@ package Sichtbarkeit is
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
-   procedure SichtbarkeitHandel
-     (RasseEinsExtern, RasseZweiExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      WelcherHandelExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+   procedure SichtbarkeitSetzen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
      with
        Pre =>
-         (RasseEinsExtern /= RasseZweiExtern
+         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseEinsExtern) /= GlobaleDatentypen.Leer
+            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
           and
-            GlobaleVariablen.RassenImSpiel (RasseZweiExtern) /= GlobaleDatentypen.Leer);
+            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+
+
 
    function SichtweiteErmitteln
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
@@ -75,40 +77,39 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) /= GlobaleDatentypen.Leer);
 
-   procedure SichtbarkeitSetzen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-     with
-       Pre =>
-         (KoordinatenExtern.YAchse in Karten.WeltkarteArray'First (2) .. Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            KoordinatenExtern.XAchse in Karten.WeltkarteArray'First (3) .. Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße
-          and
-            GlobaleVariablen.RassenImSpiel (RasseExtern) /= GlobaleDatentypen.Leer);
+   procedure QuadrantenDurchlaufen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
 
    procedure QuadrantEins
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
 
    procedure QuadrantZwei
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
 
    procedure QuadrantDrei
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
 
    procedure QuadrantVier
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      SichtweiteYRichtungExtern, SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteYRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
+      SichtweiteXRichtungExtern : in GlobaleDatentypen.SichtweiteMitNullwert;
       SichtweiteMaximalExtern : in GlobaleDatentypen.Sichtweite);
+
+
 
    function SichtbarkeitBlockadeTesten
      (KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      YÄnderungExtern, XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
+      YÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
+      XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusZweiZuZwei;
       SichtweiteExtern : in GlobaleDatentypen.LoopRangeMinusDreiZuDrei)
       return Boolean
      with

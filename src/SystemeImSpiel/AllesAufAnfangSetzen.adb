@@ -23,6 +23,7 @@ package body AllesAufAnfangSetzen is
       GlobaleVariablen.Gewonnen := False;
       GlobaleVariablen.IronmanName := To_Unbounded_Wide_Wide_String (Source => "");
       Cheat.GewonnenDurchCheat := False;
+      Cheat.FeindlicheInformationenSehen := False;
       ZwischenDenRunden.WeiterSpielen := False;
 
       Karten.Weltkarte := (others => (others => (others => GlobaleKonstanten.LeerWeltkarte)));

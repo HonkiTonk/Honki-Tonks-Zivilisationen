@@ -49,7 +49,8 @@ private
      (EbeneExtern : in GlobaleDatentypen.EbeneVorhanden);
    
    procedure FlussUmgebungTesten
-     (YKoordinateExtern, XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv;
+     (YKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv;
       EbeneExtern : in GlobaleDatentypen.EbeneVorhanden)
      with
        Pre =>
@@ -58,12 +59,30 @@ private
             XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
    
    procedure FlussBerechnung
-     (YKoordinateExtern, XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv;
+     (YKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv;
       EbeneExtern : in GlobaleDatentypen.EbeneVorhanden)
      with
        Pre =>
          (YKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             XKoordinateExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+   procedure BerechnungLinks
+     (EbeneExtern : in GlobaleDatentypen.EbeneVorhanden);
+   
+   procedure BerechnungRechts
+     (EbeneExtern : in GlobaleDatentypen.EbeneVorhanden);
+   
+   procedure BerechnungOben
+     (EbeneExtern : in GlobaleDatentypen.EbeneVorhanden);
+   
+   procedure BerechnungUnten
+     (EbeneExtern : in GlobaleDatentypen.EbeneVorhanden);
+   
+   procedure FlussPlatzieren
+     (YKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XKoordinateExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      EbeneExtern : in GlobaleDatentypen.EbeneVorhanden);
 
 end KartenGeneratorFluss;
