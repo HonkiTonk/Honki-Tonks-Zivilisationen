@@ -2,18 +2,19 @@ pragma SPARK_Mode (On);
 
 with GlobaleDatentypen, GlobaleRecords;
 
+with KartenGeneratorBerechnungenAllgemein;
+
 package KartenGeneratorUnterwasserUnterirdisch is
 
    procedure UnterwasserUnterirdisch;
 
 private
 
-   type AnzahlGleicherFelder is range 0 .. 8;
-   AnzahlGleicherGrund : AnzahlGleicherFelder;
+   AnzahlGleicherGrund : KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
-   type KartengrundWahrscheinlichkeitenArray is array (GlobaleDatentypen.Karten_Unterwasser_Generator_Enum'Range, AnzahlGleicherFelder'Range) of Float;
+   type KartengrundWahrscheinlichkeitenArray is array (GlobaleDatentypen.Karten_Unterwasser_Generator_Enum'Range, KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of Float;
    KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray :=
      (
       GlobaleDatentypen.Korallen =>
@@ -23,9 +24,15 @@ private
      );
 
    procedure WasserweltErzeugen
-     (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv);
+     (YPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv);
 
    procedure ErdweltErzeugen
-     (YPositionExtern, XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv);
+     (YPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv);
+
+   procedure GrundErzeugen
+     (YPositionExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XPositionExtern : in GlobaleDatentypen.KartenfeldPositiv);
 
 end KartenGeneratorUnterwasserUnterirdisch;

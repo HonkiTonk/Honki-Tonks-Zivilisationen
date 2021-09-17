@@ -59,25 +59,19 @@ package body KIStadtLaufendeBauprojekte is
          then
             null;
                
-         else
-            case
-              LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern)
-            is
-               when GlobaleKonstanten.BauprojekteEinheitenAnfang .. GlobaleKonstanten.BauprojekteEinheitenEnde =>
-                  if
-                    LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                                       IDExtern    => EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.EinheitAufschlag))
-                    = EinheitArtExtern
-                  then
-                     GleichesBauprojekt := GleichesBauprojekt + 1;
+         elsif
+           LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) in GlobaleKonstanten.BauprojekteEinheitenAnfang .. GlobaleKonstanten.BauprojekteEinheitenEnde
+         then
+            if
+              LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                                 IDExtern    => EinheitenID (LeseStadtGebaut.Bauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern) - GlobaleKonstanten.EinheitAufschlag))
+              = EinheitArtExtern
+            then
+               GleichesBauprojekt := GleichesBauprojekt + 1;
                      
-                  else
-                     null;
-                  end if;
-                  
-               when others =>
-                  null;
-            end case;
+            else
+               null;
+            end if;
          end if;
          
       end loop StadtSchleife;

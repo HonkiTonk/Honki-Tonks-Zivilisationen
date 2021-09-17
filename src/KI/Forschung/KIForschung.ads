@@ -12,8 +12,8 @@ package KIForschung is
          (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_KI);
    
 private
-   
-   AnforderungVorhanden : Natural;
-   AnforderungErfüllt : Natural;
+      
+   procedure NeuesForschungsprojekt
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum);
 
 end KIForschung;

@@ -47,7 +47,7 @@ package body KIAufgabeFestlegen is
                                                                      (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
       
       if
-        NeueStadtPosition = KIKonstanten.NullKoordinate
+        NeueStadtPosition = KIKonstanten.LeerKoordinate
       then
          NullWert := StadtBauen.StadtBauen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
          
@@ -134,32 +134,7 @@ package body KIAufgabeFestlegen is
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
    is begin
       
-      WenAngreifen := GlobaleDatentypen.Leer;
-      
-      RassenSchleife:
-      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
-         
-         if
-           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
-           or
-             RasseSchleifenwert = EinheitRasseNummerExtern.Rasse
-         then
-            null;
-            
-         elsif
-           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => EinheitRasseNummerExtern.Rasse,
-                                                              FremdeRasseExtern => RasseSchleifenwert)
-           = GlobaleDatentypen.Krieg
-         then
-            -- Hier noch mehr Überprüfungen einbauen?
-            WenAngreifen := RasseSchleifenwert;
-            exit RassenSchleife;
-            
-         else
-            null;
-         end if;
-         
-      end loop RassenSchleife;
+      WenAngreifen := ZielErmitteln (RasseExtern => EinheitRasseNummerExtern.Rasse);
       
       case
         WenAngreifen
@@ -197,7 +172,7 @@ package body KIAufgabeFestlegen is
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts);
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       KoordinatenExtern        => KIKonstanten.NullKoordinate);
+                                                       KoordinatenExtern        => KIKonstanten.LeerKoordinate);
             
          when others =>
             SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -205,6 +180,44 @@ package body KIAufgabeFestlegen is
       end case;
       
    end Angreifen;
+   
+   
+   
+   function ZielErmitteln
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.Rassen_Enum
+   is begin
+      
+      Ziel := GlobaleDatentypen.Leer;
+      
+      RassenSchleife:
+      for RasseSchleifenwert in GlobaleDatentypen.Rassen_Verwendet_Enum'Range loop
+         
+         if
+           GlobaleVariablen.RassenImSpiel (RasseSchleifenwert) = GlobaleDatentypen.Leer
+           or
+             RasseSchleifenwert = RasseExtern
+         then
+            null;
+            
+         elsif
+           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
+                                                              FremdeRasseExtern => RasseSchleifenwert)
+           = GlobaleDatentypen.Krieg
+         then
+            -- Hier noch mehr Überprüfungen einbauen?
+            Ziel := RasseSchleifenwert;
+            exit RassenSchleife;
+            
+         else
+            null;
+         end if;
+         
+      end loop RassenSchleife;
+      
+      return Ziel;
+      
+   end ZielErmitteln;
    
    
    
@@ -273,7 +286,7 @@ package body KIAufgabeFestlegen is
       end loop UnbekanntesFeldSuchenSchleife;
       
       SchreibeEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                 KoordinatenExtern        => KIKonstanten.NullKoordinate);
+                                                 KoordinatenExtern        => KIKonstanten.LeerKoordinate);
       SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                               AufgabeExtern            => KIDatentypen.Tut_Nichts);
       
@@ -407,7 +420,7 @@ package body KIAufgabeFestlegen is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      return KIKonstanten.NullKoordinate;
+      return KIKonstanten.LeerKoordinate;
       
    end EinheitVerbessernPlatz;
 

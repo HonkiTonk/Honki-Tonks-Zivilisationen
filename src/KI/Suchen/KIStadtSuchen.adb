@@ -7,60 +7,6 @@ with LeseStadtGebaut;
 with EinheitSuchen;
 
 package body KIStadtSuchen is
-
-   function NähesteStadtSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      AnfangKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
-   is begin
-      
-      AktuellGefundeneStadt := 0;
-      
-      StadtSchleife:
-      for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
-         
-         if
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (RasseExtern, StadtSchleifenwert)) = GlobaleDatentypen.Leer
-         then
-            null;
-            
-         elsif
-           AktuellGefundeneStadt = 0
-         then
-            AktuellGefundeneStadt := StadtSchleifenwert;
-            Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuellGefundeneStadt).Position.EAchse)
-                                    + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuellGefundeneStadt).Position.YAchse)
-                                    + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuellGefundeneStadt).Position.XAchse));
-            
-         else
-            EntfernungNeu := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Position.EAchse)
-                                       + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Position.YAchse)
-                                       + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Position.XAchse));
-            if
-              Entfernung > EntfernungNeu
-            then
-               AktuellGefundeneStadt := StadtSchleifenwert;
-               
-            else
-               null;
-            end if;
-         end if;
-            
-      end loop StadtSchleife;
-         
-      case
-        AktuellGefundeneStadt
-      is
-         when 0 =>
-            return GlobaleKonstanten.LeerKartenPosition;
-            
-         when others =>
-            return LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, AktuellGefundeneStadt));
-      end case;
-      
-   end NähesteStadtSuchen;
-   
-   
    
    function NähesteFeindlicheStadtSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
@@ -68,7 +14,30 @@ package body KIStadtSuchen is
       return GlobaleRecords.AchsenKartenfeldPositivRecord
    is begin
    
-      AktuellGefundeneStadt := 0;
+      GefundeneStadt := StadtSuchen (RasseExtern             => RasseExtern,
+                                     AnfangKoordinatenExtern => AnfangKoordinatenExtern);
+         
+      case
+        GefundeneStadt
+      is
+         when 0 =>
+            return GlobaleKonstanten.LeerKartenPosition;
+            
+         when others =>
+            return LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, GefundeneStadt));
+      end case;
+      
+   end NähesteFeindlicheStadtSuchen;
+   
+   
+   
+   function StadtSuchen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      AnfangKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleDatentypen.MaximaleStädteMitNullWert
+   is begin
+      
+      AktuelleStadt := GlobaleDatentypen.MaximaleStädteMitNullWert'First;
       
       StadtSchleife:
       for StadtSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (RasseExtern).Städtegrenze loop
@@ -79,12 +48,12 @@ package body KIStadtSuchen is
             null;
             
          elsif
-           AktuellGefundeneStadt = 0
+           AktuelleStadt = GlobaleDatentypen.MaximaleStädteMitNullWert'First
          then
-            AktuellGefundeneStadt := StadtSchleifenwert;
-            Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuellGefundeneStadt).Position.EAchse)
-                                    + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuellGefundeneStadt).Position.YAchse)
-                                    + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuellGefundeneStadt).Position.XAchse));
+            AktuelleStadt := StadtSchleifenwert;
+            Entfernung := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Position.EAchse)
+                                    + abs (AnfangKoordinatenExtern.YAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Position.YAchse)
+                                    + abs (AnfangKoordinatenExtern.XAchse - GlobaleVariablen.StadtGebaut (RasseExtern, AktuelleStadt).Position.XAchse));
             
          else
             EntfernungNeu := Positive (abs (AnfangKoordinatenExtern.EAchse - GlobaleVariablen.StadtGebaut (RasseExtern, StadtSchleifenwert).Position.EAchse)
@@ -93,7 +62,7 @@ package body KIStadtSuchen is
             if
               Entfernung > EntfernungNeu
             then
-               AktuellGefundeneStadt := StadtSchleifenwert;
+               AktuelleStadt := StadtSchleifenwert;
                
             else
                null;
@@ -101,18 +70,10 @@ package body KIStadtSuchen is
          end if;
             
       end loop StadtSchleife;
-         
-      case
-        AktuellGefundeneStadt
-      is
-         when 0 =>
-            return GlobaleKonstanten.LeerKartenPosition;
-            
-         when others =>
-            return LeseStadtGebaut.Position (StadtRasseNummerExtern => (RasseExtern, AktuellGefundeneStadt));
-      end case;
       
-   end NähesteFeindlicheStadtSuchen;
+      return AktuelleStadt;
+      
+   end StadtSuchen;
    
    
    
@@ -124,24 +85,21 @@ package body KIStadtSuchen is
       StadtSchleife:
       for StadtNummerSchleifenwert in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (FeindlicheRasseExtern).Städtegrenze loop
          
-         case
-           LeseStadtGebaut.ID (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert))
-         is
-            when GlobaleDatentypen.Leer =>
-               null;
+         if
+           LeseStadtGebaut.ID (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)) = GlobaleDatentypen.Leer
+         then
+            null;
                
-            when others =>
-               if
-                 EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
-                                                                 KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)))
-                 = GlobaleKonstanten.LeerEinheitStadtNummer
-               then
-                  return LeseStadtGebaut.Position (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert));
+         elsif
+           EinheitSuchen.KoordinatenEinheitMitRasseSuchen (RasseExtern       => FeindlicheRasseExtern,
+                                                           KoordinatenExtern => LeseStadtGebaut.Position (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert)))
+           = GlobaleKonstanten.LeerEinheitStadtNummer
+         then
+            return LeseStadtGebaut.Position (StadtRasseNummerExtern => (FeindlicheRasseExtern, StadtNummerSchleifenwert));
                   
-               else
-                  null;
-               end if;
-         end case;
+         else
+            null;
+         end if;
          
       end loop StadtSchleife;
       

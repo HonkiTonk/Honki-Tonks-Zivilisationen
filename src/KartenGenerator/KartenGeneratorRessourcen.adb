@@ -81,7 +81,7 @@ package body KartenGeneratorRessourcen is
             SchreibeKarten.Ressource (PositionExtern  => PositionExtern,
                                       RessourceExtern => WasserRessourceSchleifenwert);
             RessourcenUmgebungBelegen (PositionExtern => PositionExtern);
-            exit WasserRessourcenSchleife;
+            return;
                         
          else
             null;
@@ -106,7 +106,7 @@ package body KartenGeneratorRessourcen is
             SchreibeKarten.Ressource (PositionExtern  => PositionExtern,
                                       RessourceExtern => LandRessourceSchleifenwert);
             RessourcenUmgebungBelegen (PositionExtern => PositionExtern);
-            exit LandRessourcenSchleife;
+            return;
                         
          else
             null;

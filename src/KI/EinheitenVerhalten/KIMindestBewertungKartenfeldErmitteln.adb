@@ -28,24 +28,21 @@ package body KIMindestBewertungKartenfeldErmitteln is
                KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern),
                                                                            ÄnderungExtern    => (EAchseSchleifenwert, YAchseSchleifenwert, XAchseSchleifenwert));
                      
-               case
-                 KartenWert.XAchse
-               is
-                  when GlobaleKonstanten.LeerYXKartenWert =>
-                     null;
+               if
+                 KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+               then
+                  null;
                      
-                  when others =>               
-                     if
-                       StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                                                             KoordinatenExtern => KartenWert).Platznummer
-                       = GlobaleKonstanten.LeerEinheitStadtNummer
-                     then
-                        null;
+               elsif
+                 StadtSuchen.KoordinatenStadtOhneSpezielleRasseSuchen (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                                                       KoordinatenExtern => KartenWert).Platznummer
+                 = GlobaleKonstanten.LeerEinheitStadtNummer
+               then
+                  null;
                         
-                     else
-                        MindestBewertungKartenfeld := MindestBewertungKartenfeld + 2;
-                     end if;
-               end case;
+               else
+                  MindestBewertungKartenfeld := MindestBewertungKartenfeld + 2;
+               end if;
                
             end loop XAchseSchleife;
          end loop YAchseSchleife;

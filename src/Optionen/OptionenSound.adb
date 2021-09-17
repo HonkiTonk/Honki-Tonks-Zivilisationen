@@ -1,11 +1,14 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 package body OptionenSound is
 
-   procedure OptionenSound
+   function OptionenSound
+     return Integer
    is begin
       
-      null;
+      return GlobaleKonstanten.ZurückKonstante;
       
    end OptionenSound;
 

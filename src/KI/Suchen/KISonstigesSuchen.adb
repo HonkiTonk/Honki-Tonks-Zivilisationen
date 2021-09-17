@@ -19,57 +19,65 @@ package body KISonstigesSuchen is
       Bereich := 1;
       BereichGeprüft := Bereich - 1;
       
-      Ziel := KIKonstanten.NullKoordinate;
-      
       FeldSuchenSchleife:
       loop
-         YAchseSchleife:
-         for YAchseSchleifenwert in -Bereich .. Bereich loop
-            XAchseSchleife:
-            for XAchseSchleifenwert in -Bereich .. Bereich loop
-            
-               KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => AktuellePositionExtern,
-                                                                           ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
-               
-               if
-                 KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
-               then
-                  null;
-               
-               elsif
-                 LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
-                                           KoordinatenExtern => KartenWert)
-                 = True
-                 and
-                   BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                              NeuePositionExtern       => KartenWert)
-                 = True
-               then
-                  Ziel := KartenWert;
-                  exit FeldSuchenSchleife;
-                     
-               else
-                  null;
-               end if;
-            
-            end loop XAchseSchleife;
-         end loop YAchseSchleife;
-               
-         case
-           Bereich
-         is
-            when GlobaleDatentypen.Sichtweite'Last =>
-               exit FeldSuchenSchleife;
-               
-            when others =>
-               Bereich := Bereich + 1;
-               BereichGeprüft := Bereich - 1;
-         end case;
+         
+         Ziel := ZielSuchen (AktuellePositionExtern   => AktuellePositionExtern,
+                             EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+         
+         exit FeldSuchenSchleife when Ziel.XAchse /= GlobaleKonstanten.LeerYXKartenWert;
+         exit FeldSuchenSchleife when Bereich = GlobaleDatentypen.Sichtweite'Last;
+         
+         Bereich := Bereich + 1;
+         BereichGeprüft := Bereich - 1;
       
       end loop FeldSuchenSchleife;
               
       return Ziel;
    
    end EigenesFeldSuchen;
+   
+   
+   
+   function ZielSuchen
+     (AktuellePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord
+   is begin
+      
+      YAchseSchleife:
+      for YAchseSchleifenwert in -Bereich .. Bereich loop
+         XAchseSchleife:
+         for XAchseSchleifenwert in -Bereich .. Bereich loop
+            
+            KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => AktuellePositionExtern,
+                                                                        ÄnderungExtern    => (0, YAchseSchleifenwert, XAchseSchleifenwert));
+            
+            if
+              KartenWert.XAchse = GlobaleKonstanten.LeerYXKartenWert
+            then
+               null;
+               
+            elsif
+              LeseKarten.BelegterGrund (RasseExtern       => EinheitRasseNummerExtern.Rasse,
+                                        KoordinatenExtern => KartenWert)
+              = True
+              and
+                BewegungPassierbarkeitPruefen.PassierbarkeitPrüfenNummer (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                           NeuePositionExtern       => KartenWert)
+              = True
+            then
+               return KartenWert;
+                     
+            else
+               null;
+            end if;
+            
+         end loop XAchseSchleife;
+      end loop YAchseSchleife;
+      
+      return KIKonstanten.LeerKoordinate;
+      
+   end ZielSuchen;
 
 end KISonstigesSuchen;

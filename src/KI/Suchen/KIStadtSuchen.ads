@@ -7,18 +7,6 @@ with Karten;
 
 package KIStadtSuchen is
 
-   function NähesteStadtSuchen
-     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
-      AnfangKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
-      return GlobaleRecords.AchsenKartenfeldPositivRecord
-     with
-       Pre =>
-         (GlobaleVariablen.RassenImSpiel (RasseExtern) = GlobaleDatentypen.Spieler_KI
-          and
-            AnfangKoordinatenExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
-          and
-            AnfangKoordinatenExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
-
    function NähesteFeindlicheStadtSuchen
      (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
       AnfangKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
@@ -38,11 +26,16 @@ package KIStadtSuchen is
        Pre =>
          (GlobaleVariablen.RassenImSpiel (FeindlicheRasseExtern) = GlobaleDatentypen.Spieler_KI);
 
-
 private
 
-   AktuellGefundeneStadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   AktuelleStadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
+   GefundeneStadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
    Entfernung : Positive;
    EntfernungNeu : Positive;
+
+   function StadtSuchen
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum;
+      AnfangKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return GlobaleDatentypen.MaximaleStädteMitNullWert;
 
 end KIStadtSuchen;

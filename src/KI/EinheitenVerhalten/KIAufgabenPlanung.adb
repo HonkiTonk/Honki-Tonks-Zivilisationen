@@ -24,6 +24,21 @@ package body KIAufgabenPlanung is
       Wichtigkeit (KIDatentypen.Einheit_Verbessern) := KIVorhandeneAufgaben.SichVerbessern (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       Wichtigkeit (KIDatentypen.Flucht) := KIVorhandeneAufgaben.Fliehen;
       
+      EinheitSpezifischeAufgabenErmitteln (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+      AufgabenSortieren;
+      
+      AufgabeFestlegen (GewählteAufgabeExtern    => GewählteAufgabe,
+                        EinheitRasseNummerExtern => EinheitRasseNummerExtern);
+      
+   end AufgabeErmitteln;
+   
+   
+   
+   procedure EinheitSpezifischeAufgabenErmitteln
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
+      
       case
         LeseEinheitenDatenbank.EinheitArt (RasseExtern => EinheitRasseNummerExtern.Rasse,
                                            IDExtern    => LeseEinheitenGebaut.ID (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
@@ -51,7 +66,14 @@ package body KIAufgabenPlanung is
             -- Sollte niemals eintreten.
             return;
       end case;
-            
+      
+   end EinheitSpezifischeAufgabenErmitteln;
+   
+   
+   
+   procedure AufgabenSortieren
+   is begin
+      
       WichtigkeitEinsSchleife:
       for WichtigkeitEinsSchleifenwert in WichtigkeitArray'Range loop
          WichtigkeitZweiSchleife:
@@ -79,10 +101,7 @@ package body KIAufgabenPlanung is
          end loop WichtigkeitZweiSchleife;
       end loop WichtigkeitEinsSchleife;
       
-      AufgabeFestlegen (GewählteAufgabeExtern    => GewählteAufgabe,
-                        EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-      
-   end AufgabeErmitteln;
+   end AufgabenSortieren;
    
    
    

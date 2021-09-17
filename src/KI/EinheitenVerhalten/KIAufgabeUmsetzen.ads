@@ -30,4 +30,10 @@ private
 
    Grund : GlobaleDatentypen.Karten_Grund_Enum;
 
+   Befehl : GlobaleDatentypen.Tastenbelegung_Enum;
+
+   function VerbesserungGebiet
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean;
+
 end KIAufgabeUmsetzen;

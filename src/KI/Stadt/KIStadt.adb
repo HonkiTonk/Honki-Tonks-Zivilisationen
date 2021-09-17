@@ -118,7 +118,39 @@ package body KIStadt is
       return Boolean
    is begin
       
-      FeindNahe := False;
+      case
+        FeindNahe (StadtRasseNummerExtern => StadtRasseNummerExtern)
+      is
+         when True =>
+            NotfallEinheit := GlobaleDatentypen.EinheitenIDMitNullWert'First;
+            WelcheEinheitArt (StadtRasseNummerExtern => StadtRasseNummerExtern);
+            
+         when False =>
+            return False;
+      end case;
+      
+      case
+        NotfallEinheit
+      is
+         when GlobaleDatentypen.EinheitenIDMitNullWert'First =>
+            return False;
+            
+         when others =>
+            NeuesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                             EinheitBauenExtern     => (NotfallEinheit, 1),
+                             GebäudeBauenExtern     => (GlobaleDatentypen.GebäudeIDMitNullwert'First, 0),
+                             NotfallExtern          => True);
+            return True;
+      end case;
+      
+   end GefahrStadt;
+   
+   
+   
+   function FeindNahe
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     return Boolean
+   is begin
       
       YAchseSchleife:
       for YAchseSchleifenwert in -LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) .. LeseStadtGebaut.UmgebungGröße (StadtRasseNummerExtern => StadtRasseNummerExtern) loop
@@ -158,8 +190,7 @@ package body KIStadt is
                            null;
             
                         when others =>
-                           FeindNahe := True;
-                           exit YAchseSchleife;
+                           return True;
                      end case;
                   end if;
             end case;
@@ -167,15 +198,15 @@ package body KIStadt is
          end loop XAchseSchleife;
       end loop YAchseSchleife;
       
-      case
-        FeindNahe
-      is
-         when True =>
-            NotfallEinheit := GlobaleDatentypen.EinheitenIDMitNullWert'First;
-            
-         when False =>
-            return False;
-      end case;
+      return False;
+      
+   end FeindNahe;
+   
+   
+   
+   procedure WelcheEinheitArt
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+   is begin
       
       EinheitenSchleife:
       for EinheitenSchleifenwert in GlobaleDatentypen.EinheitenID'Range loop
@@ -193,7 +224,7 @@ package body KIStadt is
             
          elsif
            EinheitenModifizieren.EinheitAnforderungenErfüllt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                            IDExtern               => EinheitenSchleifenwert)
+                                                               IDExtern               => EinheitenSchleifenwert)
            = True
          then
             NotfallEinheitBauen (StadtRasseNummerExtern => StadtRasseNummerExtern,
@@ -205,21 +236,7 @@ package body KIStadt is
          
       end loop EinheitenSchleife;
       
-      case
-        NotfallEinheit
-      is
-         when GlobaleDatentypen.EinheitenIDMitNullWert'First =>
-            return False;
-            
-         when others =>
-            NeuesBauprojekt (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                             EinheitBauenExtern     => (NotfallEinheit, 1),
-                             GebäudeBauenExtern     => (GlobaleDatentypen.GebäudeIDMitNullwert'First, 0),
-                             NotfallExtern          => True);
-            return True;
-      end case;
-      
-   end GefahrStadt;
+   end WelcheEinheitArt;
    
    
    

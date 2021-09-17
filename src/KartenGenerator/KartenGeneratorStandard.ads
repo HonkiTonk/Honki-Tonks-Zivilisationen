@@ -71,7 +71,8 @@ private
    
    
    procedure GenerierungKartenart
-     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
      with
        Pre =>
          (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -79,7 +80,8 @@ private
             XAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure GenerierungLandmasse
-     (YPositionLandmasseExtern, XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv)
      with
        Pre =>
          (YPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -87,7 +89,8 @@ private
             XPositionLandmasseExtern <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
 
    procedure GenerierungLandmasseFläche
-     (YAchseExtern, XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
+     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv)
      with
        Pre =>
          (YAchseExtern <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
@@ -96,5 +99,22 @@ private
    
    procedure GenerierungNurLand;
    procedure EisrandGenerieren;
+   procedure StandardKarteGenerieren;
+   
+   procedure LandFeldMasseEisschild
+     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv);
+   
+   procedure LandFeldMasseNormal
+     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XAchseExtern : in GlobaleDatentypen.KartenfeldPositiv);
+   
+   procedure LandmasseGenerieren
+     (YPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv);
+   
+   procedure AbstandGenerieren
+     (YPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv;
+      XPositionLandmasseExtern : in GlobaleDatentypen.KartenfeldPositiv);
 
 end KartenGeneratorStandard;

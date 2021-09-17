@@ -3,26 +3,27 @@ pragma SPARK_Mode (On);
 with GlobaleDatentypen, GlobaleRecords;
 use GlobaleDatentypen;
 
-with Karten;
+with Karten, KartenGeneratorBerechnungenAllgemein;
+use KartenGeneratorBerechnungenAllgemein;
 
 package KartenGeneratorLandschaft is
 
    procedure GenerierungLandschaft;
 
 private
-
-   KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
    KartenWertAbstand : GlobaleRecords.AchsenKartenfeldPositivRecord;
    KartenWertHügel : GlobaleRecords.AchsenKartenfeldPositivRecord;   
-   
-   type AnzahlGleicherFelder is range 0 .. 8;
-   AnzahlGleicherGrund : AnzahlGleicherFelder;
+      
+   AnzahlGleicherGrund : KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder;
    
    -- Später vielleicht noch um Kartenarten wie hügelig erweitern?
-   type ZusatzHügelArray is array (AnzahlGleicherFelder'Range) of Float;
+   type ZusatzHügelArray is array (KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of Float;
    ZusatzHügel : constant ZusatzHügelArray := (0 => 0.10, 1 => 0.15, 2 => 0.15, 3 => 0.15, 4 => 0.20, 5 => 0.20, 6 => 0.25, 7 => 0.30, 8 => 0.40);
    
-   type KartengrundWahrscheinlichkeitenArray is array (GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Range, GlobaleDatentypen.Landschaft_Wahrscheinlichkeit_Enum'Range, AnzahlGleicherFelder'Range) of Float;
+   type KartengrundWahrscheinlichkeitenArray is array (GlobaleDatentypen.Kartentemperatur_Verwendet_Enum'Range,
+                                                       GlobaleDatentypen.Landschaft_Wahrscheinlichkeit_Enum'Range,
+                                                       KartenGeneratorBerechnungenAllgemein.AnzahlGleicherFelder'Range) of Float;
    KartengrundWahrscheinlichkeiten : constant KartengrundWahrscheinlichkeitenArray :=
      (
       GlobaleDatentypen.Kalt => 
@@ -105,5 +106,17 @@ private
          (PositionExtern.YAchse <= Karten.Kartengrößen (Karten.Kartengröße).YAchsenGröße
           and
             PositionExtern.XAchse <= Karten.Kartengrößen (Karten.Kartengröße).XAchsenGröße);
+   
+   procedure AbstandEisschicht;
+   
+   procedure XAchseAbstandEisschicht
+     (YAchseExtern : in GlobaleDatentypen.KartenfeldPositiv);
+   
+   
+      
+   function GrundFestlegen
+     (PositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      GrundExtern : in GlobaleDatentypen.Karten_Grund_Generator_Enum)
+      return Boolean;
 
 end KartenGeneratorLandschaft;

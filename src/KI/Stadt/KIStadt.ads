@@ -17,9 +17,6 @@ package KIStadt is
 
 private
 
-   ProduktionÄndernNotwendig : Boolean;
-   FeindNahe : Boolean;
-
    NotfallEinheit : GlobaleDatentypen.EinheitenIDMitNullWert;
 
    FremdeEinheit : GlobaleRecords.RassePlatznummerRecord;
@@ -46,6 +43,9 @@ private
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
 
+   procedure WelcheEinheitArt
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+
 
 
    function GefahrStadt
@@ -56,5 +56,9 @@ private
          (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+
+   function FeindNahe
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean;
 
 end KIStadt;

@@ -22,9 +22,18 @@ package body KIGefahrErmitteln is
             return GlobaleKonstanten.LeerRassePlatznummer;
             
          when others =>
-            null;
+            return GefahrSuchen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
             
+   end GefahrErmitteln;
+   
+   
+   
+   function GefahrSuchen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleRecords.RassePlatznummerRecord
+   is begin
+      
       YAchseSchleife:
       for YAchseSchleifenwert in GlobaleDatentypen.LoopRangeMinusDreiZuDrei'Range loop
          XAchseSchleife:
@@ -65,12 +74,13 @@ package body KIGefahrErmitteln is
       
       return GlobaleKonstanten.LeerRassePlatznummer;
       
-   end GefahrErmitteln;
+   end GefahrSuchen;
    
    
    
    function ReaktionErfoderlich
-     (EinheitRasseNummerExtern, AndereEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      AndereEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
    is begin
       

@@ -47,8 +47,17 @@ package body KIBewegungAllgemein is
             return 1;
             
          when others =>
-            null;
+            return FeldAngreifen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
       end case;
+      
+   end FeldBetreten;
+   
+   
+   
+   function FeldAngreifen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleDatentypen.LoopRangeMinusEinsZuEins
+   is begin
       
       if
         BlockierendeEinheit = GlobaleDatentypen.Leer
@@ -82,6 +91,6 @@ package body KIBewegungAllgemein is
             return 1;
       end case;
       
-   end FeldBetreten;
+   end FeldAngreifen;
 
 end KIBewegungAllgemein;

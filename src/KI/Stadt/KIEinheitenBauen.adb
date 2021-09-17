@@ -21,12 +21,23 @@ package body KIEinheitenBauen is
       
       if
         LeseWichtiges.AnzahlEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse) > 3 * AnzahlStädte
+        or
+          LeseWichtiges.AnzahlEinheiten (RasseExtern => StadtRasseNummerExtern.Rasse) = GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Einheitengrenze
       then
          return EinheitBewertet;
          
       else
-         null;
+         return EinheitenDurchgehen (StadtRasseNummerExtern => StadtRasseNummerExtern);
       end if;
+      
+   end EinheitenBauen;
+   
+   
+   
+   function EinheitenDurchgehen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return KIRecords.EinheitIDBewertungRecord
+   is begin
       
       EinheitenSchleife:
       for EinheitenSchleifenwert in GlobaleDatentypen.EinheitenID'Range loop
@@ -58,7 +69,7 @@ package body KIEinheitenBauen is
       
       return EinheitBewertet;
       
-   end EinheitenBauen;
+   end EinheitenDurchgehen;
    
    
    
@@ -76,32 +87,9 @@ package body KIEinheitenBauen is
                                                               EinheitenIDExtern      => IDExtern);
       Gesamtwertung := Gesamtwertung + RessourcenKostenBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
                                                                  EinheitenIDExtern      => IDExtern);
+      Gesamtwertung := Gesamtwertung + SpezielleEinheitBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                 IDExtern               => IDExtern);
       
-      case
-        LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
-                                           IDExtern    => IDExtern)
-      is
-         when GlobaleDatentypen.Arbeiter =>
-            Gesamtwertung := Gesamtwertung + ArbeiterBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                               EinheitenIDExtern      => IDExtern);
-            
-         when GlobaleDatentypen.Nahkämpfer =>
-            Gesamtwertung := Gesamtwertung + NahkämpferBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                  EinheitenIDExtern      => IDExtern);
-            
-         when GlobaleDatentypen.Fernkämpfer =>
-            Gesamtwertung := Gesamtwertung + FernkämpferBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
-                                                                   EinheitenIDExtern      => IDExtern);
-            
-         when GlobaleDatentypen.Beides =>
-            null;
-            
-         when GlobaleDatentypen.Sonstiges =>
-            null;
-            
-         when GlobaleDatentypen.Leer =>
-            null;
-      end case;
       
       if
         Gesamtwertung <= 0
@@ -118,6 +106,44 @@ package body KIEinheitenBauen is
       end if;
       
    end EinheitBewerten;
+   
+   
+   
+   function SpezielleEinheitBewerten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.EinheitenID)
+     return GlobaleDatentypen.GesamtproduktionStadt
+   is begin
+      
+      case
+        LeseEinheitenDatenbank.EinheitArt (RasseExtern => StadtRasseNummerExtern.Rasse,
+                                           IDExtern    => IDExtern)
+      is
+         when GlobaleDatentypen.Arbeiter =>
+            return ArbeiterBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                               EinheitenIDExtern      => IDExtern);
+            
+         when GlobaleDatentypen.Nahkämpfer =>
+            return Gesamtwertung + NahkämpferBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                  EinheitenIDExtern      => IDExtern);
+            
+         when GlobaleDatentypen.Fernkämpfer =>
+            return Gesamtwertung + FernkämpferBewerten (StadtRasseNummerExtern => StadtRasseNummerExtern,
+                                                                   EinheitenIDExtern      => IDExtern);
+            
+         when GlobaleDatentypen.Beides =>
+            null;
+            
+         when GlobaleDatentypen.Sonstiges =>
+            null;
+            
+         when GlobaleDatentypen.Leer =>
+            null;
+      end case;
+      
+      return 0;
+      
+   end SpezielleEinheitBewerten;
    
    
    
@@ -167,7 +193,6 @@ package body KIEinheitenBauen is
         KIKriegErmitteln.IstImKrieg (RasseExtern => StadtRasseNummerExtern.Rasse)
       is
          when False =>
-            
             if
               MengeVorhanden + MengeImBau < AnzahlStädte
             then

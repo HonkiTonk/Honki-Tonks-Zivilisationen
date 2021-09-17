@@ -29,8 +29,8 @@ package body KIBewegungBerechnen is
             VorhandenenPlanVereinfachen (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when False =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIKonstanten.NullKoordinate;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIKonstanten.LeerKoordinate;
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
             SchreibeEinheitenGebaut.KIBeschäftigt (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     AufgabeExtern            => KIDatentypen.Tut_Nichts);
             SchreibeEinheitenGebaut.Beschäftigung (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
@@ -53,84 +53,23 @@ package body KIBewegungBerechnen is
       DurchlaufSchleife:
       for DurchlaufSchleifenwert in 1 .. 8 loop
          
-         BewertungPosition := 1;
-         
-         YAchseÄnderungSchleife:
-         for YAchseÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-            XAchseÄnderungSchleife:
-            for XAchseÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
-            
-               FeldBewertung (YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert) := BewertungFeldposition (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                                                                    KoordinatenExtern        => AktuelleKoordinatenExtern,
-                                                                                                                    YÄnderungExtern          => YAchseÄnderungSchleifenwert,
-                                                                                                                    XÄnderungExtern          => XAchseÄnderungSchleifenwert);
-         
-               Bewertung (BewertungPosition) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse, FeldBewertung (YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert));
-               BewertungPosition := BewertungPosition + 1;
-               
-            end loop XAchseÄnderungSchleife;
-         end loop YAchseÄnderungSchleife;
-         
-         HöchsteWertungEinsSchleife:
-         for HöchsteWertungEinsSchleifenwert in BewertungArray'Range loop
-            HöchsteWertungZweiSchleife:
-            for HöchsteWertungZweiSchleifenwert in BewertungArray'Range loop
-               
-               if
-                 Bewertung (HöchsteWertungEinsSchleifenwert).Bewertung > Bewertung (HöchsteWertungZweiSchleifenwert).Bewertung
-               then
-                  Sortieren := Bewertung (HöchsteWertungEinsSchleifenwert);
-                  Bewertung (HöchsteWertungEinsSchleifenwert) := Bewertung (HöchsteWertungZweiSchleifenwert);
-                  Bewertung (HöchsteWertungZweiSchleifenwert) := Sortieren;
+         FelderBewerten (EinheitRasseNummerExtern  => EinheitRasseNummerExtern,
+                         AktuelleKoordinatenExtern => AktuelleKoordinatenExtern);
+         BewertungSortieren;
                   
-               else
-                  null;
-               end if;
-               
-            end loop HöchsteWertungZweiSchleife;
-         end loop HöchsteWertungEinsSchleife;
+         
          
          case
-           Bewertung (DurchlaufSchleifenwert).Bewertung
-         is
-            when 0 =>
-               PlanungErfolgreichRekursiv := False;
-               
-            when 11 =>
-               SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       PositionExtern           => (Bewertung (DurchlaufSchleifenwert).EAchse, Bewertung (DurchlaufSchleifenwert).YAchse, Bewertung (DurchlaufSchleifenwert).XAchse),
-                                                       PlanpositionExtern       => AktuellePlanpositionExtern);
-               return True;
-               
-            when others =>
-               SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       PositionExtern           => (Bewertung (DurchlaufSchleifenwert).EAchse, Bewertung (DurchlaufSchleifenwert).YAchse, Bewertung (DurchlaufSchleifenwert).XAchse),
-                                                       PlanpositionExtern       => AktuellePlanpositionExtern);
-               
-               if
-                 AktuellePlanpositionExtern = GlobaleRecords.KIBewegungPlanArray'Last
-               then
-                  return True;
-         
-               else
-                  PlanungErfolgreichRekursiv := PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
-                                                                AktuelleKoordinatenExtern  => (Bewertung (DurchlaufSchleifenwert).EAchse,
-                                                                                               Bewertung (DurchlaufSchleifenwert).YAchse,
-                                                                                               Bewertung (DurchlaufSchleifenwert).XAchse),
-                                                                AktuellePlanpositionExtern => AktuellePlanpositionExtern + 1);
-               end if;
-               
-         end case;
-         
-         case
-           PlanungErfolgreichRekursiv
+           PlanschrittFestlegen (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
+                                 DurchlaufExtern            => DurchlaufSchleifenwert,
+                                 AktuellePlanpositionExtern => AktuellePlanpositionExtern)
          is
             when True =>
                return True;
                
             when False =>
                SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                       PositionExtern           => KIKonstanten.NullKoordinate,
+                                                       PositionExtern           => KIKonstanten.LeerKoordinate,
                                                        PlanpositionExtern       => AktuellePlanpositionExtern);
          end case;
          
@@ -142,16 +81,109 @@ package body KIBewegungBerechnen is
    
    
    
+   procedure FelderBewerten
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+   is begin
+      
+      BewertungPosition := 1;
+         
+      YAchseÄnderungSchleife:
+      for YAchseÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+         XAchseÄnderungSchleife:
+         for XAchseÄnderungSchleifenwert in GlobaleDatentypen.LoopRangeMinusEinsZuEins'Range loop
+            
+            FeldBewertung (YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert) := BewertungFeldposition (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                                                                                 KoordinatenExtern        => AktuelleKoordinatenExtern,
+                                                                                                                 YÄnderungExtern          => YAchseÄnderungSchleifenwert,
+                                                                                                                 XÄnderungExtern          => XAchseÄnderungSchleifenwert);
+         
+            Bewertung (BewertungPosition) := (KartenWert.EAchse, KartenWert.YAchse, KartenWert.XAchse, FeldBewertung (YAchseÄnderungSchleifenwert, XAchseÄnderungSchleifenwert));
+            BewertungPosition := BewertungPosition + 1;
+               
+         end loop XAchseÄnderungSchleife;
+      end loop YAchseÄnderungSchleife;
+      
+   end FelderBewerten;
+   
+   
+   
+   procedure BewertungSortieren
+   is begin
+      
+      HöchsteWertungEinsSchleife:
+      for HöchsteWertungEinsSchleifenwert in BewertungArray'Range loop
+         HöchsteWertungZweiSchleife:
+         for HöchsteWertungZweiSchleifenwert in BewertungArray'Range loop
+               
+            if
+              Bewertung (HöchsteWertungEinsSchleifenwert).Bewertung > Bewertung (HöchsteWertungZweiSchleifenwert).Bewertung
+            then
+               Sortieren := Bewertung (HöchsteWertungEinsSchleifenwert);
+               Bewertung (HöchsteWertungEinsSchleifenwert) := Bewertung (HöchsteWertungZweiSchleifenwert);
+               Bewertung (HöchsteWertungZweiSchleifenwert) := Sortieren;
+                  
+            else
+               null;
+            end if;
+               
+         end loop HöchsteWertungZweiSchleife;
+      end loop HöchsteWertungEinsSchleife;
+      
+   end BewertungSortieren;
+   
+   
+   
+   function PlanschrittFestlegen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      DurchlaufExtern : in Positive;
+      AktuellePlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
+      return Boolean
+   is begin
+      
+      case
+        Bewertung (DurchlaufExtern).Bewertung
+      is
+         when 0 =>
+            return False;
+               
+         when 11 =>
+            SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    PositionExtern           => (Bewertung (DurchlaufExtern).EAchse, Bewertung (DurchlaufExtern).YAchse, Bewertung (DurchlaufExtern).XAchse),
+                                                    PlanpositionExtern       => AktuellePlanpositionExtern);
+            return True;
+               
+         when others =>
+            SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                    PositionExtern           => (Bewertung (DurchlaufExtern).EAchse, Bewertung (DurchlaufExtern).YAchse, Bewertung (DurchlaufExtern).XAchse),
+                                                    PlanpositionExtern       => AktuellePlanpositionExtern);
+            
+            if
+              AktuellePlanpositionExtern = GlobaleRecords.KIBewegungPlanArray'Last
+            then
+               return True;
+         
+            else
+               return PlanenRekursiv (EinheitRasseNummerExtern   => EinheitRasseNummerExtern,
+                                      AktuelleKoordinatenExtern  => (Bewertung (DurchlaufExtern).EAchse,
+                                                                     Bewertung (DurchlaufExtern).YAchse,
+                                                                     Bewertung (DurchlaufExtern).XAchse),
+                                      AktuellePlanpositionExtern => AktuellePlanpositionExtern + 1);
+            end if;
+      end case;
+      
+   end PlanschrittFestlegen;
+   
+   
+   
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      YÄnderungExtern, XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      YÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins;
+      XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
       return GlobaleDatentypen.ProduktionSonstiges
    is begin
-      
-      KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
-                                                                  ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern));
-      
+            
       if
         YÄnderungExtern = 0
         and
@@ -160,7 +192,8 @@ package body KIBewegungBerechnen is
          return 0;
 
       else
-         null;
+         KartenWert := KartePositionPruefen.KartenPositionBestimmen (KoordinatenExtern => KoordinatenExtern,
+                                                                     ÄnderungExtern    => (0, YÄnderungExtern, XÄnderungExtern));
       end if;
             
       case
@@ -223,7 +256,8 @@ package body KIBewegungBerechnen is
    
    function BerechnungBewertungPosition
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern, NeueKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      NeueKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.ProduktionSonstiges
    is begin
       
@@ -331,11 +365,11 @@ package body KIBewegungBerechnen is
             if
               LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                   PlanschrittExtern        => ÜberNächsterZugSchleifenwert)
-              = KIKonstanten.NullKoordinate
+              = KIKonstanten.LeerKoordinate
               or
                 LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                     PlanschrittExtern        => ErsterZugSchleifenwert)
-              = KIKonstanten.NullKoordinate
+              = KIKonstanten.LeerKoordinate
             then
                return;
                
@@ -363,7 +397,8 @@ package body KIBewegungBerechnen is
    
    procedure VorhandenenPlanVereinfachenPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ErsterZugExtern, ÜberNächsterZugExtern : in GlobaleDatentypen.Stadtfeld)
+      ErsterZugExtern : in GlobaleDatentypen.Stadtfeld;
+      ÜberNächsterZugExtern : in GlobaleDatentypen.Stadtfeld)
    is begin
       
       EAchseSchleife:
@@ -396,7 +431,7 @@ package body KIBewegungBerechnen is
                
                   end loop BewegungPlanVerschiebenSchleife;
                   SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                          PositionExtern           => KIKonstanten.NullKoordinate,
+                                                          PositionExtern           => KIKonstanten.LeerKoordinate,
                                                           PlanpositionExtern       => GlobaleRecords.KIBewegungPlanArray'Last);
                            
                else

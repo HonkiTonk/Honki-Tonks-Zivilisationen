@@ -1,11 +1,14 @@
 pragma SPARK_Mode (On);
 
+with GlobaleKonstanten;
+
 package body OptionenGrafik is
 
-   procedure OptionenGrafik is
-   begin
+   function OptionenGrafik
+     return Integer
+   is begin
       
-      null;
+      return GlobaleKonstanten.ZurückKonstante;
       
    end OptionenGrafik;
 

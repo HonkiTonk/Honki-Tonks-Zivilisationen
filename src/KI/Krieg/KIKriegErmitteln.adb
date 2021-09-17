@@ -19,17 +19,15 @@ package body KIKriegErmitteln is
          then
             null;
             
-         else
-            case
-              DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
-                                                                 FremdeRasseExtern => RasseSchleifenwert)
-            is
-               when GlobaleDatentypen.Krieg =>
-                  return True;
+         elsif
+           DiplomatischerZustand.DiplomatischenStatusPrüfen (EigeneRasseExtern => RasseExtern,
+                                                              FremdeRasseExtern => RasseSchleifenwert)
+           = GlobaleDatentypen.Krieg
+         then
+            return True;
                   
-               when others =>
-                  null;
-            end case;
+         else
+            null;
          end if;
          
       end loop RassenSchleife;

@@ -21,8 +21,8 @@ package body KIBewegungDurchfuehren is
          if
            LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = LeseEinheitenGebaut.KIZielKoordinaten (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
          then
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIKonstanten.NullKoordinate;
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIZielKoordinaten := KIKonstanten.LeerKoordinate;
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
             return;
             
          elsif
@@ -33,7 +33,7 @@ package body KIBewegungDurchfuehren is
          elsif
            LeseEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
                                                PlanschrittExtern        => 1)
-           = KIKonstanten.NullKoordinate
+           = KIKonstanten.LeerKoordinate
          then            
             case
               KIBewegungBerechnen.BewegungPlanen (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
@@ -70,7 +70,7 @@ package body KIBewegungDurchfuehren is
             BewegtSich (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
             
          when 1 =>
-            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.NullKoordinate);
+            GlobaleVariablen.EinheitenGebaut (EinheitRasseNummerExtern.Rasse, EinheitRasseNummerExtern.Platznummer).KIBewegungPlan := (others => KIKonstanten.LeerKoordinate);
             return;
             
          when -1 =>
@@ -99,7 +99,7 @@ package body KIBewegungDurchfuehren is
       end loop BewegungPlanVerschiebenSchleife;
             
       SchreibeEinheitenGebaut.KIBewegungPlan (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              PositionExtern           => KIKonstanten.NullKoordinate,
+                                              PositionExtern           => KIKonstanten.LeerKoordinate,
                                               PlanpositionExtern       => GlobaleRecords.KIBewegungPlanArray'Last);
       
    end BewegtSich;

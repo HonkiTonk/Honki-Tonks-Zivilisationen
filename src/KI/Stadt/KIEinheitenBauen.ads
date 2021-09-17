@@ -109,5 +109,14 @@ private
          (StadtRasseNummerExtern.Platznummer in GlobaleDatentypen.MaximaleStädte'Range
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+   
+   function EinheitenDurchgehen
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return KIRecords.EinheitIDBewertungRecord;
+   
+   function SpezielleEinheitBewerten
+     (StadtRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      IDExtern : in GlobaleDatentypen.EinheitenID)
+      return GlobaleDatentypen.GesamtproduktionStadt;
 
 end KIEinheitenBauen;

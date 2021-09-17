@@ -10,5 +10,9 @@ private
    Erfolgreich : Boolean;
    
    AuswahlWert : Integer;
+   
+   procedure AnzahlAutomatischerSpielstände;
+   procedure RundenBisAutospeichern;
+   procedure SpracheWechseln;
 
 end OptionenSonstiges;

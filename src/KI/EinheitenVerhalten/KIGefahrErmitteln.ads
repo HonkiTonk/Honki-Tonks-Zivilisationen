@@ -16,19 +16,22 @@ package KIGefahrErmitteln is
 
 private
 
-   SichtweiteEinheit : GlobaleDatentypen.Sichtweite;
-
    EinheitUnzugeordnet : GlobaleRecords.RassePlatznummerRecord;
 
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
 
    function ReaktionErfoderlich
-     (EinheitRasseNummerExtern, AndereEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      AndereEinheitExtern : in GlobaleRecords.RassePlatznummerRecord)
       return Boolean
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+
+   function GefahrSuchen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleRecords.RassePlatznummerRecord;
 
 end KIGefahrErmitteln;

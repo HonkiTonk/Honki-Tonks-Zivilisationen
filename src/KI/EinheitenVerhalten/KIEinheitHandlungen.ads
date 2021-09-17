@@ -39,6 +39,9 @@ private
           and
             EinheitRasseNummerExtern.Rasse /= FeindlicheEinheitExtern.Rasse);
 
+   procedure BewegungAufgabenplanung
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+
 
 
    function HandlungBeendet

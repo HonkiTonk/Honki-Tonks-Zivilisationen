@@ -6,8 +6,9 @@ with OptionenSteuerung, Auswahl, OptionenSound, OptionenGrafik, OptionenSonstige
 
 package body Optionen is
 
-   function Optionen return Integer is
-   begin
+   function Optionen
+     return Integer
+   is begin
       
       RückgabeWert := 1_000;
 
@@ -26,21 +27,22 @@ package body Optionen is
             when GlobaleKonstanten.ZurückKonstante | GlobaleKonstanten.SpielBeendenKonstante | GlobaleKonstanten.HauptmenüKonstante =>
                return AuswahlWert;
                
-                -- Grafik
+               -- Grafik
             when 1 =>
-               OptionenGrafik.OptionenGrafik;
+               RückgabeWert := OptionenGrafik.OptionenGrafik;
                
-                -- Sound
+               -- Sound
             when 2 =>
-               OptionenSound.OptionenSound;
+               RückgabeWert := OptionenSound.OptionenSound;
                
-                -- Steuerung
+               -- Steuerung
             when 3 =>
                RückgabeWert := OptionenSteuerung.SteuerungBelegen;
                
-                -- Sonstiges
+               -- Sonstiges
             when 4 =>
-               RückgabeWert := OptionenSonstiges.Sonstiges;               
+               RückgabeWert := OptionenSonstiges.Sonstiges;
+               
             when others =>
                null;
          end case;

@@ -261,11 +261,9 @@ package body KIVorhandeneAufgaben is
       else
          null;
       end if;
-      
-      Heimatstadt := LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern);
-        
+              
       case
-        Heimatstadt
+        LeseEinheitenGebaut.Heimatstadt (EinheitRasseNummerExtern => EinheitRasseNummerExtern)
       is
          when 0 =>
             return 0;

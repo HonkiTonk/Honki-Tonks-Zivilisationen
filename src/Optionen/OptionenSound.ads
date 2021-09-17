@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 package OptionenSound is
 
-   procedure OptionenSound;
+   function OptionenSound
+     return Integer;
 
 end OptionenSound;

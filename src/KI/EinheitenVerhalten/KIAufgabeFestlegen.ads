@@ -98,6 +98,7 @@ private
    NullWert : Boolean;
 
    WenAngreifen : GlobaleDatentypen.Rassen_Enum;
+   Ziel : GlobaleDatentypen.Rassen_Enum;
 
    Umgebung : GlobaleDatentypen.LoopRangeMinusDreiZuDrei;
 
@@ -122,5 +123,9 @@ private
             StadtRasseNummerExtern.Platznummer in GlobaleVariablen.StadtGebautArray'First (2) .. GlobaleVariablen.Grenzen (StadtRasseNummerExtern.Rasse).Städtegrenze
           and
             GlobaleVariablen.RassenImSpiel (StadtRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+
+   function ZielErmitteln
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+      return GlobaleDatentypen.Rassen_Enum;
 
 end KIAufgabeFestlegen;

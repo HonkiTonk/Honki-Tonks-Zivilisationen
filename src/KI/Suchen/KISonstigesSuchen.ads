@@ -28,5 +28,10 @@ private
    
    KartenWert : GlobaleRecords.AchsenKartenfeldPositivRecord;
    Ziel : GlobaleRecords.AchsenKartenfeldPositivRecord;
+   
+   function ZielSuchen
+     (AktuellePositionExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return GlobaleRecords.AchsenKartenfeldPositivRecord;
 
 end KISonstigesSuchen;

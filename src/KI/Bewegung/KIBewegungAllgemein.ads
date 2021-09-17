@@ -23,5 +23,9 @@ private
 
    BlockierendeEinheit : GlobaleDatentypen.Rassen_Enum;
    BlockierendeStadt : GlobaleDatentypen.Rassen_Enum;
+   
+   function FeldAngreifen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+     return GlobaleDatentypen.LoopRangeMinusEinsZuEins;
 
 end KIBewegungAllgemein;

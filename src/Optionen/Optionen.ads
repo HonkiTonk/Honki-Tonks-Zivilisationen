@@ -2,7 +2,8 @@ pragma SPARK_Mode (On);
 
 package Optionen is
 
-   function Optionen return Integer;
+   function Optionen
+     return Integer;
 
 private
 

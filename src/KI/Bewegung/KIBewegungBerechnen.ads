@@ -62,12 +62,19 @@ private
    
    procedure VorhandenenPlanVereinfachenPrüfen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      ErsterZugExtern, ÜberNächsterZugExtern : in GlobaleDatentypen.Stadtfeld)
+      ErsterZugExtern : in GlobaleDatentypen.Stadtfeld;
+      ÜberNächsterZugExtern : in GlobaleDatentypen.Stadtfeld)
      with
        Pre =>
          (EinheitRasseNummerExtern.Platznummer in GlobaleVariablen.EinheitenGebautArray'First (2) .. GlobaleVariablen.Grenzen (EinheitRasseNummerExtern.Rasse).Einheitengrenze
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
+   
+   procedure FelderBewerten
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      AktuelleKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord);
+   
+   procedure BewertungSortieren;
    
    
    
@@ -89,7 +96,8 @@ private
    function BewertungFeldposition
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
-      YÄnderungExtern, XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
+      YÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins;
+      XÄnderungExtern : in GlobaleDatentypen.LoopRangeMinusEinsZuEins)
       return GlobaleDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -103,7 +111,8 @@ private
    
    function BerechnungBewertungPosition
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
-      KoordinatenExtern, NeueKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord;
+      NeueKoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
       return GlobaleDatentypen.ProduktionSonstiges
      with
        Pre =>
@@ -136,6 +145,12 @@ private
    function TransporterNutzen
      (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
       KoordinatenExtern : in GlobaleRecords.AchsenKartenfeldPositivRecord)
+      return Boolean;
+   
+   function PlanschrittFestlegen
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord;
+      DurchlaufExtern : in Positive;
+      AktuellePlanpositionExtern : in GlobaleDatentypen.Stadtfeld)
       return Boolean;
 
 end KIBewegungBerechnen;

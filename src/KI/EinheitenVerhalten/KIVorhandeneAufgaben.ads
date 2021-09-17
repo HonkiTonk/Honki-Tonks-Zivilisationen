@@ -85,7 +85,6 @@ private
    EinheitID : GlobaleDatentypen.EinheitenID;
    
    VorhandeneStädte : GlobaleDatentypen.MaximaleStädteMitNullWert;
-   Heimatstadt : GlobaleDatentypen.MaximaleStädteMitNullWert;
    
    EinheitNummer : GlobaleDatentypen.MaximaleEinheitenMitNullWert;
    

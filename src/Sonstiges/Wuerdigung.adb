@@ -20,6 +20,7 @@ package body Wuerdigung is
                                      AbstandAnfangExtern    => GlobaleTexte.Leer,
                                      AbstandMitteExtern     => GlobaleTexte.Neue_Zeile,
                                      AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+      
       New_Line;
       Eingabe.WartenEingabe;
       

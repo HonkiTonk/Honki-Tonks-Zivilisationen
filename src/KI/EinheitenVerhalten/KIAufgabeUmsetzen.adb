@@ -14,65 +14,26 @@ package body KIAufgabeUmsetzen is
       case
         LeseKarten.VerbesserungGebiet (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
-      when GlobaleDatentypen.Leer =>         
-         Grund := LeseKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+         when GlobaleDatentypen.Leer =>         
+            if
+              VerbesserungGebiet (EinheitRasseNummerExtern => EinheitRasseNummerExtern) = True
+            then
+               return True;
+               
+            else
+               null;
+            end if;
       
-         if
-           (Grund = GlobaleDatentypen.Hügel 
-            or
-              Grund = GlobaleDatentypen.Gebirge
-            or
-              Grund = GlobaleDatentypen.Kohle
-            or
-              Grund = GlobaleDatentypen.Eisen
-            or
-              Grund = GlobaleDatentypen.Gold
-            or
-              LeseKarten.Hügel (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
-           and
-             Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                BefehlExtern             => GlobaleDatentypen.Mine_Bauen)
-           = True
-         then
-            AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                       BefehlExtern             => GlobaleDatentypen.Mine_Bauen);
-            return True;
-         
-         elsif
-           Grund = GlobaleDatentypen.Eis
-           and
-             Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                BefehlExtern             => GlobaleDatentypen.Festung_Bauen)
-           = True
-         then
-            AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                       BefehlExtern             => GlobaleDatentypen.Festung_Bauen);
-            return True;
-         
-         elsif
-           Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                              BefehlExtern             => GlobaleDatentypen.Farm_Bauen)
-           = True
-         then
-            AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                       BefehlExtern             => GlobaleDatentypen.Farm_Bauen);
-            return True;
-            
-         else
+         when others =>
             null;
-         end if;
-      
-      when others =>
-         null;
       end case;
       
       case
         LeseKarten.VerbesserungWeg (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern))
       is
          when GlobaleDatentypen.Leer =>
-            AufgabeDurchführen := Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
-                                                                       BefehlExtern             => GlobaleDatentypen.Straße_Bauen);
-            return True;
+            return Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                       BefehlExtern             => GlobaleDatentypen.Straße_Bauen);
             
          when others =>
             null;
@@ -81,6 +42,59 @@ package body KIAufgabeUmsetzen is
       return False;
       
    end WelcheVerbesserungAnlegen;
+   
+   
+   
+   function VerbesserungGebiet
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord)
+      return Boolean
+   is begin
+      
+      Grund := LeseKarten.Grund (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern));
+         
+      if
+        (Grund = GlobaleDatentypen.Hügel 
+         or
+           Grund = GlobaleDatentypen.Gebirge
+         or
+           Grund = GlobaleDatentypen.Kohle
+         or
+           Grund = GlobaleDatentypen.Eisen
+         or
+           Grund = GlobaleDatentypen.Gold
+         or
+           LeseKarten.Hügel (PositionExtern => LeseEinheitenGebaut.Position (EinheitRasseNummerExtern => EinheitRasseNummerExtern)) = True)
+        and
+          Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                             BefehlExtern             => GlobaleDatentypen.Mine_Bauen)
+        = True
+      then
+         Befehl := GlobaleDatentypen.Mine_Bauen;
+         
+      elsif
+        Grund = GlobaleDatentypen.Eis
+        and
+          Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                             BefehlExtern             => GlobaleDatentypen.Festung_Bauen)
+        = True
+      then
+         Befehl := GlobaleDatentypen.Festung_Bauen;
+         
+      elsif
+        Verbesserungen.VerbesserungTesten (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                           BefehlExtern             => GlobaleDatentypen.Farm_Bauen)
+        = True
+      then
+         Befehl := GlobaleDatentypen.Farm_Bauen;
+            
+      else
+         return False;
+      end if;
+      
+      return Verbesserungen.VerbesserungAnlegen (EinheitRasseNummerExtern => EinheitRasseNummerExtern,
+                                                 BefehlExtern             => Befehl);
+      
+   end VerbesserungGebiet;
       
       
 

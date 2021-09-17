@@ -2,6 +2,7 @@ pragma SPARK_Mode (On);
 
 package OptionenGrafik is
 
-   procedure OptionenGrafik;
+   function OptionenGrafik
+     return Integer;
 
 end OptionenGrafik;

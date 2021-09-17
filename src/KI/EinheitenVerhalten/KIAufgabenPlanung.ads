@@ -41,4 +41,9 @@ private
           and
             GlobaleVariablen.RassenImSpiel (EinheitRasseNummerExtern.Rasse) = GlobaleDatentypen.Spieler_KI);
    
+   procedure EinheitSpezifischeAufgabenErmitteln
+     (EinheitRasseNummerExtern : in GlobaleRecords.RassePlatznummerRecord);
+   
+   procedure AufgabenSortieren;
+   
 end KIAufgabenPlanung;

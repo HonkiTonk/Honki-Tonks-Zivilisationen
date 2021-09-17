@@ -17,28 +17,38 @@ package body KIForschung is
         LeseWichtiges.Forschungsprojekt (RasseExtern => RasseExtern)
       is
          when GlobaleDatentypen.ForschungIDMitNullWert'First =>      
-            ForschungSchleife:
-            for TechnologieSchleifenwert in ForschungsDatenbank.ForschungListeArray'Range (2) loop
-               
-               case
-                 ForschungAllgemein.ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
-                                                                  ForschungIDExtern => TechnologieSchleifenwert)
-               is
-                  when True =>
-                     SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
-                                                          ForschungIDExtern => TechnologieSchleifenwert);
-                     return;
-                     
-                  when False =>
-                     null;
-               end case;
-               
-            end loop ForschungSchleife;
+            NeuesForschungsprojekt (RasseExtern => RasseExtern);
             
          when others =>
             null;
       end case;
       
    end Forschung;
+   
+   
+   
+   procedure NeuesForschungsprojekt
+     (RasseExtern : in GlobaleDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      ForschungSchleife:
+      for TechnologieSchleifenwert in ForschungsDatenbank.ForschungListeArray'Range (2) loop
+               
+         case
+           ForschungAllgemein.ForschungAnforderungErfüllt (RasseExtern       => RasseExtern,
+                                                            ForschungIDExtern => TechnologieSchleifenwert)
+         is
+            when True =>
+               SchreibeWichtiges.Forschungsprojekt (RasseExtern       => RasseExtern,
+                                                    ForschungIDExtern => TechnologieSchleifenwert);
+               return;
+                     
+            when False =>
+               null;
+         end case;
+               
+      end loop ForschungSchleife;
+      
+   end NeuesForschungsprojekt;
 
 end KIForschung;

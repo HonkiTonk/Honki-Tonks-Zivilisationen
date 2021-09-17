@@ -16,4 +16,7 @@ private
 
    AuswahlWert : Integer;
 
+   procedure AlteTasteEntfernen;
+   procedure NeueTasteFestlegen;
+
 end OptionenSteuerung;
